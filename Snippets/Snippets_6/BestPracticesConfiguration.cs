@@ -9,8 +9,8 @@
         void DisableFeature()
         {
             #region DisableBestPracticeEnforcementPerEndpoint
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.DisableFeature<BestPracticeEnforcement>();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.DisableFeature<BestPracticeEnforcement>();
             #endregion
         }
 

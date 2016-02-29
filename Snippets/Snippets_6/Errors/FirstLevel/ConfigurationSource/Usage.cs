@@ -6,10 +6,10 @@
     {
         public Usage()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             #region FLRConfigurationSourceUsage
-            configuration.CustomConfigurationSource(new ConfigurationSource());
+            endpointConfiguration.CustomConfigurationSource(new ConfigurationSource());
             #endregion
         }
     }

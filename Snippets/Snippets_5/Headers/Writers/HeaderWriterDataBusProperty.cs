@@ -26,15 +26,15 @@
         [Test]
         public void Write()
         {
-            BusConfiguration config = new BusConfiguration();
-            config.EndpointName(endpointName);
-            config.UseDataBus<FileShareDataBus>().BasePath(@"..\..\..\storage");
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.EndpointName(endpointName);
+            busConfiguration.UseDataBus<FileShareDataBus>().BasePath(@"..\..\..\storage");
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusProperty>(typeof(ConfigErrorQueue));
-            config.TypesToScan(typesToScan);
-            config.EnableInstallers();
-            config.UsePersistence<InMemoryPersistence>();
-            config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IBus bus = Bus.Create(config).Start())
+            busConfiguration.TypesToScan(typesToScan);
+            busConfiguration.EnableInstallers();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            using (IBus bus = Bus.Create(busConfiguration).Start())
             {
                 bus.SendLocal(new MessageToSend
                 {

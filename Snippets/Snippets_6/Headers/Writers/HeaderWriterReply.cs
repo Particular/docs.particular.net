@@ -25,16 +25,16 @@
         [Test]
         public async Task Write()
         {
-            EndpointConfiguration config = new EndpointConfiguration();
-            config.EndpointName(endpointName);
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.EndpointName(endpointName);
             Type[] callbackTypes = typeof(RequestResponseExtensions).Assembly.GetTypes();
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterReply>(callbackTypes);
-            config.SetTypesToScan(typesToScan);
-            config.SendFailedMessagesTo("error");
-            config.EnableInstallers();
-            config.UsePersistence<InMemoryPersistence>();
-            config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            IEndpointInstance endpoint = await Endpoint.Start(config);
+            endpointConfiguration.SetTypesToScan(typesToScan);
+            endpointConfiguration.SendFailedMessagesTo("error");
+            endpointConfiguration.EnableInstallers();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
             await endpoint.SendLocal(new MessageToSend());
             ManualResetEvent.WaitOne();
         }

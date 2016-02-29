@@ -8,7 +8,10 @@
         {
             #region DefiningEventsAs
             Configure configure = Configure.With();
-            configure.DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("Domain") && t.Name.EndsWith("Event"));
+            configure.DefiningEventsAs(t => 
+            t.Namespace != null &&
+            t.Namespace.StartsWith("Domain") && 
+            t.Name.EndsWith("Event"));
             #endregion
         }
 

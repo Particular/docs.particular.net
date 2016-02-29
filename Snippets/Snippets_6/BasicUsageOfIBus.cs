@@ -7,10 +7,10 @@
     {
         async Task Send()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             #region BasicSend
-            IEndpointInstance instance = await Endpoint.Start(configuration);
+            IEndpointInstance instance = await Endpoint.Start(endpointConfiguration);
             await instance.Send(new MyMessage());
             #endregion
         }

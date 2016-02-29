@@ -9,9 +9,9 @@
         {
             #region publishAtStartup
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             //Other config
-            IEndpointInstance endpointInstance = await Endpoint.Start(configuration);
+            IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
             await endpointInstance.Publish(new MyEvent());
 
             #endregion

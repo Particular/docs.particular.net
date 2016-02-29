@@ -21,10 +21,10 @@
 
     class NewPipelineStepRegistration : INeedInitialization
     {
-        public void Customize(EndpointConfiguration configuration)
+        public void Customize(EndpointConfiguration endpointConfiguration)
         {
             // Register the new step in the pipeline
-            configuration.Pipeline.Register<NewPipelineStep>();
+            endpointConfiguration.Pipeline.Register<NewPipelineStep>();
         }
     }
 
@@ -34,9 +34,9 @@
 
     public class ReplaceExistingStep : INeedInitialization
     {
-        public void Customize(EndpointConfiguration configuration)
+        public void Customize(EndpointConfiguration endpointConfiguration)
         {
-            configuration.Pipeline.Replace("Id of the step to replace", typeof(SampleBehavior), "Description");
+            endpointConfiguration.Pipeline.Replace("Id of the step to replace", typeof(SampleBehavior), "Description");
         }
     }
 

@@ -18,13 +18,13 @@ public class MvcApplication : HttpApplication
 
     protected void Application_Start()
     {
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.EndpointName("Store.ECommerce");
-        configuration.PurgeOnStartup(true);
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Store.ECommerce");
+        busConfiguration.PurgeOnStartup(true);
 
-        configuration.ApplyCommonConfiguration();
+        busConfiguration.ApplyCommonConfiguration();
 
-        Bus = NServiceBus.Bus.Create(configuration).Start();
+        Bus = NServiceBus.Bus.Create(busConfiguration).Start();
 
         AreaRegistration.RegisterAllAreas();
         FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

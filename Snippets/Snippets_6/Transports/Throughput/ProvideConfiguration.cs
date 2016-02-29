@@ -7,9 +7,9 @@
         void ConfigureFromCode()
         {
             #region TuningFromCode
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-            configuration.LimitMessageProcessingConcurrencyTo(5);
+            endpointConfiguration.LimitMessageProcessingConcurrencyTo(5);
             #endregion
         }
         

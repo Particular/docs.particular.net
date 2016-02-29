@@ -9,8 +9,8 @@
         {
             #region GatewayConfiguration
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.EnableFeature<Gateway>();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.EnableFeature<Gateway>();
 
             #endregion
 

@@ -2,16 +2,16 @@
 
 public static class CommonConfiguration
 {
-    public static void ApplyCommonConfiguration(this BusConfiguration configuration)
+    public static void ApplyCommonConfiguration(this BusConfiguration busConfiguration)
     {
-        configuration.UseTransport<MsmqTransport>();
-        configuration.UsePersistence<InMemoryPersistence>();
-        configuration.Conventions()
+        busConfiguration.UseTransport<MsmqTransport>();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.Conventions()
             .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("Store") && t.Namespace.EndsWith("Commands"))
             .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("Store") && t.Namespace.EndsWith("Events"))
             .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.StartsWith("Store") && t.Namespace.EndsWith("RequestResponse"))
             .DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"));
-        configuration.RijndaelEncryptionService();
-        configuration.EnableInstallers();
+        busConfiguration.RijndaelEncryptionService();
+        busConfiguration.EnableInstallers();
     }
 }

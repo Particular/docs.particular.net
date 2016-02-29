@@ -8,8 +8,8 @@
         {
             #region ApplyLabelToMessages
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UseTransport<MsmqTransport>()
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseTransport<MsmqTransport>()
                 //Set the msmq message label to the current Message Id
                 .ApplyLabelToMessages(headers => headers[NServiceBus.Headers.MessageId]);
 

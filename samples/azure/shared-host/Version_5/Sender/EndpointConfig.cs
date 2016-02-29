@@ -3,14 +3,14 @@ using NServiceBus.Logging;
 
 public class EndpointConfig : IConfigureThisEndpoint
 {
-    public void Customize(BusConfiguration configuration)
+    public void Customize(BusConfiguration busConfiguration)
     {
-        configuration.UsePersistence<AzureStoragePersistence>();
-        configuration.UseTransport<AzureStorageQueueTransport>()
+        busConfiguration.UsePersistence<AzureStoragePersistence>();
+        busConfiguration.UseTransport<AzureStorageQueueTransport>()
             .ConnectionString("UseDevelopmentStorage=true");
 
         LogManager.Use<DefaultFactory>().Level(LogLevel.Debug);
 
-        configuration.DisableNotUsedFeatures();
+        busConfiguration.DisableNotUsedFeatures();
     }
 }

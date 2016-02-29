@@ -6,9 +6,9 @@
     {
         public Usage()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region inject-endpoint-mapping-configuration-source
-            configuration.CustomConfigurationSource(new ConfigurationSource());
+            endpointConfiguration.CustomConfigurationSource(new ConfigurationSource());
             #endregion
         }
     }

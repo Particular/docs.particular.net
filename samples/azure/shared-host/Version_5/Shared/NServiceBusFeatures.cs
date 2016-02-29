@@ -3,10 +3,10 @@ using NServiceBus.Features;
 
 public static class NServiceBusFeatures
 {
-    public static void DisableNotUsedFeatures(this BusConfiguration configuration)
+    public static void DisableNotUsedFeatures(this BusConfiguration busConfiguration)
     {
-        configuration.DisableFeature<Sagas>();
-        configuration.DisableFeature<SecondLevelRetries>();
-        configuration.DisableFeature<TimeoutManager>();
+        busConfiguration.DisableFeature<Sagas>();
+        busConfiguration.DisableFeature<SecondLevelRetries>();
+        busConfiguration.DisableFeature<TimeoutManager>();
     }
 }

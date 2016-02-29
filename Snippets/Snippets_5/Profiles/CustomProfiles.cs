@@ -4,7 +4,7 @@ using NServiceBus.Hosting.Profiles;
 #region profile_behavior
 class LiteEmailBehavior : IHandleProfile<NServiceBus.Lite>
 {
-    public void ProfileActivated(BusConfiguration config)
+    public void ProfileActivated(BusConfiguration busConfiguration)
     {
         // set the NullEmailSender in the container
     }
@@ -12,7 +12,7 @@ class LiteEmailBehavior : IHandleProfile<NServiceBus.Lite>
 
 class IntegrationEmailBehavior : IHandleProfile<NServiceBus.Integration>
 {
-    public void ProfileActivated(BusConfiguration config)
+    public void ProfileActivated(BusConfiguration busConfiguration)
     {
         // set the FileEmailSender in the container
     }
@@ -20,7 +20,7 @@ class IntegrationEmailBehavior : IHandleProfile<NServiceBus.Integration>
 
 class ProductionEmailBehavior : IHandleProfile<NServiceBus.Production>
 {
-    public void ProfileActivated(BusConfiguration config)
+    public void ProfileActivated(BusConfiguration busConfiguration)
     {
         // set the SmtpEmailSender in the container
     }

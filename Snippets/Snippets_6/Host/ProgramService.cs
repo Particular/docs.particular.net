@@ -34,9 +34,9 @@ namespace Snippets6.Host
 
         async Task AsyncOnStart()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.EnableInstallers();
-            endpointInstance = await Endpoint.Start(configuration);
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.EnableInstallers();
+            endpointInstance = await Endpoint.Start(endpointConfiguration);
         }
 
         protected override void OnStop()

@@ -8,11 +8,11 @@ namespace Snippets6
 
         public void RawXml()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             #region ConfigureRawXmlSerialization
 
-            configuration.UseSerialization<XmlSerializer>()
+            endpointConfiguration.UseSerialization<XmlSerializer>()
                 .DontWrapRawXml();
             // DontWrapSingleMessages() is not required since this has been removed.
 

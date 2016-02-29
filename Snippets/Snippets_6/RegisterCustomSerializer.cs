@@ -12,11 +12,11 @@
     {
         public void Customize()
         {
-            EndpointConfiguration configuration = null;
+            EndpointConfiguration endpointConfiguration = null;
 
             #region RegisterCustomSerializer
 
-            configuration.UseSerialization<MyCustomSerializerDefinition>();
+            endpointConfiguration.UseSerialization<MyCustomSerializerDefinition>();
 
             #endregion
         }

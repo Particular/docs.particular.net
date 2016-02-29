@@ -6,9 +6,9 @@
     #region RegisteringTheQueueCreator
     class RegisterQueueCreator : INeedInitialization
     {
-        public void Customize(BusConfiguration configuration)
+        public void Customize(BusConfiguration busConfiguration)
         {
-            configuration.RegisterComponents(c => c.ConfigureComponent<YourQueueCreator>(DependencyLifecycle.InstancePerCall));
+            busConfiguration.RegisterComponents(c => c.ConfigureComponent<YourQueueCreator>(DependencyLifecycle.InstancePerCall));
         }
     }
     #endregion

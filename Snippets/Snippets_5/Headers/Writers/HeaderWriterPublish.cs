@@ -27,14 +27,14 @@
         [Test]
         public void Write()
         {
-            BusConfiguration config = new BusConfiguration();
-            config.EndpointName(EndpointName);
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.EndpointName(EndpointName);
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterPublish>(typeof(ConfigErrorQueue));
-            config.TypesToScan(typesToScan);
-            config.EnableInstallers();
-            config.UsePersistence<InMemoryPersistence>();
-            config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IBus bus = Bus.Create(config).Start())
+            busConfiguration.TypesToScan(typesToScan);
+            busConfiguration.EnableInstallers();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            using (IBus bus = Bus.Create(busConfiguration).Start())
             {
                 //give time for the subscription to happen
                 Thread.Sleep(3000);

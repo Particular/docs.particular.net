@@ -9,8 +9,8 @@
         {
             #region Unity
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UseContainer<UnityBuilder>();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseContainer<UnityBuilder>();
 
             #endregion
         }
@@ -19,10 +19,10 @@
         {
             #region Unity_Existing
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             UnityContainer container = new UnityContainer();
             container.RegisterInstance(new MyService());
-            configuration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
+            endpointConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
 
             #endregion
         }

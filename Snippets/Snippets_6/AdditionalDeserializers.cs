@@ -7,11 +7,11 @@
         void RegisterSerializers()
         {
             #region AdditionalDeserializers
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             // configures XML serialization as default
-            configuration.UseSerialization<XmlSerializer>();
+            endpointConfiguration.UseSerialization<XmlSerializer>();
             // configures additional deserialization
-            configuration.AddDeserializer<JsonSerializer>();
+            endpointConfiguration.AddDeserializer<JsonSerializer>();
             #endregion
         }
     }

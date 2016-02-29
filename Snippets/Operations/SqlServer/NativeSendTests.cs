@@ -87,18 +87,18 @@
 
         IBus StartBus(State state)
         {
-            BusConfiguration config = new BusConfiguration();
-            config.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
-            config.EndpointName(endpointName);
-            config.UseSerialization<JsonSerializer>();
-            config.UseTransport<SqlServerTransport>().ConnectionString(connectionString);
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
+            busConfiguration.EndpointName(endpointName);
+            busConfiguration.UseSerialization<JsonSerializer>();
+            busConfiguration.UseTransport<SqlServerTransport>().ConnectionString(connectionString);
             Type[] sqlTypes = typeof(SqlServerTransport).Assembly.GetTypes();
-            config.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>(sqlTypes));
-            config.EnableInstallers();
-            config.UsePersistence<InMemoryPersistence>();
-            config.DisableFeature<SecondLevelRetries>();
+            busConfiguration.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>(sqlTypes));
+            busConfiguration.EnableInstallers();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.DisableFeature<SecondLevelRetries>();
 
-            return Bus.Create(config).Start();
+            return Bus.Create(busConfiguration).Start();
         }
 
         class MessageHandler : IHandleMessages<MessageToSend>

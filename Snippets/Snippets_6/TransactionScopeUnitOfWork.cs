@@ -9,8 +9,8 @@
         public void UnitOfWorkWrapHandlersInATransactionScope()
         {
             #region UnitOfWorkWrapHandlersInATransactionScope
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UnitOfWork()
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UnitOfWork()
                 .WrapHandlersInATransactionScope();
             #endregion
         }
@@ -18,8 +18,8 @@
         public void UnitOfWorkCustomTransactionIsolationLevel()
         {
             #region UnitOfWorkCustomTransactionIsolationLevel
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UnitOfWork()
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UnitOfWork()
                 .WrapHandlersInATransactionScope(isolationLevel: IsolationLevel.RepeatableRead);
             #endregion
         }
@@ -27,8 +27,8 @@
         public void UnitOfWorkCustomTransactionTimeout()
         {
             #region UnitOfWorkCustomTransactionTimeout
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UnitOfWork()
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UnitOfWork()
                 .WrapHandlersInATransactionScope(timeout: TimeSpan.FromSeconds(30));
             #endregion
         }

@@ -8,9 +8,13 @@ namespace Snippets6.PubSub.WithConvention
         {
             #region DefiningEventsAs
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            ConventionsBuilder conventions = configuration.Conventions();
-            conventions.DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("Domain") && t.Name.EndsWith("Event"));
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            ConventionsBuilder conventions = endpointConfiguration.Conventions();
+            conventions.DefiningEventsAs(t =>
+                t.Namespace != null &&
+                t.Namespace.StartsWith("Domain") &&
+                t.Name.EndsWith("Event"));
+
             #endregion
         }
     }

@@ -25,18 +25,18 @@ namespace Snippets5.Features
         void EndpointConfiguration()
         {
 #region EnableDisableFeatures
-            BusConfiguration configuration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
             
             // enable delayed delivery feature since SLR relies on it
-            configuration.EnableFeature<DelayedDeliveryFeature>();
+            busConfiguration.EnableFeature<DelayedDeliveryFeature>();
 
             // this is not required if the feature uses EnableByDefault()
-            configuration.EnableFeature<SecondLevelRetries>();
+            busConfiguration.EnableFeature<SecondLevelRetries>();
 
             // we can disable features we won't use
-            configuration.DisableFeature<Sagas>();
+            busConfiguration.DisableFeature<Sagas>();
 
-            IStartableBus bus = Bus.Create(configuration);
+            IStartableBus bus = Bus.Create(busConfiguration);
 #endregion
         }
 

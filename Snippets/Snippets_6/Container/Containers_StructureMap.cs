@@ -9,8 +9,8 @@
         {
             #region StructureMap
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UseContainer<StructureMapBuilder>();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseContainer<StructureMapBuilder>();
 
             #endregion
         }
@@ -19,10 +19,10 @@
         {
             #region StructureMap_Existing
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             Container container = new Container(x => x.For<MyService>().Use(new MyService()));
-            configuration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
+            endpointConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
 
             #endregion
         }

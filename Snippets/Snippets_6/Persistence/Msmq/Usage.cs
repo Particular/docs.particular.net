@@ -9,8 +9,8 @@
         {
             #region ConfiguringMsmqPersistence
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UsePersistence<MsmqPersistence>();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UsePersistence<MsmqPersistence>();
 
             #endregion
         }

@@ -7,12 +7,12 @@
 
     public class SharedSessionEndpointConfig
     {
-        public void DoStuff(BusConfiguration configuration, IDocumentSession someSession)
+        public void DoStuff(BusConfiguration busConfiguration, IDocumentSession someSession)
         {
             #region 3to4-ravensharedsession
             Func<IDocumentSession> sessionFactory = () => someSession;
 
-            configuration.UsePersistence<RavenDBPersistence>()
+            busConfiguration.UsePersistence<RavenDBPersistence>()
                 .UseSharedSession(sessionFactory);
             #endregion
         }

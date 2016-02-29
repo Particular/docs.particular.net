@@ -16,8 +16,8 @@
         {
             #region NewtonsoftSerialization 0.3-pre
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UseSerialization<NewtonsoftSerializer>();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
             #endregion
         }

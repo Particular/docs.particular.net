@@ -10,7 +10,7 @@
         {
             #region SqlAzureNHibernateDriverConfiguration
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             Configuration nhConfiguration = new Configuration
             {
@@ -20,7 +20,7 @@
                 }
             };
 
-            configuration.UsePersistence<NHibernatePersistence>()
+            endpointConfiguration.UsePersistence<NHibernatePersistence>()
                 .UseConfiguration(nhConfiguration);
 
             #endregion

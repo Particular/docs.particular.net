@@ -60,19 +60,19 @@
 
         IBus StartBus(State state)
         {
-            BusConfiguration config = new BusConfiguration();
-            config.RegisterComponents(c=>c.ConfigureComponent(x => state,DependencyLifecycle.SingleInstance));
-            config.EndpointName(endpointName);
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.RegisterComponents(c=>c.ConfigureComponent(x => state,DependencyLifecycle.SingleInstance));
+            busConfiguration.EndpointName(endpointName);
             Type[] sqlTransportTypes = typeof(SqlServerTransport)
                 .Assembly
                 .GetTypes();
-            config.TypesToScan(TypeScanner.NestedTypes<ErrorQueueTests>(sqlTransportTypes));
-            config.EnableInstallers();
-            config.UseTransport<SqlServerTransport>()
+            busConfiguration.TypesToScan(TypeScanner.NestedTypes<ErrorQueueTests>(sqlTransportTypes));
+            busConfiguration.EnableInstallers();
+            busConfiguration.UseTransport<SqlServerTransport>()
                 .ConnectionString(connectionString);
-            config.UsePersistence<InMemoryPersistence>();
-            config.DisableFeature<SecondLevelRetries>();
-            return Bus.Create(config).Start();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.DisableFeature<SecondLevelRetries>();
+            return Bus.Create(busConfiguration).Start();
         }
 
         class State

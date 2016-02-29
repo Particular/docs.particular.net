@@ -12,9 +12,9 @@
 
             #region RegisterCustomConfigSource
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-            configuration.CustomConfigurationSource(new MyCustomConfigurationSource());
+            endpointConfiguration.CustomConfigurationSource(new MyCustomConfigurationSource());
 
             #endregion
         }

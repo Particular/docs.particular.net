@@ -9,13 +9,13 @@
         {
             #region ConfiguringInMemory
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-            configuration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
-            configuration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
-            configuration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
-            configuration.UsePersistence<InMemoryPersistence, StorageType.Outbox>();
-            configuration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Outbox>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
 
             #endregion
         }

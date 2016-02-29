@@ -12,21 +12,23 @@ namespace Snippets6.Routing
     {
         public void StaticRoutes()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Routing-StaticRoutes-Endpoint
-            configuration.Routing().UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            endpointConfiguration.Routing()
+                .UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
             #endregion
 
             #region Routing-StaticRoutes-Address
-            configuration.Routing().UnicastRoutingTable.RouteToAddress(typeof(AcceptOrder), "Sales@SomeMachine");
+            endpointConfiguration.Routing()
+                .UnicastRoutingTable.RouteToAddress(typeof(AcceptOrder), "Sales@SomeMachine");
             #endregion
         }
 
         public void DynamicRoutes()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Routing-DynamicRoutes
-            configuration.Routing().UnicastRoutingTable
+            endpointConfiguration.Routing().UnicastRoutingTable
                 .AddDynamic((types, contextBag) => new[]
                 {
                     //Use endpoint name
@@ -41,11 +43,11 @@ namespace Snippets6.Routing
 
         public void CustomRoutingStore()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             #region Routing-CustomRoutingStore
 
-            configuration.Routing().UnicastRoutingTable.AddDynamic((t, c) =>
+            endpointConfiguration.Routing().UnicastRoutingTable.AddDynamic((t, c) =>
                 LoadFromCache(t) ?? LoadFromDatabaseAndPutToCache(t));
 
             #endregion
@@ -53,21 +55,21 @@ namespace Snippets6.Routing
 
         public void StaticEndpointMapping()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Routing-StaticEndpointMapping
             EndpointName sales = new EndpointName("Sales");
-            configuration.Routing().EndpointInstances
+            endpointConfiguration.Routing().EndpointInstances
                 .AddStatic(sales, new EndpointInstance(sales, "1", null), new EndpointInstance(sales, "2", null));
             #endregion
         }
 
         public void DynamicEndpointMapping()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             #region Routing-DynamicEndpointMapping
 
-            configuration.Routing().EndpointInstances.AddDynamic(async e =>
+            endpointConfiguration.Routing().EndpointInstances.AddDynamic(async e =>
             {
                 if (e.ToString().StartsWith("Sales"))
                 {
@@ -85,9 +87,9 @@ namespace Snippets6.Routing
 
         public void SpecialCaseTransportAddress()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Routing-SpecialCaseTransportAddress
-            configuration
+            endpointConfiguration
                 .UseTransport<MyTransport>()
                 .AddAddressTranslationException(new EndpointInstance("Sales", "1"), "Sales-One@MachineA");
             #endregion
@@ -96,9 +98,9 @@ namespace Snippets6.Routing
         // ReSharper disable once ConvertClosureToMethodGroup
         public void TransportAddressRules()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Routing-TransportAddressRule
-            configuration
+            endpointConfiguration
                 .UseTransport<MyTransport>()
                 .AddAddressTranslationRule(i => CustomTranslationRule(i));
             #endregion
@@ -111,11 +113,13 @@ namespace Snippets6.Routing
 
         public void FileBasedRouting()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Routing-FileBased-Config
-            configuration.Routing().UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
-            configuration.Routing().UnicastRoutingTable.RouteToEndpoint(typeof(SendOrder), "Shipping");
-            configuration.Routing().UseFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
+
+            RoutingSettings routingSettings = endpointConfiguration.Routing();
+            routingSettings.UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            routingSettings.UnicastRoutingTable.RouteToEndpoint(typeof(SendOrder), "Shipping");
+            routingSettings.UseFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
             #endregion
         }
 

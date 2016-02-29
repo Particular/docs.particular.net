@@ -9,53 +9,53 @@
         {
             #region ScanningDefault
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             #endregion
         }
 
         public void ScanningNestedAssembliesEnabled()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             #region ScanningNestedAssebliesEnabled
 
-            configuration.ScanAssembliesInNestedDirectories();
+            endpointConfiguration.ScanAssembliesInNestedDirectories();
 
             #endregion
         }
 
         public void ScanningExcludeByName()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             #region ScanningExcludeByName
 
-            configuration.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
+            endpointConfiguration.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
 
             #endregion
         }
 
         public void ScanningExcludeTypes()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             Type type1 = null;
             Type type2 = null;
 
             #region ScanningExcludeTypes
 
-            configuration.ExcludeTypes(type1, type2);
+            endpointConfiguration.ExcludeTypes(type1, type2);
 
             #endregion
         }
 
         public void ScanningUpgrade()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             #region 5to6ScanningUpgrade
 
-            configuration.ExcludeAssemblies("BadAssembly1.dll", "BadAssembly2.dll");
+            endpointConfiguration.ExcludeAssemblies("BadAssembly1.dll", "BadAssembly2.dll");
 
             #endregion
         }
@@ -64,7 +64,7 @@
 
         public class EndpointConfig : IConfigureThisEndpoint
         {
-            public void Customize(EndpointConfiguration configuration)
+            public void Customize(EndpointConfiguration endpointConfiguration)
             {
                 // use 'busConfiguration' object to configure scanning
             }

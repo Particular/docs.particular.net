@@ -44,15 +44,15 @@
 
         IBus StartBus(State state)
         {
-            BusConfiguration config = new BusConfiguration();
-            config.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
-            config.EndpointName(endpointName);
-            config.UseSerialization<JsonSerializer>();
-            config.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>());
-            config.EnableInstallers();
-            config.UsePersistence<InMemoryPersistence>();
-            config.DisableFeature<SecondLevelRetries>();
-            return Bus.Create(config).Start();
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
+            busConfiguration.EndpointName(endpointName);
+            busConfiguration.UseSerialization<JsonSerializer>();
+            busConfiguration.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>());
+            busConfiguration.EnableInstallers();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.DisableFeature<SecondLevelRetries>();
+            return Bus.Create(busConfiguration).Start();
         }
 
         class MessageHandler : IHandleMessages<MessageToSend>

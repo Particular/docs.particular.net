@@ -8,9 +8,9 @@
         {
             #region EncryptionFromIEncryptionService
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             //where EncryptionService implements IEncryptionService 
-            configuration.RegisterEncryptionService(() => new EncryptionService());
+            endpointConfiguration.RegisterEncryptionService(() => new EncryptionService());
 
             #endregion
         }

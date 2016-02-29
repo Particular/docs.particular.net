@@ -8,11 +8,11 @@
         {
             #region License
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-            configuration.LicensePath("PathToLicense");
+            endpointConfiguration.LicensePath("PathToLicense");
             //or
-            configuration.License("YourCustomLicenseText");
+            endpointConfiguration.License("YourCustomLicenseText");
 
             #endregion
         }

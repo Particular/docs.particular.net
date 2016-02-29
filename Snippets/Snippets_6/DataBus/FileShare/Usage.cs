@@ -10,8 +10,8 @@
 
             #region FileShareDataBus
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UseDataBus<FileShareDataBus>()
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseDataBus<FileShareDataBus>()
                 .BasePath(databusPath);
 
             #endregion

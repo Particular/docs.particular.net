@@ -26,18 +26,18 @@ namespace Snippets6.Features
         async Task EndpointConfiguration()
         {
             #region EnableDisableFeatures
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             
             // enable delayed delivery feature since SLR relies on it
-            configuration.EnableFeature<DelayedDeliveryFeature>();
+            endpointConfiguration.EnableFeature<DelayedDeliveryFeature>();
 
             // this is not required if the feature uses EnableByDefault()
-            configuration.EnableFeature<SecondLevelRetries>();
+            endpointConfiguration.EnableFeature<SecondLevelRetries>();
 
             // we can disable features we won't use
-            configuration.DisableFeature<Sagas>();
+            endpointConfiguration.DisableFeature<Sagas>();
 
-            IStartableEndpoint endpoint = await Endpoint.Create(configuration);
+            IStartableEndpoint endpoint = await Endpoint.Create(endpointConfiguration);
 #endregion
         }
 

@@ -8,8 +8,8 @@
         {
             #region ErrorWithCode
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.SendFailedMessagesTo("targetErrorQueue");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.SendFailedMessagesTo("targetErrorQueue");
 
             #endregion
         }

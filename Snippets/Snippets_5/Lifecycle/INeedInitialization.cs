@@ -6,7 +6,7 @@
 
     class NeedsInitialization : INeedInitialization
     {
-        public void Customize(BusConfiguration configuration)
+        public void Customize(BusConfiguration busConfiguration)
         {
             // Perform initialization
             // This is after type scanning. Do not call the following here: 

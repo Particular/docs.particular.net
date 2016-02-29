@@ -7,9 +7,14 @@ namespace Snippets5.PubSub.WithConvention
         public Usage()
         {
             #region DefiningEventsAs
+
             BusConfiguration busConfiguration = new BusConfiguration();
             ConventionsBuilder conventions = busConfiguration.Conventions();
-            conventions.DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("Domain") && t.Name.EndsWith("Event"));
+            conventions.DefiningEventsAs(t =>
+                t.Namespace != null &&
+                t.Namespace.StartsWith("Domain") &&
+                t.Name.EndsWith("Event"));
+
             #endregion
         }
     }

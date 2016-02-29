@@ -7,8 +7,8 @@
         public Usage()
         {
             #region DefiningEncryptedPropertiesAs
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            ConventionsBuilder conventions = configuration.Conventions();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            ConventionsBuilder conventions = endpointConfiguration.Conventions();
             conventions.DefiningEncryptedPropertiesAs(info => info.Name.EndsWith("EncryptedProperty"));
             #endregion
         }

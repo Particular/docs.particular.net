@@ -28,15 +28,15 @@
         [Test]
         public async Task Write()
         {
-            EndpointConfiguration config = new EndpointConfiguration();
-            config.EndpointName(EndpointName);
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.EndpointName(EndpointName);
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterPublish>();
-            config.SetTypesToScan(typesToScan);
-            config.SendFailedMessagesTo("error");
-            config.EnableInstallers();
-            config.UsePersistence<InMemoryPersistence>();
-            config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            IEndpointInstance endpoint = await Endpoint.Start(config);
+            endpointConfiguration.SetTypesToScan(typesToScan);
+            endpointConfiguration.SendFailedMessagesTo("error");
+            endpointConfiguration.EnableInstallers();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
 
             //give time for the subscription to happen
             Thread.Sleep(3000);

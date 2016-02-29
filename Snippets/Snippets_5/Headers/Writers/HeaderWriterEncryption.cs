@@ -26,16 +26,16 @@
         [Test]
         public void Write()
         {
-            BusConfiguration config = new BusConfiguration();
-            config.EndpointName(endpointName);
-            config.RijndaelEncryptionService("key1", Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
-            config.Conventions().DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.EndpointName(endpointName);
+            busConfiguration.RijndaelEncryptionService("key1", Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
+            busConfiguration.Conventions().DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>(typeof(ConfigErrorQueue));
-            config.TypesToScan(typesToScan);
-            config.EnableInstallers();
-            config.UsePersistence<InMemoryPersistence>();
-            config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IBus bus = Bus.Create(config).Start())
+            busConfiguration.TypesToScan(typesToScan);
+            busConfiguration.EnableInstallers();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            using (IBus bus = Bus.Create(busConfiguration).Start())
             {
                 bus.SendLocal(new MessageToSend
                 {

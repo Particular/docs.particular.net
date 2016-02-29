@@ -8,9 +8,9 @@
         {
             #region OutboxEnablineInCode
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-            configuration.EnableOutbox();
+            endpointConfiguration.EnableOutbox();
 
             #endregion
         }

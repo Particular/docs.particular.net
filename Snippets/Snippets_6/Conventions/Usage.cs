@@ -9,8 +9,8 @@ namespace Snippets6.Conventions
         {
             #region MessageConventions
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            ConventionsBuilder conventions = configuration.Conventions();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            ConventionsBuilder conventions = endpointConfiguration.Conventions();
             conventions.DefiningCommandsAs(t => t.Namespace == "MyNamespace.Messages.Commands");
             conventions.DefiningEventsAs(t => t.Namespace == "MyNamespace.Messages.Events");
             conventions.DefiningMessagesAs(t => t.Namespace == "MyNamespace.Messages");

@@ -44,18 +44,18 @@
         {
             LogManager.Use<DefaultFactory>()
                 .Level(LogLevel.Warn);
-            BusConfiguration config = new BusConfiguration();
-            config.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
-            config.EndpointName(endpointName);
-            config.UseSerialization<JsonSerializer>();
-            config.UseTransport<RabbitMQTransport>()
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
+            busConfiguration.EndpointName(endpointName);
+            busConfiguration.UseSerialization<JsonSerializer>();
+            busConfiguration.UseTransport<RabbitMQTransport>()
                 .ConnectionString("host=localhost");
             Type[] rabbitTypes = typeof(RabbitMQTransport).Assembly.GetTypes();
-            config.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>(rabbitTypes));
-            config.EnableInstallers();
-            config.UsePersistence<InMemoryPersistence>();
-            config.DisableFeature<SecondLevelRetries>();
-            return Bus.Create(config).Start();
+            busConfiguration.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>(rabbitTypes));
+            busConfiguration.EnableInstallers();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.DisableFeature<SecondLevelRetries>();
+            return Bus.Create(busConfiguration).Start();
         }
 
         class MessageHandler : IHandleMessages<MessageToSend>

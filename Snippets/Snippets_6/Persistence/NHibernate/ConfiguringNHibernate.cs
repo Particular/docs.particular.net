@@ -12,23 +12,23 @@
         {
             #region ConfiguringNHibernate
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             //Use NHibernate for all persistence concerns
-            configuration.UsePersistence<NHibernatePersistence>();
+            endpointConfiguration.UsePersistence<NHibernatePersistence>();
 
             //or select specific concerns
-            configuration.UsePersistence<NHibernatePersistence, StorageType.Sagas>();
-            configuration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
-            configuration.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();
-            configuration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
-            configuration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
+            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Sagas>();
+            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
+            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();
+            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
+            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
 
             #endregion
 
             #region NHibernateSubscriptionCaching
 
-            configuration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>()
+            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>()
                 .EnableCachingForSubscriptionStorage(TimeSpan.FromMinutes(1));
 
             #endregion
@@ -39,7 +39,7 @@
         {
             #region CommonNHibernateConfiguration
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             Configuration nhConfiguration = new Configuration
             {
@@ -51,7 +51,7 @@
                 }
             };
 
-            configuration.UsePersistence<NHibernatePersistence>()
+            endpointConfiguration.UsePersistence<NHibernatePersistence>()
                 .UseConfiguration(nhConfiguration);
 
             #endregion
@@ -61,7 +61,7 @@
         {
             #region SpecificNHibernateConfiguration
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             Configuration nhConfiguration = new Configuration
             {
@@ -71,11 +71,11 @@
                 }
             };
 
-            configuration.UsePersistence<NHibernatePersistence>()
+            endpointConfiguration.UsePersistence<NHibernatePersistence>()
                 .UseSubscriptionStorageConfiguration(nhConfiguration);
-            configuration.UsePersistence<NHibernatePersistence>()
+            endpointConfiguration.UsePersistence<NHibernatePersistence>()
                 .UseGatewayDeduplicationConfiguration(nhConfiguration);
-            configuration.UsePersistence<NHibernatePersistence>()
+            endpointConfiguration.UsePersistence<NHibernatePersistence>()
                 .UseTimeoutStorageConfiguration(nhConfiguration);
             #endregion
 
@@ -86,7 +86,7 @@
         {
             #region CustomCommonNhibernateConfigurationWarning
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             Configuration nhConfiguration = new Configuration
             {
@@ -96,7 +96,7 @@
                 }
             };
 
-            configuration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>()
+            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>()
                 .UseConfiguration(nhConfiguration);
             #endregion
         }

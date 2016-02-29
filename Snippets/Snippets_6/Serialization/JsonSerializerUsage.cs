@@ -9,8 +9,8 @@
 
             #region JsonSerialization
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UseSerialization<JsonSerializer>();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseSerialization<JsonSerializer>();
 
             #endregion
         }

@@ -8,8 +8,8 @@
         {
             #region EncryptionServiceSimple
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.RijndaelEncryptionService();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.RijndaelEncryptionService();
 
             #endregion
         }

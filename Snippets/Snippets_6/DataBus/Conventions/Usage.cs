@@ -6,10 +6,10 @@
     {
         public Usage()
         {
-            EndpointConfiguration configuration = null;
+            EndpointConfiguration endpointConfiguration = null;
             #region DefineMessageWithLargePayloadUsingConvention
 
-            ConventionsBuilder conventions = configuration.Conventions();
+            ConventionsBuilder conventions = endpointConfiguration.Conventions();
             conventions.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
 
             #endregion

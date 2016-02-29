@@ -13,8 +13,8 @@ namespace Snippets6.Host
         {
             #region DefiningCustomHostErrorHandlingAction
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.DefineCriticalErrorAction(OnCriticalError);
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 
             #endregion
         }

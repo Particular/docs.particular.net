@@ -7,8 +7,8 @@
         public void Simple()
         {
             #region MutatorRegistration
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.RegisterComponents(c => c.ConfigureComponent<MyMutator>(DependencyLifecycle.InstancePerCall));
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<MyMutator>(DependencyLifecycle.InstancePerCall));
             #endregion
         }
 

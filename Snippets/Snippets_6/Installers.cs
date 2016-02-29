@@ -9,11 +9,11 @@
         {
             #region Installers
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-            configuration.EnableInstallers();
+            endpointConfiguration.EnableInstallers();
 
-            await Endpoint.Start(configuration);//this will run the installers
+            await Endpoint.Start(endpointConfiguration);//this will run the installers
 
             #endregion
         }

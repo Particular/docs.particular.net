@@ -8,8 +8,8 @@
         {
             #region AuditWithCode
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.AuditProcessedMessagesTo("targetAuditQueue");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.AuditProcessedMessagesTo("targetAuditQueue");
 
             #endregion
         }

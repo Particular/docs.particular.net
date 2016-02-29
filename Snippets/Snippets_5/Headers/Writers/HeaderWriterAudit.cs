@@ -27,14 +27,14 @@
         [Test]
         public void Write()
         {
-            BusConfiguration config = new BusConfiguration();
-            config.EndpointName(endpointName);
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.EndpointName(endpointName);
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterAudit>(typeof(ConfigErrorQueue));
-            config.TypesToScan(typesToScan);
-            config.EnableInstallers();
-            config.UsePersistence<InMemoryPersistence>();
-            config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IBus bus = Bus.Create(config).Start())
+            busConfiguration.TypesToScan(typesToScan);
+            busConfiguration.EnableInstallers();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            using (IBus bus = Bus.Create(busConfiguration).Start())
             {
                 bus.SendLocal(new MessageToSend());
                 ManualResetEvent.WaitOne();

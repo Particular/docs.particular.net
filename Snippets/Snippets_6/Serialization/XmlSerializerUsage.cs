@@ -8,8 +8,8 @@
         {
             #region XmlSerialization
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UseSerialization<XmlSerializer>();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseSerialization<XmlSerializer>();
 
             #endregion
         }

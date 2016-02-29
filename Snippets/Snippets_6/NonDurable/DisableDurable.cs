@@ -8,8 +8,8 @@
         {
             #region set-to-non-durable
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.DisableDurableMessages();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.DisableDurableMessages();
 
             #endregion
         }

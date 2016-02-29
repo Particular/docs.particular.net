@@ -10,8 +10,8 @@
         {
             #region enable-criticaltime
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.EnableCriticalTimePerformanceCounter();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.EnableCriticalTimePerformanceCounter();
 
             #endregion
         }
@@ -19,8 +19,8 @@
         {
             #region enable-sla
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
 
             #endregion
         }
@@ -32,7 +32,7 @@
         {
             #endregion
 
-            public void Customize(EndpointConfiguration configuration)
+            public void Customize(EndpointConfiguration endpointConfiguration)
             {
             }
         }

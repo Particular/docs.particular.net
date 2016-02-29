@@ -9,9 +9,9 @@
         {
             #region DisableAutoSubscribe
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-            configuration.DisableFeature<AutoSubscribe>();
+            endpointConfiguration.DisableFeature<AutoSubscribe>();
 
             #endregion
         }
@@ -20,9 +20,9 @@
         {
             #region DoNotAutoSubscribeSagas
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-            configuration.AutoSubscribe().DoNotAutoSubscribeSagas();
+            endpointConfiguration.AutoSubscribe().DoNotAutoSubscribeSagas();
 
             #endregion
         }

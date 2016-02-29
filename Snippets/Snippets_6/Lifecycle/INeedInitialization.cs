@@ -6,7 +6,7 @@
 
     class NeedsInitialization : INeedInitialization
     {
-        public void Customize(EndpointConfiguration configuration)
+        public void Customize(EndpointConfiguration endpointConfiguration)
         {
             // Perform initialization
             // This is after Type Scanning. Do not call the following here:

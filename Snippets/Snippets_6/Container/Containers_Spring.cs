@@ -9,8 +9,8 @@
         {
             #region Spring
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UseContainer<SpringBuilder>();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseContainer<SpringBuilder>();
 
             #endregion
         }
@@ -20,10 +20,10 @@
 
             #region Spring_Existing
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             GenericApplicationContext applicationContext = new GenericApplicationContext();
             applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
-            configuration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));
+            endpointConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));
 
             #endregion
         }

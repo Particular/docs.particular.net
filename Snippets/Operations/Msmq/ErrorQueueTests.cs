@@ -78,14 +78,14 @@
 
         IBus StartBus(State state)
         {
-            BusConfiguration config = new BusConfiguration();
-            config.RegisterComponents(c=>c.ConfigureComponent(x => state,DependencyLifecycle.SingleInstance));
-            config.EndpointName(endpointName);
-            config.TypesToScan(TypeScanner.NestedTypes<ErrorQueueTests>());
-            config.EnableInstallers();
-            config.UsePersistence<InMemoryPersistence>();
-            config.DisableFeature<SecondLevelRetries>();
-            return Bus.Create(config).Start();
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.RegisterComponents(c=>c.ConfigureComponent(x => state,DependencyLifecycle.SingleInstance));
+            busConfiguration.EndpointName(endpointName);
+            busConfiguration.TypesToScan(TypeScanner.NestedTypes<ErrorQueueTests>());
+            busConfiguration.EnableInstallers();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.DisableFeature<SecondLevelRetries>();
+            return Bus.Create(busConfiguration).Start();
         }
 
         class State

@@ -8,9 +8,9 @@
         {
             #region HandlerOrderingWithCode
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-            configuration.ExecuteTheseHandlersFirst(typeof(HandlerB), typeof(HandlerA), typeof(HandlerC));
+            endpointConfiguration.ExecuteTheseHandlersFirst(typeof(HandlerB), typeof(HandlerA), typeof(HandlerC));
 
             #endregion
         }
@@ -18,9 +18,9 @@
         #region HandlerOrderingWithFirst
         public class MySpecifyingFirst : INeedInitialization
         {
-            public void Customize(EndpointConfiguration configuration)
+            public void Customize(EndpointConfiguration endpointConfiguration)
             {
-                configuration.ExecuteTheseHandlersFirst(typeof(HandlerB));
+                endpointConfiguration.ExecuteTheseHandlersFirst(typeof(HandlerB));
             }
         }
         #endregion
@@ -28,9 +28,9 @@
         #region HandlerOrderingWithMultiple
         public class MySpecifyingOrder : INeedInitialization
         {
-            public void Customize(EndpointConfiguration configuration)
+            public void Customize(EndpointConfiguration endpointConfiguration)
             {
-                configuration.ExecuteTheseHandlersFirst(typeof(HandlerB), typeof(HandlerA), typeof(HandlerC));
+                endpointConfiguration.ExecuteTheseHandlersFirst(typeof(HandlerB), typeof(HandlerA), typeof(HandlerC));
             }
         }
         #endregion

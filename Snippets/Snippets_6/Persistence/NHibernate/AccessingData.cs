@@ -36,8 +36,8 @@
             {
                 #region NHibernateAccessingDataDirectlyConfig
 
-                EndpointConfiguration configuration = new EndpointConfiguration();
-                configuration.UsePersistence<NHibernatePersistence>()
+                EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+                endpointConfiguration.UsePersistence<NHibernatePersistence>()
                     .RegisterManagedSessionInTheContainer();
 
                 #endregion
@@ -61,8 +61,8 @@
 
             public void Configure()
             {
-                EndpointConfiguration configuration = new EndpointConfiguration();
-                configuration.UsePersistence<NHibernatePersistence>()
+                EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+                endpointConfiguration.UsePersistence<NHibernatePersistence>()
                     .UseCustomSessionCreationMethod(CreateSession);
             }
 

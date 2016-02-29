@@ -7,12 +7,12 @@
 
     public class SharedSessionEndpointConfig
     {
-        public async Task DoStuff(EndpointConfiguration configuration, IAsyncDocumentSession someAsyncSession)
+        public async Task DoStuff(EndpointConfiguration endpointConfiguration, IAsyncDocumentSession someAsyncSession)
         {
             #region 3to4-ravensharedsession
             Func<IAsyncDocumentSession> sessionFactory = () => someAsyncSession;
 
-            configuration.UsePersistence<RavenDBPersistence>()
+            endpointConfiguration.UsePersistence<RavenDBPersistence>()
                 .UseSharedAsyncSession(sessionFactory);
             #endregion
         }

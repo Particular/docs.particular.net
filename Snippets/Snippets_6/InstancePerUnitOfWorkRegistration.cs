@@ -11,8 +11,8 @@
         {
             #region InstancePerUnitOfWorkRegistration
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.RegisterComponents(c => c.ConfigureComponent<MyUnitOfWork>(DependencyLifecycle.InstancePerCall));
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<MyUnitOfWork>(DependencyLifecycle.InstancePerCall));
 
             #endregion
         }

@@ -11,9 +11,9 @@
         {
             #region Hosting-SendOnly
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.SendOnly();
-            IEndpointInstance endpointInstance = await Endpoint.Start(configuration);
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.SendOnly();
+            IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
 
             #endregion
         }
@@ -21,14 +21,14 @@
         public async Task Startup()
         {
             #region Hosting-Startup
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             //Apply configuration
-            IInitializableEndpoint initializableEndpoint = Endpoint.Prepare(configuration);
+            IInitializableEndpoint initializableEndpoint = Endpoint.Prepare(endpointConfiguration);
             IStartableEndpoint startableEndpoint = await initializableEndpoint.Initialize();
             IEndpointInstance endpointInstance = await startableEndpoint.Start();
 
             //Shortcut
-            IEndpointInstance endpointInstance2 = await Endpoint.Start(configuration);
+            IEndpointInstance endpointInstance2 = await Endpoint.Start(endpointConfiguration);
             #endregion
         }
 
@@ -61,8 +61,8 @@
             #region Hosting-Inject
             ContainerBuilder containerBuilder = new ContainerBuilder();
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            IEndpointInstance endpointInstance = await Endpoint.Start(configuration);
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
             containerBuilder.Register(_ => endpointInstance).InstancePerDependency();
 
             #endregion

@@ -9,10 +9,10 @@
     {
         public SimplePolicy()
         {
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region SecondLevelRetriesCustomPolicy
 
-            SecondLevelRetriesSettings retriesSettings = configuration.SecondLevelRetries();
+            SecondLevelRetriesSettings retriesSettings = endpointConfiguration.SecondLevelRetries();
             retriesSettings.CustomRetryPolicy(MyCustomRetryPolicy);
 
             #endregion

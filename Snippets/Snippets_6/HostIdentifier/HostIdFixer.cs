@@ -9,12 +9,12 @@
         {
             #region HostIdFixer
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UniquelyIdentifyRunningInstance()
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UniquelyIdentifyRunningInstance()
                 .UsingNames("endpointName", Environment.MachineName);
             // or
             Guid hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
-            configuration.UniquelyIdentifyRunningInstance()
+            endpointConfiguration.UniquelyIdentifyRunningInstance()
                 .UsingCustomIdentifier(hostId);
             
             #endregion

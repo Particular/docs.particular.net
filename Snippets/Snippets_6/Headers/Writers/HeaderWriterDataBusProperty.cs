@@ -27,17 +27,17 @@
         [Test]
         public async Task Write()
         {
-            EndpointConfiguration config = new EndpointConfiguration();
-            config.EndpointName(endpointName);
-            config.UseDataBus<FileShareDataBus>().BasePath(@"..\..\..\storage");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.EndpointName(endpointName);
+            endpointConfiguration.UseDataBus<FileShareDataBus>().BasePath(@"..\..\..\storage");
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusProperty>();
-            config.SetTypesToScan(typesToScan);
-            config.SendFailedMessagesTo("error");
-            config.EnableInstallers();
-            config.UsePersistence<InMemoryPersistence>();
-            config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            endpointConfiguration.SetTypesToScan(typesToScan);
+            endpointConfiguration.SendFailedMessagesTo("error");
+            endpointConfiguration.EnableInstallers();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
 
-            IEndpointInstance endpoint = await Endpoint.Start(config);
+            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
 
             await endpoint.SendLocal(new MessageToSend
             {

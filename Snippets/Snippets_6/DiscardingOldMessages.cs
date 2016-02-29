@@ -15,9 +15,9 @@
         {
             #region DiscardingOldMessagesWithCode
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-            configuration.Conventions()
+            endpointConfiguration.Conventions()
                 .DefiningTimeToBeReceivedAs(type =>
                 {
                     if (type == typeof (MyMessage))

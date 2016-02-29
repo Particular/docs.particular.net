@@ -9,8 +9,8 @@
         {
             #region DisableSlrWithCode
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.DisableFeature<SecondLevelRetries>();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
             #endregion
         }

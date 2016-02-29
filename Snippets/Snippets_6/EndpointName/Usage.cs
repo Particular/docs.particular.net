@@ -8,8 +8,8 @@
         {
             #region EndpointNameCode
 
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.EndpointName("MyEndpoint");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.EndpointName("MyEndpoint");
         
             #endregion
         }
