@@ -7,6 +7,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.Unobtrusive.Client";
         Configure.Serialization.Json();
         Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Unobtrusive.Client");

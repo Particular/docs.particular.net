@@ -11,7 +11,7 @@ class Program
 
     static async Task AsyncMain()
     {
-
+        Console.Title = "Samples.RabbitMQ.Simple";
         #region ConfigureRabbit
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();

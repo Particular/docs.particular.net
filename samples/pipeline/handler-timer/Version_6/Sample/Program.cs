@@ -12,6 +12,7 @@ class Program
 
     static async Task Start()
     {
+        Console.Title = "Samples.PipelineHandlerTimer";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.PipelineHandlerTimer");
         endpointConfiguration.UseSerialization<JsonSerializer>();

@@ -10,6 +10,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.MessageMutators";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.MessageMutators");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

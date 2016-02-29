@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.SQLOutboxStoreAndForward.Receiver";
         #region ReceiverConfiguration
 
         BusConfiguration busConfiguration = new BusConfiguration();

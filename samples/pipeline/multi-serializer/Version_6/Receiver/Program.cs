@@ -12,6 +12,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.MultiSerializer.Receiver";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.MultiSerializer.Receiver");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

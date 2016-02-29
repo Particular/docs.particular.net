@@ -18,6 +18,7 @@ class ProgramService : ServiceBase
 
     static void Main()
     {
+        Console.Title = "Samples.FirstEndpoint";
         using (ProgramService service = new ProgramService())
         {
             if (Environment.UserInteractive)

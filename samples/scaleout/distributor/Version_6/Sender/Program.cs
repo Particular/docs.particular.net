@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.Scaleout.Sender";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Scaleout.Sender");
         busConfiguration.EnableInstallers();

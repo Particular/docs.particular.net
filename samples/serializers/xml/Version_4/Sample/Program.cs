@@ -8,6 +8,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Serialization.Xml";
         #region config
         //this is optional since Xml is the default serializer
         Configure.Serialization.Xml();

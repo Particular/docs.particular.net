@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.FaultTolerance.Server";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.FaultTolerance.Server");
         busConfiguration.UseSerialization<JsonSerializer>();

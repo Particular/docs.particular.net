@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.RabbitMQ.NativeIntegration.Receiver";
         BusConfiguration busConfiguration = new BusConfiguration();
         #region ConfigureRabbitQueueName
         busConfiguration.EndpointName("Samples.RabbitMQ.NativeIntegration");

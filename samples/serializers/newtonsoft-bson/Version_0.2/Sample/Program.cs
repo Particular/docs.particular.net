@@ -9,6 +9,7 @@ static class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Serialization.ExternalBson";
         #region config
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Serialization.ExternalBson");

@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Serialization.Bson";
         #region config
         Configure configure = Configure.With();
         configure.Log4Net();

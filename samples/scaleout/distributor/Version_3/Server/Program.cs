@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Scaleout.Server";
         #region server
         Configure configure = Configure.With();
         configure.Log4Net();

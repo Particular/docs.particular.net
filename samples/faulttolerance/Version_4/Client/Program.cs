@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.FaultTolerance.Client";
         Configure.Serialization.Json();
         Configure configure = Configure.With();
         configure.Log4Net();

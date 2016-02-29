@@ -5,6 +5,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.AsyncPages.Server";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.AsyncPages.Server");
         busConfiguration.UseSerialization<JsonSerializer>();

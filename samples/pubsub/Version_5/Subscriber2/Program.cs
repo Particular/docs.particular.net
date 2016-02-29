@@ -7,6 +7,7 @@ static class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.PubSub.Subscriber2";
         LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PubSub.Subscriber2");

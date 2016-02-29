@@ -13,6 +13,7 @@ static class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.Castle";
         #region ContainerConfiguration
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();

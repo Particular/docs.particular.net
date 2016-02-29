@@ -10,6 +10,7 @@ class ProgramService : ServiceBase
 
     static void Main()
     {
+        Console.Title = "Samples.WindowsServiceAndConsole";
         using (ProgramService service = new ProgramService())
         {
             if (Environment.UserInteractive)

@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.MultiHosting";
         #region multi-hosting
 
         using (IBus bus1 = StartInstance1())

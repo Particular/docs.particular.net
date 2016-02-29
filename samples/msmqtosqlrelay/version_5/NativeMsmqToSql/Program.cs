@@ -14,6 +14,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.MsmqToSqlRelay.NativeMsmqToSql";
         #region receive-from-msmq-using-native-messaging
         // The address of the queue that will be receiving messages from other MSMQ publishers
         string queuePath = @".\private$\MsmqToSqlRelay";

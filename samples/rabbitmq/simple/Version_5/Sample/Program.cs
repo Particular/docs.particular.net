@@ -7,6 +7,7 @@ class Program
     static void Main()
     {
 
+        Console.Title = "Samples.RabbitMQ.Simple";
         #region ConfigureRabbit
 
         BusConfiguration busConfiguration = new BusConfiguration();

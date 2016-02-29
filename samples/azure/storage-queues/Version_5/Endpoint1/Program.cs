@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.Azure.StorageQueues.Endpoint1";
         #region config
 
         BusConfiguration busConfiguration = new BusConfiguration();

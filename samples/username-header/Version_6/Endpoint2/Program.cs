@@ -11,6 +11,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.UsernameHeader.Endpoint2";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.UsernameHeader.Endpoint2");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

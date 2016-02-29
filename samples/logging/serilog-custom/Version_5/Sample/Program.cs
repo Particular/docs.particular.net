@@ -10,6 +10,7 @@ class Program
     static void Main()
     {
 
+        Console.Title = "Samples.Logging.SerilogCustom";
         #region ConfigureSerilog
         Log.Logger = new LoggerConfiguration()
             .WriteTo.Console()

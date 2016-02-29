@@ -9,6 +9,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.RavenDBCustomSagaFinder";
         using (new RavenHost())
         {
             BusConfiguration busConfiguration = new BusConfiguration();

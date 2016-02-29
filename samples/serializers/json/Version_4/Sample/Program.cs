@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Serialization.Json";
         #region config
         Configure.Serialization.Json();
         Configure configure = Configure.With();

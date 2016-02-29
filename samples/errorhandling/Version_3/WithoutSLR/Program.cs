@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.ErrorHandling.WithoutSLR";
         #region DisableSLR
         Configure configure = Configure.With();
         configure.Log4Net();

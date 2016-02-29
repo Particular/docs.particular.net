@@ -11,6 +11,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.Unobtrusive.Client";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.Unobtrusive.Client");
         endpointConfiguration.EnableInstallers();

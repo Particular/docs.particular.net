@@ -1,9 +1,11 @@
-﻿using Raven.Client.Document;
+﻿using System;
+using Raven.Client.Document;
 
 class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.EvolveRavenSagaData.UpgradeToV3";
         #region rename
         using (DocumentStore store = new DocumentStore
         {

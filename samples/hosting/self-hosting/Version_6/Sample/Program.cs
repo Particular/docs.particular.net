@@ -12,6 +12,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.SelfHosting";
         #region self-hosting
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();

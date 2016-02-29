@@ -10,6 +10,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.SqlNHibernate.Sender";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
         BusConfiguration busConfiguration = new BusConfiguration();

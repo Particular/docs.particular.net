@@ -8,6 +8,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Castle";
         Configure.Serialization.Json();
         #region ContainerConfiguration
         Configure configure = Configure.With();

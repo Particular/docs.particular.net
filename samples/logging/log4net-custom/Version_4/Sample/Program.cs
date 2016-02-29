@@ -9,6 +9,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Logging.Log4NetCustom";
         #region ConfigureLog4Net
         PatternLayout layout = new PatternLayout
         {

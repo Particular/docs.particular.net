@@ -11,6 +11,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.SqlNHibernate.Receiver";
         Configuration hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {

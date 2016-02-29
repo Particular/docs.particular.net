@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Autofac";
         Configure.Serialization.Json();
         #region ContainerConfiguration
         Configure configure = Configure.With();

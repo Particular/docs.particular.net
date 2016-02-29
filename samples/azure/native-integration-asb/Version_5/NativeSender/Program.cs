@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.ASB.NativeIntegration.Sender";
         string connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         QueueClient queueClient = QueueClient.CreateFromConnectionString(connectionString, "Samples.ASB.NativeIntegration");
 

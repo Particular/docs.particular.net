@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.PerfCounters";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PerfCounters");
         busConfiguration.UseSerialization<JsonSerializer>();

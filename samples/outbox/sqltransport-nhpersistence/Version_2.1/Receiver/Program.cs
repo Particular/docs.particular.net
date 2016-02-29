@@ -12,6 +12,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.SQLNHibernateOutbox.Receiver";
         #region NHibernate
 
         Configuration hibernateConfig = new Configuration();

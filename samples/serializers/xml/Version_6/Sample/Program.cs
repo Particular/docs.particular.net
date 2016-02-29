@@ -13,6 +13,7 @@ static class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.Serialization.Xml";
         #region config
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.Serialization.Xml");

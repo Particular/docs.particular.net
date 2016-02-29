@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.ErrorHandling.WithSLR";
         Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.ErrorHandling.WithSLR");

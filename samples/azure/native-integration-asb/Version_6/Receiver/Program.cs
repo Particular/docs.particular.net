@@ -12,6 +12,7 @@ class Program
 
     static async Task MainAsync()
     {
+        Console.Title = "Samples.ASB.NativeIntegration";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
         #region EndpointAndSingleQueue

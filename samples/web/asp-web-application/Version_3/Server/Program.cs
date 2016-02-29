@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.AsyncPages.Server";
         Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.AsyncPages.Server");

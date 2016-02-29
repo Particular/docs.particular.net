@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.PipelineStream.Receiver";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PipelineStream.Receiver");
         busConfiguration.UseSerialization<JsonSerializer>();

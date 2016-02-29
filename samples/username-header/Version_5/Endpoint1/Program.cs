@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.UsernameHeader.Endpoint1";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.UsernameHeader.Endpoint1");
         busConfiguration.UsePersistence<InMemoryPersistence>();

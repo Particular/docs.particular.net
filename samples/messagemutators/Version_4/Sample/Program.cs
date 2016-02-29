@@ -5,6 +5,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.MessageMutators";
         Configure.Serialization.Json();
         Configure configure = Configure.With();
         configure.Log4Net();

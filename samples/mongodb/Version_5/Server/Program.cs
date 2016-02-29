@@ -7,6 +7,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.MongoDB.Server";
         #region mongoDbConfig
 
         BusConfiguration busConfiguration = new BusConfiguration();

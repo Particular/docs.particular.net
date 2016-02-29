@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Versioning.V2Subscriber";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Versioning.V2Subscriber");
         busConfiguration.UseSerialization<JsonSerializer>();

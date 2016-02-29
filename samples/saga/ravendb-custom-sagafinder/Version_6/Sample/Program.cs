@@ -13,6 +13,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.RavenDBCustomSagaFinder";
         using (new RavenHost())
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();

@@ -8,6 +8,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.RavenDB.Migration";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.RavenDB.Migration");
         DocumentStore documentStore = new DocumentStore

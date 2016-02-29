@@ -6,6 +6,7 @@ static class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.ErrorHandling.WithSLR";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Warn);
 

@@ -9,6 +9,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.Logging.CommonLogging";
         #region ConfigureLogging
 
         Common.Logging.LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter

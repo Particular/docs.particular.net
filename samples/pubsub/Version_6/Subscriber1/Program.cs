@@ -12,6 +12,7 @@ static class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.PubSub.Subscriber1";
         LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.PubSub.Subscriber1");

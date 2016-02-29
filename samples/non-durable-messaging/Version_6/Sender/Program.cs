@@ -11,6 +11,7 @@ static class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.MessageDurability.Sender";
         #region non-transactional
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();

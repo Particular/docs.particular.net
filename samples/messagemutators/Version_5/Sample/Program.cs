@@ -4,6 +4,7 @@ class Program
 {
     public static void Main()
     {
+        Console.Title = "Samples.MessageMutators";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MessageMutators");
         busConfiguration.UsePersistence<InMemoryPersistence>();

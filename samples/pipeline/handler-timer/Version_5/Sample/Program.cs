@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.PipelineHandlerTimer";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PipelineHandlerTimer");
         busConfiguration.UseSerialization<JsonSerializer>();

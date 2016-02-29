@@ -9,7 +9,6 @@ using Environment = NHibernate.Cfg.Environment;
 class Program
 {
 
-
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
@@ -17,6 +16,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.CustomNhMappings.XmlMapping";
         Configuration nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");

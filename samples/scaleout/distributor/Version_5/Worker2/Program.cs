@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.Scaleout.Worker2";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Scaleout.Worker2");
         busConfiguration.EnlistWithMSMQDistributor();

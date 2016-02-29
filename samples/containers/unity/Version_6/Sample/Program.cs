@@ -12,6 +12,7 @@ static class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.Unity";
         #region ContainerConfiguration
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.Unity");

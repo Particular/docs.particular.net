@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Versioning.V2Subscriber";
         Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Versioning.V2Subscriber");

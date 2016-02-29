@@ -12,6 +12,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.Store.Sales";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Store.Sales");
         endpointConfiguration.ApplyCommonConfiguration();

@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.Store.Operations";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Store.Operations");
         busConfiguration.ApplyCommonConfiguration();

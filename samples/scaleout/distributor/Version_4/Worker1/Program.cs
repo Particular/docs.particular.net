@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Scaleout.Worker1";
         Configure.Serialization.Json();
 
 #pragma warning disable 618

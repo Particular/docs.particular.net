@@ -11,6 +11,7 @@ class Program
 
     static async Task MainAsync()
     {
+        Console.Title = "Samples.Azure.ServiceBus.Endpoint2";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.Azure.ServiceBus.Endpoint2");
         endpointConfiguration.SendFailedMessagesTo("error");

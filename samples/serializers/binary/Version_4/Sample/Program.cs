@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Serialization.Binary";
         #region config
         Configure.Serialization.Binary();
         Configure configure = Configure.With();

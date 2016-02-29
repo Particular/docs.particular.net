@@ -5,6 +5,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.MessageBodyEncryption.Endpoint1";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MessageBodyEncryption.Endpoint1");
         busConfiguration.UsePersistence<InMemoryPersistence>();

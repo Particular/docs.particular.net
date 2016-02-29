@@ -10,6 +10,7 @@ static class Program
     
     static void Main()
     {
+        Console.Title = "Samples.OwinPassThrough";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
 #region startbus

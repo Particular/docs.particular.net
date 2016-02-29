@@ -9,6 +9,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.Logging.NLogCustom";
 
         #region ConfigureNLog
 

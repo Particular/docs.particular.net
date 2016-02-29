@@ -11,6 +11,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.Callbacks.Receiver";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.Callbacks.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();

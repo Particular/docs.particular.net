@@ -15,6 +15,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.Logging.CommonLogging";
         #region ConfigureLogging
 
         Common.Logging.LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter

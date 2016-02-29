@@ -9,6 +9,7 @@ class Program
         // To disable second level retries(SLR), uncomment the following line. SLR is enabled by default.
         //Configure.Features.Disable<NServiceBus.Features.SecondLevelRetries>();
 
+        Console.Title = "Samples.FaultTolerance.Server";
         Configure.Serialization.Json();
         Configure configure = Configure.With();
         configure.Log4Net();

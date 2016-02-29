@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.FullDuplex.Client";
         Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.FullDuplex.Client");

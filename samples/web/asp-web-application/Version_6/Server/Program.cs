@@ -11,6 +11,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.AsyncPages.Server";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.AsyncPages.Server");
         endpointConfiguration.ScaleOut()

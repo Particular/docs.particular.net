@@ -12,6 +12,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.MultiHosting";
         #region multi-hosting
 
         IEndpointInstance endpoint1 = null;

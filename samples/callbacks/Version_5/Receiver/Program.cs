@@ -5,6 +5,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Callbacks.Receiver";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Callbacks.Receiver");
         busConfiguration.UseSerialization<JsonSerializer>();

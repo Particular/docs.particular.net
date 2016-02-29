@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.MessageBodyEncryption.Endpoint2";
         Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.MessageBodyEncryption.Endpoint2");

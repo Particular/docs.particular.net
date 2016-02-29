@@ -7,6 +7,7 @@ static class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Castle";
         #region ContainerConfiguration
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Castle");

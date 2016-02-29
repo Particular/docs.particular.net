@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.UsernameHeader.Endpoint2";
         Configure.Serialization.Json();
         Configure configure = Configure.With();
         configure.Log4Net();

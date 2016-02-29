@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.StartupShutdown";
         LogManager.Use<DefaultFactory>().Level(LogLevel.Error);
         #region Program
         Logger.WriteLine("Starting configuration");

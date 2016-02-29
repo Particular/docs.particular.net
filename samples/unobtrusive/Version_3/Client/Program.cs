@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.Unobtrusive.Client";
         Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Unobtrusive.Client");
         configure.Log4Net();

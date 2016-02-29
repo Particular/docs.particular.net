@@ -18,6 +18,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.SQLNHibernateOutbox.Receiver";
         #region NHibernate
 
         Configuration hibernateConfig = new Configuration();

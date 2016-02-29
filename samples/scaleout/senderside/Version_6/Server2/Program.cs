@@ -12,6 +12,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.SenderSideScaleOut.Server2";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Server");
         string discriminator = ConfigurationManager.AppSettings["InstanceId"];

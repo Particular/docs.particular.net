@@ -9,6 +9,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.SQLNHibernateOutboxEF.Receiver";
         using (ReceiverDataContext ctx = new ReceiverDataContext())
         {
             ctx.Database.Initialize(true);

@@ -12,6 +12,7 @@ static class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.Spring";
         #region ContainerConfiguration
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.Spring");

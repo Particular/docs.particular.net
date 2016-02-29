@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.RabbitMQ.NativeIntegration.Sender";
         ConnectionFactory connectionFactory = new ConnectionFactory();
 
         using (IConnection connection = connectionFactory.CreateConnection())

@@ -14,7 +14,7 @@ class Program
 
     static async Task AsyncMain()
     {
-
+        Console.Title = "Samples.MsmqToSqlRelay.SqlRelay";
         #region sqlrelay-config
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.SendFailedMessagesTo("error");

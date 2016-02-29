@@ -6,7 +6,7 @@ class Program
 
     static void Main()
     {
-
+        Console.Title = "Samples.Logging.Default";
         #region ConfigureLogging
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Logging.Default");

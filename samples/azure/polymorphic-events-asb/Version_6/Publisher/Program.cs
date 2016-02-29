@@ -14,6 +14,7 @@ class Program
 
     static async Task MainAsync()
     {
+        Console.Title = "Samples.ASB.Polymorphic.Publisher";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.ASB.Polymorphic.Publisher");
         endpointConfiguration.UseTransport<AzureServiceBusTransport>()

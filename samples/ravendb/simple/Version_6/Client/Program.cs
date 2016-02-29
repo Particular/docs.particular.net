@@ -11,6 +11,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.RavenDB.Client";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.RavenDB.Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();

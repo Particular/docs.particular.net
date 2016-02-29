@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Scaleout.Worker1";
         #region Workerstartup
         Configure configure = Configure.With();
         configure.Log4Net();

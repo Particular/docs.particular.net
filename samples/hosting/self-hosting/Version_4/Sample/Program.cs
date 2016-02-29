@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.SelfHosting";
         #region self-hosting
 
         Configure.Serialization.Json();

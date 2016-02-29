@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.ASB.NativeIntegration";
         BusConfiguration busConfiguration = new BusConfiguration();
 
         #region EndpointAndSingleQueue

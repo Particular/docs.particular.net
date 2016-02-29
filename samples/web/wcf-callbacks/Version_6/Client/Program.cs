@@ -13,6 +13,7 @@ static class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.WcfCallbacks.Client";
         Console.WriteLine("Press 'E' to send a message that will respond with an enum");
         Console.WriteLine("Press 'I' to send a message that will respond with an int");
         Console.WriteLine("Press 'O' to send a message that will respond with an object");

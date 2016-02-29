@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.PubSub.MyPublisher";
         Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.PubSub.MyPublisher");

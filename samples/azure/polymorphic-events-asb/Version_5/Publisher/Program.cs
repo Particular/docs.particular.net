@@ -8,6 +8,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.ASB.Polymorphic.Publisher";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.ASB.Polymorphic.Publisher");
         busConfiguration.ScaleOut().UseSingleBrokerQueue();

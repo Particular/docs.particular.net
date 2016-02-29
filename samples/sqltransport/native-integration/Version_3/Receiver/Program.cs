@@ -14,6 +14,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.SqlServer.NativeIntegration";
         #region EndpointConfiguration
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.UseTransport<SqlServerTransport>()

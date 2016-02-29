@@ -13,6 +13,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.Versioning.V1Subscriber";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.Versioning.V1Subscriber");
         endpointConfiguration.UseSerialization<JsonSerializer>();

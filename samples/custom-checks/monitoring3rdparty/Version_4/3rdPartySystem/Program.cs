@@ -9,6 +9,7 @@ class Program3rdParty
 
     static void Main()
     {
+        Console.Title = "Samples.CustomChecks.3rdPartySystem";
         Console.WriteLine("Press enter key to toggle the server to return a error or success");
         Console.WriteLine("Press any key to exit");
 

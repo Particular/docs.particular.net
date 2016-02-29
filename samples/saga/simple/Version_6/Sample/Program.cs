@@ -12,6 +12,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.ComplexSagaFindingLogic";
         EndpointConfiguration busConfiguration = new EndpointConfiguration();
         busConfiguration.EndpointName("Samples.ComplexSagaFindingLogic");
         busConfiguration.UseSerialization<JsonSerializer>();

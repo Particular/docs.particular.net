@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.MsmqToSqlRelay.MsmqPublisher";
         #region publisher-config
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("MsmqPublisher");

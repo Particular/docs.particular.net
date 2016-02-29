@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.AzureBlobStorageDataBus.Sender";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.AzureBlobStorageDataBus.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();

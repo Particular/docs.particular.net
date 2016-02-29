@@ -12,6 +12,7 @@ class Program
 
     static async Task AsyncRun()
     {
+        Console.Title = "Samples.Headers";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.Headers");
 

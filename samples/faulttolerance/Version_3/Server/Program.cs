@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.FaultTolerance.Server";
         Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.FaultTolerance.Server");

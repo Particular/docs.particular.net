@@ -7,6 +7,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.SqlBridge.MsmqSubscriber";
         #region msmqsubscriber-config
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("MsmqSubscriber");

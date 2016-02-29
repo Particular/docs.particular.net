@@ -8,6 +8,7 @@ static class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Serialization.ExternalJson";
         #region config
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Serialization.ExternalJson"); 

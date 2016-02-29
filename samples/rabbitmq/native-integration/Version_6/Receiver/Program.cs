@@ -11,6 +11,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.RabbitMQ.NativeIntegration.Receiver";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         #region ConfigureRabbitQueueName
         endpointConfiguration.EndpointName("Samples.RabbitMQ.NativeIntegration");

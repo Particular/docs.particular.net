@@ -7,6 +7,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.FullDuplex.Client";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
         BusConfiguration busConfiguration = new BusConfiguration();

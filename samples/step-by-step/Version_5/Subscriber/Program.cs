@@ -7,6 +7,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.StepByStep.Subscriber";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.StepByStep.Subscriber");
         busConfiguration.UseSerialization<JsonSerializer>();

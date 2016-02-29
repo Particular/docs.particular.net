@@ -12,6 +12,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.AzureBlobStorageDataBus.Receiver";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.AzureBlobStorageDataBus.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();

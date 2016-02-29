@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.UsernameHeader.Endpoint2";
         Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.UsernameHeader.Endpoint2");

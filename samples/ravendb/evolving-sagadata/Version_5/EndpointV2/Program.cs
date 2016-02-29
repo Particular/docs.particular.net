@@ -8,6 +8,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.RavenDB.Migration";
         #region registerConverter
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.RavenDB.Migration");

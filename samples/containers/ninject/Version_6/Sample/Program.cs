@@ -12,6 +12,7 @@ public class Program
 
     static async Task Start()
     {
+        Console.Title = "Samples.Ninject";
         #region ContainerConfiguration
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.Ninject");

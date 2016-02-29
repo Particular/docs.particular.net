@@ -8,6 +8,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Castle";
         #region ContainerConfiguration
         Configure configure = Configure.With();
         configure.Log4Net();

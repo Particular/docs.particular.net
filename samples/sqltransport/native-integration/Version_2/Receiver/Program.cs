@@ -8,6 +8,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.SqlServer.NativeIntegration";
         #region EndpointConfiguration
         BusConfiguration busConfiguration = new BusConfiguration();
 

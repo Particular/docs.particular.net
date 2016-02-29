@@ -6,6 +6,7 @@ static class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Serialization.Bson";
         #region config
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Serialization.Bson");

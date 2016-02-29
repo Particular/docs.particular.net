@@ -10,6 +10,7 @@ static class Program
 
     static void Main()
     {
+        Console.Title = "Samples.OwinPassThrough";
         #region startbus
         Configure.Serialization.Json();
         Configure configure = Configure.With();

@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.MsmqToSqlRelay.SqlRelay";
         #region sqlrelay-config
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("SqlRelay");

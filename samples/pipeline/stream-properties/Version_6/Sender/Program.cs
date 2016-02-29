@@ -14,6 +14,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.PipelineStream.Sender";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.PipelineStream.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();

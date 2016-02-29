@@ -7,6 +7,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.DataBus.Sender";
         Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.DataBus.Sender");

@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.MessageDurability.Receiver";
         Configure.Serialization.Json();
         Configure.Transactions.Disable();
         Configure configure = Configure.With();

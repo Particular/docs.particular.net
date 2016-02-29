@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.Azure.StoragePersistence.Client";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Azure.StoragePersistence.Client");
         busConfiguration.UseSerialization<JsonSerializer>();

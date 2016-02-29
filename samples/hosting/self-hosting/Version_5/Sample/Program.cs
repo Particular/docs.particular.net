@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.SelfHosting";
         #region self-hosting
 
         BusConfiguration busConfiguration = new BusConfiguration();

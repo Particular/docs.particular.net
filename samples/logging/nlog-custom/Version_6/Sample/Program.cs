@@ -15,7 +15,7 @@ class Program
 
     static async Task AsyncMain()
     {
-
+        Console.Title = "Samples.Logging.NLogCustom";
         #region ConfigureNLog
 
         LoggingConfiguration config = new LoggingConfiguration();

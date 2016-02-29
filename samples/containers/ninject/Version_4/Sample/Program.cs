@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Ninject";
         Configure.Serialization.Json();
 
         #region ContainerConfiguration

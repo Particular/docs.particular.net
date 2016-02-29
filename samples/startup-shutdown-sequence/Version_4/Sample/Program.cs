@@ -8,6 +8,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.StartupShutdown";
         #region Program
 
         Configure.Features.Enable<MyFeature>();

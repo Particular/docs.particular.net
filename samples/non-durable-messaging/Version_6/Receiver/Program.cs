@@ -11,6 +11,7 @@ static class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.MessageDurability.Receiver";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.UseTransport<MsmqTransport>()
             .Transactions(TransportTransactionMode.None);

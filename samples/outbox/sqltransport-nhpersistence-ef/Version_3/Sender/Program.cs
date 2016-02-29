@@ -15,6 +15,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.SQLNHibernateOutboxEF.Sender";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
 

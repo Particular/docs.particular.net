@@ -14,6 +14,7 @@ class Program
 
     static async Task MainAsync()
     {
+        Console.Title = "Samples.ASB.Polymorphic.Subscriber";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
         endpointConfiguration.EndpointName("Samples.ASB.Polymorphic.Subscriber");

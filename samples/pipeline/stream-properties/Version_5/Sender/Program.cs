@@ -8,6 +8,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.PipelineStream.Sender";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PipelineStream.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();

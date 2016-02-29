@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.ComplexSagaFindingLogic";
         Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.ComplexSagaFindingLogic");

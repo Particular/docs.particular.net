@@ -20,6 +20,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.SqlNHibernate.Sender";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

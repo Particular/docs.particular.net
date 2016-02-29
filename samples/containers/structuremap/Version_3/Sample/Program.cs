@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.StructureMap";
         #region ContainerConfiguration
         Configure configure = Configure.With();
         configure.Log4Net();

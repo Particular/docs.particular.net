@@ -12,6 +12,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.FaultTolerance.Server";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.FaultTolerance.Server");
         endpointConfiguration.UseSerialization<JsonSerializer>();

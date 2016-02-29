@@ -7,11 +7,12 @@ static class Program
 
     static void Main()
     {
+        Console.Title = "Samples.WcfCallbacks.Endpoint";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
 
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.WcfCallbacks");
+        busConfiguration.EndpointName("Samples.WcfCallbacks.Endpoint");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();

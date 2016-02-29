@@ -12,6 +12,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.CustomTransport.Endpoint2";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.CustomTransport.Endpoint2");
         endpointConfiguration.UseTransport<FileTransport>();

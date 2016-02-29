@@ -11,6 +11,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.SenderSideScaleOut.UnawareCilent";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");

@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.ComplexSagaFindingLogic";
         Configure.Serialization.Json();
         Configure.Features.Enable<Sagas>();
         Configure configure = Configure.With();

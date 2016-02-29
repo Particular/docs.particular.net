@@ -12,6 +12,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.StepByStep.Server";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.StepByStep.Server");
         endpointConfiguration.UseSerialization<JsonSerializer>();

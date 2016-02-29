@@ -11,6 +11,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.CustomNhMappings.XmlMapping";
         Configuration nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");

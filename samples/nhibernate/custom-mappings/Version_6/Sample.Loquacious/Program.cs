@@ -16,6 +16,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.CustomNhMappings.Loquacious";
         Configuration nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");

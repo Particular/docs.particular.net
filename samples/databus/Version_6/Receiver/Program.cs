@@ -11,6 +11,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.DataBus.Receiver";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.DataBus.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();

@@ -17,6 +17,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.SqlNHibernate.Receiver";
         Configuration hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {

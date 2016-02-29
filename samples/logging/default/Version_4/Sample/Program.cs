@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Logging.Default";
         Configure.Serialization.Json();
         #region ConfigureLogging
         Configure configure = Configure.With();

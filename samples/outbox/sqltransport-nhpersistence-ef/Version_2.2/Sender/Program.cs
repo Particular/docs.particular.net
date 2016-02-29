@@ -9,6 +9,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.SQLNHibernateOutboxEF.Sender";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
 

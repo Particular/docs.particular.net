@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.Azure.ServiceBus.Endpoint2";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Azure.ServiceBus.Endpoint2");
         busConfiguration.UseSerialization<JsonSerializer>();

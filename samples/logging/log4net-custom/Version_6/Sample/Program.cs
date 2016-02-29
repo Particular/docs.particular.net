@@ -18,6 +18,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.Logging.Log4NetCustom";
         #region ConfigureLog4Net
         PatternLayout layout = new PatternLayout
         {

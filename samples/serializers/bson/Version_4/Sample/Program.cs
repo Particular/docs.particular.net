@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Serialization.Bson";
         #region config
         Configure.Serialization.Bson();
         Configure configure = Configure.With();

@@ -13,6 +13,7 @@ static class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.ErrorHandling.WithoutSLR";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Warn);
 

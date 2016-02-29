@@ -16,6 +16,7 @@ static class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.OwinPassThrough";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
 

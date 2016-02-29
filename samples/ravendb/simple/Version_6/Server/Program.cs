@@ -12,6 +12,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.RavenDB.Server";
         using (new RavenHost())
         {
             #region Config

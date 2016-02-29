@@ -11,6 +11,7 @@ class Program
 
     static async Task MainAsync()
     {
+        Console.Title = "Samples.Azure.ServiceBus.Endpoint1";
         #region config
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();

@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.PerfCounters";
         Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.PerfCounters");
         configure.Log4Net();

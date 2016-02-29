@@ -12,6 +12,7 @@ static class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.Autofac";
         #region ContainerConfiguration
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();

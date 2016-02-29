@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Unity";
         Configure.Serialization.Json();
 
         #region ContainerConfiguration

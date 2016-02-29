@@ -7,6 +7,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.SqlBridge";
         #region bridge-config
 
         BusConfiguration busConfiguration = new BusConfiguration();

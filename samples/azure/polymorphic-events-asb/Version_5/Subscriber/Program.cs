@@ -8,6 +8,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.ASB.Polymorphic.Subscriber";
         BusConfiguration busConfiguration = new BusConfiguration();
 
         busConfiguration.EndpointName("Samples.ASB.Polymorphic.Subscriber");

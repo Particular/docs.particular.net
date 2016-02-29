@@ -5,6 +5,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.CustomChecks.Monitor3rdParty";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.CustomChecks.Monitor3rdParty");
         busConfiguration.UseSerialization<JsonSerializer>();

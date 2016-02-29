@@ -5,6 +5,7 @@ static class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Mvc.Endpoint";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Mvc.Endpoint");
         busConfiguration.UseSerialization<JsonSerializer>();

@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.RabbitMQ.Simple";
         Configure.Serialization.Json();
         #region ConfigureRabbit
         Configure configure = Configure.With();

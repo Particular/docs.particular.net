@@ -5,6 +5,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.CustomChecks.Monitor3rdParty";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.CustomChecks.Monitor3rdParty");
         endpointConfiguration.AuditProcessedMessagesTo("audit");

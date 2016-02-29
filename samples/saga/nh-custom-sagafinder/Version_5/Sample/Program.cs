@@ -7,6 +7,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.NHibernateCustomSagaFinder";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.NHibernateCustomSagaFinder");
         busConfiguration.UseSerialization<JsonSerializer>();

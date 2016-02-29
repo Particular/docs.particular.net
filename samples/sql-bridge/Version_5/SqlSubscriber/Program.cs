@@ -7,6 +7,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.SqlBridge.SqlSubscriber";
         #region sqlsubscriber-config
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("SqlSubscriber");

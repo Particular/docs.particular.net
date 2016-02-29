@@ -14,6 +14,7 @@ class Program
 
     static async Task AsyncMain()
     {
+        Console.Title = "Samples.SQLNHibernateOutbox.Sender";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();

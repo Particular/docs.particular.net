@@ -7,6 +7,7 @@ static class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Serialization.Wire";
         #region config
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Serialization.Wire");

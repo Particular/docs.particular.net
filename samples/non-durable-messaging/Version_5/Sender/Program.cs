@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.MessageDurability.Sender";
         #region non-transactional
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.Transactions()

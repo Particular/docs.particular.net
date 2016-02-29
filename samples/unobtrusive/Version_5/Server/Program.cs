@@ -4,6 +4,7 @@ class Program
 {
     public static void Main()
     {
+        Console.Title = "Samples.Unobtrusive.Server";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Unobtrusive.Server");
         busConfiguration.EnableInstallers();

@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.MultiSerializer.Sender";
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MultiSerializer.Sender");
         busConfiguration.UsePersistence<InMemoryPersistence>();

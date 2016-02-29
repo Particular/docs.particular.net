@@ -6,6 +6,7 @@ class Program
 
     static void Main()
     {
+        Console.Title = "Samples.Azure.StoragePersistence.Server";
         #region config
 
         BusConfiguration busConfiguration = new BusConfiguration();

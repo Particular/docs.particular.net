@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Samples.Logging.Default";
         #region ConfigureLogging
         Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Logging.Default");
