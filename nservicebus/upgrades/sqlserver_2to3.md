@@ -1,13 +1,13 @@
 ---
-title: Upgrade SQL Server Transport from Version 2 to Version 3
-summary: Instructions on how to upgrade from SQL Server Transport Versions 2 to 3
+title: Upgrade from Version 5 to Version 6
+summary: Instructions on how to upgrade from NServiceBus Versions 5 to 6
 tags:
  - upgrade
  - migration
- - sqlserver
 related:
-- nservicebus/upgrades/5to6
+- nservicebus/sagas/concurrency
 ---
+
 
 ## SQL Server Transport
 
@@ -24,7 +24,7 @@ snippet:sqlserver-custom-connection-factory
 
 ### Multi-schema support
  
-The API and config structure for multi-schema configuration [were changed](/nservicebus/sqlserver/multiple-databases.md#single-database-with-multiple schemas). The `Queue Schema` parameter is no longer supported neither in the config file nor the code configuration API. 
+The API and config structure for multi-schema configuration [were changed](/nservicebus/sqlserver/multiple-databases.md#single-database-with-multiple schemas). The `Queue Schema` parameter is no longer supported in the config file and the code configuration API. 
 
 The schema for the current endpoint can be specified using `DefaultSchema` method:
 
@@ -35,10 +35,10 @@ or by defining a custom connection factory:
 snippet:sqlserver-singledb-multidb-pull 
 
 The latter is also used for specifying schemas for other endpoints that the configured endpoint communicates with.
-When using configuration file to specify schemas for other endpoints, their schemas should be placed in the `MessageEndpointMappings` section and follow `endpoint_name@schema_name` convention: 
+When using configuration file to specify schemas for other endpoints, their schemas should be placed in the `MessageEndpointMappings` section and follow `endpoint-name@schema-name` convention: 
 
 snippet:sqlserver-singledb-multischema-config
 
 ### Circuit breaker
 
-The parameter `PauseAfterReceiveFailure(TimeSpan)` is no longer supported. The current pause value is 1 second.
+The parameter `PauseAfterReceiveFailure(TimeSpan)` is no longer supported. In Version 3, the pause value is hard-coded at 1 second.

@@ -24,7 +24,7 @@ Using a single database doesn't require Distributed Transaction Coordinator (MS 
 
 ## Single database with multiple schemas
 
-The default schema used by SQL Server transport is `dbo`. A different schema might be specified using API:
+The default schema used by SQL Server transport is `dbo`. To specify a different schema use the following API:
 
 snippet:sqlserver-singledb-multischema
 
@@ -54,8 +54,8 @@ NOTE: Due to the lack of store-and-forward mechanism, if a remote endpoint's dat
 
 In order to overcome this limitation a higher level store-and-forward mechanism needs to be used. The Outbox feature can be used to effectively implement a distributed decoupled architecture where:
  * Each endpoint has its own database where it stores both the queues and the user data
- * Messages are not sent immediately when calling `Bus.Send()` but are added to the *outbox* that is stored in the endpoint's own database. After completing the handling logic the messages in the *outbox* are forwarded to their destination databases
- * Should one of the forward operations fail, it will be retried by means of [standard NServiceBus retry mechanism](/nservicebus/errors/automatic-retries.md). This might result in some messages being sent more than once but Outbox automatically handles the deduplication of incoming messages based on their ID, providing `exactly-once` message delivery guarantee.
+ * Messages are not sent immediately when calling `Bus.Send()` but are added to the Outbox table that is stored in the endpoint's own database. After completing the handling logic the messages stored in the Outbox table are forwarded to their destination databases
+ * Should one of the forward operations fail, it will be retried by means of the [standard NServiceBus retry mechanism](/nservicebus/errors/automatic-retries.md). This might result in some messages being sent more than once but Outbox automatically handles the deduplication of incoming messages based on their ID, providing `exactly-once` message delivery guarantee.
 
 ## Current endpoint
 
