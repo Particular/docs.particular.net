@@ -12,6 +12,6 @@ Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) 
 
 The NuGet package is available here https://www.nuget.org/packages/nservicebus.rabbitmq.
 
-<a href="https://www.nuget.org/packages/NServiceBus.RabbitMQ/"><img src="https://img.shields.io/nuget/v/NServiceBus.RabbitMQ.svg?" title="NuGet Status"></a>
+<a href="https://www.nuget.org/packages/NServiceBus.RabbitMQ/"><img src="https://buildstats.info/nuget/NServiceBus.RabbitMQ" title="NuGet Status"></a>
 
     PM> Install-Package NServiceBus.RabbitMQ
