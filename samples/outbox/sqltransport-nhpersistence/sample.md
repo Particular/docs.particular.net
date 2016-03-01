@@ -37,7 +37,7 @@ redirects:
  1. Open SQL Server Management Studio and go to the `nservicebus` database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`).
  1. Verify that there are messages in the `dbo.audit` table and, if any message failed processing, messages in `dbo.error` table.
 
-NOTE: The handling code has built-in chaotic behavior. There is a 50% chance that a given message fails processing. This is to demonstrate how [error handling](/nservicebus//errors/automatic-retries.md) works. Since both First-Level Retries (FLR) and Second-Level Retires (SLR) are turned off, the message that couldn't be processed is immediately moved to the configured error queue.
+NOTE: The handling code has built-in chaotic behavior. There is a 50% chance that a given message fails processing. This is to demonstrate how [error handling](/nservicebus/errors/automatic-retries.md) works. Since both First-Level Retries (FLR) and Second-Level Retires (SLR) are turned off, the message that couldn't be processed is immediately moved to the configured error queue.
 
 The retires are disabled using the following settings:
 
@@ -77,6 +77,7 @@ In order for the Outbox to work, the business data has to reuse the same connect
 snippet:NHibernate
 
 When the message arrives at the Receiver, it is dequeued using a native SQL Server transaction. Then a `TransactionScope` is created that encompasses
+
  * persisting business data:
 
 snippet:StoreUserData
