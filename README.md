@@ -34,7 +34,8 @@ For more information see [Collaborating on GitHub](https://help.github.com/categ
 
 ## Reviewing a page
 
-If, as part of editing a page, a full review of the content is done the [reviewed header](#reviewed) should be updated.
+If, as part of editing a page, a full review of the content is done the [reviewed header](#reviewed) should be updated. This date us used to render http://docs.particular.net/review.
+
 
 # Conventions
 
