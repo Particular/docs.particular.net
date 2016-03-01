@@ -7,7 +7,7 @@ redirects:
 - serviceinsight/getting-started-overview
 ---
 
-# Introduction
+## Introduction
 
 The [NServiceBus](/nservicebus/architecture/) framework provides the benefits of a distributed, messaged based, fault tolerant, and distributed architecture by allowing you to visualize and verify the functionality of such a distributed system. 
 
@@ -18,17 +18,17 @@ From design through to production, ServiceInsight provides concise and user-frie
 
 The NServiceBus Framework is part of the Particular Service Platform which includes these tools:
 
-* The audit and error aggregation power of [ServiceControl](../servicecontrol) is leveraged by [ServicePulse](../servicepulse) for operational monitoring and alerting.
+ * The audit and error aggregation power of [ServiceControl](../servicecontrol) is leveraged by [ServicePulse](../servicepulse) for operational monitoring and alerting.
 * ServiceInsight provides a detailed view of messages in their system context, from endpoints to sagas, showing relationships and data. 
 
 
-# Visualizing the System
+## Visualizing the System
 
 The ServiceInsight user interface provides multiple views of your distributed system. Using information collected in ServiceControl, ServiceInsight enumerates your endpoints and provides detailed message and relationship data, with formatted views of XML, JSON, and binary messages.
 
 The flow diagram provides a detailed visual overview of the messages, collated by conversation. Using this view you can see the flow in your system and which endpoints raised specific events and sent or handled messages. The Saga view illustrates the start of a saga, the timeouts, and interactions. The sequence diagram shows the order in which messages have been sent and handled by endpoints in your system.
  
-As you select endpoints, the other views within ServiceInsight respond and filter the information to show only messages pertaining to that endpoint. 
+As you select endpoints, the other views within ServiceInsight respond and filter the information to show only messages pertaining to that endpoint.
 
 
 ## The Message Window
@@ -55,10 +55,9 @@ You can use the performance-related information in the message header to sort th
 
 The message timing measurements include the following:
 
-- Processing Time: the amount of time it took to actually process the message, within the processing endpoint, by the message processing handler method
+ - Processing Time: the amount of time it took to actually process the message, within the processing endpoint, by the message processing handler method
 
 Using the messages window column headers you can sort the messages in ascending or descending order (the sorting operation applies on all the relevant messages in the underlying ServiceControl instance, and is not limited to the currently displayed messages).
-
 
 When you select specific messages, the related properties window and flow diagram change to illustrate details of the selected message.
 
@@ -104,6 +103,7 @@ While the Flow Diagram is very good at showing *why* each message in a conversat
 
 Read more about the [Sequence Diagram](/serviceinsight/sequence-diagram/)
 
+
 ## Body and Log Views
 
 Along the bottom edge of the flow diagram is a tab for the Body and Log views.
@@ -148,5 +148,4 @@ The sequence diagram highlights handlers with errors in red.
 
 ![Error in the sequence diagram](images/overview-sequence-diagram-witherror.png)
 
-After the NServiceBus completes auto-retry, the errant message goes to an error queue. Instead of using the return-to-sender console application, to return the message to the queue from where it originated, click `Retry Message`. 
-
+After the NServiceBus completes auto-retry, the errant message goes to an error queue. Instead of using the return-to-sender console application, to return the message to the queue from where it originated, click `Retry Message`.

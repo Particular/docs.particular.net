@@ -6,7 +6,7 @@ tags:
 - Sequence Diagram
 ---
 
-# Introduction
+## Introduction
 
 Each visualization diagram in ServiceInsight displays the currently selected message in a broader context to help with troubleshooting and debugging.
 
@@ -16,25 +16,29 @@ The sequence diagram shows all of the messages in the same conversation. It also
 
 Use the sequence diagram when the timing of messages handling is important to understand.
 
+
 ## Which data is used to generate the diagram
 
 When you send a message through NServiceBus, some headers are added automatically. All messages get the `NServiceBus.MessageId` header. This is a unqiue identifier for the message. 
 
 If handling a message causes more messages to be sent or published then the `MessageId` of the message being handled is copied to the `NServiceBus.RelatedTo` header of the outgoing messages.
 
-Another header that gets copied to outgoing messages is `NServiceBus.ConversationId`. The first mesgsage to be sent in a conversation will get a unique `ConversationId`. Each subsequent message will get the same `ConversationId`.
+Another header that gets copied to outgoing messages is `NServiceBus.ConversationId`. The first message to be sent in a conversation will get a unique `ConversationId`. Each subsequent message will get the same `ConversationId`.
 
 There are additional headers which are used to label endpoints, messages and message processing. [More information about headers](/nservicebus/messaging/headers.md).
+
 
 ## What is on the diagram
 
 The sequence diagram shows the interaction of endpoints by visualizing sending and processing messages over time. 
+
 
 ### Endpoints and lifelines
 
 ![Endpoint](endpoint.png)
 
 Each endpoint involved in the conversation is represented as a labeled gray box along the top of the diagram. Hover on the endpoint label to get additional information such as the host that the endpoint is running on. Extending from the bottom of each endpoint is a (life)line that shows time flowing from top to bottom.
+
 
 ### Start of conversation
 
@@ -43,6 +47,7 @@ Each endpoint involved in the conversation is represented as a labeled gray box 
 Each conversation is initiated by a single command or event. This message is often triggered by some action which is external to the system such as a user clicking a Submit Order button on a website. The metadata used to generate the diagram doesn't include the trigger in this case but it does include the endpoint that sent or published this message. This is represented by a Start of Conversation marker on the endpoint lifeline.
 
 NOTE: Not every sequence diagram will have the start of conversation marker. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. In this case, ServiceInsight will only get 50 messages from the conversation and this may not include the initiating message.
+
 
 ### Messages
 
@@ -66,6 +71,7 @@ NOTE: If a processing box appears further down the diagram then it was executed 
 
 If the processing of a message fails, the processing box will be displayed in red with an exclamation mark in it. If the message that failed to process hasn't already been (automatically) retried, you can manually retry the message via the context menu.
 
+
 ### Events
 
 ![Event](event.png)
@@ -74,11 +80,13 @@ Events are represented in a similar fashion to other messages except that they h
 
 NOTE: Each event that is published will appear on the diagram once for each subscriber. This looks like individual messages were sent to each subscriber by the sender regardless of whether Unicast or Multicast routing is used - [Learn more about Message Routing](/nservicebus/messaging/routing.md).
 
+
 ### Loopback messages
 
 ![Loopback](loopback.png)
 
 When an endpoint sends a message to itself this is called a loopback message. On the sequence diagram this is represented as a short arrow that does not connect to another endpoint lifeline. Each loopback message is displayed with a special icon. As with any other type of message, hovering over or selecting the message will highlight the processing for that message in the lifeline.
+
 
 ### Timeout messages
 
@@ -87,6 +95,7 @@ When an endpoint sends a message to itself this is called a loopback message. On
 A timeout is a special type of loopback message where the handling is deferred until a later time. This type of message is represented just like a loopback message but it has a clock icon to show that it is a timeout.
 
 NOTE: the time of processing may not correspond to the time a timeout message was sent back for processing by the timeout scheduler. The sequence diagram does not currently support visualizing the time the message was sent back and will only indicate when was the message processed.
+
 
 ### Differences with UML sequence diagrams
 

@@ -8,7 +8,7 @@ related:
 ---
 
 
-# SQL Relay (Transport Integration)
+## SQL Relay (Transport Integration)
 
 This sample shows how to receive events published by an endpoint whose transport is different from that of the subscriber.  In this particular example, events published from an MSMQ endpoint will be relayed to an SQL endpoint for downstream SQL subscribers.
 
@@ -51,7 +51,7 @@ snippet:AddSubscriber
 
 ## NativeMsmqToSql
 
-`NativeMsmqToSql` is a program that reads messages from a queue using native Messaging MSMQ API and uses SqlClient API to write information in the corresponding SQL table for the `SqlRelay` endpoint.  
+`NativeMsmqToSql` is a program that reads messages from a queue using native Messaging MSMQ API and uses SqlClient API to write information in the corresponding SQL table for the `SqlRelay` endpoint.
 
 Since this is not an NServiceBus endpoint, create the required transactional queue named `MsmqToSqlRelay`.
 

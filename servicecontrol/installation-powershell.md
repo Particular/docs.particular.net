@@ -14,14 +14,14 @@ ServiceControl 1.7 introduced a new graphical management utility to add, remove,
 These actions and some additional tools have also exposed via PowerShell module called `ServiceControlMgmt`
 
 
-### Prerequisites
+## Prerequisites
 
 The ServiceControlMgmt module requires:
 
 - Microsoft PowerShell 3.0
 
 
-### Loading and Running the Powershell Module
+## Loading and Running the Powershell Module
 
 The majority of the ServiceControlMgmt Powershell module cmdlets will only work if the PowerShell session is running under administrator privileges.
 The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with the module automatically loaded.
@@ -32,7 +32,7 @@ Import-Module "C:\Program Files (x86)\Particular Software\ServiceControl Managem
 ```
 
 
-### Cmdlets and Aliases
+## Cmdlets and Aliases
 
 The following cmdlets and aliases are provided by the ServiceControl Management PowerShell module.
 
@@ -44,7 +44,7 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 | sc-delete              | Remove-ServiceControlInstance                 |
 | sc-findlicense         | Get-ServiceControlLicense                     |
 | sc-help                | Get-ServiceControlMgmtCommands                |
-| sc-instances           | Get-ServiceControlInstances                   | 
+| sc-instances           | Get-ServiceControlInstances                   |
 | sc-makeunattendfile    | New-ServiceControlUnattendedFile              |
 | sc-transportsinfo      | Get-ServiceControlTransportTypes              |
 | sc-upgrade             | Invoke-ServiceControlInstanceUpgrade          |
@@ -55,7 +55,7 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 | user-sid               | Get-SecurityIdentifier                        |
 
 
-#### Examples
+### Examples
 
 To following commands show some uses of some of the cmdlets provided in the module. All of the cmdlets have local help which can be accessed via the standard PowerShell help command
 
@@ -64,7 +64,7 @@ Get-Help  Get-ServiceControlInstances
 ```
 
 
-#### Adding an instance
+### Adding an instance
 
 ```bat
 New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath  C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -Transport MSMQ -ErrorQueue error1 -AuditQueue audit1
@@ -72,22 +72,26 @@ New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceCont
 There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or hostname.
 
 
-#### Removing an instance
+### Removing an instance
 
 The following commands show how to remove a ServiceControl instance(s). To List existing instances of the ServiceControl service use `Get-ServiceControlInstances`.
 
-```bat
-# Remove the instance we created in the Add sample and delete the database and logs
-Remove-ServiceControlInstance -Name Test.ServiceControl -RemoveDB -RemoveLogs
+Remove the instance we created in the Add sample and delete the database and logs:
 
-# Remove all ServiceControl instance we created in the Add sample and delete the database and logs for each one
+```bat
+Remove-ServiceControlInstance -Name Test.ServiceControl -RemoveDB -RemoveLogs
+```
+
+Remove all ServiceControl instance we created in the Add sample and delete the database and logs for each one:
+
+```
 Get-ServiceControlInstances | Remove-ServiceControlInstance -RemoveDB -RemoveLogs
 ```
 
 There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or host name.
 
 
-#### Upgrading an instance
+### Upgrading an instance
 
 The following command will list the ServiceControl instances current installed and their version number
 
@@ -104,7 +108,7 @@ Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade>
 The upgrade will stop the service if it is running.
 
 
-#### Licensing
+### Licensing
 
 Adding the license file to the registry can be done by running the following cmdlet. The license file is now machine wide and is available to be used by all instances of ServiceControl.
 
@@ -115,7 +119,7 @@ It is also possible to apply a license to an individual instance rather than glo
 Adding a license this way is not supported via the ServiceControl Management Utility or the PowerShell module.
 
 
-#### Building an unattended install file
+### Building an unattended install file
 
 Since ServiceControl 1.7 the installation executable has a command line argument to enable the installation of a ServiceControl service instance during installation. This is intended to assist with [unattended installation](installation-silent.md)
 
@@ -156,12 +160,12 @@ New-ServiceControlInstanceFromUnattendedFile -UnattendFile  c:\temp\unattended.x
 Note: Neither the unattended file method or the `New-ServiceControlInstance` cover all the configuration settings that are available to ServiceControl. To set additonal options refer to [Customizing ServiceControl configuration](creating-config-file.md). A scripted method of adding additional settings is detailed in [Installing ServiceControl Silently](installation-silent.md)   
 
 
-### Troubleshooting via PowerShell
+## Troubleshooting via PowerShell
 
 The ServiceControl Management PowerShell offers some cmdlets to assist with troubleshooting the install of ServiceControl instances.
 
 
-#### Check if a Port is already in use
+### Check if a Port is already in use
 
 Before adding an instance of ServiceControl you can test if the port you which to use is currently in use. 
 
@@ -175,12 +179,12 @@ This example shows the available ports out of a range of ports
 ```
 
 
-#### Checking and manipulating UrlAcls
+### Checking and manipulating UrlAcls
 
 The Window HTTPServer API is used by underlying components in ServiceControl. This API uses a permissions system to limit what accounts can add a HTTP listener to a specific URI.
 The standard mechanism for viewing and manipulating these ports in via the [netsh.exe](https://technet.microsoft.com/en-us/library/Cc725882%28v=WS.10%29.aspx) command line tool.
 
-For example `netsh.exe http show urlacl`  will list all of the available. This output is detailed but not very friendly to query. The ServiceControl Management Powershell provides simplied powershell equivalents for  listing, add and removing UrlAcls and makes the output easier to query.
+For example `netsh.exe http show urlacl`  will list all of the available. This output is detailed but not very friendly to query. The ServiceControl Management PowerShell provides simplified PowerShell equivalents for  listing, add and removing UrlAcls and makes the output easier to query.
 
 For example the following command lists all of the UrlAcls assigned to any URI for port 33333
 
