@@ -63,7 +63,7 @@ The following settings are available for changing the behavior of timeout persis
 - `PartitionKeyScope`: The time range used as partition key value for all timeouts. For optimal performance, this should be in line with the catchup interval so it should come to no surprise that the default value also represents an hour: `yyyyMMddHH`. When modifying `PartitionKeyScope`, you will need to migrate the data in the table defined by `TimeoutDataTableName`
 - `TimeoutStateContainerName`: Allows you to set the name of the container where the timeout state is stored, defaults to `timeoutstate` - **Added in v7.0**
 
-For more information see [Configuring Azure Connection Strings](https://msdn.microsoft.com/en-us/library/azure/ee758697.aspx)
+For more information see [Configuring Azure Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/storage-configure-connection-string/)
 
 
 ## Additional performance tips

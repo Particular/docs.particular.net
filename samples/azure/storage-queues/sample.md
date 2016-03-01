@@ -44,7 +44,7 @@ snippet:AppConfig
 
 ## The Data in Azure Storage
 
-The queues for the two endpoints can be seen in the [Server Explorer](https://msdn.microsoft.com/en-us/library/azure/ff683677.aspx) of Visual Studio.
+The queues for the two endpoints can be seen in the [Server Explorer](https://msdn.microsoft.com/en-us/library/x603htbk.aspx) of Visual Studio.
 
 ![](queues.png)
 
