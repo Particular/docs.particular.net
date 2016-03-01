@@ -49,7 +49,7 @@ The default way to set the connection string is using the .NET provided `connect
 
 snippet:AzureServiceBusConnectionStringFromAppConfig
 
-For more detail see [Configuration Connection Strings](https://msdn.microsoft.com/en-us/library/azure/jj149830.aspx)
+For more detail see [Configuration Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-topics-subscriptions/#set-up-a-service-bus-connection-string)
 
 
 ## Configuring in Detail
