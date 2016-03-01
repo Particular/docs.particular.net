@@ -1,6 +1,7 @@
 ---
 title: Concepts Overview
 summary: A high level feature and concept overview of NServiceBus
+reviewed: 2015-03-01
 redirects:
 - nservicebus/fluent-config-api-v3-v4
 - nservicebus/fluent-config-api-v3-v4-intro
@@ -21,7 +22,7 @@ Message types can be set either using marker interfaces `ICommand` and `IEvent` 
 
 ### Body
 
-The payload of the message is also called body. It travels between the endpoints in a serialized form (either textual or binary).
+The payload of the message is also called the body. It travels between the endpoints in a serialized form (either textual or binary).
 
 
 ### [Headers](/nservicebus/messaging/headers.md)
@@ -31,7 +32,7 @@ Additional information about a message is communicated over the transport in a c
 
 ### Endpoint
 
-An Endpoint is a design-time concept that has a name and a collection of associated Message Handlers and Sagas. A definition of an Endpoint lives as a group of artefacts in a source code repository. An Endpoint (the binaries that result from building the endpoint's source code) can be deployed to a number of machines and environments. Each such deployment is a separate Endpoint Instance.
+An Endpoint is a design-time concept that has a name and a collection of associated Message Handlers and Sagas. A definition of an Endpoint lives as a group of artifacts in a source code repository. An Endpoint (the binaries that result from building the endpoint's source code) can be deployed to a number of machines and environments. Each such deployment is a separate Endpoint Instance.
 
 
 ### Endpoint Instance
@@ -59,7 +60,7 @@ Each endpoint instance is assigned a single Input Queue. This queue can be share
 Publish Subscribe is the interaction of
 
  * Registering interest in being notified about an event (*subscriber*).
- * That event being delivered to the endpoint that registered itself (*publisher*)
+ * That event being delivered to the endpoint that registered itself (*publisher*).
 
 
 ### [Handler](/nservicebus/handlers/)
@@ -69,7 +70,7 @@ A Message Handler (or simply Handler) is a piece of code that processes a messag
 
 ### [Saga](/nservicebus/sagas/)
 
-A saga can be thought of as a long running Handler that handles multiple Messages and shared state. It is the NServiceBus equivalent of a [Process Manager](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) pattern.
+A Saga can be thought of as a long running Handler that handles multiple Messages and shared state. It is the NServiceBus equivalent of a [Process Manager](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) pattern.
 
 
 ### [Timeout](/nservicebus/sagas/#timeouts)
