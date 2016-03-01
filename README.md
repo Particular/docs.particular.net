@@ -86,7 +86,7 @@ Required. Used for the web page title tag `<head><title>`, displayed in the page
 reviewed: 2016-03-01
 ```
 
-Optional. Used capture the last date that a page was fully reviewed. Format is `yyyy-MM-dd`.
+Optional. Used to capture the last date that a page was fully reviewed. Format is `yyyy-MM-dd`.
 
 
 ### Summary
