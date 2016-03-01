@@ -314,14 +314,3 @@
       Title: "Troubleshooting"
       Articles:
         - "servicecontrol/troubleshooting"
--
-  Name: "ServiceMatrix"
-  Topics:
-    -
-      Title: "Using ServiceMatrix"
-      Articles:
-        - "servicematrix/customizing-extending"
-        - "servicematrix/servicematrix-serviceinsight"
-        - "servicematrix/servicematrix-persistence"
-        - "servicematrix/licensing-servicematrix-v2.0"
-        - "servicematrix/troubleshooting-servicematrix-2.0"
