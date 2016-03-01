@@ -32,6 +32,10 @@ For more complex changes you should fork and then submit a pull request. This is
 For more information see [Collaborating on GitHub](https://help.github.com/categories/63/articles) especially [using GitHub pull requests](https://help.github.com/articles/using-pull-requests).
 
 
+## Reviewing a page
+
+If, as part of editing a page, a full review of the content is done the [reviewed header](#reviewed) should be updated.
+
 # Conventions
 
 
@@ -74,6 +78,15 @@ title: Auditing With NServiceBus
 ```
 
 Required. Used for the web page title tag `<head><title>`, displayed in the page content, and displayed in search results.
+
+
+### Reviewed
+
+```
+reviewed: 2016-03-01
+```
+
+Optional. Used capture the last date that a page was fully reviewed. Format is `yyyy-MM-dd`.
 
 
 ### Summary
