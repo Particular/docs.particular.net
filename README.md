@@ -568,7 +568,7 @@ Would be rendered as
 
 ## Headings
 
-The first (and all top level) headers in a `.md` page should be a `h2` ie `##`. With sub-headers under it being `h2` are `h3` etc.
+The first (and all top level) headers in a `.md` page should be a `h2` ie `##`. With sub-headers under it being `h3` are `h4` etc.
 
 
 ## Spaces
