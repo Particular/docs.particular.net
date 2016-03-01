@@ -112,3 +112,8 @@ snippet:DisableTimeoutSchemaUpdate
 ### Generating scripts for deployment
 
 To create scripts, for execution in production without using the NServiceBus installers, run an install in a lower environment and then export the SQL structure. This structure can then be migrated to production.
+
+## Controlling timeout messages clean-up
+On rare occasions some timeout messages might not be picked up with primary dispatch mechanism. To handle such cases a timeout clean-up process is performed on a regular basis. By default it's fired every 2 minutes and checks if there are no timeouts older than 5 minutes which should be delivered. Those default values can be changed using configuration method. 
+
+snippet:TimeoutCleanupConfiguration
