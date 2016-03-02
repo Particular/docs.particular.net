@@ -13,17 +13,17 @@ redirects:
 ---
 
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create three databases: `sender`, `receiver` and `shared`.
- 2. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
- 3. Start the Receiver project.
- 4. If you see `DtcRunningWarning` log message in the console, it means you have a Distributed Transaction Coordinator (DTC) service running. The Outbox feature is designed to provide *exactly once* delivery guarantees without DTC. It is better to disable the DTC service to avoid confusion when using Outbox.
- 5. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready.
- 6. Hit <enter>.
- 7. On the Receiver console you should see that order was submitted.
- 8. On the Sender console you should see that the order was accepted.
- 9. Hit <enter> in the Receiver console to shut it down.
- 10. Go to the SQL Server Management Studio and delete the `receiver` database.
- 11. Hit <enter> again in the Sender console
- 12. You should see the retry mechanism kicking in, doing some number of first-level retries and then forwarding the message to the SLR.
+ 1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
+ 1. Start the Receiver project.
+ 1. If a `DtcRunningWarning` log message appears in the console, it means Distributed Transaction Coordinator (DTC) service is running. The Outbox feature is designed to provide *exactly once* delivery guarantees without DTC. It is better to disable the DTC service to avoid confusion when using Outbox.
+ 1. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready.
+ 1. Hit <enter>.
+ 1. On the Receiver console you should see that order was submitted.
+ 1. On the Sender console you should see that the order was accepted.
+ 1. Hit <enter> in the Receiver console to shut it down.
+ 1. Go to the SQL Server Management Studio and delete the `receiver` database.
+ 1. Hit <enter> again in the Sender console
+ 1. Notice the retry mechanism kicking in, doing some number of first-level retries and then forwarding the message to the SLR.
 
 
 ## Code walk-through
@@ -74,6 +74,6 @@ If the message contains the headers used by the send-side behavior, it is routed
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence and Outbox but uses V2.1 code-based connection information API.
+The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence and Outbox but uses Version 2.1 code-based connection information API.
 
 snippet:ReceiverConfiguration

@@ -13,8 +13,8 @@ Run the solution. A new browser window/tab opens, as well as a console applicati
 
 The web sample starts with two available methods of sending a command to the server and waiting for a response from it:
 
--   `SendAndBlock`: a controller uses NServiceBus
--   `SendAsync`: an `AsyncController` uses NServiceBus
+ * `SendAndBlock`: a controller uses NServiceBus
+ * `SendAsync`: an `AsyncController` uses NServiceBus
 
 The sample covers only the sending of the asynchronous message as the send and block are similar in NServiceBus.
 
@@ -32,9 +32,9 @@ Changing the number in the text box from even to odd changes the result.
 
 Now, look at the code. This sample has three projects:
 
--   `AsyncPagesMvc`: ASP.NET MVC application that sends messages (found in `Messages` project)
--   `Shared`: Common code including declaration of messages
--   `Server`: Destination of messages sent from the MVC  project. Hosted in a console application
+ * `AsyncPagesMvc`: ASP.NET MVC application that sends messages (found in `Messages` project)
+ * `Shared`: Common code including declaration of messages
+ * `Server`: Destination of messages sent from the MVC  project. Hosted in a console application
 
 
 ## Initializing the bus
@@ -85,4 +85,4 @@ This class implements the NServiceBus interface `IHandleMessages<T>` where `T` i
 
 NServiceBus manages the classes that implement this interface. When a message arrives in the input queue, it is deserialized, and then, based on its type, NServiceBus instantiates the relevant classes and calls their Handle method, passing in the message object.
 
-Notice the `IBus` property of the class. This is how it gets a reference to the bus. In the method body you can see it calling the `Return` method on the bus, which results in a message being returned to `WebApplication`, specifically putting a message in the input queue whose name is determined by the namespace where the bus was configured; in this case, the `global.asax`: `AsyncPagesMVC`.
+Notice the `IBus` property of the class. This is how it gets a reference to the bus. In the method body notice it calling the `Return` method on the bus, which results in a message being returned to `WebApplication`, specifically putting a message in the input queue whose name is determined by the namespace where the bus was configured; in this case, the `global.asax`: `AsyncPagesMVC`.

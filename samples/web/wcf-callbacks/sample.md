@@ -34,7 +34,7 @@ Maps a Request-Response message pair to a  [ServiceHost](https://msdn.microsoft.
 
 The url used for the binding will be of the format `http://localhost:8080/BusService/{RequestMessage}_{Response}`. So for a message `EnumMessage` that has a response of `Status` the url would be `http://localhost:8080/BusService/EnumMessage_Status`
 
-If you want to use a different binding or url structure you can customize this code.
+If a different binding or url structure is required it can be customized:
 
 snippet:WcfMapper
 
@@ -57,7 +57,7 @@ The `ClientChannelBuilder` creates a proxy at run time to allow strong typed exe
 
 snippet:ClientChannelBuilder
 
-If you are generating a static proxy, using the Visual Studio "Add Service Reference" feature, you wont need to use `ClientChannelBuilder`.
+If generating a static proxy, using the Visual Studio "Add Service Reference" feature, no `ClientChannelBuilder` is required.
 
 
 ## Receiving Endpoint Configuration
@@ -86,7 +86,7 @@ A helper that build and cleans up both the [ChannelFactory](https://msdn.microso
 
 snippet:SendHelper
 
-Note: For the purposes of this sample, for every call it creates a new `ChannelFactory` and `ICommunicationObject`. Depending on your specific use case you mat want to apply different scoping, lifetime and cleanup rules for these instances.
+Note: For the purposes of this sample, for every call it creates a new `ChannelFactory` and `ICommunicationObject`. Depending on the specific use case it may be required to apply different scoping, lifetime and cleanup rules for these instances.
 
 
 ### Sending

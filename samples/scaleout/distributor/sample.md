@@ -1,6 +1,6 @@
 ---
 title: Scale Out with the Distributor
-summary: Scale out your existing message processing by adding workers on different machines.
+summary: Scale out existing message processing by adding workers on different machines.
 tags:
 - Distributor
 - Scalability
@@ -10,7 +10,7 @@ related:
 - nservicebus/scalability-and-ha
 ---
 
-Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out your existing message processing by adding more workers on different machines.
+Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out existing message processing by adding more workers on different machines.
 
 
 ## Code walk-through
@@ -47,7 +47,7 @@ Contains one handler.
 
 snippet: WorkerHandler
 
-WARNING: If you are doing publish from a handler inside a worker then all workers mush share the same [subscription persistence](/nservicebus/persistence/).
+WARNING: If publishing from a handler inside a worker then all workers mush share the same [subscription persistence](/nservicebus/persistence/).
 
 
 ### Server
@@ -148,10 +148,10 @@ Sent Order placed event for orderId [1320cfdc-f5cc-42a7-9157-251756694069].
 This sample has two workers which are hard coded as projects for the sake of keeping the sample easy to use. This manifests in several ways
 
  1. Both `Worker1` and `Worker2` are different projects so that the solution automatically starts with two workers.
- 1. Both `Worker1` and `Worker2` have different endpoint names so they have distinct queue names when running in your development environment.
+ 1. Both `Worker1` and `Worker2` have different endpoint names so they have distinct queue names when running in the development environment.
  1. Both `Worker1` and `Worker2` have hard coded settings in the app.config
 
-In a real solution you would do the following
+In a real solution the following is more likely
 
  1. Have one Worker in the project (or even have the `Server` double up as a worker)
  1. In deployment the same `Worker` endpoint would be deployed to multiple machines and only differ by their app.config.
@@ -162,13 +162,13 @@ In a real solution you would do the following
 
 #### Version 5 and below
 
-Normally workers are deployed to different machines. When deployed to the same machine a GUID will be added to the end of the worker input queue name. This allows the distributor to properly route messages and prevents workers from competing on the same queue. Since, in this project, we are "faking different machines" by using different projects we can override the GUID behavior to prevent a proliferation of queue names.
+Normally workers are deployed to different machines. When deployed to the same machine a GUID will be added to the end of the worker input queue name. This allows the distributor to properly route messages and prevents workers from competing on the same queue. Since, in this project, "different machines" are being faked by using different projects, the GUID behavior is overridden to prevent a proliferation of queue names.
 
 The only way to achieve this was the following address "hack"
 
 snippet:WorkerNameToUseWhileTestingCode
 
-IThere is a configuration setting that can be used
+There is a configuration setting that can be used
 
 snippet:WorkerNameToUseWhileTestingConfig
 
@@ -181,4 +181,4 @@ snippet:Distributor-InstanceId
 
 snippet:Distributor-InstanceId-Settings
 
-When deploying multiple workers to a single machine you need to make sure each worker is assigned a unique instance ID.
+When deploying multiple workers to a single machine ensure that each worker is assigned a unique instance ID.
