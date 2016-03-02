@@ -22,7 +22,7 @@ The "Shared" project contains the definition of the messages that are sent betwe
 
 ## Creating and publishing messages
 
-As the name implies, the "MyPublisher" project is a publisher of event messages. It uses the bus framework to send alternatively three different types of messages every time you click Enter in its console window. The created message is populated and [published](/nservicebus/messaging/publish-subscribe/) using `Publish`.
+As the name implies, the `MyPublisher` project is a publisher of event messages. It uses the bus framework to send alternatively three different types of messages every time Enter is clicked. The created message is populated and [published](/nservicebus/messaging/publish-subscribe/) using `Publish`.
 
 snippet:PublishLoop
 
@@ -42,7 +42,7 @@ The handlers in each project are in files that end in with the word `Handler` fo
 
 ## Run the sample
 
-When running the sample, you'll see three open console applications and many log messages on each. Almost none of these logs represent messages sent between the processes.
+When running the sample, notice the three open console applications and many log messages on each. Almost none of these logs represent messages sent between the processes.
 
 Bring the `MyPublisher` process to the foreground.
 
@@ -57,7 +57,7 @@ Shut down `Subscriber1` by closing its console window. Return to the `MyPublishe
 
 In Visual Studio, right click the project of the closed subscriber, and restart it by right clicking the `Subscriber1` project and selecting `Debug` and then `Start new instance`.
 
-Note how `Subscriber1` immediately receives the messages that were published while it was not running. The publisher safely places the message into the transport in this case MSMQ without knowledge of the running status of any subscriber. MSMQ safely places the message in the inbound queue of the subscriber where it awaits handling, so you can be sure that even when processes or machines restart, NServiceBus protects your messages so they won't get lost.
+Note how `Subscriber1` immediately receives the messages that were published while it was not running. The publisher safely places the message into the transport in this case MSMQ without knowledge of the running status of any subscriber. MSMQ safely places the message in the inbound queue of the subscriber where it awaits handling, even when processes or machines restart, NServiceBus protects messages so against lost.
 
 
 ## MSMQ Subscriber Authorization

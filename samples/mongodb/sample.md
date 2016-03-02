@@ -11,14 +11,14 @@ related:
 
 ## Prerequisites
 
-Ensure you have an instance of [MongoDB](https://www.mongodb.org/) running on `localhost:27017`. See [Install MongoDB on Windows](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/).
+Ensure an instance of [MongoDB](https://www.mongodb.org/) is running on `localhost:27017`. See [Install MongoDB on Windows](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/).
 
 
 ### MongoDB Persistence for NServiceBus
 
 This sample utilizes the community run [NServiceBus.Persistence.MongoDB project](https://github.com/tekmaven/NServiceBus.Persistence.MongoDB).
 
-NOTE: There are [two community run MongoDB persistences](/platform/extensions.md#persisters). You should evaluate both for the best fit to your solution.
+NOTE: There are [two community run MongoDB persistences](/platform/extensions.md#persisters). Evaluate both for the best fit to the specific solution.
 
 
 ### MongoDB Management UI
@@ -30,12 +30,12 @@ To visualize the data in MongoDB it is useful to have install a [MongoDB adminis
 
 This sample shows a simple Client + Server scenario.
 
-* `Client` sends a `StartOrder` message to `Server`
-* `Server` starts an `OrderSaga`.
-* `OrderSaga` requests a timeout with a `CompleteOrder` data.
-* When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
-* The Server then publishes a message that the client subscribes to.
-* `Client` handles `OrderCompleted` event.
+ * `Client` sends a `StartOrder` message to `Server`
+ * `Server` starts an `OrderSaga`.
+ * `OrderSaga` requests a timeout with a `CompleteOrder` data.
+ * When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
+ * The Server then publishes a message that the client subscribes to.
+ * `Client` handles `OrderCompleted` event.
 
 
 ### MongoDB configuration
@@ -47,7 +47,7 @@ snippet:MongoDBConfig
 
 ### Order Saga Data
 
-NServiceBus.Persistence.MongoDB [requires a property on your saga decorated with attribute `[DocumentVersion]`, usually named Version](https://github.com/tekmaven/NServiceBus.Persistence.MongoDB/#saga-definition-guideline).
+`NServiceBus.Persistence.MongoDB` [requires a property on the saga decorated with attribute `[DocumentVersion]`, usually named Version](https://github.com/tekmaven/NServiceBus.Persistence.MongoDB/#saga-definition-guideline).
 
 snippet:sagadata
 
@@ -68,19 +68,19 @@ The data in MongoDB is stored in three different collections.
  * `IContainSagaData.Originator` and `IContainSagaData.OriginalMessageId` map to simple properties pairs.
  * Custom properties on the SagaData, in this case `OrderDescription` and `OrderId`, are also mapped to simple properties.
  * `_t` is type serialization metadata use by the underlying MongoDB Driver.
- * `DocumentVersion` used by NServiceBus.Persistence.MongoDB to prevent concurrency issues.
+ * `DocumentVersion` used by `NServiceBus.Persistence.MongoDB` to prevent concurrency issues.
 
 ![](sagadata.png)
 
 
 ### The Timeouts
 
-  * The subscriber is stored in a `Destination` with the nested properties `Queue` and `Machine`.
-  * The endpoint that initiated the timeout is stored in the `OwningTimeoutManager` property
-  * The connected saga id is stored in a `SagaId` property.
-  * The serialized data for the message is stored in a `State` property.
-  * The scheduled timestamp for the timeout is stored in a `Time` property.
-  * Any headers associated with the timeout are stored in an array of key value pairs. 
+ * The subscriber is stored in a `Destination` with the nested properties `Queue` and `Machine`.
+ * The endpoint that initiated the timeout is stored in the `OwningTimeoutManager` property
+ * The connected saga id is stored in a `SagaId` property.
+ * The serialized data for the message is stored in a `State` property.
+ * The scheduled timestamp for the timeout is stored in a `Time` property.
+ * Any headers associated with the timeout are stored in an array of key value pairs. 
 
 ![](timeouts.png)
 

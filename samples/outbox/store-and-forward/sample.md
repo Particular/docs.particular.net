@@ -12,14 +12,14 @@ redirects:
 - samples/sqltransport-outbox-store-and-forward
 ---
 
- 1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create three databases: `sender`, `receiver` and `shared`.
+ 1. Ensure an instance SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create three databases: `sender`, `receiver` and `shared`.
  1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
  1. Start the Receiver project.
  1. If a `DtcRunningWarning` log message appears in the console, it means Distributed Transaction Coordinator (DTC) service is running. The Outbox feature is designed to provide *exactly once* delivery guarantees without DTC. It is better to disable the DTC service to avoid confusion when using Outbox.
- 1. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready.
+ 1. In the Sender's console is the text `Press <enter> to send a message` when the app is ready.
  1. Hit <enter>.
- 1. On the Receiver console you should see that order was submitted.
- 1. On the Sender console you should see that the order was accepted.
+ 1. On the Receiver console the order was submitted.
+ 1. On the Sender console the order was accepted.
  1. Hit <enter> in the Receiver console to shut it down.
  1. Go to the SQL Server Management Studio and delete the `receiver` database.
  1. Hit <enter> again in the Sender console
@@ -28,7 +28,7 @@ redirects:
 
 ## Code walk-through
 
-This sample show how to add store-and-forward functionality to any a transport that does not have it. In this case the SQL Server transport is used with each endpoint using its own database (server) but the solution is not dependent on the SQL Server transport in any way.
+This sample shows how to add store-and-forward functionality to any a transport that does not have it. In this case the SQL Server transport is used with each endpoint using its own database (server) but the solution is not dependent on the SQL Server transport in any way.
 
 In such scenario if the receiver (back-end) endpoint's database is down (e.g. for maintenance), the sender (front-end, user facing) endpoint can't send messages to it. This happens because even when the Outbox is enabled, the messages that are send from outside of a handler bypass the Outbox and are immediately dispatched to the transport (which in this case means inserting into the destination table in the destination database). The exception is thrown from the `Send`/`Publish` method which inevitably results in a bad user experience (UX).
 

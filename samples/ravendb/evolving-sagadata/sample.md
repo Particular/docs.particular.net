@@ -1,6 +1,6 @@
 ---
 title: RavenDB - Evolving Saga Data
-summary: This sample shows how use evolve your RavenDB saga data over time.
+summary: This sample shows how use evolve RavenDB saga data over time.
 tags:
 - Saga
 related:
@@ -145,7 +145,7 @@ Given the above saga migration, and a 2.7GHz i7 with an SSD, 30,000 saga datas c
 
 Note that the deletion of old saga datas could be done on a running system so as to achieve a smaller migration window.
 
-Raven DB has a variety of API that have different performance characteristics. Based on the type of saga data changes required a different combination of APIs might give better performance or simplify the migration. For example the [Patch API](http://ravendb.net/docs/article-page/3.0/Csharp/client-api/commands/patches/how-to-use-javascript-to-patch-your-documents) can allow you to manipulate documents without needing to load the full document into memory.
+Raven DB has a variety of API that have different performance characteristics. Based on the type of saga data changes required a different combination of APIs might give better performance or simplify the migration. For example the [Patch API](http://ravendb.net/docs/article-page/3.0/Csharp/client-api/commands/patches/how-to-use-javascript-to-patch-your-documents) support manipulation of documents without needing to load the full document into memory.
 
 
 ## Other Saga Data changes
