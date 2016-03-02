@@ -17,17 +17,17 @@ Here are some important considerations when installing and deploying ServiceCont
 
 ## Hardware & Installation Considerations:
 
-- Read the [Capacity Planning](/servicecontrol/capacity-and-planning.md) and [Troubleshooting](/servicecontrol/troubleshooting.md) guides for ServiceControl.
-- Each environment should have a dedicated ServiceControl instance.
-- Other applications or NServiceBus endpoints running on the same machine as ServiceControl can compete for hardware resources and therefore negatively impact ServiceControl's performance. For optimal performance run SC on a dedicated machine.
-- If ServiceControl is installed on a Virtual Machine, ensure the machine is capable of high levels of network and disk I/O traffic. The amount of I/O required depends on the system being monitored, the number of messages being processed, the transport being used, etc. Run performance tests with realistic message loads to baseline hardware requirements.
+ * Read the [Capacity Planning](/servicecontrol/capacity-and-planning.md) and [Troubleshooting](/servicecontrol/troubleshooting.md) guides for ServiceControl.
+ * Each environment should have a dedicated ServiceControl instance.
+ * Other applications or NServiceBus endpoints running on the same machine as ServiceControl can compete for hardware resources and therefore negatively impact ServiceControl's performance. For optimal performance run SC on a dedicated machine.
+ * If ServiceControl is installed on a Virtual Machine, ensure the machine is capable of high levels of network and disk I/O traffic. The amount of I/O required depends on the system being monitored, the number of messages being processed, the transport being used, etc. Run performance tests with realistic message loads to baseline hardware requirements.
 
 
 ## Message Throughput Considerations
 
-Depending on the number of endpoints and message volume, audit messages can have a large impact on performance. Turn off [Message Auditing](/nservicebus/operations/auditing.md#turning-off-auditing) if it is not needed. The primary reason for the audit ingestion capability of ServiceControl is to support system analysis with ServiceInsight. If ServiceInsight is not in use then turn off messaging auditing for each endpoint. Message auditing may be important for some endpoints but not others. 
+Depending on the number of endpoints and message volume, audit messages can have a large impact on performance. Turn off [Message Auditing](/nservicebus/operations/auditing.md#turning-off-auditing) if it is not needed. The primary reason for the audit ingestion capability of ServiceControl is to support system analysis with ServiceInsight. If ServiceInsight is not in use then turn off messaging auditing for each endpoint. Message auditing may be important for some endpoints but not others.
 
-NOTE: If message auditing is required without the use of ServiceInsight, configure endpoints and ServiceControl to use different audit queues. Audit messages going to an audit queue that is not managed by ServiceControl will need to be cleaned up manually. 
+NOTE: If message auditing is required without the use of ServiceInsight, configure endpoints and ServiceControl to use different audit queues. Audit messages going to an audit queue that is not managed by ServiceControl will need to be cleaned up manually.
 
 Turn off [Audit Forwarding](/servicecontrol/errorlog-auditlog-behavior.md) if it is not needed. ServiceControl sends a copy of each audited message to configured Audit Forwarding queue. If these messages are not being used, turn this feature off.
 
@@ -39,14 +39,14 @@ Turn off [Audit Forwarding](/servicecontrol/errorlog-auditlog-behavior.md) if it
 
 ### Heartbeats
 
-Not all endpoints are mission critical and need to be monitored with [heartbeats](/servicepulse/intro-endpoints-heartbeats.md) using the same SLA. For endpoints that are less critical to business, [adjust the Heartbeat Interval](/servicecontrol/plugins/heartbeat#configuration-heartbeat-interval). Increasing the interval ensures that ServiceControl is able to process heartbeats in a timely manner. Increasing the heartbeat interval for endpoints requires a corresponding increase in the [heartbeat grace period](/servicecontrol/creating-config-file#plugin-specific-servicecontrol-heartbeatgraceperiod) in ServiceControl. 
+Not all endpoints are mission critical and need to be monitored with [heartbeats](/servicepulse/intro-endpoints-heartbeats.md) using the same SLA. For endpoints that are less critical to business, [adjust the Heartbeat Interval](/servicecontrol/plugins/heartbeat.md#configuration-heartbeat-interval). Increasing the interval ensures that ServiceControl is able to process heartbeats in a timely manner. Increasing the heartbeat interval for endpoints requires a corresponding increase in the [heartbeat grace period](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrol-heartbeatgraceperiod) in ServiceControl.
 
-Heartbeat messages tend to be frequent, and a large backlog can occur if ServiceControl is offline for an extended period. When this happens, it can take ServiceControl some time to process old heartbeats when it restarts. 
+Heartbeat messages tend to be frequent, and a large backlog can occur if ServiceControl is offline for an extended period. When this happens, it can take ServiceControl some time to process old heartbeats when it restarts.
 
 
 ### Saga Audit
 
-The [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin produces a lot of data. It's use outside of a development environment is not recommended. If the saga audit plugin is already deployed in production, [follow the instructions outlined](/servicecontrol/plugins/saga-audit#removing-the-plugin-from-production) to remove it.
+The [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin produces a lot of data. It's use outside of a development environment is not recommended. If the saga audit plugin is already deployed in production, [follow the instructions outlined](/servicecontrol/plugins/saga-audit.md#removing-the-plugin-from-production) to remove it.
 
 
 ## Performance Considerations
@@ -54,9 +54,10 @@ The [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin produces a lot of
 Run a performance test using the expected peak and average message throughput for the environment to baseline the system. The baseline test should not include audit ingestion or any ServiceControl plugins. 
 
 Once this baseline has been established, follow these steps:
-- Install and configure the Heartbeat plugin in each endpoint where it is needed. Re-run the performance test suite and monitor ServiceControl to ensure that it can effectively monitor the system under load. This may require adjustments to the Heartbeat interval. Re-run the performance tests after each adjustment.
-- Turn on auditing for each endpoint that needs it and re-run the performance tests to assess impact.
-- For each endpoint, turn on any required Custom Checks and re-run the performance tests to assess impact.
+
+ * Install and configure the Heartbeat plugin in each endpoint where it is needed. Re-run the performance test suite and monitor ServiceControl to ensure that it can effectively monitor the system under load. This may require adjustments to the Heartbeat interval. Re-run the performance tests after each adjustment.
+ * Turn on auditing for each endpoint that needs it and re-run the performance tests to assess impact.
+ * For each endpoint, turn on any required Custom Checks and re-run the performance tests to assess impact.
 
 When an infrastructure outage occurs in a production environment it's possible that every message processed every endpoint may end up in the error queue. It can take ServiceControl some time to ingest all of these messages. Once ingested, a bulk retry operation will consume additional network and disk I/O above the usual requirements. It is important to simulate these conditions as a part of performance testing to ensure that these times and resources are catered for in recovery plans.
  
