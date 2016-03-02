@@ -14,7 +14,7 @@ redirects:
 Uses the [RavenDB document database](http://ravendb.net/) for storage.
 
 
-## NServiceBus 5 and above
+## NServiceBus 5 and higher
 
 RavenDB is no longer merged into the core. The RavenDB-backed persistence is available as a separate [NuGet package](https://www.nuget.org/packages/NServiceBus.RavenDB). This allows NServiceBus and RavenDB to be upgraded independently.
 
@@ -68,7 +68,6 @@ snippet:ravendb-persistence-specific-external-store
 
 ### Other configuration options
 
-
 #### Shared session
 
 NServiceBus supports sharing the same RavenDB document session between Saga persistence, Outbox persistence, and business data, so that a single transaction can be used to persist the data for all three concerns atomically.
@@ -95,6 +94,17 @@ snippet:ravendb-persistence-stale-sagas
 DANGER: This is a potentially dangerous feature that can result in multiple instances of saga being created instead of one in cases of high contention.
 
 
+#### Customizing the DocumentStore
+
+NServiceBus offers a method to customize the DocumentStore used for persistence, whether using a custom DocumentStore or using the one created by NServiceBus by default.
+
+NOTE: This setting requires at least NServiceBus.RavenDB 3.1.1.
+
+snippet:CustomizingRavenDocumentStoreBeforeInit
+
+The lambda expression provided to the `CustomizeDocumentStore` method will be executed after NServiceBus has set any required conventions but before `docStore.Initialize()` is called.
+
+
 #### Transaction recovery storage
 
 The RavenDB client requires a method of storing DTC transaction recovery information in the case of process faults. The handling of transaction recovery storage by NServiceBus.RavenDB differs by version.
@@ -102,16 +112,26 @@ The RavenDB client requires a method of storing DTC transaction recovery informa
 
 ##### NServiceBus.RavenDB 3.1 to 4.x
 
-As of 3.1.0, NServiceBus uses `LocalDirectoryTransactionRecoveryStorage` with a storage location inside `%LOCALAPPDATA%`. It is not necessary to modify this default value.
+As of 3.1.1, NServiceBus stores transaction recovery information in a local directory, which must be configured either in code or via configuration. The configured location must be a directory that is writeable by the user account running the NServiceBus instance. NServiceBus will create additional directories for each unique endpoint within the configured path. Thus, the same directory can be configured for every endpoint, and does not need to be individualized for each endpoint.
+
+The ProgramData directory (`C:\ProgramData` since Windows Server 2008 and Windows Vista) provides an acceptable location to store this information, as the Users security group has write access to the folder.
+
+NOTE: NServiceBus will not expand environment variables in the path, as a change to an environment variable value would change the path and could potentially result in data loss.
+
+To configure the transaction recovery storage path in code, use the following code:
+
+snippet:ConfiguringTransactionRecoveryStorageBasePath
+
+In order to guarantee data safety, it's best to let NServiceBus initialize the `DocumentStore` instance, as RavenDB will begin the transaction recovery process, and the transaction recovery store must be configured properly at this point.
+
+If sharing the `DocumentStore` for application data, and if it's impossible to allow NServiceBus to initialize it, NServiceBus will inspect the `DocumentStore` and throw an exception if the transaction recovery storage settings are found to be unsafe. See [Setting RavenDB DTC settings manually](/nservicebus/ravendb/manual-dtc-settings.md) for details on how to configure the required DTC settings and initialize the `DocumentStore` before passing it to NServiceBus.
 
 
-##### NServiceBus.RavenDB 3.0.x and below
+##### NServiceBus.RavenDB 3.0.x and lower
 
-These versions of NServiceBus use `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage, which has been proven to be unstable in certain situations, sometimes resulting in a [TransactionAbortedException or IsolatedStorageException](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ).
+In these versions of NServiceBus, NServiceBus stores transaction recovery information in IsolatedStorage, which has been proven to be unstable in certain situations, sometimes resulting in a [TransactionAbortedException or IsolatedStorageException](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ).
 
-If experiencing one of these issues and an upgrade to 3.1.0 or later is not possible, the default `TransactionRecoveryStorage` can be changed as shown in the following example.
-
-snippet:ConfiguringTransactionRecoveryStorage
+If experiencing one of these issues and an upgrade to 3.1.1 or later is not possible, you should [manually configure the RavenDB DTC settings](/nservicebus/ravendb/manual-dtc-settings.md).
 
 
 ## NServiceBus 3 and NServiceBus 4

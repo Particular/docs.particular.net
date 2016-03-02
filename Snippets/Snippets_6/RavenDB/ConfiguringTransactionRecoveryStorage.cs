@@ -3,21 +3,20 @@
     using System;
     using System.IO;
     using NServiceBus;
-    using NServiceBus.Persistence;
     using Raven.Client.Document;
     using Raven.Client.Document.DTC;
 
     class ConfiguringTransactionRecoveryStorage
-    {
+    { 
         public void ConfiguringTransactionRecoveryStorageBasePath()
         {
             #region ConfiguringTransactionRecoveryStorageBasePath
 
             // Same value for all endpoints; must be writeable
-            string transactionRecoveryBasePath = "%LOCALAPPDATA%"; 
-            
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UsePersistence<RavenDBPersistence>()
+            string transactionRecoveryBasePath = "%LOCALAPPDATA%";
+
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UsePersistence<RavenDBPersistence>()
                 .SetTransactionRecoveryStorageBasePath(transactionRecoveryBasePath);
 
             #endregion
@@ -26,8 +25,8 @@
         public void CustomizingDocumentStoreBeforeInit()
         {
             #region CustomizingRavenDocumentStoreBeforeInit
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UsePersistence<RavenDBPersistence>()
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UsePersistence<RavenDBPersistence>()
                 .CustomizeDocumentStore(docStore =>
                 {
                     // docStore can be customized here before NServiceBus
@@ -55,7 +54,7 @@
             };
             store.Initialize();
 
-            BusConfiguration endpointConfiguration = new BusConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UsePersistence<RavenDBPersistence>()
                 .SetDefaultDocumentStore(store);
 
