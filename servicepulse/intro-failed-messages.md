@@ -23,7 +23,7 @@ To see a detailed display of the failed messages, click the Failed Messages indi
 ![Failed Message Groups Page](intro-failed-messages-failed-groups-page.png)
 
 
-The first tab shows error groups. A group is a set of failed messages where the same **Exception Type** has been thrown from the method in your solution. Each group has:
+The first tab shows error groups. A group is a set of failed messages where the same **Exception Type** has been thrown from the same method in your solution. Each group has:
 
 * a **Title** made up of the **Exception Type** and **Call Site** where the failure occurred.
 * a **Count** of how many unresolved messages there are in the group.
@@ -41,8 +41,8 @@ The second tab will display all failed messages. The functionality is the same a
 * **StackTrace:** Displays the full .NET exception stacktrace when you click the "Show stacktrace" link.
 * **Headers:** Displays a complete set of message headers when you click the "Show headers" link.
 * **Body:** Displays the serialized message body when you click the "Show body" link.
-* **Copy Message Id:** Copies the failed message unique identifier to the clipboard, for future reference, when you click "Copy Id to clipboard".
-* **Open in ServiceInsight:** Launches ServiceInsight, focusing on the failed message for in-depth analysis of the failure causes. (For more details, see [ServiceInsight](/serviceinsight/).) Only works if ServiceInsight is installed on the local machine. 
+* **Copy Message Id:** Copies the failed message unique identifier to the clipboard, for future reference.
+* **Open in ServiceInsight:** Launches [ServiceInsight](/serviceinsight/), focusing on the failed message for in-depth analysis of the failure causes. This only works if ServiceInsight is installed on the local machine. 
 
 
 ### Failed Message Retry
@@ -58,7 +58,7 @@ If a message fails repeated retry attempts, an indication is added, including th
   
 ![Repeated failure indication](images/failed-messages-repeated-failure.png)
 
-NOTE: Tracking the number of repeated retry attempts may be significant to your specific solution implementation, since each retry may invoke custom and/or third party logic that may not participate in the NServiceBus endpoint transactional  processing (and is therefore not rolled back on processing failure).
+NOTE: Tracking the number of repeated retry attempts may be significant, since each retry may invoke custom and/or third party logic that may not participate in the NServiceBus endpoint transactional  processing (and is therefore not rolled back on processing failure).
 
 
 **Related articles:**
