@@ -39,10 +39,10 @@ The second tab will display all failed messages. The functionality is the same a
 
 
 * **Message Details:** For each failed message, displays the message type, exception description, endpoint name and location, and failure timestamp. 
-* **StackTrace:** Displays the full .NET exception stacktrace when clicking the "Show stacktrace" link.
-* **Headers:** Displays a complete set of message headers when clicking the "Show headers" link.
-* **Body:** Displays the serialized message body when clicking the "Show body" link.
-* **Copy Message Id:** Copies the failed message unique identifier to the clipboard, for future reference.
+* **StackTrace:** Displays the full .NET exception stacktrace.
+* **Headers:** Displays a complete set of message headers.
+* **Body:** Displays the serialized message body.
+* **Copy Message Id:** Copies the failed message unique identifier to the clipboard.
 * **Open in ServiceInsight:** Launches [ServiceInsight](/serviceinsight/), focusing on the failed message for in-depth analysis of the failure causes. This only works if ServiceInsight is installed on the local machine. 
 
 
