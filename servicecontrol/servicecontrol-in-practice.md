@@ -1,5 +1,5 @@
 ---
-title: ServiceControl in Practice
+title: Optimizing ServiceControl for use in different environments
 summary: Optimizing ServiceControl for use in different environments
 tags:
 - ServiceControl
