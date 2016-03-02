@@ -1,6 +1,6 @@
 ---
 title: Failed Message Monitoring in ServicePulse
-summary: Describes how ServicePulse detects and monitors failed messages, and how you can resend messages for reprocessing, or archive repeatedly failing messages
+summary: Describes how ServicePulse detects and monitors failed messages, and allows retrying, or archiving failing messages
 tags:
 - ServicePulse
 reviewed: 2016-03-02 
@@ -23,7 +23,7 @@ To see a detailed display of the failed messages, click the Failed Messages indi
 ![Failed Message Groups Page](intro-failed-messages-failed-groups-page.png)
 
 
-The first tab shows error groups. A group is a set of failed messages where the same **Exception Type** has been thrown from the same method in your solution. Each group has:
+The first tab shows error groups. A group is a set of failed messages where the same **Exception Type** has been thrown from the same method. Each group has:
 
 - **Title** made up of the **Exception Type** and **Call Site** where the failure occurred.
 - **Count** of how many unresolved messages there are in the group.
@@ -39,16 +39,16 @@ The second tab will display all failed messages. The functionality is the same a
 
 
 * **Message Details:** For each failed message, displays the message type, exception description, endpoint name and location, and failure timestamp. 
-* **StackTrace:** Displays the full .NET exception stacktrace when you click the "Show stacktrace" link.
-* **Headers:** Displays a complete set of message headers when you click the "Show headers" link.
-* **Body:** Displays the serialized message body when you click the "Show body" link.
+* **StackTrace:** Displays the full .NET exception stacktrace when clicking the "Show stacktrace" link.
+* **Headers:** Displays a complete set of message headers when clicking the "Show headers" link.
+* **Body:** Displays the serialized message body when clicking the "Show body" link.
 * **Copy Message Id:** Copies the failed message unique identifier to the clipboard, for future reference.
 * **Open in ServiceInsight:** Launches [ServiceInsight](/serviceinsight/), focusing on the failed message for in-depth analysis of the failure causes. This only works if ServiceInsight is installed on the local machine. 
 
 
 ### Failed Message Retry
 
-After addressing the root cause of the message's processing failure, you can resend the failed message for reprocessing by the endpoint(s). This is referred to as a "retry" (or a manual retry, in contrast to the automated and configurable FLRs and SLRs).
+After addressing the root cause of the message's processing failure, resend the failed message for reprocessing by the endpoint(s). This is referred to as a "retry" (or a manual retry, in contrast to the automated and configurable FLRs and SLRs).
 
 To retry a failed message, select the failed message(s) in the failed messages list and click the "Retry Selected" button (or click "Retry Group").
 
@@ -75,4 +75,4 @@ Failed messages that cannot be processed successfully (or should not be retried 
 
 Archiving in ServicePulse means that the failed messages are marked as "Archived". Its data is still available, but it is no longer displayed in the Failed Messages list in ServicePulse and is not counted by the Failed Messages indicator in the ServicePulse dashboard. It also will not appear in any failed message groups.
 
-NOTE: You can search for and analyse an archived failed message in ServiceInsight.
+NOTE: Search for and analyse an archived failed message in ServiceInsight.
