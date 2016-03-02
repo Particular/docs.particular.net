@@ -26,10 +26,10 @@ The first tab shows error groups. A group is a set of failed messages where the 
 
 * a **Title** made up of the **Exception Type** and **Call Site** where the failure occurred.
 * a **Count** of how many unresolved messages there are in the group.
-* the **First Fail** time and the **Last Fail** time indicating when the first and most recent unresolved errors occurred respectively.
+* the **First Failure** time and the **Latest Failure** time indicating when the first and most recent unresolved errors occurred respectively.
 * **Actions** which can be used to Archive or Retry an entire group of messages (see below).
 
-Click the title of a group to open the second tab which shows a list of all of the errors within the group.
+Click the title of a group or the View Messages link to open a list of all of the errors within the group.
 
 ![Failed Messages Page](intro-failed-messages-failed-messages-page.png)
 
@@ -46,7 +46,7 @@ Click the title of a group to open the second tab which shows a list of all of t
 
 After addressing the root cause of the message's processing failure, you can resend the failed message for reprocessing by the endpoint(s). This is referred to as a "retry" (or a manual retry, in contrast to the automated and configurable FLRs and SLRs).
 
-To retry a failed message, select the failed message(s) in the failed messages list and click the "Retry Selected" button (or click "Retry All Messages").
+To retry a failed message, select the failed message(s) in the failed messages list and click the "Retry Selected" button (or click "Retry Group").
 
 A message that is sent for retry is marked as such, and is not displayed in the failed message list or included in failed message groups, unless the reprocessing fails again.
 
