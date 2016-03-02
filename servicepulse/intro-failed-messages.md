@@ -31,6 +31,8 @@ The first tab shows error groups. A group is a set of failed messages where the 
 
 Click the title of a group or the View Messages link to open a list of all of the errors within the group.
 
+The second tab will display all failed messages. The functionality is the same as when you are viewing the messages in a group.
+
 ![Failed Messages Page](intro-failed-messages-failed-messages-page.png)
 
 
