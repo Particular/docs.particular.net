@@ -305,6 +305,7 @@
       Articles:
         - "servicecontrol/securing-servicecontrol"
         - "servicecontrol/capacity-and-planning"
+        - "servicecontrol/servicecontrol-in-practice"
         - "servicecontrol/how-purge-expired-data"
         - "servicecontrol/use-ravendb-studio"
         - "servicecontrol/backup-sc-database"
