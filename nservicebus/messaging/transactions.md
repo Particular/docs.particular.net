@@ -100,6 +100,19 @@ In this mode the transport doesn't wrap the receive operation in any kind of tra
 
 In Versions 5 and below, when transactions are disabled, no retries will be performed and messages **will not be forwarded** to the error queue in the event of any failure and the message will be permanently lost.
 
+## Transaction levels supported by NServiceBus transports
+
+### Versions 6 and above
+
+The implementation is discussed in more detail for each transport in their dedicated documentation pages. They can be accessed by clicking the links with the respective transport name in the table:
+
+|  | Transaction scope (Distributed transaction) | Transport transaction - Sends atomic with Receive  | Transport transaction - Receive Only | Unreliable (Transactions Disabled) |
+| :------------------| :-: |:-:| :-:| :-: |
+| MSMQ | + | + | + | + |
+| SQL Server Transport | + | + | + | + |
+| RabbitMQ |  - | - | + | + |
+| Azure Storage Queues|  - | - | + | + |
+| Azure Service Bus |  - | + | + | + |
 
 ## Outbox
 
