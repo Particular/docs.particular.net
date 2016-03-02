@@ -8,13 +8,14 @@ redirects:
 
 NServiceBus requires a persistence mechanism to store data for some of it's features, as discussed in  [Persistence in NServiceBus](/nservicebus/persistence/).
 
-While a variety of persistence technologies are supported out of the box by NServiceBus (for example SQL databases via NHibernate, or RavenDB) you sometimes may want to write your own persistence, for example in order to reuse a database / persistence technology already in your stack and used by other parts of your system, but is not supported by NServiceBus yet. As you will see, writing an NServiceBus persistence is quite a straight forward task.
+A variety of persistence technologies are supported out of the box by NServiceBus (for example SQL databases via NHibernate, or RavenDB). However it is possible to write a custom persistence, for example in order to reuse a database / persistence technology already in the stack and used by other parts of the system, but is not supported by NServiceBus yet..
 
-This guide will explain the various tasks involved in writing a custom persistence. We will use the in-memory persistence which comes out of the box with NServiceBus to showcase a simple real-world implementation as we explain the various concepts and discuss potential pitfalls. The source code for the in-memory persistence implementation can be found [here](https://github.com/Particular/NServiceBus/tree/4.6.5/src/NServiceBus.Core/Persistence/InMemory).
+This guide explains the various tasks involved in writing a custom persistence. The in-memory persistence, which comes out of the box with NServiceBus, is used to showcase a simple real-world implementation and explain the various concepts and discuss potential pitfalls. The source code for the in-memory persistence implementation can be found [here](https://github.com/Particular/NServiceBus/tree/4.6.5/src/NServiceBus.Core/Persistence/InMemory).
 
-The data persisted by NServiceBus needs to survive endpoint restarts, so it doesn't lose timeouts or important Saga data for example. All persister implementations provided by NServiceBus are durable, with the exception of the in-memory one which is used purely for testing. And every persister you will be writing should be durable and properly tested as well.
+The data persisted by NServiceBus needs to survive endpoint restarts, so it doesn't lose timeouts or important Saga data for example. All persister implementations provided by NServiceBus are durable, with the exception of the in-memory one which is used purely for testing. 
 
-It is important to note writing a new persistence for NServiceBus does require a good knowledge of the underlying persistence technology used. Being familiar with its guarantees of consistency and durability, and its querying abilities, is very important. We will see why in just a minute.
+It is important to note writing a new persistence for NServiceBus does require a good knowledge of the underlying persistence technology used. Being familiar with its guarantees of consistency and durability, and its querying abilities, is very important.
+
 
 ## The Subscriptions Persister
 
@@ -52,7 +53,7 @@ public interface ISubscriptionStorage
 }
 ```
 
-The last 3 methods in this interface are quite self explanatory. Additionally, your implementation gets a chance to perform initialization steps. This can be used for example to set some schema if the underlying persistence technology expects one.
+The last 3 methods in this interface are quite self explanatory. Additionally, the implementation gets a chance to perform initialization steps. This can be used for example to set some schema if the underlying persistence technology expects one.
 
 As a general comment that is also valid to the other persisters in this guide, it is preferred to design the implementation in such a way that prefers reads over writes. That is, prefer doing more work in the `Subscribe` and `Unsubscribe` methods so `GetSubscriberAddressesForMessage` can execute faster, as it is the one that's going to get called the most.
 
@@ -102,7 +103,7 @@ public interface ISagaPersister
 }
 ```
 
-Persisting a Saga is really just a matter of serializing this class and storing it within the underlying persistent storage. However, note how Sagas are allowed to be pulled by various criteria (property name and value) and not only by their ID. This means you should pay attention to those methods and use indexes or whatever other method that makes sense with your persistent technology of choice to pull Sagas efficiently. Like before, favor read speed over write speed.
+Persisting a Saga is really just a matter of serializing this class and storing it within the underlying persistent storage. However, note how Sagas are allowed to be pulled by various criteria (property name and value) and not only by their ID. Pay attention to those methods and use indexes or whatever other method that makes sense with the persistent technology of choice to pull Sagas efficiently. Like before, favor read speed over write speed.
 
 Another important aspect of Saga persistence is concurrency. By design, it is possible for Sagas to be accessed and ammended by more than one thread concurrently. This requires the Saga persister to allow for a strong consistency model, to ensure Sagas are written and updated in an atomic manner. Every persistence technology is going to have its own way of providing this ability; for example SQL databases provide ACID guarantees and allow for optimizations like the Upgrade Lock mode to allow for efficient and secure updates under lock. RavenDB however is an eventually-consistent storage, and as such it uses optimistic concurrency and some tricks to implement the unique constraint functionality. To learn more about this and what is required from the Saga persister, read the [NServiceBus Sagas And Concurrency article](/nservicebus/sagas/concurrency.md).
 
@@ -111,26 +112,28 @@ The in-memory implementation of `ISagaPersister` can be found [here](https://git
 
 ## Timeout persister
 
-Another type of data being persisted by NServiceBus is timeouts. Because NServiceBus is not a scheduling framework there is no hard guarantee of timeouts firing at the exact moment they are scheduled for. However, timeouts should definitely not be missed or fired in a serious delay. This can get tricky with some persistence technologies, so this is definitely something you should consider and plan for.
+Another type of data being persisted by NServiceBus is timeouts. Because NServiceBus is not a scheduling framework there is no hard guarantee of timeouts firing at the exact moment they are scheduled for. However, timeouts should definitely not be missed or fired in a serious delay. This can get tricky with some persistence technologies.
 
 Writing a timeout persister can be done by implementing the interfaces shown below:
 
 snippet:PersistTimeoutsInterfaces
 
-The `TimeoutData` class holds timeout related data, like the `Time` it needs to fire at and the `SagaId` it is associated with. As a general rule, you should not use this class directly for persistence, but use another persistence class when possible and use the unique ID generation offered by the persistence you use.
+The `TimeoutData` class holds timeout related data, like the `Time` it needs to fire at and the `SagaId` it is associated with. As a general rule, do not use this class directly for persistence, but use another persistence class when possible and use the unique ID generation offered by the underlying persistence.
 
-NServiceBus polls the persister for timeouts by calling `GetNextChunk`, and providing it with `DateTime startSlice` which specifies what is the last timeout it recieved in the previous call to this method, and then the persister should provide all timeouts that are due, meaning from that value to the current point in time. Some eventually consistent storages may require you to be innovative to make sure no timeouts are missed. Finally, the `nextTimeToRunQuery` needs to be set to tell NServiceBus when to next poll the persister for timeouts - usually this is set for the next known timeout after the current time. NServiceBus will automatically poll for timeouts again if it has reason to suspect new timeouts are available.
+NServiceBus polls the persister for timeouts by calling `GetNextChunk`, and providing it with `DateTime startSlice` which specifies what is the last timeout it received in the previous call to this method, and then the persister should provide all timeouts that are due, meaning from that value to the current point in time. Some eventually consistent storages may require innovative to make sure no timeouts are missed. Finally, the `nextTimeToRunQuery` needs to be set to tell NServiceBus when to next poll the persister for timeouts - usually this is set for the next known timeout after the current time. NServiceBus will automatically poll for timeouts again if it has reason to suspect new timeouts are available.
 
 In order to provide a custom timeout persister implementation:
-- In versions 4.x (starting from 4.4) and 5.x you need to implement interfaces `IPersistTimeouts` and `IPersistTimeoutsV2`. The interface `IPersistTimeoutsV2` was introduced to prevent a potential message loss, while the `IPersistTimeouts` interface allows to maintain backwards compatibility (you can find more details in the following [issue description](https://github.com/Particular/NServiceBus/issues/2885)).
-    - The reference in-memory implementation of timeouts persistence for NServiceBus v4.x can be seen [here](https://github.com/Particular/NServiceBus/blob/support-4.4/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersistence.cs).
-    - The reference in-memory implementation of timeouts persistence for NServiceBus v5.x can be seen [here](https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersister.cs).
-- Starting from Version 6.0 you need to implement interfaces `IPersistTimeouts` and `IQueryTimeouts`. The interface `IQueryTimeouts` has been extracted from `IPersistTimeouts` in order to explicitly separate responsibilities.
-	- The reference in-memory implementation of timeouts persistence for Version 6.0 can be seen [here](https://github.com/Particular/NServiceBus/blob/develop/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersister.cs).
-   
+
+ - In versions 4.x (starting from 4.4) and 5.x it is required to implement interfaces `IPersistTimeouts` and `IPersistTimeoutsV2`. The interface `IPersistTimeoutsV2` was introduced to prevent a potential message loss, while the `IPersistTimeouts` interface allows to maintain backwards compatibility (you can find more details in the following [issue description](https://github.com/Particular/NServiceBus/issues/2885)).
+  - The reference in-memory implementation of timeouts persistence for NServiceBus v4.x can be seen [here](https://github.com/Particular/NServiceBus/blob/support-4.4/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersistence.cs).
+  - The reference in-memory implementation of timeouts persistence for NServiceBus v5.x can be seen [here](https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersister.cs).
+ - Starting from Version 6.0 it is required to implement interfaces `IPersistTimeouts` and `IQueryTimeouts`. The interface `IQueryTimeouts` has been extracted from `IPersistTimeouts` in order to explicitly separate responsibilities.
+  - The reference in-memory implementation of timeouts persistence for Version 6.0 can be seen [here](https://github.com/Particular/NServiceBus/blob/develop/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersister.cs).
+
+
 ## Outbox persister
 
-The Outbox functionality, new in NServiceBus Version 5, is a feature providing reliable messaging on top of various transports without using MSDTC. You can read more about the Outbox feature in [Reliable messaging without MSDTC](/nservicebus/outbox/).
+The Outbox functionality, new in NServiceBus Version 5, is a feature providing reliable messaging on top of various transports without using MSDTC. Read more about the Outbox feature in [Reliable messaging without MSDTC](/nservicebus/outbox/).
 
 An Outbox persister is implementing the following interface:
 
@@ -163,9 +166,9 @@ The Store method has to use the same persistence session as the user's code - th
 
 ## Enabling persisters via Features
 
-You can implement any of the persisters based on your requirements. None of them are mandatory, and you can even use different persistence technologies for different persistence concerns (like SQL Server for timeouts and RavenDB for Sagas). Once the persisters you need have been written and properly tested, you need to enable them using Features.
+Any of the persisters can be implemented based on the specific requirements. None of them are mandatory, and it is possible to use different persistence technologies for different persistence concerns (like SQL Server for timeouts and RavenDB for Sagas). Once the persisters is written it can be enableed via a Feature.
 
-Once a persister has been written, tested and exposed via a Feature, all that is left to do is add a reference to the assembly containing it from your endpoints, and change the endpoint configuration accordingly to enable it. An example for such configuration would be:
+Once a persister has been written, tested and exposed via a Feature, all that is left to do is add a reference to the assembly containing it from the endpoints, and change the endpoint configuration accordingly to enable it. An example for such configuration would be:
 
 ```csharp
 var configure = new BusConfiguration();
@@ -175,4 +178,4 @@ configure.UseSerialization<JsonSerializer>(); // Some more global configurations
 configure.EnableInstallers();
 ```
 
-You could write extension methods to add more configurations specific to your custom persistence (for example, to allow fine tuning of various aspects of it from the calling endpoint).
+You could write extension methods to add more configurations specific to the custom persistence (for example, to allow fine tuning of various aspects of it from the calling endpoint).

@@ -7,10 +7,9 @@
     {
         public void Simple()
         {
-            #region TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
-
             BusConfiguration busConfiguration = new BusConfiguration();
-
+            #region TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
+            
             busConfiguration.TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages(TimeSpan.FromMinutes(5));
 
             #endregion

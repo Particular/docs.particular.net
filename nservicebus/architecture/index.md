@@ -12,6 +12,7 @@ Successful SOA and DDD projects use a mix of approaches and technologies not jus
 
 This article discusses the similarities and differences between NServiceBus and its Microsoft counterparts.
 
+
 ## Closer to WCF than to BizTalk
 
 ![BizTalk](biztalk.jpg)
@@ -24,6 +25,7 @@ Just like you can write your own host process and activate WCF explicitly within
 
 ![deployment topology](deployment-topology.jpg)
 
+
 ## What's the difference?
 
 The principles that make NServiceBus robust are decades old. Proven to hold up through countless technological shifts, the queued messaging on which NServiceBus is based is more than just an implementation choice, it's a primary architectural concept. There's no such thing as a blocking call in NServiceBus.
@@ -31,6 +33,7 @@ The principles that make NServiceBus robust are decades old. Proven to hold up t
 As a general purpose communications technology, WCF does not enforce the queued messaging paradigm. NServiceBus does, and the architectural implications are profound.
 
 When developing systems according to the traditional RPC techniques that WCF supports, it simple and straightforward to get something working. That's when the problems start. Scalability and fault-tolerance are inherently hindered by RPC principles. At this point, it is close to impossible to solve these problems and even throwing more hardware at it has little effect. While WCF doesn't force developers down this path, it doesn't prevent them from doing so either. NServiceBus directs you away from these problems right from the beginning.
+
 
 ## Scalability with one-way messaging
 
@@ -40,9 +43,7 @@ Although the recording missed the first 5-10 minutes, the core message has not b
 
 <iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/6222577" webkitallowfullscreen width="400"></iframe>
 
+
 ## Adoption and climbing the learning curve
 
-While it does take some getting used to, code written using NServiceBus is quite a bit simpler and shorter than before, not to mention much easier to unit test. An architect in the financial services domain had this to say:
-
-> It took a few weeks to grok the concepts involved in messaging but our devs needed only a week to implement a pub/sub solution which is testament to how straightforward NServiceBus makes the coding. We have just started our NServiceBus journey but already are excited about what it has to offer.
-> -- Charlie Barker
+While it does take some getting used to, code written using NServiceBus is quite a bit simpler and shorter than before, not to mention much easier to unit test. See [Case Studies](http://particular.net/casestudies) to see NServiceBus successes stories.

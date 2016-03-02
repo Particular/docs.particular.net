@@ -30,15 +30,15 @@ Then we'll add a new worker role to the cloud services solution that will act as
 
 Assuming you have a working endpoint hosted in a worker role. Open your cloud services project, expand `Roles` and click remove on the worker role that you're preparing.
 
-NOTE: Visual studio will remove any configuration setting from the Azure configuration settings file. If you had configuration overrides in place that effect the way your endpoint behaves, make sure you move those to the app.config file first or apply the alternative override system for shared hosts, see `Configuration concerns` further down this article for more details on this approach.
+NOTE: Visual Studio will remove any configuration setting from the Azure configuration settings file. If any configuration overrides previously existed, effect the way the endpoint behaves, ensure those overrides are moved to the app.config file first or apply the alternative override system for shared hosts. See `Configuration concerns` further down this article for more details on this approach.
 
 The role entry point also doubles as a host process for our endpoint, one that is aware of the service runtime and role context. This functionality needs to be replaced by another process in order to run the endpoint in a similar context as it would have when it was a separate role. This replacement host process is available on NuGet as the `NServiceBus.Hosting.Azure.HostProcess` package, please install it in your worker role project.
 
-You'll notice that an NServiceBus.Hosting.Azure.HostProcess.exe is now referenced. The beauty of this exe is that it can also run on your machine, so outside the context of a service runtime, aka you can debug your endpoint locally without starting the Azure emulator by adding this exe to the debug path in the project properties.
+Notice that an `NServiceBus.Hosting.Azure.HostProcess.exe` is now referenced. This exe can also run on a development machine outside the context of a service runtime. It can also be used to debug an endpoint locally without starting the Azure emulator. This is done by adding this exe to the debug path in the project properties.
 
-Next you need to pack the build output as a zip file so that the NServiceBus.Hosting.Azure.HostProcess.exe is in the root of the archive. (Just zip the debug or release folder)
+Next pack the build output as a zip file so that the `NServiceBus.Hosting.Azure.HostProcess.exe` is in the root of the archive. (Just zip the debug or release folder)
 
-Finally go to your Azure storage account and create a private container called `endpoints` and put the zip file in there. We'll configure the host role entry point to download endpoints from this container later.
+Finally go to Azure storage account and create a private container called `endpoints` and put the zip file in there. Configure the host role entry point to download endpoints from this container later.
 
 
 ## Creating the host
@@ -68,38 +68,40 @@ public class WorkerRole : RoleEntryPoint
 }
 ```
 
-Next to starting the role entry point, you also need to define how you want your endpoint to behave. In this case we want hosting behavior, so that it will not run an endpoint itself but instead host other endpoints. To do so just specify the `AsA_Host` role.
+Next to starting the role entry point, configure the endpoint behavior. In this case a hosting behavior, so that it will not run an endpoint itself but instead host other endpoints. To do so just specify the `AsA_Host` role.
 
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Host { }
 
-The host entry point does require some configuration, you need to tell it in what storage account to look for endpoints and how often it should do so, furthermore you need to tell Azure to provision some space on the local disk as well, where the host can put the downloaded and extracted endpoints.
+The host entry point does require some configuration, it is necessary to tell it in what storage account to look for endpoints and how often it should do so, furthermore Azure needs to be configured to provision some space on the local disk, where the host can put the downloaded and extracted endpoints.
 
-Please add the following configuration settings entries to your `.csdef` file
+Add the following configuration settings entries to the `.csdef` file
 
-* DynamicHostControllerConfig.ConnectionString: The connectionstring to your storage account
+* DynamicHostControllerConfig.ConnectionString: The connectionstring to the storage account
 
 And specify a local storage resource with the name endpoints as well.
 
-	<WorkerRole name="VideoStore.Host" vmsize="Small">
-    	<Imports>
-      		<Import moduleName="Diagnostics" />
-    	</Imports>
-    	<ConfigurationSettings>
-      		<Setting name="DynamicHostControllerConfig.ConnectionString" />      		
-    	</ConfigurationSettings>
-    	<LocalResources>
-      		<LocalStorage name="endpoints" cleanOnRoleRecycle="true" sizeInMB="1000" />
-    	</LocalResources>
-	</WorkerRole>
+```
+<WorkerRole name="VideoStore.Host" vmsize="Small">
+	<Imports>
+		<Import moduleName="Diagnostics" />
+	</Imports>
+	<ConfigurationSettings>
+		<Setting name="DynamicHostControllerConfig.ConnectionString" />      		
+	</ConfigurationSettings>
+	<LocalResources>
+		<LocalStorage name="endpoints" cleanOnRoleRecycle="true" sizeInMB="1000" />
+	</LocalResources>
+</WorkerRole>
+```
 
 Other configuration settings are available as well if you need more fine grained control on how the host works:
 
 * `DynamicHostControllerConfig.Container`: The container where the endpoint packages are stored in the storage account, defaults to `endpoints`
 * `DynamicHostControllerConfig.AutoUpdate`: Turn auto update on or off, defaults to true. Note that if you set it to false you need to reboot for the host to pick new endpoints or versions of endpoints.
-* `DynamicHostControllerConfig.UpdateInterval`: The time between checks if updates are available, in milliseconds, defaults to 600000
+* `DynamicHostControllerConfig.UpdateInterval`: The time between checks if updates are available, in milliseconds, defaults to `600000`.
 * `DynamicHostControllerConfig.LocalResource`: The name of the local storage resource where the zip archives will be extracted, defaults to `endpoints`
-* `DynamicHostControllerConfig.TimeToWaitUntilProcessIsKilled`: When updating an endpoint to a new version, the host will kill the current process. Sometimes this fails or takes a very long time. This property specifies how long the host should wait, if this time elapses without the process going down, the host will reboot the machine (by throwing an exception). Default value: 10000.
-* `DynamicHostControllerConfig.RecycleRoleOnError`: By default Azure role instances will reboot when an exception is thrown from the role entrypoint, but not when thrown from a child process. If you want the role instance to reboot in this case as well, set RecycleRoleOnError on true. Then the host will start monitoring the child process for errors and request a recycle when it throws.
+* `DynamicHostControllerConfig.TimeToWaitUntilProcessIsKilled`: When updating an endpoint to a new version, the host will kill the current process. Sometimes this fails or takes a very long time. This property specifies how long the host should wait, if this time elapses without the process going down, the host will reboot the machine (by throwing an exception). Default value: `10000`.
+* `DynamicHostControllerConfig.RecycleRoleOnError`: By default Azure role instances will reboot when an exception is thrown from the role entrypoint, but not when thrown from a child process. If you want the role instance to reboot in this case as well, set `RecycleRoleOnError` on true. Then the host will start monitoring the child process for errors and request a recycle when it throws.
 
 
 ## Configuration concerns

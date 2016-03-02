@@ -38,7 +38,7 @@ The table would be `Samples.SqlServer.NativeIntegration` in the database `sample
 
 In this sample we'll be using JSON to serialize the messages but XML would have worked equally well. To configure the endpoint we just make call to `.UseSerialization<JsonSerializer>()` as shown above.
 
-Now that our endpoint can understand JSON payloads we need define a message contract to use. In NServiceBus messages are plain C# classes so we just create the following class
+Now that our endpoint can understand JSON payloads a message contract can be defined. In NServiceBus messages are plain C# classes so we just create the following class
 
 snippet: MessageContract
 

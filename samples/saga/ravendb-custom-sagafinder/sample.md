@@ -52,7 +52,7 @@ From the process point of view is important to notice that the saga is not sendi
 
 snippet:OrderSagaDataRavenDB
 
-We can express attributes uniqueness using the `UniqueConstraint` attribute provided by the RavenDB bundle.
+A properties uniqueness can be expressed by using the `UniqueConstraint` attribute provided by the RavenDB bundle.
 
 At start-up the sample will send a `StartOrder` message, since we are decorating the saga data class with custom attributes we also need to plug our own logic to find a saga data instance:
 

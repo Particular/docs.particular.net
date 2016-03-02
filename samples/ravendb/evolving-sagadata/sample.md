@@ -65,14 +65,14 @@ The `AfterConversionToEntity` handles reading read the saga data from RavenDB.
 
 In this case the `ItemCount` wont exist on the Version 2 saga data so it needs to be read from the raw `RavenJObject`.
 
-Note that `NumberOfItems` is always overwritten with `ItemCount`. The reason for this is that since Version 1 is only aware of `ItemCount` it will not set `NumberOfItems`. But Version 2 will always set `ItemCount` (see the writing implementation below) we are safe to use `ItemCount` until all Version 1 endpoints have been decommissioned.
+Note that `NumberOfItems` is always overwritten with `ItemCount`. The reason for this is that since Version 1 is only aware of `ItemCount` it will not set `NumberOfItems`. But Version 2 will always set `ItemCount` (see the writing implementation below) it is safe to use `ItemCount` until all Version 1 endpoints have been decommissioned.
 
 
 #### Writing
 
 The `AfterConversionToDocument` handles writing the saga data back to Raven
 
-Since in this case we want to have Version 1 and Version 2 side-by-side compatible, the `NumberOfItems` property is always duplicated into `ItemCount` via the raw `RavenJObject`.
+To have side-by-side compatible in both Version 1 and Version 2, the `NumberOfItems` property is always duplicated into `ItemCount` via the raw `RavenJObject`.
 
 
 ### Register Converter

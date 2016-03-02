@@ -16,7 +16,7 @@ This is the same concept as for the [domain events pattern](http://udidahan.com/
 ## Events
 
 In the OO world, nouns identify objects. In the event-driven world, the word "when" identifies events. For example, if a business rule says,
-"When a customer becomes a preferred client, we want to send them a welcome email", this is the pre-cursor for the "ClientBecamePreferred" event.
+"When a customer becomes a preferred client send them a welcome email", this is the pre-cursor for the "ClientBecamePreferred" event.
 
 In .NET 4.0, to define an event, use the event keyword in the signature of your event field, and specify the type of delegate for the event and its arguments. For example:
 

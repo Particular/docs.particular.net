@@ -22,7 +22,7 @@ NServiceBus persistence APIs offer a solution to these problems but limits the d
 
 snippet:NHibernateAccessingDataViaContext
 
-As shown above, you can use the `NHibernateStorageContext` directly but we recommend other approach, shown in the listing below
+As shown above, `NHibernateStorageContext` can be used directly but the following is recommended instead:
 
 snippet:NHibernateAccessingDataDirectlyConfig
 

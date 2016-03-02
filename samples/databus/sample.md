@@ -26,7 +26,7 @@ This sample contains three projects:
 
 ### Messages project
 
-Let's look at the Messages project, at the two messages. We start with the large one that is not utilizing the DataBus mechanism. The message is a simple byte array command:
+Let's look at the Messages project, at the two messages. Start with the large message that is not utilizing the DataBus mechanism. The message is a simple byte array command:
 
 snippet:AnotherMessageWithLargePayload
 

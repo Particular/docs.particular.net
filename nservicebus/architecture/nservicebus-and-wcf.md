@@ -10,13 +10,11 @@ The main thing missing from WCF is publish/subscribe, but why should you have to
 
 The next important thing is fault-tolerance. Exceptions cause WCF proxies to break, requiring you to "refresh" them in code but the call data is liable to be lost. NServiceBus provides full system rollback. Not only does your database remain consistent, but your messages return to their queues and no valuable data is lost.
 
+
 ## Same for plain MSMQ
 
-Whether you're looking at the MSMQ bindings for WCF or programming directly against MSMQ, in both cases you have to handle pub/sub and the transaction and exception management needed for full fault tolerance. You also have to handle long-running processes with MSMQ. Here's what one CIO remarked:
+Whether you're looking at the MSMQ bindings for WCF or programming directly against MSMQ, in both cases you have to handle pub/sub and the transaction and exception management needed for full fault tolerance. You also have to handle long-running processes with MSMQ.
 
-> I have to say this: NServiceBus is an incredible product, I only wish there was a bit more documentation on it - we see it being used in so many places in our own software (not just queued processing, which is what we are trying to quickly patch right now) and is taking us in new directions. We were working on a WCF approach for 45 days until we threw it away and replaced it all with NServiceBus and got it working @ 99.99% in 7 business days.
-Thank you for creating this great framework."
-Karell Ste-Marie, CIO of BrainBank Inc.
 
 ## Long-running processes
 
@@ -27,6 +25,7 @@ Unless developers are very careful about how they connect workflow activities, t
 Since regular business logic is simple and stable enough on its own, NServiceBus is specifically designed to handle long-running processes so they are robust and scalable by default, without developers doing anything special.
 
 Transactions are automatically handled on a per-message basis and inherently span all communications and state-management work done by an endpoint. An exception causes all work to be undone, including the sending of any messages, so that remote services and clients do not get exposed to inconsistent data.
+
 
 ## Interoperability
 

@@ -8,7 +8,7 @@ redirects:
 
 ## Corrupted urlacls
 
-At startup NServicebus will attempt to recreate the urlacls so that the process can listen on a specific port. If it already exists we log a warning and continue on. In this case you will see something like this in your log file.
+At startup NServiceBus will attempt to recreate the urlacls so that the process can listen on a specific port. If it already exists warning is logged. In this case the following will appear in the configured log.
 
 ```
 WARN NServiceBus.Installation.GatewayHttpListenerInstaller
@@ -23,13 +23,13 @@ Cannot create a file when that file already exists.
 
 This warning can usually be safely ignored. However when urlacls are corrupted the same behaviors occurs. This problem will manifest in that everything seems to be working correctly except that the gateway will not be listening on the port.
 
-To verify this problem you can navigate to the url (in this case `http://localhost:25894/MyEndpoint/`) in a browser. If the gateway is listening you will receive
+To verify this problem navigate to the url (in this case `http://localhost:25894/MyEndpoint/`) in a browser. If the gateway is listening the following will be received:
 
     EndpointName:MyEndpoint - Status: Ok
 
-If the gateway is not listening you will get no response.
+If the gateway is not listening no response will be received.
 
-To clean an recreate the url acl manuall from an admin console run the following commans
+To clean an recreate the url acl manually from an admin console run the following commands
 
     netsh http delete urlacl YourUrl
     netsh http add urlacl url=YourUrl user="YourMachine\EndpointUsername"
@@ -39,7 +39,7 @@ For example
     netsh http delete urlacl http://localhost:25894/MyEndpoint/
     netsh http add urlacl url=http://localhost:25894/MyEndpoint/ user="Machine\MyEndpointServiceAccount"
 
-Also to list all urlacls on a machine you can run
+To list all urlacls on a machine run
 
     netsh http show urlacl
 

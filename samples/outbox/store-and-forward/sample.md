@@ -15,7 +15,7 @@ redirects:
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create three databases: `sender`, `receiver` and `shared`.
  2. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
  3. Start the Receiver project.
- 4. If you see `DtcRunningWarning` log message in the console, it means you have a Distributed Transaction Coordinator (DTC) service running. The Outbox feature is designed to provide *exactly once* delivery guarantees without DTC. We believe it is better to disable the DTC service to avoid confusion when you use Outbox.
+ 4. If you see `DtcRunningWarning` log message in the console, it means you have a Distributed Transaction Coordinator (DTC) service running. The Outbox feature is designed to provide *exactly once* delivery guarantees without DTC. It is better to disable the DTC service to avoid confusion when using Outbox.
  5. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready.
  6. Hit <enter>.
  7. On the Receiver console you should see that order was submitted.
@@ -28,7 +28,7 @@ redirects:
 
 ## Code walk-through
 
-This sample show how to add store-and-forward functionality to any a transport that does not have it. In this case we are using SQL Server transport with each endpoint using its own database (server) but the solution is not dependent on the SQL Server transport in any way.
+This sample show how to add store-and-forward functionality to any a transport that does not have it. In this case the SQL Server transport is used with each endpoint using its own database (server) but the solution is not dependent on the SQL Server transport in any way.
 
 In such scenario if the receiver (back-end) endpoint's database is down (e.g. for maintenance), the sender (front-end, user facing) endpoint can't send messages to it. This happens because even when the Outbox is enabled, the messages that are send from outside of a handler bypass the Outbox and are immediately dispatched to the transport (which in this case means inserting into the destination table in the destination database). The exception is thrown from the `Send`/`Publish` method which inevitably results in a bad user experience (UX).
 

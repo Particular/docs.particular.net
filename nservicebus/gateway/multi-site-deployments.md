@@ -28,7 +28,7 @@ The next section describes the use of NServiceBus in logically significant, phys
 
 ## Logically significant physical sites
 
-While each branch of a bank or retail store has significance in each domain, when looking at the behavior of each site we see a great deal of similarity even to the point of identical functionality. This may not be true across all sites, especially when examining sites that serve as regional centers or headquarters.
+While each branch of a bank or retail store has significance in each domain, when looking at the behavior of each site there is a great deal of similarity even to the point of identical functionality. This may not be true across all sites, especially when examining sites that serve as regional centers or headquarters.
 
 ![Logically significant physical sites](distributed-sites.png)
 
@@ -63,7 +63,7 @@ The sending process in site A sends a message to the gateway's input queue. The 
 
 ## Configuration and code
 
-When you configure the client endpoint, make sure that the [Message Owner](/nservicebus/messaging/message-owner.md) has been configured so that the relevant message types go to the gateway's input queue.
+When configuring the client endpoint, ensure the [Message Owner](/nservicebus/messaging/message-owner.md) has been configured so that the relevant message types go to the gateway's input queue.
 
 To send a message to a remote site, use the `SendToSites` API call, as shown:
 
@@ -74,14 +74,16 @@ This values (`SiteA` and `SiteB`) is the list of remote sites where you want the
 
 ### Configuring Destination
 
-While you can put the URLs of the site directly in the call, we recommend that you put these settings in `app.config` so your administrators can change them should the need arise. To do this, add this config section:
+While these URLs can be placed directly in the call, it recommend that you put these settings in `app.config` so  administrators can change them should the need arise. To do this, add this config section:
+
 
 #### Using App.Config
 
 snippet:GatewaySitesAppConfig
 
 
-If you prefer to specify this physical routing in code:
+Or specify this physical routing in code:
+
 
 #### Using a IConfigurationProvider
 
@@ -97,8 +99,7 @@ Then at configuration time:
 snippet:UseCustomConfigurationSourceForGatewaySitesConfig
 
 
-
-NServiceBus automatically sets the required headers that enable you to send messages back over the gateway using the familiar `Bus.Reply`.
+NServiceBus automatically sets the required headers to enable sending messages back over the gateway using the familiar `Bus.Reply`.
 
 NOTE: All cross-site interactions are performed internally to a service, so publish and subscribe are not supported across gateways.
 
@@ -115,7 +116,7 @@ Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/
 Going across alternate channels like HTTP means that you lose the MSMQ safety guarantee of exactly one message. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid burdening you with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured [Persistence](/nservicebus/persistence/) so potential duplicates can be detected.
 
 
-### Version 5 and above
+### Versions 5 and above
 
 The gateway will use the storage type you configure. At this stage [InMemory](/nservicebus/persistence/in-memory.md), [NHibernate](/nservicebus/nhibernate/) and [RavenDB](/nservicebus/ravendb/) is supported.
 
@@ -127,14 +128,14 @@ By default, NServiceBus uses [RavenDB](/nservicebus/ravendb/) to store the IDs b
 
 ## Incoming channels
 
-When you enable the gateway, it automatically sets up an HTTP channel to listen to `http://localhost/{name of your endpoint}`. To change this URL or add more than one incoming channel, configure `app.config`, as shown:
+When the gateway is enabled it automatically sets up an HTTP channel to listen to `http://localhost/{name of your endpoint}`. To change this URL or add more than one incoming channel, configure `app.config`, as shown:
 
 
 #### Using App.Config
 
 snippet:GatewayChannelsAppConfig
 
-If you prefer to specify this physical routing in code:
+Or specify the physical routing in code:
 
 
 #### Using a IConfigurationProvider
@@ -151,6 +152,6 @@ Then at configuration time:
 snippet:UseCustomConfigurationSourceForGatewayChannelsConfig
 
 
-The `Default` on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels.
+The `Default` on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. Any number of channels can be added.
 
 Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/ms733768.aspx) and make sure to configure the gateway to listen on the appropriate port, as well as to contact the remote gateway on the same port.

@@ -76,13 +76,13 @@ There are additional parameters available to set additional configuration option
 
 The following commands show how to remove a ServiceControl instance(s). To List existing instances of the ServiceControl service use `Get-ServiceControlInstances`.
 
-Remove the instance we created in the Add sample and delete the database and logs:
+Remove the instance that was created in the Add sample and delete the database and logs:
 
 ```bat
 Remove-ServiceControlInstance -Name Test.ServiceControl -RemoveDB -RemoveLogs
 ```
 
-Remove all ServiceControl instance we created in the Add sample and delete the database and logs for each one:
+Remove all ServiceControl instance created in the Add sample and delete the database and logs for each one:
 
 ```
 Get-ServiceControlInstances | Remove-ServiceControlInstance -RemoveDB -RemoveLogs

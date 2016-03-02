@@ -7,9 +7,8 @@
     {
         public void Simple()
         {
-            #region TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
-
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            #region TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
 
             endpointConfiguration.TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages(TimeSpan.FromMinutes(5));
 
