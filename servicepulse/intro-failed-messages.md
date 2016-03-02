@@ -25,10 +25,11 @@ To see a detailed display of the failed messages, click the Failed Messages indi
 
 The first tab shows error groups. A group is a set of failed messages where the same **Exception Type** has been thrown from the same method in your solution. Each group has:
 
-* a **Title** made up of the **Exception Type** and **Call Site** where the failure occurred.
-* a **Count** of how many unresolved messages there are in the group.
-* the **First Failure** time and the **Latest Failure** time indicating when the first and most recent unresolved errors occurred respectively.
-* **Actions** which can be used to Archive or Retry an entire group of messages (see below).
+- **Title** made up of the **Exception Type** and **Call Site** where the failure occurred.
+- **Count** of how many unresolved messages there are in the group.
+- **First Failure** time indicating when the first unresolved error occurred.
+- **Latest Failure** time indicating when the most recent unresolved errors occurred.
+- **Actions** which can be used to Archive or Retry an entire group of messages (see below).
 
 Click the title of a group or the View Messages link to open a list of all of the errors within the group.
 
