@@ -45,18 +45,18 @@ snippet:AzurePersistenceFromAppConfig
 
 The following settings are available for changing the behavior of saga persistence through the `AzureSagaPersisterConfig`section:
 
-- `ConnectionString`: Allows you to set the connectionstring to the storage account for storing saga information, defaults to `UseDevelopmentStorage=true`
+- `ConnectionString`: Allows you to set the connectionstring to the storage account for storing saga information, defaults to `UseDevelopmentStorage=true` in Versions 6 and less, and defaults to `null` in Versions 7 and up.
 - `CreateSchema`: Instructs the persister to create the table automatically, defaults to true
 
 The following settings are available for changing the behavior of subscription persistence through the `AzureSubscriptionStorageConfig` section:
 
-- `ConnectionString`: Allows you to set the connection string to the storage account for storing subscription information, defaults to `UseDevelopmentStorage=true`
+- `ConnectionString`: Allows you to set the connection string to the storage account for storing subscription information, defaults to `UseDevelopmentStorage=true` in Versions 6 and less, and defaults to `null` in Versions 7 and up.
 - `CreateSchema`: Instructs the persister to create the table automatically, defaults to true
 - `TableName`: Lets you choose the name of the table for storing subscriptions, defaults to `Subscription`.
 
 The following settings are available for changing the behavior of timeout persistence through the `AzureTimeoutPersisterConfig` section:
 
-- `ConnectionString`: Allows you to set the connectionstring to the storage account for storing timeout information, defaults to `UseDevelopmentStorage=true`
+- `ConnectionString`: Allows you to set the connectionstring to the storage account for storing timeout information, defaults to `UseDevelopmentStorage=true` in Versions 6 and less, and defaults to `null` in Versions 7 and up.
 - `TimeoutManagerDataTableName`: Allows you to set the name of the table where the timeout manager stores it's internal state, defaults to `TimeoutManagerDataTable`
 - `TimeoutDataTableName`: Allows you to set the name of the table where the timeouts themselves are stored, defaults to `TimeoutDataTableName`
 - `CatchUpInterval`: When a node hosting a timeout manager would go down, it needs to catch up with missed timeouts faster than it normally would (1 sec), this value allows you to set the catchup interval in seconds. Defaults to 3600, meaning it will process one hour at a time.
@@ -82,6 +82,10 @@ You can drastically improve performance by overriding these settings. You can le
 
 
 ### Detailed Configuration with Code
+
+For Sagas, Subscriptions and for Timeouts:
+
+snippet:AzurePersistenceSubscriptionsAllConnectionsCustomization
 
 For Sagas:
 
