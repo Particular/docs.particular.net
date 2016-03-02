@@ -13,7 +13,7 @@ redirects:
 NServiceBus is designed for scalability and reliability, but to take advantage of these features, you need to deploy it in a Windows Failover Cluster. Unfortunately, information on how to do this effectively is, as yet, incomplete and scattered. This article describes the process for deploying NServiceBus in a failover cluster. This article does not cover the generic setup of a failover cluster. There are other, better resources for that, such as [Creating a Cluster in Windows Server 2008](https://blogs.msdn.microsoft.com/clustering/2008/01/18/creating-a-cluster-in-windows-server-2008/) or [Server 2012](https://technet.microsoft.com/en-us/library/dn505754.aspx). The focus here is the setup related to NServiceBus.
 
 
-## Planning your infrastructure
+## Planning the infrastructure
 
 A simple setup for scalability and reliability includes at least two servers in a failover cluster. The failover cluster servers run a distributor process with a timeout manager for each logical message queue.
 
@@ -22,28 +22,28 @@ In addition you have one or more additional servers called worker nodes. These c
 
 ## Setting up the clustered service
 
-While technically it shouldn't matter from which clustered server you set up, generally it is more reliable to set up everything from whichever server currently holds the Quorum disk. Find the server that has it (it moves around when the server holding it restarts), and open up Failover Cluster Management under Administrative Tools.
+While technically it shouldn't matter from which clustered server is set up, generally it is more reliable to set up everything from whichever server currently holds the Quorum disk. Find the server that has it (it moves around when the server holding it restarts), and open up Failover Cluster Management under Administrative Tools.
 
 Set up a clustered DTC access point:
 
  1. Right click Services and Applications and select Configure a Service or Application.
  1. Go past the intro screen, select Distributed Transaction Coordinator (DTC) and click Next.
  1. Follow the wizard, assigning a DNS name for the clustered DTC (e.g., ClusterNameDTC), IP address, and storage.
- 1. When finished, you should get a service with the DTC icon.
+ 1. When finished service the DTC icon will exist.
 
 Configure DTC for NServiceBus:
 
  1. On each server, in `Administrative Tools - Component Services`, expand `Component Services - Computers - My Computer - Distributed Transaction Coordinator`.
- 1. For the Local DTC, if the clustered DTC is on the current node, you will see a Clustered DTCs folder with your clustered DTC name inside it.
+ 1. For the Local DTC, if the clustered DTC is on the current node, you will see a Clustered DTCs folder with the clustered DTC name inside it.
  1. For both instances (so three times counting each node and the clustered instance), right-click, select Properties, and switch to the Security tab.
  1. At the very least, check "Network DTC Access" and "Allow Outbound."
  1. Optionally, check "Allow Remote Clients" and "Allow Inbound."
 
 Set up a MSMQ Cluster Group. Cluster group is a group of resources that have a unique DNS name and can be addressed externally like a computer.
 
- * In order to create a cluster group up in Windows 2003, you would create a "cluster group" in the admin
- * In Windows 2008, you would create a "cluster service or application"
- * In Windows 2012, you would create a "cluster role"
+ * In order to create a cluster group up in Windows 2003, create a "cluster group" in the admin
+ * In Windows 2008, create a "cluster service or application"
+ * In Windows 2012, create a "cluster role"
 
 For more information, see https://technet.microsoft.com/en-us/library/cc753575.aspx
 
@@ -57,13 +57,13 @@ In Failover Cluster Management, from the server with Quorum:
  1. Skip the intro, and select Message Queuing.
  1. Finish the wizard, configuring the MSMQ Network Name, IP address, and storage.
 
-This should give you a clustered MSMQ instance. Click the instance under Services and Applications to see the summary, which contains the Server Name, Storage, and MSMQ instance. Right click the MSMQ instance, select Properties, and the Dependencies tab. Make sure that it contains dependencies for the MSMQ Network Name AND IP Address AND Storage.
+This will result in a clustered MSMQ instance. Click the instance under Services and Applications to see the summary, which contains the Server Name, Storage, and MSMQ instance. Right click the MSMQ instance, select Properties, and the Dependencies tab. Make sure that it contains dependencies for the MSMQ Network Name AND IP Address AND Storage.
 
 View the MSMQ MMC snap-in by right clicking the MSMQ cluster in the left pane and selecting Manage MSMQ, which opens the Computer Management tool geared toward the clustered instance.
 
 Go to MSMQ by expanding Services and Applications - Message Queuing.
 
-Keep in mind that this only seems to work if you're viewing Failover Cluster Management from the server where the MSMQ Network Name currently resides. If you are on Server A and you try to manage MSMQ on a MSMQ Network residing on Server B, you won't see Message Queuing in the Computer Management window.
+Keep in mind that this only to work if viewing Failover Cluster Management from the server where the MSMQ Network Name currently resides. If on Server A and an attempt is made to manage MSMQ on a MSMQ Network residing on Server B, Message Queuing will not show up in the Computer Management window.
 
 Try swapping the MSMQ Network Name back and forth between nodes a few times. It's best to make sure that everything is working properly now before continuing.
 
@@ -78,16 +78,16 @@ In this picture:
 
  * The Cluster Name is W2K8-FC (you can see that in the upper left corner of the picture)
  * The MSMQ cluster group's name is MSMQ-1
- * The MSMQ network name is named MSMQ-1 (this is the first resource in the group - under "Name: MSMQ-1"). We don't actually see the MSMQ Network Name (DNS Name) in this picture - to see it you would have to right click "Name: MSMQ-1" and select "Properties". You will see something like (Note - this was taken from another resource):
+ * The MSMQ network name is named MSMQ-1 (this is the first resource in the group - under "Name: MSMQ-1"). We don't actually see the MSMQ Network Name (DNS Name) in this picture - to see it you would have to right click "Name: MSMQ-1" and select "Properties". Notice something like (Note - this was taken from another resource):
 
 ![](cluster-properties.png "Cluster Properties")
 
-NOTE: Under "DNS Name" you will find the MSMQ DNS Name, which may or may not be "MSMQ-1".
+NOTE: Under "DNS Name" find the MSMQ DNS Name, which may or may not be "MSMQ-1".
 
 
 ## Installing the clustered distributor services
 
-Before you can cluster the NServiceBus.Host.exe processes, you need to install them as services on all clustered nodes.
+Before the `NServiceBus.Host.exe` processes can be clustered, they need to be installed services on all clustered nodes.
 
 Copy the Distributor binary as many times as you have logical queues, and then configure each one as described in the [NServiceBus Distributor](distributor/) page. To keep everything straight, the queues are named according to the following convention:
 
@@ -116,32 +116,32 @@ It's easier to set the service name, display name, and description to be the sam
 
 Don't forget the `NServiceBus.Production` at the end, which sets the profile for the NServiceBus generic host, as described in the [Generic Host page](/nservicebus/hosting/nservicebus-host/) and the `NServiceBus.MSMQDistributor` which sets up the host in distributor mode.
 
-Do not try starting the services. If you do, they will run in the scope of the local server node, and will attempt to create their queues there.
+Do not try starting the services as they will run in the scope of the local server node, and will attempt to create their queues there.
 
 Now, add each distributor to the cluster:
 
- 1. Right-click your MSMQ cluster group, and select Add a Resource - \#4 Generic Service.
- 1. Select your distributor service from the list. The services are listed in random order but typing "Distributor" will get you to the right spot if you named your services as directed above.
+ 1. Right-click the MSMQ cluster group, and select Add a Resource - \#4 Generic Service.
+ 1. Select the distributor service from the list. The services are listed in random order but typing "Distributor" will get you to the right spot if you named your services as directed above.
  1. Finish the wizard. The service should be added to the cluster group, but not activated. Don't activate it yet!
  1. Right click the distributor resource and select Properties.
  1. Now this is where it gets weird. You will eventually check "Use Network Name for computer name" and add a dependency, but do not do both at the same time! If you do it will complain that it can't figure out what the network name is supposed to be because it can't find it in the dependency chain, which you told it, but it hasn't been saved yet. To get around it, switch to the Dependencies tab and add a dependency for the MSMQ instance. From there, it finds everything else by looking up the tree. Click Apply to save the dependency.
- 1. Switch back to the General tab and check the "Use Network Name for computer name" checkbox. This tells the application that Environment.MachineName should return the cluster name, not the cluster node's computer name. Click Apply.
- 1. Repeat for your other distributors.
+ 1. Switch back to the General tab and check the "Use Network Name for computer name" checkbox. This tells the application that `Environment.MachineName` should return the cluster name, not the cluster node's computer name. Click Apply.
+ 1. Repeat for the other distributors.
 
-Again, try swapping the cluster back and forth, to make sure it can move freely between the cluster nodes.
+Again, try swapping the cluster back and forth, to ensure it can move freely between the cluster nodes.
 
 
 ## Setting up the workers
 
-The first thing you should do is to make sure that the worker servers have [unique QMIds](distributor/#worker-qmid-needs-to-be-unique).
+Ensure that the worker servers have [unique QMIds](distributor/#worker-qmid-needs-to-be-unique).
 
-Set up your worker processes on all worker servers (not the cluster nodes!) as windows services, but instead of using `NServiceBus.MSMQDistributor`, use `NServiceBus.MSMQWorker` profile instead.
+Set up the worker processes on all worker servers (not the cluster nodes!) as windows services, but instead of using `NServiceBus.MSMQDistributor`, use `NServiceBus.MSMQWorker` profile instead.
 
 Configure the workers' `MasterNodeConfig` section to point to the machine running the distributor as described on the Distributor Page under [Routing with the Distributor](distributor).
 
-With your distributors running in the cluster and your worker processes coming online, you should see the Storage queues for each process start to fill up. The more worker threads you have configured, the more messages you can expect to see in each Storage queue.
+With the distributors running in the cluster and the worker processes coming online, you should see the Storage queues for each process start to fill up. The more worker threads you have configured, the more messages you can expect to see in each Storage queue.
 
-While in development, your endpoint configurations probably don't have any @ symbols in them, in production you have to change all of them to point to the Data Bus queue on the cluster, i.e., for application MyApp and logical queue MyQueue, your worker config looks like this:
+While in development, the endpoint configurations probably don't have any @ symbols in them, in production you have to change all of them to point to the Data Bus queue on the cluster, i.e., for application MyApp and logical queue MyQueue, the worker config looks like this:
 
 
 ```XML
