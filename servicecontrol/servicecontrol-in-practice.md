@@ -20,8 +20,7 @@ Here are some important considerations when installing and deploying ServiceCont
 - Read the [Capacity Planning](/servicecontrol/capacity-and-planning.md) and [Troubleshooting](/servicecontrol/troubleshooting.md) guides for ServiceControl.
 - Each environment should have a dedicated ServiceControl instance.
 - Other applications or NServiceBus endpoints running on the same machine as ServiceControl can compete for hardware resources and therefore negatively impact ServiceControl's performance. For optimal performance run SC on a dedicated machine.
-- If ServiceControl is installed on a Virtual Machine, ensure the machine is capable of high levels of I/O traffic. The amount of I/O required depends on the system being monitored. Run performance 
-tests with realistic message loads to baseline hardware requirements.
+- If ServiceControl is installed on a Virtual Machine, ensure the machine is capable of high levels of network and disk I/O traffic. The amount of I/O required depends on the system being monitored, the number of messages being processed, the transport being used, etc. Run performance tests with realistic message loads to baseline hardware requirements.
 
 
 ## Message Throughput Considerations
@@ -40,7 +39,7 @@ Turn off [Audit Forwarding](/servicecontrol/errorlog-auditlog-behavior.md) if it
 
 ### Heartbeats
 
-Not all endpoints are mission critical and need to be monitored with [heartbeats](/servicepulse/intro-endpoints-heartbeats.md) using the same SLA. For endpoints that are less critical to business, [adjust the Heartbeat Interval](/servicecontrol/plugins/heartbeat#configuration-heartbeat-interval). Increasing the interval ensures that ServiceControl is able to process heartbeats in a timely manner. 
+Not all endpoints are mission critical and need to be monitored with [heartbeats](/servicepulse/intro-endpoints-heartbeats.md) using the same SLA. For endpoints that are less critical to business, [adjust the Heartbeat Interval](/servicecontrol/plugins/heartbeat#configuration-heartbeat-interval). Increasing the interval ensures that ServiceControl is able to process heartbeats in a timely manner. Increasing the heartbeat interval for endpoints requires a corresponding increase in the [heartbeat grace period](/servicecontrol/creating-config-file#plugin-specific-servicecontrol-heartbeatgraceperiod) in ServiceControl. 
 
 Heartbeat messages tend to be frequent, and a large backlog can occur if ServiceControl is offline for an extended period. When this happens, it can take ServiceControl some time to process old heartbeats when it restarts. 
 
@@ -52,13 +51,15 @@ The [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin produces a lot of
 
 ## Performance Considerations
 
-Run a performance test using the expected peak and average message throughput for the environment to baseline the system. This test suite should include simulating infrastructure outages that will cause large numbers of message processing failures. The baseline test should not include audit ingestion or any ServiceControl plugins. 
+Run a performance test using the expected peak and average message throughput for the environment to baseline the system. The baseline test should not include audit ingestion or any ServiceControl plugins. 
 
 Once this baseline has been established, follow these steps:
-- For each endpoint, install and configure the Heartbeat plugin (if needed). Re-run the performance test suite and monitor ServiceControl to ensure that it can effectively monitor the system under load. This may require adjustments to the Heartbeat interval. Re-run the performance tests after each adjustment.
-- For each endpoint, turn on auditing (if needed) and re-run the performance tests to assess impact.
+- Install and configure the Heartbeat plugin in each endpoint where it is needed. Re-run the performance test suite and monitor ServiceControl to ensure that it can effectively monitor the system under load. This may require adjustments to the Heartbeat interval. Re-run the performance tests after each adjustment.
+- Turn on auditing for each endpoint that needs it and re-run the performance tests to assess impact.
 - For each endpoint, turn on any required Custom Checks and re-run the performance tests to assess impact.
 
+When an infrastructure outage occurs in a production environment it's possible that every message processed every endpoint may end up in the error queue. It can take ServiceControl some time to ingest all of these messages. Once ingested, a bulk retry operation will consume additional network and disk I/O above the usual requirements. It is important to simulate these conditions as a part of performance testing to ensure that these times and resources are catered for in recovery plans.
+ 
 
 ## Anti-Virus Checks
 
