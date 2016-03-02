@@ -59,7 +59,7 @@ If a message fails repeated retry attempts, an indication is added, including th
   
 ![Repeated failure indication](images/failed-messages-repeated-failure.png)
 
-NOTE: Tracking the number of repeated retry attempts may be significant, since each retry may invoke custom and/or third party logic that may not participate in the NServiceBus endpoint transactional  processing (and is therefore not rolled back on processing failure).
+NOTE: The number of retry attempts for a message can be significant if the handler for that message is not [idempotent](http://docs.particular.net/nservicebus/concept-overview#idempotence). Any processing attempt that invokes logic that does not participate in the NServiceBus transactional processing will not be rolled back on processing failure.
 
 
 **Related articles:**
