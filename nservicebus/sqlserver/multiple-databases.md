@@ -14,7 +14,7 @@ The SQL Server transport allows you to select, on per-endpoint basis, where the 
 
 The transport will route messages to destination endpoints based on the configuration. If no specific configuration has been provided for a particular destination endpoint, the transport assumes the destination has the same configuration (schema, database and instance name/address) as the sending endpoint. If this assumption turns out to be false (the transport cannot connect to destination queue), an exception is thrown immediately. There is no store-and-forward mechanism on the transport level (and hence -- no dead-letter queue).
 
-NOTE: If the destination endpoint uses different database or server instance, sending a message to it might cause the transaction to escalate to a distributed transaction. Usually it is not a desired effect. Use NServiceBus [Outbox](/nservicebus/outbox/) to avoid it.
+NOTE: If the destination endpoint uses a different database or server instance, sending a message to it might cause the transaction to escalate to a distributed transaction which may not be desirable. Using the [Outbox](/nservicebus/outbox/ feature, DTC escalations can be avoided as long as the both the endpoint's Outbox and business data share the same database.
 
 ## Single database
 
@@ -52,10 +52,10 @@ NOTE: Due to the lack of store-and-forward mechanism, if a remote endpoint's dat
 
 ## Multiple databases with store-and-forward
 
-In order to overcome this limitation a higher level store-and-forward mechanism needs to be used. The Outbox feature can be used to effectively implement a distributed decoupled architecture where:
+In order to overcome this limitation a higher level store-and-forward mechanism needs to be used. The [Outbox](/nservicebus/outbox/) feature can be used to effectively implement a distributed decoupled architecture where:
  * Each endpoint has its own database where it stores both the queues and the user data
- * Messages are not sent immediately when calling `Bus.Send()` but are added to the Outbox table that is stored in the endpoint's own database. After completing the handling logic the messages stored in the Outbox table are forwarded to their destination databases
- * Should one of the forward operations fail, it will be retried by means of the [standard NServiceBus retry mechanism](/nservicebus/errors/automatic-retries.md). This might result in some messages being sent more than once but Outbox automatically handles the deduplication of incoming messages based on their ID, providing `exactly-once` message delivery guarantee.
+ * When calling Bus.Send(), messages are stored in the Outbox table rather than getting dispatched immediately. The Outbox table is a database table that resides on the same database as that of the endpoint. After successful execution of the message handler logic, the messages stored in the Outbox table are forwarded to their destinations.
+ * Should any of the forward operations were to fail, it will be retried using the standard [retry mechanism](/nservicebus/errors/automatic-retries.md). However, this might result in some messages to be sent multiple times. To mitigate this and to provide `exactly-once` message delivery guarantee, the Outbox feature automatically handles the de-duplication of incoming messages based on their ID.
 
 ## Current endpoint
 

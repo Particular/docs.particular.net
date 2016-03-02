@@ -1,13 +1,12 @@
 ---
-title: Upgrade from Version 5 to Version 6
-summary: Instructions on how to upgrade from NServiceBus Versions 5 to 6
+title: Upgrade SQL Server Transport from Version 2 to Version 3
+summary: Instructions on how to upgrade from SQL Server Transport Versions 2 to 3
 tags:
  - upgrade
  - migration
 related:
-- nservicebus/sagas/concurrency
+- nservicebus/upgrades/5to6
 ---
-
 
 ## SQL Server Transport
 
@@ -24,9 +23,9 @@ snippet:sqlserver-custom-connection-factory
 
 ### Multi-schema support
  
-The API and config structure for multi-schema configuration [were changed](/nservicebus/sqlserver/multiple-databases.md#single-database-with-multiple schemas). The `Queue Schema` parameter is no longer supported in the config file and the code configuration API. 
+The configuration API for enabling [multi-schema support](/nservicebus/sqlserver/multiple-databases.md#single-database-with-multiple schemas) has now changed. The `Queue Schema` parameter is no longer supported in the config file and the code configuration API. 
 
-The schema for the current endpoint can be specified using `DefaultSchema` method:
+The schema for the configured endpoint can be specified using `DefaultSchema` method:
 
 snippet:sqlserver-singledb-multischema
 
@@ -34,7 +33,7 @@ or by defining a custom connection factory:
 
 snippet:sqlserver-singledb-multidb-pull 
 
-The latter is also used for specifying schemas for other endpoints that the configured endpoint communicates with.
+The custom connection factory is also used for specifying schemas for other endpoints that the configured endpoint communicates with.
 When using configuration file to specify schemas for other endpoints, their schemas should be placed in the `MessageEndpointMappings` section and follow `endpoint-name@schema-name` convention: 
 
 snippet:sqlserver-singledb-multischema-config
