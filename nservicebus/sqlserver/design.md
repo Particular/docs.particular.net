@@ -60,6 +60,13 @@ In version 2 the columns are directly mapped to the properties of `NServiceBus.T
 The tables are created by [installers](/nservicebus/operations/installers.md) when the application is started for the first time. It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
 
 
+### Indexes
+
+Each queue table has a clustered index on the `[RowVersion]` column in order to speed up receiving messages from the queue table.
+
+Starting from version 2.2.2, each queue table also has an additional non-clustered index on the `[Expires]` column to speed up purging expired messages from the queue table. If the SQL Server transport discovers that a required index is missing, it will log an appropriate warning.
+
+
 ## Transactions and delivery guarantees
 
 
