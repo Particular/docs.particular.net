@@ -40,7 +40,7 @@
 
             #endregion
         }
-
+        /**
 
         void DisableCallbackReceiver()
         {
@@ -85,7 +85,7 @@
 
             #endregion
         }
-
+    **/
         void UseDirectRoutingTopology()
         {
             #region rabbitmq-config-usedirectroutingtopology
