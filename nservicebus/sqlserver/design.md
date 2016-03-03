@@ -3,6 +3,7 @@ title: SQL Server Transport Design
 summary: The design and implementation details of SQL Server Transport
 tags:
 - SQL Server
+reviewed: 2016-03-03
 ---
 
 

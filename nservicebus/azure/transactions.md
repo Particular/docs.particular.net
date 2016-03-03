@@ -9,43 +9,41 @@ tags:
 - DTC
 redirects:
  - nservicebus/understanding-transactions-in-windows-azure
+reviewed: 2016-03-03
 ---
 
-The Azure Platform and NServiceBus make a perfect fit. On the one hand the Azure platform offers the scalable and flexible platform that you are looking for in your designs, and on the other hand NServiceBus makes development on this highly distributed environment a breeze. However, there are a few things to keep in mind when developing for this platform, the most important being the lack of (distributed) transactions.
-
-To better understand why this feature is lacking, let's examine the implications of these technologies.
-
+The Azure Platform and NServiceBus complement each other. Azure is a scalable and flexible platform, NServiceBus provides high level abstractions and features that make development in this highly distributed environment easier. However, there are a few important things to keep in mind when developing for Azure. The most important one is the lack of (distributed) transactions.
 
 ## Understanding transactions
 
-Transaction processing is designed to maintain systems integrity (typically a database or some modern filesystems and services) in a known, consistent state, by ensuring that interdependent operations on the system are either all completed successfully or all canceled successfully. This article mostly considers database technology and storage services.
+Transaction processing is designed to maintain systems integrity (typically a database or some modern filesystems and services), i.e. to always keeping them in a consistent state, by ensuring that interdependent operations are either all completed successfully or all canceled. This article focuses on databases and storage services.
 
-What is often overlooked in transactional processing, especially in the context of cloud services, is that to guarantee isolation, the database engine must lock certain records in use during the transaction, depending on isolation level, so that other transactions cannot work with them at the same time.
+In order to guarantee isolation the database engine must lock certain records that are used inside the transaction. Which record and how many of them are locked depends on the selected isolation level. 
 
-Such locks become a trust issue in a cloud or self-service environment, as external parties can use these locks to perform a denial of service attack. The Azure platform must assume that you are a malicious user and is thus very hesitant to let you control all the locks by means of a transaction.
+It is really important to understand, especially in the context of cloud services, that other transactions cannot work with those records at the same time. In a cloud or self-service environment such locks become a trust issue, because external parties can use them to perform a denial of service attack (sometimes accidentally). The Azure platform  assumes that you are a malicious user and is thus very hesitant to let you control all the locks by means of a transaction.
 
 This is the primary reason why many Azure hosted services do not support transactions at all or are very aggressive when it comes to lock duration.
 
 For example:
 
- * Azure storage services have no support for transactions. This is not explicitly documented but you can find enough [references on StackOverflow](http://stackoverflow.com/questions/18045517/do-azure-storage-related-apis-participate-in-system-transactions)
- * The Azure database supports local transactions, but only grants locks on resources, when required by a system task for 20 seconds, and 24 hours otherwise. See [Azure SQL Database resource limits](https://azure.microsoft.com/en-us/documentation/articles/sql-database-resource-limits/) for more details.
+ * Azure storage services have no support for transactions. This is not explicitly documented but you can find [references on StackOverflow](http://stackoverflow.com/questions/18045517/do-azure-storage-related-apis-participate-in-system-transactions)
+ * The Azure database supports local transactions, but only grants locks on resources for 20 seconds (when required by a system task) or 24 hours (otherwise). See [Azure SQL Database resource limits](https://azure.microsoft.com/en-us/documentation/articles/sql-database-resource-limits/) for more details.
 
-When both the database management system and client are under the same ownership, imagine you just deployed SQL Server to your own virtual machine, so locks are no longer an issue and you can control the lock duration. But even in this case, you need to be careful when it comes to distributed transactions.
+When both the database management system and client are under the same ownership, e.g. when SQL Server is deployed to the virtual machine, the locks are no longer an issue and the lock duration can be controlled. But even in that scenario distributed transactions must be used carefully.
 
 
 ## Understanding distributed transactions and the two-phase commit protocol
 
-When multiple transaction-aware resources are involved in a single transaction, then this transaction automatically promotes to a distributed transaction. That means that handling the unit of work is now performed outside the database system by the so-called Global Transaction Manager, or Distributed Transaction Coordinator (DTC). This coordinator, the DTC service on the machine where the transaction started, communicates with similar services on the machines involved by means of the two-phase commit protocol, called resource managers.
+When multiple transaction-aware resources are involved in a single transaction, then this transaction automatically is promoted to a distributed transaction. That means that handling the unit of work is now performed outside the database system by the so-called Global Transaction Manager, or Distributed Transaction Coordinator (DTC). This coordinator, the DTC service on the machine where the transaction started, communicates with similar services on the machines involved by means of the two-phase commit protocol, called resource managers.
 
-As illustrated in the diagram below, the two-phase commit protocol consists of two phases where the global transaction manager communicates with all other resource managers to coordinate the transaction. During the preparation phase it instructs all resource managers to get ready to commit and when all resource managers approve (or not), it instructs all resource managers again to complete the commit (or rollback).
+As illustrated in the diagram below, the two-phase commit protocol consists of two phases. During the preparation phase the global transaction manager instructs all resource managers to get ready to commit and when all resource managers approve (or not), it instructs all resource managers again to complete the commit (or to rollback).
 
 ![Two Phase Commit](two-phase-commit.png)
 
-Note that this protocol requires two communication steps for each resource manager added to the transaction and requires a response from each of them to be able to continue. Both of these conditions are problematic in a huge datacenter such as Azure.
+Note that this protocol requires two communication steps for each resource manager added to the transaction and requires a response from each of them to be able to continue. Both of these conditions are problematic in a huge datacenter such as Azure:
 
-* Two communication steps per added resource manager results in an exponential explosion of communication. 2 resources = 4 network calls, 4 = 16, 100 = 10000, etc...
-* Requirement to wait for all responses: the Azure datacenters are huge. Check out [this video (5 minutes in)](https://www.youtube.com/watch?v=JJ44hEr5DFE) to get an idea of how huge. It is very likely that network partitioning will occur in the solution as virtual machines are physically remote from each other, so network infrastructure will die, resulting in slow or in doubt transactions being more common than in a small network.
+* Two communication steps per added resource manager result in an exponential explosion of communication: 2 resources = 4 network calls, 4 resources = 16 calls, 100 resources = 10000 calls, etc...
+* Requirement to wait for all responses: the Azure datacenters are huge. Check out [this video (5 mins in)](https://www.youtube.com/watch?v=JJ44hEr5DFE) to get an idea of how huge. It is very likely that network partitioning will occur in your solution as virtual machines are physically remote from each other, so network infrastructure will die, resulting in slow or in doubt transactions being more common than in a small network.
 
 This is the reason why none of the Azure services supports distributed transactions, and so you are encouraged not to use distributed transactions even if you technically could.
 
