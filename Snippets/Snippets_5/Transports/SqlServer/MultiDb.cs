@@ -33,7 +33,7 @@
         {
             BusConfiguration busConfiguration = new BusConfiguration();
 
-            #region sqlserver-multidb-other-endpoint-connection-push 2.1
+            #region sqlserver-multidb-other-endpoint-connection-push [2.1,2.0]
 
             busConfiguration.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
                 EndpointConnectionInfo.For("RemoteEndpoint")

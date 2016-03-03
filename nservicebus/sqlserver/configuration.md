@@ -15,7 +15,7 @@ Connection string can be configured in several ways:
 
 ### Via the configuration API
 
-By using the `ConnectionString` extension method.
+By using the `ConnectionString` extension method:
 
 snippet:sqlserver-config-connectionstring
 
@@ -29,14 +29,19 @@ snippet:sqlserver-connection-string-xml
 
 ### Via a named connection string
 
-By using the `ConnectionStringName` extension method.
+By using the `ConnectionStringName` extension method:
 
 snippet:sqlserver-named-connection-string
 
-Combined with a named connection in the `connectionStrings` node of the `app.config` file.
+combined with a named connection in the `connectionStrings` node of the `app.config` file:
 
 snippet:sqlserver-named-connection-string-xml
 
+### Via a custom connection factory
+
+By passing the transport a custom factory method which will provide connection strings at runtime:
+
+snippet:sqlserver-custom-connection-factory
 
 ## Sql Server Transport, the Outbox and user data: disabling the DTC
 
