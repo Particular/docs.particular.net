@@ -13,21 +13,42 @@ namespace Snippets6.Routing
         public void StaticRoutes()
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+
             #region Routing-StaticRoutes-Endpoint
+
             endpointConfiguration.Routing()
                 .UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+
+            #endregion
+
+            #region Routing-StaticRoutes-Endpoint-Msmq
+
+            endpointConfiguration.Routing()
+                .UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+
+            #endregion
+
+            #region Routing-StaticRoutes-Endpoint-Broker
+
+            endpointConfiguration.Routing()
+                .UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+
             #endregion
 
             #region Routing-StaticRoutes-Address
+
             endpointConfiguration.Routing()
                 .UnicastRoutingTable.RouteToAddress(typeof(AcceptOrder), "Sales@SomeMachine");
+
             #endregion
         }
 
         public void DynamicRoutes()
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+
             #region Routing-DynamicRoutes
+
             endpointConfiguration.Routing().UnicastRoutingTable
                 .AddDynamic((types, contextBag) => new[]
                 {
@@ -38,6 +59,7 @@ namespace Snippets6.Routing
                     //Use transport address (e.g. MSMQ)
                     new UnicastRoute("Sales-2@MachineA")
                 });
+
             #endregion
         }
 
@@ -56,10 +78,15 @@ namespace Snippets6.Routing
         public void StaticEndpointMapping()
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+
             #region Routing-StaticEndpointMapping
+
             EndpointName sales = new EndpointName("Sales");
             endpointConfiguration.Routing().EndpointInstances
-                .AddStatic(sales, new EndpointInstance(sales, "1", null), new EndpointInstance(sales, "2", null));
+                .AddStatic(sales,
+                    new EndpointInstance(sales, "1", null),
+                    new EndpointInstance(sales, "2", null));
+
             #endregion
         }
 
@@ -88,10 +115,14 @@ namespace Snippets6.Routing
         public void SpecialCaseTransportAddress()
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+
             #region Routing-SpecialCaseTransportAddress
+
+            EndpointInstance endpointInstance = new EndpointInstance("Sales", "1");
             endpointConfiguration
                 .UseTransport<MyTransport>()
-                .AddAddressTranslationException(new EndpointInstance("Sales", "1"), "Sales-One@MachineA");
+                .AddAddressTranslationException(endpointInstance, "Sales-One@MachineA");
+
             #endregion
         }
 
@@ -99,10 +130,13 @@ namespace Snippets6.Routing
         public void TransportAddressRules()
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+
             #region Routing-TransportAddressRule
+
             endpointConfiguration
                 .UseTransport<MyTransport>()
                 .AddAddressTranslationRule(i => CustomTranslationRule(i));
+
             #endregion
         }
 
@@ -114,12 +148,14 @@ namespace Snippets6.Routing
         public void FileBasedRouting()
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+
             #region Routing-FileBased-Config
 
             RoutingSettings routingSettings = endpointConfiguration.Routing();
             routingSettings.UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
             routingSettings.UnicastRoutingTable.RouteToEndpoint(typeof(SendOrder), "Shipping");
             routingSettings.UseFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
+
             #endregion
         }
 

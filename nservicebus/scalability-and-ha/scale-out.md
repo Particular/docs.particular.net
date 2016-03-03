@@ -6,7 +6,7 @@ tags:
 - Routing
 ---
 
-## Version 5 and below
+## Versions 5 and below
 
 In Version 5 and below NServiceBus scale out capabilities are dependent on the transport being used.
 
@@ -22,7 +22,7 @@ The main issue with distributor is the throughput limitation due to the fact tha
 
 Up to version 5 (inclusive) both SQL Server and RabbitMQ transports scale out by adding more receivers to the same queue, taking advantage of the competing consumers capability built into these transports. All the instances feeding off the queue have same *endpoint name* and *address* so they appear to the outside world as a single instance.
 
-The benefit of this approach is zero configuration. New instances can be added by `xcopy`-ing the deployment folder. The potential downside is that total throughput of the endpoint is capped to the maximum throughput of a single queue in the underlying infrastructure. 
+The benefit of this approach is zero configuration. New instances can be added by `xcopy`-ing the deployment folder. The potential downside is that total throughput of the endpoint is capped to the maximum throughput of a single queue in the underlying infrastructure.
 
 
 ### Azure Storage Queues and Azure Service Bus
@@ -32,7 +32,7 @@ Up to version 5 (inclusive) both Azure transports behave similarly to other brok
 This feature is, however, *not intended* for scaling out as there is no built-in distribution mechanism between that would route messages to the individualized queues.
 
 
-## Version 6 and above
+## Versions 6 and above
 
 Version 6 of NServiceBus comes with a unified scalability model which is based on the concept of endpoint instance ID. Each deployment of NServiceBus can (but does not have to) be assigned an *instance ID*.
 
@@ -51,7 +51,7 @@ snippet:Routing-FileBased-MSMQ
 
 The corresponding logical routing is
 
-snippet:Routing-StaticRoutes-Endpoint
+snippet:Routing-StaticRoutes-Endpoint-Msmq
 
 NOTE: System administrators are able to spin-up new instances of the endpoint should the load increase and the only requirement is adding an entry to the routing file. No changes in the source code are required.
 
@@ -60,7 +60,7 @@ NOTE: System administrators are able to spin-up new instances of the endpoint sh
 
 The main difference when using broker transports is that queues are not attached to machines but are rather maintained by a central server (or cluster of servers). When running on a broker transport such as RabbitMQ or SQL Server, it is enough to specify the logical routing:
 
-snippet:Routing-StaticRoutes-Endpoint
+snippet:Routing-StaticRoutes-Endpoint-Broker
 
 Scaling out can be done, as in Version 5, by `xcopy`-ing the binaries. In this case all instances have empty IDs and there is only one queue in use.
 
