@@ -21,7 +21,7 @@
             {
                 int response = await endpoint.Request<int>(message, sendOptions);
             }
-            catch (OperationCanceledException ex)
+            catch (OperationCanceledException)
             {
                 // Exception that is raised when the CancellationTokenSource is canceled
             }
