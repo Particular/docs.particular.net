@@ -32,7 +32,7 @@ The implementation details for each transport are discussed in the dedicated doc
 |  | Transaction scope (Distributed transaction) | Transport transaction - Sends atomic with Receive  | Transport transaction - Receive Only | Unreliable (Transactions Disabled) |
 | :------------------| :-: |:-:| :-:| :-: |
 | MSMQ | + | + | + | + |
-| SQL Server Transport | + | + | + | + |
+| [SQL Server Transport](/nservicebus/sqlserver/design.md#transactions-and-delivery-guarantees) | + | + | + | + |
 | RabbitMQ |  - | - | + | + |
 | Azure Storage Queues|  - | - | + | + |
 | Azure Service Bus |  - | + | + | + |

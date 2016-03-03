@@ -58,16 +58,6 @@ The tables are created by [installers](/nservicebus/operations/installers.md) wh
 
 ## Transactions and delivery guarantees
 
-
-### Native transactions
-
-Because of the limitations of NHibernate connection management infrastructure, it is not possible to provide *exactly-once* message processing guarantees solely by means of sharing instances of `SqlConnection` and `SqlTransaction` between the transport and NHibernate. For that reason NServiceBus does not allow that configuration and throws an exception during at start-up.
-
-The [Outbox](/nservicebus/outbox/) feature can be used to mitigate that problem. In such scenarios the messages are stored in the same physical store as saga and user data and dispatched after the whole processing is finished. NHibernate persistence detects the status of Outbox and the presence of SQLServer transport and automatically stops reusing the transport connection and transaction. All the data access is done within the Outbox ambient transaction.
-
-A sample covering this mode of operation is available [here](/samples/outbox/sqltransport-nhpersistence/).
-
-
 ### Transaction scope
 
 In this mode the ambient transaction is started before receiving of the message and encompasses the all stages of processing including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no Distributed Transaction Coordinator (DTC) escalation.
@@ -76,6 +66,30 @@ snippet:OutboxSqlServerConnectionStrings
 
 A sample covering this mode of operation is available [here](/samples/sqltransport-nhpersistence/).
 
+### Native transactions
+
+Because of the limitations of NHibernate connection management infrastructure, it is not possible to provide *exactly-once* message processing guarantees solely by means of sharing instances of `SqlConnection` and `SqlTransaction` between the transport and NHibernate. For that reason NServiceBus does not allow that configuration and throws an exception at start-up.
+
+The [Outbox](/nservicebus/outbox/) feature can be used to mitigate that problem. In such scenarios the messages are stored in the same physical store as saga and user data and dispatched after the whole processing is finished. NHibernate persistence detects the status of Outbox and the presence of SQLServer transport and automatically stops reusing the transport connection and transaction. All the data access is done within the Outbox ambient transaction.
+
+A sample covering this mode of operation is available [here](/samples/outbox/sqltransport-nhpersistence/).
+
+
+### Version 6 and above
+
+There are two available options within native transaction level:
+- **ReceiveOnly** - An input message is received using native transaction. The transaction is committed only when message processing succeeds. 
+
+NOTE: This transaction is not shared outside of message receiver. That means there is a possibility of persistent side-effects when processing fails, i.e. *ghost messages* might occur.
+
+- ** SendsAtomicWithReceive** - This mode is very similar to the `ReceiveOnly`, but transaction is shared with sending operations. That means the message receive operation and any send or publish operations are committed atomically.
+
+#### Version 5 and below
+There was no distinction between `ReceiveOnly` and `SendsAtomicWithReceive`. Using native transaction was equivalent to `SendsAtomicWithReceive` mode.
+
+### Unraliable (Transactions Disabled)
+
+In this mode when message is received from an input queue it's immediately removed from it. If processing fails the message is lost, because the operation cannot be rolled back. Also any other operation performed when processing the message is executed outside of the transaction, it can't be rolled back. That might lead to undesired side effects.
 
 ## Concurrency
 
