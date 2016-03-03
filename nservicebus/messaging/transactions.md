@@ -99,6 +99,8 @@ This mode has the same consistency guarantees as the *Receive Only* mode, but ad
 
 ### Unreliable (Transactions Disabled)
 
+Disabling transactions is generally not recommended, because it might lead to the message loss. It might be considered if losing some messages is not problematic and if the messages get outdated quickly, e.g. when sending readings from sensors at regular intervals.
+
 DANGER: In this mode, when encountering a critical failure such as system or endpoint crash, the message is **permanently lost**.
 
 snippet:TransactionsDisable
