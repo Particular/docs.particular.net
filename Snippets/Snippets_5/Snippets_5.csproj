@@ -644,6 +644,7 @@
     <Compile Include="UpgradeGuides\4to5\Upgrade.cs" />
     <Compile Include="RavenDB\UpgradeGuides\3to4\HandlerWithRavenSession.cs" />
     <Compile Include="RavenDB\UpgradeGuides\3to4\SharedSessionEndpointConfig.cs" />
+    <Compile Include="UpgradeGuides\5to6\Transactions.cs" />
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />

@@ -18,7 +18,7 @@ NOTE: If the destination endpoint uses a different database or server instance, 
 
 ## Single database
 
-By default the SQL Server transport uses a single instance of the SQL Server to maintain queues for all endpoints in the system. In order to send a message, an endpoint needs to connect to the (usually remote) database server and execute a SQL statement. The message is delivered directly to the destination queue without any store-and-forward mechanism. 
+Typically when using SQL Server transport, the endpoints are set up to use the same database for the storing the queues. Sending a message involves executing a SQL statement that results in delivering the message directly to the destination queue. The message is delivered directly without a store-and-forward mechanism. 
 
 Using a single database doesn't require Distributed Transaction Coordinator (MS DTC). Another advantage is the ability to take a snapshot of entire system state (all the queues) by backing up a database. This is most useful when the business data is also stored in the same database.
 
