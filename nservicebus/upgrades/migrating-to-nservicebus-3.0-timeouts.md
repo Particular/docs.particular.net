@@ -12,13 +12,13 @@ If unfamiliar with the NServiceBus time-outs, in brief, NServiceBus supports dur
 
 In Version 2.6 the default storage was an MSMQ queue, but Version 3.0 uses RavenDB, so you might need to migrate. It may not be necessary because the actual time-out messages sent over the wire are compatible between Version 2.6 and Version 3.0.X.
 
-NOTE: The reason to use NServiceBus 3.0.X for the time-out to work is that a bug in Version 3.0.0 made it incompatible. The bug is fixed in 3.0.X. This means you can run the Version 2.6 and Version 3.0.X TimeoutManagers (TM) in parallel until there are no more Version 2.6 timeouts left, and then decommission the Version 2.6 TM.
+NOTE: The reason to use NServiceBus 3.0.X for the time-out to work is that a bug in Version 3.0.0 made it incompatible. The bug is fixed in 3.0.X. This means the Version 2.6 and Version 3.0.X TimeoutManagers (TM) can run in parallel until there are no more Version 2.6 timeouts left, and then decommission the Version 2.6 TM.
 
 To skip migration and run the TimeoutManagers side by side:
 
- 1. Upgrade your endpoint to Version 3.0.X.
+ 1. Upgrade the endpoint to Version 3.0.X.
  1. Configure the endpoint to use the built-in TM in Version 3.0. New time-outs will be sent to this TM from the endpoint.
- 1. Keep the Version 2.6 TM running. Existing time-outs that expire will be sent to your new Version 3.0.X endpoint. (Make sure that you keep the name of the input queue identical.)
+ 1. Keep the Version 2.6 TM running. Existing time-outs that expire will be sent to the new Version 3.0.X endpoint. (Make sure that you keep the name of the input queue identical.)
  1. Decommission the Version 2.6 TM when all time-outs expire. (The storage queue will be empty when this happens.) The default name of the storage queue is "Timeout.Storage" but check the configuration to be sure.
 
 NOTE: This is NOT the same queue as the input queue that would have been configured in the endpoint mappings.
@@ -53,5 +53,5 @@ Typical settings:
 ## NOTES
 
  * Make sure to use NServiceBus Version 3.0.1 or higher
- * Update to NServiceBus Version 2.6.0.1511 if you need to do a zero downtime migration
- * Make sure you have the correct settings by testing the process in the testing environment
+ * If a zero downtime migration is required then update to NServiceBus Version 2.6.0.1511 
+ * Ensure the correct settings by testing the process in the testing environment

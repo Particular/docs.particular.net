@@ -85,7 +85,7 @@ busConfiguration.RijndaelEncryptionService("do-not-use-this-encryption-key!!")
 
 **To**
 
-Send encrypted messages with the existing key
+Send encrypted messages with the existing key.
 
 Does not require all endpoints to be stopped, updated, configured and started simultaneously.
 
@@ -113,14 +113,14 @@ NOTE: Base64 keys can only be configured for NServiceBus v5+ and are not compati
 
 Property encryption is often used for the following types of data:
 
-- Credit card numbers
-- Social security numbers
-- Bank accounts
+ * Credit card numbers
+ * Social security numbers
+ * Bank accounts
 
 Investigate locations where such values are stored and check if these values are in an expected format by verifying that these values have a:
 
-- correct length
-- correct character set (credit card should only contain numbers)
+ * correct length
+ * correct character set (credit card should only contain numbers)
 
 Search in log files that indicate data validation issues. These could indicate that properties have been decrypted with an incorrect key.
 
@@ -129,4 +129,4 @@ Search in log files that indicate data validation issues. These could indicate t
 
 Recovering corrupted data is *only* possible when the original encrypted messages are moved to an audit queue.
 
-There is no tool that helps in recovery. Please contact support if you suspect possible data corruption.
+There is no tool that helps in recovery. Please contact support if data corruption is suspected.

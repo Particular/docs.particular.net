@@ -21,9 +21,9 @@ For those of you not familiar with SemVer here is a short primer:
 
 Given a version number `{major}.{minor}.{patch}`, increment the:
 
-* `{major}` version when you make incompatible API changes,
-* `{minor}` version when you add functionality in a backwards-compatible manner, and
-* `{patch}` version when you make backwards-compatible bug fixes.
+ * `{major}` version when you make incompatible API changes,
+ * `{minor}` version when you add functionality in a backwards-compatible manner, and
+ * `{patch}` version when you make backwards-compatible bug fixes.
 
 By following SemVer 2.0 you will be able to quickly determine the urgency, risk and effort of the upgrade.
 
@@ -63,7 +63,7 @@ The following table summarize the risk effort and urgency for the different type
 
 Patches are released as soon as an important issue is found. Read the release notes to determine if you're affected.
 
-NOTE: Any issue that could affect the production stability of your system will be classified as `hotfix` so please pay extra attention to those.
+NOTE: Any issue that could affect the production stability of the system will be classified as `hotfix` so please pay extra attention to those.
 
 Patch releases are 100% backwards-compatible so you should be able safely upgrade with low risk and effort. In rare cases a code change might be required in relation to the patch. Minimal testing may be required, but where possible verify that it fixes the issue in question.
 
@@ -79,4 +79,4 @@ Since all critical issues will be back-ported, you can choose to upgrade when it
 
 ### Major
 
-Since a new `major` version will contain breaking changes you will likely need to modify your code. Because of the extent of code changes in a major version, it is recommendation that you do a full regression test of your system.
+Since a new `major` version will contain breaking changes and will likely require modifications to the consuming code. Because of the extent of code changes in a major version, it is recommendation that you do a full regression test of the system.

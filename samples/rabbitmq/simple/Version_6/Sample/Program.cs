@@ -20,7 +20,7 @@ class Program
             .ConnectionString("host=localhost");
 
         #endregion
-
+        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
