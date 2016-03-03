@@ -136,7 +136,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Callbacks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0036\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0041\lib\net452\NServiceBus.Callbacks.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.CommonLogging, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
