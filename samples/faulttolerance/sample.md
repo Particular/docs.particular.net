@@ -11,8 +11,7 @@ related:
 
 ## Durable Messaging
 
-*  Run the solution and hit Enter on the 'Client' console a couple of times to make sure the messages are being processed.
-  
+Run the solution and hit Enter on the 'Client' console a couple of times to make sure the messages are being processed.
 
 **Client Output**
 
@@ -39,14 +38,14 @@ Message received. Id: 2c9f0f60-7632-43ae-b16e-1688f31b1f53
 
  * Then, kill the 'Server' console (endpoint) but leave the 'Client' console (endpoint) running.
  * Hit Enter on the 'Client' console a couple of times to see that the 'Client' application isn't blocked even when the other process it's trying to communicate with is down. This makes it easier to upgrade the backend even while the front-end is still running, resulting in a more highly-available system.
- * Now, leaving the 'Client' console running, view the `Samples.FaultTolerance.Server` queue in MSMQ. Note that All the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties specifically BodyStream, where the data is.
+ * Now, leaving the 'Client' console running, view the `Samples.FaultTolerance.Server` queue in MSMQ. Note that All the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. Click each message, press F4, and examine its properties specifically BodyStream, where the data is.
 
 
 ### Consume those messages
 
 Now bring the 'Server' endpoint back online by right clicking the project, Debug, Start new instance.
 
-As you can see the 'Server' processes all those messages, and if you go back to the `Samples.FaultTolerance.Server` queue it is empty.
+Note that the 'Server' processes all those messages, and the `Samples.FaultTolerance.Server` queue it is empty.
 
 
 ## Fault tolerance
@@ -58,9 +57,9 @@ So, let's make the handling of messages in the 'Server' endpoint fail. Open `MyH
 
 snippet:MyHandler
 
-Note the commented out `throw new Exception`. Uncomment that line.
+Note the commented out `throw new Exception`. Un-comment that line.
 
-Run your solution again, but this time use `Ctrl-F5` so that Visual Studio does not break each time the exception is thrown, sending a message from the 'Client' console.
+Run the solution again, but this time use `Ctrl-F5` so that Visual Studio does not break each time the exception is thrown, sending a message from the 'Client' console.
 
 You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
 
@@ -81,10 +80,10 @@ with '15f99a26-fc38-4ce4-9bc1-a48400b5184c' id has failed FLR and will be handed
 
 While the endpoint can now continue processing other incoming messages (which will also fail in this case as the exception is thrown for all cases), the failed message has been diverted and is being held in one of the NServiceBus internal databases.
 
-If you leave the endpoint running a while longer, you'll see that it tries processing the message again. After three retries, the retries stop and the message ends up in the error queue (in the default configuration this should be after roughly one minute).
+Leave the endpoint running a while longer, see that it tries processing the message again. After three retries, the retries stop and the message ends up in the error queue (in the default configuration this should be after roughly one minute).
 
-In the above case, since SLR is automatically turned on by default you see this behavior.
+In the above case, since SLR is automatically turned on by default.
 
 To turn off SLR, uncomment the code `busConfiguration.DisableFeature<SecondLevelRetries>();` and re-run the sample and notice the behavior. After successive retries the message is sent to the error queue right away.
 
-Make sure you remove the code which throws an exception once you are done to resume processing of messages.
+Make sure that the exception code is removed to resume processing of messages.

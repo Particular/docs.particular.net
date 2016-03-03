@@ -28,7 +28,7 @@ The sample contains two executable projects:
 
 ## Sending messages with native Azure Service Bus API
 
-To integrate native Azure Service Bus sender with NServiceBus endpoints, you need to configure the native sender to send messages to the queue used by the receiving endpoint. By default, the input queue for an NServiceBus endpoint is its endpoint name.
+Configuring the native sender to send messages to the queue used by the receiving endpoint is required when integrating the Azure Service Bus sender with NServiceBus endpoints. By default, the input queue for an NServiceBus endpoint is its endpoint name.
 
 snippet:EndpointAndSingleQueue
 
@@ -46,7 +46,7 @@ To generate a serialized message, the `MessageGenerator` project can be used wit
 
 ## BrokeredMessage body format
 
-The Azure Service Bus API allows you to construct a `BrokeredMessage` body from a stream or an object that will get serialized by the internals of `BrokeredMessage`.
+The Azure Service Bus API allows the construction of a `BrokeredMessage` body from a stream or an object that will get serialized by the internals of `BrokeredMessage`.
 
 NOTE: Both the sender (native or NServiceBus) and the receiver must agree on the convention used for sending the message body.
 

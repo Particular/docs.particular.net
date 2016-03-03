@@ -10,7 +10,7 @@ related:
 - nservicebus/errors
 ---
 
-When you run the sample, you should start them using Ctrl+F5 (start without debugging), press the letter "Enter" in both windows at the same time and watch the different outputs.
+Run the sample **without debugging**.
 
 Both endpoints execute the same code.
 

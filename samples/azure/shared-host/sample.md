@@ -29,21 +29,21 @@ Results sorted by Timestamp
 
 ## Deploying endpoints
 
-1. Open PowerShell console at the `shared-host\Version_5` location. This location should contain `PackageAndDeploy.ps1`.
-1. Execute `PackageAndDeploy.ps1` PowerShell script to package and deploy multi-hosted endpoints to local emulator storage
+ 1. Open PowerShell console at the `shared-host\Version_5` location. This location should contain `PackageAndDeploy.ps1`.
+ 1. Execute `PackageAndDeploy.ps1` PowerShell script to package and deploy multi-hosted endpoints to local emulator storage
 
 
 ## Running multi-host in emulated Cloud Service
 
-1. Set `HostCloudService` to be the start-up project by right clicking the project name in Visual Studio Solution Explorer, and selecting `Set as StartUp Project` option
-1. Run the solution
-1. Inspect Azure Storage Emulator Tables for `MultiHostedEndpointsOutput` table and its content
+ 1. Set `HostCloudService` to be the start-up project by right clicking the project name in Visual Studio Solution Explorer, and selecting `Set as StartUp Project` option
+ 1. Run the solution
+ 1. Inspect Azure Storage Emulator Tables for `MultiHostedEndpointsOutput` table and its content
 
 NOTE: To inspect multi-host [role emulated file system](https://msdn.microsoft.com/en-us/library/azure/hh771389.aspx), navigate to `C:\Users\%USERNAME%\AppData\Local\dftmp\Resources`
 
-Azure Compute Emulator leaves any processes spawned at run time in memory. You should kill those once you're done with emulated Cloud Service execution by locating `WaWorkerHost.exe` process and killing all child processes named `NServiceBus.Hosting.Azure.HostProcess.exe`. Number of those processes will be as number of endpoints (2) X number of times Cloud Service was executed.
+Azure Compute Emulator leaves any processes spawned at run time in memory. Kill those once done with emulated Cloud Service execution by locating `WaWorkerHost.exe` process and killing all child processes named `NServiceBus.Hosting.Azure.HostProcess.exe`. Number of those processes will be as number of endpoints (2) X number of times Cloud Service was executed.
 
-Alternatively, you can stop Cloud Service emulator from Compute Emulator UI. Compute Emulator UI can be accessed via try icon on your taskbar. Within Compute Emulator UI, under `Service Deployments` tree select a deployment, right click and select `Remove` option. This will cleanly stop Cloud Service without leaving any processes in memory.
+Cloud Service emulator can also be stopped from Compute Emulator UI. Compute Emulator UI can be accessed via try icon on the taskbar. Within Compute Emulator UI, under `Service Deployments` tree select a deployment, right click and select `Remove` option. This will cleanly stop Cloud Service without leaving any processes in memory.
 
 
 ## Code walk-through

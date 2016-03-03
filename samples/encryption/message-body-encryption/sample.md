@@ -43,7 +43,7 @@ Note that is does not need any custom property types to be encrypted.
 
 ### How is encryption configured.
 
-Open either one of the `Program.cs`. You will notice the line
+Open either one of the `Program.cs`. Notice the line
 
 snippet:RegisterMessageEncryptor
 
@@ -54,6 +54,6 @@ snippet: MessageEncryptorExtension
 
 #### The Mutator
 
-WARNING: Clearly this it not true encryption. It is only doing a byte array reversal to illustrate the API. In your production system you should do true encryption via the [.NET Framework Cryptography Model](https://msdn.microsoft.com/en-us/library/0ss79b2x.aspx).
+WARNING: Clearly this it not true encryption. It is only doing a byte array reversal to illustrate the API. In the production system true encryption should be used via the [.NET Framework Cryptography Model](https://msdn.microsoft.com/en-us/library/0ss79b2x.aspx).
 
 snippet: Mutator

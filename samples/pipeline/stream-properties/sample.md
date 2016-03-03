@@ -12,7 +12,7 @@ related:
 
 ### Introduction
 
-This sample leverages the pipeline to provide a pure stream based approach for sending large amounts of data. It is similar to the  file share [DataBus](/nservicebus/messaging/databus.md) in that it uses assumes a common network file share accessible by endpoints and uses headers to correlate between a message and its connected files on disk. 
+This sample leverages the pipeline to provide a pure stream based approach for sending large amounts of data. It is similar to the file share [DataBus](/nservicebus/messaging/databus.md) in that it uses assumes a common network file share accessible by endpoints and uses headers to correlate between a message and its connected files on disk. 
 
 
 ### Stream Storage helper
@@ -87,7 +87,7 @@ snippet: send-message-with-http-stream
 
 snippet: send-message-with-file-stream
 
-NOTE: If you use a `MemoryStream` ensure that the [Position](https://msdn.microsoft.com/en-us/library/system.io.memorystream.position.aspx) is set back to `0` before sending the message. Also note that writing large amounts of data to a `MemoryStream` will result in significant memory usage (perhaps resulting in an `OutOfMemoryException`) and put pressure on Garbage Collection.
+NOTE: If using a `MemoryStream` ensure that the [Position](https://msdn.microsoft.com/en-us/library/system.io.memorystream.position.aspx) is set back to `0` before sending the message. Also note that writing large amounts of data to a `MemoryStream` will result in significant memory usage (perhaps resulting in an `OutOfMemoryException`) and put pressure on Garbage Collection.
 
 
 ### Handler

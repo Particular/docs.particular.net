@@ -9,15 +9,15 @@ related:
 - nservicebus/sqlserver
 ---
 
- 1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create a databases `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under *security* folder in SSMS database tree).
- 2. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
- 3. Start the Receiver project.
- 4. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready.
- 5. Hit <enter>.
- 6. On the Receiver console you should see that order was submitted.
- 7. On the Sender console you should see that the order was accepted.
- 8. Finally, after a couple of seconds, on the Receiver console you should see that the timeout message has been received.
- 9. Open SQL Server Management Studio and go to the receiver database. Verify that there is a row in saga state table (`receiver.OrderLifecycleSagaData`) and in the orders table (`receiver.Orders`)
+ 1. Make sure an instance is SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create a databases `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under *security* folder in SSMS database tree).
+ 1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
+ 1. Start the Receiver project.
+ 1. In the Sender's console notice the `Press <enter> to send a message` text when the app is ready.
+ 1. Hit <enter>.
+ 1. On the Receiver console notice that order was submitted.
+ 1. On the Sender console notice that the order was accepted.
+ 1. Finally, after a couple of seconds, on the Receiver console notice that the timeout message has been received.
+ 1. Open SQL Server Management Studio and go to the receiver database. Verify that there is a row in saga state table (`receiver.OrderLifecycleSagaData`) and in the orders table (`receiver.Orders`)
 
 
 ## Code walk-through

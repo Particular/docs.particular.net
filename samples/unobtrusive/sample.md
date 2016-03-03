@@ -18,7 +18,7 @@ Run the solution. Two console applications should start up, `Client` and `Server
 
 ## Configuring the Unobtrusive message
 
-Look at the `ConventionExtensions` in the `SharedConventions` project. The code tells NServiceBus how to determine which types are message definitions by passing in your own conventions, instead of using the `IMessage`, `ICommand`, or `IEvent` interfaces:
+Look at the `ConventionExtensions` in the `SharedConventions` project. The code tells NServiceBus how to determine which types are message definitions by passing in custom conventions, instead of using the `IMessage`, `ICommand`, or `IEvent` interfaces:
 
 snippet:CustomConvention
 

@@ -78,7 +78,7 @@ The output will be
 
     Press 'Enter' to send a message. To exit press 'Ctrl + C'
 
-If you hit enter you will see
+Hit enter
 
     Sent a new PlaceOrder message with id: 5e906f84397e4205ae486f0aa79935e2
 

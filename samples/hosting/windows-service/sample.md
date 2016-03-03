@@ -1,6 +1,6 @@
 ---
 title: Hosting in a Windows Service
-summary: This sample shows how to host NServiceBus as a Windows Service in your own process with support for streamlined debugging experience from Visual Studio.
+summary: This sample shows how to host NServiceBus as a Windows Service in process with support for streamlined debugging experience from Visual Studio.
 tags:
 - Hosting
 - Windows Service
@@ -11,7 +11,7 @@ related:
 
 ## Code walk-through
 
-This sample shows how to host NServiceBus as a Windows Service in your own process with support for streamlined debugging experience from Visual Studio.
+This sample shows how to host NServiceBus as a Windows Service in process with support for streamlined debugging experience from Visual Studio.
 
 NServiceBus comes with a very functional host exe that abstracts much of the hosting complexity. Its many features include installation, un-installation and configuring the windows service. It provides these features though a reasonable amount of custom code and the use of some powerful libraries like TopShelf. Since the NServiceBus Host is a general solution with dependencies there are some drawback associated with using it.
 

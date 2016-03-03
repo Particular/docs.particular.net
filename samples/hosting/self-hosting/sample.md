@@ -1,6 +1,6 @@
 ---
 title: NServiceBus self hosting
-summary: This sample shows how to host in your own process an instance of NServiceBus.
+summary: This sample shows how to host an in-process instance of NServiceBus
 tags:
 - Hosting
 related:
@@ -9,6 +9,6 @@ related:
 
 ## Code walk-through
 
-This sample shows how to host in your own process an instance of NServiceBus.
+This sample shows how to host an in-process instance of NServiceBus.
 
 snippet:self-hosting

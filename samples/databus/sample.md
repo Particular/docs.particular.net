@@ -1,6 +1,6 @@
 ---
 title: Attachments / DataBus Sample
-summary: 'Send images or video by putting an attribute over your large property. NServiceBus takes care of the rest. '
+summary: Send images or video by putting an attribute over a large property. NServiceBus takes care of the rest
 tags:
 - DataBus
 - Large messages
@@ -11,7 +11,7 @@ related:
 ---
 
  1. Run the solution. Two console applications start.
- 1. Find the Sender application by looking for the one with "Sender" in its path and pressing Enter in the window to send a message. You have just sent a message that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
+ 1. Find the Sender application by looking for the one with "Sender" in its path and pressing Enter in the window to send a message. A message has just been sent that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
  1. Click 'e' and Enter. A message larger than the allowed 4MB is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown at the "Sender" application.
 
 

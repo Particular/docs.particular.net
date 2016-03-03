@@ -8,8 +8,8 @@ related:
 ---
 
  1. Run the solution. Two console applications and a web application will start.
- 2. In the WebSender application, you can click links from the landing page to trigger each scenario.
- 3. In the Sender console application, you will be prompted to press various keys to trigger each scenario.
+ 1. In the WebSender application, click links from the landing page to trigger each scenario.
+ 1. In the Sender console application, when prompted to press various keys to trigger each scenario.
 
 
 ## Shared Project

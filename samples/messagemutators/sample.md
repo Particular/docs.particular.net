@@ -37,9 +37,9 @@ Now let's look at the code.
 
 This sample shows how to create a custom message mutator.
 
-The `IMutateTransportMessages` and `IMessageMutator` interfaces give access to the message so that you can mutate on the inbound and/or outbound message.
+The `IMutateTransportMessages` and `IMessageMutator` interfaces give access to the message so that the the inbound and/or outbound message can be modified.
 
-All you have to do as a consumer is implement the desired interface and load it into the NServiceBus container.
+As a consumer implement the desired interface and load it into the NServiceBus container.
 
 Similar interfaces exist for `IMessageMutator`, i.e., `IMutateTransportMessages`, which mutates transport messages. The main difference from `IMessageMutator` is that the transport message may have several messages in a single transport message.
 
@@ -69,7 +69,7 @@ This transport mutator compresses the whole transport message.
 
 snippet:TransportMessageCompressionMutator
 
-The `TransportMessageCompressionMutator` is a transport message mutator, meaning that NServiceBus allows you to mutate the outgoing or/and incoming transport message.
+The `TransportMessageCompressionMutator` is a transport message mutator, meaning that NServiceBus allows the mutation of the outgoing or/and incoming transport message.
 
 In the TransportMessageCompressionMutator class, both the incoming and outgoing methods are implemented.
 
@@ -87,7 +87,6 @@ If the key is missing, the message is returned, unmutated.
 
 Otherwise, the incoming method is replacing the transport message Body compressed content an uncompressed one.
 
-Now all we have to do it hook those two mutators into the NServiceBus message flow.
 
 ## Configuring NServiceBus to use the message mutators
 

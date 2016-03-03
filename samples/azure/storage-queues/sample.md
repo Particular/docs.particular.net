@@ -9,7 +9,7 @@ related:
 
 ## Prerequisites
 
-Ensure you have an instance of the [Azure Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/) running.
+Ensure an instance of the [Azure Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/) is running.
 
 
 ## Azure Storage Queues Transport
@@ -21,8 +21,8 @@ This sample utilizes the [Azure Storage Queues Transport](/nservicebus/azure/azu
 
 This sample shows a simple two endpoint scenario.
 
-* `Endpoint1` sends a `Message1` message to `Endpoint2`
-* `Endpoint2` replies to `Endpoint1` with a `Message2`.
+ * `Endpoint1` sends a `Message1` message to `Endpoint2`
+ * `Endpoint2` replies to `Endpoint1` with a `Message2`.
 
 
 ### Azure Storage configuration
@@ -68,7 +68,7 @@ snippet:UsingHelpers
 
 ### The Message Data
 
-If you run only `Endpoint1` and send a messages you can see the contents of the message in the `samples-azure-storagequeues-endpoint2` queue.
+Run only `Endpoint1` and send a message. Notice the contents of the message in the `samples-azure-storagequeues-endpoint2` queue.
 
 
 ### CloudQueueMessage contents

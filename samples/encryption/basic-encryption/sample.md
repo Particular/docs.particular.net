@@ -12,7 +12,7 @@ related:
 
 ## Run the solution.
 
-You will see two console applications start up.
+Two console applications will start up.
 
 
 ### Endpoint1
@@ -29,7 +29,7 @@ MessageWithSecretData sent.
 Which outputs
 
 ```
-I know your secret - it's 'betcha can't guess my secret'
+I know the secret - it's 'betcha can't guess my secret'
 SubSecret: My sub secret
 CreditCard: 312312312312312 is valid to 3/11/2015 5:21:59 AM
 CreditCard: 543645546546456 is valid to 3/11/2016 5:21:59 AM
@@ -48,7 +48,7 @@ snippet:Message
 
 ### How is encryption configured.
 
-Open either one of the `Program.cs`. You will notice the line
+Open either one of the `Program.cs`. Notice the line
 
 snippet:enableEncryption
 
@@ -66,7 +66,7 @@ Now run `Endpoint1` on its own (i.e. don't start `Endpoint2`).
 Go to the server queue (called `EncryptionSampleEndpoint1`) and examine the message in it. Read how to do this in the
 [FAQ](/nservicebus/msmq/viewing-message-content-in-msmq.md).
 
-Your message will look like this:
+The message will look like this:
 
 ```JSON
 "MessageWithSecretData": {

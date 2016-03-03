@@ -46,14 +46,14 @@ snippet:message-definition
 
 ## Running the solution
 
-If you initially run the solution with both projects as startup project you will not in the output that the handler in Receiver successfully processes the message
+Run the solution with both projects as startup project and not the output that the handler in Receiver successfully processes the message
 
 
 ### Look at the queue
 
-If you view the properties of the queues you will notice they set to be non-transactional. This is required for non-durable messaging in MSMQ since only non-transactional queues support [Express Mode](https://msdn.microsoft.com/en-us/library/ms704130).
+View the properties of the queues and notice they set to be non-transactional. This is required for non-durable messaging in MSMQ since only non-transactional queues support [Express Mode](https://msdn.microsoft.com/en-us/library/ms704130).
 
 
 ### Viewing the message
 
-If you start the `Sender` project on it own it will send a message to the `Samples.MessageDurability.Receiver` queue. If you open this message you will notice the `Recoverable` property is `false`.
+Start the `Sender` project on it own it will send a message to the `Samples.MessageDurability.Receiver` queue. Open this message and notice the `Recoverable` property is `false`.

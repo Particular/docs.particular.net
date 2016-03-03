@@ -9,7 +9,7 @@ related:
 - nservicebus/serialization
 ---
 
-NOTE: A subset of the functionality described in this sample was made a part of NServiceBus Version 6. Please consult [Serialization in NServiceBus](/nservicebus/serialization/) for more information.
+NOTE: A subset of the functionality described in this sample was made a part of NServiceBus Version 6. See [Serialization in NServiceBus](/nservicebus/serialization/) for more information.
 
 
 ## Introduction
