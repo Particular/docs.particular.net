@@ -18,9 +18,9 @@ Various features of NServiceBus require persistence. Among them are subscription
 
 ## How To enable persistence with Azure storage services
 
-First you need to reference the assembly that contains the Azure storage persisters. The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Azure` package to the project.
+First add a reference to the assembly that contains the Azure storage persisters. The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Azure` package to the project.
 
-If self hosting, you can configure the persistence technology using the configuration API and the extension method found in the `NServiceBus.Azure` assembly
+If self hosting, the persistence technology could be configured using the configuration API and the extension method found in the `NServiceBus.Azure` assembly
 
 snippet:PersistanceWithAzure
 
@@ -36,7 +36,7 @@ NOTE: In Version 4, when hosting in the Azure role entrypoint provided by `NServ
 
 ## Detailed Configuration
 
-You can get more control on the behavior of each persister by specifying one of the respective configuration sections in the app.config and changing one of the available properties, or through code.
+More control is available to configure the behavior of each persister by specifying one of the respective configuration sections in the app.config and changing one of the available properties, or through code.
 
 
 ### Detailed Configuration with Configuration Section
@@ -45,23 +45,23 @@ snippet:AzurePersistenceFromAppConfig
 
 The following settings are available for changing the behavior of saga persistence through the `AzureSagaPersisterConfig`section:
 
-- `ConnectionString`: Allows you to set the connectionstring to the storage account for storing saga information, defaults to `UseDevelopmentStorage=true` in Versions 6 and less, and defaults to `null` in Versions 7 and up.
-- `CreateSchema`: Instructs the persister to create the table automatically, defaults to true
+- `ConnectionString`: Sets the connectionstring for the storage account to be used for storing saga information.  Defaults to `UseDevelopmentStorage=true` in Versions 6 and below, and defaults to `null` in Versions 7 and above.
+- `CreateSchema`: Instructs the persister to create the table automatically, defaults to `true`
 
 The following settings are available for changing the behavior of subscription persistence through the `AzureSubscriptionStorageConfig` section:
 
-- `ConnectionString`: Allows you to set the connection string to the storage account for storing subscription information, defaults to `UseDevelopmentStorage=true` in Versions 6 and less, and defaults to `null` in Versions 7 and up.
-- `CreateSchema`: Instructs the persister to create the table automatically, defaults to true
-- `TableName`: Lets you choose the name of the table for storing subscriptions, defaults to `Subscription`.
+- `ConnectionString`: Sets the connection string for the storage account to be used for storing subscription information.  Defaults to `UseDevelopmentStorage=true` in Versions 6 and below, and defaults to `null` in Versions 7 and above.
+- `CreateSchema`: Instructs the persister to create the table automatically, defaults to `true`
+- `TableName`: Specifies the name of the table for storing subscriptions, defaults to `Subscription`.
 
 The following settings are available for changing the behavior of timeout persistence through the `AzureTimeoutPersisterConfig` section:
 
-- `ConnectionString`: Allows you to set the connectionstring to the storage account for storing timeout information, defaults to `UseDevelopmentStorage=true` in Versions 6 and less, and defaults to `null` in Versions 7 and up.
-- `TimeoutManagerDataTableName`: Allows you to set the name of the table where the timeout manager stores it's internal state, defaults to `TimeoutManagerDataTable`
-- `TimeoutDataTableName`: Allows you to set the name of the table where the timeouts themselves are stored, defaults to `TimeoutDataTableName`
-- `CatchUpInterval`: When a node hosting a timeout manager would go down, it needs to catch up with missed timeouts faster than it normally would (1 sec), this value allows you to set the catchup interval in seconds. Defaults to 3600, meaning it will process one hour at a time.
-- `PartitionKeyScope`: The time range used as partition key value for all timeouts. For optimal performance, this should be in line with the catchup interval so it should come to no surprise that the default value also represents an hour: `yyyyMMddHH`. When modifying `PartitionKeyScope`, you will need to migrate the data in the table defined by `TimeoutDataTableName`
-- `TimeoutStateContainerName`: Allows you to set the name of the container where the timeout state is stored, defaults to `timeoutstate` - **Added in v7.0**
+- `ConnectionString`: Sets the connectionstring for the storage account to be used for storing timeout information.  Defaults to `UseDevelopmentStorage=true` in Versions 6 and below, and defaults to `null` in Versions 7 and above.
+- `TimeoutManagerDataTableName`: Sets the name of the table where the timeout manager stores it's internal state, defaults to `TimeoutManagerDataTable`
+- `TimeoutDataTableName`: Sets the name of the table where the timeouts themselves are stored, defaults to `TimeoutDataTableName`
+- `CatchUpInterval`: When a node hosting a timeout manager would go down, it needs to catch up with missed timeouts faster than it normally would (1 sec), this value  sets the catchup interval in seconds. Defaults to 3600, meaning it will process one hour at a time.
+- `PartitionKeyScope`: The time range used as partition key value for all timeouts. For optimal performance, this should be in line with the catchup interval so it should come to no surprise that the default value also represents an hour: `yyyyMMddHH`. Data in the table defined by `TimeoutDataTableName` will need to be migrated When modifying `PartitionKeyScope`.
+- `TimeoutStateContainerName`: Sets the name of the container where the timeout state is stored, defaults to `timeoutstate` - **Added in v7.0**
 
 For more information see [Configuring Azure Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/storage-configure-connection-string/)
 
@@ -73,12 +73,12 @@ Azure storage persistence is network IO intensive, every operation performed aga
 - It's algorithm stack has been optimized for larger payload exchanges, not for small requests
 - It doesn't trust the remote servers by default, so it verifies for revoked certificates on every request
 
-You can drastically improve performance by overriding these settings. You can leverage the ServicePointManager class for this end and change it's settings, but this must be done before the application makes any outbound connection, so ideally it's done very early in the application's startup routine.
+Performance can be drastically improves by overriding these settings. The ServicePointManager class can be used for this end and change it's settings, but this must be done before the application makes any outbound connection, so ideally it's done very early in the application's startup routine.
 
 	ServicePointManager.DefaultConnectionLimit = 5000; // default settings only allows 2 concurrent requests per process to the same host
 	ServicePointManager.UseNagleAlgorithm = false; // optimize for small requests
 	ServicePointManager.Expect100Continue = false; // reduces number of http calls
-	ServicePointManager.CheckCertificateRevocationList = false; // optional, only if you trust all dependencies	
+	ServicePointManager.CheckCertificateRevocationList = false; // optional, only disable if all dependencies are trusted	
 
 
 ### Detailed Configuration with Code
