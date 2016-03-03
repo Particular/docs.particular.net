@@ -36,7 +36,7 @@ Since all performance counters in Windows are exposed via Windows Management Ins
 
 Monitors the age of the oldest message in the queue. This takes into account the whole chain, from the message being sent from the client machine until successfully processed by the server. Define an SLA for each of your endpoints and use the `CriticalTime` counter to make sure you adhere to it.
 
-Note: TimeSent is captured when the call to emit the message is performed even though the [batching](/nservicebus/messaging/batched-dispatch.md) introduced in Version 6 means that the message will be handed over to the tranport infrastructure at a later time. This means that slow calls in handlers happening **after** the outgoing operation will be included in "TimeSent".
+Note: The value recorded in the TimeSent header is the time when the call to send the message is executed, not the actual time when the message was dispatched to the destination queue. Since the outgoing messages in handlers are sent as a [batched](/nservicebus/messaging/batched-dispatch.md) operation, depending on how long the message handler takes to complete, the actual dispatch to the transport infrastructure may happen at a later time than the time recorded in the TimeSent header. For outgoing operations outside of handlers the sent time is accurate.
 
 #### Configuration
 
