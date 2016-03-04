@@ -20,7 +20,7 @@ The current approach moving forward for the RavenDB integration is to ship outsi
 
 ### Supported RavenDB versions
 
- * Please check the minimum supported version on the [NuGet site](https://www.nuget.org/packages/NServiceBus.RavenDB).
+ * Check the minimum supported version on the [NuGet site](https://www.nuget.org/packages/NServiceBus.RavenDB).
 
 
 ### Supported NServiceBus versions
@@ -47,7 +47,7 @@ Version 4 of NServiceBus was shipped with Version 2.0.2375 of RavenDB resource m
 
 ### NServiceBus 4 and RavenDB 2.5
 
-NServiceBus Version 4 uses RavenDB.Client Version 2.0 internally. Using RavenDB client 2.0 against a RavenDB Server 2.5 is not recommended. Server restarts may result in wiping out outstanding transactions potentially resulting in message loss. Therefore if using RavenDB server Version 2.5, please do the following:
+NServiceBus Version 4 uses RavenDB.Client Version 2.0 internally. Using RavenDB client 2.0 against a RavenDB Server 2.5 is not recommended. Server restarts may result in wiping out outstanding transactions potentially resulting in message loss. Therefore if using RavenDB server Version 2.5, do the following:
 
 1. Install version 1 of NServiceBus.RavenDB NuGet package in your endpoint. This will ensure that RavenDB Client Version 2.5 is being used instead of 2.0
 ```

@@ -149,7 +149,7 @@ redirects:
 - nservicebus/overview
 ```
 
-When renaming an existing article to a new name, please add the `redirects:` section in the article header and specify the previous name for the article. If the old Url is linked anywhere, when the user clicks on it, the new renamed article will automatically be served.
+When renaming an existing article to a new name, add the `redirects:` section in the article header and specify the previous name for the article. If the old Url is linked anywhere, when the user clicks on it, the new renamed article will automatically be served.
 
 * Values specified in the `redirects` section must be lower cased.
 * Multiple values can be specified for the redirects, same as `tags`.

@@ -11,7 +11,7 @@ The samples are designed to be highlighting how various features of NServiceBus 
 
 ## Not Production Ready
 
-Samples are not meant to be production ready code or to be used as-is with Particular Platform tools. They are meant to illustrate the use of the API in the simplest way possible. For this reason, these samples make certain assumptions on transport, hosting, etc. Please see the [Technology choices](#technology-choices) for more details.
+Samples are not meant to be production ready code or to be used as-is with Particular Platform tools. They are meant to illustrate the use of the API in the simplest way possible. For this reason, these samples make certain assumptions on transport, hosting, etc. See the [Technology choices](#technology-choices) for more details.
 
 
 ## Not "Endpoint drop in" projects

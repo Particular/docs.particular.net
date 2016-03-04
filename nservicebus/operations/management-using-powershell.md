@@ -78,7 +78,7 @@ NServiceBus now supports multiple versions of the [RavenDB](/nservicebus/ravendb
 	Install-NServiceBusRavenDB
 	Test-NServiceBusRavenDBInstallation
 
-For RavenDB installation instructions please review [Installing RavenDB](/nservicebus/ravendb/installation.md)
+For RavenDB installation instructions review [Installing RavenDB](/nservicebus/ravendb/installation.md)
 
 
 ### Licensing

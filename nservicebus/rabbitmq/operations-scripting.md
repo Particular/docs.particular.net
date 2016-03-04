@@ -74,7 +74,7 @@ snippet:rabbit-create-queues-shared-usage
 
 ## Create HA policy
 
-To configure HA policy, please refer to RabbitMQ [official documentation](https://www.rabbitmq.com/ha.html)
+To configure HA policy, refer to RabbitMQ [official documentation](https://www.rabbitmq.com/ha.html)
 
 ## Delete queues
 

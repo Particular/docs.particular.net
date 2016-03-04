@@ -80,4 +80,4 @@ The Cloud Services model is best suited to building large scale systems, but in 
 
 To support this need to start small a shared hosting option is available using the `AsA_Host` role. In this model, the role entry point doesn't actually host an endpoint itself. Instead, it downloads, invokes, and manages other worker role entry points as child processes on the same machine.
 
-If you want to learn more about the shared hosting options, please refer to [Cloud Services - Shared hosting](shared-hosting-in-azure-cloud-services.md).
+If you want to learn more about the shared hosting options, refer to [Cloud Services - Shared hosting](shared-hosting-in-azure-cloud-services.md).

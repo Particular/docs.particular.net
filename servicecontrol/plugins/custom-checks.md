@@ -48,4 +48,4 @@ NOTE: It is essential that you deploy this plugin to your endpoint in production
 
 ### Deprecated NuGet
 
-If you are using the older version of the plugin, namely **ServiceControl.Plugin.CustomChecks** please remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
+If you are using the older version of the plugin, namely **ServiceControl.Plugin.CustomChecks** remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.

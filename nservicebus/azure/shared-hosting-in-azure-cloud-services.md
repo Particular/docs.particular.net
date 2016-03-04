@@ -32,7 +32,7 @@ Assuming you have a working endpoint hosted in a worker role. Open your cloud se
 
 NOTE: Visual Studio will remove any configuration setting from the Azure configuration settings file. If any configuration overrides previously existed, effect the way the endpoint behaves, ensure those overrides are moved to the app.config file first or apply the alternative override system for shared hosts. See `Configuration concerns` further down this article for more details on this approach.
 
-The role entry point also doubles as a host process for our endpoint, one that is aware of the service runtime and role context. This functionality needs to be replaced by another process in order to run the endpoint in a similar context as it would have when it was a separate role. This replacement host process is available on NuGet as the `NServiceBus.Hosting.Azure.HostProcess` package, please install it in your worker role project.
+The role entry point also doubles as a host process for our endpoint, one that is aware of the service runtime and role context. This functionality needs to be replaced by another process in order to run the endpoint in a similar context as it would have when it was a separate role. This replacement host process is available on NuGet as the `NServiceBus.Hosting.Azure.HostProcess` package, install it in your worker role project.
 
 Notice that an `NServiceBus.Hosting.Azure.HostProcess.exe` is now referenced. This exe can also run on a development machine outside the context of a service runtime. It can also be used to debug an endpoint locally without starting the Azure emulator. This is done by adding this exe to the debug path in the project properties.
 

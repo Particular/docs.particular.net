@@ -24,7 +24,7 @@ When the MSMQ service is uninstalled the following actions are also carried out:
 
 ### Dependent Services
 
-Services in Microsoft Windows can be configured to depend on each other. Prior to removing MSMQ please ensure you have no services are dependent upon the MSMQ. To do this
+Services in Microsoft Windows can be configured to depend on each other. Prior to removing MSMQ, ensure you have no services are dependent upon the MSMQ. To do this
 
  * Load the Windows Services MMC snapin `Services.msc`,
  * Right click on `Message Queuing` in the list of services

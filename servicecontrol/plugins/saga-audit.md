@@ -23,8 +23,8 @@ All this information is sent to and stored in ServiceControl. Note that the saga
 This results in an increase in load in several areas
 
  1. Endpoint load in order to capture the required information
- 2. Network load due to the extra information sent to ServiceControl
- 3. ServiceControl load in the areas of ingestion, correlation and data cleanup. 
+ 1. Network load due to the extra information sent to ServiceControl
+ 1. ServiceControl load in the areas of ingestion, correlation and data cleanup. 
 
 The increase in load is proportional to size of the saga data multiplied by the number of messages the the saga receives. Since both these variables are dependent on the specific saga implementation it is not possible to give accurate predictions on the impact of this load in a production system.
 
@@ -38,16 +38,16 @@ The increase in load is proportional to size of the saga data multiplied by the 
 
 ### Deprecated NuGet
 
-If you are using the older version of the plugin, namely **ServiceControl.Plugin.SagaAudit** please remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
+If you are using the older version of the plugin, namely **ServiceControl.Plugin.SagaAudit** remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
 
 
 ## Removing the plugin from Production
 
 If you are currently running your endpoint with the SagaAudit plugin in Production, do the following to remove it:
 
-1. Stop your endpoint
-2. Delete the SagaAudit plugin dll from the endpoint's bin directory. (Either `ServiceControl.Plugin.Nsb5.SagaAudit.dll` or `ServiceControl.Plugin.Nsb4.SagaAudit.dll`). In addition to that, if you have automated deployment processes in place, please ensure that this dll is no longer included.
-3. Restart your endpoint
+ 1. Stop your endpoint
+ 1. Delete the SagaAudit plugin dll from the endpoint's bin directory. (Either `ServiceControl.Plugin.Nsb5.SagaAudit.dll` or `ServiceControl.Plugin.Nsb4.SagaAudit.dll`). In addition to that, if you have automated deployment processes in place, please ensure that this dll is no longer included.
+ 1. Restart your endpoint
 
 Doing so will stop sending the saga state change messages to ServiceControl reducing message load to ServiceControl. You can always turn it back on if or when needed.
 

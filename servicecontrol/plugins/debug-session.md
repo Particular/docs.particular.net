@@ -21,4 +21,4 @@ When deployed, the debug session plugin adds a specified debug session identifie
 
 ### Deprecated NuGet
 
-If you are using the older version of the plugin, namely **ServiceControl.Plugin.DebugSession** please remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
+If you are using the older version of the plugin, namely **ServiceControl.Plugin.DebugSession** remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.

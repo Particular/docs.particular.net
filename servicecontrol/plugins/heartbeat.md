@@ -35,7 +35,7 @@ WARNING: The Heartbeat plugin Version 2 for NServiceBus 5 is currently not suppo
 
 ### Deprecated NuGet
 
-If you are using the older version of the plugin, namely **ServiceControl.Plugin.Heartbeat** please remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
+If you are using the older version of the plugin, namely **ServiceControl.Plugin.Heartbeat** remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
 
 
 ## Configuration

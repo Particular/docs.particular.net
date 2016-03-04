@@ -91,7 +91,8 @@ The value is the size of the version store in MB.
  1. Click the URL under 'Host'. You should get a valid response with JSON data
  1. If you are having issues remotely connecting to ServiceControl. Verify that firewall settings do not block access to the ServiceControl port specified in the URL.
 
-NOTE: Prior to changing firewall setting to expose ServiceControl please read [Securing ServiceControl](securing-servicecontrol.md).
+NOTE: Prior to changing firewall setting to expose ServiceControl read [Securing ServiceControl](securing-servicecontrol.md).
+
 
 ### Unable to start Service after exposing RavenDB
 

@@ -11,7 +11,7 @@ tags:
 
 To set a custom hostname and IP port for an instance of the ServiceControl service:
 
-NOTE: Anyone who can access the ServiceControl URL has complete access to the message data stored within ServiceControl. This is  why the default is to only respond to the localhost. Please consider carefully the implications of exposing ServiceControl via a custom or wildcard URI.
+NOTE: Anyone who can access the ServiceControl URL has complete access to the message data stored within ServiceControl. This is  why the default is to only respond to the localhost. Consider carefully the implications of exposing ServiceControl via a custom or wildcard URI.
 
 
 ### Using the ServiceControl Management Utility

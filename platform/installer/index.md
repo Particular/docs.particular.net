@@ -26,7 +26,7 @@ For testing and production environments it is recommended to:
 
 ## What to expect
 
-The Platform Installer is a Microsoft Click-Once application which means it has a built in self-updating mechanism. Click once applications are sometimes blocked by corporate firewalls or software restriction policies. If you cannot run the platform installer please review the [Offline Install](offline.md). page for installation instructions.
+The Platform Installer is a Microsoft Click-Once application which means it has a built in self-updating mechanism. Click once applications are sometimes blocked by corporate firewalls or software restriction policies. If you cannot run the platform installer review the [Offline Install](offline.md). page for installation instructions.
 
 
 ### Dependencies
