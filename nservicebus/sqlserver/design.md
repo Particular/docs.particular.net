@@ -46,13 +46,22 @@ CREATE TABLE [schema].[queuename](
 	[RowVersion] [bigint] IDENTITY(1,1) NOT NULL
 ) ON [PRIMARY];
 
-CREATE CLUSTERED INDEX [Index_RowVersion] ON [schema].[queuename](
+CREATE CLUSTERED INDEX [Index_RowVersion] ON [schema].[queuename]
+(
 	[RowVersion] ASC
-) WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 
-CREATE NONCLUSTERED INDEX [Index_Expires] ON [schema].[queuename](
+CREATE NONCLUSTERED INDEX [Index_Expires] ON [schema].[queuename]
+(
 	[Expires] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+)
+INCLUDE
+(
+	[Id],
+	[RowVersion]
+)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
 ```
 
 In version 2 the columns are directly mapped to the properties of `NServiceBus.TransportMessage` class. In version 3 they are mapped to `NServiceBus.Transports.IncomingMessage` in the incoming pipeline and `NServiceBus.Transports.OutgoingMessage` in the outgoing pipeline. Receiving messages is conducted by a `DELETE` statement from the top of the table (the oldest row according to the `[RowVersion]` column).
