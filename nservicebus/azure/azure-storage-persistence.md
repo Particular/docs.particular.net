@@ -73,7 +73,7 @@ Azure storage persistence is network IO intensive, every operation performed aga
 - It's algorithm stack has been optimized for larger payload exchanges, not for small requests
 - It doesn't trust the remote servers by default, so it verifies for revoked certificates on every request
 
-Performance can be drastically improves by overriding these settings. The ServicePointManager class can be used for this end and change it's settings, but this must be done before the application makes any outbound connection, so ideally it's done very early in the application's startup routine.
+Performance can be drastically improved by overriding these settings. The ServicePointManager class can be used for this end and change it's settings, but this must be done before the application makes any outbound connection, so ideally it's done very early in the application's startup routine.
 
 	ServicePointManager.DefaultConnectionLimit = 5000; // default settings only allows 2 concurrent requests per process to the same host
 	ServicePointManager.UseNagleAlgorithm = false; // optimize for small requests

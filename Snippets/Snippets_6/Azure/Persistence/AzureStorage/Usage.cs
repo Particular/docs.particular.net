@@ -21,9 +21,9 @@
 
         public class EndpointConfig : IConfigureThisEndpoint
         {
-            public void Customize(EndpointConfiguration configuration)
+            public void Customize(EndpointConfiguration endpointConfiguration)
             {
-                configuration.UsePersistence<AzureStoragePersistence>();
+                endpointConfiguration.UsePersistence<AzureStoragePersistence>();
             }
         }
 
