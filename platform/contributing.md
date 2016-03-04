@@ -21,14 +21,14 @@ need contributors to follow so that we can have a chance of keeping on top of th
 
 ## Making Changes
 
- * Create a feature branch from where you want to base your work.
+ * Create a feature branch from where you want to base the work.
   * This is usually the develop branch since we never do any work off our master branch. The master is always our latest stable release.
-  * Only target release branches if you are certain your fix must be on that branch.
-  * To quickly create a feature branch based on develop; `git branch fix/develop/my_contribution` then checkout the new branch with `git checkout fix/develop/my_contribution`. Please avoid working directly on the `develop` branch.
+  * Only target release branches if you are certain the fix must be on that branch.
+  * To quickly create a feature branch based on develop; `git branch fix/develop/my_contribution` then checkout the new branch with `git checkout fix/develop/my_contribution`. Avoid working directly on the `develop` branch.
  * Make commits of logical units.
  * Check for unnecessary whitespace with `git diff --check` before committing.
- * Make sure your commit messages are in the proper format.
- * Make sure you have added the necessary tests for your changes.
+ * Make sure the commit messages are in the proper format.
+ * Make sure you have added the necessary tests for the changes.
  * Run build.bat in the root to assure nothing else was accidentally broken.
  * We have a ReSharper layer that applies our coding standards so make sure that you're "all green in ReSharper"
 
@@ -36,7 +36,7 @@ need contributors to follow so that we can have a chance of keeping on top of th
 ## Submitting Changes
 
  * Sign the [Contributor License Agreement](http://particular.net/contributors-license-agreement-consent).
- * Push your changes to a feature branch in your fork of the repository.
+ * Push the changes to a feature branch in the fork of the repository.
  * Submit a pull request to the NServiceBus repository
 
 

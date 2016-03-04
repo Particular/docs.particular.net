@@ -1,12 +1,12 @@
 ---
 title: Type Not Registered in the Serializer
-summary: Type may not be registered. This may happen after you upgrade your app code. Is usually due to locked files.
+summary: Type may not be registered. This may happen after you upgrade the app code. Is usually due to locked files.
 tags: []
 redirects:
  - nservicebus/type-was-not-registered-in-the-serializer
 ---
 
-If you run into this exception when using NServiceBus in an ASP.NET application after upgrading the code of your app, it is usually due to files that are locked.
+If you run into this exception when using NServiceBus in an ASP.NET application after upgrading the code of the app, it is usually due to files that are locked.
 
 
 ## Exception details
@@ -18,4 +18,4 @@ If you run into this exception when using NServiceBus in an ASP.NET application 
 
  1. Stop the w3svc process of the website whose code you are upgrading.
  1. Delete temporary ASP.NET files, usually found in the folder `c:\Windows\Microsoft.NET\Framework(64)\{version}\`.
- 1. Run your application again. The exception should no longer happen.
+ 1. Run the application again. The exception should no longer happen.

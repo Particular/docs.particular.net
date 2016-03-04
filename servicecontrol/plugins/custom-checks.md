@@ -1,6 +1,6 @@
 ---
 title: CustomChecks Plugin
-summary: 'Define a custom set of conditions that are checked on your endpoint.'
+summary: Define a custom set of conditions that are checked on the endpoint.
 tags:
 - ServiceControl
 related:
@@ -35,7 +35,7 @@ NOTE: For NServiceBus Version 6 the `PeriodicCheck` class has been deprecated. I
 
 The result of a custom check is either success or a failure (with a detailed description defined by the developer). This result is sent as a message to the ServiceControl queue and status will be shown in the ServicePulse UI.
 
-NOTE: It is essential that you deploy this plugin to your endpoint in production in order to receive error notifications about the custom check failures in the ServicePulse dashboard.
+NOTE: It is essential that you deploy this plugin to the endpoint in production in order to receive error notifications about the custom check failures in the ServicePulse dashboard.
 
 
 ## NuGets
@@ -48,4 +48,4 @@ NOTE: It is essential that you deploy this plugin to your endpoint in production
 
 ### Deprecated NuGet
 
-If you are using the older version of the plugin, namely **ServiceControl.Plugin.CustomChecks** remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
+If you are using the older version of the plugin, namely **ServiceControl.Plugin.CustomChecks** remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.

@@ -76,9 +76,9 @@ For more information about Pub/Sub in a distributor scenario see [What the distr
 
 ### When hosting endpoints in NServiceBus.Host.exe
 
-If you are running with [NServiceBus.Host.exe](/nservicebus/hosting/), the following profiles start your endpoint with the Distributor functionality:
+If you are running with [NServiceBus.Host.exe](/nservicebus/hosting/), the following profiles start the endpoint with the Distributor functionality:
 
-To start your endpoint as a Distributor ensure you install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) and then run the host from the command line, as follows:
+To start the endpoint as a Distributor ensure you install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) and then run the host from the command line, as follows:
 
 ```cmd
 NServiceBus.Host.exe NServiceBus.MSMQDistributor
@@ -90,8 +90,8 @@ NServiceBus.Host.exe NServiceBus.Distributor
 
 The NServiceBus.[MSMQ]Distributor profile instructs the NServiceBus framework to start a Distributor on this endpoint, waiting for workers to enlist to it. Unlike the NServiceBus.[MSMQ]Master profile, the NServiceBus.[MSMQ]Distributor profile does not execute a Worker on its node.
 
-You can use the NServiceBus.[MSMQ]Master to start a Distributor on your endpoint with a Worker on its endpoint.
-To start your endpoint as a Master ensure you install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) and then run the host from the command line, as follows:
+You can use the NServiceBus.[MSMQ]Master to start a Distributor on the endpoint with a Worker on its endpoint.
+To start the endpoint as a Master ensure you install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) and then run the host from the command line, as follows:
 ```cmd
 NServiceBus.Host.exe NServiceBus.MSMQMaster
 ```
@@ -103,7 +103,7 @@ NServiceBus.Host.exe NServiceBus.Master
 
 ### When self-hosting
 
-When you [self host](/nservicebus/hosting/) your endpoint, use this configuration:
+When you [self host](/nservicebus/hosting/) the endpoint, use this configuration:
 
 snippet:ConfiguringDistributor
 
@@ -148,7 +148,7 @@ Read about the `DistributorControlAddress` and the `DistributorDataAddress` in t
 
 ### When self-hosting
 
-If you are self-hosting your endpoint here is the code required to enlist the endpoint with a Distributor.
+If you are self-hosting the endpoint here is the code required to enlist the endpoint with a Distributor.
 
 snippet: ConfiguringWorker
 

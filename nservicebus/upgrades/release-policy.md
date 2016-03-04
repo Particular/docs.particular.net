@@ -40,11 +40,11 @@ Some examples:
 
  - Version 4.0 was released on 2013-07-11 and Version 4 will therefore be supported until 2016-07-11 but only if you're on the latest minor or a minor version released within the last year.
  - Version 4.6 was released on 2014-05-01 this means that its latest patch release will be supported till 2015-05-01. This means that we will not fix minor versions after 2015-05-01. You are required to update to at least a newer minor version that is still supported as this version will receive a patch release.
- - A newer patch release will automatically mean that the previous patch release will be obsolete. We will apply a bugfix on the latest patch release but will not officially release a patch for a obsolete patch release. In other words, we will not patch version X.Y.3 to version X.Y.3.1 when version X.Y.4 is the latest patch. We would then release version X.Y.5
+ - A newer patch release will automatically mean that the previous patch release will be obsolete. We will apply a bugfix on the latest patch release but will not officially release a patch for a obsolete patch release. In other words, we will not patch version X.Y.3 to version X.Y.3.1 when version X.Y.4 is the latest patch. That would then be released as version X.Y.5
 
-We strongly recommend you upgrade frequently enough to stay on a supported version. For a best upgrade experience we recommend to upgrade from major version to major version. For example if you are on NServiceBus Version 3.3.15 and want to upgrade to NServiceBus Version 5.2.3. First upgrade to the latest NServiceBus Version 4.x release (i.ex. Version 4.7.6). Follow the suggested API upgrade guides and obsoletion messages and then upgrade to NServiceBus Version 5.2.3.
+We strongly recommend you upgrade frequently enough to stay on a supported version. For a best upgrade experience we recommend to upgrade from major version to major version. For example if using NServiceBus Version 3.3.15 and want to upgrade to NServiceBus Version 5.2.3. First upgrade to the latest NServiceBus Version 4.x release (i.ex. Version 4.7.6). Follow the suggested API upgrade guides and obsoletion messages and then upgrade to NServiceBus Version 5.2.3.
 
-Please let us know if there are any bugfixes that you believe should be back-ported to your current version by emailing [support@particular.net](mailto:support@particular.net).
+Contact support at [support@particular.net](mailto:support@particular.net) if there are any bugfixes that believe should be back-ported to a specific. version 
 
 
 ## Summary
@@ -63,7 +63,7 @@ The following table summarize the risk effort and urgency for the different type
 
 Patches are released as soon as an important issue is found. Read the release notes to determine if you're affected.
 
-NOTE: Any issue that could affect the production stability of the system will be classified as `hotfix` so please pay extra attention to those.
+NOTE: Any issue that could affect the production stability of the system will be classified as `hotfix` and hence extra attention to those.
 
 Patch releases are 100% backwards-compatible so you should be able safely upgrade with low risk and effort. In rare cases a code change might be required in relation to the patch. Minimal testing may be required, but where possible verify that it fixes the issue in question.
 
@@ -74,7 +74,7 @@ Minor versions contain bugfixes not critical enough to warrant a `patch` as well
 
 Note that these releases are 100% backwards-compatible (as stipulated by SemVer). Since adding new features requires more code to be added/changed, the risk of upgrading to a `minor` is higher compared to a `patch` release and it's likely that code changes will be needed to take advantage of them.
 
-Since all critical issues will be back-ported, you can choose to upgrade when it's suitable for you, for example as part of releasing non-trivial updates to your own system.
+Since all critical issues will be back-ported, you can choose to upgrade when it's suitable for you, for example as part of releasing non-trivial updates to the system.
 
 
 ### Major

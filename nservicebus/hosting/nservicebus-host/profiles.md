@@ -40,13 +40,13 @@ You may be concerned about the use of command-line parameters. Be aware that whe
 If you just run the host without specifying a profile, NServiceBus defaults to the Production profile. You can pass in as many profiles as you want and NServiceBus runs them all.
 
 
-## Writing your own profile
+## Writing a custom profile
 
 Writing a profile is as simple as defining a class that implements the `NServiceBus.IProfile` marker interface. Here's an example:
 
 snippet:defining_profile
 
-To tell the host to run your profile and the NServiceBus Lite profile together:
+To tell the host to run the profile and the NServiceBus Lite profile together:
 
 ```cmd
 NServiceBus.Host.exe YourNamespace.YourProfile NServiceBus.Lite
@@ -121,7 +121,7 @@ When you use NServiceBus.Host.exe out of the box, you can utilize one of the ava
 
 The following table summarizes the different persistence technologies being used by the built-in profiles.
 
-NOTE: Before configuring persistence technology, to avoid overriding your configurations, the profiles check if other types of storage are used.
+NOTE: Before configuring persistence technology, to avoid overriding custom configurations, the profiles check if other types of storage are used.
 
 |-                                |In-Memory|RavenDB			   |NHibernate   |MSMQ                         |
 |:--------------------------------|:--------|:---------------------|:------------|:----------------------------|                                        

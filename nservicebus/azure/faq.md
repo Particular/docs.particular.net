@@ -17,7 +17,7 @@ This document combines frequently asked questions related to the Azure transport
 
 The short answer is no! The longer answer is: Queues are remote, instead of local, and this has several implications.
 
-* Your message has to cross the network boundaries before it is persisted, this implies that it is subject to all kinds network related issues like latency, timeouts, connection loss, network partitioning etc.
+* A message has to cross the network boundaries before it is persisted, this implies that it is subject to all kinds network related issues like latency, timeouts, connection loss, network partitioning etc.
 * Remote queues do not play along in transactions, as transactions are very brittle because of the possible network issues mentioned in the previous point, but also because they would require server side locks to function properly and allowing anyone to take unbound locks on a service is a very good way to get yourself in a denial of service situation. Hence Azure services typically don't allow transactions.
 
 
@@ -46,7 +46,7 @@ By default it does not, it's an at least once delivery model. But you can enable
 
 There is a known issue when enabling NServiceBus in a website that is hosted in the Microsoft Azure compute emulator and when performance counters have been installed (either via the installer or via PowerShell). There are 2 possible workarounds:
 
-* Do not host your website in the compute emulator, but outside of it
+* Do not host the website in the compute emulator, but outside of it
 * Remove the performance counters using PowerShell `([Diagnostics.PerformanceCounterCategory]::Delete( "NServiceBus" ))`
 
 
@@ -57,4 +57,4 @@ This is almost always related to an exception happening at startup of the roleen
 
 ### Exceptions occurring at startup are not visible in the logs
 
-When using the diagnostics service in cloud services, this service starts in parallel with your own startup code. If an exception occurs at this point in time, your code may not be able to call the diagnostics service yet and your exception information may get lost. Use intellitrace and historical debugging instead to learn more about the cause of the exception.
+When using the diagnostics service in cloud services, this service starts in parallel with the startup code. If an exception occurs at this point in time, the code may not be able to call the diagnostics service yet and the exception information may get lost. Use intellitrace and historical debugging instead to learn more about the cause of the exception.

@@ -70,6 +70,6 @@ If this is a new installation of ServiceControl click on the `Add New Instance` 
 
 #### Service Name and Plugins
 
-When adding your first instance of the ServiceControl service the default service name is "Particular.ServiceControl". You may choose to change this name to a custom service name. In doing so you are also changing the queue name associated with this instance of ServiceControl. 
+When adding the first instance of the ServiceControl service the default service name is "Particular.ServiceControl". You may choose to change this name to a custom service name. In doing so you are also changing the queue name associated with this instance of ServiceControl. 
 
 The endpoint plugins such as the heartbeat and custom check plugins assume that the ServiceControl queue name is the default. If a custom service name was used then see [ServiceControl plugins](/servicecontrol/plugins) for more details on how to configure the endpoint plugins to use the custom queue name. 

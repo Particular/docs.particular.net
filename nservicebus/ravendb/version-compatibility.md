@@ -49,7 +49,7 @@ Version 4 of NServiceBus was shipped with Version 2.0.2375 of RavenDB resource m
 
 NServiceBus Version 4 uses RavenDB.Client Version 2.0 internally. Using RavenDB client 2.0 against a RavenDB Server 2.5 is not recommended. Server restarts may result in wiping out outstanding transactions potentially resulting in message loss. Therefore if using RavenDB server Version 2.5, do the following:
 
-1. Install version 1 of NServiceBus.RavenDB NuGet package in your endpoint. This will ensure that RavenDB Client Version 2.5 is being used instead of 2.0
+1. Install version 1 of NServiceBus.RavenDB NuGet package in the endpoint. This will ensure that RavenDB Client Version 2.5 is being used instead of 2.0
 ```
 Install-Package NServiceBus.RavenDB -version 1.X.Y
 ```

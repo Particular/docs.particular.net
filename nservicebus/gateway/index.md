@@ -15,14 +15,14 @@ The gateway only comes into play where you can't use the regular queued transpor
 
 ## When not to use the gateway
 
-The gateway should not be used when the reason for running separate sites is disaster recovery. Under those circumstances all your sites are exact replicas and are not logically different from each other, so you're better off using whatever support your infrastructure provides to keep your sites in sync. Examples are SAN snapshots, SQL server log shipping, and RavenDB replication.
+The gateway should not be used when the reason for running separate sites is disaster recovery. Under those circumstances all sites are exact replicas and are not logically different from each other, so you're better off using whatever support your infrastructure provides to keep all sites in sync. Examples are SAN snapshots, SQL server log shipping, and RavenDB replication.
 
-So if your sites are logically similar, use one of the approaches above; if they are logically different, the gateway may come in handy.
+So if sites are logically similar, use one of the approaches above; if they are logically different, the gateway may come in handy.
 
 
 ## What are logically different sites?
 
-Logically different sites serve different business purposes, i.e., one site differs in behavior from other sites. Imagine a chain of retail stores where headquarters keep the prices for the different goods you're selling. Those prices need to be highly available to all your stores. If the link to HQ is down, you can't do business, and that is bad for sales.
+Logically different sites serve different business purposes, i.e., one site differs in behavior from other sites. Imagine a chain of retail stores where headquarters keep the prices for the different goods you're selling. Those prices need to be highly available to all the stores. If the link to HQ is down, you can't do business, and that is bad for sales.
 
 Looking at this scenario from a logical point of view, you see that all the pricing communication goes on within the same business service (BS). The different physical sites have different logical behavior. This is a sure sign that the gateway might come in handy. Dig deeper and look at the actual responsibilities of each site:
 
@@ -41,14 +41,14 @@ The prices are pushed daily to the stores and sales reports are pushed daily to 
 
 Going across sites usually means radically different transport characteristics like latency, bandwidth, reliability, and explicit messages for the gateway communication, helping to make it obvious for developers that they are about to make cross-site calls. This is where Remote Procedure Call (RPC) really starts to break down.
 
-RPC completely hides the fact that you are now going out of your data center and will meet all the fallacies of distributed computing head on.
+RPC completely hides the fact that you are now going out of the data center and will meet all the fallacies of distributed computing head on.
 
 
 ## Using the gateway
 
 In order to send message to other sites you need to call the `IBus.SendToSites`.
 
-This allows you to pass in a list of sites to where you want to send your messages. You can configure each site with a different transport mechanism. Currently the supported channels are HTTP/HTTPS but you can easily extend the gateway with your own implementation.
+This allows you to pass in a list of sites to where you want to send the messages. You can configure each site with a different transport mechanism. Currently the supported channels are HTTP/HTTPS but you can easily extend the gateway with a custom implementation.
 
 On the receiving side is another gateway listening on the input channel and forwarding the incoming message to the target endpoint. The image below shows the physical parts involved:
 
@@ -69,7 +69,7 @@ A gateway runs inside each host process. The gateway gets its input from a regul
 
 In Version 5 the gateway is provided by the `NServiceBus.Gateway` NuGet. In Version 3 and Version 4 the gateway is included in the core assembly, meaning that every endpoint is capable of running a gateway.
 
-To turn on the gateway, add the following to your configuration:
+To turn on the gateway, add the following to the configuration:
 
 snippet:GatewayConfiguration
 
@@ -77,6 +77,6 @@ snippet:GatewayConfiguration
 ## Key messages
 
 - Only use the gateway for logically significant sites.
-- Use explicit messages for your cross-site communication.
+- Use explicit messages for cross-site communication.
 - The gateway doesn't support pub/sub.
 - Automatic de-duplication and retries come out of the box.

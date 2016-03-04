@@ -1,6 +1,6 @@
 ---
 title: Critical Errors
-summary: How to handle critical errors which adversely affect messaging in your endpoint.
+summary: How to handle critical errors which adversely affect messaging in an endpoint.
 tags:
 - Hosting
 - Self Hosting
@@ -58,7 +58,7 @@ snippet:CustomHostErrorHandlingAction
 
 ## When should you override the default action
 
-The default action should be overridden whenever that default does not meet your specific hosting requirements. For example
+The default action should be overridden whenever that default does not meet the specific hosting requirements. For example
 
 - If you are using NServiceBus Host, and you wish to take a custom action before the endpoint process is killed.
 - If you are self hosting you can shut down the process via `Environment.FailFast` and re-start the process once the root cause has been diagnosed.
@@ -68,7 +68,7 @@ NOTE: If you choose to not kill the process and just dispose the bus, be aware t
 
 ## Raising Critical error
 
-Any code in your endpoint can invoke the Critical Error action.
+Any code in the endpoint can invoke the Critical Error action.
 
 snippet:InvokeCriticalError
 

@@ -1,13 +1,13 @@
 ---
 title: Unit Testing
-summary: Develop your service layers and long-running processes using test-driven development.
+summary: Develop service layers and long-running processes using test-driven development.
 tags: []
 redirects:
  - nservicebus/unit-testing
  - nservicebus/testing/unit-testing
 ---
 
-Developing enterprise-scale distributed systems is hard and testing them is just as challenging a task. The architectural approach supported by NServiceBus makes these challenges more manageable. And the testing facilities provided actually make unit testing endpoints and workflows easy. You can now develop your service layers and long-running processes using test-driven development.
+Developing enterprise-scale distributed systems is hard and testing them is just as challenging a task. The architectural approach supported by NServiceBus makes these challenges more manageable. And the testing facilities provided actually make unit testing endpoints and workflows easy. You can now develop service layers and long-running processes using test-driven development.
 
 
 ## Getting started

@@ -1,6 +1,6 @@
 ---
-title: How to install your NServiceBus license file
-summary: 'Make sure your NServiceBus endpoints use your license: Configuration API, app.config, subfolder in your BIN directory, or registry.'
+title: How to install the NServiceBus license file
+summary: 'Make sure the NServiceBus endpoints use the license: Configuration API, app.config, subfolder in the BIN directory, or registry.'
 tags:
 - license
 redirects:
@@ -9,17 +9,18 @@ redirects:
 
 ## Overview
 
-There are several ways to make sure that your NServiceBus endpoints pick up and use your license.
+There are several ways to make sure that the NServiceBus endpoints pick up and use the license.
 
 
 ## Using the Registry
 
 NOTE: Using the NServiceBus PowerShell cmdlet is the preferred and simplest method of adding the license file. 
 
-Using the registry to store your license information is a way that all platform tools can access this information easily. This includes NServiceBus endpoints, ServiceControl, and ServiceInsight. (ServicePulse determines licensing status by querying the ServiceControl API.) Using the registry ensures that all the platform tools can access the license status without requiring additional complexity on every deployment.
+Using the registry to store the license information is a way that all platform tools can access this information easily. This includes NServiceBus endpoints, ServiceControl, and ServiceInsight. (ServicePulse determines licensing status by querying the ServiceControl API.) Using the registry ensures that all the platform tools can access the license status without requiring additional complexity on every deployment.
 
 
 ### NServiceBus Version 4.5 and above
+
 
 #### Using the NServiceBus Powershell Cmdlet
 
@@ -36,7 +37,7 @@ These following instructions cover installing the license file without using NSe
 ##### Using PowerShell Command Prompt 
 
 * Open an administrative PowerShell prompt.
-* Change the current working directory to where your license.xml file is.
+* Change the current working directory to where the license.xml file is.
 * Run the following script
 
 ```

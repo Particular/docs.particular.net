@@ -9,7 +9,7 @@ tags:
 
 By default NServiceBus will make sure that you are following [messaging best practices](messages-events-commands.md) for the messages you define as either Commands or Events. While this worked it caused other features like [auto subscribe](publish-subscribe/controlling-what-is-subscribed.md) to stop working since only `Events` are auto subscribed.
 
-You can bypass these enforcements by defining all your messages as plain messages.
+You can bypass these enforcements by defining all messages as plain messages.
 
 NOTE: In Version 6 you can now override the default behavior
 

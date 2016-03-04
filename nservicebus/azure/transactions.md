@@ -45,7 +45,7 @@ As illustrated in the diagram below, the two-phase commit protocol consists of t
 Note that this protocol requires two communication steps for each resource manager added to the transaction and requires a response from each of them to be able to continue. Both of these conditions are problematic in a huge datacenter such as Azure.
 
 * Two communication steps per added resource manager results in an exponential explosion of communication. 2 resources = 4 network calls, 4 = 16, 100 = 10000, etc...
-* Requirement to wait for all responses: the Azure datacenters are huge. Check out [this video (5 mins in)](https://www.youtube.com/watch?v=JJ44hEr5DFE) to get an idea of how huge. It is very likely that network partitioning will occur in your solution as virtual machines are physically remote from each other, so network infrastructure will die, resulting in slow or in doubt transactions being more common than in a small network.
+* Requirement to wait for all responses: the Azure datacenters are huge. Check out [this video (5 minutes in)](https://www.youtube.com/watch?v=JJ44hEr5DFE) to get an idea of how huge. It is very likely that network partitioning will occur in the solution as virtual machines are physically remote from each other, so network infrastructure will die, resulting in slow or in doubt transactions being more common than in a small network.
 
 This is the reason why none of the Azure services supports distributed transactions, and so you are encouraged not to use distributed transactions even if you technically could.
 
@@ -56,7 +56,7 @@ Side note: The .NET framework promotes to a distributed transaction rather quick
 
 By default, NServiceBus relies on the DTC to make distributed system development really easy. But in the Azure environment, you cannot use the DTC. So you have to configure/use it a bit differently.
 
-There are quite a few options. The remainder of this article discusses each option with its advantages and disadvantages. Depending on your scenario you may choose to use NServiceBus differently.
+There are quite a few options. The remainder of this article discusses each option with its advantages and disadvantages. Depending on the scenario you may choose to use NServiceBus differently.
 
 The options:
 
@@ -73,13 +73,13 @@ Prevent transaction promotion by reusing a single local transaction. The idea is
 
 #### Advantages
 
-* By sharing a single local transaction by both your transport and business logic, you prevent the DTC from kicking in while preserving the simple programming that you are used to. Besides injecting the transport level in the rest of the application, nothing really changes.
+ * By sharing a single local transaction by both the transport and business logic, you prevent the DTC from kicking in while preserving the simple programming that you are used to. Besides injecting the transport level in the rest of the application, nothing really changes.
 
 
 #### Disadvantages
 
-* You are limited to a single transactional resource for your entire system. The technique can only be applied if your application fits the limits of this transactional resource. As some Azure services throttle quite aggressively, sometimes on behavior of other tenants, capacity planning might become an issue.
-* Must be able and willing to inject the transaction, which may be a challenge when using third-party libraries, for example.
+ * You are limited to a single transactional resource for the entire system. The technique can only be applied if the application fits the limits of this transactional resource. As some Azure services throttle quite aggressively, sometimes on behavior of other tenants, capacity planning might become an issue.
+ * Must be able and willing to inject the transaction, which may be a challenge when using third-party libraries, for example.
 
 
 ### Atomic operations and transport retries
@@ -97,9 +97,9 @@ However, regular transactions also imply 'rollback' semantics that will make the
 
 #### Disadvantages
 
- * You need to change the way you program your business logic to become atomic; just one insert, update, or delete at a time isn't always easy.
+ * You need to change the way you program the business logic to become atomic; just one insert, update, or delete at a time isn't always easy.
  * You need to change your business logic to become idempotent. As message retry is added to the equation, but outside of the scope of the atomic operation, you need to make sure that the same operation can be repeatedly executed without changing the end result. See 'the need for idempotency' on techniques to achieve this.
- * Retry behavior is typically combined with timeouts that will kick in not only if your operation failed, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel.
+ * Retry behavior is typically combined with timeouts that will kick in not only if the operation failed, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel.
 
 
 ### Sagas and compensation logic
@@ -128,7 +128,7 @@ Where the saga approach uses a central coordinator that orchestrates the work in
 #### Advantages
 
  * You don't need transactions at all to provide consistency.
- * Is more 'linear' in its conceptual model than sagas, so may be easier to keep in your mind.
+ * Is more 'linear' in its conceptual model than sagas, so may be easier to keep in mind.
  * Does not require maintaining the state in a data store; it is implicit by the chaining of handlers and passing around the routing slip (to which the state can be added for the next handler in the list).
 
 
@@ -144,7 +144,7 @@ Note that every approach involving retries will result in delivery semantics at 
 
 There are multiple ways to deal with idempotency though, some at the technical level, others built into the business logic itself.
 
-Depending on your business needs you can go for one of these:
+Depending on the business requirements choose one of these:
 
  * Message deduplication
  * Natural idempotency
@@ -168,14 +168,14 @@ Many operations can be designed in a naturally idempotent way. `TurnOntheLights`
 
 ### Entities and messages with version information
 
-Another technique is to add versioning information to your entities (timestamp or version number or the likes) and include that version information whenever a command is sent that would alter the state of said entity. Now the handling logic can compare the versioning information on both the entity and the message and decide whether this logic needs to be executed or not.
+Another technique is to add versioning information to the entities (timestamp or version number or the likes) and include that version information whenever a command is sent that would alter the state of said entity. Now the handling logic can compare the versioning information on both the entity and the message and decide whether this logic needs to be executed or not.
 
 The downside of this approach is that the version of the entity can change for different commands, and may therefore cause unexpected outcomes when unrelated commands arrive in a different order than logically sent.
 
 
 ### Partner state machines
 
-A better approach is to organize the state inside an entity on a per partner basis, as a miniature state machine. Ultimately the only non-idempotent messages occur when one entity issues a command to another, and if you follow the `one master` rule, there should only be one such logical endpoint sending that command. Therefore if you organize your state internally in the entity according to that relationship, and keep track of the progression of that relationship as a state machine, it's impossible to have versioning conflicts.
+A better approach is to organize the state inside an entity on a per partner basis, as a miniature state machine. Ultimately the only non-idempotent messages occur when one entity issues a command to another, and if you follow the `one master` rule, there should only be one such logical endpoint sending that command. Therefore if you organize the state internally in the entity according to that relationship, and keep track of the progression of that relationship as a state machine, it's impossible to have versioning conflicts.
 
 
 ### Side effect checks
@@ -185,4 +185,4 @@ Arguably a dangerous approach, but often very useful in the real world, is to ch
 
 ### Accept uncertainty
 
-And finally, there is always the option, from a business perspective, to live with some uncertainty and potentially wrong data caused by non-idempotent messages. Maybe it just doesn't matter that much. An occasional retrying `+1` operation may not be that important when your counter is already on 8,489,232,123. Or maybe there are ways to deal with inconsistencies afterwards, and that's why credit notes were invented right. It's hard for us developers to accept this, but the real world works without any form of transaction or idempotency management.
+And finally, there is always the option, from a business perspective, to live with some uncertainty and potentially wrong data caused by non-idempotent messages. Maybe it just doesn't matter that much. An occasional retrying `+1` operation may not be that important when the counter is already on 8,489,232,123. Or maybe there are ways to deal with inconsistencies afterwards, and that's why credit notes were invented right. It's hard for us developers to accept this, but the real world works without any form of transaction or idempotency management.

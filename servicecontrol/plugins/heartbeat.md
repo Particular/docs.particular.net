@@ -1,6 +1,6 @@
 ---
 title: Heartbeat Plugin
-summary: 'Use the Heartbeat plugin to monitor the health of your endpoints.'
+summary: 'Use the Heartbeat plugin to monitor the health of the endpoints.'
 tags:
 - ServiceControl
 - Heartbeat
@@ -20,7 +20,7 @@ If a heartbeat message is not received by ServiceControl from an endpoint, that 
 
 An inactive endpoint indicates that there is a failure in the communication path between ServiceControl and the monitored endpoint. For example, such failures may be caused by a failure of the endpoint itself, a communication failure in the transport, or when ServiceControl is unable to receive and process the heartbeat messages sent by the endpoint.
 
-NOTE: It is essential that you deploy this plugin to your endpoint in production for ServicePulse to be able to monitor your endpoint.
+NOTE: It is essential that you deploy this plugin to the endpoint in production for ServicePulse to be able to monitor the endpoint.
 
 
 ## NuGets
@@ -35,7 +35,7 @@ WARNING: The Heartbeat plugin Version 2 for NServiceBus 5 is currently not suppo
 
 ### Deprecated NuGet
 
-If you are using the older version of the plugin, namely **ServiceControl.Plugin.Heartbeat** remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
+If you are using the older version of the plugin, namely **ServiceControl.Plugin.Heartbeat** remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.
 
 
 ## Configuration

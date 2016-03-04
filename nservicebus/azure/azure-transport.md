@@ -25,7 +25,7 @@ As part of the Azure support for NServiceBus, you can choose between two options
  * Azure Storage Queues
  * Azure Service Bus
 
-Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits your application's needs, review the Azure article [Azure Queues and Azure Service Bus Queues - Compared and Contrasted](https://azure.microsoft.com/en-us/documentation/articles/service-bus-azure-and-service-bus-queues-compared-contrasted/).
+Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits the application's needs, review the Azure article [Azure Queues and Azure Service Bus Queues - Compared and Contrasted](https://azure.microsoft.com/en-us/documentation/articles/service-bus-azure-and-service-bus-queues-compared-contrasted/).
 
 
 ## Configuring for cloud service hosting
@@ -65,7 +65,7 @@ Alternatively, you can use the Azure development environment emulator by using t
 
     UseDevelopmentStorage=True;
 
-In your NServiceBus solution, specify the Endpoint Configuration to use AzureStorageQueue transport:
+In the NServiceBus solution, specify the Endpoint Configuration to use AzureStorageQueue transport:
 
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
 	{
@@ -102,7 +102,7 @@ schemaVersion="2013-03.2.0">
 
 The "AzureServiceBusQueueConfig.ConnectionString" for Azure Service Bus namespace connection string can be retrieved from the Azure portal using an authorized account.
 
-In your NServiceBus solution, specify the endpoint configuration to use AzureServiceBus transport:
+In the NServiceBus solution, specify the endpoint configuration to use AzureServiceBus transport:
 
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
 	{

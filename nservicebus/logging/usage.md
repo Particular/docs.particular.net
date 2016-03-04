@@ -7,7 +7,7 @@ redirects:
 - nservicebus/logging-writing
 ---
 
-Writing to logging from your code is straightforward. Set up a single static field to a `ILog` in your classes, and then use it in all your methods, like this:
+Writing to logging from code is straightforward. Set up a single static field to a `ILog` in the classes, and then use it in all methods, like this:
 
 snippet:UsingLogging
 

@@ -22,15 +22,15 @@ Moreover, NServiceBus is thoroughly extensible. It can be tailor it to many requ
 
 ## [ServiceControl](/servicecontrol) - the foundation
 
-ServiceControl is the monitoring brain in the Particular Service Platform. It collects data on every single message flowing through your system (Audit Queue), errors (Error Queue), as well as additional information regarding sagas, endpoints heartbeats and custom checks (Control Queue). The information is then exposed to [ServicePulse](/servicepulse) and [ServiceInsight](/serviceinsight) via an HTTP API and SignalR notifications.
+ServiceControl is the monitoring brain in the Particular Service Platform. It collects data on every single message flowing through the system (Audit Queue), errors (Error Queue), as well as additional information regarding sagas, endpoints heartbeats and custom checks (Control Queue). The information is then exposed to [ServicePulse](/servicepulse) and [ServiceInsight](/serviceinsight) via an HTTP API and SignalR notifications.
 
 It is important to understand that the data is still collected even if ServiceControl is down. When it starts working again, it will process all the information that was saved in the meantime.
 
-To enable [ServiceControl](/servicecontrol) to gather this information, you need to configure your solution appropriately:
+To enable [ServiceControl](/servicecontrol) to gather this information, you need to configure the solution appropriately:
 
  * [enable auditing](/nservicebus/operations/auditing.md) to collect data on individual messages;
  * configure the [error queue](/nservicebus/errors) to store information on messages failures;
- * [install plugins on your endpoints](/servicecontrol/plugins/) to monitor their health and sagas and use custom checks.
+ * [install plugins on the endpoints](/servicecontrol/plugins/) to monitor their health and sagas and use custom checks.
 
 By default ServiceControl stores information for 30 days, but you can easily [customize this](/servicecontrol/creating-config-file.md).
 
@@ -39,7 +39,7 @@ By default ServiceControl stores information for 30 days, but you can easily [cu
 
 ServiceInsight is a desktop application with features tailored to developers needs. It allows for advanced debugging, tracking the flow of an individual message in the system, observing sagas and more.
 
-It is much easier to quickly spot anomalies and incorrect behavior in your system when you are presented with information in visual form, such as message flow diagrams or sequence diagrams. At the same time, you can access more detailed information such as message headers and all message metadata.
+It is much easier to quickly spot anomalies and incorrect behavior in the system when you are presented with information in visual form, such as message flow diagrams or sequence diagrams. At the same time, you can access more detailed information such as message headers and all message metadata.
 
 
 ## [ServicePulse](/servicepulse) - production monitoring

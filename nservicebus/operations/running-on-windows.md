@@ -48,7 +48,7 @@ You can read more on the persistence needs of NServiceBus [here](/nservicebus/pe
 
 ## Performance counters
 
-To better help you monitoring your system NServiceBus will update a set of performance counters. In order for this to work a they need to be setup on the local machine.
+To better help you monitoring the system NServiceBus will update a set of performance counters. In order for this to work a they need to be setup on the local machine.
 
 More information on the monitoring support in NServiceBus can be found [here](/nservicebus/operations/performance-counters.md).
 

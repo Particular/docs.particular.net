@@ -37,13 +37,13 @@ Note that ServicePulse and ServiceInsight users need to access the ServiceContro
 
 After you set the custom host name and port number and apply network rules limiting access to the ServiceControl service, you may want to limit access to very fine-grained aspects of the ServiceControl data. Specifically, you may want to hide the message body, or even parts of the message body from users (for example: the message body may contain credit card information).
 
-Following are several options for doing so, based on your specific requirements.
+Following are several options for doing so, based on the specific requirements.
 
 
 #### Limiting Access to ServiceControl using Windows Authentication
 
 It is possible to setup IIS to act as a reverse proxy and secure ServiceControl using Windows Authentication.
-Please refer to the [instructions](/servicepulse/install-servicepulse-in-iis.md) here on see how to go about this and the limitations of the approach.
+Refer to the [instructions](/servicepulse/install-servicepulse-in-iis.md) here on see how to go about this and the limitations of the approach.
 
 
 #### Limiting Access to ServiceControl Through VPN Requirements

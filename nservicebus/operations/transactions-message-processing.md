@@ -40,7 +40,7 @@ Open some ports by right clicking "My Computer" and going to the "Default Protoc
 ![](dtc-dcomcnfg-2.png)
 
 If the list of Port Ranges is empty, click the "Add..." button and enter
-"5000-6000" in the dialog box. Your screen should look like the image above. You can probably make do with less than 1000 open ports, but it depends on the number of machines to connect to each other over the DTC.
+"5000-6000" in the dialog box. the screen should look like the image above. You can probably make do with less than 1000 open ports, but it depends on the number of machines to connect to each other over the DTC.
 
 After clicking OK and returning to the Component Services screen, navigate to the "Local DTC" node under the Distributed Transaction Coordinator folder, right click, and select "Properties". In the dialog that opens, select the Security tab, as shown:
 

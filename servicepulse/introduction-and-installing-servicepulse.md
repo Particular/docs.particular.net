@@ -43,7 +43,7 @@ You can install ServicePulse using the [Particular Service Platform Installer](/
 5. The installation process performs the following actions:
    * Installs the Windows Service "Particular ServicePulse" which hosts the web application
    * Open the ServicePulse web application using the default browser
-6. After installing ServicePulse, see the following sections to configure your existing endpoints to be monitored via ServicePulse.
+6. After installing ServicePulse, see the following sections to configure the existing endpoints to be monitored via ServicePulse.
 
 
 ### Configuring ServicePulse
@@ -59,4 +59,4 @@ NOTE: ServiceControl consumes messages from the Audit queue and stores it tempor
 
 ### ServicePulse license
 
-ServicePulse will check your current licensing status by querying the ServiceControl API, located by default at `http://localhost:33333/api`. Therefore, if ServicePulse indicates that the license is invalid or has expired, it is ServiceControl that you must update the license for, by following the instructions at [How to install your NServiceBus license file](/nservicebus/licensing/license-management.md).
+ServicePulse will check the current licensing status by querying the ServiceControl API, located by default at `http://localhost:33333/api`. Therefore, if ServicePulse indicates that the license is invalid or has expired, it is ServiceControl that you must update the license for, by following the instructions at [How to install the NServiceBus license file](/nservicebus/licensing/license-management.md).

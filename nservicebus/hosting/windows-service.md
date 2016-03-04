@@ -39,7 +39,7 @@ Create a new Console Application (**.net 4.5 or higher**) and install the NuGet 
 
 ### Single use NuGet
 
-This is a "single use NuGet". So it after install, and adding code to your project, it will remove itself. Since it is single use there will never be any "upgrade", this is a "use and then own the code" approach.
+This is a "single use NuGet". So it after install, and adding code to the project, it will remove itself. Since it is single use there will never be any "upgrade", this is a "use and then own the code" approach.
 
 
 ### For new self hosting applications
@@ -49,7 +49,7 @@ This NuGet helps you get started on a new self hosted NServiceBus application. I
 
 ### In Memory Persistence
 
-This NuGet configures everything to be in memory. The reason is that it makes no assumptions about your choice of persistence and it also aims to be run-able with no other dependencies.
+This NuGet configures everything to be in memory. The reason is that it makes no assumptions about the choice of persistence and it also aims to be run-able with no other dependencies.
 
 WARNING: Choose a durable persistence before deploying to production.
 

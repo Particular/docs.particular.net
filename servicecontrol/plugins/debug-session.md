@@ -1,6 +1,6 @@
 ---
 title: DebugSession Plugin
-summary: 'Improves your debug sessions when using ServiceInsight.'
+summary: Improves debug sessions when using ServiceInsight.
 tags:
 - ServiceControl
 ---

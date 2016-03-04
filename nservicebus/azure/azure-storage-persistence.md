@@ -18,7 +18,7 @@ Various features of NServiceBus require persistence. Among them are subscription
 
 ## How To enable persistence with Azure storage services
 
-First you need to reference the assembly that contains the Azure storage persisters. The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Azure` package to your project.
+First you need to reference the assembly that contains the Azure storage persisters. The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Azure` package to the project.
 
 If self hosting, you can configure the persistence technology using the configuration API and the extension method found in the `NServiceBus.Azure` assembly
 
@@ -36,7 +36,7 @@ NOTE: In Version 4, when hosting in the Azure role entrypoint provided by `NServ
 
 ## Detailed Configuration
 
-You can get more control on the behavior of each persister by specifying one of the respective configuration sections in your app.config and changing one of the available properties, or through code.
+You can get more control on the behavior of each persister by specifying one of the respective configuration sections in the app.config and changing one of the available properties, or through code.
 
 
 ### Detailed Configuration with Configuration Section
@@ -68,17 +68,17 @@ For more information see [Configuring Azure Connection Strings](https://azure.mi
 
 ## Additional performance tips
 
-Azure storage persistence is network IO intensive, every operation performed against storage implies one or more network hops, most of which are small http requests to a single IP address (of your storage cluster). By default the .NET framework has been configured to be very restrictive when it comes to this kind of communication:
+Azure storage persistence is network IO intensive, every operation performed against storage implies one or more network hops, most of which are small http requests to a single IP address (of the storage cluster). By default the .NET framework has been configured to be very restrictive when it comes to this kind of communication:
 - It only allows 2 simultaneous connections to a single IP address by default
 - It's algorithm stack has been optimized for larger payload exchanges, not for small requests
 - It doesn't trust the remote servers by default, so it verifies for revoked certificates on every request
 
-You can drastically improve performance by overriding these settings. You can leverage the ServicePointManager class for this end and change it's settings, but this must be done before your application makes any outbound connection, so ideally it's done very early in your application's startup routine.
+You can drastically improve performance by overriding these settings. You can leverage the ServicePointManager class for this end and change it's settings, but this must be done before the application makes any outbound connection, so ideally it's done very early in the application's startup routine.
 
 	ServicePointManager.DefaultConnectionLimit = 5000; // default settings only allows 2 concurrent requests per process to the same host
 	ServicePointManager.UseNagleAlgorithm = false; // optimize for small requests
 	ServicePointManager.Expect100Continue = false; // reduces number of http calls
-	ServicePointManager.CheckCertificateRevocationList = false; // optional, only if you trust all your dependencies	
+	ServicePointManager.CheckCertificateRevocationList = false; // optional, only if you trust all dependencies	
 
 
 ### Detailed Configuration with Code

@@ -11,7 +11,7 @@ Note: This sample uses the same approach as the [NServiceBus as a Windows Servic
 
 ## Code walk-through
 
-This samples walks through the most common choices you will need to make when creating your first endpoint. It will also show the configuration APIs needed to implement those choices.
+This samples walks through the most common choices you will need to make when creating a first endpoint. It will also show the configuration APIs needed to implement those choices.
 
 
 ## Hosting

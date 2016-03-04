@@ -23,8 +23,8 @@ When the message finishes processing, the child container and all transient inst
 
 When the message is processed, the session is disposed and all resources such as database connections are released.
 
-Child containers are a powerful feature that can simplify your code and should definitely be in your toolbox.
+Child containers are a powerful feature that can simplify the code.
 
-If you configure your components using the NServiceBus configure API, it's possible to configure instance life-cycle to be per unit of work, using this:
+If configuring components using the NServiceBus configure API, it's possible to configure instance life-cycle to be per unit of work, using this:
 
 snippet:InstancePerUnitOfWorkRegistration

@@ -6,11 +6,11 @@ tags:
  - pipeline
 ---
 
-While NServiceBus provides some simple interfaces to plug in your code at certain steps in the life-cycle, Features offer a more complete approach to write and distribute custom extensions.
+While NServiceBus provides some simple interfaces to plug in the code at certain steps in the life-cycle, Features offer a more complete approach to write and distribute custom extensions.
 
 Features allow you to:
 
-* Configure required dependencies for your Feature
+* Configure required dependencies for the Feature
 * Enable or disable a Feature via configuration or based on conditions and dependencies
 * Get full access to the pipeline, settings and the container
 
@@ -20,7 +20,7 @@ Features allow you to:
 To create a new feature create a class which inherits from `Feature`. This offers you two basic extensibility points:
 
 * The constructor of the class will always be executed and should be used to determine whether to enable or disable the feature, configure default settings and registering startup tasks.
-* The `Setup` method is called if all defined conditions are met and the feature is marked as *enabled*. Use this method to configure and initialize all required components for your feature.
+* The `Setup` method is called if all defined conditions are met and the feature is marked as *enabled*. Use this method to configure and initialize all required components for the feature.
 
 snippet:MinimalFeature
 
@@ -92,7 +92,7 @@ In order for a feature to be activated it needs to satisfy the following criteri
 
 ## Feature setup
 
-`Setup` has to be implemented in your feature and will be called if the feature is enabled. It allows you to complete configuration of your feature, hook into the pipeline or registering services on the container. The `FeatureConfigurationContext` parameter on the method contains:
+`Setup` has to be implemented in the feature and will be called if the feature is enabled. It allows you to complete configuration of the feature, hook into the pipeline or registering services on the container. The `FeatureConfigurationContext` parameter on the method contains:
 
 * Settings: read or write settings which should be available to other components or read access settings provided by NServiceBus.
 * Container: register services with the dependency injection container which can be injected to other components.
@@ -110,7 +110,7 @@ If you need to execute some feature related logic after the feature has been sta
 
 snippet:FeatureStartupTaskDefinition
 
-To associate a `FeatureStartupTask` with your feature, using `RegisterStartupTask`.
+To associate a `FeatureStartupTask` with the feature, using `RegisterStartupTask`.
 
 snippet:FeatureStartupTaskRegistration
 

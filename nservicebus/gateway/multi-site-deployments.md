@@ -50,7 +50,7 @@ For example, the act of publishing prices from the headquarters has logical sign
 
 ## Cross-site data transfer
 
-Depending on your network technology, you can set up a virtual private network (VPN) between your sites. This provides Windows networking visibility of queues in the target site from the sending site. You can use standard NServiceBus APIs to direct messages to their relevant targets, in the form of `Bus.Send(toDestination, msg);`.
+Depending on the network technology, you can set up a virtual private network (VPN) between sites. This provides Windows networking visibility of queues in the target site from the sending site. You can use standard NServiceBus APIs to direct messages to their relevant targets, in the form of `Bus.Send(toDestination, msg);`.
 
 This model is recommended as it provides all the benefits of durable messaging between unreliably connecting machines; at several sites, the same as within a single site. You can read a great deal of information on [setting up and managing a Windows VPN](https://technet.microsoft.com/en-US/network/dd420463).
 
@@ -128,7 +128,7 @@ By default, NServiceBus uses [RavenDB](/nservicebus/ravendb/) to store the IDs b
 
 ## Incoming channels
 
-When the gateway is enabled it automatically sets up an HTTP channel to listen to `http://localhost/{name of your endpoint}`. To change this URL or add more than one incoming channel, configure `app.config`, as shown:
+When the gateway is enabled it automatically sets up an HTTP channel to listen to `http://localhost/{name of the endpoint}`. To change this URL or add more than one incoming channel, configure `app.config`, as shown:
 
 
 #### Using App.Config

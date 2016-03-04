@@ -1,12 +1,12 @@
 ---
-title: How to install your license file in ServiceInsight
+title: How to install the license file in ServiceInsight
 summary: Short guide on installing the Particular Software license in Serviceinsight user interface
 tags:
 - ServiceInsight
 - license
 ---
 
-When your trial period is over, ServiceInsight will display the following dialog:
+When the trial period is over, ServiceInsight will display the following dialog:
 
 ![trial period expiration](images/trial-period-expiration.png)
 
@@ -15,7 +15,7 @@ The same dialog can be displayed at any time clicking on "Help" \> "Register" me
 
 ### Loading the license file
 
-When the dialog box opens, browse and find your license file, select it and click Open. The dialog box will then display the following confirmation message:
+When the dialog box opens, browse and find the license file, select it and click Open. The dialog box will then display the following confirmation message:
 
 ![trial period licensed](images/trial-period-licensed.png)
 

@@ -31,7 +31,7 @@ Support for other containers is provided via custom integrations.
 
 ## Using an existing container
 
-The above pages all have examples of how to pass in an instance of an existing container. This is useful when you want to make use of the full features of your container and share the DI behavior with NServiceBus.
+The above pages all have examples of how to pass in an instance of an existing container. This is useful when you want to make use of the full features of the container and share the DI behavior with NServiceBus.
 
 
 ### IBus resolution
@@ -43,11 +43,11 @@ Note that the instance of `IBus` is scoped for the lifetime of the container. He
 
 When using an external container you would normally not dispose the bus instance manually. If you would call `IBus.Dispose()` then you will indirectly trigger the container to dispose lifetime scope.
 
-NOTE: Do NOT call `IBus.Dispose` when using an external container, instead call dispose in your container during shutdown.
+NOTE: Do NOT call `IBus.Dispose` when using an external container, instead call dispose in the container during shutdown.
 
 
-## Plugging in your own container
+## Plugging in the container
 
-If you have your own container that is not already supported by a NuGet package, you can create a plugin centering around the `IContainer` abstraction. Once this is created and registered, NServiceBus will use your custom container to look up its own dependencies.
+If you have your own container that is not already supported by a NuGet package, you can create a plugin centering around the `IContainer` abstraction. Once this is created and registered, NServiceBus will use the custom container to look up its own dependencies.
 
 snippet:CustomContainers

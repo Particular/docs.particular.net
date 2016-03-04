@@ -22,9 +22,9 @@ In this presentation, Udi Dahan explains the disadvantages of classical web serv
 
 One of the problems with the distributed systems built today is that they are fragile. As one part of the system slows down, the effect tends to ripple out and cripple the entire system. One of the primary design goals of NServiceBus is to eliminate that, guiding developers to write code that is robust in production environments. That robustness prevents data loss under failure conditions.
 
-To make effective use of NServiceBus, you need to understand the distributed systems architecture it is designed to support. In other words, if you design your system according to the principles laid out below, NServiceBus will make your life a lot easier. On the other hand, if you do not follow these principles, NServiceBus will probably make it harder.
+To make effective use of NServiceBus, you need to understand the distributed systems architecture it is designed to support. In other words, if you design the system according to the principles laid out below, NServiceBus will make life a lot easier. On the other hand, if you do not follow these principles, NServiceBus will probably make it harder.
 
-The extensibility features in NServiceBus enable you to tweak its behavior to suit your specific needs, yet they are documented separately.
+The extensibility features in NServiceBus enable you to tweak its behavior to suit the specific needs, yet they are documented separately.
 
 The communications pattern that enables robustness is one-way messaging, also known as "fire and forget". This is discussed in more detail shortly.
 

@@ -27,7 +27,7 @@ snippet:Log4netInCode
 
 ## Filtering
 
-If NServiceBus writes a significant amount of information to the log. To limit this information you can use the filtering features of your underlying logging framework.
+If NServiceBus writes a significant amount of information to the log. To limit this information you can use the filtering features of the underlying logging framework.
 
 For example to limit log output to a specific namespace.
 

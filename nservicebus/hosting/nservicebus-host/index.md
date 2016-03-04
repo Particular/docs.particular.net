@@ -1,6 +1,6 @@
 ---
 title: NServiceBus Host
-summary: Avoid writing repeat configuration code, host your endpoints in a Windows Service, and change technologies without code.
+summary: Avoid writing repeat configuration code, host the endpoints in a Windows Service, and change technologies without code.
 tags:
 - Hosting
 - Logging
@@ -16,11 +16,11 @@ The NServiceBus Host takes a more opinionated approach to hosting. It allows the
 To use the host just create a new C# class library and reference the [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host/). The package also creates an example endpoint configuration and sets the NServiceBus.Host.exe as the startup project for the endpoint.
 
 
-## Configuring your endpoint
+## Configuring the endpoint
 
 The `NServiceBus.Host.exe` scans the runtime directory for assemblies containing a class that implements the `IConfigureThisEndpoint` interface. This class will contain the configuration for this endpoint. You can read more on how NServiceBus does [assembly scanning](/nservicebus/hosting/assembly-scanning.md).
 
-If you want to avoid the scanning process you can explicitly configure the type of your endpoint configuration by adding the following to the `NServiceBus.Host.exe.config` file. The below example show the exact syntax:
+If you want to avoid the scanning process you can explicitly configure the type of the endpoint configuration by adding the following to the `NServiceBus.Host.exe.config` file. The below example show the exact syntax:
 
 snippet:ExplicitHostConfigType
 
@@ -34,7 +34,7 @@ NOTE: When the endpoint configuration is not specified explicitly, the host scan
 
 ## Custom initialization and startup
 
-As of NServiceBus Version 5 you customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on your endpoint configuration class. Just call the appropriate methods on the `BusConfiguration` parameter passed to the method.
+As of NServiceBus Version 5 you customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on the endpoint configuration class. Just call the appropriate methods on the `BusConfiguration` parameter passed to the method.
 
 snippet:customize_nsb_host
 
@@ -60,12 +60,12 @@ Defer all startup behavior until all initialization has been completed. At this 
 
 As of NServiceBus Version 5 [logging](/nservicebus/logging/) for the host is controlled with the same API as the core.
 
-You can add the logging API calls as mentioned in the above article directly in your implementation of `IConfigureThisEndoint.Customize` method.
+You can add the logging API calls as mentioned in the above article directly in the implementation of `IConfigureThisEndoint.Customize` method.
 
 
 ### NServiceBus Version 4 and Version 3
 
-To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure your custom setup. To make NServiceBus use your logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](/nservicebus/logging) and shown below:
+To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure the custom setup. To make NServiceBus use the logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](/nservicebus/logging) and shown below:
 
 snippet:CustomHostLogging
 
@@ -136,7 +136,7 @@ To install multiple instances of the same service by providing each a different 
 By default, Windows Services start automatically when the operating system starts. To change that, add
 `/startManually` to the `/install` command.
 
-To specify under which account you want your service to run, pass in the username and password of that account.
+To specify under which account you want the service to run, pass in the username and password of that account.
 
 Following is an example of the `/install` command line:
 
@@ -157,7 +157,7 @@ To uninstall, call
 NServiceBus.Host.exe /uninstall
 ```
 
-If you specify a service name or instance name when installing your service, you need to pass them in to the uninstall command as well:
+If you specify a service name or instance name when installing the service, you need to pass them in to the uninstall command as well:
 
 ```
 NServiceBus.Host.exe [/uninstall  [/serviceName] [/instance]]

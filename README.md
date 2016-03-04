@@ -14,8 +14,8 @@ For simple changes the GitHub web UI should suffice.
 
  1. Find the page you want to edit on http://docs.particular.net/.
  1. Click the `Improve this doc`. This will automatically fork the project so you can edit the file.
- 1. Make the changes you require. Ensure you verify your changes in the `Preview` tab.
- 1. Add a description of your changes.
+ 1. Make the changes you require. Ensure you verify the changes in the `Preview` tab.
+ 1. Add a description of the changes.
  1. Click `Propose File Changes`.
 
 
@@ -24,8 +24,8 @@ For simple changes the GitHub web UI should suffice.
 For more complex changes you should fork and then submit a pull request. This is useful if you are proposing multiple file changes
 
  1. [Fork](https://help.github.com/forking/) on GitHub.
- 1. Clone your fork locally.
- 1. Work on your feature.
+ 1. Clone the fork locally.
+ 1. Work on the feature.
  1. Push the up to GitHub.
  1. Send a Pull Request on GitHub.
 
@@ -228,7 +228,7 @@ The site is rendered using [GitHub Flavored Markdown](https://help.github.com/ar
 
 ### [MarkdownPad](http://markdownpad.com/)
 
-For editing markdown on your desktop (after cloning locally with Git) try [MarkdownPad](http://markdownpad.com/).
+For editing markdown on the desktop (after cloning locally with Git) try [MarkdownPad](http://markdownpad.com/).
 
 
 #### Markdown flavor
@@ -284,7 +284,7 @@ Endpoint1\Endpoint1.csproj
 
 At the moment the best way to get started on a sample is to copy an existing one. Ideally one that has similarities to what you are trying to achieve.
 
-A good sample to start with is the [Default Logging Sample](https://github.com/Particular/docs.particular.net/tree/master/samples/logging/default), since all it does is enable logging. You can then add the various moving pieces to your copy.
+A good sample to start with is the [Default Logging Sample](https://github.com/Particular/docs.particular.net/tree/master/samples/logging/default), since all it does is enable logging. You can then add the various moving pieces to the copy.
 
 
 ### Screenshots

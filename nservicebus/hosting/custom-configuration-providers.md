@@ -20,7 +20,7 @@ Just adding the code above is enough since NServiceBus will automatically use it
 
 ## Code only configuration
 
-If you don't want your process to have its configuration specified in the config file, you can write a class that implements `IConfigurationSource` and in it retrieve the configuration from any location you like: a database, a web service, anything. Here's how:
+If you don't want the process to have its configuration specified in the config file, you can write a class that implements `IConfigurationSource` and in it retrieve the configuration from any location you like: a database, a web service, anything. Here's how:
 
 
 ### Initialize the bus to use the custom configuration source
@@ -28,7 +28,7 @@ If you don't want your process to have its configuration specified in the config
 snippet: RegisterCustomConfigSource
 
 
-### Define your custom configuration source to provide the configuration values instead of app.config
+### Define the custom configuration source to provide the configuration values instead of app.config
 
 snippet: CustomConfigSource
 

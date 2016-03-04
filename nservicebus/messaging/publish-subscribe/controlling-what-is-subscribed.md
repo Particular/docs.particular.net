@@ -19,7 +19,7 @@ Messages matching the following criteria will be auto subscribed at startup.
 
 ### Routing configuration needed
 
-If your selected transport doesn't natively supports publish-subscribe you need to specify the address of the publisher for each event. This is done by [specifying a message owner in the message endpoint mappings](/nservicebus/messaging/message-owner.md). For example:
+If the selected transport doesn't natively supports publish-subscribe you need to specify the address of the publisher for each event. This is done by [specifying a message owner in the message endpoint mappings](/nservicebus/messaging/message-owner.md). For example:
 
 snippet:endpoint-mapping-appconfig
 

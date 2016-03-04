@@ -26,9 +26,9 @@ Note: Publish/Subscribe and Timeouts (including message deferral) are supported 
 
 ## Enabling the Transport
 
-First, ensure you're using Standard Messaging Tier for Azure Service Bus when creating your namespace at Azure portal.
+First, ensure that Standard Messaging Tier is being used for Azure Service Bus when creating the namespace in the Azure portal.
 
-Second, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a NuGet package reference to the `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package to your project.
+Second, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a NuGet package reference to the `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package to the project.
 
 ```
 PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureServiceBus
@@ -80,7 +80,7 @@ Using this configuration setting you can change the following values. NOTE: Most
 
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.
 
-Defaults are just starting values. You should always measure and test these values against your solution and adjust those accordingly.
+Defaults are just starting values. You should always measure and test these values against the solution and adjust those accordingly.
 
 
 ### BrokeredMessage body conventions

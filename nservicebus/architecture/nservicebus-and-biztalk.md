@@ -26,6 +26,6 @@ As you can see, the use of BizTalk behind a service boundary is something of an 
 
 Sometimes you need a hammer, sometimes you need a screwdriver, and sometimes you need both. While a Swiss army knife may appear to do both, it is a poor choice for any but the most trivial undertakings.
 
-To learn more about dividing up your architecture into high-level business services, see the [presentation Udi gave on SOA](principles.md).
+To learn more about dividing up an architecture into high-level business services, see the [presentation Udi gave on SOA](principles.md).
 
 [This download from Microsoft](http://download.microsoft.com/download/B/0/6/B0678433-88EA-44D4-8C4C-F4AA5DFC4C58/nServiceBus%20and%20BizTalk%20Server.docx) describes the details of getting NServiceBus and BizTalk to work together, including a whitepaper, code samples, and videos to get you up and running in no time.

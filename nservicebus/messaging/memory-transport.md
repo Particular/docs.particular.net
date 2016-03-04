@@ -128,7 +128,7 @@ private class CustomerBecamePreferredHandler: IHandleMessages<ClientBecamePrefer
 ### How is an in-memory event different from Bus.Publish<T>?
 
 
-When an event is published via Bus.Publish, a message is delivered asynchronously to all of the subscribers via the queue/transport of your choice, taking into account all the messaging constraints such as the receiving party could be down. Subscribers of this event can be in different machines or different endpoints on the same machine.
+When an event is published via Bus.Publish, a message is delivered asynchronously to all of the subscribers via the queue/transport of choice, taking into account all the messaging constraints such as the receiving party could be down. Subscribers of this event can be in different machines or different endpoints on the same machine.
 
 On the other hand, in-memory events are raised in-process and are not distributed through the bus. All registered handlers for this event are called synchronously.
 

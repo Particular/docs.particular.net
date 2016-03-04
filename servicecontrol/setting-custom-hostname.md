@@ -53,7 +53,7 @@ If you have modified the hostname settings manually you must change the URLACL s
 1. After modifying the configuration file manually, update the URLACL configurations accordingly.
 1. Allow access to the ports specified for ServiceControl hostname & port number by configuring firewalls.
 
-For example, the following command line (with the appropriate adjustments for your hostname and port number) adds the relevant URLACL setting: 
+For example, the following command line (with the appropriate adjustments for the hostname and port number) adds the relevant URLACL setting: 
 
 ```
 netsh http add urlacl  url=http://*:33333/api/  user=everyone  listen=yes
@@ -75,7 +75,7 @@ netsh http delete urlacl  url=http://*:33333/api/`
 
 It is important to understand that URLACLs do not restrict access to the URL based on the identity of the requestor, what they do is to restrict which user or security group can start to listen for incoming requests on the configured URL.
 
-In the above sample `everyone` is for demonstration purpose. Be sure to configure your URLACL based on security policies defined in your environment.
+In the above sample `everyone` is for demonstration purpose. Be sure to configure the URLACL based on security policies defined in the environment.
 
 ServiceControl will not start if the service account does not have access to listen on the URL specified in the configuration file.
 

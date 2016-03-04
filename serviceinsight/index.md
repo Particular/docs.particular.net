@@ -19,14 +19,14 @@ From design through to production, ServiceInsight provides concise and user-frie
 The NServiceBus Framework is part of the Particular Service Platform which includes these tools:
 
  * The audit and error aggregation power of [ServiceControl](../servicecontrol) is leveraged by [ServicePulse](../servicepulse) for operational monitoring and alerting.
-* ServiceInsight provides a detailed view of messages in their system context, from endpoints to sagas, showing relationships and data. 
+ * ServiceInsight provides a detailed view of messages in their system context, from endpoints to sagas, showing relationships and data. 
 
 
 ## Visualizing the System
 
-The ServiceInsight user interface provides multiple views of your distributed system. Using information collected in ServiceControl, ServiceInsight enumerates your endpoints and provides detailed message and relationship data, with formatted views of XML, JSON, and binary messages.
+The ServiceInsight user interface provides multiple views of a distributed system. Using information collected in ServiceControl, ServiceInsight enumerates the endpoints and provides detailed message and relationship data, with formatted views of XML, JSON, and binary messages.
 
-The flow diagram provides a detailed visual overview of the messages, collated by conversation. Using this view you can see the flow in your system and which endpoints raised specific events and sent or handled messages. The Saga view illustrates the start of a saga, the timeouts, and interactions. The sequence diagram shows the order in which messages have been sent and handled by endpoints in your system.
+The flow diagram provides a detailed visual overview of the messages, collated by conversation. Using this view you can see the flow in the system and which endpoints raised specific events and sent or handled messages. The Saga view illustrates the start of a saga, the timeouts, and interactions. The sequence diagram shows the order in which messages have been sent and handled by endpoints in the system.
  
 As you select endpoints, the other views within ServiceInsight respond and filter the information to show only messages pertaining to that endpoint.
 

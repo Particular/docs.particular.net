@@ -37,7 +37,7 @@ The environmental-related profiles:
 
 ### Lite profile
 
-Suitable for running on your development machine, possibly inside Visual Studio.
+Suitable for running on the development machine, possibly inside Visual Studio.
 
 This profile configures all the persistence like sagas, subscriptions, timeouts, etc. to be InMemory which is easy to set up but probably not what you want for production.
 
@@ -50,7 +50,7 @@ Logging is output to the console.
 
 ### Integration profile
 
-Suitable for running your endpoint in integration and QA environments.
+Suitable for running the endpoint in integration and QA environments.
 
 Installers are invoked to make deployment easy to automate.
 
@@ -61,11 +61,11 @@ Logging is output to the console by default.
 
 The default if no explicit profile is defined.
 
-This profile sets your endpoint up for production use. This means that all storage is durable and suitable for scale out.
+This profile sets the endpoint up for production use. This means that all storage is durable and suitable for scale out.
 
-Installers are not invoked since your endpoint is probably installed as a Windows Service and does not run with elevated privileges.
+Installers are not invoked since the endpoint is probably installed as a Windows Service and does not run with elevated privileges.
 
-Installers only run when you install the host or your code runs inside Visual Studio in Debug mode.
+Installers only run when you install the host or the code runs inside Visual Studio in Debug mode.
 
 Logging is output to a log file in the runtime directory (again, because you are probably running it as a Windows Service).
 

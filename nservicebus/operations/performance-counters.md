@@ -25,7 +25,7 @@ Despite the many performance counters Microsoft provides for MSMQ (including mes
 
 NServiceBus includes several performance counters. They are installed under the `NServiceBus` category.
 
-Since all performance counters in Windows are exposed via Windows Management Instrumentation (WMI), it is very straightforward to pull this information into your existing monitoring infrastructure.
+Since all performance counters in Windows are exposed via Windows Management Instrumentation (WMI), it is very straightforward to pull this information into the existing monitoring infrastructure.
 
 
 ### Critical Time
@@ -34,7 +34,7 @@ Since all performance counters in Windows are exposed via Windows Management Ins
 
 **Added in:** Version 3
 
-Monitors the age of the oldest message in the queue. This takes into account the whole chain, from the message being sent from the client machine until successfully processed by the server. Define an SLA for each of your endpoints and use the `CriticalTime` counter to make sure you adhere to it.
+Monitors the age of the oldest message in the queue. This takes into account the whole chain, from the message being sent from the client machine until successfully processed by the server. Define an SLA for each of the endpoints and use the `CriticalTime` counter to make sure you adhere to it.
 
 **Versions 6 and above:** The value recorded in the TimeSent header is the time when the call to send the message is executed, not the actual time when the message was dispatched to the transport infrastructure. Since the outgoing messages in handlers are sent as a [batched](/nservicebus/messaging/batched-dispatch.md) operation, depending on how long the message handler takes to complete, the actual dispatch may happen later than the time recorded in the TimeSent header. For operations outside of handlers the recorded sent time is accurate.
 
@@ -53,7 +53,7 @@ In the NServiceBus Host this counter is enabled by default.
 
 **Added in:** Version 3
 
-Acts as a early warning system to tell you the number of seconds left until the SLA for the particular endpoint is breached. This gives you a system-wide counter that can be monitored without putting the SLA into your monitoring software. Just set that alarm to trigger when the counter goes below X, which is the time that your operations team needs to be able to take actions to prevent the SLA from being breached.
+Acts as a early warning system to tell you the number of seconds left until the SLA for the particular endpoint is breached. This gives you a system-wide counter that can be monitored without putting the SLA into the monitoring software. Just set that alarm to trigger when the counter goes below X, which is the time that the operations team needs to be able to take actions to prevent the SLA from being breached.
 
 
 #### Configuration
@@ -62,7 +62,7 @@ This counter can be enabled using the the following code:
 
 snippet: enable-sla
 
-In the NServiceBus Host this counter is enabled by default. But the value can be configured either by the above API or using a `EndpointSLAAttribute` on your `IConfigureThisEndpoint`.
+In the NServiceBus Host this counter is enabled by default. But the value can be configured either by the above API or using a `EndpointSLAAttribute` on the instance of `IConfigureThisEndpoint`.
 
 snippet:enable-sla-host-attribute
 
