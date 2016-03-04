@@ -40,6 +40,7 @@
 
             #endregion
         }
+
         /**
 
         void DisableCallbackReceiver()
@@ -86,6 +87,7 @@
             #endregion
         }
     **/
+
         void UseDirectRoutingTopology()
         {
             #region rabbitmq-config-usedirectroutingtopology
@@ -103,7 +105,7 @@
 
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .UseDirectRoutingTopology(MyRoutingKeyConvention,(address,eventType) => "MyTopic");
+                .UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
 
             #endregion
         }
@@ -123,6 +125,7 @@
 
             #endregion
         }
+
         class MyRoutingTopology : IRoutingTopology
         {
             public void SetupSubscription(IModel channel, Type type, string subscriberName)
@@ -155,6 +158,7 @@
                 throw new NotImplementedException();
             }
         }
+
         class MyConnectionManager : IManageRabbitMqConnections
         {
             public IConnection GetPublishConnection()
@@ -174,4 +178,3 @@
         }
     }
 }
-
