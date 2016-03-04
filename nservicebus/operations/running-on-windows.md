@@ -32,7 +32,7 @@ To read more about MSMQ go [here](/nservicebus/msmq/).
 
 ## Distributed Transaction Coordinator
 
-In order to support guaranteed once delivery of messages NServiceBus makes use of the Distributed Transaction Coordinator(DTC) to synchronize transaction between the queuing system and your database. For this to work correctly the MSDTC needs to be started and configured correctly.
+In order to support guaranteed once delivery of messages NServiceBus makes use of the Distributed Transaction Coordinator(DTC) to synchronize transaction between the queuing system and the database. For this to work correctly the MSDTC needs to be started and configured correctly.
 
 You can read more on transactions [here](/nservicebus/operations/transactions-message-processing.md)
 

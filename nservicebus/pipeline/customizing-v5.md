@@ -18,7 +18,7 @@ Warning: Each behavior is responsible to call the next step in the pipeline chai
 
 ## Add a new step
 
-To add your custom behavior to the pipeline, you need to define a step for it:
+To add custom behavior to the pipeline, you need to define a step for it:
 
 snippet:NewPipelineStep
 
@@ -29,14 +29,14 @@ snippet:AddPipelineStep
 
 ## Replace an existing step
 
-To replace the implementation of an existing step, you can replace it with your custom behavior:
+To replace the implementation of an existing step, you can replace it with the custom behavior:
 
 snippet:ReplacePipelineStep
 
 
 ## Some of the commonly used steps
 
-To help you adding your custom steps at the right place within the pipeline, the essential built-in steps are listed in the `WellKnownStep` class. The following list describes some of the listed steps:
+To help you adding the custom steps at the right place within the pipeline, the essential built-in steps are listed in the `WellKnownStep` class. The following list describes some of the listed steps:
 
 
 ### Incoming Message Pipeline

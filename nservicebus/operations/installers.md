@@ -9,7 +9,7 @@ redirects:
 
 NServiceBus has the concept of installers to make sure that endpoint specific specific artifacts e.g., queues, folders, or databases are installed and configured automatically for you if needed at install time.
 
-To create your own installer is as easy as implementing the `INeedToInstallSomething` interface.
+To create a custom installer is as easy as implementing the `INeedToInstallSomething` interface.
 
 snippet:InstallSomething
 
@@ -37,4 +37,3 @@ When self hosting NServiceBus, invoke the installers manually, using this:
 snippet:Installers
 
 NOTE: The use of `/installInfrastructure` flag with the `NServiceBus.Host` has been deprecated in Version 4.0. To install needed infrastructure, use the [PowerShell commandlets](management-using-powershell.md) instead.
-
