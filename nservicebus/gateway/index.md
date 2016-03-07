@@ -46,7 +46,7 @@ RPC completely hides the fact that you are now going out of the data center and 
 
 ## Using the gateway
 
-In order to send message to other sites you need to call the `IBus.SendToSites`.
+In order to send message to other sites you need to call the `IMessageHandlerContext.SendToSites` (in version 6) or `IBus.SendToSites` (in version 3-5).
 
 This allows you to pass in a list of sites to where you want to send the messages. You can configure each site with a different transport mechanism. Currently the supported channels are HTTP/HTTPS but you can easily extend the gateway with a custom implementation.
 

@@ -1,12 +1,12 @@
 ---
 title: Replying to a Message
-summary: Answer a message using the Reply method on IBus.
+summary: Answer a message using the Reply method on IMessageHandlerContext/IBus.
 tags: []
 redirects:
 - nservicebus/how-do-i-reply-to-a-message
 ---
 
-The simplest way to reply to a message is using the `Reply` method provided by the bus, like this:
+The simplest way to reply to a message is using the `Reply` method provided by the `IMessageHandlerContext` (in version 6) or IBus (in version 3-5), like this:
 
 snippet: ReplyingMessageHandler
 
