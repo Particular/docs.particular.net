@@ -34,8 +34,8 @@ The implementation details for each transport are discussed in the dedicated doc
 | MSMQ | + | + | + | + |
 | [SQL Server Transport](/nservicebus/sqlserver/design.md#transactions-and-delivery-guarantees) | + | + | + | + |
 | RabbitMQ |  - | - | + | + |
-| Azure Storage Queues|  - | - | + | + |
-| Azure Service Bus |  - | + | + | + |
+| [Azure Storage Queues](/nservicebus/azure/azure-storage-queues-transport.md#transactions-and-delivery-guarantees)|  - | - | + | + |
+| [Azure Service Bus](/nservicebus/azure/azure-servicebus-transport.md#transactions-and-delivery-guarantees) |  - | + | + | + |
 
 ### Transaction scope (Distributed transaction)
 
