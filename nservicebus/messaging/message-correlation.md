@@ -9,8 +9,8 @@ This is a well known pattern from the [Enterprise Integration Patterns book](htt
 
 One example usage is that it allows NServiceBus to find out which callback to invoke should the user have requested a callback when the request message was sent out.
 
-From an message payload perspective the `Correlation Id` is just an ordinary [message header](/nservicebus/messaging/headers.md) that defaults to the same value as the message id for new messages but automatically gets set to the `Message Id` of the incoming message when you call `bus.Reply`.
+From an message payload perspective the `Correlation Id` is just an ordinary [message header](/nservicebus/messaging/headers.md) that defaults to the same value as the message id for new messages but automatically gets set to the `Message Id` of the incoming message when calling `bus.Reply`.
 
-NServiceBus handles this automatically for you but should you need full control over the `Correlation Id` for integration purposes you can use the following code when sending your message
+NServiceBus handles this automatically. Should full control be needed over the `Correlation Id` for integration purposes use the following code when sending the message
 
 snippet:custom-correlationid

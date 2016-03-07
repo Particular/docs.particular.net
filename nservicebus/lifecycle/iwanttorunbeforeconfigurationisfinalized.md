@@ -1,6 +1,6 @@
 ---
 title: Before Configuration Finalized
-summary: An interface that allows you to hook into the configuration sequence of NServiceBus
+summary: An interface that allows hooking into the configuration sequence of NServiceBus
 tags:
  - life-cycle
 related:
@@ -11,10 +11,10 @@ During bus creation the configuration object used to construct the bus becomes f
 
 Instances are:
 
-* Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md).
-* Created just before the configuration is frozen.
-* Created on the same thread that is creating the bus.
-* Created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they:
+ * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md).
+ * Created just before the configuration is frozen.
+ * Created on the same thread that is creating the bus.
+ * Created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they:
   * Are not resolved out of an IoC container (even if they are registered there).
   * Will not have any dependencies injected.
   * Must have a default constructor.

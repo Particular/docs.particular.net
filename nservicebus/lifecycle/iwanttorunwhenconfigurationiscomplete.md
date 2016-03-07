@@ -1,6 +1,6 @@
 ---
 title: When Configuration Ends
-summary: An interface that allows you to hook into the configuration sequence of NServiceBus
+summary: An interface that supports hooking into the configuration sequence of NServiceBus
 tags:
  - life-cycle
 related:
@@ -13,10 +13,10 @@ NOTE: This interface is deprecated in Version 6 and has been replaced with [Feat
 
 Instances are:
 
-* Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/) during bus creation. These are registered as Instance Per Call.
-* Created as the last step before the bus is created.
-* Created on the same thread that is creating the bus.
-* Created by the configured container which means they:
+ * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/) during bus creation. These are registered as Instance Per Call.
+ * Created as the last step before the bus is created.
+ * Created on the same thread that is creating the bus.
+ * Created by the configured container which means they:
   * Will have dependencies injected.
   * Do not require a default constructor.
 

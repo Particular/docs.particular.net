@@ -14,7 +14,7 @@ redirects:
 Uses the [RavenDB document database](http://ravendb.net/) for storage.
 
 
-## NServiceBus 5 and above
+## NServiceBus.RavenDB 5 and above
 
 RavenDB is no longer merged into the core. The RavenDB-backed persistence is available as a separate [NuGet package](https://www.nuget.org/packages/NServiceBus.RavenDB). This allows NServiceBus and RavenDB to be upgraded independently.
 
@@ -100,14 +100,14 @@ DANGER: This is a potentially dangerous feature that can result in multiple inst
 The RavenDB client requires a method of storing DTC transaction recovery information in the case of process faults. The handling of transaction recovery storage by NServiceBus.RavenDB differs by version.
 
 
-##### NServiceBus.RavenDB 3.1 and above
+##### NServiceBus.RavenDB 3.1 to 4.x
 
 As of 3.1.0, NServiceBus uses `LocalDirectoryTransactionRecoveryStorage` with a storage location inside `%LOCALAPPDATA%`. It is not necessary to modify this default value.
 
 
 ##### NServiceBus.RavenDB 3.0.x and below
 
-In these versions of NServiceBus, NServiceBus uses `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage, which has been proven to be unstable in certain situations, sometimes resulting in a [TransactionAbortedException or IsolatedStorageException](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ).
+These versions of NServiceBus use `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage, which has been proven to be unstable in certain situations, sometimes resulting in a [TransactionAbortedException or IsolatedStorageException](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ).
 
 If experiencing one of these issues and an upgrade to 3.1.0 or later is not possible, the default `TransactionRecoveryStorage` can be changed as shown in the following example.
 
@@ -120,39 +120,39 @@ For all NServiceBus 3.x and 4.x versions, RavenDB is the default mechanism for N
 
 Configuring NServiceBus to use RavenDB for persistence can be accomplished by calling `Configure.RavenPersistence()`, however as this is the default configuration this call is not required.
 
-RavenDB persistence for NServiceBus 3/4 uses these conventions:
+RavenDB persistence for NServiceBus 3 to 4 uses these conventions:
 
  * If no master node is configured it assumes that a RavenDB server is running at `http://localhost:8080`, the default URL for RavenDB.
  * If a master node is configured, the URL is: `http://{masternode}/:8080`.
  * If a connection string named "NServiceBus/Persistence" is found, the value of the `connectionString` attribute is used.
 
-If NServiceBus detects that any RavenDB related storage is used for sagas, subscriptions, timeouts, etc., if automatically configures it for you. There is no need to explicitly configure RavenDB unless it is necessary to override the defaults.
+If NServiceBus detects that any RavenDB related storage is used for sagas, subscriptions, timeouts, etc., it will automatically configures it. There is no need to explicitly configure RavenDB unless it is necessary to override the defaults.
 
 
 ### Overriding the defaults
 
-In some situations the default behavior might not be right for you:
+In some situations the default behavior might not be desired:
 
--   You want to use your own connection string. If you're using RavenDB for your own data as well you might want to share the connection string. Use the `Configure.RavenPersistence(string connectionStringName)` signature to tell NServiceBus to connect to the server specified in that string. The default connection string for RavenDB is "RavenDB".
--   You want to specify a explicit database name. To control the database name in code instead of via the configuration, use the `Configure.RavenPersistence(string connectionStringName, string databaseName)` signature. This can be useful in a multi-tenant scenario.
-
-
-### Can IDocumentStore used by NServiceBus for business data?
-
-No, the RavenDB client is merged and internalized into the NServiceBus assemblies, so to use Raven for your own purposes, reference the Raven client and set up your own document store.
-
-NOTE: In NServiceBus 4.x RavenDB is not ilmerged any more. It is embedded instead, using [https://github.com/Fody/Costura\#readme](https://github.com/Fody/Costura#readme).
-
-The embedding enables client updates (but may require binding redirects). It also allows passing your own `DocumentStore`, thereby providing full configuration flexibility.
+ * When using RavenDB for business data as it may be necessary to share the connection string. Use the `Configure.RavenPersistence(string connectionStringName)` signature to tell NServiceBus to connect to the server specified in that string. The default connection string for RavenDB is `RavenDB`.
+ * To control the database name in code, instead of via the configuration, use the `Configure.RavenPersistence(string connectionStringName, string databaseName)` signature. This can be useful in a multitenant scenario.
 
 
-## Which database is used?
+### Using the NServiceBus IDocumentStore for business data is not possible
 
-After connecting to a RavenDB server, decide which actual database to use. Unless NServiceBus finds a default database specified in the connection string, NServiceBus uses the endpoint name as the database name. So if the endpoint is named `MyServer`, the database name is `MyServer`. Each endpoint has a separate database unless you explicitly override it using the connection string. RavenDB automatically creates the database if it doesn't already exist.
+The RavenDB client is merged and internalized into the NServiceBus assemblies. To use the Raven `IDocumentStore` for business data, reference the Raven client and set up a custom `IDocumentStore`.
+
+NOTE: In NServiceBus 4.x RavenDB is not ILMerged any more. It is embedded instead, using [https://github.com/Fody/Costura\#readme](https://github.com/Fody/Costura#readme).
+
+The embedding enables client updates (but may require binding redirects). It also allows passing a custom instance of `DocumentStore`, thereby providing full configuration flexibility.
+
+
+## Database used
+
+After connecting to a RavenDB server, decide which actual database to use. Unless NServiceBus finds a default database specified in the connection string, NServiceBus uses the endpoint name as the database name. So if the endpoint is named `MyServer`, the database name is `MyServer`. Each endpoint has a separate database unless explicitly overridden via the connection string. RavenDB automatically creates the database if it doesn't already exist.
 
 See also [How to specify an input queue name](/nservicebus/messaging/specify-input-queue-name.md).
 
 
-## How do I look at the data?
+## Viewing the data
 
 Open a web browser and type the URL of the RavenDB server. This opens the [RavenDB Studio](http://ravendb.net/docs/search/latest/csharp?searchTerm=management-studio).

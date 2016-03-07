@@ -7,23 +7,27 @@ redirects:
 - nservicebus/handler-ordering
 ---
 
-You can have several classes that implement `IHandleMessages<T>` for the same message. In that scenario, all the handlers will execute in the same trasaction scope. These handlers can be invoked by NServiceBus in any order. Handler ordering allows you to specify the order of execution of these handlers.
+Multiple classes may implement `IHandleMessages<T>` for the same message. In that scenario, all the handlers will execute in the same transaction scope. These handlers can be invoked by NServiceBus in any order. This allows the the order of execution of Handlers to be specified in code.
+
 
 ### How it is actually implemented
 
-1. Find the list of possible handlers for a message
-2. If order has been specified for any of those handlers move them at the start of the list
-3. Execute the handlers
+ 1. Find the list of possible handlers for a message
+ 1. If order has been specified for any of those handlers move them at the start of the list
+ 1. Execute the handlers
 
 The inference here is that the remaining handlers (not specified in the order) are executed in a non-deterministic order.
+
 
 ### With the configuration API
 
 snippet:HandlerOrderingWithCode
 
+
 #### Specifying one to run first
 
 snippet:HandlerOrderingWithFirst
+
 
 #### Specifying multiple to run ordered
 

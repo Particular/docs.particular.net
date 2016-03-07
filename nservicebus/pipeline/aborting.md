@@ -11,7 +11,8 @@ From the context of a Handler further Handler execution can be aborted by callin
 
 snippet: AbortHandler
 
-Warning: Handler execution order is non-deterministic. If you require the handler that aborts the pipeline to run first then you may want to configure the [Handler Ordering](/nservicebus/handlers/handler-ordering.md).
+Warning: Handler execution order by default is non-deterministic. To configure the ordering see [Handler Ordering](/nservicebus/handlers/handler-ordering.md).
+
 
 ## Via a pipeline Behavior
 

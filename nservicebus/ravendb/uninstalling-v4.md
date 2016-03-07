@@ -35,10 +35,10 @@ You can remove it with this command:
 
 ### Final Folder Cleanup
 
-Remove the folder and sub-folder (assuming you are fine with deleting the RavenDB databases).
+Remove the folder and sub-folder (assuming the of RavenDB databases are are no longer needed).
 
-There is one additional cleanup step if you used the PlatformInstaller to install it. The Platform Installer used Chocolatey behind the scenes to install packages. It  keeps a copy of the install in a sub-folder.
+There is one additional cleanup step if the PlatformInstaller was used as the method of install. The Platform Installer used Chocolatey behind the scenes to install packages. It  keeps a copy of the install in a sub-folder.
 
-The following powershell command will list the directory which you can safely delete.
+The following PowerShell command will list the directory which can be safely deleted.
 
 `dir ("{0}\lib" -f $env:ChocolateyInstall) -Filter *RavenDB* | Select -ExpandProperty FullName`

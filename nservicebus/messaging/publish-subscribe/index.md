@@ -155,13 +155,13 @@ Transport->Subscriber2: Send Message1
 
 In NServiceBus Version 3.0 and onwards subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
 
-NOTE: Version 2.X required a perfect match. This should make it easier to upgrade your publishers without affecting the subscribers.
+NOTE: Version 2.X required a perfect match. This should make it easier to upgrade the publishers without affecting the subscribers.
 
 
 ## Authorizations
 
-You may not want to allow any endpoints to subscribe to a given publisher or event. NServiceBus provides a way for you to intervene in the subscription process and decide whether a given client should be allowed to subscribe to a given message.
+In some circumstances it may not be desirable to allow any endpoints to subscribe to a given publisher or event. NServiceBus provides a way to intervene in the subscription process and decide whether a given client should be allowed to subscribe to a given message.
 
 NOTE: Subscription authorization is only available when using transports that require persistence based publish-subscribe.
 
-The class implements the `IAuthorizeSubscriptions` interface, which requires the `AuthorizeSubscribe` and `AuthorizeUnsubscribe` methods. The implementation that comes in the sample doesn't do very much, returning true for both. In a real project, you may access some Access Control System, Active Directory, or maybe just a database to decide if the action should be allowed.
+The class implements the `IAuthorizeSubscriptions` interface, which requires the `AuthorizeSubscribe` and `AuthorizeUnsubscribe` methods. The implementation that comes in the sample doesn't do very much, returning true for both. In a real project, access some Access Control System, Active Directory, or maybe just a database to decide if the action should be allowed.

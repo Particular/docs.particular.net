@@ -113,18 +113,18 @@ The most common way of specifying the type mapping is through static routes. Mos
 
 snippet:Routing-StaticRoutes-Endpoint
 
-When necessary (e.g. for integration with legacy systems) you can specify the static routing to a given transport-level address but this should be avoided in most scenarios and the address resolution should be delegated to lower layers of routing. 
+When necessary (e.g. for integration with legacy systems) the static routing to a given transport-level address can be configured explicitly. However this should be avoided in most scenarios and the address resolution should be delegated to lower layers of routing. 
 
 snippet:Routing-StaticRoutes-Address
 
 
 #### Dynamic routes
 
-Dynamic routes are meant to provide a convenient extensibility point that can be used both by users and NServiceBus add-ons. To add a dynamic route you need to pass a function that takes a `Type` and a `ContextBag` containing the context of current message processing and returns a collection of destinations.
+Dynamic routes are meant to provide a convenient extensibility point that can be used both by users and NServiceBus add-ons. To add a dynamic route pass a function that takes a `Type` and a `ContextBag` containing the context of current message processing and returns a collection of destinations.
 
 snippet:Routing-DynamicRoutes
 
-Following example shows how you could implement a shared-store based routing where destinations of messages are managed e.g. in a database.
+Following example shows how to implement a shared-store based routing where destinations of messages are managed e.g. in a database.
 
 snippet:Routing-CustomRoutingStore
 
@@ -149,19 +149,19 @@ snippet:Routing-FileBased-Config
 
 To read more see [file-based endpoint mapping](/nservicebus/messaging/file-based-routing.md).
 
-NOTE: If you use static type mapping to an address instead of an endpoint you won't be able to take advantage of file-based instance resolution.
+NOTE: If using a static type mapping to an address instead of an endpoint the advantages of file-based instance resolution will not be possible.
 
 
 #### Static mapping
 
-The `EndpointInstances` class provides a method that let you register a static mapping. This API is useful in very specific scenarios where developers need to take control over a certain mapping.
+The `EndpointInstances` class provides a method that allows the registration of a static mapping. This API is useful in very specific scenarios where developers need to take control over a certain mapping.
 
 snippet:Routing-StaticEndpointMapping
 
 
 #### Dynamic mapping
 
-Dynamic mapping is meant to provide a convenient extension point for both users and NServiceBus add-ons. To add a dynamic mapping rule you need to pass a function that takes an endpoint name and returns a collection of endpoint instance names.
+Dynamic mapping is meant to provide a convenient extension point for both users and NServiceBus add-ons. To add a dynamic mapping rule pass a function that takes an endpoint name and returns a collection of endpoint instance names.
 
 snippet:Routing-DynamicEndpointMapping
 
@@ -175,14 +175,14 @@ Mapping of the endpoint instance to a transport address is a responsibility of t
 
 #### Special cases
 
-Sometimes there is a need to override the address translation for the single endpoint instance e.g. because the auto-generated address violates a constraint imposed by the transport. Such special case mappings have precedence over other mappings. In order to register an exception you need to use following API:
+Sometimes there is a need to override the address translation for the single endpoint instance e.g. because the auto-generated address violates a constraint imposed by the transport. Such special case mappings have precedence over other mappings. In order to register an exception use following API:
 
 snippet:Routing-SpecialCaseTransportAddress
 
 
 #### Rules
 
-User-provided rules override the transport defaults. In order to register a rule you need to use following API:
+User-provided rules override the transport defaults. In order to register a rule use following API:
 
 snippet:Routing-TransportAddressRule
 

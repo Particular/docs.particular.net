@@ -69,8 +69,8 @@ snippet: header-outgoing-saga
 
 ### For all outgoing messages
 
-NServiceBus allows you to register headers at configuration time that's then added to all outgoing messages for the endpoint.
+NServiceBus supports registering headers at configuration time that's then added to all outgoing messages for the endpoint.
 
 snippet: header-static-endpoint
 
-WARNING: In Versions 3 through Version 5 the global outgoing headers are not thread safe. It is recommended that you manipulate them at startup. This has been limited to a configuration time only API in Version 6.
+WARNING: In Versions 3 through Version 5 the global outgoing headers are not thread safe. It is recommended that they are manipulated at startup. This has been limited to a configuration time only API in Version 6.
