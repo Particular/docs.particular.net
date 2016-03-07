@@ -52,4 +52,4 @@ The Azure transports only evaluate the TimeToBeReceived attribute for a message 
 
 ### SQL transport
 
-The SQL transport runs a periodic task that removes expired messages from the queue. The task is first executed when the endpoint starts and is subsequently scheduled to execute 5 minutes after the previous run of the task has been completed. To promptly discard expired messages that arrive at the front of the queue between scheduled executions of the purging task, the transport also evaluates the TimeToBeReceived attribute for a message when the message is received from the queue.
+The SQL transport runs a periodic task that removes expired messages from the queue. The task is first executed when the endpoint starts and is subsequently scheduled to execute 5 minutes after the previous run of the task has been completed. The transport also evaluates the TimeToBeReceived attribute for a message when the message is received from the queue. This helps to promptly discard expired messages that arrive at the front of the queue between scheduled executions of the purging task.
