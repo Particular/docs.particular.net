@@ -46,14 +46,47 @@ CREATE TABLE [schema].[queuename](
 	[RowVersion] [bigint] IDENTITY(1,1) NOT NULL
 ) ON [PRIMARY];
 
-CREATE CLUSTERED INDEX [Index_RowVersion] ON [schema].[queuename](
+CREATE CLUSTERED INDEX [Index_RowVersion] ON [schema].[queuename]
+(
 	[RowVersion] ASC
-) WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+
+CREATE NONCLUSTERED INDEX [Index_Expires] ON [schema].[queuename]
+(
+	[Expires] ASC
+)
+INCLUDE
+(
+	[Id],
+	[RowVersion]
+)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
 ```
 
 In version 2 the columns are directly mapped to the properties of `NServiceBus.TransportMessage` class. In version 3 they are mapped to `NServiceBus.Transports.IncomingMessage` in the incoming pipeline and `NServiceBus.Transports.OutgoingMessage` in the outgoing pipeline. Receiving messages is conducted by a `DELETE` statement from the top of the table (the oldest row according to the `[RowVersion]` column).
 
 The tables are created by [installers](/nservicebus/operations/installers.md) when the application is started for the first time. It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
+
+
+### Indexes
+
+Each queue table has a clustered index on the `[RowVersion]` column in order to speed up receiving messages from the queue table.
+
+Starting from version 2.2.2, each queue table also has an additional non-clustered index on the `[Expires]` column. This index speeds up the purging of expired messages from the queue table. If the SQL Server transport discovers that a required index is missing, it will log an appropriate warning. The following SQL statement can be used to create the missing index:
+
+```SQL
+CREATE NONCLUSTERED INDEX [Index_Expires] ON [schema].[queuename]
+(
+	[Expires] ASC
+)
+INCLUDE
+(
+	[Id],
+	[RowVersion]
+)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+```
 
 
 ## Transactions and delivery guarantees
