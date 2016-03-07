@@ -20,6 +20,6 @@ snippet:ApplicationStart
 
 ### Injection into the Controller
 
-Note that `IBus` is injected into the `DefaultController` at construction time.
+Note that `IEndpointInstance` (in version 6) or `IBus` (in version 5) is injected into the `DefaultController` at construction time.
 
 snippet:Controller
