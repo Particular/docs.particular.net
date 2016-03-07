@@ -10,7 +10,7 @@ related:
 
 ## Code walk-through
 
-This sample shows how to host multiple NServiceBus instances in one process. At start up the application creates two `IBus` instances, connected to different queues using different configurations:
+This sample shows how to host multiple NServiceBus instances in one process. At start up the application creates two Endpoint Instances, connected to different queues using different configurations:
 
 snippet:multi-hosting
 

@@ -19,7 +19,7 @@ The sample is a console application whose `Main` entry point detects if the appl
 
 snippet:windowsservice-hosting-main
 
-The `OnStart` method, manually called when running in interactive mode and automatically called by the Windows Service when running as service, configures the IBus instance:
+The `OnStart` method, manually called when running in interactive mode and automatically called by the Windows Service when running as service, configures the Endpoint Instance:
 
 snippet:windowsservice-hosting-onstart
 
