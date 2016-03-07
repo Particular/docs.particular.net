@@ -66,7 +66,7 @@ NOTE: Most of these values are applied when a queue or topic is created and cann
  * `ConnectivityMode`: Allows to switch between HTTP and TCP based communication. Defaults to TCP. Very useful behind a firewall.
  * `ServerWaitTime`: The transport uses longpolling to communicate with the Azure Service Bus entities. This value specifies the amount of time, in seconds, the longpoll can take. Defaults to 300 seconds.
  * `BackoffTimeInSeconds`: The transport will back off linearly when no messages can be found on the queue to save some money on the transaction operations. This value specifies how fast it will back off. Defaults to 10 seconds.
- * `LockDuration`: The peek-lock system supported by Azure Service Bus relies on a period of time that a message becomes locked/invisible after being read. If the processing unit fails to delete the message in the specified time, it will reappear on the queue so that another process can retry. This value is defined in milliseconds and defaults to 30000 (30 seconds).
+ * `LockDuration`: The Peek-Lock system supported by Azure Service Bus relies on a period of time that a message becomes locked/invisible after being read. If the processing unit fails to delete the message in the specified time, it will reappear on the queue so that another process can retry. This value is defined in milliseconds and defaults to 30000 (30 seconds).
  * `EnableBatchedOperations`: Specifies whether batching is enabled. Defaults to true.
  * `BatchSize`: The number of messages that the transport tries to pull at once from the queue. Defaults to 1000.
  * `MaxDeliveryCount`: Specifies the number of times a message can be delivered before being put on the dead letter queue. Defaults to 6 (so the NServiceBus first and second level retry mechanism gets preference).
@@ -113,12 +113,33 @@ snippet: ASB-NamingConventions-entity-creation-conventions
 
 WARNING: This is an advanced topic and requires full understanding of the topology.
 
-
-## Transactions
+## Transactions and delivery guarantees
 
 NServiceBus AzureServiceBus transport relies on the underlying Azure ServiceBus library which requires the use of the `Serializable` isolation level (the most restrictive isolation level that does not permit `dirty reads`, `phantom reads` and `non repeatable reads`; will block any reader until the writer is committed. For more information refer to [Transaction Isolation Levels Explained in Details](http://dotnetspeak.com/2013/04/transaction-isolation-levels-explained-in-details) article.
 
 NServiceBus AzureServiceBus transport configuration is hard-coded to `Serializable` isolation level. Users can't override it.
+
+### Version 6 and above
+Azure Service Bus Transport supports `SendAtomicWithReceive`, `ReceiveOnly` and `Unreliable` levels.
+
+#### SendAtomicWithReceive
+Note: `SendAtomicWithReceive` level is supported only when destination and receive queues are in the same namespace.
+
+The `SendAtomicWithReceive` guarantee is achieved by using `ViaEntityPath` property on outbound messages. It's value is set to the receiving queue.
+
+If the `ViaEntityPath` is not empty, then messages will be added to the receive queue. The messages will be forwarded to their actual destination (inside the broker) only when the complete operation is called on the received brokered message. The message won't be forwarded if the 30 seconds operation limit is exceeded or if the message is explicitly abandoned.
+
+#### ReceiveOnly
+
+The `ReceiveOnly` guarantee is based on the Azure Service Bus Peek-Lock mechanism. 
+
+The message is not removed from the queue directly after receive, but it's hidden for 30 seconds. That prevents other instances from picking it up. If the receiver fails to process the message withing that timeframe or explicitly abandons the message, then the message will become visible again. Other instances will be able to pick it up.
+
+#### Unraliable (Transactions Disabled)
+
+When transactions are disabled then NServiceBus uses ASB's `ReceiveAndDelete` mode.
+
+The message is deleted from the queue directly after receive operation completes, before it is processed.
 
 ## Scenarios
 
