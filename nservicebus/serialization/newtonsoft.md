@@ -25,7 +25,7 @@ The core of [NServiceBus uses Json.net](json.md). However it is ILMerged where t
  * Can't use Json.net attributes
  * Can't customize the Json.net serialization behaviors.
 
-These restrictions do no apply to this serializer.
+These restrictions do not apply to this serializer.
 
 
 ## Comparability with the core json serializer 
