@@ -6,7 +6,7 @@ class Program
 {
     static void Main()
     {
-        Console.Title = "Samples.SQLNHibernateOutbox.Sender";
+        Console.Title = "Samples.MultiTenant.Sender";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
         BusConfiguration busConfiguration = new BusConfiguration();

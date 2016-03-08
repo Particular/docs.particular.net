@@ -22,7 +22,7 @@ class Program
 
     static void Main()
     {
-        Console.Title = "Samples.SQLNHibernateOutbox.Receiver";
+        Console.Title = "Samples.MultiTenant.Receiver";
 
         Configuration hibernateConfig = CreateBasicNHibernateConfig();
         ModelMapper mapper = new ModelMapper();
