@@ -87,7 +87,7 @@ NOTE: This transaction is not shared outside of the message receiver. That means
 #### Version 5 and below
 There was no distinction between `ReceiveOnly` and `SendsAtomicWithReceive`. Using native transaction was equivalent to `SendsAtomicWithReceive` mode.
 
-### Unraliable (Transactions Disabled)
+### Unreliable (Transactions Disabled)
 
 In this mode when message is received from an input queue it's immediately removed from it. If processing fails the message is lost, because the operation cannot be rolled back. Also any other operation performed when processing the message is executed outside of the transaction, it can't be rolled back. That might lead to undesired side effects.
 
