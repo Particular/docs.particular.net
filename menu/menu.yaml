@@ -115,6 +115,7 @@
             - "nservicebus/msmq/operations-scripting"
             - "nservicebus/msmq/uninstalling-msmq"
             - "nservicebus/msmq/subscription-persistence"
+            - "nservicebus/msmq/full-qualified-domain-name"
         - Title: "RabbitMQ"
           Url: "nservicebus/rabbitmq"
           Articles:
