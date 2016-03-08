@@ -16,17 +16,6 @@
             #endregion
         }
 
-        void CurrentEndpointSchemaInConnString()
-        {
-            #region sqlserver-singledb-multischema-connString 2.1
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .ConnectionString("Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True; Queue Schema=nsb");
-
-            #endregion
-        }
-
         void OtherEndpointConnectionParamsPush()
         {
             #region sqlserver-singledb-multidb-push [2.1,2.0]

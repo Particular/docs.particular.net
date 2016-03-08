@@ -16,17 +16,6 @@
             #endregion
         }
 
-        void CurrentEndpointSchemaInConnString()
-        {
-            #region sqlserver-singledb-multischema-connString 3
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-            endpointConfiguration.UseTransport<SqlServerTransport>()
-                .ConnectionString("Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True; Queue Schema=nsb");
-
-            #endregion
-        }
-
         void OtherEndpointConnectionParamsPull()
         {
             #region sqlserver-singledb-multidb-pull 3
