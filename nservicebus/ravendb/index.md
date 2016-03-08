@@ -150,7 +150,7 @@ The embedding enables client updates (but may require binding redirects). It als
 
 After connecting to a RavenDB server, decide which actual database to use. Unless NServiceBus finds a default database specified in the connection string, NServiceBus uses the endpoint name as the database name. So if the endpoint is named `MyServer`, the database name is `MyServer`. Each endpoint has a separate database unless you explicitly override it using the connection string. RavenDB automatically creates the database if it doesn't already exist.
 
-See also [How to specify an input queue name](/nservicebus/messaging/specify-input-queue-name.md).
+See also [How to specify an input queue name](/nservicebus/endpoint/specify-input-queue-name.md).
 
 
 ## How do I look at the data?
