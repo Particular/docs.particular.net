@@ -1,10 +1,11 @@
 ﻿namespace Snippets5.Transports.SqlServer
 {
+    using System.Data.SqlClient;
     using NServiceBus;
 
     public class NamedConnectionString
     {
-		void ConnectionString()
+        void ConnectionString()
         {
             #region sqlserver-config-connectionstring 2
 
@@ -14,14 +15,26 @@
 
             #endregion
         }
-        
-		void ConnectionName()
+
+        void ConnectionName()
         {
             #region sqlserver-named-connection-string 2
 
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseTransport<SqlServerTransport>()
                 .ConnectionStringName("MyConnectionString");
+
+            #endregion
+        }
+
+        void ConnectionFactory()
+        {
+            #region sqlserver-custom-connection-factory 2
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<SqlServerTransport>()
+                .UseCustomSqlConnectionFactory(
+                    connectionString => new SqlConnection(@"Server=localhost\sqlexpress;Database=nservicebus;Trusted_Connection=True;"));
 
             #endregion
         }

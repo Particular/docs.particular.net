@@ -376,6 +376,7 @@
     <None Include="Transports\SqlServer\ConnectionStrings.config" />
     <None Include="Transports\SqlServer\ConnectionStringsNamed.config" />
     <None Include="Transports\SqlServer\MultiDB.SC.config" />
+    <None Include="Transports\SqlServer\MultiSchema.config" />
     <None Include="UpgradeGuides\5to6\Channel.config" />
   </ItemGroup>
   <ItemGroup>
@@ -414,7 +415,9 @@
     <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
     <Compile Include="Serialization\NewtonsoftSerializerUsage.cs" />
     <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
+    <Compile Include="Transports\SqlServer\SingleDbMultiSchema.cs" />
     <Compile Include="Transports\SqlServer\ConnectionStrings.cs" />
+    <Compile Include="UpgradeGuides\4to5\Transactions.cs" />
     <Compile Include="UpgradeGuides\5to6\AuthorizeSubscriptions.cs" />
     <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
     <Compile Include="UpgradeGuides\5to6\DelayedDelivery.cs" />

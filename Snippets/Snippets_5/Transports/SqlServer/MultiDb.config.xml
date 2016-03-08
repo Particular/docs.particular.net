@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
+﻿<configuration>
   <!--startcode sqlserver-multidb-current-endpoint-schema-config 1.2.3 -->
   <connectionStrings>
-    <add name="NServiceBus/Transport" 
+    <add name="NServiceBus/Transport"
          connectionString="Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True; Queue Schema=nsb"/>
   </connectionStrings>
   <!--endcode-->
   <!--startcode sqlserver-multidb-connectionstrings 2 -->
   <connectionStrings>
-    <add name="NServiceBus/Transport" 
+    <add name="NServiceBus/Transport"
          connectionString="Server=DbServerA;Database=MyDefaultDB;"/>
-    <add name="NServiceBus/Transport/Billing" 
+    <add name="NServiceBus/Transport/Billing"
          connectionString="Server=DbServerB;Database=Billing;"/>
   </connectionStrings>
   <!--endcode-->

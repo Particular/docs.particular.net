@@ -1,6 +1,8 @@
 ﻿namespace Snippets5.Transports.SqlServer
 {
+    using System.Data.SqlClient;
     using NServiceBus;
+    using NServiceBus.Transports.SQLServer;
 
     public class NamedConnectionString
     {
@@ -22,6 +24,24 @@
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .ConnectionStringName("MyConnectionString");
+
+            #endregion
+        }
+
+        void ConnectionFactory()
+        {
+            #region sqlserver-custom-connection-factory 3
+
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseTransport<SqlServerTransport>()
+                .UseCustomSqlConnectionFactory(async () =>
+                {
+                    SqlConnection connection = new SqlConnection(@"Server=localhost\sqlexpress;Database=nservicebus;Trusted_Connection=True;");
+
+                    await connection.OpenAsync();
+
+                    return connection;
+                });
 
             #endregion
         }

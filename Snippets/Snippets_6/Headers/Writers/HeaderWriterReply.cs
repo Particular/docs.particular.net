@@ -30,6 +30,7 @@
             Type[] callbackTypes = typeof(RequestResponseExtensions).Assembly.GetTypes();
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterReply>(callbackTypes);
             endpointConfiguration.SetTypesToScan(typesToScan);
+            endpointConfiguration.ScaleOut().InstanceDiscriminator("A");
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
