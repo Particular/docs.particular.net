@@ -7,10 +7,11 @@ using NServiceBus.Pipeline.Contexts;
 
 class MultiTenantOpenSqlConnectionBehavior : IBehavior<IncomingContext>
 {
-    static string defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"].ConnectionString;
 
     public void Invoke(IncomingContext context, Action next)
     {
+        string defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"]
+            .ConnectionString;
         #region OpenTenantDatabaseConnection
 
         string tenant;
@@ -26,7 +27,8 @@ class MultiTenantOpenSqlConnectionBehavior : IBehavior<IncomingContext>
             connection.Open();
             return connection;
         });
-        context.Set($"LazySqlConnection-{defaultConnectionString}", lazyConnection);
+        string key = $"LazySqlConnection-{defaultConnectionString}";
+        context.Set(key, lazyConnection);
         try
         {
             next();
@@ -38,7 +40,7 @@ class MultiTenantOpenSqlConnectionBehavior : IBehavior<IncomingContext>
                 lazyConnection.Value.Dispose();
             }
 
-            context.Remove($"LazySqlConnection-{defaultConnectionString}");
+            context.Remove(key);
         }
 
         #endregion

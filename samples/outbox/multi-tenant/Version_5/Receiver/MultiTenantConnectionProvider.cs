@@ -6,15 +6,18 @@ using NServiceBus.Pipeline;
 
 class MultiTenantConnectionProvider : DriverConnectionProvider
 {
-    static string defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"].ConnectionString;
 
     public override IDbConnection GetConnection()
     {
+        string defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"]
+            .ConnectionString;
+
         #region GetConnectionFromContext
 
         Lazy<IDbConnection> lazy;
         PipelineExecutor pipelineExecutor = Program.PipelineExecutor;
-        if (pipelineExecutor != null && pipelineExecutor.CurrentContext.TryGet($"LazySqlConnection-{defaultConnectionString}", out lazy))
+        string key = $"LazySqlConnection-{defaultConnectionString}";
+        if (pipelineExecutor != null && pipelineExecutor.CurrentContext.TryGet(key, out lazy))
         {
             IDbConnection connection = Driver.CreateConnection();
             connection.ConnectionString = lazy.Value.ConnectionString;

@@ -15,7 +15,7 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
     public void Handle(OrderSubmitted message)
     {
-        Console.WriteLine("Order {0} worth {1} submitted", message.OrderId, message.Value);
+        Console.WriteLine($"Order {message.OrderId} worth {message.Value} submitted");
 
         session.Save(new Order
         {
