@@ -29,7 +29,7 @@ NOTE: The double opt-in configuration for transports supporting DTC was introduc
 
 These feature has been implemented using both the [Outbox pattern](http://gistlabs.com/2014/05/the-outbox/) and the [Deduplication pattern](https://en.wikipedia.org/wiki/Data_deduplication#In-line_deduplication).
 
-When a message is dequeued it is checked for previous processing attempts. If previously processed, any messages in the outbox are delivered for that message, but do not invoke message-processing logic again. If the message hasn't been processed, then the regular handler logic invoked, storing all outgoing message in a durable storage in the same transaction as the users own database changes. Finally all outgoing messages are sent and the deduplication persistence is updated.
+When a message is dequeued it is checked for previous processing attempts. If the message has already been processed and all downstream messages are marked as dispatched, the current message is ignored (considered a duplicate). If the downstream messages are not marked as dispatched (they may or may not have been sent), they are re-sent and marked as dispatched. Otherwise (if the message has not yet been processed) the regular handler logic is invoked storing all outgoing message in a durable storage in the same transaction as the users own database changes. Finally, all outgoing downstream messages are sent and marked as dispatched.
 
 Here is a diagram illustrating how it works:
 
