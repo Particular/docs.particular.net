@@ -1,6 +1,5 @@
 ﻿namespace Snippets6.Azure.Persistence.AzureStorage
 {
-    using System;
     using NServiceBus;
     using NServiceBus.Persistence;
     using NServiceBus.SagaPersisters;
