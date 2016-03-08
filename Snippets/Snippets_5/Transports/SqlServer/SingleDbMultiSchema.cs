@@ -19,13 +19,15 @@
         void OtherEndpointConnectionParamsPush()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
+
             #region sqlserver-singledb-multidb-push [2.1,2.0]
 
-            busConfiguration.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
-                EndpointConnectionInfo.For("AnotherEndpoint")
-                    .UseSchema("receiver1"),
-                EndpointConnectionInfo.For("YetAnotherEndpoint")
-                    .UseSchema("receiver2")
+            busConfiguration.UseTransport<SqlServerTransport>()
+                .UseSpecificConnectionInformation(
+                    EndpointConnectionInfo.For("AnotherEndpoint")
+                        .UseSchema("receiver1"),
+                    EndpointConnectionInfo.For("YetAnotherEndpoint")
+                        .UseSchema("receiver2")
                 );
 
             #endregion

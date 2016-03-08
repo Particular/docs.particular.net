@@ -91,7 +91,8 @@
             busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
             busConfiguration.EndpointName(endpointName);
             busConfiguration.UseSerialization<JsonSerializer>();
-            busConfiguration.UseTransport<SqlServerTransport>().ConnectionString(connectionString);
+            busConfiguration.UseTransport<SqlServerTransport>()
+                .ConnectionString(connectionString);
             Type[] sqlTypes = typeof(SqlServerTransport).Assembly.GetTypes();
             busConfiguration.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>(sqlTypes));
             busConfiguration.EnableInstallers();

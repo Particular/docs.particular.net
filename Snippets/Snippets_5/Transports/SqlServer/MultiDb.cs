@@ -35,13 +35,14 @@
 
             #region sqlserver-multidb-other-endpoint-connection-push [2.1,3.0]
 
-            busConfiguration.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
-                EndpointConnectionInfo.For("RemoteEndpoint")
-                    .UseSchema("receiver1")
-                    .UseConnectionString("SomeConnectionString"),
-                EndpointConnectionInfo.For("AnotherEndpoint")
-                    .UseSchema("receiver2")
-                    .UseConnectionString("SomeConnectionString")
+            busConfiguration.UseTransport<SqlServerTransport>()
+                .UseSpecificConnectionInformation(
+                    EndpointConnectionInfo.For("RemoteEndpoint")
+                        .UseSchema("receiver1")
+                        .UseConnectionString("SomeConnectionString"),
+                    EndpointConnectionInfo.For("AnotherEndpoint")
+                        .UseSchema("receiver2")
+                        .UseConnectionString("SomeConnectionString")
                 );
 
             #endregion

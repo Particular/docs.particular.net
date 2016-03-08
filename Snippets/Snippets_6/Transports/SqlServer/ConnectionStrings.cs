@@ -37,9 +37,7 @@
                 .UseCustomSqlConnectionFactory(async () =>
                 {
                     SqlConnection connection = new SqlConnection(@"Server=localhost\sqlexpress;Database=nservicebus;Trusted_Connection=True;");
-
                     await connection.OpenAsync();
-
                     return connection;
                 });
 
