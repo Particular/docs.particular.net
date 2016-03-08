@@ -1,6 +1,6 @@
 ---
-title: MSMQ and Fully Qualified Domain Names(FQDM)
-summary: How to use NServiceBus in environments requiring Fully Qualified Domain Names(FQDM) for routing.
+title: MSMQ Fully Qualified Domain Names
+summary: How to use NServiceBus in environments requiring Fully Qualified Domain Names (FQDM) for routing.
 tags:
 - MSMQ
 - FQDM
