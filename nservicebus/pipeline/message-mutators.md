@@ -41,6 +41,7 @@ snippet:IMutateOutgoingMessages
 
 `IMessageMutator` is an interface that combines both `IMutateIncomingMessages` and `IMutateOutgoingMessages`. It only exists in Version 5 and below. In Version 6 and above implement both `IMutateIncomingMessages` and `IMutateOutgoingMessages` instead.
 
+Starting with version 6 all logical message mutators must return a `Task`, a completed `Task` or be marked `async`.
 
 ### Transport Messages Mutators
 
@@ -56,6 +57,7 @@ snippet:IMutateIncomingTransportMessages
 
 snippet:IMutateOutgoingTransportMessages
 
+Starting with version 6 all transport message mutators must return a `Task`, a completed `Task` or be marked `async`. 
 
 #### IMutateTransportMessages
 

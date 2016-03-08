@@ -21,7 +21,8 @@ snippet:nhibernate-saga-finder
 
 snippet:ravendb-saga-finder
 
+If a saga can't be found return `null`. In Version 6 and above, if the method is not marked `async`, return `Task.FromResult(null)`.
 
-You can have as many of these classes as you want for a given saga or message type. If a saga can't be found, return null, and if the saga specifies that it is to be started for that message type, NServiceBus will know that a new saga instance is to be created. The above example uses NServiceBus extension for NHibernate that allows both framework and user code to share the same NHibernate session. Similar extension point exists for RavenDB.
+You can have as many of these classes as you want for a given saga or message type. If a saga can't be found and if the saga specifies that it is to be started for that message type, NServiceBus will know that a new saga instance is to be created. The above example uses NServiceBus extension for NHibernate that allows both framework and user code to share the same NHibernate session. Similar extension point exists for RavenDB.
 
 NOTE: When using custom saga finders users are expected to configure any additional indexes needed using the tooling of the selected storage engine. See our documentation on [sagas and concurrency](/nservicebus/sagas/concurrency.md) for further details.

@@ -32,14 +32,19 @@ Once created `Start()` is called on each instance asynchronously without awaitin
 
 NOTE: Since `Start()` executes all `IWantToRunWhenBusStartsAndStops` asynchronously but not on its dedicated thread. It is the responsibility of the implementing class to execute its operations in parallel if needed (i.ex. for CPU bound work). Failure to do so will prevent the bus from being started.
 
+`Start()` must return a `Task`, a completed `Task` or be marked `async`.
+
 Exceptions raised from the `Start()` method will cause the startup process to be aborted and the exception is raised to the caller.
 
 NOTE: The call to `IStartableEndpoint.Start()` will not return before all instances of `IWantToRunWhenBusStartsAndStops.Start()` are completed.
 
-When the Bus is disposed, all instances of `IWantToRunWhenBusStartsAndStops` are stopped by calling their `Stop()` method asynchronously but not on its dedicated thread. Each call to `Stop()` happens on the same thread which disposes the bus. Any exceptions thrown by a call to `Stop` will be logged at the Fatal level.
+When the Bus is disposed, all instances of `IWantToRunWhenBusStartsAndStops` are stopped by calling their `Stop()` method asynchronously but not on its dedicated thread. Each call to `Stop()` happens on the same thread which stops the bus. 
+
+`Stop()` must return a `Task`, a completed `Task` or be marked `async`.
+
+Any exceptions thrown by a call to `Stop` will be logged at the Fatal level.
 
 NOTE: `Stop()` will wait for any outstanding instances of `Start()` to complete. It is the responsibility of the implementing class to execute its operations in parallel if needed (i.ex. for CPU bound work). Failure to do so will prevent the bus from being disposed.
-
 
 ## Versions 5 and below
 

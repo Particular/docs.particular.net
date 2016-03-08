@@ -60,6 +60,8 @@ The `End()` method is called when the processing is complete. If there is an exc
 
 This gives you a way to perform different actions depending on the outcome of the message(s).
 
+Starting with version 6 `Begin()` and `End()` must return a `Task`, a completed `Task` or be marked `async`.
+
 ### Registering your unit of work
 
 After implementing a `IManageUnitsOfWork`, you now need to register it with NServiceBus.
