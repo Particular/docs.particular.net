@@ -13,11 +13,7 @@ public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>,
     {
         Data.OrderId = message.OrderId;
 
-        #region Timeout
-
         RequestTimeout<OrderTimeout>(TimeSpan.FromSeconds(5));
-
-        #endregion
     }
 
     public void Timeout(OrderTimeout state)
