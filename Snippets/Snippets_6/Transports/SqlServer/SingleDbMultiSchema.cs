@@ -7,9 +7,9 @@
     {
         void CurrentEndpointSchema()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region sqlserver-singledb-multischema 3
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .DefaultSchema("myschema");
 
@@ -18,9 +18,9 @@
 
         void OtherEndpointConnectionParamsPull()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region sqlserver-singledb-multidb-pull 3
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .UseSpecificSchema(tn => tn == "AnotherEndpoint" ? "receiver1" : null);
 

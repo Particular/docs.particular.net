@@ -8,9 +8,9 @@
     {
 		void ConnectionString()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region sqlserver-config-connectionstring 3
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
 
@@ -19,9 +19,9 @@
 		
         void ConnectionName()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region sqlserver-named-connection-string 3
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .ConnectionStringName("MyConnectionString");
 
@@ -30,9 +30,9 @@
 
         void ConnectionFactory()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region sqlserver-custom-connection-factory 3
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .UseCustomSqlConnectionFactory(async () =>
                 {
