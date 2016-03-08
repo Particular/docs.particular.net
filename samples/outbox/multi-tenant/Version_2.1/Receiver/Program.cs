@@ -12,6 +12,7 @@ using NServiceBus.Features;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.NHibernate;
 using NServiceBus.Pipeline;
+using NServiceBus.Settings;
 using NServiceBus.Unicast;
 using Configuration = NHibernate.Cfg.Configuration;
 
@@ -42,8 +43,9 @@ class Program
 
         busConfiguration.EnableOutbox();
 
-        busConfiguration.GetSettings().Set("NHibernate.Timeouts.AutoUpdateSchema", true);
-        busConfiguration.GetSettings().Set("NHibernate.Subscriptions.AutoUpdateSchema", true);
+        SettingsHolder settingsHolder = busConfiguration.GetSettings();
+        settingsHolder.Set("NHibernate.Timeouts.AutoUpdateSchema", true);
+        settingsHolder.Set("NHibernate.Subscriptions.AutoUpdateSchema", true);
 
         #endregion
 
@@ -83,7 +85,7 @@ class Program
         }
     }
 
-    private static Configuration CreateBasicNHibernateConfig()
+    static Configuration CreateBasicNHibernateConfig()
     {
         Configuration hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
@@ -100,13 +102,14 @@ class Program
         return hibernateConfig;
     }
 
-    private static void CreateSchema(Configuration hibernateConfig, string tenantId)
+    static void CreateSchema(Configuration hibernateConfig, string tenantId)
     {
         string connectionString = ConfigurationManager.ConnectionStrings[tenantId].ConnectionString;
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             connection.Open();
-            new SchemaExport(hibernateConfig).Execute(false, true, false, connection, TextWriter.Null);
+            new SchemaExport(hibernateConfig)
+                .Execute(false, true, false, connection, TextWriter.Null);
         }
     }
 }

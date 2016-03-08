@@ -4,8 +4,14 @@ using NHibernate;
 
 public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 {
-    public IBus Bus { get; set; }
-    public ISession Session { get; set; }
+    IBus bus;
+    ISession session;
+
+    public OrderSubmittedHandler(IBus bus, ISession session)
+    {
+        this.bus = bus;
+        this.session = session;
+    }
 
     public void Handle(OrderSubmitted message)
     {
@@ -13,7 +19,7 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
         #region StoreUserData
 
-        Session.Save(new Order
+        session.Save(new Order
         {
             OrderId = message.OrderId,
             Value = message.Value
@@ -23,7 +29,7 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
         #region Reply
 
-        Bus.Reply(new OrderAccepted
+        bus.Reply(new OrderAccepted
         {
             OrderId = message.OrderId,
         });

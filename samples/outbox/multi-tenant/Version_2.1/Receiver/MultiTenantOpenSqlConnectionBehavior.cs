@@ -7,7 +7,7 @@ using NServiceBus.Pipeline.Contexts;
 
 class MultiTenantOpenSqlConnectionBehavior : IBehavior<IncomingContext>
 {
-    private static readonly string defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"].ConnectionString;
+    static string defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"].ConnectionString;
 
     public void Invoke(IncomingContext context, Action next)
     {
@@ -18,7 +18,8 @@ class MultiTenantOpenSqlConnectionBehavior : IBehavior<IncomingContext>
         {
             throw new InvalidOperationException("No tenant id");
         }
-        string connectionString = ConfigurationManager.ConnectionStrings[tenant].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings[tenant]
+            .ConnectionString;
         Lazy<IDbConnection> lazyConnection = new Lazy<IDbConnection>(() =>
         {
             SqlConnection connection = new SqlConnection(connectionString);

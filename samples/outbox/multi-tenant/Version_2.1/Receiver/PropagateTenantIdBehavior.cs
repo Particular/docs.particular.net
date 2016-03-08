@@ -2,7 +2,7 @@
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
-class PropagateTenantIdBehavior : IBehavior<OutgoingContext>
+internal class PropagateTenantIdBehavior : IBehavior<OutgoingContext>
 {
     public void Invoke(OutgoingContext context, Action next)
     {

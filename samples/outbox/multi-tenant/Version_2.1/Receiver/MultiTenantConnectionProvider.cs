@@ -2,17 +2,19 @@
 using System.Configuration;
 using System.Data;
 using NHibernate.Connection;
+using NServiceBus.Pipeline;
 
-public class MultiTenantConnectionProvider : DriverConnectionProvider
+class MultiTenantConnectionProvider : DriverConnectionProvider
 {
-    private static readonly string defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"].ConnectionString;
+    static string defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"].ConnectionString;
 
     public override IDbConnection GetConnection()
     {
         #region GetConnectionFromContext
 
         Lazy<IDbConnection> lazy;
-        if (Program.PipelineExecutor != null && Program.PipelineExecutor.CurrentContext.TryGet($"LazySqlConnection-{defaultConnectionString}", out lazy))
+        PipelineExecutor pipelineExecutor = Program.PipelineExecutor;
+        if (pipelineExecutor != null && pipelineExecutor.CurrentContext.TryGet($"LazySqlConnection-{defaultConnectionString}", out lazy))
         {
             IDbConnection connection = Driver.CreateConnection();
             connection.ConnectionString = lazy.Value.ConnectionString;

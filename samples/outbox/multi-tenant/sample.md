@@ -14,6 +14,7 @@ related:
  1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
  1. Create databases `Sender`, `Receiver`, `TenantA` and `TenantB`.
 
+
 ## Running the project
 
  1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
@@ -32,6 +33,7 @@ related:
 
 WARNING: Timeouts are stored in the shared `Receiver` database so make sure to not include any sensitive information in the timeouts. Keep such information in the saga data and only use timeouts as notifications.
 
+
 ## Code walk-through
 
 This sample contains three projects:
@@ -45,9 +47,11 @@ This sample contains three projects:
 
 The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use MSMQ transport with NHibernate persistence and Outbox.
 
+
 ### Receiver project
 
 The Receiver mimics a back-end system. It is also configured to use MSMQ transport with NHibernate persistence and Outbox.
+
 
 #### Creating the schema
 
@@ -57,12 +61,15 @@ snippet:CreateSchema
 
 The above code makes sure that user, saga and outbox tables are created in the tenant databases while the timeouts and subscriptions -- in the shared database.
 
+
 #### Tenant database
 
 To allow for database isolation between the tenants the actual connection to the database need to be created based on the message being processed. This requires cooperation of three components:
+
  * Custom `ConnectionProvider` for NHibernate
  * A behavior that insects an incoming message and opens a new connection based on the tenant ID found in the headers of that message
  * A behavior that propagates the tenant ID information to outgoing messages
+
 
 #### Connection provider
 
@@ -70,7 +77,7 @@ The custom connection provider has to be registered with NHibernate
 
 snippet:ConnectionProvider
 
-It also requires access to the NServiceBus context. That context object can be captured after the bus is created (but before it is started)
+It also requires access to the NServiceBus context. That context object can be captured after the bus is created (but before it is started).
 
 snippet:CapturePipelineExecutor
 
@@ -79,6 +86,7 @@ The connection provider looks at the current message processing context. If ther
 snippet:GetConnectionFromContext
 
 NOTE: The connection provider is only used by `OutboxPersister`'s `TryGet` and `MarkAsDispatched` methods which execute in separate transaction from all the other storage operations.
+
 
 #### Opening connection to tenant database
 
@@ -90,12 +98,13 @@ This behavior needs to replace the built-in behavior
 
 snippet:ReplaceOpenSqlConnection
 
+
 #### Propagating the tenant information downstream
 
 Finally the `PropagateTenantIdBehavior` behavior makes sure that tenant information is not lost and all outgoing messages have the same tenant ID as the message being processed.
 
 snippet:PropagateTenantId
 
-This behavior also needs to be registered with `BusConfiguration`
+This behavior also needs to be registered a configuration time.
 
 snippet:RegisterPropagateTenantIdBehavior
