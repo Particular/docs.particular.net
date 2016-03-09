@@ -10,6 +10,6 @@ public class MyHandler : IHandleMessages<MyMessage>
     {
         logger.Info("Hello from MyHandler");
 
-        return Task.FromResult(false);
+        return Task.FromResult(0);
     }
 }
