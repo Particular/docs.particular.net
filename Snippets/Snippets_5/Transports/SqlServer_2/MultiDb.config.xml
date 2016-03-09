@@ -6,7 +6,7 @@
          connectionString="Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True; Queue Schema=nsb"/>
   </connectionStrings>
   <!--endcode-->
-  <!--startcode sqlserver-multidb-connectionstrings 2 -->
+  <!--startcode sqlserver-multidb-connectionstrings-->
   <connectionStrings>
     <add name="NServiceBus/Transport"
          connectionString="Server=DbServerA;Database=MyDefaultDB;"/>
@@ -14,7 +14,7 @@
          connectionString="Server=DbServerB;Database=Billing;"/>
   </connectionStrings>
   <!--endcode-->
-  <!--startcode sqlserver-multidb-messagemapping 2 -->
+  <!--startcode sqlserver-multidb-messagemapping-->
   <UnicastBusConfig>
     <MessageEndpointMappings>
       <add Assembly="Billing.Contract"

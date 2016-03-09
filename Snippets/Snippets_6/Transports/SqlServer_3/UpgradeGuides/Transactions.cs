@@ -8,7 +8,7 @@
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-            #region 5to6-enable-native-transaction
+            #region 2to3-enable-native-transaction
 
             endpointConfiguration
                 .UseTransport<SqlServerTransport>()

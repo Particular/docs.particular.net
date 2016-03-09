@@ -14,13 +14,13 @@ related:
 
 ### Transactions
 
-The transactions API was changed. The native transaction support has been split into two different levels: `ReceiveOnly` and `SendAtomicWithReceive`. SQL Server Transport supports both of them. `SendAtomicWithReceive` is equivalent to disabling distributed transactions in Version 5.
+The transactions API was changed. The native transaction support has been split into two different levels: `ReceiveOnly` and `SendAtomicWithReceive`. SQL Server Transport supports both of them. `SendAtomicWithReceive` is equivalent to disabling distributed transactions in NServiceBus Version 5.
 
-snippet:5to6-enable-native-transaction
+snippet:2to3-enable-native-transaction
 
 As shown in the above snippet, transaction settings are now handled in the transport level configuration. 
 
-For more details and examples refer to [Transaction configuration API](/nservicebus/upgrades/5to6.md#transaction-configuration-API) and [Transaction support](/nservicebus/messaging/transactions.md) pages.
+For more details and examples refer to [Transaction configuration API](/nservicebus/upgrades/5to6.md#transaction-configuration-api) and [Transaction support](/nservicebus/messaging/transactions.md) pages.
 
 
 ### Connection factory
@@ -52,21 +52,11 @@ snippet:sqlserver-singledb-multischema-config
 
 The parameter `PauseAfterReceiveFailure(TimeSpan)` is no longer supported. In Version 3, the pause value is hard-coded at 1 second.
 
+
 ### Indexes
 
 Queue tables created by the SQL Server transport version 2.2.1 or lower require manual creation of a non-clustered index on the `[Expires]` column. The following SQL statement can be used to create the missing index:
 
-```SQL
-CREATE NONCLUSTERED INDEX [Index_Expires] ON [schema].[queuename]
-(
-	[Expires] ASC
-)
-INCLUDE
-(
-	[Id],
-	[RowVersion]
-)
-WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
-```
+snippet:sql-2.2.2-ExpiresIndex
 
 The SQL Server transport will log a warning when it finds that the index is missing.

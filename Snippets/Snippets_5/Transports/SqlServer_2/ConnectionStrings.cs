@@ -8,7 +8,7 @@
         void ConnectionString()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
-            #region sqlserver-config-connectionstring 2
+            #region sqlserver-config-connectionstring
 
             busConfiguration.UseTransport<SqlServerTransport>()
                 .ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
@@ -19,7 +19,7 @@
         void ConnectionName()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
-            #region sqlserver-named-connection-string 2
+            #region sqlserver-named-connection-string
 
             busConfiguration.UseTransport<SqlServerTransport>()
                 .ConnectionStringName("MyConnectionString");
@@ -30,7 +30,7 @@
         void ConnectionFactory()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
-            #region sqlserver-custom-connection-factory 2
+            #region sqlserver-custom-connection-factory
 
             busConfiguration.UseTransport<SqlServerTransport>()
                 .UseCustomSqlConnectionFactory(

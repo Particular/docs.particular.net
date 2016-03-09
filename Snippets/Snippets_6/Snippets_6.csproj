@@ -427,10 +427,10 @@
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
     <Compile Include="Transports\RabbitMQ_4\Usage.cs" />
-    <Compile Include="Transports\SqlServer\SingleDbMultiSchema.cs" />
-    <Compile Include="Transports\SqlServer\ConnectionStrings.cs" />
+    <Compile Include="Transports\SqlServer_3\SingleDbMultiSchema.cs" />
+    <Compile Include="Transports\SqlServer_3\ConnectionStrings.cs" />
     <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
-    <Compile Include="UpgradeGuides\5to6\Transactions.cs" />
+    <Compile Include="Transports\SqlServer_3\UpgradeGuides\Transactions.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
     <Compile Include="UpgradeGuides\5to6\MessageContext.cs" />
     <Compile Include="UpgradeGuides\5to6\MyEvent.cs" />
@@ -525,7 +525,7 @@
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
     <Compile Include="Transports\QueueCreation\YourMessagePump.cs" />
     <Compile Include="Transports\QueueCreation\YourQueueCreator.cs" />
-    <Compile Include="Transports\SqlServer\ConfigurationSettings.cs" />
+    <Compile Include="Transports\SqlServer_3\ConfigurationSettings.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="TransportTransactions.cs" />
     <Compile Include="RavenDB\UpgradeGuides\3to4\HandlerWithRavenSession.cs" />
@@ -624,9 +624,9 @@
     <None Include="Routing\RoutingFile.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Transports\SqlServer\MultiSchema.config" />
-    <None Include="Transports\SqlServer\ConnectionStringsNamed.config" />
-    <None Include="Transports\SqlServer\ConnectionStrings.config" />
+    <None Include="Transports\SqlServer_3\MultiSchema.config" />
+    <None Include="Transports\SqlServer_3\ConnectionStringsNamed.config" />
+    <None Include="Transports\SqlServer_3\ConnectionStrings.config" />
     <None Include="UpgradeGuides\5to6\Channel.config" />
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@ namespace Snippets5.UpgradeGuides._4to5
         {
             BusConfiguration busConfiguration = new BusConfiguration();
 
-            #region 5to6-enable-native-transaction
+            #region 2to3-enable-native-transaction
 
             busConfiguration
                 .Transactions()

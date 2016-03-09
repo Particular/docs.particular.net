@@ -10,7 +10,7 @@
         void TimeToWaitBeforeTriggeringCircuitBreaker()
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-            #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker 3
+            #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
 
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(3));

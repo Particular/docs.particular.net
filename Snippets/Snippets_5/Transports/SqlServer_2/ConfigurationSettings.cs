@@ -10,7 +10,7 @@
         void CallbackReceiverMaxConcurrency()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
-            #region sqlserver-CallbackReceiverMaxConcurrency 2
+            #region sqlserver-CallbackReceiverMaxConcurrency
 
             busConfiguration.UseTransport<SqlServerTransport>()
                 .CallbackReceiverMaxConcurrency(10);
@@ -20,7 +20,7 @@
         void TimeToWaitBeforeTriggeringCircuitBreaker()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
-            #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker 2
+            #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
 
             busConfiguration.UseTransport<SqlServerTransport>()
                 .TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(3));
@@ -30,7 +30,7 @@
         void PauseAfterReceiveFailure()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
-            #region sqlserver-PauseAfterReceiveFailure 2
+            #region sqlserver-PauseAfterReceiveFailure
 
             busConfiguration.UseTransport<SqlServerTransport>()
                 .PauseAfterReceiveFailure(TimeSpan.FromSeconds(15));
@@ -41,7 +41,7 @@
         void DisableSecondaries()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
-            #region sqlserver-config-disable-secondaries 2
+            #region sqlserver-config-disable-secondaries
 
             busConfiguration.UseTransport<SqlServerTransport>()
                 .DisableCallbackReceiver();

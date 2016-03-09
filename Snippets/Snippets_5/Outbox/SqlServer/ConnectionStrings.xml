@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--startcode OutboxSqlServerConnectionStrings-->
+<!--startcode OutboxSqlServerConnectionStrings 2-->
 <configuration>
   <configSections>
     <section name="AuditConfig" type="NServiceBus.Config.AuditConfig, NServiceBus.Core"/>

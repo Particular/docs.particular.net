@@ -9,7 +9,7 @@
 		void ConnectionString()
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-            #region sqlserver-config-connectionstring 3
+            #region sqlserver-config-connectionstring
 
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
@@ -20,7 +20,7 @@
         void ConnectionName()
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-            #region sqlserver-named-connection-string 3
+            #region sqlserver-named-connection-string
 
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .ConnectionStringName("MyConnectionString");

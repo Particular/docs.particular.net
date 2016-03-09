@@ -21,7 +21,7 @@
         {
             BusConfiguration busConfiguration = new BusConfiguration();
 
-            #region sqlserver-multidb-current-endpoint-connection-string 2
+            #region sqlserver-multidb-current-endpoint-connection-string
 
             busConfiguration.UseTransport<SqlServerTransport>()
                 .ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");

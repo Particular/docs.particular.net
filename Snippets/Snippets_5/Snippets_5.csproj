@@ -366,17 +366,18 @@
     <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
     <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
-    <Content Include="Transports\RabbitMQ_[2.0,3.0]\rabbitmqconnection.config.xml" />
-    <Content Include="Transports\SqlServer\MultiDb.config.xml">
+    <Content Include="Transports\RabbitMQ_2\rabbitmqconnection.config.xml" />
+    <Content Include="Transports\SqlServer_2\MultiDb.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Transports\SqlServer\ConnectionStrings.config" />
-    <None Include="Transports\SqlServer\ConnectionStringsNamed.config" />
-    <None Include="Transports\SqlServer\MultiDB.SC.config" />
-    <None Include="Transports\SqlServer\MultiSchema.config" />
+    <None Include="Transports\SqlServer_2\ConnectionStrings.config" />
+    <None Include="Transports\SqlServer_2\ConnectionStringsNamed.config" />
+    <None Include="Transports\SqlServer_2\MultiDB.SC.config" />
+    <None Include="Transports\SqlServer_2\MultiSchema.config" />
+    <Content Include="Transports\SqlServer_2\UpgradeGuides\ExpiredIndex.sql" />
     <None Include="UpgradeGuides\5to6\Channel.config" />
   </ItemGroup>
   <ItemGroup>
@@ -415,9 +416,9 @@
     <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
     <Compile Include="Serialization\NewtonsoftSerializerUsage.cs" />
     <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
-    <Compile Include="Transports\SqlServer\SingleDbMultiSchema.cs" />
-    <Compile Include="Transports\SqlServer\ConnectionStrings.cs" />
-    <Compile Include="UpgradeGuides\4to5\Transactions.cs" />
+    <Compile Include="Transports\SqlServer_2\SingleDbMultiSchema.cs" />
+    <Compile Include="Transports\SqlServer_2\ConnectionStrings.cs" />
+    <Compile Include="Transports\SqlServer_2\UpgradeGuides\Transactions.cs" />
     <Compile Include="UpgradeGuides\5to6\AuthorizeSubscriptions.cs" />
     <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
     <Compile Include="UpgradeGuides\5to6\DelayedDelivery.cs" />
@@ -621,9 +622,9 @@
     <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />
-    <Compile Include="Transports\RabbitMQ_[2.0,3.0]\Usage.cs" />
-    <Compile Include="Transports\SqlServer\MultiDb.cs" />
-    <Compile Include="Transports\SqlServer\ConfigurationSettings.cs" />
+    <Compile Include="Transports\RabbitMQ_2\Usage.cs" />
+    <Compile Include="Transports\SqlServer_2\MultiDb.cs" />
+    <Compile Include="Transports\SqlServer_2\ConfigurationSettings.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transports\Throughput\Usage.cs" />
     <Compile Include="UnitTesting\AdditionalServices\Tests.cs" />
