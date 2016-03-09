@@ -12,7 +12,7 @@ ServiceControl utilizes an embedded RavenDB for data storage. To backup or resto
 
  1. Open the ServiceControl Management Utility to view the list of ServiceControl Service instances
 	![](managementutil-instance.png)
- 1. Stop the service you wish to backup from the action icons.
+ 1. Stop the service, to backup, from the action icons.
  1. Click the link under data path to go to the data directory.
  1. Copy the contents of the data directory.
  1. Start the service again once the copy is complete
@@ -21,7 +21,7 @@ ServiceControl utilizes an embedded RavenDB for data storage. To backup or resto
 ### Restore
 
  1. Open the ServiceControl Management Utility to view the list of ServiceControl Service instances
- 1. Stop the service you wish to restore to from the action icons.
+ 1. Stop the service, to restore to, from the action icons.
  1. Click the link under data path to go to the data directory.
  1. Replace the contents of this directory with the previously copied data,
  1. Start the service again once the copy is complete

@@ -5,15 +5,18 @@ tags:
 - ServiceControl
 ---
 
-ServiceControl is a monitoring tool for production environments. As with other production monitoring tools, you must plan for and maintain the deployment over time.
+ServiceControl is a monitoring tool for production environments. As with other production monitoring tools, plan for and maintain the deployment over time.
 
 The primary job of ServiceControl is to collect information on system behavior in production. It does so by collecting error, audit and health messages from dedicated queues. ServiceControl reads the messages flowing into those queues and stores them in its embedded database. In a production environment (and to a lesser degree in development, staging and testing environments), ServiceControl has an impact on the disk space where its data is stored, and its throughput capacity needs to be considered with regard to the overall system load and throughput.
 
+
 ### Storage
+
 
 #### Location
 
-Each ServiceControl instance stores its data in a RavenDB embedded instance. The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. You should configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
+Each ServiceControl instance stores its data in a RavenDB embedded instance. The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. Configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
+
 
 #### Size
 
@@ -30,16 +33,19 @@ Refer to Data Retention section of [Customizing ServiceControl Configuration](cr
 
 **NOTE**
 
-* The maximum supported size of the RavenDB embedded database is 16TB.
-* Failed messages are *never* expired and are retained indefinitely in the ServiceControl database.
+ * The maximum supported size of the RavenDB embedded database is 16TB.
+ * Failed messages are *never* expired and are retained indefinitely in the ServiceControl database.
+
 
 ### Accessing data and audited messages
+
 
 #### Alternate Audit and Error queues
 
 You can configure ServiceControl to forward any consumed messages into alternate queues, so that a copy of any message consumed by ServiceControl is available from these alternate queues.
 
-For more details, see [Forwarding Queues](errorlog-auditlog-behavior.md)
+For more details, see [Forwarding Queues](errorlog-auditlog-behavior.md).
+
 
 #### Query the ServiceControl HTTP API
 
@@ -47,11 +53,13 @@ This provides a JSON stream of audited and error messages (headers, body, and co
 
 NOTE: ServiceControl HTTP API is subject to changes and enhancements that may not be fully backwards compatible. Use of this HTTP API is discouraged by 3rd parties at this time.
 
+
 ### Throughput
 
 ServiceControl consumes audited, error and control messages in its database. It does so for all the endpoints that are configured to forward these messages to the queues monitored by ServiceControl. This means that the throughput (measured in received and processed messages per second) required by ServiceControl is the aggregate throughput of all the endpoints forwarding messages to its queues.
 
-The throughput of ServiceControl is dependent on multiple factors. Messages size and network bandwidth have significant affect on throughput. Another factor is the transport type used by your system.
+The throughput of ServiceControl is dependent on multiple factors. Messages size and network bandwidth have significant affect on throughput. Another factor is the transport type used by the system.
+
 
 #### Transport type
 
@@ -61,4 +69,4 @@ The transports supported by ServiceControl out-of-the-box (i.e. MSMQ, RabbitMQ, 
 
 Azure Queues and Service Bus throughput varies significantly based on deployment options and multiple related variables inherent to cloud deployment scenarios.
 
-It is recommended that you plan and perform realistic throughput tests on ServiceControl using the transport of your choice and deployment options that are as close as possible to your planned production deployment. For additional questions or information [contact Particular Software](http://particular.net/contactus).
+It is recommended to plan and perform realistic throughput tests on ServiceControl using the transport of the choice and deployment options that are as close as possible to the planned production deployment. For additional questions or information [contact Particular Software](http://particular.net/contactus).

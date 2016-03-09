@@ -29,7 +29,7 @@ Once a message ends up in the error queue ServiceControl will publish a `Message
 
 ### Subscribing to ServiceControl Events
 
-ServiceControl publishes `MessageFailed` event when a message gets to the error queue, let's see how we can tap in by subscribing to these events and act on them (send an email, pager duty and so on).
+ServiceControl publishes `MessageFailed` event when a message gets to the error queue, it is possible to subscribe to these events and act on them (send an email, pager duty and so on).
 
 To subscribe to the `MessageFailed` event:
 - Create an [NServiceBus endpoint](/nservicebus/hosting/nservicebus-host/)
@@ -47,7 +47,7 @@ The code sample to do both customizations is as shown below:
 
 snippet:ServiceControlEventsConfig
 
-- The endpoint will also need a message handler, that handles the `MessageFailed` event. In the following example, there is also a simple HTTP call to HipChat's API to show how you could integrate with a 3rd party system to provide notification of the error.
+- The endpoint will also need a message handler, that handles the `MessageFailed` event. In the following example, there is also a simple HTTP call to HipChat's API to show how to possibly integrate with a 3rd party system to provide notification of the error.
 
 snippet:MessageFailedHandler
 
@@ -65,7 +65,7 @@ Once an endpoint stops sending heartbeats to ServiceControl queue ServiceControl
 
 The message contains the time it was detected and the last heartbeat time.
 
-Similarly to the code above you can subscribe to the event, handle it, and perform custom actions.
+Similarly to the code above it is possible to subscribe to the event, handle it, and perform custom actions.
 
 
 ### Alerting on HeartbeatRestored Event
@@ -74,7 +74,7 @@ Once an endpoint resumes sending heartbeats to ServiceControl queue ServiceContr
 
 The event contains the time the heartbeat was restored.
 
-Similarly to the code above you can subscribe to the event, handle it and provide custom actions.
+Similarly to the code above it is possible to subscribe to the event, handle it and provide custom actions.
 
 
 ### Alerting on CustomCheckFailed Event
@@ -85,7 +85,7 @@ Once a custom check fails ServiceControl will publish a `CustomCheckFailed` even
 
 The message contains the time it was detected and the failure reason.
 
-Similarly to the code above you can subscribe to the event, handle it and provide custom actions.
+Similarly to the code above it is possible to subscribe to the event, handle it and provide custom actions.
 
 
 ### Alerting on CustomCheckSucceeded Event
@@ -94,11 +94,11 @@ Once a custom check succeeds ServiceControl will publish a `CustomCheckSucceeded
 
 The message contains the time it was detected.
 
-Similarly to the code above you can subscribe to the event, handle it, and perform custom actions.
+Similarly to the code above it is possible to subscribe to the event, handle it, and perform custom actions.
 
 
 ## Decommissioning alert subscribers
 
-ServiceControl uses [Event Publishing](/nservicebus/messaging/publish-subscribe/) to send alerts to all subscribers. If you are using a [persistence based transport](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based) then ServiceControl will keep an internal reference to each subscriber. If a subscriber for an alert cannot be contacted then ServiceControl will shut itself down after a few attempts.
+ServiceControl uses [Event Publishing](/nservicebus/messaging/publish-subscribe/) to send alerts to all subscribers. If using a [persistence based transport](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based) then ServiceControl will keep an internal reference to each subscriber. If a subscriber for an alert cannot be contacted then ServiceControl will shut itself down after a few attempts.
 
-To prevent this situation it is important to properly decommission an endpoint that subscribes to ServiceControl events. To do this you should [disable auto-subscription](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription) and then [unsubscribe to all events](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#how-to-manually-subscribe-to-a-message).
+To prevent this situation it is important to properly decommission an endpoint that subscribes to ServiceControl events. To do this [disable auto-subscription](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription) and then [unsubscribe to all events](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#how-to-manually-subscribe-to-a-message).
