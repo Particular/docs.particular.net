@@ -627,7 +627,7 @@
     <None Include="Transports\SqlServer_3\MultiSchema.config" />
     <None Include="Transports\SqlServer_3\ConnectionStringsNamed.config" />
     <None Include="Transports\SqlServer_3\ConnectionStrings.config" />
-    <None Include="UpgradeGuides\5to6\Channel.config" />
+    <None Include="Gateway\UpgradeGuide\1to2\Channel.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

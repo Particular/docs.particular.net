@@ -5,6 +5,7 @@ tags:
  - upgrade
  - migration
 related:
+- nservicebus/sqlserver
 - nservicebus/upgrades/5to6
 ---
 

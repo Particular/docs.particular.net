@@ -378,7 +378,7 @@
     <None Include="Transports\SqlServer_2\MultiDB.SC.config" />
     <None Include="Transports\SqlServer_2\MultiSchema.config" />
     <Content Include="Transports\SqlServer_2\UpgradeGuides\ExpiredIndex.sql" />
-    <None Include="UpgradeGuides\5to6\Channel.config" />
+    <None Include="Gateway\UpgradeGuide\1to2\Channel.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audit\ProvideConfiguration.cs" />
