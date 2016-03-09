@@ -67,7 +67,7 @@ The above code makes sure that user, saga and outbox tables are created in the t
 To allow for database isolation between the tenants the actual connection to the database need to be created based on the message being processed. This requires cooperation of three components:
 
  * Custom `ConnectionProvider` for NHibernate
- * A behavior that insects an incoming message and opens a new connection based on the tenant ID found in the headers of that message
+ * A behavior that injects an incoming message and opens a new connection based on the tenant ID found in the headers of that message
  * A behavior that propagates the tenant ID information to outgoing messages
 
 
