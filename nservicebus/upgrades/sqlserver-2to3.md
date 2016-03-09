@@ -51,3 +51,22 @@ snippet:sqlserver-singledb-multischema-config
 ### Circuit breaker
 
 The parameter `PauseAfterReceiveFailure(TimeSpan)` is no longer supported. In Version 3, the pause value is hard-coded at 1 second.
+
+### Indexes
+
+Queue tables created by the SQL Server transport version 2.2.1 or lower require manual creation of a non-clustered index on the `[Expires]` column. The following SQL statement can be used to create the missing index:
+
+```SQL
+CREATE NONCLUSTERED INDEX [Index_Expires] ON [schema].[queuename]
+(
+	[Expires] ASC
+)
+INCLUDE
+(
+	[Id],
+	[RowVersion]
+)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+```
+
+The SQL Server transport will log a warning when it finds that the index is missing.
