@@ -24,6 +24,7 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
+
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         await endpoint.SendLocal(new MyMessage());
         Console.WriteLine("Press any key to exit");
