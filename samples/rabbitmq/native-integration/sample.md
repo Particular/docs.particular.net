@@ -26,13 +26,13 @@ snippet:SendMessage
 
 ### Message serialization
 
-In this sample XML is used to format the payload since NServiceBus is able to automatically detect the message type based on the root node of the xml. Our native sender will send a `MyMessage` xml string as the message payload.
+In this sample XML is used to format the payload since NServiceBus is able to automatically detect the message type based on the root node of the xml. The native sender will send a `MyMessage` xml string as the message payload.
 
 Note: The root node is the fully qualified type name (including namespace if it has one) of the message.
 
 snippet:CreateNativePayload
 
-The next step is to define a message contract in our receiver that matches this format. This contract looks like this (Notice the `SomeProperty`)
+The next step is to define a message contract in the receiver that matches this format. This contract looks like this (Notice the `SomeProperty`)
 
 snippet:DefineNSBMessage
 
