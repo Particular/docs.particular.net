@@ -1,32 +1,33 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Installation.Environments;
 
 class Program
 {
     static void Main()
     {
-        Console.Title = "Samples.RabbitMQ.Simple";
-        Configure.Serialization.Json();
-        #region ConfigureRabbit
-        Configure configure = Configure.With();
-        configure.Log4Net();
-        configure.DefineEndpointName("Samples.RabbitMQ.Simple");
-        configure.DefaultBuilder();
-        configure.UseTransport<NServiceBus.RabbitMQ>(() => "host=localhost");
-        #endregion
-        configure.InMemorySagaPersister();
-        configure.UseInMemoryTimeoutPersister();
-        configure.InMemorySubscriptionStorage();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
-        {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
-            bus.SendLocal(new MyMessage());
-
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-
+        AsyncMain().GetAwaiter().GetResult();
     }
 
+    static async Task AsyncMain()
+    {
+        Console.Title = "Samples.RabbitMQ.Simple";
+        #region ConfigureRabbit
+
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.RabbitMQ.Simple");
+        endpointConfiguration.UseTransport<RabbitMQTransport>()
+            .ConnectionString("host=localhost");
+
+        #endregion
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        await endpoint.SendLocal(new MyMessage());
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpoint.Stop();
+    }
 }
