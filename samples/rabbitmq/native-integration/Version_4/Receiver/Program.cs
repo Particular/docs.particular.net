@@ -12,6 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.RabbitMQ.NativeIntegration.Receiver";
+
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         #region ConfigureRabbitQueueName
         endpointConfiguration.EndpointName("Samples.RabbitMQ.NativeIntegration");
@@ -19,6 +20,7 @@ class Program
         endpointConfiguration.UseTransport<RabbitMQTransport>()
             .ConnectionString("host=localhost");
 
+        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
