@@ -7,15 +7,25 @@ using NServiceBus.Routing.Legacy;
 
 class Program
 {
-
     static void Main()
     {
         EndpointConfiguration busConfiguration = new EndpointConfiguration();
+
+        #region WorkerIdentity
+
         busConfiguration.EndpointName("Samples.Scaleout.Worker");
         busConfiguration.ScaleOut().InstanceDiscriminator(ConfigurationManager.AppSettings["InstanceId"]);
+
+        #endregion
+
+        #region Enlisting
+
         busConfiguration.EnlistWithLegacyMSMQDistributor(ConfigurationManager.AppSettings["DistributorAddress"],
             ConfigurationManager.AppSettings["DistributorControlAddress"],
             10);
+
+        #endregion
+
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.SendFailedMessagesTo("error");

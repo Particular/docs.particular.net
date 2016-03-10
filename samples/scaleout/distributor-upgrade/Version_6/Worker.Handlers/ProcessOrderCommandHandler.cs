@@ -3,8 +3,6 @@ using System;
 using System.Reflection;
 using System.Threading.Tasks;
 
-#region WorkerHandler
-
 public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
 {
     public Task Handle(PlaceOrder placeOrder, IMessageHandlerContext context)
@@ -21,5 +19,3 @@ public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
         return context.Reply(message);
     }
 }
-
-#endregion

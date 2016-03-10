@@ -11,6 +11,8 @@ namespace Distributor
     {
         static void Main(string[] args)
         {
+            #region DistributorCode
+
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName("Samples.Scaleout.Distributor");
             busConfiguration.RunMSMQDistributor(withWorker: false);
@@ -22,6 +24,8 @@ namespace Distributor
                 Console.WriteLine("Press any key to exit");
                 Console.ReadKey();
             }
+
+            #endregion
         }
     }
 }

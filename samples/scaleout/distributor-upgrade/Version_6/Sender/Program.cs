@@ -4,7 +4,6 @@ using NServiceBus;
 
 class Program
 {
-
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
@@ -12,7 +11,7 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.Conventions().DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof(IMessage)));
+        busConfiguration.Conventions().DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof (IMessage)));
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
@@ -35,15 +34,17 @@ class Program
 
     static void SendMessage(IBus bus)
     {
-        #region sender
-
         PlaceOrder placeOrder = new PlaceOrder
         {
             OrderId = Guid.NewGuid()
         };
+
+        #region SenderRouting
+
         bus.Send("Samples.Scaleout.Distributor", placeOrder);
-        Console.WriteLine("Sent PlacedOrder command with order id [{0}].", placeOrder.OrderId);
 
         #endregion
+
+        Console.WriteLine("Sent PlacedOrder command with order id [{0}].", placeOrder.OrderId);
     }
 }
