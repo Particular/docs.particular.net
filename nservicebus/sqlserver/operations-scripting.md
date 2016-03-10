@@ -31,6 +31,7 @@ snippet:sqlserver-powershell-nativesend
 
 snippet:sqlserver-nativesend-usage
 
+In this example, the value `MessageTypeToSend` represents the .NET type of the message. For more information about providing the correct value for the `EnclosedMessageTypes` header and other headers, [please read this article](/nservicebus/messaging/headers.md).
 
 ## Create queues
 

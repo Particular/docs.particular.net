@@ -32,6 +32,7 @@ snippet:rabbit-nativesend
 
 snippet:rabbit-nativesend-usage
 
+In this example, the value `MyNamespace.MyMessage` represents the .NET type of the message. For more information about providing the correct value for the `EnclosedMessageTypes` header and other headers, [please read this article](/nservicebus/messaging/headers.md).
 
 ## Return message to source queue
 
