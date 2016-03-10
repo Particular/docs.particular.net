@@ -1,50 +1,47 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.IO;
 using NServiceBus;
-using NServiceBus.AzureServiceBus;
+using NServiceBus.Azure.Transports.WindowsAzureServiceBus;
 
 class Program
 {
     static void Main()
     {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
-    {
         Console.Title = "Samples.ASB.NativeIntegration";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         #region EndpointAndSingleQueue
 
-        endpointConfiguration.EndpointName("Samples.ASB.NativeIntegration");
+        busConfiguration.EndpointName("Samples.ASB.NativeIntegration");
+        busConfiguration.ScaleOut()
+            .UseSingleBrokerQueue();
 
         #endregion
 
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.UseTransport<AzureServiceBusTransport>()
+            .ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
 
         #region BrokeredMessageConvention
 
-        AzureServiceBusTopologySettings topologySettings = endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-            .UseDefaultTopology();
-        topologySettings.Serialization().BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
+        BrokeredMessageBodyConversion.ExtractBody = brokeredMessage =>
+        {
+            using (MemoryStream stream = new MemoryStream())
+            using (Stream body = brokeredMessage.GetBody<Stream>())
+            {
+                body.CopyTo(stream);
+                return stream.ToArray();
+            }
+        };
 
         #endregion
 
-        topologySettings.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
-
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-        try
+        using (Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
-        }
-        finally
-        {
-            await endpoint.Stop();
         }
     }
 }

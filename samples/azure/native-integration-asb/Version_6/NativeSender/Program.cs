@@ -1,17 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.ServiceBus.Messaging;
 
 class Program
 {
     static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
     {
         Console.Title = "Samples.ASB.NativeIntegration.Sender";
         string connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
@@ -34,11 +28,10 @@ class Program
 
         message.Properties["NServiceBus.EnclosedMessageTypes"] = "NativeMessage";
         message.Properties["NServiceBus.MessageIntent"] = "Send";
-        message.Properties["Transport-Encoding"] = "application/octect-stream";
 
         #endregion
 
-        await queueClient.SendAsync(message);
+        queueClient.Send(message);
 
         Console.WriteLine("Native message sent");
         Console.WriteLine("Press any key to exit");
