@@ -31,10 +31,7 @@ snippet:sqlserver-powershell-nativesend
 
 snippet:sqlserver-nativesend-usage
 
-The `MessageTypeToSend` dictionary value represents the message .NET type, by default the endpoint receiving the message will use that message type to deserialize the incoming message. Depending on the [versioning](/samples/versioning/sample.md) strategy the type can be expressed in 2 different ways:
-
-* Full type name in the form of `Namespace.ClassName, AssemblyName`
-* Assembly qualified name in the form of `Namespace.ClassName, AssemblyName, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null`
+In this example, the value `MessageTypeToSend` represents the .NET type of the message. For more information about providing the correct value for the `EnclosedMessageTypes` header and other headers, [please read this article](/nservicebus/messaging/headers.md).
 
 ## Create queues
 

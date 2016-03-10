@@ -34,30 +34,50 @@ public static DateTime ToUtcDateTime(string wireFormattedString)
 }
 ```
 
-
 ## Serialization Headers
 
 This set of headers contains information to control how messages are [de-serialized](/nservicebus/serialization/) by the receiving endpoint.
 
- * `NServiceBus.ContentType`: The type of serialization used for the message. For example ` text/xml` or `text/json`. The `NServiceBus.ContentType` header was added in Version 4.0. In some cases it may be useful to use the `NServiceBus.Version` header to determine when to use the `NServiceBus.ContentType` header.
- * `NServiceBus.EnclosedMessageTypes`: The fully qualified type name of the enclosed message(s).
+### NServiceBus.ContentType
+The type of serialization used for the message. For example ` text/xml` or `text/json`. The `NServiceBus.ContentType` header was added in Version 4.0. In some cases it may be useful to use the `NServiceBus.Version` header to determine when to use the `NServiceBus.ContentType` header.
 
+### NServiceBus.EnclosedMessageTypes
+The fully qualified .NET type name of the enclosed message(s). The receiving endpoint will use this type when deserializing an incoming message. Depending on the [versioning strategy](/samples/versioning/) the type can be specified in the following ways:
+
+* Full type name: `Namespace.ClassName`
+* Assembly qualified name: `Namespace.ClassName, AssemblyName, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null`
+
+NOTE: In integration scenarios, this header can be safely omitted if the endpoint uses XmlSerialization and the root node happens to message type.
 
 ## Messaging interaction headers
 
 Several headers are used to enable messaging interaction patters
 
- * `NServiceBus.MessageId`: A unique id for the current message. Note that the value used for an outgoing message can be controlled by the endpoint, using an `IMutateOutgoingTransportMessages`.
- * `NServiceBus.CorrelationId`: A string used to [correlate](./message-correlation.md) reply messages to their corresponding request message.
- * `NServiceBus.ConversationId`: The conversation that this message is part of
- * `NServiceBus.RelatedTo`: The `MessageId` that caused this message to be sent
- * `NServiceBus.MessageIntent`: Can be one of the following:
-	* `Send`: Regular point-to-point send. Note that messages sent to Error queue will also have a `Send` intent.
-	* `Publish`: The message is an event that has been published and will be sent to all subscribers.
-	* `Subscribe`: A control message indicating that the source endpoint would like to subscribe to a specific message.
-	* `Unsubscribe`: A control message indicating that the source endpoint would like to unsubscribe to a specific message.
-	* `Reply`: The message has been initiated by doing a Reply or a Return from within a Handler or a Saga.
- * `NServiceBus.ReplyToAddress`: The queue address that instructs downstream handlers or sagas where to send to when doing a Reply or Return.
+### NServiceBus.MessageId
+A unique id for the current message. Note that the value used for an outgoing message can be controlled by the endpoint, using an `IMutateOutgoingTransportMessages`.
+
+### NServiceBus.CorrelationId
+A string used to [correlate](./message-correlation.md) reply messages to their corresponding request message.
+
+### NServiceBus.ConversationId
+The conversation that this message is part of
+
+### NServiceBus.RelatedTo
+The `MessageId` that caused this message to be sent
+
+### NServiceBus.MessageIntent
+Message intent can have one of the following values:
+
+|               |             | 
+| ------------- |-------------|
+| Send |Regular point-to-point send. Note that messages sent to Error queue will also have a `Send` intent|
+| Publish |The message is an event that has been published and will be sent to all subscribers.|
+| Subscribe |A control message indicating that the source endpoint would like to subscribe to a specific message.|
+| Unsubscribe |A control message indicating that the source endpoint would like to unsubscribe to a specific message.|
+| Reply | The message has been initiated by doing a Reply or a Return from within a Handler or a Saga. |
+
+### NServiceBus.ReplyToAddress
+The queue address that instructs downstream handlers or sagas where to send to when doing a Reply or Return.
 
 
 ## Send Headers
@@ -153,10 +173,17 @@ snippet: HeaderWriterSaga_ReplyingToOriginator
 
 ## Timeout Headers
 
- * `NServiceBus.ClearTimeouts`: A marker header to indicate that the contained control message is requesting that timeouts be cleared for a given saga.
- * `NServiceBus.Timeout.Expire`: A timestamp that indicates when a timeout to be fired.
- * `NServiceBus.Timeout.RouteExpiredTimeoutTo`: The queue name where a timeout should be routed back to when it fires.
- * `NServiceBus.IsDeferredMessage`: A marker header to indicate that this message resulted from a Defer.
+### NServiceBus.ClearTimeouts
+A marker header to indicate that the contained control message is requesting that timeouts be cleared for a given saga.
+
+### NServiceBus.Timeout.Expire
+A timestamp that indicates when a timeout to be fired.
+
+### NServiceBus.Timeout.RouteExpiredTimeoutTo
+The queue name where a timeout should be routed back to when it fires.
+
+### NServiceBus.IsDeferredMessage
+A marker header to indicate that this message resulted from a Defer.
 
 
 ## Requesting a Timeout from a Saga
@@ -192,25 +219,39 @@ snippet: HeaderWriterDefer
 
 Headers used to give visibility into "where", "when" and "by whom" Of a message. Used by [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/).
 
- * `$.diagnostics`: The [host details](/nservicebus/hosting/override-hostid.md) of the endpoint where the message was being processed. This header contains three parts:
+### $.diagnostics
+The [host details](/nservicebus/hosting/override-hostid.md) of the endpoint where the message was being processed. This header contains three parts:
 	 * `$.diagnostics.hostdisplayname`
 	 * `$.diagnostics.hostid`
 	 * `$.diagnostics.originating.hostid`
- * `NServiceBus.TimeSent`: The timestamp of when the message was sent. Used by the [Performance Counters](/nservicebus/operations/performance-counters.md).
- * `NServiceBus.OriginatingEndpoint`: The endpoint name where the message was sent from.
- * `NServiceBus.OriginatingMachine`: The machine name where the message was sent from.
- * `NServiceBus.Version`: The NServiceBus version number.
+ 
+### NServiceBus.TimeSent
+The timestamp of when the message was sent. Used by the [Performance Counters](/nservicebus/operations/performance-counters.md).
 
+### NServiceBus.OriginatingEndpoint
+The endpoint name where the message was sent from.
+
+### NServiceBus.OriginatingMachine
+The machine name where the message was sent from.
+
+### NServiceBus.Version
+The NServiceBus version number.
 
 ## Audit Headers
 
 Headers added when a message is [Audited](/nservicebus/operations/auditing.md)
 
- * `NServiceBus.ProcessingEnded`: The timestamp processing of a message ended.
- * `NServiceBus.ProcessingEndpoint`: Name of the endpoint where the message was processed.
- * `NServiceBus.ProcessingMachine`: Machine name of the endpoint where the message was processed.
- * `NServiceBus.ProcessingStarted`: The timestamp the processing of this message started.
+### NServiceBus.ProcessingEnded
+The timestamp processing of a message ended.
 
+### NServiceBus.ProcessingEndpoint
+Name of the endpoint where the message was processed.
+
+### NServiceBus.ProcessingMachine
+Machine name of the endpoint where the message was processed.
+
+### NServiceBus.ProcessingStarted
+The timestamp the processing of this message started.
 
 ### Example Audit Headers
 
@@ -227,22 +268,40 @@ snippet: HeaderWriterAudit_Audit
 
 Headers used facilitate [Retries](/nservicebus/errors/automatic-retries.md).
 
- * `NServiceBus.FailedQ`: The queue at which the message processing failed.
- * `NServiceBus.FLRetries`: The number of first-level retries that has been performed for a message.
- * `NServiceBus.Retries`: Number of second-level retries that has been performed for a message.
- * `NServiceBus.Retries.Timestamp`: A timestamp used by Second Level Retries to determine if the maximum time for retrying has been reached.
+### NServiceBus.FailedQ
+The queue at which the message processing failed.
+
+### NServiceBus.FLRetries
+The number of first-level retries that has been performed for a message.
+
+### NServiceBus.Retries
+Number of second-level retries that has been performed for a message.
+
+### NServiceBus.Retries.Timestamp
+A timestamp used by Second Level Retries to determine if the maximum time for retrying has been reached.
 
 
 ## Error forwarding headers
 
 When a message is sent to the Error queue it will have the following extra headers added to the existing headers. If retries occurred then those messages will be included with the exception of `NServiceBus.Retries`, which is removed.
 
- * `NServiceBus.ExceptionInfo.ExceptionType`: The [Type.FullName](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) of the Exception. Obtained by calling `Exception.GetType().FullName`.
- * `NServiceBus.ExceptionInfo.InnerExceptionType`: The full Type name of the [InnerException](https://msdn.microsoft.com/en-us/library/system.exception.innerexception.aspx) if it exists. Obtained by calling `Exception.InnerException.GetType().FullName`.
- * `NServiceBus.ExceptionInfo.HelpLink`: The [Exception HelpLink](https://msdn.microsoft.com/en-us/library/system.exception.helplink.aspx).
- * `NServiceBus.ExceptionInfo.Message`: The [Exception Message](https://msdn.microsoft.com/en-us/library/system.exception.message.aspx).
- * `NServiceBus.ExceptionInfo.Source` The [Exception Source](https://msdn.microsoft.com/en-us/library/system.exception.source.aspx).
- * `NServiceBus.ExceptionInfo.StackTrace` The [Exception StackTrace](https://msdn.microsoft.com/en-us/library/system.exception.stacktrace.aspx).
+### NServiceBus.ExceptionInfo.ExceptionType
+The [Type.FullName](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) of the Exception. Obtained by calling `Exception.GetType().FullName`.
+
+### NServiceBus.ExceptionInfo.InnerExceptionType
+The full Type name of the [InnerException](https://msdn.microsoft.com/en-us/library/system.exception.innerexception.aspx) if it exists. Obtained by calling `Exception.InnerException.GetType().FullName`.
+
+### NServiceBus.ExceptionInfo.HelpLink
+The [Exception HelpLink](https://msdn.microsoft.com/en-us/library/system.exception.helplink.aspx).
+
+### NServiceBus.ExceptionInfo.Message
+The [Exception Message](https://msdn.microsoft.com/en-us/library/system.exception.message.aspx).
+
+### NServiceBus.ExceptionInfo.Source
+The [Exception Source](https://msdn.microsoft.com/en-us/library/system.exception.source.aspx).
+
+### NServiceBus.ExceptionInfo.StackTrace
+The [Exception StackTrace](https://msdn.microsoft.com/en-us/library/system.exception.stacktrace.aspx).
 
 
 ### Example Error Headers
@@ -260,7 +319,8 @@ snippet: HeaderWriterError_Error
 
 Headers when using [Rijndael property encryption](/nservicebus/security/encryption.md).
 
- * `NServiceBus.RijndaelKeyIdentifier`: Identifies which encryption key used for encryption the message property fragments.
+### NServiceBus.RijndaelKeyIdentifier
+Identifies which encryption key used for encryption the message property fragments.
 
 
 #### Example Headers
