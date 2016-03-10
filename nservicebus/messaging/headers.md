@@ -47,7 +47,7 @@ The fully qualified .NET type name of the enclosed message(s). The receiving end
 * Full type name: `Namespace.ClassName`
 * Assembly qualified name: `Namespace.ClassName, AssemblyName, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null`
 
-NOTE: In integration scenarios, this header can be safely omitted if the endpoint uses XmlSerialization and the root node happens to message type.
+NOTE: In integration scenarios, this header can be safely omitted if the endpoint uses XmlSerialization and the root node happens to be the message type.
 
 ## Messaging interaction headers
 
