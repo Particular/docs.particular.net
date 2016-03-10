@@ -1,4 +1,4 @@
-﻿namespace Snippets6
+﻿namespace Snippets6.UpgradeGuides._5to6
 {
     using NServiceBus;
 
@@ -6,7 +6,7 @@
     {
         public void Simple(EndpointConfiguration endpointConfiguration)
         {
-            #region HandlerOrderingWithCode
+            #region 5to6HandlerOrderingWithCode
 
             endpointConfiguration.ExecuteTheseHandlersFirst(typeof(HandlerB), typeof(HandlerA), typeof(HandlerC));
 
@@ -15,21 +15,13 @@
 
         public void SpecifyingFirst(EndpointConfiguration endpointConfiguration)
         {
-            #region HandlerOrderingWithFirst
+            #region 5to6HandlerOrderingWithFirst
 
             endpointConfiguration.ExecuteTheseHandlersFirst(typeof(HandlerB));
 
             #endregion
         }
 
-        public void SpecifyingOrder(EndpointConfiguration endpointConfiguration)
-        {
-            #region HandlerOrderingWithMultiple
-
-            endpointConfiguration.ExecuteTheseHandlersFirst(typeof(HandlerB), typeof(HandlerA), typeof(HandlerC));
-
-            #endregion
-        }
 
         public class HandlerA
         {

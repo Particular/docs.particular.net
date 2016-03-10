@@ -5,11 +5,10 @@
 
     public class HandlerOrdering
     {
-        public void Simple()
+        public void Simple(Configure configure)
         {
             #region HandlerOrderingWithCode
 
-            Configure configure = Configure.With();
             ConfigUnicastBus configUnicastBus = configure.UnicastBus();
             configUnicastBus.LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>());
 
