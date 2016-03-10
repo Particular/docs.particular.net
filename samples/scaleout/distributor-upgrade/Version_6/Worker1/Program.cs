@@ -17,6 +17,7 @@ class Program
             10);
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
         busConfiguration.EnableInstallers();
 
         Run(busConfiguration).GetAwaiter().GetResult();

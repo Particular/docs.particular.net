@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="OrderPlacedHandler.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
