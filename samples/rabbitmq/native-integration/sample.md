@@ -1,6 +1,6 @@
 ---
 title: Native integration with RabbitMQ
-summary: Shows how to consume messages published by non NServiceBus endpoints
+summary: Shows how to consume messages published by non-NServiceBus endpoints
 tags:
 - RabbitMQ
 related:
@@ -10,37 +10,37 @@ related:
 
 ## Code walk-through
 
-The sample consists of 2 console apps. A simple NServiceBus receiver and a native sender demonstrating how to have senders on other platforms send messages to the NServiceBus endpoints using the native RabbitMQ Clients available. This could be java clients, Node.js etc.
+The sample consists of 2 console apps, a simple NServiceBus receiver and a native sender. These apps demonstrate how to have senders on other platforms send messages to NServiceBus endpoints. While the .NET RabbitMQ client is used in this sample, the approach demonstrated can be used with any of the [official](https://www.rabbitmq.com/download.html) or [community](https://www.rabbitmq.com/devtools.html) native RabbitMQ client libraries.
 
 
 ### Putting the message in the correct queue
 
-When integrating native RabbitMQ sender with the NServiceBus endpoints the first thing required is to make sure the native senders are configured to put the messages in the queue where the endpoint is listening. By default NServiceBus endpoints will listen on a queue with the same name as the endpoint so set the endpoint name using:
+When integrating native RabbitMQ senders with NServiceBus endpoints, the first thing required is to make sure the native senders are configured to put the messages in the queue where the endpoint is listening. By default, NServiceBus endpoints will listen on a queue with the same name as the endpoint, so set the endpoint name using:
 
 snippet:ConfigureRabbitQueueName
 
-With this in place the native sender can place a message in this queue using:
+With this in place, the native sender can place a message in this queue using:
 
 snippet:SendMessage
 
 
 ### Message serialization
 
-In this sample XML is used to format the payload since NServiceBus is able to automatically detect the message type based on the root node of the xml. The native sender will send a `MyMessage` xml string as the message payload.
+In this sample, XML is used to format the payload since NServiceBus is able to automatically detect the message type based on the root node of the XML document. The native sender will send a `MyMessage` XML string as the message payload.
 
-Note: The root node is the fully qualified type name (including namespace if it has one) of the message.
+Note: The root node should be the fully qualified type name (including namespace if it has one) of the message.
 
 snippet:CreateNativePayload
 
-The next step is to define a message contract in the receiver that matches this format. This contract looks like this (Notice the `SomeProperty`)
+The next step is to define a message contract in the receiver that matches the XML-formatted payload. The contract that matches the payload used in this sample looks like this:
 
 snippet:DefineNSBMessage
 
 
 ### Uniquely identifying messages
 
-NServiceBus requires all messages to be uniquely identified in order to be able to perform retries in a safe way. Unfortunately RabbitMQ doesn't provide a unique id for messages by default so it needs to be configured. By default NServiceBus will look for the message id in the optional AMQP `MessageId` property but use a custom strategy can be used by calling `.CustomMessageIdStrategy` and extract the id from any property, header or event the message payload.
+NServiceBus requires all messages to be uniquely identified in order to be able to perform retries in a safe way. Unfortunately, RabbitMQ doesn't provide a unique id for messages by automatically, so a unique id will need to be manually generated. By default, NServiceBus will look for this message id in the optional AMQP `message-id` message header. This behavior can be modified by calling `CustomMessageIdStrategy` to tell NServiceBus to look in a different location for the message id. Using this custom strategy, the id can be extracted from any message header, or even the message payload itself.
 
-To set this up generate a unique id on the sender side and attach it the `MessageId` property.
+To set this up for this sample, generate a unique id on the sender side and attach it to the `MessageId` property:
 
 snippet:GenerateUniqueMessageId
