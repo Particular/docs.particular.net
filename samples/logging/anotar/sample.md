@@ -30,15 +30,17 @@ snippet:handler
 
 This will result in the following being compiled
 
-```
-using NServiceBus.Logging;
-public class MyHandler : IHandleMessages<MyMessage>
+```csharp
+namespace Sample
 {
-	static ILog logger = LogManager.GetLogger("MyHandler");
-
-	public void Handle(MyMessage message)
+	public class MyHandler : IHandleMessages<MyMessage>
 	{
-		logger.Info("Method: 'Void Handle(MyMessage)'. Line: ~9. Hello from MyHandler);
+		static ILog logger = NServiceBus.Logging.LogManager.GetLogger("Sample.MyHandler");
+	
+		public void Handle(MyMessage message)
+		{
+			logger.Info("Method: 'Void Handle(MyMessage)'. Line: ~9. Hello from MyHandler);
+		}
 	}
 }
 ```

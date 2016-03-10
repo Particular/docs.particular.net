@@ -2,11 +2,16 @@
 using NServiceBus;
 
 #region handler
-public class MyHandler : IHandleMessages<MyMessage>
+
+namespace Sample
 {
-    public void Handle(MyMessage message)
+    public class MyHandler : IHandleMessages<MyMessage>
     {
-        LogTo.Info("Hello from MyHandler");
+        public void Handle(MyMessage message)
+        {
+            LogTo.Info("Hello from MyHandler");
+        }
     }
 }
+
 #endregion
