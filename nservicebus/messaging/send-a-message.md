@@ -1,80 +1,99 @@
 ---
-title: Sending a Message
-summary: Describes how to send a message
+title: Sending messages
+summary: Describes how to send messages
 tags: []
 redirects:
 - nservicebus/how-do-i-send-a-message
 ---
 
-Message sending involves using Send operation that takes an argument of a message instance to be delivered. The details differ slightly between version of NServiceBus, as shown in following snippets.
+NServiceBus supports sending different types of messages (see [Messages, Events, and Commands](messages-events-commands.md)) to any endpoint. Messages can be sent either when the bus is started or as part of handling another message. When a message arrives at an endpoint, it goes through a [pipeline of processing steps](/nservicebus/pipeline/).
 
-Here's how a message is sent by directly using the instance of the endpoint
+
+## Outside a message handler
+
+In some cases, messages that need to be sent may not be related to an incoming message. Some examples are:
+
+ * Sending a command when a HTML form is submitted in an ASP.NET application.
+ * Publishing an event when the user clicks a button on a GUI application (see [Publish and Handle an Event](publish-subscribe/publish-handle-event.md)).
+
+To send a message when the bus is started:
 
 snippet:BasicSend
 
-And here's how it is done from the message handler
+Note: In Versions 5 and below, `IBus` is automatically registered in the configured dependency injection container. In Versions 6 and above, `IBus` has been deprecated and replaced with `IEndpointInstance` for sending messages outside the pipeline. `IEndpointInstance` is not registered by default.
+
+
+## Inside the incoming message processing pipeline
+
+In some cases, messages might need to be sent as part of handling a message such as, inside a regular message handler, a saga, or in some advanced cases as part of extending the message handling pipeline. In this scenario, all the send operations are linked to the incoming message. The send operations take part in the same transaction scope as that of the message handler, thereby ensuring that the send operations rollback if the handling of the message fails at any stage of the message processing pipeline.
+
+To send a message from inside a message handler:
 
 snippet:SendFromHandler
 
-In both cases you can use an interface rather than a concrete class for a message:
+The message can also be an interface rather than a concrete class:
 
 snippet:BasicSendInterface
+
+Note: In Versions 5 and below, the operations are available on the `IBus` which can be accessed using constructor or property injection. In Versions 6 and above, the message handlers have access to the `IMessageHandlerContext` parameter, which can be used to dispatch messages on the bus.
 
 
 ## Overriding the default routing
 
-The `SendOptions` object can be used to override the default routing, either by specifying the raw destination address
+The `SendOptions` object can be used to override the default routing.
+
+Using the destination address:
 
 snippet:BasicSendSetDestination
 
-or the ID of the target instance
+Using the identifier of the target instance:
 
 snippet:BasicSendSpecificInstance
 
 
 ## Sending to *self*
 
-Sending to *self* comes in two flavors. First, endpoint can send a message to any instance of the same endpoint
+Sending a message to the same endpoint, i.e. Sending to *self* can be done in two ways.
+
+An endpoint can send a message to any of its instances:
 
 snippet:BasicSendToAnyInstance
 
-Second, it can request a message to be routed to itself (same instance). This option is only possible when endpoint instance ID has been specified
+Or, it can request a message to be routed to itself, i.e. the same instance.
+NOTE: This option is only possible when endpoint instance identifier has been specified 
 
 snippet:BasicSendToThisInstance
 
 
 ## Influencing the reply behavior
 
-A sender of a message can influence how the receiver will behave when replying to that message by attaching the *reply to* header (by default the reply is routed to any instance of the requester endpoint). The sender can request a reply to go to itself (not any other instance of the same endpoint)
+The sender of the message can also control how the reply messages are received. When a receiving endpoint replies to a message, by default the reply message will be routed to any instance of the sending endpoint. 
+
+To explicitly control the reply message to be dispatched to a particular instance:
 
 snippet:BasicSendReplyToThisInstance
 
-or explicitly to any instance of the endpoint (which overrides the *public reply address* setting)
+To send the reply message to any instance of the endpoint:
 
 snippet:BasicSendReplyToAnyInstance
 
-The sender can also request the reply to be routed to a specified raw address
+The sender can also request the reply to be routed to a specific destination address
 
 snippet:BasicSendReplyToDestination
 
 
-## Immediate Dispatch
+## Dispatching a message immediately
 
-While its usually best to let NServiceBus [handle exceptions for you](/nservicebus/errors), there are some scenarios where you want to send messages out even though the incoming message is rolled back. One example would be sending a reply notifying that there was an issue processing the message.
+While its usually best to let NServiceBus [handle exceptions for you](/nservicebus/errors), there are some scenarios where messages might need to be sent regardless of if the message handler succeeds or not. For example, sending a reply notifying that there was a problem with processing the message.
 
-In order to request immediate dispatch you can use the following syntax.
+To request immediate dispatch use the following syntax:
 
 snippet:RequestImmediateDispatch
 
-NOTE: By specifying immediate dispatch, outgoing messages are not [batched](/nservicebus/messaging/batched-dispatch.md) or enlisted in the current receive transaction even if the transport has support for it.
+WARNING: By specifying immediate dispatch, outgoing messages will not be [batched](/nservicebus/messaging/batched-dispatch.md) or enlisted in the current receive transaction even if the transport has support for it.
 
-
-### Suppressing the transaction scope
-
-Version 6 and below allows you to suppress the ambient transaction in order to have the outgoing message sent immediately.
+Suppressing the ambient transaction to have the outgoing message sent immediately is also possible:
 
 snippet:RequestImmediateDispatchUsingScope
 
-The issue with this approach is that it only works for transports that enlists the receive operation in a transaction scope. Currently this would be MSMQ and SqlServer in DTC mode. When using any other transport, or disable the DTC, this no longer works and the outgoing message might be rolled back together with the incoming message.
-
-For this reason this method has been deprecated. It is recommended to switch to the explicit API mentioned above.
+WARNING: Suppressing transaction scopes only works for MSMQ and SQL transports in DTC mode. Other transports or disabled DTC may result in unexpected behavior. In Version 6 and above, use the explicit immediate dispatch API instead.
