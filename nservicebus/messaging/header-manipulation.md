@@ -14,7 +14,7 @@ related:
 - nservicebus/sagas
 ---
 
-The mechanism for [header communication](/nservicebus/messaging/headers.md). is either native headers, if the transport supports that feature, or via a serialized collection of key value pairs. This article covers the various ways of manipulating the message headers.
+The mechanism for [header communication](/nservicebus/messaging/headers.md) is either native headers, if the transport supports that feature, or via a serialized collection of key value pairs. This article covers the various ways of manipulating the message headers.
 
 
 ## Reading incoming Headers
@@ -69,7 +69,7 @@ snippet: header-outgoing-saga
 
 ### For all outgoing messages
 
-NServiceBus supports registering headers at configuration time that's then added to all outgoing messages for the endpoint.
+NServiceBus supports registering headers at configuration time that are then added to all outgoing messages for the endpoint.
 
 snippet: header-static-endpoint
 
