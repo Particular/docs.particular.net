@@ -115,6 +115,45 @@
             await handlerContext.Send(message, sendOptions);
             #endregion
         }
+
+        public void EnableTransactions()
+        {
+            #region 5to6EnableTransactions
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            // Using a transport will enable transactions automatically.
+            endpointConfiguration.UseTransport<MyTransport>();
+            #endregion
+        }
+
+        public void DisableTransactions()
+        {
+            #region 5to6DisableTransactions
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.None);
+            #endregion
+        }
+
+        public void EnableDistributedTransactions()
+        {
+            #region 5to6EnableDistributedTransactions
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.TransactionScope);
+            #endregion
+        }
+
+        public void DisableDistributedTransactions()
+        {
+            #region 5to6DisableDistributedTransactions
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.ReceiveOnly);
+            // Or, if the transport supports it:
+            endpointConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+            #endregion
+        }
     }
 
 }

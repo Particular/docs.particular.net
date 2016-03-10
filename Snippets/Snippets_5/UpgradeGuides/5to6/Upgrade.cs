@@ -88,5 +88,41 @@
             bus.Defer(new DateTime(2016, 12, 25), message);
             #endregion
         }
+
+        public void EnableTransactions()
+        {
+            #region 5to6EnableTransactions
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.Transactions()
+                .Enable();
+            #endregion
+        }
+
+        public void DisableTransactions()
+        {
+            #region 5to6DisableTransactions
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.Transactions()
+                .Disable();
+            #endregion
+        }
+
+        public void EnableDistributedTransactions()
+        {
+            #region 5to6EnableDistributedTTransactions
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.Transactions()
+                .EnableDistributedTransactions();
+            #endregion
+        }
+
+        public void DisableDistributedTransactions()
+        {
+            #region 5to6DisableDistributedTTransactions
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.Transactions()
+                .DisableDistributedTransactions();
+            #endregion
+        }
     }
 }
