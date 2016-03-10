@@ -274,7 +274,7 @@ Extension to enable sending SMTP emails as messages.
 
 <a href="https://www.nuget.org/packages/NServiceBus.MessageRouting/"><img src="https://buildstats.info/nuget/NServiceBus.MessageRouting" title="NuGet Status"></a>
 
-An implementation the [Routing Slip](http://www.enterpriseintegrationpatterns.com/patterns/messaging/RoutingTable.html) pattern that enables you to route a message to one or more destinations
+An implementation the [Routing Slip](http://www.enterpriseintegrationpatterns.com/patterns/messaging/RoutingTable.html) pattern that enables routing a message to one or more destinations
 
 
 #### <img src="community-project.png" title="A Community run project"> [HandlerOrdering](https://github.com/SimonCropp/HandlerOrdering)
@@ -288,7 +288,7 @@ Allows a more expressive way to order handlers.
 
 <a href="https://www.nuget.org/packages/NES.NServiceBus/"><img src="https://buildstats.info/nuget/NES.NServiceBus" title="NuGet Status"></a>
 
-NES that helps you build domain models when you're doing event sourcing. It attempts to fill in the gaps between NServiceBus and NEventStore.
+NES that helps build domain models when doing event sourcing. It attempts to fill in the gaps between NServiceBus and NEventStore.
 
 
 #### <img src="community-project.png" title="A Community run project"> [Rabbit Operations](http://RabbitOperations.southsidesoft.com)
