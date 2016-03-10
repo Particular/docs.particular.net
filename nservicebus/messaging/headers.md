@@ -11,12 +11,12 @@ related:
 - nservicebus/messaging/header-manipulation
 ---
 
-Extra information about a message is communicated over the transport as secondary information to the message body. Message headers are very similar, in both implementation and usage, to http headers. This article covers all the headers that are used internally by NServiceBus. To learn more on how to use custom headers, see the [header manipulation](/nservicebus/messaging/header-manipulation.md) article.
+The headers in a message contain useful information that is used typically by the messaging infrastructure to help with the message delivery. Message headers are very similar, in both implementation and usage to HTTP headers. This article documents the headers used by NServiceBus. To learn more about how to use custom headers, see the [header manipulation](/nservicebus/messaging/header-manipulation.md) article.
 
 
 ## Timestamp format
 
-For all timestamp message headers the format is `yyyy-MM-dd HH:mm:ss:ffffff Z` and are in UTC. There is a helper class `DateTimeExtensions` in the NServiceBus core that supports converting to (`ToWireFormattedString()`) and from (`ToUtcDateTime()`) this format. This class effectively does the following.
+For all timestamp message headers, the format is `yyyy-MM-dd HH:mm:ss:ffffff Z` where the time is UTC. The helper class `DateTimeExtensions` in the NServiceBus core supports converting from UTC to wire format and vice versa by using the `ToWireFormattedString()` and `ToUtcDateTime()` methods. 
 
 ```
 const string Format = "yyyy-MM-dd HH:mm:ss:ffffff Z";
@@ -36,10 +36,10 @@ public static DateTime ToUtcDateTime(string wireFormattedString)
 
 ## Serialization Headers
 
-This set of headers contains information to control how messages are [de-serialized](/nservicebus/serialization/) by the receiving endpoint.
+The following headers include information for the receiving endpoint on the [message serialization](/nservicebus/serialization/) option that was used.
 
 ### NServiceBus.ContentType
-The type of serialization used for the message. For example ` text/xml` or `text/json`. The `NServiceBus.ContentType` header was added in Version 4.0. In some cases it may be useful to use the `NServiceBus.Version` header to determine when to use the `NServiceBus.ContentType` header.
+The type of serialization used for the message, for example `text/xml` or `text/json`. This header was added in Version 4.0. In some cases, it may be useful to use the `NServiceBus.Version` header to determine how to use the value in this header appropriately. 
 
 ### NServiceBus.EnclosedMessageTypes
 The fully qualified .NET type name of the enclosed message(s). The receiving endpoint will use this type when deserializing an incoming message. Depending on the [versioning strategy](/samples/versioning/) the type can be specified in the following ways:
@@ -51,19 +51,19 @@ NOTE: In integration scenarios, this header can be safely omitted if the endpoin
 
 ## Messaging interaction headers
 
-Several headers are used to enable messaging interaction patters
+The following headers are used in various ways to enable different messaging interaction patterns such as Request-Response, etc.
 
 ### NServiceBus.MessageId
-A unique id for the current message. Note that the value used for an outgoing message can be controlled by the endpoint, using an `IMutateOutgoingTransportMessages`.
+A unique id for the current message. By using the [IMutateOutgoingTransportMessages mutator](/nservicebus/pipeline/message-mutators.md), this value can be changed to a custom value when dispatching the message.
 
 ### NServiceBus.CorrelationId
-A string used to [correlate](./message-correlation.md) reply messages to their corresponding request message.
+A string used to [correlate](message-correlation.md) reply messages to their corresponding request message.
 
 ### NServiceBus.ConversationId
-The conversation that this message is part of
+The conversation that this message is part of.
 
 ### NServiceBus.RelatedTo
-The `MessageId` that caused this message to be sent
+The `MessageId` that caused this message to be sent.
 
 ### NServiceBus.MessageIntent
 Message intent can have one of the following values:
@@ -77,7 +77,7 @@ Message intent can have one of the following values:
 | Reply | The message has been initiated by doing a Reply or a Return from within a Handler or a Saga. |
 
 ### NServiceBus.ReplyToAddress
-The queue address that instructs downstream handlers or sagas where to send to when doing a Reply or Return.
+Downstream message handlers or Sagas use this value as the reply queue address when replying or returning a message.
 
 
 ## Send Headers
@@ -86,12 +86,12 @@ When a message is sent the headers will be as follows:
 
 snippet:HeaderWriterSend
 
-The above example headers are for a Send and hence the `MessageIntent` header is `Send`. If this was a Publish the `MessageIntent` header would be `Publish`.
+The above example headers are for a Send and hence the `MessageIntent` header is `Send`. If the message was published instead, the `MessageIntent` header would be `Publish`.
 
 
 ## Reply Headers
 
-When doing a Reply to a Message
+When replying to a message:
 
  * The `MessageIntent` is `Reply`.
  * The `RelatedTo` will be the same as the initiating `MessageID`.
@@ -119,7 +119,7 @@ snippet: HeaderWriterPublish
 
 ## Return from a Handler
 
-When doing a Return:
+When returning a message instead of replying:
 
  * The Return has the same points as the Reply example from above with some additions.
  * The `ReturnMessage.ErrorCode` contains the value that was supplied to the `Bus.Return` method.
@@ -135,10 +135,24 @@ The headers of reply message will be as follows:
 
 snippet: HeaderWriterReturn_Returning
 
+## Timeout Headers
 
-## Dispatching a message from a Saga
+### NServiceBus.ClearTimeouts
+A marker header to indicate that the contained control message is requesting that timeouts be cleared for a given saga.
 
-When any message is dispatched from within a Saga the message will contain the following:
+### NServiceBus.Timeout.Expire
+A timestamp that indicates when a timeout to be fired.
+
+### NServiceBus.Timeout.RouteExpiredTimeoutTo
+The queue name where a timeout should be routed back to when it fires.
+
+### NServiceBus.IsDeferredMessage
+A marker header to indicate that this message resulted from a Defer.
+
+
+## Saga Related Headers
+
+When a message is dispatched from within a Saga the message will contain the following:
 
  * A `OriginatingSagaId` header which matches the id used as the index for the Saga Data stored in persistence.
  * A `OriginatingSagaType` which is the fully qualified type name of the saga that sent the message
@@ -149,11 +163,11 @@ When any message is dispatched from within a Saga the message will contain the f
 snippet: HeaderWriterSaga_Sending
 
 
-## Replying to a Saga
+### Replying to a Saga
 
 A message Reply is performed from a Saga will have the following headers:
 
- * The send headers are basically the same as a normal Reply with a few additions.
+ * The send headers are the same as a normal Reply headers with a few additions.
  * Since this reply is from a secondary Saga then `OriginatingSagaId` and `OriginatingSagaType` will match the second saga
  * Since this is a Reply to a the initial Saga then the headers will contain `SagaId` and `SagaType` headers that match the initial Saga.
 
@@ -171,22 +185,7 @@ snippet: HeaderWriterSaga_Replying
 snippet: HeaderWriterSaga_ReplyingToOriginator
 
 
-## Timeout Headers
-
-### NServiceBus.ClearTimeouts
-A marker header to indicate that the contained control message is requesting that timeouts be cleared for a given saga.
-
-### NServiceBus.Timeout.Expire
-A timestamp that indicates when a timeout to be fired.
-
-### NServiceBus.Timeout.RouteExpiredTimeoutTo
-The queue name where a timeout should be routed back to when it fires.
-
-### NServiceBus.IsDeferredMessage
-A marker header to indicate that this message resulted from a Defer.
-
-
-## Requesting a Timeout from a Saga
+### Requesting a Timeout from a Saga
 
 When requesting a Timeout from a Saga:
 
@@ -195,12 +194,12 @@ When requesting a Timeout from a Saga:
  * The `Timeout.Expire` header contains the timestamp for when the timeout should fire.
 
 
-### Example Timeout Headers
+#### Example Timeout Headers
 
 snippet: HeaderWriterSaga_Timeout
 
 
-### Defer a Message
+## Defer a Message
 
 When doing a Defer the message will have similar header to a Send with a few editions:
 
@@ -215,7 +214,7 @@ When doing a Defer the message will have similar header to a Send with a few edi
 snippet: HeaderWriterDefer
 
 
-## Diagnostics and Informational Headers
+## Diagnostic and Informational Headers
 
 Headers used to give visibility into "where", "when" and "by whom" Of a message. Used by [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/).
 
@@ -248,7 +247,7 @@ The timestamp processing of a message ended.
 Name of the endpoint where the message was processed.
 
 ### NServiceBus.ProcessingMachine
-Machine name of the endpoint where the message was processed.
+The machine name of the endpoint where the message was processed.
 
 ### NServiceBus.ProcessingStarted
 The timestamp the processing of this message started.
@@ -275,7 +274,7 @@ The queue at which the message processing failed.
 The number of first-level retries that has been performed for a message.
 
 ### NServiceBus.Retries
-Number of second-level retries that has been performed for a message.
+The number of second-level retries that has been performed for a message.
 
 ### NServiceBus.Retries.Timestamp
 A timestamp used by Second Level Retries to determine if the maximum time for retrying has been reached.
@@ -283,7 +282,7 @@ A timestamp used by Second Level Retries to determine if the maximum time for re
 
 ## Error forwarding headers
 
-When a message is sent to the Error queue it will have the following extra headers added to the existing headers. If retries occurred then those messages will be included with the exception of `NServiceBus.Retries`, which is removed.
+When a message is sent to the Error queue, it will have the following extra headers added to the existing headers. If retries occurred, then those messages will be included with the exception of `NServiceBus.Retries`, which is removed.
 
 ### NServiceBus.ExceptionInfo.ExceptionType
 The [Type.FullName](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) of the Exception. Obtained by calling `Exception.GetType().FullName`.
@@ -340,7 +339,7 @@ When using the [FileShare DataBus](/nservicebus/messaging/databus.md) extra head
 
 ### When using DataBusProperty
 
-When using the `DataBusProperty` NServiceBus uses that property as a placeholder at serialization time. the the serialized value of that property will contain a key. This key maps to a named header. That header then provides the path suffix of where that binary data is stored on disk on the file system.
+When using the `DataBusProperty`, NServiceBus uses that property as a placeholder at serialization time. The serialized value of that property will contain a key. This key maps to a named header. That header then provides the path suffix of where that binary data is stored on disk on the file system.
 
 
 #### Example Headers
@@ -355,7 +354,7 @@ snippet: HeaderWriterDataBusProperty_Body
 
 ### When using Convention
 
-When using a [Conventions](/nservicebus/messaging/conventions.md) there is no way to store a correlation value inside the serialized property. Instead each property has a matching header with the property name used as the header suffix. That header then provides the path suffix of where that binary data is stored on disk on the file system.
+When using a [Conventions](/nservicebus/messaging/conventions.md) there is no way to store a correlation value inside the serialized property. Instead, each property has a matching header with the property name used as the header suffix. That header then provides the path suffix of where that binary data is stored on disk on the file system.
 
 
 #### Example Headers
