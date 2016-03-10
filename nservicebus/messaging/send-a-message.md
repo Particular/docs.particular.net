@@ -6,14 +6,15 @@ redirects:
 - nservicebus/how-do-i-send-a-message
 ---
 
-NServiceBus supports sending different types of messages (see [Messages, Events, and Commands](messages-events-commands.md)) to any endpoint. Messages can be sent either when the bus is started or as part of handling another message. When a message arrives at an endpoint, it goes through a [pipeline of processing steps](/nservicebus/pipeline/). 
+NServiceBus supports sending different types of messages (see [Messages, Events, and Commands](messages-events-commands.md)) to any endpoint. Messages can be sent either when the bus is started or as part of handling another message. When a message arrives at an endpoint, it goes through a [pipeline of processing steps](/nservicebus/pipeline/).
+
 
 ## Outside a message handler
 
 In some cases, messages that need to be sent may not be related to an incoming message. Some examples are:
 
-- Sending a command when a HTML form is submitted in an ASP.NET application.
-- Publishing an event when the user clicks a button on a GUI application (see [Publish and Handle an Event](publish-subscribe/publish-handle-event.md)).
+ * Sending a command when a HTML form is submitted in an ASP.NET application.
+ * Publishing an event when the user clicks a button on a GUI application (see [Publish and Handle an Event](publish-subscribe/publish-handle-event.md)).
 
 To send a message when the bus is started:
 
@@ -35,6 +36,7 @@ The message can also be an interface rather than a concrete class:
 snippet:BasicSendInterface
 
 Note: In Versions 5 and below, the operations are available on the `IBus` which can be accessed using constructor or property injection. In Versions 6 and above, the message handlers have access to the `IMessageHandlerContext` parameter, which can be used to dispatch messages on the bus.
+
 
 ## Overriding the default routing
 
@@ -78,6 +80,7 @@ snippet:BasicSendReplyToAnyInstance
 The sender can also request the reply to be routed to a specific destination address
 
 snippet:BasicSendReplyToDestination
+
 
 ## Dispatching a message immediately
 
