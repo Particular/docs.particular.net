@@ -32,7 +32,7 @@ snippet:Server-Set-InstanceId
 
 snippet:Server-InstanceId
 
-WARNING: Never hardcoded instance IDs because they are mostly operations concern and operations people should be able to modify them without the need to recompile the source code.
+WARNING: Never hard-code instance IDs because they are mostly operations concern and operations people should be able to modify them without the need to recompile the source code.
 
 
 #### Handling code
