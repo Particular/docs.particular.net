@@ -140,7 +140,7 @@ A custom XML serializer built into the NServiceBus core.
 
 #### <img src="community-project.png" title="A Community run project"> [PostgreSQL](https://github.com/fhalim/NServiceBus.PostgreSQL)
 
-<a href="https://www.nuget.org/packages/NServiceBus.PostgreSQL/"><img src="https://buildstats.info/nuget/NServiceBus.PostgreSQL" title="NuGet Status"></a>
+<a href="https://www.nuget.org/packages/NServiceBus.PostgreSQL/"><img src="https://buildstats.info/nuget/NServiceBus.PostgreSQL?includePreReleases=true" title="NuGet Status"></a>
 
 Leverages the [JSONB](http://www.postgresql.org/docs/devel/static/datatype-json.html) data type for storing data in [PostgreSQL](http://www.postgresql.org/).
 
