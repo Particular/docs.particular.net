@@ -1,6 +1,6 @@
 ---
 title: Logging in NServiceBus
-summary: Logging in NServiceBus
+summary: How to manage and integrate with NServiceBus logging.
 tags:
 - Logging
 redirects:
