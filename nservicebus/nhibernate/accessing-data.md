@@ -16,28 +16,32 @@ The second is much simpler in theory but much harder in practice. In theory all 
 
 ## Accessing data in the handler
 
-The simplest way to access the data in an *exactly-once* way is to just lean on the Distributed Transaction Coordinator (DTC) to make sure all the data access, happening while handling the message, is atomic. This approach has two downsides. First, the throughput when using DTC is much smaller than without it. Second, DTC is not a trivial service to configure, not mentioning making it HA via a cluster. There is one upside though. For the application data you can use any data store that supports the DTC-coordinated transaction.
+The simplest way to access the data in an *exactly-once* way is to just lean on the Distributed Transaction Coordinator (DTC) to make sure all the data access, happening while handling the message, is atomic. This approach has two downsides. First, the throughput when using DTC is much smaller than without it. Second, DTC is not a trivial service to configure, not mentioning making it Highly Available (HA) via a cluster. There is one upside though. For the application data you can use any data store that supports the DTC-coordinated transaction.
 
 NServiceBus persistence APIs offer a solution to these problems but limits the data storage choices. The NHibernate persistence allows you too 'hook-up' to the data context used by NServiceBus to ensure atomic changes.
 
 snippet:NHibernateAccessingDataViaContext
 
-As shown above, `NHibernateStorageContext` can be used directly but the following is recommended instead:
+As shown above, `NHibernateStorageContext` can be used directly to access NHibernate `ISession`. 
+
+Note that prior to Version 6 you could inject `ISession` directly into the handlers. This behavior has changed in NServiceBus v6.x as internal components of NServiceBus are no longer accessible from the IoC container. You can still use this approach on Version 5 and before:
 
 snippet:NHibernateAccessingDataDirectlyConfig
 
 snippet:NHibernateAccessingDataDirectly
 
-The first part tell NServiceBus to inject the `ISession` instance into the handlers. This way your handlers are less coupled NServiceBus APIs and won't need to change should the API change in future. This `ISession` object is fully managed by NServiceBus according to the best practices defined by NServiceBus documentation with regards to transactions.
+The first part tell NServiceBus to inject the `ISession` instance into the handlers and the second part uses standard Property Injection to access the `ISession` object.
+
+Regardless of how you access the `ISession` object, it is fully managed by NServiceBus according to the best practices defined by NServiceBus documentation with regards to transactions.
 
 
 ## Customizing the session
 
-If you need some special behavior in the `ISession` object managed by NServiceBus, you can hook-up to the session creation process by providing your own delegate.
+Prior to Version 6 you could customize how the `ISession` object is instantiated. If you needed some special behavior in the `ISession` object managed by NServiceBus, you can hook-up to the session creation process by providing your own delegate.
 
 snippet:CustomSessionCreation
 
-NOTE: Customizing the way session is opened works only for the 'shared' session that is used to access business/user, Saga and Outbox data. It does not work for other persistence concerns such as Timeouts or Subscriptions.
+NOTE: Customizing the way session is opened works only for the 'shared' session that is used to access business/user, Saga and Outbox data. It does not work for other persistence concerns such as Timeouts or Subscriptions. Also note that this is no longer possible in NServiceBus v6.x.
 
 
 ## Known limitations
