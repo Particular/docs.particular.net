@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Routing.Legacy;
@@ -19,6 +20,7 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.SendFailedMessagesTo("error");
         busConfiguration.EnableInstallers();
+        busConfiguration.Conventions().DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof (IMessage)));
 
         Run(busConfiguration).GetAwaiter().GetResult();
     }

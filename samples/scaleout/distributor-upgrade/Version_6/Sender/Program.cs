@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NServiceBus;
 
 class Program
@@ -11,6 +12,7 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.Conventions().DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof(IMessage)));
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {

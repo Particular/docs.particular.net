@@ -1,5 +1,4 @@
-﻿using NServiceBus;
-using System;
+﻿using System;
 
 public class PlaceOrder:IMessage
 {
