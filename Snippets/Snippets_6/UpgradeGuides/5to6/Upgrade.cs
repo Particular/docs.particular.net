@@ -149,7 +149,13 @@
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.ReceiveOnly);
-            // Or, if the transport supports it:
+            #endregion
+        }
+
+        public void DisableDistributedTransactionsNative()
+        {
+            #region 5to6DisableDistributedTransactionsNative
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             #endregion
