@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-﻿<configuration>
+<configuration>
   <!--startcode sqlserver-multidb-current-endpoint-schema-config 1.2.3 -->
   <connectionStrings>
     <add name="NServiceBus/Transport"
