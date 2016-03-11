@@ -24,7 +24,7 @@ snippet:NHibernateAccessingDataViaContext
 
 As shown above, `NHibernateStorageContext` can be used directly to access NHibernate `ISession`. 
 
-Note that prior to Version 6 you could inject `ISession` directly into the handlers. This behavior has changed in NServiceBus v6.x as internal components of NServiceBus are no longer accessible from the IoC container. You can still use this approach on Version 5 and before:
+Note that prior to Version 6 `ISession` could be injected directly into the handlers. This behavior has changed in NServiceBus Version 6 as internal components of NServiceBus are no longer accessible from the IoC container. This approach can still be used on Version 5 and before:
 
 snippet:NHibernateAccessingDataDirectlyConfig
 
@@ -41,7 +41,7 @@ Prior to Version 6 you could customize how the `ISession` object is instantiated
 
 snippet:CustomSessionCreation
 
-NOTE: Customizing the way session is opened works only for the 'shared' session that is used to access business/user, Saga and Outbox data. It does not work for other persistence concerns such as Timeouts or Subscriptions. Also note that this is no longer possible in NServiceBus v6.x.
+NOTE: Customizing the way session is opened works only for the 'shared' session that is used to access business/user, Saga and Outbox data. It does not work for other persistence concerns such as Timeouts or Subscriptions. Also note that this is no longer possible in NServiceBus Version 6.
 
 
 ## Known limitations
