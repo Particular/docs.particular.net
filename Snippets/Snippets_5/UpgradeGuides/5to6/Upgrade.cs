@@ -11,9 +11,9 @@
         {
             // ReSharper disable RedundantDelegateCreation
 
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region 5to6CriticalError
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.DefineCriticalErrorAction(
                 new Action<string, Exception>((error, exception) =>
                 {
@@ -27,9 +27,9 @@
 
         public void TransportTransactions()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region 5to6DoNotWrapHandlersInTransaction
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions()
                 .DoNotWrapHandlersExecutionInATransactionScope();
 
@@ -60,8 +60,8 @@
 
         public void TransportTransactionIsolationLevelAndTimeout()
         {
-            #region 5to6TransportTransactionScopeOptions
             BusConfiguration busConfiguration = new BusConfiguration();
+            #region 5to6TransportTransactionScopeOptions
             busConfiguration.Transactions()
                 .IsolationLevel(IsolationLevel.RepeatableRead)
                 .DefaultTimeout(TimeSpan.FromSeconds(30));
@@ -70,8 +70,8 @@
 
         public void WrapHandlersExecutionInATransactionScope()
         {
-            #region 5to6WrapHandlersExecutionInATransactionScope
             BusConfiguration busConfiguration = new BusConfiguration();
+            #region 5to6WrapHandlersExecutionInATransactionScope
             busConfiguration.Transactions()
                 .WrapHandlersExecutionInATransactionScope();
             #endregion
@@ -91,8 +91,8 @@
 
         public void EnableTransactions()
         {
-            #region 5to6EnableTransactions
             BusConfiguration busConfiguration = new BusConfiguration();
+            #region 5to6EnableTransactions
             busConfiguration.Transactions()
                 .Enable();
             #endregion
@@ -100,8 +100,8 @@
 
         public void DisableTransactions()
         {
-            #region 5to6DisableTransactions
             BusConfiguration busConfiguration = new BusConfiguration();
+            #region 5to6DisableTransactions
             busConfiguration.Transactions()
                 .Disable();
             #endregion
@@ -109,8 +109,8 @@
 
         public void EnableDistributedTransactions()
         {
-            #region 5to6EnableDistributedTransactions
             BusConfiguration busConfiguration = new BusConfiguration();
+            #region 5to6EnableDistributedTransactions
             busConfiguration.Transactions()
                 .EnableDistributedTransactions();
             #endregion
@@ -118,8 +118,8 @@
 
         public void DisableDistributedTransactions()
         {
-            #region 5to6DisableDistributedTransactions
             BusConfiguration busConfiguration = new BusConfiguration();
+            #region 5to6DisableDistributedTransactions
             busConfiguration.Transactions()
                 .DisableDistributedTransactions();
             #endregion

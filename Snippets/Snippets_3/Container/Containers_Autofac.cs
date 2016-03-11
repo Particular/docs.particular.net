@@ -7,9 +7,9 @@
     {
         public void Simple()
         {
+            Configure configure = Configure.With();
             #region Autofac
 
-            Configure configure = Configure.With();
             configure.AutofacBuilder();
 
             #endregion

@@ -7,9 +7,9 @@
     {
         public void Simple()
         {
+            Configure configure = Configure.With();
             #region Spring
 
-            Configure configure = Configure.With();
             configure.SpringFrameworkBuilder();
 
             #endregion
@@ -17,9 +17,9 @@
 
         public void Existing()
         {
+            Configure configure = Configure.With();
             #region Spring_Existing
 
-            Configure configure = Configure.With();
             GenericApplicationContext applicationContext = new GenericApplicationContext();
             applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
             configure.SpringFrameworkBuilder(applicationContext);

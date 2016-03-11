@@ -7,9 +7,9 @@
     {
         public void Simple()
         {
+            Configure configure = Configure.With();
             #region Ninject
 
-            Configure configure = Configure.With();
             configure.NinjectBuilder();
 
             #endregion
@@ -17,8 +17,8 @@
 
         public void Existing()
         {
-            #region Ninject_Existing
             Configure configure = Configure.With();
+            #region Ninject_Existing
             StandardKernel kernel = new StandardKernel();
             kernel.Bind<MyService>().ToConstant(new MyService());
             configure.NinjectBuilder(kernel);
