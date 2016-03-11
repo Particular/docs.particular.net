@@ -5,39 +5,42 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Routing.Legacy;
 
-class Program
+internal class Program
 {
     static void Main()
     {
-        EndpointConfiguration busConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
         #region WorkerIdentity
 
-        busConfiguration.EndpointName("Samples.Scaleout.Worker");
-        busConfiguration.ScaleOut().InstanceDiscriminator(ConfigurationManager.AppSettings["InstanceId"]);
+        endpointConfiguration.EndpointName("Samples.Scaleout.Worker");
+        endpointConfiguration.ScaleOut()
+            .InstanceDiscriminator(ConfigurationManager.AppSettings["InstanceId"]);
 
         #endregion
 
         #region Enlisting
 
-        busConfiguration.EnlistWithLegacyMSMQDistributor(ConfigurationManager.AppSettings["DistributorAddress"],
-            ConfigurationManager.AppSettings["DistributorControlAddress"],
-            10);
+        endpointConfiguration.EnlistWithLegacyMSMQDistributor(
+            masterNodeAddress: ConfigurationManager.AppSettings["DistributorAddress"],
+            masterNodeControlAddress: ConfigurationManager.AppSettings["DistributorControlAddress"],
+            capacity: 10);
 
         #endregion
 
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.EnableInstallers();
-        busConfiguration.Conventions().DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof (IMessage)));
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.Conventions()
+            .DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof (IMessage)));
 
-        Run(busConfiguration).GetAwaiter().GetResult();
+        Run(endpointConfiguration).GetAwaiter().GetResult();
     }
 
-    private static async Task Run(EndpointConfiguration busConfiguration)
+    static async Task Run(EndpointConfiguration busConfiguration)
     {
-        var endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
         await endpoint.Stop();
