@@ -1,6 +1,7 @@
 ---
 title: Scripting SQL Server Transport
 summary: Example code and scripts to facilitate deployment and operational actions against the SQLServer Transport.
+reviewed: 2016-03-11
 ---
 
 The followings are example codes and scripts to facilitate deployment and operations against the SQL Server Transport.
@@ -11,15 +12,17 @@ The followings are example codes and scripts to facilitate deployment and operat
 
 ### The native send helper methods
 
-The following code shows an example of how to perform the following actions
+A send involves the following actions:
 
- * create and serialize headers.
- * write a message body directly to SQL Server Transport.
+ * Create and serialize headers.
+ * Write a message body directly to SQL Server Transport.
 
 
 #### In C&#35;
 
 snippet:sqlserver-nativesend
+
+In this example, the value `MyNamespace.MyMessage` represents the .NET type of the message. See the [headers documentation](/nservicebus/messaging/headers.md) for more information on the `EnclosedMessageTypes` header.
 
 
 #### In Powershell;
@@ -44,11 +47,11 @@ snippet:sqlserver-create-queues
 
 ### Using the create helper queue methods
 
-To create all queues for a given endpoint name.
+To create all queues for a given endpoint name:
 
 snippet:sqlserver-create-queues-endpoint-usage
 
-To create shared queues.
+To create shared queues:
 
 snippet:sqlserver-create-queues-shared-usage
 
@@ -63,11 +66,11 @@ snippet:sqlserver-delete-queues
 
 ### Using the delete queue helper methods
 
-To delete all queues for a given endpoint name.
+To delete all queues for a given endpoint name:
 
 snippet:sqlserver-delete-queues-endpoint-usage
 
-To delete shared queues
+To delete shared queues:
 
 snippet:sqlserver-delete-queues-shared-usage
 
@@ -77,10 +80,10 @@ snippet:sqlserver-delete-queues-shared-usage
 
 ### The retry helper methods
 
-The following code shows an example of how to perform the following actions
+A retry involves the following actions:
 
- * read a message from the error queue table.
- * forward that message to another queue table to be retried.
+ * Read a message from the error queue table.
+ * Forward that message to another queue table to be retried.
 
 NOTE: Since the connection information for the endpoint that failed is not contained in the error queue table that information is explicitly passed in.
 
@@ -99,7 +102,7 @@ There are several ways to achieve this including using techniques like [Table Pa
 
 #### Create helper "archive" table
 
-Create an audit_archive table with this SQL script.
+Create an `audit_archive` table with this SQL script.
 
 ```
 CREATE TABLE [dbo].[audit_archive](
@@ -125,7 +128,7 @@ OUTPUT [deleted].*
 INTO [dbo].[audit_archive]
 ```
 
-This can be run with a scheduled job to clear down the archive regularly.
+This can be run with a scheduled job to clear the archive regularly.
 
 
 #### Execute BCP
@@ -137,6 +140,6 @@ Once that query completes the records can be archived to disk. In a command prom
 
 #### Truncate the archive table
 
-You will still have to clear the audit records using the following script.
+The audit records will still have to clear using the following script.
 
 `TRUNCATE TABLE  [dbo].[audit_archive] ;`

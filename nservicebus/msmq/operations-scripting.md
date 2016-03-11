@@ -1,6 +1,7 @@
 ---
 title: Scripting MSMQ
 summary: Example code and scripts to facilitate deployment and operational actions against MSMQ.
+reviewed: 2016-03-11
 ---
 
 Example code and scripts to facilitate deployment and operational actions against MSMQ.
@@ -13,10 +14,10 @@ These examples use the [System.Messaging.dll](https://msdn.microsoft.com/en-us/l
 
 ### The native send helper methods
 
-The following code shows an example of how to perform the following actions
+A send involves the following actions:
 
- * create and serialize headers.
- * write a message body directly to MSMQ.
+ * Create and serialize headers.
+ * Write a message body directly to MSMQ.
 
 
 #### In C&#35;
@@ -34,11 +35,11 @@ snippet:msmq-nativesend-usage
 
 ### The retry helper methods
 
-The following code shows an example of how to perform the following actions
+A retry involves the following actions:
 
- * read a message from the error queue.
- * extract the failed queue from the headers.
- * forward that message to the failed queue name so it can be retried.
+ * Read a message from the error queue.
+ * Extract the failed queue from the headers.
+ * Forward that message to the failed queue name so it can be retried.
 
 
 #### In C&#35;

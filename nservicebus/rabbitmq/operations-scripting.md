@@ -1,6 +1,7 @@
 ---
 title: Scripting RabbitMQ
 summary: Example code and scripts to facilitate deployment and operational actions against RabbitMQ.
+reviewed: 2016-03-11
 ---
 
 Example code and scripts to facilitate deployment and operational actions against RabbitMQ.
@@ -17,10 +18,10 @@ Since RabbitMQ.Client is not [CLS Compliant](https://msdn.microsoft.com/en-us/li
 
 ### The native send helper methods
 
-The following code shows an example of how to perform the following actions
+A send involves the following actions:
 
- * create and serialize headers.
- * write a message body directly to RabbitMQ.
+ * Create and serialize headers.
+ * Write a message body directly to RabbitMQ.
 
 
 #### In C&#35;
@@ -32,17 +33,19 @@ snippet:rabbit-nativesend
 
 snippet:rabbit-nativesend-usage
 
+In this example, the value `MyNamespace.MyMessage` represents the .NET type of the message. See the [headers documentation](/nservicebus/messaging/headers.md) for more information on the `EnclosedMessageTypes` header.
+
 
 ## Return message to source queue
 
 
 ### The retry helper methods
 
-The following code shows an example of how to perform the following actions
+The following code shows an example of how to perform the following actions:
 
- * read a message from the error queue.
- * extract the failed queue from the headers.
- * forward that message to the failed queue name so it can be retried.
+ * Read a message from the error queue.
+ * Extract the failed queue from the headers.
+ * Forward that message to the failed queue name so it can be retried.
 
 snippet:rabbit-return-to-source-queue
 
@@ -72,9 +75,11 @@ To create shared queues.
 
 snippet:rabbit-create-queues-shared-usage
 
+
 ## Create HA policy
 
-To configure HA policy, refer to RabbitMQ [official documentation](https://www.rabbitmq.com/ha.html)
+To configure HA policy, refer to [RabbitMQ official documentation](https://www.rabbitmq.com/ha.html)
+
 
 ## Delete queues
 
@@ -86,10 +91,10 @@ snippet:rabbit-delete-queues
 
 ### Using the delete queue helper methods
 
-To delete all queues for a given endpoint name.
+To delete all queues for a given endpoint name:
 
 snippet:rabbit-delete-queues-endpoint-usage
 
-To delete shared queues
+To delete shared queues:
 
 snippet:rabbit-delete-queues-shared-usage
