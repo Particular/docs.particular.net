@@ -109,7 +109,7 @@
 
         public void EnableDistributedTransactions()
         {
-            #region 5to6EnableDistributedTTransactions
+            #region 5to6EnableDistributedTransactions
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions()
                 .EnableDistributedTransactions();
@@ -118,7 +118,7 @@
 
         public void DisableDistributedTransactions()
         {
-            #region 5to6DisableDistributedTTransactions
+            #region 5to6DisableDistributedTransactions
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions()
                 .DisableDistributedTransactions();
