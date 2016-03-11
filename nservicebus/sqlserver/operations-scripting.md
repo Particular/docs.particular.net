@@ -13,8 +13,8 @@ The followings are example codes and scripts to facilitate deployment and operat
 
 The following code shows an example of how to perform the following actions
 
- * create and serialize headers.
- * write a message body directly to SQL Server Transport.
+ * Create and serialize headers.
+ * Write a message body directly to SQL Server Transport.
 
 
 #### In C&#35;
@@ -31,7 +31,7 @@ snippet:sqlserver-powershell-nativesend
 
 snippet:sqlserver-nativesend-usage
 
-In this example, the value `MessageTypeToSend` represents the .NET type of the message. For more information about providing the correct value for the `EnclosedMessageTypes` header and other headers, [please read this article](/nservicebus/messaging/headers.md).
+In this example, the value `MessageTypeToSend` represents the .NET type of the message. See the [headers documentation](/nservicebus/messaging/headers.md) for more information on the `EnclosedMessageTypes` header.
 
 ## Create queues
 
@@ -80,8 +80,8 @@ snippet:sqlserver-delete-queues-shared-usage
 
 The following code shows an example of how to perform the following actions
 
- * read a message from the error queue table.
- * forward that message to another queue table to be retried.
+ * Read a message from the error queue table.
+ * Forward that message to another queue table to be retried.
 
 NOTE: Since the connection information for the endpoint that failed is not contained in the error queue table that information is explicitly passed in.
 
@@ -100,7 +100,7 @@ There are several ways to achieve this including using techniques like [Table Pa
 
 #### Create helper "archive" table
 
-Create an audit_archive table with this SQL script.
+Create an `audit_archive` table with this SQL script.
 
 ```
 CREATE TABLE [dbo].[audit_archive](

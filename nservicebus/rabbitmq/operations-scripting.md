@@ -19,8 +19,8 @@ Since RabbitMQ.Client is not [CLS Compliant](https://msdn.microsoft.com/en-us/li
 
 The following code shows an example of how to perform the following actions
 
- * create and serialize headers.
- * write a message body directly to RabbitMQ.
+ * Create and serialize headers.
+ * Write a message body directly to RabbitMQ.
 
 
 #### In C&#35;
@@ -32,7 +32,8 @@ snippet:rabbit-nativesend
 
 snippet:rabbit-nativesend-usage
 
-In this example, the value `MyNamespace.MyMessage` represents the .NET type of the message. For more information about providing the correct value for the `EnclosedMessageTypes` header and other headers, [please read this article](/nservicebus/messaging/headers.md).
+In this example, the value `MyNamespace.MyMessage` represents the .NET type of the message. See the [headers documentation](/nservicebus/messaging/headers.md) for more information on the `EnclosedMessageTypes` header.
+
 
 ## Return message to source queue
 
@@ -73,9 +74,10 @@ To create shared queues.
 
 snippet:rabbit-create-queues-shared-usage
 
+
 ## Create HA policy
 
-To configure HA policy, please refer to RabbitMQ [official documentation](https://www.rabbitmq.com/ha.html)
+To configure HA policy, refer to [RabbitMQ official documentation](https://www.rabbitmq.com/ha.html)
 
 ## Delete queues
 

@@ -11,12 +11,12 @@ related:
 - nservicebus/messaging/header-manipulation
 ---
 
-The headers in a message contain useful information that is used typically by the messaging infrastructure to help with the message delivery. Message headers are very similar, in both implementation and usage to HTTP headers. This article documents the headers used by NServiceBus. To learn more about how to use custom headers, see the [header manipulation](/nservicebus/messaging/header-manipulation.md) article.
+The headers in a message contain useful information that is used by the messaging infrastructure to help with the message delivery. Message headers are very similar, in both implementation and usage to HTTP headers. This article documents the headers used by NServiceBus. To learn more about how to use custom headers, see the [header manipulation](/nservicebus/messaging/header-manipulation.md) article.
 
 
 ## Timestamp format
 
-For all timestamp message headers, the format is `yyyy-MM-dd HH:mm:ss:ffffff Z` where the time is UTC. The helper class `DateTimeExtensions` in the NServiceBus core supports converting from UTC to wire format and vice versa by using the `ToWireFormattedString()` and `ToUtcDateTime()` methods. 
+For all timestamp message headers, the format is `yyyy-MM-dd HH:mm:ss:ffffff Z` where the time is UTC. The helper class `DateTimeExtensions` in NServiceBus supports converting from UTC to wire format and vice versa by using the `ToWireFormattedString()` and `ToUtcDateTime()` methods. 
 
 ```
 const string Format = "yyyy-MM-dd HH:mm:ss:ffffff Z";
@@ -34,38 +34,54 @@ public static DateTime ToUtcDateTime(string wireFormattedString)
 }
 ```
 
+
 ## Serialization Headers
 
 The following headers include information for the receiving endpoint on the [message serialization](/nservicebus/serialization/) option that was used.
 
+
 ### NServiceBus.ContentType
+
 The type of serialization used for the message, for example `text/xml` or `text/json`. This header was added in Version 4.0. In some cases, it may be useful to use the `NServiceBus.Version` header to determine how to use the value in this header appropriately. 
 
+
 ### NServiceBus.EnclosedMessageTypes
+
 The fully qualified .NET type name of the enclosed message(s). The receiving endpoint will use this type when deserializing an incoming message. Depending on the [versioning strategy](/samples/versioning/) the type can be specified in the following ways:
 
-* Full type name: `Namespace.ClassName`
-* Assembly qualified name: `Namespace.ClassName, AssemblyName, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null`
+ * Full type name: `Namespace.ClassName`
+ * Assembly qualified name: `Namespace.ClassName, AssemblyName, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null`
 
 NOTE: In integration scenarios, this header can be safely omitted if the endpoint uses XmlSerialization and the root node happens to be the message type.
+
 
 ## Messaging interaction headers
 
 The following headers are used in various ways to enable different messaging interaction patterns such as Request-Response, etc.
 
+
 ### NServiceBus.MessageId
-A unique id for the current message. By using the [IMutateOutgoingTransportMessages mutator](/nservicebus/pipeline/message-mutators.md), this value can be changed to a custom value when dispatching the message.
+
+A unique id for the current message. The value can be manipulated, when dispatching a message, using a [transport mutator](/nservicebus/pipeline/message-mutators.md).
+
 
 ### NServiceBus.CorrelationId
+
 A string used to [correlate](message-correlation.md) reply messages to their corresponding request message.
 
+
 ### NServiceBus.ConversationId
+
 The conversation that this message is part of.
 
+
 ### NServiceBus.RelatedTo
+
 The `MessageId` that caused this message to be sent.
 
+
 ### NServiceBus.MessageIntent
+
 Message intent can have one of the following values:
 
 |               |             | 
@@ -76,8 +92,10 @@ Message intent can have one of the following values:
 | Unsubscribe |A control message indicating that the source endpoint would like to unsubscribe to a specific message.|
 | Reply | The message has been initiated by doing a Reply or a Return from within a Handler or a Saga. |
 
+
 ### NServiceBus.ReplyToAddress
-Downstream message handlers or Sagas use this value as the reply queue address when replying or returning a message.
+
+Downstream message [Handlers](/nservicebus/handlers) or [Sagas](/nservicebus/sagas) use this value as the reply queue address when replying or returning a message.
 
 
 ## Send Headers
@@ -135,18 +153,27 @@ The headers of reply message will be as follows:
 
 snippet: HeaderWriterReturn_Returning
 
+
 ## Timeout Headers
 
+
 ### NServiceBus.ClearTimeouts
+
 A marker header to indicate that the contained control message is requesting that timeouts be cleared for a given saga.
 
+
 ### NServiceBus.Timeout.Expire
+
 A timestamp that indicates when a timeout to be fired.
 
+
 ### NServiceBus.Timeout.RouteExpiredTimeoutTo
+
 The queue name where a timeout should be routed back to when it fires.
 
+
 ### NServiceBus.IsDeferredMessage
+
 A marker header to indicate that this message resulted from a Defer.
 
 
@@ -155,7 +182,7 @@ A marker header to indicate that this message resulted from a Defer.
 When a message is dispatched from within a Saga the message will contain the following:
 
  * A `OriginatingSagaId` header which matches the id used as the index for the Saga Data stored in persistence.
- * A `OriginatingSagaType` which is the fully qualified type name of the saga that sent the message
+ * A `OriginatingSagaType` which is the fully qualified type name of the saga that sent the message.
 
 
 ### Example "Send from Saga" Headers
@@ -168,7 +195,7 @@ snippet: HeaderWriterSaga_Sending
 A message Reply is performed from a Saga will have the following headers:
 
  * The send headers are the same as a normal Reply headers with a few additions.
- * Since this reply is from a secondary Saga then `OriginatingSagaId` and `OriginatingSagaType` will match the second saga
+ * Since this reply is from a secondary Saga then `OriginatingSagaId` and `OriginatingSagaType` will match the second saga.
  * Since this is a Reply to a the initial Saga then the headers will contain `SagaId` and `SagaType` headers that match the initial Saga.
 
 
@@ -190,7 +217,7 @@ snippet: HeaderWriterSaga_ReplyingToOriginator
 When requesting a Timeout from a Saga:
 
  * The `OriginatingSagaId`, `OriginatingSagaType`, `SagaId` and `SagaType` will all match the Saga that requested the Timeout.
- * The `Timeout.RouteExpiredTimeoutTo` header contains the queue name for where the callback for the timeout should be sent/
+ * The `Timeout.RouteExpiredTimeoutTo` header contains the queue name for where the callback for the timeout should be sent.
  * The `Timeout.Expire` header contains the timestamp for when the timeout should fire.
 
 
@@ -218,39 +245,60 @@ snippet: HeaderWriterDefer
 
 Headers used to give visibility into "where", "when" and "by whom" Of a message. Used by [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/).
 
+
 ### $.diagnostics
+
 The [host details](/nservicebus/hosting/override-hostid.md) of the endpoint where the message was being processed. This header contains three parts:
-	 * `$.diagnostics.hostdisplayname`
-	 * `$.diagnostics.hostid`
-	 * `$.diagnostics.originating.hostid`
+
+ * `$.diagnostics.hostdisplayname`
+ * `$.diagnostics.hostid`
+ * `$.diagnostics.originating.hostid`
  
+
 ### NServiceBus.TimeSent
+
 The timestamp of when the message was sent. Used by the [Performance Counters](/nservicebus/operations/performance-counters.md).
 
+
 ### NServiceBus.OriginatingEndpoint
+
 The endpoint name where the message was sent from.
 
+
 ### NServiceBus.OriginatingMachine
+
 The machine name where the message was sent from.
 
+
 ### NServiceBus.Version
+
 The NServiceBus version number.
+
 
 ## Audit Headers
 
 Headers added when a message is [Audited](/nservicebus/operations/auditing.md)
 
+
 ### NServiceBus.ProcessingEnded
+
 The timestamp processing of a message ended.
 
+
 ### NServiceBus.ProcessingEndpoint
+
 Name of the endpoint where the message was processed.
 
+
 ### NServiceBus.ProcessingMachine
+
 The machine name of the endpoint where the message was processed.
 
+
 ### NServiceBus.ProcessingStarted
+
 The timestamp the processing of this message started.
+
 
 ### Example Audit Headers
 
@@ -267,39 +315,59 @@ snippet: HeaderWriterAudit_Audit
 
 Headers used facilitate [Retries](/nservicebus/errors/automatic-retries.md).
 
+
 ### NServiceBus.FailedQ
+
 The queue at which the message processing failed.
 
+
 ### NServiceBus.FLRetries
+
 The number of first-level retries that has been performed for a message.
 
+
 ### NServiceBus.Retries
+
 The number of second-level retries that has been performed for a message.
 
+
 ### NServiceBus.Retries.Timestamp
-A timestamp used by Second Level Retries to determine if the maximum time for retrying has been reached.
+
+A timestamp used by [Second Level Retries](/nservicebus/errors/automatic-retries.md) to determine if the maximum time for retrying has been reached.
 
 
 ## Error forwarding headers
 
-When a message is sent to the Error queue, it will have the following extra headers added to the existing headers. If retries occurred, then those messages will be included with the exception of `NServiceBus.Retries`, which is removed.
+When a message is sent to the [Error](/nservicebus/errors/) queue, it will have the following extra headers added to the existing headers. If retries occurred, then those messages will be included with the exception of `NServiceBus.Retries`, which is removed.
+
 
 ### NServiceBus.ExceptionInfo.ExceptionType
+
 The [Type.FullName](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) of the Exception. Obtained by calling `Exception.GetType().FullName`.
 
+
 ### NServiceBus.ExceptionInfo.InnerExceptionType
+
 The full Type name of the [InnerException](https://msdn.microsoft.com/en-us/library/system.exception.innerexception.aspx) if it exists. Obtained by calling `Exception.InnerException.GetType().FullName`.
 
+
 ### NServiceBus.ExceptionInfo.HelpLink
+
 The [Exception HelpLink](https://msdn.microsoft.com/en-us/library/system.exception.helplink.aspx).
 
+
 ### NServiceBus.ExceptionInfo.Message
+
 The [Exception Message](https://msdn.microsoft.com/en-us/library/system.exception.message.aspx).
 
+
 ### NServiceBus.ExceptionInfo.Source
+
 The [Exception Source](https://msdn.microsoft.com/en-us/library/system.exception.source.aspx).
 
+
 ### NServiceBus.ExceptionInfo.StackTrace
+
 The [Exception StackTrace](https://msdn.microsoft.com/en-us/library/system.exception.stacktrace.aspx).
 
 
@@ -318,7 +386,9 @@ snippet: HeaderWriterError_Error
 
 Headers when using [Rijndael property encryption](/nservicebus/security/encryption.md).
 
+
 ### NServiceBus.RijndaelKeyIdentifier
+
 Identifies which encryption key used for encryption the message property fragments.
 
 
