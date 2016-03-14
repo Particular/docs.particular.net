@@ -7,6 +7,8 @@ redirects:
  - nservicebus/testing/unit-testing
 ---
 
+NOTE: The approach for testing NServiceBus has been changed significantly in Version 6, to allow for "bare-metal", Arrange-Act-Assert (AAA) style tests. Please refer to [Unit Testing NServiceBus](/nservicebus/testing/unit-testing.md) for more information.
+
 Developing enterprise-scale distributed systems is hard and testing them is just as challenging a task. The architectural approach supported by NServiceBus makes these challenges more manageable. The testing facilities provided make unit testing endpoints and workflows easy, allowing developing service layers and long-running processes using Test-Driven Development.
 
 
