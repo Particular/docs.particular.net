@@ -4,7 +4,6 @@ using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus;
 using NServiceBus.Transports.SQLServer;
-using NServiceBus.Persistence;
 
 class Program
 {
@@ -52,8 +51,7 @@ class Program
             });
 
         endpointConfiguration
-            .UsePersistence<NHibernatePersistence>()
-            .RegisterManagedSessionInTheContainer();
+            .UsePersistence<NHibernatePersistence>();
 
         endpointConfiguration.EnableOutbox();
 

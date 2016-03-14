@@ -2,10 +2,10 @@
 {
     using System.Threading.Tasks;
     using NHibernate;
+    using NServiceBus;
     using NServiceBus.Extensibility;
     using NServiceBus.Persistence;
     using NServiceBus.Sagas;
-    using Snippets6.Persistence.NHibernate;
 
     public class NHibernateSagaFinder
     {
