@@ -46,6 +46,8 @@ To get a sense of the expected performance take your regular endpoint performanc
 
 If you need to scale out small units of work you might consider splitting your handlers into smaller vertical slices of functionality and deploying them on their own endpoints.
 
+NOTE: Before scaling out via the distributor make sure that you have [increased the maximum concurrency on your current endpoint](/nservicebus/operations/tuning.md#tuning-throughput). The default concurrency level is set to 1 meaning sequential processing of messages. Also make sure that the **MaximumConcurrencyLevel** is increased on the endpoint that is the distributor node to allow it to forward messages in parallel to the workers.
+
 
 ## How does it work?
 
