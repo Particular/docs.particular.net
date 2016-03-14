@@ -67,12 +67,21 @@ The works are simply host for running the handlers defined in `Worker.Handlers`
 snippet:Workerstartup
 
 
-#### Configuration
+## Configuration
+
+### Worker and Distributor on the same machine
 
 snippet: workerConfig
 
 The Node in the MasterNodeConfig points to the host name where the MasterNode is running. If running the Worker from the same machine as the Distributor, Node should equal "localhost".
 
+### Parallel processing of messages
+
+By default NServiceBus (pre V6) processes message sequentially. The following configuration increases the maximum concurrency level to the number of cores of the machine.
+
+snippet: concurrency
+
+NOTE: Increasing the maximum concurrency level on the distributor allows the distributor to forward messages to workers concurrently. Increasing the concurrency on the workers might not lead to increased performance if the executed code is multi threaded.
 
 ## Running the code
 

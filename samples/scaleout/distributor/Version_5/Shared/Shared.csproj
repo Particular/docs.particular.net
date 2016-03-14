@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
+    <Compile Include="ConfigureTransportConfig.cs" />
     <Compile Include="PlaceOrder.cs" />
     <Compile Include="OrderPlaced.cs" />
   </ItemGroup>

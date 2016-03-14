@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="ConfigLogging.cs" />
+    <Compile Include="ConfigureTransportConfig.cs" />
     <Compile Include="OrderPlaced.cs" />
     <Compile Include="PlaceOrder.cs" />
   </ItemGroup>

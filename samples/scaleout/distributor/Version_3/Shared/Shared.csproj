@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
+    <Compile Include="ConfigureMsmqTransportConfig.cs" />
     <Compile Include="OrderPlaced.cs" />
     <Compile Include="PlaceOrder.cs" />
   </ItemGroup>
