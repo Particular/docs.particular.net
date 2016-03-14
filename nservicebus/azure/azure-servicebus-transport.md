@@ -17,18 +17,18 @@ reviewed: 2016-03-07
 
 In some environments it is not possible or recommended to rely heavily on distributed transactions to ensure reliability and consistency. Therefore in environments such as very large cloud networks or hybrid networks using MSMQ is not the best idea. In those scenarios a good alternative is Azure Service Bus.
 
-Azure Service Bus (ASB) is a messaging infrastructure that sits between applications, allowing them to exchange messages in a loosely coupled fashion for improved scale and resiliency. Service Bus Queues offer simple first in, first out guaranteed message delivery and support a range of standard protocols (REST, AMQP, WS*) and APIs (to put/pull messages on/off the queue). Service Bus Topics deliver messages to multiple subscribers and easily fan out message delivery at scale to downstream systems.
+Azure Service Bus (ASB) is a messaging service (broker) that sits between applications, allowing them to exchange messages in a loosely coupled fashion for improved scale and resiliency. Service Bus Queues offer simple first in, first out guaranteed message delivery and support a range of standard protocols (REST, AMQP, WS*) and APIs (to put/pull messages on/off the queue). Service Bus Topics deliver messages to multiple subscribers and easily use fan-out pattern to deliver messages to downstream systems.
 
- * The main advantage of ASB is that it offers a highly reliable and (relatively) low latency remote messaging infrastructure. A single message can be up to 256 KB in size, and a queue can keep many messages at once, up to 5 GB size in total. Furthermore it is capable of emulating local transactions using its queue peek-lock mechanism and has many built-in features that users (and NServiceBus) can take advantage of, such as message deduplication and deferred messages.
+ * The main advantage of ASB is that it offers a highly reliable and (relatively) low latency remote messaging infrastructure. A single message can be up to 256 KB in size, and a queue can keep many messages at once, up to 5 GB size in total. Furthermore it is capable of emulating local transactions using its queue peek-lock mechanism. NServiceBus is an abstraction over ASB. It takes advantage of ASB's built-in features, such as message deduplication and deferred messages, and provides higher-level, convenient API for programmers on top of ASB.
  * The main disadvantage of ASB is its dependency on TCP (for low latency), which may require opening some outbound ports on the firewall. Additionally, in some systems the price may get high ($1 per million messages).
 
 Note: Publish/Subscribe and Timeouts (including message deferral) are supported natively by the ASB transport and do not use persistence.
 
 ## Enabling the Transport
 
-Firstly, choose Standard Messaging Tier for Azure Service Bus when creating the namespace at Azure portal.
+Firstly, choose Standard or Premium Messaging Tier for Azure Service Bus when creating the namespace at Azure portal.
 
-Secondly, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a `NServiceBus.Azure.Transports.WindowsAzureServiceBus` NuGet package reference to the project.
+Secondly, reference `NServiceBus.Azure.Transports.WindowsAzureServiceBus` NuGet package.
 
 ```
 PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureServiceBus
@@ -115,7 +115,7 @@ WARNING: This is an advanced topic and requires full understanding of the topolo
 
 ## Transactions and delivery guarantees
 
-NServiceBus AzureServiceBus transport relies on the underlying Azure ServiceBus library which requires the use of the `Serializable` isolation level (the most restrictive isolation level that does not permit `dirty reads`, `phantom reads` and `non repeatable reads`; will block any reader until the writer is committed. For more information refer to [Transaction Isolation Levels Explained in Details](http://dotnetspeak.com/2013/04/transaction-isolation-levels-explained-in-details) article.
+NServiceBus Azure Service Bus transport relies on the underlying Azure Service Bus library which requires the use of the `Serializable` isolation level (the most restrictive isolation level that does not permit `dirty reads`, `phantom reads` and `non repeatable reads`; will block any reader until the writer is committed. For more information refer to [Transaction Isolation Levels Explained in Details](http://dotnetspeak.com/2013/04/transaction-isolation-levels-explained-in-details) article.
 
 NServiceBus AzureServiceBus transport configuration is hard-coded to `Serializable` isolation level. Users can't override it.
 
@@ -127,13 +127,13 @@ Note: `SendAtomicWithReceive` level is supported only when destination and recei
 
 The `SendAtomicWithReceive` guarantee is achieved by using `ViaEntityPath` property on outbound messages. It's value is set to the receiving queue.
 
-If the `ViaEntityPath` is not empty, then messages will be added to the receive queue. The messages will be forwarded to their actual destination (inside the broker) only when the complete operation is called on the received brokered message. The message won't be forwarded if the 30 seconds operation limit is exceeded or if the message is explicitly abandoned.
+If the `ViaEntityPath` is not empty, then messages will be added to the receive queue. The messages will be forwarded to their actual destination (inside the broker) only when the complete operation is called on the received brokered message. The message won't be forwarded if the lock duration limit is exceeded (30 seconds by default) or if the message is explicitly abandoned.
 
 #### ReceiveOnly
 
 The `ReceiveOnly` guarantee is based on the Azure Service Bus Peek-Lock mechanism. 
 
-The message is not removed from the queue directly after receive, but it's hidden for 30 seconds. That prevents other instances from picking it up. If the receiver fails to process the message withing that timeframe or explicitly abandons the message, then the message will become visible again. Other instances will be able to pick it up.
+The message is not removed from the queue directly after receive, but it's hidden by default for 30 seconds. That prevents other instances from picking it up. If the receiver fails to process the message withing that timeframe or explicitly abandons the message, then the message will become visible again. Other instances will be able to pick it up.
 
 #### Unreliable (Transactions Disabled)
 
