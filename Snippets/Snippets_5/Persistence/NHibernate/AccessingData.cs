@@ -20,11 +20,16 @@
             #region NHibernateAccessingDataViaContext
             public class OrderHandler : IHandleMessages<OrderMessage>
             {
-                public NHibernateStorageContext DataContext { get; set; }
+                NHibernateStorageContext dataContext;
+
+                public OrderHandler(NHibernateStorageContext dataContext)
+                {
+                    this.dataContext = dataContext;
+                }
 
                 public void Handle(OrderMessage message)
                 {
-                    DataContext.Session.Save(new Order());
+                    dataContext.Session.Save(new Order());
                 }
             }
             #endregion
@@ -34,10 +39,11 @@
         {
             public void Config()
             {
+                BusConfiguration busConfiguration = new BusConfiguration();
                 #region NHibernateAccessingDataDirectlyConfig
 
-                BusConfiguration busConfiguration = new BusConfiguration();
-                busConfiguration.UsePersistence<NHibernatePersistence>().RegisterManagedSessionInTheContainer();
+                busConfiguration.UsePersistence<NHibernatePersistence>()
+                    .RegisterManagedSessionInTheContainer();
 
                 #endregion
             }
@@ -46,29 +52,35 @@
 
             public class OrderHandler : IHandleMessages<OrderMessage>
             {
-                public ISession Session { get; set; }
+                ISession session;
+
+                public OrderHandler(ISession session)
+                {
+                    this.session = session;
+                }
 
                 public void Handle(OrderMessage message)
                 {
-                    Session.Save(new Order());
+                    session.Save(new Order());
                 }
             }
 
             #endregion
 
-            #region CustomSessionCreation
 
             public void Configure()
             {
                 BusConfiguration busConfiguration = new BusConfiguration();
-                busConfiguration.UsePersistence<NHibernatePersistence>().UseCustomSessionCreationMethod(CreateSession);
+
+                #region CustomSessionCreation
+
+                busConfiguration.UsePersistence<NHibernatePersistence>()
+                    .UseCustomSessionCreationMethod((sessionFactory, connectionString) =>
+                        sessionFactory.OpenSession());
+
+                #endregion
             }
 
-            ISession CreateSession(ISessionFactory sessionFactory, string connectionString)
-            {
-                return sessionFactory.OpenSession();
-            }
-            #endregion
 
         }
     }
