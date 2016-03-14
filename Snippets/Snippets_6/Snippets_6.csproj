@@ -207,6 +207,10 @@
     <Reference Include="NServiceBus.RavenDB">
       <HintPath>..\..\packages\NServiceBus.RavenDB.4.0.0-unstable0102\lib\net452\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.Testing, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.Testing.6.0.0-unstable0035\lib\net452\NServiceBus.Testing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NServiceBus.Transports.RabbitMQ, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.RabbitMQ.4.0.0-unstable0190\lib\net452\NServiceBus.Transports.RabbitMQ.dll</HintPath>
       <Private>True</Private>
@@ -429,6 +433,22 @@
     <Compile Include="Transports\RabbitMQ_4\Usage.cs" />
     <Compile Include="Transports\SqlServer_3\SingleDbMultiSchema.cs" />
     <Compile Include="Transports\SqlServer_3\ConnectionStrings.cs" />
+    <Compile Include="UnitTesting\AdditionalServices\MyMessage.cs" />
+    <Compile Include="UnitTesting\AdditionalServices\MyService.cs" />
+    <Compile Include="UnitTesting\AdditionalServices\Tests.cs" />
+    <Compile Include="UnitTesting\HeaderManipulation\RequestMessage.cs" />
+    <Compile Include="UnitTesting\HeaderManipulation\ResponseMessage.cs" />
+    <Compile Include="UnitTesting\HeaderManipulation\Tests.cs" />
+    <Compile Include="UnitTesting\Saga\MyCommand.cs" />
+    <Compile Include="UnitTesting\Saga\MyEvent.cs" />
+    <Compile Include="UnitTesting\Saga\MyResponse.cs" />
+    <Compile Include="UnitTesting\Saga\MySaga.cs" />
+    <Compile Include="UnitTesting\Saga\MySagaData.cs" />
+    <Compile Include="UnitTesting\Saga\StartsSaga.cs" />
+    <Compile Include="UnitTesting\Saga\Tests.cs" />
+    <Compile Include="UnitTesting\ServiceLayer\RequestMessage.cs" />
+    <Compile Include="UnitTesting\ServiceLayer\ResponseMessage.cs" />
+    <Compile Include="UnitTesting\ServiceLayer\Tests.cs" />
     <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
     <Compile Include="Transports\SqlServer_3\UpgradeGuides\Transactions.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />

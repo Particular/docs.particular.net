@@ -1,5 +1,5 @@
 ---
-title: Unit Testing
+title: Testing NServiceBus
 summary: Develop service layers and long-running processes using test-driven development.
 tags: []
 redirects:
@@ -18,12 +18,12 @@ To install this package:
 ```
 Install-Package NServiceBus.Testing
 ```
-Once the package is installed you need ensure that you call `Test.Initialize()` (or any of its overloads) before executing any test method.
+Once the package is installed you need ensure that you call `Test.Initialize()` (or any of its overloads) before executing any test method. This is **not needed **for Version 6.
 
 NOTE: To limit the assemblies and types scanned by the test framework it is possible to use the `Initialize()` overload that accepts a delegate you can use to customize the `ConfigurationBuilder`.
 
 
-## Unit testing the service layer
+## Testing the service layer
 
 The service layer in an NServiceBus application is made from message handlers. Each class typically handles one specific type of message. Testing these classes usually focuses on their externally visible behavior: the types of messages they send or reply with. This is as simple to test as could be expected:
 
@@ -39,7 +39,7 @@ snippet:TestingSaga
 
 ## Configuring unobtrusive message conventions
 
-If you are using [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md) you need to configure the unit test support with those conventions as shown below.
+Prior to Version 6, if you are using [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md) you need to configure the unit test support with those conventions as shown below.
 
 snippet:SetupConventionsForUnitTests
 
@@ -65,5 +65,7 @@ Many of the message handling classes in the service layer make use of other obje
 snippet:TestingAdditionalDependencies
 
 ## Constructor injected bus
+
+NOTE: The `IBus` interface was deprecated in Version 6, and replaced with the contextual `IMessageHandlerContext` parameter on the `IHandleMessages<T>.Handle()` methods.
 
 snippet: ConstructorInjectedBus
