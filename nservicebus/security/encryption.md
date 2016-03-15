@@ -50,20 +50,20 @@ snippet:EncryptionServiceSimple
 
 #### Key identifier
 
-Each key needs an unique key identifier (`KeyIdentifier`). The key identifier is communicated in the message header meta data and provides the receiving endpoint information on which key to use for decryption.
+Each key needs an unique key ID (`KeyIdentifier`). The key ID is communicated in the message header meta data and provides the receiving endpoint information on which key to use for decryption.
 
 > Error: It is required to set the rijndael key identifier.
 
-NOTE: If a key identifier is not set then no encrypted messages can be send but received messages without a key identifier header will be decrypted using all keys in the configuration.
+NOTE: If a key ID is not set then no encrypted messages can be send but received messages without a key ID header will be decrypted using all keys in the configuration.
 
 > Error: Encrypted message has no 'NServiceBus.RijndaelKeyIdentifier' header. Possibility of data corruption. Upgrade endpoints that send messages with encrypted properties.
 
-NOTE: Key identifiers are only supported since v3.3.16+, v4.7.8+, v5.0.7, 5.1.5, 5.2.9 and newer. All previous versions support decrypting messages that have encrypted fragments but no key identifier header.
+NOTE: Key identifiers are only supported since v3.3.16+, v4.7.8+, v5.0.7, 5.1.5, 5.2.9 and newer. All previous versions support decrypting messages that have encrypted fragments but no key ID header.
 
 
-#### Key identifier naming strategy
+#### Key ID naming strategy
 
-A key identifier identifies which key is used, it does not expose anything about the key itself.
+A key ID identifies which key is used, it does not expose anything about the key itself.
 
 Good strategies
 
@@ -76,14 +76,14 @@ Bad strategies
 - Full hash of key (md5, sha-1, etc.)
 
 
-NOTE: Random named key identifiers DO NOT improve security as the key identifier is not encrypted.
+NOTE: Random named key identifiers DO NOT improve security as the key ID is not encrypted.
 
 NOTE: Timestamping do not weaken encryption. Messages already contain a timestamp that can be used to search for messages within a certain time range.
 
 
 ### Using the same key with and without a key identifier
 
-If the KeyIdentifier attribute is set then this key will be used to decrypt message with a matching key identifier but it will also be used to try decrypting messages without a key identifier.
+If the KeyIdentifier attribute is set then this key will be used to decrypt message with a matching key ID but it will also be used to try decrypting messages without a key identifier.
 
 
 #### Key format (v5+)

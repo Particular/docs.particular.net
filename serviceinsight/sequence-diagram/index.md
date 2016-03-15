@@ -19,7 +19,7 @@ Use the sequence diagram when the timing of messages handling is important to un
 
 ## Which data is used to generate the diagram
 
-When you send a message through NServiceBus, some headers are added automatically. All messages get the `NServiceBus.MessageId` header. This is a unqiue identifier for the message. 
+When you send a message through NServiceBus, some headers are added automatically. All messages get the `NServiceBus.MessageId` header. This is a unqiue ID for the message. 
 
 If handling a message causes more messages to be sent or published then the `MessageId` of the message being handled is copied to the `NServiceBus.RelatedTo` header of the outgoing messages.
 

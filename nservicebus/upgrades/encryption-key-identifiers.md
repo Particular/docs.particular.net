@@ -37,7 +37,7 @@ For example, if currently using NServiceBus 4.7.x, an update to the latest patch
 
 ## Compatibility
 
-It is not required to upgrade all endpoints simultaneously. There has not been a change in encryption or decryption. If a key identifier header is present in a message received by an endpoint that does not know this header then it will decrypt the message.
+It is not required to upgrade all endpoints simultaneously. There has not been a change in encryption or decryption. If a key ID header is present in a message received by an endpoint that does not know this header then it will decrypt the message.
 
 
 ## Upgrade steps
@@ -74,7 +74,7 @@ It is possible to choose to keep the current encryption key and will still be ab
 
 #### Code API (Versions 5 and above)
 
-When recompiling an obsolete warning will occur. Change the current method to the new one that has new arguments that allow to pass a dictionary to lookup keys and an optional list of keys that will be used to decrypt messages that do not have a key identifier header.
+When recompiling an obsolete warning will occur. Change the current method to the new one that has new arguments that allow to pass a dictionary to lookup keys and an optional list of keys that will be used to decrypt messages that do not have a key ID header.
 
 NOTE: Keys need to be available in the expired keys list to be backwards compatible.
 

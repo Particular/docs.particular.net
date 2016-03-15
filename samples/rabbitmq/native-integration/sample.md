@@ -40,8 +40,8 @@ snippet:DefineNSBMessage
 
 ### Uniquely identifying messages
 
-NServiceBus requires all messages to be uniquely identified in order to be able to perform retries in a safe way. Unfortunately, RabbitMQ doesn't provide a unique id for messages by automatically, so a unique id will need to be manually generated. By default, NServiceBus will look for this message id in the optional [AMQP](https://www.rabbitmq.com/amqp-0-9-1-reference.html) `message-id` message header. This behavior can be modified by using a [custom message identifier strategy](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-controlling-the-message-id-strategy) to tell NServiceBus to look in a different location for the message identifier. Using this custom strategy, the id can be extracted from any message header, or even the message payload itself.
+NServiceBus requires all messages to be uniquely identified in order to be able to perform retries in a safe way. Unfortunately, RabbitMQ doesn't provide a unique ID for messages by automatically, so a unique ID will need to be manually generated. By default, NServiceBus will look for this message ID in the optional [AMQP](https://www.rabbitmq.com/amqp-0-9-1-reference.html) `message-id` message header. This behavior can be modified by using a [custom message ID strategy](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-controlling-the-message-id-strategy) to tell NServiceBus to look in a different location for the message identifier. Using this custom strategy, the ID can be extracted from any message header, or even the message payload itself.
 
-To set this up for this sample, generate a unique identifier on the sender side and attach it to the `MessageId` property:
+To set this up for this sample, generate a unique ID on the sender side and attach it to the `MessageId` property:
 
 snippet:GenerateUniqueMessageId

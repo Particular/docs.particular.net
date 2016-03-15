@@ -59,13 +59,13 @@ By default 1 dedicated thread is used for the callbacks. To add more threads, du
 snippet:rabbitmq-config-callbackreceiver-thread-count
 
 
-### Controlling the message id strategy
+### Controlling the message ID strategy
 
-By default NServiceBus uses the `message-id` property of the AMQP standard to relay the message id. If this header isn't set the transport will throw an exception since NServiceBus needs a message id in order to perform retries, de-duplication etc. in a safe way. In integration scenarios where the sender is not controlled consider using a custom scheme that extracts the message id from e.g.a custom header or some data contained in the actual message body. In these cases in a custom strategy by calling:
+By default NServiceBus uses the `message-id` property of the AMQP standard to relay the message id. If this header isn't set the transport will throw an exception since NServiceBus needs a message ID in order to perform retries, de-duplication etc. in a safe way. In integration scenarios where the sender is not controlled consider using a custom scheme that extracts the message ID from e.g.a custom header or some data contained in the actual message body. In these cases in a custom strategy by calling:
 
 snippet:rabbitmq-config-custom-id-strategy
 
-WARNING: It is extremely important to use a uniquely identifying property of the message in a custom message id strategy. If the value for a message were to change (for example, if attempting to use `Guid.NewGuid().ToString()`) then message retries would break, as the infrastructure would be unable to determine that it was processing the same message repeatedly.
+WARNING: It is extremely important to use a uniquely identifying property of the message in a custom message ID strategy. If the value for a message were to change (for example, if attempting to use `Guid.NewGuid().ToString()`) then message retries would break, as the infrastructure would be unable to determine that it was processing the same message repeatedly.
 
 
 ### Getting full control over the broker connection

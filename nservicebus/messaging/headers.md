@@ -63,7 +63,7 @@ The following headers are used in various ways to enable different messaging int
 
 ### NServiceBus.MessageId
 
-A unique id for the current message. The value can be manipulated, when dispatching a message, using a [transport mutator](/nservicebus/pipeline/message-mutators.md).
+A unique ID for the current message. The value can be manipulated, when dispatching a message, using a [transport mutator](/nservicebus/pipeline/message-mutators.md).
 
 
 ### NServiceBus.CorrelationId
@@ -182,7 +182,7 @@ A marker header to indicate that this message resulted from a Defer.
 
 When a message is dispatched from within a Saga the message will contain the following:
 
- * A `OriginatingSagaId` header which matches the id used as the index for the Saga Data stored in persistence.
+ * A `OriginatingSagaId` header which matches the ID used as the index for the Saga Data stored in persistence.
  * A `OriginatingSagaType` which is the fully qualified type name of the saga that sent the message.
 
 

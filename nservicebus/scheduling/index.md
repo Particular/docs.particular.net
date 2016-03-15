@@ -14,7 +14,7 @@ The NServiceBus Scheduler is a lightweight/non-durable API that helps schedule a
 
 The scheduler holds a list of tasks scheduled in a non-durable in-memory dictionary. In Version 4 and below tasks are scoped per `AppDomain`. In Version 5 and above they are scoped per Bus instance.
 
-When a new scheduled task is created it is given a unique identifier and stored in the endpoint's in-memory dictionary. The identifier for the task is sent in a message to the Timeout Manager, setting the message to be deferred with the specified time interval. When the specified time has elapsed, the Timeouts dispatcher returns the message containing the identifier to the endpoint with the scheduled task identifier. The endpoint then uses that identifier to fetch and invoke the task from its internal list of tasks and executes it.
+When a new scheduled task is created it is given a unique ID and stored in the endpoint's in-memory dictionary. The ID for the task is sent in a message to the Timeout Manager, setting the message to be deferred with the specified time interval. When the specified time has elapsed, the Timeouts dispatcher returns the message containing the ID to the endpoint with the scheduled task identifier. The endpoint then uses that ID to fetch and invoke the task from its internal list of tasks and executes it.
 
 
 ## Example usage
@@ -52,7 +52,7 @@ In order to store these tasks in a durable way and support either a scale-out sc
 Converting the scheduler code to a saga, with the code for the example usage of the scheduler API shown above:
 
 1. Create a saga for the specified task name that is started by a message. Create a new message if necessary. In this example, the message that starts the saga is `StartMyCustomTaskSaga`. Send this message on startup, using ` Bus.SendLocal(new StartMyCustomTaskSaga{TaskName = "StartupTask1"});`. If you did not use the API with the task name, name your saga appropriately. In this example, the saga is called `MyCustomTaskSaga`.
-2. Create the required saga data and set the task name as a unique identifier for the saga.
+2. Create the required saga data and set the task name as a unique ID for the saga.
 3. Setup the mapping for the saga. This is done so that there will only be one instance of the saga for a specified task name, so as to avoid duplicate tasks being scheduled if the endpoint is restarted.
 4. In the `Handle()` method of your startup message, request a timeout. This would be the interval that was specified in the Schedule API. Request the timeout only if it hasn't been requested already to avoid duplicate tasks that can be scheduled if the endpoint is restarted.
 5. Create a timeout class and add the `IHandleTimeouts<T>` in the saga definition.

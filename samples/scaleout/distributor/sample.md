@@ -106,10 +106,10 @@ Worker->Server: Ready for work
 Press 'Enter' to send a message.
 Press any other key to exit.
 
-Sent PlacedOrder command with order id [1320cfdc-f5cc-42a7-9157-251756694069].
+Sent PlacedOrder command with order ID [1320cfdc-f5cc-42a7-9157-251756694069].
 Received OrderPlaced. OrderId: 1320cfdc-f5cc-42a7-9157-251756694069. Worker: Worker2
 
-Sent PlacedOrder command with order id [40585dff-3749-4db1-b21a-25694468f042].
+Sent PlacedOrder command with order ID [40585dff-3749-4db1-b21a-25694468f042].
 Received OrderPlaced. OrderId: 40585dff-3749-4db1-b21a-25694468f042. Worker: Worker1
 ```
 
