@@ -6,10 +6,9 @@ tags:
  - example
 ---
 
-In versions of NServiceBus lower than v6 to add logic to FLR and SLR processing NServiceBus provided the `IManageMessageFailures` interface to implement. Now developers must instead add a new behavior class which will be invoked during the message processing pipeline. In this behavior, both the deserialization exception and the general exception can be handled as well as any custom action that needs to be performed when an exception happens. 
+In Versions 5 and below to add logic to FLR and SLR processing required implementing the `IManageMessageFailures` interface. Instead add a new behavior which is invoked during the message processing pipeline. In this behavior, both the deserialization exception and the general exception can be handled as well as any custom action that needs to be performed when an exception occurs. 
 
-While Version 5 did not allow an easier way to invoke both the SLR and the custom fault handling policy, in Version 6, SLR can either be disabled or customized as necessary. For more details, read this article on how to [disable SLR](/nservicebus/errors/automatic-retries.md#second-level-retries-disabling-slr-through-code).
-
+In Version 6 SLR can either be disabled or customized as necessary. See also [disabling SLR](/nservicebus/errors/automatic-retries.md#second-level-retries-disabling-slr-through-code).
 
 ### Create a new behavior that has access to the message at the transport message context
 
