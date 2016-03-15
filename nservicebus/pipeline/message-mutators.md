@@ -76,3 +76,6 @@ NOTE: Mutators are non-deterministic in terms of order of execution. If you want
 If a incoming throws an exception, the message aborts, rolls back to the queue, and [error handling](/nservicebus/errors/) is applied.
 
 If a outgoing mutator throws an exception, the exception bubbles up to the method performing the Send or Publish.
+
+
+include: non-null-task

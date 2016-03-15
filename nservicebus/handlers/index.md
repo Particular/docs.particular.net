@@ -19,14 +19,16 @@ Since this class is setup to handle type `Object`, every message arriving in the
 
 snippet:GenericMessageHandler
 
-If you are using the Request-Response or Full Duplex pattern, your handler will probably do the work it needs to do, such as updating a database or calling a web service, then creating and sending a response message. See [How to Reply to a Message](/nservicebus/messaging/reply-to-a-message.md).
+include: non-null-task
 
-If you are handling a message in a publish-and-subscribe scenario, see [How to Publish/Subscribe to a Message](/nservicebus/messaging/publish-subscribe/).
+If using the Request-Response or Full Duplex pattern, handlers will probably do the work it needs to do, such as updating a database or calling a web service, then creating and sending a response message. See [How to Reply to a Message](/nservicebus/messaging/reply-to-a-message.md).
+
+If handling a message in a publish-and-subscribe scenario, see [How to Publish/Subscribe to a Message](/nservicebus/messaging/publish-subscribe/).
 
 
 ### Mapping to name
 
-NServiceBus will try to map incoming messages to a type using [Assembly Qualified Name](https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname.aspx). This is default behavior for sharing assemblies amongst endpoints. When a message cannot be mapped based on Assembly Qualified Name, NServiceBus will attempt to map to the [FullName](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx). The following is an example of how NServiceBus gets the type information.
+NServiceBus will try to map incoming messages to a type using [Assembly Qualified Name](https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname.aspx). This is default behavior for sharing assemblies among endpoints. When a message cannot be mapped based on Assembly Qualified Name, NServiceBus will attempt to map to the [`FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx). The following is an example of how NServiceBus gets the type information.
 
 ```
 string fqn = message.GetType().AssemblyQualifiedName;
