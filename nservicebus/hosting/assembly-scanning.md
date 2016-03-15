@@ -19,7 +19,7 @@ snippet:ScanningConfigurationInNSBHost
 
 NOTE: During the scanning process, the core dlls for NServiceBus namely `NServiceBus.Core.dll`, `NServiceBus.dll` (in versions prior to Version 5) and if in use `NServiceBus.Host.exe` are automatically included since the endpoint needs them to function properly.
 
-NServiceBus.Host can also control assembly scanning using [command line switches](nservicebus-host/#controlling-assembly-scanning-using-the-command-line).
+When the endpoint is hosted using NServiceBus.Host, [command line switches](nservicebus-host/#controlling-assembly-scanning-using-the-command-line) can be used to control assembly scanning.
 
 ## Controlling the assemblies to scan
 

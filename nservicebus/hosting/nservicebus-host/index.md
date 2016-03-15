@@ -27,11 +27,13 @@ snippet:ExplicitHostConfigType
 
 ### Controlling assembly scanning using the command line
 
-A list of assemblies to scan can also be controlled using the `/scannedAssemblies` switch. If this option is used, the `NServiceBus.Host.exe` loads only assemblies (with references) that have been explicitly listed on the command line. Each assembly must be added using a separate switch:
+A list of assemblies to scan can also be controlled using the `/scannedAssemblies` switch. If this option is used, the `NServiceBus.Host.exe` loads only assemblies that have been explicitly listed on the command line. Each assembly must be added using a separate switch:
 
 `NServiceBus.Host.exe /scannedAssemblies:"NServiceBus.Host" /scannedAssemblies:"MyMessages" /scannedAssemblies:"MyEndpoint"`
 
-NOTE: The `NServiceBus.Host` assembly must be listed explicitly. In this case `NServiceBus.Core` is loaded as a reference and need not be specified separately.
+NOTE: Each assembly is loaded using a call to `Assembly.Load` method. This means that the host will load each assembly and all assemblies it depends on.
+
+NOTE: It is mandatory to include `NServiceBus.Host` in the `/scannedAssemblies` list as shown in the example above. As `NServiceBus.Host` references `NServiceBus.Core`, the latter can be safely omitted from the list.
 
 
 ## Application Domains
