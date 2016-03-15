@@ -8,11 +8,11 @@ related:
 - nservicebus/sagas
 ---
 
-When working in a message-driven environment you cannot make assumptions about when the next message will arrive. While the connection-less nature of messaging prevents a system from consuming resources while waiting, there is usually an upper limit on how long from a business perspective to wait. At that point, some business-specific action should be taken, as shown:
+When working in a message-driven environment no assumptions can be made about when the next message will arrive. While the connection-less nature of messaging prevents a system from consuming resources while waiting, there is usually an upper limit on how long from a business perspective to wait. At that point, some business-specific action should be taken, as shown:
 
 snippet:saga-with-timeout
 
-The `RequestTimeout<T>` method tells NServiceBus to send a message to the Timeout Manager which durably keeps time for us. The Timeout manager is enabled by default, so there is no configuration needed to get this up and running.
+The `RequestTimeout<T>` method tells NServiceBus to send a message to the Timeout Manager which durably records that state. The Timeout manager is enabled by default, so there is no configuration needed to get this up and running.
 
 When the timeout timestamp is elapsed, the Timeout Manager sends a message back to the saga causing its Timeout method to be called with the same state message originally passed.
 
@@ -43,7 +43,7 @@ NOTE: If a saga is recreated based on a similar message key then this is not the
 
 ## Timeout state
 
-The state parameter provides a way to pass state to the Sagas timeout handle method. This is useful when you have many timeouts of the same "type" that will be active at the same time. One example of this would be to pass in some id that uniquely identifies the timeout eg: `.RequestTimeout(new OrderNoLongerEligibleForBonus{OrderId = "xyz"})`. With this state passed to the timeout handler it can now decrement the bonus correctly by looking up the order value from saga state using the provided id.
+The state parameter provides a way to pass state to the Sagas timeout handle method. This is useful when many timeouts of the same "type" that will be active at the same time. One example of this would be to pass in some id that uniquely identifies the timeout eg: `.RequestTimeout(new OrderNoLongerEligibleForBonus{OrderId = "xyz"})`. With this state passed to the timeout handler it can now decrement the bonus correctly by looking up the order value from saga state using the provided id.
 
 
 ### Persistence
