@@ -38,4 +38,12 @@
     }
 
     #endregion
+
+    class MyService
+    {
+    }
+
+    class MyMessage
+    {
+    }
 }
