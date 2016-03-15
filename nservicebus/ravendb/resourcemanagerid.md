@@ -10,7 +10,7 @@ WARNING: As of NServiceBus.RavenDB 3.1.0 the RavenDB ResourceManagerId is automa
 
 When using RavenDB in an environment where you are relying also on distributed transactions it can happen that a commit operation fails with the following error:
 
-> "A resource manager with the same ID is already registered with the specified transaction coordinator"
+> "A resource manager with the same identifier is already registered with the specified transaction coordinator"
 
 The above is generally due to multiple RavenDB `IDocumentStore` instances that, when running on the same machine, attempt to enlist in the same transaction with matching resource manager identifiers.
 
