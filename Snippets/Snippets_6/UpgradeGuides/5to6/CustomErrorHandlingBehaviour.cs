@@ -21,11 +21,11 @@ namespace Snippets6.UpgradeGuides._5to6
             catch (Exception)
             {
                 Console.WriteLine("CustomFaultManager - ProcessingAlwaysFailsForMessage");
-                // do not rethrow the message if you want to mark the message as processed.
-                // rethrow to move the message to the error queue.
+                // To mark the message as processed DO NOT rethrow the message.
+                // Rethrow to move the message to the error queue.
                 throw;
-                // if you want to rollback the receive operation instead of mark as processed:
-                //context.AbortReceiveOperation();
+                // To rollback the receive operation instead of mark as processed:
+                // context.AbortReceiveOperation();
             }
         }
     }
@@ -38,19 +38,21 @@ namespace Snippets6.UpgradeGuides._5to6
             : base("CustomErrorHandlingBehaviour", typeof(CustomErrorHandlingBehaviour), "Adds custom error behavior to pipeline")
         {
             InsertAfter("MoveFaultsToErrorQueue");
-            // only invoke this behavior if FLR fails to handle the message
+            // Only invoke this behavior if FLR fails to handle the message
             InsertBeforeIfExists("FirstLevelRetries");
-            // if you want to handle the message before it is moved to error queue, insert after SLR.
-            // if you want to handle the message before it is handled by SLR, insert it before SLR.
+            // To handle the message before it is moved to error queue, insert after SLR.
+            // To handle the message before it is handled by SLR, insert it before SLR.
             InsertBeforeIfExists("SecondLevelRetries");
         }
     }
     #endregion
 
-    #region 5to6-registercustomerrorhandling
-    public void Customize(EndpointConfiguration endpointConfiguration)
-    {
-        endpointConfiguration.Pipeline.Register<NewMessageProcessingPipelineStep>();
+    class RegisterCustomErrorHandling : INeedInitialization {
+        public void Customize(EndpointConfiguration endpointConfiguration)
+        {
+            #region 5to6-registercustomerrorhandling
+            endpointConfiguration.Pipeline.Register<NewMessageProcessingPipelineStep>();
+            #endregion
+        }
     }
-    #endregion
 }
