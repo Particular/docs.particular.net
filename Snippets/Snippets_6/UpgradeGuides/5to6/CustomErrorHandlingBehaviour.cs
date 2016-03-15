@@ -48,12 +48,9 @@ namespace Snippets6.UpgradeGuides._5to6
     #endregion
 
     #region 5to6-registercustomerrorhandling
-    class RegisterCustomErrorHandling : INeedInitialization
+    public void Customize(EndpointConfiguration endpointConfiguration)
     {
-        public void Customize(EndpointConfiguration configuration)
-        {
-            configuration.Pipeline.Register<NewMessageProcessingPipelineStep>();
-        }
+        endpointConfiguration.Pipeline.Register<NewMessageProcessingPipelineStep>();
     }
     #endregion
 }
