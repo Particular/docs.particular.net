@@ -52,7 +52,7 @@ snippet:EncryptionServiceSimple
 
 Each key needs an unique key ID (`KeyIdentifier`). The key ID is communicated in the message header meta data and provides the receiving endpoint information on which key to use for decryption.
 
-> Error: It is required to set the rijndael key identifier.
+> Error: It is required to set the rijndael key ID.
 
 NOTE: If a key ID is not set then no encrypted messages can be send but received messages without a key ID header will be decrypted using all keys in the configuration.
 
@@ -83,7 +83,7 @@ NOTE: Timestamping do not weaken encryption. Messages already contain a timestam
 
 ### Using the same key with and without a key identifier
 
-If the KeyIdentifier attribute is set then this key will be used to decrypt message with a matching key ID but it will also be used to try decrypting messages without a key identifier.
+If the KeyIdentifier attribute is set then this key will be used to decrypt message with a matching key ID but it will also be used to try decrypting messages without a key ID.
 
 
 #### Key format (v5+)

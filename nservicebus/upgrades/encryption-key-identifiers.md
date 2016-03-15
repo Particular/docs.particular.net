@@ -50,7 +50,7 @@ Steps:
  * Start the endpoint
 
 
-NOTE: If only the new version is deployed without updating the configuration, then the endpoint will start but will not be able to encrypt messages or decrypt messages that have a key identifier.
+NOTE: If only the new version is deployed without updating the configuration, then the endpoint will start but will not be able to encrypt messages or decrypt messages that have a key ID.
 
 
 ### Update endpoint configurations
