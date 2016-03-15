@@ -41,7 +41,6 @@ snippet:IMutateOutgoingMessages
 
 `IMessageMutator` is an interface that combines both `IMutateIncomingMessages` and `IMutateOutgoingMessages`. It only exists in Version 5 and below. In Version 6 and above implement both `IMutateIncomingMessages` and `IMutateOutgoingMessages` instead.
 
-Starting with version 6 all logical message mutators must return a `Task`, a completed `Task` or be marked `async`.
 
 ### Transport Messages Mutators
 
@@ -57,7 +56,6 @@ snippet:IMutateIncomingTransportMessages
 
 snippet:IMutateOutgoingTransportMessages
 
-Starting with version 6 all transport message mutators must return a `Task`, a completed `Task` or be marked `async`. 
 
 #### IMutateTransportMessages
 
@@ -78,3 +76,6 @@ NOTE: Mutators are non-deterministic in terms of order of execution. If you want
 If a incoming throws an exception, the message aborts, rolls back to the queue, and [error handling](/nservicebus/errors/) is applied.
 
 If a outgoing mutator throws an exception, the exception bubbles up to the method performing the Send or Publish.
+
+
+include: non-null-task

@@ -22,7 +22,8 @@ NOTE: If the saga does not request a timeout then the corresponding timeout meth
 
 WARNING: Don't assume that other messages haven't arrived in the meantime. If required a Saga can store boolean flags in the SagaData and then check these flags to confirm a given timeout message should be processed based on the current sate.
 
-Starting with version 6 all timeout handlers must return a `Task`, a completed `Task` or be marked `async`.
+include: non-null-task
+
 
 ## Revoking timeouts
 
