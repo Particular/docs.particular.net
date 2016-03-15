@@ -11,7 +11,6 @@
             #region ServiceControlEventsConfig 
 
             // required to talk to ServiceControl
-            endpointConfiguration.UseLegacyMessageDrivenSubscriptionMode();
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.Conventions()
                 .DefiningEventsAs(t => typeof(IEvent).IsAssignableFrom(t) ||
