@@ -6,9 +6,9 @@ class Program
 
     static void Main()
     {
-        Console.Title = "Samples.StepByStep.Server";
+        Console.Title = "Samples.DelayedDelivery.Server";
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.StepByStep.Server");
+        busConfiguration.EndpointName("Samples.DelayedDelivery.Server");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();

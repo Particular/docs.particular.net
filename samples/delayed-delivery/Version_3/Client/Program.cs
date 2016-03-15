@@ -6,10 +6,10 @@ class Program
 {
     static void Main()
     {
-        Console.Title = "Samples.StepByStep.Client";
+        Console.Title = "Samples.DelayedDelivery.Client";
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Samples.StepByStep.Client");
+        configure.DefineEndpointName("Samples.DelayedDelivery.Client");
         configure.DefaultBuilder();
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
@@ -48,7 +48,7 @@ class Program
                         Product = "New shoes",
                         Id = id
                     };
-                    bus.Send("Samples.StepByStep.Server", placeOrder);
+                    bus.Send("Samples.DelayedDelivery.Server", placeOrder);
                     Console.WriteLine("[Defer Message Handling] Sent a new PlaceOrder message with id: {0}", id.ToString("N"));
                     #endregion
                     continue;

@@ -12,9 +12,9 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.StepByStep.Client";
+        Console.Title = "Samples.DelayedDelivery.Client";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.StepByStep.Client");
+        endpointConfiguration.EndpointName("Samples.DelayedDelivery.Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
@@ -53,7 +53,7 @@ class Program
                         Product = "New shoes",
                         Id = id
                     };
-                    await endpointInstance.Send("Samples.StepByStep.Server", placeOrder);
+                    await endpointInstance.Send("Samples.DelayedDelivery.Server", placeOrder);
                     Console.WriteLine("[Defer Message Handling] Sent a new PlaceOrder message with id: {0}", id.ToString("N"));
                     #endregion
                     continue;
@@ -66,7 +66,7 @@ class Program
                     };
                     SendOptions options = new SendOptions();
 
-                    options.SetDestination("Samples.StepByStep.Server");
+                    options.SetDestination("Samples.DelayedDelivery.Server");
                     options.DelayDeliveryWith(TimeSpan.FromSeconds(5));
                     await endpointInstance.Send(placeDelayedOrder, options);
                     Console.WriteLine("[Defer Message Delivery] Deferred a new PlaceDelayedOrder message with id: {0}", id.ToString("N"));

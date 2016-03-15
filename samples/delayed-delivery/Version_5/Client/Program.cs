@@ -6,9 +6,9 @@ class Program
 
     static void Main()
     {
-        Console.Title = "Samples.StepByStep.Client";
+        Console.Title = "Samples.DelayedDelivery.Client";
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.StepByStep.Client");
+        busConfiguration.EndpointName("Samples.DelayedDelivery.Client");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
@@ -41,7 +41,7 @@ class Program
                         Product = "New shoes",
                         Id = id
                     };
-                    bus.Send("Samples.StepByStep.Server", placeOrder);
+                    bus.Send("Samples.DelayedDelivery.Server", placeOrder);
                     Console.WriteLine("[Defer Message Handling] Sent a new PlaceOrder message with id: {0}", id.ToString("N"));
                     #endregion
                     continue;

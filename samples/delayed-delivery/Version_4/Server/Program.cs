@@ -6,11 +6,11 @@ class Program
 {
     static void Main()
     {
-        Console.Title = "Samples.StepByStep.Server";
+        Console.Title = "Samples.DelayedDelivery.Server";
         Configure.Serialization.Json();
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Samples.StepByStep.Server");
+        configure.DefineEndpointName("Samples.DelayedDelivery.Server");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();

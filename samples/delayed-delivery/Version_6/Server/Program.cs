@@ -12,9 +12,9 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.StepByStep.Server";
+        Console.Title = "Samples.DelayedDelivery.Server";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.StepByStep.Server");
+        endpointConfiguration.EndpointName("Samples.DelayedDelivery.Server");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
