@@ -32,7 +32,7 @@ There is a [Bootstrapping starter package](https://www.nuget.org/packages/NServi
 
 ### How to use
 
-Create a new Console Application (**.net 4.5 or higher**) and install the NuGet package. A minimal NServiceBus configuration will be setup for you along with a `ProgramService.cs` class that can be used as both a interactive console for development purposes and a windows service for production use.
+Create a new Console Application (**.NET 4.5.2 or higher**) and install the NuGet package. A minimal NServiceBus configuration will be setup for you along with a `ProgramService.cs` class that can be used as both a interactive console for development purposes and a windows service for production use.
 
 **Note that it will also delete the default `Program.cs` since it is superseded by `ProgramService.cs`**
 

@@ -9,7 +9,7 @@ The [Platform Installer](/platform/installer) handles installing prerequisites f
 
 ## .Net Prerequisite Version
 
-The Particular platform products require [.Net 4.5](https://www.microsoft.com/en-au/download/details.aspx?id=30653). Before proceeding ensure that this version of .Net is available on the system you are setting up. More detailed information about .NET can be found on the [Wikipedia .NET Overview](https://en.wikipedia.org/wiki/.NET_Framework_version_history#Overview).
+The Particular platform products require [.NET 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42643). Before proceeding ensure that this version of .NET is available on the system. More detailed information about .NET can be found on the [Wikipedia .NET Overview](https://en.wikipedia.org/wiki/.NET_Framework_version_history#Overview).
 
 
 ##  Platform Installer Components
@@ -26,7 +26,7 @@ Each of these will be detailed below:
 
 ### NServiceBus Prerequisites
 
-The NServiceBus Prerequisites option in the Platform Install configures the system to run NServiceBus endpoints using Microsoft Message Queuing(MSMQ) by doing the following:
+The NServiceBus Prerequisites option in the Platform Install configures the system to run NServiceBus endpoints using Microsoft Message Queuing (MSMQ) by doing the following:
 
  * Adds, configures and starts the MSMQ service.
  * Configures and starts the Microsoft Distributed Coordinator Service.
