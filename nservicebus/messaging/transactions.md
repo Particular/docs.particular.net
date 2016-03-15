@@ -12,18 +12,20 @@ reviewed: 2016-03-03
 
 This article covers various levels of consistency guarantees NServiceBus provides with regards to:
 
-* receiving messages
-* updating user data
-* sending messages
+ * receiving messages
+ * updating user data
+ * sending messages
 
 It does not discuss the transaction isolation aspect. Transaction isolation applies only to the process of updating the user data, it does not affect the overall coordination and failure handling.
 
 
 ## Transactions
 
-NServiceBus offers four levels of guarantees with regards to message processing. What levels are available depends on the selected transport. Transaction handling in Azure is discussed in detail in a [dedicated article](/nservicebus/azure/transactions.md). 
+NServiceBus offers four levels of guarantees with regards to message processing. What levels are available depends on the selected transport. See also [Transaction handling in Azure](/nservicebus/azure/transactions.md).
+
 
 ### Transaction levels supported by NServiceBus transports
+
 
 #### Versions 6 and above
 
@@ -37,11 +39,12 @@ The implementation details for each transport are discussed in the dedicated doc
 | [Azure Storage Queues](/nservicebus/azure/azure-storage-queues-transport.md#transactions-and-delivery-guarantees)|  - | - | + | + |
 | [Azure Service Bus](/nservicebus/azure/azure-servicebus-transport.md#transactions-and-delivery-guarantees) |  - | + | + | + |
 
+
 ### Transaction scope (Distributed transaction)
 
 In this mode the transport receive operation is wrapped in a [`TransactionScope`](https://msdn.microsoft.com/en-us/library/system.transactions.transactionscope). Other operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole.
 
-If required the transaction is escalated to a distributed one (following two-phase commit protocol). That depends on the transport and persistence choice, for example it is not needed when using SQL Server transport with NHibernate persistence both using the same database. In this case the ADO.NET driver guarantees that everything happens inside a single database transaction, ACID guarantees are held for the whole processing.
+If required the transaction is escalated to a distributed one (following two-phase commit protocol). That depends on the transport and persistence choice, for example it is not needed when using [SQL Server transport](/nservicebus/sqlserver/) with [NHibernate persistence](/nservicebus/nhibernate/) both using the same database. In this case the ADO.NET driver guarantees that everything happens inside a single database transaction, ACID guarantees are held for the whole processing.
 
 NOTE: MSMQ will escalate to a distributed transaction right away since it doesn't support promotable transaction enlistments.
 
@@ -61,7 +64,7 @@ NOTE: This mode requires the selected storage to support participating in distri
 
 ### Transport transaction - Receive Only
 
-In this mode the receive operation is wrapped in a transport's native transaction. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is finished successfully. See the [errors](/nservicebus/errors) section for more details on retries.
+In this mode the receive operation is wrapped in a transport's native transaction. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is finished successfully. See also [errors](/nservicebus/errors) for more details on retries.
 
 Use the following code to use this mode:
 
@@ -81,7 +84,8 @@ When using this mode all handlers must be [idempotent](/nservicebus/concept-over
 
 See the `Outbox` section below for details on how NServiceBus can handle idempotency at the infrastructure level.
 
-NOTE: Version 5 and below didn't support [batched dispatch](/nservicebus/messaging/batched-dispatch.md) and this meant that messages could be sent out without a matching update to business data, depending on the order in which  statements were executed. Such messages are called *ghost messages*. To avoid this situation make sure to perform all bus operations only after modifications to business data. When reviewing the code remember that there can be multiple handlers for a given message and that [handlers are executed in a certain order](/nservicebus/handlers/handler-ordering.md).
+NOTE: Version 5 and below do not support [batched dispatch](/nservicebus/messaging/batched-dispatch.md) and this meant that messages could be sent out without a matching update to business data, depending on the order in which  statements were executed. Such messages are called *ghost messages*. To avoid this situation make sure to perform all bus operations only after modifications to business data. When reviewing the code remember that there can be multiple handlers for a given message and that [handlers are executed in a certain order](/nservicebus/handlers/handler-ordering.md).
+
 
 ### Transport transaction - Sends atomic with Receive
 
@@ -115,6 +119,7 @@ In this mode the transport doesn't wrap the receive operation in any kind of tra
 
 In Versions 5 and below, when transactions are disabled, no retries will be performed and messages **will not be forwarded** to the error queue in the event of any failure and the message will be permanently lost.
 
+
 ## Outbox
 
 The [Outbox](/nservicebus/outbox) feature provides idempotency at the infrastructure level and allows running in *transport transaction* mode while still getting the same semantics as *Transaction scope* mode.
@@ -126,7 +131,7 @@ When using the Outbox, any messages resulting from processing a given received m
 
 ## Avoiding partial updates
 
-In this mode there is a risk of partial updates since one handler might succeed in updating business data while other wouldn't. To avoid this configure NServiceBus to wrap all handlers in a `TransactionScope` that will act as a unit of work and make sure that there is no partial updates. Use following code to enable a wrapping scope:
+In this mode there is a risk of partial updates since one handler might succeed in updating business data while another handler fails. To avoid this configure NServiceBus to wrap all handlers in a `TransactionScope` that will act as a unit of work and make sure that there is no partial updates. Use following code to enable a wrapping scope:
 
 snippet:TransactionsWrapHandlersExecutionInATransactionScope
 
@@ -141,14 +146,14 @@ WARNING: This API must not be used in combination with transports running in a *
 
 The following options for transaction scopes used during message processing can be configured.
 
-NOTE: Starting from version 6 isolation level and timeout for transaction scopes are also configured at the transport level.
+NOTE: In Versions 6 and above isolation level and timeout for transaction scopes are also configured at the transport level.
 
 
 ### Isolation level
 
 NServiceBus will by default use the `ReadCommitted` [isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel).
 
-NOTE: Version 3 and below used the default isolation level of .Net which is `Serializable`.
+NOTE: Versions 3 and below used the default isolation level of .Net which is `Serializable`.
 
 Change the isolation level using
 
