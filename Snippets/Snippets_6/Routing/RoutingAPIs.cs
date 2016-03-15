@@ -1,4 +1,5 @@
 ﻿// ReSharper disable UnusedParameter.Local
+
 namespace Snippets6.Routing
 {
     using System;
@@ -14,29 +15,25 @@ namespace Snippets6.Routing
         {
             #region Routing-StaticRoutes-Endpoint
 
-            endpointConfiguration.Routing()
-                .UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(AcceptOrder), "Sales");
 
             #endregion
 
             #region Routing-StaticRoutes-Endpoint-Msmq
 
-            endpointConfiguration.Routing()
-                .UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(AcceptOrder), "Sales");
 
             #endregion
 
             #region Routing-StaticRoutes-Endpoint-Broker
 
-            endpointConfiguration.Routing()
-                .UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(AcceptOrder), "Sales");
 
             #endregion
 
             #region Routing-StaticRoutes-Address
 
-            endpointConfiguration.Routing()
-                .UnicastRoutingTable.RouteToAddress(typeof(AcceptOrder), "Sales@SomeMachine");
+            endpointConfiguration.AdvancedRouting().Table.RouteToAddress(typeof(AcceptOrder), "Sales@SomeMachine");
 
             #endregion
         }
@@ -45,7 +42,7 @@ namespace Snippets6.Routing
         {
             #region Routing-DynamicRoutes
 
-            endpointConfiguration.Routing().UnicastRoutingTable
+            endpointConfiguration.AdvancedRouting().Table
                 .AddDynamic((types, contextBag) => new[]
                 {
                     //Use endpoint name
@@ -63,7 +60,7 @@ namespace Snippets6.Routing
         {
             #region Routing-CustomRoutingStore
 
-            endpointConfiguration.Routing().UnicastRoutingTable.AddDynamic((t, c) =>
+            endpointConfiguration.AdvancedRouting().Table.AddDynamic((t, c) =>
                 LoadFromCache(t) ?? LoadFromDatabaseAndPutToCache(t));
 
             #endregion
@@ -74,8 +71,8 @@ namespace Snippets6.Routing
             #region Routing-StaticEndpointMapping
 
             EndpointName sales = new EndpointName("Sales");
-            endpointConfiguration.Routing().EndpointInstances
-                .AddStatic(sales,
+            endpointConfiguration.AdvancedRouting().EndpointInstances
+                .Add(sales,
                     new EndpointInstance(sales, "1", null),
                     new EndpointInstance(sales, "2", null));
 
@@ -86,7 +83,7 @@ namespace Snippets6.Routing
         {
             #region Routing-DynamicEndpointMapping
 
-            endpointConfiguration.Routing().EndpointInstances.AddDynamic(async e =>
+            endpointConfiguration.AdvancedRouting().EndpointInstances.AddDynamic(async e =>
             {
                 if (e.ToString().StartsWith("Sales"))
                 {
@@ -135,10 +132,21 @@ namespace Snippets6.Routing
         {
             #region Routing-FileBased-Config
 
-            RoutingSettings routingSettings = endpointConfiguration.Routing();
-            routingSettings.UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
-            routingSettings.UnicastRoutingTable.RouteToEndpoint(typeof(SendOrder), "Shipping");
-            routingSettings.UseFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
+            endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(SendOrder), "Shipping");
+
+            endpointConfiguration.UseTransport<MsmqTransport>().DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
+
+            #endregion
+        }
+
+        public void FileBasedRoutingAdvanced()
+        {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+
+            #region Routing-FileBased-ConfigAdvanced
+
+            endpointConfiguration.AdvancedRouting().DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
 
             #endregion
         }

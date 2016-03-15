@@ -78,7 +78,7 @@ Unicast routing uses queues which are inherently point-to-point channels. Each e
 
 ### Multicast routing
 
-Multicast routing uses topics. Multiple receivers can subscribe to a single topic and each message published to the topic is copied by the messaging infrastructure and delivered to each interested receiver.
+Multicast routing uses topics or similar devices. Multiple receivers can subscribe to a single topic and each message published to the topic is copied by the messaging infrastructure and delivered to each interested receiver.
 
 
 ### Transport
@@ -95,14 +95,14 @@ Unicast routing is built into the core of NServiceBus. In absence of advanced tr
 
 Unicast routing in NServiceBus uses a layered model. The task of mapping a message type to a collection of transport addresses is split into three layers:
 
- * type mapping
- * endpoint mapping
- * instance mapping
+ * endpoint mapping (logical routing)
+ * endpoint instance mapping (physical routing)
+ * address mapping
 
 Each layer is the responsibility of people in a different organizational role and has different reasons and speed of change.
 
 
-### Type mapping layer
+### Endpoint mapping layer
 
 Mapping a message type to the destination is the responsibility of the **architect** role (which can be fulfilled by the whole team of developers). It tells NServiceBus to which endpoint a given type of message should be send or, when it comes to events, which endpoint is responsible for publishing.
 
@@ -131,30 +131,29 @@ snippet:Routing-CustomRoutingStore
 NOTE: The function passed to the `AddDynamic` call is executed **each time** a message is sent so it is essential to make sure it is performant (e.g. by caching the results if getting the result requires crossing a process boundary).
 
 
-### Endpoint mapping layer
+### Endpoint instance mapping layer
 
-Mapping of an endpoint to the collection of instances is the responsibility of **operations engineers**. They usually know where a given endpoint has been deployed.
-
-
-#### Default mapping
-
-By default, NServiceBus assumes that each endpoint has a single non-scaled-out instance without a *discriminator*. This default allows for running without any configuration on transports like SQL Server or RabbitMQ.
+The purpose of the endpoint instance mapping layer is to provide information about physical deployments of a given endpoint. It is usually the responsibility of **operations engineers** who control environments and have the knowledge where a given endpoint has been deployed. Endpoint instance mapping is optional for most transports in most cases because of built-in conventions. An example of situation where it is required is a scaled out endpoint using MSMQ transport. Other endpoints who send messages to it need to be aware of its instances.
 
 
 #### Using config file
 
-In most scenarios endpoint mapping should be done via a config file so it can be modified without the need for re-deploying the binaries. 
+Usually endpoint mapping should be done via a config file so it can be modified without the need for re-deploying the binaries. 
 
 snippet:Routing-FileBased-Config
 
 To read more see [file-based endpoint mapping](/nservicebus/messaging/file-based-routing.md).
+
+When using transports other than MSMQ the filed-based mapping can be configured via *advanced* API:
+
+snippet:Routing-FileBased-ConfigAdvanced
 
 NOTE: If using a static type mapping to an address instead of an endpoint the advantages of file-based instance resolution will not be possible.
 
 
 #### Static mapping
 
-The `EndpointInstances` class provides a method that allows the registration of a static mapping. This API is useful in very specific scenarios where developers need to take control over a certain mapping.
+The `EndpointInstances` class provides a method that allows the registration of a static mapping. This API is useful in very rare and specific scenarios where developers need to take control over a certain mapping.
 
 snippet:Routing-StaticEndpointMapping
 
@@ -168,7 +167,7 @@ snippet:Routing-DynamicEndpointMapping
 In this example the rule returns two instances in which case providing a discriminator is mandatory. In addition to that, the instance "1" specifies a custom property which can be used by the transport to generate the actual address. The instance "2" uses an MSMQ-specific convenience method to achieve the same goal.
 
 
-### Instance mapping layer
+### Address mapping layer
 
 Mapping of the endpoint instance to a transport address is a responsibility of the transport infrastructure. Usually it does not require intervention from the user as the selected transport automatically registers its translation rule. The only times where user is required to configure the instance mapping is when the default translation violates some naming rules implied by the transport infrastructure (e.g. the generated transport address is too long for a queue name in MSMQ).
 
