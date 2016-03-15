@@ -1,6 +1,6 @@
 ---
 title: Transactions in Azure
-summary: Understanding transactions in relation to Azure and NServiceBus.
+summary: Understanding transactions in Azure and NServiceBus.
 tags:
 - Azure
 - Cloud
@@ -9,56 +9,53 @@ tags:
 - DTC
 redirects:
  - nservicebus/understanding-transactions-in-windows-azure
+reviewed: 2016-03-07
 ---
 
-The Azure Platform and NServiceBus make a perfect fit. On the one hand the Azure platform offers the scalable and flexible platform that you are looking for in your designs, and on the other hand NServiceBus makes development on this highly distributed environment a breeze. However, there are a few things to keep in mind when developing for this platform, the most important being the lack of (distributed) transactions.
+The Azure Platform and NServiceBus complement each other. Azure is a distributed, scalable and flexible platform. NServiceBus provides high level abstractions and features that make development in Azure easier. 
 
-To better understand why this feature is lacking, let's examine the implications of these technologies.
+There are a few things to keep in mind when developing for Azure. The most important one is the lack of (distributed) transactions.
 
 
 ## Understanding transactions
 
-Transaction processing is designed to maintain systems integrity (typically a database or some modern filesystems and services) in a known, consistent state, by ensuring that interdependent operations on the system are either all completed successfully or all canceled successfully. This article mostly considers database technology and storage services.
+Transaction processing is designed to maintain systems integrity (typically a database or some modern filesystems and services), i.e. to always keep them in a consistent state. That is achieved by ensuring that interdependent operations are either all completed successfully or all canceled. This article focuses on Azure databases and storage services.
 
-What is often overlooked in transactional processing, especially in the context of cloud services, is that to guarantee isolation, the database engine must lock certain records in use during the transaction, depending on isolation level, so that other transactions cannot work with them at the same time.
+In order to guarantee integrity the database engine must lock a certain number of records inside the transaction when updating values. Which records and how many of them are locked depends, among others, on the selected isolation level. 
 
-Such locks become a trust issue in a cloud or self-service environment, as external parties can use these locks to perform a denial of service attack. The Azure platform must assume that you are a malicious user and is thus very hesitant to let you control all the locks by means of a transaction.
+It is really important to understand, especially in the context of cloud services, that other transactions cannot work with locked records at the same time. In a cloud or self-service environment such locks become a trust issue, because external parties can use them to perform a denial of service attack (sometimes not even intentionally). 
 
-This is the primary reason why many Azure hosted services do not support transactions at all or are very aggressive when it comes to lock duration.
+This is the primary reason why many Azure hosted services do not support transactions at all or are very aggressive when it comes to the lock duration, for example:
 
-For example:
+ * Azure Storage Services officially do not participate in transactions. If the transactional behavior is required, it needs to be implemented in the specific system.
+ * The Azure SQL Server supports local transactions (with .NET 4.6.1 and higher), but only grants locks on resources for 20 seconds (when requested by a system task) or 24 hours (otherwise). See [Azure SQL Database resource limits](https://azure.microsoft.com/en-us/documentation/articles/sql-database-resource-limits/) for more details.
 
- * Azure storage services have no support for transactions. This is not explicitly documented but you can find enough [references on StackOverflow](http://stackoverflow.com/questions/18045517/do-azure-storage-related-apis-participate-in-system-transactions)
- * The Azure database supports local transactions, but only grants locks on resources, when required by a system task for 20 seconds, and 24 hours otherwise. See [Azure SQL Database resource limits](https://azure.microsoft.com/en-us/documentation/articles/sql-database-resource-limits/) for more details.
-
-When both the database management system and client are under the same ownership, imagine you just deployed SQL Server to your own virtual machine, so locks are no longer an issue and you can control the lock duration. But even in this case, you need to be careful when it comes to distributed transactions.
+The lock duration can be directly controlled when both the database management system and client are under the same ownership, e.g. when SQL Server is deployed to the virtual machine. But even in that scenario distributed transactions must be used carefully.
 
 
 ## Understanding distributed transactions and the two-phase commit protocol
 
-When multiple transaction-aware resources are involved in a single transaction, then this transaction automatically promotes to a distributed transaction. That means that handling the unit of work is now performed outside the database system by the so-called Global Transaction Manager, or Distributed Transaction Coordinator (DTC). This coordinator, the DTC service on the machine where the transaction started, communicates with similar services on the machines involved by means of the two-phase commit protocol, called resource managers.
+When multiple transaction-aware resources are involved in a single transaction, then this transaction automatically is promoted to a distributed transaction. That means that handling the unit of work is performed outside the database system by the so-called Global Transaction Manager, or Distributed Transaction Coordinator (DTC). The coordinator is a service on the machine where the transaction started. It communicates with similar services, called resource managers, which are running on other machines involved in the transaction. They communicate using the two-phase commit protocol.
 
-As illustrated in the diagram below, the two-phase commit protocol consists of two phases where the global transaction manager communicates with all other resource managers to coordinate the transaction. During the preparation phase it instructs all resource managers to get ready to commit and when all resource managers approve (or not), it instructs all resource managers again to complete the commit (or rollback).
+As illustrated in the diagram, the two-phase commit protocol consists of two phases. During the preparation phase the Global Transaction Manager instructs all resource managers to get ready to commit. Then all resource managers need to inform the Global Transaction Manager whether they approve the transaction. After collecting that information the Global Transaction Manager instructs all resource managers to either complete the commit or to rollback.
 
 ![Two Phase Commit](two-phase-commit.png)
 
-Note that this protocol requires two communication steps for each resource manager added to the transaction and requires a response from each of them to be able to continue. Both of these conditions are problematic in a huge datacenter such as Azure.
+Note that this protocol requires two communication steps for each resource manager added to the transaction and requires a response from each of them to be able to continue. Both of these conditions are problematic in a huge data center such as Azure because:
 
-* Two communication steps per added resource manager results in an exponential explosion of communication. 2 resources = 4 network calls, 4 = 16, 100 = 10000, etc...
-* Requirement to wait for all responses: the Azure datacenters are huge. Check out [this video (5 minutes in)](https://www.youtube.com/watch?v=JJ44hEr5DFE) to get an idea of how huge. It is very likely that network partitioning will occur in the solution as virtual machines are physically remote from each other, so network infrastructure will die, resulting in slow or in doubt transactions being more common than in a small network.
+ * Two extra communication steps per each resource manager result in an exponential explosion of additional communication: 2 resources - 4 network calls, 4 resources - 16 calls, 100 resources - 10000 calls, etc.
+ * Azure data centers are huge and consist of thousands of machines. That means the failure needs to be expected and all systems must be able to deal with network partitions. The network partition results in slow or [in doubt](https://msdn.microsoft.com/en-us/library/ms681727.aspx) transactions. Therefore the requirement to wait for responses from all resource managers is problematic even if the communication overhead is manageable.
 
-This is the reason why none of the Azure services supports distributed transactions, and so you are encouraged not to use distributed transactions even if you technically could.
-
-Side note: The .NET framework promotes to a distributed transaction rather quickly; for example, two open connections to the same resource (exact same connectionstring), will still promote to a distributed transaction, and there is no option to disable promotion.
+The latter is the primary reason why none of the Azure services supports distributed transactions, and the recommendation is not to use them even if it's technically possible.
 
 
-## How to use NServiceBus in this environment
+## Recommendations for using NServiceBus in Azure
 
-By default, NServiceBus relies on the DTC to make distributed system development really easy. But in the Azure environment, you cannot use the DTC. So you have to configure/use it a bit differently.
+In case of other transports (MSMQ, SQL Server) NServiceBus by default relies on DTC to make distributed system reliable and ensure consistency. But in the Azure environment DTC shouldn't be used, as explained above.
 
-There are quite a few options. The remainder of this article discusses each option with its advantages and disadvantages. Depending on the scenario you may choose to use NServiceBus differently.
+There are a few possible approaches to deal with that limitation. The rest of this article lists the options and discusses their advantages and disadvantages. Which approach would be the best depends on the specific system.
 
-The options:
+The possible approaches:
 
  * Share local transaction
  * Unit of work with batching and transport retries
@@ -67,84 +64,92 @@ The options:
  * Routing slips and compensation logic
 
 
-### Share local transactions
+### Sharing local transactions
 
-Prevent transaction promotion by reusing a single local transaction. The idea is to inject the outermost local transaction/unit of work, started by the receiving transport, into the rest of the application (like your orm, etc.) so that only a single transaction is used for both receiving and handling a message and its result.
+To prevent promoting transaction to the distributed transaction, one can reuse a single local transaction between resources. The outermost local transaction/unit of work, started by the receiving transport is passed to the rest of the application (e.g. to an ORM). This way only a single transaction is used for both receiving and handling a message and its result.
+
 
 #### Advantages
 
- * By sharing a single local transaction by both the transport and business logic, you prevent the DTC from kicking in while preserving the simple programming that you are used to. Besides injecting the transport level in the rest of the application, nothing really changes.
+ * It is possible to prevent escalating transaction to a distributed transaction. The only change is injecting the transport level transaction into other parts of the application.
 
 
 #### Disadvantages
 
- * You are limited to a single transactional resource for the entire system. The technique can only be applied if the application fits the limits of this transactional resource. As some Azure services throttle quite aggressively, sometimes on behavior of other tenants, capacity planning might become an issue.
- * Must be able and willing to inject the transaction, which may be a challenge when using third-party libraries, for example.
+ * In this approach there can be only a single transactional resource in the entire system. The technique can only be applied if the application fits the limitations of this transactional resource. As some Azure services throttle quite aggressively, sometimes on behavior of other tenants, capacity planning might become an issue.
+ * Injecting the transaction might be a challenge in some parts of the system, e.g. when using third-party libraries.
 
 
 ### Atomic operations and transport retries
 
-This technique is used when a resource does not support transactions at all. The idea is that every single operation is 'transactional' by default, in the sense that the operation either succeeds or fails as a single unit. And if you limit yourself to single operations only, you don't need transactions anymore. A unit of work pattern with batching is a single operation as well and can therefore be used to emulate a transaction, but with big restrictions. Azure storage services allow you to group a number of operations into a single batch, to make the set atomic, but only on Azure storage tables and only when the partition key for all operations is exactly the same.
+If a resource does not support transactions, to ensure consistency one can use atomic operations combined with automatic retries. The idea is that every operation is *transactional* (atomic), meaning that the whole operation either succeeds or fails as a single unit. If all operations conform to that rule then transactions are not needed anymore.
 
-However, regular transactions also imply 'rollback' semantics that will make the receive infrastructure retry the original message again later. You need to combine this technique with a transport that supports retry semantics.
+One of operations that fit this criteria is a unit of work pattern with batching. With some restrictions, it can be used to emulate a transaction. Azure Storage Services allow to group a number of operations into a single batch in order to make the whole set of operations atomic. However, it works only for Azure Storage Tables and only when the partition key for all operations is the same.
+
+Another important consideration is that regular transactions also have a *rollback* mechanism that will allow the message receiver to retry processing the original message later without causing unintended side-effects. When using transport that has automatic retry functionality, it is necessary to also support this kind of rollback semantics.
 
 
 #### Advantages
 
- * You don't need transactions at all to provide consistency.
- * Get retry on transient exceptions for free.
+ * The consistency can be achieved without transactions.
+ * Message processing can be retried automatically after transient exceptions.
 
 
 #### Disadvantages
 
- * You need to change the way you program the business logic to become atomic; just one insert, update, or delete at a time isn't always easy.
- * You need to change your business logic to become idempotent. As message retry is added to the equation, but outside of the scope of the atomic operation, you need to make sure that the same operation can be repeatedly executed without changing the end result. See 'the need for idempotency' on techniques to achieve this.
- * Retry behavior is typically combined with timeouts that will kick in not only if the operation failed, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel.
+ * The application must ensure that operations related to business logic are atomic, i.e. have a single insert, update or delete statement per operation. That often requires changes in programs structure.
+ * Operations related to business logic have to be idempotent. That guarantees that automatic retries don't cause unintended side-effects. [The need for idempotency](#the-need-for-idempotency) section discusses techniques to achieve idempotency.
+ * The retry behavior is usually combined with timeouts. The timeouts cause retries not only if the operation fails, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel, even though it hasn't failed.
 
 
 ### Sagas and compensation logic
 
-Sagas in NServiceBus are a stateful set of message handlers that can be used to track and orchestrate the different parts of a transaction. They communicate with other handlers such that each performs part of the transaction and acknowledges when the work succeeds or fails. Depending on those results, they decide what needs to happen to the rest of the transaction, whether to continue or make things right again. The latter is often called compensation logic, as it tries to compensate at a business logic level to deal with failures. In essence you write a distributed transaction coordinator built with business logic, instead of the two-phase commit protocol, yourself.
+Sagas in NServiceBus are essentially a stateful set of message handlers that can be used to track and orchestrate the transaction. The handlers communicate with each other, each of them performs a part of the transaction and then notifies whether it succeeded or failed. Depending on the partial results, the saga decides what needs to happen to the rest of the transaction; whether to continue the transaction or to roll it back. The latter is often referred to as *compensation*, as it tries to compensate the failure at a business logic level. 
+
+In essence, using sagas is implementing a Distributed Transaction Coordinator that operates on business logic level instead of using two-phase commit protocol.
 
 
 #### Advantages
 
- * You don't need transactions at all to provide consistency.
- * Extremely flexible and maps very well with the business domain.
+ * The consistency can be achieved without transactions.
+ * This approach is extremely flexible and maps very well to the business domain.
 
 
 #### Disadvantages
 
- * To consider and implement all possible variations and error conditions in a transaction, involves quite a lot of work.
- * To implement effectively, requires a good understanding of the business.
- * If applied in conjunction with atomic operations that cannot be batched, you need to keep in mind that the saga is stateful as well and therefore breaks the atomicity of the operation. This needs to be taken into account when designing the saga. You should never execute operations against a store inside the saga itself, but always use another message handler and a queue in between and cater for idempotency at all levels.
-
+ * Considering and implementing all possible variations and error conditions in a transaction is a non-trivial amount of work.
+ * Effective implementation requires a good understanding of the business requirements. The implementation details are driven by business decisions more than technical considerations, so it's recommended to collaborate closely with business experts when designing sagas.
+ * Sagas are stateful therefore the operation cannot be atomic. This needs to be taken into consideration when sagas are used in combination with atomic operations that cannot be batched. Operations against a Store should never be executed directly inside the saga itself. Instead, they should be executed by another handler and queued in between, to cater for idempotency at all levels.
+ 
 
 ### Routing slips and compensation logic
 
-Where the saga approach uses a central coordinator that orchestrates the work in a transaction, this approach uses a chain of independent handlers instead. You can think of it as a linked list of message handlers that can send messages back and forward in the list. The first handler composes a 'routing slip' that contains all the work that needs to be done in the transaction, and forwards that to the next handler in the chain. This handler executes its part and upon success forwards the message to the next one in the chain until all handlers have been invoked and the transaction complete. If at any point in time, a handler fails to complete its logic, it sends the message back in the chain to execute compensation logic to make things right again. The slip is continuously sent back until it reaches the original handler again and the transaction is considered rolled back.
+Instead of using a central coordinator that orchestrates the work in a transaction, this approach uses a chain of independent handlers. It can be thought of as a linked list of message handlers that can send messages back and forward within the list. 
+
+The first handler composes a *routing slip* that defines what needs to be done in the transaction, and passes it to the next handler in the chain. The next handler processes the message according to the information in the routing slip, and passes the message to the next one in the chain and so forth, until all handlers have been invoked and the transaction was completed. 
+
+If at any point in time a handler fails, it sends the message back in the chain to execute compensation logic. The slip is continuously sent back until it reaches the original handler again. At that point the transaction is rolled back.
 
 
 #### Advantages
 
- * You don't need transactions at all to provide consistency.
- * Is more 'linear' in its conceptual model than sagas, so may be easier to keep in mind.
- * Does not require maintaining the state in a data store; it is implicit by the chaining of handlers and passing around the routing slip (to which the state can be added for the next handler in the list).
+ * The consistency can be achieved without transactions.
+ * The conceptual model is more "linear" than sagas, so it might be easier to analyze and implement.
+ * It doesn't require maintaining a state in the data store. The state information can be passed in the routing slip.
 
 
 #### Disadvantages
 
- * To consider and implement all possible variations and error conditions in a transaction, it involves quite a lot of work.
- * Less flexible than sagas, requires linear thinking, can't execute handlers in parallel, and therefore is often slower.
+ * Considering and implementing all possible variations and error conditions in a transaction is a non-trivial amount of work.
+ * The handlers can't be executed in parallel, therefore the implementation is often slower than when using sagas.
+ * This approach is less flexible than sagas.
 
 
 ## The need for idempotency
 
-Note that every approach involving retries will result in delivery semantics at least once. In other words, you can get the same message multiple times. You need to take this into account when designing your business logic and ensure that every operation is idempotent, or can be executed multiple times.
+Every approach involving automatic retries will result in `at least once` delivery semantics. In other words, the same message can be processed multiple times. This has to be taken into account when designing the business logic, by ensuring that every operation is idempotent.
 
-There are multiple ways to deal with idempotency though, some at the technical level, others built into the business logic itself.
-
-Depending on the business requirements choose one of these:
+There are multiple ways to achieve idempotency, some at the technical level, others built into the business logic:
 
  * Message deduplication
  * Natural idempotency
@@ -156,33 +161,43 @@ Depending on the business requirements choose one of these:
 
 ### Message deduplication
 
-This is probably the easiest way to detect if a message has been executed already. You store every message that has been processed so far and when a new message comes in, you compare it to the set of already processed messages. If you find it in the list, you have processed it before.
+Message deduplication is the easiest way to detect if a message has been executed already. Every message that has been processed so far is stored. When the new message comes in, it is compared to the set of already processed messages (usually by comparing only their unique identifiers). If the message is identical to one of the stored messages, then it means it is a duplicate and the new message won't be processed again.
 
-The approach has obvious downsides as well. As every message needs to be stored and searched for, it can reduce message throughput because of the lookup requirement, potentially causing contention on the message store as well at high volumes.
+The main advantage of this approach is its simplicity, however it also has downsides. As every message needs to be stored and searched for, it can reduce message throughput because of the additional lookups. That can potentially cause high contention on the message store.
 
 
 ### Natural idempotency
 
-Many operations can be designed in a naturally idempotent way. `TurnOntheLights` is by default an idempotent operation; it will have the same effect no matter if the lights were on or off to begin with and no matter how often you execute it. `FlipTheLightSwitch` however is not naturally idempotent; the results may vary on the start condition and the number of times you execute it. Try to make use of natural idempotency as much as possible.
+Many operations can be designed in a naturally idempotent way. `TurnOnTheLights` is by default an idempotent operation, because it will have the same effect no matter what was the previous state and how many times the operation was executed. `FlipTheLightSwitch` however is not naturally idempotent, because the results will vary depending on the initial state and the number of times it was executed. 
+
+Using natural idempotency is recommended whenever possible.
 
 
 ### Entities and messages with version information
 
-Another technique is to add versioning information to the entities (timestamp or version number or the likes) and include that version information whenever a command is sent that would alter the state of said entity. Now the handling logic can compare the versioning information on both the entity and the message and decide whether this logic needs to be executed or not.
+Idempotency can be also achieved by adding versioning information to the entities. Typically it is in the form of a timestamp or a version number. 
 
-The downside of this approach is that the version of the entity can change for different commands, and may therefore cause unexpected outcomes when unrelated commands arrive in a different order than logically sent.
+The versioning information is included in each command that alters the state of the entity. This way when the command is received, the handler can compare the versioning information on both the entity and the message and decide whether this logic needs to be executed or not.
+
+The downside of this approach is that the version of the entity can be change by different commands, and may therefore cause unexpected outcomes when unrelated commands arrive in a different order than logically sent. When using this approach, one has to consider how such conflicts will be resolved.
 
 
 ### Partner state machines
 
-A better approach is to organize the state inside an entity on a per partner basis, as a miniature state machine. Ultimately the only non-idempotent messages occur when one entity issues a command to another, and if you follow the `one master` rule, there should only be one such logical endpoint sending that command. Therefore if you organize the state internally in the entity according to that relationship, and keep track of the progression of that relationship as a state machine, it's impossible to have versioning conflicts.
+Ultimately the only non-idempotent messages are sent when one entity issues a command to another. The good practice in messaging solutions is to have only `one master`, i.e. there should only be one logical endpoint sending a given command. As a consequence it is possible to organize the entity's state as a miniature state machine inside the entity. 
+
+The state machine represents the progression of the relationship between endpoints that communicate with each other. That approach avoids versioning conflicts by allowing only for valid state transitions. As a result, it is possible to ensure each command is executed only once.
 
 
 ### Side effect checks
 
-Arguably a dangerous approach, but often very useful in the real world, is to check for indirect side effects of a command to determine if it needs to be processed. When `TheFireIsHot` there is no need to `TurnOnTheFire` anymore.
+In some situations it is possible to verify if a command has been executed by checking its indirect side effects, for example when `TheFireIsHot` flag is set to true, then there is no need to `TurnOnTheFire`.
+
+Arguably it's a risky approach, that can easily lead to subtle errors. Although it's useful in the real world, it has to be used very carefully and only if no other approach can be used.
 
 
 ### Accept uncertainty
 
-And finally, there is always the option, from a business perspective, to live with some uncertainty and potentially wrong data caused by non-idempotent messages. Maybe it just doesn't matter that much. An occasional retrying `+1` operation may not be that important when the counter is already on 8,489,232,123. Or maybe there are ways to deal with inconsistencies afterwards, and that's why credit notes were invented right. It's hard for us developers to accept this, but the real world works without any form of transaction or idempotency management.
+In some systems it is possible to accept uncertainty and potential inaccuracies caused by non-idempotent messages. In some cases the data doesn't have to be consistent at all times. In other systems there might be mechanisms that allow for dealing with inconsistencies afterwards.
+
+Although that might seem unacceptable for many programmers, in the end it is a business decision. It's always recommended to talk to business experts and double-check what are their expectations.
