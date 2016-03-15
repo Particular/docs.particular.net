@@ -1,6 +1,7 @@
 ---
 title: Assembly scanning
 summary: To enable automatic detection of various features NServiceBus scans assemblies for well known types
+reviewed: 2016-03-16
 tags:
 - Assembly scanning
 redirects:
@@ -13,7 +14,7 @@ Scanning is invoked by default for self-hosting
 
 snippet:ScanningDefault
 
-or when NServiceBus.Host is used
+or when [NServiceBus Host](nservicebus-host) is used
 
 snippet:ScanningConfigurationInNSBHost
 
@@ -22,40 +23,40 @@ NOTE: During the scanning process, the core dlls for NServiceBus namely `NServic
 
 ## Controlling the assemblies to scan
 
-There are some cases where you need fine grained control over which assemblies are loaded:
+There are some cases where finer control over which assemblies are loaded is required:
 
-- To limit the number of assemblies being scanned and hence provide improvements to startup time.
-- If you are hosting multiple endpoints out of the same directory (made possible in Version 5) i.e. each endpoint would want to load a subset of assemblies.
-- In versions prior to Version 4.1, non .NET assemblies, e.g. COM dlls might need to be excluded. Starting with Version 4.1, non .NET assemblies are automatically excluded.
+ * To limit the number of assemblies being scanned and hence provide improvements to startup time.
+ * If hosting multiple endpoints out of the same directory (made possible in Version 5) i.e. each endpoint would want to load a subset of assemblies.
+ * In Version 4.0 and below, non .NET assemblies, e.g. COM dlls might need to be excluded. In Version Version 4.1 and above non .NET assemblies are automatically excluded.
 
-NOTE: Extensions to NServiceBus (for example `NServiceBus.Distributor.MSMQ.dll` or `NServiceBus.RavenDB.dll`) are not considered core dlls and will need to be explicitly added if you customize assembly scanning.
+NOTE: Extensions to NServiceBus (for example `NServiceBus.Distributor.MSMQ.dll` or `NServiceBus.RavenDB.dll`) are not considered core dlls and will need to be explicitly added if when customizing assembly scanning.
 
 
 ## Nested Directories
 
-In Version 6 and above the default behavior is **not** to scan nested folders for assemblies. You can enable nested folders assembly scanning using:
+In Versions 6 and above the default behavior is **not** to scan nested folders for assemblies. Nested folders assembly scanning can be enabled using:
 
 snippet:ScanningNestedAssebliesEnabled
 
-In Version 5 and below assemblies in nested folders are scanned by default.
+In Versions 5 and below assemblies in nested folders are scanned by default.
 
 
 ## Assemblies to scan
 
-In Version 5 and earlier the API for assembly scanning took an "Include a list" approach. This proved to be problematic. Many extensions to NServiceBus rely on assembly scanning, for example transports and persistences in external NuGets. If, at endpoint configuration time, a list of assemblies was generated, and that list did not include extension assemblies, the endpoint would fail at runtime with some unexpected and hard to diagnose behaviors.
+In Versions 6 and above the API uses an "Exclude a list" approach. This supports that the common scenario removing specific assemblies from scanning without the common side effect of accidentally excluding required assemblies.
 
-In Version 6 the API has been changes to an "Exclude a list" approach. This supports that the common scenario removing specific assemblies from scanning without the common side effect of accidentally excluding required assemblies.
+In Versions 5 and below the API for assembly scanning took an "Include a list" approach. This proved to be problematic. Many extensions to NServiceBus rely on assembly scanning, for example transports and persistences in external NuGets. If, at endpoint configuration time, a list of assemblies was generated, and that list did not include extension assemblies, the endpoint would fail at runtime with some unexpected and hard to diagnose behaviors.
 
 
 ## Exclude a list approach
 
 
-### You can exclude specific assemblies by name:
+### Exclude specific assemblies by name:
 
 snippet:ScanningExcludeByName
 
 
-### You can exclude specific types:
+### Exclude specific types:
 
 snippet:ScanningExcludeTypes
 
@@ -79,7 +80,7 @@ snippet:ScanningListOfTypes
 
 snippet:ScanningIncludeByPattern
 
-`AllAssemblies` helper class can be used to create a list of assemblies either by creating a blacklist using the method Except or a whitelist by using Matching or a combination of both.
+`AllAssemblies` helper class can be used to create a list of assemblies either by creating a blacklist using the method `Except` or a whitelist by using Matching or a combination of both.
 
 NOTE: The `Except`, `Matching` and `And` methods behave like `string.StartsWith(string)`.
 

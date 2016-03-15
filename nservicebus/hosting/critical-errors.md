@@ -1,13 +1,14 @@
 ---
 title: Critical Errors
 summary: How to handle critical errors which adversely affect messaging in an endpoint.
+reviewed: 2016-03-16
 tags:
 - Hosting
 - Self Hosting
 - Logging
 ---
 
-For many scenarios NServiceBus has built-in error and exception management, for example message retrying, however certain scenarios are not possible to handle in a graceful way. The reason for this is that NServiceBus does not have enough context to make a sensible decision on how to proceed after these error have occurred. Some of these **Critical Errors** include:
+For many scenarios NServiceBus has built-in [error and exception management](/nservicebus/errors/), for example [message retrying](/nservicebus/errors/automatic-retries.md), however certain scenarios are not possible to handle in a graceful way. The reason for this is that NServiceBus does not have enough context to make a sensible decision on how to proceed after these error have occurred. Some of these **Critical Errors** include:
 
  * An Exception occurs when NServiceBus is attempting to move a message to the Error Queue.
  * There are repeated failures in reading information from a required storage.
@@ -28,12 +29,12 @@ NOTE: In Version 4 and Version 3 the bus stops processing messages but is not di
 
 snippet:DefaultHostCriticalErrorAction
 
-WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if you are co-hosting NServiceBus with a web-service or website.
+WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if co-hosting NServiceBus with a web-service or website.
 
 
 ### Logging of critical errors
 
-For Version 4 and above Critical Errors are logged inside the critical error action. This means that if you replace the Critical Error in these versions you should also write the log entry.
+For Versions 4 and above Critical Errors are logged inside the critical error action. This means that if replacing the Critical Error in these versions ensure to write the log entry.
 
 snippet:DefaultCriticalErrorActionLogging
 
@@ -42,28 +43,28 @@ NOTE: Version 3 does not write a log entry as part of default Critical Error han
 
 ## Custom handling
 
-NServiceBus allows you to provide a delegate that overrides the above action. So when a Critical Error occurs the new action will be called instead of the default.
+NServiceBus allows providing a delegate that overrides the above action. So when a Critical Error occurs the new action will be called instead of the default.
 
-You define a custom handler using the following code.
+Define a custom handler using the following code.
 
 snippet:DefiningCustomHostErrorHandlingAction
 
 
 ## A possible custom implementation
 
-Next you define what action you want to take when this scenario occurs:
+Next define what action to take when this scenario occurs:
 
 snippet:CustomHostErrorHandlingAction
 
 
-## When should you override the default action
+## When to override the default action
 
 The default action should be overridden whenever that default does not meet the specific hosting requirements. For example
 
-- If you are using NServiceBus Host, and you wish to take a custom action before the endpoint process is killed.
-- If you are self hosting you can shut down the process via `Environment.FailFast` and re-start the process once the root cause has been diagnosed.
+ * If using NServiceBus Host, and wish to take a custom action before the endpoint process is killed.
+ * If self hosting the process can be shut down the process via `Environment.FailFast` and re-start the process once the root cause has been diagnosed.
 
-NOTE: If you choose to not kill the process and just dispose the bus, be aware that any `Send` operations will result in `ObjectDisposedException` being thrown.
+NOTE: If not killing the process and just dispose the bus, be aware that any `Send` operations will result in `ObjectDisposedException` being thrown.
 
 
 ## Raising Critical error

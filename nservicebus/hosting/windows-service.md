@@ -1,6 +1,7 @@
 ---
 title: Windows Service Hosting
 summary: How to host NServiceBus in a Windows Service
+reviewed: 2016-03-16
 tags:
 - Hosting
 - Windows Service
@@ -16,13 +17,13 @@ Running inside a [Windows Service](https://msdn.microsoft.com/en-us/library/d56d
 
 ## Example Windows Service Hosting
 
- * Create a new Console Application
- * Reference `System.ServiceProcess.dll`
- * Change the program to inherit from [ServiceBase](https://msdn.microsoft.com/en-us/library/system.serviceprocess.servicebase.aspx)
+ * Create a new Console Application.
+ * Reference `System.ServiceProcess.dll`.
+ * Change the program to inherit from. [ServiceBase](https://msdn.microsoft.com/en-us/library/system.serviceprocess.servicebase.aspx)
 
 snippet: windowsservicehosting
 
-NOTE: Note the use of `Environment.UserInteractive` to provide a dual console/service experience. ie this process can be executed from the command line or run as a Windows Service.
+NOTE: Note the use of `Environment.UserInteractive` to provide a dual console/service experience, i.e. this process can be executed from the command line or run as a Windows Service.
 
 
 ## Bootstrapping NuGet
@@ -32,7 +33,7 @@ There is a [Bootstrapping starter package](https://www.nuget.org/packages/NServi
 
 ### How to use
 
-Create a new Console Application (**.NET 4.5.2 or higher**) and install the NuGet package. A minimal NServiceBus configuration will be setup for you along with a `ProgramService.cs` class that can be used as both a interactive console for development purposes and a windows service for production use.
+Create a new Console Application (**.NET 4.5.2 or higher**) and install the NuGet package. A minimal NServiceBus configuration will be setup along with a `ProgramService.cs` class that can be used as both a interactive console for development purposes and a windows service for production use.
 
 **Note that it will also delete the default `Program.cs` since it is superseded by `ProgramService.cs`**
 
@@ -44,7 +45,7 @@ This is a "single use NuGet". So it after install, and adding code to the projec
 
 ### For new self hosting applications
 
-This NuGet helps you get started on a new self hosted NServiceBus application. If you have an existing NServiceBus project you have probably already solved the problems this NuGet attempts to address.
+This NuGet helps get started on a new self hosted NServiceBus application. For existing NServiceBus projects the problems this NuGet attempts to address are most likely already solved.
 
 
 ### In Memory Persistence
@@ -56,7 +57,7 @@ WARNING: Choose a durable persistence before deploying to production.
 
 ## Installation
 
-When Self-Hosting a Windows Service you are in full control of installation. Windows supports these features though the use of the [Service Control tool](https://technet.microsoft.com/en-us/library/cc754599.aspx). For example a basic install and uninstall commands would be:
+When Self-Hosting a Windows Service the startup code is in full control of installation. Windows supports these features though the use of the [Service Control tool](https://technet.microsoft.com/en-us/library/cc754599.aspx). For example a basic install and uninstall commands would be:
 
     sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
     sc.exe delete SalesEndpoint
@@ -134,9 +135,9 @@ Self host is a specific solution to a problem that can be more specialized and h
 
 ### Debugging
 
-The NServiceBus Host is a non-trivial piece of software, especially when you include its dependency on TopShelf. As such the NServiceBus Host can add complexity to debugging issues. Taking full control via self hosting allows less layers of abstraction which result in a simpler debugging experience.
+The NServiceBus Host is a non-trivial piece of software, especially when including its dependency on TopShelf. As such the NServiceBus Host can add complexity to debugging issues. Taking full control via self hosting allows less layers of abstraction which result in a simpler debugging experience.
 
 
 ### Controlling the entry point
 
-When using the NServiceBus Host the host is calling our code. As such the configuration code and behaviors (such as startup and shutdown) need to plug into very specific APIs. For example `IWantCustomLogging`, `IWantCustomInitialization`, `IWantToRunWhenBusStartsAndStops` and `IConfigureLogging`. If you invert the scenario, i.e. the developers code calls NServiceBus configuration, then the requirement for these APIs no longer exists.
+When using the NServiceBus Host the host is calling the endpoint configuration code. As such the configuration code and behaviors (such as startup and shutdown) need to plug into very specific APIs. For example `IWantCustomLogging`, `IWantCustomInitialization`, `IWantToRunWhenBusStartsAndStops` and `IConfigureLogging`. If the scenario is inverted, i.e. the developers code calls NServiceBus configuration, then the requirement for these APIs no longer exists.
