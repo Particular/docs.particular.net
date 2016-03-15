@@ -1,7 +1,4 @@
-<Query Kind="Program">
-  <Namespace>ProjectStandards</Namespace>
-</Query>
-
+<Query Kind="Program" />
 
 XNamespace xmlns = "http://schemas.microsoft.com/developer/msbuild/2003";
 void Main()
