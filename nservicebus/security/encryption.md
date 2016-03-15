@@ -48,7 +48,7 @@ Property encryption is enabled via the configuration API.
 snippet:EncryptionServiceSimple
 
 
-#### Key identifier
+#### Key ID
 
 Each key needs an unique key ID (`KeyIdentifier`). The key ID is communicated in the message header meta data and provides the receiving endpoint information on which key to use for decryption.
 
@@ -58,7 +58,7 @@ NOTE: If a key ID is not set then no encrypted messages can be send but received
 
 > Error: Encrypted message has no 'NServiceBus.RijndaelKeyIdentifier' header. Possibility of data corruption. Upgrade endpoints that send messages with encrypted properties.
 
-NOTE: Key identifiers are only supported since v3.3.16+, v4.7.8+, v5.0.7, 5.1.5, 5.2.9 and newer. All previous versions support decrypting messages that have encrypted fragments but no key ID header.
+NOTE: Key IDs are only supported since v3.3.16+, v4.7.8+, v5.0.7, 5.1.5, 5.2.9 and newer. All previous versions support decrypting messages that have encrypted fragments but no key ID header.
 
 
 #### Key ID naming strategy
@@ -76,12 +76,12 @@ Bad strategies
 - Full hash of key (md5, sha-1, etc.)
 
 
-NOTE: Random named key identifiers DO NOT improve security as the key ID is not encrypted.
+NOTE: Random named key IDs DO NOT improve security as the key ID is not encrypted.
 
 NOTE: Timestamping do not weaken encryption. Messages already contain a timestamp that can be used to search for messages within a certain time range.
 
 
-### Using the same key with and without a key identifier
+### Using the same key with and without a key ID
 
 If the KeyIdentifier attribute is set then this key will be used to decrypt message with a matching key ID but it will also be used to try decrypting messages without a key ID.
 
