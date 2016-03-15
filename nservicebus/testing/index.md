@@ -7,7 +7,7 @@ redirects:
  - nservicebus/testing/unit-testing
 ---
 
-Developing enterprise-scale distributed systems is hard and testing them is just as challenging a task. The architectural approach supported by NServiceBus makes these challenges more manageable. And the testing facilities provided actually make unit testing endpoints and workflows easy. You can now develop service layers and long-running processes using test-driven development.
+Developing enterprise-scale distributed systems is hard and testing them is just as challenging a task. The architectural approach supported by NServiceBus makes these challenges more manageable. The testing facilities provided make unit testing endpoints and workflows easy, allowing developing service layers and long-running processes using Test-Driven Development.
 
 
 ## Getting started
@@ -18,9 +18,11 @@ To install this package:
 ```
 Install-Package NServiceBus.Testing
 ```
-Once the package is installed you need ensure that you call `Test.Initialize()` (or any of its overloads) before executing any test method. This is **not needed **for Version 6.
+Once the package is installed, create a new test using any of the testing frameworks, such as NUnit, xUnit.net or MSBuild.
 
-NOTE: To limit the assemblies and types scanned by the test framework it is possible to use the `Initialize()` overload that accepts a delegate you can use to customize the `ConfigurationBuilder`.
+{{Note: In Versions 5 and below, `Test.Initialize()` (or any of its overloads) must be called before executing any test method.
+
+To limit the assemblies and types scanned by the test framework it is possible to use the `Initialize()` overload that accepts a delegate to customize the `ConfigurationBuilder`.}}
 
 
 ## Testing the service layer
@@ -39,7 +41,7 @@ snippet:TestingSaga
 
 ## Configuring unobtrusive message conventions
 
-Prior to Version 6, if you are using [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md) you need to configure the unit test support with those conventions as shown below.
+In Versions 5 and below, if [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md) is used, it must be configured with those conventions as shown below.
 
 snippet:SetupConventionsForUnitTests
 
@@ -66,6 +68,6 @@ snippet:TestingAdditionalDependencies
 
 ## Constructor injected bus
 
-NOTE: The `IBus` interface was deprecated in Version 6, and replaced with the contextual `IMessageHandlerContext` parameter on the `IHandleMessages<T>.Handle()` methods.
+NOTE: In Version 6, the `IBus` interface was deprecated and removed, and replaced with the contextual `IMessageHandlerContext` parameter on the `IHandleMessages<T>.Handle()` methods.
 
 snippet: ConstructorInjectedBus
