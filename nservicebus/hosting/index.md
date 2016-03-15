@@ -107,14 +107,14 @@ Related:
  * [Injecting the Bus into ASP.NET MVC Controller](/samples/web/asp-mvc-injecting-bus/)
 
 
-NOTE: Since Version 6, `IEndpointInstance`/`IBusSession` (the equivalent of `IBus` in earlier versions) is no longer automatically injected into the container. In order to send messages you need to explicitly create a bus context. Here's a sample code showing how to automate this task using the Autofac container
+NOTE: In Versions 6 and above, `IEndpointInstance`/`IBusSession` (the equivalent of `IBus` in earlier versions) is no longer automatically injected into the container. In order to send messages explicitly create a bus context. Here's a sample code showing how to automate this task using the Autofac container
 
 snippet:Hosting-Inject
 
 
 #### Static variable
 
-For many scenarios a container is not required. In these cases a simple public static variable on the startup class will suffice. This variable can then be access globally in your application. For example:
+For many scenarios a container is not required. In these cases a simple public static variable on the startup class will suffice. This variable can then be access globally in the application. For example:
 
  * In windows service or console the variable would be placed on the `Program.cs`
  * In a Website the variable would be placed on the `Global.cs`.
