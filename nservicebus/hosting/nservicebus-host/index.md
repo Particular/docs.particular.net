@@ -31,7 +31,7 @@ A list of assemblies to scan can also be controlled using the `/scannedAssemblie
 
 `NServiceBus.Host.exe /scannedAssemblies:"NServiceBus.Host" /scannedAssemblies:"MyMessages" /scannedAssemblies:"MyEndpoint"`
 
-NOTE: Each assembly is loaded using a call to [`Assembly.Load`](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) method. This means that the host will load each assembly and all assemblies it depends on.
+The host loads the assemblies by invoking [`Assembly.Load`](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) method. This approach ensures that the specified assembly and all its dependent assemblies will also be loaded.
 
 NOTE: It is mandatory to include `NServiceBus.Host` in the `/scannedAssemblies` list as shown in the example above. As `NServiceBus.Host` references `NServiceBus.Core`, the latter can be safely omitted from the list.
 
