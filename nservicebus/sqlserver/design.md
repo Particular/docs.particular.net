@@ -88,7 +88,7 @@ In this mode the ambient transaction is started before receiving the message. Th
 
 snippet:OutboxSqlServerConnectionStrings
 
-A sample covering this mode of operation is available [here](/samples/sqltransport-nhpersistence/).
+See also a [sample covering this mode of operation](/samples/sqltransport-nhpersistence/).
 
 
 ### Native transactions
@@ -135,7 +135,7 @@ The maximum number of concurrent tasks will never exceed `MaximumConcurrencyLeve
 
 ### Version 2.1
 
-Version 2.1 of SqlTransprot uses an adaptive concurrency model. The transport adapts the number of polling threads based on the rate of messages coming in. The key concept in this new model is the *ramp up controller* which controls the ramping up of new threads and decommissioning of unnecessary threads. It uses the following algorithm:
+Version 2.1 of SqlTransport uses an adaptive concurrency model. The transport adapts the number of polling threads based on the rate of messages coming in. The key concept in this new model is the *ramp up controller* which controls the ramping up of new threads and decommissioning of unnecessary threads. It uses the following algorithm:
 
  * if last receive operation yielded a message, it increments the *consecutive successes* counter and resets the *consecutive failures* counter
  * if last receive operation yielded no message, it increments the *consecutive failures* counter and resets the *consecutive successes* counter

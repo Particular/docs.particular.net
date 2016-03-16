@@ -616,6 +616,8 @@
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
     <Content Include="Transports\RabbitMQ_4\rabbitmqconnection.config.xml" />
     <Content Include="UpgradeGuides\5to6\null.xml" />
+    <Content Include="XmlDocumentPayload.xml" />
+    <Content Include="XmlElementPayload.xml" />
     <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

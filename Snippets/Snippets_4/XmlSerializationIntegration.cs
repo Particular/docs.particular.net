@@ -18,35 +18,18 @@ namespace Snippets4
 
         public class MessageWithXDocument : IMessage
         {
-            public XDocument nutrition { get; set; } // name and casing must match the rootnode
+            // name and casing must match the rootnode
+            public XDocument nutrition { get; set; }
         }
-        /*
-        Document payload
-        <?xml version='1.0' encoding='UTF-8'?>
-        <nutrition>
-            <daily-values>
-                <total-fat units='g'>65</total-fat>
-                <saturated-fat units='g'>20</saturated-fat>
-            </daily-values>
-        </nutrition>
-         */
         #endregion
 
         #region MessageWithXElement
 
         public class MessageWithXElement : IMessage
         {
-            public XElement nutrition { get; set; } // name and casing must match the rootnode
+            // name and casing must match the rootnode
+            public XElement nutrition { get; set; } 
         }
-        /*
-        Element payload
-        <nutrition>
-            <daily-values>
-                <total-fat units='g'>65</total-fat>
-                <saturated-fat units='g'>20</saturated-fat>
-            </daily-values>
-        </nutrition>    
-        */
         #endregion
     }
 }

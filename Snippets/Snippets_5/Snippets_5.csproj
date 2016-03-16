@@ -327,6 +327,8 @@
     </Content>
     <Content Include="RavenDB\SpecificDocumentStoreViaConnectionString.config.xml" />
     <Content Include="UpgradeGuides\5to6\null.xml" />
+    <Content Include="XmlDocumentPayload.xml" />
+    <Content Include="XmlElementPayload.xml" />
     <None Include="app.config" />
     <Content Include="EndpointMapping\EndpointMapping.config.xml" />
     <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />

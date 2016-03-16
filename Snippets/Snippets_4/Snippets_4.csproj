@@ -452,6 +452,8 @@
     <Compile Include="UpgradeGuides\4to5\Scheduler.cs" />
     <Compile Include="UpgradeGuides\4to5\Upgrade.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
+    <Content Include="XmlElementPayload.xml" />
+    <Content Include="XmlDocumentPayload.xml" />
     <Compile Include="XmlSerializationIntegration.cs" />
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>

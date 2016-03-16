@@ -18,7 +18,7 @@ This is primarily because
  * The PI `setup.exe` will fail on Windows servers were `IE Enhanced Security Configuration` is enabled
 
 [Download the PI](http://particular.net/start-platform-download).
-   
+
 For testing and production environments it is recommended to:
 
  * Use the [NServiceBus Powershell Module](/nservicebus/operations/management-using-powershell.md) to install the prerequisite components required.
