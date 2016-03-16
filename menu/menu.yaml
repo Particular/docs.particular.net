@@ -50,6 +50,7 @@
             - "nservicebus/gateway/multi-site-deployments"
             - "nservicebus/gateway/service-point-manager"
             - "nservicebus/gateway/troubleshooting"
+            - "nservicebus/gateway/scale-out"
         - "nservicebus/outbox"
     -
       Title: "Handlers"
