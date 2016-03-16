@@ -133,18 +133,18 @@ NOTE: The function passed to the `AddDynamic` call is executed **each time** a m
 
 ### Endpoint instance mapping layer
 
-The purpose of the endpoint instance mapping layer is to provide information about physical deployments of a given endpoint. It is usually the responsibility of **operations engineers** who control environments and have the knowledge where a given endpoint has been deployed. Endpoint instance mapping is optional for most transports in most cases because of built-in conventions. An example of situation where it is required is a scaled out endpoint using MSMQ transport. Other endpoints who send messages to it need to be aware of its instances.
+The purpose of the endpoint instance mapping layer is to provide information about physical deployments of a given endpoint. It is usually the responsibility of **operations engineers** who control environments and have the knowledge where a given endpoint has been deployed. Endpoint instance mapping is optional for most transports in most cases because of built-in conventions. An example of situation where it is required is a scaled out endpoint using MSMQ transport. Other endpoints that send messages to it need to be aware of its instances.
 
 
 #### Using config file
 
-Usually endpoint mapping should be done via a config file so it can be modified without the need for re-deploying the binaries. 
+Endpoint mapping should be done via a config file so it can be modified without the need for re-deploying the binaries. 
 
 snippet:Routing-FileBased-Config
 
 To read more see [file-based endpoint mapping](/nservicebus/messaging/file-based-routing.md).
 
-When using transports other than MSMQ the filed-based mapping can be configured via *advanced* API:
+When using transports other than MSMQ the filed-based mapping can be configured using the following API:
 
 snippet:Routing-FileBased-ConfigAdvanced
 
@@ -153,7 +153,7 @@ NOTE: If using a static type mapping to an address instead of an endpoint the ad
 
 #### Static mapping
 
-The `EndpointInstances` class provides a method that allows the registration of a static mapping. This API is useful in very rare and specific scenarios where developers need to take control over a certain mapping.
+The `EndpointInstances` class provides a method that allows the registration of a static mapping. This API is useful in specific scenarios where developers need to take control over a certain mapping.
 
 snippet:Routing-StaticEndpointMapping
 
