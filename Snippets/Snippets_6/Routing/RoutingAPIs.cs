@@ -33,7 +33,8 @@ namespace Snippets6.Routing
 
             #region Routing-StaticRoutes-Address
 
-            endpointConfiguration.AdvancedRouting().Table.RouteToAddress(typeof(AcceptOrder), "Sales@SomeMachine");
+            endpointConfiguration.UnicastRouting().Mapping.Logical
+                .RouteToAddress(typeof(AcceptOrder), "Sales@SomeMachine");
 
             #endregion
         }
@@ -42,7 +43,7 @@ namespace Snippets6.Routing
         {
             #region Routing-DynamicRoutes
 
-            endpointConfiguration.AdvancedRouting().Table
+            endpointConfiguration.UnicastRouting().Mapping.Logical
                 .AddDynamic((types, contextBag) => new[]
                 {
                     //Use endpoint name
@@ -60,7 +61,7 @@ namespace Snippets6.Routing
         {
             #region Routing-CustomRoutingStore
 
-            endpointConfiguration.AdvancedRouting().Table.AddDynamic((t, c) =>
+            endpointConfiguration.UnicastRouting().Mapping.Logical.AddDynamic((t, c) =>
                 LoadFromCache(t) ?? LoadFromDatabaseAndPutToCache(t));
 
             #endregion
@@ -71,7 +72,7 @@ namespace Snippets6.Routing
             #region Routing-StaticEndpointMapping
 
             EndpointName sales = new EndpointName("Sales");
-            endpointConfiguration.AdvancedRouting().EndpointInstances
+            endpointConfiguration.UnicastRouting().Mapping.Physical
                 .Add(sales,
                     new EndpointInstance(sales, "1", null),
                     new EndpointInstance(sales, "2", null));
@@ -83,7 +84,7 @@ namespace Snippets6.Routing
         {
             #region Routing-DynamicEndpointMapping
 
-            endpointConfiguration.AdvancedRouting().EndpointInstances.AddDynamic(async e =>
+            endpointConfiguration.UnicastRouting().Mapping.Physical.AddDynamic(async e =>
             {
                 if (e.ToString().StartsWith("Sales"))
                 {
@@ -135,7 +136,8 @@ namespace Snippets6.Routing
             endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(AcceptOrder), "Sales");
             endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(SendOrder), "Shipping");
 
-            endpointConfiguration.UseTransport<MsmqTransport>().DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
+            endpointConfiguration.UseTransport<MsmqTransport>()
+                .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
 
             #endregion
         }
@@ -146,7 +148,8 @@ namespace Snippets6.Routing
 
             #region Routing-FileBased-ConfigAdvanced
 
-            endpointConfiguration.AdvancedRouting().DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
+            endpointConfiguration.UnicastRouting().Mapping
+                .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
 
             #endregion
         }
