@@ -77,7 +77,7 @@ This sample uses a [Self Hosted](http://katanaproject.codeplex.com/wikipage?titl
 
 ## The Endpoint Configuration
 
-The endpoint configuration is fairly standard. The one exception is that the instance of `IBus` is passed in to the OWIN configuration code.
+The endpoint configuration is fairly standard. The one exception is that the endpoint instance is passed in to the OWIN configuration code.
 
 snippet:startbus
 

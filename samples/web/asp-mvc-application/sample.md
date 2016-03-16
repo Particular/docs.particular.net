@@ -45,13 +45,7 @@ In `AsyncPagesMvc`, open `Global.asax.cs` and see the code for the `ApplicationS
 
 snippet:ApplicationStart
 
-By calling `With()`, the code indicates to NServiceBus to scan the directory where the web application is deployed (different from non-web applications).
-
-The `.ForMvc` extension method injects `IBus` into the controllers by implementing the MVC interfaces `IDependencyResolver` and `IControllerActivator`.
-
-The NServiceBus builder registers and instantiates `IControllerActivator` so that when the controllers are requested, the NServiceBus builder has the opportunity to inject the `IBus` implementation into their `IBus` public property.
-
-Read [how the IBus is injected into the controllers](/samples/web/asp-mvc-injecting-bus/).
+For more details on how to inject NServiceBus classes into the controllers, check the [ASP.NET Controller Injection Sample](/samples/web/asp-mvc-injecting-bus/).
 
 
 ## Sending a message
@@ -64,7 +58,7 @@ Using `AsyncController`:
 snippet:AsyncController
 
 
-### Synchronous message sending: SendAndBlockController controller
+### Synchronous message sending: SendAndBlockController controller (version 4-5)
 
 Open the SendAndBlockController class:
 
@@ -85,4 +79,4 @@ This class implements the NServiceBus interface `IHandleMessages<T>` where `T` i
 
 NServiceBus manages the classes that implement this interface. When a message arrives in the input queue, it is deserialized, and then, based on its type, NServiceBus instantiates the relevant classes and calls their Handle method, passing in the message object.
 
-Notice the `IBus` property of the class. This is how it gets a reference to the bus. In the method body notice it calling the `Return` method on the bus, which results in a message being returned to `WebApplication`, specifically putting a message in the input queue whose name is determined by the namespace where the bus was configured; in this case, the `global.asax`: `AsyncPagesMVC`.
+In the method body notice the response being returned to the originating endpoint. This will result in a message being added to the input queue for `AsyncPagesMVC`.
