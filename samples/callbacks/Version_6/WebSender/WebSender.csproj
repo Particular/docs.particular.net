@@ -46,10 +46,10 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NServiceBus.Callbacks">
-      <HintPath>..\..\..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0041\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0048\lib\net452\NServiceBus.Callbacks.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\packages\NServiceBus.6.0.0-unstable1616\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.6.0.0-unstable1685\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
