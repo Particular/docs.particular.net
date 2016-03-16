@@ -395,6 +395,7 @@
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernateSqlAzure.cs" />
     <Compile Include="Persistence\NHibernate\DisableSchemaUpdate.cs" />
+    <Compile Include="Persistence\NHibernate\UpgradeGuides\6to7\AccessingSession.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\Behavior.cs" />
