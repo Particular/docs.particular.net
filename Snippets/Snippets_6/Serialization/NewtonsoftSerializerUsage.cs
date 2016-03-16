@@ -14,9 +14,9 @@
     {
         public void Simple()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region NewtonsoftSerialization 0.3-pre
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
             #endregion
@@ -24,6 +24,7 @@
 
         public void CustomSettings()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region NewtonsoftCustomSettings 0.3-pre
 
             JsonSerializerSettings settings = new JsonSerializerSettings
@@ -37,7 +38,6 @@
                     }
                 }
             };
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
                 .Settings(settings);
 
@@ -46,9 +46,9 @@
 
         public void CustomReader()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region NewtonsoftCustomReader 0.3-pre
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
                 .ReaderCreator(stream =>
                 {
@@ -61,9 +61,9 @@
 
         public void CustomWriter()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region NewtonsoftCustomWriter 0.3-pre
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
                 .WriterCreator(stream =>
                 {
@@ -78,9 +78,9 @@
         }
         public void Bson()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region NewtonsoftBson 0.3-pre
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             SerializationExtentions<NewtonsoftSerializer> serialization =
                 endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
             serialization.ReaderCreator(stream => new BsonReader(stream));

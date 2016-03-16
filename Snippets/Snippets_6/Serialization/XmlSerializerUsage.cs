@@ -6,9 +6,9 @@
     {
         public void Simple()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region XmlSerialization
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseSerialization<XmlSerializer>();
 
             #endregion

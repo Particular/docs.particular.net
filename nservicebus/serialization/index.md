@@ -1,6 +1,7 @@
 ---
 title: Serialization In NServiceBus
 summary: How instances of .NET classes are serialized onto the transport.
+reviewed: 2016-03-17
 related:
  - samples/pipeline/multi-serializer
 ---
@@ -10,10 +11,10 @@ NServiceBus takes instances of .NET objects (messages, events and commands) and 
 
 ### Supported Serializers
 
-- [XmlSerializer](xml.md)
-- [JsonSerializer/BsonSerializer](json.md)
-- [NewtonsoftSerializer](newtonsoft.md)
-- [BinarySerializer](binary.md) (deprecated in Version 6)
+ * [XmlSerializer](xml.md)
+ * [JsonSerializer/BsonSerializer](json.md)
+ * [NewtonsoftSerializer](newtonsoft.md)
+ * [BinarySerializer](binary.md) (deprecated in Versions 6 and above)
 
 
 ### Using an existing serializer

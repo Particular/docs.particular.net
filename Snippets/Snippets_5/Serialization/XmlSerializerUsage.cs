@@ -6,9 +6,9 @@
     {
         public void Simple()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region XmlSerialization
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseSerialization<XmlSerializer>();
 
             #endregion

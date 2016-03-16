@@ -7,9 +7,9 @@
         public void Simple()
         {
 
+            Configure configure = Configure.With();
             #region BinarySerialization
 
-            Configure configure = Configure.With();
             configure.BinarySerializer();
 
             #endregion

@@ -7,9 +7,9 @@
         public void Simple()
         {
 
+            Configure configure = Configure.With();
             #region JsonSerialization
 
-            Configure configure = Configure.With();
             configure.JsonSerializer();
         
             #endregion

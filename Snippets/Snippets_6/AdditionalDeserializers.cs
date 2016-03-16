@@ -6,8 +6,8 @@
     {
         void RegisterSerializers()
         {
-            #region AdditionalDeserializers
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            #region AdditionalDeserializers
             // configures XML serialization as default
             endpointConfiguration.UseSerialization<XmlSerializer>();
             // configures additional deserialization

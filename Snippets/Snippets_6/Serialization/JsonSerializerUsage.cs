@@ -7,9 +7,9 @@
         public void Simple()
         {
 
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region JsonSerialization
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseSerialization<JsonSerializer>();
 
             #endregion

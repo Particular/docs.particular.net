@@ -7,9 +7,9 @@
         public void Simple()
         {
 
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region JsonSerialization
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseSerialization<JsonSerializer>();
 
             #endregion

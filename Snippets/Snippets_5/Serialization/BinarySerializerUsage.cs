@@ -7,9 +7,9 @@
         public void Simple()
         {
 
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region BinarySerialization
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseSerialization<BinarySerializer>();
 
             #endregion

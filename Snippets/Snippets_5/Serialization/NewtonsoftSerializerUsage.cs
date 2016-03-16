@@ -15,9 +15,9 @@
     {
         public void Simple()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region NewtonsoftSerialization [0.2,0.3)
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseSerialization<NewtonsoftSerializer>();
 
             #endregion
@@ -25,6 +25,7 @@
 
         public void CustomSettings()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region NewtonsoftCustomSettings [0.2,0.3)
 
             JsonSerializerSettings settings = new JsonSerializerSettings
@@ -38,7 +39,6 @@
                     }
                 }
             };
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseSerialization<NewtonsoftSerializer>()
                 .Settings(settings);
 
@@ -47,9 +47,9 @@
 
         public void CustomReader()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region NewtonsoftCustomReader [0.2,0.3)
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseSerialization<NewtonsoftSerializer>()
                 .ReaderCreator(stream =>
                 {
@@ -62,9 +62,9 @@
 
         public void CustomWriter()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region NewtonsoftCustomWriter [0.2,0.3)
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseSerialization<NewtonsoftSerializer>()
                 .WriterCreator(stream =>
                 {
@@ -79,9 +79,9 @@
         }
         public void Bson()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region NewtonsoftBson [0.2,0.3)
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             SerializationExtentions<NewtonsoftSerializer> serialization =
                 busConfiguration.UseSerialization<NewtonsoftSerializer>();
             serialization.ReaderCreator(stream => new BsonReader(stream));

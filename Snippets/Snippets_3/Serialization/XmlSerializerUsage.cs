@@ -7,9 +7,9 @@
         public void Simple()
         {
 
+            Configure configure = Configure.With();
             #region XmlSerialization
 
-            Configure configure = Configure.With();
             configure.XmlSerializer();
 
             #endregion
