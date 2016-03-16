@@ -6,7 +6,7 @@ redirects:
 - nservicebus/how-do-i-reply-to-a-message
 ---
 
-The simplest way to reply to a message is using the `Reply` method provided by the bus, like this:
+To reply to a message is using the `Reply` method provided by the bus:
 
 snippet: ReplyingMessageHandler
 
