@@ -19,7 +19,7 @@ class Program
 
         endpointConfiguration.EndpointName("Samples.ASB.Polymorphic.Subscriber");
         endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-            .UseTopology<StandardTopology>()
+            .UseTopology<EndpointOrientedTopology>()
             .ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
         endpointConfiguration.SendFailedMessagesTo("error");
 
