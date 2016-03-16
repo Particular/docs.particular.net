@@ -6,9 +6,9 @@
     {
         public Usage()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region EncryptionServiceSimple
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.RijndaelEncryptionService();
 
             #endregion

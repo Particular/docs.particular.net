@@ -7,9 +7,9 @@
 
         public Usage()
         {
+            Configure configure = Configure.With();
             #region DefiningEncryptedPropertiesAs
 
-            Configure configure = Configure.With();
             configure.DefiningEncryptedPropertiesAs(info => info.Name.EndsWith("EncryptedProperty"));
 
             #endregion

@@ -6,9 +6,9 @@
     {
         public Usage()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region EncryptionServiceSimple
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.RijndaelEncryptionService();
 
             #endregion

@@ -270,9 +270,9 @@ namespace Snippets5.UpgradeGuides._4to5
 
         public void EncryptionServiceSimple()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region 4to5EncryptionServiceSimple
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.RijndaelEncryptionService();
 
             #endregion

@@ -7,9 +7,9 @@ namespace Snippets3.Encryption.Conventions
     {
         public Usage()
         {
+            Configure configure = Configure.With();
             #region DefiningEncryptedPropertiesAs
 
-            Configure configure = Configure.With();
             configure.DefiningEncryptedPropertiesAs(x => x.Name.EndsWith("EncryptedProperty"));
             #endregion
         }

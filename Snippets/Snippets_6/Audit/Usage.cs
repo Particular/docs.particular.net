@@ -6,9 +6,9 @@
     {
         public Usage()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region AuditWithCode
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.AuditProcessedMessagesTo("targetAuditQueue");
 
             #endregion
