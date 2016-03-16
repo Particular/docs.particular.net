@@ -8,10 +8,7 @@ related:
 - nservicebus/nhibernate
 ---
 
-
-## NServiceBus NHibernate
-
-### Accessing the ISession
+## Accessing the ISession
 
 The way the NHibernate's `ISession` object is accessed has changed. This object is no longer accessible through the IoC Container or `NHibernateStorageContext`. When Property or Constructor injection is used to get an instance of `ISession` directly or through `NHibernateStorageContext`, the code needs to be refactored after the upgrade to this version.
 
@@ -21,9 +18,9 @@ As shown in the above snippet, the only way to access the `ISession` object is t
 
 The reasoning behind removing the registration from the IoC Container was not exposing internal components of NServiceBus as much as possible and having less behavioral changes in future versions. As such, the extension method called `RegisterManagedSessionInTheContainer()` which used to enable this behavior is made obsolete and can be removed.
 
-### Customizing the ISession Creation
+
+## Customizing the ISession Creation
 
 It is no longer possible to customize `ISession` creation process. As such, the extension method call `UseCustomSessionCreationMethod()` is no longer needed and should be removed. 
 
 Since most of the methods available on the `ISessionFactory` are related to caching and with this [existing NHibernate bug](https://nhibernate.jira.com/browse/NH-3023) (also listed [here](/nservicebus/nhibernate/accessing-data.md) as a known limitation), the benefit of having customizable `ISession` creation is debatable. To customize the created `ISession` object, for example to apply a filter on the session level, the code needs to be moved to the handler and applied to the `ISession` object on the Context.
-
