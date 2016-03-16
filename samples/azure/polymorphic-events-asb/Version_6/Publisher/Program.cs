@@ -18,7 +18,7 @@ class Program
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.ASB.Polymorphic.Publisher");
         endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-            .UseTopology<StandardTopology>()
+            .UseTopology<EndpointOrientedTopology>()
             .ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();

@@ -112,9 +112,8 @@
       <HintPath>..\..\packages\WindowsAzure.Storage.6.2.2-preview\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
@@ -148,14 +147,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Callbacks">
-      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0041\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0048\lib\net452\NServiceBus.Callbacks.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.CommonLogging, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.CommonLogging.2.2.0-unstable0007\lib\net452\NServiceBus.CommonLogging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1616\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1685\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Gateway, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Gateway.2.0.0-unstable0067\lib\net452\NServiceBus.Gateway.dll</HintPath>
@@ -211,9 +210,8 @@
       <HintPath>..\..\packages\NServiceBus.RabbitMQ.4.0.0-unstable0190\lib\net452\NServiceBus.Transports.RabbitMQ.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Transports.SQLServer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.SqlServer.3.0.0-unstable0104\lib\net452\NServiceBus.Transports.SQLServer.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Transports.SQLServer">
+      <HintPath>..\..\packages\NServiceBus.SqlServer.3.0.0-unstable0118\lib\net452\NServiceBus.Transports.SQLServer.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
@@ -223,10 +221,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Raven.Abstractions">
-      <HintPath>..\..\packages\RavenDB.Client.3.5.35060-Unstable\lib\net45\Raven.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\RavenDB.Client.3.5.35066-Unstable\lib\net45\Raven.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight">
-      <HintPath>..\..\packages\RavenDB.Client.3.5.35060-Unstable\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+      <HintPath>..\..\packages\RavenDB.Client.3.5.35066-Unstable\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceControl.Contracts.1.2.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
@@ -240,13 +238,11 @@
       <HintPath>..\..\packages\Spring.Core.2.0.1\lib\net45\Spring.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="StructureMap, Version=4.1.0.361, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\structuremap.4.1.0.361\lib\net40\StructureMap.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\packages\structuremap.4.1.1.372\lib\net40\StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap.Net4, Version=4.1.0.361, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\structuremap.4.1.0.361\lib\net40\StructureMap.Net4.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="StructureMap.Net4">
+      <HintPath>..\..\packages\structuremap.4.1.1.372\lib\net40\StructureMap.Net4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

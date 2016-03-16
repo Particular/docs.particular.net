@@ -29,8 +29,8 @@ class Program
         #region BrokeredMessageConvention
 
         AzureServiceBusTopologySettings topologySettings = endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-            .UseDefaultTopology();
-        topologySettings.Serialization().BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
+            .UseTopology<EndpointOrientedTopology>();
+        topologySettings.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
 
         #endregion
 
