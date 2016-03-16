@@ -1,7 +1,7 @@
 ---
 title: Throughput limitations when running without a license
 summary: No limitations are enforced as of NServiceBus Version 4.5
-tags: []
+reviewed: 2016-03-17
 redirects:
  - nservicebus/licensing-limitations
 ---
@@ -14,7 +14,7 @@ No limitations are enforced by NServiceBus if no license is found.
 
 ## NServiceBus Version 4.0 to NServiceBus Version 4.5
 
-If running with no license the endpoint will restrict the maximum message throughput to 1 msg/s. Unlike Version 3 the number of threads is kept unlimited. You can read more on how to limit message throughput [here](/nservicebus/operations/tuning.md).
+If running with no license the endpoint will restrict the [maximum message throughput](/nservicebus/operations/tuning.md) to 1 msg/s. Unlike Version 3 the number of threads is kept unlimited.
 
 
 ## NServiceBus Version 3
