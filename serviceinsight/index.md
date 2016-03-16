@@ -1,7 +1,7 @@
 ---
 title: ServiceInsight
 summary: ServiceInsight Documentation Table of Contents
-reviewed: 2016-03-16
+reviewed: 2016-03-17
 tags:
 - ServiceInsight
 redirects:
@@ -9,19 +9,7 @@ redirects:
 - servicepulse/introduction-and-installing-servicepulse
 ---
 
-## Introduction
-
-NServiceBus provides the benefits of a distributed, messaged based, fault tolerant, and distributed architecture by allowing to visualize and verify the functionality of such a distributed system. 
-
-From design through to production, ServiceInsight provides concise and user-friendly insight and information about the system.
-
-
-## The NServiceBus Framework
-
-The NServiceBus Framework is part of the Particular Service Platform which includes these tools:
-
- * The audit and error aggregation power of [ServiceControl](../servicecontrol) is leveraged by [ServicePulse](../servicepulse) for operational monitoring and alerting.
- * ServiceInsight provides a detailed view of messages in their system context, from endpoints to sagas, showing relationships and data. 
+include: serviceinsight
 
 
 ## Visualizing the System
@@ -53,7 +41,7 @@ The auto-refresh rate can be specified in the "View" > "Options" > "Auto-Refresh
 
 ### Timing and Performance
 
-Uuse the performance-related information in the message header to sort the messages in an endpoint based on the time the messages were sent, critical time, processing time, delivery time, Message Type and ID.
+Use the performance-related information in the message header to sort the messages in an endpoint based on the time the messages were sent, critical time, processing time, delivery time, Message Type and ID.
 
 The message timing measurements include the following:
 
