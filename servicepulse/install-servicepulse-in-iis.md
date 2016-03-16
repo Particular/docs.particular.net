@@ -28,7 +28,7 @@ Steps
 1. Refer to ServicePulse folder.
 
 
-[ServicePulse](introduction-and-installing-servicepulse.md), by default, is installed as a Windows Service that will self-host the ServicePulse web application.
+ServicePulse, by default, is [installed](installation.md) as a Windows Service that will self-host the ServicePulse web application.
 
 It is possible to manually install ServicePulse using IIS following these steps:
 

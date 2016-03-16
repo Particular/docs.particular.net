@@ -1,15 +1,17 @@
 ---
 title: ServiceInsight
 summary: ServiceInsight Documentation Table of Contents
+reviewed: 2016-03-16
 tags:
 - ServiceInsight
 redirects:
 - serviceinsight/getting-started-overview
+- servicepulse/introduction-and-installing-servicepulse
 ---
 
 ## Introduction
 
-The [NServiceBus](/nservicebus/architecture/) framework provides the benefits of a distributed, messaged based, fault tolerant, and distributed architecture by allowing you to visualize and verify the functionality of such a distributed system. 
+NServiceBus provides the benefits of a distributed, messaged based, fault tolerant, and distributed architecture by allowing to visualize and verify the functionality of such a distributed system. 
 
 From design through to production, ServiceInsight provides concise and user-friendly insight and information about the system.
 
@@ -26,40 +28,40 @@ The NServiceBus Framework is part of the Particular Service Platform which inclu
 
 The ServiceInsight user interface provides multiple views of a distributed system. Using information collected in ServiceControl, ServiceInsight enumerates the endpoints and provides detailed message and relationship data, with formatted views of XML, JSON, and binary messages.
 
-The flow diagram provides a detailed visual overview of the messages, collated by conversation. Using this view you can see the flow in the system and which endpoints raised specific events and sent or handled messages. The Saga view illustrates the start of a saga, the timeouts, and interactions. The sequence diagram shows the order in which messages have been sent and handled by endpoints in the system.
+The flow diagram provides a detailed visual overview of the messages, collated by conversation. Using this view the flow in the system and which endpoints raised specific events and sent or handled messages can be seen. The Saga view illustrates the start of a saga, the timeouts, and interactions. The sequence diagram shows the order in which messages have been sent and handled by endpoints in the system.
  
-As you select endpoints, the other views within ServiceInsight respond and filter the information to show only messages pertaining to that endpoint.
+As endpoints are selected, the other views within ServiceInsight respond and filter the information to show only messages pertaining to that endpoint.
 
 
 ## The Message Window
 
-The Messages window is a detailed grid view indicating the message status, type, time stamp, and service level information. You can filter the list based on specific message content, searching for all message data, not just commonly displayed fields.
+The Messages window is a detailed grid view indicating the message status, type, time stamp, and service level information. Filter the list based on specific message content, searching for all message data, not just commonly displayed fields.
 
 ![Message List View](images/overview-messagedetailwindow.png)
 
-The ServicePulse monitoring tool also allows you to open ServiceInsight to a specific message so you can drill down for more detail.
+The ServicePulse monitoring tool also supports opening ServiceInsight to a specific message to allow drill down for more detail.
 
 
 ### Refresh and Auto-refresh
 
-The Refresh and Auto-Refresh toolbar buttons enable you to update the displayed information with the latest updates from the ServiceControl database.
+The Refresh and Auto-Refresh toolbar buttons enable allow updating the displayed information with the latest updates from the ServiceControl database.
 
 Auto-refresh keeps the information in ServiceInsight automatically refreshed, delivering near real-time information to the views.
 
-You can specify the auto-refresh rate in the "View" > "Options" > "Auto-Refresh Timer" setting (default is auto-refresh every 15 seconds; lowest value is 1 second), or you can specify the auto-refresh rate using the ServiceInsight invocation parameter (see [ServiceInsight Invocation](application-invocation.md))
+The auto-refresh rate can be specified in the "View" > "Options" > "Auto-Refresh Timer" setting (default is auto-refresh every 15 seconds; lowest value is 1 second), or specify the auto-refresh rate using the ServiceInsight invocation parameter (see [ServiceInsight Invocation](application-invocation.md))
 
 
 ### Timing and Performance
 
-You can use the performance-related information in the message header to sort the messages in an endpoint based on the time the messages were sent, critical time, processing time, delivery time, Message Type and ID.
+Uuse the performance-related information in the message header to sort the messages in an endpoint based on the time the messages were sent, critical time, processing time, delivery time, Message Type and ID.
 
 The message timing measurements include the following:
 
- - Processing Time: the amount of time it took to actually process the message, within the processing endpoint, by the message processing handler method
+ * Processing Time: the amount of time it took to actually process the message, within the processing endpoint, by the message processing handler method
 
-Using the messages window column headers you can sort the messages in ascending or descending order (the sorting operation applies on all the relevant messages in the underlying ServiceControl instance, and is not limited to the currently displayed messages).
+Using the messages window column headers the messages can be sorted in ascending or descending order (the sorting operation applies on all the relevant messages in the underlying ServiceControl instance, and is not limited to the currently displayed messages).
 
-When you select specific messages, the related properties window and flow diagram change to illustrate details of the selected message.
+Select specific messages, the related properties window and flow diagram change to illustrate details of the selected message.
 
 
 ## Endpoint Explorer
@@ -68,12 +70,12 @@ The Endpoint Explorer indicates the connection to the ServiceControl instance pr
 
 ![Endpoint Explorer](images/overview-endpointexplore-machinename.png)
 
-You can select endpoints to filter the message list. Select the root ServiceControl connection and the tree view to make the list expand to include all messages.
+Select endpoints to filter the message list. Select the root ServiceControl connection and the tree view to make the list expand to include all messages.
 
 
 ## Flow Diagram
 
-The flow diagram provides extensive message and system information. When you select messages in the message list, the flow diagram illustrates the message and all related messages from the same conversation, along with the nature of the messages and the endpoints involved.
+The flow diagram provides extensive message and system information. When messages are selected in the message list, the flow diagram illustrates the message and all related messages from the same conversation, along with the nature of the messages and the endpoints involved.
 
 ![The Flow Diagram](images/overview-flowdiagram-wpopup.png)
 
@@ -82,18 +84,19 @@ Each message is represented by a box indicating the message type and illustratin
 
 ## Message Properties
 
-Each message in NServiceBus contains extensive detail. As you select messages in the flow diagram or in the list, an additional Message Properties window lists the properties for the message.
+Each message in NServiceBus contains extensive detail. As messages are selected in the flow diagram or in the list, an additional Message Properties window lists the properties for the message.
 
 ![The Message Properties Window](images/overview-messageproperties.png)
 
 
 ## The Saga View
 
-Sagas play a critical role in NServiceBus systems. As coordinators of processes they are started by certain messages and interact with a variety of messages and services. To open a graphical view of Sagas, you can click a message in the flow diagram that is handled by a saga. 
+Sagas play a critical role in NServiceBus systems. As coordinators of processes they are started by certain messages and interact with a variety of messages and services. To open a graphical view of Sagas, click a message in the flow diagram that is handled by a saga. 
 
 ![The Saga View](images/overview-sagaview.png)
 
 The saga illustrates how the saga was initiated and other messages that were sent or handled, with detailed message data, time information, and details on saga data changes.
+
 
 ## Sequence Diagram
 
@@ -125,7 +128,7 @@ ServiceInsight leverages the ServiceControl API to retrieve information. The Log
 
 ## Errors and Retries
 
-ServiceInsight provides added visibility, and NServiceBus provides durability and retries. Where intervention is required, you do not need to manually collate log files or access remote servers to research an error. The views within ServiceInsight illustrate messages with errors and bring you the error information.
+ServiceInsight provides added visibility, and NServiceBus provides durability and retries. Where intervention is required, no manually correlation of log files or access remote servers to research an error. The views within ServiceInsight illustrate messages with errors and supply the error information.
 
 
 ### Status in the Message List

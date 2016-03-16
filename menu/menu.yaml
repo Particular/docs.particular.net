@@ -266,7 +266,7 @@
     -
       Title: "Introduction"
       Articles:
-        - "servicepulse/introduction-and-installing-servicepulse"
+        - "servicepulse/installation"
         - "servicepulse/intro-endpoints-heartbeats"
         - "servicepulse/intro-failed-messages"
         - "servicepulse/intro-endpoints-custom-checks"
