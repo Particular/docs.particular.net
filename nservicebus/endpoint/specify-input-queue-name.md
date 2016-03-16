@@ -6,6 +6,7 @@ tags:
 - Conventions
 redirects:
 - nservicebus/how-to-specify-your-input-queue-name
+- nservicebus/messaging/specify-input-queue-name
 ---
 
 ## When using the configuration API
