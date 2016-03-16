@@ -32,12 +32,12 @@ Additional information about a message is communicated over the transport in a c
 
 ### [Endpoint](/nservicebus/endpoint/)
 
-An Endpoint is a logical entity that communicates with other Endpoints via messaging. Each Endpoint has an identifying name and contains a collection of Message Handlers and Sagas. An Endpoint can be deployed to a number of machines and environments. Each such deployment is a separate Endpoint Instance.
+An Endpoint is a logical entity that communicates with other Endpoints via messaging. Each Endpoint has an identifying name and contains a collection of Message Handlers and Sagas. An Endpoint can be deployed to a number of machines and environments. Each deployment of an endpoint is an instance.
 
 
 ### [Endpoint Instance](/nservicebus/endpoint/)
 
-An Endpoint Instance is a run-time object that allows interaction with the bus. Endpoint Instances are able to send, receive, and publish messages.. It runs associated Message Handlers and Sagas to process incoming messages. An Endpoint Instance has a single Input Queue which can be shared with other instances of the same Endpoint in a scale-out scenario.
+An Endpoint Instance is a run-time object that allows interaction with the bus. Endpoint Instances are able to send, receive and publish messages. It runs associated Message Handlers and Sagas to process incoming messages. An Endpoint Instance has a single Input Queue.
 
 
 ### [Hosting](/nservicebus/hosting)

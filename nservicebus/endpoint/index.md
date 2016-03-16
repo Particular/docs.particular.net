@@ -8,7 +8,7 @@ related:
  - samples/endpoint-configuration
 ---
 
-An Endpoint is a logical entity that communicates with other Endpoints via [Messaging](/nservicebus/messaging). Each Endpoint has an identifying name and contains a collection of Message Handlers and Sagas. An Endpoint can be deployed to a number of machines and environments. Each such deployment is a separate Endpoint Instance. Each Endpoint Instance has an [Input Queue](/nservicebus/endpoint/specify-input-queue-name.md) which contains messages for the Endpoint Instance to process. 
+An Endpoint is a logical entity that communicates with other Endpoints via [Messaging](/nservicebus/messaging). Each Endpoint has an identifying name and contains a collection of [Message Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/). An Endpoint can be deployed to a number of machines and environments. Each deployment of an endpoint is an instance. Each Endpoint Instance has an [Input Queue](/nservicebus/endpoint/specify-input-queue-name.md) which contains messages for the Endpoint Instance to process. 
 
 It is common for each Endpoint to have a single Endpoint Instance. As Endpoints need to [scale-out](/nservicebus/scalability-and-ha/scale-out.md), additional Endpoint Instances can be added. This collection of Endpoint Instances still represents a single logical Endpoint. 
 
