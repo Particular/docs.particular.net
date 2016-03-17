@@ -46,6 +46,27 @@ By passing the transport a custom factory method which will provide connection s
 
 snippet:sqlserver-custom-connection-factory
 
+## Custom database schemas
+
+The default schema in SQL Server transport is `dbo'. If no custom schema is provided in configuration, then transport will use the default value.
+
+The schema for the specific endpoint can be configured using `DefaultSchema` method:
+
+snippet:sqlserver-non-standard-schema
+
+In Versions 2.1 to 2.x it was also possible to pass custom schema in the connection string, using `Queue Schema` parameter:
+ 
+snippet:sqlserver-non-standard-schema-connString
+snippet:sqlserver-non-standard-schema-connString-xml
+
+### Multiple custom schemas
+If two endpoints use different schemas then additional configuration is required. The sender needs to know the schema of the receiver, and subscriber needs the schema of the publisher. 
+
+The schema for another endpoint can be specified in the following ways:
+
+snippet:sqlserver-multischema-config-push
+snippet:sqlserver-multischema-config-pull
+snippet:sqlserver-non-standard-schema-messagemapping
 
 ## Sql Server Transport, the Outbox and user data: disabling the DTC
 
