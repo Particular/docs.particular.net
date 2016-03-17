@@ -31,7 +31,7 @@
                     }
                     if (tn == "billing")
                     {
-                        return "billingSchema";
+                        return "[billingSchema]";
                     }
                     return null;
                 });

@@ -67,6 +67,8 @@ snippet:sqlserver-multischema-config-push
 snippet:sqlserver-multischema-config-pull
 snippet:sqlserver-non-standard-schema-messagemapping
 
+Notice that in Version 3.x the table and schema names can be passed either using common convention with square brackets, or without them.  
+
 ## Sql Server Transport, the Outbox and user data: disabling the DTC
 
 In an environment where DTC is disabled and [Outbox](/nservicebus/outbox/) is enabled, it is important to prevent a local transaction from escalating to a distributed one.
