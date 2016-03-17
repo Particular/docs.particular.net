@@ -21,7 +21,7 @@
         {
             BusConfiguration busConfiguration = new BusConfiguration();
 
-            #region sqlserver-non-standard-schema-connString [2.1,2.0]
+            #region sqlserver-non-standard-schema-connString [2.1,3.0)
 
             busConfiguration.UseTransport<SqlServerTransport>()
                 .ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True; Queue Schema=myschema");
@@ -33,7 +33,7 @@
         {
             BusConfiguration busConfiguration = new BusConfiguration();
 
-            #region sqlserver-multischema-config-push [2.1,2.0]
+            #region sqlserver-multischema-config-push [2.1,3.0)
 
             busConfiguration.UseTransport<SqlServerTransport>()
                 .UseSpecificConnectionInformation(
@@ -55,11 +55,15 @@
                 .UseSpecificConnectionInformation(endpointName =>
                 {
                     if (endpointName == "sales")
+                    {
                         return ConnectionInfo.Create()
-                                             .UseSchema("salesSchema");
+                            .UseSchema("salesSchema");
+                    }
                     if (endpointName == "billing")
+                    {
                         return ConnectionInfo.Create()
-                                             .UseSchema("billingSchema");
+                            .UseSchema("billingSchema");
+                    }
                     return null;
                 });
 

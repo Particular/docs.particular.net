@@ -48,8 +48,7 @@ snippet:sqlserver-custom-connection-factory
 
 ## Custom database schemas
 
-The default schema in SQL Server transport is `dbo'. If no custom schema is provided in configuration, then transport will use the default value.
-
+The default schema in SQL Server transport is `dbo`.
 The schema for the specific endpoint can be configured using `DefaultSchema` method:
 
 snippet:sqlserver-non-standard-schema

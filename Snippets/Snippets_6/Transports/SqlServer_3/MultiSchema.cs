@@ -26,9 +26,13 @@
                 .UseSpecificSchema(tn =>
                 {
                     if (tn == "sales")
+                    {
                         return "salesSchema";
+                    }
                     if (tn == "billing")
+                    {
                         return "billingSchema";
+                    }
                     return null;
                 });
 
