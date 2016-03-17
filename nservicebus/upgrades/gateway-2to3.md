@@ -19,3 +19,8 @@ related:
 `NumberOfWorkerThreads` is now deprecated as a parameter for channels in the endpoint config file. Use `MaxConcurrency` to set the maximum number of messages that should be processed at any given time by the gateway instead.
 
 snippet: 1to2GatewayConfig
+
+
+## Notifications
+
+In version 2 the gateway does not expose any error notifications. When an error occurs during sending of a message to other sites, the message will be retried and possibly moved to the error queue but user will not be notified about these events.
