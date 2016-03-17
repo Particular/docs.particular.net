@@ -454,6 +454,7 @@
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
     <Compile Include="UpgradeGuides\5to6\HandlerOrdering.cs" />
+    <Compile Include="UpgradeGuides\5to6\Injection.cs" />
     <Compile Include="UpgradeGuides\5to6\MessageContext.cs" />
     <Compile Include="UpgradeGuides\5to6\MyEvent.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
