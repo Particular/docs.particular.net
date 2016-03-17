@@ -1,6 +1,7 @@
 ---
 title: Endpoint
 summary: Describe the concepts of Endpoint and Endpoint Instance.
+reviewed: 2016-03-17
 tags:
 - Endpoint
 - Endpoint Instance

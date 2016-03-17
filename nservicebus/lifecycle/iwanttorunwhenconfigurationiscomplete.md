@@ -1,6 +1,7 @@
 ---
 title: When Configuration Ends
-summary: An interface that supports hooking into the configuration sequence of NServiceBus
+summary: An interface that supports hooking into the configuration sequence of NServiceBus.
+reviewed: 2016-03-17
 tags:
  - life-cycle
 related:
@@ -16,11 +17,11 @@ Instances are:
  * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/) during bus creation. These are registered as Instance Per Call.
  * Created as the last step before the bus is created.
  * Created on the same thread that is creating the bus.
- * Created by the configured container which means they:
+ * Created by the [Container](/nservicebus/containers/) which means they:
   * Will have dependencies injected.
   * Do not require a default constructor.
 
-NOTE:In Version 3 and Version 4, instances of `IWantToRunWhenConfigurationIsComplete` are registered in the configured container before instances of `INeedInitialization` are created and run. In Version 5 `INeedInitialization` happens first.
+NOTE:In Version 3 and Version 4, instances of `IWantToRunWhenConfigurationIsComplete` are registered in the [Container](/nservicebus/containers/) before instances of `INeedInitialization` are created and run. In Version 5 `INeedInitialization` happens first.
 
 Once created `Run(...)` is called on each instance. These calls are made sequentially on the thread that is creating the bus. The order of these calls is determined by the order in which the configured container returns instances.
 

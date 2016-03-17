@@ -1,6 +1,7 @@
 ---
 title: Before Configuration Finalized
-summary: An interface that allows hooking into the configuration sequence of NServiceBus
+summary: An interface that allows hooking into the configuration sequence of NServiceBus.
+reviewed: 2016-03-17
 tags:
  - life-cycle
 related:
@@ -15,7 +16,7 @@ Instances are:
  * Created just before the configuration is frozen.
  * Created on the same thread that is creating the bus.
  * Created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they:
-  * Are not resolved out of an IoC container (even if they are registered there).
+  * Are not resolved out of the [Container](/nservicebus/containers/) (even if they are registered there).
   * Will not have any dependencies injected.
   * Must have a default constructor.
 

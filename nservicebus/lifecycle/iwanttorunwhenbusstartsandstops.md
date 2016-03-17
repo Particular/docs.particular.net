@@ -1,6 +1,7 @@
 ---
 title: When Configuration Start and Stop
-summary: An interface that allows hooking into into the startup and shutdown sequence of NServiceBus
+summary: An interface that allows hooking into into the startup and shutdown sequence of NServiceBus.
+reviewed: 2016-03-17
 tags:
  - life-cycle
 related:
@@ -19,7 +20,7 @@ Instances are:
  * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/) during bus creation. These are registered as `Instance Per Call`.
  * Created and Started before the Transport and any Satellites have started. During the start sequence, and all instances of `IWantToRunWhenBusStartsAndStops` being started, no message will be processed.
  * Created on the same thread that is starting the bus.
- * Created by the configured container which means they:
+ * Created by the [Container](/nservicebus/containers/) which means they:
   * Will have dependencies injected.
   * Do not require a default constructor.
  * Started asynchronously on the same thread which started the bus.
@@ -53,7 +54,7 @@ Instances are:
  * Created and started as the last step when the bus is started.
  * Started after the Transport and any Satellites have started. During the start sequence, and all instances of `IWantToRunWhenBusStartsAndStops` being started, no message will be processed.
  * Created on the same thread that is starting the bus.
- * Created by the configured container which means they:
+ * Created by the [Container](/nservicebus/containers/) which means they:
   * Will have dependencies injected.
   * Do not require a default constructor.
 

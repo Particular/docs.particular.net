@@ -1,6 +1,7 @@
 ---
 title: Initialization
-summary: An interface that allows you to hook into the very beginning of the bus creation sequence of NServiceBus
+summary: An interface that supports hooking into the very beginning of the bus creation sequence of NServiceBus.
+reviewed: 2016-03-17
 tags:
  - life-cycle
 related:
@@ -17,7 +18,7 @@ Instances are:
  * Created as one of the very first steps when the bus is created.
  * Created on the same thread that is creating the bus.
  * Created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they
-  * Are not resolved out of an IoC container (even if they are registered there).
+  * Are not resolved out of the [Container](/nservicebus/containers/) (even if they are registered there).
   * Will not have any dependencies injected.
   * Must have a default constructor.
 
@@ -25,6 +26,6 @@ All calls are made in sequence on the thread that is creating the bus. The order
 
 Exceptions thrown by instances of `INeedInitialization` are unhandled by NServiceBus. These will bubble up to the caller creating the endpoint.
 
-NOTE: Instances of `INeedInitialization` are created after type-scanning has occurred. You should not attempt to alter the types to be scanned from an instance of `INeedInitialization`.
+NOTE: Instances of `INeedInitialization` are created after type-scanning has occurred. Do not attempt to alter the types to be scanned from an instance of `INeedInitialization`.
 
 snippet:lifecycle-ineedinitialization
