@@ -1,13 +1,13 @@
 ---
-title: Unit Testing
+title: Testing NServiceBus
 summary: Develop service layers and long-running processes using test-driven development.
-tags: []
+reviewed: 2016-03-17
 redirects:
  - nservicebus/unit-testing
  - nservicebus/testing/unit-testing
 ---
 
-Developing enterprise-scale distributed systems is hard and testing them is just as challenging a task. The architectural approach supported by NServiceBus makes these challenges more manageable. And the testing facilities provided actually make unit testing endpoints and workflows easy. You can now develop service layers and long-running processes using test-driven development.
+Developing enterprise-scale distributed systems is hard and testing them is just as challenging a task. The architectural approach supported by NServiceBus makes these challenges more manageable. The testing facilities provided make unit testing endpoints and workflows easy, allowing developing service layers and long-running processes using Test-Driven Development.
 
 
 ## Getting started
@@ -15,15 +15,19 @@ Developing enterprise-scale distributed systems is hard and testing them is just
 NServiceBus ships with a stand alone testing helper NuGet package that makes testing a lot simpler.
 
 To install this package:
+
 ```
 Install-Package NServiceBus.Testing
 ```
-Once the package is installed you need ensure that you call `Test.Initialize()` (or any of its overloads) before executing any test method.
 
-NOTE: To limit the assemblies and types scanned by the test framework it is possible to use the `Initialize()` overload that accepts a delegate you can use to customize the `ConfigurationBuilder`.
+Once the package is installed, create a new test using any of the testing frameworks, such as NUnit, xUnit.net or MSBuild.
+
+{{Note: In Versions 5 and below, `Test.Initialize()` (or any of its overloads) must be called before executing any test method.
+
+To limit the assemblies and types scanned by the test framework it is possible to use the `Initialize()` overload that accepts a delegate to customize the `ConfigurationBuilder`.}}
 
 
-## Unit testing the service layer
+## Testing the service layer
 
 The service layer in an NServiceBus application is made from message handlers. Each class typically handles one specific type of message. Testing these classes usually focuses on their externally visible behavior: the types of messages they send or reply with. This is as simple to test as could be expected:
 
@@ -39,7 +43,7 @@ snippet:TestingSaga
 
 ## Configuring unobtrusive message conventions
 
-If you are using [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md) you need to configure the unit test support with those conventions as shown below.
+In Versions 5 and below, if [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md) is used, it must be configured with those conventions as shown below.
 
 snippet:SetupConventionsForUnitTests
 
@@ -64,6 +68,9 @@ Many of the message handling classes in the service layer make use of other obje
 
 snippet:TestingAdditionalDependencies
 
+
 ## Constructor injected bus
+
+NOTE: In Versions 6 and higher, the `IBus` interface was deprecated and removed, and replaced with the contextual `IMessageHandlerContext` parameter on the `IHandleMessages<T>.Handle()` methods.
 
 snippet: ConstructorInjectedBus

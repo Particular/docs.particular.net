@@ -630,8 +630,6 @@
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transports\Throughput\Usage.cs" />
     <Compile Include="UnitTesting\AdditionalServices\Tests.cs" />
-    <Compile Include="UnitTesting\AdditionalServices\MyMessage.cs" />
-    <Compile Include="UnitTesting\AdditionalServices\MyService.cs" />
     <Compile Include="UnitTesting\HeaderManipulation\Tests.cs" />
     <Compile Include="UnitTesting\HeaderManipulation\RequestMessage.cs" />
     <Compile Include="UnitTesting\HeaderManipulation\ResponseMessage.cs" />
