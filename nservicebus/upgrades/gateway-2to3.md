@@ -23,4 +23,4 @@ snippet: 1to2GatewayConfig
 
 ## Notifications
 
-In version 2 the gateway does not expose any error notifications. When an error occurs during sending of a message to other sites, the message will be retried and possibly moved to the error queue but user will not be notified about these events.
+In versions 2 and above the gateway does not expose any error notifications. When an error occurs during sending of a message to other sites, the message will be retried and possibly moved to the error queue but user will not be notified about these events.
