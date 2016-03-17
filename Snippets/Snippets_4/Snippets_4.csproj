@@ -436,8 +436,6 @@
     <Compile Include="Transports\RabbitMQ_1\Usage.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transports\Throughput\Usage.cs" />
-    <Compile Include="UnitTesting\AdditionalServices\MyMessage.cs" />
-    <Compile Include="UnitTesting\AdditionalServices\MyService.cs" />
     <Compile Include="UnitTesting\HeaderManipulation\RequestMessage.cs" />
     <Compile Include="UnitTesting\HeaderManipulation\ResponseMessage.cs" />
     <Compile Include="UnitTesting\Saga\MyCommand.cs" />
