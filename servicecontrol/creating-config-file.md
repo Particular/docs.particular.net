@@ -105,7 +105,8 @@ This setting will default to `Warn` if an invalid value is assigned.
 
 
 #### ServiceControl/ExpirationProcessTimerInSeconds
-This setting is only applicable in Version 1.11.1 and below.
+
+This setting is only applicable in Versions 1.11.1 and below.
 
 The number of seconds to wait between checking for expired messages. 
 
@@ -115,7 +116,8 @@ Default: `600` (10 minutes). The default for Versions below 1.4 is `60` (1 minut
 
 
 #### ServiceControl/ExpirationProcessBatchSize
-This setting is only applicable in Version 1.11.1 and below.
+
+This setting is only applicable in Versions 1.11.1 and below.
 
 This setting was introduced in Version 1.4. The minimum allowed value for this settings is `10240`, there is no hard coded maximum as this is heavily dependent on system performance.
 
@@ -125,8 +127,10 @@ Default: `65512`.
 
 
 #### ServiceControl/HoursToKeepMessagesBeforeExpiring
-This setting is only applicable in Version 1.11.1 and below. 
-In higher versions this setting can now be set via ServiceControl/AuditRetentionPeriod.
+
+This setting is only applicable in Versiond 1.11.1 and below. 
+
+In higher versions this setting can now be set via `ServiceControl/AuditRetentionPeriod`.
 
 The number of hours to keep a message for before it is deleted.
 
@@ -138,8 +142,11 @@ In Versions 1.8.2 and below the valid range for this setting was `24` (1 day) th
 
 In Versions 1.8.3 and above the upper limit has been removed to allow for longer retention. This was done to allow customers with low volumes of messages to retain them longer. Setting this value too high can cause the embedded RavenDB to become large and unresponsive when indexing. See [Capacity and Planning](capacity-and-planning.md).
 
+
 #### ServiceControl/AuditRetentionPeriod
-This setting is only applicable from Version 1.12.0 and higher.
+
+This setting is only applicable from Versions 1.12.0 and higher.
+
 The period to keep an audit message for before it is deleted.
 
 Type: timespan
@@ -148,16 +155,21 @@ Default: There is no default. This settings needs to be specified.
 
 Valid range for this setting is minimum 1 hour and maximum 364 days.
 
+
 #### ServiceControl/ErrorRetentionPeriod
+
 This setting is only applicable from Version 1.12.0 and higher.
+
 The grace period that faulted messages are kept before they are deleted.
-For a message to be considered for deletion, they need to have a status of either Archived, RetryIssued or Resolved.
+
+For a message to be considered for deletion, it needs to have a status of either `Archived`, `RetryIssued` or `Resolved`.
 
 Type: timespan
 
 Default: There is no default. This settings needs to be specified. 
 
 Valid range for this setting is minimum 10 days and maximum 45 days.
+
 
 ## Performance Tuning
 
@@ -252,13 +264,18 @@ Use this setting to configure whether processed audit messages are forwarded to 
 Type: bool `true` or `false`
 
 Default: `false`. 
+
 In Versions 1.5 and above if this setting is not explicitly set to true or false a warning is shown in the logs at start up.
-In Versions 1.12.0 there is no default for this setting. This settings needs to be specified.
+
+In Versions 1.12.0 and above there is no default for this setting. This settings needs to be specified.
 
 See [Installation](installation.md) for details on how to set this at install time.
 
+
 #### ServiceControl/ForwardErrorMessages
-This setting is only applicable from Version 1.12.0 and higher.
+
+This setting is only applicable from Versions 1.12.0 and above.
+
 Use this setting to configure whether processed error messages are forwarded to another queue or not.
 
 Type: bool `true` or `false`

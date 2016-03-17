@@ -14,13 +14,17 @@ ServiceControl can also forward these messages to two forwarding queues.
 * Error messages are optionally forwarded to the Error forwarding queue.
 * Audit messages are optionally forwarded to the Audit forwarding queue. 
 
-This behavior can be toggled through the ServiceControl Management utility or by directly changing the  `ServiceControl/ForwardAuditMessages` or `ServiceControl/ForwardErrorMessages` settings. Refer to [Customizing ServiceControl Configuration](creating-config-file.md#transport) for more details. 
+This behavior can be toggled through the ServiceControl Management utility or by directly changing the  `ServiceControl/ForwardAuditMessages` or `ServiceControl/ForwardErrorMessages` settings. See also [Customizing ServiceControl Configuration](creating-config-file.md#transport).
+
 
 ### Error and Audit Forwarding Queues 
 
 The forwarding queues retain a copy of the original messages ingested by ServiceControl.
+
 The queues are not directly managed by ServiceControl and are meant as points of external integration.
+
 Note: If you do not have any external integration, we highly recommend turning these off.
+
 
 ### Changing the queues name manually and default naming
 

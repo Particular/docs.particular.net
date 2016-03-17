@@ -1,6 +1,9 @@
 ---
 title: Automatic Expiration of ServiceControl Data
 summary: Configuring ServiceControl data retention
+related:
+ - nservicebus/errors
+ - nservicebus/operations/auditing
 tags:
 - ServiceControl
 - Expiration
