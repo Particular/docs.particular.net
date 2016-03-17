@@ -1,6 +1,7 @@
 ---
 title: Management using PowerShell
-summary: 'Install the infrastructure for NServiceBus on servers using PowerShell. '
+summary: Install the infrastructure for NServiceBus on servers using PowerShell.
+reviewed: 2016-03-17
 tags:
 - PowerShell
 - Cmdlets
@@ -13,12 +14,12 @@ Particular provides a PowerShell module to make it easy to setup a computer to r
 
 The PowerShell module provides cmdlets to assist with:
 
-- Installing Microsoft Message Queuing Service (MSMQ)
-- Configuring Microsoft Distributed Transaction Coordinator (MSDTC)
-- Installing performance counters for NServiceBus
-- Setting the addresses of the default Error and Audit queues for use by deployed Endpoints
-- Importing a Particular Platform license into the Registry
-- Removing a worker from a [Distributor](/nservicebus/scalability-and-ha/distributor/)
+ * Installing Microsoft Message Queuing Service (MSMQ)
+ * Configuring Microsoft Distributed Transaction Coordinator (MSDTC)
+ * Installing performance counters for NServiceBus
+ * Setting the addresses of the default Error and Audit queues for use by deployed Endpoints
+ * Importing a Particular Platform license into the Registry
+ * Removing a worker from a [Distributor](/nservicebus/scalability-and-ha/distributor/)
 
 
 ## Prerequisites
@@ -39,7 +40,7 @@ After installation the module can be loaded into a PowerShell session by issuing
 
 	Import-Module NServiceBus.PowerShell
 
-The installation adds the NServiceBus.PowerShell module location to the `PSModulePath` environment variable. If the module isn't available you may need to restart your Windows session for this change to to take effect.
+The installation adds the NServiceBus.PowerShell module location to the `PSModulePath` environment variable. If the module isn't available a restart the Windows session may be required for this change to to take effect.
 
 As most of the cmdlets require elevated privileges the module should be used in a PowerShell session that has been `Run As Administrator`.
 
@@ -82,7 +83,7 @@ For RavenDB installation instructions review [Installing RavenDB](/nservicebus/r
 
 
 ### Licensing
-  
+
 Version 5 of the PowerShell module includes a commandlet for importing a Particular Platform License. This will work for NServiceBus versions 4. To install a license for versions prior to NServiceBus Version 4.5 then an alternative method should be used. See [License Management](/nservicebus/licensing/license-management.md).
 
 

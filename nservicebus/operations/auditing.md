@@ -1,21 +1,23 @@
 ---
 title: Auditing Messages
-summary: 'Tell NServiceBus where to send messages and it provides built-in message auditing for every endpoint'
+summary: Configure where to send messages and it provides built-in message auditing for every endpoint.
+reviewed: 2016-03-17
 tags:
 - Auditing
 - Forwarding Messages
 redirects:
 - nservicebus/auditing-with-nservicebus
+- nservicebus/messaging/headers
 ---
 
-The distributed nature of parallel message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Just tell NServiceBus that you want auditing and it will capture a copy of every received message and forward it to a specified audit queue.
+The distributed nature of parallel message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Configure NServiceBus to audit and it will capture a copy of every received message and forward it to a specified audit queue.
 
-It is recommended that you specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). By doing so you can take advantage of central auditing within a distributed system. This is also required by the Particular Service Platform and especially [ServiceControl](/servicecontrol), which consumes messages from these auditing queues. For more information, see [ServicePulse documentation](/servicepulse/).
+It is recommended to specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). By doing so central auditing within a distributed system can be taken advantage of. This is also required by the Particular Service Platform and especially [ServiceControl](/servicecontrol), which consumes messages from these auditing queues. For more information, see [ServicePulse documentation](/servicepulse/).
 
 
 ## Handling Audit messages
 
-What you choose to do with those messages is now up to you: save them in a database, do custom logging, etc. The important thing is that once you read the messages from the audit queue and process them, you have a centralized record of everything that is happening in your system while maintaining all the benefits of keep things distributed.  It is important not to leave the messages in the audit queue however, as most queueing technologies have upper-bound limits on their queue sizes and depth. By not processing these messages you may find yourself reaching the limits of the underlying queue technology.
+Those audit messages can then be handles as needed: save them in a database, do custom logging, etc. The important thing is that once a message is from the audit queue and process them, a centralized record of everything that is happening in the system while maintaining all the benefits of keep things distributed.  It is important not to leave the messages in the audit queue however, as most queueing technologies have upper-bound limits on their queue sizes and depth. By not processing these messages the limits of the underlying queue technology may be reached.
 
 
 ## Audit configuration options
@@ -30,7 +32,7 @@ The queue name to forward audit messages to
 
 ### OverrideTimeToBeReceived
 
-You can force a [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) on audit messages by setting `OverrideTimeToBeReceived` using the configuration syntax below.
+To force a [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) on audit messages by setting `OverrideTimeToBeReceived` use the configuration syntax below.
 
 Note that while the phrasing is "forwarding a message" in the implementation it is actually "cloning and sending a new message". This is important when considering TimeToBeReceived since the time taken to receive and process the original message is not part of the TimeToBeReceived of the new audit message. So in effect the audit message receives the full time allotment of whatever TimeToBeReceived is used.
 
@@ -39,9 +41,9 @@ Note that while the phrasing is "forwarding a message" in the implementation it 
 
 If no OverrideTimeToBeReceived is defined then:
 
-**Version 5 and below**: TimeToBeReceived of the original message will be used.
+**Versions 5 and below**: TimeToBeReceived of the original message will be used.
 
-**Version 6 and above**: No TimeToBeReceived will be set.
+**Versions 6 and above**: No TimeToBeReceived will be set.
 
 
 ## Configuring auditing
@@ -49,7 +51,7 @@ If no OverrideTimeToBeReceived is defined then:
 
 ### Using Code
 
-You can configure the target audit queue using the configuration API.
+Configure the target audit queue using the configuration API.
 
 snippet:AuditWithCode
 
@@ -70,7 +72,7 @@ snippet:AuditProvideConfiguration
 
 ## Machine level configuration
 
-Version 4 and above support setting the error queue and the audit queue at the machine level in the registry. Use the [Set-NServiceBusLocalMachineSettings](management-using-powershell.md) PowerShell commandlet to set these values at a machine level. When set at machine level, the setting is not required in the endpoint configuration file for messages to be forwarded to the audit queue.
+Versions 4 and above support setting the error queue and the audit queue at the machine level in the registry. Use the [Set-NServiceBusLocalMachineSettings](management-using-powershell.md) PowerShell commandlet to set these values at a machine level. When set at machine level, the setting is not required in the endpoint configuration file for messages to be forwarded to the audit queue.
 
 
 ## Turning off auditing
@@ -88,4 +90,4 @@ If running 64 bit, in addition to the above, also clear the value for `AuditQueu
 
 ## Message headers
 
-All headers, from the message being forwarded, will be included in the message sent to the audit queue. There are also some custom audit headers appended. See [Message Headers](/nservicebus/operations/auditing.md) for more information.
+All headers, from the message being forwarded, will be included in the message sent to the audit queue. There are also some custom audit headers appended.

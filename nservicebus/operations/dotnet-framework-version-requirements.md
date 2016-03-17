@@ -1,15 +1,27 @@
 ---
-title: .Net Framework requirements
-summary: List of the .Net Framework requirements for NServiceBus
+title: .NET Framework requirements
+summary: List of the .NET Framework requirements for NServiceBus.
+reviewed: 2016-03-17
 tags:
 redirects:
  - nservicebus/nservicebus-net-framework-version-requirements
 ---
 
-NServiceBus Version 6.x requires .Net Framework Version 4.5.1
+### NServiceBus Version 6.x 
 
-NServiceBus Version 5.x requires .Net Framework Version 4.5
+Requires [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642)
 
-NServiceBus Version 3.x and 4.x requires .Net Framework Version 4.0
 
-NServiceBus Version 3.x requires .Net Framework Version 3.5
+### NServiceBus Version 5.x 
+
+Requires [.NET Framework Version 4.5](https://www.microsoft.com/en-au/download/details.aspx?id=30653)
+
+
+### NServiceBus Version 3.x and 4.x 
+
+Requires [.NET Framework Version 4.0](https://www.microsoft.com/en-au/download/details.aspx?id=17851)
+
+
+### NServiceBus Version 3.x requires 
+
+Requires [.NET Framework Version 3.5](https://www.microsoft.com/en-au/download/details.aspx?id=21)

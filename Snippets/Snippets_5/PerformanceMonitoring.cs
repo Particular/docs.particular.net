@@ -8,18 +8,18 @@
 
         public void EnablingCriticalTime()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region enable-criticaltime
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EnableCriticalTimePerformanceCounter();
 
             #endregion
         }
         public void EnablingSla()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region enable-sla
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
 
             #endregion

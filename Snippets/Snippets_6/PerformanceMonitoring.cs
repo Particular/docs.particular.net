@@ -8,18 +8,18 @@
 
         public void EnablingCriticalTime()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region enable-criticaltime
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.EnableCriticalTimePerformanceCounter();
 
             #endregion
         }
         public void EnablingSla()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region enable-sla
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
 
             #endregion
