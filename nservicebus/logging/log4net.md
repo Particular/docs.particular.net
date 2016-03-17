@@ -1,6 +1,7 @@
 ---
 title: Routing to Log4Net
-summary: Route all NServiceBus log entries to Log4Net
+summary: Route all NServiceBus log entries to Log4Net.
+reviewed: 2016-03-17
 tags:
 - log4net
 related:
@@ -27,7 +28,7 @@ snippet:Log4netInCode
 
 ## Filtering
 
-If NServiceBus writes a significant amount of information to the log. To limit this information you can use the filtering features of the underlying logging framework.
+If NServiceBus writes a significant amount of information to the log. To limit this information use the filtering features of the underlying logging framework.
 
 For example to limit log output to a specific namespace.
 

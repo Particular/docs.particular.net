@@ -1,6 +1,7 @@
 ---
 title: Logging in NServiceBus
-summary: How to manage and integrate with NServiceBus logging.
+summary: Manage and integrate with NServiceBus logging.
+reviewed: 2016-03-17
 tags:
 - Logging
 redirects:
@@ -19,7 +20,7 @@ The default logging behavior is as follows:
 
 ### Version 3 and 4 Defaults
 
-In these versions default logging was only enabled in the NServiceBus Host. For self hosting you must [enable the logging yourself using code](log4net.md).
+In these versions default logging was only enabled in the NServiceBus Host. For self hosting [enable the logging using code](log4net.md).
 
 See [NServiceBus Host Profiles](/nservicebus/hosting/nservicebus-host/profiles.md) for the default logging in the NServiceBus Host.
 
@@ -91,7 +92,7 @@ snippet:LoggingThresholdFromIProvideConfiguration
 
 snippet:OverrideLoggingLevelInCode
 
-The above API is only available in Version 5 and above. In earlier versions you can achieve the same by taking full control over the [Log4Net integration](log4net.md).
+The above API is only available in Versions 5 and above. In earlier versions the same can be achieved by taking full control over the [Log4Net integration](log4net.md).
 
 
 ## Changing the defaults
@@ -99,18 +100,18 @@ The above API is only available in Version 5 and above. In earlier versions you 
 
 ### Changing settings via code
 
-With code you can configure both the Level and the logging directory. To do this, use the `LogManager` class.
+With code both the Level and the logging directory can be configured. To do this, use the `LogManager` class.
 
 snippet:OverrideLoggingDefaultsInCode
 
-Ensure you do this before any bus configuration is done.
+Do this before any bus configuration is done.
 
-In earlier versions you can achieve the same by taking full control over the [Log4Net integration](log4net.md).
+In earlier versions the same can be achieved by taking full control over the [Log4Net integration](log4net.md).
 
 
 ## Custom Logging
 
-For more advanced logging, it is recommended that you utilize one of the many mature logging libraries available for .Net.
+For more advanced logging, it is recommended to utilize one of the many mature logging libraries available for .Net.
 
  * [Log4Net integration](log4net.md)
  * [NLog integration](nlog.md)
@@ -121,8 +122,8 @@ Note: Moving to custom logging means none of the approaches used in the above [D
 
 ### When to configure logging
 
-It is important to configure logging before any bus configuration is done since logging is configured in the static context of each NServiceBus class. So it should be configured at the startup of your app. For example
+It is important to configure logging before any bus configuration is done since logging is configured in the static context of each NServiceBus class. So it should be configured at the startup of the app. For example
 
  * At the start of the `Main` of a console app or windows service.
  * At the start of the constructor of the class that implements `IConfigureThisEndpoint` when using [NServiceBus.Host](/nservicebus/hosting/nservicebus-host/).
- * At the start of your `Global.Application_Start` in a asp.net application.
+ * At the start of the `Global.Application_Start` in a asp.net application.

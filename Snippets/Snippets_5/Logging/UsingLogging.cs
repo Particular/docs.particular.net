@@ -10,7 +10,6 @@
 
         public void SomeMethod()
         {
-            //your code
             logger.Debug("Something interesting happened.");
         }
     }

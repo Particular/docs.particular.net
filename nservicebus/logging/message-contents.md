@@ -1,6 +1,7 @@
 ---
 title: Logging message contents
 summary: How to output message contents to the log
+reviewed: 2016-03-17
 tags:
 - Logging
 redirects:

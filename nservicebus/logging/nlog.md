@@ -1,6 +1,7 @@
 ---
 title: Routing to NLog
-summary: Route all NServiceBus log entries to NLog
+summary: Route all NServiceBus log entries to NLog.
+reviewed: 2016-03-17
 tags:
 - Logging
 - nlog
@@ -20,7 +21,7 @@ snippet:NLogInCode
 
 ## Filtering
 
-If NServiceBus writes a significant amount of information to the log. To limit this information you can use the filtering features of the underlying logging framework.
+If NServiceBus writes a significant amount of information to the log. To limit this information use the filtering features of the underlying logging framework.
 
 For example to limit log output to a specific namespace.
 

@@ -1,6 +1,7 @@
 ---
 title: Routing to CommonLogging
-summary: Route all NServiceBus log entries to CommonLogging
+summary: Route all NServiceBus log entries to CommonLogging.
+reviewed: 2016-03-17
 tags:
 - Common Logging
 related:

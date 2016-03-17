@@ -9,7 +9,6 @@
         static ILog logger = LogManager.GetLogger(typeof(ClassUsingLogging));
         public void SomeMethod()
         {
-            //your code
             logger.Debug("Something interesting happened.");
         }
     }
