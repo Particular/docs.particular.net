@@ -7,9 +7,9 @@
     {
         public void Simple()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region Spring
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseContainer<SpringBuilder>();
 
             #endregion
@@ -18,9 +18,9 @@
         public void Existing()
         {
 
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region Spring_Existing
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             GenericApplicationContext applicationContext = new GenericApplicationContext();
             applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
             busConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));

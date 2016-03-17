@@ -1,6 +1,7 @@
 ---
 title: Castle Windsor
-summary: How to configure NServiceBus to use Castle Windsor as a container.
+summary: Configure NServiceBus to use Castle Windsor as a container.
+reviewed: 2016-03-17
 tags:
 - Dependency Injection
 - IOC
@@ -32,4 +33,3 @@ snippet:CastleWindsor
 #### Existing Container Instance
 
 snippet:CastleWindsor_Existing
-

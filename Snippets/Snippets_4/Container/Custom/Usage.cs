@@ -7,9 +7,9 @@
     {
         public Usage()
         {
+            Configure configure = Configure.With();
             #region CustomContainers
 
-            Configure configure = Configure.With();
             //Create a class that implements 'IContainer'
             configure.UsingContainer<MyCustomObjectBuilder>();
 

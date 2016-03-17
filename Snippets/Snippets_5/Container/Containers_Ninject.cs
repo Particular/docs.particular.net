@@ -7,9 +7,9 @@
     {
         public void Simple()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region Ninject
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseContainer<NinjectBuilder>();
 
             #endregion
@@ -17,9 +17,9 @@
 
         public void Existing()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region Ninject_Existing
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             StandardKernel kernel = new StandardKernel();
             kernel.Bind<MyService>().ToConstant(new MyService());
             busConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));

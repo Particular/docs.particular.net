@@ -1,7 +1,6 @@
 ---
 title: Using IBus in a Message Handler
 summary: Use setter injection or constructor injection.
-tags: []
 redirects:
  - nservicebus/how-do-i-get-a-reference-to-ibus-in-my-message-handler
 ---

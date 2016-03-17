@@ -12,7 +12,6 @@
         public void CustomContainerExtensionUsage()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
-            //Register the container in the configuration with '.UseContainer<T>()'
             busConfiguration.UseContainer<MyContainer>();
         }
 

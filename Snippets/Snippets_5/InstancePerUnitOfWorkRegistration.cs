@@ -8,9 +8,9 @@
     {
         public void Simple()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region InstancePerUnitOfWorkRegistration
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<MyUnitOfWork>(DependencyLifecycle.InstancePerCall));
 
             #endregion

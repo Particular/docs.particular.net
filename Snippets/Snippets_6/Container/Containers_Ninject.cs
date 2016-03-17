@@ -8,9 +8,9 @@
     {
         public void Simple()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Ninject
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseContainer<NinjectBuilder>();
 
             #endregion
@@ -18,9 +18,9 @@
 
         public void Existing()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Ninject_Existing
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             StandardKernel kernel = new StandardKernel();
             kernel.Bind<MyService>().ToConstant(new MyService());
             endpointConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));

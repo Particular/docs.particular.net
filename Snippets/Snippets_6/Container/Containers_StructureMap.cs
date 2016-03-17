@@ -7,9 +7,9 @@
     {
         public void Simple()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region StructureMap
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseContainer<StructureMapBuilder>();
 
             #endregion
@@ -17,9 +17,9 @@
 
         public void Existing()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region StructureMap_Existing
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             Container container = new Container(x => x.For<MyService>().Use(new MyService()));
             endpointConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));

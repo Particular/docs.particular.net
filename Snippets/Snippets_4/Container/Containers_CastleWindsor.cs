@@ -8,9 +8,9 @@
     {
         public void Simple()
         {
+            Configure configure = Configure.With();
             #region CastleWindsor
 
-            Configure configure = Configure.With();
             configure.CastleWindsorBuilder();
 
             #endregion
@@ -18,9 +18,9 @@
 
         public void Existing()
         {
+            Configure configure = Configure.With();
 
             #region CastleWindsor_Existing
-            Configure configure = Configure.With();
             WindsorContainer container = new WindsorContainer();
             container.Register(Component.For<MyService>().Instance(new MyService()));
             configure.CastleWindsorBuilder(container);

@@ -7,9 +7,9 @@
     {
         public void Simple()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region StructureMap
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseContainer<StructureMapBuilder>();
 
             #endregion
@@ -17,9 +17,9 @@
 
         public void Existing()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region StructureMap_Existing
 
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             Container container = new Container(x => x.For<MyService>().Use(new MyService()));
             busConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));

@@ -1,6 +1,7 @@
 ---
 title: Unity
-summary: How to configure NServiceBus to use Unity as a container.
+summary: Configuring NServiceBus to use Unity as a container.
+reviewed: 2016-03-17
 tags:
 - Dependency Injection
 - IOC

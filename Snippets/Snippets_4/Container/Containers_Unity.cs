@@ -7,9 +7,9 @@
     {
         public void Simple()
         {
+            Configure configure = Configure.With();
             #region Unity
 
-            Configure configure = Configure.With();
             configure.UnityBuilder();
 
             #endregion
@@ -18,9 +18,9 @@
         public void Existing()
         {
 
-            #region Unity_Existing
 
             Configure configure = Configure.With();
+            #region Unity_Existing
             UnityContainer container = new UnityContainer();
             container.RegisterInstance(new MyService());
             configure.UnityBuilder(container);

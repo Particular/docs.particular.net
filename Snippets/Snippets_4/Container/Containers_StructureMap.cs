@@ -7,9 +7,9 @@
     {
         public void Simple()
         {
+            Configure configure = Configure.With();
             #region StructureMap
 
-            Configure configure = Configure.With();
             configure.StructureMapBuilder();
 
             #endregion
@@ -17,8 +17,8 @@
 
         public void Existing()
         {
-            #region StructureMap_Existing
             Configure configure = Configure.With();
+            #region StructureMap_Existing
             Container container = new Container(x => x.For<MyService>().Use(new MyService()));
             configure.StructureMapBuilder(container);
             #endregion

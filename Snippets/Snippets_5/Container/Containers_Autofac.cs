@@ -7,9 +7,9 @@
     {
         public void Simple()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region Autofac
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseContainer<AutofacBuilder>();
 
             #endregion
@@ -17,9 +17,9 @@
 
         public void Existing()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region Autofac_Existing
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterInstance(new MyService());
             IContainer container = builder.Build();

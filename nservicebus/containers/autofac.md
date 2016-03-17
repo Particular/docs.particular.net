@@ -1,6 +1,7 @@
 ---
 title: Autofac
-summary: How to configure NServiceBus to use Autofac as a container.
+summary: Configure NServiceBus to use Autofac as a container.
+reviewed: 2016-03-17
 tags:
 - Dependency Injection
 - IOC

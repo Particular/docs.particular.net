@@ -17,12 +17,12 @@
 
         public void Existing()
         {
+            Configure configure = Configure.With();
             #region Autofac_Existing
 
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterInstance(new MyService());
             IContainer container = builder.Build();
-            Configure configure = Configure.With();
             configure.AutofacBuilder(container);
 
             #endregion

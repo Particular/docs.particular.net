@@ -7,9 +7,9 @@
     {
         public void Simple()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Autofac
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseContainer<AutofacBuilder>();
 
             #endregion
@@ -17,9 +17,9 @@
 
         public void Existing()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Autofac_Existing
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterInstance(new MyService());
             IContainer container = builder.Build();

@@ -8,9 +8,9 @@
     {
         public void Simple()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region CastleWindsor
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseContainer<WindsorBuilder>();
 
             #endregion
@@ -19,12 +19,10 @@
         public void Existing()
         {
 
-            #region CastleWindsor_Existing
-
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            #region CastleWindsor_Existing
             WindsorContainer container = new WindsorContainer();
             container.Register(Component.For<MyService>().Instance(new MyService()));
-
             endpointConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
             #endregion
         }
