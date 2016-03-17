@@ -12,13 +12,11 @@ Service-oriented architecture (SOA) and event-driven architecture together provi
 
 Strategic Domain-Driven Design helps bridge the business/IT divide and drives the choice of business events published using NServiceBus.
 
-
 ## How NServiceBus aligns with SOA
 
 <iframe src="//fast.wistia.net/embed/iframe/6g70txthct" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="480"></iframe>
 
 In this presentation, Udi Dahan explains the disadvantages of classical web services thinking that places services at a layer below the user interface and above the business logic. Instead, he describes an approach that cuts across all layers of an application, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
-
 
 ## Drilling down into details
 
@@ -32,21 +30,19 @@ The communications pattern that enables robustness is one-way messaging, also kn
 
 Since the amount of time it can take to communicate with another machine across the network is both unknown and unbounded, communications are based on a store-and-forward model, as shown in the following figure.
 
-
 ### Store and forward messaging
 
-![Store and Forward Messaging](./store-and-forward.png)
+![Store and Forward Messaging](store-and-forward.png)
 
 In this model, when the client process calls an API to send a message to the server process, the API returns control to the calling thread before the message is sent. At that point, the transfer of the message across the network becomes the responsibility of the messaging technology. There may be various kinds of communications interference, the server machine may be down, or a firewall may be slowing down the transfer. Also, even though the message may have reached the target machine, the target process may currently be down.
 
 While all of this is going on, the client process is oblivious. Critical resources like threads (and it's allocated memory) are not held waiting for the call to complete. This prevents the client process from losing stability as a result of having many threads and all their memory used up waiting for a response from the other machine or process.
 
-
 ### Request/response and one-way messaging
 
 The common pattern of Request/Response, which is more accurately described as Synchronous Remote Procedure Call, is handled differently when using one way messaging. Instead of letting the stack of the calling thread manage the state of the communications interaction, it is done explicitly. From a network perspective, request/response is just two one-way interactions, as shown in the next figure.
 
-![Full duplex Request-Response messaging](./full-duplex-messaging.png)
+![Full duplex Request-Response messaging](full-duplex-messaging.png)
 
 This communication is especially critical for servers as clients behind problematic network connections now have little effect on the server's stability. If a client crashes between the time that it sent the request until the server sends a response, the server will not have resources tied up waiting minutes and minutes until the connection times out.
 
@@ -56,11 +52,9 @@ Durable messaging differs from regular store-and-forward messaging in that the m
 
 A different communication style involves one-to-many communication.
 
-
 ### Publish/subscribe
 
 In this style, the sender of the message often does not know the specifics of those that wish to receive the message. This additional loose coupling comes at the cost of subscribers explicitly opting-in to receiving messages, as shown in the following diagram.
-
 
 #### Subscriptions
 
@@ -75,10 +69,9 @@ Subscribers don't necessarily have to subscribe themselves. Through the use of t
 
 Another option that can be used is for multiple physical subscribers to make themselves appear as one single logical subscriber. This makes it possible to load balance the handling of messages between multiple physical subscribers without any explicit coordination on the part of the publisher or the part of any one subscriber. All that is needed is for all subscribers to specify the same return address in the subscription message.
 
-
 #### Publishing
 
-![Publishing process](./publish.png)
+![Publishing process](publish.png)
 
 Publishing a message involves having the message arrive at all endpoints that previously subscribed to that type of message.
 
@@ -88,7 +81,6 @@ Since many command messages can be received in a short period of time, publishin
 
 Another advantage of publishing messages on a timer is that that activity can be offloaded from the endpoint/server processing command messages, effectively scaling out over more servers.
 
-
 ### Command query separation
 
 Many systems provide users with the ability to search, filter, and sort data. While one-way messaging and publish/subscribe are core components of the implementation of these features, the way they are combined is not at all like a regular client-server request/response.
@@ -97,6 +89,6 @@ In regular client-server development, the server provides the client with all CR
 
 A solution that avoids this problem separates commands and queries at the system level, even above that of client and server. In this solution there are two "services" that span both client and server: one in charge of commands (create, update, delete), and the other in charge of queries (read). These services communicate only via messages; one cannot access the database of the other, as shown in the following diagram:
 
-![Command Query Separation](./cqs.png)
+![Command Query Separation](cqs.png)
 
 The command service publishes messages about changes to data, to which the query service subscribes. When the query service receives such notifications, it saves the data in its own data store which may well have a different schema (optimized for queries like a star schema). The query service may also keep all data in memory if the data is small enough.
