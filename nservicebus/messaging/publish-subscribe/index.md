@@ -1,6 +1,7 @@
 ---
 title: Publish-Subscribe
 summary: Subscribers tell the publisher they are interested. Publishers store addresses for sending messages.
+reviewed: 2016-03-17
 tags:
 - Publish Subscribe
 - Messaging Patterns
@@ -37,7 +38,7 @@ Note: For simplicity these explanations refer to specific endpoints as "Subscrib
 
 ### Persistence Based
 
-Persistence based publish-subscribe is driven by *subscribe* and *unsubscribe* messages sent by the subscriber to the publisher and relies on the publisher having access to a location to store the connection between message types and their subscribers.
+Persistence based publish-subscribe is driven by *subscribe* and *unsubscribe* control messages sent by the subscriber to the publisher and relies on the publisher having access to a location to store the connection between message types and their subscribers.
 
 Available subscription persistences include
 
@@ -71,7 +72,7 @@ Subscriber2->Publisher: Subscribe to Message1
 Publisher->Persistence: Store "Subscriber2\nwants Message1"
 -->
 
-NOTE: In version 5 and below the *subscribe* message contains only the transport address of the subscriber. In version 6 and above the message contains also the information about the logical endpoint which is requesting the subscription. This information allows version 6 endpoints to publish events to scaled out MSMQ endpoints without the need for a distributor in the middle. Unfortunately since version 5 endpoints are not aware of this information, they require a distributor to be placed in front of a scaled out endpoint in order to maintain the correct semantics of event messages (being delivered to a single instance of an endpoint).
+NOTE: In Versions 5 and below the *subscribe* message contains only the transport address of the subscriber. In Versions 6 and above the message contains also the information about the logical endpoint which is requesting the subscription. This information allows Version 6 and above endpoints to publish events to scaled out MSMQ endpoints without the need for a distributor in the middle. Unfortunately since Version 5 and below endpoints are not aware of this information, they require a distributor to be placed in front of a scaled out endpoint in order to maintain the correct semantics of event messages (being delivered to a single instance of an endpoint).
 
 ![](mechanics-persistence-subscribe.svg)
 
@@ -80,7 +81,7 @@ NOTE: In version 5 and below the *subscribe* message contains only the transport
 
 The publish workflow for persistence based transports is as follows
 
- 1. Some code (eg a saga or a handler) request that a message be published.
+ 1. Some code (e.g. a saga or a handler) request that a message be published.
  1. Publisher queries the storage for a list of subscribers.
  1. Publisher loops through the list and sends a copy of that message to each subscriber.
 
@@ -96,7 +97,6 @@ Publisher->Subscriber2: Send Message1
 -->
 
 ![](mechanics-persistence-publish.svg)
-
 
 
 ### Native Based
@@ -135,7 +135,7 @@ Subscriber2->Broker: Subscribe to Message1
 
 The publish workflow for native transports is as follows
 
- 1. Some code (eg a saga or a handler) request that a message be published.
+ 1. Some code (e.g. a saga or a handler) request that a message be published.
  1. Publisher sends the message to the Broker.
  1. Broker sends a copy of that message to each subscriber.
 

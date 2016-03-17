@@ -1,6 +1,7 @@
 ---
 title: Scaling out NServiceBus endpoints
-summary: How to scale out NServiceBus endpoints
+summary: How to scale out NServiceBus endpoints.
+reviewed: 2016-03-17
 tags:
 - Scale Out
 - Routing
@@ -8,7 +9,7 @@ tags:
 
 ## Versions 5 and below
 
-In Version 5 and below NServiceBus scale out capabilities are dependent on the transport being used.
+In Versions 5 and below NServiceBus scale out capabilities are dependent on the transport being used.
 
 
 ### MSMQ
@@ -55,6 +56,7 @@ snippet:Routing-StaticRoutes-Endpoint-Msmq
 
 
 WARNING: When using this scaling out technique in a mixed version environment make sure to deploy a distributor in front of the scaled out version 6 endpoint if that endpoint needs to subscribe to events published by endpoints using versions lower than 6 (refer to [the distributor sample](/samples/scaleout/distributor/) for details). Otherwise each event will be delivered to every instance of the scaled out endpoint.
+
 
 ### Broker transports
 
