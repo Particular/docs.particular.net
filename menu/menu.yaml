@@ -32,7 +32,7 @@
         - "nservicebus/messaging/send-a-message"
         - "nservicebus/messaging/forwarding"
         - "nservicebus/messaging/batched-dispatch"
-        - "nservicebus/endpoint/specify-input-queue-name"
+        - "nservicebus/endpoints/specify-input-queue-name"
         - "nservicebus/messaging/routing"
         - "nservicebus/messaging/message-owner"
         - "nservicebus/messaging/unobtrusive-mode"

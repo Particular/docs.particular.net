@@ -30,12 +30,12 @@ The payload of the message is also called the body. It travels between the endpo
 Additional information about a message is communicated over the transport in a collection of key value pairs. Message headers are similar to HTTP headers in the sense that they define how messages should be transmitted and processed. NServiceBus uses headers to implement some of its features. Users are also able to add [custom headers](/nservicebus/messaging/header-manipulation.md).
 
 
-### [Endpoint](/nservicebus/endpoint/)
+### [Endpoint](/nservicebus/endpoints/)
 
 An Endpoint is a logical entity that communicates with other Endpoints via messaging. Each Endpoint has an identifying name and contains a collection of Message Handlers and Sagas. An Endpoint can be deployed to a number of machines and environments. Each deployment of an endpoint is an instance.
 
 
-### [Endpoint Instance](/nservicebus/endpoint/)
+### [Endpoint Instance](/nservicebus/endpoints/)
 
 An Endpoint Instance is a run-time object that allows interaction with the bus. Endpoint Instances are able to send, receive and publish messages. It runs associated Message Handlers and Sagas to process incoming messages. An Endpoint Instance has a single Input Queue.
 
@@ -50,7 +50,7 @@ The act of Hosting refers to running an Endpoint Instance in some process. This 
 The Transport is the mechanism that NServiceBus Endpoint Instances use to communicate with each other. NServiceBus supports many different transports in a pluggable manner. For Endpoint Instances to communicate they need to share a common Transport technology.
 
 
-### [Input Queue](/nservicebus/endpoint/specify-input-queue-name.md)
+### [Input Queue](/nservicebus/endpoints/specify-input-queue-name.md)
 
 Each endpoint instance is assigned a single Input Queue. This queue can be shared among instances of same Endpoint but never with other Endpoints.
 
