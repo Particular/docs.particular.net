@@ -1,5 +1,5 @@
 ---
-title: Endpoint
+title: Endpoints
 summary: Describe the concepts of Endpoint and Endpoint Instance.
 reviewed: 2016-03-17
 tags:
@@ -7,6 +7,8 @@ tags:
 - Endpoint Instance
 related:
  - samples/endpoint-configuration
+redirects:
+- nservicebus/endpoint
 ---
 
 An Endpoint is a logical entity that communicates with other Endpoints via [Messaging](/nservicebus/messaging). Each Endpoint has an identifying name and contains a collection of [Message Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/). An Endpoint can be deployed to a number of machines and environments. Each deployment of an endpoint is an instance. Each Endpoint Instance has an [Input Queue](/nservicebus/endpoint/specify-input-queue-name.md) which contains messages for the Endpoint Instance to process. 
