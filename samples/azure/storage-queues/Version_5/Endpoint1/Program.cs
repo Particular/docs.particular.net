@@ -7,9 +7,9 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.Azure.StorageQueues.Endpoint1";
+        BusConfiguration busConfiguration = new BusConfiguration();
         #region config
 
-        BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Azure.StorageQueues.Endpoint1");
         busConfiguration.UseTransport<AzureStorageQueueTransport>();
 
