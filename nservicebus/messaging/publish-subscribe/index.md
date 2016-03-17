@@ -37,7 +37,7 @@ Note: For simplicity these explanations refer to specific endpoints as "Subscrib
 
 ### Persistence Based
 
-Persistence based publish-subscribe relies on the publisher having access to a location to store the connection between message types and their subscribers.
+Persistence based publish-subscribe is driven by *subscribe* and *unsubscribe* messages sent by the subscriber to the publisher and relies on the publisher having access to a location to store the connection between message types and their subscribers.
 
 Available subscription persistences include
 
@@ -70,6 +70,8 @@ Publisher->Persistence: Store "Subscriber1\nwants Message1"
 Subscriber2->Publisher: Subscribe to Message1
 Publisher->Persistence: Store "Subscriber2\nwants Message1"
 -->
+
+NOTE: In version 5 and below the *subscribe* message contains only the transport address of the subscriber. In version 6 and above the message contains also the information about the logical endpoint which is requesting the subscription. This information allows version 6 endpoints to publish events to scaled out MSMQ endpoints without the need for a distributor in the middle. Unfortunately since version 5 endpoints are not aware of this information, they require a distributor to be placed in front of a scaled out endpoint in order to maintain the correct semantics of event messages (being delivered to a single instance of an endpoint).
 
 ![](mechanics-persistence-subscribe.svg)
 
