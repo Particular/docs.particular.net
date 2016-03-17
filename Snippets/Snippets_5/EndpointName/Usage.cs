@@ -6,9 +6,9 @@
     {
         public Usage()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region EndpointNameCode
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName("MyEndpoint");
         
             #endregion

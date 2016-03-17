@@ -1,18 +1,20 @@
 ---
 title: Gateway And Scale-Out
 summary: How the Gateway handles Scale-Out
-tags: []
+reviewed: 2016-03-17
 related:
  - samples/gateway
 ---
 
 Due to specifics of the protocol used, the gateway is designed to run on at most one instance of each endpoint. Depending on the transport there are different strategies for designating a gateway hosting endpoint instance:
 
+
 ### MSMQ scaled-out with the distributor
 
 When scaling out MSMQ through the [distributor](/nservicebus/scalability-and-ha/distributor), the node running the distributor is the natural candidate to host the gateway. Running the distributor as [a clustered service on a Windows Failover Cluster](/nservicebus/scalability-and-ha/deploying-to-a-windows-failover-cluster.md) provides High Availability (HA). No special action needs to be taken, other than configuring senders to send gateway HTTP traffic to the node running the distributor instead of directly to the workers.
 
 ![Gateway with distributor](/nservicebus/gateway/scaleoutdistributor.png)
+
 
 ### Brokered transports - RabbitMQ, SQL Server, Azure and MSMQ scaled-out with new unified scalability model in version 6
 
@@ -24,5 +26,7 @@ Handle HA requirements by setting the LB to fail over to another endpoint instan
 
 ![Gateway with version 6 scaleout](/nservicebus/gateway/scaleoutv6.png)
 
-## Caveats 
+
+## Caveats
+
 [Callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md) through the gateway are not supported on scaled-out endpoints. 

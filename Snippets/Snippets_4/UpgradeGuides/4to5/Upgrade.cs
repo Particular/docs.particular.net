@@ -319,10 +319,10 @@
 
         public void EndpointName()
         {
+            Configure configure = Configure.With();
             #region 4to5EndpointName
 
-            Configure configure = Configure.With();
-            // If you need to customize the endpoint name via code using the DefineEndpointName method, 
+            // To customize the endpoint name via code using the DefineEndpointName method, 
             // it is important to call it first, right after the With() configuration entry point.
             configure.DefineEndpointName("MyEndpoint");
 
@@ -331,9 +331,9 @@
 
         public void SendOnly()
         {
+            Configure configure = Configure.With();
             #region 4to5SendOnly
 
-            Configure configure = Configure.With();
             configure.DefaultBuilder();
             //Other config
             configure.UnicastBus();

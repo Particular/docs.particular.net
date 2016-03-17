@@ -1,6 +1,7 @@
 ---
-title: Specify Your Input Queue
+title: Specify Input Queue
 summary: There are many ways to specify the input endpoint name.
+reviewed: 2016-03-17
 tags:
 - Endpoint Name
 - Conventions
@@ -9,11 +10,12 @@ redirects:
 - nservicebus/messaging/specify-input-queue-name
 ---
 
+
 ## When using the configuration API
 
-NOTE: these approaches can also be used from NServiceBus Host via the use of `IConfigureThisEndpoint`.
+NOTE: these approaches can also be used from [NServiceBus Host](/nservicebus/hosting/nservicebus-host/) via the use of `IConfigureThisEndpoint`.
 
-You can define your own convention in the endpoint initialization code using this
+Define a convention in the endpoint initialization code using this:
 
 snippet:EndpointNameCode
 
@@ -27,9 +29,10 @@ When using NServiceBus.Host, the namespace of the class implementing `IConfigure
 
 snippet:EndpointNameByNamespace
 
+
 ### EndpointName attribute
 
-You can set the endpoint name using the `[EndpointName]` attribute on your endpoint configuration.
+Set the endpoint name using the `[EndpointName]` attribute on the endpoint configuration.
 
 NOTE: This will only work when using [NServiceBus host](/nservicebus/hosting/nservicebus-host/).
 
@@ -38,11 +41,11 @@ snippet: EndpointNameByAttribute
 
 ### Installation parameter
 
-If you specify a explicit service name when installing the NServiceBus host, this is used as the endpoint name: `/serviceName:"MyEndpoint"`.
+When specifying an explicit service name when installing the NServiceBus host, this is used as the endpoint name: `/serviceName:"MyEndpoint"`.
 
 
 ### Command-line parameter
 
-You can specify a endpoint name when running the NServiceBus host: `/endpointName:"MyEndpoint"`.
+Specify a endpoint name when running the NServiceBus host: `/endpointName:"MyEndpoint"`.
 
-NOTE: Note you can only use code OR commandline/installation parameters.
+NOTE: Note Only use code OR commandline/installation parameters.

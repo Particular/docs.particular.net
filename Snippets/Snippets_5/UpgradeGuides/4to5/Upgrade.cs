@@ -331,9 +331,9 @@ namespace Snippets5.UpgradeGuides._4to5
 
         public void PerformanceMonitoring()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region 4to5PerformanceMonitoring
 
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.EnableSLAPerformanceCounter();
             //or
@@ -344,9 +344,9 @@ namespace Snippets5.UpgradeGuides._4to5
 
         public void DoNotCreateQueues()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region 4to5DoNotCreateQueues
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.DoNotCreateQueues();
 
             #endregion
@@ -354,9 +354,9 @@ namespace Snippets5.UpgradeGuides._4to5
 
         public void EndpointName()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region 4to5EndpointName
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName("MyEndpoint");
 
             #endregion
@@ -364,9 +364,9 @@ namespace Snippets5.UpgradeGuides._4to5
 
         public void SendOnly()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region 4to5SendOnly
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             ISendOnlyBus bus = Bus.CreateSendOnly(busConfiguration);
 
             #endregion

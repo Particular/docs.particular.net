@@ -6,9 +6,9 @@
     {
         public Usage()
         {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region EndpointNameCode
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.EndpointName("MyEndpoint");
         
             #endregion
