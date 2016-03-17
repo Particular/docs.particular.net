@@ -1,6 +1,7 @@
 ---
 title: Scale Out With Competing Consumers And Sender-Side Distribution
 summary: Scale out existing message processing either by using underlying transport's competing consumers capability or by sender-side distribution
+reviewed: 2016-03-17
 tags:
 - Distributor
 - Scalability
@@ -70,9 +71,9 @@ Start the solution with all the console applications (`Server1`, `Server2`, `Una
 
 ### Competing consumers
 
-Go to the `UnawareClient` console an press enter a few times. `Message received.` will printed out on `Server1` and `Server2` consoles. These messages seem to be routed randomly to either of the servers and there are cases when a number of consecutive messages end up in a single server (consequence of randomness). This is because the unaware client uses the queue shared by both servers and the message is processed by the first one who gets it from the underlying queue.
+Go to the `UnawareClient` console an press enter a few times. `Message received.` will printed out on `Server1` and `Server2` consoles. These messages seem to be routed randomly to either of the servers and there are cases when a number of consecutive messages end up in a single server (consequence of randomness). This is because the unaware client uses the queue shared by both servers and the message is processed by the first one that retrieves it from the underlying queue.
 
 
 ### Round robin
 
-Now go to the `AwareClient` console and, again, press enter a few times. `Message received.` messages show up alternately in `Server1` and `Server2` windows. This is because the client is in charge of the distribution and sends its messages to instance-specific queues.
+Now go to the `AwareClient` console and, again, press enter a few times. `Message received.` messages show up alternately in `Server1` and `Server2` windows. This is because the client is responsible for the distribution and sends its messages to instance-specific queues.

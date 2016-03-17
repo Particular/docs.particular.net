@@ -14,7 +14,7 @@ class Program
     {
         Console.Title = "Samples.SenderSideScaleOut.Server1";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Server");
+        endpointConfiguration.EndpointName("Samples.SenderSideScaleOut.Server");
 
         #region Server-Set-InstanceId
 

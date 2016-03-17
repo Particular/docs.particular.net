@@ -14,7 +14,7 @@ class Program
     {
         Console.Title = "Samples.SenderSideScaleOut.Server2";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Server");
+        endpointConfiguration.EndpointName("Samples.SenderSideScaleOut.Server");
         string discriminator = ConfigurationManager.AppSettings["InstanceId"];
         endpointConfiguration.ScaleOut().InstanceDiscriminator(discriminator);
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

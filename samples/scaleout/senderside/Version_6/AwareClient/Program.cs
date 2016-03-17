@@ -13,6 +13,7 @@ class Program
     {
         Console.Title = "Samples.SenderSideScaleOut.AwareClient";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.SenderSideScaleOut.AwareClient");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
@@ -20,7 +21,7 @@ class Program
 
         endpointConfiguration.Routing()
             .UnicastRoutingTable
-            .RouteToEndpoint(typeof(DoSomething), "Server");
+            .RouteToEndpoint(typeof(DoSomething), "Samples.SenderSideScaleOut.Server");
 
         #endregion
 

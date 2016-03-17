@@ -13,12 +13,13 @@ class Program
     {
         Console.Title = "Samples.SenderSideScaleOut.UnawareCilent";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.SenderSideScaleOut.UnawareCilent");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         endpointConfiguration.Routing()
             .UnicastRoutingTable
-            .RouteToEndpoint(typeof(DoSomething), "Server");
+            .RouteToEndpoint(typeof(DoSomething), "Samples.SenderSideScaleOut.Server");
 
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press enter to send a message");
