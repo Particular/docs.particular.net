@@ -70,6 +70,4 @@ Some upstream endpoints might decide to still treat `Sales` as a single *thing* 
 
 snippet:Routing-FileBased-Broker
 
-In that case the sender will use round-robin distribution like in the MSMQ case.
-
-NOTE: Even when physical routing is specified (e.g. in form of the routing file) the transport is able to ignore it if it is not possible to implement a particular scenario. An example is RabbitMQ which delivers the events always to the shared queue. The reason for that is lack of built-in `round-robin` exchange type that could be used to bind event exchanges to individual queues.
+In that case the sender will use round-robin distribution when sending commands (exactly like in case of MSMQ). It will, however, publish events to the shared queue (`Sales`).
