@@ -23,4 +23,6 @@ snippet: 1to2GatewayConfig
 
 ## Notifications
 
-In versions 2 and above the gateway does not expose any [error notifications](/nservicebus/errors/subscribing-to-error-notifications.md). When an error occurs during sending of a message to other sites, the message will be retried and possibly moved to the error queue but user will not be notified about these events.
+In Versions 2 and above the gateway does not provide any error notifications. When an error occurs during sending of a message to other sites, the message will be retried and possibly moved to the error queue. The user will not be notified about these events.
+
+Note that in Version 1, when the user [subscribes to error notifications ](/nservicebus/errors/subscribing-to-error-notifications.md) they receive notification in the situation described above.
