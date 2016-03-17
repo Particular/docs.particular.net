@@ -381,6 +381,7 @@
     <Compile Include="Headers\Writers\HeaderWriterSend.cs" />
     <Compile Include="Headers\Writers\TransportMessageExtension.cs" />
     <Compile Include="Host\CustomizingHost.cs" />
+    <Compile Include="Injection\Injection.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />

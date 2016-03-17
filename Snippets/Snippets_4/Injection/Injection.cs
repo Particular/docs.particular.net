@@ -7,7 +7,7 @@
     {
         Injection(Configure configure)
         {
-            #region ConfigurePropertyInjectionForHandlerBefore
+            #region ConfigurePropertyInjectionForHandler
 
             configure.DefaultBuilder();
             configure.Configurer
