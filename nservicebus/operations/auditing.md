@@ -5,9 +5,10 @@ reviewed: 2016-03-17
 tags:
 - Auditing
 - Forwarding Messages
+related:
+- nservicebus/messaging/headers
 redirects:
 - nservicebus/auditing-with-nservicebus
-- nservicebus/messaging/headers
 ---
 
 The distributed nature of parallel message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Configure NServiceBus to audit and it will capture a copy of every received message and forward it to a specified audit queue.
