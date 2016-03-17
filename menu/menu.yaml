@@ -53,6 +53,11 @@
             - "nservicebus/gateway/scale-out"
         - "nservicebus/outbox"
     -
+      Title: "Endpoints"
+      Url: "nservicebus/endpoints"
+      Articles:
+        - "nservicebus/endpoints/specify-input-queue-name"
+    -
       Title: "Handlers"
       Url: "nservicebus/handlers"
       Articles:

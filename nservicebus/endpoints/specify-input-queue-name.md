@@ -8,6 +8,7 @@ tags:
 redirects:
 - nservicebus/how-to-specify-your-input-queue-name
 - nservicebus/messaging/specify-input-queue-name
+- nservicebus/endpoint/specify-input-queue-name
 ---
 
 
