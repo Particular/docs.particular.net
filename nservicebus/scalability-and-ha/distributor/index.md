@@ -73,6 +73,7 @@ For more information about Pub/Sub in a distributor scenario see [What the distr
 
 ## Distributor configuration
 
+NOTE: As of Version 6 NServiceBus no longer supports running an embedded distributor. Because of that configuration sections like `MasteNodeConfig` are obsoleted. Read more about [Upgrading a Distributor-based scaled out endpoint to V6](/samples/scaleout/distributor-upgrade/)
 
 ### When hosting endpoints in NServiceBus.Host.exe
 

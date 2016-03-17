@@ -73,6 +73,7 @@ snippet: workerConfig
 
 The Node in the MasterNodeConfig points to the host name where the MasterNode is running. If running the Worker from the same machine as the Distributor, Node should equal "localhost".
 
+NOTE: As of Version 6 `MasterNodeConfig` is obsolete and `endpointConfiguraiton.EnlistWithLegacyMSMQDistributor` should be used as in code above. 
 
 ## Running the code
 

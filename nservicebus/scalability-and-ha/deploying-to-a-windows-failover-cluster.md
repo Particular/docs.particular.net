@@ -133,6 +133,8 @@ Again, try swapping the cluster back and forth, to ensure it can move freely bet
 
 ## Setting up the workers
 
+NOTE: As of Version 6 NServiceBus no longer supports running an embedded distributor. Because of that configuration sections like `MasteNodeConfig` are obsoleted and `endpointConfiguraiton.EnlistWithLegacyMSMQDistributor` should be used instead. Read more about [Upgrading a Distributor-based scaled out endpoint to V6](/samples/scaleout/distributor-upgrade/)
+
 Ensure that the worker servers have [unique QMIds](distributor/#worker-qmid-needs-to-be-unique).
 
 Set up the worker processes on all worker servers (not the cluster nodes!) as windows services, but instead of using `NServiceBus.MSMQDistributor`, use `NServiceBus.MSMQWorker` profile instead.
