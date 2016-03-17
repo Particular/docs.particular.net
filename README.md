@@ -662,6 +662,16 @@ Avoid ambiguity.
 
 **Versions X** and NOT **VX** or **version X**.
 
+## Terminology
+
+### Bus
+
+The word `Bus` should be avoided in documentation. Some replacements include:
+ * When referring to the topology, use `federated` (for which the opposite term is `centralized`)
+ * When referring to the NServiceBus instance, the general thing that sends or publishes messages, use `endpoint instance` or `endpoint` (when it is clear from the context that you are talking about an instance rather than a logical concept)
+ * When referring specifically to the `IBus` interface use `message session` or `message context` (depending if you are talking about just sending a messages from external component or from inside of a handler)
+
+The word `Bus` is allowed when a particular piece of documentation refers specifically to version 5 or below and discusses low level implementation details.
 
 # Utilities
 
