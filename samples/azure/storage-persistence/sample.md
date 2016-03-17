@@ -1,6 +1,7 @@
 ---
 title: Azure Storage Persistence
 summary: This sample shows how use Azure Storage to store Sagas, Timeouts and Subscriptions.
+reviewed: 2016-03-17
 tags:
 - Saga
 - Timeout
@@ -25,12 +26,12 @@ This sample utilizes the [Azure Storage Persistence](/nservicebus/azure/azure-st
 
 This sample shows a simple Client + Server scenario.
 
-* `Client` sends a `StartOrder` message to `Server`
-* `Server` starts an `OrderSaga`.
-* `OrderSaga` requests a timeout with a `CompleteOrder` data.
-* When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
-* The Server then publishes a message that the client subscribes to.
-* `Client` handles `OrderCompleted` event.
+ * `Client` sends a `StartOrder` message to `Server`
+ * `Server` starts an `OrderSaga`.
+ * `OrderSaga` requests a timeout with a `CompleteOrder` data.
+ * When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
+ * The Server then publishes a message that the client subscribes to.
+ * `Client` handles `OrderCompleted` event.
 
 
 ### Azure Storage configuration
@@ -90,13 +91,13 @@ snippet:UsingHelpers
 The saga data from the 'OrderSagaData' table contents
 
 ```
-  PartitionKey:= 21a6f7ed-65d2-42ff-a4d3-a50e00ea76ba
-    RowKey:= 21a6f7ed-65d2-42ff-a4d3-a50e00ea76ba
-    Id:= 21a6f7ed-65d2-42ff-a4d3-a50e00ea76ba
-    Originator:= Samples.Azure.StoragePersistence.Client@RETINA
-    OriginalMessageId:= 0d574aa7-0d39-4e93-8233-a50e00ea764f
-    OrderId:= 79cc2072-c724-4cc0-9202-b6c4918a3de2
-    OrderDescription:= The saga for order 79cc2072-c724-4cc0-9202-b6c4918...
+PartitionKey:= 21a6f7ed-65d2-42ff-a4d3-a50e00ea76ba
+  RowKey:= 21a6f7ed-65d2-42ff-a4d3-a50e00ea76ba
+  Id:= 21a6f7ed-65d2-42ff-a4d3-a50e00ea76ba
+  Originator:= Samples.Azure.StoragePersistence.Client@RETINA
+  OriginalMessageId:= 0d574aa7-0d39-4e93-8233-a50e00ea764f
+  OrderId:= 79cc2072-c724-4cc0-9202-b6c4918a3de2
+  OrderDescription:= The saga for order 79cc2072-c724-4cc0-9202-b6c4918...
 ```
 
 
@@ -129,7 +130,7 @@ The timeout serialized message from the `timeoutstate` blob container.
 The Client endpoint registered in the `Subscription` table contents
 
 ```
-  PartitionKey:= OrderCompleted, Version=0.0.0.0
-    RowKey:= U2FtcGxlcy5BenVyZS5TdG9yYWdlUGVyc2lzdGVuY2UuQ2xpZW50QFJFVElOQQ==
-    DecodedRowKey:= Samples.Azure.StoragePersistence.Client@RETINA
+PartitionKey:= OrderCompleted, Version=0.0.0.0
+  RowKey:= U2FtcGxlcy5BenVyZS5TdG9yYWdlUGVyc2lzdGVuY2UuQ2xpZW50QFJFVElOQQ==
+  DecodedRowKey:= Samples.Azure.StoragePersistence.Client@RETINA
 ```

@@ -7,9 +7,9 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.Azure.StoragePersistence.Server";
+        BusConfiguration busConfiguration = new BusConfiguration();
         #region config
 
-        BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Azure.StoragePersistence.Server");
         busConfiguration.UsePersistence<AzureStoragePersistence>();
 
