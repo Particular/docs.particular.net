@@ -120,6 +120,9 @@ The unattended file does not cover all the settings available to customize the o
 
 Prior to using the script modify the `$customSettings` hash table to reflect the key/value pairs to set. The provided entries in the `$customSettings` hash table are to illustrate how to set the values and are not meant to be a recommendation on the values for these settings.
 
+Prior to using the script modify the `$customSettings` hash table to reflect the key/value pairs you wish to set.
+The provided entries in the `$customSettings` hash table are to illustrate how to set the values and are not meant to be a recommendation on the values for these settings.
+
 ```powershell
 #Requires -Version 3
 #Requires -RunAsAdministrator
@@ -128,8 +131,7 @@ Add-Type -AssemblyName System.Configuration
 Import-Module 'C:\Program Files (x86)\Particular Software\ServiceControl Management\ServiceControlMgmt.psd1'
 
 $customSettings = @{
-	'ServiceControl/HeartbeatGracePeriod'='00:01:30'
-	'ServiceControl/HoursToKeepMessagesBeforeExpiring'='120'
+    'ServiceControl/HeartbeatGracePeriod'='00:01:30'  
 }
 
 foreach ($sc in Get-ServiceControlInstances)
