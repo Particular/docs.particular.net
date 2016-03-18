@@ -7,13 +7,11 @@ redirects:
 - nservicebus/sqlserver/concurrency
 ---
 
-
 ## Connection strings
 
-The SQL Server transport is built on top of ADO.NET and uses its connection pooling mechanism. This may result in connection pool being shared by transport and other parts of endpoint process. Depending on the situation it might be necessary to adjust the default connection pool size. See also [SQL Server Connection Pooling and Configuration](https://msdn.microsoft.com/en-us/library/8xx3tyca.aspx).
+NOTE: The SQL Server transport is built on top of ADO.NET and uses its connection pooling mechanism. This may result in connection pool being shared by transport and other parts of endpoint process. Depending on the situation it might be necessary to adjust the default connection pool size. For more details refer to the official [SQL Server Connection Pooling and Configuration](https://msdn.microsoft.com/en-us/library/8xx3tyca.aspx) document.
 
 Connection string can be configured in several ways:
-
 
 ### Via the configuration API
 
@@ -27,7 +25,6 @@ snippet:sqlserver-config-connectionstring
 By adding a connection named `NServiceBus/Transport` in the `connectionStrings` node.
 
 snippet:sqlserver-connection-string-xml
-
 
 ### Via a named connection string
 
@@ -46,6 +43,45 @@ By passing the transport a custom factory method which will provide connection s
 
 snippet:sqlserver-custom-connection-factory
 
+NOTE: The connection string configuration API in NServiceBus core favors code over configuration for the current endpoint. If the same connection string is passed both in `app.config` and via the `ConnectionString()` method, the latter will be used.
+
+## Multiple connection strings
+
+In [*multi-catalog* and *multi-instance* modes](/nservicebus/sqlserver/deployment-options.md) it is necessary to include additional information in configuration.  The sender needs to know the connection string of the receiver, and subscriber needs the connection string of the publisher.
+
+Connection string for the remote endpoint can be configured in several ways:
+
+### Via the App.Config
+
+In Versions 2.1 to 2.x the endpoint-specific connection information is discovered by reading the connection strings from the configuration file with `NServiceBus/Transport/{name of the endpoint in the message mappings}` naming convention. If such a connection string is found, it is used for a given endpoint and this setting has precedence over the code-provided connection information.
+
+Starting from Version 3.0, the connection string for a remote endpoint has to be provided using configuration API.
+
+### Via the configuration API - Push mode
+
+In the push mode the whole collection of endpoint connection information objects is passed during configuration time.
+
+snippet:sqlserver-multidb-other-endpoint-connection-push
+
+
+### Via the configuration API - Pull mode
+
+The pull mode can be used when specific information is not available at configuration time. One can pass a `Func<String, ConnectionInfo>` that will be used by the SQL Server transport to resolve connection information at runtime.
+
+snippet: sqlserver-multidb-other-endpoint-connection-pull
+
+### Example
+
+Given the following mappings:
+
+snippet:sqlserver-multidb-messagemapping
+
+and the following connection strings:
+
+snippet:sqlserver-multidb-connectionstrings
+
+The messages sent to the endpoint called `billing` will be sent to the database `Billing` on the server `DbServerB`. The messages to the endpoint called `sales` will be sent to the default database and server, because the endpoint specific configuration wasn't passed, i.e. `MyDefaultDB` on server `DbServerA`.
+
 ## Custom database schemas
 
 The default schema in SQL Server transport is `dbo`.
@@ -53,13 +89,15 @@ The schema for the specific endpoint can be configured using `DefaultSchema` met
 
 snippet:sqlserver-non-standard-schema
 
-In Versions 2.1 to 2.x it was also possible to pass custom schema in the connection string, using `Queue Schema` parameter:
+In Versions 1.2.3 to 2.x it was also possible to pass custom schema in the connection string, using `Queue Schema` parameter:
  
 snippet:sqlserver-non-standard-schema-connString
 snippet:sqlserver-non-standard-schema-connString-xml
 
-### Multiple custom schemas
+## Multiple custom schemas
 If two endpoints use different schemas then additional configuration is required. The sender needs to know the schema of the receiver, and subscriber needs the schema of the publisher. 
+
+NOTE: In Versions 2.1.x to 2.x publisher also needs to know the schema of every subscriber. The same applies sending reply messages. 
 
 The schema for another endpoint can be specified in the following ways:
 
