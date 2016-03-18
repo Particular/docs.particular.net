@@ -63,3 +63,12 @@ Add the app setting in app.config as shown to configure the TTL to a custom valu
 snippet: heartbeatsTtlConfig
 
 Note: To enable the change the endpoint needs to be restarted.
+
+## Expired heartbeat messages forwarded to Dead letter queue
+
+Heartbeat messages have a time to be received (TTBR) set based on the TTL value. If ServiceControl does not consume the heartbeat messages before the TTBR expires then transports that support a dead letter queue (DLQ) will move these messages to the DLQ. This can happen when ServiceControl is stopped or very busy. The dead letter queue needs to be monitored and cleaned up.
+
+### MSMQ
+
+If this dead letter queue behavior is not required then you can disable this. This frequently happens with MSMQ as NServiceBus configures the usage of the DLQ by default. Please read [MSMQ connection strings](nservicebus/msmq/connection-strings) on how to disabled dead letter queue usage.
+
