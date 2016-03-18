@@ -70,5 +70,5 @@ Heartbeat messages have a time to be received (TTBR) set based on the TTL value.
 
 ### MSMQ
 
-If this dead letter queue behavior is not required then you can disable this. This frequently happens with MSMQ as NServiceBus configures the usage of the DLQ by default. Please read [MSMQ connection strings](nservicebus/msmq/connection-strings) on how to disabled dead letter queue usage.
+If this dead letter queue behavior is not required then you can disable this. This frequently happens with MSMQ as NServiceBus configures the usage of the DLQ by default. Please read [MSMQ connection strings](/nservicebus/msmq/connection-strings.md) on how to disabled dead letter queue usage.
 
