@@ -68,6 +68,21 @@ snippet:MessageWithLargePayloadUsingConvention
 
 NServiceBus DataBus implementations currently behave differently with regard to cleanup of physical attachments used to transfer data properties. `FileShareDataBus` **does not** remove physical attachments once the message is gone. `AzureDataBus` **does** remove Azure storage blobs used for physical attachments once the message is gone.
 
+### Custom cleanup strategy
+
+Theoretically NServiceBus cannot tell when a file should be deleted. Perhaps the message is (functionally) deferred for the file to be processed later, or it is passed along to another handler. When the file is removed upon committing the transaction, the deferred or passed on message cannot process the file anymore. Removing the file depends on your functional needs.
+
+Looking at it from another perspective, the file system also isn’t transactional. Transactions spawned by NServiceBus might fail, but the file system cannot participate in them, resulting in a deleted file even when the transaction is aborted. Or if the outbox feature in NServiceBus is enabled, the message will be removed from the queuing storage, but it has not actually been processed yet. 
+
+There are a large number of scenarios where removing the file can cause a problem. The only person who actually can tell when which file could be removed, is the developer, who should come up with a strategy to remove files. An option is a strategy like removing the file after (Max(SLA) + x-days), so that it is unlikely that the file still hasn’t been processed.
+
+In the [databus sample](http://docs.particular.net/samples/databus/) you can see how you can obtain the file location:
+
+    public void Handle(MessageWithLargePayload message)
+    {
+      var filename = Path.Combine(Program.BasePath, message.LargeBlob.Key);
+      Console.WriteLine(filename);
+    }
 
 ## Configuring AzureDataBus
 
