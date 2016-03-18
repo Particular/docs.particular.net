@@ -147,14 +147,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Callbacks">
-      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0048\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0050\lib\net452\NServiceBus.Callbacks.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.CommonLogging, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.CommonLogging.2.2.0-unstable0007\lib\net452\NServiceBus.CommonLogging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1685\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1693\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Gateway, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Gateway.2.0.0-unstable0067\lib\net452\NServiceBus.Gateway.dll</HintPath>
@@ -206,9 +206,8 @@
     <Reference Include="NServiceBus.RavenDB">
       <HintPath>..\..\packages\NServiceBus.RavenDB.4.0.0-unstable0102\lib\net452\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Testing, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.Testing.6.0.0-unstable0035\lib\net452\NServiceBus.Testing.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Testing">
+      <HintPath>..\..\packages\NServiceBus.Testing.6.0.0-unstable0051\lib\net452\NServiceBus.Testing.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.RabbitMQ, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.RabbitMQ.4.0.0-unstable0190\lib\net452\NServiceBus.Transports.RabbitMQ.dll</HintPath>
@@ -225,10 +224,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Raven.Abstractions">
-      <HintPath>..\..\packages\RavenDB.Client.3.5.35066-Unstable\lib\net45\Raven.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\RavenDB.Client.3.5.35069-Unstable\lib\net45\Raven.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight">
-      <HintPath>..\..\packages\RavenDB.Client.3.5.35066-Unstable\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+      <HintPath>..\..\packages\RavenDB.Client.3.5.35069-Unstable\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceControl.Contracts.1.2.0\lib\net45\ServiceControl.Contracts.dll</HintPath>

@@ -68,9 +68,8 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.7.0.0-unstable0070\lib\net452\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1685\lib\net452\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1693\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
