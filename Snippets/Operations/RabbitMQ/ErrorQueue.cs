@@ -44,7 +44,7 @@
 
                 using (IModel targetConnection = OpenConnection(failedMachineName, userName, password))
                 {
-                    targetConnection.BasicPublish(string.Empty, failedQueueName, true, false, deliverArgs.BasicProperties, deliverArgs.Body);
+                    targetConnection.BasicPublish(string.Empty, failedQueueName, false, deliverArgs.BasicProperties, deliverArgs.Body);
                 }
                 errorConnection.BasicAck(deliverArgs.DeliveryTag, true);
             }

@@ -38,7 +38,7 @@ class Program
 
                     #region SendMessage
 
-                    channel.BasicPublish(string.Empty, "Samples.RabbitMQ.NativeIntegration", true, false, properties, Encoding.UTF8.GetBytes(payload));
+                    channel.BasicPublish(string.Empty, "Samples.RabbitMQ.NativeIntegration", false, properties, Encoding.UTF8.GetBytes(payload));
                     #endregion
                     Console.WriteLine("Message with id {0} sent to queue {1}", messageId, "Samples.RabbitMQ.NativeIntegration");
                 }
