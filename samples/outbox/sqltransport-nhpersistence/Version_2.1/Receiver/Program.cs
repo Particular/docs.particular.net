@@ -31,6 +31,7 @@ class Program
 
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EndpointName("Samples.SQLNHibernateOutbox.Receiver");
         #region ReceiverConfiguration
 
         busConfiguration.UseTransport<SqlServerTransport>();

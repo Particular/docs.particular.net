@@ -37,7 +37,7 @@ class Program
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.UseSerialization<JsonSerializer>();
-
+        endpointConfiguration.EndpointName("Samples.SQLNHibernateOutbox.Receiver");
         #region ReceiverConfiguration
 
         endpointConfiguration

@@ -19,6 +19,7 @@ class Program
         Random random = new Random();
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EndpointName("Samples.SQLNHibernateOutbox.Sender");
 
         #region SenderConfiguration
 

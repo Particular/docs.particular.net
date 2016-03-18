@@ -10,6 +10,7 @@ class Program
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
         BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.SQLOutboxStoreAndForward.Sender");
 
         #region SenderConfiguration
 

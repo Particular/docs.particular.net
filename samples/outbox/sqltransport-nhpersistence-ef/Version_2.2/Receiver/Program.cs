@@ -26,13 +26,14 @@ class Program
 
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EndpointName("Samples.SQLNHibernateOutboxEF.Receiver");
 
         #region ReceiverConfiguration
 
         busConfiguration
             .UseTransport<SqlServerTransport>()
             .UseSpecificConnectionInformation(
-                EndpointConnectionInfo.For("sender").UseSchema("sender"))
+                EndpointConnectionInfo.For("Samples.SQLNHibernateOutboxEF.Sender").UseSchema("sender"))
             .DefaultSchema("receiver");
 
         busConfiguration

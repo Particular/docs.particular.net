@@ -31,6 +31,7 @@ class Program
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EndpointName("Samples.SQLNHibernateOutboxEF.Receiver");
 
         #region ReceiverConfiguration
 
@@ -43,7 +44,7 @@ class Program
                 {
                     return "dbo";
                 }
-                if (queueName.Equals("sender", StringComparison.OrdinalIgnoreCase))
+                if (queueName.Equals("Samples.SQLNHibernateOutboxEF.Sender", StringComparison.OrdinalIgnoreCase))
                 {
                     return "sender";
                 }
