@@ -100,12 +100,6 @@ class ProgramService : ServiceBase
 
         #endregion
 
-        #region sagas 
-
-        //Not required since Sagas are enabled by default in Version 5
-
-        #endregion
-
         #region persistence
 
         endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();

@@ -1,6 +1,7 @@
 ---
 title: Endpoint configuration choices
 summary: Walks through the standard configuration options for hosting an endpoint.
+reviewed: 2016-03-18
 related:
 - samples/step-by-step
 - nservicebus/hosting/assembly-scanning
@@ -11,12 +12,12 @@ Note: This sample uses the same approach as the [NServiceBus as a Windows Servic
 
 ## Code walk-through
 
-This samples walks through the most common choices you will need to make when creating a first endpoint. It will also show the configuration APIs needed to implement those choices.
+This samples walks through the most common choices required when creating a first endpoint. It will also show the configuration APIs needed to implement those choices.
 
 
 ## Hosting
 
-This sample uses a dual runnable console and Windows Service for hosting. More details on this approach can be seen in [Windows Service Hosting](/nservicebus/hosting/windows-service.md), there is also [a more detailed sample](/samples/hosting/windows-service/) of this approach. For more details on other hosting options see [Hosting choice](/nservicebus/hosting).
+This sample uses a dual runnable console and Windows Service for hosting. More details on this approach can be seen in [Windows Service Hosting](/nservicebus/hosting/windows-service.md), there is also [a more detailed sample](/samples/hosting/windows-service/) of this approach. See also [Hosting choice](/nservicebus/hosting).
 
 
 ## Configure an [Error](/nservicebus/errors) queue
@@ -37,10 +38,9 @@ snippet:audit
 snippet:auditxml
 
 
-
 ## Select and configure [Logging](/nservicebus/logging)
 
-Log4net is being used to route log events to the Console.
+In this sample [Log4net](/nservicebus/logging/log4net.md) is being used to route log events to the Console.
 
 snippet:logging
 
@@ -50,46 +50,56 @@ snippet:logging
 snippet:create-config
 
 
-## Define the Endpoint Name
+## Define the [Endpoint](/nservicebus/endpoints/) Name
+
+WARNING: In Versions 6 and above [endpoint](/nservicebus/endpoints/) name is mandatory.
 
 snippet:endpoint-name
 
 
 ## Select and configure a [Container](/nservicebus/containers)
 
-Autofac is being used with a customized container instance being passed into NServiceBus.
+[Autofac](/nservicebus/containers/autofac.md) is being used with a customized container instance being passed into NServiceBus.
 
 snippet:container
 
 
 ## Select and configure [Serialization](/nservicebus/serialization)
 
+This sample uses the [JSON](/nservicebus/serialization/json.md).
+
 snippet:serialization
 
 
 ## Select and configure a [Transport](/nservicebus/transports)
+
+This sample uses the [MSMQ Transport](/nservicebus/msmq/).
 
 snippet:transport
 
 
 ## Enable [Sagas](/nservicebus/sagas)
 
+NOTE: Only required in Versions 4 and below. In Versions 5 and above sagas are enable by default.
+
 snippet:sagas
 
 
 ## Select and configure [Persistence](/nservicebus/persistence)
 
+This sample uses [InMemory persistence](/nservicebus/persistence/in-memory.md).
+
 snippet:persistence
 
 
-## Start the Bus
+## Start the [Endpoint](/nservicebus/endpoints/)
 
-Enable installers and start the bus.
+Enable [installers](/nservicebus/operations/installers.md) and start the endpoint.
 
 snippet:start-bus
 
 
-## Shut down the bus
+## Shut down the [Endpoint](/nservicebus/endpoints/)
 
 The bus implements `IDisposable` and should be shut down when the process is shut down.
 
@@ -98,6 +108,6 @@ snippet:stop-endpoint
 
 ## Handling [Critical Errors](/nservicebus/hosting/critical-errors.md)
 
-Since this sample is configured to run as a windows service, the action defined when a critical error occurs is to shut down the process.
+Since this sample is configured to run as a [windows service](/nservicebus/hosting/windows-service.md), the action defined when a critical error occurs is to shut down the process.
 
 snippet:critical-errors

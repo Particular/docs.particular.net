@@ -79,10 +79,6 @@ class ProgramService : ServiceBase
         busConfiguration.UseTransport<MsmqTransport>();
         #endregion
 
-        #region sagas 
-        //Not required since Sagas are enabled by default in Version 5
-        #endregion
-
         #region persistence
         busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
         busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();

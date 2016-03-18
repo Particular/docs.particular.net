@@ -273,6 +273,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -446,6 +447,8 @@
     <Compile Include="UnitTesting\ServiceLayer\Tests.cs" />
     <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
     <Compile Include="Transports\SqlServer_3\UpgradeGuides\Transactions.cs" />
+    <Compile Include="UpgradeGuides\5to6\EndpointNameHelper.cs" />
+    <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
     <Compile Include="UpgradeGuides\5to6\HandlerOrdering.cs" />
     <Compile Include="UpgradeGuides\5to6\MessageContext.cs" />
