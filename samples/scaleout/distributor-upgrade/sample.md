@@ -86,4 +86,4 @@ Because the sender still uses Version 5 and the workers are on Version 6, the sh
 
 After the upgrade is done both worker projects are identical (apart from the configuration file). The sender needed only a minor routing correction.
 
-NOTE: When Version 5 nodes enlist with the distributor, they use a GUID-based queues that are created each time the worker starts. This is different in Version 6. When Version 6 nodes enlists with the distributor, they use their regular input queues with stable names. 
+NOTE: When Version 5 nodes enlist with the distributor, they normally use a GUID-based queues that are created each time the worker starts. This behavior is suppressed in the sample via a configuration switch. In Version 6 when worker nodes enlists with the distributor, they always use their regular input queues with stable names. 
