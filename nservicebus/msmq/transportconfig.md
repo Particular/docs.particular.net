@@ -36,14 +36,18 @@ For more on changing MSMQ permissions, check out the [Administer Security for Me
 
 Following settings are purely related to the MSMQ:
 
- * `UseDeadLetterQueue` (default: `true`)
- * `UseJournalQueue` (default: `false`)
- * `UseConnectionCache` (default: `true`)
- * `UseTransactionalQueues` (default: `true`)
+ * `UseDeadLetterQueue`
+ * `UseJournalQueue`
+ * `UseConnectionCache`
+ * `UseTransactionalQueues`
+
+Read [MSMQ connection strings](connection-strings.md) to understand what these settings mean and their defaults.
 
 From Version 4 onwards these settings are configured via a transport connection string (named `nservicebus/transport` for all transports). Before Version 4 some of these properties could be set via `MsmqMessageQueueConfig` configuration section while other (namely the `connectionCache` and the ability to use non-transactional queues) were not available prior to Version 4.
 
 snippet:MessageQueueConfiguration
+
+
 
 
 ### MSMQ Label
