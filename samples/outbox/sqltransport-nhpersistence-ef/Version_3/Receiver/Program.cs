@@ -29,9 +29,8 @@ class Program
 
         hibernateConfig.SetProperty("default_schema", "receiver");
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SQLNHibernateOutboxEF.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EndpointName("Samples.SQLNHibernateOutboxEF.Receiver");
 
         #region ReceiverConfiguration
 

@@ -17,9 +17,8 @@ class Program
         Console.Title = "Samples.SQLNHibernateOutbox.Sender";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SQLNHibernateOutbox.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EndpointName("Samples.SQLNHibernateOutbox.Sender");
 
         #region SenderConfiguration
 

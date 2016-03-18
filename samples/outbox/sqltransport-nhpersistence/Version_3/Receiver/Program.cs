@@ -35,9 +35,8 @@ class Program
 
         new SchemaExport(hibernateConfig).Execute(false, true, false);
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SQLNHibernateOutbox.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EndpointName("Samples.SQLNHibernateOutbox.Receiver");
         #region ReceiverConfiguration
 
         endpointConfiguration
