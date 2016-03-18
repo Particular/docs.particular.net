@@ -41,26 +41,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1685\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1693\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.RavenDB, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.RavenDB.4.0.0-unstable0102\lib\net452\NServiceBus.RavenDB.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Raven.Abstractions">
-      <HintPath>..\..\..\..\..\packages\RavenDB.Database.3.0.30037\lib\net45\Raven.Abstractions.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\RavenDB.Database.3.0.30100\lib\net45\Raven.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Bundles.UniqueConstraints">
-      <HintPath>..\..\..\..\..\packages\RavenDB.Bundles.UniqueConstraints.3.0.30037\lib\net45\Raven.Bundles.UniqueConstraints.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\RavenDB.Bundles.UniqueConstraints.3.0.30100\lib\net45\Raven.Bundles.UniqueConstraints.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight">
-      <HintPath>..\..\..\..\..\packages\RavenDB.Client.3.0.30037\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\RavenDB.Client.3.0.30100\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.UniqueConstraints">
-      <HintPath>..\..\..\..\..\packages\RavenDB.Client.UniqueConstraints.3.0.30037\lib\net45\Raven.Client.UniqueConstraints.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\RavenDB.Client.UniqueConstraints.3.0.30100\lib\net45\Raven.Client.UniqueConstraints.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Database">
-      <HintPath>..\..\..\..\..\packages\RavenDB.Database.3.0.30037\lib\net45\Raven.Database.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\RavenDB.Database.3.0.30100\lib\net45\Raven.Database.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -90,7 +90,7 @@
     <Compile Include="StartOrderSagaFinder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\packages\RavenDB.Database.3.0.30037\content\Raven.Studio.Html5.zip">
+    <None Include="..\..\..\..\..\packages\RavenDB.Database.3.0.30100\content\Raven.Studio.Html5.zip">
       <Link>Raven.Studio.Html5.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
