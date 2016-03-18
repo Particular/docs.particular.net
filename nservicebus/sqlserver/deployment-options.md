@@ -1,20 +1,24 @@
 ---
-title: SQL Server transport setup - default, multi-schema, multi-catalog and multi-instance
-summary: How to configure and manage SQL Server transport in default, multi-schema, multi-catalog and multi-instance modes
+title: SQL Server transport deployment options
+summary: Describes available SQL Server transport deployment options
 tags:
 - SQL Server
 - Transports
+redirects:
+- nservicebus/sqlserver/multiple-databases
 ---
 
-In the default SQL Server transport setup, the messages and other data are stored in multiple tables in a single database. The default schema is `dbo`, but it is possible to [specify a custom schema](/nservicebus/sqlserver/configuration.md#custom-database-schemas).
+In the default SQL Server transport setup, all queues are stored in tables located in single catalog in a single schema. The default schema is `dbo`, but it is possible to [specify a custom schema](/nservicebus/sqlserver/configuration.md#custom-database-schemas).
 
 In some environments it might be necessary to use a more advanced setup. The supported options are:
- * ***default***: single schemas in a single database (Versions 1.x and higher)
+ * ***default***: single schema in a single database (Versions 1.x and higher)
  * ***multi-schema***: multiple schemas in a single database (Versions 2.1 and higher)
- * ***multi-catalog***: multiple databases in a single SQL Server instance (Versions 2.1 and higher)
+ * ***multi-catalog***: multiple catalogs in a single SQL Server instance (Versions 2.1 to 2.x)
  * ***multi-instance***: multiple databases in various SQL Server instances (Versions 2.1 to 2.x).
 
 The transport will route messages to destination endpoints based on the configuration. If no specific configuration has been provided for a particular destination endpoint, the transport assumes the destination has the same configuration (schema, database and instance name) as the sending endpoint. If the destination endpoint has a different configuration and it hasn't been provided, then exception will be thrown immediately (since the transport cannot connect to the destination queue).
+
+In case of `ReplyTo` and `Publish` methods, the destination endpoint is routed based on information contained in message headers and in a subscription store.
 
 WARNING: SQL Server transport does not support store-and-forward mechanism on a transport level, so there is no dead-letter queue. It means that in *multi-catalog* and *multi-database* modes if a remote endpoint's infrastructure (e.g. DTC or SQL Server instance) is down, then messages can't be delivered to it. That makes this particular endpoint, and all endpoints depending on it, unavailable. That problem can be addressed by using [Outbox](/nservicebus/outbox/) feature, as explained in [*Multi-catalog* and *multi-instance* with store-and-forward](#multi-catalog-and-multi-instance-with-store-and-forward) section. 
 
@@ -41,14 +45,14 @@ NOTE: Sending messages between endpoints in *multi-catalog* and *multi-instance*
 
 ## Multi-catalog
 
-- Supported in Versions 2.1 and higher
+- Supported in Versions 2.1 to 2.x, legacy support in Versions 3.x, won't be supported in Versions 4.0 and higher
 - Requires Distributed Transaction Coordinator by default
 - Escalation to distributed transactions can be avoided by using Outbox and storing business data in the same database as Outbox data
 - Can be monitored with ServiceControl
 
 ## Multi-instance
 
-- Supported in Versions 2.1 to 3.x, won't be supported in Versions 4.0 and higher
+- Supported in Versions 2.1 to 2.x, legacy support in Versions 3.x, won't be supported in Versions 4.0 and higher
 - Requires Distributed Transaction Coordinator, even when using Outbox
 - Can't be monitored with ServiceControl
 
@@ -59,6 +63,9 @@ In order to overcome the limitation caused by the lack of store-and-forward mech
  * Messages are not dispatched immediately after the `Send()` method is called. Instead they are first stored in the Outbox table in the same database that endpoint's persistence is using. After the handler logic completes successfully, the messages stored in the Outbox table are forwarded to their destinations.
  * If any of the forward operations fails, the message sending will be retried using the standard [retry mechanism](/nservicebus/errors/automatic-retries.md). This might result in sending some messages multiple times, which is known as `at-least-once` delivery. The Outbox feature performs automatically de-duplication of incoming messages based on their IDs, effectively providing `exactly-once` message delivery.
 
+NOTE: If the `error` queue is stored in a separate SQL Server instance, then it's not possible to avoid escalation to DTC.
+
+TODO: what about audit queue? 
 
 =====> OLD => move to configuration.md <=========
 ## Single database

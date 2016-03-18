@@ -52,17 +52,22 @@
             #region sqlserver-multischema-config-pull 2.1
 
             busConfiguration.UseTransport<SqlServerTransport>()
-                .UseSpecificConnectionInformation(endpointName =>
+                .UseSpecificConnectionInformation(queueName =>
                 {
-                    if (endpointName == "sales")
+                    if (queueName == "sales")
                     {
                         return ConnectionInfo.Create()
                             .UseSchema("salesSchema");
                     }
-                    if (endpointName == "billing")
+                    if (queueName == "billing")
                     {
                         return ConnectionInfo.Create()
                             .UseSchema("billingSchema");
+                    }
+                    if (queueName == "error")
+                    {
+                        return ConnectionInfo.Create()
+                            .UseSchema("error");
                     }
                     return null;
                 });

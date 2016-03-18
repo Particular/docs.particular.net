@@ -23,15 +23,19 @@
             #region sqlserver-multischema-config-pull
 
             endpointConfiguration.UseTransport<SqlServerTransport>()
-                .UseSpecificSchema(tn =>
+                .UseSpecificSchema(queueName =>
                 {
-                    if (tn == "sales")
+                    if (queueName == "sales")
                     {
                         return "salesSchema";
                     }
-                    if (tn == "billing")
+                    if (queueName == "billing")
                     {
                         return "[billingSchema]";
+                    }
+                    if (queueName == "error")
+                    {
+                        return "error";
                     }
                     return null;
                 });
