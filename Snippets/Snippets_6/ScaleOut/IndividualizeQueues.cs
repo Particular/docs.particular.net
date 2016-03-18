@@ -4,10 +4,8 @@
 
     class IndividualizeQueues
     {
-        public void Simple()
+        IndividualizeQueues(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-            
             #region UniqueQueuePerEndpointInstanceDiscriminator
 
             endpointConfiguration.ScaleOut()

@@ -8,16 +8,10 @@ void Main()
 	var samplesdirectory = Path.Combine(docsDirectory, "Samples");
 	foreach (var csFile in Directory.EnumerateFiles(samplesdirectory, "*.cs", SearchOption.AllDirectories))
 	{
-
 		var classContents = File.ReadAllText(csFile);
-		if (!classContents.Contains("new EndpointConfiguration"))
-        {
-			continue;
+		if (classContents.Contains("new EndpointConfiguration()"))
+		{
+			Debug.WriteLine(csFile);
 		}
-		if (classContents.Contains(".EndpointName("))
-        {
-			continue;
-		}
-		Debug.WriteLine(csFile);
 	}
 }

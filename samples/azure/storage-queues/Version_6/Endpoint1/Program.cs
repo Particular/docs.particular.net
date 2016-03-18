@@ -13,10 +13,9 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Azure.StorageQueues.Endpoint1";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.StorageQueues.Endpoint1");
         #region config
 
-        endpointConfiguration.EndpointName("Samples.Azure.StorageQueues.Endpoint1");
         endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
 
         #endregion

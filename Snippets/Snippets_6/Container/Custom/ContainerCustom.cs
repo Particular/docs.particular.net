@@ -9,9 +9,8 @@
     {
         #region CustomContainers
 
-        public void CustomContainerExtensionUsage()
+        public void CustomContainerExtensionUsage(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             //Register the container in the configuration with '.UseContainer<T>()'
             endpointConfiguration.UseContainer<MyContainer>();
         }

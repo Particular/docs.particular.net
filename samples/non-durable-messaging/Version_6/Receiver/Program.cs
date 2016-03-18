@@ -12,10 +12,9 @@ static class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.MessageDurability.Receiver";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MessageDurability.Receiver");
         endpointConfiguration.UseTransport<MsmqTransport>()
             .Transactions(TransportTransactionMode.None);
-        endpointConfiguration.EndpointName("Samples.MessageDurability.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

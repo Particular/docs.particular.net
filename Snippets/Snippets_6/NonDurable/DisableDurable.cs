@@ -4,11 +4,9 @@
 
     public class DisableDurable
     {
-        public DisableDurable()
+        public DisableDurable(EndpointConfiguration endpointConfiguration)
         {
             #region set-to-non-durable
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.DisableDurableMessages();
 
             #endregion

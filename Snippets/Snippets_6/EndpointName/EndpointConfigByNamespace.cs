@@ -7,7 +7,7 @@
 
         public class EndpointConfigByNamespace : IConfigureThisEndpoint, AsA_Server
         {
-            // ... your custom config
+            // ... custom config
             // endcode
             public void Customize(EndpointConfiguration endpointConfiguration)
             {

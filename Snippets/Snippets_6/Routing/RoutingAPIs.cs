@@ -10,10 +10,8 @@ namespace Snippets6.Routing
 
     public class RoutingAPIs
     {
-        public void StaticRoutes()
+        public void StaticRoutes(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region Routing-StaticRoutes-Endpoint
 
             endpointConfiguration.Routing()
@@ -43,10 +41,8 @@ namespace Snippets6.Routing
             #endregion
         }
 
-        public void DynamicRoutes()
+        public void DynamicRoutes(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region Routing-DynamicRoutes
 
             endpointConfiguration.Routing().UnicastRoutingTable
@@ -63,10 +59,8 @@ namespace Snippets6.Routing
             #endregion
         }
 
-        public void CustomRoutingStore()
+        public void CustomRoutingStore(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region Routing-CustomRoutingStore
 
             endpointConfiguration.Routing().UnicastRoutingTable.AddDynamic((t, c) =>
@@ -75,10 +69,8 @@ namespace Snippets6.Routing
             #endregion
         }
 
-        public void StaticEndpointMapping()
+        public void StaticEndpointMapping(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region Routing-StaticEndpointMapping
 
             EndpointName sales = new EndpointName("Sales");
@@ -90,10 +82,8 @@ namespace Snippets6.Routing
             #endregion
         }
 
-        public void DynamicEndpointMapping()
+        public void DynamicEndpointMapping(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region Routing-DynamicEndpointMapping
 
             endpointConfiguration.Routing().EndpointInstances.AddDynamic(async e =>
@@ -112,10 +102,8 @@ namespace Snippets6.Routing
             #endregion
         }
 
-        public void SpecialCaseTransportAddress()
+        public void SpecialCaseTransportAddress(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region Routing-SpecialCaseTransportAddress
 
             EndpointInstance endpointInstance = new EndpointInstance("Sales", "1");
@@ -127,10 +115,8 @@ namespace Snippets6.Routing
         }
 
         // ReSharper disable once ConvertClosureToMethodGroup
-        public void TransportAddressRules()
+        public void TransportAddressRules(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region Routing-TransportAddressRule
 
             endpointConfiguration
@@ -145,10 +131,8 @@ namespace Snippets6.Routing
             throw new NotImplementedException();
         }
 
-        public void FileBasedRouting()
+        public void FileBasedRouting(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region Routing-FileBased-Config
 
             RoutingSettings routingSettings = endpointConfiguration.Routing();

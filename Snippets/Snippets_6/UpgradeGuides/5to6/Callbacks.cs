@@ -5,9 +5,8 @@
 
     class Callbacks
     {
-        async Task Simple()
+        async Task Simple(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region 5to6-Callbacks-InstanceId
             endpointConfiguration.ScaleOut().InstanceDiscriminator("uniqueId");
             #endregion

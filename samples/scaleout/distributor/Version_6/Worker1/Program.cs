@@ -11,8 +11,7 @@ class Program
     {
         Console.Title = "Samples.Scaleout.Worker1";
         #region Workerstartup
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Scaleout.Worker");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
         string discriminator = ConfigurationManager.AppSettings["InstanceId"];
         endpointConfiguration.ScaleOut().InstanceDiscriminator(discriminator);
         string masterNodeAddress = ConfigurationManager.AppSettings["MasterNodeAddress"];

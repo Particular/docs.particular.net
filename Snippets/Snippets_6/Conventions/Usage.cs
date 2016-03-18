@@ -5,11 +5,9 @@ namespace Snippets6.Conventions
 
     public class Usage
     {
-        public Usage()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
             #region MessageConventions
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             ConventionsBuilder conventions = endpointConfiguration.Conventions();
             conventions.DefiningCommandsAs(t => t.Namespace == "MyNamespace.Messages.Commands");
             conventions.DefiningEventsAs(t => t.Namespace == "MyNamespace.Messages.Events");

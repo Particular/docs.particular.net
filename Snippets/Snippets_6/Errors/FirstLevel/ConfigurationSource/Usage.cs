@@ -4,10 +4,8 @@
 
     public class Usage
     {
-        public Usage()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region FLRConfigurationSourceUsage
             endpointConfiguration.CustomConfigurationSource(new ConfigurationSource());
             #endregion

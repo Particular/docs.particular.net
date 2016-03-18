@@ -14,8 +14,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Versioning.V2Publisher";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Versioning.V2Publisher");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V2Publisher");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>();

@@ -5,10 +5,9 @@
 
     class Usage
     {
-        async void Simple()
+        async void Simple(EndpointConfiguration endpointConfiguration)
         {
             #region Callbacks-InstanceId
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.ScaleOut().InstanceDiscriminator("uniqueId");
             #endregion
 

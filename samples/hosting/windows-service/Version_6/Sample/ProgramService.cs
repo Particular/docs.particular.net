@@ -41,9 +41,7 @@ class ProgramService : ServiceBase
 
     async Task AsyncOnStart()
     {
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
-        endpointConfiguration.EndpointName("Samples.WindowsServiceAndConsole");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.WindowsServiceAndConsole");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

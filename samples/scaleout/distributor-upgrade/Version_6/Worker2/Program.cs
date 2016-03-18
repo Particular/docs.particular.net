@@ -10,8 +10,7 @@ internal class Program
 
     static void Main()
     {
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Scaleout.Worker");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
         endpointConfiguration.ScaleOut()
             .InstanceDiscriminator(ConfigurationManager.AppSettings["InstanceId"]);
         endpointConfiguration

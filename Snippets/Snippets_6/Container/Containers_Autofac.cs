@@ -5,9 +5,8 @@
 
     public class Containers_Autofac
     {
-        public void Simple()
+        public void Simple(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Autofac
 
             endpointConfiguration.UseContainer<AutofacBuilder>();
@@ -15,9 +14,8 @@
             #endregion
         }
 
-        public void Existing()
+        public void Existing(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Autofac_Existing
 
             ContainerBuilder builder = new ContainerBuilder();

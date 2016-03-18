@@ -5,9 +5,8 @@
 
     public class Containers_Spring
     {
-        public void Simple()
+        public void Simple(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Spring
 
             endpointConfiguration.UseContainer<SpringBuilder>();
@@ -15,10 +14,8 @@
             #endregion
         }
 
-        public void Existing()
+        public void Existing(EndpointConfiguration endpointConfiguration)
         {
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Spring_Existing
 
             GenericApplicationContext applicationContext = new GenericApplicationContext();

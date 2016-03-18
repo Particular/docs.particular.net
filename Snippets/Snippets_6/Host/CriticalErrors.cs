@@ -9,11 +9,9 @@ namespace Snippets6.Host
 
     class CriticalErrors
     {
-        CriticalErrors()
+        CriticalErrors(EndpointConfiguration endpointConfiguration)
         {
             #region DefiningCustomHostErrorHandlingAction
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 
             #endregion

@@ -17,21 +17,20 @@ class Program
         LogManager.Use<DefaultFactory>().Level(LogLevel.Error);
         #region Program
         Logger.WriteLine("Starting configuration");
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.StartupShutdown");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.StartupShutdown");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.EnableFeature<MyFeature>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        Logger.WriteLine("Calling Bus.Create");
+        Logger.WriteLine("Calling Endpoint.Start");
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
-            //simulate some bus activity
+            //simulate some activity
             Thread.Sleep(500);
 
-            Logger.WriteLine("Bus is processing messages");
+            Logger.WriteLine("Endpoint is processing messages");
         }
         finally
         {

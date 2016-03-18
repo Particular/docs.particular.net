@@ -6,28 +6,25 @@
 
     public class TransactionScopeUnitOfWork
     {
-        public void UnitOfWorkWrapHandlersInATransactionScope()
+        public void UnitOfWorkWrapHandlersInATransactionScope(EndpointConfiguration endpointConfiguration)
         {
             #region UnitOfWorkWrapHandlersInATransactionScope
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UnitOfWork()
                 .WrapHandlersInATransactionScope();
             #endregion
         }
 
-        public void UnitOfWorkCustomTransactionIsolationLevel()
+        public void UnitOfWorkCustomTransactionIsolationLevel(EndpointConfiguration endpointConfiguration)
         {
             #region UnitOfWorkCustomTransactionIsolationLevel
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UnitOfWork()
                 .WrapHandlersInATransactionScope(isolationLevel: IsolationLevel.RepeatableRead);
             #endregion
         }
 
-        public void UnitOfWorkCustomTransactionTimeout()
+        public void UnitOfWorkCustomTransactionTimeout(EndpointConfiguration endpointConfiguration)
         {
             #region UnitOfWorkCustomTransactionTimeout
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UnitOfWork()
                 .WrapHandlersInATransactionScope(timeout: TimeSpan.FromSeconds(30));
             #endregion

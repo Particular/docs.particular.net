@@ -12,8 +12,7 @@ static class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Mvc.Endpoint";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Mvc.Endpoint");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Mvc.Endpoint");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

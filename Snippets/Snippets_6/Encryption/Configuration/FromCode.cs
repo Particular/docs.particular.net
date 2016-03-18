@@ -7,12 +7,10 @@
 
     class FromCode
     {
-        public FromCode()
+        public FromCode(EndpointConfiguration endpointConfiguration)
         {
 #pragma warning disable 618
             #region EncryptionFromCode
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             string encryptionKeyIdentifier = "2015-10";
             byte[] encryptionKey = Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
             List<byte[]> expiredKeys = new List<byte[]>

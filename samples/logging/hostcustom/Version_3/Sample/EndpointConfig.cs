@@ -4,6 +4,7 @@ using log4net.Core;
 using log4net.Layout;
 using NServiceBus;
 
+[EndpointName("Samples.Logging.HostCustom")]
 #region Config
 public class EndpointConfig : 
     IConfigureThisEndpoint, 
@@ -34,7 +35,6 @@ public class EndpointConfig :
     void IWantCustomInitialization.Init()
     {
         Configure configure = Configure.With();
-        configure.DefineEndpointName("Samples.Logging.HostCustom");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.RunTimeoutManagerWithInMemoryPersistence();

@@ -12,8 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.MessageMutators";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.MessageMutators");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MessageMutators");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");

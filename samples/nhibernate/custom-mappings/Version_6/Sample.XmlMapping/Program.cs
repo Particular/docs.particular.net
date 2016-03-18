@@ -26,8 +26,7 @@ class Program
 
         AddMappingsFromFilesystem(nhConfiguration);
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.CustomNhMappings.XmlMapping");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.XmlMapping");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

@@ -14,8 +14,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.NHibernateCustomSagaFinder";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.NHibernateCustomSagaFinder");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.NHibernateCustomSagaFinder");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
 

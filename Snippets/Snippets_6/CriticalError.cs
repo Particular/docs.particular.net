@@ -7,10 +7,8 @@
 
     public class CriticalErrorConfig
     {
-        public void DefineCriticalErrorActionForAzureHost()
+        public void DefineCriticalErrorActionForAzureHost(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region DefineCriticalErrorActionForAzureHost
 
             // Configuring how NServicebus handles critical errors

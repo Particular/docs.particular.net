@@ -7,12 +7,12 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.RabbitMQ.NativeIntegration.Receiver";
-        BusConfiguration busConfiguration = new BusConfiguration();
         #region ConfigureRabbitQueueName
+        BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.RabbitMQ.NativeIntegration");
-        #endregion
         busConfiguration.UseTransport<RabbitMQTransport>()
             .ConnectionString("host=localhost");
+        #endregion
 
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();

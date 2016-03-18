@@ -14,8 +14,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Gateway.Headquarters";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Gateway.Headquarters");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Gateway.Headquarters");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.EnableFeature<Gateway>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

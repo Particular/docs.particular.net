@@ -14,8 +14,7 @@ public class Program
     {
         Console.Title = "Samples.Ninject";
         #region ContainerConfiguration
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Ninject");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Ninject");
         endpointConfiguration.SendFailedMessagesTo("error");
 
         StandardKernel kernel = new StandardKernel();

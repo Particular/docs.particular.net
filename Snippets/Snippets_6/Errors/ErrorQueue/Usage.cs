@@ -4,11 +4,9 @@
 
     public class Usage
     {
-        public Usage()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
             #region ErrorWithCode
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.SendFailedMessagesTo("targetErrorQueue");
 
             #endregion

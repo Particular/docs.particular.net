@@ -6,11 +6,9 @@
 
     class ConfiguringNHibernateSqlAzure
     {
-        public void SqlAzureNHibernateDriverConfiguration()
+        public void SqlAzureNHibernateDriverConfiguration(EndpointConfiguration endpointConfiguration)
         {
             #region SqlAzureNHibernateDriverConfiguration
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             Configuration nhConfiguration = new Configuration
             {

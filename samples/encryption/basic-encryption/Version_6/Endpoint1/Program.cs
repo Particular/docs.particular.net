@@ -13,8 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Encryption.Endpoint1";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Encryption.Endpoint1");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Encryption.Endpoint1");
         #region enableEncryption
         endpointConfiguration.RijndaelEncryptionService();
         #endregion

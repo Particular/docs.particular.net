@@ -25,8 +25,7 @@
         [Test]
         public async Task Write()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-            endpointConfiguration.EndpointName(endpointName);
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration(endpointName);
             Type[] callbackTypes = typeof(RequestResponseExtensions).Assembly.GetTypes();
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterReturn>(callbackTypes);
             endpointConfiguration.SetTypesToScan(typesToScan);

@@ -22,19 +22,16 @@
             }
         }
         #endregion
-        void StaticHeaders()
+        void StaticHeaders(EndpointConfiguration endpointConfiguration)
         {
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region 5to6header-static-endpoint
             endpointConfiguration.AddHeaderToAllOutgoingMessages("MyGlobalHeader", "some static value");
             #endregion
         }
 
 
-        public void TransportTransactions()
+        public void TransportTransactions(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region 5to6DoNotWrapHandlersInTransaction
 
             endpointConfiguration.UseTransport<MyTransport>()
@@ -44,11 +41,10 @@
         }
 
 
-        public void CriticalError()
+        public void CriticalError(EndpointConfiguration endpointConfiguration)
         {
             // ReSharper disable RedundantDelegateCreation
             // ReSharper disable ConvertToLambdaExpression
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region 5to6CriticalError
             endpointConfiguration.DefineCriticalErrorAction(
                 new Func<ICriticalErrorContext,Task>(context =>
@@ -83,9 +79,8 @@
             #endregion
         }
 
-        public void TransportTransactionIsolationLevelAndTimeout()
+        public void TransportTransactionIsolationLevelAndTimeout(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region 5to6TransportTransactionScopeOptions
             endpointConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope)
@@ -93,9 +88,8 @@
             #endregion
         }
 
-        public void WrapHandlersExecutionInATransactionScope()
+        public void WrapHandlersExecutionInATransactionScope(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region 5to6WrapHandlersExecutionInATransactionScope
             endpointConfiguration.UnitOfWork()
                 .WrapHandlersInATransactionScope();
@@ -116,45 +110,40 @@
             #endregion
         }
 
-        public void EnableTransactions()
+        public void EnableTransactions(EndpointConfiguration endpointConfiguration)
         {
             #region 5to6EnableTransactions
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             // Using a transport will enable transactions automatically.
             endpointConfiguration.UseTransport<MyTransport>();
             #endregion
         }
 
-        public void DisableTransactions()
+        public void DisableTransactions(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region 5to6DisableTransactions
             endpointConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.None);
             #endregion
         }
 
-        public void EnableDistributedTransactions()
+        public void EnableDistributedTransactions(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region 5to6EnableDistributedTransactions
             endpointConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope);
             #endregion
         }
 
-        public void DisableDistributedTransactions()
+        public void DisableDistributedTransactions(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region 5to6DisableDistributedTransactions
             endpointConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.ReceiveOnly);
             #endregion
         }
 
-        public void DisableDistributedTransactionsNative()
+        public void DisableDistributedTransactionsNative(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region 5to6DisableDistributedTransactionsNative
             endpointConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.SendsAtomicWithReceive);

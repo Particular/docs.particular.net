@@ -32,7 +32,7 @@ class Program
                     configure.ForInstallationOn<Windows>().Install();
                 });
 
-            //simulate some bus activity
+            //simulate some activity
             Thread.Sleep(500);
 
             Logger.WriteLine("Bus is processing messages");

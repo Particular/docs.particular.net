@@ -5,9 +5,8 @@
 
     public class SingleDbMultiSchema
     {
-        void CurrentEndpointSchema()
+        void CurrentEndpointSchema(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region sqlserver-singledb-multischema
 
             endpointConfiguration.UseTransport<SqlServerTransport>()
@@ -16,9 +15,8 @@
             #endregion
         }
 
-        void OtherEndpointConnectionParamsPull()
+        void OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region sqlserver-singledb-multidb-pull
 
             endpointConfiguration.UseTransport<SqlServerTransport>()

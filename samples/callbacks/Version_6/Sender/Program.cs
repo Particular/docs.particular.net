@@ -13,8 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Callbacks.Sender";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Callbacks.Sender");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.ScaleOut()
             .InstanceDiscriminator("1");

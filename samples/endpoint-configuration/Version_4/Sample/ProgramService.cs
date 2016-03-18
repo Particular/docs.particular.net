@@ -57,14 +57,12 @@ class ProgramService : ServiceBase
 
         #region create-config
         Configure configure = Configure.With();
-        #endregion
-        #region endpoint-name
         configure.DefineEndpointName("Samples.FirstEndpoint");
         #endregion
 
         #region container
         ContainerBuilder builder = new ContainerBuilder();
-        //configure your custom services
+        //configure custom services
         //builder.RegisterInstance(new MyService());
         IContainer container = builder.Build();
         configure.AutofacBuilder(container);

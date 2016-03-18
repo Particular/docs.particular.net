@@ -25,8 +25,7 @@ class Program
 
         NServiceBus.Logging.LogManager.Use<CommonLoggingFactory>();
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Logging.CommonLogging");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Logging.CommonLogging");
 
         #endregion
 

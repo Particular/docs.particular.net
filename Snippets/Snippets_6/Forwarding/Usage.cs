@@ -3,10 +3,9 @@
     using NServiceBus;
     public class Usage
     {
-        public Usage()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
             #region ForwardingWithCode
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.ForwardReceivedMessagesTo("destinationQueue@machine");
             #endregion
         }

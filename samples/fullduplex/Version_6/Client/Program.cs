@@ -16,8 +16,7 @@ class Program
         Console.Title = "Samples.FullDuplex.Client";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.FullDuplex.Client");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.FullDuplex.Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

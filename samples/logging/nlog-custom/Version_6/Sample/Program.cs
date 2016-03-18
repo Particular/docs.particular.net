@@ -33,9 +33,7 @@ class Program
 
         NServiceBus.Logging.LogManager.Use<NLogFactory>();
 
-        // Then continue with your BusConfiguration
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Logging.NLogCustom");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Logging.NLogCustom");
 
         #endregion
 

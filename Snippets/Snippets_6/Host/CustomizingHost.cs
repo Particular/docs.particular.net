@@ -9,8 +9,8 @@
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
             // To customize, use the configuration parameter. 
-            // For example, to customize the endpoint name:
-            endpointConfiguration.EndpointName("NewEndpointName");
+            // For example, to customize the container:
+            endpointConfiguration.UseContainer<AutofacBuilder>();
         }
     }
 

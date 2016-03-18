@@ -13,11 +13,10 @@ class Program
     static async Task MainAsync()
     {
         Console.Title = "Samples.ASB.NativeIntegration";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
         #region EndpointAndSingleQueue
 
-        endpointConfiguration.EndpointName("Samples.ASB.NativeIntegration");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ASB.NativeIntegration");
 
         #endregion
 

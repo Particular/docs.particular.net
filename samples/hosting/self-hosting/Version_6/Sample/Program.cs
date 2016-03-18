@@ -15,8 +15,7 @@ class Program
         Console.Title = "Samples.SelfHosting";
         #region self-hosting
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.SelfHosting");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SelfHosting");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

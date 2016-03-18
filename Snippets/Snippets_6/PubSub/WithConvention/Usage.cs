@@ -4,11 +4,9 @@ namespace Snippets6.PubSub.WithConvention
 
     public class Usage
     {
-        public Usage()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
             #region DefiningEventsAs
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             ConventionsBuilder conventions = endpointConfiguration.Conventions();
             conventions.DefiningEventsAs(t =>
                 t.Namespace != null &&

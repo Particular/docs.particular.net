@@ -13,8 +13,7 @@ class Program
     {
         Console.Title = "Samples.Throttling";
         #region Configuration
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Throttling");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Throttling");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         #endregion
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

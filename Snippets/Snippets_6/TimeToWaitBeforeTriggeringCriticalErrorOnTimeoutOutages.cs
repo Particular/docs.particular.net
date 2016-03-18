@@ -5,9 +5,8 @@
 
     public class TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
     {
-        public void Simple()
+        public void Simple(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
 
             endpointConfiguration.TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages(TimeSpan.FromMinutes(5));

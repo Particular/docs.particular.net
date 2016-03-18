@@ -6,9 +6,8 @@
 
     public class Containers_CastleWindsor
     {
-        public void Simple()
+        public void Simple(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region CastleWindsor
 
             endpointConfiguration.UseContainer<WindsorBuilder>();
@@ -16,10 +15,8 @@
             #endregion
         }
 
-        public void Existing()
+        public void Existing(EndpointConfiguration endpointConfiguration)
         {
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region CastleWindsor_Existing
             WindsorContainer container = new WindsorContainer();
             container.Register(Component.For<MyService>().Instance(new MyService()));

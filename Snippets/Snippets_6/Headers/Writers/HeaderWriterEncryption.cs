@@ -27,8 +27,7 @@
         [Test]
         public async Task Write()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-            endpointConfiguration.EndpointName(endpointName);
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.RijndaelEncryptionService("2015-10", Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
             endpointConfiguration.Conventions().DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>();

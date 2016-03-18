@@ -16,10 +16,9 @@ class Program
     {
         Console.Title = "Samples.SqlServer.NativeIntegration";
         #region EndpointConfiguration
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.NativeIntegration");
         endpointConfiguration.UseTransport<SqlServerTransport>()
             .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True");
-        endpointConfiguration.EndpointName("Samples.SqlServer.NativeIntegration");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         #endregion
 

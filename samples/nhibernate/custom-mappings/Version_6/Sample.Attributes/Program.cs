@@ -27,8 +27,7 @@ class Program
 
         AddAttributeMappings(nhConfiguration);
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.CustomNhMappings.Attributes");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Attributes");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

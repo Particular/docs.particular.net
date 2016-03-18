@@ -14,8 +14,7 @@ class Program
     {
         Console.Title = "Samples.Logging.Default";
         #region ConfigureLogging
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Logging.Default");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Logging.Default");
         //Note that no config is required in version 5 and higher since logging is enabled by default
         #endregion
         endpointConfiguration.SendFailedMessagesTo("error");

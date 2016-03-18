@@ -6,6 +6,7 @@ using NServiceBus;
 using NServiceBus.Log4Net;
 using NServiceBus.Logging;
 
+[EndpointName("Samples.Logging.HostCustom")]
 #region Config
 
 public class EndpointConfig :
@@ -33,7 +34,6 @@ public class EndpointConfig :
 #endregion
     public void Customize(EndpointConfiguration endpointConfiguration)
     {
-        endpointConfiguration.EndpointName("Samples.Logging.HostCustom");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

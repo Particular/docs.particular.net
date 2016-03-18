@@ -5,11 +5,10 @@
 
     public class HostIdFixer
     {
-        public void Start()
+        public void Start(EndpointConfiguration endpointConfiguration)
         {
             #region HostIdFixer
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UniquelyIdentifyRunningInstance()
                 .UsingNames("endpointName", Environment.MachineName);
             // or

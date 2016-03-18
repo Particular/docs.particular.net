@@ -13,8 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Gateway.RemoteSite";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Gateway.RemoteSite");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Gateway.RemoteSite");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.EnableFeature<Gateway>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

@@ -4,11 +4,9 @@
 
     public class Usage
     {
-        public Usage()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
             #region PluginCustomDataBus
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseDataBus(typeof(CustomDataBus));
 
             #endregion

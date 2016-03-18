@@ -14,8 +14,7 @@ class Program
         Console.Title = "Samples.RabbitMQ.Simple";
         #region ConfigureRabbit
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.RabbitMQ.Simple");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.Simple");
         endpointConfiguration.UseTransport<RabbitMQTransport>()
             .ConnectionString("host=localhost");
 

@@ -8,65 +8,58 @@
 
     public class TransportTransactions
     {
-        public void Unreliable()
+        public void Unreliable(EndpointConfiguration endpointConfiguration)
         {
             #region TransactionsDisable
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.None);
             #endregion
         }
 
-        public void TransportTransactionReceiveOnly()
+        public void TransportTransactionReceiveOnly(EndpointConfiguration endpointConfiguration)
         {
             #region TransportTransactionReceiveOnly
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.ReceiveOnly);
             #endregion
         }
 
-        public void TransportTransactionAtomicSendsWithReceive()
+        public void TransportTransactionAtomicSendsWithReceive(EndpointConfiguration endpointConfiguration)
         {
             #region TransportTransactionAtomicSendsWithReceive
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             #endregion
         }
 
-        public void TransportTransactionScope()
+        public void TransportTransactionScope(EndpointConfiguration endpointConfiguration)
         {
             #region TransportTransactionScope
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope);
             #endregion
         }
 
-        public void TransportTransactionsWithScope()
+        public void TransportTransactionsWithScope(EndpointConfiguration endpointConfiguration)
         {
             #region TransactionsWrapHandlersExecutionInATransactionScope
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UnitOfWork()
                 .WrapHandlersInATransactionScope();
             #endregion
         }
 
-        public void CustomTransactionIsolationLevel()
+        public void CustomTransactionIsolationLevel(EndpointConfiguration endpointConfiguration)
         {
             #region CustomTransactionIsolationLevel
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope)
                 .TransactionScopeOptions(isolationLevel: IsolationLevel.RepeatableRead);
             #endregion
         }
 
-        public void CustomTransactionTimeout()
+        public void CustomTransactionTimeout(EndpointConfiguration endpointConfiguration)
         {
             #region CustomTransactionTimeout
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope)
                 .TransactionScopeOptions(timeout: TimeSpan.FromSeconds(30));

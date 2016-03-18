@@ -6,9 +6,8 @@
 
     public class NamedConnectionString
     {
-		void ConnectionString()
+		void ConnectionString(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region sqlserver-config-connectionstring
 
             endpointConfiguration.UseTransport<SqlServerTransport>()
@@ -17,9 +16,8 @@
             #endregion
         }
 		
-        void ConnectionName()
+        void ConnectionName(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region sqlserver-named-connection-string
 
             endpointConfiguration.UseTransport<SqlServerTransport>()
@@ -28,9 +26,8 @@
             #endregion
         }
 
-        void ConnectionFactory()
+        void ConnectionFactory(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region sqlserver-custom-connection-factory 3
 
             endpointConfiguration.UseTransport<SqlServerTransport>()

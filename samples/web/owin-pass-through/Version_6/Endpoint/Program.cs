@@ -22,8 +22,7 @@ static class Program
 
         #region startbus
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.OwinPassThrough");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.OwinPassThrough");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

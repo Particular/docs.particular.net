@@ -28,7 +28,6 @@ class Program
 
         NServiceBus.Logging.LogManager.Use<NLogFactory>();
 
-        // Then continue with your BusConfiguration
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Logging.NLogCustom");
 

@@ -12,8 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.DataBus.Receiver";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.DataBus.Receiver");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UseDataBus<FileShareDataBus>()
             .BasePath("..\\..\\..\\storage");

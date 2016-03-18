@@ -15,8 +15,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.PipelineStream.Sender";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.PipelineStream.Sender");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.PipelineStream.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");

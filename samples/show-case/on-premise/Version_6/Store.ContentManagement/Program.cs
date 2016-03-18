@@ -13,8 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Store.ContentManagement";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Store.ContentManagement");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Store.ContentManagement");
         endpointConfiguration.ApplyCommonConfiguration();
         endpointConfiguration.SendFailedMessagesTo("error");
 

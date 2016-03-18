@@ -4,10 +4,8 @@ namespace Snippets6.Gateway.Channels.ConfigurationSource
 
     public class Usage 
     {
-        public Usage()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region UseCustomConfigurationSourceForGatewayChannelsConfig
             endpointConfiguration.CustomConfigurationSource(new ConfigurationSource());
             #endregion

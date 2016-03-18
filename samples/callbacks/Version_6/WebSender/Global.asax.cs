@@ -26,8 +26,7 @@ public class MvcApplication : HttpApplication
 
     async Task StartBus()
     {
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Callbacks.WebSender");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.WebSender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

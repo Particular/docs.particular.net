@@ -7,9 +7,8 @@
 
     public class SimplePolicy
     {
-        public SimplePolicy()
+        public SimplePolicy(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region SecondLevelRetriesCustomPolicy
 
             SecondLevelRetriesSettings retriesSettings = endpointConfiguration.SecondLevelRetries();

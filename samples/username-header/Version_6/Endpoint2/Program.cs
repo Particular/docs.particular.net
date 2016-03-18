@@ -12,8 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.UsernameHeader.Endpoint2";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.UsernameHeader.Endpoint2");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint2");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");

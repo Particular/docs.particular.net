@@ -14,13 +14,12 @@ static class Program
         Console.Title = "Samples.MessageDurability.Sender";
         #region non-transactional
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MessageDurability.Sender");
         endpointConfiguration.UseTransport<MsmqTransport>()
             .Transactions(TransportTransactionMode.None);
 
         #endregion
 
-        endpointConfiguration.EndpointName("Samples.MessageDurability.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

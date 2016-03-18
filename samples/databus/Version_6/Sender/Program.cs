@@ -13,8 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.DataBus.Sender";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.DataBus.Sender");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #region ConfigureDataBus

@@ -15,8 +15,7 @@ static class Program
         Console.Title = "Samples.Autofac";
         #region ContainerConfiguration
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Autofac");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Autofac");
 
         ContainerBuilder builder = new ContainerBuilder();
         builder.RegisterInstance(new MyService());

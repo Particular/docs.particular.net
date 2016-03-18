@@ -4,11 +4,9 @@
 
     public class Usage
     {
-        public Usage()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
             #region OutboxEnablineInCode
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             endpointConfiguration.EnableOutbox();
 

@@ -16,8 +16,7 @@ class Program
         Console.Title = "Samples.RavenDBCustomSagaFinder";
         using (new RavenHost())
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-            endpointConfiguration.EndpointName("Samples.RavenDBCustomSagaFinder");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.RavenDBCustomSagaFinder");
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.SendFailedMessagesTo("error");

@@ -6,10 +6,8 @@
     public class ConfigureSagaPersistence
     {
 
-        public async void Simple()
+        public async void Simple(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region saga-configure
 
             endpointConfiguration.UsePersistence<PersistenceToUseGoesHere>();

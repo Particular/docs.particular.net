@@ -5,9 +5,8 @@
 
     public class MsmqSubscriptionAuthorization 
     {
-        public MsmqSubscriptionAuthorization()
+        public MsmqSubscriptionAuthorization(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region 5to6-MsmqSubscriptionAuthorizer
             endpointConfiguration.UseTransport<MsmqTransport>()
                 .SubscriptionAuthorizer(context =>

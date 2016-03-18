@@ -21,7 +21,6 @@ class Program
         #region UseConfig
         LogManager.Use<SerilogFactory>();
 
-        // Then continue with your BusConfiguration
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Logging.SerilogCustom");
 

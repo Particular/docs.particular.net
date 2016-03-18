@@ -16,9 +16,8 @@ class Program
     {
         Console.Title = "Samples.MsmqToSqlRelay.SqlRelay";
         #region sqlrelay-config
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("SqlRelay");
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.EndpointName("SqlRelay");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.DisableFeature<AutoSubscribe>();
         endpointConfiguration.UsePersistence<NHibernatePersistence>()

@@ -14,8 +14,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Azure.StoragePersistence.Client";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Azure.StoragePersistence.Client");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.StoragePersistence.Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
