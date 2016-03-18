@@ -12,8 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.AsyncPages.Server";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.AsyncPages.Server");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.Server");
         endpointConfiguration.ScaleOut()
             .InstanceDiscriminator("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();

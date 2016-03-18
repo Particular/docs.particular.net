@@ -16,8 +16,7 @@ static class Program
         Console.Title = "Samples.Castle";
         #region ContainerConfiguration
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Castle");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Castle");
 
         WindsorContainer container = new WindsorContainer();
         container.Register(Component.For<MyService>().Instance(new MyService()));

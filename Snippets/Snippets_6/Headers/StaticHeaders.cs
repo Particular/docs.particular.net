@@ -4,10 +4,9 @@
 
     class StaticHeaders
     {
-        public StaticHeaders()
+        public StaticHeaders(EndpointConfiguration endpointConfiguration)
         {
             #region header-static-endpoint
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.AddHeaderToAllOutgoingMessages("MyGlobalHeader", "some static value");
             #endregion
         }

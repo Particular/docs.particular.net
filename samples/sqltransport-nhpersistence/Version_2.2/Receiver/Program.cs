@@ -31,24 +31,25 @@ class Program
 
         new SchemaExport(hibernateConfig).Execute(false, true, false);
 
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.SqlNHibernate.Receiver");
+        busConfiguration.EnableInstallers();
+
         #region ReceiverConfiguration
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EnableInstallers();
         busConfiguration.UseTransport<SqlServerTransport>()
             .DefaultSchema("receiver")
             .UseSpecificConnectionInformation(endpoint =>
             {
-                if (endpoint == "error")
+                if (endpoint == "error" || endpoint == "audit")
                 {
                     return ConnectionInfo.Create().UseSchema("dbo");
                 }
-                if (endpoint == "audit")
+                if (endpoint == "Samples.SqlNHibernate.Sender")
                 {
-                    return ConnectionInfo.Create().UseSchema("dbo");
+                    return ConnectionInfo.Create().UseSchema("sender");
                 }
-                string schema = endpoint.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries)[0].ToLowerInvariant();
-                return ConnectionInfo.Create().UseSchema(schema);
+                return null;
             });
         busConfiguration.UsePersistence<NHibernatePersistence>()
             .UseConfiguration(hibernateConfig)

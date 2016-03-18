@@ -13,8 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SenderSideScaleOut.Server2";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.SenderSideScaleOut.Server");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.Server");
         string discriminator = ConfigurationManager.AppSettings["InstanceId"];
         endpointConfiguration.ScaleOut().InstanceDiscriminator(discriminator);
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

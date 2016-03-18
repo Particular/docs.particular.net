@@ -14,6 +14,7 @@ class Program
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
         BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.SqlNHibernate.Sender");
         busConfiguration.EnableInstallers();
         Configuration hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
@@ -27,9 +28,18 @@ class Program
 
         busConfiguration.UseTransport<SqlServerTransport>()
             .DefaultSchema("sender")
-            .UseSpecificConnectionInformation(
-                EndpointConnectionInfo.For("receiver")
-                    .UseSchema("receiver"));
+            .UseSpecificConnectionInformation(endpoint =>
+            {
+                if (endpoint == "error" || endpoint == "audit")
+                {
+                    return ConnectionInfo.Create().UseSchema("dbo");
+                }
+                if (endpoint == "Samples.SqlNHibernate.Receiver")
+                {
+                    return ConnectionInfo.Create().UseSchema("receiver");
+                }
+                return null;
+            });
         busConfiguration.UsePersistence<NHibernatePersistence>()
             .UseConfiguration(hibernateConfig);
 

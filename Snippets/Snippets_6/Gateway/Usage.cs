@@ -5,11 +5,9 @@
 
     public class Usage
     {
-        public Usage()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
             #region GatewayConfiguration
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.EnableFeature<Gateway>();
 
             #endregion

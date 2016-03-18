@@ -14,9 +14,7 @@ static class Program
     {
         Console.Title = "Samples.Unity";
         #region ContainerConfiguration
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Unity");
-
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Unity");
         UnityContainer container = new UnityContainer();
         container.RegisterInstance(new MyService());
         endpointConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));

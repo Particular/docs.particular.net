@@ -28,7 +28,7 @@ class Program
 
         hibernateConfig.SetProperty("default_schema", "sender");
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SQLNHibernateOutboxEF.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #region SenderConfiguration
@@ -41,10 +41,6 @@ class Program
                 if (queueName.Equals("error", StringComparison.OrdinalIgnoreCase) || queueName.Equals("audit", StringComparison.OrdinalIgnoreCase))
                 {
                     return "dbo";
-                }
-                if (queueName.Equals("receiver", StringComparison.OrdinalIgnoreCase))
-                {
-                    return "receiver";
                 }
                 return null;
             });

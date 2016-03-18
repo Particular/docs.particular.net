@@ -12,8 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SenderSideScaleOut.AwareClient";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.SenderSideScaleOut.AwareClient");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.AwareClient");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 

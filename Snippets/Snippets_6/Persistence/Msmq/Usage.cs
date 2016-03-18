@@ -5,11 +5,10 @@
 
     class Usage
     {
-        public void Foo()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
             #region ConfiguringMsmqPersistence
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UsePersistence<MsmqPersistence>();
 
             #endregion

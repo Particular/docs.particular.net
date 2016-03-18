@@ -65,20 +65,14 @@ class ProgramService : ServiceBase
 
         #region create-config
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
-        #endregion
-
-        #region endpoint-name
-
-        endpointConfiguration.EndpointName("Samples.FirstEndpoint");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.FirstEndpoint");
 
         #endregion
 
         #region container
 
         ContainerBuilder builder = new ContainerBuilder();
-        //configure your custom services
+        //configure custom services
         //builder.RegisterInstance(new MyService());
         IContainer container = builder.Build();
         endpointConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));

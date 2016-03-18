@@ -5,10 +5,9 @@
 
     class PersistenceOrder
     {
-        void Setup()
+        void Setup(EndpointConfiguration endpointConfiguration)
         {
             #region PersistenceOrder_Correct
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             endpointConfiguration.UsePersistence<RavenDBPersistence>();
 
@@ -19,10 +18,9 @@
             #endregion
         }
 
-        void Setup3()
+        void Setup3(EndpointConfiguration endpointConfiguration)
         {
             #region PersistenceOrder_Explicit
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 
@@ -35,10 +33,9 @@
         }
 
 
-        void Setup2()
+        void Setup2(EndpointConfiguration endpointConfiguration)
         {
             #region PersistenceOrder_Incorrect
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 

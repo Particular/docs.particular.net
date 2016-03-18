@@ -7,9 +7,8 @@
     public class ConfigurationSettings
     {
         
-        void TimeToWaitBeforeTriggeringCircuitBreaker()
+        void TimeToWaitBeforeTriggeringCircuitBreaker(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
 
             endpointConfiguration.UseTransport<SqlServerTransport>()

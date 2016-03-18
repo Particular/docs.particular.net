@@ -15,8 +15,7 @@ static class Program
     {
         Console.Title = "Samples.PubSub.MyPublisher";
         LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.PubSub.MyPublisher");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.PubSub.MyPublisher");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         #region SubscriptionAuthorizer

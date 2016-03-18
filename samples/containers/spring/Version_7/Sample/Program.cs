@@ -14,9 +14,7 @@ static class Program
     {
         Console.Title = "Samples.Spring";
         #region ContainerConfiguration
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Spring");
-
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Spring");
         GenericApplicationContext applicationContext = new GenericApplicationContext();
         applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
         endpointConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));

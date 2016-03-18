@@ -17,9 +17,8 @@ class Program
         Console.Title = "Samples.MsmqToSqlRelay.MsmqPublisher";
         #region publisher-config
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("MsmqPublisher");
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.EndpointName("MsmqPublisher");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<NHibernatePersistence>()
             .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForMsmqTransport;Integrated Security=True");

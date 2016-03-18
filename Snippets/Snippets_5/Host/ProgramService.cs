@@ -33,7 +33,7 @@ namespace Snippets5
         protected override void OnStart(string[] args)
         {
             BusConfiguration busConfiguration = new BusConfiguration();
-            //other bus configuration. endpoint name, logging, transport, persistence etc
+            busConfiguration.EndpointName("TheEndpointName");
             busConfiguration.EnableInstallers();
             bus = Bus.Create(busConfiguration).Start();
         }

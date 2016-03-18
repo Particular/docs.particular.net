@@ -13,8 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.PipelineStream.Receiver";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.PipelineStream.Receiver");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.PipelineStream.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SetStreamStorageLocation("..\\..\\..\\storage");

@@ -16,8 +16,7 @@ static class Program
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Warn);
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.ErrorHandling.WithSLR");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ErrorHandling.WithSLR");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

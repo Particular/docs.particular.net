@@ -5,9 +5,8 @@
 
     public class Containers_StructureMap
     {
-        public void Simple()
+        public void Simple(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region StructureMap
 
             endpointConfiguration.UseContainer<StructureMapBuilder>();
@@ -15,9 +14,8 @@
             #endregion
         }
 
-        public void Existing()
+        public void Existing(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region StructureMap_Existing
 
 

@@ -62,9 +62,7 @@ class Program
     {
         #region multi-hosting-assembly-scan
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
-        endpointConfiguration.EndpointName("Samples.MultiHosting.Instance1");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.Instance1");
         //Exclude Instance2.dll and, by inference, include all other assemblies
         endpointConfiguration.ExcludeAssemblies("Instance2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -79,9 +77,7 @@ class Program
 
     static async Task<IEndpointInstance> StartInstance2()
     {
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
-        endpointConfiguration.EndpointName("Samples.MultiHosting.Instance2");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.Instance2");
         endpointConfiguration.ExcludeAssemblies("Instance1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();

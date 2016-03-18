@@ -5,9 +5,8 @@
 
     public class Containers_Unity
     {
-        public void Simple()
+        public void Simple(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Unity
 
             endpointConfiguration.UseContainer<UnityBuilder>();
@@ -15,9 +14,8 @@
             #endregion
         }
 
-        public void Existing()
+        public void Existing(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Unity_Existing
 
             UnityContainer container = new UnityContainer();

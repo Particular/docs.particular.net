@@ -6,11 +6,8 @@
 
     class DisableSchemaUpdate
     {
-        public void Usage()
+        public DisableSchemaUpdate(EndpointConfiguration endpointConfiguration)
         {
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region DisableSchemaUpdate
 
             endpointConfiguration.UsePersistence<NHibernatePersistence>()

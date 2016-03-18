@@ -6,10 +6,9 @@
 
     public class BestPracticesConfiguration
     {
-        void DisableFeature()
+        void DisableFeature(EndpointConfiguration endpointConfiguration)
         {
             #region DisableBestPracticeEnforcementPerEndpoint
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.DisableFeature<BestPracticeEnforcement>();
             #endregion
         }

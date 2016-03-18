@@ -5,10 +5,8 @@
 
     public class BasicUsageOfIBus
     {
-        async Task Send()
+        async Task Send(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region BasicSend
             IEndpointInstance instance = await Endpoint.Start(endpointConfiguration);
             await instance.Send(new MyMessage());

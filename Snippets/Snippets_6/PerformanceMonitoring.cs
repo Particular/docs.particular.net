@@ -6,18 +6,16 @@
     public class PerformanceMonitoring
     {
 
-        public void EnablingCriticalTime()
+        public void EnablingCriticalTime(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region enable-criticaltime
 
             endpointConfiguration.EnableCriticalTimePerformanceCounter();
 
             #endregion
         }
-        public void EnablingSla()
+        public void EnablingSla(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region enable-sla
 
             endpointConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));

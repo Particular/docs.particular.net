@@ -5,11 +5,9 @@
 
     public class DisableWithCode
     {
-        public DisableWithCode()
+        public DisableWithCode(EndpointConfiguration endpointConfiguration)
         {
             #region DisableSlrWithCode
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
             #endregion

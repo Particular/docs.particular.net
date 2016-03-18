@@ -6,12 +6,9 @@ namespace Snippets6
     public class XmlSerializationIntegration
     {
 
-        public void RawXml()
+        public void RawXml(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region ConfigureRawXmlSerialization
-
             endpointConfiguration.UseSerialization<XmlSerializer>()
                 .DontWrapRawXml();
             #endregion

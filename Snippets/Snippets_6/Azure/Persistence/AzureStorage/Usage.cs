@@ -6,11 +6,10 @@
 
     class Usage
     {
-        public void Demo()
+        public void Demo(EndpointConfiguration endpointConfiguration)
         {
             #region PersistanceWithAzure 7
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UsePersistence<AzureStoragePersistence>();
 
             #endregion
@@ -28,10 +27,8 @@
 
         #endregion
 
-        public void CustomizingAzurePersistenceAllConnections_7()
+        public void CustomizingAzurePersistenceAllConnections_7(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region AzurePersistenceSubscriptionsAllConnectionsCustomization 7
 
             endpointConfiguration.UsePersistence<AzureStoragePersistence>()
@@ -39,10 +36,8 @@
             #endregion
         }
 
-        public void CustomizingAzurePersistenceSubscriptions_7()
+        public void CustomizingAzurePersistenceSubscriptions_7(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region AzurePersistenceSubscriptionsCustomization 7
 
             endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()
@@ -52,10 +47,8 @@
             #endregion
         }
 
-        public void CustomizingAzurePersistenceSagas_7()
+        public void CustomizingAzurePersistenceSagas_7(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region AzurePersistenceSagasCustomization 7
 
             endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>()
@@ -64,10 +57,8 @@
             #endregion
         }
 
-        public void AzurePersistenceTimeoutsCustomization_7()
+        public void AzurePersistenceTimeoutsCustomization_7(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region AzurePersistenceTimeoutsCustomization 7
 
             endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()

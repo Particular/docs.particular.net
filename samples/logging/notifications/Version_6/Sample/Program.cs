@@ -18,8 +18,7 @@ class Program
         DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
         defaultFactory.Level(LogLevel.Fatal);
         #endregion
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Logging.Default");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Logging.Default");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();

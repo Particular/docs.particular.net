@@ -6,19 +6,16 @@
     public class Usage
     {
 
-        public void Simple()
+        public void Simple(EndpointConfiguration endpointConfiguration)
         {
             #region AzureDataBus
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseDataBus<AzureDataBus>();
 
             #endregion
         }
 
-        public void Complex()
+        public void Complex(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             string azureStorageConnectionString = "";
             string basePathWithinContainer = "";
             string containerName = "";

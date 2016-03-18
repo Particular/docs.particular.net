@@ -7,8 +7,7 @@
         public void StartEndpoint()
         {
             #region 5to6-endpointNameRequired
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-            endpointConfiguration.EndpointName("MyEndpointName");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("MyEndpointName");
             #endregion
         }
 

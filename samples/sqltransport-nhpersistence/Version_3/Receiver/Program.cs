@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
@@ -39,7 +40,7 @@ class Program
 
         #region ReceiverConfiguration
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlNHibernate.Receiver");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
@@ -47,19 +48,15 @@ class Program
             .DefaultSchema("receiver")
             .UseSpecificSchema(e =>
             {
-                switch (e)
+                if (e == "error" || e == "audit")
                 {
-                    case "error":
-                        return "dbo";
-                    case "audit":
-                        return "dbo";
-                    default:
-                        string schema = e.Split(new[]
-                        {
-                            '.'
-                        }, StringSplitOptions.RemoveEmptyEntries)[0].ToLowerInvariant();
-                        return schema;
+                    return "dbo";
                 }
+                if (e == "Samples.SqlNHibernate.Sender")
+                {
+                    return "sender";
+                }
+                return null;
             });
 
         endpointConfiguration.UsePersistence<NHibernatePersistence>()

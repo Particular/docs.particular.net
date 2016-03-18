@@ -23,8 +23,7 @@ class Program
         nhConfiguration.SetProperty(Environment.Dialect, "NHibernate.Dialect.MsSql2008Dialect");
         nhConfiguration.SetProperty(Environment.ConnectionStringName, "NServiceBus/Persistence");
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.CustomNhMappings.Default");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Default");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

@@ -9,32 +9,27 @@
 
     public class Usage
     {
-        void Basic()
+        void Basic(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-basic
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<RabbitMQTransport>();
 
             #endregion
         }
 
-        void CustomConnectionString()
+        void CustomConnectionString(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-connectionstring-in-code
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<RabbitMQTransport>()
                 .ConnectionString("My custom connection string");
 
             #endregion
         }
 
-        void CustomConnectionStringName()
+        void CustomConnectionStringName(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-connectionstringname
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<RabbitMQTransport>()
                 .ConnectionStringName("MyConnectionStringName");
 
@@ -43,11 +38,9 @@
 
         /**
 
-        void DisableCallbackReceiver()
+        void DisableCallbackReceiver(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-disablecallbackreceiver
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<RabbitMQTransport>()
                 .DisableCallbackReceiver();
 
@@ -55,32 +48,26 @@
         }
 
 
-        void CallbackReceiverMaxConcurrency()
+        void CallbackReceiverMaxConcurrency(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-callbackreceiver-thread-count
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<RabbitMQTransport>()
                 .CallbackReceiverMaxConcurrency(10);
 
             #endregion
         }
-        void CustomIdStrategy()
+        void CustomIdStrategy(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-custom-id-strategy
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<RabbitMQTransport>()
                 .CustomMessageIdStrategy(deliveryArgs => 
                     deliveryArgs.BasicProperties.Headers["MyCustomId"].ToString());
 
             #endregion
         }
-        void UseConnectionManager()
+        void UseConnectionManager(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-useconnectionmanager
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<RabbitMQTransport>()
                 .UseConnectionManager<MyConnectionManager>();
 
@@ -88,22 +75,19 @@
         }
     **/
 
-        void UseDirectRoutingTopology()
+        void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-usedirectroutingtopology
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<RabbitMQTransport>()
                 .UseDirectRoutingTopology();
 
             #endregion
         }
 
-        void UseDirectRoutingTopologyWithCustomConventions()
+        void UseDirectRoutingTopologyWithCustomConventions(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-usedirectroutingtopologywithcustomconventions
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<RabbitMQTransport>()
                 .UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
 
@@ -115,11 +99,10 @@
             throw new NotImplementedException();
         }
 
-        void UseRoutingTopology()
+        void UseRoutingTopology(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-useroutingtopology
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<RabbitMQTransport>()
                 .UseRoutingTopology<MyRoutingTopology>();
 

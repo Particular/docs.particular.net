@@ -14,10 +14,9 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Azure.StoragePersistence.Server";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         #region config
 
-        endpointConfiguration.EndpointName("Samples.Azure.StoragePersistence.Server");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.StoragePersistence.Server");
         endpointConfiguration.UsePersistence<AzureStoragePersistence>();
 
         #endregion

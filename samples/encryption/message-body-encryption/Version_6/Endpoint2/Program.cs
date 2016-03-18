@@ -12,8 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.MessageBodyEncryption.Endpoint2";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.MessageBodyEncryption.Endpoint2");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MessageBodyEncryption.Endpoint2");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.RegisterMessageEncryptor();
         endpointConfiguration.SendFailedMessagesTo("error");

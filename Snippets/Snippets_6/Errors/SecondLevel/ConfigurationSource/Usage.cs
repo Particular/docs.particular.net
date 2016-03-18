@@ -4,10 +4,8 @@ namespace Snippets6.Errors.SecondLevel.ConfigurationSource
 
     public class Usage
     {
-        public Usage()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region SLRConfigurationSourceUsage
             endpointConfiguration.CustomConfigurationSource(new ConfigurationSource());
             #endregion

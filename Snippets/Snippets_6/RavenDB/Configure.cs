@@ -8,14 +8,12 @@
 
     class RavenDBConfigure
     {
-        public void SharedSessionForSagasAndOutbox()
+        public void SharedSessionForSagasAndOutbox(EndpointConfiguration endpointConfiguration)
         {
             #region ravendb-persistence-shared-session-for-sagas
 
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UsePersistence<RavenDBPersistence>().UseSharedAsyncSession(() =>
             {
                 IAsyncDocumentSession session = myDocumentStore.OpenAsyncSession();
@@ -49,14 +47,12 @@
 
         #endregion
 
-        public void SpecificExternalDocumentStore()
+        public void SpecificExternalDocumentStore(EndpointConfiguration endpointConfiguration)
         {
             #region ravendb-persistence-specific-external-store
 
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UsePersistence<RavenDBPersistence>()
                 .UseDocumentStoreForSubscriptions(myDocumentStore)
                 .UseDocumentStoreForSagas(myDocumentStore)
@@ -70,29 +66,24 @@
             //See the config file
         }
 
-        public void ExternalDocumentStore()
+        public void ExternalDocumentStore(EndpointConfiguration endpointConfiguration)
         {
             #region ravendb-persistence-external-store
 
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
-
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UsePersistence<RavenDBPersistence>()
                 .SetDefaultDocumentStore(myDocumentStore);
 
             #endregion
         }
 
-        public void ExternalConnectionParameters()
+        public void ExternalConnectionParameters(EndpointConfiguration endpointConfiguration)
         {
             #region ravendb-persistence-external-connection-params
 
             ConnectionParameters connectionParams = new ConnectionParameters();
             // configure connection params (ApiKey, DatabaseName, Url) here
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UsePersistence<RavenDBPersistence>()
                 .SetDefaultDocumentStore(connectionParams);
 

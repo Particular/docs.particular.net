@@ -15,8 +15,7 @@ static class Program
     {
         Console.Title = "Samples.Serialization.Xml";
         #region config
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Serialization.Xml");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Xml");
         // this is optional since Xml is the default serializer
         endpointConfiguration.UseSerialization<XmlSerializer>();
         // register the mutator so the the message on the wire is written

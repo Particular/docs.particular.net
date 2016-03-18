@@ -4,10 +4,8 @@
 
     class Transactions
     {
-        public void SetDistributedTransactions()
+        public void SetDistributedTransactions(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region 2to3-enable-native-transaction
 
             endpointConfiguration

@@ -13,12 +13,11 @@ class Program
     {
         Console.Title = "Samples.RabbitMQ.NativeIntegration.Receiver";
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         #region ConfigureRabbitQueueName
-        endpointConfiguration.EndpointName("Samples.RabbitMQ.NativeIntegration");
-        #endregion
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.NativeIntegration");
         endpointConfiguration.UseTransport<RabbitMQTransport>()
             .ConnectionString("host=localhost");
+        #endregion
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

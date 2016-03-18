@@ -17,8 +17,7 @@ class Program
         {
             #region Config
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-            endpointConfiguration.EndpointName("Samples.RavenDB.Server");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Server");
             DocumentStore documentStore = new DocumentStore
             {
                 Url = "http://localhost:32076",

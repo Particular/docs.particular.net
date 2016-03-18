@@ -5,22 +5,18 @@
 
     public class AutoSubscribeSettings
     {
-        public void DisableAutoSubscribe()
+        public void DisableAutoSubscribe(EndpointConfiguration endpointConfiguration)
         {
             #region DisableAutoSubscribe
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             endpointConfiguration.DisableFeature<AutoSubscribe>();
 
             #endregion
         }
 
-        public void DoNotAutoSubscribeSagas()
+        public void DoNotAutoSubscribeSagas(EndpointConfiguration endpointConfiguration)
         {
             #region DoNotAutoSubscribeSagas
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             endpointConfiguration.AutoSubscribe().DoNotAutoSubscribeSagas();
 

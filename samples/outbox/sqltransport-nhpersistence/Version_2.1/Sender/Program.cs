@@ -11,6 +11,7 @@ class Program
         Random random = new Random();
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EndpointName("Samples.SQLNHibernateOutbox.Sender");
 
         #region SenderConfiguration
 

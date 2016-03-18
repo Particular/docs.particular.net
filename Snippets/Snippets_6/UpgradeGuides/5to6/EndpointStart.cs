@@ -8,7 +8,7 @@
         public async Task StartEndpoint()
         {
             #region 5to6-endpoint-start
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("TheEndpointName");
             //configure the endpoint
 
             //Start the endpoint

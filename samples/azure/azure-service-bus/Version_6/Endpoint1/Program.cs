@@ -14,8 +14,7 @@ class Program
         Console.Title = "Samples.Azure.ServiceBus.Endpoint1";
         #region config
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Azure.ServiceBus.Endpoint1");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Endpoint1");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseTransport<AzureServiceBusTransport>()
             .ConnectionString(Environment.GetEnvironmentVariable("SamplesAzureServiceBusConnection"));

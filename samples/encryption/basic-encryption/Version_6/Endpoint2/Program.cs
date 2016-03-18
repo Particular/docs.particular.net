@@ -12,8 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Encryption.Endpoint2";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Encryption.Endpoint2");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Encryption.Endpoint2");
         endpointConfiguration.RijndaelEncryptionService();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();

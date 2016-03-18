@@ -13,8 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Unobtrusive.Server";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Unobtrusive.Server");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Unobtrusive.Server");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseDataBus<FileShareDataBus>()

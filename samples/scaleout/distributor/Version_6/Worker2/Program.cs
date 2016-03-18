@@ -10,8 +10,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.Scaleout.Worker2";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Scaleout.Worker");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
 
         #region Distributor-InstanceId
 

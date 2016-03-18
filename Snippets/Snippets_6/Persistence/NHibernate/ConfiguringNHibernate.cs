@@ -8,11 +8,9 @@
 
     class ConfiguringNHibernate
     {
-        public void Version_5_2()
+        public void Version_5_2(EndpointConfiguration endpointConfiguration)
         {
             #region ConfiguringNHibernate
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             //Use NHibernate for all persistence concerns
             endpointConfiguration.UsePersistence<NHibernatePersistence>();
@@ -35,11 +33,9 @@
         }
 
 
-        public void CustomCommonConfiguration()
+        public void CustomCommonConfiguration(EndpointConfiguration endpointConfiguration)
         {
             #region CommonNHibernateConfiguration
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             Configuration nhConfiguration = new Configuration
             {
@@ -57,11 +53,9 @@
             #endregion
         }
 
-        public void SpecificNHibernateConfiguration()
+        public void SpecificNHibernateConfiguration(EndpointConfiguration endpointConfiguration)
         {
             #region SpecificNHibernateConfiguration
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             Configuration nhConfiguration = new Configuration
             {
@@ -82,11 +76,9 @@
         }
         
 
-        public void CustomCommonConfigurationWarning()
+        public void CustomCommonConfigurationWarning(EndpointConfiguration endpointConfiguration)
         {
             #region CustomCommonNhibernateConfigurationWarning
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             Configuration nhConfiguration = new Configuration
             {

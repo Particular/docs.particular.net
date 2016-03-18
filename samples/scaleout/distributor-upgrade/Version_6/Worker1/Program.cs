@@ -9,11 +9,10 @@ internal class Program
 {
     static void Main()
     {
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
         #region WorkerIdentity
 
-        endpointConfiguration.EndpointName("Samples.Scaleout.Worker");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
         endpointConfiguration.ScaleOut()
             .InstanceDiscriminator(ConfigurationManager.AppSettings["InstanceId"]);
 

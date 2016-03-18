@@ -13,8 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Azure.StorageQueues.Endpoint2";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Azure.StorageQueues.Endpoint2");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.StorageQueues.Endpoint2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseTransport<AzureStorageQueueTransport>();

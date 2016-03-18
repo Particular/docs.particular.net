@@ -2,7 +2,7 @@ using NServiceBus;
 using NServiceBus.Features;
 
 #region nservicebus-host
-
+[EndpointName("Samples.NServiceBus.Host")]
 public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization
 {
     public void Init()

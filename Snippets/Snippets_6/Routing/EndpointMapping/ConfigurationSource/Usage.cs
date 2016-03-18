@@ -4,9 +4,8 @@
 
     public class Usage 
     {
-        public Usage()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region inject-endpoint-mapping-configuration-source
             endpointConfiguration.CustomConfigurationSource(new ConfigurationSource());
             #endregion

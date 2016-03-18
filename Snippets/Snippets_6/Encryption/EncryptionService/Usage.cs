@@ -4,11 +4,9 @@
 
     class Usage
     {
-        public Usage()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
             #region EncryptionFromIEncryptionService
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             //where EncryptionService implements IEncryptionService 
             endpointConfiguration.RegisterEncryptionService(() => new EncryptionService());
 

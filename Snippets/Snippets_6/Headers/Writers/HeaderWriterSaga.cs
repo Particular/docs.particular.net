@@ -25,8 +25,7 @@
         [Test]
         public async Task Write()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-            endpointConfiguration.EndpointName(endpointName);
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration(endpointName);
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterSaga>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.SendFailedMessagesTo("error");

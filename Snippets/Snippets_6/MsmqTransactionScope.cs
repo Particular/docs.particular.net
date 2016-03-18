@@ -6,20 +6,18 @@
 
     public class MsmqTransactionScope
     {
-        public void MsmqTransactionScopeIsolationLevel()
+        public void MsmqTransactionScopeIsolationLevel(EndpointConfiguration endpointConfiguration)
         {
             #region MsmqTransactionScopeIsolationLevel
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<MsmqTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope)
                 .TransactionScopeOptions(isolationLevel: IsolationLevel.RepeatableRead);
             #endregion
         }
 
-        public void MsmqTransactionScopeTimeout()
+        public void MsmqTransactionScopeTimeout(EndpointConfiguration endpointConfiguration)
         {
             #region MsmqTransactionScopeTimeout
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<MsmqTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope)
                 .TransactionScopeOptions(timeout: TimeSpan.FromSeconds(30));

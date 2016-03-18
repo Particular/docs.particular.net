@@ -4,11 +4,9 @@
 
     public class Usage
     {
-        public void Simple()
+        public void Simple(EndpointConfiguration endpointConfiguration)
         {
             #region UsingMessageBodyEncryptor
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<MessageEncryptor>(DependencyLifecycle.InstancePerCall));
 
             #endregion

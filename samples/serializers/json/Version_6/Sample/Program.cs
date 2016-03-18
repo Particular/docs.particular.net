@@ -14,8 +14,7 @@ static class Program
     {
         Console.Title = "Samples.Serialization.Json";
         #region config
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Serialization.Json");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Json");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         // register the mutator so the the message on the wire is written
         endpointConfiguration.RegisterComponents(components =>

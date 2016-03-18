@@ -14,9 +14,7 @@ static class Program
     {
         Console.Title = "Samples.StructureMap";
         #region ContainerConfiguration
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.StructureMap");
-
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.StructureMap");
         Container container = new Container(x => x.For<MyService>().Use(new MyService()));
         endpointConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
         #endregion

@@ -13,15 +13,14 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.FaultTolerance.Server";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.FaultTolerance.Server");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.FaultTolerance.Server");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         // To disable second level retries(SLR), uncomment the following line. SLR is enabled by default.
-        // busConfiguration.DisableFeature<SecondLevelRetries>();
+        // endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
 
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);

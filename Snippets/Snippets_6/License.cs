@@ -4,12 +4,9 @@
 
     public class License
     {
-        public void Simple()
+        public void Simple(EndpointConfiguration endpointConfiguration)
         {
             #region License
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             endpointConfiguration.LicensePath("PathToLicense");
             //or
             endpointConfiguration.License("YourCustomLicenseText");

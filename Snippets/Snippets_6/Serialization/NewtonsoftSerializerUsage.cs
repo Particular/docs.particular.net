@@ -12,9 +12,8 @@
 
     public class NewtonsoftSerializerUsage
     {
-        public void Simple()
+        public void Simple(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region NewtonsoftSerialization 0.3-pre
 
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
@@ -22,9 +21,8 @@
             #endregion
         }
 
-        public void CustomSettings()
+        public void CustomSettings(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region NewtonsoftCustomSettings 0.3-pre
 
             JsonSerializerSettings settings = new JsonSerializerSettings
@@ -44,9 +42,8 @@
             #endregion
         }
 
-        public void CustomReader()
+        public void CustomReader(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region NewtonsoftCustomReader 0.3-pre
 
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
@@ -59,9 +56,8 @@
             #endregion
         }
 
-        public void CustomWriter()
+        public void CustomWriter(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region NewtonsoftCustomWriter 0.3-pre
 
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
@@ -76,9 +72,8 @@
 
             #endregion
         }
-        public void Bson()
+        public void Bson(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region NewtonsoftBson 0.3-pre
 
             SerializationExtentions<NewtonsoftSerializer> serialization =

@@ -21,7 +21,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlNHibernate.Sender";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlNHibernate.Sender");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
@@ -37,7 +37,14 @@ class Program
 
         endpointConfiguration.UseTransport<SqlServerTransport>()
             .DefaultSchema("sender")
-            .UseSpecificSchema(e => "receiver");
+            .UseSpecificSchema(e =>
+            {
+                if (e == "error" || e == "audit")
+                {
+                    return "dbo";
+                }
+                return null;
+            });
 
         endpointConfiguration.UsePersistence<NHibernatePersistence>()
             .UseConfiguration(hibernateConfig);

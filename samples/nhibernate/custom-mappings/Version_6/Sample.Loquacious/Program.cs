@@ -26,8 +26,7 @@ class Program
 
         nhConfiguration = AddLoquaciousMappings(nhConfiguration);
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.CustomNhMappings.Loquacious");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Loquacious");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

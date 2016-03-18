@@ -6,7 +6,7 @@
     [EndpointName("MyEndpointName")]
     public class EndpointConfigWithAttribute : IConfigureThisEndpoint, AsA_Server
     {
-        // ... your custom config
+        // ... custom config
         // endcode
         public void Customize(EndpointConfiguration endpointConfiguration)
         {

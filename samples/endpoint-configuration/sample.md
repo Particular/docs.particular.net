@@ -47,14 +47,11 @@ snippet:logging
 
 ## Create the root configuration instance
 
-snippet:create-config
-
-
-## Define the [Endpoint](/nservicebus/endpoints/) Name
+And also define the endpoint name.
 
 WARNING: In Versions 6 and above [endpoint](/nservicebus/endpoints/) name is mandatory.
 
-snippet:endpoint-name
+snippet:create-config
 
 
 ## Select and configure a [Container](/nservicebus/containers)

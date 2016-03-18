@@ -31,6 +31,7 @@ class Program
 
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EndpointName("Samples.MultiTenant.Receiver");
 
         #region ReceiverConfiguration
 

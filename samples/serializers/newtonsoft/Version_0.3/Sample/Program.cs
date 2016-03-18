@@ -15,8 +15,7 @@ static class Program
     {
         Console.Title = "Samples.Serialization.ExternalJson";
         #region config
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Serialization.ExternalJson"); 
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalJson");
         JsonSerializerSettings settings = new JsonSerializerSettings
         {
             Formatting = Formatting.Indented

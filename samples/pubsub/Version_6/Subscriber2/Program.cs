@@ -15,8 +15,7 @@ static class Program
     {
         Console.Title = "Samples.PubSub.Subscriber2";
         LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.PubSub.Subscriber2");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Subscriber2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.DisableFeature<AutoSubscribe>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

@@ -4,13 +4,11 @@
 
     public class Usage
     {
-        public Usage()
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
             string databusPath = null;
 
             #region FileShareDataBus
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseDataBus<FileShareDataBus>()
                 .BasePath(databusPath);
 

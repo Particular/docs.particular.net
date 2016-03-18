@@ -18,8 +18,7 @@ static class Program
             .Level(LogLevel.Warn);
 
         #region DisableSLR
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.ErrorHandling.WithoutSLR");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ErrorHandling.WithoutSLR");
         endpointConfiguration.DisableFeature<SecondLevelRetries>();
         #endregion
         endpointConfiguration.UseSerialization<JsonSerializer>();

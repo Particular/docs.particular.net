@@ -6,9 +6,8 @@
 
     public class Containers_Ninject
     {
-        public void Simple()
+        public void Simple(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Ninject
 
             endpointConfiguration.UseContainer<NinjectBuilder>();
@@ -16,9 +15,8 @@
             #endregion
         }
 
-        public void Existing()
+        public void Existing(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region Ninject_Existing
 
             StandardKernel kernel = new StandardKernel();

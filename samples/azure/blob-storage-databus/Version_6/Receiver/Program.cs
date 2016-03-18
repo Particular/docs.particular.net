@@ -13,8 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.AzureBlobStorageDataBus.Receiver";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.AzureBlobStorageDataBus.Receiver");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UseDataBus<AzureDataBus>()
             .ConnectionString("UseDevelopmentStorage=true");

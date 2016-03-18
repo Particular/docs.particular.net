@@ -57,15 +57,12 @@ class ProgramService : ServiceBase
 
         #region create-config
         BusConfiguration busConfiguration = new BusConfiguration();
-        #endregion
-
-        #region endpoint-name
         busConfiguration.EndpointName("Samples.FirstEndpoint");
         #endregion
 
         #region container
         ContainerBuilder builder = new ContainerBuilder();
-        //configure your custom services
+        //configure custom services
         //builder.RegisterInstance(new MyService());
         IContainer container = builder.Build();
         busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));

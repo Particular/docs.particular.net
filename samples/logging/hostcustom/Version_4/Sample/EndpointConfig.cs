@@ -4,6 +4,7 @@ using log4net.Core;
 using log4net.Layout;
 using NServiceBus;
 
+[EndpointName("Samples.Logging.HostCustom")]
 #region Config
 public class EndpointConfig :
     IConfigureThisEndpoint,
@@ -35,7 +36,6 @@ public class EndpointConfig :
     {
         Configure.Serialization.Json();
         Configure configure = Configure.With();
-        configure.DefineEndpointName("Samples.Logging.HostCustom");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();

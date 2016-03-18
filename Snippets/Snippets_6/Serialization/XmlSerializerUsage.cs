@@ -4,9 +4,8 @@
 
     public class XmlSerializerUsage
     {
-        public void Simple()
+        public void Simple(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             #region XmlSerialization
 
             endpointConfiguration.UseSerialization<XmlSerializer>();

@@ -12,8 +12,7 @@ static class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.WcfCallbacks.Endpoint";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.WcfCallbacks.Endpoint");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.WcfCallbacks.Endpoint");
         endpointConfiguration.ScaleOut()
             .InstanceDiscriminator("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();

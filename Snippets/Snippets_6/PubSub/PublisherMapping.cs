@@ -5,10 +5,9 @@
 
     class PublisherMapping
     {
-        public void MapPublishers()
+        public void MapPublishers(EndpointConfiguration endpointConfiguration)
         {
             #region PubSub-CodePublisherMapping
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.Publishers()
                 .AddStatic(new EndpointName("Sales"), typeof(MyEvent));
             endpointConfiguration.Publishers()

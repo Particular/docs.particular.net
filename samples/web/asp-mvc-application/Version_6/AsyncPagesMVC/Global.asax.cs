@@ -45,8 +45,7 @@ public class MvcApplication : HttpApplication
 
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.Mvc.WebApplication");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Mvc.WebApplication");
         endpointConfiguration.ScaleOut()
             .InstanceDiscriminator("1");
         endpointConfiguration.SendFailedMessagesTo("error");

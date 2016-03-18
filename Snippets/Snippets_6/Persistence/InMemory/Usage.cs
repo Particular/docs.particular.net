@@ -5,11 +5,9 @@
 
     class Usage
     {
-        public void ConfiguringInMemory()
+        public void ConfiguringInMemory(EndpointConfiguration endpointConfiguration)
         {
             #region ConfiguringInMemory
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
             endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();

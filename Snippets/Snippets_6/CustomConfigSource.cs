@@ -7,12 +7,9 @@
 
     public class CustomConfigSource
     {
-        public CustomConfigSource()
+        public CustomConfigSource(EndpointConfiguration endpointConfiguration)
         {
-
             #region RegisterCustomConfigSource
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             endpointConfiguration.CustomConfigurationSource(new MyCustomConfigurationSource());
 

@@ -15,8 +15,7 @@ class Program
     {
         Console.Title = "Samples.RavenDB.Migration";
         #region registerConverter
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Samples.RavenDB.Migration");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Migration");
         DocumentStore documentStore = new DocumentStore
         {
             Url = "http://localhost:8083",

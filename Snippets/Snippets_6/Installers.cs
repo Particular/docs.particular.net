@@ -5,11 +5,9 @@
 
     public class ForInstallationOnReplacement
     {
-        public async Task Simple()
+        public async Task Simple(EndpointConfiguration endpointConfiguration)
         {
             #region Installers
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             endpointConfiguration.EnableInstallers();
 

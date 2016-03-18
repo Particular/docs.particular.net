@@ -21,8 +21,7 @@ public class MvcApplication : HttpApplication
 
     static async Task AsyncStart()
     {
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.EndpointName("Store.ECommerce");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Store.ECommerce");
         endpointConfiguration.PurgeOnStartup(true);
 
         endpointConfiguration.ApplyCommonConfiguration();
