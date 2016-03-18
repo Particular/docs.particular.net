@@ -81,6 +81,9 @@ snippet:sql-2.2.2-ExpiresIndex
 
 ## Transactions and delivery guarantees
 
+SQL Server transport supports all [transaction handling modes](/nservicebus/messaging/transactions.md), i.e. Transaction scope, Receive only, Sends atomic with Receive and No transactions.
+
+Refer to [Transport Transactions](/nservicebus/messaging/transactions.md) for detailed explanation of the supported transaction handling modes and available configuration options. 
 
 ### Transaction scope
 
@@ -119,7 +122,6 @@ There was no distinction between `ReceiveOnly` and `SendsAtomicWithReceive`. Usi
 ### Unreliable (Transactions Disabled)
 
 In this mode when message is received from an input queue it's immediately removed from it. If processing fails the message is lost, because the operation cannot be rolled back. Also any other operation performed when processing the message is executed outside of the transaction, it can't be rolled back. That might lead to undesired side effects.
-
 
 ## Concurrency
 

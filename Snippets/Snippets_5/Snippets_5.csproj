@@ -381,7 +381,9 @@
     <None Include="Transports\SqlServer_2\ConnectionStrings.config" />
     <None Include="Transports\SqlServer_2\ConnectionStringsNamed.config" />
     <None Include="Transports\SqlServer_2\MultiDB.SC.config" />
-    <None Include="Transports\SqlServer_2\MultiSchema.config" />
+    <None Include="Transports\SqlServer_2\MultiSchema.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Transports\SqlServer_2\UpgradeGuides\ExpiredIndex.sql" />
     <None Include="Gateway\UpgradeGuide\1to2\Channel.config" />
   </ItemGroup>
@@ -421,6 +423,7 @@
     <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
     <Compile Include="Serialization\NewtonsoftSerializerUsage.cs" />
     <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
+    <Compile Include="Transports\SqlServer_2\MultiSchema.cs" />
     <Compile Include="Transports\SqlServer_2\SingleDbMultiSchema.cs" />
     <Compile Include="Transports\SqlServer_2\ConnectionStrings.cs" />
     <Compile Include="Transports\SqlServer_2\UpgradeGuides\Transactions.cs" />
