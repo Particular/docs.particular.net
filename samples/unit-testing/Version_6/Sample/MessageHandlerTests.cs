@@ -12,12 +12,12 @@ namespace Sample
         [Test]
         public async Task ShouldReplyWithResponseMessage()
         {
-            var handler = new MyHandler();
+            var handler = new MyReplyingHandler();
             var context = new TestableMessageHandlerContext();
 
             await handler.Handle(new MyRequest(), context);
 
-            Assert.IsTrue(context.RepliedMessages.Length == 1);
+            Assert.AreEqual(1, context.RepliedMessages.Length);
             Assert.IsInstanceOf<MyResponse>(context.RepliedMessages[0].Message);
         }
         #endregion
@@ -32,7 +32,7 @@ namespace Sample
     }
 
     #region SimpleHandler
-    public class MyHandler : IHandleMessages<MyRequest>
+    public class MyReplyingHandler : IHandleMessages<MyRequest>
     {
         public Task Handle(MyRequest message, IMessageHandlerContext context)
         {
