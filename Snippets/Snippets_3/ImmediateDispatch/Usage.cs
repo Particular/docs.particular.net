@@ -5,15 +5,15 @@
 
     class Usage
     {
-        public void RequestImmediateDispatchUsingScope()
+        Usage(IBus bus)
         {
-            IBus bus = null;
-
             #region RequestImmediateDispatchUsingScope
+
             using (new TransactionScope(TransactionScopeOption.Suppress))
             {
                 bus.Send(new MyMessage());
             }
+
             #endregion
         }
 

@@ -1,16 +1,15 @@
-﻿
-namespace Snippets3.Encryption.Conventions
+﻿namespace Snippets3.Encryption.Conventions
 {
     using NServiceBus;
 
     class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
-            Configure configure = Configure.With();
             #region DefiningEncryptedPropertiesAs
 
             configure.DefiningEncryptedPropertiesAs(x => x.Name.EndsWith("EncryptedProperty"));
+
             #endregion
         }
     }

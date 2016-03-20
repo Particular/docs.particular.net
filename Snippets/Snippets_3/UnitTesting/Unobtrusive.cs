@@ -4,23 +4,22 @@
     using NServiceBus;
     using NServiceBus.Testing;
 
-    public class Unobtrusive
+    class Unobtrusive
     {
-        public class Setup
+        Unobtrusive()
         {
-            public Setup()
-            {
-                #region SetupConventionsForUnitTests
-                MessageConventionExtensions.IsMessageTypeAction = MyMessageTypeConvention;
+            #region SetupConventionsForUnitTests
 
-                Test.Initialize();
-                #endregion
-            }
+            MessageConventionExtensions.IsMessageTypeAction = MyMessageTypeConvention;
 
-            bool MyMessageTypeConvention(Type arg)
-            {
-                return true;
-            }
+            Test.Initialize();
+
+            #endregion
+        }
+
+        bool MyMessageTypeConvention(Type arg)
+        {
+            return true;
         }
     }
 }

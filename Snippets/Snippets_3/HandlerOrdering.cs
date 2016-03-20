@@ -3,9 +3,9 @@
     using NServiceBus;
     using NServiceBus.Unicast.Config;
 
-    public class HandlerOrdering
+    class HandlerOrdering
     {
-        public void Simple(Configure configure)
+        void Simple(Configure configure)
         {
             #region HandlerOrderingWithCode
 
@@ -35,13 +35,13 @@
         }
         #endregion
 
-        public class HandlerA
+        class HandlerA
         {
         }
-        public class HandlerB
+        class HandlerB
         {
         }
-        public class HandlerC
+        class HandlerC
         {
         }
     }

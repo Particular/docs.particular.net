@@ -4,9 +4,9 @@
     using NServiceBus.Management.Retries;
     using NServiceBus.Unicast.Transport;
 
-    public class SimplePolicy
+    class SimplePolicy
     {
-        public SimplePolicy()
+        SimplePolicy()
         {
             #region SecondLevelRetriesCustomPolicy
 

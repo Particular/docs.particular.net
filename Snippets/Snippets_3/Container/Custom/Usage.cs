@@ -3,11 +3,10 @@
     using NServiceBus;
     using NServiceBus.ObjectBuilder.Common.Config;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
-            Configure configure = Configure.With();
             #region CustomContainers
 
             //Create a class that implements 'IContainer'

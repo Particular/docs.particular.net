@@ -5,9 +5,8 @@
 
     class Scheduling
     {
-        public void ScheduleTask()
+        Scheduling(IBus bus)
         {
-            IBus bus = null;
             #region ScheduleTask
 
             // 'Schedule' is a static class that can be accessed anywhere. 

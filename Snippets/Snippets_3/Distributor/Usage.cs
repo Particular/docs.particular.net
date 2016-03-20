@@ -4,9 +4,8 @@
 
     class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
-            Configure configure = Configure.With();
             #region ConfiguringDistributor
 
             // --------------------------------------
@@ -24,18 +23,27 @@
             // --------------------------------------
 
             #endregion
+
             #region ConfiguringWorker
+
             configure.EnlistWithDistributor();
+
             #endregion
         }
-        public void IsEnabled()
+
+        void IsEnabled(Configure configure)
         {
-            Configure configure = Configure.With();
+
             #region IsDistributorEnabled
+
             bool isDistributorEnabled = configure.DistributorEnabled();
+
             #endregion
+
             #region IsWorkerEnabled
+
             bool isWorkerEnabled = configure.WorkerRunsOnThisEndpoint();
+
             #endregion
         }
     }

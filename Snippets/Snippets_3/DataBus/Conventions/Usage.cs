@@ -2,11 +2,10 @@ namespace Snippets3.DataBus.Conventions
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(Configure configuration)
         {
-            Configure configuration = null;
             #region DefineMessageWithLargePayloadUsingConvention
 
             configuration.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));

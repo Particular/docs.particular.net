@@ -2,20 +2,15 @@
 {
     using NServiceBus;
 
-    public class ConfigureSagaPersistence
+    class ConfigureSagaPersistence
     {
 
-        public void Simple()
+        ConfigureSagaPersistence(Configure configure)
         {
             #region saga-configure
 
-            Configure configure = Configure.With();
-            configure.DefaultBuilder();
-            configure.MsmqTransport();
             configure.Sagas();
-            configure.UnicastBus();
             configure.RavenSagaPersister();
-            IStartableBus bus = configure.CreateBus();
 
             #endregion
         }

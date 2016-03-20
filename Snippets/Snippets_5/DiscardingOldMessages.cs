@@ -11,12 +11,9 @@
         public class MyMessage { }
         #endregion
 
-        public void Simple()
+        DiscardingOldMessages(BusConfiguration busConfiguration)
         {
             #region DiscardingOldMessagesWithCode
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             busConfiguration.Conventions()
                 .DefiningTimeToBeReceivedAs(type =>
                 {

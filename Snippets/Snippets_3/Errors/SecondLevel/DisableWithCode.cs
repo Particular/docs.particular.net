@@ -2,13 +2,12 @@
 {
     using NServiceBus;
 
-    public class DisableWithCode
+    class DisableWithCode
     {
-        public DisableWithCode()
+        DisableWithCode(Configure configure)
         {
             #region DisableSlrWithCode
 
-            Configure configure = Configure.With();
             configure.DisableSecondLevelRetries();
 
             #endregion

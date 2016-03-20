@@ -3,61 +3,57 @@
     using NServiceBus;
     using NServiceBus.Unicast.Config;
 
-    public class Upgrade
+    class Upgrade
     {
 
-        public void RenamePrincipalHack()
+        void RenamePrincipalHack(Configure configure)
         {
             #region 3to4RenamePrincipalHack
-            Configure configure = Configure.With();
+
             ConfigUnicastBus unicastBus = configure.UnicastBus();
             unicastBus.ImpersonateSender(true);
+
             #endregion
         }
 
-        public void DisableSecondLevelRetries()
+        void DisableSecondLevelRetries(Configure configure)
         {
             #region 3to4DisableSecondLevelRetries
 
-            Configure configure = Configure.With();
             configure.DisableSecondLevelRetries();
 
             #endregion
         }
 
-        public void EnableSagas()
+        void EnableSagas(Configure configure)
         {
             #region 3to4EnableSagas
 
-            Configure configure = Configure.With();
             configure.Sagas();
 
             #endregion
         }
-        
-        public void RunDistributor()
+
+        void RunDistributor(Configure configure)
         {
             #region 3to4RunDistributor
 
-            Configure configure = Configure.With();
             configure.RunDistributor();
 
             #endregion
         }
-        public void EnlistWithDistributor()
+
+        void EnlistWithDistributor(Configure configure)
         {
             #region 3to4EnlistWithDistributor
 
-            Configure configure = Configure.With();
             configure.EnlistWithDistributor();
 
             #endregion
         }
-        
-        public void SetMessageHeader()
-        {
-            IBus bus = null;
 
+        void SetMessageHeader(IBus bus)
+        {
             #region 3to4SetMessageHeader
 
             MyMessage myMessage = new MyMessage();

@@ -4,11 +4,10 @@
 
     class Usage
     {
-        public void Foo()
+        Usage(Configure configure)
         {
             #region ConfiguringMsmqPersistence
 
-            Configure configure = Configure.With();
             configure.MsmqSubscriptionStorage();
 
             #endregion

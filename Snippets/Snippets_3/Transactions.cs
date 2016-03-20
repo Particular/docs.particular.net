@@ -4,29 +4,32 @@
     using System.Transactions;
     using NServiceBus;
 
-    public class Transactions
+    class Transactions
     {
-        public void Unreliable()
+        void Unreliable(Configure configure)
         {
             #region TransactionsDisable
-            Configure configure = Configure.With();
+
             configure.DontUseTransactions();
+
             #endregion
         }
 
-        public void CustomTransactionTimeout()
+        void CustomTransactionTimeout(Configure configure)
         {
             #region CustomTransactionTimeout
-            Configure configure = Configure.With();
+
             configure.TransactionTimeout(TimeSpan.FromSeconds(30));
+
             #endregion
         }
 
-        public void CustomTransactionIsolationLevel()
+        void CustomTransactionIsolationLevel(Configure configure)
         {
             #region CustomTransactionIsolationLevel
-            Configure configure = Configure.With();
+
             configure.IsolationLevel(IsolationLevel.RepeatableRead);
+
             #endregion
         }
     }

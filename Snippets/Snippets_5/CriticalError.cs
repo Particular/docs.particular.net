@@ -6,10 +6,8 @@
 
     public class CriticalErrorConfig
     {
-        public void DefineCriticalErrorActionForAzureHost()
+        CriticalErrorConfig(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region DefineCriticalErrorActionForAzureHost
 
             // Configuring how NServicebus handles critical errors

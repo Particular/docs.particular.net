@@ -5,12 +5,10 @@
     using System.Reflection;
     using NServiceBus;
 
-    public class ScanningPublicApi
+    class ScanningPublicApi
     {
-        public void ScanningDefault()
+        void ScanningDefault()
         {
-
-
             #region ScanningDefault
 
             Configure.With();
@@ -18,7 +16,7 @@
             #endregion
         }
 
-        public void ScanningListOfAssemblies()
+        void ScanningListOfAssemblies()
         {
             IEnumerable<Assembly> myListOfAssemblies = null;
 
@@ -34,7 +32,7 @@
             #endregion
         }
 
-        public void ScanningCustomDirectory()
+        void ScanningCustomDirectory()
         {
             #region ScanningCustomDirectory
 
@@ -43,7 +41,7 @@
             #endregion
         }
 
-        public void ScanningListOfTypes()
+        void ScanningListOfTypes()
         {
             IEnumerable<Type> myTypes = null;
 
@@ -54,7 +52,7 @@
             #endregion
         }
 
-        public void ScanningExcludeByName()
+        void ScanningExcludeByName()
         {
             #region ScanningExcludeByName
 

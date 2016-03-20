@@ -5,9 +5,9 @@
     using log4net.Layout;
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage()
         {
             #region Log4NetInCode
 

@@ -8,10 +8,8 @@
 
     public class RegisterCustomSerializer
     {
-        public void Customize()
+        RegisterCustomSerializer(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = null;
-
             #region RegisterCustomSerializer
 
             busConfiguration.UseSerialization(typeof(MyCustomSerializer));

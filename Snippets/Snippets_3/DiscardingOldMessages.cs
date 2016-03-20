@@ -3,27 +3,30 @@
     using System;
     using NServiceBus;
 
-    public class DiscardingOldMessages
+    class DiscardingOldMessages
     {
 
         #region DiscardingOldMessagesWithAnAttribute
+
         [TimeToBeReceived("00:01:00")] // Discard after one minute
-        public class MyMessage { }
+        public class MyMessage
+        {
+        }
+
         #endregion
 
-        public void Simple()
+        void Simple(Configure configure)
         {
             #region DiscardingOldMessagesWithCode
 
-            Configure configure = Configure.With();
             configure.DefiningTimeToBeReceivedAs(type =>
+            {
+                if (type == typeof(MyMessage))
                 {
-                    if (type == typeof(MyMessage))
-                    {
-                        return TimeSpan.FromHours(1);
-                    }
-                    return TimeSpan.MaxValue;
-                });
+                    return TimeSpan.FromHours(1);
+                }
+                return TimeSpan.MaxValue;
+            });
 
             #endregion
         }

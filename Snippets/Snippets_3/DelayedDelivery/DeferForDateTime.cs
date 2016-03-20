@@ -5,11 +5,12 @@ namespace Snippets3.DelayedDelivery
 
     class DeferForDateTime
     {
-        public void SendDelayedMessage()
+        DeferForDateTime(IBus bus)
         {
-            IBus bus = null;
             #region delayed-delivery-datetime
+
             bus.Defer(new DateTime(2016, 12, 25), new MessageToBeSentLater());
+
             #endregion
         }
 

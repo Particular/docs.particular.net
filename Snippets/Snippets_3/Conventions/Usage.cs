@@ -3,16 +3,15 @@
     using System;
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
             #region MessageConventions
 
             // NOTE: When you're self hosting, '.DefiningXXXAs()' has to be before '.UnicastBus()', 
             // otherwise you'll get: 'System.InvalidOperationException: 
             // "No destination specified for message(s): MessageTypeName"
-            Configure configure = Configure.With();
             configure.DefiningCommandsAs(t => t.Namespace == "MyNamespace.Messages.Commands");
             configure.DefiningEventsAs(t => t.Namespace == "MyNamespace.Messages.Events");
             configure.DefiningMessagesAs(t => t.Namespace == "MyNamespace.Messages");

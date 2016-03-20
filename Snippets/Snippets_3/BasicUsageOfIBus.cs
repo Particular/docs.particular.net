@@ -3,15 +3,17 @@
     using NServiceBus;
     using NServiceBus.Unicast.Config;
 
-    public class BasicUsageOfIBus
+    class BasicUsageOfIBus
     {
-        void Send()
+        void Send(Configure configure)
         {
             #region BasicSend
-            ConfigUnicastBus configUnicastBus = Configure.With().UnicastBus();
+
+            ConfigUnicastBus configUnicastBus = configure.UnicastBus();
             IBus bus = configUnicastBus.CreateBus().Start();
 
             bus.Send(new MyMessage());
+
             #endregion
         }
 
@@ -31,32 +33,33 @@
                 bus.Send(new OtherMessage());
             }
         }
+
         #endregion
 
-        void SendInterface()
+        void SendInterface(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicSendInterface
+
             bus.Send<IMyMessage>(m => m.MyProperty = "Hello world");
+
             #endregion
         }
 
-        void SetDestination()
+        void SetDestination(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicSendSetDestination
+
             bus.Send(Address.Parse("MyDestination"), new MyMessage());
+
             #endregion
         }
 
-        void ThisEndpoint()
+        void ThisEndpoint(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicSendToAnyInstance
+
             bus.SendLocal(new MyMessage());
+
             #endregion
         }
 

@@ -2,18 +2,15 @@
 {
     using NServiceBus;
 
-    public class BsonSerializerUsage
+    class BsonSerializerUsage
     {
-        public void Simple()
+        BsonSerializerUsage(Configure configure)
         {
-
             #region BsonSerialization
 
-            Configure configure = Configure.With();
             configure.BsonSerializer();
 
             #endregion
         }
-
     }
 }

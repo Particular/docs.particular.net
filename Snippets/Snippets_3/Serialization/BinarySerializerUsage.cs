@@ -2,18 +2,15 @@
 {
     using NServiceBus;
 
-    public class BinarySerializerUsage
+    class BinarySerializerUsage
     {
-        public void Simple()
+        BinarySerializerUsage(Configure configure)
         {
-
-            Configure configure = Configure.With();
             #region BinarySerialization
 
             configure.BinarySerializer();
 
             #endregion
-
         }
     }
 }

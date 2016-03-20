@@ -5,34 +5,30 @@
     using NServiceBus.Unicast;
     using NServiceBus.Unicast.Config;
 
-    public class Hosting
+    class Hosting
     {
-        public void Simple()
+        void Simple(Configure configure)
         {
             #region Hosting-SendOnly
 
-            Configure configure = Configure.With();
             ConfigUnicastBus configUnicastBus = configure.UnicastBus();
             IBus bus = configUnicastBus.SendOnly();
 
             #endregion
         }
 
-        public void Startup()
+        void Startup(Configure configure)
         {
             #region Hosting-Startup
 
-            Configure configure = Configure.With();
-            //Apply configuration
             ConfigUnicastBus configUnicastBus = configure.UnicastBus();
             IStartableBus startableBus = configUnicastBus.CreateBus();
             IBus bus = startableBus.Start();
             #endregion
         }
 
-        public void Shutdown()
+        void Shutdown(IBus bus)
         {
-            IBus bus = null;
             #region Hosting-Shutdown
             UnicastBus busImpl = (UnicastBus) bus;
             busImpl.Dispose();

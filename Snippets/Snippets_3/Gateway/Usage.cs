@@ -2,21 +2,23 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(Configure configure, IBus Bus)
         {
             #region GatewayConfiguration
 
-            Configure.Instance.RunGateway();
+            configure.RunGateway();
 
             #endregion
 
-            IBus Bus = null;
-
             #region SendToSites
 
-            Bus.SendToSites(new[] { "SiteA", "SiteB" }, new MyMessage());
+            Bus.SendToSites(new[]
+            {
+                "SiteA",
+                "SiteB"
+            }, new MyMessage());
 
             #endregion
 
@@ -24,5 +26,4 @@
 
     }
 }
-
 

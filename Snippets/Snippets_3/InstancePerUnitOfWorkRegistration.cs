@@ -2,13 +2,12 @@
 {
     using NServiceBus;
 
-    public class InstancePerUnitOfWorkRegistration
+    class InstancePerUnitOfWorkRegistration
     {
-        public void Simple()
+        InstancePerUnitOfWorkRegistration(Configure configuration)
         {
             #region InstancePerUnitOfWorkRegistration
 
-            Configure configuration = Configure.With();
             configuration.Configurer
                 .ConfigureComponent<MyService>(DependencyLifecycle.InstancePerCall);
 

@@ -5,12 +5,9 @@
 
     class PublishAtStartup
     {
-        public void Publish()
+        PublishAtStartup(Configure configure)
         {
             #region publishAtStartup
-
-            Configure configure = Configure.With();
-            //Other config
             using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
             {
                 IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());

@@ -5,11 +5,10 @@
 
     public class Injection
     {
-        public void ConfigurePropertyInjectionForHandler()
+        public void ConfigurePropertyInjectionForHandler(Configure configure)
         {
             #region ConfigurePropertyInjectionForHandlerBefore
 
-            Configure configure = Configure.With();
             configure.Configurer
                 .ConfigureProperty<EmailHandler>(handler => handler.SmtpAddress, "10.0.1.233")
                 .ConfigureProperty<EmailHandler>(handler => handler.SmtpPort, 25);

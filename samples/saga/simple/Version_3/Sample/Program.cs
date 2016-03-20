@@ -11,8 +11,8 @@ class Program
         configure.Log4Net();
         configure.DefineEndpointName("Samples.ComplexSagaFindingLogic");
         configure.DefaultBuilder();
-        configure.Sagas();
         configure.MsmqTransport();
+        configure.Sagas();
         configure.InMemorySagaPersister();
         configure.RunTimeoutManagerWithInMemoryPersistence();
         configure.InMemorySubscriptionStorage();

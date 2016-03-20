@@ -6,47 +6,42 @@
 
     public class Transactions
     {
-        public void Unreliable()
+        public void Unreliable(BusConfiguration busConfiguration)
         {
             #region TransactionsDisable
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions()
                 .Disable();
             #endregion
         }
 
-        public void TransportTransactionReceiveOnly()
+        public void TransportTransactionReceiveOnly(BusConfiguration busConfiguration)
         {
             #region TransportTransactionReceiveOnly
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions()
                 .DisableDistributedTransactions();
             #endregion
         }
 
-        public void TransportTransactionAtomicSendsWithReceive()
+        public void TransportTransactionAtomicSendsWithReceive(BusConfiguration busConfiguration)
         {
             #region TransportTransactionAtomicSendsWithReceive
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions()
                 .DisableDistributedTransactions();
             #endregion
         }
 
-        public void TransportTransactionScope()
+        public void TransportTransactionScope(BusConfiguration busConfiguration)
         {
             #region TransportTransactionScope
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions()
                 .Enable()
                 .EnableDistributedTransactions();
             #endregion
         }
 
-        public void TransportTransactionsWithScope()
+        public void TransportTransactionsWithScope(BusConfiguration busConfiguration)
         {
             #region TransactionsWrapHandlersExecutionInATransactionScope
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions()
                 .DisableDistributedTransactions()
                 .WrapHandlersExecutionInATransactionScope();
@@ -55,19 +50,17 @@
 
 
 
-        public void CustomTransactionTimeout()
+        public void CustomTransactionTimeout(BusConfiguration busConfiguration)
         {
             #region CustomTransactionTimeout
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions()
                 .DefaultTimeout(TimeSpan.FromSeconds(30));
             #endregion
         }
 
-        public void CustomTransactionIsolationLevel()
+        public void CustomTransactionIsolationLevel(BusConfiguration busConfiguration)
         {
             #region CustomTransactionIsolationLevel
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions()
                 .IsolationLevel(IsolationLevel.RepeatableRead);
             #endregion
