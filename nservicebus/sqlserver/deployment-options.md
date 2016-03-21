@@ -16,7 +16,7 @@ The supported deployment options are:
  * ***multi-catalog***: queues are stored in multiple catalogs but on a single SQL Server instance. This mode is not explicitly supported by SQL Server transport, but can be achieved  by using multi-instance option. Therefore in this document both options are covered under *multi-instance* term.
  * ***multi-instance***: queues are stored in multiple catalogs on more than one SQL Server instance (Versions 2.1 to 2.x).
 
-NOTE: To properly identify the chosen deployment option all queues that endpoint interacts with need to be taken into consideration including error and audit queues. If either of them is stored in a separate SQL Server instance then the deployment is a *multi-instance* one.
+NOTE: To properly identify the chosen deployment option all queues that the endpoint interacts with need to be taken into consideration, including error and audit queues. If either of them are stored in a separate SQL Server instance then the deployment is a *multi-instance* one.
 
 The transport will route messages to destination based on the configuration. If no specific configuration has been provided for a particular destination, the transport assumes the destination has the same configuration as the sending endpoint (i.e. identical schema, catalog and instance name). If the destination has a different configuration and it hasn't been provided, then exception will be thrown immediately, because the transport wouldn't be able to connect to the destination queue.
 
