@@ -129,4 +129,4 @@ Search in log files that indicate data validation issues. These could indicate t
 
 Recovering corrupted data is *only* possible when the original encrypted messages are moved to an audit queue.
 
-There is no tool that helps in recovery. Contact support if data corruption is suspected.
+There is no tool that helps in recovery. [Contact support](http://particular.net/support) if data corruption is suspected.

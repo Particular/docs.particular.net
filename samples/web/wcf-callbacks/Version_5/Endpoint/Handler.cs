@@ -1,11 +1,12 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using NServiceBus.Logging;
 
 public class Handler : 
     IHandleMessages<EnumMessage>,
     IHandleMessages<IntMessage>,
     IHandleMessages<ObjectMessage>
 {
+    static ILog log = LogManager.GetLogger<Handler>();
     IBus bus;
 
     public Handler(IBus bus)
@@ -15,21 +16,19 @@ public class Handler :
 
     public void Handle(EnumMessage message)
     {
-        string format = string.Format("Received EnumMessage. Property:'{0}'", message.Property);
-        Console.WriteLine(format);
+        log.InfoFormat("Received EnumMessage. Property:'{0}'", message.Property);
         bus.Return(Status.Ok);
     }
+
     public void Handle(IntMessage message)
     {
-        string format = string.Format("Received IntMessage. Property:'{0}'", message.Property);
-        Console.WriteLine(format);
+        log.InfoFormat("Received IntMessage. Property:'{0}'", message.Property);
         bus.Return(10);
     }
 
     public void Handle(ObjectMessage message)
     {
-        string format = string.Format("Received ObjectMessage. Property:'{0}'", message.Property);
-        Console.WriteLine(format);
+        log.InfoFormat("Received ObjectMessage. Property:'{0}'", message.Property);
         bus.Reply(new ReplyMessage
         {
             Property = string.Format("Handler Received '{0}'", message.Property)

@@ -1,9 +1,10 @@
 using NServiceBus;
-using System;
+using log4net;
 
 #region Handler
 public class CommandMessageHandler : IHandleMessages<Command>
 {
+    static ILog log = LogManager.GetLogger(typeof(CommandMessageHandler));
     IBus bus;
 
     public CommandMessageHandler(IBus bus)
@@ -13,7 +14,7 @@ public class CommandMessageHandler : IHandleMessages<Command>
 
     public void Handle(Command message)
     {
-        Console.WriteLine("Hello from CommandMessageHandler");
+        log.Info("Hello from CommandMessageHandler");
 
         if (message.Id%2 == 0)
         {

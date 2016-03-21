@@ -1,12 +1,13 @@
-﻿using System;
-using Messages;
+﻿using Messages;
 using NServiceBus;
+using NServiceBus.Logging;
 
 public class MyHandler : IHandleMessages<MyMessage>
 {
+    static ILog log = LogManager.GetLogger(typeof(MyHandler));
+
     public void Handle(MyMessage message)
     {
-        string format = string.Format("Received MyMessage. Property1:'{0}'. Property2:'{1}'", message.Property1, message.Property2);
-        Console.WriteLine(format);
+        log.InfoFormat("Received MyMessage. Property1:'{0}'. Property2:'{1}'", message.Property1, message.Property2);
     }
 }

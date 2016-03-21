@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 
-
 class StreamWrapper : Stream
 {
     Stream stream;
