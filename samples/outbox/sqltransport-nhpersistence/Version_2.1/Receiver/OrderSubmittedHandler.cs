@@ -1,21 +1,28 @@
 using System;
 using NServiceBus;
 using NHibernate;
+using NServiceBus.Logging;
 
 public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 {
+    IBus bus;
+    ISession session;
+    static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
     static readonly Random ChaosGenerator = new Random();
 
-    public IBus Bus { get; set; }
-    public ISession Session { get; set; }
+    public OrderSubmittedHandler(IBus bus, ISession session)
+    {
+        this.bus = bus;
+        this.session = session;
+    }
 
     public void Handle(OrderSubmitted message)
     {
-        Console.WriteLine("Order {0} worth {1} submitted", message.OrderId, message.Value);
+        log.InfoFormat("Order {0} worth {1} submitted", message.OrderId, message.Value);
 
         #region StoreUserData
 
-        Session.Save(new Order
+        session.Save(new Order
         {
             OrderId = message.OrderId,
             Value = message.Value
@@ -25,7 +32,7 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
         #region Reply
 
-        Bus.Reply(new OrderAccepted
+        bus.Reply(new OrderAccepted
         {
             OrderId = message.OrderId,
         });

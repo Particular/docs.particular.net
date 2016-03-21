@@ -1,11 +1,12 @@
 ﻿using NServiceBus;
-using System;
 using System.Reflection;
+using NServiceBus.Logging;
 
 #region WorkerHandler
 
 public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
 {
+    static ILog log = LogManager.GetLogger(typeof(ProcessOrderCommandHandler));
     IBus bus;
 
     public ProcessOrderCommandHandler(IBus bus)
@@ -16,7 +17,7 @@ public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
     public void Handle(PlaceOrder placeOrder)
     {
         // Process Order...
-        Console.WriteLine("Processing received order....");
+        log.Info("Processing received order....");
 
         OrderPlaced message = new OrderPlaced
         {
@@ -24,7 +25,7 @@ public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
             WorkerName = Assembly.GetEntryAssembly().GetName().Name
         };
         bus.Reply(message);
-        Console.WriteLine("Sent Order placed event for orderId [{0}].", placeOrder.OrderId);
+        log.InfoFormat("Sent Order placed event for orderId [{0}].", placeOrder.OrderId);
     }
 }
 

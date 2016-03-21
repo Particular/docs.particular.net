@@ -1,9 +1,10 @@
-using System;
 using NServiceBus;
 using NHibernate;
+using NServiceBus.Logging;
 
 public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 {
+    static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
     IBus bus;
     ISession session;
 
@@ -15,7 +16,7 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
     public void Handle(OrderSubmitted message)
     {
-        Console.WriteLine($"Order {message.OrderId} worth {message.Value} submitted");
+        log.Info($"Order {message.OrderId} worth {message.Value} submitted");
 
         session.Save(new Order
         {

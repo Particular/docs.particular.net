@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 using Store.Messages.Commands;
 using Store.Messages.Events;
 
@@ -10,6 +11,8 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
                                 IHandleMessages<CancelOrder>,
                                 IHandleTimeouts<ProcessOrderSaga.BuyersRemorseIsOver>
 {
+    static ILog log = LogManager.GetLogger<ProcessOrderSaga>();
+
     public async Task Handle(SubmitOrder message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
@@ -22,7 +25,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
         Data.ClientId = message.ClientId;
 
         await RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
-        Console.WriteLine("Starting cool down period for order #{0}.", Data.OrderNumber);
+        log.InfoFormat("Starting cool down period for order #{0}.", Data.OrderNumber);
     }
 
     public async Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
@@ -41,7 +44,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
 
         MarkAsComplete();
 
-        Console.WriteLine("Cooling down period for order #{0} has elapsed.", Data.OrderNumber);
+        log.InfoFormat("Cooling down period for order #{0} has elapsed.", Data.OrderNumber);
     }
 
     public async Task Handle(CancelOrder message, IMessageHandlerContext context)
@@ -59,7 +62,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
                 o.ClientId = message.ClientId;
             });
 
-        Console.WriteLine("Order #{0} was cancelled.", message.OrderNumber);
+        log.InfoFormat("Order #{0} was cancelled.", message.OrderNumber);
     }
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderData> mapper)

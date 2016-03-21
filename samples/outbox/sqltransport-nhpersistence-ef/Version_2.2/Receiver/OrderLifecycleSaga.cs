@@ -1,10 +1,13 @@
 ﻿using System;
+using NServiceBus.Logging;
 using NServiceBus.Saga;
 
 public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>, 
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {
+    static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
+
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderLifecycleSagaData> mapper)
     {
     }
@@ -20,6 +23,6 @@ public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>,
 
     public void Timeout(OrderTimeout state)
     {
-        Console.WriteLine("Got timeout");
+        log.Info("Got timeout");
     }
 }

@@ -1,10 +1,11 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using NServiceBus;
+using NServiceBus.Logging;
 using Store.Messages.Events;
 
 class SendWelcomePacket : IHandleMessages<ClientBecamePreferred>
 {
+    static ILog log = LogManager.GetLogger<SendWelcomePacket>();
 
     public void Handle(ClientBecamePreferred message)
     {
@@ -12,6 +13,6 @@ class SendWelcomePacket : IHandleMessages<ClientBecamePreferred>
         {
             Debugger.Break();
         }
-        Console.WriteLine("Handler WhenCustomerIsPreferredSendWelcomeEmail invoked for CustomerId: {0}", message.ClientId);
+        log.InfoFormat("Handler WhenCustomerIsPreferredSendWelcomeEmail invoked for CustomerId: {0}", message.ClientId);
     }
 }

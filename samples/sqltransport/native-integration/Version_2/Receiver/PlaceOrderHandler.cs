@@ -1,10 +1,11 @@
-using System;
 using NServiceBus;
+using NServiceBus.Logging;
 
 public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 {
+    static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
     public void Handle(PlaceOrder message)
     {
-        Console.WriteLine("Order {0} placed", message.OrderId);
+        log.InfoFormat("Order {0} placed", message.OrderId);
     }
 }

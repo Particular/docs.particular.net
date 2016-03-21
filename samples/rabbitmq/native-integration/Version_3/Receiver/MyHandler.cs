@@ -1,8 +1,9 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using NServiceBus.Logging;
 
 public class MyHandler : IHandleMessages<MyMessage>
 {
+    static ILog log = LogManager.GetLogger<MyHandler>();
     IBus bus;
 
     public MyHandler(IBus bus)
@@ -12,6 +13,6 @@ public class MyHandler : IHandleMessages<MyMessage>
 
     public void Handle(MyMessage message)
     {
-        Console.WriteLine("Got `MyMessage` with id: {0}, property value: {1}",bus.CurrentMessageContext.Id,message.SomeProperty);
+        log.InfoFormat("Got `MyMessage` with id: {0}, property value: {1}", bus.CurrentMessageContext.Id, message.SomeProperty);
     }
 }

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using NServiceBus;
+using NServiceBus.Logging;
 using Store.Messages.Events;
 using Store.Messages.RequestResponse;
 
 public class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
 {
-
+    static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
     IBus bus;
 
     public OrderAcceptedHandler(IBus bus)
@@ -21,7 +21,7 @@ public class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
             Debugger.Break();
         }
 
-        Console.WriteLine("Order # {0} has been accepted, Let's provision the download -- Sending ProvisionDownloadRequest to the Store.Operations endpoint", message.OrderNumber);
+        log.InfoFormat("Order # {0} has been accepted, Let's provision the download -- Sending ProvisionDownloadRequest to the Store.Operations endpoint", message.OrderNumber);
             
         //send out a request (a event will be published when the response comes back)
         bus.Send<ProvisionDownloadRequest>(r =>

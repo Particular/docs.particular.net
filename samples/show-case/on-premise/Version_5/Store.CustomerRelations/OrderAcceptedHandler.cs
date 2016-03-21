@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using NServiceBus;
+using NServiceBus.Logging;
 using Store.Messages.Events;
 
 class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
 {
+    static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
     IBus bus;
 
     public OrderAcceptedHandler(IBus bus)
@@ -19,7 +21,7 @@ class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
             Debugger.Break();
         }
 
-        Console.WriteLine("Customer: {0} is now a preferred customer publishing for other service concerns", message.ClientId);
+        log.InfoFormat("Customer: {0} is now a preferred customer publishing for other service concerns", message.ClientId);
 
         // publish this event as an asynchronous event
         bus.Publish<ClientBecamePreferred>(m =>

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 using Store.Messages.Events;
 using Store.Messages.RequestResponse;
 
 public class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
 {
+    static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
 
     public async Task Handle(OrderAccepted message, IMessageHandlerContext context)
     {
@@ -15,7 +16,7 @@ public class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
             Debugger.Break();
         }
 
-        Console.WriteLine("Order # {0} has been accepted, Let's provision the download -- Sending ProvisionDownloadRequest to the Store.Operations endpoint", message.OrderNumber);
+        log.InfoFormat("Order # {0} has been accepted, Let's provision the download -- Sending ProvisionDownloadRequest to the Store.Operations endpoint", message.OrderNumber);
             
         //send out a request (a event will be published when the response comes back)
         await context.Send<ProvisionDownloadRequest>(r =>

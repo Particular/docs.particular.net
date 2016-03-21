@@ -1,17 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 using NServiceBus.Sagas;
 
 internal class SagaNotFoundHandler : IHandleSagaNotFound
 {
+    static ILog log = LogManager.GetLogger<SagaNotFoundHandler>();
+
     public Task Handle(object message, IMessageProcessingContext context)
     {
-        ConsoleColor foregroundColor = Console.ForegroundColor;
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine("The correlated saga could not be found. Have you configured the RavenDB.Bundle.UniqueConstrains on your RavenDB server?");
-        Console.ForegroundColor = foregroundColor;
-
+        log.Error("The correlated saga could not be found. Have you configured the RavenDB.Bundle.UniqueConstrains on your RavenDB server?");
         return Task.FromResult(0);
     }
 }

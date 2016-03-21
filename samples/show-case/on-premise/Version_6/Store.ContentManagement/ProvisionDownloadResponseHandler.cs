@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 using Store.Messages.Events;
 using Store.Messages.RequestResponse;
 
 public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloadResponse>
 {
+    static ILog log = LogManager.GetLogger<ProvisionDownloadResponseHandler>();
 
     Dictionary<string, string> productIdToUrlMap = new Dictionary<string, string>
         {
@@ -25,7 +26,7 @@ public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloa
             Debugger.Break();
         }
 
-        Console.WriteLine("Download for Order # {0} has been provisioned, Publishing Download ready event", message.OrderNumber);
+        log.InfoFormat("Download for Order # {0} has been provisioned, Publishing Download ready event", message.OrderNumber);
 
         await context.Publish<DownloadIsReady>(e =>
         {
@@ -39,7 +40,7 @@ public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloa
             }
         });
 
-        Console.WriteLine("Downloads for Order #{0} is ready, publishing it.", message.OrderNumber);
+        log.InfoFormat("Downloads for Order #{0} is ready, publishing it.", message.OrderNumber);
     }
     
 }

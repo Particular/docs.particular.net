@@ -1,10 +1,12 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using NServiceBus.Logging;
 
 public class OrderPlacedHandler : IHandleMessages<OrderPlaced>
 {
+    static ILog log = LogManager.GetLogger<OrderPlacedHandler>();
+
     public void Handle(OrderPlaced orderPlaced)
     {
-        Console.WriteLine("Received OrderPlaced. OrderId: {0}. Worker: {1}", orderPlaced.OrderId, orderPlaced.WorkerName);
+        log.InfoFormat("Received OrderPlaced. OrderId: {0}. Worker: {1}", orderPlaced.OrderId, orderPlaced.WorkerName);
     }
 }

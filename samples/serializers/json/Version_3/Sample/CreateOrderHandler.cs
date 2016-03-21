@@ -1,10 +1,12 @@
-﻿using System;
+﻿using log4net;
 using NServiceBus;
 
 public class CreateOrderHandler : IHandleMessages<CreateOrder>
 {
+    static ILog log = LogManager.GetLogger(typeof(CreateOrderHandler));
+
     public void Handle(CreateOrder message)
     {
-        Console.WriteLine("Order received");
+        log.Info("Order received");
     }
 }
