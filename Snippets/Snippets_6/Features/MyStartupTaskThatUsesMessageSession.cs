@@ -18,7 +18,6 @@
             resetEvent.Set();
         }
 
-
         protected override async Task OnStop(IMessageSession session)
         {
             await session.Publish<MyEvent>();
