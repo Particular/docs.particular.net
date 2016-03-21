@@ -76,14 +76,12 @@ Looking at it from another perspective, the file system also isn’t transaction
 
 There are a large number of scenarios where removing the file can cause a problem. The only person who actually can tell when which file could be removed, is the developer, who should come up with a strategy to remove files. An option is a strategy like removing the file after (Max(SLA) + x-days), so that it is unlikely that the file still hasn’t been processed.
 
-In the [databus sample](http://docs.particular.net/samples/databus/) you can see how you can obtain the file location:
+To obtain the file location use the
 
-    public void Handle(MessageWithLargePayload message)
-    {
-      var filename = Path.Combine(Program.BasePath, message.LargeBlob.Key);
-      Console.WriteLine(filename);
-    }
+snippet:DefineFileLocationForDatabusFiles
 
+snippet:FileLocationForDatabusFiles
+ 
 ## Configuring AzureDataBus
 
 The following extension methods are available for changing the behavior of `AzureDataBus` defaults:
