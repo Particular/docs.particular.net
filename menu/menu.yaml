@@ -14,6 +14,24 @@
         - "nservicebus/architecture/nservicebus-and-wcf"
         - "nservicebus/architecture/nservicebus-and-biztalk"
     -
+      Title: "Upgrade Guides"
+      Url: "nservicebus/upgrades"
+      Articles:
+        - "nservicebus/upgrades/support-policy"
+        - "nservicebus/upgrades/release-policy"
+        - "nservicebus/upgrades/5to6"
+        - "nservicebus/upgrades/4to5"
+        - "nservicebus/upgrades/3to4"
+        - Title: "SQL Transport"
+          Articles:
+            - "nservicebus/upgrades/sqlserver-2to3"
+        - Title: "NHibernate Persistence"
+          Articles:
+            - "nservicebus/upgrades/nhibernate-6to7"
+        - Title: "Gateway"
+          Articles:
+            - "nservicebus/upgrades/gateway-1to2"
+    -
       Title: "Messaging"
       Url: "nservicebus/messaging"
       Articles:
