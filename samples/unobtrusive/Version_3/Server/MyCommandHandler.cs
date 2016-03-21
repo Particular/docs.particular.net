@@ -1,12 +1,14 @@
-using System;
 using Commands;
+using log4net;
 using NServiceBus;
 
 public class MyCommandHandler : IHandleMessages<MyCommand>
 {
+    static ILog log = LogManager.GetLogger(typeof(MyCommandHandler));
+
     public void Handle(MyCommand message)
     {
-        Console.WriteLine("Command received, id:" + message.CommandId);
-        Console.WriteLine("EncryptedString:" + message.EncryptedString);
+        log.Info("Command received, id:" + message.CommandId);
+        log.Info("EncryptedString:" + message.EncryptedString);
     }
 }

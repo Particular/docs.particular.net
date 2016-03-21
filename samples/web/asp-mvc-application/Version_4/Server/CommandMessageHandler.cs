@@ -1,9 +1,10 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using NServiceBus.Logging;
 
 #region CommandMessageHandler
 public class CommandMessageHandler : IHandleMessages<Command>
 {
+    static ILog log = LogManager.GetLogger(typeof(CommandMessageHandler));
     IBus bus;
 
     public CommandMessageHandler(IBus bus)
@@ -13,16 +14,16 @@ public class CommandMessageHandler : IHandleMessages<Command>
 
     public void Handle(Command message)
     {
-        Console.WriteLine("Hello from CommandMessageHandler");
+        log.Info("Hello from CommandMessageHandler");
 
         if (message.Id%2 == 0)
         {
-            Console.WriteLine("Returning Fail");
+            log.Info("Returning Fail");
             bus.Return(ErrorCodes.Fail);
         }
         else
         {
-            Console.WriteLine("Returning None");
+            log.Info("Returning None");
             bus.Return(ErrorCodes.None);
         }
     }

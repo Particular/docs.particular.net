@@ -1,9 +1,10 @@
-using System;
 using Messages;
 using NServiceBus;
+using NServiceBus.Logging;
 
 public class RequestMessageHandler : IHandleMessages<Request>
 {
+    static ILog log = LogManager.GetLogger(typeof(RequestMessageHandler));
     IBus bus;
 
     public RequestMessageHandler(IBus bus)
@@ -13,7 +14,7 @@ public class RequestMessageHandler : IHandleMessages<Request>
 
     public void Handle(Request message)
     {
-        Console.WriteLine("Request received with id:" + message.RequestId);
+        log.Info("Request received with id:" + message.RequestId);
 
         bus.Reply(new Response
         {

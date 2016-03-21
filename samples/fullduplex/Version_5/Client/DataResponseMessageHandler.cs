@@ -1,12 +1,17 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using NServiceBus.Logging;
 
 #region DataResponseMessageHandler
+
 class DataResponseMessageHandler : IHandleMessages<DataResponseMessage>
-#endregion
+
+    #endregion
+
 {
+    static ILog log = LogManager.GetLogger<DataResponseMessageHandler>();
+
     public void Handle(DataResponseMessage message)
     {
-        Console.WriteLine("Response received with description: {0}", message.String);
+        log.InfoFormat("Response received with description: {0}", message.String);
     }
 }

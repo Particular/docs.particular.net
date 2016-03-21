@@ -1,13 +1,12 @@
 using NServiceBus;
-using System;
+using NServiceBus.Logging;
 
 #region RequestDataMessageHandler
 
 public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
-
-    #endregion
-
+#endregion
 {
+    static ILog log = LogManager.GetLogger(typeof(RequestDataMessageHandler));
     IBus bus;
 
     public RequestDataMessageHandler(IBus bus)
@@ -17,8 +16,8 @@ public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
 
     public void Handle(RequestDataMessage message)
     {
-        Console.WriteLine("Received request {0}.", message.DataId);
-        Console.WriteLine("String received: {0}.", message.String);
+        log.InfoFormat("Received request {0}.", message.DataId);
+        log.InfoFormat("String received: {0}.", message.String);
 
         #region DataResponseReply
 

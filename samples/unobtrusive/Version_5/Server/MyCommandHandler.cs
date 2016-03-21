@@ -1,9 +1,10 @@
-﻿using System;
-using Commands;
+﻿using Commands;
 using NServiceBus;
+using NServiceBus.Logging;
 
 public class MyCommandHandler : IHandleMessages<MyCommand>
 {
+    static ILog log = LogManager.GetLogger<MyCommandHandler>();
     IBus bus;
 
     public MyCommandHandler(IBus bus)
@@ -13,7 +14,7 @@ public class MyCommandHandler : IHandleMessages<MyCommand>
 
     public void Handle(MyCommand message)
     {
-        Console.WriteLine("Command received, id:" + message.CommandId);
-        Console.WriteLine("EncryptedString:" + message.EncryptedString);
+        log.Info("Command received, id:" + message.CommandId);
+        log.Info("EncryptedString:" + message.EncryptedString);
     }
 }

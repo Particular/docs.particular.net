@@ -1,11 +1,14 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using NServiceBus.Logging;
+
 #region OrderCreatedHandler
 public class OrderCreatedHandler : IHandleMessages<OrderPlaced>
 {
+    static ILog log = LogManager.GetLogger(typeof(OrderCreatedHandler));
+
     public void Handle(OrderPlaced message)
     {
-        Console.WriteLine(@"Handling: OrderPlaced for Order Id: {0}", message.OrderId);
+        log.InfoFormat(@"Handling: OrderPlaced for Order Id: {0}", message.OrderId);
     }
 }
 #endregion

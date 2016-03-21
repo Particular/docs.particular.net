@@ -1,19 +1,19 @@
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
+using NServiceBus.Logging;
 
 #region RequestDataMessageHandler
 
 public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
-
-    #endregion
-
+#endregion
 {
+    static ILog log = LogManager.GetLogger<RequestDataMessageHandler>();
 
     public async Task Handle(RequestDataMessage message, IMessageHandlerContext context)
     {
-        Console.WriteLine("Received request {0}.", message.DataId);
-        Console.WriteLine("String received: {0}.", message.String);
+        log.InfoFormat("Received request {0}.", message.DataId);
+        log.InfoFormat("String received: {0}.", message.String);
 
         #region DataResponseReply
 

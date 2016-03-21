@@ -1,9 +1,11 @@
-﻿#region PlaceOrderHandler
-using System;
+﻿using System;
 using NServiceBus;
+
+#region PlaceOrderHandler
 
 public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 {
+    static ILog log = LogManager.GetLogger(typeof(PlaceDelayedOrderSenderHandler));
     IBus bus;
 
     public PlaceOrderHandler(IBus bus)

@@ -1,11 +1,11 @@
-﻿
-using System;
+﻿using log4net;
 using NServiceBus;
 using Shared;
 
 #region UpdatePriceHandler
 public class UpdatePriceHandler : IHandleMessages<UpdatePrice>
 {
+    static ILog log = LogManager.GetLogger(typeof(UpdatePriceHandler));
     IBus bus;
 
     public UpdatePriceHandler(IBus bus)
@@ -15,7 +15,7 @@ public class UpdatePriceHandler : IHandleMessages<UpdatePrice>
 
     public void Handle(UpdatePrice message)
     {
-        Console.WriteLine("Price update request received from the webclient, going to push it to RemoteSite");
+        log.Info("Price update request received from the webclient, going to push it to RemoteSite");
         string[] siteKeys = {
                                 "RemoteSite",
                             };

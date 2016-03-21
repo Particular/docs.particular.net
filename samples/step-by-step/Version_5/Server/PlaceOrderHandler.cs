@@ -1,9 +1,11 @@
-﻿#region PlaceOrderHandler
-using System;
-using NServiceBus;
+﻿using NServiceBus;
+using NServiceBus.Logging;
+
+#region PlaceOrderHandler
 
 public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 {
+    static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
     IBus bus;
 
     public PlaceOrderHandler(IBus bus)
@@ -13,9 +15,9 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 
     public void Handle(PlaceOrder message)
     {
-        Console.WriteLine(@"Order for Product:{0} placed with id: {1}", message.Product, message.Id);
+        log.InfoFormat(@"Order for Product:{0} placed with id: {1}", message.Product, message.Id);
 
-        Console.WriteLine(@"Publishing: OrderPlaced for Order Id: {0}", message.Id);
+        log.InfoFormat(@"Publishing: OrderPlaced for Order Id: {0}", message.Id);
 
         OrderPlaced orderPlaced = new OrderPlaced
                                   {

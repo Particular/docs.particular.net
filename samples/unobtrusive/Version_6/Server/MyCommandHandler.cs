@@ -1,14 +1,16 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Commands;
 using NServiceBus;
+using NServiceBus.Logging;
 
 public class MyCommandHandler : IHandleMessages<MyCommand>
 {
+    static ILog log = LogManager.GetLogger<MyCommandHandler>();
+
     public Task Handle(MyCommand message, IMessageHandlerContext context)
     {
-        Console.WriteLine("Command received, id:" + message.CommandId);
-        Console.WriteLine("EncryptedString:" + message.EncryptedString);
+        log.Info("Command received, id:" + message.CommandId);
+        log.Info("EncryptedString:" + message.EncryptedString);
         return Task.FromResult(0);
     }
 }

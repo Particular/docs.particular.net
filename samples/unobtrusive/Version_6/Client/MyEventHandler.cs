@@ -1,13 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Events;
 using NServiceBus;
+using NServiceBus.Logging;
 
 public class MyEventHandler : IHandleMessages<IMyEvent>
 {
+    static ILog log = LogManager.GetLogger<MyEventHandler>();
+
     public Task Handle(IMyEvent message, IMessageHandlerContext context)
     {
-        Console.WriteLine("IMyEvent received from server with id:" + message.EventId);
+        log.Info("IMyEvent received from server with id:" + message.EventId);
         return Task.FromResult(0);
     }
 

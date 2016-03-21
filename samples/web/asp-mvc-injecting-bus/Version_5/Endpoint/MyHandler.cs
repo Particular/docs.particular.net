@@ -1,10 +1,12 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using NServiceBus.Logging;
 
 public class MyHandler : IHandleMessages<MyMessage>
 {
+    static ILog log = LogManager.GetLogger<MyHandler>();
+
     public void Handle(MyMessage message)
     {
-        Console.WriteLine("Hello from MyHandler");
+        log.Info("Hello from MyHandler");
     }
 }

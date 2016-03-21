@@ -1,14 +1,16 @@
-using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 using Shared;
 
 #region UpdatePriceHandler
 public class UpdatePriceHandler : IHandleMessages<UpdatePrice>
 {
+    static ILog log = LogManager.GetLogger<UpdatePriceHandler>();
+
     public async Task Handle(UpdatePrice message, IMessageHandlerContext context)
     {
-        Console.WriteLine("Price update request received from the webclient, going to push it to RemoteSite");
+        log.Info("Price update request received from the webclient, going to push it to RemoteSite");
         string[] siteKeys = {
                                 "RemoteSite",
                             };

@@ -1,13 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
+using NServiceBus.Logging;
 
 public class RequestMessageHandler : IHandleMessages<Request>
 {
+    static ILog log = LogManager.GetLogger<RequestMessageHandler>();
+
     public Task Handle(Request message, IMessageHandlerContext context)
     {
-        Console.WriteLine("Request received with id:" + message.RequestId);
+        log.Info("Request received with id:" + message.RequestId);
 
         context.Reply(new Response
                         {

@@ -1,11 +1,13 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using NServiceBus.Logging;
 using V1.Messages;
 
 public class SomethingHappenedHandler : IHandleMessages<ISomethingHappened>
 {
+    static ILog log = LogManager.GetLogger<SomethingHappenedHandler>();
+
     public void Handle(ISomethingHappened message)
     {
-        Console.WriteLine("Something happened with some data {0} and no more info", message.SomeData);
+        log.InfoFormat("Something happened with some data {0} and no more info", message.SomeData);
     }
 }
