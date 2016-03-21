@@ -106,8 +106,6 @@ This setting will default to `Warn` if an invalid value is assigned.
 
 #### ServiceControl/ExpirationProcessTimerInSeconds
 
-This setting is only applicable in Versions 1.11.1 and below.
-
 The number of seconds to wait between checking for expired messages. 
 
 Type: int
@@ -116,8 +114,6 @@ Default: `600` (10 minutes). The default for Versions below 1.4 is `60` (1 minut
 
 
 #### ServiceControl/ExpirationProcessBatchSize
-
-This setting is only applicable in Versions 1.11.1 and below.
 
 This setting was introduced in Version 1.4. The minimum allowed value for this settings is `10240`, there is no hard coded maximum as this is heavily dependent on system performance.
 
