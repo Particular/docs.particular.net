@@ -9,7 +9,7 @@ redirects:
 
 ## Connection strings
 
-NOTE: The SQL Server transport is built on top of ADO.NET and uses its connection pooling mechanism. This may result in connection pool being shared by transport and other parts of endpoint process. Depending on the situation it might be necessary to adjust the default connection pool size. For more details refer to the official [SQL Server Connection Pooling and Configuration](https://msdn.microsoft.com/en-us/library/8xx3tyca.aspx) document.
+NOTE: The SQL Server transport is built on top of ADO.NET and will use connection pooling. This may result in the connection pool being shared by the transport and other parts of the endpoint process. Depending on the situation it might be necessary to adjust the default connection pool size. For more details refer to the official [SQL Server Connection Pooling and Configuration](https://msdn.microsoft.com/en-us/library/8xx3tyca.aspx) document.
 
 Connection string can be configured in several ways:
 
