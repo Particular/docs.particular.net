@@ -80,7 +80,7 @@ and the following connection strings:
 
 snippet:sqlserver-multidb-connectionstrings
 
-The messages sent to the endpoint called `billing` will be sent to the database `Billing` on the server `DbServerB`. The messages to the endpoint called `sales` will be sent to the default database and server, because the endpoint specific configuration wasn't passed, i.e. `MyDefaultDB` on server `DbServerA`.
+The messages sent to the endpoint called `billing` will be sent to the database catalog `Billing` on the server instance `DbServerB`. The messages to the endpoint called `sales` will be sent to the default database catalog and database server instance, because the endpoint specific configuration wasn't passed, i.e. `MyDefaultDB` on server `DbServerA`.
 
 ## Custom database schemas
 
@@ -95,6 +95,7 @@ snippet:sqlserver-non-standard-schema-connString
 snippet:sqlserver-non-standard-schema-connString-xml
 
 ## Multiple custom schemas
+
 If two endpoints use different schemas then additional configuration is required. The sender needs to know the schema of the receiver, and subscriber needs the schema of the publisher. 
 
 NOTE: In Versions 2.1.x to 2.x publisher also needs to know the schema of every subscriber. The same applies sending reply messages. 
@@ -113,7 +114,7 @@ In an environment where DTC is disabled and [Outbox](/nservicebus/outbox/) is en
 
 The following conditions need to be met:
 
- * the business specific data and the `Outbox` storage must be in the same database;
+ * the business specific data and the `Outbox` storage must be in the same database instance;
  * the user code accessing business related data must use the same `connection string` as the `Outbox` storage.
 
 ### Entity Framework caveats
