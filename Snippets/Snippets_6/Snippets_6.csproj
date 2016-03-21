@@ -355,6 +355,7 @@
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Extending\Features.cs" />
+    <Compile Include="Features\MyStartupTaskThatUsesMessageSession.cs" />
     <Compile Include="Forwarding\Usage.cs" />
     <Compile Include="Gateway\Channels\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Gateway\Channels\ConfigurationSource\Usage.cs" />
