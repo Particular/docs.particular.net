@@ -118,6 +118,9 @@
     <Compile Include="Correlation\MyRequest.cs" />
     <Compile Include="CriticalErrorConfigAzure.cs" />
     <Compile Include="CustomConfigSource.cs" />
+    <Compile Include="DataBus\Azure\Usage.cs" />
+    <Compile Include="DataBus\CleanupStrategy\Define.cs" />
+    <Compile Include="DataBus\CleanupStrategy\Usage.cs" />
     <Compile Include="DataBus\Conventions\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\Conventions\Usage.cs" />
     <Compile Include="DataBus\Custom\CustomDataBus.cs" />
