@@ -52,7 +52,10 @@ SQL Server transport does not support store-and-forward mechanism natively. It m
 The problem can be addressed using [Outbox](/nservicebus/outbox/) feature. In addition Outbox can be used to avoid escalating transactions to DTC, given that each endpoint has its own database in which it stores input queue, error and audit queues, and the user data. That means it's not possible to avoid distributed transactions in case when any of the queues (including error and audit) is on a different SQL Server instance or catalog. 
 
 When using Outbox:
- * Messages are not dispatched immediately after the `Send()` method is called. Instead they are first stored in the Outbox table in the same database that endpoint's persistence is using. After the handler logic completes successfully, the messages stored in the Outbox table are forwarded to their final destinations.
- * If any of the forward operations fails, the message sending will be retried using the standard [retry mechanism](/nservicebus/errors/automatic-retries.md). This might result in sending some messages multiple times, which is known as `at-least-once` delivery. The Outbox feature performs automatically de-duplication of incoming messages based on their IDs, effectively providing `exactly-once` message delivery.
 
-As mentioned before store-and-forward requries `error` and `audit` queues per endpoint. As a result system using such a deployment scenario cannot be monitored by a single ServiceControl instance.
+ * Messages are not dispatched immediately after the `Send()` method is called. Instead, they are first stored in the Outbox table in the same database that the endpoint's persistence is using. After the handler logic completes successfully, the messages stored in the Outbox table are forwarded to their final destinations.
+ * If any of the forward operations fails, the message sending will be retried using the standard [retry mechanism](/nservicebus/errors/automatic-retries.md). This might result in sending some messages multiple times, which is known as `at-least-once` delivery. The Outbox feature performs automatically de-duplication of incoming messages based on their IDs, effectively providing `exactly-once` message delivery. The receiving endpoint should also be configured to use the outbox.
+
+### Error and audit queues per instance
+
+As mentioned before, store-and-forward requires `error` and `audit` queues per endpoint. As a result system using such a deployment scenario cannot be monitored by a single ServiceControl instance.
