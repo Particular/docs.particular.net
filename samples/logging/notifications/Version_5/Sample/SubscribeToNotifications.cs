@@ -4,12 +4,14 @@ using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using NServiceBus;
 using NServiceBus.Faults;
+using NServiceBus.Logging;
 
 #region subscriptions
 public class SubscribeToNotifications : 
     IWantToRunWhenBusStartsAndStops, 
     IDisposable
 {
+    static ILog log = LogManager.GetLogger<SubscribeToNotifications>();
     BusNotifications busNotifications;
     List<IDisposable> unsubscribeStreams = new List<IDisposable>();
 
@@ -25,33 +27,33 @@ public class SubscribeToNotifications :
         unsubscribeStreams.Add(
             errors.MessageSentToErrorQueue
                 .ObserveOn(scheduler) 
-                .Subscribe(LogToConsole)
+                .Subscribe(Log)
             );
         unsubscribeStreams.Add(
             errors.MessageHasBeenSentToSecondLevelRetries
                 .ObserveOn(scheduler) 
-                .Subscribe(LogToConsole)
+                .Subscribe(Log)
             );
         unsubscribeStreams.Add(
             errors.MessageHasFailedAFirstLevelRetryAttempt
                 .ObserveOn(scheduler) 
-                .Subscribe(LogToConsole)
+                .Subscribe(Log)
             );
     }
 
-    void LogToConsole(FailedMessage failedMessage)
+    void Log(FailedMessage failedMessage)
     {
-        Console.WriteLine("Mesage sent to error queue");
+        log.Info("Mesage sent to error queue");
     }
 
-    void LogToConsole(SecondLevelRetry secondLevelRetry)
+    void Log(SecondLevelRetry secondLevelRetry)
     {
-        Console.WriteLine("Mesage sent to SLR. RetryAttempt:" + secondLevelRetry.RetryAttempt);
+        log.Info("Mesage sent to SLR. RetryAttempt:" + secondLevelRetry.RetryAttempt);
     }
 
-    void LogToConsole(FirstLevelRetry firstLevelRetry)
+    void Log(FirstLevelRetry firstLevelRetry)
     {
-        Console.WriteLine("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
+        log.Info("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
     }
 
     public void Stop()

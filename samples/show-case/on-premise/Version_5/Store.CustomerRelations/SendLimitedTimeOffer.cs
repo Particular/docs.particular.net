@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using NServiceBus;
 using NServiceBus.Logging;
 using Store.Messages.Events;
@@ -14,6 +13,6 @@ class SendLimitedTimeOffer : IHandleMessages<ClientBecamePreferred>
         {
             Debugger.Break();
         }
-        Console.WriteLine("Handler WhenCustomerIsPreferredSendLimitedTimeOffer invoked for CustomerId: {0}", message.ClientId);
+        log.InfoFormat("Handler WhenCustomerIsPreferredSendLimitedTimeOffer invoked for CustomerId: {0}", message.ClientId);
     }
 }

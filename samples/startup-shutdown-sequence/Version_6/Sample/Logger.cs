@@ -1,12 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
+using NServiceBus.Logging;
 
 #region Logger
 static class Logger
 {
+    static ILog log = LogManager.GetLogger(typeof(Logger));
     static string outputFilePath = Path.GetFullPath(@"..\..\..\StartupShutdownSequence.txt");
     static object locker = new object();
+
     static Logger()
     {
         AppDomain.CurrentDomain.ProcessExit += Exit;
@@ -22,7 +25,7 @@ static class Logger
     public static void WriteLine(string message)
     {
         message = $"Thread:{Thread.CurrentThread.ManagedThreadId} {message}\r\n";
-        Console.Write(message);
+        log.Info(message);
         lock (locker)
         {
             File.AppendAllText(outputFilePath, message);

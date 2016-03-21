@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using NServiceBus;
 using NServiceBus.Logging;
 using Store.Messages.Commands;

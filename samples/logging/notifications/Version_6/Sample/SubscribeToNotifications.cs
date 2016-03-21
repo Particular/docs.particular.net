@@ -1,7 +1,8 @@
-using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Faults;
+using NServiceBus.Logging;
+
 // ReSharper disable UnusedParameter.Local
 
 #region subscriptions
@@ -9,6 +10,7 @@ using NServiceBus.Faults;
 public class SubscribeToNotifications :
     IWantToRunWhenBusStartsAndStops
 {
+    static ILog log = LogManager.GetLogger<SubscribeToNotifications>();
     BusNotifications busNotifications;
 
     public SubscribeToNotifications(BusNotifications busNotifications)
@@ -19,25 +21,25 @@ public class SubscribeToNotifications :
     public Task Start(IMessageSession session)
     {
         ErrorsNotifications errors = busNotifications.Errors;
-        errors.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => LogToConsole(retry);
-        errors.MessageHasFailedAFirstLevelRetryAttempt += (sender, retry) => LogToConsole(retry);
-        errors.MessageSentToErrorQueue += (sender, retry) => LogToConsole(retry);
+        errors.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => Log(retry);
+        errors.MessageHasFailedAFirstLevelRetryAttempt += (sender, retry) => Log(retry);
+        errors.MessageSentToErrorQueue += (sender, retry) => Log(retry);
         return Task.FromResult(0);
     }
 
-    void LogToConsole(FailedMessage failedMessage)
+    void Log(FailedMessage failedMessage)
     {
-        Console.WriteLine("Mesage sent to error queue");
+        log.Info("Mesage sent to error queue");
     }
 
-    void LogToConsole(SecondLevelRetry secondLevelRetry)
+    void Log(SecondLevelRetry secondLevelRetry)
     {
-        Console.WriteLine("Mesage sent to SLR. RetryAttempt:" + secondLevelRetry.RetryAttempt);
+        log.Info("Mesage sent to SLR. RetryAttempt:" + secondLevelRetry.RetryAttempt);
     }
 
-    void LogToConsole(FirstLevelRetry firstLevelRetry)
+    void Log(FirstLevelRetry firstLevelRetry)
     {
-        Console.WriteLine("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
+        log.Info("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
     }
 
     public Task Stop(IMessageSession session)
