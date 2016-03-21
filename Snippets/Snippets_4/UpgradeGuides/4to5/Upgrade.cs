@@ -4,6 +4,7 @@
     using NServiceBus;
     using NServiceBus.Encryption;
     using NServiceBus.Installation.Environments;
+    using NServiceBus.Logging;
     using NServiceBus.Unicast.Config;
     using Snippets4.Encryption.EncryptionService;
 
@@ -193,7 +194,7 @@
             #endregion
         }
 
-        public void DefineCriticalErrorAction()
+        public void DefineCriticalErrorAction(ILog log)
         {
             #region 4to5DefineCriticalErrorAction
 
@@ -201,8 +202,8 @@
             Configure configure = Configure.With();
             configure.DefineCriticalErrorAction((message, exception) =>
             {
-                string output = string.Format("We got a critical exception: '{0}'\r\n{1}", message, exception);
-                Console.WriteLine(output);
+                string output = string.Format("Critical exception: '{0}'", message);
+                log.Error(output, exception);
                 // Perhaps end the process??
             });
 

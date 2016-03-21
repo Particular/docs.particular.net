@@ -2,17 +2,18 @@
 {
     using System;
     using NServiceBus;
+    using NServiceBus.Logging;
 
     class Usage
     {
-        async void Simple(IEndpointInstance endpoint, SendOptions sendOptions)
+        async void Simple(IEndpointInstance endpoint, SendOptions sendOptions, ILog log)
         {
 
             #region IntCallback
 
             Message message = new Message();
             int response = await endpoint.Request<int>(message, sendOptions);
-            Console.WriteLine("Callback received with response:" + response);
+            log.Info("Callback received with response:" + response);
 
             #endregion
         }

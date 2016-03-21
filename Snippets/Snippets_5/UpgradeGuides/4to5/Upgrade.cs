@@ -4,6 +4,7 @@ namespace Snippets5.UpgradeGuides._4to5
     using System.Security.Principal;
     using System.Threading;
     using NServiceBus;
+    using NServiceBus.Logging;
     using NServiceBus.MessageMutator;
     using NServiceBus.Persistence;
     using Raven.Client.Document;
@@ -217,15 +218,15 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        void DefineCriticalErrorAction(BusConfiguration busConfiguration)
+        void DefineCriticalErrorAction(BusConfiguration busConfiguration, ILog log)
         {
             #region 4to5DefineCriticalErrorAction
             
             // Configuring how NServicebus handles critical errors
             busConfiguration.DefineCriticalErrorAction((message, exception) =>
             {
-                string output = string.Format("We got a critical exception: '{0}'\r\n{1}", message, exception);
-                Console.WriteLine(output);
+                string output = string.Format("Critical exception: '{0}'", message);
+                log.Error(output, exception);
                 // Perhaps end the process??
             });
 

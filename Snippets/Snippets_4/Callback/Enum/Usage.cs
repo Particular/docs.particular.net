@@ -2,11 +2,12 @@
 {
     using System;
     using NServiceBus;
+    using NServiceBus.Logging;
 
     class Usage
     {
 
-        Usage(IBus bus)
+        Usage(IBus bus, ILog log)
         {
             #region EnumCallback
 
@@ -14,7 +15,7 @@
             bus.Send(message)
                 .Register<Status>(response =>
                 {
-                    Console.WriteLine("Callback received with response:" + response);
+                    log.Info("Callback received with response:" + response);
                 });
 
             #endregion

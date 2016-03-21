@@ -2,11 +2,12 @@
 {
     using System;
     using NServiceBus;
+    using NServiceBus.Logging;
 
     class Usage
     {
 
-        Usage(IBus bus)
+        Usage(IBus bus, ILog log)
         {
             #region ObjectCallback
 
@@ -16,7 +17,7 @@
                 {
                     CompletionResult localResult = (CompletionResult)ar.AsyncState;
                     ResponseMessage response = (ResponseMessage)localResult.Messages[0];
-                    Console.WriteLine("Callback received with response:" + response.Property);
+                    log.Info("Callback received with response:" + response.Property);
                 }, null);
 
             #endregion

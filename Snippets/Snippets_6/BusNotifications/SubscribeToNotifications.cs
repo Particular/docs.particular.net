@@ -5,6 +5,7 @@ namespace Snippets6.BusNotifications
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Faults;
+    using NServiceBus.Logging;
 
     #region SubscribeToErrorsNotifications
 
@@ -12,6 +13,7 @@ namespace Snippets6.BusNotifications
         IWantToRunWhenBusStartsAndStops
     {
         BusNotifications busNotifications;
+        static ILog log = LogManager.GetLogger<SubscribeToNotifications>();
 
         public SubscribeToNotifications(BusNotifications busNotifications)
         {
@@ -29,17 +31,17 @@ namespace Snippets6.BusNotifications
 
         void LogToConsole(FailedMessage failedMessage)
         {
-            Console.WriteLine("Mesage sent to error queue");
+            log.Info("Mesage sent to error queue");
         }
 
         void LogToConsole(SecondLevelRetry secondLevelRetry)
         {
-            Console.WriteLine("Mesage sent to SLR. RetryAttempt:" + secondLevelRetry.RetryAttempt);
+            log.Info("Mesage sent to SLR. RetryAttempt:" + secondLevelRetry.RetryAttempt);
         }
 
         void LogToConsole(FirstLevelRetry firstLevelRetry)
         {
-            Console.WriteLine("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
+            log.Info("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
         }
 
         public Task Stop(IMessageSession session)

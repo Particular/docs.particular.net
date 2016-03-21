@@ -3,18 +3,19 @@
     using System;
     using System.Threading;
     using NServiceBus;
+    using NServiceBus.Logging;
 
     class CriticalErrorConfig
     {
-        CriticalErrorConfig(BusConfiguration busConfiguration)
+        CriticalErrorConfig(BusConfiguration busConfiguration, ILog log)
         {
             #region DefineCriticalErrorActionForAzureHost
 
             // Configuring how NServicebus handles critical errors
             busConfiguration.DefineCriticalErrorAction((message, exception) =>
             {
-                string errorMessage = string.Format("We got a critical exception: '{0}'\r\n{1}", message, exception);
-
+                string output = string.Format("Critical exception: '{0}'", message);
+                log.Error(output, exception);
                 if (Environment.UserInteractive)
                 {
                     Thread.Sleep(10000); // so that user can see on their screen the problem

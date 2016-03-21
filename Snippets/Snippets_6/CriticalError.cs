@@ -4,24 +4,25 @@
     using System.Threading;
     using System.Threading.Tasks;
     using NServiceBus;
+    using NServiceBus.Logging;
 
     class CriticalErrorConfig
     {
-        CriticalErrorConfig(EndpointConfiguration endpointConfiguration)
+        CriticalErrorConfig(EndpointConfiguration endpointConfiguration, ILog log)
         {
             #region DefineCriticalErrorActionForAzureHost
 
             // Configuring how NServicebus handles critical errors
             endpointConfiguration.DefineCriticalErrorAction(context =>
             {
-                string errorMessage = $"We got a critical exception: '{context.Error}'\r\n{context.Exception}";
-
+                string output = $"Critical exception: '{context.Error}'";
+                log.Error(output, context.Exception);
                 if (Environment.UserInteractive)
                 {
                     Thread.Sleep(10000); // so that user can see on their screen the problem
                 }
 
-                string fatalMessage = $"The following critical error was encountered by NServiceBus:\n{errorMessage}\nNServiceBus is shutting down.";
+                string fatalMessage = $"The following critical error was encountered by NServiceBus:\n{context.Error}\nNServiceBus is shutting down.";
                 Environment.FailFast(fatalMessage, context.Exception);
                 return Task.FromResult(0);
             });

@@ -1,11 +1,11 @@
 ﻿namespace Snippets6.Callback.Object
 {
-    using System;
     using NServiceBus;
+    using NServiceBus.Logging;
 
     class Usage
     {
-        async void Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, SendOptions sendOptions)
+        async void Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, SendOptions sendOptions, ILog log)
         {
             #region Callbacks-InstanceId
 
@@ -17,7 +17,7 @@
 
             Message message = new Message();
             ResponseMessage response = await endpoint.Request<ResponseMessage>(message, sendOptions);
-            Console.WriteLine("Callback received with response:" + response.Property);
+            log.Info("Callback received with response:" + response.Property);
 
             #endregion
         }

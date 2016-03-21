@@ -1,12 +1,13 @@
 ﻿namespace Snippets3.Callback.Int
 {
     using System;
+    using log4net;
     using NServiceBus;
 
     class Usage
     {
 
-        Usage(IBus bus)
+        Usage(IBus bus, ILog log)
         {
             #region IntCallback
 
@@ -14,13 +15,10 @@
             bus.Send(message)
                 .Register<int>(response =>
                 {
-                    Console.WriteLine("Callback received with response:" + response);
+                    log.Info("Callback received with response:" + response);
                 });
 
             #endregion
-
-            Console.WriteLine("Message sent");
         }
-
     }
 }
