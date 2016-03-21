@@ -1,6 +1,5 @@
 ﻿namespace Snippets4.Callback.Object
 {
-    using System;
     using NServiceBus;
     using NServiceBus.Logging;
 

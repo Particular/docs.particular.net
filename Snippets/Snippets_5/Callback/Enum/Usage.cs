@@ -1,6 +1,5 @@
 ﻿namespace Snippets5.Callback.Enum
 {
-    using System;
     using NServiceBus;
     using NServiceBus.Logging;
 

@@ -1,6 +1,5 @@
 ﻿namespace Snippets6.Callback.Int
 {
-    using System;
     using NServiceBus;
     using NServiceBus.Logging;
 

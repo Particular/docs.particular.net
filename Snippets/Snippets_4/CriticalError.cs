@@ -21,7 +21,7 @@
                     Thread.Sleep(10000); // so that user can see on their screen the problem
                 }
 
-                string fatalMessage = string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage);
+                string fatalMessage = string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", message);
                 Environment.FailFast(fatalMessage, exception);
             });
 
