@@ -1,6 +1,7 @@
 ---
 title: Unobtrusive
 summary: Demonstrates NServiceBus operating in unobtrusive mode.
+reviewed: 2016-03-21
 tags:
 - Unobtrusive
 - Message
@@ -32,7 +33,7 @@ It also shows the unobtrusive way to tell NServiceBus which properties to delive
 
 Look at the code. There are a number of projects in the solution:
 
-- **Client**: sends a request and a command to the server and handles a published event
-- **Server**: handles requests and commands, and publishes events
-- **Shared**: Shared code including the message conventions.
-- **Message**: the message definitions with no reference to NServiceBus.
+ * **Client**: sends a request and a command to the server and handles a published event
+ * **Server**: handles requests and commands, and publishes events
+ * **Shared**: Shared code including the message conventions.
+ * **Message**: the message definitions with no reference to NServiceBus.

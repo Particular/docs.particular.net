@@ -1,6 +1,7 @@
 ---
 title: Gateway
-summary: Illustrates Gateway capability of NServiceBus.
+summary: The Gateway capability of NServiceBus.
+reviewed: 2016-03-21
 tags:
 - Gateway
 related:

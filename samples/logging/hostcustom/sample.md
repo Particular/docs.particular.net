@@ -1,6 +1,7 @@
 ---
 title: Host Custom Logging
-summary: Illustrates how to customize logging when running inside the NServiceBus host.
+summary: Customize logging when running inside the NServiceBus host.
+reviewed: 2016-03-21
 tags:
 - Logging
 related:

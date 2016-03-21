@@ -1,6 +1,7 @@
 ---
 title: Startup and Shutdown Sequence
-summary: Illustrates the order of startup shutdown operations including all extension points that plug into that process.
+summary: The order of startup shutdown operations including all extension points that plug into that process.
+reviewed: 2016-03-21
 related:
 - nservicebus/operations/installers
 ---

@@ -1,6 +1,7 @@
 ---
 title: Building a transport
-summary: Shows how to build a Transport using the file system as a store.
+summary: Building a Transport using the file system as a store.
+reviewed: 2016-03-21
 related:
 - nservicebus/transports
 ---

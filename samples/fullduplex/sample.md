@@ -1,6 +1,7 @@
 ---
 title: Full Duplex
-summary: An example of full-duplex, request/response communication.
+summary: Using full-duplex and request/response communication.
+reviewed: 2016-03-21
 tags:
 - Request Response
 - Messaging Patterns
@@ -12,7 +13,9 @@ redirects:
 
 Run the solution. Two console applications start up, `Client` and `Server`.
 
+
 ## Code walk-through
+
 
 ### Messages
 

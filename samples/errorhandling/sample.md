@@ -1,6 +1,7 @@
 ---
 title: Automatic Retries
 summary: With SLR, the message causing the exception is instantly retried via a retries queue instead of an error queue.
+reviewed: 2016-03-21
 tags:
 - Second Level Retry
 - Error Handling

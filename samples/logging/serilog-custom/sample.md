@@ -1,6 +1,7 @@
 ---
 title: Custom Serilog configuration
-summary: Illustrates customizing Serilog usage by configuring Serilog targets and rules.
+summary: Customizing Serilog usage by configuring Serilog targets and rules.
+reviewed: 2016-03-21
 tags:
 - Logging
 - Serilog

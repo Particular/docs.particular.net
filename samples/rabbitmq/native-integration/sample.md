@@ -1,6 +1,6 @@
 ---
 title: Native integration with RabbitMQ
-summary: Shows how to consume messages published by non-NServiceBus endpoints
+summary: Consuming messages published by non-NServiceBus endpoints
 reviewed: 2016-03-11
 tags:
 - RabbitMQ

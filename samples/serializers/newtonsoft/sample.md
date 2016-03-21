@@ -1,6 +1,7 @@
 ---
 title: Newtonsoft Json Serializer
-summary: How to use the Newtonsoft Json serializer in an endpoint.
+summary: Use the Newtonsoft Json serializer in an endpoint.
+reviewed: 2016-03-21
 related:
 - nservicebus/serialization
 redirects:

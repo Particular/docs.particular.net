@@ -1,6 +1,7 @@
 ---
 title: Wire Serializer
-summary: How to use the Wire serializer in an endpoint.
+summary: Using the Wire serializer in an endpoint.
+reviewed: 2016-03-21
 related:
 - nservicebus/serialization
 ---

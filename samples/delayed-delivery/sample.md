@@ -1,6 +1,7 @@
 ---
 title: Delayed Delivery Sample
-summary: Illustrates how to delay messages.
+summary: Delaying messages.
+reviewed: 2016-03-21
 tags:
 - Defer
 related:

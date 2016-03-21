@@ -1,6 +1,7 @@
 ---
 title: BSON Serializer
-summary: How to use the core BSON serializer.
+summary: Using the core BSON serializer.
+reviewed: 2016-03-21
 related:
 - nservicebus/serialization
 - nservicebus/serialization/newtonsoft
@@ -8,7 +9,7 @@ related:
 
 This sample uses the BSON serializer in the core.
 
-WARNING: In Version 6 of NServiceBus the built in BSON serializer has been deprecated. The [Newtonsoft serializer](/nservicebus/serialization/newtonsoft.md) can be used as a replacement
+WARNING: In Versions 6 and above the built in BSON serializer has been deprecated. The [Newtonsoft serializer](/nservicebus/serialization/newtonsoft.md) can be used as a replacement
  
 
 ## Configuring to use BSON

@@ -1,6 +1,6 @@
 ---
 title: Azure Storage Persistence
-summary: This sample shows how use Azure Storage to store Sagas, Timeouts and Subscriptions.
+summary: Using Azure Storage to store Sagas, Timeouts and Subscriptions.
 reviewed: 2016-03-17
 tags:
 - Saga

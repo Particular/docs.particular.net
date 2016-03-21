@@ -1,7 +1,7 @@
 ---
 title: Fault Tolerance
-summary: See how NServiceBus messaging can get past all sorts of failure scenarios.
-tags: []
+summary: Messaging approaches to help with failure scenarios.
+reviewed: 2016-03-21
 redirects:
 - nservicebus/nservicebus-step-by-step-guide-fault-tolerance-code-first
 related:
@@ -38,7 +38,7 @@ Message received. Id: 2c9f0f60-7632-43ae-b16e-1688f31b1f53
 
  * Then, kill the 'Server' console (endpoint) but leave the 'Client' console (endpoint) running.
  * Hit Enter on the 'Client' console a couple of times to see that the 'Client' application isn't blocked even when the other process it's trying to communicate with is down. This makes it easier to upgrade the backend even while the front-end is still running, resulting in a more highly-available system.
- * Now, leaving the 'Client' console running, view the `Samples.FaultTolerance.Server` queue in MSMQ. Note that All the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. Click each message, press F4, and examine its properties specifically BodyStream, where the data is.
+ * Now, leaving the 'Client' console running, view the `Samples.FaultTolerance.Server` queue in MSMQ. Note that All the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. Click each message, press F4, and examine its properties specifically `BodyStream`, where the data is.
 
 
 ### Consume those messages

@@ -1,6 +1,7 @@
 ---
 title: SQL Bridge
-summary: This sample shows how to setup a SQL subscriber so it can subscribe to events from a MSMQ publisher.
+summary: Setep a SQL subscriber so it can subscribe to events from a MSMQ publisher.
+reviewed: 2016-03-21
 related:
 - nservicebus/transports
 - nservicebus/msmq
@@ -59,6 +60,7 @@ INSERT INTO Subscription
 GO
 ```
 
+
 ## MsmqSubscriber
 
 Subscribes to the events from the `MsmqPublisher`
@@ -93,12 +95,12 @@ Note: Since `SqlBridge` is not using the native MSMQ transport manually creating
 
 ## How does the advanced satellite work
 
-- It uses a MSMQ Dequeue strategy to read messages from its Input queue.
-- References the `Shared` message schema dll.
-- The input queue is defined as `SqlMsmqTransportBridge` in the `InputAddress` property of the satellite.
-- The MSMQ dequeue strategy is set here for reading messages from the queue (MSMQ).
-- The satellite will automatically process any message that is received in that queue (MSMQ).
-- The satellite will publish the received event. Since this endpoint uses SqlTransport, it will publish to its Sql queues.
+ * It uses a MSMQ Dequeue strategy to read messages from its Input queue.
+ * References the `Shared` message schema dll.
+ * The input queue is defined as `SqlMsmqTransportBridge` in the `InputAddress` property of the satellite.
+ * The MSMQ dequeue strategy is set here for reading messages from the queue (MSMQ).
+ * The satellite will automatically process any message that is received in that queue (MSMQ).
+ * The satellite will publish the received event. Since this endpoint uses SqlTransport, it will publish to its Sql queues.
 
 
 ## SqlSubscriber

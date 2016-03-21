@@ -1,6 +1,7 @@
 ---
 title: Host Profile Logging
-summary: Illustrates how to configure logging using the profile functionality of the NServiceBus host.
+summary: Configure logging using the profile functionality of the NServiceBus host.
+reviewed: 2016-03-21
 tags:
 - Logging
 related:

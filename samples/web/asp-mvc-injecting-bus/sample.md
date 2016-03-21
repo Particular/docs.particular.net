@@ -1,7 +1,7 @@
 ---
 title: Injecting the Bus into ASP.NET MVC Controller
-summary: Leverages Autofac MVC integration to inject IBus into MVC Controllers.
-tags: []
+summary: Leverages Autofac MVC integration to inject endpoint instance into MVC Controllers.
+reviewed: 2016-03-21
 redirects:
 - nservicebus/injecting-the-bus-into-asp.net-mvc-controller
 related:
@@ -20,6 +20,6 @@ snippet:ApplicationStart
 
 ### Injection into the Controller
 
-Note that `IEndpointInstance` (in version 6) or `IBus` (in version 5) is injected into the `DefaultController` at construction time.
+The endpoint instance is injected into the `DefaultController` at construction time.
 
 snippet:Controller

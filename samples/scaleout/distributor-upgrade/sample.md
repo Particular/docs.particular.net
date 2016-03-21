@@ -1,6 +1,7 @@
 ---
 title: Upgrading a Distributor-based scaled out endpoint to V6
-summary: How to upgrade an existing scaled-out endpoint that uses Distributor to version 6 of NServiceBus
+summary: Upgrading an existing scaled-out endpoint that uses Distributor to version 6 of NServiceBus
+reviewed: 2016-03-21
 tags:
 - Distributor
 - Scalability
@@ -24,7 +25,7 @@ This sample uses the same solution as the Version 5 [distributor sample](/sample
 
 ### Adding stand-alone distributor
 
-In version 6 NServiceBus no longer supports running an embedded distributor so a separate project has to be added to the solution. 
+Versions 6 and above no longer support running an embedded distributor so a separate project has to be added to the solution. 
 
 This new project is going to reference `NServiceBus` Version 5.X because distributor does not have a Version 6 compatible release. It also needs to reference the `NServiceBus.Distributor.MSMQ` package.
 
@@ -57,14 +58,14 @@ There are minor changes required to make the workers compile against the Version
 
 ### Giving workers new identity
 
-In Version 6 each endpoint instance is identified by name of the endpoint and an ID of the instance. Both workers are going to be named `Samples.Scaleout.Worker` and the instance ID is going to be loaded from the app.config file. If the workers are deployed to separate machines the instance ID can be omitted.
+In Versions 6 and above each endpoint instance is identified by name of the endpoint and an ID of the instance. Both workers are going to be named `Samples.Scaleout.Worker` and the instance ID is going to be loaded from the app.config file. If the workers are deployed to separate machines the instance ID can be omitted.
 
 snippet:WorkerIdentity
 
 
 ### Enlisting with the distributor
 
-In Version 6 there is a new API for enlisting with the distributor. The API requires passing addresses of distributor data and control queues which were previously read from the configuration section.
+In Versions 6 and above there is a new API for enlisting with the distributor. The API requires passing addresses of distributor data and control queues which were previously read from the configuration section.
 
 snippet:Enlisting
 
@@ -86,4 +87,4 @@ Because the sender still uses Version 5 and the workers are on Version 6, the sh
 
 After the upgrade is done both worker projects are identical (apart from the configuration file). The sender needed only a minor routing correction.
 
-NOTE: When Version 5 nodes enlist with the distributor, they normally use a GUID-based queues that are created each time the worker starts. This behavior is suppressed in the sample via a configuration switch. In Version 6 when worker nodes enlists with the distributor, they always use their regular input queues with stable names. 
+NOTE: When Version 5 nodes enlist with the distributor, they normally use a GUID-based queues that are created each time the worker starts. This behavior is suppressed in the sample via a configuration switch. In Versions 6 and above when worker nodes enlists with the distributor, they always use their regular input queues with stable names. 

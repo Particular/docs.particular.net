@@ -1,6 +1,7 @@
 ---
 title: Multi-tenant endpoints
-summary: How to configure NServiceBus persistence to support multi-tenant scenarios with database-per-tenant isolation
+summary: Configure persistence to support multi-tenant scenarios with database-per-tenant isolation.
+reviewed: 2016-03-21
 tags:
 - NHibernate
 - Outbox

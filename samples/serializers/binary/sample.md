@@ -1,14 +1,16 @@
 ---
 title: Binary Formatter Serializer
-summary: How to use the core Binary Formatter serializer.
+summary: Using the core Binary Formatter serializer.
+reviewed: 2016-03-21
 related:
 - nservicebus/serialization
 - nservicebus/serialization/binary
 ---
 
-NOTE: In Version 6, the `BinarySerializer` was deprecated. Use one of the [supported serializers](/nservicebus/serialization/#supported-serializers), or an [external serializer](/platform/extensions.md#serializers).
+NOTE: In Version 6 and above, the `BinarySerializer` was deprecated. Use one of the [supported serializers](/nservicebus/serialization/#supported-serializers), or an [external serializer](/platform/extensions.md#serializers).
 
 This sample uses the Binary Formatter serializer in the core.
+
 
 ## Configuring to use Binary
 

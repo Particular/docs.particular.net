@@ -1,6 +1,7 @@
 ---
 title: Custom Log4Net appender
-summary: Illustrates customizing Log4Net by passing in a custom Appender.
+summary: Customizing Log4Net by passing in a custom Appender.
+reviewed: 2016-03-21
 tags:
 - Logging
 - Log4Net

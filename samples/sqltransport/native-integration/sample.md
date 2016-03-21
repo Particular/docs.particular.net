@@ -1,6 +1,7 @@
 ---
 title: SQL Server Native integration
-summary: 'How to integrate natively with the SQL Server transport'
+summary: Integrating natively with the SQL Server transport.
+reviewed: 2016-03-21
 tags:
 - SQL Server
 - NHibernate
@@ -43,7 +44,7 @@ Now the endpoint can understand JSON payloads a message contract can be defined.
 
 snippet: MessageContract
 
-The final piece of the puzzle is to tell the serializer what C# class our JSON payload belongs to. This is done using the Json.NET `$type` attribute. The message body will then look as follows:
+The final step is to tell the serializer what C# class the JSON payload belongs to. This is done using the Json.NET `$type` attribute. The message body will then look as follows:
 
 snippet: MessagePayload
 
@@ -52,7 +53,7 @@ With this in place the endpoint can now parse the incoming JSON payload to a str
 
 ### Sending the message
 
-Sending a message to our endpoint using ADO.NET is done via:
+Sending a message to the endpoint using ADO.NET is done via:
 
 snippet: SendingUsingAdoNet
 

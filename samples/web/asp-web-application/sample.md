@@ -1,7 +1,7 @@
 ---
 title: Using NServiceBus in a ASP.NET Web Application
-summary: See how to use NServiceBus in a WebForms application.
-tags: []
+summary: Using NServiceBus in a WebForms application.
+reviewed: 2016-03-21
 redirects:
 - nservicebus/using-nservicebus-in-a-asp.net-web-application
 related:
@@ -52,7 +52,7 @@ Skip the rest of the code and see what happens to the message just sent.
 
 ## Handling the message
 
-In the Server project, find this code in the CommandMessageHandler class:
+In the Server project, find this code in the `CommandMessageHandler` class:
 
 snippet: Handler
 

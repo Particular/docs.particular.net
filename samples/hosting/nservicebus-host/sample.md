@@ -1,6 +1,7 @@
 ---
 title: NServiceBus hosting using the NServiceBus.Host
-summary: This sample shows how to host a NServiceBus endpoint using the NServiceBus.Host.
+summary: Hosting a NServiceBus endpoint using the NServiceBus.Host.
+reviewed: 2016-03-21
 tags:
 - Hosting
 related:

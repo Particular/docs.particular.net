@@ -1,6 +1,7 @@
 ---
 title: Header Manipulation
-summary: Illustrates all the extension points for mutating messages.
+summary: All extension points for mutating messages.
+reviewed: 2016-03-21
 tags:
 - Header
 - Mutator

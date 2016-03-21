@@ -1,6 +1,7 @@
 ---
 title: Samples
 summary: All samples for the Particular Platform
+reviewed: 2016-03-21
 ---
 
 [Skip to the list of samples](#related-samples)
@@ -97,4 +98,4 @@ Samples default to using the built-in container since it does not require pullin
 
 ### Async/await
 
-Samples by default use `await` and declare the surrounding method `async` everywhere, even if we could just return the task returned by the called API. Furthermore, `ConfigureAwait(false)` is not used when awaiting an asynchronous method execution. This is a conscious choice, although it is not following the best practices around `async`/`await`, to simplify readability of samples. 
+Samples by default use `await` and declare the surrounding method `async` everywhere, even if the Task could be returned by the called API. Furthermore, `ConfigureAwait(false)` is not used when awaiting an asynchronous method execution. This is a conscious choice, although it is not following the best practices around `async`/`await`, to simplify readability of samples. 

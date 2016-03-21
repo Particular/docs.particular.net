@@ -1,6 +1,7 @@
 ---
 title: Encryption
-summary: How to encrypt message data.
+summary: Encrypting message data.
+reviewed: 2016-03-21
 tags:
 - Encryption
 redirects:

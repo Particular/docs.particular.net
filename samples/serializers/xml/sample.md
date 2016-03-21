@@ -1,6 +1,7 @@
 ---
 title: XML Serializer
-summary: How to use the default XML serializer.
+summary: Using the default XML serializer.
+reviewed: 2016-03-21
 related:
 - nservicebus/serialization
 - nservicebus/serialization/xml

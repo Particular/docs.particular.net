@@ -1,6 +1,7 @@
 ---
 title: Scale Out with the Distributor
 summary: Scale out existing message processing by adding workers on different machines.
+reviewed: 2016-03-21
 tags:
 - Distributor
 - Scalability
@@ -71,7 +72,7 @@ snippet:Workerstartup
 
 snippet: workerConfig
 
-The Node in the MasterNodeConfig points to the host name where the MasterNode is running. If running the Worker from the same machine as the Distributor, Node should equal "localhost".
+The Node in the `MasterNodeConfig` points to the host name where the MasterNode is running. If running the Worker from the same machine as the Distributor, Node should equal `localhost`.
 
 
 ## Running the code

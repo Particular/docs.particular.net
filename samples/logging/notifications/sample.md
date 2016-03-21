@@ -1,6 +1,7 @@
 ---
 title: Notifications
-summary: Illustrates using the notifications API
+summary: Using the notifications API.
+reviewed: 2016-03-21
 tags:
 related:
 - nservicebus/errors/subscribing-to-error-notifications

@@ -1,6 +1,7 @@
 ---
 title: MongoDB persistence Sample
-summary: This sample shows how use MongoDB to store Sagas and Timeouts.
+summary: Using MongoDB to store Sagas and Timeouts.
+reviewed: 2016-03-21
 tags:
 - Saga
 - Timeout

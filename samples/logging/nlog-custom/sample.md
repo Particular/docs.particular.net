@@ -1,6 +1,7 @@
 ---
 title: Custom NLog configuration
-summary: Illustrates customizing NLog usage by configuring NLog targets and rules.
+summary: Customizing NLog usage by configuring NLog targets and rules.
+reviewed: 2016-03-21
 tags:
 - Logging
 - NLog

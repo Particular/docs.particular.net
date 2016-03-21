@@ -1,6 +1,7 @@
 ---
 title: JSON Serializer
-summary: How to use the core JSON serializer.
+summary: Using the core JSON serializer.
+reviewed: 2016-03-21
 related:
 - nservicebus/serialization
 - nservicebus/serialization/json

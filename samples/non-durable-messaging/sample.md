@@ -1,7 +1,7 @@
 ---
 title: Non Durable messaging on MSMQ
-summary: Illustrates how to send non-durable message by using the Express Attribute.
-tags: []
+summary: Sending non-durable message by using the Express Attribute.
+reviewed: 2016-03-21
 related:
  - nservicebus/messaging/non-durable-messaging
  - nservicebus/msmq/connection-strings

@@ -1,6 +1,7 @@
 ---
 title: Azure Service Bus Transport
-summary: This sample shows how use Azure Service Bus Transport
+summary: Using Azure Service Bus Transport.
+reviewed: 2016-03-21
 tags:
 related:
 - nservicebus/azure

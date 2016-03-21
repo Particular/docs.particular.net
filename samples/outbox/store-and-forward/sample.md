@@ -1,6 +1,7 @@
 ---
 title: Outbox Store-and-forward
 summary: How to add store-and-forward functionality for external-facing endpoints
+reviewed: 2016-03-21
 tags:
 - SQL Server
 - Outbox

@@ -1,6 +1,7 @@
 ---
 title: NServiceBus multi hosting
-summary: This sample shows how to host multiple NServiceBus instances in one process.
+summary: Hosting multiple NServiceBus instances in one process.
+reviewed: 2016-03-21
 tags:
 - Hosting
 related:

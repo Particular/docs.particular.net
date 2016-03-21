@@ -1,6 +1,7 @@
 ---
 title: Performance Counter Usage
-summary: Illustrates usage of the built in Performance Counters.
+summary: Using the built in Performance Counters.
+reviewed: 2016-03-21
 tags:
 - Performance Counters
 related:
@@ -56,9 +57,9 @@ Run the solution so that the Performance Counter instances are registered.
 
 ## Add Counters in Performance Monitor
 
-1. Start [Windows Performance Monitor](https://technet.microsoft.com/en-au/library/cc749249.aspx).
-2. Clear the default counters.
-3. Add the NServiceBus Counters
+ 1. Start [Windows Performance Monitor](https://technet.microsoft.com/en-au/library/cc749249.aspx).
+ 1. Clear the default counters.
+ 1. Add the NServiceBus Counters
 
 ![](./add-counters.png)
 

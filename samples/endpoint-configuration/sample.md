@@ -1,6 +1,6 @@
 ---
 title: Endpoint configuration choices
-summary: Walks through the standard configuration options for hosting an endpoint.
+summary: Shows the standard configuration options for hosting an endpoint.
 reviewed: 2016-03-18
 related:
 - samples/step-by-step

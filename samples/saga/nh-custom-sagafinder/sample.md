@@ -1,6 +1,7 @@
 ---
 title: Custom Saga Finding Logic (NHibernate)
-summary: This sample shows how to perform custom saga finding logic based on custom query logic when the Saga storage is a relational database using NHibernate as the O/RM.
+summary: Perform custom saga finding logic based on custom query logic when the Saga storage is a relational database using NHibernate as the O/RM.
+reviewed: 2016-03-21
 tags:
 - Saga
 - SagaFinder
@@ -12,7 +13,7 @@ related:
 
 ## Code walk-through
 
-When the default Saga message mappings do not satisfy our needs custom logic can be put in place to allow NServiceBus to find a saga data instance based on which logic best suits our environment.
+When the default Saga message mappings do not satisfy the requirements, custom logic can be put in place to allow NServiceBus to find a saga data instance based on which logic best suits the  environment.
 
 This sample shows how to perform custom saga finding logic based on custom query logic.
 
@@ -37,7 +38,7 @@ snippet: TheSagaNHibernate
 
 From the process point of view it is important to note that the saga is not sending to the payment processor the order id, instead it is sending a payment transaction id. A saga can be correlated given more than one unique attribute, such as `OrderId` and `PaymentTransactionId`, requiring both to be treated as unique.
 
-At start-up the sample will send a `StartOrder` message. Building a saga finder requires to define a class that implements the `IFindSagas<TSagaData>.Using<TMessage>` interface. The class will be automatically picked up by NServiceBus at configuration time and used each time a message of type `TMessage`, that is expected to load a saga of type `TSagaData`, is received. The `FindBy` method will be invoked by NServiceBus. It is our responsibility to query the saga storage looking for the saga instance:
+At start-up the sample will send a `StartOrder` message. Building a saga finder requires to define a class that implements the `IFindSagas<TSagaData>.Using<TMessage>` interface. The class will be automatically picked up by NServiceBus at configuration time and used each time a message of type `TMessage`, that is expected to load a saga of type `TSagaData`, is received. The `FindBy` method will be invoked by NServiceBus. The responsibility to query the saga storage looking for the saga instance is owned by the finder:
 
 snippet:CustomSagaFinderNHibernate
 

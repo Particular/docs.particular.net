@@ -1,6 +1,7 @@
 ---
 title: SQL Server / NHibernate
-summary: 'How to integrate SQL Server transport with NHibernate persistence without outbox'
+summary: Integrating SQL Server transport with NHibernate persistence without outbox.
+reviewed: 2016-03-21
 tags:
 - SQL Server
 - NHibernate
@@ -51,6 +52,7 @@ snippet:ReceiverConfiguration
 snippet:NHibernate
 
 When the message arrives at the Receiver, a `TransactionScope` is created that encompasses
+
  * dequeuing the message
  * persisting business data using the shared session,
  * persisting saga data of `OrderLifecycleSaga` ,

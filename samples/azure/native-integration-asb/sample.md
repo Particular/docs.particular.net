@@ -1,7 +1,7 @@
 ---
 title: Native Integration with Azure Service Bus Transport
-summary: Shows how to consume messages published by non NServiceBus endpoints
-tags:
+summary: Consuming messages published by non NServiceBus endpoints
+reviewed: 2016-03-21
 related:
 - nservicebus/azure/azure-servicebus-transport
 ---
@@ -22,8 +22,8 @@ This sample shows how to send a message from non-NServicebus code using the Azur
 
 The sample contains two executable projects:
 
-- NativeSender - sends a native `BrokeredMessage` messages to a queue
-- Receiver - NServiceBus endpoint that processes messages sent by NativeSender
+ * `NativeSender` - sends a native `BrokeredMessage` messages to a queue
+ * `Receiver` - NServiceBus endpoint that processes messages sent by `NativeSender`
 
 
 ## Sending messages with native Azure Service Bus API
@@ -55,8 +55,8 @@ NOTE: Both the sender (native or NServiceBus) and the receiver must agree on the
 
 For a native message to be processed, NServiceBus endpoints using  the Azure Service Bus transport require two headers:
 
-1. Message type
-2. Message intent
+ 1. Message type
+ 1. Message intent
 
 These headers need to be stored as `BrokeredMessage` properties.
 

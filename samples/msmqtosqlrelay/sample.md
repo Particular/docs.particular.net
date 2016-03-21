@@ -1,6 +1,7 @@
 ---
 title: MsmqToSql Relay
-summary: This sample shows how to setup a SQL Relay so it can receive events from a MSMQ publisher.
+summary: Setup a SQL Relay so it can receive events from a MSMQ publisher.
+reviewed: 2016-03-21
 related:
 - nservicebus/transports
 - nservicebus/msmq

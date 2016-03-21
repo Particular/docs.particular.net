@@ -1,6 +1,6 @@
 ---
 title: Custom Saga Finding Logic (RavenDB)
-summary: This sample shows how to perform custom saga finding logic based on custom query logic when the Saga storage is RavenDB and how to use multiple Unique attributes.
+summary: Perform custom saga finding logic based on custom query logic when the Saga storage is RavenDB and how to use multiple Unique attributes.
 tags:
 - Saga
 - SagaFinder
@@ -13,7 +13,7 @@ related:
 
 ## Code walk-through
 
-When the default Saga message mappings do not satisfy our needs custom logic can be put in place to allow NServiceBus to find a saga data instance based on which logic best suites the environment.
+When the default Saga message mappings do not satisfy the requirements, custom logic can be put in place to allow NServiceBus to find a saga data instance based on which logic best suites the environment.
 
 This sample shows how to:
 
@@ -41,10 +41,10 @@ snippet:ravenhost
 
 The saga shown in the sample is a very simple order management saga that:
 
-* handles the creation of an order;
-* offloads the payment process to a different handler;
-* handles the completion of the payment process;
-* completes the order;
+ * handles the creation of an order;
+ * offloads the payment process to a different handler;
+ * handles the completion of the payment process;
+ * completes the order;
 
 snippet:TheSagaRavenDB
 

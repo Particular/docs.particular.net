@@ -1,7 +1,7 @@
 ---
 title: WCF request response via Callbacks
-summary: Illustrates how to map between WCF and messages on the bus via the Callbacks API.
-tags:
+summary: Mapping between WCF and messages on the bus via the Callbacks API.
+reviewed: 2016-03-21
 related:
 - nservicebus/messaging/handling-responses-on-the-client-side
 - samples/web/owin-pass-through

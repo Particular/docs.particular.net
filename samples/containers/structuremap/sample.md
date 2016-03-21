@@ -1,6 +1,7 @@
 ---
 title: StructureMap Container Usage
-summary: How to use the StructureMap container in an endpoint.
+summary: Using the StructureMap container in an endpoint.
+reviewed: 2016-03-21
 tags:
 - Container
 related:
@@ -12,7 +13,7 @@ related:
 
 snippet:ContainerConfiguration
 
+
 ### Injecting the dependency in the handler
 
 snippet:InjectingDependency
-  

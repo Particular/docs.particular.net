@@ -1,7 +1,7 @@
 ---
 title: Polymorphic events with Azure Service Bus Transport
-summary: This sample shows how handle polymorphic events with Azure Service Bus Transport
-tags:
+summary: Handling polymorphic events with Azure Service Bus Transport.
+reviewed: 2016-03-21
 related:
 - nservicebus/azure/azure-servicebus-transport
 - nservicebus/messaging/publish-subscribe

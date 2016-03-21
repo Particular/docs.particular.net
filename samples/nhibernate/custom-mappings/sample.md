@@ -1,6 +1,7 @@
 ---
 title: NHibernate Custom mapping with hbm.xml, attributes or fluent api
 summary: Create a custom mapping to change how NHibernate creates the database schema using different techniques.
+reviewed: 2016-03-21
 tags:
  - NHibernate
  - Mapping
@@ -63,11 +64,11 @@ snippet:AddMappingsFromFilesystem
 
 To use it with NServiceBus:
 
-1. Install `FluentNHibernate` package via NuGet.
-2. Create a custom NHibernate configuration
-a. via FluentNHibernate
-b. or by creating a new Configuration instance and pass it to FluentNHibernate
-3. Pass it to the NServiceBus NHibernate configuration.
+ 1. Install `FluentNHibernate` package via NuGet.
+ 1. Create a custom NHibernate configuration
+  * via FluentNHibernate
+  * or by creating a new Configuration instance and pass it to FluentNHibernate
+ 1. Pass it to the NServiceBus NHibernate configuration.
 
 
 Example of a possible implementation:

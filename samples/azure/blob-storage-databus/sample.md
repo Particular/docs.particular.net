@@ -1,6 +1,7 @@
 ---
 title: Azure Blob Storage DataBus Sample
-summary: 'Send large attachments with NServiceBus over Azure blob storage.'
+summary: Sending large attachments with NServiceBus over Azure blob storage.
+reviewed: 2016-03-21
 tags:
 - Azure
 - DataBus
@@ -13,7 +14,7 @@ related:
 
  1. Start [Azure Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/)
  1. Run the solution. Two console applications start.
- 1. Find the `Sender` application by looking for the one with `Sender` in its path and press Enter in the window to send a message. You have just sent a message that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment via Azure storage, allowing it to reach the `Receiver` application.
+ 1. Find the `Sender` application by looking for the one with `Sender` in its path and press Enter in the window to send a message. A message has been sent is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment via Azure storage, allowing it to reach the `Receiver` application.
 
 
 ## Code walk-through
@@ -68,6 +69,7 @@ The following sender project code sends the `MessageWithLargePayload `message, u
 snippet: SendMessageLargePayload
 
 Go to the `Receiver` project to see the receiving application.
+
 
 ### Receiver project
 

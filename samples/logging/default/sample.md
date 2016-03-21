@@ -1,6 +1,7 @@
 ---
 title: Default Logging
-summary: Illustrates default logging capability of NServiceBus.
+summary: The default logging capability of NServiceBus.
+reviewed: 2016-03-21
 tags:
 - Logging
 related:

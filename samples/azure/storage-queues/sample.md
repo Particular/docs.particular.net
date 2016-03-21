@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Queues Transport
-summary: This sample shows how use Azure Storage Queues Transport
-tags:
+summary: Use Azure Storage Queues Transport
+reviewed: 2016-03-21
 related:
 - nservicebus/azure
 - nservicebus/azure/azure-storage-queues-transport

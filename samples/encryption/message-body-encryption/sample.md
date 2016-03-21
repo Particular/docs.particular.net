@@ -1,6 +1,7 @@
 ---
 title: Message Body Encryption
-summary: How to encrypt the full message body using a mutator.
+summary: Encrypting the full message body using a mutator.
+reviewed: 2016-03-21
 tags:
 - Encryption
 related:

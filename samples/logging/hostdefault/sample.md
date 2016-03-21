@@ -1,6 +1,7 @@
 ---
 title: Host Default Logging
-summary: Illustrates the default logging capability of the NServiceBus host.
+summary: The default logging capability of the NServiceBus host.
+reviewed: 2016-03-21
 tags:
 - Logging
 related:

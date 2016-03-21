@@ -1,7 +1,7 @@
 ---
 title: Step by Step Guide
 summary: Get started with NServiceBus
-tags: []
+reviewed: 2016-03-21
 redirects:
 - nservicebus/nservicebus-step-by-step-guide
 ---

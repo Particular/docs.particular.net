@@ -1,6 +1,7 @@
 ---
 title: Spring Container Usage
-summary: How to use the Spring container in an endpoint.
+summary: Using the Spring container in an endpoint.
+reviewed: 2016-03-21
 tags:
 - Container
 related:
@@ -12,7 +13,7 @@ related:
 
 snippet:ContainerConfiguration
 
+
 ### Injecting the dependency in the handler
 
 snippet:InjectingDependency
-  

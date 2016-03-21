@@ -1,6 +1,7 @@
 ---
 title: Saga Sample
-summary: This sample shows how build and use a saga.
+summary: How build and use a saga.
+reviewed: 2016-03-21
 tags:
 - Saga
 - SagaFinder
@@ -26,6 +27,7 @@ The output to the console will be
 2015-02-11 22:34:59.572 INFO  OrderSaga Saga with OrderId 123 received CompleteOrder with OrderId 123
 2015-02-11 22:34:59.606 INFO  OrderSaga Saga with OrderId 456 received CompleteOrder with OrderId 456
 ```
+
 
 ### The Saga
 

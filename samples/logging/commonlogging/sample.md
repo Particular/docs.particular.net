@@ -1,6 +1,7 @@
 ---
 title: CommonLogging Usage
-summary: Illustrates CommonLogging logging capability of NServiceBus.
+summary: Using CommonLogging logging capability of NServiceBus.
+reviewed: 2016-03-21
 tags:
 - Logging
 related:

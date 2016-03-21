@@ -1,6 +1,7 @@
 ---
 title: Throughput Throttling
-summary: How to control and throttle messages
+summary: Control the throttling of messages.
+reviewed: 2016-03-21
 tags: 
 - Throttling
 related:

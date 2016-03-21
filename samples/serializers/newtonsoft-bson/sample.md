@@ -1,6 +1,7 @@
 ---
 title: Newtonsoft Bson Serializer
-summary: How to use the Newtonsoft Bson serializer in an endpoint.
+summary: Using the Newtonsoft Bson serializer in an endpoint.
+reviewed: 2016-03-21
 related:
 - nservicebus/serialization
 ---

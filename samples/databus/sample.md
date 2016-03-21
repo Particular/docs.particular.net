@@ -1,6 +1,7 @@
 ---
 title: Attachments / DataBus Sample
 summary: Send images or video by putting an attribute over a large property. NServiceBus takes care of the rest
+reviewed: 2016-03-21
 tags:
 - DataBus
 - Large messages

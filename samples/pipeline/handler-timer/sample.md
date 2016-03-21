@@ -1,6 +1,7 @@
 ---
 title: Add handler timing pipeline
-summary: Wraps handlers in a Stopwatch and logs a warning if a handler exceeds a given threshold
+summary: Wraps handlers in a Stopwatch and logs a warning if a handler exceeds a given threshold.
+reviewed: 2016-03-21
 tags:
 - Pipeline
 related:

@@ -1,7 +1,7 @@
 ---
 title: Versioning
-summary: Illustrates message evolution over time using interfaces.
-tags: []
+summary: Message evolution over time using interfaces.
+reviewed: 2016-03-21
 redirects:
  - nservicebus/versioning-sample
 ---
@@ -28,6 +28,7 @@ The only difference is that each subscriber maps the version of the schema on wh
 
 Look at `V2Publisher`, which is very similar to the publisher from the PubSub sample. The only thing that `V2Publisher` is doing is publishing a message from the Version 2 schema. However, the sample is run, `V1Subscriber` receives these messages as well:
 
+
 ## Publisher output
 
 ```
@@ -36,6 +37,7 @@ Press 'Enter' to publish a message, Ctrl + C to exit.
 Published event.
 ```
 
+
 ## V1Subscriber output
 
 ```
@@ -43,6 +45,7 @@ Press any key to stop program
 
 Something happened with some data 1 and no more info
 ```
+
 
 ## V2Subscriber output
 
@@ -53,4 +56,3 @@ Something happened with some data 1 and more information It's a secret.
 ```
 
 NOTE: When each subscriber processes the event, each sees it as the schema version it is compiled against. In this manner, publishers can be extended from one version to the next without breaking existing subscribers, allowing new subscribers to be created to handle the additional information in the new version of the events.
-
