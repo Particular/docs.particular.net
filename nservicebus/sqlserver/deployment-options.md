@@ -52,14 +52,4 @@ Store-and-forward can be achieved with [Outbox](/nservicebus/outbox/) feature, w
  * Messages are not dispatched immediately after the `Send()` method is called. Instead they are first stored in the Outbox table in the same database that endpoint's persistence is using. After the handler logic completes successfully, the messages stored in the Outbox table are forwarded to their final destinations.
  * If any of the forward operations fails, the message sending will be retried using the standard [retry mechanism](/nservicebus/errors/automatic-retries.md). This might result in sending some messages multiple times, which is known as `at-least-once` delivery. The Outbox feature performs automatically de-duplication of incoming messages based on their IDs, effectively providing `exactly-once` message delivery.
 
-### ServiceControl
-
-ServiceControl requires the `error` and `audit` queues to be present in a single database. In a system where there are multiple databases, used by various endpoints, this can be achieved by redirecting the queues using the following configuration endpoint configuration:
-
-snippet:sqlserver-multidb-redirect-audit-error
-
-For ServiceControl to retrying a message, after processing failure, it needs to have the same endpoint to connection string mappings as user endpoints e.g.
-
-snippet:sqlserver-multidb-sc
-
-Users need to make sure the connection string mapping is kept in sync between all the endpoints and ServiceControl.
+As mentioned before store-and-forward requries `error` and `audit` queues per endoint and as a result cannot be monitored by single ServiceControl instance.
