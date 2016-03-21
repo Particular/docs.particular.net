@@ -6,11 +6,10 @@
 
     class Usage
     {
-        public void Demo()
+        Usage(BusConfiguration busConfiguration)
         {
             #region PersistanceWithAzure 6
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UsePersistence<AzureStoragePersistence>();
 
             #endregion
@@ -28,10 +27,8 @@
 
         #endregion
 
-        public void CustomizingAzurePersistenceSubscriptions_6_2()
+        void CustomizingAzurePersistenceSubscriptions_6_2(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region AzurePersistenceSubscriptionsCustomization 6.2
 
             busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()
@@ -41,10 +38,8 @@
             #endregion
         }
 
-        public void CustomizingAzurePersistenceSagas_6_2()
+        void CustomizingAzurePersistenceSagas_6_2(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region AzurePersistenceSagasCustomization 6.2
 
             busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>()
@@ -53,10 +48,8 @@
             #endregion
         }
 
-        public void AzurePersistenceTimeoutsCustomization_6_2()
+        void AzurePersistenceTimeoutsCustomization_6_2(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region AzurePersistenceTimeoutsCustomization 6.2
 
             busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()

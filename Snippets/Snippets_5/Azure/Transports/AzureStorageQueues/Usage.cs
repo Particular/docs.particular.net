@@ -4,11 +4,10 @@
 
     class Usage
     {
-        public Usage()
+        Usage(BusConfiguration busConfiguration)
         {
             #region AzureStorageQueueTransportWithAzure 6
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseTransport<AzureStorageQueueTransport>();
 
             #endregion

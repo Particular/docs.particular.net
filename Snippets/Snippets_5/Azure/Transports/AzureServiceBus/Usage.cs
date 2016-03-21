@@ -4,11 +4,10 @@
 
     class Usage
     {
-        public Usage()
+        Usage(BusConfiguration busConfiguration)
         {
             #region AzureServiceBusTransportWithAzure 6
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseTransport<AzureServiceBusTransport>();
 
             #endregion

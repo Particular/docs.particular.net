@@ -4,9 +4,9 @@
     using Microsoft.ServiceBus.Messaging;
     using NServiceBus.Azure.Transports.WindowsAzureServiceBus;
 
-    public class BrokeredMessageBodyConventionUsage
+    class BrokeredMessageBodyConventionUsage
     {
-        public void Snippet()
+        BrokeredMessageBodyConventionUsage()
         {
             #region ASB-outgoing-message-convention 6.3
 

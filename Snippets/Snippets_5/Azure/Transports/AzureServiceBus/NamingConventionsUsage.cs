@@ -6,9 +6,9 @@
     using NServiceBus.Azure.Transports.WindowsAzureServiceBus.QueueAndTopicByEndpoint;
     using NServiceBus.Settings;
 
-    public class NamingConventionsUsage
+    class NamingConventionsUsage
     {
-        public void Snippet()
+        NamingConventionsUsage()
         {
             #region ASB-NamingConventions-entity-sanitization [6.4,7)
 
