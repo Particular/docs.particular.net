@@ -1,5 +1,5 @@
 ---
-title: "Migrating To NServiceBus 3.0 – Time-outs"
+title: Migrating To NServiceBus 3.0 – Time-outs
 summary: NServiceBus Version 3.0 supports durable time-outs that survive process restarts. Store the time-outs on disk.
 tags: []
 redirects:
@@ -28,7 +28,7 @@ NOTE: This is NOT the same queue as the input queue that would have been configu
 
 The fact that time-outs are durable means that they could and usually are set to a time very far off in the future. For example, if you have insurance with long cycles you can have the renewal saga set to wake up in X years. In this situation you don't want to run both time-out managers in parallel for that long a time. This is when a migration should be considered.
 
-To do this we provide a tool in the ZIP download (`/Tools/Migration/TimeoutMigrator.exe`) or in the NServiceBus.Tools NuGet package. This tool extracts the V2.6 time-outs and sends them to be managed by the new Version 3.0 TM.
+To do this we provide a tool in the ZIP download (`/Tools/Migration/TimeoutMigrator.exe`) or in the NServiceBus.Tools NuGet package. This tool extracts the Version 2.6 time-outs and sends them to be managed by the new Version 3.0 TM.
 
 For those who require zero downtime deployments, Version 2.6.0.1504 doesn't support hot migrations. This means that to migrate the time-outs with the system still running, a upgrade to NServiceBus Version 2.6.0.1511 is required.
 

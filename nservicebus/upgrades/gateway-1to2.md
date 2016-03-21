@@ -1,6 +1,6 @@
 ---
-title: Upgrade Gateway from Version 1 to Version 2
-summary: Instructions on how to upgrade the Gateway from Versions 1 to 2
+title: Upgrade Gateway Version 1 to 2
+summary: Instructions on how to upgrade the Gateway from Version 1 to 2.
 tags:
  - upgrade
  - migration

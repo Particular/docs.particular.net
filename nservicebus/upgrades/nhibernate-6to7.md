@@ -1,6 +1,6 @@
 ---
-title: NServiceBus NHibernate upgrade from Version 6 to Version 7
-summary: Instructions on how to upgrade from NServiceBus.NHibernate Versions 6 to 7
+title: NHibernate upgrade Version 6 to 7
+summary: Instructions on how to upgrade NHibernate Persistence Version 6 to 7.
 tags:
  - upgrade
  - migration

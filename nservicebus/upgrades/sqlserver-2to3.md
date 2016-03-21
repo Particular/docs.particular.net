@@ -1,6 +1,6 @@
 ---
-title: Upgrade SQL Server Transport from Version 2 to Version 3
-summary: Instructions on how to upgrade from SQL Server Transport Versions 2 to 3
+title: Upgrade SQL Transport Version 2 to 3
+summary: Instructions on how to upgrade SQL Server Transport Version 2 to 3.
 tags:
  - upgrade
  - migration

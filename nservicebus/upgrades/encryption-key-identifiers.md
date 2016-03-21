@@ -1,6 +1,6 @@
 ---
-title: Upgrade encryption service configuration
-summary: Instructions on how to upgrade the Rijndael property encryption configuration to use key IDs
+title: Upgrade encryption configuration
+summary: Instructions on how to upgrade the Rijndael property encryption configuration to use key IDs.
 tags:
  - upgrade
 related:

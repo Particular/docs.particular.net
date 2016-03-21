@@ -22,6 +22,7 @@
         - "nservicebus/upgrades/5to6"
         - "nservicebus/upgrades/4to5"
         - "nservicebus/upgrades/3to4"
+        - "nservicebus/upgrades/encryption-key-identifiers"
         - Title: "SQL Transport"
           Articles:
             - "nservicebus/upgrades/sqlserver-2to3"
