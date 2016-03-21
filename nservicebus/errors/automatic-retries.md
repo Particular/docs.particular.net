@@ -29,6 +29,11 @@ NServiceBus automatically retries the message when an exception is thrown during
 Note: The configured value describes the minimum number of times a message will be retried. Especially in environments with competing consumers on the same queue there is an increased chance of retrying a failing message more often across the endpoints.
 
 
+### Transport transaction requirements
+
+The FLR mechanism is implemented by rolling back the [transport transaction](/nservicebus/messaging/transactions.md). This returns the message to the input queue and the endpoint processes it again immediately. Therefore FLR cannot be used when transport transactions are disabled. In such cases aborting the receive operation results in message loss.
+
+
 ### Configuring FLR using app.config
 
 In Version 3 this configuration was available via `MsmqTransportConfig`.
