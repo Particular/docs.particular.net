@@ -5,9 +5,9 @@
     using NServiceBus.Unicast;
     using NServiceBus.Unicast.Config;
 
-    public class Hosting
+    class Hosting
     {
-        public void Simple()
+        void Simple()
         {
             #region Hosting-SendOnly
 
@@ -18,7 +18,7 @@
             #endregion
         }
 
-        public void Startup()
+        void Startup()
         {
             #region Hosting-Startup
 
@@ -30,7 +30,7 @@
             #endregion
         }
 
-        public void Shutdown()
+        void Shutdown()
         {
             IBus bus = null;
             #region Hosting-Shutdown

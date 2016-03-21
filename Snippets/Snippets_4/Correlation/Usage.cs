@@ -2,12 +2,10 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(IBus bus)
         {
-            IBus bus = null;
-
             #region custom-correlationid
 
             bus.Send("TargetQueue","My custom correlation id", new MyRequest());

@@ -5,9 +5,8 @@
 
     class Scheduling
     {
-        public void ScheduleTask()
+        void ScheduleTask(IBus bus)
         {
-            IBus bus = null;
             #region ScheduleTask
             // 'Schedule' is a static class that can be accessed anywhere. 
             // To send a message every 5 minutes

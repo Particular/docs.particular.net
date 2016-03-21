@@ -2,14 +2,13 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
 
-        public Usage()
+        Usage(Configure configure)
         {
             #region EncryptionServiceSimple
 
-            Configure configure = Configure.With();
             configure.RijndaelEncryptionService();
 
             #endregion

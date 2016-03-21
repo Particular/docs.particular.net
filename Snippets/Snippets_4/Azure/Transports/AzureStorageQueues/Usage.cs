@@ -4,11 +4,10 @@
 
     class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
             #region AzureStorageQueueTransportWithAzure 5
 
-            Configure configure = Configure.With();
             configure.UseTransport<AzureStorageQueue>();
 
             #endregion

@@ -5,9 +5,9 @@
     using global::NLog.Targets;
     using NServiceBus;
 
-    public class NLogFiltering
+    class NLogFiltering
     {
-        public NLogFiltering()
+        NLogFiltering()
         {
             #region NLogFiltering
 

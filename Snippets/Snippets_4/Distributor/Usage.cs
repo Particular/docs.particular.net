@@ -5,10 +5,8 @@
 
     class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
-            Configure configure = Configure.With();
-
             #region ConfiguringDistributor
 
             // --------------------------------------
@@ -31,14 +29,19 @@
 
             #endregion
         }
-        public void IsEnabled()
+
+        void IsEnabled(Configure configure)
         {
-            Configure configure = Configure.With();
             #region IsDistributorEnabled
+
             bool isDistributorEnabled = SettingsHolder.GetOrDefault<bool>("Distributor.Enabled");
+
             #endregion
+
             #region IsWorkerEnabled
+
             bool isWorkerEnabled = SettingsHolder.GetOrDefault<bool>("Worker.Enabled");
+
             #endregion
 
         }

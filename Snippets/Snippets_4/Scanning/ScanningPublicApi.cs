@@ -5,9 +5,9 @@
     using System.Reflection;
     using NServiceBus;
 
-    public class ScanningPublicApi
+    class ScanningPublicApi
     {
-        public void ScanningDefault()
+        void ScanningDefault()
         {
             #region ScanningDefault
 
@@ -17,7 +17,7 @@
 
         }
 
-        public void ScanningExcludeByName()
+        void ScanningExcludeByName()
         {
             #region ScanningExcludeByName
 
@@ -29,7 +29,7 @@
             #endregion
         }
 
-        public void ScanningListOfTypes()
+        void ScanningListOfTypes()
         {
             IEnumerable<Type> myTypes = null;
 
@@ -41,7 +41,7 @@
 
         }
 
-        public void ScanningListOfAssemblies()
+        void ScanningListOfAssemblies()
         {
             IEnumerable<Assembly> myListOfAssemblies = null;
             Assembly assembly2 = null;
@@ -57,7 +57,7 @@
 
         }
 
-        public void ScanningIncludeByPattern()
+        void ScanningIncludeByPattern()
         {
             #region ScanningIncludeByPattern
 
@@ -70,7 +70,7 @@
             #endregion
         }
 
-        public void ScanningCustomDirectory()
+        void ScanningCustomDirectory()
         {
             #region ScanningCustomDirectory
 
@@ -80,7 +80,7 @@
 
         }
 
-        public void ScanningMixingIncludeAndExclude()
+        void ScanningMixingIncludeAndExclude()
         {
             #region ScanningMixingIncludeAndExclude
 

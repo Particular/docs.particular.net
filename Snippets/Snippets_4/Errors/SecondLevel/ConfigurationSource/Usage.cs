@@ -2,13 +2,12 @@ namespace Snippets4.Errors.SecondLevel.ConfigurationSource
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
             #region FLRConfigurationSourceUsage
 
-            Configure configure = Configure.With();
             configure.CustomConfigurationSource(new ConfigurationSource());
 
             #endregion

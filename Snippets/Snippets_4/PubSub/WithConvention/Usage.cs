@@ -2,12 +2,11 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
             #region DefiningEventsAs
-            Configure configure = Configure.With();
             configure.DefiningEventsAs(t => 
             t.Namespace != null &&
             t.Namespace.StartsWith("Domain") && 

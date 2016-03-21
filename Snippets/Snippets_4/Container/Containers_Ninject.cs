@@ -3,11 +3,10 @@
     using Ninject;
     using NServiceBus;
 
-    public class Containers_Ninject
+    class Containers_Ninject
     {
-        public void Simple()
+        void Simple(Configure configure)
         {
-            Configure configure = Configure.With();
             #region Ninject
 
             configure.NinjectBuilder();
@@ -15,10 +14,8 @@
             #endregion
         }
 
-        public void Existing()
+        void Existing(Configure configure)
         {
-            
-            Configure configure = Configure.With();
             #region Ninject_Existing
 
             StandardKernel kernel = new StandardKernel();

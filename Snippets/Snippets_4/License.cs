@@ -2,14 +2,15 @@
 {
     using NServiceBus;
 
-    public class CustomLicense
+    class CustomLicense
     {
-        public void Simple()
+        CustomLicense(Configure configure)
         {
             #region License
-            Configure.With().LicensePath("PathToLicense");
+
+            configure.LicensePath("PathToLicense");
             //or
-            Configure.With().License("YourCustomLicenseText");
+            configure.License("YourCustomLicenseText");
             #endregion
         }
 

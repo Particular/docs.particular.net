@@ -7,24 +7,22 @@
     using NServiceBus.Unicast.Config;
     using Snippets4.Encryption.EncryptionService;
 
-    public class Upgrade
+    class Upgrade
     {
-        public void RemovePrincipalHack()
+        void RemovePrincipalHack(Configure configure)
         {
             #region 4to5RemovePrincipalHack
-            Configure configure = Configure.With();
             ConfigUnicastBus unicastBus = configure.UnicastBus();
             unicastBus.RunHandlersUnderIncomingPrincipal(true);
             #endregion
         }
 
-        public void MessageConventions()
+        void MessageConventions(Configure configure)
         {
             #region 4to5MessageConventions
 
             // NOTE: When you're self hosting, '.DefiningXXXAs()' has to be before '.UnicastBus()', 
             // otherwise you'll get: 'System.InvalidOperationException: "No destination specified for message(s): MessageTypeName"
-            Configure configure = Configure.With();
             configure.DefaultBuilder();
             configure.DefiningCommandsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"));
             configure.DefiningEventsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"));
@@ -37,7 +35,7 @@
             #endregion
         }
 
-        public void CustomConfigOverrides()
+        void CustomConfigOverrides()
         {
             #region 4to5CustomConfigOverrides
 
@@ -49,9 +47,8 @@
             #endregion
         }
 
-        public void UseTransport()
+        void UseTransport(Configure configure)
         {
-            Configure configure = Configure.With();
             #region 4to5UseTransport
             //Choose one of the following
 
@@ -68,10 +65,8 @@
             #endregion
         }
 
-        public void InterfaceMessageCreation()
+        void InterfaceMessageCreation(IBus Bus)
         {
-            IBus Bus = null;
-
             #region 4to5InterfaceMessageCreation
 
             MyInterfaceMessage message = Bus.CreateInstance<MyInterfaceMessage>(o =>
@@ -94,21 +89,19 @@
         }
 
 
-        public void CustomRavenConfig()
+        void CustomRavenConfig(Configure configure)
         {
             #region 4to5CustomRavenConfig
 
-            Configure configure = Configure.With();
             configure.RavenPersistence("http://localhost:8080", "MyDatabase");
 
             #endregion
         }
 
-        public void StartupAction()
+        void StartupAction(Configure configure)
         {
             #region 4to5StartupAction
 
-            Configure configure = Configure.With();
             configure.UnicastBus();
             IStartableBus startableBus = configure.CreateBus();
             startableBus.Start(MyCustomAction);

@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    public static class MessageConventions
+    class MessageConventions
     {
-        public static void DefineDataBusPropertiesConvention(Configure configuration)
+        MessageConventions(Configure configuration)
         {
             #region DefineMessageWithLargePayloadUsingConvention
 

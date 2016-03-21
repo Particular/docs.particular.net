@@ -3,7 +3,7 @@
     using System;
     using NServiceBus;
 
-    public class ExceptionPolicy
+    class ExceptionPolicy
     {
 
         #region SecondLevelRetriesCustomExceptionPolicyHandler
@@ -28,7 +28,7 @@
 
     }
 
-    internal class MyBusinessException
+    class MyBusinessException
     {
     }
 }

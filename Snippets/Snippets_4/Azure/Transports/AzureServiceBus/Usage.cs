@@ -4,11 +4,10 @@
 
     class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
             #region AzureServiceBusTransportWithAzure 5
 
-            Configure configure = Configure.With();
             configure.UseTransport<AzureServiceBus>();
 
             #endregion
@@ -16,7 +15,9 @@
 
         #region AzureServiceBusTransportWithAzureHost 5
 
-        public class EndpointConfig : IConfigureThisEndpoint, UsingTransport<AzureServiceBus> { }
+        public class EndpointConfig : IConfigureThisEndpoint, UsingTransport<AzureServiceBus>
+        {
+        }
 
         #endregion
     }

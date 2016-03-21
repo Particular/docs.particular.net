@@ -2,14 +2,14 @@ namespace Snippets4.Gateway.Channels.ConfigurationSource
 {
     using NServiceBus;
 
-    public class Usage 
+    class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
-            Configure configure = Configure.With();
-
             #region UseCustomConfigurationSourceForGatewayChannelsConfig
+
             configure.CustomConfigurationSource(new ConfigurationSource());
+
             #endregion
         }
     }

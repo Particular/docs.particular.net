@@ -2,11 +2,10 @@
 {
     using NServiceBus;
 
-    public class JsonSerializerUsage
+    class JsonSerializerUsage
     {
-        public void Simple()
+        JsonSerializerUsage()
         {
-
             #region JsonSerialization
 
             Configure.Serialization.Json();

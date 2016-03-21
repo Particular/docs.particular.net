@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    public class DisableWithCode
+    class DisableWithCode
     {
-        public DisableWithCode()
+        DisableWithCode()
         {
             #region DisableSlrWithCode
             Configure.Features

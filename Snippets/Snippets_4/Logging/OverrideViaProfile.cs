@@ -2,7 +2,7 @@
 {
     using NServiceBus;
 
-    public class OverrideViaProfile
+    class OverrideViaProfile
     {
         #region LoggingConfigWithProfile
 

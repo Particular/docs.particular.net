@@ -4,44 +4,44 @@
     using System.Transactions;
     using NServiceBus;
 
-    public class Transactions
+    class Transactions
     {
-        public void Unreliable()
+        void Unreliable()
         {
             #region TransactionsDisable
             Configure.Transactions.Disable();
             #endregion
         }
 
-        public void TransportTransactionReceiveOnly()
+        void TransportTransactionReceiveOnly()
         {
             #region TransportTransactionReceiveOnly
             Configure.Transactions.Advanced(x => x.DisableDistributedTransactions());
             #endregion
         }
 
-        public void TransportTransactionAtomicSendsWithReceive()
+        void TransportTransactionAtomicSendsWithReceive()
         {
             #region TransportTransactionAtomicSendsWithReceive
             Configure.Transactions.Advanced(x => x.DisableDistributedTransactions());
             #endregion
         }
 
-        public void TransportTransactionScope()
+        void TransportTransactionScope()
         {
             #region TransportTransactionScope
             Configure.Transactions.Enable().Advanced(x => x.EnableDistributedTransactions());
             #endregion
         }
 
-        public void CustomTransactionTimeout()
+        void CustomTransactionTimeout()
         {
             #region CustomTransactionTimeout
             Configure.Transactions.Advanced(x => x.DefaultTimeout(TimeSpan.FromSeconds(30)));
             #endregion
         }
 
-        public void CustomTransactionIsolationLevel()
+        void CustomTransactionIsolationLevel()
         {
             #region CustomTransactionIsolationLevel
             Configure.Transactions.Advanced(x => x.IsolationLevel(IsolationLevel.RepeatableRead));

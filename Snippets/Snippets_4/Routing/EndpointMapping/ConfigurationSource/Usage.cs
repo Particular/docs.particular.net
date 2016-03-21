@@ -2,13 +2,12 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
             #region inject-endpoint-mapping-configuration-source
 
-            Configure configure = Configure.With();
             configure.CustomConfigurationSource(new ConfigurationSource());
 
             #endregion

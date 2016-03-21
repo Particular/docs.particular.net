@@ -3,9 +3,9 @@
     using System;
     using NServiceBus;
 
-    public class SimplePolicy
+    class SimplePolicy
     {
-        public SimplePolicy()
+        SimplePolicy()
         {
 
             #region SecondLevelRetriesCustomPolicy

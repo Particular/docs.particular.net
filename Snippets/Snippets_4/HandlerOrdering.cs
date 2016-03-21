@@ -5,7 +5,7 @@
 
     public class HandlerOrdering
     {
-        public void Simple(Configure configure)
+        void Simple(Configure configure)
         {
             #region HandlerOrderingWithCode
 

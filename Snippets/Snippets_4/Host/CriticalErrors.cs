@@ -1,4 +1,5 @@
 ﻿#pragma warning disable 649
+
 namespace Snippets4.Host
 {
     using System;
@@ -11,11 +12,11 @@ namespace Snippets4.Host
     {
         IStartableBus bus;
 
-        CriticalErrors()
+        CriticalErrors(Configure configure)
         {
             #region DefiningCustomHostErrorHandlingAction
 
-            Configure.Instance.DefineCriticalErrorAction(OnCriticalError);
+            configure.DefineCriticalErrorAction(OnCriticalError);
 
             #endregion
         }
@@ -38,40 +39,44 @@ namespace Snippets4.Host
 
         void DefaultActionLogging()
         {
-
             string errorMessage = null;
             Exception exception = null;
+
             #region DefaultCriticalErrorActionLogging
 
             LogManager.GetLogger("NServiceBus").Fatal(errorMessage, exception);
 
             #endregion
         }
-        void DefaultAction()
-        {
 
+        void DefaultAction(Configure configure)
+        {
             //https://github.com/Particular/NServiceBus/blob/support-4.0/src/NServiceBus.Core/ConfigureCriticalErrorAction.cs
             #region DefaultCriticalErrorAction 
 
             if (!Configure.BuilderIsConfigured())
+            {
                 return;
+            }
 
-            if (!Configure.Instance.Configurer.HasComponent<IBus>())
+            if (!configure.Configurer.HasComponent<IBus>())
+            {
                 return;
+            }
 
-            Configure.Instance.Builder.Build<IStartableBus>()
+            configure.Builder.Build<IStartableBus>()
                 .Shutdown();
 
             #endregion
-
         }
+
         void DefaultHostAction()
         {
-
             string errorMessage = null;
             Exception exception = null;
 
             //https://github.com/Particular/NServiceBus/blob/support-4.7/src/NServiceBus.Hosting.Windows/WindowsHost.cs
+
             #region DefaultHostCriticalErrorAction
 
             if (Environment.UserInteractive)
@@ -83,20 +88,15 @@ namespace Snippets4.Host
             Environment.FailFast(fatalMessage, exception);
 
             #endregion
-
         }
 
-        void InvokeCriticalError()
+        void InvokeCriticalError(Configure configure, string errorMessage, Exception exception)
         {
-
-            string errorMessage = null;
-            Exception exception = null;
             #region InvokeCriticalError
 
-            Configure.Instance.RaiseCriticalError(errorMessage, exception);
+            configure.RaiseCriticalError(errorMessage, exception);
 
             #endregion
-
         }
     }
 }

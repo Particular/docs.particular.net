@@ -2,14 +2,14 @@ namespace Snippets4.Gateway.Sites.ConfigurationSource
 {
     using NServiceBus;
 
-    public class Usage 
+    class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
-            Configure configure = Configure.With();
-
             #region UseCustomConfigurationSourceForGatewaySitesConfig
+
             configure.CustomConfigurationSource(new ConfigurationSource());
+
             #endregion
         }
     }

@@ -2,11 +2,10 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
-            Configure configure = Configure.With();
             #region EndpointNameCode
 
             // To customize the endpoint name via code using the DefineEndpointName method, 

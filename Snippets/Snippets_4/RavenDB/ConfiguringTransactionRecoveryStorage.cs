@@ -6,13 +6,11 @@
 
     class ConfiguringTransactionRecoveryStorage
     {
-        public void Foo()
+        ConfiguringTransactionRecoveryStorage(Configure configure)
         {
             #region ConfiguringTransactionRecoveryStorage
 
             string transactionRecoveryPath = "path to transaction recovery storage unique per endpoint";
-
-            Configure configure = Configure.With();
             configure.CustomiseRavenPersistence(store =>
             {
                 DocumentStore documentStore = (DocumentStore) store;

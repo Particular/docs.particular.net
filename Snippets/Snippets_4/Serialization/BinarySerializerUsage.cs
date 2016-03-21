@@ -2,11 +2,10 @@
 {
     using NServiceBus;
 
-    public class BinarySerializerUsage
+    class BinarySerializerUsage
     {
-        public void Simple()
+        BinarySerializerUsage()
         {
-
             #region BinarySerialization
 
             Configure.Serialization.Binary();

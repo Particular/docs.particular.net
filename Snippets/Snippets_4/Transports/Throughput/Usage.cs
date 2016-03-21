@@ -2,13 +2,11 @@
 {
     using NServiceBus.Unicast;
 
-    public class Usage
+    class Usage
     {
 
-        public Usage()
+        Usage(UnicastBus unicastBus)
         {
-            UnicastBus unicastBus = null;
-
             #region ChangeTuning
             unicastBus.Transport.ChangeMaximumMessageThroughputPerSecond(10);
             unicastBus.Transport.ChangeMaximumConcurrencyLevel(5);

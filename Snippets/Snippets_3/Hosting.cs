@@ -7,20 +7,22 @@
 
     class Hosting
     {
-        void Simple(Configure configure)
+        void Simple()
         {
             #region Hosting-SendOnly
 
+            Configure configure = Configure.With();
             ConfigUnicastBus configUnicastBus = configure.UnicastBus();
             IBus bus = configUnicastBus.SendOnly();
 
             #endregion
         }
 
-        void Startup(Configure configure)
+        void Startup()
         {
             #region Hosting-Startup
 
+            Configure configure = Configure.With();
             ConfigUnicastBus configUnicastBus = configure.UnicastBus();
             IStartableBus startableBus = configUnicastBus.CreateBus();
             IBus bus = startableBus.Start();

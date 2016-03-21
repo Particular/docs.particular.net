@@ -3,13 +3,12 @@
     using System.Net.Mail;
     using NServiceBus;
 
-    public class Injection
+    class Injection
     {
-        public void ConfigurePropertyInjectionForHandler()
+        Injection(Configure configure)
         {
             #region ConfigurePropertyInjectionForHandlerBefore
 
-            Configure configure = Configure.With();
             configure.DefaultBuilder();
             configure.Configurer
                 .ConfigureProperty<EmailHandler>(handler => handler.SmtpAddress, "10.0.1.233")

@@ -3,7 +3,7 @@
     using NServiceBus;
     using NServiceBus.Unicast.Config;
 
-    public class BasicUsageOfIBus
+    class BasicUsageOfIBus
     {
         void Send()
         {

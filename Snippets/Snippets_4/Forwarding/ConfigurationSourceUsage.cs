@@ -1,12 +1,11 @@
 ﻿namespace Snippets4.Forwarding
 {
     using NServiceBus;
-    public class ConfigurationSourceUsage
+    class ConfigurationSourceUsage
     {
-        public ConfigurationSourceUsage()
+        ConfigurationSourceUsage(Configure configure)
         {
             #region ConfigurationSourceUsageForMessageForwarding
-            Configure configure = Configure.With();
             configure.CustomConfigurationSource(new ConfigurationSource());
             #endregion
         }

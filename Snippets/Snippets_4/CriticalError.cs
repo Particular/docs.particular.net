@@ -4,16 +4,14 @@
     using System.Threading;
     using NServiceBus;
 
-    public class CriticalError
+    class CriticalError
     {
 
-        public void DefineCriticalErrorActionForAzureHost()
+        CriticalError(Configure configure)
         {
-
             #region DefineCriticalErrorActionForAzureHost
 
-        
-            Configure.With().DefineCriticalErrorAction((message, exception) =>
+            configure.DefineCriticalErrorAction((message, exception) =>
             {
                 string errorMessage = string.Format("We got a critical exception: '{0}'\r\n{1}", message, exception);
 

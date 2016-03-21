@@ -4,11 +4,10 @@
 
     class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
             #region ConfiguringInMemory
 
-            Configure configure = Configure.With();
             configure.InMemoryFaultManagement();
             configure.InMemorySagaPersister();
             configure.InMemorySubscriptionStorage();

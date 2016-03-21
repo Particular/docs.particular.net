@@ -6,11 +6,10 @@
 
     class Usage
     {
-        public void Foo()
+        Usage(Configure configure)
         {
             #region ConfiguringNHibernate
-
-            Configure configure = Configure.With();
+            
             configure.UseNHibernateSubscriptionPersister();
             configure.UseNHibernateTimeoutPersister();
             configure.UseNHibernateSagaPersister();
@@ -19,14 +18,13 @@
             #endregion
         }
 
-        public void SpecificNHibernateConfiguration()
+        void SpecificNHibernateConfiguration(Configure configure)
         {
             #region SpecificNHibernateConfiguration
 
             Configuration nhConfiguration = new Configuration();
             nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
 
-            Configure configure = Configure.With();
             configure.UseNHibernateSubscriptionPersister(nhConfiguration);
             configure.UseNHibernateTimeoutPersister(nhConfiguration, true);
             configure.UseNHibernateSagaPersister(nhConfiguration);
@@ -35,12 +33,11 @@
             #endregion
         }
 
-        public void NHibernateSubscriptionCaching()
+        void NHibernateSubscriptionCaching(Configure configure)
         {
 
             #region NHibernateSubscriptionCaching
 
-            Configure configure = Configure.With();
             configure.UseNHibernateSubscriptionPersister(
                 cacheExpiration: TimeSpan.FromSeconds(10));
             

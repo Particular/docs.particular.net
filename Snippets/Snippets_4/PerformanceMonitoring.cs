@@ -2,21 +2,19 @@
 {
     using NServiceBus;
 
-    public class PerformanceMonitoring
+    class PerformanceMonitoring
     {
-        public void EnablingCriticalTime()
+        void EnablingCriticalTime(Configure configure)
         {
             #region enable-criticaltime
-            Configure configure = Configure.With();
             // in this version there was no granular control over individual counters
             configure.EnablePerformanceCounters();
             #endregion
         }
 
-        public void EnablingSla()
+        void EnablingSla(Configure configure)
         {
             #region enable-sla
-            Configure configure = Configure.With();
             // in this version there was no granular control over individual counters
             configure.EnablePerformanceCounters();
             #endregion

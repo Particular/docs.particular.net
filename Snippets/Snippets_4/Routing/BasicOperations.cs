@@ -2,11 +2,10 @@
 {
     using NServiceBus;
 
-    public class BasicOperations
+    class BasicOperations
     {
-        public void ConcreteMessage()
+        void ConcreteMessage(IBus bus)
         {
-            IBus bus = null;
             #region InstancePublish
             MyEvent message = new MyEvent { SomeProperty = "Hello world" };
             bus.Publish(message);
@@ -14,18 +13,16 @@
 
         }
 
-        public void InterfaceMessage()
+        void InterfaceMessage(IBus bus)
         {
-            IBus bus = null;
             #region InterfacePublish
             bus.Publish<IMyEvent>(m => { m.SomeProperty = "Hello world"; });
             #endregion
 
         }
 
-        public void Subscribe()
+        void Subscribe(IBus bus)
         {
-            IBus bus = null;
             #region ExplicitSubscribe
             bus.Subscribe<MyEvent>();
 

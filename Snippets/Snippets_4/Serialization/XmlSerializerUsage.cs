@@ -2,11 +2,10 @@
 {
     using NServiceBus;
 
-    public class XmlSerializerUsage
+    class XmlSerializerUsage
     {
-        public void Simple()
+        XmlSerializerUsage()
         {
-
             #region XmlSerialization
 
             Configure.Serialization.Xml();

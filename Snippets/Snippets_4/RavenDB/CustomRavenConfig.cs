@@ -4,12 +4,10 @@ using NServiceBus.RavenDB;
 namespace Snippets4.RavenDB
 {
 
-    public class CustomRavenConfig
+    class CustomRavenConfig
     {
-        public void Simple()
+        CustomRavenConfig(Configure configure)
         {
-            Configure configure = Configure.With();
-
             #region OldRavenDBPersistenceInitialization
 
             configure.RavenPersistence();

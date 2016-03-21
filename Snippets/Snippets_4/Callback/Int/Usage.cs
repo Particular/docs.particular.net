@@ -7,9 +7,8 @@ namespace Snippets4.Callback.Int
     class Usage
     {
 
-        void Simple()
+        Usage(IBus bus)
         {
-            IBus bus = null;
             #region IntCallback
 
             Message message = new Message();
@@ -20,8 +19,6 @@ namespace Snippets4.Callback.Int
                 });
 
             #endregion
-
-            Console.WriteLine("Message sent");
         }
 
     }

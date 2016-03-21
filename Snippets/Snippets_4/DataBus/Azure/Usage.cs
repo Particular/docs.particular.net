@@ -4,11 +4,10 @@
 
     class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
             #region AzureDataBus
 
-            Configure configure = Configure.With();
             configure.AzureDataBus();
 
             #endregion

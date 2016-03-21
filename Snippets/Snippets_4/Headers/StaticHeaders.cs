@@ -4,10 +4,8 @@
 
     class StaticHeaders
     {
-        public StaticHeaders()
+        StaticHeaders(Configure configure)
         {
-            Configure configure = Configure.With();
-
             #region header-static-endpoint
 
             using (IStartableBus startableBus = configure.UnicastBus().CreateBus())

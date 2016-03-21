@@ -4,19 +4,18 @@
     using NServiceBus;
     using NServiceBus.Unicast.Config;
 
-    public class Upgrade
+    class Upgrade
     {
 
-        public void RenamePrincipalHack()
+        void RenamePrincipalHack(Configure configure)
         {
             #region 3to4RenamePrincipalHack
-            Configure configure = Configure.With();
             ConfigUnicastBus unicastBus = configure.UnicastBus();
             unicastBus.RunHandlersUnderIncomingPrincipal(true);
             #endregion
         }
 
-        public void RevertToSerializable()
+        void RevertToSerializable()
         {
             #region 3to4RevertToSerializable
 
@@ -26,7 +25,7 @@
             #endregion
         }
 
-        public void DisableSecondLevelRetries()
+        void DisableSecondLevelRetries()
         {
             #region 3to4DisableSecondLevelRetries
 
@@ -35,7 +34,7 @@
             #endregion
         }
 
-        public void EnableSagas()
+        void EnableSagas()
         {
             #region 3to4EnableSagas
 
@@ -44,29 +43,25 @@
             #endregion
         }
 
-        public void RunDistributor()
+        void RunDistributor(Configure configure)
         {
             #region 3to4RunDistributor
 
-            Configure configure = Configure.With();
             configure.RunMSMQDistributor();
 
             #endregion
         }
-        public void EnlistWithDistributor()
+        void EnlistWithDistributor(Configure configure)
         {
             #region 3to4EnlistWithDistributor
 
-            Configure configure = Configure.With();
             configure.EnlistWithMSMQDistributor();
 
             #endregion
         }
 
-        public void SetMessageHeader()
+        void SetMessageHeader(IBus bus)
         {
-            IBus bus = null;
-
             #region 3to4SetMessageHeader
 
             MyMessage myMessage = new MyMessage();

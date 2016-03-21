@@ -2,15 +2,14 @@
 {
     using NServiceBus;
 
-    public class ServiceControlEventsConfig
+    class ServiceControlEventsConfig
     {
-        public void Simple()
+        ServiceControlEventsConfig(Configure configure)
         {
             #region ServiceControlEventsConfig
 
             Configure.Serialization.Json();
-            Configure.Instance
-                .DefiningEventsAs(t => typeof(IEvent).IsAssignableFrom(t) ||
+            configure.DefiningEventsAs(t => typeof(IEvent).IsAssignableFrom(t) ||
                                        //include ServiceControl events
                                        t.Namespace != null && 
                                        t.Namespace.StartsWith("ServiceControl.Contracts"));

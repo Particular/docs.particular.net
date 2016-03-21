@@ -2,15 +2,12 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(Configure configure, string databusPath)
         {
-            string databusPath = null;
-
             #region FileShareDataBus
 
-            Configure configure = Configure.With();
             configure.FileShareDataBus(databusPath);
 
             #endregion

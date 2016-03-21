@@ -4,30 +4,27 @@
 
     public class Usage
     {
-        void Basic()
+        void Basic(Configure configure)
         {
             #region rabbitmq-config-basic
 
-            Configure configure = Configure.With();
             configure.UseTransport<RabbitMQ>();
 
             #endregion
         }
 
-        void CustomConnectionString()
+        void CustomConnectionString(Configure configure)
         {
             #region rabbitmq-config-connectionstring-in-code
 
-            Configure configure = Configure.With();
             configure.UseTransport<RabbitMQ>(() => "My custom connection string");
             #endregion
         }
 
-        void CustomConnectionStringName()
+        void CustomConnectionStringName(Configure configure)
         {
             #region rabbitmq-config-connectionstringname
 
-            Configure configure = Configure.With();
             configure.UseTransport<RabbitMQ>("MyConnectionStringName");
 
             #endregion

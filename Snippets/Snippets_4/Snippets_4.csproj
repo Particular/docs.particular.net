@@ -323,8 +323,8 @@
     <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
     <Compile Include="InstallSomething.cs" />
     <Compile Include="Persistence\Msmq\Usage.cs" />
-    <Compile Include="Profiles\configure_logging.cs" />
-    <Compile Include="Profiles\dependent_profile.cs" />
+    <Compile Include="Profiles\ConfigureLogging.cs" />
+    <Compile Include="Profiles\DependentProfile.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
     <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
     <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />

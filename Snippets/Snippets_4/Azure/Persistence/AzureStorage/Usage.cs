@@ -4,11 +4,10 @@
 
     class Usage
     {
-        public Usage()
+        Usage(Configure configure)
         {
             #region PersistanceWithAzure 5
 
-            Configure configure = Configure.With();
             configure.AzureSubscriptionStorage();
             configure.AzureSagaPersister();
             configure.UseAzureTimeoutPersister();

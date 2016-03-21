@@ -3,9 +3,9 @@ using NServiceBus;
 
 namespace Snippets4
 {
-    public class XmlSerializationIntegration
+    class XmlSerializationIntegration
     {
-        public void RawXml()
+        void RawXml()
         {
             #region ConfigureRawXmlSerialization
 

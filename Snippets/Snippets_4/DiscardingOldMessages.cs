@@ -3,7 +3,7 @@
     using System;
     using NServiceBus;
 
-    public class DiscardingOldMessages
+    class DiscardingOldMessages
     {
 
         #region DiscardingOldMessagesWithAnAttribute
@@ -11,11 +11,10 @@
         public class MyMessage { }
         #endregion
 
-        public void Simple()
+        DiscardingOldMessages(Configure configure)
         {
             #region DiscardingOldMessagesWithCode
 
-            Configure configure = Configure.With();
             configure.DefiningTimeToBeReceivedAs(type =>
                 {
                     if (type == typeof(MyMessage))

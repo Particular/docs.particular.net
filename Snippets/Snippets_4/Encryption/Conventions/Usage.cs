@@ -2,12 +2,11 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
 
-        public Usage()
+        Usage(Configure configure)
         {
-            Configure configure = Configure.With();
             #region DefiningEncryptedPropertiesAs
 
             configure.DefiningEncryptedPropertiesAs(info => info.Name.EndsWith("EncryptedProperty"));

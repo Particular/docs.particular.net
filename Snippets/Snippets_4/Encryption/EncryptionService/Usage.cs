@@ -1,5 +1,4 @@
-﻿
-namespace Snippets4.Encryption.EncryptionService
+﻿namespace Snippets4.Encryption.EncryptionService
 {
     using NServiceBus;
     using NServiceBus.Encryption;
@@ -7,12 +6,13 @@ namespace Snippets4.Encryption.EncryptionService
     class Usage
     {
 
-        public void FromCustomIEncryptionService()
+        Usage(Configure configure)
         {
             #region EncryptionFromIEncryptionService
+
             //where EncryptionService implements IEncryptionService 
-            Configure configure = Configure.With();
             configure.Configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
+
             #endregion
         }
     }
