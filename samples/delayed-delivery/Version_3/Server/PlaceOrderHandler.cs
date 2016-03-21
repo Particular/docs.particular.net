@@ -20,7 +20,7 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
         if (ShouldMessageBeDelayed(message.Id))
         {
             bus.Defer(TimeSpan.FromSeconds(5), message);
-            log.InfoFormat(@"[Defer Message Handling] Deffering Message with Id: {0}", message.Id);
+            log.InfoFormat(@"[Defer Message Handling] Deferring Message with Id: {0}", message.Id);
             return;
         }
 

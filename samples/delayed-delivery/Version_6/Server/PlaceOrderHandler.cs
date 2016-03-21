@@ -17,7 +17,7 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
             options.DelayDeliveryWith(TimeSpan.FromSeconds(5));
             options.RouteToThisEndpoint();
             await context.Send(message, options);
-            Console.WriteLine(@"[Defer Message Handling] Deffering Message with Id: {0}", message.Id);
+            Console.WriteLine(@"[Defer Message Handling] Deferring Message with Id: {0}", message.Id);
             return;
         }
 
