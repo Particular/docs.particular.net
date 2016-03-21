@@ -1,4 +1,5 @@
 ﻿#pragma warning disable 649
+
 namespace Snippets6.Host
 {
     using System;
@@ -12,6 +13,7 @@ namespace Snippets6.Host
         CriticalErrors(EndpointConfiguration endpointConfiguration)
         {
             #region DefiningCustomHostErrorHandlingAction
+
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 
             #endregion
@@ -32,11 +34,8 @@ namespace Snippets6.Host
         #endregion
 
 
-        void DefaultActionLogging()
+        void DefaultActionLogging(string errorMessage, Exception exception)
         {
-            string errorMessage = null;
-            Exception exception = null;
-
             #region DefaultCriticalErrorActionLogging
 
             LogManager.GetLogger("NServiceBus").Fatal(errorMessage, exception);
@@ -45,10 +44,8 @@ namespace Snippets6.Host
         }
 
 
-        Task DefaultAction()
+        Task DefaultAction(IEndpointInstance endpoint)
         {
-            IEndpointInstance endpoint = null;
-
             #region DefaultCriticalErrorAction
 
             return endpoint.Stop();
@@ -56,12 +53,10 @@ namespace Snippets6.Host
             #endregion
         }
 
-        void DefaultHostAction()
+        void DefaultHostAction(string errorMessage, Exception exception)
         {
-            string errorMessage = null;
-            Exception exception = null;
-
             //TODO: verify when host is updated to v6
+
             #region DefaultHostCriticalErrorAction
 
             if (Environment.UserInteractive)
@@ -75,12 +70,11 @@ namespace Snippets6.Host
             #endregion
 
         }
-        void InvokeCriticalError()
+
+        void InvokeCriticalError(CriticalError criticalError, string errorMessage, Exception exception)
         {
-            CriticalError criticalError = null;
-            string errorMessage = null;
-            Exception exception = null;
             #region InvokeCriticalError
+
             // 'criticalError' is an instance of the NServiceBus.CriticalError class
             // This instance can be resolved from the container. 
             criticalError.Raise(errorMessage, exception);

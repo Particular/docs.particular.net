@@ -4,7 +4,7 @@
     using NServiceBus;
     using NServiceBus.Transports.SQLServer;
 
-    public class NamedConnectionString
+    class NamedConnectionString
     {
 		void ConnectionString(EndpointConfiguration endpointConfiguration)
         {

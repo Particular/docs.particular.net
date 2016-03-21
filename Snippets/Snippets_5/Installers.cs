@@ -2,13 +2,11 @@
 {
     using NServiceBus;
 
-    public class ForInstallationOnReplacement
+    class ForInstallationOnReplacement
     {
-        public void Simple()
+        ForInstallationOnReplacement(BusConfiguration busConfiguration)
         {
             #region Installers
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.EnableInstallers();
 

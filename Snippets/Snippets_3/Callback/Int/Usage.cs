@@ -6,9 +6,8 @@
     class Usage
     {
 
-        void Simple()
+        Usage(IBus bus)
         {
-            IBus bus = null;
             #region IntCallback
 
             Message message = new Message();

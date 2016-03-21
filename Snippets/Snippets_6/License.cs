@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    public class License
+    class License
     {
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        License(EndpointConfiguration endpointConfiguration)
         {
             #region License
             endpointConfiguration.LicensePath("PathToLicense");

@@ -3,9 +3,9 @@
     using NServiceBus;
     using NServiceBus.Features;
 
-    public class DisableWithCode
+    class DisableWithCode
     {
-        public DisableWithCode(EndpointConfiguration endpointConfiguration)
+        DisableWithCode(EndpointConfiguration endpointConfiguration)
         {
             #region DisableSlrWithCode
             endpointConfiguration.DisableFeature<SecondLevelRetries>();

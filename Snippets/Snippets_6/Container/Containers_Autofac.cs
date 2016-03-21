@@ -3,9 +3,9 @@
     using Autofac;
     using NServiceBus;
 
-    public class Containers_Autofac
+    class Containers_Autofac
     {
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        Containers_Autofac(EndpointConfiguration endpointConfiguration)
         {
             #region Autofac
 
@@ -14,7 +14,7 @@
             #endregion
         }
 
-        public void Existing(EndpointConfiguration endpointConfiguration)
+        void Existing(EndpointConfiguration endpointConfiguration)
         {
             #region Autofac_Existing
 

@@ -7,7 +7,7 @@
 
     class FromCode
     {
-        public FromCode(EndpointConfiguration endpointConfiguration)
+        FromCode(EndpointConfiguration endpointConfiguration)
         {
 #pragma warning disable 618
             #region EncryptionFromCode

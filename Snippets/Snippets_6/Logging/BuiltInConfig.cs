@@ -2,12 +2,11 @@
 {
     using NServiceBus.Logging;
 
-    public class BuiltInConfig
+    class BuiltInConfig
     {
 
-        public void ChangingDefaults()
+        void ChangingDefaults()
         {
-
             #region OverrideLoggingDefaultsInCode
 
             DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
@@ -16,9 +15,9 @@
 
             #endregion
         }
-        public void ChangingLevel()
-        {
 
+        void ChangingLevel()
+        {
             #region OverrideLoggingLevelInCode
 
             DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();

@@ -3,9 +3,9 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    public class ForInstallationOnReplacement
+    class ForInstallationOnReplacement
     {
-        public async Task Simple(EndpointConfiguration endpointConfiguration)
+        async Task Simple(EndpointConfiguration endpointConfiguration)
         {
             #region Installers
 

@@ -30,9 +30,8 @@
             #endregion
         }
 
-        void Shutdown()
+        void Shutdown(IBus bus)
         {
-            IBus bus = null;
             #region Hosting-Shutdown
             UnicastBus busImpl = (UnicastBus)bus;
             busImpl.Dispose();

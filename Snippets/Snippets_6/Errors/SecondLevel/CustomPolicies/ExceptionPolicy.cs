@@ -3,7 +3,7 @@
     using System;
     using NServiceBus.Transports;
 
-    public class ExceptionPolicy
+    class ExceptionPolicy
     {
 
         #region SecondLevelRetriesCustomExceptionPolicyHandler

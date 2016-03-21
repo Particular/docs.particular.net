@@ -2,13 +2,12 @@ namespace Snippets5.PubSub.WithConvention
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(BusConfiguration busConfiguration)
         {
             #region DefiningEventsAs
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             ConventionsBuilder conventions = busConfiguration.Conventions();
             conventions.DefiningEventsAs(t =>
                 t.Namespace != null &&

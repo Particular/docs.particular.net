@@ -5,7 +5,7 @@
 
     class PublisherMapping
     {
-        public void MapPublishers(EndpointConfiguration endpointConfiguration)
+        void MapPublishers(EndpointConfiguration endpointConfiguration)
         {
             #region PubSub-CodePublisherMapping
             endpointConfiguration.Publishers()

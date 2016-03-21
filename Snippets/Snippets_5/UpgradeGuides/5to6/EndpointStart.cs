@@ -4,7 +4,7 @@
 
     class EndpointStart
     {
-        public void StartEndpoint()
+        void StartEndpoint()
         {
             #region 5to6-endpoint-start
             BusConfiguration busConfiguration = new BusConfiguration();

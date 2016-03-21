@@ -5,9 +5,9 @@
     using Autofac;
     using NServiceBus;
 
-    public class Hosting
+    class Hosting
     {
-        public async Task SendOnly()
+        async Task SendOnly()
         {
             #region Hosting-SendOnly
 
@@ -18,7 +18,7 @@
             #endregion
         }
 
-        public async Task Startup()
+        async Task Startup()
         {
             #region Hosting-Startup
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration("TheEndpointName");
@@ -32,10 +32,8 @@
             #endregion
         }
 
-        public async Task Shutdown()
+        async Task Shutdown(IEndpointInstance endpointInstance)
         {
-            IEndpointInstance endpointInstance = null;
-
             #region Hosting-Shutdown
             await endpointInstance.Stop();
             #endregion
@@ -56,7 +54,7 @@
         }
         #endregion
 
-        public async Task InjectEndpoint()
+        async Task InjectEndpoint()
         {
             #region Hosting-Inject
             ContainerBuilder containerBuilder = new ContainerBuilder();

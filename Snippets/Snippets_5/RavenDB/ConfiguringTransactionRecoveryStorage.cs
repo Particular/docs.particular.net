@@ -7,7 +7,7 @@
 
     class ConfiguringTransactionRecoveryStorage
     {
-        public void Foo()
+        ConfiguringTransactionRecoveryStorage(BusConfiguration busConfiguration)
         {
             #region ConfiguringTransactionRecoveryStorage
 
@@ -18,7 +18,6 @@
             };
             // configure document store properties here and initialize
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UsePersistence<RavenDBPersistence>()
                 .SetDefaultDocumentStore(myDocumentStore);
 

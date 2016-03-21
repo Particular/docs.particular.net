@@ -3,9 +3,9 @@
     using System;
     using NServiceBus;
 
-    public class TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
+    class TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
     {
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages(EndpointConfiguration endpointConfiguration)
         {
             #region TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
 

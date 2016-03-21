@@ -8,12 +8,10 @@ namespace Snippets6.UpgradeGuides._5to6
     using NServiceBus.Routing;
     using NServiceBus.Transports;
 
-    public class RawSend
+    class RawSend
     {
-        public async Task RawSending()
+        async Task RawSending(IDispatchMessages dispatcher)
         {
-            IDispatchMessages dispatcher = null;
-
             #region DispatcherRawSending
 
             Dictionary<string, string> headers = new Dictionary<string, string>();

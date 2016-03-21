@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    public class DisableDurable
+    class DisableDurable
     {
-        public DisableDurable(EndpointConfiguration endpointConfiguration)
+        DisableDurable(EndpointConfiguration endpointConfiguration)
         {
             #region set-to-non-durable
             endpointConfiguration.DisableDurableMessages();

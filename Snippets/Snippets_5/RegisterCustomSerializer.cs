@@ -6,7 +6,7 @@
     using NServiceBus;
     using NServiceBus.Serialization;
 
-    public class RegisterCustomSerializer
+    class RegisterCustomSerializer
     {
         RegisterCustomSerializer(BusConfiguration busConfiguration)
         {

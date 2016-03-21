@@ -5,9 +5,9 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
-    public class CustomConfigSource
+    class CustomConfigSource
     {
-        public CustomConfigSource(EndpointConfiguration endpointConfiguration)
+        CustomConfigSource(EndpointConfiguration endpointConfiguration)
         {
             #region RegisterCustomConfigSource
 

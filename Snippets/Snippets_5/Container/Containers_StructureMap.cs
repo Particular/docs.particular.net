@@ -3,11 +3,10 @@
     using NServiceBus;
     using StructureMap;
 
-    public class Containers_StructureMap
+    class Containers_StructureMap
     {
-        public void Simple()
+        Containers_StructureMap(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region StructureMap
 
             busConfiguration.UseContainer<StructureMapBuilder>();
@@ -15,9 +14,8 @@
             #endregion
         }
 
-        public void Existing()
+        void Existing(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region StructureMap_Existing
 
 

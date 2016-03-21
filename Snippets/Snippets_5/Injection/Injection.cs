@@ -3,12 +3,10 @@
     using System.Net.Mail;
     using NServiceBus;
 
-    public class Injection
+    class Injection
     {
-        public void ConfigurePropertyInjectionForHandler()
+        Injection(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region ConfigurePropertyInjectionForHandlerBefore 
 
             busConfiguration.RegisterComponents(c =>

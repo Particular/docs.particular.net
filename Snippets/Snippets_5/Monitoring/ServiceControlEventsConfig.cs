@@ -2,12 +2,10 @@
 {
     using NServiceBus;
 
-    public class ServiceControlEventsConfig
+    class ServiceControlEventsConfig
     {
-        public void Simple()
+        ServiceControlEventsConfig(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region ServiceControlEventsConfig 
 
             busConfiguration.UseSerialization<JsonSerializer>();

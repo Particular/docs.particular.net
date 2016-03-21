@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage()
         {
             #region EndpointNameCode
 

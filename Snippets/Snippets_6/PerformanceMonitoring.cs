@@ -3,10 +3,10 @@
     using System;
     using NServiceBus;
 
-    public class PerformanceMonitoring
+    class PerformanceMonitoring
     {
 
-        public void EnablingCriticalTime(EndpointConfiguration endpointConfiguration)
+        void EnablingCriticalTime(EndpointConfiguration endpointConfiguration)
         {
             #region enable-criticaltime
 
@@ -14,7 +14,7 @@
 
             #endregion
         }
-        public void EnablingSla(EndpointConfiguration endpointConfiguration)
+        void EnablingSla(EndpointConfiguration endpointConfiguration)
         {
             #region enable-sla
 

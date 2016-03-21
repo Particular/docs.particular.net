@@ -6,10 +6,8 @@
 
     class DeferForTimeSpan
     {
-        public void SendDelayedMessage()
+        void SendDelayedMessage(BusConfiguration busConfiguration, IBus bus)
         {
-            BusConfiguration busConfiguration = null;
-            IBus bus = null;
             #region configure-persistence-timeout
             busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();
             #endregion

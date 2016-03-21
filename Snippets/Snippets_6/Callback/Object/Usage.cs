@@ -5,14 +5,14 @@
 
     class Usage
     {
-        async void Simple(EndpointConfiguration endpointConfiguration)
+        async void Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, SendOptions sendOptions)
         {
             #region Callbacks-InstanceId
+
             endpointConfiguration.ScaleOut().InstanceDiscriminator("uniqueId");
+
             #endregion
 
-            IEndpointInstance endpoint = null;
-            SendOptions sendOptions = new SendOptions();
             #region ObjectCallback
 
             Message message = new Message();

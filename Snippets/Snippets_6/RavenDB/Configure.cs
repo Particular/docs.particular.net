@@ -8,7 +8,7 @@
 
     class RavenDBConfigure
     {
-        public void SharedSessionForSagasAndOutbox(EndpointConfiguration endpointConfiguration)
+        void SharedSessionForSagasAndOutbox(EndpointConfiguration endpointConfiguration)
         {
             #region ravendb-persistence-shared-session-for-sagas
 
@@ -47,7 +47,7 @@
 
         #endregion
 
-        public void SpecificExternalDocumentStore(EndpointConfiguration endpointConfiguration)
+        void SpecificExternalDocumentStore(EndpointConfiguration endpointConfiguration)
         {
             #region ravendb-persistence-specific-external-store
 
@@ -61,12 +61,12 @@
             #endregion
         }
 
-        public void SpecificDocumentStoreViaConnectionString()
+        void SpecificDocumentStoreViaConnectionString()
         {
             //See the config file
         }
 
-        public void ExternalDocumentStore(EndpointConfiguration endpointConfiguration)
+        void ExternalDocumentStore(EndpointConfiguration endpointConfiguration)
         {
             #region ravendb-persistence-external-store
 
@@ -78,7 +78,7 @@
             #endregion
         }
 
-        public void ExternalConnectionParameters(EndpointConfiguration endpointConfiguration)
+        void ExternalConnectionParameters(EndpointConfiguration endpointConfiguration)
         {
             #region ravendb-persistence-external-connection-params
 
@@ -90,7 +90,7 @@
             #endregion
         }
 
-        public void SharedDocumentStoreViaConnectionString()
+        void SharedDocumentStoreViaConnectionString()
         {
             //See the config file
         }

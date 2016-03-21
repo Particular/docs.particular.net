@@ -2,12 +2,10 @@ namespace Snippets5.Gateway.Channels.ConfigurationSource
 {
     using NServiceBus;
 
-    public class Usage 
+    class Usage 
     {
-        public Usage()
+        Usage(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region UseCustomConfigurationSourceForGatewayChannelsConfig
             busConfiguration.CustomConfigurationSource(new ConfigurationSource());
             #endregion

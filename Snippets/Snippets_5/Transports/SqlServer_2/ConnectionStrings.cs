@@ -3,11 +3,10 @@
     using System.Data.SqlClient;
     using NServiceBus;
 
-    public class NamedConnectionString
+    class NamedConnectionString
     {
-        void ConnectionString()
+        void ConnectionString(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region sqlserver-config-connectionstring
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -16,9 +15,8 @@
             #endregion
         }
 
-        void ConnectionName()
+        void ConnectionName(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region sqlserver-named-connection-string
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -27,9 +25,8 @@
             #endregion
         }
 
-        void ConnectionFactory()
+        void ConnectionFactory(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region sqlserver-custom-connection-factory
 
             busConfiguration.UseTransport<SqlServerTransport>()

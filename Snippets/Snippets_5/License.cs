@@ -2,14 +2,12 @@
 {
     using NServiceBus;
 
-    public class License
+    class License
     {
-        public void Simple()
+        License(BusConfiguration busConfiguration)
         {
             #region License
      
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             busConfiguration.LicensePath("PathToLicense");
             //or
             busConfiguration.License("YourCustomLicenseText");

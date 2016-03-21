@@ -3,7 +3,7 @@
     using NServiceBus;
     using NServiceBus.Log4Net;
 
-    public class OverrideViaProfile
+    class OverrideViaProfile
     {
         #region LoggingConfigWithProfile
 

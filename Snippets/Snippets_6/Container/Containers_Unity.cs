@@ -3,9 +3,9 @@
     using Microsoft.Practices.Unity;
     using NServiceBus;
 
-    public class Containers_Unity
+    class Containers_Unity
     {
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        Containers_Unity(EndpointConfiguration endpointConfiguration)
         {
             #region Unity
 
@@ -14,7 +14,7 @@
             #endregion
         }
 
-        public void Existing(EndpointConfiguration endpointConfiguration)
+        void Existing(EndpointConfiguration endpointConfiguration)
         {
             #region Unity_Existing
 

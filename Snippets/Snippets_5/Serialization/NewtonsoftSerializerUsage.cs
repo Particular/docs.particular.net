@@ -11,11 +11,10 @@
     using NServiceBus.Newtonsoft.Json;
     using NServiceBus.Serialization;
 
-    public class NewtonsoftSerializerUsage
+    class NewtonsoftSerializerUsage
     {
-        public void Simple()
+        NewtonsoftSerializerUsage(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region NewtonsoftSerialization [0.2,0.3)
 
             busConfiguration.UseSerialization<NewtonsoftSerializer>();
@@ -23,9 +22,8 @@
             #endregion
         }
 
-        public void CustomSettings()
+        void CustomSettings(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region NewtonsoftCustomSettings [0.2,0.3)
 
             JsonSerializerSettings settings = new JsonSerializerSettings
@@ -45,9 +43,8 @@
             #endregion
         }
 
-        public void CustomReader()
+        void CustomReader(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region NewtonsoftCustomReader [0.2,0.3)
 
             busConfiguration.UseSerialization<NewtonsoftSerializer>()
@@ -60,9 +57,8 @@
             #endregion
         }
 
-        public void CustomWriter()
+        void CustomWriter(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region NewtonsoftCustomWriter [0.2,0.3)
 
             busConfiguration.UseSerialization<NewtonsoftSerializer>()
@@ -77,9 +73,9 @@
 
             #endregion
         }
-        public void Bson()
+
+        void Bson(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region NewtonsoftBson [0.2,0.3)
 
             SerializationExtentions<NewtonsoftSerializer> serialization =

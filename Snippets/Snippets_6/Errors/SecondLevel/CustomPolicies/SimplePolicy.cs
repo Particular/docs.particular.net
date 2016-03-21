@@ -5,9 +5,9 @@
     using NServiceBus.SecondLevelRetries.Config;
     using NServiceBus.Transports;
 
-    public class SimplePolicy
+    class SimplePolicy
     {
-        public SimplePolicy(EndpointConfiguration endpointConfiguration)
+        SimplePolicy(EndpointConfiguration endpointConfiguration)
         {
             #region SecondLevelRetriesCustomPolicy
 

@@ -4,7 +4,7 @@
     using NServiceBus;
     using NServiceBus.Features;
 
-    public class BestPracticesConfiguration
+    class BestPracticesConfiguration
     {
         void DisableFeature(EndpointConfiguration endpointConfiguration)
         {
@@ -13,10 +13,8 @@
             #endregion
         }
 
-        async Task DisablePerMessage()
+        async Task DisablePerMessage(IPipelineContext context)
         {
-            IPipelineContext context = null;
-
             #region DisableBestPracticeEnforcementPerMessage
             SendOptions options = new SendOptions();
 

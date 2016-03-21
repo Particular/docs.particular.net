@@ -4,11 +4,10 @@
 
     class Usage
     {
-        public Usage()
+        Usage(BusConfiguration busConfiguration)
         {
             #region EncryptionFromIEncryptionService
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             //where EncryptionService implements IEncryptionService 
             busConfiguration.RegisterEncryptionService(b => new EncryptionService());
 

@@ -2,12 +2,10 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration, string databusPath)
         {
-            string databusPath = null;
-
             #region FileShareDataBus
             endpointConfiguration.UseDataBus<FileShareDataBus>()
                 .BasePath(databusPath);

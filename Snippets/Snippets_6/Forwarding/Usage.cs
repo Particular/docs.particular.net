@@ -1,9 +1,9 @@
 ﻿namespace Snippets6.Forwarding
 {
     using NServiceBus;
-    public class Usage
+    class Usage
     {
-        public Usage(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region ForwardingWithCode
             endpointConfiguration.ForwardReceivedMessagesTo("destinationQueue@machine");

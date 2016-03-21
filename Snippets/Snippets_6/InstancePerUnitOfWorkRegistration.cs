@@ -5,9 +5,9 @@
     using NServiceBus;
     using NServiceBus.UnitOfWork;
 
-    public class InstancePerUnitOfWorkRegistration
+    class InstancePerUnitOfWorkRegistration
     {
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        InstancePerUnitOfWorkRegistration(EndpointConfiguration endpointConfiguration)
         {
             #region InstancePerUnitOfWorkRegistration
 

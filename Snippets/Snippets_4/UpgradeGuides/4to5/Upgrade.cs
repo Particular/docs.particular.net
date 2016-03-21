@@ -209,10 +209,8 @@
             #endregion
         }
 
-        public void FileShareDataBus()
+        public void FileShareDataBus(string databusPath)
         {
-            string databusPath = null;
-
             #region 4to5FileShareDataBus
 
             Configure configure = Configure.With();

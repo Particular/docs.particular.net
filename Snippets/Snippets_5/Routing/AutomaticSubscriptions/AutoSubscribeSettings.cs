@@ -3,34 +3,29 @@
     using NServiceBus;
     using NServiceBus.Features;
 
-    public class AutoSubscribeSettings
+    class AutoSubscribeSettings
     {
-        public void DisableAutoSubscribe()
+        void DisableAutoSubscribe(BusConfiguration busConfiguration)
         {
             #region DisableAutoSubscribe
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.DisableFeature<AutoSubscribe>();
 
             #endregion
         }
 
-        public void DoNotAutoSubscribeSagas()
+        void DoNotAutoSubscribeSagas(BusConfiguration busConfiguration)
         {
             #region DoNotAutoSubscribeSagas
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.AutoSubscribe().DoNotAutoSubscribeSagas();
 
             #endregion
         }
-        public void AutoSubscribePlainMessages()
+
+        void AutoSubscribePlainMessages(BusConfiguration busConfiguration)
         {
             #region AutoSubscribePlainMessages
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.AutoSubscribe().AutoSubscribePlainMessages();
 

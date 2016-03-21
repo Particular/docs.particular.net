@@ -2,13 +2,11 @@
 {
     using NServiceBus;
 
-    public class BsonSerializerUsage
+    class BsonSerializerUsage
     {
-        public void Simple()
+        BsonSerializerUsage(BusConfiguration busConfiguration)
         {
             #region BsonSerialization
-
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseSerialization<BsonSerializer>();
             #endregion
         }

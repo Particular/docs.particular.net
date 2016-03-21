@@ -3,9 +3,9 @@
     using System;
     using NServiceBus;
 
-    public class ScanningPublicApi
+    class ScanningPublicApi
     {
-        public void ScanningDefault()
+        void ScanningDefault()
         {
             #region ScanningDefault
 
@@ -14,7 +14,7 @@
             #endregion
         }
 
-        public void ScanningNestedAssembliesEnabled(EndpointConfiguration endpointConfiguration)
+        void ScanningNestedAssembliesEnabled(EndpointConfiguration endpointConfiguration)
         {
             #region ScanningNestedAssebliesEnabled
 
@@ -23,7 +23,7 @@
             #endregion
         }
 
-        public void ScanningExcludeByName(EndpointConfiguration endpointConfiguration)
+        void ScanningExcludeByName(EndpointConfiguration endpointConfiguration)
         {
             #region ScanningExcludeByName
 
@@ -32,11 +32,8 @@
             #endregion
         }
 
-        public void ScanningExcludeTypes(EndpointConfiguration endpointConfiguration)
+        void ScanningExcludeTypes(EndpointConfiguration endpointConfiguration, Type type1, Type type2)
         {
-            Type type1 = null;
-            Type type2 = null;
-
             #region ScanningExcludeTypes
 
             endpointConfiguration.ExcludeTypes(type1, type2);
@@ -44,7 +41,7 @@
             #endregion
         }
 
-        public void ScanningUpgrade(EndpointConfiguration endpointConfiguration)
+        void ScanningUpgrade(EndpointConfiguration endpointConfiguration)
         {
             #region 5to6ScanningUpgrade
 

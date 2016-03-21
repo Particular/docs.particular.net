@@ -3,9 +3,9 @@
     using System;
     using NServiceBus;
 
-    public class HostIdFixer
+    class HostIdFixer
     {
-        public void Start(EndpointConfiguration endpointConfiguration)
+        HostIdFixer(EndpointConfiguration endpointConfiguration)
         {
             #region HostIdFixer
 

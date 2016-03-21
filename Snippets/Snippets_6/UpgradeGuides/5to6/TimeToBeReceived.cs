@@ -8,10 +8,8 @@ namespace Snippets6.UpgradeGuides._5to6
 
     class TimeToBeReceived
     {
-        public TimeToBeReceived()
+        TimeToBeReceived(IRoutingContext context)
         {
-            IRoutingContext context = null;
-
             #region SetDeliveryConstraintDiscardIfNotReceivedBefore
             TimeSpan timeToBeReceived = TimeSpan.FromSeconds(25);
             context.Extensions.AddDeliveryConstraint(new DiscardIfNotReceivedBefore(timeToBeReceived));

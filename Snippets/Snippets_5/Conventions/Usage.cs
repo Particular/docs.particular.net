@@ -3,13 +3,12 @@ namespace Snippets5.Conventions
     using System;
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(BusConfiguration busConfiguration)
         {
             #region MessageConventions
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             ConventionsBuilder conventions = busConfiguration.Conventions();
             conventions.DefiningCommandsAs(t => t.Namespace == "MyNamespace.Messages.Commands");
             conventions.DefiningEventsAs(t => t.Namespace == "MyNamespace.Messages.Events");

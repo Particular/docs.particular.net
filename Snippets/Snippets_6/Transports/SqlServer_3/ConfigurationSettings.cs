@@ -4,10 +4,10 @@
     using NServiceBus;
     using NServiceBus.Transports.SQLServer;
 
-    public class ConfigurationSettings
+    class ConfigurationSettings
     {
-        
-        void TimeToWaitBeforeTriggeringCircuitBreaker(EndpointConfiguration endpointConfiguration)
+
+        ConfigurationSettings(EndpointConfiguration endpointConfiguration)
         {
             #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
 

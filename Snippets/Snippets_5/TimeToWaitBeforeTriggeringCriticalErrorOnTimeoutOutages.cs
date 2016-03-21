@@ -3,11 +3,10 @@
     using System;
     using NServiceBus;
 
-    public class TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
+    class TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
     {
-        public void Simple()
+        TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
             
             busConfiguration.TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages(TimeSpan.FromMinutes(5));

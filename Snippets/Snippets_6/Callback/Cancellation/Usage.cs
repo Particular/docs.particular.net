@@ -6,10 +6,8 @@
 
     class Usage
     {
-        async void Simple()
+        async void Simple(IEndpointInstance endpoint)
         {
-            IEndpointInstance endpoint = null;
-
             #region CancelCallback
 
             SendOptions sendOptions = new SendOptions();

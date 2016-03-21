@@ -6,9 +6,9 @@
     using NServiceBus.Settings;
     using NServiceBus.Transports;
 
-    public class TransportTransactions
+    class TransportTransactions
     {
-        public void Unreliable(EndpointConfiguration endpointConfiguration)
+        void Unreliable(EndpointConfiguration endpointConfiguration)
         {
             #region TransactionsDisable
             endpointConfiguration.UseTransport<MyTransport>()
@@ -16,7 +16,7 @@
             #endregion
         }
 
-        public void TransportTransactionReceiveOnly(EndpointConfiguration endpointConfiguration)
+        void TransportTransactionReceiveOnly(EndpointConfiguration endpointConfiguration)
         {
             #region TransportTransactionReceiveOnly
             endpointConfiguration.UseTransport<MyTransport>()
@@ -24,7 +24,7 @@
             #endregion
         }
 
-        public void TransportTransactionAtomicSendsWithReceive(EndpointConfiguration endpointConfiguration)
+        void TransportTransactionAtomicSendsWithReceive(EndpointConfiguration endpointConfiguration)
         {
             #region TransportTransactionAtomicSendsWithReceive
             endpointConfiguration.UseTransport<MyTransport>()
@@ -32,7 +32,7 @@
             #endregion
         }
 
-        public void TransportTransactionScope(EndpointConfiguration endpointConfiguration)
+        void TransportTransactionScope(EndpointConfiguration endpointConfiguration)
         {
             #region TransportTransactionScope
             endpointConfiguration.UseTransport<MyTransport>()
@@ -40,7 +40,7 @@
             #endregion
         }
 
-        public void TransportTransactionsWithScope(EndpointConfiguration endpointConfiguration)
+        void TransportTransactionsWithScope(EndpointConfiguration endpointConfiguration)
         {
             #region TransactionsWrapHandlersExecutionInATransactionScope
             endpointConfiguration.UnitOfWork()
@@ -48,7 +48,7 @@
             #endregion
         }
 
-        public void CustomTransactionIsolationLevel(EndpointConfiguration endpointConfiguration)
+        void CustomTransactionIsolationLevel(EndpointConfiguration endpointConfiguration)
         {
             #region CustomTransactionIsolationLevel
             endpointConfiguration.UseTransport<MyTransport>()
@@ -57,7 +57,7 @@
             #endregion
         }
 
-        public void CustomTransactionTimeout(EndpointConfiguration endpointConfiguration)
+        void CustomTransactionTimeout(EndpointConfiguration endpointConfiguration)
         {
             #region CustomTransactionTimeout
             endpointConfiguration.UseTransport<MyTransport>()

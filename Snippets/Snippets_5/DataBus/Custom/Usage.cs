@@ -2,13 +2,12 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(BusConfiguration busConfiguration)
         {
             #region PluginCustomDataBus
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseDataBus(typeof(CustomDataBus));
 
             #endregion

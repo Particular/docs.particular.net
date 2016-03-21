@@ -3,9 +3,9 @@
     using System;
     using NServiceBus;
 
-    public class MsmqSubscriptionAuthorization 
+    class MsmqSubscriptionAuthorization 
     {
-        public MsmqSubscriptionAuthorization(EndpointConfiguration endpointConfiguration)
+        MsmqSubscriptionAuthorization(EndpointConfiguration endpointConfiguration)
         {
             #region 5to6-MsmqSubscriptionAuthorizer
             endpointConfiguration.UseTransport<MsmqTransport>()

@@ -4,10 +4,8 @@
 
     class IndividualizeQueues
     {
-        public void Simple()
+        IndividualizeQueues(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region UniqueQueuePerEndpointInstance 5.2
 
             busConfiguration.ScaleOut()

@@ -3,9 +3,9 @@
     using NServiceBus;
     using StructureMap;
 
-    public class Containers_StructureMap
+    class Containers_StructureMap
     {
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        Containers_StructureMap(EndpointConfiguration endpointConfiguration)
         {
             #region StructureMap
 
@@ -14,11 +14,10 @@
             #endregion
         }
 
-        public void Existing(EndpointConfiguration endpointConfiguration)
+        void Existing(EndpointConfiguration endpointConfiguration)
         {
             #region StructureMap_Existing
-
-
+            
             Container container = new Container(x => x.For<MyService>().Use(new MyService()));
             endpointConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
 

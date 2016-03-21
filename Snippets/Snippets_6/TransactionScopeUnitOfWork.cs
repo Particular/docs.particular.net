@@ -4,9 +4,9 @@
     using System.Transactions;
     using NServiceBus;
 
-    public class TransactionScopeUnitOfWork
+    class TransactionScopeUnitOfWork
     {
-        public void UnitOfWorkWrapHandlersInATransactionScope(EndpointConfiguration endpointConfiguration)
+        void UnitOfWorkWrapHandlersInATransactionScope(EndpointConfiguration endpointConfiguration)
         {
             #region UnitOfWorkWrapHandlersInATransactionScope
             endpointConfiguration.UnitOfWork()
@@ -14,7 +14,7 @@
             #endregion
         }
 
-        public void UnitOfWorkCustomTransactionIsolationLevel(EndpointConfiguration endpointConfiguration)
+        void UnitOfWorkCustomTransactionIsolationLevel(EndpointConfiguration endpointConfiguration)
         {
             #region UnitOfWorkCustomTransactionIsolationLevel
             endpointConfiguration.UnitOfWork()
@@ -22,7 +22,7 @@
             #endregion
         }
 
-        public void UnitOfWorkCustomTransactionTimeout(EndpointConfiguration endpointConfiguration)
+        void UnitOfWorkCustomTransactionTimeout(EndpointConfiguration endpointConfiguration)
         {
             #region UnitOfWorkCustomTransactionTimeout
             endpointConfiguration.UnitOfWork()

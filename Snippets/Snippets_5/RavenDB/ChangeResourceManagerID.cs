@@ -7,7 +7,7 @@
 
     class ChangeResourceManagerID
     {
-        public ChangeResourceManagerID()
+        ChangeResourceManagerID(BusConfiguration busConfiguration)
         {
             #region ChangeResourceManagerID
 
@@ -18,7 +18,6 @@
             };
             store.Initialize();
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UsePersistence<RavenDBPersistence>()
                 .SetDefaultDocumentStore(store);
 

@@ -25,11 +25,10 @@ namespace Snippets5.UpgradeGuides._4to5
 
         #endregion
 
-        public void MessageConventions()
+        void MessageConventions(BusConfiguration busConfiguration)
         {
             #region 4to5MessageConventions
-
-            BusConfiguration busConfiguration = new BusConfiguration();
+            
             ConventionsBuilder conventions = busConfiguration.Conventions();
             conventions.DefiningCommandsAs(t => t.Namespace != null && t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"));
             conventions.DefiningEventsAs(t => t.Namespace != null && t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"));
@@ -42,11 +41,9 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        public void CustomConfigOverrides()
+        void CustomConfigOverrides(BusConfiguration busConfiguration)
         {
             #region 4to5CustomConfigOverrides
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.AssembliesToScan(AllAssemblies.Except("NotThis.dll"));
             busConfiguration.Conventions().DefiningEventsAs(type => type.Name.EndsWith("Event"));
@@ -55,9 +52,8 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        public void UseTransport()
+        void UseTransport(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region 4to5UseTransport
             //Choose one of the following
 
@@ -73,10 +69,9 @@ namespace Snippets5.UpgradeGuides._4to5
 
             #endregion
         }
-        public void InterfaceMessageCreation()
-        {
-            IBus Bus = null;
 
+        void InterfaceMessageCreation(IBus Bus, IMessageCreator messageCreator)
+        {
             #region 4to5InterfaceMessageCreation
 
             Bus.Publish<MyInterfaceMessage>(o =>
@@ -85,8 +80,6 @@ namespace Snippets5.UpgradeGuides._4to5
             });
 
             #endregion
-
-            IMessageCreator messageCreator = null;
 
             #region 4to5ReflectionInterfaceMessageCreation
 
@@ -107,7 +100,7 @@ namespace Snippets5.UpgradeGuides._4to5
             int OrderNumber { get; set; }
         }
 
-        public void CustomRavenConfig()
+        void CustomRavenConfig()
         {
             #region 4to5CustomRavenConfig
 
@@ -127,7 +120,7 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        public void StartupAction()
+        void StartupAction()
         {
             #region 4to5StartupAction
 
@@ -143,12 +136,10 @@ namespace Snippets5.UpgradeGuides._4to5
 
         }
 
-        public void Installers()
+        void Installers(BusConfiguration busConfiguration)
         {
             #region 4to5Installers
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-
+            
             busConfiguration.EnableInstallers();
 
             Bus.Create(busConfiguration); //this will run the installers
@@ -156,14 +147,12 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        public void AllThePersistence()
+        void AllThePersistence(BusConfiguration busConfiguration)
         {
 #pragma warning disable 618
 
             #region 4to5ConfigurePersistence
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-
+            
             // Configure to use InMemory for all persistence types
             busConfiguration.UsePersistence<InMemoryPersistence>();
 
@@ -217,7 +206,7 @@ namespace Snippets5.UpgradeGuides._4to5
         {
         }
 
-        public void RunCustomAction()
+        void RunCustomAction()
         {
             #region 4to5RunCustomAction
 
@@ -228,12 +217,10 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        public void DefineCriticalErrorAction()
+        void DefineCriticalErrorAction(BusConfiguration busConfiguration)
         {
-
             #region 4to5DefineCriticalErrorAction
-
-            BusConfiguration busConfiguration = new BusConfiguration();
+            
             // Configuring how NServicebus handles critical errors
             busConfiguration.DefineCriticalErrorAction((message, exception) =>
             {
@@ -245,32 +232,27 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        public void FileShareDataBus()
+        void FileShareDataBus(BusConfiguration busConfiguration, string databusPath)
         {
-            string databusPath = null;
-
             #region 4to5FileShareDataBus
-
-            BusConfiguration busConfiguration = new BusConfiguration();
+            
             busConfiguration.UseDataBus<FileShareDataBus>()
                 .BasePath(databusPath);
 
             #endregion
         }
 
-        public void PurgeOnStartup()
+        void PurgeOnStartup(BusConfiguration busConfiguration)
         {
             #region 4to5PurgeOnStartup
-
-            BusConfiguration busConfiguration = new BusConfiguration();
+            
             busConfiguration.PurgeOnStartup(true);
 
             #endregion
         }
 
-        public void EncryptionServiceSimple()
+        void EncryptionServiceSimple(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region 4to5EncryptionServiceSimple
 
             busConfiguration.RijndaelEncryptionService();
@@ -278,12 +260,10 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        public void License()
+        void License(BusConfiguration busConfiguration)
         {
             #region 4to5License
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-
+            
             busConfiguration.LicensePath("PathToLicense");
             //or
             busConfiguration.License("YourCustomLicenseText");
@@ -291,11 +271,9 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        public void TransactionConfig()
+        void TransactionConfig(BusConfiguration busConfiguration)
         {
             #region 4to5TransactionConfig
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             //Enable
             busConfiguration.Transactions().Enable();
@@ -306,12 +284,10 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        public void StaticConfigureEndpoint()
+        void StaticConfigureEndpoint(BusConfiguration busConfiguration)
         {
             #region 4to5StaticConfigureEndpoint
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-
+            
             // SendOnly
             Bus.CreateSendOnly(busConfiguration);
 
@@ -329,12 +305,10 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        public void PerformanceMonitoring()
+        void PerformanceMonitoring(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region 4to5PerformanceMonitoring
-
-
+            
             busConfiguration.EnableSLAPerformanceCounter();
             //or
             busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
@@ -342,9 +316,8 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        public void DoNotCreateQueues()
+        void DoNotCreateQueues(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region 4to5DoNotCreateQueues
 
             busConfiguration.DoNotCreateQueues();
@@ -352,9 +325,8 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        public void EndpointName()
+        void EndpointName(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region 4to5EndpointName
 
             busConfiguration.EndpointName("MyEndpoint");
@@ -362,9 +334,8 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
-        public void SendOnly()
+        void SendOnly(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region 4to5SendOnly
 
             ISendOnlyBus bus = Bus.CreateSendOnly(busConfiguration);

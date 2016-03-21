@@ -3,11 +3,10 @@
     using Autofac;
     using NServiceBus;
 
-    public class Containers_Autofac
+    class Containers_Autofac
     {
-        public void Simple()
+        Containers_Autofac(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region Autofac
 
             busConfiguration.UseContainer<AutofacBuilder>();
@@ -15,9 +14,8 @@
             #endregion
         }
 
-        public void Existing()
+        void Existing(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region Autofac_Existing
 
             ContainerBuilder builder = new ContainerBuilder();

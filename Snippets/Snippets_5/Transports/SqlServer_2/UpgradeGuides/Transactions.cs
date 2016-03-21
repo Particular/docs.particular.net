@@ -3,10 +3,8 @@ namespace Snippets5.UpgradeGuides._4to5
     using NServiceBus;
     class Transactions
     {
-        public void SetDistributedTransactions()
+        Transactions(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region 2to3-enable-native-transaction
 
             busConfiguration

@@ -4,9 +4,9 @@
     using System.Transactions;
     using NServiceBus;
 
-    public class MsmqTransactionScope
+    class MsmqTransactionScope
     {
-        public void MsmqTransactionScopeIsolationLevel(EndpointConfiguration endpointConfiguration)
+        void MsmqTransactionScopeIsolationLevel(EndpointConfiguration endpointConfiguration)
         {
             #region MsmqTransactionScopeIsolationLevel
             endpointConfiguration.UseTransport<MsmqTransport>()
@@ -15,7 +15,7 @@
             #endregion
         }
 
-        public void MsmqTransactionScopeTimeout(EndpointConfiguration endpointConfiguration)
+        void MsmqTransactionScopeTimeout(EndpointConfiguration endpointConfiguration)
         {
             #region MsmqTransactionScopeTimeout
             endpointConfiguration.UseTransport<MsmqTransport>()

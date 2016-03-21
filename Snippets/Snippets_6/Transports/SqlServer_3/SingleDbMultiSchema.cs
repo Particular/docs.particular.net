@@ -3,7 +3,7 @@
     using NServiceBus;
     using NServiceBus.Transports.SQLServer;
 
-    public class SingleDbMultiSchema
+    class SingleDbMultiSchema
     {
         void CurrentEndpointSchema(EndpointConfiguration endpointConfiguration)
         {

@@ -4,7 +4,7 @@
 
     class ConcurrencyConfiguration
     {
-        void ConfigureFromCode(EndpointConfiguration endpointConfiguration)
+        ConcurrencyConfiguration(EndpointConfiguration endpointConfiguration)
         {
             #region TuningFromCode
             endpointConfiguration.LimitMessageProcessingConcurrencyTo(5);

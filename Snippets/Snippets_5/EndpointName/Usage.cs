@@ -2,11 +2,10 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region EndpointNameCode
 
             busConfiguration.EndpointName("MyEndpoint");

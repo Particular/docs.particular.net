@@ -5,14 +5,11 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
-    public class CustomConfigSource
+    class CustomConfigSource
     {
-        public CustomConfigSource()
+        CustomConfigSource(BusConfiguration busConfiguration)
         {
-
             #region RegisterCustomConfigSource
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.CustomConfigurationSource(new MyCustomConfigurationSource());
 

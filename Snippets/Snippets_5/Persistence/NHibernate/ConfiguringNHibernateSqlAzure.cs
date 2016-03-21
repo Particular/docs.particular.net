@@ -6,11 +6,9 @@
 
     class ConfiguringNHibernateSqlAzure
     {
-        public void SqlAzureNHibernateDriverConfiguration()
+        ConfiguringNHibernateSqlAzure(BusConfiguration busConfiguration)
         {
             #region SqlAzureNHibernateDriverConfiguration
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             Configuration nhConfiguration = new Configuration();
             nhConfiguration.Properties["connection.driver_class"] = "NHibernate.SqlAzure.SqlAzureClientDriver, NHibernate.SqlAzure";

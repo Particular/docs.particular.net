@@ -3,12 +3,10 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public async Task Correlation()
+        async Task Correlation(IPipelineContext context)
         {
-            IPipelineContext context = null;
-
             #region custom-correlationid
             SendOptions options = new SendOptions();
 

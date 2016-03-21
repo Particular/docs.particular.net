@@ -5,10 +5,8 @@
 
     class Usage
     {
-        async void Simple()
+        async void Simple(IEndpointInstance endpoint, SendOptions sendOptions)
         {
-            IEndpointInstance endpoint = null;
-            SendOptions sendOptions = new SendOptions();
             #region EnumCallback
             Message message = new Message();
             Status response = await endpoint.Request<Status>(message, sendOptions);

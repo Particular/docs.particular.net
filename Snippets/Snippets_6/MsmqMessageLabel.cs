@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    public class MsmqMessageLabel
+    class MsmqMessageLabel
     {
-        public MsmqMessageLabel(EndpointConfiguration endpointConfiguration)
+        MsmqMessageLabel(EndpointConfiguration endpointConfiguration)
         {
             #region ApplyLabelToMessages
             endpointConfiguration.UseTransport<MsmqTransport>()

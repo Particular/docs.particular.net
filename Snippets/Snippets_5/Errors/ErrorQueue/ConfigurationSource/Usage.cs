@@ -2,12 +2,10 @@ namespace Snippets5.Errors.ErrorQueue.ConfigurationSource
 {
     using NServiceBus;
 
-    public class Usage 
+    class Usage 
     {
-        public Usage()
+        Usage(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region UseCustomConfigurationSourceForErrorQueueConfig
             busConfiguration.CustomConfigurationSource(new ConfigurationSource());
             #endregion

@@ -5,10 +5,8 @@
 
     class Scheduling
     {
-        public void ScheduleTask()
+        Scheduling(Schedule schedule, IBus bus)
         {
-            Schedule schedule = null;
-            IBus bus = null;
             #region ScheduleTask
             // 'Schedule' is an instance class that can be resolved from the container.
             // To send a message every 5 minutes

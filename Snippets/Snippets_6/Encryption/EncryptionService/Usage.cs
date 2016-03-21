@@ -4,7 +4,7 @@
 
     class Usage
     {
-        public Usage(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region EncryptionFromIEncryptionService
             //where EncryptionService implements IEncryptionService 

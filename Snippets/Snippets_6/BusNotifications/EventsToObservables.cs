@@ -9,10 +9,8 @@ namespace Snippets6.BusNotifications
 
     class EventsToObservables
     {
-        void TransformEventToObservable()
+        EventsToObservables(BusNotifications busNotifications)
         {
-            BusNotifications busNotifications = new BusNotifications();
-
             #region ConvertEventToObservable
 
             IObservable<EventPattern<FailedMessage>> failedMessages = Observable.FromEventPattern<EventHandler<FailedMessage>, FailedMessage>(

@@ -6,7 +6,7 @@
 
     class Usage
     {
-        public void Demo(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region PersistanceWithAzure 7
 
@@ -27,7 +27,7 @@
 
         #endregion
 
-        public void CustomizingAzurePersistenceAllConnections_7(EndpointConfiguration endpointConfiguration)
+        void CustomizingAzurePersistenceAllConnections_7(EndpointConfiguration endpointConfiguration)
         {
             #region AzurePersistenceSubscriptionsAllConnectionsCustomization 7
 
@@ -36,7 +36,7 @@
             #endregion
         }
 
-        public void CustomizingAzurePersistenceSubscriptions_7(EndpointConfiguration endpointConfiguration)
+        void CustomizingAzurePersistenceSubscriptions_7(EndpointConfiguration endpointConfiguration)
         {
             #region AzurePersistenceSubscriptionsCustomization 7
 
@@ -47,7 +47,7 @@
             #endregion
         }
 
-        public void CustomizingAzurePersistenceSagas_7(EndpointConfiguration endpointConfiguration)
+        void CustomizingAzurePersistenceSagas_7(EndpointConfiguration endpointConfiguration)
         {
             #region AzurePersistenceSagasCustomization 7
 
@@ -57,7 +57,7 @@
             #endregion
         }
 
-        public void AzurePersistenceTimeoutsCustomization_7(EndpointConfiguration endpointConfiguration)
+        void AzurePersistenceTimeoutsCustomization_7(EndpointConfiguration endpointConfiguration)
         {
             #region AzurePersistenceTimeoutsCustomization 7
 

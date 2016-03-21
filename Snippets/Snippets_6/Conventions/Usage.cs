@@ -3,9 +3,9 @@ namespace Snippets6.Conventions
     using System;
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region MessageConventions
             ConventionsBuilder conventions = endpointConfiguration.Conventions();

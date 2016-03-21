@@ -3,13 +3,11 @@
     using System;
     using NServiceBus;
 
-    public class SqlServerConfigurationSettings
+    class SqlServerConfigurationSettings
     {
-        
 
-        void CallbackReceiverMaxConcurrency()
+        void CallbackReceiverMaxConcurrency(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region sqlserver-CallbackReceiverMaxConcurrency
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -17,9 +15,9 @@
 
             #endregion
         }
-        void TimeToWaitBeforeTriggeringCircuitBreaker()
+
+        void TimeToWaitBeforeTriggeringCircuitBreaker(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -27,9 +25,9 @@
 
             #endregion
         }
-        void PauseAfterReceiveFailure()
+
+        void PauseAfterReceiveFailure(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region sqlserver-PauseAfterReceiveFailure
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -38,9 +36,8 @@
             #endregion
         }
 
-        void DisableSecondaries()
+        void DisableSecondaries(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region sqlserver-config-disable-secondaries
 
             busConfiguration.UseTransport<SqlServerTransport>()

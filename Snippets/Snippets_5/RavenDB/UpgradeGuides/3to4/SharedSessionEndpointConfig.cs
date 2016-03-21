@@ -5,9 +5,9 @@
     using NServiceBus;
     using NServiceBus.Persistence;
 
-    public class SharedSessionEndpointConfig
+    class SharedSessionEndpointConfig
     {
-        public void DoStuff(BusConfiguration busConfiguration, IDocumentSession someSession)
+        SharedSessionEndpointConfig(BusConfiguration busConfiguration, IDocumentSession someSession)
         {
             #region 3to4-ravensharedsession
             Func<IDocumentSession> sessionFactory = () => someSession;

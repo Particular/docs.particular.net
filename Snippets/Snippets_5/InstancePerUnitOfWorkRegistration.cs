@@ -4,7 +4,7 @@
     using NServiceBus;
     using NServiceBus.UnitOfWork;
 
-    public class InstancePerUnitOfWorkRegistration
+    class InstancePerUnitOfWorkRegistration
     {
         InstancePerUnitOfWorkRegistration(BusConfiguration busConfiguration)
         {

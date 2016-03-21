@@ -16,12 +16,8 @@
             #endregion
         }
 
-        void ScanningListOfAssemblies()
+        void ScanningListOfAssemblies(IEnumerable<Assembly> myListOfAssemblies, Assembly assembly2, Assembly assembly1)
         {
-            IEnumerable<Assembly> myListOfAssemblies = null;
-
-            Assembly assembly2 = null;
-            Assembly assembly1 = null;
 
             #region ScanningListOfAssemblies
 
@@ -41,10 +37,8 @@
             #endregion
         }
 
-        void ScanningListOfTypes()
+        void ScanningListOfTypes(IEnumerable<Type> myTypes)
         {
-            IEnumerable<Type> myTypes = null;
-
             #region ScanningListOfTypes
 
             Configure.With(myTypes);

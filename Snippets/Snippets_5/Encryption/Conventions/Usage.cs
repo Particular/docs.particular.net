@@ -4,9 +4,8 @@
 
     class Usage
     {
-        public Usage()
+        Usage(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region DefiningEncryptedPropertiesAs
             ConventionsBuilder conventions = busConfiguration.Conventions();
             conventions.DefiningEncryptedPropertiesAs(info => info.Name.EndsWith("EncryptedProperty"));

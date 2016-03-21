@@ -2,13 +2,12 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public void Simple()
+        Usage(BusConfiguration busConfiguration)
         {
             #region UsingMessageBodyEncryptor
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<MessageEncryptor>(DependencyLifecycle.InstancePerCall));
 
             #endregion

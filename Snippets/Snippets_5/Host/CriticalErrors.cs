@@ -11,11 +11,10 @@ namespace Snippets5.Host
     {
         IStartableBus bus;
 
-        CriticalErrors()
+        CriticalErrors(BusConfiguration busConfiguration)
         {
             #region DefiningCustomHostErrorHandlingAction
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.DefineCriticalErrorAction(OnCriticalError);
 
             #endregion
@@ -37,12 +36,8 @@ namespace Snippets5.Host
         #endregion
 
 
-        void DefaultActionLogging()
+        void DefaultActionLogging(string errorMessage, Exception exception)
         {
-
-            string errorMessage = null;
-            Exception exception = null;
-
             #region DefaultCriticalErrorActionLogging
 
             LogManager.GetLogger("NServiceBus").Fatal(errorMessage, exception);
@@ -51,10 +46,8 @@ namespace Snippets5.Host
         }
 
 
-        void DefaultAction()
+        void DefaultAction(Configure configure)
         {
-
-            Configure configure = null;
             //https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Core/CriticalError/CriticalError.cs
 
             #region DefaultCriticalErrorAction
@@ -72,12 +65,8 @@ namespace Snippets5.Host
 
         }
 
-        void DefaultHostAction()
+        void DefaultHostAction(string errorMessage, Exception exception)
         {
-
-            string errorMessage = null;
-            Exception exception = null;
-
             //https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Hosting.Windows/GenericHost.cs
 
             #region DefaultHostCriticalErrorAction
@@ -93,11 +82,8 @@ namespace Snippets5.Host
             #endregion
 
         }
-        void InvokeCriticalError()
+        void InvokeCriticalError(CriticalError criticalError, string errorMessage, Exception exception)
         {
-            CriticalError criticalError = null;
-            string errorMessage = null;
-            Exception exception = null;
             #region InvokeCriticalError
             // 'criticalError' is an instance of the NServiceBus.CriticalError class
             // This instance can be resolved from the container. 

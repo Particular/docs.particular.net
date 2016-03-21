@@ -5,9 +5,8 @@
     class Callbacks
     {
 
-        void Simple()
+        Callbacks(IBus bus)
         {
-            IBus bus = null;
             #region 5to6-Callbacks
 
             RequestMessage requestMessage = new RequestMessage();

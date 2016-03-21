@@ -3,9 +3,9 @@
     using System;
     using NServiceBus;
 
-    public class Hosting
+    class Hosting
     {
-        public void SendOnly()
+        void SendOnly()
         {
             #region Hosting-SendOnly
 
@@ -15,7 +15,7 @@
             #endregion
         }
 
-        public void Startup()
+        void Startup()
         {
             #region Hosting-Startup
             BusConfiguration busConfiguration = new BusConfiguration();
@@ -25,9 +25,8 @@
             #endregion
         }
 
-        public void Shutdown()
+        void Shutdown(IBus bus)
         {
-            IBus bus = null;
             #region Hosting-Shutdown
             bus.Dispose();
             #endregion

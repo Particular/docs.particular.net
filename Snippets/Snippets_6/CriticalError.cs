@@ -5,9 +5,9 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    public class CriticalErrorConfig
+    class CriticalErrorConfig
     {
-        public void DefineCriticalErrorActionForAzureHost(EndpointConfiguration endpointConfiguration)
+        CriticalErrorConfig(EndpointConfiguration endpointConfiguration)
         {
             #region DefineCriticalErrorActionForAzureHost
 

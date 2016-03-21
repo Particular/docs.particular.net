@@ -4,12 +4,10 @@
     using NServiceBus;
     using NServiceBus.RavenDB.Outbox;
 
-    public class TimeToKeep
+    class TimeToKeep
     {
-        public TimeToKeep()
+        TimeToKeep(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = null;
-
             #region OutboxRavendBTimeToKeep
             endpointConfiguration.SetTimeToKeepDeduplicationData(TimeSpan.FromDays(7));
             endpointConfiguration.SetFrequencyToRunDeduplicationDataCleanup(TimeSpan.FromMinutes(1));

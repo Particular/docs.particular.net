@@ -5,7 +5,7 @@
 
     class Usage
     {
-        public void ConfiguringInMemory(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region ConfiguringInMemory
 

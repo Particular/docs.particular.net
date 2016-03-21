@@ -4,7 +4,7 @@
     
     class EndpointNameRequired
     {
-        public void StartEndpoint()
+        EndpointNameRequired()
         {
             #region 5to6-endpointNameRequired
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration("MyEndpointName");

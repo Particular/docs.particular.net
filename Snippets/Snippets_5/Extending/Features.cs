@@ -12,7 +12,7 @@ namespace Snippets5.Extending
     }
     #endregion
 
-    public class DependencyAFeature : Feature
+    class DependencyAFeature : Feature
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
@@ -89,7 +89,7 @@ namespace Snippets5.Extending
         }
     }
 
-    public class FeatureWithPrerequisites : Feature
+    class FeatureWithPrerequisites : Feature
     {
         #region FeatureWithPrerequisites
         public FeatureWithPrerequisites()

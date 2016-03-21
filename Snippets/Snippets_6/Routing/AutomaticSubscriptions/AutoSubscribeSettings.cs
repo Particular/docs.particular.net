@@ -3,9 +3,9 @@
     using NServiceBus;
     using NServiceBus.Features;
 
-    public class AutoSubscribeSettings
+    class AutoSubscribeSettings
     {
-        public void DisableAutoSubscribe(EndpointConfiguration endpointConfiguration)
+        void DisableAutoSubscribe(EndpointConfiguration endpointConfiguration)
         {
             #region DisableAutoSubscribe
 
@@ -14,7 +14,7 @@
             #endregion
         }
 
-        public void DoNotAutoSubscribeSagas(EndpointConfiguration endpointConfiguration)
+        void DoNotAutoSubscribeSagas(EndpointConfiguration endpointConfiguration)
         {
             #region DoNotAutoSubscribeSagas
 

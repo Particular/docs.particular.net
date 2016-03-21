@@ -5,7 +5,7 @@
 
     class Usage
     {
-        public Usage(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region ConfiguringMsmqPersistence
 

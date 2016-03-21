@@ -3,7 +3,7 @@
     using System;
     using NServiceBus;
 
-    public class DiscardingOldMessages
+    class DiscardingOldMessages
     {
 
         #region DiscardingOldMessagesWithAnAttribute

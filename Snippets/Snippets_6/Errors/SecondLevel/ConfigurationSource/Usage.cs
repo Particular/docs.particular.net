@@ -2,9 +2,9 @@ namespace Snippets6.Errors.SecondLevel.ConfigurationSource
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region SLRConfigurationSourceUsage
             endpointConfiguration.CustomConfigurationSource(new ConfigurationSource());

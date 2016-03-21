@@ -2,13 +2,12 @@
 {
     using NServiceBus;
 
-    public class DisableDurable
+    class DisableDurable
     {
-        public DisableDurable()
+        DisableDurable(BusConfiguration busConfiguration)
         {
             #region set-to-non-durable
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.DisableDurableMessages();
 
             #endregion

@@ -6,17 +6,19 @@
 
     class Recoverable
     {
-        public Recoverable()
+        Recoverable(IRoutingContext context)
         {
-            IRoutingContext context = null;
-
             #region SetDeliveryConstraintNonDurable
+
             context.Extensions.AddDeliveryConstraint(new NonDurableDelivery());
+
             #endregion
 
             #region ReadDeliveryConstraintNonDurable
+
             NonDurableDelivery constraint;
             context.Extensions.TryGetDeliveryConstraint(out constraint);
+
             #endregion
         }
     }

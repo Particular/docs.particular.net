@@ -2,12 +2,10 @@
 {
     using NServiceBus;
 
-    public class BasicUsageOfIBus
+    class BasicUsageOfIBus
     {
-        void Send()
+        void Send(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region BasicSend
             IBus bus = Bus.Create(busConfiguration).Start();
 
@@ -33,37 +31,29 @@
         }
         #endregion
 
-        void SendInterface()
+        void SendInterface(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicSendInterface
             bus.Send<IMyMessage>(m => m.MyProperty = "Hello world");
             #endregion
         }
 
-        void SetDestination()
+        void SetDestination(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicSendSetDestination
             bus.Send(Address.Parse("MyDestination"), new MyMessage());
             #endregion
         }
 
-        void ThisEndpoint()
+        void ThisEndpoint(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicSendToAnyInstance
             bus.SendLocal(new MyMessage());
             #endregion
         }
 
-        void SendReplyToThisInstance()
+        void SendReplyToThisInstance(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicSendReplyToThisInstance
             MyMessage myMessage = new MyMessage();
             bus.SetMessageHeader(myMessage, NServiceBus.Headers.ReplyToAddress, "MyInstanceAddress");
@@ -71,10 +61,8 @@
             #endregion
         }
 
-        void SendReplyToAnyInstance()
+        void SendReplyToAnyInstance(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicSendReplyToAnyInstance
             MyMessage myMessage = new MyMessage();
             bus.SetMessageHeader(myMessage, NServiceBus.Headers.ReplyToAddress, "MyEndpointAddress");
@@ -82,10 +70,8 @@
             #endregion
         }
 
-        void SendReplyTo()
+        void SendReplyTo(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicSendReplyToDestination
             MyMessage myMessage = new MyMessage();
             bus.SetMessageHeader(myMessage, NServiceBus.Headers.ReplyToAddress, "MyReplyDestination");
@@ -93,10 +79,8 @@
             #endregion
         }
 
-        void ReplySendReplyToThisInstance()
+        void ReplySendReplyToThisInstance(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicReplyReplyToThisInstance
             MyMessage myMessage = new MyMessage();
             bus.SetMessageHeader(myMessage, NServiceBus.Headers.ReplyToAddress, "MyInstanceAddress");
@@ -104,10 +88,8 @@
             #endregion
         }
 
-        void ReplySendReplyToAnyInstance()
+        void ReplySendReplyToAnyInstance(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicReplyReplyToAnyInstance
             MyMessage myMessage = new MyMessage();
             bus.SetMessageHeader(myMessage, NServiceBus.Headers.ReplyToAddress, "MyEndpointAddress");
@@ -115,10 +97,8 @@
             #endregion
         }
 
-        void ReplySendReplyTo()
+        void ReplySendReplyTo(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicReplyReplyToDestination
             MyMessage myMessage = new MyMessage();
             bus.SetMessageHeader(myMessage, NServiceBus.Headers.ReplyToAddress, "MyReplyDestination");

@@ -6,9 +6,8 @@
     class Usage
     {
 
-        void Simple()
+        Usage(IBus bus)
         {
-            IBus bus = null;
             #region EnumCallback
             Message message = new Message();
             bus.Send(message)

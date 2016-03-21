@@ -4,9 +4,9 @@
     using NServiceBus;
     using NServiceBus.ObjectBuilder.Ninject;
 
-    public class Containers_Ninject
+    class Containers_Ninject
     {
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        Containers_Ninject(EndpointConfiguration endpointConfiguration)
         {
             #region Ninject
 
@@ -15,7 +15,7 @@
             #endregion
         }
 
-        public void Existing(EndpointConfiguration endpointConfiguration)
+        void Existing(EndpointConfiguration endpointConfiguration)
         {
             #region Ninject_Existing
 
@@ -26,7 +26,7 @@
             #endregion
         }
 
-        public void UseUnitOfWorkScope()
+        void UseUnitOfWorkScope()
         {
             #region NinjectUnitOfWork [4.0,6.0]
 
@@ -37,7 +37,7 @@
             #endregion
         }
 
-        public void UseConditionalBinding()
+        void UseConditionalBinding()
         {
             #region NinjectConditionalBindings [4.0,6.0]
 

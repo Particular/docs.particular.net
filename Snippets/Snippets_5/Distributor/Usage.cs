@@ -6,12 +6,9 @@
 
     class Usage
     {
-        public void ConfiguringDistributor()
+        void ConfiguringDistributor(BusConfiguration busConfiguration)
         {
             #region ConfiguringDistributor
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             // --------------------------------------
             // Running the Distributor and a Worker
             busConfiguration.AsMSMQMasterNode();
@@ -27,20 +24,17 @@
             #endregion
         }
 
-        public void ConfiguringWorker()
+        void ConfiguringWorker(BusConfiguration busConfiguration)
         {
             #region ConfiguringWorker
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EnlistWithMSMQDistributor();
 
             #endregion
         }
 
-        public void IsEnabled()
+        void IsEnabled(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region IsDistributorEnabled
 
             bool isDistributorEnabled = busConfiguration

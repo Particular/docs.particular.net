@@ -3,36 +3,30 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    public class BasicOperations
+    class BasicOperations
     {
-        public async Task ConcreteMessage()
+        async Task ConcreteMessage(IPipelineContext context)
         {
-            IPipelineContext context = null;
             #region InstancePublish
             MyEvent message = new MyEvent { SomeProperty = "Hello world" };
             await context.Publish(message);
             #endregion
-
         }
 
-        public async Task InterfaceMessage()
+        async Task InterfaceMessage(IPipelineContext context)
         {
-            IPipelineContext context = null;
             #region InterfacePublish
             await context.Publish<IMyEvent>(m => { m.SomeProperty = "Hello world"; });
             #endregion
-
         }
 
-        public async Task Subscribe()
+        async Task Subscribe(IEndpointInstance endpoint)
         {
-            IEndpointInstance endpoint = null;
             #region ExplicitSubscribe
             await endpoint.Subscribe<MyEvent>();
 
             await endpoint.Unsubscribe<MyEvent>();
             #endregion
-
         }
 
         class MyEvent

@@ -5,13 +5,11 @@
 
     class Usage
     {
-        public void Version_5_0()
+        void Version_5_0(BusConfiguration busConfiguration)
         {
 #pragma warning disable 618
 
             #region ConfiguringInMemory 5.0
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.UsePersistence<InMemoryPersistence>()
                 .For(
@@ -27,11 +25,9 @@
 
         }
 
-        public void Version_5_2()
+        void Version_5_2(BusConfiguration busConfiguration)
         {
             #region ConfiguringInMemory 5.2
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
             busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();

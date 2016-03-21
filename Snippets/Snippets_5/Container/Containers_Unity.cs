@@ -3,11 +3,10 @@
     using Microsoft.Practices.Unity;
     using NServiceBus;
 
-    public class Containers_Unity
+    class Containers_Unity
     {
-        public void Simple()
+        Containers_Unity(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region Unity
 
             busConfiguration.UseContainer<UnityBuilder>();
@@ -15,9 +14,8 @@
             #endregion
         }
 
-        public void Existing()
+        void Existing(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region Unity_Existing
 
             UnityContainer container = new UnityContainer();

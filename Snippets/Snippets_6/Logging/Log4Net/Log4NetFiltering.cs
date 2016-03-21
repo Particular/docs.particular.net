@@ -7,7 +7,7 @@
     using log4net.Layout;
     using NServiceBus.Log4Net;
 
-    public class Log4NetFiltering
+    class Log4NetFiltering
     {
         #region Log4NetFilter
 

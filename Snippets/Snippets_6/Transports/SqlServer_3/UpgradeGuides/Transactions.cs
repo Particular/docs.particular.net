@@ -4,7 +4,7 @@
 
     class Transactions
     {
-        public void SetDistributedTransactions(EndpointConfiguration endpointConfiguration)
+        Transactions(EndpointConfiguration endpointConfiguration)
         {
             #region 2to3-enable-native-transaction
 

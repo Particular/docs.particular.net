@@ -9,27 +9,23 @@
 
     class RavenDBConfigure
     {
-        public void StaleSagas()
+        void StaleSagas(BusConfiguration busConfiguration)
         {
-            //Allows to correlate sagas on non-unique properties
-
             #region ravendb-persistence-stale-sagas
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UsePersistence<RavenDBPersistence>()
                 .AllowStaleSagaReads();
 
             #endregion
         }
 
-        public void SharedSessionForSagasAndOutbox()
+        void SharedSessionForSagasAndOutbox(BusConfiguration busConfiguration)
         {
             #region ravendb-persistence-shared-session-for-sagas
 
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UsePersistence<RavenDBPersistence>().UseSharedSession(() =>
             {
                 IDocumentSession session = myDocumentStore.OpenSession();
@@ -69,14 +65,13 @@
 
         #endregion
 
-        public void SpecificExternalDocumentStore()
+        void SpecificExternalDocumentStore(BusConfiguration busConfiguration)
         {
             #region ravendb-persistence-specific-external-store
 
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UsePersistence<RavenDBPersistence>()
                 .UseDocumentStoreForSubscriptions(myDocumentStore)
                 .UseDocumentStoreForSagas(myDocumentStore)
@@ -90,29 +85,26 @@
             //See the config file
         }
 
-        public void ExternalDocumentStore()
+        void ExternalDocumentStore(BusConfiguration busConfiguration)
         {
             #region ravendb-persistence-external-store
 
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
 
-
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UsePersistence<RavenDBPersistence>()
                 .SetDefaultDocumentStore(myDocumentStore);
 
             #endregion
         }
 
-        public void ExternalConnectionParameters()
+        void ExternalConnectionParameters(BusConfiguration busConfiguration)
         {
             #region ravendb-persistence-external-connection-params
 
             ConnectionParameters connectionParams = new ConnectionParameters();
             // configure connection params (ApiKey, DatabaseName, Url) here
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UsePersistence<RavenDBPersistence>()
                 .SetDefaultDocumentStore(connectionParams);
 

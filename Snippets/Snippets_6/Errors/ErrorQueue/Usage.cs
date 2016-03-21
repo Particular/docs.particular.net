@@ -2,16 +2,15 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region ErrorWithCode
             endpointConfiguration.SendFailedMessagesTo("targetErrorQueue");
 
             #endregion
         }
-
-
+        
     }
 }

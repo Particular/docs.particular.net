@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    public class HandlerOrdering
+    class HandlerOrdering
     {
-        public void Simple(BusConfiguration busConfiguration)
+        HandlerOrdering(BusConfiguration busConfiguration)
         {
             #region 5to6HandlerOrderingWithCode
 

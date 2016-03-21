@@ -6,11 +6,8 @@ namespace Snippets6.DelayedDelivery
 
     class DeferForDateTime
     {
-        public async Task SendDelayedMessage()
+        async Task SendDelayedMessage(IEndpointInstance endpoint, IMessageHandlerContext handlerContext)
         {
-            IEndpointInstance endpoint = null;
-            IMessageHandlerContext handlerContext = null;
-
             #region delayed-delivery-datetime
             SendOptions options = new SendOptions();
             options.DoNotDeliverBefore(new DateTime(2016, 12, 25));

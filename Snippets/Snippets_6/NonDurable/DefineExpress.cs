@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    public class DefineExpress
+    class DefineExpress
     {
-        public DefineExpress(EndpointConfiguration endpointConfiguration)
+        DefineExpress(EndpointConfiguration endpointConfiguration)
         {
             #region ExpressMessageConvention
             ConventionsBuilder builder = endpointConfiguration.Conventions();

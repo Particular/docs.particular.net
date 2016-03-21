@@ -3,10 +3,10 @@
     using NServiceBus;
     using NServiceBus.Persistence;
 
-    public class ConfigureSagaPersistence
+    class ConfigureSagaPersistence
     {
 
-        public async void Simple(EndpointConfiguration endpointConfiguration)
+        async void Simple(EndpointConfiguration endpointConfiguration)
         {
             #region saga-configure
 

@@ -3,11 +3,10 @@
     using Ninject;
     using NServiceBus;
     
-    public class Containers_Ninject
+    class Containers_Ninject
     {
-        public void Simple()
+        Containers_Ninject(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region Ninject
 
             busConfiguration.UseContainer<NinjectBuilder>();
@@ -15,9 +14,8 @@
             #endregion
         }
 
-        public void Existing()
+        void Existing(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region Ninject_Existing
 
             StandardKernel kernel = new StandardKernel();

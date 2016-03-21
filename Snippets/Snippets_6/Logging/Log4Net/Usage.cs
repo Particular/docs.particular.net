@@ -7,9 +7,9 @@
     using NServiceBus.Log4Net;
     using NServiceBus.Logging;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage()
         {
             #region Log4NetInCode
 

@@ -7,9 +7,9 @@
     using NServiceBus.Transports.RabbitMQ;
     using NServiceBus.Transports.RabbitMQ.Routing;
 
-    public class Usage
+    class Usage
     {
-        void Basic(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-basic
             endpointConfiguration.UseTransport<RabbitMQTransport>();

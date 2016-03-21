@@ -5,11 +5,10 @@
 
     class Usage
     {
-        public void Foo()
+        Usage(BusConfiguration busConfiguration)
         {
             #region ConfiguringMsmqPersistence
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UsePersistence<MsmqPersistence>();
 
             #endregion

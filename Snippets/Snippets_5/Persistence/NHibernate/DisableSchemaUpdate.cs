@@ -6,11 +6,8 @@
 
     class DisableSchemaUpdate
     {
-        public void Usage()
+        DisableSchemaUpdate(BusConfiguration busConfiguration)
         {
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region DisableSchemaUpdate 5.0
 
             busConfiguration.UsePersistence<NHibernatePersistence>()

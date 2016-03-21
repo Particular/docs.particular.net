@@ -7,12 +7,11 @@
 
     class FromCode
     {
-        public FromCode()
+        FromCode(BusConfiguration busConfiguration)
         {
 #pragma warning disable 618
             #region EncryptionFromCode
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             string encryptionKeyIdentifier = "2015-10";
             byte[] encryptionKey = Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
             List<byte[]> expiredKeys = new List<byte[]>

@@ -8,9 +8,9 @@ namespace Snippets6.Routing
     using NServiceBus.Settings;
     using NServiceBus.Transports;
 
-    public class RoutingAPIs
+    class RoutingAPIs
     {
-        public void StaticRoutes(EndpointConfiguration endpointConfiguration)
+        void StaticRoutes(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-StaticRoutes-Endpoint
 
@@ -41,7 +41,7 @@ namespace Snippets6.Routing
             #endregion
         }
 
-        public void DynamicRoutes(EndpointConfiguration endpointConfiguration)
+        void DynamicRoutes(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-DynamicRoutes
 
@@ -59,7 +59,7 @@ namespace Snippets6.Routing
             #endregion
         }
 
-        public void CustomRoutingStore(EndpointConfiguration endpointConfiguration)
+        void CustomRoutingStore(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-CustomRoutingStore
 
@@ -69,7 +69,7 @@ namespace Snippets6.Routing
             #endregion
         }
 
-        public void StaticEndpointMapping(EndpointConfiguration endpointConfiguration)
+        void StaticEndpointMapping(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-StaticEndpointMapping
 
@@ -82,7 +82,7 @@ namespace Snippets6.Routing
             #endregion
         }
 
-        public void DynamicEndpointMapping(EndpointConfiguration endpointConfiguration)
+        void DynamicEndpointMapping(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-DynamicEndpointMapping
 
@@ -102,7 +102,7 @@ namespace Snippets6.Routing
             #endregion
         }
 
-        public void SpecialCaseTransportAddress(EndpointConfiguration endpointConfiguration)
+        void SpecialCaseTransportAddress(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-SpecialCaseTransportAddress
 
@@ -115,7 +115,7 @@ namespace Snippets6.Routing
         }
 
         // ReSharper disable once ConvertClosureToMethodGroup
-        public void TransportAddressRules(EndpointConfiguration endpointConfiguration)
+        void TransportAddressRules(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-TransportAddressRule
 
@@ -131,7 +131,7 @@ namespace Snippets6.Routing
             throw new NotImplementedException();
         }
 
-        public void FileBasedRouting(EndpointConfiguration endpointConfiguration)
+        void FileBasedRouting(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-FileBased-Config
 

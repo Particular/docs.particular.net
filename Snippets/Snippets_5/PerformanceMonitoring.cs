@@ -3,21 +3,19 @@
     using System;
     using NServiceBus;
 
-    public class PerformanceMonitoring
+    class PerformanceMonitoring
     {
 
-        public void EnablingCriticalTime()
+        void EnablingCriticalTime(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region enable-criticaltime
 
             busConfiguration.EnableCriticalTimePerformanceCounter();
 
             #endregion
         }
-        public void EnablingSla()
+        void EnablingSla(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region enable-sla
 
             busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));

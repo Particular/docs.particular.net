@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    public class AdditionalDeserializers
+    class AdditionalDeserializers
     {
-        void RegisterSerializers(EndpointConfiguration endpointConfiguration)
+        AdditionalDeserializers(EndpointConfiguration endpointConfiguration)
         {
             #region AdditionalDeserializers
             // configures XML serialization as default

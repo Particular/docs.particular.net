@@ -5,9 +5,9 @@
     using global::Raven.Client;
     using NServiceBus;
 
-    public class SharedSessionEndpointConfig
+    class SharedSessionEndpointConfig
     {
-        public async Task DoStuff(EndpointConfiguration endpointConfiguration, IAsyncDocumentSession someAsyncSession)
+        async Task DoStuff(EndpointConfiguration endpointConfiguration, IAsyncDocumentSession someAsyncSession)
         {
             #region 3to4-ravensharedsession
             Func<IAsyncDocumentSession> sessionFactory = () => someAsyncSession;

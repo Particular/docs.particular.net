@@ -3,13 +3,12 @@
     using System;
     using NServiceBus;
 
-    public class HostIdFixer_5_1
+    class HostIdFixer_5_1
     {
-        public void Start()
+        HostIdFixer_5_1(BusConfiguration busConfiguration)
         {
             #region HostIdFixer 5.1
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UniquelyIdentifyRunningInstance()
                 .UsingNames("endpointName", Environment.MachineName);
             // or

@@ -22,11 +22,9 @@ namespace Snippets5.Features
         }
 #endregion
 
-        void EndpointConfiguration()
+        void EndpointConfiguration(BusConfiguration busConfiguration)
         {
 #region EnableDisableFeatures
-            BusConfiguration busConfiguration = new BusConfiguration();
-            
             // enable delayed delivery feature since SLR relies on it
             busConfiguration.EnableFeature<DelayedDeliveryFeature>();
 

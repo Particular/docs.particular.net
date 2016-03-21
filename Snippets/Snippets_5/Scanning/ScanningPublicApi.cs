@@ -5,9 +5,9 @@
     using System.Reflection;
     using NServiceBus;
 
-    public class ScanningPublicApi
+    class ScanningPublicApi
     {
-        public void ScanningDefault()
+        void ScanningDefault()
         {
             #region ScanningDefault
 
@@ -16,10 +16,8 @@
             #endregion
         }
 
-        public void ScanningExcludeByName()
+        void ScanningExcludeByName(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region ScanningExcludeByName
 
             IExcludesBuilder excludesBuilder = AllAssemblies
@@ -30,11 +28,8 @@
             #endregion
         }
 
-        public void ScanningListOfTypes()
+        void ScanningListOfTypes(BusConfiguration busConfiguration, IEnumerable<Type> myTypes)
         {
-            IEnumerable<Type> myTypes = null;
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region ScanningListOfTypes
 
             busConfiguration.TypesToScan(myTypes);
@@ -42,14 +37,8 @@
             #endregion
         }
 
-        public void ScanningListOfAssemblies()
+        void ScanningListOfAssemblies(BusConfiguration busConfiguration, IEnumerable<Assembly> myListOfAssemblies, Assembly assembly2, Assembly assembly1)
         {
-            IEnumerable<Assembly> myListOfAssemblies = null;
-
-            Assembly assembly2 = null;
-            Assembly assembly1 = null;
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region ScanningListOfAssemblies
 
             busConfiguration.AssembliesToScan(myListOfAssemblies);
@@ -59,10 +48,8 @@
             #endregion
         }
 
-        public void ScanningIncludeByPattern()
+        void ScanningIncludeByPattern(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region ScanningIncludeByPattern
 
             IIncludesBuilder includesBuilder = AllAssemblies
@@ -74,10 +61,8 @@
             #endregion
         }
 
-        public void ScanningCustomDirectory()
+        void ScanningCustomDirectory(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region ScanningCustomDirectory
 
             busConfiguration.ScanAssembliesInDirectory(@"c:\my-custom-dir");
@@ -85,10 +70,8 @@
             #endregion
         }
 
-        public void ScanningMixingIncludeAndExclude()
+        void ScanningMixingIncludeAndExclude(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region ScanningMixingIncludeAndExclude
 
             IExcludesBuilder excludesBuilder = AllAssemblies
@@ -101,10 +84,8 @@
 
         }
 
-        public void ScanningUpgrade()
+        void ScanningUpgrade(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region 5to6ScanningUpgrade
 
             IExcludesBuilder excludesBuilder =

@@ -3,13 +3,11 @@ using NServiceBus;
 
 namespace Snippets5
 {
-    public class XmlSerializationIntegration
+    class XmlSerializationIntegration
     {
 
-        public void RawXml()
+        void RawXml(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region ConfigureRawXmlSerialization
 
             busConfiguration.UseSerialization<XmlSerializer>()

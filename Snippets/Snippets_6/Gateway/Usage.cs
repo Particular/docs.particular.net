@@ -3,16 +3,14 @@
     using NServiceBus;
     using NServiceBus.Features;
 
-    public class Usage
+    class Usage
     {
-        public Usage(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint)
         {
             #region GatewayConfiguration
             endpointConfiguration.EnableFeature<Gateway>();
 
             #endregion
-
-            IEndpointInstance endpoint = null;
 
             #region SendToSites
 

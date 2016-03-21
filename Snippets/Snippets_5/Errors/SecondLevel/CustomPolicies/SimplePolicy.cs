@@ -4,14 +4,10 @@
     using NServiceBus;
     using NServiceBus.SecondLevelRetries.Config;
 
-    public class SimplePolicy
+    class SimplePolicy
     {
-        public SimplePolicy()
+        SimplePolicy(BusConfiguration busConfiguration)
         {
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-
-
             #region SecondLevelRetriesCustomPolicy
 
             SecondLevelRetriesSettings retriesSettings = busConfiguration.SecondLevelRetries();

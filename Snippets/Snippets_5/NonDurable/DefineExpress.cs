@@ -2,13 +2,12 @@
 {
     using NServiceBus;
 
-    public class DefineExpress
+    class DefineExpress
     {
-        public DefineExpress()
+        DefineExpress(BusConfiguration busConfiguration)
         {
             #region ExpressMessageConvention
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             ConventionsBuilder builder = busConfiguration.Conventions();
             builder.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
 

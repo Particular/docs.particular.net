@@ -3,9 +3,9 @@
     using NServiceBus;
     using Spring.Context.Support;
 
-    public class Containers_Spring
+    class Containers_Spring
     {
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        Containers_Spring(EndpointConfiguration endpointConfiguration)
         {
             #region Spring
 
@@ -14,7 +14,7 @@
             #endregion
         }
 
-        public void Existing(EndpointConfiguration endpointConfiguration)
+        void Existing(EndpointConfiguration endpointConfiguration)
         {
             #region Spring_Existing
 

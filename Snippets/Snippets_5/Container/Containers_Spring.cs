@@ -3,11 +3,10 @@
     using NServiceBus;
     using Spring.Context.Support;
 
-    public class Containers_Spring
+    class Containers_Spring
     {
-        public void Simple()
+        Containers_Spring(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region Spring
 
             busConfiguration.UseContainer<SpringBuilder>();
@@ -15,10 +14,8 @@
             #endregion
         }
 
-        public void Existing()
+        void Existing(BusConfiguration busConfiguration)
         {
-
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region Spring_Existing
 
             GenericApplicationContext applicationContext = new GenericApplicationContext();

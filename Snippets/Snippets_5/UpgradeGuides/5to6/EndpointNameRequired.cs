@@ -4,7 +4,7 @@
     
     class EndpointNameRequired
     {
-        public EndpointNameRequired()
+        EndpointNameRequired()
         {
             #region 5to6-endpointNameRequired
             BusConfiguration busConfiguration = new BusConfiguration();

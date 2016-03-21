@@ -5,13 +5,12 @@
     using NServiceBus;
     using NServiceBus.Unicast.Transport;
 
-    public class Upgrade
+    class Upgrade
     {
-        public void CriticalError()
+        void CriticalError(BusConfiguration busConfiguration)
         {
             // ReSharper disable RedundantDelegateCreation
-
-            BusConfiguration busConfiguration = new BusConfiguration();
+            
             #region 5to6CriticalError
 
             busConfiguration.DefineCriticalErrorAction(
@@ -25,9 +24,8 @@
             // ReSharper restore RedundantDelegateCreation
         }
 
-        public void TransportTransactions()
+        void TransportTransactions(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region 5to6DoNotWrapHandlersInTransaction
 
             busConfiguration.Transactions()
@@ -36,10 +34,8 @@
             #endregion
         }
 
-        public void SuppressDistributedTransactions()
+        void SuppressDistributedTransactions(TransactionSettings transactionSettings)
         {
-            TransactionSettings transactionSettings = null;
-
             #region 5to6SuppressDistributedTransactions
 
             bool suppressDistributedTransactions = transactionSettings.SuppressDistributedTransactions;
@@ -47,10 +43,8 @@
             #endregion
         }
 
-        public void IsTransactional()
+        void IsTransactional(TransactionSettings transactionSettings)
         {
-            TransactionSettings transactionSettings = null;
-
             #region 5to6IsTransactional
 
             bool isTransactional = transactionSettings.IsTransactional;
@@ -58,9 +52,8 @@
             #endregion
         }
 
-        public void TransportTransactionIsolationLevelAndTimeout()
+        void TransportTransactionIsolationLevelAndTimeout(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region 5to6TransportTransactionScopeOptions
             busConfiguration.Transactions()
                 .IsolationLevel(IsolationLevel.RepeatableRead)
@@ -68,20 +61,16 @@
             #endregion
         }
 
-        public void WrapHandlersExecutionInATransactionScope()
+        void WrapHandlersExecutionInATransactionScope(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region 5to6WrapHandlersExecutionInATransactionScope
             busConfiguration.Transactions()
                 .WrapHandlersExecutionInATransactionScope();
             #endregion
         }
 
-        public void DelayedDelivery()
+        void DelayedDelivery(IBus bus,object message)
         {
-            IBus bus = null;
-            object message = null;
-
             #region 5to6delayed-delivery
             bus.Defer(TimeSpan.FromMinutes(30), message);
             // OR
@@ -89,36 +78,32 @@
             #endregion
         }
 
-        public void EnableTransactions()
+        void EnableTransactions(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region 5to6EnableTransactions
             busConfiguration.Transactions()
                 .Enable();
             #endregion
         }
 
-        public void DisableTransactions()
+        void DisableTransactions(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region 5to6DisableTransactions
             busConfiguration.Transactions()
                 .Disable();
             #endregion
         }
 
-        public void EnableDistributedTransactions()
+        void EnableDistributedTransactions(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region 5to6EnableDistributedTransactions
             busConfiguration.Transactions()
                 .EnableDistributedTransactions();
             #endregion
         }
 
-        public void DisableDistributedTransactions()
+        void DisableDistributedTransactions(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region 5to6DisableDistributedTransactions
             busConfiguration.Transactions()
                 .DisableDistributedTransactions();

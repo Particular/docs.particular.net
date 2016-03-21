@@ -3,12 +3,10 @@
     using NServiceBus;
     using NServiceBus.Transports.SQLServer;
 
-    public class MultiDb
+    class MultiDb
     {
-        void CurrentEndpointSchema()
+        void CurrentEndpointSchema(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region sqlserver-multidb-current-endpoint-schema 2.1
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -17,10 +15,8 @@
             #endregion
         }
 
-        void CurrentEndpointConnectionString()
+        void CurrentEndpointConnectionString(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region sqlserver-multidb-current-endpoint-connection-string
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -29,10 +25,8 @@
             #endregion
         }
 
-        void OtherEndpointConnectionParamsPush()
+        void OtherEndpointConnectionParamsPush(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region sqlserver-multidb-other-endpoint-connection-push [2.1,3.0]
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -48,10 +42,8 @@
             #endregion
         }
 
-        void OtherEndpointConnectionParamsPull()
+        void OtherEndpointConnectionParamsPull(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region sqlserver-multidb-other-endpoint-connection-pull 2.1
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -64,10 +56,8 @@
             #endregion
         }
 
-        void RedirectAuditAndError()
+        void RedirectAuditAndError(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region sqlserver-multidb-redirect-audit-error 2.1
 
             busConfiguration.UseTransport<SqlServerTransport>()

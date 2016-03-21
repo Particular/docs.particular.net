@@ -8,7 +8,7 @@
 
     class ConfiguringNHibernate
     {
-        public void Version_5_2(EndpointConfiguration endpointConfiguration)
+        void Version_5_2(EndpointConfiguration endpointConfiguration)
         {
             #region ConfiguringNHibernate
 
@@ -33,7 +33,7 @@
         }
 
 
-        public void CustomCommonConfiguration(EndpointConfiguration endpointConfiguration)
+        void CustomCommonConfiguration(EndpointConfiguration endpointConfiguration)
         {
             #region CommonNHibernateConfiguration
 
@@ -53,7 +53,7 @@
             #endregion
         }
 
-        public void SpecificNHibernateConfiguration(EndpointConfiguration endpointConfiguration)
+        void SpecificNHibernateConfiguration(EndpointConfiguration endpointConfiguration)
         {
             #region SpecificNHibernateConfiguration
 
@@ -71,12 +71,12 @@
                 .UseGatewayDeduplicationConfiguration(nhConfiguration);
             endpointConfiguration.UsePersistence<NHibernatePersistence>()
                 .UseTimeoutStorageConfiguration(nhConfiguration);
+
             #endregion
-
         }
-        
 
-        public void CustomCommonConfigurationWarning(EndpointConfiguration endpointConfiguration)
+
+        void CustomCommonConfigurationWarning(EndpointConfiguration endpointConfiguration)
         {
             #region CustomCommonNhibernateConfigurationWarning
 
@@ -90,6 +90,7 @@
 
             endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>()
                 .UseConfiguration(nhConfiguration);
+
             #endregion
         }
     }

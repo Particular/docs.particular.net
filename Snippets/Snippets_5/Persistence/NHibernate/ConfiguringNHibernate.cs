@@ -8,11 +8,9 @@
 
     class ConfiguringNHibernate
     {
-        public void Version_5_0()
+        void Version_5_0(BusConfiguration busConfiguration)
         {
 #pragma warning disable 618
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             #region ConfiguringNHibernate 5.0
 
@@ -40,11 +38,9 @@
 #pragma warning restore 618
         }
 
-        public void Version_5_2()
+        void Version_5_2(BusConfiguration busConfiguration)
         {
             #region ConfiguringNHibernate 5.2
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             //Use NHibernate for all persistence concerns
             busConfiguration.UsePersistence<NHibernatePersistence>();
@@ -67,11 +63,9 @@
         }
 
 
-        public void CustomCommonConfiguration()
+        void CustomCommonConfiguration(BusConfiguration busConfiguration)
         {
             #region CommonNHibernateConfiguration
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             Configuration nhConfiguration = new Configuration();
             nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
@@ -84,11 +78,9 @@
             #endregion
         }
 
-        public void SpecificNHibernateConfiguration()
+        void SpecificNHibernateConfiguration(BusConfiguration busConfiguration)
         {
             #region SpecificNHibernateConfiguration
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             Configuration nhConfiguration = new Configuration();
             nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
@@ -104,11 +96,9 @@
         }
         
 
-        public void CustomCommonConfigurationWarning()
+        void CustomCommonConfigurationWarning(BusConfiguration busConfiguration)
         {
             #region CustomCommonNhibernateConfigurationWarning
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             Configuration nhConfiguration = new Configuration();
             nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";

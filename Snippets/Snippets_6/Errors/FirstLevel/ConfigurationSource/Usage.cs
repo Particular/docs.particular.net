@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region FLRConfigurationSourceUsage
             endpointConfiguration.CustomConfigurationSource(new ConfigurationSource());

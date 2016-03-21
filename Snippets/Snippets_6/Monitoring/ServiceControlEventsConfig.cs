@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    public class ServiceControlEventsConfig
+    class ServiceControlEventsConfig
     {
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        ServiceControlEventsConfig(EndpointConfiguration endpointConfiguration)
         {
             #region ServiceControlEventsConfig 
 

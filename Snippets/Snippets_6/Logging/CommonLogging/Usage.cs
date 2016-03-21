@@ -4,9 +4,9 @@
     using Common.Logging.Simple;
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage()
         {
             #region CommonLoggingInCode
 

@@ -3,7 +3,7 @@
     using System;
     using NServiceBus;
 
-    public class DiscardingOldMessages
+    class DiscardingOldMessages
     {
 
         #region DiscardingOldMessagesWithAnAttribute
@@ -11,7 +11,7 @@
         public class MyMessage { }
         #endregion
 
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        DiscardingOldMessages(EndpointConfiguration endpointConfiguration)
         {
             #region DiscardingOldMessagesWithCode
             endpointConfiguration.Conventions()

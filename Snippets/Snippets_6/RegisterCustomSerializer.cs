@@ -8,12 +8,10 @@
     using NServiceBus.Serialization;
     using NServiceBus.Settings;
 
-    public class RegisterCustomSerializer
+    class RegisterCustomSerializer
     {
-        public void Customize()
+        void Customize(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = null;
-
             #region RegisterCustomSerializer
 
             endpointConfiguration.UseSerialization<MyCustomSerializerDefinition>();

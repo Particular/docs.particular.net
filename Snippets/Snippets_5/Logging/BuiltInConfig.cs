@@ -2,10 +2,10 @@
 {
     using NServiceBus.Logging;
 
-    public class BuiltInConfig
+    class BuiltInConfig
     {
 
-        public void ChangingDefaults()
+        void ChangingDefaults()
         {
 
             #region OverrideLoggingDefaultsInCode
@@ -16,7 +16,7 @@
 
             #endregion
         }
-        public void ChangingLevel()
+        void ChangingLevel()
         {
 
             #region OverrideLoggingLevelInCode

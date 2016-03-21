@@ -4,9 +4,9 @@
     using System.Transactions;
     using NServiceBus;
 
-    public class Transactions
+    class Transactions
     {
-        public void Unreliable(BusConfiguration busConfiguration)
+        void Unreliable(BusConfiguration busConfiguration)
         {
             #region TransactionsDisable
             busConfiguration.Transactions()
@@ -14,7 +14,7 @@
             #endregion
         }
 
-        public void TransportTransactionReceiveOnly(BusConfiguration busConfiguration)
+        void TransportTransactionReceiveOnly(BusConfiguration busConfiguration)
         {
             #region TransportTransactionReceiveOnly
             busConfiguration.Transactions()
@@ -22,7 +22,7 @@
             #endregion
         }
 
-        public void TransportTransactionAtomicSendsWithReceive(BusConfiguration busConfiguration)
+        void TransportTransactionAtomicSendsWithReceive(BusConfiguration busConfiguration)
         {
             #region TransportTransactionAtomicSendsWithReceive
             busConfiguration.Transactions()
@@ -30,7 +30,7 @@
             #endregion
         }
 
-        public void TransportTransactionScope(BusConfiguration busConfiguration)
+        void TransportTransactionScope(BusConfiguration busConfiguration)
         {
             #region TransportTransactionScope
             busConfiguration.Transactions()
@@ -39,7 +39,7 @@
             #endregion
         }
 
-        public void TransportTransactionsWithScope(BusConfiguration busConfiguration)
+        void TransportTransactionsWithScope(BusConfiguration busConfiguration)
         {
             #region TransactionsWrapHandlersExecutionInATransactionScope
             busConfiguration.Transactions()
@@ -50,7 +50,7 @@
 
 
 
-        public void CustomTransactionTimeout(BusConfiguration busConfiguration)
+        void CustomTransactionTimeout(BusConfiguration busConfiguration)
         {
             #region CustomTransactionTimeout
             busConfiguration.Transactions()
@@ -58,7 +58,7 @@
             #endregion
         }
 
-        public void CustomTransactionIsolationLevel(BusConfiguration busConfiguration)
+        void CustomTransactionIsolationLevel(BusConfiguration busConfiguration)
         {
             #region CustomTransactionIsolationLevel
             busConfiguration.Transactions()

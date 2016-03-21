@@ -2,9 +2,9 @@ namespace Snippets6.PubSub.WithConvention
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region DefiningEventsAs
             ConventionsBuilder conventions = endpointConfiguration.Conventions();

@@ -2,12 +2,10 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region FLRConfigurationSourceUsage
             busConfiguration.CustomConfigurationSource(new ConfigurationSource());
             #endregion

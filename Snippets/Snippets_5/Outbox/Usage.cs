@@ -2,13 +2,11 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(BusConfiguration busConfiguration)
         {
             #region OutboxEnablineInCode
-
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.EnableOutbox();
 

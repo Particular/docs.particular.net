@@ -3,22 +3,20 @@
     using NServiceBus;
     using NServiceBus.DataBus;
 
-    public class Usage
+    class Usage
     {
 
-        public void Simple()
+        void Simple(BusConfiguration busConfiguration)
         {
             #region AzureDataBus
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseDataBus<AzureDataBus>();
 
             #endregion
         }
 
-        public void Complex()
+        void Complex(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             string azureStorageConnectionString = "";
             string basePathWithinContainer = "";
             string containerName = "";

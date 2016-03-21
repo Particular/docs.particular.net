@@ -10,9 +10,9 @@
     using NServiceBus;
     using NServiceBus.Serialization;
 
-    public class NewtonsoftSerializerUsage
+    class NewtonsoftSerializerUsage
     {
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        NewtonsoftSerializerUsage(EndpointConfiguration endpointConfiguration)
         {
             #region NewtonsoftSerialization 0.3-pre
 
@@ -21,7 +21,7 @@
             #endregion
         }
 
-        public void CustomSettings(EndpointConfiguration endpointConfiguration)
+        void CustomSettings(EndpointConfiguration endpointConfiguration)
         {
             #region NewtonsoftCustomSettings 0.3-pre
 
@@ -42,7 +42,7 @@
             #endregion
         }
 
-        public void CustomReader(EndpointConfiguration endpointConfiguration)
+        void CustomReader(EndpointConfiguration endpointConfiguration)
         {
             #region NewtonsoftCustomReader 0.3-pre
 
@@ -56,7 +56,7 @@
             #endregion
         }
 
-        public void CustomWriter(EndpointConfiguration endpointConfiguration)
+        void CustomWriter(EndpointConfiguration endpointConfiguration)
         {
             #region NewtonsoftCustomWriter 0.3-pre
 
@@ -72,7 +72,8 @@
 
             #endregion
         }
-        public void Bson(EndpointConfiguration endpointConfiguration)
+
+        void Bson(EndpointConfiguration endpointConfiguration)
         {
             #region NewtonsoftBson 0.3-pre
 

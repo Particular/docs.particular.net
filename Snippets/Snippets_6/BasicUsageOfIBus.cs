@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    public class BasicUsageOfIBus
+    class BasicUsageOfIBus
     {
         async Task Send(EndpointConfiguration endpointConfiguration)
         {
@@ -24,19 +24,15 @@
         }
         #endregion
 
-        async Task SendInterface()
+        async Task SendInterface(IEndpointInstance endpoint)
         {
-            IEndpointInstance endpoint = null;
-
             #region BasicSendInterface
             await endpoint.Send<IMyMessage>(m => m.MyProperty = "Hello world");
             #endregion
         }
 
-        async Task SetDestination()
+        async Task SetDestination(IEndpointInstance endpoint)
         {
-            IEndpointInstance endpoint = null;
-
             #region BasicSendSetDestination
             SendOptions options = new SendOptions();
             options.SetDestination("MyDestination");
@@ -46,10 +42,8 @@
             #endregion
         }
 
-        async Task SpecificInstance()
+        async Task SpecificInstance(IEndpointInstance endpoint)
         {
-            IEndpointInstance endpoint = null;
-
             #region BasicSendSpecificInstance
             SendOptions options = new SendOptions();
             options.RouteToSpecificInstance("MyInstance");
@@ -57,10 +51,8 @@
             #endregion
         }
 
-        async Task ThisEndpoint()
+        async Task ThisEndpoint(IEndpointInstance endpoint)
         {
-            IEndpointInstance endpoint = null;
-
             #region BasicSendToAnyInstance
             SendOptions options = new SendOptions();
             options.RouteToThisEndpoint();
@@ -70,10 +62,8 @@
             #endregion
         }
 
-        async Task ThisInstance()
+        async Task ThisInstance(IEndpointInstance endpoint)
         {
-            IEndpointInstance endpoint = null;
-
             #region BasicSendToThisInstance
             SendOptions options = new SendOptions();
             options.RouteToThisInstance();
@@ -81,10 +71,8 @@
             #endregion
         }
 
-        async Task SendReplyToThisInstance()
+        async Task SendReplyToThisInstance(IEndpointInstance endpoint)
         {
-            IEndpointInstance endpoint = null;
-
             #region BasicSendReplyToThisInstance
             SendOptions options = new SendOptions();
             options.RouteReplyToThisInstance();
@@ -92,10 +80,8 @@
             #endregion
         }
 
-        async Task SendReplyToAnyInstance()
+        async Task SendReplyToAnyInstance(IEndpointInstance endpoint)
         {
-            IEndpointInstance endpoint = null;
-
             #region BasicSendReplyToAnyInstance
             SendOptions options = new SendOptions();
             options.RouteReplyToAnyInstance();
@@ -103,10 +89,8 @@
             #endregion
         }
 
-        async Task SendReplyTo()
+        async Task SendReplyTo(IEndpointInstance endpoint)
         {
-            IEndpointInstance endpoint = null;
-
             #region BasicSendReplyToDestination
             SendOptions options = new SendOptions();
             options.RouteReplyTo("MyDestination");
@@ -114,10 +98,8 @@
             #endregion
         }
 
-        async Task ReplySendReplyToThisInstance()
+        async Task ReplySendReplyToThisInstance(IMessageHandlerContext context)
         {
-            IMessageHandlerContext context = null;
-
             #region BasicReplyReplyToThisInstance
             ReplyOptions options = new ReplyOptions();
             options.RouteReplyToThisInstance();
@@ -125,10 +107,8 @@
             #endregion
         }
 
-        async Task ReplySendReplyToAnyInstance()
+        async Task ReplySendReplyToAnyInstance(IMessageHandlerContext context)
         {
-            IMessageHandlerContext context = null;
-
             #region BasicReplyReplyToAnyInstance
             ReplyOptions options = new ReplyOptions();
             options.RouteReplyToAnyInstance();
@@ -136,10 +116,8 @@
             #endregion
         }
 
-        async Task ReplySendReplyTo()
+        async Task ReplySendReplyTo(IMessageHandlerContext context)
         {
-            IMessageHandlerContext context = null;
-
             #region BasicReplyReplyToDestination
             ReplyOptions options = new ReplyOptions();
             options.RouteReplyTo("MyDestination");

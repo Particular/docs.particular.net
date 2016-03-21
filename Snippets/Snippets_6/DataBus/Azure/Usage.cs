@@ -3,10 +3,10 @@
     using NServiceBus;
     using NServiceBus.DataBus;
 
-    public class Usage
+    class Usage
     {
 
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region AzureDataBus
             endpointConfiguration.UseDataBus<AzureDataBus>();
@@ -14,7 +14,7 @@
             #endregion
         }
 
-        public void Complex(EndpointConfiguration endpointConfiguration)
+        void Complex(EndpointConfiguration endpointConfiguration)
         {
             string azureStorageConnectionString = "";
             string basePathWithinContainer = "";

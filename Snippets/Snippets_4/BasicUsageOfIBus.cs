@@ -33,28 +33,22 @@
         }
         #endregion
 
-        void SendInterface()
+        void SendInterface(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicSendInterface
             bus.Send<IMyMessage>(m => m.MyProperty = "Hello world");
             #endregion
         }
 
-        void SetDestination()
+        void SetDestination(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicSendSetDestination
             bus.Send(Address.Parse("MyDestination"), new MyMessage());
             #endregion
         }
 
-        void ThisEndpoint()
+        void ThisEndpoint(IBus bus)
         {
-            IBus bus = null;
-
             #region BasicSendToAnyInstance
             bus.SendLocal(new MyMessage());
             #endregion

@@ -3,13 +3,10 @@
     using NServiceBus;
     using NServiceBus.Persistence;
 
-    public class ConfigureSagaPersistence
+    class ConfigureSagaPersistence
     {
-
-        public void Simple()
+        ConfigureSagaPersistence(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region saga-configure
 
             busConfiguration.UsePersistence<PersistenceToUseGoesHere>();

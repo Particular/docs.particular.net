@@ -4,12 +4,10 @@
 
     class PublishAtStartup
     {
-        public void Publish()
+        void Publish(BusConfiguration busConfiguration)
         {
             #region publishAtStartup
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            //Other config
             using (IBus bus = Bus.Create(busConfiguration).Start())
             {
                 bus.Publish(new MyEvent());
@@ -19,7 +17,7 @@
         }
     }
 
-    public class MyEvent
+    class MyEvent
     {
     }
 }

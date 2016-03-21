@@ -2,12 +2,11 @@
 {
     using NServiceBus;
 
-    public class MutatorRegistration
+    class MutatorRegistration
     {
-        public void Simple()
+        MutatorRegistration(BusConfiguration busConfiguration)
         {
             #region MutatorRegistration
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<MyMutator>(DependencyLifecycle.InstancePerCall));
             #endregion
         }

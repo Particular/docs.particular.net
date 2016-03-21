@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    public class XmlSerializerUsage
+    class XmlSerializerUsage
     {
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        XmlSerializerUsage(EndpointConfiguration endpointConfiguration)
         {
             #region XmlSerialization
 

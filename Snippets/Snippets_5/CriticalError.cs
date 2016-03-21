@@ -4,7 +4,7 @@
     using System.Threading;
     using NServiceBus;
 
-    public class CriticalErrorConfig
+    class CriticalErrorConfig
     {
         CriticalErrorConfig(BusConfiguration busConfiguration)
         {

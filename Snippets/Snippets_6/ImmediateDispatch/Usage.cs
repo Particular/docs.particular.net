@@ -6,10 +6,8 @@
 
     class Usage
     {
-        public async Task RequestImmediateDispatch()
+        async Task RequestImmediateDispatch(IPipelineContext context)
         {
-            IPipelineContext context = null;
-
             #region RequestImmediateDispatch
             SendOptions options = new SendOptions();
             options.RequireImmediateDispatch();
@@ -17,10 +15,8 @@
             #endregion
         }
 
-        public async Task RequestImmediateDispatchUsingScope()
+        async Task RequestImmediateDispatchUsingScope(IPipelineContext context)
         {
-            IPipelineContext context = null;
-
             #region RequestImmediateDispatchUsingScope
             using (new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
             {

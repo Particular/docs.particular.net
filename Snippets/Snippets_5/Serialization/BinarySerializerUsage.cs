@@ -2,12 +2,10 @@
 {
     using NServiceBus;
 
-    public class BinarySerializerUsage
+    class BinarySerializerUsage
     {
-        public void Simple()
+        BinarySerializerUsage(BusConfiguration busConfiguration)
         {
-
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region BinarySerialization
 
             busConfiguration.UseSerialization<BinarySerializer>();

@@ -2,11 +2,10 @@
 {
     using NServiceBus;
 
-    public class Usage
+    class Usage
     {
-        public Usage()
+        Usage(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = null;
             #region DefineMessageWithLargePayloadUsingConvention
 
             ConventionsBuilder conventions = busConfiguration.Conventions();

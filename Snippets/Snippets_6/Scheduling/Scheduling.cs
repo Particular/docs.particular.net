@@ -6,9 +6,8 @@
 
     class Scheduling
     {
-        public void ScheduleTask()
+        Scheduling(IEndpointInstance endpointInstance)
         {
-            IEndpointInstance endpointInstance = null;
             #region ScheduleTask
             // To send a message every 5 minutes
             endpointInstance.ScheduleEvery(TimeSpan.FromMinutes(5), b => b.Send(new CallLegacySystem()));

@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    public class HandlerOrdering
+    class HandlerOrdering
     {
-        public void Simple(EndpointConfiguration endpointConfiguration)
+        void Simple(EndpointConfiguration endpointConfiguration)
         {
             #region HandlerOrderingWithCode
 
@@ -13,7 +13,7 @@
             #endregion
         }
 
-        public void SpecifyingFirst(EndpointConfiguration endpointConfiguration)
+        void SpecifyingFirst(EndpointConfiguration endpointConfiguration)
         {
             #region HandlerOrderingWithFirst
 
@@ -22,7 +22,7 @@
             #endregion
         }
 
-        public void SpecifyingOrder(EndpointConfiguration endpointConfiguration)
+        void SpecifyingOrder(EndpointConfiguration endpointConfiguration)
         {
             #region HandlerOrderingWithMultiple
 

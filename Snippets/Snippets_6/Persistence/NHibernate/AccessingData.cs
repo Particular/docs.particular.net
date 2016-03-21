@@ -4,7 +4,7 @@
     using global::NHibernate;
     using NServiceBus;
 
-    public class AccessingData
+    class AccessingData
     {
         public class OrderMessage : IMessage
         {
@@ -14,19 +14,19 @@
         {
         }
 
-        public class ViaContext
+        #region NHibernateAccessingDataViaContext
+
+        public class OrderHandler : IHandleMessages<OrderMessage>
         {
-            #region NHibernateAccessingDataViaContext
-            public class OrderHandler : IHandleMessages<OrderMessage>
+            public Task Handle(OrderMessage message, IMessageHandlerContext context)
             {
-                public Task Handle(OrderMessage message, IMessageHandlerContext context)
-                {
-                    ISession nhibernateSession = context.SynchronizedStorageSession.Session();
-                    nhibernateSession.Save(new Order());
-                    return Task.FromResult(0);
-                }
+                ISession nhibernateSession = context.SynchronizedStorageSession.Session();
+                nhibernateSession.Save(new Order());
+                return Task.FromResult(0);
             }
-            #endregion
         }
+
+        #endregion
+
     }
 }

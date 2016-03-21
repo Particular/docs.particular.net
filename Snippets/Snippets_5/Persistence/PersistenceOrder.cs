@@ -5,12 +5,11 @@
 
     class PersistenceOrder
     {
-        void Setup_5_0()
+        void Setup_5_0(BusConfiguration busConfiguration)
         {
 #pragma warning disable 618
 
             #region PersistenceOrder_Correct 5.0
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.UsePersistence<RavenDBPersistence>();
             
@@ -23,10 +22,9 @@
 #pragma warning restore 618
         }
 
-        void Setup_5_2()
+        void Setup_5_2(BusConfiguration busConfiguration)
         {
             #region PersistenceOrder_Correct 5.2
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.UsePersistence<RavenDBPersistence>();
 
@@ -37,12 +35,11 @@
             #endregion
         }
 
-        void Setup3_5_0()
+        void Setup3_5_0(BusConfiguration busConfiguration)
         {
 #pragma warning disable 618
 
             #region PersistenceOrder_Explicit 5.0
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.UsePersistence<NHibernatePersistence>()
                 .For(Storage.Outbox);
@@ -57,10 +54,9 @@
 
         }
 
-        void Setup3_5_2()
+        void Setup3_5_2(BusConfiguration busConfiguration)
         {
             #region PersistenceOrder_Explicit 5.2
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 
@@ -72,12 +68,11 @@
             #endregion
         }
 
-        void Setup2_5_0()
+        void Setup2_5_0(BusConfiguration busConfiguration)
         {
 #pragma warning disable 618
 
             #region PersistenceOrder_Incorrect 5.0
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.UsePersistence<NHibernatePersistence>()
                 .For(Storage.Outbox);
@@ -91,10 +86,9 @@
 #pragma warning restore 618
         }
 
-        void Setup2_5_2()
+        void Setup2_5_2(BusConfiguration busConfiguration)
         {
             #region PersistenceOrder_Incorrect 5.2
-            BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 

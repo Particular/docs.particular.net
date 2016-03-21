@@ -37,11 +37,8 @@ namespace Snippets4.Host
         #endregion
 
 
-        void DefaultActionLogging()
+        void DefaultActionLogging(string errorMessage, Exception exception)
         {
-            string errorMessage = null;
-            Exception exception = null;
-
             #region DefaultCriticalErrorActionLogging
 
             LogManager.GetLogger("NServiceBus").Fatal(errorMessage, exception);
@@ -70,11 +67,8 @@ namespace Snippets4.Host
             #endregion
         }
 
-        void DefaultHostAction()
+        void DefaultHostAction(string errorMessage, Exception exception)
         {
-            string errorMessage = null;
-            Exception exception = null;
-
             //https://github.com/Particular/NServiceBus/blob/support-4.7/src/NServiceBus.Hosting.Windows/WindowsHost.cs
 
             #region DefaultHostCriticalErrorAction

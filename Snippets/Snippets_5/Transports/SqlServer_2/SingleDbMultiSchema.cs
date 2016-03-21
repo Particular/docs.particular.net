@@ -3,11 +3,10 @@
     using NServiceBus;
     using NServiceBus.Transports.SQLServer;
 
-    public class SingleDbMultiSchema
+    class SingleDbMultiSchema
     {
-        void CurrentEndpointSchema()
+        void CurrentEndpointSchema(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region sqlserver-singledb-multischema 2.1
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -16,10 +15,8 @@
             #endregion
         }
 
-        void OtherEndpointConnectionParamsPush()
+        void OtherEndpointConnectionParamsPush(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region sqlserver-singledb-multidb-push [2.1,2.0]
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -33,9 +30,8 @@
             #endregion
         }
 
-        void OtherEndpointConnectionParamsPull()
+        void OtherEndpointConnectionParamsPull(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region sqlserver-singledb-multidb-pull 2.1
 
             busConfiguration.UseTransport<SqlServerTransport>()

@@ -3,13 +3,12 @@
     using NServiceBus;
     using NServiceBus.Features;
 
-    public class DisableWithCode
+    class DisableWithCode
     {
-        public DisableWithCode()
+        DisableWithCode(BusConfiguration busConfiguration)
         {
             #region DisableSlrWithCode
 
-            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.DisableFeature<SecondLevelRetries>();
 
             #endregion
