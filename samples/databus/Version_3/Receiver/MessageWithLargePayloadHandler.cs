@@ -1,12 +1,14 @@
-using System;
+using log4net;
 using NServiceBus;
 
 #region MessageWithLargePayloadHandler
 public class MessageWithLargePayloadHandler : IHandleMessages<MessageWithLargePayload>
 {
+    static ILog log = LogManager.GetLogger(typeof(MessageWithLargePayloadHandler));
+
     public void Handle(MessageWithLargePayload message)
     {
-        Console.WriteLine("Message received, size of blob property: " + message.LargeBlob.Value.Length + " Bytes");
+        log.Info("Message received, size of blob property: " + message.LargeBlob.Value.Length + " Bytes");
     }
 }
 #endregion

@@ -28,7 +28,6 @@ class Program
     
     static void SendOrder(IBus bus)
     {
-
         Console.WriteLine("Press '1' to send PlaceOrder - defer message handling");
         Console.WriteLine("Press '2' to send PlaceDelayedOrder - defer message delivery");
         Console.WriteLine("Press enter key to exit");

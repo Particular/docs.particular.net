@@ -1,8 +1,9 @@
-﻿using System;
+﻿using log4net;
 using NServiceBus;
 
 public class PlaceDelayedOrderSenderHandler : IHandleMessages<PlaceDelayedOrder>
 {
+    static ILog log = LogManager.GetLogger(typeof(PlaceDelayedOrderSenderHandler));
     IBus bus;
 
     public PlaceDelayedOrderSenderHandler(IBus bus)
@@ -15,7 +16,7 @@ public class PlaceDelayedOrderSenderHandler : IHandleMessages<PlaceDelayedOrder>
     {
         bus.Send("Samples.DelayedDelivery.Server", message);
 
-        Console.WriteLine("[Defer Message Delivery] Sent a new PlaceDelayedOrder message with id: {0}", message.Id.ToString("N"));
+        log.InfoFormat("[Defer Message Delivery] Sent a new PlaceDelayedOrder message with id: {0}", message.Id.ToString("N"));
     }
     #endregion
 }

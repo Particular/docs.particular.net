@@ -1,10 +1,12 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using NServiceBus.Logging;
 
 public class CompleteOrderHandler : IHandleMessages<CompleteOrder>
 {
+    static ILog log = LogManager.GetLogger(typeof(CompleteOrderHandler));
+
     public void Handle(CompleteOrder message)
     {
-        Console.WriteLine("Received CompleteOrder with credit card number " + message.CreditCard);
+        log.Info("Received CompleteOrder with credit card number " + message.CreditCard);
     }
 }

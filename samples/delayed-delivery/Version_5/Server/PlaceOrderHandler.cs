@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using NServiceBus;
+using NServiceBus.Logging;
 
 public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 {
+    static ILog log = LogManager.GetLogger(typeof(PlaceOrderHandler));
     static List<Guid> wasMessageDelayed = new List<Guid>();
     IBus bus;
 
@@ -18,15 +20,15 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
         if (ShouldMessageBeDelayed(message.Id))
         {
             bus.Defer(TimeSpan.FromSeconds(5), message);
-            Console.WriteLine(@"[Defer Message Handling] Deffering Message with Id: {0}", message.Id);
+            log.InfoFormat("[Defer Message Handling] Deffering Message with Id: {0}", message.Id);
             return;
         }
 
-        Console.WriteLine(@"[Defer Message Handling] Order for Product:{0} placed with id: {1}", message.Product, message.Id);
+        log.InfoFormat("[Defer Message Handling] Order for Product:{0} placed with id: {1}", message.Product, message.Id);
     }
     #endregion
 
-    private bool ShouldMessageBeDelayed(Guid id)
+    bool ShouldMessageBeDelayed(Guid id)
     {
         if (wasMessageDelayed.Contains(id))
         {

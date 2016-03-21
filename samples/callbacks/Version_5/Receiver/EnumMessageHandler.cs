@@ -1,9 +1,11 @@
-using System;
 using NServiceBus;
+using NServiceBus.Logging;
 
 #region EnumMessageHandler
+
 public class EnumMessageHandler : IHandleMessages<EnumMessage>
 {
+    static ILog log = LogManager.GetLogger<EnumMessageHandler>();
     IBus bus;
 
     public EnumMessageHandler(IBus bus)
@@ -13,10 +15,9 @@ public class EnumMessageHandler : IHandleMessages<EnumMessage>
 
     public void Handle(EnumMessage message)
     {
-        Console.WriteLine("Message received, Returning");
+        log.Info("Message received, Returning");
         bus.Return(Status.OK);
     }
 }
-
 
 #endregion

@@ -1,9 +1,10 @@
-using System;
+using log4net;
 using NServiceBus;
 
 #region ObjectMessageHandler
 public class ObjectMessageHandler : IHandleMessages<ObjectMessage>
 {
+    static ILog log = LogManager.GetLogger(typeof(ObjectMessageHandler));
     IBus bus;
 
     public ObjectMessageHandler(IBus bus)
@@ -13,7 +14,7 @@ public class ObjectMessageHandler : IHandleMessages<ObjectMessage>
 
     public void Handle(ObjectMessage message)
     {
-        Console.WriteLine("Message received, Returning");
+        log.Info("Message received, Returning");
         bus.Reply(new ObjectResponseMessage
         {
             Property = "PropertyValue"

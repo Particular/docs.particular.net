@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using NServiceBus;
+using NServiceBus.Logging;
+
 #region Handler
 public class MyMessageHandler : IHandleMessages<MyMessage>
 {
+    static ILog log = LogManager.GetLogger(typeof(MyMessageHandler));
     IBus bus;
     static ConcurrentDictionary<Guid, string> Last = new ConcurrentDictionary<Guid, string>();
 

@@ -1,9 +1,10 @@
-using System;
+using log4net;
 using NServiceBus;
 
 #region IntMessageHandler
 public class IntMessageHandler : IHandleMessages<IntMessage>
 {
+    static ILog log = LogManager.GetLogger(typeof(IntMessageHandler));
     IBus bus;
 
     public IntMessageHandler(IBus bus)
@@ -13,7 +14,7 @@ public class IntMessageHandler : IHandleMessages<IntMessage>
 
     public void Handle(IntMessage message)
     {
-        Console.WriteLine("Message received, Returning");
+        log.Info("Message received, Returning");
         bus.Return(10);
     }
 }

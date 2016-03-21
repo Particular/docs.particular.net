@@ -2,14 +2,17 @@
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
+
 #region Handler
 public class MyMessageHandler : IHandleMessages<MyMessage>
 {
+    static ILog log = LogManager.GetLogger<MyMessageHandler>();
     static ConcurrentDictionary<Guid, string> Last = new ConcurrentDictionary<Guid, string>();
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        Console.WriteLine($"ReplyToAddress: {context.ReplyToAddress} MessageId:{context.MessageId}");
+        log.Info($"ReplyToAddress: {context.ReplyToAddress} MessageId:{context.MessageId}");
         
         string numOfRetries;
         if (context.MessageHeaders.TryGetValue(Headers.Retries, out numOfRetries))
@@ -19,7 +22,7 @@ public class MyMessageHandler : IHandleMessages<MyMessage>
 
             if (numOfRetries != value)
             {
-                Console.WriteLine("This is second level retry number {0}", numOfRetries);
+                log.InfoFormat("This is second level retry number {0}", numOfRetries);
                 Last.AddOrUpdate(message.Id, numOfRetries, (key, oldValue) => numOfRetries);
             }
         }
