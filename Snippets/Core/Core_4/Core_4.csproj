@@ -110,6 +110,9 @@
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="Container\Custom\MyCustomObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
+    <Compile Include="CustomChecks.cs" />
+    <Compile Include="DataBus\CleanupStrategy\Define.cs" />
+    <Compile Include="DataBus\CleanupStrategy\Usage.cs" />
     <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
@@ -275,6 +278,9 @@
       <Project>{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}</Project>
       <Name>Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

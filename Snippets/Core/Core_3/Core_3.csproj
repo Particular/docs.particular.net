@@ -78,6 +78,9 @@
     <Compile Include="Container\Custom\MyCustomObjectBuilder.cs" />
     <Compile Include="Container\Custom\Usage.cs" />
     <Compile Include="Container\MyService.cs" />
+    <Compile Include="CustomChecks.cs" />
+    <Compile Include="DataBus\CleanupStrategy\Define.cs" />
+    <Compile Include="DataBus\CleanupStrategy\Usage.cs" />
     <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="EndpointStartAndStop.cs" />
