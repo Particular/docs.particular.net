@@ -23,8 +23,7 @@
             #region Hosting-Startup
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration("TheEndpointName");
             //Apply configuration
-            IInitializableEndpoint initializableEndpoint = Endpoint.Prepare(endpointConfiguration);
-            IStartableEndpoint startableEndpoint = await initializableEndpoint.Initialize();
+            IStartableEndpoint startableEndpoint = await Endpoint.Create(endpointConfiguration);
             IEndpointInstance endpointInstance = await startableEndpoint.Start();
 
             //Shortcut
