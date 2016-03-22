@@ -83,8 +83,11 @@ Automatically removing these attachments can cause problems in many situations. 
 
 AzureDataBus will **remove** the Azure storage blobs used for physical attachments after the message is processed if the `TimeToBeReceived` attribute is specified. When this attribute isn’t provided, the physical attachments will not be removed.  
 
+
 #### Cleanup Strategy for AzureDataBus
+
 Specify the `TimeToBeReceived` attribute. For more details, read this article on [discarding old messages](/nservicebus/messaging/discard-old-messages.md).   
+
 
 ### FileShareDataBus
 
@@ -100,6 +103,7 @@ To obtain the file location use the base path set up during configuration and th
 snippet:DefineFileLocationForDatabusFiles
 
 snippet:FileLocationForDatabusFiles
+
  
 ## Configuring AzureDataBus
 
