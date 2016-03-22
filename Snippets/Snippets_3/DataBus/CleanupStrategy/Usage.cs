@@ -9,7 +9,7 @@
         #region FileLocationForDatabusFiles
         public void Handle(MessageWithLargePayload message)
         {
-            string filename = Path.Combine(@"c:\database_files\", message.LargeBlob.Key);
+            string filename = Path.Combine(@"c:\databus_files\", message.LargeBlob.Key);
             Console.WriteLine(filename);
         }
         #endregion

@@ -8,7 +8,7 @@
         {
             #region DefineFileLocationForDatabusFiles
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration("endpointName");
-            endpointConfiguration.UseDataBus<FileShareDataBus>().BasePath(@"c:\database_files\");
+            endpointConfiguration.UseDataBus<FileShareDataBus>().BasePath(@"c:\databus_files\");
 
             #endregion
         }

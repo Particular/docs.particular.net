@@ -8,7 +8,7 @@
         {
             #region DefineFileLocationForDatabusFiles
             Configure.With()
-                .FileShareDataBus(@"c:\database_files\")
+                .FileShareDataBus(@"c:\databus_files\")
                 .DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
             #endregion
         }
