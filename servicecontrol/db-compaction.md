@@ -7,11 +7,11 @@ tags:
 ---
 
 ## Overview
-In order to compact the embedded RavenDB database used by ServiceControl instances, the Extensible Storage Engine Utility (esentutl) needs to be run.
+In order to compact the embedded RavenDB database used by ServiceControl instances, the [Extensible Storage Engine Utility (esentutl)](https://technet.microsoft.com/en-us/library/hh875546.aspx) needs to be run.
 
 ## Step 1: Backup ServiceControl instance
 
-- Follow the [backup instructions](backup-sc-database#backup).
+- Follow the [backup instructions](backup-sc-database.md#backup).
 
 ## Step 1: Stop ServiceControl
 
