@@ -70,15 +70,18 @@ NServiceBus DataBus implementations currently behave differently with regard to 
 
 ### Custom cleanup strategy
 
-NServiceBus cannot tell when a file should be deleted, as removing the file depends on your functional needs. There are a large number of scenarios where removing the file can cause a problem. 
+NServiceBus does not remove the transferred message attachments once a message is delivered. Automatically removing these attachments can cause problems in many situations. For example:
 
-- The message can be (functionally) deferred so that the file will be processed later, or it is passed along to another handler. When the file is removed upon committing the transaction, the deferred or passed on message cannot process the file anymore.
-- The file system isn’t transactional. Transactions spawned by NServiceBus might fail, but the file system cannot participate in them, resulting in a deleted file even when the transaction is aborted.
-- If the outbox feature in NServiceBus is enabled, the message will be removed from the incoming queue, but it might not actually have been processed yet. 
+- The message can be (functionally) deferred so that the file will be processed later. Removing the file after deferring the message, results in a message without the corresponding file.
+- Functional requirements might dictate the message to be available for a longer duration.
+- The file system does not participate in distributed transactions. If for some reason, the message handler throws an exception and the transaction rolls back, the file delete operation on the attachment cannot be rolled back. Therefore, when the message is retried, the attachment will no longer be present causing additional problems.
+- If the outbox feature in NServiceBus is enabled, the message will be removed from the incoming queue, but it might not have been processed yet. 
 
-The business requirements should specify when the file should be processed and when it can be removed. Therefor the business should come up with a strategy to remove the files. An option is a strategy like removing the file after (Max(SLA) + x-days), so that it is unlikely that the file still hasn’t been processed.
+The business requirements should specify when the file should be processed and when it can be removed. Therefore the business should come up with a strategy to remove the files. An option is a strategy like removing the file after (Max(SLA) + x-days), so that it is unlikely that the file still hasn’t been processed.
 
-To obtain the file location use the base path set up during confiration and the incoming DataBus properties
+The business requirements can indicate how a message and its corresponding file should be processed and when the files can safely be removed. One strategy to deal with these attachments is to set up a cleanup policy which removes any files after a certain number of days has passed based on business SLA.
+
+To obtain the file location use the base path set up during configuration and the incoming DataBus properties
 
 snippet:DefineFileLocationForDatabusFiles
 

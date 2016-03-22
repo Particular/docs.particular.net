@@ -1,4 +1,4 @@
-﻿namespace Snippets5.DataBus.CleanupStrategy
+﻿namespace Snippets4.DataBus.CleanupStrategy
 {
     using System;
     using System.IO;
