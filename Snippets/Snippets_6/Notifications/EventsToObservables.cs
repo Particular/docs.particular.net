@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace Snippets6.BusNotifications
+﻿namespace Snippets6.Notifications
 {
+    using System;
     using System.Reactive;
     using System.Reactive.Linq;
     using NServiceBus;
@@ -10,13 +9,13 @@ namespace Snippets6.BusNotifications
 
     class EventsToObservables
     {
-        EventsToObservables(Notifications busNotifications, ILog log)
+        EventsToObservables(Notifications notifications, ILog log)
         {
             #region ConvertEventToObservable
 
             IObservable<EventPattern<FailedMessage>> failedMessages = Observable.FromEventPattern<EventHandler<FailedMessage>, FailedMessage>(
-                handler => busNotifications.Errors.MessageSentToErrorQueue += handler,
-                handler => busNotifications.Errors.MessageSentToErrorQueue -= handler);
+                handler => notifications.Errors.MessageSentToErrorQueue += handler,
+                handler => notifications.Errors.MessageSentToErrorQueue -= handler);
 
             IDisposable subscription = failedMessages
                 .Subscribe(x =>
