@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
@@ -7,28 +6,18 @@ class Program
 
     static void Main()
     {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
-    {
         Console.Title = "Samples.Azure.StorageQueues.Endpoint2";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.StorageQueues.Endpoint2");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.Azure.StorageQueues.Endpoint2");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UseTransport<AzureStorageQueueTransport>();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-        try
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
-        }
-        finally
-        {
-            await endpoint.Stop();
         }
     }
 }
