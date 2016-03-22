@@ -1,6 +1,7 @@
 ---
 title: Upgrade SQL Transport Version 2 to 3
 summary: Instructions on how to upgrade SQL Server Transport Version 2 to 3.
+reviewed: 2016-03-16
 tags:
  - upgrade
  - migration
@@ -15,7 +16,7 @@ related:
 
 ### Transactions
 
-The transactions API was changed. The native transaction support has been split into two different levels: `ReceiveOnly` and `SendAtomicWithReceive`. SQL Server Transport supports both of them. `SendAtomicWithReceive` is equivalent to disabling distributed transactions in NServiceBus Version 5.
+The native transaction support has been split into two different levels: `ReceiveOnly` and `SendAtomicWithReceive`. SQL Server Transport supports both. `SendAtomicWithReceive` is equivalent to disabling distributed transactions in NServiceBus Version 5.
 
 snippet:2to3-enable-native-transaction
 
