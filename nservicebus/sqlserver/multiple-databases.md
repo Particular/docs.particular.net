@@ -1,6 +1,7 @@
 ---
 title: Multi-database support
-summary: How to configure SQL Server transport to use multiple instances of the database and route messages between them.
+summary: Configuring SQL Server transport to use multiple instances of the database and route messages between them.
+reviewed: 2016-03-22
 tags:
 - SQL Server
 - Transports
@@ -14,13 +15,15 @@ The SQL Server transport supports selecting, on per-endpoint basis, where the ta
 
 The transport will route messages to destination endpoints based on the configuration. If no specific configuration has been provided for a particular destination endpoint, the transport assumes the destination has the same configuration (schema, database and instance name/address) as the sending endpoint. If this assumption turns out to be false (the transport cannot connect to destination queue), an exception is thrown immediately. There is no store-and-forward mechanism on the transport level (and hence -- no dead-letter queue).
 
-NOTE: If the destination endpoint uses a different database or server instance, sending a message to it might cause the transaction to escalate to a distributed transaction which may not be desirable. Using the [Outbox](/nservicebus/outbox/ feature, DTC escalations can be avoided as long as the both the endpoint's Outbox and business data share the same database.
+NOTE: If the destination endpoint uses a different database or server instance, sending a message to it might cause the transaction to escalate to a distributed transaction which may not be desirable. Using the [Outbox](/nservicebus/outbox/) feature, Distributed Transaction Coordinator (DTC) escalations can be avoided as long as the both the endpoint's Outbox and business data share the same database.
+
 
 ## Single database
 
 Typically when using SQL Server transport, the endpoints are set up to use the same database for the storing the queues. Sending a message involves executing a SQL statement that results in delivering the message directly to the destination queue. The message is delivered directly without a store-and-forward mechanism. 
 
-Using a single database doesn't require Distributed Transaction Coordinator (MS DTC). Another advantage is the ability to take a snapshot of entire system state (all the queues) by backing up a database. This is most useful when the business data is also stored in the same database.
+Using a single database doesn't require DTC. Another advantage is the ability to take a snapshot of entire system state (all the queues) by backing up a database. This is most useful when the business data is also stored in the same database.
+
 
 ## Single database with multiple schemas
 
@@ -44,18 +47,22 @@ snippet:sqlserver-singledb-multidb-pull
 
 NOTE: Even if two endpoints use different schemas the SQL Server transport will assume they use the same database. The different connection string must be passed explicitly, as described in the following section.
 
+
 ## Multiple databases
 
 Endpoints can also use separate databases. That scenario requires DTC. 
 
 NOTE: Due to the lack of store-and-forward mechanism, if a remote endpoint's database or DTC infrastructure is down, the endpoint cannot send messages to it. This potentially renders the endpoint unavailable (and also all other endpoints depending on it directly or indirectly).
 
+
 ## Multiple databases with store-and-forward
 
 In order to overcome this limitation a higher level store-and-forward mechanism needs to be used. The [Outbox](/nservicebus/outbox/) feature can be used to effectively implement a distributed decoupled architecture where:
+
  * Each endpoint has its own database where it stores both the queues and the user data
  * When calling Bus.Send(), messages are stored in the Outbox table rather than getting dispatched immediately. The Outbox table is a database table that resides on the same database as that of the endpoint. After successful execution of the message handler logic, the messages stored in the Outbox table are forwarded to their destinations.
  * Should any of the forward operations were to fail, it will be retried using the standard [retry mechanism](/nservicebus/errors/automatic-retries.md). However, this might result in some messages to be sent multiple times. To mitigate this and to provide `exactly-once` message delivery guarantee, the Outbox feature automatically handles the de-duplication of incoming messages based on their ID.
+
 
 ## Current endpoint
 
@@ -75,7 +82,7 @@ snippet:sqlserver-multidb-current-endpoint-connection-string
 
 NOTE: `Queue Schema` parameter can also be used in the connection string provided via code.
 
-NOTE: Starting with `V1.2.3` of the `SQL Server Transport` the `Queue Schema` parameter is supported only when used used in the connection string provided via code or via configuration.
+NOTE: In Versions 1.2.3 and above of the SQL Server Transport the `Queue Schema` parameter is supported only when used used in the connection string provided via code or via configuration.
 
 NOTE: Unlike in the SQL Server transport, the connection string configuration API in NServiceBus core favors code over config which means then configured both in `app.config` and via the `ConnectionString()` method, the latter will win.
 

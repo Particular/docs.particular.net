@@ -1,6 +1,7 @@
 ---
 title: SQL Server Transport
-summary: High-level description of NServiceBus SQL Server Transport
+summary: High-level description of NServiceBus SQL Server Transport.
+reviewed: 2016-03-22
 tags:
 - SQL Server
 redirects:
@@ -11,13 +12,16 @@ related:
 - samples/outbox/sqltransport-nhpersistence-ef
 ---
 
-The SQL Server transport implements a message queueing mechanism on top of a Microsoft SQL Server database. It provides support for sending messages over [SQL Server](http://www.microsoft.com/en-au/server-cloud/products/sql-server/) tables. It does not make any use of ServiceBroker, a messaging technology built into the SQL Server, mainly due to its cumbersome API and difficult maintenance.
+The SQL Server transport implements a message queueing mechanism on top of Microsoft SQL Server. It provides support for sending messages over [SQL Server](http://www.microsoft.com/en-au/server-cloud/products/sql-server/) tables. It does **not** make any use of ServiceBroker, a messaging technology built into the SQL Server.
 
-## How it works?
+
+## How it works
 
 The SQL Server transport is a hybrid queueing system which is neither store-and-forward (like MSMQ) nor a broker (like RabbitMQ). It treats the SQL Server as a storage infrastructure for the queues. The queueing logic itself is implemented and executed as part of the transport code running in an NServiceBus endpoint.
 
+
 ## Advantages and Disadvantages of choosing SQL Server Transport
+
 
 ### Advantages
 
@@ -35,9 +39,11 @@ The SQL Server transport is a hybrid queueing system which is neither store-and-
 
 ## Usage Scenarios
 
+
 ### Messaging framework for the enterprise
 
 The SQL Server transport throughput is on par with the Microsoft Message Queueing (MSMQ) service. The actual value is dependent on the hardware and software configuration but is in the range few thousands messages per second per endpoint instance. If the enterprise has a solid high-performance SQL Server infrastructure, taking advantage of that infrastructure to implement messaging backbone is a natural choice when moving from isolated applications to connected services. In the enterprise scenario there are probably multiple systems and these systems have their own databases. SQL Server transport [multi database](multiple-databases.md) has been designed exactly for such scenarios. It can be used in two transaction modes
+
  * **DTC** The receive operation, all data access and all the send operations potentially targeting different databases are conducted in a single distributed transaction coordinated by the DTC. This mode requires DTC service to be configured properly (including the high availability configuration matching the one of the SQL Server). The downside is that if a destination database is brought down for maintenance, the transactions that try to send messages to it are going to fail and this might cause the domino effect in other systems.
  * [**Outbox**](/nservicebus/outbox/) The *exactly-once* delivery guarantee is provided by the outbox. No DTC service is required. Messages addressed to a database that is temporarily down will by retried by means of [Second-Level Retries](/nservicebus/errors/automatic-retries.md) so SLR timeout larger than maintenance windows should be configured. The downside is that all the systems need to have Outbox enabled which requires them to use NServiceBus 5.x or later.
 
