@@ -1,6 +1,6 @@
 ---
 title: Handling large Stream properties via the pipeline
-summary: Add support for writing Streams to a file share that can be access by multiple endpoints.
+summary: Add support for writing Streams to a file share that can be accessed by multiple endpoints.
 reviewed: 2016-03-21
 tags:
 - Pipeline
