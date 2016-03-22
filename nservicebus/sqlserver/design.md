@@ -3,7 +3,7 @@ title: SQL Server Transport Design
 summary: The design and implementation details of SQL Server Transport
 tags:
 - SQL Server
-reviewed: 2016-03-07
+reviewed: 2016-03-22
 ---
 
 
@@ -100,7 +100,7 @@ The [Outbox](/nservicebus/outbox/) feature can be used to mitigate that problem.
 See also [a sample covering this mode of operation](/samples/outbox/sqltransport-nhpersistence/).
 
 
-### Version 6 and above
+### Versions 3 and above
 
 There are two available options within native transaction level:
 
@@ -111,7 +111,7 @@ NOTE: This transaction is not shared outside of the message receiver. That means
  * ** SendsAtomicWithReceive** - This mode is very similar to the `ReceiveOnly`, but transaction is shared with sending operations. That means the message receive operation and any send or publish operations are committed atomically.
 
 
-#### Version 5 and below
+#### Versions 2 and below
 
 There was no distinction between `ReceiveOnly` and `SendsAtomicWithReceive`. Using native transaction was equivalent to `SendsAtomicWithReceive` mode.
 
@@ -126,9 +126,9 @@ In this mode when message is received from an input queue it's immediately remov
 The SQL Server transport adapts the number of receiving threads (up to `MaximumConcurrencyLevel` [set via `TransportConfig` section](/nservicebus/msmq/transportconfig.md)) to the amount of messages waiting for processing. When idle it maintains only one thread that continuously polls the table queue.
 
 
-### Version 3.0
+### Version 3
 
-In version 3.0 and above SQL Server transport maintains a dedicated monitoring thread for each input queue. It is responsible for detecting the number of messages waiting for delivery and creating receive [tasks](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) - one for each pending message. 
+In Versions 3 and above SQL Server transport maintains a dedicated monitoring thread for each input queue. It is responsible for detecting the number of messages waiting for delivery and creating receive [tasks](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) - one for each pending message. 
 
 The maximum number of concurrent tasks will never exceed `MaximumConcurrencyLevel`. The number of tasks does not translate to the number of running threads which is controlled by the TPL scheduling mechanisms.
 
