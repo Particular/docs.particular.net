@@ -13,7 +13,7 @@ In order to compact the embedded RavenDB database used by ServiceControl instanc
 
 - Follow the [backup instructions](backup-sc-database.md#backup).
 
-## Step 1: Stop ServiceControl
+## Step 2: Stop ServiceControl
 
 - Open the ServiceControl Management utility.
 - Stop the Service from the actions icons.
@@ -21,7 +21,7 @@ In order to compact the embedded RavenDB database used by ServiceControl instanc
 	- the "DATA PATH" for the service.  
 	![](managementutil-instance-datapath.png)
 
-## Step 2: Administrator command prompt
+## Step 3: Administrator command prompt
 
 - Open an elevated command prompt and navigate to the ServiceControl "DATA PATH" directory
 - Run `esentutl /d Data` and wait for it to finish
@@ -40,6 +40,6 @@ In order to compact the embedded RavenDB database used by ServiceControl instanc
             |----|----|----|----|----|----|----|----|----|----|
   ```
 
-## Step 3: Restart ServiceControl
+## Step 4: Restart ServiceControl
 
 - Start the ServiceControl Windows Service.
