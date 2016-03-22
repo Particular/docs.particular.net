@@ -13,7 +13,7 @@ In default configuration SQL Server transport assumes that all tables used for s
 The supported deployment options are:
  * ***default***: all queues are stored in a single catalog and a single schema (Versions 1.x and higher)
  * ***multi-schema***: queues are stored in a single catalog but in more than one schema (Versions 2.1 and higher)
- * ***multi-catalog***: queues are stored in multiple catalogs but on a single SQL Server instance. This mode is not explicitly supported by SQL Server transport, but can be achieved  by using multi-instance option. Therefore in this document both options are covered under *multi-instance* term.
+ * ***multi-catalog***: queues are stored in multiple catalogs but on a single SQL Server instance. This mode is indirectly supported by using *multi-instance* option, and requires using DTC. In this document both options are covered under *multi-instance* term.
  * ***multi-instance***: queues are stored in multiple catalogs on more than one SQL Server instance (Versions 2.1 to 2.x).
 
 NOTE: To properly identify the chosen deployment option all queues that the endpoint interacts with need to be taken into consideration, including error and audit queues. If either of them are stored in a separate SQL Server instance then the deployment is a *multi-instance* one.
@@ -39,7 +39,7 @@ The transport will route messages to destination based on the configuration. If 
 - Enables security configuration on a schema level.
 - Can't be monitored with ServiceControl.
 
-## Multi-instance (same applies for multi-catalog)
+## Multi-instance (and multi-catalog)
 
 - Supported in Versions 2.1 to 2.x, legacy support is offered in Versions 3.x, won't be supported directly in Versions 4.0 and higher.
 - Requires Distributed Transaction Coordinator, or using Outbox and storing business data in the same database as Outbox data.

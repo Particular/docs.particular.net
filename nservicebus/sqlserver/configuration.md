@@ -43,13 +43,11 @@ By passing the transport a custom factory method which will provide connection s
 
 snippet:sqlserver-custom-connection-factory
 
-NOTE: The connection string configuration API in NServiceBus core favors code over configuration for the current endpoint. If the same connection string is passed both in `app.config` and via the `ConnectionString()` method, the latter will be used.
-
 ## Multiple connection strings
 
-In [*multi-catalog* and *multi-instance* modes](/nservicebus/sqlserver/deployment-options.md) it is necessary to include additional information in configuration.  The sender needs to know the connection string of the receiver, and subscriber needs the connection string of the publisher.
+In [*multi-catalog* and *multi-instance* modes](/nservicebus/sqlserver/deployment-options.md) it is necessary to include additional information in configuration.  The sender needs to know the connection string of the receiver, and the subscriber needs the connection string of the publisher.
 
-Connection string for the remote endpoint can be configured in several ways:
+Connection strings for the remote endpoint can be configured in several ways:
 
 ### Via the App.Config
 
