@@ -66,20 +66,34 @@ snippet:MessageWithLargePayloadUsingConvention
 
 ## DataBus attachments cleanup
 
-NServiceBus DataBus implementations currently behave differently with regard to cleanup of physical attachments used to transfer data properties. `FileShareDataBus` **does not** remove physical attachments once the message is gone. `AzureDataBus` **does** remove Azure storage blobs used for physical attachments once the message is gone.
+NServiceBus DataBus implementations currently behaves differently with regard to cleanup of physical attachments used to transfer data properties depending on the implementation used.
 
-### Custom cleanup strategy
 
-NServiceBus does not remove the transferred message attachments once a message is delivered. Automatically removing these attachments can cause problems in many situations. For example:
+### Reasons why attachments are not removed by default
 
-- The message can be (functionally) deferred so that the file will be processed later. Removing the file after deferring the message, results in a message without the corresponding file.
-- Functional requirements might dictate the message to be available for a longer duration.
-- The file system does not participate in distributed transactions. If for some reason, the message handler throws an exception and the transaction rolls back, the file delete operation on the attachment cannot be rolled back. Therefore, when the message is retried, the attachment will no longer be present causing additional problems.
-- If the outbox feature in NServiceBus is enabled, the message will be removed from the incoming queue, but it might not have been processed yet. 
+Automatically removing these attachments can cause problems in many situations. For example:
 
-The business requirements should specify when the file should be processed and when it can be removed. Therefore the business should come up with a strategy to remove the files. An option is a strategy like removing the file after (Max(SLA) + x-days), so that it is unlikely that the file still hasn’t been processed.
+* The supported data bus implementations do not participate in distributed transactions. If for some reason, the message handler throws an exception and the transaction rolls back, the delete operation on the attachment cannot be rolled back. Therefore, when the message is retried, the attachment will no longer be present causing additional problems.
+* The message can be deferred so that the file will be processed later. Removing the file after deferring the message, results in a message without the corresponding file.
+* Functional requirements might dictate the message to be available for a longer duration.
+* If the outbox feature in NServiceBus is enabled, the message will be removed from the incoming queue, but it might not have been processed yet. 
 
-The business requirements can indicate how a message and its corresponding file should be processed and when the files can safely be removed. One strategy to deal with these attachments is to set up a cleanup policy which removes any files after a certain number of days has passed based on business SLA.
+
+### AzureDataBus Implementation
+
+AzureDataBus will **remove** the Azure storage blobs used for physical attachments after the message is processed if the `TimeToBeReceived` attribute is specified. When this attribute isn’t provided, the physical attachments will not be removed.  
+
+#### Cleanup Strategy for AzureDataBus
+Specify the `TimeToBeReceived` attribute. For more details, read this article on [discarding old messages](/nservicebus/messaging/discard-old-messages.md).   
+
+### FileShareDataBus
+
+FileShareDataBus **does not** remove physical attachments once the message has been processed. 
+
+
+#### Custom cleanup strategy for FileShareDataBus
+
+The business requirements can indicate how a message and its corresponding file should be processed and when the files can safely be removed. One strategy to deal with these attachments is to set up a cleanup policy which removes any attachments after a certain number of days has passed based on business SLA.
 
 To obtain the file location use the base path set up during configuration and the incoming DataBus properties
 
