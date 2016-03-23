@@ -421,6 +421,7 @@
     <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
     <Compile Include="Serialization\NewtonsoftSerializerUsage.cs" />
     <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
+    <Compile Include="Transports\SqlServer_2\MultiSchema.cs" />
     <Compile Include="Transports\SqlServer_2\SingleDbMultiSchema.cs" />
     <Compile Include="Transports\SqlServer_2\ConnectionStrings.cs" />
     <Compile Include="Transports\SqlServer_2\UpgradeGuides\Transactions.cs" />

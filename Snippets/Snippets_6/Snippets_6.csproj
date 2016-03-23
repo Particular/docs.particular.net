@@ -431,6 +431,7 @@
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
     <Compile Include="Transports\RabbitMQ_4\Usage.cs" />
+    <Compile Include="Transports\SqlServer_3\MultiSchema.cs" />
     <Compile Include="Transports\SqlServer_3\SingleDbMultiSchema.cs" />
     <Compile Include="Transports\SqlServer_3\ConnectionStrings.cs" />
     <Compile Include="UnitTesting\AdditionalServices\Tests.cs" />
