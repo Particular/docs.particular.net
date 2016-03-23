@@ -5,10 +5,8 @@
 
     class MultiSchema
     {
-        void NonStandardSchema()
+        void NonStandardSchema(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region sqlserver-non-standard-schema 2.1
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -17,10 +15,8 @@
             #endregion
         }
 
-        void NonStandardSchemaInConnectionString()
+        void NonStandardSchemaInConnectionString(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region sqlserver-non-standard-schema-connString [2.1,3.0)
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -29,10 +25,8 @@
             #endregion
         }
 
-        void OtherEndpointConnectionParamsPush()
+        void OtherEndpointConnectionParamsPush(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-
             #region sqlserver-multischema-config-push [2.1,3.0)
 
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -46,9 +40,8 @@
             #endregion
         }
 
-        void OtherEndpointConnectionParamsPull()
+        void OtherEndpointConnectionParamsPull(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region sqlserver-multischema-config-pull 2.1
 
             busConfiguration.UseTransport<SqlServerTransport>()

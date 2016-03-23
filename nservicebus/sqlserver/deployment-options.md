@@ -1,6 +1,7 @@
 ---
 title: SQL Server transport deployment options
 summary: Describes available SQL Server transport deployment options
+reviewed: 2016-03-24
 tags:
 - SQL Server
 - Transports
@@ -11,10 +12,10 @@ redirects:
 When using the default configuration, SQL Server transport assumes that all tables used for storing messages for endpoints are located in a single catalog and within a single schema. The configuration can be changed to partition message storage between different schemas and catalogs. The schemas and catalogs can also be specified at a queue level. For example, the error and the audit queues can be configured to use a different schema and a different database catalog.
 
 The supported deployment options are:
- * ***default***: all queues are stored in a single catalog and a single schema.
- * ***multi-schema***: queues are stored in a single catalog but in more than one schema. 
- * ***multi-instance***: queues are stored in multiple catalogs on more than one SQL Server instance.
- * ***multi-catalog***: queues are stored in multiple catalogs but on a single SQL Server instance. This mode is indirectly supported by using *multi-instance* option, and requires using DTC. In this document both options are covered under *multi-instance* term.
+ * **default**: all queues are stored in a single catalog and a single schema.
+ * **multi-schema**: queues are stored in a single catalog but in more than one schema. 
+ * **multi-instance**: queues are stored in multiple catalogs on more than one SQL Server instance.
+ * **multi-catalog**: queues are stored in multiple catalogs but on a single SQL Server instance. This mode is indirectly supported by using *multi-instance* option, and requires using DTC. In this document both options are covered under *multi-instance* term.
 
 NOTE: To properly identify the chosen deployment option all queues that the endpoint interacts with need to be taken into consideration, including error and audit queues. If either of them are stored in a separate SQL Server instance then the deployment is a *multi-instance* one.
 
@@ -26,27 +27,27 @@ The transport will route messages to destination based on the configuration. If 
 
 ## Default (single schema, single catalog, single SQL Server instance)
 
-- Has simple configuration and setup.
-- Doesn't require Distributed Transaction Coordinator (MS DTC).
-- The snapshot (backup) of the entire system state can be done by backing up a single database. It is especially useful if business data is also stored in the same database.
-- Can be monitored with ServiceControl.
+ * Has simple configuration and setup.
+ * Doesn't require Distributed Transaction Coordinator (DTC).
+ * The snapshot (backup) of the entire system state can be done by backing up a single database. It is especially useful if business data is also stored in the same database.
+ * Can be monitored with ServiceControl.
 
 
 ## Multi-schema
 
-- Has simple configuration and setup.
-- Doesn't require Distributed Transaction Coordinator (MS DTC).
-- The snapshot (backup) of the entire system state is done by backing up a single database. It is especially useful if business data is also stored in the same database.
-- Enables security configuration on a schema level.
-- Can't be monitored with ServiceControl.
-- 
+ * Has simple configuration and setup.
+ * Doesn't require DTC.
+ * The snapshot (backup) of the entire system state is done by backing up a single database. It is especially useful if business data is also stored in the same database.
+ * Enables security configuration on a schema level.
+ * Can't be monitored with ServiceControl.
+
 
 ## Multi-instance
 
 WARNING: The *multi-instance* option won't be directly supported in Versions 4 and higher. Instead, a guidance will be provided on how to achieve a similar result using built-in SQL Server features. However, in Versions 4 and higher the *multi-catalog* option will be directly supported.
 
-- Requires Distributed Transaction Coordinator, or using Outbox and storing business data in the same database as Outbox data.
-- Can't be monitored with ServiceControl.
+ * Requires DTC, or using Outbox and storing business data in the same database as Outbox data.
+ * Can't be monitored with ServiceControl.
 
 
 ## Multi-instance with store-and-forward
@@ -61,4 +62,3 @@ When using Outbox:
 
  * Messages are not dispatched immediately after the `Send()` method is called. Instead, they are first stored in the Outbox table in the same database that the endpoint's persistence is using. After the handler logic completes successfully, the messages stored in the Outbox table are forwarded to their final destinations.
  * If any of the forward operations fails, the message sending will be retried using the standard [retry mechanism](/nservicebus/errors/automatic-retries.md). Attempting to retry the forward operation may result in dispatching some messages multiple times. However, the Outbox feature automatically de-duplicates the incoming messages based on their IDs, therefore providing `exactly-once` message delivery. The receiving endpoint also has to be configured to use the Outbox.
-

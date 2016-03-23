@@ -30,7 +30,7 @@
             #endregion
         }
 
-        void IsEnabled(Configure configure)
+        void IsEnabled()
         {
             #region IsDistributorEnabled
 

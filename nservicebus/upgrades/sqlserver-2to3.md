@@ -1,7 +1,7 @@
 ---
 title: Upgrade SQL Transport Version 2 to 3
 summary: Instructions on how to upgrade SQL Server Transport Version 2 to 3.
-reviewed: 2016-03-16
+reviewed: 2016-03-24
 tags:
  - upgrade
  - migration
@@ -34,7 +34,7 @@ snippet:sqlserver-custom-connection-factory
 
 ### Multi-schema support
  
-The configuration API for enabling [multi-schema support](/nservicebus/sqlserver/multiple-databases.md#single-database-with-multiple schemas) has now changed. The `Queue Schema` parameter is no longer supported in the config file and the code configuration API. 
+The configuration API for enabling [multi-schema support](/nservicebus/sqlserver/deployment-options.md#single-database-with-multiple schemas) has now changed. The `Queue Schema` parameter is no longer supported in the config file and the code configuration API. 
 
 The schema for the configured endpoint can be specified using `DefaultSchema` method:
 

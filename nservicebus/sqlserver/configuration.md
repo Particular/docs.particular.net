@@ -1,6 +1,7 @@
 ---
 title: SQL Server Transport configuration
-summary: SQL Server Transport configuration
+summary: SQL Server Transport configuration.
+reviewed: 2016-03-24
 tags:
 - SQL Server
 redirects:
@@ -10,7 +11,7 @@ redirects:
 
 ## Connection strings
 
-The SQL Server transport is built on top of ADO.NET and will use connection pooling. This may result in the connection pool being shared by the transport and other parts of the endpoint process. Depending on the situation it might be necessary to adjust the default connection pool size. For more details refer to the official [SQL Server Connection Pooling and Configuration](https://msdn.microsoft.com/en-us/library/8xx3tyca.aspx) documentation.
+The SQL Server transport is built on top of ADO.NET and will use connection pooling. This may result in the connection pool being shared by the transport and other parts of the endpoint process. Depending on the situation it might be necessary to adjust the default connection pool size. See also [SQL Server Connection Pooling and Configuration](https://msdn.microsoft.com/en-us/library/8xx3tyca.aspx).
 
 Connection string can be configured in several ways:
 
@@ -46,13 +47,16 @@ combined with a named connection in the `connectionStrings` node of the `app.con
 
 snippet:sqlserver-named-connection-string-xml
 
+
 ## Multiple connection strings
 
 In [*multi-catalog* and *multi-instance* modes](/nservicebus/sqlserver/deployment-options.md) additional configuration is required for proper message routing:
--  The sending endpoint needs the connection string of the receiving endpoint. 
--  The subscribing endpoint needs the connection string of the publishing endpoint, in order to send subscription request.
+
+ * The sending endpoint needs the connection string of the receiving endpoint. 
+ * The subscribing endpoint needs the connection string of the publishing endpoint, in order to send subscription request.
 
 Connection strings for the remote endpoint can be configured in several ways:
+
 
 ### Via the configuration API - Push mode
 
@@ -96,26 +100,30 @@ snippet:sqlserver-non-standard-schema
 In Versions 1.2.3 to 2.x it was also possible to pass custom schema in the connection string, using `Queue Schema` parameter:
 
 snippet:sqlserver-non-standard-schema-connString
+
 snippet:sqlserver-non-standard-schema-connString-xml
 
 
 ## Multiple custom schemas
 
 If the endpoints are configured to use a different schema, then additional configuration is required for proper message routing:
-- The sending endpoint needs to know the schema information of the receiving endpoint.
-- The subscriber will need the schema information of the publisher, in order to send subscription request.
-- In Versions 2.1.x to 2.x publisher also needs to know the schema of every subscriber. The same applies to sending reply messages using `ReplyTo()` or callbacks. 
+
+ * The sending endpoint needs to know the schema information of the receiving endpoint.
+ * The subscriber will need the schema information of the publisher, in order to send subscription request.
+ * In Versions 2.1.x to 2.x publisher also needs to know the schema of every subscriber. The same applies to sending reply messages using `ReplyTo()` or callbacks. 
 
 The schema for another endpoint can be specified in the following ways:
 
 snippet:sqlserver-multischema-config-push
+
 snippet:sqlserver-multischema-config-pull
+
 snippet:sqlserver-non-standard-schema-messagemapping
 
 Notice that in Versions 3 and higher the table and schema names can be passed either using common convention with square brackets, or without them.  
   
 
-## Sql Server Transport, the Outbox and user data: disabling the DTC
+## SQL Server Transport, the Outbox and user data: disabling the DTC
 
 In an environment where DTC is disabled and [Outbox](/nservicebus/outbox/) is enabled, it is important to prevent a local transaction from escalating to a distributed one.
 
@@ -179,7 +187,7 @@ snippet:sqlserver-CallbackReceiverMaxConcurrency
 
 ## Circuit Breaker
 
-The Sql transport has a built in circuit breaker to handle intermittent SQL Server connectivity problems.
+The SQL transport has a built in circuit breaker to handle intermittent SQL Server connectivity problems.
 
 
 ### Wait time
