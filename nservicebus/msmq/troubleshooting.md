@@ -20,7 +20,7 @@ Approaches for diagnosing messages stuck in the outgoing queue.
 
  * Check the **Outgoing Queues** on each server involved, while the problem is occurring. Each item represents a connection to a remote server. Items stuck here represent an inability to transfer messages to the remote server. The **State** and **Connection History** columns may point to a connectivity issue between servers.
  * Check the Microsoft support article [MSMQ service might not send or receive messages after a restart](https://support.microsoft.com/en-us/kb/2554746). This details how an error in how MSMQ binds to IP addresses and ports can cause one server to be unable to validate messages coming from another, causing them to be rejected.
- * If servers are cloned from the same virtual machine image, this will cause them to have the same `QMId` in the registry key `HKLM\Software\Microsoft\MSMQ\Parameters\Machine Cache`, which will interfere with message delivery. Use the workout described in [MSMQ prefers to be unique](http://blogs.msdn.com/b/johnbreakwell/archive/2007/02/06/msmq-prefers-to-be-unique.aspx) to reset the `QMId` on an existing machine, but it is preferable to use [Microsoft's Sysprep tool](https://support.microsoft.com/en-us/kb/314828) before capturing the virtual machine image.
+ * If servers are cloned from the same virtual machine image, this will cause them to have the same `QMId` in the registry key `HKLM\Software\Microsoft\MSMQ\Parameters\Machine Cache`, which will interfere with message delivery. Use the workout described in [MSMQ prefers to be unique](hthttps://blogs.msdn.microsoft.com/johnbreakwell/2007/02/06/msmq-prefers-to-be-unique/) to reset the `QMId` on an existing machine, but it is preferable to use [Microsoft's Sysprep tool](https://support.microsoft.com/en-us/kb/314828) before capturing the virtual machine image.
 
 
 ### Note on MSMQ Distributor
@@ -53,7 +53,7 @@ The cause of this exception is that the MSMQ has run out of space for holding on
 
 WARNING: On production servers uninstalling MSMQ will delete all queues and messages, which may contain business data. Do not attempt uninstalling MSMQ unless message loss is acceptable.
 
-See [Insufficient Resources? Run away, run away!](http://blogs.msdn.com/b/johnbreakwell/archive/2006/09/18/insufficient-resources-run-away-run-away.aspx) for more information.
+See [Insufficient Resources? Run away, run away!](https://blogs.msdn.microsoft.com/johnbreakwell/2006/09/18/insufficient-resources-run-away-run-away/) for more information.
 
 
 ## Virtual Private Networks (VPN)
@@ -66,9 +66,9 @@ It is recommended to have batch setup scripts that run on server startups to con
 ## Useful links
 
  - [MSMQ on Windows Server 2008](https://technet.microsoft.com/en-gb/library/cc753070%28WS.10%29.aspx)
- - [List of MSMQ articles](http://blogs.msdn.com/b/johnbreakwell/)
- - [Changing the MSMQ Storage location](http://blogs.msdn.com/b/johnbreakwell/archive/2009/02/09/changing-the-msmq-storage-location.aspx)
- - [Technet content for troubleshooting MSMQ on Windows 2008](http://blogs.msdn.com/b/johnbreakwell/archive/2008/05/07/technet-content-for-troubleshooting-msmq-on-windows-2008-and-vista.aspx)
- - [Publicly available tools for troubleshooting MSMQ problems](http://blogs.msdn.com/b/johnbreakwell/archive/2007/12/13/what-publically-available-tools-are-available-for-troubleshooting-msmq-problems.aspx)
+ - [List of MSMQ articles](https://blogs.msdn.microsoft.com/johnbreakwell/)
+ - [Changing the MSMQ Storage location](https://blogs.msdn.microsoft.com/johnbreakwell/2009/02/09/changing-the-msmq-storage-location/)
+ - [Technet content for troubleshooting MSMQ on Windows 2008](https://blogs.msdn.microsoft.com/johnbreakwell/2008/05/07/technet-content-for-troubleshooting-msmq-on-windows-2008-and-vista/)
+ - [Publicly available tools for troubleshooting MSMQ problems](https://blogs.msdn.microsoft.com/johnbreakwell/2007/12/13/what-publically-available-tools-are-there-for-troubleshooting-msmq-problems/)
  - [MSMQ service might not send or receive messages after a restart](https://support.microsoft.com/en-us/kb/2554746)
- - [Troubleshooting MSDTC issues with the DTCPing tool](http://blogs.msdn.com/b/distributedservices/archive/2008/11/12/troubleshooting-msdtc-issues-with-the-dtcping-tool.aspx)
+ - [Troubleshooting MSDTC issues with the DTCPing tool](https://blogs.msdn.microsoft.com/distributedservices/2008/11/12/troubleshooting-msdtc-issues-with-the-dtcping-tool/)

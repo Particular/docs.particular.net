@@ -72,7 +72,7 @@ Try swapping the MSMQ Network Name back and forth between nodes a few times. It'
 
 The "cluster name" is a Network Name created for the cluster as part of the core Cluster Group - a group created by default for each cluster. The core cluster group is different than the MSMQ cluster group and it has a Different network name. One of the most common confusions while using MSMQ on a cluster is using the Cluster Name in the client instead of the MSMQ Network Name.
 
-![](failover-cluster-management.png "(Picture taken from http://blogs.technet.com/b/askcore/archive/2009/02/18/how-to-configure-multiple-instances-of-distributed-transaction-coordinator-dtc-on-a-windows-server-failover-cluster-2008.aspx")
+![](failover-cluster-management.png "(Picture taken from https://blogs.technet.microsoft.com/askcore/2009/02/17/how-to-configure-multiple-instances-of-distributed-transaction-coordinator-dtc-on-a-windows-server-failover-cluster-2008/")
 
 In this picture:
 
