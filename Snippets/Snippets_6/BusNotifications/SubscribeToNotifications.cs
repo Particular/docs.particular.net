@@ -11,10 +11,10 @@ namespace Snippets6.BusNotifications
     public class SubscribeToNotifications :
         IWantToRunWhenBusStartsAndStops
     {
-        BusNotifications busNotifications;
+        Notifications busNotifications;
         static ILog log = LogManager.GetLogger<SubscribeToNotifications>();
 
-        public SubscribeToNotifications(BusNotifications busNotifications)
+        public SubscribeToNotifications(Notifications busNotifications)
         {
             this.busNotifications = busNotifications;
         }
