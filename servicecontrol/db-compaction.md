@@ -13,40 +13,57 @@ ServiceControl's embedded RavenDB database can be compacted in one of two ways. 
 ## Using EsentUtl (Preferred approach)
 
 
-### Step 1: Backup ServiceControl instance
-
-- Follow the [backup instructions](backup-sc-database.md#backup) to backup the embedded RavenDB database.
-
-
-### Step 2: Stop ServiceControl
+### Step 1: Stop ServiceControl
 
 - Open the ServiceControl Management utility.
 - Stop the Service from the actions icons.
-- Note down:
-	- the "DATA PATH" for the service.  
+- Note down the "DATA PATH" for the service.  
 	![](managementutil-instance-datapath.png)
 
-WARNING: For the esentutl command line tool to work properly, ServiceControl service needs to be shutdown properly without any errors. 
+WARNING: For the `esentutl` command line utility to work properly, ServiceControl service needs to be shutdown properly without any errors. 
+
+
+### Step 2: Backup ServiceControl instance
+
+- Follow the [backup instructions](backup-sc-database.md#backup) to backup the embedded RavenDB database.
 
 
 ### Step 3: Administrator command prompt
 
 - Open an elevated command prompt and navigate to the ServiceControl "DATA PATH" directory
-- Run `esentutl /d Data` and wait for it to finish
+- Run **`esentutl /r RVN /l logs /s system`** and wait for it to finish. This will ensure that the database is in a consistent state and is ready for defragmentation. 
 - Here is the result of running it:  
-  ```
-  Extensible Storage Engine Utilities for Microsoft(R) Windows(R)
-  Version 10.0
-  Copyright (C) Microsoft Corporation. All Rights Reserved.
+
+```
+Extensible Storage Engine Utilities for Microsoft(R) Windows(R)
+Version 10.0
+Copyright (C) Microsoft Corporation. All Rights Reserved.
+	
+Initiating RECOVERY mode...
+   Logfile base name: RVN
+   Log files: logs
+   System files: system
+
+Performing soft recovery...
+
+Operation completed successfully in 0.78 seconds.
+
+```
+- Now run **`esentutl /d Data`** and wait for it to finish. Here is the result of running it:
   
-  Initiating DEFRAGMENTATION mode...
-              Database: Data
-  
-                    Defragmentation Status (% complete)
-  
-            0    10   20   30   40   50   60   70   80   90  100
-            |----|----|----|----|----|----|----|----|----|----|
-  ```
+```
+   Extensible Storage Engine Utilities for Microsoft(R) Windows(R)
+   Version 10.0
+   Copyright (C) Microsoft Corporation. All Rights Reserved.
+   
+   Initiating DEFRAGMENTATION mode...
+               Database: Data
+   
+                     Defragmentation Status (% complete)
+   
+             0    10   20   30   40   50   60   70   80   90  100
+             |----|----|----|----|----|----|----|----|----|----|
+```
 
 
 ### Step 4: Restart ServiceControl
