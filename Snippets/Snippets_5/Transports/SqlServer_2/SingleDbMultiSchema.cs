@@ -17,7 +17,7 @@
 
         void OtherEndpointConnectionParamsPush(BusConfiguration busConfiguration)
         {
-            #region sqlserver-singledb-multidb-push [2.1,2.0]
+            #region sqlserver-singledb-multidb-push [2.1,3.0)
 
             busConfiguration.UseTransport<SqlServerTransport>()
                 .UseSpecificConnectionInformation(

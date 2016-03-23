@@ -1,9 +1,9 @@
 ---
 title: SQL Server Transport Design
 summary: The design and implementation details of SQL Server Transport
+reviewed: 2016-03-24
 tags:
 - SQL Server
-reviewed: 2016-03-22
 ---
 
 
@@ -65,7 +65,7 @@ INCLUDE
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
 ```
 
-In Version 2 the columns are directly mapped to the properties of `NServiceBus.TransportMessage` class. In version 3 they are mapped to `NServiceBus.Transports.IncomingMessage` in the incoming pipeline and `NServiceBus.Transports.OutgoingMessage` in the outgoing pipeline. Receiving messages is conducted by a `DELETE` statement from the top of the table (the oldest row according to the `[RowVersion]` column).
+In Version 2 the columns are directly mapped to the properties of `NServiceBus.TransportMessage` class. In Versions 3 and above they are mapped to `NServiceBus.Transports.IncomingMessage` in the incoming pipeline and `NServiceBus.Transports.OutgoingMessage` in the outgoing pipeline. Receiving messages is conducted by a `DELETE` statement from the top of the table (the oldest row according to the `[RowVersion]` column).
 
 The tables are created by [installers](/nservicebus/operations/installers.md) when the application is started for the first time. It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
 
@@ -81,6 +81,10 @@ snippet:sql-2.2.2-ExpiresIndex
 
 ## Transactions and delivery guarantees
 
+SQL Server transport supports all [transaction handling modes](/nservicebus/messaging/transactions.md), i.e. Transaction scope, Receive only, Sends atomic with Receive and No transactions.
+
+Refer to [Transport Transactions](/nservicebus/messaging/transactions.md) for detailed explanation of the supported transaction handling modes and available configuration options. 
+
 
 ### Transaction scope
 
@@ -88,7 +92,7 @@ In this mode the ambient transaction is started before receiving the message. Th
 
 snippet:OutboxSqlServerConnectionStrings
 
-See also a [sample covering this mode of operation](/samples/sqltransport-nhpersistence/).
+See also [Sample covering this mode of operation](/samples/sqltransport-nhpersistence/).
 
 
 ### Native transactions
@@ -97,7 +101,7 @@ Because of the limitations of NHibernate connection management infrastructure, i
 
 The [Outbox](/nservicebus/outbox/) feature can be used to mitigate that problem. In such scenario the messages are stored in the same physical store as saga and user data and dispatched after the processing is finished. When NHibernate persistence detects the status of Outbox and the presence of SQLServer transport, it automatically stops reusing the transport connection and transaction. Instead the data access is done within the Outbox ambient transaction. 
 
-See also [a sample covering this mode of operation](/samples/outbox/sqltransport-nhpersistence/).
+See also [Sample covering this mode of operation](/samples/outbox/sqltransport-nhpersistence/).
 
 
 ### Versions 3 and above
