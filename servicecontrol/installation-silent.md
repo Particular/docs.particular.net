@@ -38,6 +38,7 @@ The installed instance will use `localsystem` as the service account. To specify
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml SERVICEACCOUNT=MyServiceAccount PASSWORD=MyPassword
 ```
 
+NOTE: Version 1.12.0 introduced a new mandatory setting which controls the forwarding of error messages. Unattended files need to be regenerated to include this option.  Refer to the ServiceControl Management [PowerShell](installation-powershell.md) documentation.
 
 #### Silently Upgrade ServiceControl during installation
 
@@ -74,6 +75,17 @@ In this example we've chosen to silently install the ServiceControl Management U
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log LICENSEFILE=license.xml
 ```
 
+#### Specifying ForwardErrorMessages during Upgrade
+
+Version 1.11.1 and below automatically forwarded all messages read from the Error queue to a secondary queue known as the Error Forwarding Queue.  From Version 1.12.0 the MSI command line parameter `FORWARDERRORMESSAGES` was introduced to set to allow this behavior to be enabled or disabled as part of the upgrade of an instance.
+
+When upgrading instances running on Version 1.11.1 and below the `FORWARDERRORMESSAGES` parameter is mandatory.  Valid options are `TRUE` and `FALSE`.           
+
+The Error Forwarding Queue queue exists to allow external tools to receive error messages. If there is no process reading messages from the Error Forwarding Queue this setting should be `FALSE`.
+
+```bat
+Particular.ServiceControl.1.11.2.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL FORWARDERRORMESSAGES=FALSE
+```
 
 #### Combining command line options
 
@@ -93,7 +105,8 @@ NOTE: This command will not remove any ServiceControl service instances that are
 
  
 #### Logging and Failures
-In each of the samples above a log file was specified on the command line. The silent install actions will log to the MSI log file specified. In versions prior to 1.7 if an installation action failed the installation was rolled back, this resulted in failed upgrades acting like a complete uninstall of the product. From 1.7 a failure to do an unattended install action will be logged but the overall installation will still return success and not rollback.
+In each of the samples above a log file was specified on the command line. The silent install actions will log to the MSI log file specified. For Version 1.6.3 and below if an installation action failed the installation was rolled back, this resulted in failed upgrades acting like a complete uninstall of the product. For Version 1.7 and above  a failure to do an unattended install action will be logged but the overall installation will not rollback, in this scenario  only the ServiceControl Management Utility will have been updated. Instances can subsequently be upgarde through the ServoceControl management utility.  
+
 
 #### PowerShell
 

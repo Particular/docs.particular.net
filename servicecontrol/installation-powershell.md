@@ -93,19 +93,28 @@ There are additional parameters available to set additional configuration option
 
 ### Upgrading an instance
 
-The following command will list the ServiceControl instances current installed and their version number
+The following command will list the ServiceControl instances current installed and their version number.
 
 ```bat
 Get-ServiceControlInstances | Select Name, Version
 ```
 
-To upgrade and instance to the latest version of the binaries run
+To upgrade and instance to the latest version of the binaries run.
 
 ```bat
 Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade>
 ```
 
 The upgrade will stop the service if it is running.
+
+
+Note: Version 1.12 introduced a new mandatory app setting which allows error forwarding to be configured. 
+When upgrading instances running on Version 1.11.1 and below the `Invoke-ServiceControlInstanceUpgrade` requires a value for this setting.
+
+```bat
+Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade> -ForwardErorrMessages [$true|$false]
+```
+he Error Forwarding Queue queue exists to allow external tools to receive error messages. If there is no process reading messages from the Error Forwarding Queue this setting should be `$false`.
 
 
 ### Licensing
@@ -121,13 +130,12 @@ Adding a license this way is not supported via the ServiceControl Management Uti
 
 ### Building an unattended install file
 
-Since ServiceControl 1.7 the installation executable has a command line argument to enable the installation of a ServiceControl service instance during installation. This is intended to assist with [unattended installation](installation-silent.md)
+Since ServiceControl 1.7 the installation executable has a MSI command line argument to enable the installation of a ServiceControl service instance during installation. This is intended to assist with [unattended installation](installation-silent.md)
 
-The command line argument requires an XML file which detail the instance options. The file can be produced by running the following cmdlet or by manually creating the XML file.
+The MSI command line argument requires an XML file which detail the instance options. The file can be produced by running the following cmdlet or by manually creating the XML file.
 
 ```bat
-New-ServiceControlUnattendedFile -OutputFile c:\temp\unattended.xml  -Name Test -InstallPath c:\servicecontrol\test\bin -DBPath c:\servicecontrol\test\db -LogPath  c:\servicecontrol\test\logs -Port 33335 -ErrorQueue error-test -AuditQueue audit-test
--ErrorLogQueue errorlog-test -AuditLogQueue auditlog-test -Transport MSMQ
+New-ServiceControlUnattendedFile -OutputFile c:\temp\unattended.xml  -Name Test -InstallPath c:\servicecontrol\test\bin -DBPath c:\servicecontrol\test\db -LogPath  c:\servicecontrol\test\logs -Port 33335 -ErrorQueue error-test -AuditQueue audit-test -ErrorLogQueue errorlog-test -AuditLogQueue auditlog-test -Transport MSMQ -ForwardAuditMessages $false -ForwardErrorMessages $false
 ```
 
 This sample produces the following Files
@@ -145,13 +153,19 @@ This sample produces the following Files
   <AuditQueue>audit-test</AuditQueue>
   <AuditLogQueue>auditlog-test</AuditLogQueue>
   <ForwardAuditMessages>false</ForwardAuditMessages>
+  <ForwardErrorMessages>false</ForwardEroroMessages>
   <TransportPackage>MSMQ</TransportPackage>
   <Name>Test</Name>
   <DisplayName>Test</DisplayName>
 </ServiceControlInstanceMetadata>
 ```
+  
+NOTE: Version 1.11.1 and below did not support a configuration option for `ForwardErrorMessages` so the unattended files from those versions are incompatible with Version 1.12 and above. To correct this either regenerate the XML file using the 
+`New-ServiceControlUnattendedFile` or manually update the XML file to include the  `ForwardErrorMessages` tag.     
 
-There is also a cmdlet which can be used to create an instance from the unattended file produced. The service account details can optionally be provided. If no service account details are specified the `LocalSystem` account is used
+### Testing an unattended install file
+
+There `New-ServiceControlInstanceFromUnattendedFile` cmdlet creates an instance from the unattended file. The service account details can optionally be provided. If no service account details are specified the `LocalSystem` account is used
 
 ```bat
 New-ServiceControlInstanceFromUnattendedFile -UnattendFile  c:\temp\unattended.xml -ServiceAccount MyServiceAccount -ServiceAccountPassword MyPassword
@@ -198,7 +212,7 @@ In this example any UrlAcl on port 33335 is remove
 Get-UrlAcls | ? Port -eq 33335 | Remove-UrlAcl
 ```
 
-The following example shows how to add UrlAcl for a ServiceControl service that should only respond to a specific DNS name. This would require an update of the ServiceControl config file as well. Refer to [setting a custom host name and port number](setting-custom-hostname.md)
+The following example shows how to add UrlAcl for a ServiceControl service that should only respond to a specific DNS name. This would require an update of the ServiceControl configuration file as well. Refer to [setting a custom host name and port number](setting-custom-hostname.md)
 
 ```bat
 Add-UrlAcl -Url http://servicecontrol.mycompany.com:33333/api/ -Users Users
