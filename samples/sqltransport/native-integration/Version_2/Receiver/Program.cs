@@ -18,6 +18,7 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         #endregion
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.EnableInstallers();
 
         using (Bus.Create(busConfiguration).Start())
         {
