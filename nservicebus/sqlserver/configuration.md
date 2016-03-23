@@ -7,11 +7,13 @@ redirects:
 - nservicebus/sqlserver/concurrency
 ---
 
+
 ## Connection strings
 
-NOTE: The SQL Server transport is built on top of ADO.NET and will use connection pooling. This may result in the connection pool being shared by the transport and other parts of the endpoint process. Depending on the situation it might be necessary to adjust the default connection pool size. For more details refer to the official [SQL Server Connection Pooling and Configuration](https://msdn.microsoft.com/en-us/library/8xx3tyca.aspx) document.
+The SQL Server transport is built on top of ADO.NET and will use connection pooling. This may result in the connection pool being shared by the transport and other parts of the endpoint process. Depending on the situation it might be necessary to adjust the default connection pool size. For more details refer to the official [SQL Server Connection Pooling and Configuration](https://msdn.microsoft.com/en-us/library/8xx3tyca.aspx) document.
 
 Connection string can be configured in several ways:
+
 
 ### Via the configuration API
 
@@ -20,11 +22,19 @@ By using the `ConnectionString` extension method:
 snippet:sqlserver-config-connectionstring
 
 
+### Via a custom connection factory
+
+By passing the transport a custom factory method which will provide connection strings at runtime:
+
+snippet:sqlserver-custom-connection-factory
+
+
 ### Via the App.Config
 
 By adding a connection named `NServiceBus/Transport` in the `connectionStrings` node.
 
 snippet:sqlserver-connection-string-xml
+
 
 ### Via a named connection string
 
@@ -37,23 +47,14 @@ combined with a named connection in the `connectionStrings` node of the `app.con
 snippet:sqlserver-named-connection-string-xml
 
 
-### Via a custom connection factory
-
-By passing the transport a custom factory method which will provide connection strings at runtime:
-
-snippet:sqlserver-custom-connection-factory
-
 ## Multiple connection strings
 
-In [*multi-catalog* and *multi-instance* modes](/nservicebus/sqlserver/deployment-options.md) it is necessary to include additional information in configuration.  The sender needs to know the connection string of the receiver, and the subscriber needs the connection string of the publisher.
+In [*multi-catalog* and *multi-instance* modes](/nservicebus/sqlserver/deployment-options.md) additional configuration is required for proper message routing:
+-  The sending endpoint needs the connection string of the receiving endpoint. 
+-  The subscribing endpoint needs the connection string of the publishing endpoint, in order to send subscription request.
 
 Connection strings for the remote endpoint can be configured in several ways:
 
-### Via the App.Config
-
-In Versions 2.1 to 2.x the endpoint-specific connection information is discovered by reading the connection strings from the configuration file with `NServiceBus/Transport/{name of the endpoint in the message mappings}` naming convention. If such a connection string is found, it is used for a given endpoint and this setting has precedence over the code-provided connection information.
-
-Starting from Version 3.0, the connection string for a remote endpoint has to be provided using configuration API.
 
 ### Via the configuration API - Push mode
 
@@ -68,6 +69,12 @@ The pull mode can be used when specific information is not available at configur
 
 snippet: sqlserver-multidb-other-endpoint-connection-pull
 
+
+### Via the App.Config
+
+In Versions 2.1 to 2.x the endpoint-specific connection information is discovered by reading the connection strings from the configuration file with `NServiceBus/Transport/{name of the endpoint in the message mappings}` naming convention.
+
+
 ### Example
 
 Given the following mappings:
@@ -78,7 +85,8 @@ and the following connection strings:
 
 snippet:sqlserver-multidb-connectionstrings
 
-The messages sent to the endpoint called `billing` will be sent to the database catalog `Billing` on the server instance `DbServerB`. The messages to the endpoint called `sales` will be sent to the default database catalog and database server instance, because the endpoint specific configuration wasn't passed, i.e. `MyDefaultDB` on server `DbServerA`.
+The messages sent to the endpoint called `billing` will be dispatched to the database catalog `Billing` on the server instance `DbServerB`. Because the endpoint configuration isn't specified for `sales`, any messages sent to the `sales` endpoint will be dispatched to the default database catalog and database server instance. In this example that will be `MyDefaultDB` on server `DbServerA`.
+
 
 ## Custom database schemas
 
@@ -92,11 +100,13 @@ In Versions 1.2.3 to 2.x it was also possible to pass custom schema in the conne
 snippet:sqlserver-non-standard-schema-connString
 snippet:sqlserver-non-standard-schema-connString-xml
 
+
 ## Multiple custom schemas
 
-If two endpoints use different schemas then additional configuration is required. The sender needs to know the schema of the receiver, and subscriber needs the schema of the publisher. 
-
-NOTE: In Versions 2.1.x to 2.x publisher also needs to know the schema of every subscriber. The same applies sending reply messages. 
+If the endpoints are configured to use a different schema, then additional configuration is required for proper message routing:
+- The sending endpoint needs to know the schema information of the receiving endpoint.
+- The subscriber will need the schema information of the publisher, in order to send subscription request.
+- In Versions 2.1.x to 2.x publisher also needs to know the schema of every subscriber. The same applies to sending reply messages using `ReplyTo()` or callbacks. 
 
 The schema for another endpoint can be specified in the following ways:
 
@@ -104,7 +114,8 @@ snippet:sqlserver-multischema-config-push
 snippet:sqlserver-multischema-config-pull
 snippet:sqlserver-non-standard-schema-messagemapping
 
-Notice that in Version 3.x the table and schema names can be passed either using common convention with square brackets, or without them.  
+Notice that in Versions 3 and higher the table and schema names can be passed either using common convention with square brackets, or without them.  
+
 
 ## Sql Server Transport, the Outbox and user data: disabling the DTC
 
@@ -114,6 +125,7 @@ The following conditions need to be met:
 
  * the business specific data and the `Outbox` storage must be in the same database instance;
  * the user code accessing business related data must use the same `connection string` as the `Outbox` storage.
+
 
 ### Entity Framework caveats
 
@@ -183,6 +195,6 @@ snippet:sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
 
 ### Pause Time
 
-Overrides the default time to pause after a failure while trying to receive a message. The setting is only available in version 2.x. The default value is 10 seconds.
+Overrides the default time to pause after a failure while trying to receive a message. The setting is only available in Version 2.x. The default value is 10 seconds.
 
 snippet: sqlserver-PauseAfterReceiveFailure
