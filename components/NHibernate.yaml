@@ -1,4 +1,4 @@
-Url: nservicebus/nhibernate
-Ranges: 
-  - Nuget: NServiceBus.NHibernate
-    Range: 
+url: nservicebus/nhibernate
+ranges: 
+  - nuget: NServiceBus.NHibernate
+    range: 

@@ -1,4 +1,4 @@
-Url: nservicebus/testing
-Ranges: 
-  - Nuget: NServiceBus.Testing
-    Range: 
+url: nservicebus/testing
+ranges: 
+  - nuget: NServiceBus.Testing
+    range: 

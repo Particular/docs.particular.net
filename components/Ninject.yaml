@@ -1,4 +1,4 @@
-Url: nservicebus/containers/ninject
-Ranges: 
-  - Nuget: NServiceBus.Ninject
-    Range: 
+url: nservicebus/containers/ninject
+ranges: 
+  - nuget: NServiceBus.Ninject
+    range: 

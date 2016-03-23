@@ -1,4 +1,4 @@
-Url: nservicebus/containers/spring
-Ranges: 
-  - Nuget: NServiceBus.Spring
-    Range: 
+url: nservicebus/containers/spring
+ranges: 
+  - nuget: NServiceBus.Spring
+    range: 

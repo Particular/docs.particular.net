@@ -1,4 +1,4 @@
-Url: nservicebus/gateway
-Ranges: 
-  - Nuget: NServiceBus.Gateway
-    Range: 
+url: nservicebus/gateway
+ranges: 
+  - nuget: NServiceBus.Gateway
+    range: 

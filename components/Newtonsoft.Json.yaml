@@ -1,4 +1,4 @@
-Url: nservicebus/serialization/newtonsoft
-Ranges: 
-  - Nuget: NServiceBus.Newtonsoft.Json
-    Range: 
+url: nservicebus/serialization/newtonsoft
+ranges: 
+  - nuget: NServiceBus.Newtonsoft.Json
+    range: 

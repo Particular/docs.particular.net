@@ -1,4 +1,4 @@
-Url: nservicebus/logging/nlog
-Ranges: 
-  - Nuget: NServiceBus.NLog
-    Range: 
+url: nservicebus/logging/nlog
+ranges: 
+  - nuget: NServiceBus.NLog
+    range: 
