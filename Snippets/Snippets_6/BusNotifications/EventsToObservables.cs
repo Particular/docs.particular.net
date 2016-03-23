@@ -10,7 +10,7 @@ namespace Snippets6.BusNotifications
 
     class EventsToObservables
     {
-        EventsToObservables(BusNotifications busNotifications, ILog log)
+        EventsToObservables(Notifications busNotifications, ILog log)
         {
             #region ConvertEventToObservable
 

@@ -81,7 +81,7 @@
 
         class Mutator : IMutateIncomingTransportMessages
         {
-            public Mutator(BusNotifications busNotifications)
+            public Mutator(Notifications busNotifications)
             {
                 ErrorsNotifications errors = busNotifications.Errors;
                 errors.MessageSentToErrorQueue += (sender, retry) =>

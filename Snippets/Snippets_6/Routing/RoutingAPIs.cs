@@ -144,7 +144,7 @@ namespace Snippets6.Routing
 
         public void FileBasedRoutingAdvanced()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Endpoint");
 
             #region Routing-FileBased-ConfigAdvanced
 
