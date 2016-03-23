@@ -23,6 +23,7 @@ class Program
         #endregion
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
