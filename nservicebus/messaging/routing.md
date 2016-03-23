@@ -78,7 +78,7 @@ Unicast routing uses queues which are inherently point-to-point channels. Each e
 
 ### Multicast routing
 
-Multicast routing uses topics or similar features available in the specific transport. Multiple receivers can subscribe to a single topic. In such case every published message is copied by the messaging infrastructure, and the copy is delivered to all interested receivers.
+Multicast routing uses topics or similar features available in the specific transport. Multiple receivers can subscribe to a single topic. In such case every published message is copied by the messaging infrastructure. The copies of the original message are delivered to subscribers.
 
 
 ### Transport
