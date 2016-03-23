@@ -35,7 +35,7 @@ snippet: customSLR
 
 ## Plugging to the API
 
-The notifications API is exposed via the BusNotifications class that can be injected via DI.
+The notifications API is exposed via the `BusNotifications` (NServiceBus Version 5) or `Notifications` (NServiceBus Version 6) class. This class can be injected using the [container](/nservicebus/containers).
 
 snippet:subscriptions
 

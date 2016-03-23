@@ -81,9 +81,9 @@
 
         class Mutator : IMutateIncomingTransportMessages
         {
-            public Mutator(Notifications busNotifications)
+            public Mutator(Notifications notifications)
             {
-                ErrorsNotifications errors = busNotifications.Errors;
+                ErrorsNotifications errors = notifications.Errors;
                 errors.MessageSentToErrorQueue += (sender, retry) =>
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(retry.Headers);

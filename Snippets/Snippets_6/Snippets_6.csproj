@@ -288,8 +288,8 @@
     <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
-    <Compile Include="BusNotifications\SubscribeToNotifications.cs" />
-    <Compile Include="BusNotifications\EventsToObservables.cs" />
+    <Compile Include="Notifications\SubscribeToNotifications.cs" />
+    <Compile Include="Notifications\EventsToObservables.cs" />
     <Compile Include="Callback\Cancellation\Message.cs" />
     <Compile Include="Callback\Cancellation\Usage.cs" />
     <Compile Include="Callback\Enum\Handler.cs" />

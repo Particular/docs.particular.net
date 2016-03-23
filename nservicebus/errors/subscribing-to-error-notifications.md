@@ -17,7 +17,7 @@ Error notifications are available for several events.
 
 This API was added in Version 5.1.
 
-These event are exposed via the `BusNotifications` class that can be injected via DI.
+These event are exposed via the `BusNotifications` (NServiceBus Version 5) or `Notifications` (NServiceBus Version 6) class. This class can be injected using the [container](/nservicebus/containers).
 
 The following example shows how to be notified every time a message is sent to FLR, SLR or the error queue. While this code writes to the console any other action could be taken, for example sending an email or writing to a monitoring system.
 

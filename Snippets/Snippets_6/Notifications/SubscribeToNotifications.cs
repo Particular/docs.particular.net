@@ -1,5 +1,5 @@
 ﻿// ReSharper disable UnusedParameter.Local
-namespace Snippets6.BusNotifications
+namespace Snippets6.Notifications
 {
     using System.Threading.Tasks;
     using NServiceBus;
@@ -11,17 +11,17 @@ namespace Snippets6.BusNotifications
     public class SubscribeToNotifications :
         IWantToRunWhenBusStartsAndStops
     {
-        Notifications busNotifications;
+        Notifications notifications;
         static ILog log = LogManager.GetLogger<SubscribeToNotifications>();
 
-        public SubscribeToNotifications(Notifications busNotifications)
+        public SubscribeToNotifications(Notifications notifications)
         {
-            this.busNotifications = busNotifications;
+            this.notifications = notifications;
         }
 
         public Task Start(IMessageSession session)
         {
-            ErrorsNotifications errors = busNotifications.Errors;
+            ErrorsNotifications errors = notifications.Errors;
             errors.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => LogToConsole(retry);
             errors.MessageHasFailedAFirstLevelRetryAttempt += (sender, retry) => LogToConsole(retry);
             errors.MessageSentToErrorQueue += (sender, retry) => LogToConsole(retry);

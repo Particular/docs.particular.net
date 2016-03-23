@@ -11,16 +11,16 @@ public class SubscribeToNotifications :
     IWantToRunWhenBusStartsAndStops
 {
     static ILog log = LogManager.GetLogger<SubscribeToNotifications>();
-    BusNotifications busNotifications;
+    Notifications notifications;
 
-    public SubscribeToNotifications(BusNotifications busNotifications)
+    public SubscribeToNotifications(Notifications notifications)
     {
-        this.busNotifications = busNotifications;
+        this.notifications = notifications;
     }
 
     public Task Start(IMessageSession session)
     {
-        ErrorsNotifications errors = busNotifications.Errors;
+        ErrorsNotifications errors = notifications.Errors;
         errors.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => Log(retry);
         errors.MessageHasFailedAFirstLevelRetryAttempt += (sender, retry) => Log(retry);
         errors.MessageSentToErrorQueue += (sender, retry) => Log(retry);
