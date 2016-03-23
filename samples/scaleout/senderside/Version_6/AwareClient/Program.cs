@@ -18,16 +18,15 @@ class Program
 
         #region Logical-Routing
 
-        endpointConfiguration.Routing()
-            .UnicastRoutingTable
+        endpointConfiguration.UnicastRouting()
             .RouteToEndpoint(typeof(DoSomething), "Samples.SenderSideScaleOut.Server");
 
         #endregion
 
         #region File-Based-Routing
 
-        endpointConfiguration.Routing()
-            .UseFileBasedEndpointInstanceMapping("routes.xml");
+        endpointConfiguration.UseTransport<MsmqTransport>()
+            .DistributeMessagesUsingFileBasedEndpointInstanceMapping("routes.xml");
 
         #endregion
 
