@@ -78,7 +78,7 @@ Unicast routing uses queues which are inherently point-to-point channels. Each e
 
 ### Multicast routing
 
-Multicast routing uses topics or similar devices. Multiple receivers can subscribe to a single topic and each message published to the topic is copied by the messaging infrastructure and delivered to each interested receiver.
+Multicast routing uses topics or similar features provided by/available in the specific transport. Multiple receivers can subscribe to a single topic. In such case every published message is copied by the messaging infrastructure, and the copy is delivered to all interested receivers.
 
 
 ### Transport
@@ -104,7 +104,7 @@ Each layer is the responsibility of people in a different organizational role an
 
 ### Endpoint mapping layer
 
-Mapping a message type to the destination is the responsibility of the **architect** role (which can be fulfilled by the whole team of developers). It tells NServiceBus to which endpoint a given type of message should be send or, when it comes to events, which endpoint is responsible for publishing.
+Mapping a message type to the destination endpoint is the logical side of the routing. It tells NServiceBus to which endpoint a given type of command should be send or, when it comes to events, which endpoint is responsible for publishing it. The latter is only required for transports that do not support publishing natively.
 
 
 #### Static routes
@@ -133,7 +133,7 @@ NOTE: The function passed to the `AddDynamic` call is executed **each time** a m
 
 ### Endpoint instance mapping layer
 
-The purpose of the endpoint instance mapping layer is to provide information about physical deployments of a given endpoint. It is usually the responsibility of **operations engineers** who control environments and have the knowledge where a given endpoint has been deployed. Endpoint instance mapping is optional for most transports in most cases because of built-in conventions. An example of situation where it is required is a scaled out endpoint using MSMQ transport. Other endpoints that send messages to it need to be aware of its instances.
+The purpose of the endpoint instance mapping layer is to provide information about physical deployments of a given endpoint. Endpoint instance mapping is optional for most transports in most cases because of built-in conventions. An example of situation where it is required is a scaled out endpoint using MSMQ transport. Other endpoints that send messages to it need to be aware of its instances.
 
 
 #### Using config file
