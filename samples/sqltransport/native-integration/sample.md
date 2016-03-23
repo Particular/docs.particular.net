@@ -14,8 +14,8 @@ related:
  1. Ensure a SQL Server Express is running and accessible as `.\SQLEXPRESS`. 
  1. Create a database `samples`
  1. Start the Receiver project.
- 1. In the Sender's console notice `Press any key to send a message. Press `q` to quit` text when the app is ready.
- 1. Hit any key.
+ 1. In the Receiver's console notice `Press enter to send a message. Press any key to exit` text when the app is ready.
+ 1. Hit enter key.
  1. A message will be sent using ADO.NET and be received by the app.
  1. Open SQL Server Management Studio and go to the `samples` database.
  1. Open the Scripts.sql included in the sample.
