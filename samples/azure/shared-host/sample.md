@@ -40,7 +40,7 @@ Results sorted by Timestamp
  1. Run the solution
  1. Inspect Azure Storage Emulator Tables for `MultiHostedEndpointsOutput` table and its content
 
-NOTE: To inspect multi-host [role emulated file system](https://msdn.microsoft.com/en-us/library/azure/hh771389.aspx), navigate to `C:\Users\%USERNAME%\AppData\Local\dftmp\Resources`
+NOTE: To inspect multi-host role emulated file system navigate to `C:\Users\%USERNAME%\AppData\Local\dftmp\Resources`
 
 Azure Compute Emulator leaves any processes spawned at run time in memory. Kill those once done with emulated Cloud Service execution by locating `WaWorkerHost.exe` process and killing all child processes named `NServiceBus.Hosting.Azure.HostProcess.exe`. Number of those processes will be as number of endpoints (2) X number of times Cloud Service was executed.
 
