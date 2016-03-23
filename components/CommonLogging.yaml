@@ -1,0 +1,4 @@
+Url: nservicebus/logging/common-logging
+Ranges: 
+  - Nuget: NServiceBus.CommonLogging
+    Range: (,5)

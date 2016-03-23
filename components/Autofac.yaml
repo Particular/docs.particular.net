@@ -1,0 +1,4 @@
+Url: nservicebus/containers/autofac
+Ranges: 
+  - Nuget: NServiceBus.Autofac
+    Range: 

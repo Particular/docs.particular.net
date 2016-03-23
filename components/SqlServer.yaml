@@ -1,0 +1,4 @@
+Url: nservicebus/sqlserver
+Ranges: 
+  - Nuget: NServiceBus.SqlServer
+    Range: 

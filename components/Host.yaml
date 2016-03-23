@@ -1,0 +1,4 @@
+Url: nservicebus/hosting/nservicebus-host
+Ranges: 
+  - Nuget: NServiceBus.Host
+    Range: 

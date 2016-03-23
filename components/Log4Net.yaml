@@ -1,0 +1,4 @@
+Url: nservicebus/logging/log4net
+Ranges: 
+  - Nuget: NServiceBus.Log4Net
+    Range: 

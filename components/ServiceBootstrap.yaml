@@ -1,0 +1,4 @@
+Url: nservicebus/hosting/windows-service
+Ranges: 
+  - Nuget: NServiceBus.Bootstrap.WindowsService
+    Range: 

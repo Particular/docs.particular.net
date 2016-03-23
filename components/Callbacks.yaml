@@ -1,0 +1,6 @@
+Url: nservicebus/messaging/handling-responses-on-the-client-side
+Ranges: 
+  - Nuget: NServiceBus
+    Range: (,6)
+  - Nuget: NServiceBus.Callbacks
+    Range: 

@@ -1,0 +1,4 @@
+Url: nservicebus/rabbitmq
+Ranges: 
+  - Nuget: NServiceBus.RabbitMQ
+    Range: 

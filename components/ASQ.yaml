@@ -1,0 +1,4 @@
+Url: nservicebus/azure/azure-storage-queues-transport
+Ranges: 
+  - Nuget: NServiceBus.Azure.Transports.WindowsAzureStorageQueues
+    Range: 

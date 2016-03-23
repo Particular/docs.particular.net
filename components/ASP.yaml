@@ -1,0 +1,6 @@
+Url: nservicebus/azure/azure-storage-persistence
+Ranges: 
+  - Nuget: NServiceBus.Azure
+    Range: (,7)
+  - Nuget: NServiceBus.AzureStoragePersistence
+    Range: 

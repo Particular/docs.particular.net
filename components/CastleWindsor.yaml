@@ -1,0 +1,4 @@
+Url: nservicebus/containers/castlewindsor
+Ranges: 
+  - Nuget: NServiceBus.CastleWindsor
+    Range: 
