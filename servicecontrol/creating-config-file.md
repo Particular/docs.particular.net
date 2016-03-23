@@ -224,13 +224,32 @@ Default: `<AuditQueue>.log`
 #### ServiceControl/ForwardAuditMessages
 
 Use this setting to configure whether processed audit messages are forwarded to another queue or not.
+This queue is known as the Audit Forwarding Queue.
 
 Type: bool `true` or `false`
 
-Default: `false`. In Versions 1.5 and above if this setting is not explicitly set to true or false a warning is shown in the logs at start up.
+Prior to Versions 1.5 this setting had no default.
+
+In Versions 1.5 through to 1.11.1 this setting default to false but warned if this setting is not explicitly set to true or false a warning in the configuration file. From 1.7 the upgrade and install explicitly writes this setting to the configuration file.
+  
+From Version 1.12 this app.config setting is mandatory 
 
 See [Installation](installation.md) for details on how to set this at install time.
 
+#### ServiceControl/ForwardErrorMessages
+
+Use this setting to configure whether processed fault messages are forwarded to another queue or not.
+This queue is known as the `Error Forwarding Queue`.
+
+Type: bool `true` or `false`
+
+This setting was introduced in Version 1.12 as a mandatory setting in the configuration file.
+This setting has no default. On installation and upgrade the value for the setting will be requested.
+if this setting is manually removed ServiceControl will log that it is missing and will fail on startup.
+
+This entry should be set to `false` if there is no external process reading messages from the `Error Forwarding Queue`.
+ 
+See [Installation](installation.md) for details on how to set this at install time.
 
 ## Plugin Specific
 
