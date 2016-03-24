@@ -7,7 +7,7 @@
     {
         public void ConfigurePropertyInjectionForHandler(Configure configure)
         {
-            #region ConfigurePropertyInjectionForHandlerBefore
+            #region ConfigurePropertyInjectionForHandler
 
             configure.Configurer
                 .ConfigureProperty<EmailHandler>(handler => handler.SmtpAddress, "10.0.1.233")
