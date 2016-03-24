@@ -1,23 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
 {
     static void Main()
     {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
         Console.Title = "Samples.MultiTenant.Sender";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.MultiTenant.Sender");
-        busConfiguration.UseSerialization<JsonSerializer>();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Sender");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        busConfiguration.UsePersistence<NHibernatePersistence>();
-        busConfiguration.EnableOutbox();
+        endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        endpointConfiguration.EnableOutbox();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+
+        try
         {
             Console.WriteLine("Press A or B to publish a message (A and B are tenant IDs)");
             List<char> acceptableInput = new List<char> { 'A', 'B' };
@@ -36,14 +44,21 @@ class Program
                         OrderId = orderId,
                         Value = random.Next(100)
                     };
-                    bus.SetMessageHeader(message, "TenantId", uppercaseKey.ToString());
-                    bus.Publish(message);
+
+                    PublishOptions options = new PublishOptions();
+                    options.SetHeader("TenantId", uppercaseKey.ToString());
+
+                    await endpoint.Publish(message, options);
                 }
                 else
                 {
-                    Console.WriteLine("[{0}] is not a valid tenant identifier.", uppercaseKey);
+                    Console.WriteLine($"[{uppercaseKey}] is not a valid tenant identifier.");
                 }
             }
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }
