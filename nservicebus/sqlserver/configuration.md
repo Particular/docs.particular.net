@@ -60,9 +60,9 @@ snippet:sqlserver-multidb-other-endpoint-connection-push
 
 ### Via the configuration API - Pull mode
 
-The pull mode can be used when specific information is not available at configuration time. One can pass a `Func<String, ConnectionInfo>` that will be used by the SQL Server transport to resolve connection information at runtime.
+The pull mode can be used when specific information is not available at configuration time. One can pass a function that will be used by the SQL Server transport to resolve connection information at runtime.
 
-snippet: sqlserver-multidb-other-endpoint-connection-pull
+snippet:sqlserver-multidb-other-endpoint-connection-pull
 
 
 ### Via the App.Config

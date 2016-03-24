@@ -431,6 +431,7 @@
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
     <Compile Include="Transports\RabbitMQ_4\Usage.cs" />
+    <Compile Include="Transports\SqlServer_3\MultiDb.cs" />
     <Compile Include="Transports\SqlServer_3\MultiSchema.cs" />
     <Compile Include="Transports\SqlServer_3\SingleDbMultiSchema.cs" />
     <Compile Include="Transports\SqlServer_3\ConnectionStrings.cs" />
@@ -553,6 +554,7 @@
     <Compile Include="TransportTransactions.cs" />
     <Compile Include="RavenDB\UpgradeGuides\3to4\HandlerWithRavenSession.cs" />
     <Compile Include="RavenDB\UpgradeGuides\3to4\SharedSessionEndpointConfig.cs" />
+    <Compile Include="Transports\SqlServer_3\UpgradeGuides\MultiInstance.cs" />
     <Compile Include="UpgradeGuides\5to6\StartupInterface.cs" />
     <Compile Include="UpgradeGuides\5to6\MsmqSubscriptionAuthorization.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
