@@ -6,7 +6,9 @@
 
     class NamedConnectionString
     {
-		void ConnectionString(EndpointConfiguration endpointConfiguration)
+        private string connectionString;
+
+        void ConnectionString(EndpointConfiguration endpointConfiguration)
         {
             #region sqlserver-config-connectionstring
 
@@ -33,8 +35,13 @@
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .UseCustomSqlConnectionFactory(async () =>
                 {
-                    SqlConnection connection = new SqlConnection(@"Server=localhost\sqlexpress;Database=nservicebus;Trusted_Connection=True;");
+                    connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+
+                    SqlConnection connection = new SqlConnection(connectionString);
                     await connection.OpenAsync();
+
+                    // perform custom operations
+
                     return connection;
                 });
 

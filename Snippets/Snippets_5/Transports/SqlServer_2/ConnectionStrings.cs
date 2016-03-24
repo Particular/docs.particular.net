@@ -31,7 +31,15 @@
 
             busConfiguration.UseTransport<SqlServerTransport>()
                 .UseCustomSqlConnectionFactory(
-                    connectionString => new SqlConnection(@"Server=localhost\sqlexpress;Database=nservicebus;Trusted_Connection=True;"));
+                    connectionString =>
+                    {
+                        SqlConnection newConnection = new SqlConnection(connectionString);
+                        newConnection.Open();
+                        
+                        // custom operations
+
+                        return newConnection;
+                    });
 
             #endregion
         }
