@@ -22,10 +22,10 @@ NOTE: To properly identify the chosen deployment option all queues that the endp
 The transport will route messages to destination based on the configuration. If no specific configuration has been provided for a particular destination, the transport assumes the destination has the same configuration as the sending endpoint (i.e. identical schema, catalog and instance name). If the destination has a different configuration and it hasn't been provided, then exception will be thrown when sending a message, because the transport wouldn't be able to connect to the destination queue.
 
 
-# Modes overview
+#$ Modes overview
 
 
-## Default (single schema, single catalog, single SQL Server instance)
+### Default (single schema, single catalog, single SQL Server instance)
 
  * Has simple configuration and setup.
  * Doesn't require Distributed Transaction Coordinator (DTC).
@@ -33,7 +33,7 @@ The transport will route messages to destination based on the configuration. If 
  * Can be monitored with ServiceControl.
 
 
-## Multi-schema
+### Multi-schema
 
  * Has simple configuration and setup.
  * Doesn't require DTC.
@@ -42,7 +42,7 @@ The transport will route messages to destination based on the configuration. If 
  * Can't be monitored with ServiceControl.
 
 
-## Multi-instance
+### Multi-instance
 
 WARNING: The *multi-instance* option won't be directly supported in Versions 4 and higher. Instead, a guidance will be provided on how to achieve a similar result using built-in SQL Server features. However, in Versions 4 and higher the *multi-catalog* option will be directly supported.
 
@@ -50,7 +50,7 @@ WARNING: The *multi-instance* option won't be directly supported in Versions 4 a
  * Can't be monitored with ServiceControl.
 
 
-## Multi-instance with store-and-forward
+### Multi-instance with store-and-forward
 
 WARNING: This option will not be supported in Versions 4 and above.
 
