@@ -88,6 +88,7 @@ snippet:GetConnectionFromContext
 
 NOTE: The connection provider is only used by `OutboxPersister`'s `TryGet` and `MarkAsDispatched` methods which execute in separate transaction from all the other storage operations.
 
+NOTE: The connection provider is a simple implementation that is not thread-safe. For this example, we have set the Maximum Concurrency Level to 1 which makes it run in single thread mode.  
 
 #### Opening connection to tenant database
 
@@ -109,3 +110,4 @@ snippet:PropagateTenantId
 This behavior also needs to be registered a configuration time.
 
 snippet:RegisterPropagateTenantIdBehavior
+
