@@ -6,12 +6,16 @@ internal class PropagateOutgoingTenantIdBehavior : Behavior<IOutgoingLogicalMess
 {
     public override async Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
     {
+        #region PropagateTenantIdOutgoing
+
         string tenant;
         if (context.Extensions.TryGet("TenantId", out tenant))
         {
             context.Headers["TenantId"] = tenant;
         }
         await next().ConfigureAwait(false);
+
+        #endregion
     }
 
     public class Registration : RegisterStep
