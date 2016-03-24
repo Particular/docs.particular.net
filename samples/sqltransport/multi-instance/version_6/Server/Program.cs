@@ -11,7 +11,7 @@ namespace Server
     {
         private static IEndpointInstance endpoint;
 
-        static void Main(string[] args)
+        static void Main()
         {
             AsyncMain().GetAwaiter().GetResult();
         }
@@ -20,21 +20,17 @@ namespace Server
         {
             Console.Title = "Samples.SqlServer.MultiInstance Server";
             #region EndpointConfiguration
-            var configuration = new EndpointConfiguration();
-            configuration.EndpointName("Samples.SqlServer.MultiInstanceServer");
-            configuration.UseTransport<SqlServerTransport>()
+            var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceServer");
+            endpointConfiguration.UseTransport<SqlServerTransport>()
                 .EnableLagacyMultiInstanceMode(EndpointConnectionLookup.GetLookupFunc());
-
-            configuration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.SendFailedMessagesTo("error");
             #endregion
 
-            configuration.UsePersistence<InMemoryPersistence>();
-            configuration.SendFailedMessagesTo("error");
-
-            endpoint = await Endpoint.Start(configuration);
+            endpoint = await Endpoint.Start(endpointConfiguration);
             Console.WriteLine("Server running. Press Enter key to quit");
             Console.WriteLine("Waiting for Order messages from the client");
-
 
             while (true)
             {

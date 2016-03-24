@@ -11,9 +11,9 @@ namespace Client
 class Program
 {
 
-    private static IEndpointInstance endpoint;
+    static IEndpointInstance endpoint;
 
-        static void Main(string[] args)
+        static void Main()
         {
             AsyncMain().GetAwaiter().GetResult();
         }
@@ -21,17 +21,15 @@ class Program
         {
             Console.Title = "Samples.SqlServer.MultiInstance Client";
             #region EndpointConfiguration
-            var configuration = new EndpointConfiguration();
-            configuration.UseTransport<SqlServerTransport>()
+            var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceClient");
+            endpointConfiguration.UseTransport<SqlServerTransport>()
                                 .EnableLagacyMultiInstanceMode(EndpointConnectionLookup.GetLookupFunc());
-            configuration.EndpointName("Samples.SqlServer.MultiInstanceClient");
-            configuration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.SendFailedMessagesTo("error");
             #endregion
 
-            configuration.UsePersistence<InMemoryPersistence>();
-            configuration.SendFailedMessagesTo("error");
-
-            endpoint = await Endpoint.Start(configuration);
+            endpoint = await Endpoint.Start(endpointConfiguration);
             try
             {
                 Console.WriteLine("Client running, Press Enter key to quit");
@@ -58,7 +56,7 @@ class Program
             }
         }
 
-        private static void PlaceOrder()
+        static void PlaceOrder()
         {
             #region MessagePayload
 

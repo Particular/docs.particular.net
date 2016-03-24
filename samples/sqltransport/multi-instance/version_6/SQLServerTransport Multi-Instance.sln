@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{A50E54FA-4AE8-4018-BBA4-B8ED7748F214}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointConnectionStringLookup", "EndpointConnectionStringLookup\EndpointConnectionStringLookup.csproj", "{FFD933D2-00DF-4352-8DE2-7C9ADBC8257C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointConnectionLookup", "EndpointConnectionLookup\EndpointConnectionLookup.csproj", "{FFD933D2-00DF-4352-8DE2-7C9ADBC8257C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
