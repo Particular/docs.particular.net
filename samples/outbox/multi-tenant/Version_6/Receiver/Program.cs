@@ -43,6 +43,8 @@ class Program
             .UseTimeoutStorageConfiguration(CreateBasicNHibernateConfig())
             .DisableSchemaUpdate();
 
+        endpointConfiguration.EnableOutbox();
+
         SettingsHolder settingsHolder = endpointConfiguration.GetSettings();
         settingsHolder.Set("NHibernate.Timeouts.AutoUpdateSchema", true);
         settingsHolder.Set("NHibernate.Subscriptions.AutoUpdateSchema", true);
