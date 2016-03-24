@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NHibernate.Mapping;
 using NServiceBus;
 
 class Program
@@ -19,6 +18,7 @@ class Program
         Random random = new Random();
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         endpointConfiguration.UsePersistence<NHibernatePersistence>();
         endpointConfiguration.EnableOutbox();

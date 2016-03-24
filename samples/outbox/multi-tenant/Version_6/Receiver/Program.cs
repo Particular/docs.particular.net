@@ -34,7 +34,8 @@ class Program
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
-        
+        endpointConfiguration.SendFailedMessagesTo("error");
+
         #region ReceiverConfiguration
         
         endpointConfiguration.UsePersistence<NHibernatePersistence>()
