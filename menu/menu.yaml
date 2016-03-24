@@ -126,7 +126,7 @@
           Articles:
             - "nservicebus/sqlserver/configuration"
             - "nservicebus/sqlserver/design"
-            - "nservicebus/sqlserver/multiple-databases"
+            - "nservicebus/sqlserver/deployment-options"
             - "nservicebus/sqlserver/operations-scripting"
         - Title: "MSMQ"
           Url: "nservicebus/msmq"
