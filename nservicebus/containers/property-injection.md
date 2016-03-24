@@ -9,21 +9,20 @@ redirects:
  - nservicebus/property-injection-in-handlers
 ---
 
-When using the NServiceBus built-in container it is possible to control property injection.
+NServiceBus will automatically enable property injection known types across the supported [Containers](/nservicebus/containers). Use the `Func` overload of `.ConfigureComponent` to get full control over the injected properties if needed.
 
-So given the following class that is constructed by the container.
+A common use case it to set primitive properties on message handlers. Given then below handler:
 
 snippet: PropertyInjectionWithHandler
 
-The property inject be done with the following:
+Setting the properties would be done as follows:
 
-snippet: ConfigurePropertyInjectionForHandlerBefore
-
-At construction time both `SmtpAddress` and `SmtpPort` will be injected.
-
+snippet: ConfigurePropertyInjectionForHandler
 
 ## A Handler/Saga specific API
 
-From Versions 5.2 and above a new, more explicit, API has been introduced that specifically targets Handlers and Sagas.
+Versions 5.2 supported a new, more explicit, API that specifically targets Handlers and Sagas.
 
-snippet: ConfigurePropertyInjectionForHandler
+NOTE: This API has been obsoleted with error in Version 6
+
+snippet: ConfigurePropertyInjectionForHandlerExplicit
