@@ -1,7 +1,7 @@
 ---
 title: Notifications
 summary: Using the notifications API.
-reviewed: 2016-03-21
+reviewed: 2016-03-24
 tags:
 related:
 - nservicebus/errors/subscribing-to-error-notifications
@@ -35,7 +35,7 @@ snippet: customSLR
 
 ## Plugging to the API
 
-The notifications API is exposed via the BusNotifications class that can be injected via DI.
+The notifications API is exposed is injected via the [container](/nservicebus/containers/).
 
 snippet:subscriptions
 

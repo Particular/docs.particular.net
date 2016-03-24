@@ -154,7 +154,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1725\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1729\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Gateway, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Gateway.2.0.0-unstable0067\lib\net452\NServiceBus.Gateway.dll</HintPath>
@@ -287,8 +287,8 @@
     <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
-    <Compile Include="BusNotifications\SubscribeToNotifications.cs" />
-    <Compile Include="BusNotifications\EventsToObservables.cs" />
+    <Compile Include="Notifications\SubscribeToNotifications.cs" />
+    <Compile Include="Notifications\EventsToObservables.cs" />
     <Compile Include="Callback\Cancellation\Message.cs" />
     <Compile Include="Callback\Cancellation\Usage.cs" />
     <Compile Include="Callback\Enum\Handler.cs" />
