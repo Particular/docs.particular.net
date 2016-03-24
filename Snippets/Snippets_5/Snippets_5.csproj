@@ -379,7 +379,6 @@
     </Content>
     <None Include="Transports\SqlServer_2\ConnectionStrings.config" />
     <None Include="Transports\SqlServer_2\ConnectionStringsNamed.config" />
-    <None Include="Transports\SqlServer_2\MultiDB.SC.config" />
     <None Include="Transports\SqlServer_2\MultiSchema.config" />
     <Content Include="Transports\SqlServer_2\UpgradeGuides\ExpiredIndex.sql" />
     <None Include="Gateway\UpgradeGuide\1to2\Channel.config" />

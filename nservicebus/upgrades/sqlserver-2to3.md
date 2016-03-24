@@ -45,7 +45,7 @@ or by defining a custom connection factory:
 snippet:sqlserver-singledb-multidb-pull 
 
 The custom connection factory is also used for specifying schemas for other endpoints that the configured endpoint communicates with.
-When using configuration file to specify schemas for other endpoints, their schemas should be placed in the `MessageEndpointMappings` section and follow `endpoint-name@schema-name` convention: 
+When using configuration file to specify schemas for other endpoints, their schemas should be placed in the `MessageEndpointMappings` section and follow `endpoint-name@schema-name` convention:
 
 snippet:sqlserver-singledb-multischema-config
 

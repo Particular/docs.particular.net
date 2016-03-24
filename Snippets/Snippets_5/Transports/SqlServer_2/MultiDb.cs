@@ -5,25 +5,6 @@
 
     class MultiDb
     {
-        void CurrentEndpointSchema(BusConfiguration busConfiguration)
-        {
-            #region sqlserver-multidb-current-endpoint-schema 2.1
-
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .DefaultSchema("myschema");
-
-            #endregion
-        }
-
-        void CurrentEndpointConnectionString(BusConfiguration busConfiguration)
-        {
-            #region sqlserver-multidb-current-endpoint-connection-string
-
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
-
-            #endregion
-        }
 
         void OtherEndpointConnectionParamsPush(BusConfiguration busConfiguration)
         {
@@ -56,19 +37,5 @@
             #endregion
         }
 
-        void RedirectAuditAndError(BusConfiguration busConfiguration)
-        {
-            #region sqlserver-multidb-redirect-audit-error 2.1
-
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .UseSpecificConnectionInformation(
-                    EndpointConnectionInfo.For("error")
-                        .UseConnectionString("ServiceControl connection string"),
-                    EndpointConnectionInfo.For("audit")
-                        .UseConnectionString("ServiceControl connection string")
-                );
-
-            #endregion
-        }
     }
 }

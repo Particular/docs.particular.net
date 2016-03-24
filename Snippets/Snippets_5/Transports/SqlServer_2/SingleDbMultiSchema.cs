@@ -15,20 +15,6 @@
             #endregion
         }
 
-        void OtherEndpointConnectionParamsPush(BusConfiguration busConfiguration)
-        {
-            #region sqlserver-singledb-multidb-push [2.1,3.0)
-
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .UseSpecificConnectionInformation(
-                    EndpointConnectionInfo.For("AnotherEndpoint")
-                        .UseSchema("receiver1"),
-                    EndpointConnectionInfo.For("YetAnotherEndpoint")
-                        .UseSchema("receiver2")
-                );
-
-            #endregion
-        }
 
         void OtherEndpointConnectionParamsPull(BusConfiguration busConfiguration)
         {
