@@ -18,7 +18,7 @@ ServiceControl 1.7 introduced a new graphical management utility to add, remove,
 
 The ServiceControlMgmt module requires:
 
-- Microsoft PowerShell 3.0
+ * Microsoft PowerShell 3.0
 
 
 ## Loading and Running the Powershell Module
@@ -112,7 +112,8 @@ When upgrading instances running on Version 1.11.1 and below the `Invoke-Service
 ```bat
 Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade> -ForwardErorrMessages [$true|$false]
 ```
-he Error Forwarding Queue queue exists to allow external tools to receive error messages. If there is no process reading messages from the Error Forwarding Queue this setting should be `$false`.
+
+The Error Forwarding Queue queue exists to allow external tools to receive error messages. If there is no process reading messages from the Error Forwarding Queue this setting should be `$false`.
 
 
 ### Licensing
@@ -157,7 +158,7 @@ This sample produces the following Files
   <DisplayName>Test</DisplayName>
 </ServiceControlInstanceMetadata>
 ```
-  
+
 NOTE: Version 1.11.1 and below did not support a configuration option for `ForwardErrorMessages` so the unattended files from those versions are incompatible with Version 1.12 and above. To correct this either regenerate the XML file using the 
 `New-ServiceControlUnattendedFile` or manually update the XML file to include the `ForwardErrorMessages` tag.
 
@@ -170,7 +171,7 @@ There `New-ServiceControlInstanceFromUnattendedFile` cmdlet creates an instance 
 New-ServiceControlInstanceFromUnattendedFile -UnattendFile c:\temp\unattended.xml -ServiceAccount MyServiceAccount -ServiceAccountPassword MyPassword
 ```
 
-Note: Neither the unattended file method or the `New-ServiceControlInstance` cover all the configuration settings that are available to ServiceControl. To set additonal options refer to [Customizing ServiceControl configuration](creating-config-file.md). A scripted method of adding additional settings is detailed in [Installing ServiceControl Silently](installation-silent.md)   
+Note: Neither the unattended file method or the `New-ServiceControlInstance` cover all the configuration settings that are available to ServiceControl. To set additonal options refer to [Customizing ServiceControl configuration](creating-config-file.md). A scripted method of adding additional settings is detailed in [Installing ServiceControl Silently](installation-silent.md).
 
 
 ## Troubleshooting via PowerShell
@@ -180,7 +181,7 @@ The ServiceControl Management PowerShell offers some cmdlets to assist with trou
 
 ### Check if a Port is already in use
 
-Before adding an instance of ServiceControl test if the port to use is currently in use. 
+Before adding an instance of ServiceControl test if the port to use is currently in use.
 
 ```bat
 Test-IfPortIsAvailable -Port 33333
