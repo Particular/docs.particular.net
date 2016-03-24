@@ -1,6 +1,7 @@
 ---
 title: Managing ServiceControl Instances via PowerShell
-summary: Managing ServiceControl Instances via PowerShell
+summary: Managing ServiceControl Instances via PowerShell.
+reviewed: 2016-03-24
 tags:
 - ServiceControl
 - Installation
@@ -10,8 +11,7 @@ tags:
 
 ## ServiceControl PowerShell
 
-ServiceControl 1.7 introduced a new graphical management utility to add, remove, update and delete instances of the ServiceControl service. 
-These actions and some additional tools have also exposed via PowerShell module called `ServiceControlMgmt`
+ServiceControl 1.7 introduced a new graphical management utility to add, remove, update and delete instances of the ServiceControl service. These actions and some additional tools have also exposed via PowerShell module called `ServiceControlMgmt`.
 
 
 ## Prerequisites
@@ -23,9 +23,7 @@ The ServiceControlMgmt module requires:
 
 ## Loading and Running the Powershell Module
 
-The majority of the ServiceControlMgmt Powershell module cmdlets will only work if the PowerShell session is running under administrator privileges.
-The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with the module automatically loaded.
-Alternatively the module can be loaded directly into an an existing PowerShell session by loading `ServiceControlMgmt.psd1` using the `Import-Module` cmdlet as show below:
+The majority of the ServiceControlMgmt Powershell module cmdlets will only work if the PowerShell session is running under administrator privileges. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with the module automatically loaded. Alternatively the module can be loaded directly into an an existing PowerShell session by loading `ServiceControlMgmt.psd1` using the `Import-Module` cmdlet as show below:
 
 ```Powershell
 Import-Module "C:\Program Files (x86)\Particular Software\ServiceControl Management\ServiceControlMgmt.psd1"
@@ -60,14 +58,14 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 To following commands show some uses of some of the cmdlets provided in the module. All of the cmdlets have local help which can be accessed via the standard PowerShell help command
 
 ```bat
-Get-Help  Get-ServiceControlInstances
+Get-Help Get-ServiceControlInstances
 ```
 
 
 ### Adding an instance
 
 ```bat
-New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath  C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -Transport MSMQ -ErrorQueue error1 -AuditQueue audit1
+New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -Transport MSMQ -ErrorQueue error1 -AuditQueue audit1
 ```
 There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or hostname.
 
@@ -135,7 +133,7 @@ Since ServiceControl 1.7 the installation executable has a MSI command line argu
 The MSI command line argument requires an XML file which detail the instance options. The file can be produced by running the following cmdlet or by manually creating the XML file.
 
 ```bat
-New-ServiceControlUnattendedFile -OutputFile c:\temp\unattended.xml  -Name Test -InstallPath c:\servicecontrol\test\bin -DBPath c:\servicecontrol\test\db -LogPath  c:\servicecontrol\test\logs -Port 33335 -ErrorQueue error-test -AuditQueue audit-test -ErrorLogQueue errorlog-test -AuditLogQueue auditlog-test -Transport MSMQ -ForwardAuditMessages $false -ForwardErrorMessages $false
+New-ServiceControlUnattendedFile -OutputFile c:\temp\unattended.xml -Name Test -InstallPath c:\servicecontrol\test\bin -DBPath c:\servicecontrol\test\db -LogPath c:\servicecontrol\test\logs -Port 33335 -ErrorQueue error-test -AuditQueue audit-test -ErrorLogQueue errorlog-test -AuditLogQueue auditlog-test -Transport MSMQ -ForwardAuditMessages $false -ForwardErrorMessages $false
 ```
 
 This sample produces the following Files
@@ -161,14 +159,15 @@ This sample produces the following Files
 ```
   
 NOTE: Version 1.11.1 and below did not support a configuration option for `ForwardErrorMessages` so the unattended files from those versions are incompatible with Version 1.12 and above. To correct this either regenerate the XML file using the 
-`New-ServiceControlUnattendedFile` or manually update the XML file to include the  `ForwardErrorMessages` tag.     
+`New-ServiceControlUnattendedFile` or manually update the XML file to include the `ForwardErrorMessages` tag.
+
 
 ### Testing an unattended install file
 
 There `New-ServiceControlInstanceFromUnattendedFile` cmdlet creates an instance from the unattended file. The service account details can optionally be provided. If no service account details are specified the `LocalSystem` account is used
 
 ```bat
-New-ServiceControlInstanceFromUnattendedFile -UnattendFile  c:\temp\unattended.xml -ServiceAccount MyServiceAccount -ServiceAccountPassword MyPassword
+New-ServiceControlInstanceFromUnattendedFile -UnattendFile c:\temp\unattended.xml -ServiceAccount MyServiceAccount -ServiceAccountPassword MyPassword
 ```
 
 Note: Neither the unattended file method or the `New-ServiceControlInstance` cover all the configuration settings that are available to ServiceControl. To set additonal options refer to [Customizing ServiceControl configuration](creating-config-file.md). A scripted method of adding additional settings is detailed in [Installing ServiceControl Silently](installation-silent.md)   
@@ -181,7 +180,7 @@ The ServiceControl Management PowerShell offers some cmdlets to assist with trou
 
 ### Check if a Port is already in use
 
-Before adding an instance of ServiceControl you can test if the port you which to use is currently in use. 
+Before adding an instance of ServiceControl test if the port to use is currently in use. 
 
 ```bat
 Test-IfPortIsAvailable -Port 33333
@@ -198,7 +197,7 @@ This example shows the available ports out of a range of ports
 The Window HTTPServer API is used by underlying components in ServiceControl. This API uses a permissions system to limit what accounts can add a HTTP listener to a specific URI.
 The standard mechanism for viewing and manipulating these ports in via the [netsh.exe](https://technet.microsoft.com/en-us/library/Cc725882%28v=WS.10%29.aspx) command line tool.
 
-For example `netsh.exe http show urlacl`  will list all of the available. This output is detailed but not very friendly to query. The ServiceControl Management PowerShell provides simplified PowerShell equivalents for  listing, add and removing UrlAcls and makes the output easier to query.
+For example `netsh.exe http show urlacl` will list all of the available. This output is detailed but not very friendly to query. The ServiceControl Management PowerShell provides simplified PowerShell equivalents for listing, add and removing UrlAcls and makes the output easier to query.
 
 For example the following command lists all of the UrlAcls assigned to any URI for port 33333
 
