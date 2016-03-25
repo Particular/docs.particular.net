@@ -193,6 +193,7 @@ Similar to standard NServiceBus routing, you do not want high priority messages 
 
 In this case, name the queues just like the messages. For example, `SubmitPurchaseOrder.StrategicCustomers.Sales`. This is the name of the distributor's data queue and the input queues of each of the workers.
 
+NOTE: In version 6 We have retired the distributor and you should call `EndpointConfiguration.EnlistWithLegacyMSMQDistributor(masterNodeAddress, masterNodeControlAddres, capacity)` to enlist with a legacy distributor.
 
 ## Worker QMId needs to be unique
 
