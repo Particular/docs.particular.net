@@ -23,7 +23,7 @@ namespace Receiver
             #region EndpointConfiguration
             var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
             endpointConfiguration.UseTransport<SqlServerTransport>()
-                .EnableLagacyMultiInstanceMode(EndpointConnectionLookup.GetLookupFunc());
+                .EnableLagacyMultiInstanceMode(ConnectionProvider.GetConnecton);
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.SendFailedMessagesTo("error");

@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EndpointConnectionLookup.cs" />
+    <Compile Include="ConnectionProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

@@ -21,10 +21,10 @@ class Program
         static async Task AsyncMain()
         {
             Console.Title = "Samples.SqlServer.MultiInstance Sender";
-            #region EndpointConfiguration
+            #region SenderConfiguration
             var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
             endpointConfiguration.UseTransport<SqlServerTransport>()
-                                .EnableLagacyMultiInstanceMode(EndpointConnectionLookup.GetLookupFunc());
+                                .EnableLagacyMultiInstanceMode(ConnectionProvider.GetConnecton);
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.SendFailedMessagesTo("error");
