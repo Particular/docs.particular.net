@@ -11,7 +11,7 @@ redirects:
  - nservicebus/ravendb/connecting
 ---
 
-Uses the [RavenDB document database](http://ravendb.net/) for storage. Starting with NServiceBus 5, the RavenDB-backed persistence is no longer ILMerged into the Core and is available as a separate [NuGet package](https://www.nuget.org/packages/NServiceBus.RavenDB), which allows NServiceBus and RavenDB to be upgraded independently. See below for information specifically related to NServiceBus 3 and NServiceBus 4. 
+Uses the [RavenDB document database](http://ravendb.net/) for storage. When using NServiceBus Versions 5 and above, the RavenDB-backed persistence is no longer ILMerged into the Core and is available as a separate [NuGet package](https://www.nuget.org/packages/NServiceBus.RavenDB), which allows NServiceBus and RavenDB to be upgraded independently. 
 
 
 ### Connection options for RavenDB
