@@ -23,6 +23,13 @@ By using the `ConnectionString` extension method:
 snippet:sqlserver-config-connectionstring
 
 
+### Via a custom connection factory
+
+By passing the transport a custom factory method which will provide connection strings at runtime:
+
+snippet:sqlserver-custom-connection-factory
+
+
 ### Via the App.Config
 
 By adding a connection named `NServiceBus/Transport` in the `connectionStrings` node.
@@ -60,10 +67,11 @@ snippet:sqlserver-multidb-other-endpoint-connection-push
 
 ### Via the configuration API - Pull mode
 
-The pull mode can be used when specific information is not available at configuration time. One can pass a function that will be used by the SQL Server transport to resolve connection information at runtime.
+The pull mode can be used when specific information is not available at configuration time. One can pass a `Func<String, ConnectionInfo>` that will be used by the SQL Server transport to resolve connection information at runtime.
 
-snippet:sqlserver-multidb-other-endpoint-connection-pull
+snippet: sqlserver-multidb-other-endpoint-connection-pull
 
+Note that in Version 3 the `EnableLagacyMultiInstanceMode` method passes transport address parameter. Transport address conforms to the `endpoint_name@schema_name` convention, e.g. could be equal to "Samples.SqlServer.MultiInstanceSender@[dbo]".
 
 ### Via the App.Config
 
@@ -115,15 +123,6 @@ snippet:sqlserver-non-standard-schema-messagemapping
 
 Notice that in Versions 3 and higher the table and schema names can be passed either using common convention with square brackets, or without them.  
   
-
-## Custom SQL Server transport connection factory
-
-In some environments it might be necessary to adapt to database server settings, or to perform additional operations. For example, if the `NOCOUNT` setting is enabled on the server, then it is necessary to send the `SET NOCOUNT OFF` command right after opening the connection.
-
-That can be done by passing the transport a custom factory method which will provide connection strings at runtime, and which can perform custom actions:
-
-snippet:sqlserver-custom-connection-factory
-
 
 ## SQL Server Transport, the Outbox and user data: disabling the DTC
 
