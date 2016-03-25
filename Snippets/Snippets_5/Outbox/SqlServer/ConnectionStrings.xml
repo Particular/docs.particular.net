@@ -2,7 +2,8 @@
 <!--startcode OutboxSqlServerConnectionStrings 2-->
 <configuration>
   <configSections>
-    <section name="AuditConfig" type="NServiceBus.Config.AuditConfig, NServiceBus.Core"/>
+    <section name="AuditConfig" 
+             type="NServiceBus.Config.AuditConfig, NServiceBus.Core"/>
   </configSections>
   <connectionStrings>
     <add name="NServiceBus/Persistence" 
