@@ -1,5 +1,5 @@
 ---
-title: SqlServer - SQL Transport Mulit-Instance Mode
+title: SQL Server Transport Mulit-Instance Mode
 summary: SqlServer transport running in Multi-Instance Mode.
 reviewed: 2016-03-25
 tags:
@@ -22,7 +22,7 @@ related:
  1. The text `Press <enter> to send a message` should be displayed in the Sender's console window.
  1. Start the Receiver project (right-click on the project, select the `Debug > Start new instance` option).
  1. Hit `<enter>` in Sender's console window to send a new message.
- 2. 
+  
 
 ## Verifying that the sample works correctly
 
@@ -39,12 +39,9 @@ This sample contains three projects:
  * Receiver - A console application responsible for processing the order message.
  * Messages - A class library containing message definitions
 
-Sender and Receiver use different catalogs on the same Sql Server instance. Each catalog contains tables representing queues belonging to NServiceBus endpoint.
-
-
 ### Sender project
 
-The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQLServer transport and run in `LegacyMultiInstanceMode`. `ConnectionProvider.GetConnection` method is used for providing `SqlConnecion` for each transpor address used by Sender endpoint.
+The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport and run in `LegacyMultiInstanceMode`. `ConnectionProvider.GetConnection` method is used for providing `SqlConnecion` for each transpor address used by Sender endpoint.
 
 snippet:SenderConfiguration
 
@@ -71,4 +68,6 @@ snippet:ConnectionProvider
 
 ## How it works
 
- Sender's and Receiver's input queues are stored in separate catalogs on a single Sql Server instance. `LegacyMultiInstanceMode` enables registering custom `SqlConnection` factory that provides connection instance per given transport address. The operations performed on queues stored in different catalogs are atomic because SQL Server allows multiple `SqlConnection` enlisting in a single distributed transaction. 
+ Sender and Receiver use [different catalogs](nservicebus/sqlserver/deployment-options) on the same SQL Server instance. The tables representing queues for a particular endpoint are created in the appropriate catalog, i.e. in the `receivercatalog` for the Receiver endpoint and in the `sendercatalog` for the Sender endpoint. `LegacyMultiInstanceMode` enables registering custom `SqlConnection` factory that provides connection instance per given transport address. The operations performed on queues stored in different catalogs are atomic because SQL Server allows multiple `SqlConnection` enlisting in a single distributed transaction. 
+
+NOTE: In this sample DTC is required by the Receiver because it operates on two different catalogs when receiving Sender's request. It picks message from intput queue stored in `receivercatalog` and sends back reply  to Sender's input queue stored in `sendercatalog`. In addition `error` queue is stored also in `sendercatalog` so without DTC Receiver will not be able handle failed messages properly.
