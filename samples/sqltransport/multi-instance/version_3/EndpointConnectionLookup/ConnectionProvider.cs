@@ -12,7 +12,8 @@ namespace EndpointConnectionStringLookup
 
         public static async Task<SqlConnection> GetConnecton(string transportAddress)
         {
-            var connectionString = transportAddress.Contains("MultiInstanceReceiver") ? ReceiverConnectionString : SenderConnectionString;
+            var connectionString = transportAddress.Equals("Samples.SqlServer.MultiInstanceSender@[dbo]") 
+                                                    ? ReceiverConnectionString : SenderConnectionString;
             var connection = new SqlConnection(connectionString);
 
             await connection.OpenAsync();
