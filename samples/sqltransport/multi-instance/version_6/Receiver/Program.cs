@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using EndpointConnectionStringLookup;
 using Messages;
 using NServiceBus;
 using NServiceBus.Transports.SQLServer;
-using UserImplementation;
 
-namespace Server
+namespace Receiver
 {
     class Program
     {
@@ -18,9 +18,9 @@ namespace Server
 
         static async Task AsyncMain()
         {
-            Console.Title = "Samples.SqlServer.MultiInstance Server";
+            Console.Title = "Samples.SqlServer.MultiInstance Receiver";
             #region EndpointConfiguration
-            var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceServer");
+            var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .EnableLagacyMultiInstanceMode(EndpointConnectionLookup.GetLookupFunc());
             endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -29,8 +29,8 @@ namespace Server
             #endregion
 
             endpoint = await Endpoint.Start(endpointConfiguration);
-            Console.WriteLine("Server running. Press Enter key to quit");
-            Console.WriteLine("Waiting for Order messages from the client");
+            Console.WriteLine("Receiver running. Press Enter key to quit");
+            Console.WriteLine("Waiting for Order messages from the Sender");
 
             while (true)
             {

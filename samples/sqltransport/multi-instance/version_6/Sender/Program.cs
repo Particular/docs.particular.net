@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using EndpointConnectionStringLookup;
 using Messages;
 using NServiceBus;
 using NServiceBus.Transports.SQLServer;
-using UserImplementation;
 
-namespace Client
+namespace Sender
 {
 
 class Program
@@ -19,9 +19,9 @@ class Program
         }
         static async Task AsyncMain()
         {
-            Console.Title = "Samples.SqlServer.MultiInstance Client";
+            Console.Title = "Samples.SqlServer.MultiInstance Sender";
             #region EndpointConfiguration
-            var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceClient");
+            var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
             endpointConfiguration.UseTransport<SqlServerTransport>()
                                 .EnableLagacyMultiInstanceMode(EndpointConnectionLookup.GetLookupFunc());
             endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -32,7 +32,7 @@ class Program
             endpoint = await Endpoint.Start(endpointConfiguration);
             try
             {
-                Console.WriteLine("Client running, Press Enter key to quit");
+                Console.WriteLine("Sender running, Press Enter key to quit");
                 Console.WriteLine("Press space bar to send a message");
 
                 while (true)

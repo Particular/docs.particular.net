@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace UserImplementation
+namespace EndpointConnectionStringLookup
 {
     public class EndpointConnectionLookup
     {
-        private const string ServerConnectionString = @"Data Source =.\SQLEXPRESS;Initial Catalog = samples; Integrated Security = True";
-        private const string ClientConnectionString = @"Data Source =.\SQLEXPRESS;Initial Catalog = samples; Integrated Security = True";
+        private const string ReceiverConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=ReceiverCatalog;Integrated Security=True";
+        private const string SenderConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=SenderCatalog;Integrated Security=True";
 
         public static Func<string, Task<SqlConnection>> GetLookupFunc()
         {
             Func<string, Task<SqlConnection>> lookupTask = (async endpointName =>
             {
-                var connectionString = endpointName.Contains("MultiInstanceServer") ? ServerConnectionString : ClientConnectionString;
+                var connectionString = endpointName.Contains("MultiInstanceReceiver") ? ReceiverConnectionString : SenderConnectionString;
                 var connection = new SqlConnection(connectionString);
 
                 await connection.OpenAsync();
