@@ -77,11 +77,11 @@ The Node in the MasterNodeConfig points to the host name where the MasterNode is
 
 ### Parallel processing of messages
 
-By default NServiceBus (pre V6) processes message sequentially. The following configuration increases the maximum concurrency level to the number of cores of the machine.
+In Versions 5 and below, by default the Distributor processes messages sequentially. The following configuration increases the maximum concurrency level to the number of cores of the machine.
 
 snippet: concurrency
 
-NOTE: Increasing the maximum concurrency level on the distributor allows the distributor to forward messages to workers concurrently. Increasing the concurrency on the workers might not lead to increased performance if the executed code is multi threaded.
+For more information refer to [Distributor's performance](/nservicebus/scalability-and-ha/distributor/#performance) documentation.
 
 ## Running the code
 

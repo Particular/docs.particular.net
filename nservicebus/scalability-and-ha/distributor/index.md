@@ -46,7 +46,9 @@ To get a sense of the expected performance take your regular endpoint performanc
 
 If you need to scale out small units of work you might consider splitting your handlers into smaller vertical slices of functionality and deploying them on their own endpoints.
 
-NOTE: Before scaling out via the distributor make sure that you have [increased the maximum concurrency on your current endpoint](/nservicebus/operations/tuning.md#tuning-throughput). The default concurrency level is set to 1 meaning sequential processing of messages. Also make sure that the **MaximumConcurrencyLevel** is increased on the endpoint that is the distributor node to allow it to forward messages in parallel to the workers.
+NOTE: Before scaling out via the distributor make sure that you have [increased the maximum concurrency on the endpoint](/nservicebus/operations/tuning.md#tuning-throughput). The default concurrency level is set to 1, meaning that messages will be processed sequentially. Also make sure that the **MaximumConcurrencyLevel** is increased on the endpoint that is the distributor node, in order to allow it to forward messages to the workers in parallel.
+
+NOTE: Increasing the maximum concurrency level on the distributor allows the distributor to forward messages to workers concurrently. Increasing the concurrency on the workers might not lead to increased performance if the executed code is multi-threaded.
 
 
 ## How does it work?
@@ -212,4 +214,4 @@ Check out [John Breakwell's blog](http://blogs.msdn.com/b/johnbreakwell/archive/
 
 If the Distributor goes down, even if its worker nodes remain running, they do not receive any messages. It is important to run the Distributor on a cluster that has its its queues configured as clustered resources.
 
-Since the Distributor does not do CPU or memory intensive work, you can often put several Distributor processes on the same clustered server. Be aware that the network IO may end up being the bottleneck for the Distributor, so take into account message sizes and throughput when sizing your infrastructure.
+Since the Distributor performs no CPU or memory intensive work, you can often put several Distributor processes on the same clustered server. Be aware that the network IO may end up being the bottleneck for the Distributor, so take into account message sizes and throughput when sizing your infrastructure.
