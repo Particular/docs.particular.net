@@ -34,7 +34,7 @@ namespace Snippets6.Host
 
         async Task AsyncOnStart()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("TheEndpointName");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
             endpointConfiguration.EnableInstallers();
             endpointInstance = await Endpoint.Start(endpointConfiguration);
         }

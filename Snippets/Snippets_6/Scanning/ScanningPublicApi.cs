@@ -9,7 +9,7 @@
         {
             #region ScanningDefault
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("TheEndpointName");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
 
             #endregion
         }

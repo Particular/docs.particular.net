@@ -31,7 +31,7 @@ class ProgramService : ServiceBase
     protected override void OnStart(string[] args)
     {
         Configure configure = Configure.With();
-        configure.DefineEndpointName("TheEndpointName");
+        configure.DefineEndpointName("EndpointName");
         bus = configure.UnicastBus()
             .CreateBus()
             .Start(() => configure.ForInstallationOn<Windows>().Install());

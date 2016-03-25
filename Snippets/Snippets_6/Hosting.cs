@@ -11,7 +11,7 @@
         {
             #region Hosting-SendOnly
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("TheEndpointName");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
             endpointConfiguration.SendOnly();
             IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
 
@@ -21,7 +21,7 @@
         async Task Startup()
         {
             #region Hosting-Startup
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("TheEndpointName");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
             //Apply configuration
             IStartableEndpoint startableEndpoint = await Endpoint.Create(endpointConfiguration);
             IEndpointInstance endpointInstance = await startableEndpoint.Start();
@@ -58,7 +58,7 @@
             #region Hosting-Inject
             ContainerBuilder containerBuilder = new ContainerBuilder();
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("TheEndpointName");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
             IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
             containerBuilder.Register(_ => endpointInstance).InstancePerDependency();
 
