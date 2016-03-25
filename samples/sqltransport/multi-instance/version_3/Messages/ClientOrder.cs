@@ -8,7 +8,13 @@ using NServiceBus;
 namespace Messages
 {
     #region MessageContract
+
     public class ClientOrder : IMessage
+    {
+        public Guid OrderId { get; set; }
+    }
+
+    public class ClientOrderAccepted : IMessage
     {
         public Guid OrderId { get; set; }
     }

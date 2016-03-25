@@ -19,6 +19,7 @@ namespace Receiver
         static async Task AsyncMain()
         {
             Console.Title = "Samples.SqlServer.MultiInstance Receiver";
+
             #region EndpointConfiguration
             var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
             endpointConfiguration.UseTransport<SqlServerTransport>()
@@ -29,27 +30,28 @@ namespace Receiver
             #endregion
 
             endpoint = await Endpoint.Start(endpointConfiguration);
-            Console.WriteLine("Receiver running. Press Enter key to quit");
+
+            Console.WriteLine("Receiver running. Press <enter> key to quit");
             Console.WriteLine("Waiting for Order messages from the Sender");
 
             while (true)
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                if (key.Key != ConsoleKey.Enter) continue;
-                await endpoint.Stop(); ;
+                if (Console.ReadKey().Key == ConsoleKey.Enter)
+                {
+                    await endpoint.Stop();
+                    break;
+                }
             }
         }
 
         public class OrderHandler : IHandleMessages<ClientOrder>
         {
-            public Task Handle(ClientOrder message, IMessageHandlerContext context)
+            public async Task Handle(ClientOrder message, IMessageHandlerContext context)
             {
-                Console.WriteLine("Handled ClientOrder with ID {0}", message.OrderId);
-                return Task.FromResult(0);
+                Console.WriteLine("Handling ClientOrder with ID {0}", message.OrderId);
+
+                await context.Reply(new ClientOrderAccepted {OrderId = message.OrderId});
             }
         }
-
     }
 }

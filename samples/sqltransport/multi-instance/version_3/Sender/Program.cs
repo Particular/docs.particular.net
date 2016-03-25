@@ -17,6 +17,7 @@ class Program
         {
             AsyncMain().GetAwaiter().GetResult();
         }
+
         static async Task AsyncMain()
         {
             Console.Title = "Samples.SqlServer.MultiInstance Sender";
@@ -30,21 +31,14 @@ class Program
             #endregion
 
             endpoint = await Endpoint.Start(endpointConfiguration);
+
             try
             {
-                Console.WriteLine("Sender running, Press Enter key to quit");
-                Console.WriteLine("Press space bar to send a message");
+                Console.WriteLine("Press <enter> to send a message");
 
                 while (true)
                 {
-                    var key = Console.ReadKey();
-                    Console.WriteLine();
-
-                    if (key.Key == ConsoleKey.Enter)
-                    {
-                        await endpoint.Stop(); ;
-                    }
-                    if (key.Key == ConsoleKey.Spacebar)
+                    if (Console.ReadKey().Key == ConsoleKey.Enter)
                     {
                         PlaceOrder();
                     }
@@ -68,7 +62,18 @@ class Program
             #endregion
 
             endpoint.Send(order);
+
             Console.WriteLine("ClientOrder message sent with ID {0}", order.OrderId);
+        }
+
+        public class OrderAcceptedHandler : IHandleMessages<ClientOrderAccepted>
+        {
+            public Task Handle(ClientOrderAccepted message, IMessageHandlerContext context)
+            {
+                Console.WriteLine("Received ClientOrderAccepted for ID {0}", message.OrderId);
+
+                return Task.FromResult(0);
+            }
         }
     }
 }
