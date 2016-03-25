@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 namespace EndpointConnectionStringLookup
 {
+    #region ConnectionProvider
     public class ConnectionProvider
     {
         private const string ReceiverConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=ReceiverCatalog;Integrated Security=True";
@@ -19,4 +20,5 @@ namespace EndpointConnectionStringLookup
             return connection;
         }
     }
+    #endregion
 }

@@ -20,7 +20,7 @@ namespace Receiver
         {
             Console.Title = "Samples.SqlServer.MultiInstance Receiver";
 
-            #region EndpointConfiguration
+            #region ReceiverConfiguration
             var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .EnableLagacyMultiInstanceMode(ConnectionProvider.GetConnecton);
@@ -46,12 +46,14 @@ namespace Receiver
 
         public class OrderHandler : IHandleMessages<ClientOrder>
         {
+            #region Reply
             public async Task Handle(ClientOrder message, IMessageHandlerContext context)
             {
                 Console.WriteLine("Handling ClientOrder with ID {0}", message.OrderId);
 
                 await context.Reply(new ClientOrderAccepted {OrderId = message.OrderId});
             }
+            #endregion
         }
     }
 }
