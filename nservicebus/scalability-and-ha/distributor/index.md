@@ -73,7 +73,7 @@ For more information about Pub/Sub in a distributor scenario see [What the distr
 
 ## Distributor configuration
 
-NOTE: Running an embedded distributor is not supported in Versions 6 and higher.  Distributor should not be used for new deployments, unless there is a need for backwards compatibility with Versions 5 or lower. Related configuration sections like `MasterNodeConfig` are obsoleted and `endpointConfiguraiton.EnlistWithLegacyMSMQDistributor` should be used instead. For more information refer to [Upgrading a Distributor-based scaled out endpoint to V6](/samples/scaleout/distributor-upgrade/) documentation.
+include: distributor_inV6
 
 ### When hosting endpoints in NServiceBus.Host.exe
 
