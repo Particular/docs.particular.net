@@ -22,7 +22,7 @@ NOTE: To properly identify the chosen deployment option all queues that the endp
 The transport will route messages to destination based on the configuration. If no specific configuration has been provided for a particular destination, the transport assumes the destination has the same configuration as the sending endpoint (i.e. identical schema, catalog and instance name). If the destination has a different configuration and it hasn't been provided, then exception will be thrown when sending a message, because the transport wouldn't be able to connect to the destination queue.
 
 
-#$ Modes overview
+## Modes overview
 
 
 ### Default (single schema, single catalog, single SQL Server instance)
