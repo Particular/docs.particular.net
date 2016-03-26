@@ -6,7 +6,6 @@ using NServiceBus.Transports.SQLServer;
 
 class Program
 {
-    static IEndpointInstance endpoint;
 
     static void Main()
     {
@@ -19,7 +18,7 @@ class Program
 
         #region ReceiverConfiguration
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
         endpointConfiguration.UseTransport<SqlServerTransport>()
             .EnableLagacyMultiInstanceMode(ConnectionProvider.GetConnecton);
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -28,7 +27,7 @@ class Program
 
         #endregion
 
-        endpoint = await Endpoint.Start(endpointConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Receiver running. Press <enter> key to quit");
         Console.WriteLine("Waiting for Order messages from the Sender");

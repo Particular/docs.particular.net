@@ -8,9 +8,6 @@ using NServiceBus.Transports.SQLServer;
 
 public class Program
 {
-
-    static IEndpointInstance endpoint;
-
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
@@ -22,7 +19,7 @@ public class Program
 
         #region SenderConfiguration
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
         endpointConfiguration.UseTransport<SqlServerTransport>()
             .EnableLagacyMultiInstanceMode(ConnectionProvider.GetConnecton);
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -31,7 +28,7 @@ public class Program
 
         #endregion
 
-        endpoint = await Endpoint.Start(endpointConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
 
         try
         {
@@ -41,7 +38,7 @@ public class Program
             {
                 if (Console.ReadKey().Key == ConsoleKey.Enter)
                 {
-                    PlaceOrder();
+                    PlaceOrder(endpoint);
                 }
             }
         }
@@ -51,9 +48,9 @@ public class Program
         }
     }
 
-    static void PlaceOrder()
+    static void PlaceOrder(IEndpointInstance endpoint)
     {
-        var order = new ClientOrder
+        ClientOrder order = new ClientOrder
         {
             OrderId = Guid.NewGuid()
         };

@@ -9,9 +9,9 @@ public class ConnectionProvider
 
     public static async Task<SqlConnection> GetConnecton(string transportAddress)
     {
-        var connectionString = transportAddress.Equals("Samples.SqlServer.MultiInstanceSender@[dbo]") 
+        string connectionString = transportAddress.Equals("Samples.SqlServer.MultiInstanceSender@[dbo]") 
                                                 ? ReceiverConnectionString : SenderConnectionString;
-        var connection = new SqlConnection(connectionString);
+        SqlConnection connection = new SqlConnection(connectionString);
 
         await connection.OpenAsync();
 
