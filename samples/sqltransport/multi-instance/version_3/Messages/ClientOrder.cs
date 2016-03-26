@@ -8,10 +8,4 @@ namespace Messages
     {
         public Guid OrderId { get; set; }
     }
-
-    public class ClientOrderAccepted : IMessage
-    {
-        public Guid OrderId { get; set; }
-    }
-
 }
