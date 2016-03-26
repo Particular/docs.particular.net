@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NServiceBus;
 
 namespace Messages
 {
-    #region MessageContract
 
     public class ClientOrder : IMessage
     {
@@ -18,5 +13,5 @@ namespace Messages
     {
         public Guid OrderId { get; set; }
     }
-    #endregion
+
 }

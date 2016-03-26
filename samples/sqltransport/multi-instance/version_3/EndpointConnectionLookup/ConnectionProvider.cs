@@ -1,25 +1,21 @@
-﻿using System;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace EndpointConnectionStringLookup
+#region ConnectionProvider
+public class ConnectionProvider
 {
-    #region ConnectionProvider
-    public class ConnectionProvider
+    const string ReceiverConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=ReceiverCatalog;Integrated Security=True";
+    const string SenderConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=SenderCatalog;Integrated Security=True";
+
+    public static async Task<SqlConnection> GetConnecton(string transportAddress)
     {
-        private const string ReceiverConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=ReceiverCatalog;Integrated Security=True";
-        private const string SenderConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=SenderCatalog;Integrated Security=True";
+        var connectionString = transportAddress.Equals("Samples.SqlServer.MultiInstanceSender@[dbo]") 
+                                                ? ReceiverConnectionString : SenderConnectionString;
+        var connection = new SqlConnection(connectionString);
 
-        public static async Task<SqlConnection> GetConnecton(string transportAddress)
-        {
-            var connectionString = transportAddress.Equals("Samples.SqlServer.MultiInstanceSender@[dbo]") 
-                                                    ? ReceiverConnectionString : SenderConnectionString;
-            var connection = new SqlConnection(connectionString);
+        await connection.OpenAsync();
 
-            await connection.OpenAsync();
-
-            return connection;
-        }
+        return connection;
     }
-    #endregion
 }
+#endregion
