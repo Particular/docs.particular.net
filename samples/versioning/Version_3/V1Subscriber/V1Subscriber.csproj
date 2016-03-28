@@ -51,9 +51,9 @@
       <HintPath>..\..\..\..\packages\NServiceBus.3.3.18\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core"></Reference>
-    <Reference Include="System.Xml.Linq"></Reference>
-    <Reference Include="System.Data.DataSetExtensions"></Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>

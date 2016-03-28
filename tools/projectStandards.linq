@@ -43,5 +43,32 @@ void Main()
 			}
 		}
 		xdocument.Save(projectFile);
+		CollapseEmptyElements(projectFile);
+	}
+}
+
+
+
+static void CollapseEmptyElements(string file)
+{
+	XmlDocument doc = new XmlDocument();
+	doc.Load(file);
+	CollapseEmptyElements(doc.DocumentElement);
+	doc.Save(file);
+}
+
+static void CollapseEmptyElements(XmlElement node)
+{
+	if (!node.IsEmpty && node.ChildNodes.Count == 0)
+	{
+		node.IsEmpty = true;
+	}
+
+	foreach (XmlNode child in node.ChildNodes)
+	{
+		if (child.NodeType == XmlNodeType.Element)
+		{
+			CollapseEmptyElements((XmlElement)child);
+		}
 	}
 }
