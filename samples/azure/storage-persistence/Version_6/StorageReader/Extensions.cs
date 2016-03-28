@@ -7,11 +7,11 @@ public static class Extensions
     {
         if (str.Length > maxLength)
         {
-            return str.Substring(0,maxLength) + "...";
+            return str.Substring(0, maxLength) + "...";
         }
         return str;
     }
-    
+
     public static string DecodeFromKey(this string encodedKey)
     {
         string base64 = encodedKey.Replace('_', '/');

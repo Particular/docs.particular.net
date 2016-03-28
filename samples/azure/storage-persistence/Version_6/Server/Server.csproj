@@ -65,7 +65,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.AzureStoragePersistence, Version=0.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.AzureStoragePersistence.0.2.0-unstable0045\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.AzureStoragePersistence.0.2.0-unstable0103\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
