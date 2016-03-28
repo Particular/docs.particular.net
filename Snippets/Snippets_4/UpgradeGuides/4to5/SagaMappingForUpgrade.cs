@@ -6,7 +6,7 @@
 
     public class SagaMappingForUpgrade
     {
-        // startcode 4to5ConfigureHowToFindSagaForUpgrade
+        #region 4to5ConfigureHowToFindSagaForUpgrade
         public class MySaga : Saga<MySagaData>,
             IAmStartedByMessages<Message1>,
             IHandleMessages<Message2>
@@ -17,7 +17,7 @@
                     .ToSaga(sagaData => sagaData.SomeID);
             }
 
-            // endcode
+            #endregion
             public void Handle(Message1 message)
             {
             }

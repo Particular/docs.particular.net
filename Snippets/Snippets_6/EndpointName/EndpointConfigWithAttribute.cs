@@ -2,15 +2,17 @@
 {
     using NServiceBus;
 
-    // startcode EndpointNameByAttribute
+    #region EndpointNameByAttribute
+
     [EndpointName("MyEndpointName")]
     public class EndpointConfigWithAttribute : IConfigureThisEndpoint, AsA_Server
     {
         // ... custom config
-        // endcode
+
+        #endregion
+
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
         }
     }
-
 }

@@ -1,6 +1,6 @@
 ﻿namespace Snippets5.EndpointName
 {
-    // startcode EndpointNameByNamespace
+    #region EndpointNameByNamespace
     namespace MyServer
     {
         using NServiceBus;
@@ -8,7 +8,7 @@
         public class EndpointConfigByNamespace : IConfigureThisEndpoint, AsA_Server
         {
             // ... custom config
-            // endcode
+            #endregion
             public void Customize(BusConfiguration busConfiguration)
             {
             }
