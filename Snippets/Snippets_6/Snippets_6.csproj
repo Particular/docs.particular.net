@@ -142,9 +142,8 @@
       <HintPath>..\..\packages\NServiceBus.AzureBlobStorageDataBus.0.2.0-unstable0016\lib\net452\NServiceBus.AzureBlobStorageDataBus.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.AzureStoragePersistence, Version=0.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.AzureStoragePersistence.0.2.0-unstable0045\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.AzureStoragePersistence">
+      <HintPath>..\..\packages\NServiceBus.AzureStoragePersistence.0.2.0-unstable0103\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Callbacks">
       <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0050\lib\net452\NServiceBus.Callbacks.dll</HintPath>
@@ -214,7 +213,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Transports.SQLServer">
-      <HintPath>..\..\packages\NServiceBus.SqlServer.3.0.0-unstable0122\lib\net452\NServiceBus.Transports.SQLServer.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.SqlServer.3.0.0-unstable0126\lib\net452\NServiceBus.Transports.SQLServer.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>

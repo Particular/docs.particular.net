@@ -19,7 +19,7 @@ class Program
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press enter to publish an event");
-            Console.WriteLine("Press any key to exit.");
+            Console.WriteLine("Press any key to exit");
 
             #region publisher-loop
             while (true)
