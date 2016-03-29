@@ -14,5 +14,13 @@
 
             #endregion
         }
+
+        void CallbackReceiverMaxConcurrency(EndpointConfiguration endpointConfiguration)
+        {
+            #region 3to4rabbitmq-config-callbackreceiver-thread-count
+            endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
+
+            #endregion
+        }
     }
 }

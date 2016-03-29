@@ -11,13 +11,22 @@ related:
 ---
 
 
-## PrefetchCount
+## CallbackReceiverMaxConcurrency
 
+`CallbackReceiverMaxConcurrency` is obsolete and `LimitMessageProcessingConcurrencyTo` should be used instead.
 
-`PrefetchCount` is obsolete and `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` should be used instead. See [Tuning](/nservicebus/operations/tuning.md).
+snippet: 3to4rabbitmq-config-callbackreceiver-thread-count
+
+See [Tuning](/nservicebus/operations/tuning.md).
 
 
 ## [Connection String Options](/nservicebus/rabbitmq/configuration-api.md)
+
+
+### PrefetchCount
+
+
+`PrefetchCount` is obsolete and `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` should be used instead. See [Tuning](/nservicebus/operations/tuning.md).
 
 
 ### DequeueTimeout

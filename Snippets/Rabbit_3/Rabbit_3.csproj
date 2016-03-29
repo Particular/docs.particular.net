@@ -61,6 +61,7 @@
     <Content Include="UpgradeGuides\3to4\rabbitmqconnection.config.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UpgradeGuides\3to4\Upgrade.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <ItemGroup />
