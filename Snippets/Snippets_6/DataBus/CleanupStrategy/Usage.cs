@@ -10,7 +10,7 @@
         #region FileLocationForDatabusFiles
         public async Task Handle(MessageWithLargePayload message, IMessageHandlerContext context)
         {
-            string filename = Path.Combine(@"c:\databus_files\", message.LargeBlob.Key);
+            string filename = Path.Combine(@"c:\databus_attachments\", message.LargeBlob.Key);
         }
         #endregion
     }
