@@ -23,6 +23,9 @@
         - "nservicebus/upgrades/4to5"
         - "nservicebus/upgrades/3to4"
         - "nservicebus/upgrades/encryption-key-identifiers"
+        - Title: "RabbitMQ Transport"
+          Articles:
+            - "nservicebus/upgrades/rabbitmq-3to4"
         - Title: "SQL Transport"
           Articles:
             - "nservicebus/upgrades/sqlserver-2to3"
