@@ -58,9 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="rabbitmqconnection.config.xml" />
+    <Content Include="UpgradeGuides\3to4\rabbitmqconnection.config.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Usage.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
