@@ -260,9 +260,6 @@
     <Content Include="Transports\Msmq\MessageQueue.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Transports\RabbitMQ_1\connection.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Transports\SqlServer\MultiDb.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -433,7 +430,6 @@
     <Compile Include="Scheduling\Saga\SchedulerSaga.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />
-    <Compile Include="Transports\RabbitMQ_1\Usage.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transports\Throughput\Usage.cs" />
     <Compile Include="UnitTesting\HeaderManipulation\RequestMessage.cs" />

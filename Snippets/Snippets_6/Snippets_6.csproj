@@ -429,7 +429,6 @@
     <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
-    <Compile Include="Transports\RabbitMQ_4\Usage.cs" />
     <Compile Include="Transports\SqlServer_3\MultiDb.cs" />
     <Compile Include="Transports\SqlServer_3\MultiSchema.cs" />
     <Compile Include="Transports\SqlServer_3\SingleDbMultiSchema.cs" />
@@ -639,7 +638,6 @@
     <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
     <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
-    <Content Include="Transports\RabbitMQ_4\rabbitmqconnection.config.xml" />
     <Content Include="UpgradeGuides\5to6\null.xml" />
     <Content Include="XmlDocumentPayload.xml" />
     <Content Include="XmlElementPayload.xml" />

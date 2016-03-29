@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Transports.RabbitMQ
+﻿namespace Rabbit_1
 {
     using NServiceBus;
 

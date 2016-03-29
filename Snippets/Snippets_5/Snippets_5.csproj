@@ -370,7 +370,6 @@
     <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
     <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
-    <Content Include="Transports\RabbitMQ_2\rabbitmqconnection.config.xml" />
     <Content Include="Transports\SqlServer_2\MultiDb.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -627,7 +626,6 @@
     <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />
-    <Compile Include="Transports\RabbitMQ_2\Usage.cs" />
     <Compile Include="Transports\SqlServer_2\MultiDb.cs" />
     <Compile Include="Transports\SqlServer_2\ConfigurationSettings.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
