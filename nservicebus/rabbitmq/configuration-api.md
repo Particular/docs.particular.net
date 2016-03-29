@@ -28,10 +28,21 @@ Below is the full list of connection string options. Note that they are separate
  * `Password`: The password when connecting. Defaults to `guest`
  * `RequestedHeartbeat`: The interval for the heartbeats between the client and the server. Defaults to `5` seconds
  * `DequeueTimeout` The time period allowed for the dequeue strategy to dequeue a message. Defaults to `1` second
+
+NOTE: In Version 4 and above `DequeueTimeout` is deprecated. 
+
  * `PrefetchCount`: The number of messages to [prefetch](http://www.rabbitmq.com/consumer-prefetch.html) when consuming messages from the broker. Defaults to the number of configured threads for the transport(as of v2.1)
+
+NOTE: In Version 4 and above `PrefetchCount` is obsolete and `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` should be used instead. See [Throughput Throttling](/samples/throttling/) sample.
+
  * `UsePublisherConfirms`: Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used. Defaults to `true`
  * `MaxWaitTimeForConfirms`: How long the client should wait for publisher confirms if enabled. Defaults to `30` seconds.
  * `RetryDelay`: The time to wait before trying to reconnect to the broker if connection is lost. Defaults to `10` seconds
+
+In Version 4 and above the following options are added to connection string options.
+* `UseTls`: Indicates if the connection should be done using TLS. If `Port` is not specified and `UseTls` is enabled the port will default to `5671`.
+* `CertPath`: The certificated path that should be used when using TLS.
+* `CertPassphrase`: The certificate password. 
 
 To use a custom name for the connection string use:
 
@@ -51,6 +62,8 @@ snippet:rabbitmqconnectionstring-debug
 RabbitMQ is a broker which means that scale out is done by adding more endpoints feeding of the same broker queue. This usually works fine if no state is shared between the different instances. This is not the case for callbacks since they do rely on local state kept in memory. In order to seamlessly support this scenario out of the box the RabbitMQ transport has the concept of a callback receiver. Essentially this is a separate queue named `{endpointname}.{machinename}` to which all callbacks are routed. This means that callbacks are handled by the same instance that requested them. This behavior is on by default. If not using callbacks it can disable it using the following configuration:
 
 snippet:rabbitmq-config-disablecallbackreceiver
+
+NOTE: In Version 4 and above Callbacks are disabled by default. To enable them please follow [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-version-6-and-above)
 
 This means that the queue will not be created and no extra threads will be used to fetch messages from that queue.
 
@@ -87,6 +100,9 @@ By the default the RabbitMQ transport will trigger the on critical error action 
 
 snippet:rabbitmq-custom-breaker-settings
 
+In Version 4 and Above xml configuration options for controlling lost connection behavior were replaced by code equivalent.
+
+snippet:rabbitmq-custom-breaker-settings-code
 
 ### Changing routing topology
 
