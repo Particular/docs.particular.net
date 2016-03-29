@@ -29,7 +29,7 @@ class Program
         Console.WriteLine("Press '1' to publish IEvent");
         Console.WriteLine("Press '2' to publish EventMessage");
         Console.WriteLine("Press '3' to publish AnotherEventMessage");
-        Console.WriteLine("Press 'Enter' to publish a message.To exit, Ctrl + C");
+        Console.WriteLine("Press any other key to exit");
         #region PublishLoop
         while (true)
         {
