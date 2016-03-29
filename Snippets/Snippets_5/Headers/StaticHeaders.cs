@@ -4,9 +4,8 @@
 
     class StaticHeaders
     {
-        public StaticHeaders()
+        StaticHeaders(BusConfiguration busConfiguration)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
             #region header-static-endpoint
             IStartableBus startableBus = Bus.Create(busConfiguration);
             startableBus.OutgoingHeaders.Add("AllOutgoing", "ValueAllOutgoing");
