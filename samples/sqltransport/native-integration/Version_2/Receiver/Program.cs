@@ -11,7 +11,6 @@ class Program
         Console.Title = "Samples.SqlServer.NativeIntegration";
         #region EndpointConfiguration
         BusConfiguration busConfiguration = new BusConfiguration();
-
         busConfiguration.UseTransport<SqlServerTransport>()
             .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True");
         busConfiguration.EndpointName("Samples.SqlServer.NativeIntegration");
@@ -22,9 +21,8 @@ class Program
 
         using (Bus.Create(busConfiguration).Start())
         {
-
             Console.WriteLine("Press enter to send a message");
-            Console.WriteLine("Press any key to exit");
+            Console.WriteLine("Press any other key to exit");
 
             while (true)
             {
@@ -36,7 +34,6 @@ class Program
                     return;
                 }
                 PlaceOrder();
-
             }
 
         }
@@ -59,17 +56,14 @@ class Program
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             connection.Open();
-
-            string insertSql = @"INSERT INTO [Samples.SqlServer.NativeIntegration] ([Id],[Recoverable],[Headers],[Body]) VALUES (@Id,@Recoverable,@Headers,@Body)";
+            string insertSql = "INSERT INTO [Samples.SqlServer.NativeIntegration] ([Id],[Recoverable],[Headers],[Body]) VALUES (@Id,@Recoverable,@Headers,@Body)";
             using (SqlCommand command = new SqlCommand(insertSql, connection))
             {
                 command.CommandType = CommandType.Text;
-
                 command.Parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
                 command.Parameters.Add("Headers", SqlDbType.VarChar).Value = "";
                 command.Parameters.Add("Body", SqlDbType.VarBinary).Value = Encoding.UTF8.GetBytes(message);
                 command.Parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
-
                 command.ExecuteNonQuery();
             }
         }

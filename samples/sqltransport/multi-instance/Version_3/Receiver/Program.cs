@@ -20,7 +20,7 @@ class Program
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
         endpointConfiguration.UseTransport<SqlServerTransport>()
-            .EnableLagacyMultiInstanceMode(ConnectionProvider.GetConnecton);
+            .EnableLagacyMultiInstanceMode(ConnectionProvider.GetConnection);
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
