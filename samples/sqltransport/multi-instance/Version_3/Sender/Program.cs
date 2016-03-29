@@ -5,7 +5,6 @@ using NServiceBus;
 using NServiceBus.Transports.SQLServer;
 #pragma warning disable 618
 
-
 public class Program
 {
     static void Main()
@@ -30,16 +29,17 @@ public class Program
 
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
 
+        Console.WriteLine("Press <enter> to send a message");
+        Console.WriteLine("Press any other key to exit");
         try
         {
-            Console.WriteLine("Press <enter> to send a message");
-
             while (true)
             {
-                if (Console.ReadKey().Key == ConsoleKey.Enter)
+                if (Console.ReadKey().Key != ConsoleKey.Enter)
                 {
-                    PlaceOrder(endpoint);
+                    return;
                 }
+                PlaceOrder(endpoint);
             }
         }
         finally
@@ -50,12 +50,16 @@ public class Program
 
     static void PlaceOrder(IEndpointInstance endpoint)
     {
+        #region SendMessage
+
         ClientOrder order = new ClientOrder
         {
             OrderId = Guid.NewGuid()
         };
 
-        endpoint.Send(order);
+        endpoint.Send("Samples.SqlServer.MultiInstanceReceiver", order);
+
+        #endregion
 
         Console.WriteLine("ClientOrder message sent with ID {0}", order.OrderId);
     }

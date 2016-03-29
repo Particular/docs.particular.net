@@ -29,17 +29,10 @@ class Program
 
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
 
-        Console.WriteLine("Receiver running. Press <enter> key to quit");
+        Console.WriteLine("Press any key to exit");
         Console.WriteLine("Waiting for Order messages from the Sender");
-
-        while (true)
-        {
-            if (Console.ReadKey().Key == ConsoleKey.Enter)
-            {
-                await endpoint.Stop();
-                break;
-            }
-        }
+        Console.ReadKey();
+        await endpoint.Stop();
     }
 
 }

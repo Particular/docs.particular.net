@@ -13,14 +13,12 @@ related:
 
  1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
  1. Create two databases called `receivercatalog` and `sendercatalog`.
- 1. Make sure that Distributed Transaction Coordinator (DTC) is running. It can be started running `net start msdtc` command in system console.  
+ 1. Make sure that Distributed Transaction Coordinator (DTC) is running. It can be started running `net start msdtc` command in system console.
 
 
 ## Running the project
 
- 1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
- 1. The text `Press <enter> to send a message` should be displayed in the Sender's console window.
- 1. Start the Receiver project (right-click on the project, select the `Debug > Start new instance` option).
+ 1. Start both projects.
  1. Hit `<enter>` in Sender's console window to send a new message.
 
 
@@ -32,12 +30,13 @@ related:
 
 ## Code walk-through
 
-This sample contains three projects:
+This sample contains the following projects:
 
  * EndpointConnectionLookup - A class library containing common code for providing new `SqlConnection` for transport addresses used in the sample.
  * Sender - A console application responsible for sending the initial `ClientOrder` message and processing the follow-up `ClientOrderAccepted` message.
  * Receiver - A console application responsible for processing the order message.
  * Messages - A class library containing message definitions
+
 
 ### Sender project
 
@@ -45,9 +44,9 @@ The Sender does not store any data. It mimics the front-end system where orders 
 
 snippet:SenderConfiguration
 
-The Sender uses a configuration file to tell NServiceBus where the messages addressed to the Receiver should be sent:
+The Sender sends a message to the Receiver:
 
-snippet:SenderMessageMappings
+snippet:SendMessage
 
 
 ### Receiver project
