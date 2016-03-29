@@ -5,17 +5,17 @@
     using NServiceBus.Persistence;
     using NServiceBus.Persistence.NHibernate;
 
-    public class AccessingData
+    class AccessingData
     {
-        public class OrderMessage : IMessage
+        class OrderMessage : IMessage
         {
         }
 
-        public class Order
+        class Order
         {
         }
 
-        public class ViaContext
+        class ViaContext
         {
             #region NHibernateAccessingDataViaContext
             public class OrderHandler : IHandleMessages<OrderMessage>
@@ -35,11 +35,10 @@
             #endregion
         }
 
-        public class Directly
+        class Directly
         {
-            public void Config()
+            void Config(BusConfiguration busConfiguration)
             {
-                BusConfiguration busConfiguration = new BusConfiguration();
                 #region NHibernateAccessingDataDirectlyConfig
 
                 busConfiguration.UsePersistence<NHibernatePersistence>()
@@ -68,10 +67,8 @@
             #endregion
 
 
-            public void Configure()
+            void Configure(BusConfiguration busConfiguration)
             {
-                BusConfiguration busConfiguration = new BusConfiguration();
-
                 #region CustomSessionCreation
 
                 busConfiguration.UsePersistence<NHibernatePersistence>()
