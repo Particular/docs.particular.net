@@ -26,7 +26,16 @@ Once the package is installed, create a new test using any of the testing framew
 
 {{Note: In Versions 5 and below, `Test.Initialize()` (or any of its overloads) must be called before executing any test method.
 
-To limit the assemblies and types scanned by the test framework it is possible to use the `Initialize()` overload that accepts a delegate to customize the `ConfigurationBuilder`.}}
+To limit the assemblies and types scanned by the test framework it is possible to use the `Initialize()` overload that accepts a delegate to customize the `ConfigurationBuilder`. The list of assemblies scanned must include `NServiceBus.Testing.dll`
+
+```
+var assembliesToScan = new List<Assembly>();
+assembliesToScan.Add(typeof(HandlerToTest).Assembly);
+assembliesToScan.Add(Assembly.LoadFrom("NServiceBus.Testing.dll"));
+Test.Initialize((bus) => bus.AssembliesToScan(assembliesToScan));
+```
+
+}}
 
 
 ## Testing the service layer
