@@ -84,7 +84,6 @@
       Url: "nservicebus/handlers"
       Articles:
         - "nservicebus/handlers/handler-ordering"
-        - "nservicebus/testing"
     -
       Title: "Sagas"
       Url: "nservicebus/sagas"
@@ -94,7 +93,6 @@
         - "nservicebus/sagas/saga-not-found"
         - "nservicebus/sagas/concurrency"
         - "nservicebus/sagas/reply-replaytooriginator-differences"
-        - "nservicebus/testing"
         - "nservicebus/persistence"
     -
       Title: "Error Handling"
@@ -223,6 +221,12 @@
           Url: "nservicebus/hosting/nservicebus-host"
           Articles:
             - "nservicebus/hosting/nservicebus-host/profiles"
+    -
+      Title: "Testing"
+      Url: "nservicebus/testing"
+      Articles:
+        - "nservicebus/testing"
+        - "nservicebus/samples/unit-testing"
     -
       Title: "Logging"
       Url: "nservicebus/logging"
