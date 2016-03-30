@@ -55,8 +55,6 @@ When using `UseDirectRoutingTopology` method parameter's type was changed from `
 snippet:3to4rabbitmq-config-usedirectroutingtopology
 
 ### IRoutingTopology
-When [changing routing topology](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-changing-routing-topology) some minor changes were introduced to `IRoutingTopology` interface.
-* `message` parameter change it's type from `TransportMessage` to `OutgoingMessage`
-* `address` parameter change it's type from `Address` to `string`
-
-
+When [changing routing topology](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-changing-routing-topology) some changes were introduced to `IRoutingTopology` interface.
+* `message` parameter change its type from `TransportMessage` to `OutgoingMessage`
+* `address` parameter change its type from `Address` to `string`
