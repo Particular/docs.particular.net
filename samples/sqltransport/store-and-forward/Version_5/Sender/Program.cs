@@ -34,7 +34,7 @@ class Program
                     return;
                 }
                 string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                bus.Publish(new OrderSubmitted
+                bus.Defer(TimeSpan.FromSeconds(1),  new OrderSubmitted
                 {
                     OrderId = orderId,
                     Value = random.Next(100)

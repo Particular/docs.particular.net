@@ -2,55 +2,77 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NServiceBus.DelayedDelivery;
+using NServiceBus.DeliveryConstraints;
+using NServiceBus.Extensibility;
+using NServiceBus.ObjectBuilder;
 using NServiceBus.Pipeline;
 using NServiceBus.Routing;
 using NServiceBus.Transports;
 
 
-class SendThroughLocalQueueRoutingToDispatchConnector : Behavior<IRoutingContext>
+class SendThroughLocalQueueRoutingToDispatchConnector : ForkConnector<IRoutingContext, IDispatchContext>
 {
     public SendThroughLocalQueueRoutingToDispatchConnector(string localAddress)
     {
         this.localAddress = localAddress;
     }
 
-    public override Task Invoke(IRoutingContext context, Func<Task> next)
+    public override Task Invoke(IRoutingContext context, Func<Task> next, Func<IDispatchContext, Task> fork)
     {
         IncomingMessage incomingMessage;
         bool fromHandler = context.Extensions.TryGet(out incomingMessage);
 
-        context.RoutingStrategies = context.RoutingStrategies.Select(s => fromHandler ? s : RouteThroughLocalEndpointInstance(s, context)).ToArray();
-
-        return next();
+        DelayedDeliveryConstraint constraint;
+        if (context.Extensions.TryGetDeliveryConstraint(out constraint) || fromHandler)
+        {
+            return next();
+        }
+        TransportOperation[] operations = context.RoutingStrategies
+            .Select(s => RouteThroughLocalEndpointInstance(s, context))
+            .ToArray();
+        return fork(new DispatchContext(operations, context));
     }
 
-    RoutingStrategy RouteThroughLocalEndpointInstance(RoutingStrategy routingStrategy, IRoutingContext context)
+    TransportOperation RouteThroughLocalEndpointInstance(RoutingStrategy routingStrategy, IRoutingContext context)
     {
-        Dictionary<string, string> headers = new Dictionary<string, string>();
+        Dictionary<string, string> headers = new Dictionary<string, string>(context.Message.Headers);
         AddressTag originalTag = routingStrategy.Apply(headers);
-        if (headers.Any())
-        {
-            throw new Exception("Cannot use forwarding with messages with custom routing strategies that use message headers.");
-        }
         UnicastAddressTag unicastTag = originalTag as UnicastAddressTag;
         if (unicastTag != null)
         {
-            context.Message.Headers["$.store-and-forward.destination"] = unicastTag.Destination;
+            headers["$.store-and-forward.destination"] = unicastTag.Destination;
         }
         else
         {
             MulticastAddressTag multicastTag = originalTag as MulticastAddressTag;
             if (multicastTag != null)
             {
-                context.Message.Headers["$.store-and-forward.eventtype"] = multicastTag.MessageType.AssemblyQualifiedName;
+                headers["$.store-and-forward.eventtype"] = multicastTag.MessageType.AssemblyQualifiedName;
             }
             else
             {
                 throw new Exception("Unsupported type of address tag: " + originalTag.GetType().FullName);
             }
         }
-        return new UnicastRoutingStrategy(localAddress);
+        OutgoingMessage message = new OutgoingMessage(context.Message.MessageId, headers, context.Message.Body);
+        return new TransportOperation(message, new UnicastAddressTag(localAddress), DispatchConsistency.Default, context.Extensions.GetDeliveryConstraints());
     }
 
     string localAddress;
+
+    class DispatchContext : ContextBag, IDispatchContext
+    {
+        TransportOperation[] operations;
+        public ContextBag Extensions => this;
+        public IBuilder Builder => Get<IBuilder>();
+
+        public DispatchContext(TransportOperation[] operations, IBehaviorContext parentContext)
+            : base(parentContext?.Extensions)
+        {
+            this.operations = operations;
+        }
+
+        public IEnumerable<TransportOperation> Operations => operations;
+    }
 }

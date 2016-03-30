@@ -17,7 +17,7 @@ public class ForwardBehavior : ForkConnector<IIncomingPhysicalMessageContext, ID
             TransportOperation operation = new TransportOperation(
                 new OutgoingMessage(context.MessageId, context.Message.Headers, context.Message.Body),
                 new UnicastAddressTag(destination));
-            return fork(new ForwardDispatchContext(operation, context));
+            return fork(new DispatchContext(operation, context));
 
         }
         if (context.Message.Headers.TryGetValue("$.store-and-forward.eventtype", out destination))
@@ -26,18 +26,18 @@ public class ForwardBehavior : ForkConnector<IIncomingPhysicalMessageContext, ID
             TransportOperation operation = new TransportOperation(
                 new OutgoingMessage(context.MessageId, context.Message.Headers, context.Message.Body),
                 new MulticastAddressTag(messageType));
-            return fork(new ForwardDispatchContext(operation, context));
+            return fork(new DispatchContext(operation, context));
         }
         return next();
     }
 
-    class ForwardDispatchContext : ContextBag, IDispatchContext
+    class DispatchContext : ContextBag, IDispatchContext
     {
         TransportOperation operation;
         public ContextBag Extensions => this;
         public IBuilder Builder => Get<IBuilder>();
 
-        public ForwardDispatchContext(TransportOperation operation, IBehaviorContext parentContext)
+        public DispatchContext(TransportOperation operation, IBehaviorContext parentContext)
             : base(parentContext?.Extensions)
         {
             this.operation = operation;
