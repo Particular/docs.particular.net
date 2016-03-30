@@ -1,54 +1,47 @@
 ﻿// ReSharper disable UnusedParameter.Local
 namespace Snippets6.BusNotifications
 {
-    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Faults;
     using NServiceBus.Logging;
 
-    #region SubscribeToErrorsNotifications
 
-    public class SubscribeToNotifications :
-        IWantToRunWhenBusStartsAndStops
+    class SubscribeToNotifications
     {
-        Notifications busNotifications;
         static ILog log = LogManager.GetLogger<SubscribeToNotifications>();
 
-        public SubscribeToNotifications(Notifications busNotifications)
+        #region SubscribeToErrorsNotifications
+
+        void EndpointStartup()
         {
-            this.busNotifications = busNotifications;
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
+            Subscribe(endpointConfiguration.Notifications);
         }
 
-        public Task Start(IMessageSession session)
+        void Subscribe(Notifications notifications)
         {
-            ErrorsNotifications errors = busNotifications.Errors;
-            errors.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => LogToConsole(retry);
-            errors.MessageHasFailedAFirstLevelRetryAttempt += (sender, retry) => LogToConsole(retry);
-            errors.MessageSentToErrorQueue += (sender, retry) => LogToConsole(retry);
-            return Task.FromResult(0);
+            ErrorsNotifications errors = notifications.Errors;
+            errors.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => LogEvent(retry);
+            errors.MessageHasFailedAFirstLevelRetryAttempt += (sender, retry) => LogEvent(retry);
+            errors.MessageSentToErrorQueue += (sender, retry) => LogEvent(retry);
         }
 
-        void LogToConsole(FailedMessage failedMessage)
+        void LogEvent(FailedMessage failedMessage)
         {
             log.Info("Mesage sent to error queue");
         }
 
-        void LogToConsole(SecondLevelRetry secondLevelRetry)
+        void LogEvent(SecondLevelRetry secondLevelRetry)
         {
             log.Info("Mesage sent to SLR. RetryAttempt:" + secondLevelRetry.RetryAttempt);
         }
 
-        void LogToConsole(FirstLevelRetry firstLevelRetry)
+        void LogEvent(FirstLevelRetry firstLevelRetry)
         {
             log.Info("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
         }
 
-        public Task Stop(IMessageSession session)
-        {
-            return Task.FromResult(0);
-        }
+        #endregion
     }
 
-    #endregion
 }
-

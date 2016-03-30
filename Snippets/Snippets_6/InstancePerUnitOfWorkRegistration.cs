@@ -24,13 +24,13 @@
     {
         public Task Begin()
         {
-            // Do your custom work here
+            // Do custom work here
             return Task.FromResult(0);
         }
 
         public Task End(Exception ex = null)
         {
-            // Do your custom work here
+            // Do custom work here
             return Task.FromResult(0);
         }
     }

@@ -1,7 +1,7 @@
 ---
 title: Error notifications
 summary: Subscribing to error notifications
-tags: []
+reviewed: 2016-03-30
 redirects:
  - nservicebus/subscribing-to-push-based-error-notifications
  - nservicebus/errors/subscribing-to-push-based-error-notifications
@@ -17,19 +17,18 @@ Error notifications are available for several events.
 
 This API was added in Version 5.1.
 
-These event are exposed via the `BusNotifications` class that can be injected via DI.
-
 The following example shows how to be notified every time a message is sent to FLR, SLR or the error queue. While this code writes to the console any other action could be taken, for example sending an email or writing to a monitoring system.
 
 snippet: SubscribeToErrorsNotifications
 
-
 include: notificationThread
+
+The notification instance is also injected into the [container](/nservicebus/containers/).
 
 
 ## Reactive Extensions
 
-Between Version 5.1 and before Version 6 the subscription was done via [Reactive Extensions](https://msdn.microsoft.com/en-au/data/gg577609.aspx).
+Between Versions 5.1 and 6 the subscription was done via [Reactive Extensions](https://msdn.microsoft.com/en-au/data/gg577609.aspx).
 
 
 ## Unsubscribing

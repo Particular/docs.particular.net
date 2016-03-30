@@ -13,16 +13,21 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.Logging.Default";
+        Console.Title = "Samples.Notifications";
         #region logging
         DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
         defaultFactory.Level(LogLevel.Fatal);
         #endregion
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Logging.Default");
+        #region endpointConfig
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Notifications");
+        SubscribeToNotifications.Subscribe(endpointConfiguration);
+        #endregion
+
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
+
 
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try

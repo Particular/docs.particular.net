@@ -3,9 +3,9 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    #region lifecycle-IWantToRunWhenBusStartsAndStops
+    #region lifecycle-IWantToRunWhenEndpointStartsAndStops
 
-    class RunWhenTheBusStartsAndStops : IWantToRunWhenBusStartsAndStops
+    class RunWhenEndpointStartsAndStops : IWantToRunWhenEndpointStartsAndStops
     {
         public async Task Start(IMessageSession session)
         {

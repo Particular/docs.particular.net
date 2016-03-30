@@ -23,12 +23,12 @@
     {
         public void Begin()
         {
-            // Do your custom work here
+            // Do custom work here
         }
 
         public void End(Exception ex = null)
         {
-            // Do your custom work here
+            // Do custom work here
         }
     }
     #endregion

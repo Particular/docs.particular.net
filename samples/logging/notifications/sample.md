@@ -14,7 +14,7 @@ related:
 This sample shows how to use the notification API to capture the SLR, FLR and error queue events.
 
 
-## Custom Setting in this sample
+## Custom Settings in this sample
 
 This sample uses several non-standard settings.
 
@@ -35,9 +35,21 @@ snippet: customSLR
 
 ## Plugging to the API
 
-The notifications API is exposed is injected via the [container](/nservicebus/containers/).
+The notifications API is exposed as follows.
+
+snippet:endpointConfig
 
 snippet:subscriptions
+
+
+### Versions 6 and above
+
+In Version 6 notifications are manipulated at configuration time.
+
+
+### Version 5
+
+In Version 5 notifications are manipulated at startup time using a combination of `IWantToRunWhenBusStartsAndStops` and an instance of `BusNotifications` injected via the [container](/nservicebus/containers/).
 
 
 include: notificationThread

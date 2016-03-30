@@ -45,10 +45,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1751\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1757\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Host">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Host.7.0.0-unstable0068\lib\net452\NServiceBus.Host.exe</HintPath>
+    <Reference Include="NServiceBus.Host, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Host.7.0.0-unstable0077\lib\net452\NServiceBus.Host.exe</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Log4Net, Version=1.1.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Log4Net.1.1.0-unstable0016\lib\net452\NServiceBus.Log4Net.dll</HintPath>

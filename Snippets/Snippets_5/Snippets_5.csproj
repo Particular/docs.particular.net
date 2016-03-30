@@ -651,6 +651,7 @@
     <Compile Include="RavenDB\UpgradeGuides\3to4\SharedSessionEndpointConfig.cs" />
     <Compile Include="UpgradeGuides\5to6\HandlerOrdering.cs" />
     <Compile Include="Transports\SqlServer_2\UpgradeGuides\MultiInstance.cs" />
+    <Compile Include="UpgradeGuides\5to6\StartupInterface.cs" />
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />

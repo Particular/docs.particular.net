@@ -43,17 +43,17 @@ public class SubscribeToNotifications :
 
     void Log(FailedMessage failedMessage)
     {
-        log.Info("Mesage sent to error queue");
+        log.Fatal("Mesage sent to error queue");
     }
 
     void Log(SecondLevelRetry secondLevelRetry)
     {
-        log.Info("Mesage sent to SLR. RetryAttempt:" + secondLevelRetry.RetryAttempt);
+        log.Fatal("Mesage sent to SLR. RetryAttempt:" + secondLevelRetry.RetryAttempt);
     }
 
     void Log(FirstLevelRetry firstLevelRetry)
     {
-        log.Info("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
+        log.Fatal("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
     }
 
     public void Stop()
