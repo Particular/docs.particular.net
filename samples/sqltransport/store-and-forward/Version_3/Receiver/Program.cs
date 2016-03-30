@@ -16,11 +16,12 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlServer.StoreAndForwardReceiver";
-        EndpointConfiguration configuration = new EndpointConfiguration("Samples.SqlServer.StoreAndForwardReceiver");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.StoreAndForwardReceiver");
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         #region ReceiverConfiguration
 
-        configuration.UseTransport<SqlServerTransport>()
+        endpointConfiguration.UseTransport<SqlServerTransport>()
             .EnableLagacyMultiInstanceMode(async transportAddress =>
             {
                 string connectionString = transportAddress.StartsWith("Samples.SqlServer.StoreAndForwardReceiver") || transportAddress == "error"
@@ -32,18 +33,23 @@ class Program
                 return connection;
             });
 
-        configuration.UsePersistence<NHibernatePersistence>();
+        endpointConfiguration.UsePersistence<NHibernatePersistence>();
 
         #endregion
 
-        configuration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
-        IEndpointInstance endpoint = await Endpoint.Start(configuration);
-
-        Console.WriteLine("Press any key to exit");
-        Console.WriteLine("Waiting for Order messages from the Sender");
-        Console.ReadKey();
-        await endpoint.Stop();
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        try
+        {
+            Console.WriteLine("Press any key to exit");
+            Console.WriteLine("Waiting for Order messages from the Sender");
+            Console.ReadKey();
+        }
+        finally
+        {
+            await endpoint.Stop();
+        }
     }
 
 

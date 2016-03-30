@@ -39,11 +39,7 @@ class SendThroughLocalQueueRoutingToDispatchConnector : ForkConnector<IRoutingCo
         Dictionary<string, string> headers = new Dictionary<string, string>(context.Message.Headers);
         AddressTag originalTag = routingStrategy.Apply(headers);
         UnicastAddressTag unicastTag = originalTag as UnicastAddressTag;
-        if (unicastTag != null)
-        {
-            headers["$.store-and-forward.destination"] = unicastTag.Destination;
-        }
-        else
+        if (unicastTag == null)
         {
             MulticastAddressTag multicastTag = originalTag as MulticastAddressTag;
             if (multicastTag != null)
@@ -54,6 +50,10 @@ class SendThroughLocalQueueRoutingToDispatchConnector : ForkConnector<IRoutingCo
             {
                 throw new Exception("Unsupported type of address tag: " + originalTag.GetType().FullName);
             }
+        }
+        else
+        {
+            headers["$.store-and-forward.destination"] = unicastTag.Destination;
         }
         OutgoingMessage message = new OutgoingMessage(context.Message.MessageId, headers, context.Message.Body);
         return new TransportOperation(message, new UnicastAddressTag(localAddress), DispatchConsistency.Default, context.Extensions.GetDeliveryConstraints());
