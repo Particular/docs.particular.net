@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    #region 5to6-IWantToRunWhenEndpointStartsAndStops
+    #region 5to6-EndpointStartAndStop
     public class Bootstrapper : IWantToRunWhenEndpointStartsAndStops
     {
         public Task Start(IMessageSession session)

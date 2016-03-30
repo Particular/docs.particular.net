@@ -2,9 +2,9 @@
 {
     using NServiceBus;
 
-    #region lifecycle-IWantToRunWhenBusStartsAndStops
+    #region lifecycle-EndpointStartAndStop
 
-    class RunWhenTheBusStartsAndStops : IWantToRunWhenBusStartsAndStops
+    class RunWhenTheEndpointStartsAndStops : IWantToRunWhenBusStartsAndStops
     {
         public void Start()
         {

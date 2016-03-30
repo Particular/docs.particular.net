@@ -455,7 +455,7 @@
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
     <Compile Include="Lifecycle\IWantToRunWhenConfigurationIsComplete.cs" />
-    <Compile Include="Lifecycle\IWantToRunWhenTheBusStartsAndStops.cs" />
+    <Compile Include="Lifecycle\EndpointStartAndStop.cs" />
     <Compile Include="Extending\Features.cs" />
     <Compile Include="Profiles\CustomProfiles.cs" />
     <Compile Include="Profiles\ConfigureLogging.cs" />

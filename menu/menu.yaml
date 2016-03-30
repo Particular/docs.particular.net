@@ -206,7 +206,7 @@
         - "nservicebus/lifecycle/ineedinitialization"
         - "nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized"
         - "nservicebus/lifecycle/iwanttorunwhenconfigurationiscomplete"
-        - "nservicebus/lifecycle/iwanttorunwhenendpointstartsandstops"
+        - "nservicebus/lifecycle/endpointstartandstop"
     -
       Title: "Hosting"
       Url: "nservicebus/hosting"

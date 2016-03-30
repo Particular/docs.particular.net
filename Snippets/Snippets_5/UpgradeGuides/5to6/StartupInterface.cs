@@ -2,7 +2,7 @@
 {
     using NServiceBus;
 
-    #region 5to6-IWantToRunWhenEndpointStartsAndStops
+    #region 5to6-EndpointStartAndStop
     public class Bootstrapper : IWantToRunWhenBusStartsAndStops
     {
         public void Start()

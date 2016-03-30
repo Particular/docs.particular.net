@@ -75,4 +75,4 @@ NOTE: `Stop()` will wait for any outstanding instances of `Start()` to complete.
 
 ## Code
 
-snippet:lifecycle-IWantToRunWhenEndpointStartsAndStops
+snippet:lifecycle-EndpointStartAndStop
