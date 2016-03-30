@@ -72,13 +72,6 @@ These default settings can be changed by specifying new defaults in the config f
 
 snippet:OutboxNHibernateTimeToKeep
 
-### Cleanup interval
-
-The default purge cleanup interval is every minute. If your endpoint processes a high volume of message per second it might be needed to change this interval to run more frequently.
-
-If your endpoint processes 1,000 message per second the default value would mean that every minute 60,000 outbox records will be deleted. In that case it probably makes more sense to set the interval to every second to delete 1,000 records per second or even more often like every 100 milli seconds to delete on average 100 records at each interval.
-
-
 ## Using Outbox with RavenDB persistence
 
 
@@ -94,3 +87,11 @@ The RavenDB implementation by default keeps deduplication records for 7 days and
 These default settings can be changed by specifying new defaults in the settings dictionary:
 
 snippet:OutboxRavendBTimeToKeep
+
+## Configuring outbox
+
+### Cleanup interval
+
+The default purge cleanup interval is every minute. If your endpoint processes a high volume of message per second it might be needed to change this interval to run more frequently.
+
+If your endpoint processes 1,000 message per second the default value would mean that every minute 60,000 outbox records or documents will be deleted. In that case it probably makes more sense to set the interval to every second to delete 1,000 records per second or even more often like every 100 milli seconds to delete on average 100 records at each interval.
