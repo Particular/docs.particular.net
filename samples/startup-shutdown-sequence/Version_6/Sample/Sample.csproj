@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="ExtensionPoints\MyFeatureStartupTask.cs" />
     <Compile Include="ExtensionPoints\WantToRunBeforeConfigurationIsFinalized.cs" />
-    <Compile Include="ExtensionPoints\WantToRunWhenBusStartsAndStops.cs" />
     <Compile Include="ExtensionPoints\MyFeature.cs" />
     <Compile Include="ExtensionPoints\NeedInitialization.cs" />
     <Compile Include="ExtensionPoints\NeedToInstallSomething.cs" />
