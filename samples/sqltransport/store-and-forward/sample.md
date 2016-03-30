@@ -56,18 +56,20 @@ It also registers two custom behaviors, one for the send pipeline and the other 
 
 ### Send pipeline
 
-The new behavior is added at the beginning of the send pipeline.
+The new behavior is added at the beginning of the send pipeline (in Version 5) or in the routing stage (in Version 6).
 
 snippet:SendThroughLocalQueueBehavior
 
-It checks if the message comes from a handler and in such case it does nothing. Otherwise it captures the destination of the message in a header and overrides the original value so that the message is actually send to the local endpoint (put in the end of the endpoint's incoming queue).
+The behavior ignores messages coming from a handler or deferred. In the first case the incoming message will be retried ensuring the outgoing messages are eventually delivered. In the second the destination is the local timeout manager satellite. 
 
-NOTICE: Other properties of a message (such as defer time) are not captured in this example. In order to use similar feature in production, make sure to capture all relevant information (e.g. defer time).
+It captures the destination of the message in a header and overrides the original value so that the message is actually send to the local endpoint (put in the end of the endpoint's incoming queue).
+
+NOTICE: In Version 5 other properties of a message (such as defer time) are not captured in this example. In order to use similar feature in production, make sure to capture all relevant information (e.g. defer time).
 
 
 ### Receive pipeline
 
-In the receive pipeline the new behavior is placed just before loading the message handlers.
+In the receive pipeline the new behavior is placed just before loading the message handlers (in Version 5) or in the physical processing stage (in Version 6).
 
 snippet:ForwardBehavior
 
