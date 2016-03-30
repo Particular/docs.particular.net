@@ -1,5 +1,5 @@
 ---
-title: When Configuration Start and Stop
+title: When Endpoint Instance Starts and Stops
 summary: An interface that allows hooking into into the startup and shutdown sequence of an endpoint instance.
 reviewed: 2016-03-30
 tags:
