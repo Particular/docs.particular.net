@@ -9,7 +9,10 @@ public class SagaTests
     [Test]
     public async Task ShouldProcessRegularOrder()
     {
-        var saga = new DiscountPolicy { Data = new DiscountPolicyData() };
+        var saga = new DiscountPolicy
+        {
+            Data = new DiscountPolicyData()
+        };
         var context = new TestableMessageHandlerContext();
 
         var regularOrder = new SubmitOrder
@@ -29,7 +32,10 @@ public class SagaTests
     [Test]
     public async Task ShouldProcessDiscountOrder()
     {
-        var saga = new DiscountPolicy { Data = new DiscountPolicyData() };
+        var saga = new DiscountPolicy
+        {
+            Data = new DiscountPolicyData()
+        };
         var context = new TestableMessageHandlerContext();
 
         var discountOrder = new SubmitOrder
