@@ -73,9 +73,11 @@ In the receive pipeline the new behavior is placed just before loading the messa
 
 snippet:ForwardBehavior
 
-If the message contains the headers used by the send-side behavior, it is forwarded to the ultimate destination instead of being processed locally. This is the first time the remote database of Receiver endpoint is contacted. Should it be down, the retry mechanism kicks in and ensures the message is eventually dispatched to the destination. In this example the retry mechanism is configured to retry up to 100 times every 10 seconds
+If the message contains the headers used by the send-side behavior, it is forwarded to the ultimate destination instead of being processed locally. This is the first time the remote database of Receiver endpoint is contacted. Should it be down, the retry mechanism kicks in and ensures the message is eventually dispatched to the destination. In this example the retry mechanism is configured to retry up to 100 times every 10 seconds.
 
 snippet:SlrConfig
+
+NOTE: In case when sender's and receiver's database cannot be accessed in a in distributed transaction, the `ForwardBehavior` has to include a `TransactionScope` that suppresses the ambient transaction before forwarding the message. 
 
 ### Receiver project
 
