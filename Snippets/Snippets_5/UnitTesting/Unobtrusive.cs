@@ -3,21 +3,20 @@
     using System;
     using NServiceBus.Testing;
 
-    public class Unobtrusive
+    class Unobtrusive
     {
-        public class Setup
+        void Setup()
         {
-            public Setup()
-            {
-                #region SetupConventionsForUnitTests
-                Test.Initialize(config => config.Conventions().DefiningMessagesAs(MyMessageTypeConvention));
-                #endregion
-            }
+            #region SetupConventionsForUnitTests
 
-            bool MyMessageTypeConvention(Type arg)
-            {
-                return true;
-            }
+            Test.Initialize(config => config.Conventions().DefiningMessagesAs(MyMessageTypeConvention));
+
+            #endregion
+        }
+
+        bool MyMessageTypeConvention(Type arg)
+        {
+            return true;
         }
     }
 }

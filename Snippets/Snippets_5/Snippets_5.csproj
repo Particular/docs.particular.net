@@ -422,6 +422,7 @@
     <Compile Include="Transports\SqlServer_2\SingleDbMultiSchema.cs" />
     <Compile Include="Transports\SqlServer_2\ConnectionStrings.cs" />
     <Compile Include="Transports\SqlServer_2\UpgradeGuides\Transactions.cs" />
+    <Compile Include="UnitTesting\Usage.cs" />
     <Compile Include="UpgradeGuides\5to6\AuthorizeSubscriptions.cs" />
     <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
     <Compile Include="UpgradeGuides\5to6\DelayedDelivery.cs" />

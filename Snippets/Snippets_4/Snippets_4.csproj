@@ -406,6 +406,7 @@
     <Compile Include="Serialization\JsonSerializerUsage.cs" />
     <Compile Include="Transports\Msmq\AuthorizeSubscriptions.cs" />
     <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
+    <Compile Include="UnitTesting\Usage.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\CompleteOrder.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\OrderSaga.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\OrderSagaData.cs" />

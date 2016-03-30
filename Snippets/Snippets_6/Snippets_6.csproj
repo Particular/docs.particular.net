@@ -437,6 +437,7 @@
     <Compile Include="UnitTesting\ServiceLayer\RequestMessage.cs" />
     <Compile Include="UnitTesting\ServiceLayer\ResponseMessage.cs" />
     <Compile Include="UnitTesting\ServiceLayer\Tests.cs" />
+    <Compile Include="UnitTesting\Usage.cs" />
     <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
     <Compile Include="Transports\SqlServer_3\UpgradeGuides\Transactions.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameHelper.cs" />
