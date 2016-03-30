@@ -7,19 +7,18 @@ class Program
 {
     static void Main()
     {
-        Console.Title = "Samples.SQLOutboxStoreAndForward.Receiver";
+        Console.Title = "Samples.SqlServer.StoreAndForwardReceiver";
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.SQLOutboxStoreAndForward.Receiver");
+        busConfiguration.EndpointName("Samples.SqlServer.StoreAndForwardReceiver");
 
         #region ReceiverConfiguration
 
         busConfiguration.UseTransport<SqlServerTransport>()
             .UseSpecificConnectionInformation(
-                EndpointConnectionInfo.For("Samples.SQLOutboxStoreAndForward.Sender")
+                EndpointConnectionInfo.For("Samples.SqlServer.StoreAndForwardSender")
                     .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True"));
 
         busConfiguration.UsePersistence<NHibernatePersistence>();
-        busConfiguration.EnableOutbox();
 
         #endregion
 
