@@ -4,18 +4,18 @@ using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 using NServiceBus.Unicast;
 
-public class OutboxLoopbackSendBehavior : IBehavior<OutgoingContext>
+public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
 {
     Configure configure;
 
-    public OutboxLoopbackSendBehavior(Configure configure)
+    public SendThroughLocalQueueBehavior(Configure configure)
     {
         this.configure = configure;
     }
 
     public void Invoke(OutgoingContext context, Action next)
     {
-        #region OutboxLoopbackSendBehavior
+        #region SendThroughLocalQueueBehavior
         if (context.IncomingMessage != null) //If we are processing an incoming message (in a handler), we skip this behavior
         {
             next();
@@ -53,7 +53,7 @@ public class OutboxLoopbackSendBehavior : IBehavior<OutgoingContext>
     public class Registration : RegisterStep
     {
         public Registration()
-            : base("OutboxLoopbackSend", typeof(OutboxLoopbackSendBehavior), "OutboxLoopbackSendRegistration")
+            : base("SendThroughLocalQueue", typeof(SendThroughLocalQueueBehavior), "Put the outgoing message into this endpoint's input queue")
         {
             InsertBefore(WellKnownStep.MutateOutgoingMessages);
             InsertAfter(WellKnownStep.EnforceBestPractices);

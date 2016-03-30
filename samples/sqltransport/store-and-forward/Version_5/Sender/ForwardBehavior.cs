@@ -3,18 +3,18 @@ using NServiceBus;
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
-public class OutboxLoopbackReceiveBehavior : IBehavior<IncomingContext>
+public class ForwardBehavior : IBehavior<IncomingContext>
 {
     IBus bus;
 
-    public OutboxLoopbackReceiveBehavior(IBus bus)
+    public ForwardBehavior(IBus bus)
     {
         this.bus = bus;
     }
 
     public void Invoke(IncomingContext context, Action next)
     {
-        #region OutboxLoopbackReceiveBehavior
+        #region ForwardBehavior
 
         string eventType;
         string destination;
@@ -40,7 +40,7 @@ public class OutboxLoopbackReceiveBehavior : IBehavior<IncomingContext>
     public class Registration : RegisterStep
     {
         public Registration()
-            : base("OutboxLoopbackReceive", typeof(OutboxLoopbackReceiveBehavior), "OutboxLoopbackReceive")
+            : base("Forward", typeof(ForwardBehavior), "Forwards the message to the destination.")
         {
             InsertBefore(WellKnownStep.LoadHandlers);
             InsertAfter(WellKnownStep.MutateIncomingMessages);
