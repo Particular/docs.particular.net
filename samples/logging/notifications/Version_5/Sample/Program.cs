@@ -7,13 +7,15 @@ class Program
 
     static void Main()
     {
-        Console.Title = "Samples.Logging.Default";
+        Console.Title = "Samples.Notifications";
         #region logging
         DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
         defaultFactory.Level(LogLevel.Fatal);
         #endregion
+        #region endpointConfig
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Logging.Default");
+        busConfiguration.EndpointName("Samples.Notifications");
+        #endregion
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
