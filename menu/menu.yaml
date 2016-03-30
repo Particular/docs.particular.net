@@ -226,7 +226,7 @@
       Url: "nservicebus/testing"
       Articles:
         - "nservicebus/testing"
-        - "nservicebus/samples/unit-testing"
+        - "samples/unit-testing"
     -
       Title: "Logging"
       Url: "nservicebus/logging"
