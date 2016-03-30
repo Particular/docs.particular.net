@@ -18,8 +18,9 @@ NServiceBus has exception catching and handling logic of its own which surrounds
 
 When a message fails NServiceBus [automatically retries](/nservicebus/errors/automatic-retries.md) the message. On repeated failure NServiceBus forwards that message to a designated error queue.
 
-Error queue can be configured in several ways.
+NOTE: When running with [transport transactions](/nservicebus/messaging/transactions.md) disabled NServiceBus bus will perform best-effort error message forwarding.
 
+Error queue can be configured in several ways.
 
 ### Using Code
 
