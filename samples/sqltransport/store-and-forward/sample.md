@@ -1,7 +1,7 @@
 ---
 title: SQL Server transport store-and-forward
 summary: How to add store-and-forward functionality for external-facing endpoints
-reviewed: 2016-03-21
+reviewed: 2016-03-30
 tags:
 - SQL Server
 - Store-and-forward
@@ -41,11 +41,11 @@ redirects:
 
 ## Code walk-through
 
-When SQL Server transport is used in the [*multi-instance* mode](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance), the messages are inserted directly into the destination database table in another database. If the receiving endpoint's database is down or inaccessible, e.g. because of network failures, the sending endpoint can't send messages to it. In such situations the exception is thrown from the `Send()` or the `Publish()` method, resulting in a potential message loss.
+When SQL Server transport is used in the [*multi-instance* mode](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance), the messages are inserted directly into the remote destination database's table. If the receiving endpoint's database is down or inaccessible, e.g. because of network failures, the sending endpoint can't send messages to it. In such situations the exception is thrown from the `Send()` or the `Publish()` methods, resulting in a potential message loss.
 
 The message loss problem can be prevented by adding [store-and-forward functionality](/nservicebus/architecture/principles.md#drilling-down-into-details-store-and-forward-messaging) to the SQL Server transport, as explained in this sample. 
 
-NOTE: The [Outbox](/nservicebus/outbox/) would not help solve the issue presented in this example, because it is bypassed when sending messages from outside of a message handler e.g. from ASP.NET MVC controller.
+NOTE: The [Outbox](/nservicebus/outbox/) would not help solve the issue presented in this example, because it is bypassed when sending messages from outside of a message handler, e.g. from ASP.NET MVC controller.
 
 The sample contains three projects:
 
@@ -62,7 +62,7 @@ The Sender does not store any data. It mimics the front-end system where orders 
 
 snippet:SenderConfiguration
 
-The Sender registers two custom behaviors, one for the send pipeline and the other for the receive pipeline.
+The Sender registers two custom behaviors, one for the send pipeline and one for the receive pipeline.
 
 
 #### Send pipeline
@@ -77,7 +77,7 @@ The behavior ignores:
 
 The behavior captures the destination of the message in a header and overrides the original value so that the message is actually sent to the local endpoint (put at the end of the endpoint's incoming queue).
 
-NOTICE: In Version 5 of this sample some properties of a message (such as defer time) are not handled. In order to use similar feature in production, make sure to add code to handle all possible situations or refrain from using deferred messages in endpoints where store-and-forward is used.
+NOTICE: In Version 3 of this sample some properties of a message (such as defer time) are not handled. In order to use similar feature in production, make sure to add code to handle all possible situations or refrain from using deferred messages in endpoints where store-and-forward is used.
 
 
 #### Receive pipeline
@@ -86,7 +86,7 @@ In the receive pipeline the new behavior is placed just before loading the messa
 
 snippet:ForwardBehavior
 
-If the message contains the headers used by the send-side behavior, it is forwarded to the ultimate destination instead of being processed locally. This is the first time the remote database of the Receiver endpoint is contacted. Should it be down, the retry mechanism kicks in and ensures the message is eventually delivered to the destination. In this example the retry mechanism is configured to retry every 10 seconds up to 100 times.
+If the message contains the headers used by the send-side behavior, it is forwarded to the ultimate destination instead of being processed locally. This is the first time the remote database of the Receiver endpoint is contacted. Should it be down, the retry mechanism kicks in and ensures the message is eventually delivered to the destination. In this example the retry mechanism is configured to retry every 10 seconds for up to 100 times.
 
 snippet:SlrConfig
 
@@ -98,4 +98,4 @@ The Receiver mimics a back-end system. It is set up to use SQLServer transport w
 
 snippet:ReceiverConfiguration
 
-NOTE: Multi-instance mode is deprecated in Version 3 of SQL Server transport and will be removed in the next major version. By that time an alternative store-and-forward solution will be provided.
+NOTE: Multi-instance mode is deprecated in Version 3 of SQL Server transport and will be removed in the next major version. By that time an alternative store-and-forward solution will be provided. For more information refer to the [SQL Server transport Version 2 to Version 3 upgrade guide](/nservicebus/upgrades/sqlserver-2to3.md#sql-server-transport-multi-instance-support).
