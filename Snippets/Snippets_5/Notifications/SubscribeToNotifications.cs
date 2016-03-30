@@ -1,4 +1,4 @@
-﻿namespace Snippets5.BusNotifications
+﻿namespace Snippets5.Notifications
 {
     using System;
     using System.Collections.Generic;
@@ -30,31 +30,31 @@
             unsubscribeStreams.Add(
                 errors.MessageSentToErrorQueue
                     .ObserveOn(scheduler)
-                    .Subscribe(LogToConsole)
+                    .Subscribe(LogEvent)
                 );
             unsubscribeStreams.Add(
                 errors.MessageHasBeenSentToSecondLevelRetries
                     .ObserveOn(scheduler)
-                    .Subscribe(LogToConsole)
+                    .Subscribe(LogEvent)
                 );
             unsubscribeStreams.Add(
                 errors.MessageHasFailedAFirstLevelRetryAttempt
                     .ObserveOn(scheduler)
-                    .Subscribe(LogToConsole)
+                    .Subscribe(LogEvent)
                 );
         }
 
-        void LogToConsole(FailedMessage failedMessage)
+        void LogEvent(FailedMessage failedMessage)
         {
             log.Info("Mesage sent to error queue");
         }
 
-        void LogToConsole(SecondLevelRetry secondLevelRetry)
+        void LogEvent(SecondLevelRetry secondLevelRetry)
         {
             log.Info("Mesage sent to SLR. RetryAttempt:" + secondLevelRetry.RetryAttempt);
         }
 
-        void LogToConsole(FirstLevelRetry firstLevelRetry)
+        void LogEvent(FirstLevelRetry firstLevelRetry)
         {
             log.Info("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
         }
