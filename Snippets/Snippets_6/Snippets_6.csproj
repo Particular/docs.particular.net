@@ -473,7 +473,7 @@
     <Compile Include="License.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
-    <Compile Include="Lifecycle\IWantToRunWhenTheBusStartsAndStops.cs" />
+    <Compile Include="Lifecycle\EndpointStartAndStop.cs" />
     <Compile Include="Logging\BuiltInConfig.cs" />
     <Compile Include="Logging\CommonLogging\Usage.cs" />
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />

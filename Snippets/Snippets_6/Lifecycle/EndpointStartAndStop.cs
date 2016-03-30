@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    #region lifecycle-IWantToRunWhenEndpointStartsAndStops
+    #region lifecycle-EndpointStartAndStop
 
     class RunWhenEndpointStartsAndStops : IWantToRunWhenEndpointStartsAndStops
     {
