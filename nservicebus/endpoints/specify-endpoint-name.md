@@ -55,16 +55,16 @@ NOTE: Note Only use code OR commandline/installation parameters.
 
 ## Input queue
 
-By default the endpoint name is used as a basis for generating the input queue name. This default could be overridden in versions 5 and above using following API
+By default the endpoint's input queue name is the same as endpoint's name. The input queue name can be overridden in Versions 5 and above using the following API:
 
 snippet:InputQueueName
 
-Other endpoints that send messages to the one with overridden input queue name need to be aware of that override.
+Additionally, the actual queue name has to be passed to the endpoints that want to communicate with it:
 
 snippet:InputQueueOverrideRoutingXml
 
 snippet:InputQueueOverrideRouting
 
-In Version 5 and previous versions the routing configuration references the overridden input queue directly. In Version 6 and above the logical routing works on endpoint name level and a separate API call is required to make that endpoint aware of the customized input queue of `MyEndpoint`.
+In Versions 5 and below the overridden input queue is passed directly to the routing configuration. In Versions 6 and above the logical routing works on an endpoint name level. The endpoint name is passed to the routing configuration, and a separate API call is required to specify the name of its input queue.
 
-NOTE: In Version 6 and above the same API call is used to override the default translation of endpoint name to transport address (input queue name) for the endpoint's own input queue as well as for any destination endpoint. To learn more about transport address generation in Version 6 and above go to the [routing](/nservicebus/messaging/routing.md) documentation.
+NOTE: In Versions 6 and above the same API is used to override the default translation of the endpoint name to the transport address (input queue name) for the endpoint's own input queue, as well as for any destination endpoints. To learn more about transport address generation in Versions 6 and above refer to the [routing](/nservicebus/messaging/routing.md) documentation.
