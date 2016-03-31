@@ -651,7 +651,7 @@ Sequence diagram images are generated using https://bramp.github.io/js-sequence-
 
 For consistency, prefer American English.
 
-Avoid personal void. So no "we", "you", "your", "our" etc.
+Avoid personal language. So no "we", "you", "your", "our" etc.
 
 
 ## Version Language
