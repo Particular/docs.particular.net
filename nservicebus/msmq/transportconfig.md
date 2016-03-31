@@ -25,7 +25,7 @@ Because of historic reasons, the configuration for MSMQ transport has been coupl
 
 ### Queue permissions
 
-By default, queues are created with `Everyone` and `Anonymous Logon` permissions to allow messages to be sent and received without additional configuration. Whilst initially convenient, this unrestricted access may be a security concern. If your organization requires it, you should set appropriate permissions on a queue after its creation.
+By default, queues are created with `Everyone` and `Anonymous Logon` permissions to allow messages to be sent and received without additional configuration. Whilst initially convenient, this unrestricted access may be a security concern. If required, the appropriate permissions can be set on a queue after its creation.
 
 NOTE: From Version 6 if the above default permissions are set, a log message will be written during the transport startup, reminding that the queue is configured with default permissions. During development, if running with an attached debugger, this message will be logged as `INFO` level, otherwise `WARN`.
 
@@ -58,8 +58,31 @@ Often when debugging MSMQ using [native tools](viewing-message-content-in-msmq.m
 
 snippet:ApplyLabelToMessages
 
+## Transactions and delivery guarantees
 
-## Controlling transaction scope options
+MSMQ transport supports all [transaction handling modes](/nservicebus/messaging/transactions.md), i.e. Transaction scope, Receive only, Sends atomic with Receive and No transactions.
+
+Refer to [Transport Transactions](/nservicebus/messaging/transactions.md) for detailed explanation of the supported transaction handling modes and available configuration options. 
+
+
+### Transaction scope
+
+In this mode the ambient transaction is started before receiving the message. The transaction encompasses all stages of processing including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no escalation to Distributed Transaction Coordinator (DTC).
+
+
+### Native transactions
+
+In MSMQ transport there is no distinction between the *ReceiveOnly* and *SendsAtomicWithReceive* levels, they are both handled in an identical way.
+
+The native transaction for receiving messages is shared with sending operations. That means the message receive operation and any send or publish operations are committed atomically.
+
+
+### Unreliable (Transactions Disabled)
+
+In this mode when message is received from an input queue it's immediately removed from it. If processing fails the message is lost, because the operation cannot be rolled back. Also any other operation performed when processing the message is executed outside of the transaction, it can't be rolled back. That might lead to undesired side effects.
+
+
+### Controlling transaction scope options
 
 The following options can be configured when the MSMQ transport is working in the transaction scope mode.
 
