@@ -280,6 +280,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EndpointName\EndpointMapping.config.xml" />
     <Content Include="Errors\retriesLogging.txt" />
     <Content Include="Forwarding\ForwardingConfig.xml" />
     <Content Include="Gateway\Channels\Channels.xml">
