@@ -90,8 +90,6 @@ Refer to [Transport Transactions](/nservicebus/messaging/transactions.md) for de
 
 In this mode the ambient transaction is started before receiving the message. The transaction encompasses all stages of processing including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no escalation to Distributed Transaction Coordinator (DTC).
 
-snippet:OutboxSqlServerConnectionStrings
-
 See also [Sample covering this mode of operation](/samples/sqltransport-nhpersistence/).
 
 

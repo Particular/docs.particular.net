@@ -80,30 +80,3 @@ The native transaction for receiving messages is shared with sending operations.
 ### Unreliable (Transactions Disabled)
 
 In this mode when message is received from an input queue it's immediately removed from it. If processing fails the message is lost, because the operation cannot be rolled back. Also any other operation performed when processing the message is executed outside of the transaction, it can't be rolled back. That might lead to undesired side effects.
-
-
-### Controlling transaction scope options
-
-The following options can be configured when the MSMQ transport is working in the transaction scope mode.
-
-
-### Isolation level
-
-NServiceBus will by default use the `ReadCommitted` [isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel).
-
-NOTE: Version 3 and below used the default isolation level of .Net which is `Serializable`.
-
-Change the isolation level using
-
-snippet:MsmqTransactionScopeIsolationLevel
-
-
-### Transaction timeout
-
-NServiceBus will use the [default transaction timeout](https://msdn.microsoft.com/en-us/library/system.transactions.transactionmanager.defaulttimeout) of the machine the endpoint is running on.
-
-Change the transaction timeout using
-
-snippet:MsmqTransactionScopeTimeout
-
-Or via .config file using a [example DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.aspx#Anchor_5).
