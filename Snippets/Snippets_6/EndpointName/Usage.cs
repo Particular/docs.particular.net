@@ -19,7 +19,7 @@
             #region InputQueueName
 
             endpointConfiguration.UseTransport<MyTransport>().AddAddressTranslationException(
-                new EndpointInstance("MyEndpoint"), "MyEndpoint.messages");
+                new EndpointInstance("MyEndpoint"), "MyEndpoint.Messages");
 
             #endregion
 
@@ -27,7 +27,7 @@
 
             endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(MyMessage), "MyEndpoint");
             endpointConfiguration.UseTransport<MyTransport>().AddAddressTranslationException(
-                new EndpointInstance("MyEndpoint"), "MyEndpoint.messages");
+                new EndpointInstance("MyEndpoint"), "MyEndpoint.Messages");
 
             #endregion
         }
