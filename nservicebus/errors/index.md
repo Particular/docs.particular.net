@@ -5,26 +5,25 @@ tags:
 - Exceptions
 - Error Handling
 - Retry
+reviewed: 2016-03-31
 redirects:
  - nservicebus/how-do-i-handle-exceptions
 related:
 - nservicebus/operations/transactions-message-processing
 ---
 
-NServiceBus has exception catching and handling logic of its own which surrounds all calls to user code. When an exception bubbles through to the NServiceBus infrastructure, it rolls back the transaction on a transactional endpoint, causing the message to be returned to the queue, and any messages that the user code tried to send or publish to be undone as well.
+NServiceBus has a built-in exception catching and handling logic, which encompasses all calls to the user code. When an exception bubbles through to the NServiceBus infrastructure, it rolls back the transaction on the transactional endpoint. The message is then returned to the queue, and any messages that the user code tried to send or publish won't be sent out.
 
 
 ## Configure the error queue
 
 When a message fails NServiceBus [automatically retries](/nservicebus/errors/automatic-retries.md) the message. On repeated failure NServiceBus forwards that message to a designated error queue.
 
-NOTE: When running with [transport transactions](/nservicebus/messaging/transactions.md#transactions-unreliable-transactions-disabled) disabled NServiceBus will perform best-effort error message forwarding, i.e. if moving to the error queue fails, the message will be lost.
+WARNING: When running with [transport transactions disabled](/nservicebus/messaging/transactions.md#transactions-unreliable-transactions-disabled) NServiceBus will perform a best-effort error message forwarding, i.e. if moving to the error queue fails, the message will be lost.
 
 Error queue can be configured in several ways.
 
 ### Using Code
-
-You can configure the target error queue at configuration time.
 
 snippet:ErrorWithCode
 
@@ -47,18 +46,18 @@ snippet:UseCustomConfigurationSourceForErrorQueueConfig
 
 snippet:configureErrorQueueViaXml
 
-NOTE: In NServiceBus Version 3.x the `ErrorQueue` settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
+NOTE: In NServiceBus Version 3.x the `ErrorQueue` settings can be set both via the `MessageForwardingInCaseOfFaultConfig ` section and the `MsmqTransportConfig` section.
 
-For more details on `MsmqTransportConfig` [read this article](/nservicebus/msmq/transportconfig.md).
+For more details on `MsmqTransportConfig` refer to the [MSMQ transport](/nservicebus/msmq/transportconfig.md) article.
 
 
-## Monitor the error queue
+## Error queue monitoring
 
-Administrators should monitor that error queue so that they can see when problems occur. The message in the error queue contains the source queue and machine so that the administrator can see what's wrong with that node and possibly correct the problem, for example, bringing up a database that went down.
+Administrators should monitor the error queue, in order to detect when problems occur. The message in the error queue contains information regarding its source queue and machine. Having that information an administrator can investigate the specific node and solve the problem, e.g. bring up a database that went down.
 
-Monitoring and handling of failed messages with [ServicePulse](/servicepulse) provides access to full exception details (including stack-trace, and through ServiceInsight it also enables advanced debugging with all message context. It also provides a "retry" option to send the message back to the endpoint for re-processing. For more details, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md).
+Monitoring and handling of failed messages with [ServicePulse](/servicepulse) provides access to full exception details (including stack-trace). [ServiceInsight](/serviceinsight) additionally enables advanced debugging with a full message context. Both of them provide a `retry` functionality to send the message back to the endpoint for re-processing. For more details, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md).
 
-If either ServicePulse or ServiceInsight is not available in the environment you can perform this operation using the native management tools of the selected transport of by code or powershell:
+If either ServicePulse or ServiceInsight is not available in the environment, the `retry` operation can be performed using the native management tools of the selected transport:
 
  * [Msmq Scripting](/nservicebus/msmq/operations-scripting.md)
  * [RabbitMq Scripting](/nservicebus/rabbitmq/operations-scripting.md)
@@ -66,4 +65,4 @@ If either ServicePulse or ServiceInsight is not available in the environment you
 
 ### ReturnToSourceQueue.exe
 
-The MSMQ command line tool ReturnToSourceQueue has been deprecated and moved to [ParticularLabs/MsmqReturnToSourceQueue](https://github.com/ParticularLabs/MsmqReturnToSourceQueue/).
+The MSMQ command line tool `ReturnToSourceQueue` has been deprecated and moved to [ParticularLabs/MsmqReturnToSourceQueue](https://github.com/ParticularLabs/MsmqReturnToSourceQueue/).
