@@ -1,37 +1,38 @@
 ---
 title: Automatic Retries
-summary: With retries, the message causing the exception is instantly retried configured number of times before forwarding to the error queue.
+summary: The message which caused the exception during processing, is automatically retried for the configured number of times before being forwarded to the error queue.
 tags:
 - Second Level Retry
 - Error Handling
 - Exceptions
 - Retry
+reviewed: 2016-03-31
 redirects:
  - nservicebus/second-level-retries
 related:
 - samples/faulttolerance
 ---
 
-Sometimes processing of a message can fail. This could be due to a transient problem like a deadlock in the database, in which case retrying the message a few times might overcome this problem. Or, if the problem is more protracted, like a third party web service going down or a database being unavailable, where it might be useful to wait a little longer before retrying the message again.
+Sometimes processing of a message fails. This could be due to a transient problem like a deadlock in the database, in which case retrying the message a few times should solve the issue. If the problem is more protracted, like a third party web service going down or a database being unavailable, solving the issue would take longer. It is therefore useful to wait longer before retrying the message again.
 
-For situations like these, NServiceBus offers two levels of retries:
+NServiceBus offers two levels of retries:
 
-- First Level Retry(FLR) is for the transient errors where quick successive retries could solve the problem.
-- Second Level Retry(SLR) is when a small delay is needed between retries.
+- First Level Retry(FLR) is for transient errors, where quick successive retries solve the problem.
+- Second Level Retry(SLR) is for errors that persist after FLR, where a small delay is needed between retries.
 
-NOTE: When a message cannot be deserialized, it will bypass all retry mechanisms both the FLR and SLR and the message will be moved directly to the error queue.
+NOTE: When a message cannot be deserialized, it will bypass all retry mechanisms and the message will be moved directly to the error queue.
 
 
 ## First Level Retries
 
-NServiceBus automatically retries the message when an exception is thrown during message processing up to five successive times by default. This value can be configured through `app.config` or code.
+NServiceBus automatically retries the message when an exception is thrown during message processing for up to five times by default. This value can be configured through `app.config` or via code.
 
-Note: The configured value describes the minimum number of times a message will be retried. Especially in environments with competing consumers on the same queue there is an increased chance of retrying a failing message more often across the endpoints.
+Note: The configured value describes the minimum number of times a message will be retried. Especially in environments with competing consumers on the same queue, there is an increased chance of retrying a failing message more times across the endpoints.
 
 
 ### Transport transaction requirements
 
-The FLR mechanism is implemented by rolling back the [transport transaction](/nservicebus/messaging/transactions.md). This returns the message to the input queue and the endpoint processes it again immediately. Therefore FLR cannot be used when transport transactions are disabled. In such cases aborting the receive operation results in message loss.
+The FLR mechanism is implemented by rolling back the [transport transaction](/nservicebus/messaging/transactions.md). This returns the message to the input queue and the endpoint processes it again immediately. Aborting the receive operation when transactions are turned off would result in a message loss. Therefore FLR cannot be used when transport transactions are disabled. 
 
 
 ### Configuring FLR using app.config
@@ -55,20 +56,18 @@ snippet:FLRConfigurationSource
 snippet:FLRConfigurationSourceUsage
 
 
-NOTE: From Version 6, configuration of the FLR mechanism will have no effect on how many times a deferred message is dispatched when an exception is thrown. In such a case the `TimeoutManager` will attempt the dispatch five times.
-
-
 ## Second Level Retries
 
-SLR introduces another level of retrying mechanism for messages that fail processing. When using SLR, the message that causes the exception is, as before, instantly retried, but instead of being sent to the error queue, it is sent to a retries queue.
+SLR introduces another level of retry mechanism for messages that fail processing. SLR picks up the message and defers its delivery, by default first for 10 seconds, then 20, and lastly for 30 seconds, then returns it to the original worker queue.
 
-SLR then picks up the message and defers it, by default first for 10 seconds, then 20, and lastly for 30 seconds, then returns it to the original worker queue.
+For example, if there is a call to an web service in the handler, but the service goes down for five seconds just at that time. Without SLR, the message is retried instantly and sent to the error queue. With SLR, the message is instantly retried, deferred for 10 seconds, and then retried again. This way, when the Web Service is available the message is processed just fine.
 
-For example, if there is a call to an web service in your handler, but the service goes down for five seconds just at that time. Without SLR, the message is retried instantly and sent to the error queue. With SLR, the message is instantly retried, deferred for 10 seconds, and then retried again. This way, when the Web Service is available the message is processed just fine.
+NOTE: Retrying messages for extended periods of time would hide failures from operators, thus preventing them from taking manual action to honor their Service Level Agreements. To avoid this, NServiceBus will make sure that no message is retried for more than 24 hours before being sent the error queue.
 
-NOTE: Retrying messages for extended periods of time would hide failures from operators preventing them from taking manual action to honor Service Level Agreements. To avoid this happening, due to miss-configured retry polices, NServiceBus will make sure that no message is retried for more than 24 hours before being sent the error queue.
 
-SLR can be configured in several ways.
+### Transport transaction requirements
+
+The SLR mechanism is implemented by rolling back the [transport transaction](/nservicebus/messaging/transactions.md) and scheduling the message for [delayed-delivery](/nservicebus/messaging/delayed-delivery.md). Aborting the receive operation when transactions are turned off would result in a message loss. Therefore SLR cannot be used when transport transactions are disabled.
 
 
 ### Configuring SLR using app.config
@@ -96,8 +95,6 @@ snippet:SLRConfigurationSourceUsage
 
 ### Disabling SLR through code
 
-To completely disable SLR through code:
-
 snippet:DisableSlrWithCode
 
 
@@ -113,28 +110,28 @@ snippet:SecondLevelRetriesCustomPolicy
 
 #### Error Headers Helper
 
-A Custom Policy has access to the raw message including both the [retries handling headers](/nservicebus/messaging/headers.md#retries-handling-headers) and the [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers). Any of these headers can be used to control the reties for a message. In the below examples the following helper class will provide access to a subset of the headers.
+A Custom Policy has access to the raw message including both the [retries handling headers](/nservicebus/messaging/headers.md#retries-handling-headers) and the [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers). Any of these headers can be used to control the retries for a message. In the following examples the helper class will provide access to a subset of the headers.
 
 snippet:ErrorsHeadersHelper
 
 
 #### Simple Policy
 
-Here is a simple retry policy that will retry 3 times with a 5 second interval.
+The following retry policy that will retry a message 3 times with a 5 second interval.
 
 snippet:SecondLevelRetriesCustomPolicyHandler
 
 
 #### Exception based Policy
 
-Here is a policy that extends the above with custom handling for a specific exception.
+The following retry policy extends the previous policy with a custom handling logic for a specific exception.
 
 snippet:SecondLevelRetriesCustomExceptionPolicyHandler
 
 
-## Total number of possible attempts
+## Total number of possible retries
 
-The total number of possible attempts can be calculated with the below formula
+The total number of possible retries can be calculated with the following formula
 
     Total Attempts = (FLR:MaxRetries) * (SLR:NumberOfRetries + 1)
 
@@ -149,6 +146,8 @@ So for example given a variety of FLR and SLR here are the resultant possible at
 | 3              | 1                   | 6                       |
 | 2              | 2                   | 6                       |
 
+NOTE: In Versions 6 and higher, the configuration of the FLR mechanism will have no effect on how many times a deferred message is dispatched when an exception is thrown. SLR will retry the message for the number of times specified in its configuration.
+
 
 ## Retry Logging
 
@@ -157,9 +156,7 @@ Given the following configuration:
  * FLR `MaxRetries`: 3
  * SLR `NumberOfRetries`: 2
 
-And a Handler that both throws and exception and logs the current count of attempts:
-
-Then the resultant output in the log will be:
+and a Handler that both throws an exception and logs the current count of attempts, the output in the log will be:
 
 snippet:RetryLogging
 
