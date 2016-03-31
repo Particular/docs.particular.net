@@ -90,37 +90,44 @@ snippet:OutboxRavendBTimeToKeep
 
 ## Configuring outbox
 
+
 ### Cleanup interval
 
-The default purge cleanup interval is every minute. If your endpoint processes a high volume of message per second it might be needed to change this interval to run more frequently.
 
-If your endpoint processes 1,000 message per second the default value would mean that every minute 60,000 outbox records or documents will be deleted. In that case it probably makes more sense to set the interval to every second to delete 1,000 records per second or even more often like every 100 milli seconds to delete on average 100 records at each interval.
+An endpoint that processes a high volume of messages per second requires a shorter interval to clean up more frequently.
 
+For example, an endpoint that processes 1,000 messages per second generates 60,000 outbox records per minute. In that case, running the cleanup task every second would result in deleting 1,000 records each interval. Running the cleanup task every 100 milliseconds reduces this number to 100 records each run.
+
+### Idempotency
+
+If the application is idempotent then deduplication is not required. The outbox is then only used to deliver messages in an at-least-once behavior. In such case the deduplication time window could even be set to expire immediately.
+
+Outbox records will only be removed when all the containing transport operations are succeeeded.
 
 ### Deduplication time window
 
-There is no exact calculation that yields seven days as a magic number. The things you need to consider is: how fast will my organisation notice and fix any failure that can lead to duplication of messages?
+There is no exact calculation that yields seven days as a magic number. What needs to be considered is: how fast will an issue be noticed and fixed that can lead to duplication of messages?
 
 #### Server failure
 
-If a sender goes down between the two operations mentioned because of HW issues on the machine, how fast will you react to it? Can you spin up the, hopefully, virtualized machine, on other HW before TimeToKeepDeduplicationData runs out? Can you do it in minutes? In hours? In days? Most likely not minutes, maybe hours depending on your ops capabilities, but most likely in seven days.
+How fast will it be noticed that a sending system goes down between the two operations because of hardware issues? Will this system be recovered in minutes, hours or days? Most likely not minutes unless its a high available cluster, maybe hours when there is a good recovery strategy, but most likely within seven days.
 
 #### Network failure
 
-How about if a funky network switch drops packages that result in delayed acks and timeout for the SendMessageOverTransport operation? Detect and fix in minutes? Hours? Days?
+Network failures like delayed acks and timeout are even harder to resolve due to routing and congestion. Such issues often take a long time often requiring external experts taking days to resolve.
 
 #### OPS Detect, asses and fix period
 
-Minutes or hours is usually too short a period to detect, assess and fix a scenario as mentioned by your ops team. In seven days you would likely have detected that something is wrong and might be able to resolve it. If your organisations ops team has their act together, and / or you know that receiving duplicate messages will not produce costly side effects, you have every possibility to reduce the deduplication window from 7 days accordingly.
+Minutes or hours is usually too short a period to detect, assess and fix a scenario as mentioned. In seven days it is likely to have detected that something is wrong and resolve it. Having a available infrastructure and a 24x7 expert DevOps team creates the possibility to reduce the deduplication window from 7 days accordingly.
 
-#### Increase time window when there are errors
+#### Increase time window in case of issues
 
-If the  ops team detects an issue and needs more time to resolve it, you would have the possibility to *increase* the deduplication window on the receivers to give yourself more time to come up with a fix.
+If an issue is detected and more time is needed to resolve it, there is always the possibility to *increase* the deduplication window on the receivers to create more time to come up with a fix.
 
-#### Readjust deduplication time window
+#### Adjusting deduplication time window
 
-Just be aware that afterwards a large set of deduplication records might need to be deleted when reverting the deduplication time window to the old value. 
+A large set of deduplication records might need to be deleted when reverting the deduplication time window to the old value. 
 
-For example, your deduplication time window is 1 day. An issue occurs and your ops team decides to set it to one week because that could be your ops policy in case or issues. The issue is resolved after 2,5 days including dectection and assesment, instead of reverting to 1 day it probably is better to set it to 2,5 days. Now the 1,5 days of recorded deduplication data will not be purged at the next cleanup interval which can potentially cause congestion and locking issues.
+For example, the deduplication time window is 1 day. An issue occurs, the ops team sets it to one week. The issue is resolved after 2,5 days including detection and assesment, instead of reverting to 1 day it probably is best to set it to 2,5 days. The 1,5 days of recorded deduplication data will not be purged at the next cleanup interval which can potentially cause congestion and locking issues.
 
 
