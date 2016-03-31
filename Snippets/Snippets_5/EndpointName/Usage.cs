@@ -9,9 +9,14 @@
             #region EndpointNameCode
 
             busConfiguration.EndpointName("MyEndpoint");
-        
+
+            #endregion
+
+            #region InputQueueName
+
+            busConfiguration.OverrideLocalAddress("MyEndpoint.Messages");
+
             #endregion
         }
-
     }
 }
