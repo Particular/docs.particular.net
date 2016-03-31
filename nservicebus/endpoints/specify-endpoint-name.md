@@ -61,6 +61,8 @@ snippet:InputQueueName
 
 Other endpoints that send messages to the one with overridden input queue name need to be aware of that override.
 
+snippet:InputQueueOverrideRoutingXml
+
 snippet:InputQueueOverrideRouting
 
 In Version 5 and previous versions the routing configuration references the overridden input queue directly. In Version 6 and above the logical routing works on endpoint name level and a separate API call is required to make that endpoint aware of the customized input queue of `MyEndpoint`.
