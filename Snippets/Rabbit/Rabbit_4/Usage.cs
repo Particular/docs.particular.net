@@ -63,15 +63,6 @@
 
             #endregion
         }
-        void UseConnectionManager(EndpointConfiguration endpointConfiguration)
-        {
-            #region rabbitmq-config-useconnectionmanager
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .UseConnectionManager<MyConnectionManager>();
-
-            #endregion
-        }
-    
 
         void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
         {

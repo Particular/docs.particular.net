@@ -29,7 +29,7 @@ Below is the full list of connection string options. Note that they are separate
  * `RequestedHeartbeat`: The interval for the heartbeats between the client and the server. Defaults to `5` seconds
  * `DequeueTimeout` The time period allowed for the dequeue strategy to dequeue a message. Defaults to `1` second
 
-NOTE: In Version 4 and above `DequeueTimeout` is deprecated. 
+NOTE: In Version 4 and above `DequeueTimeout` is deprecated as it is not longer relevant. See  
 
  * `PrefetchCount`: The number of messages to [prefetch](http://www.rabbitmq.com/consumer-prefetch.html) when consuming messages from the broker. Defaults to the number of configured threads for the transport(as of v2.1)
 
@@ -63,7 +63,7 @@ RabbitMQ is a broker which means that scale out is done by adding more endpoints
 
 snippet:rabbitmq-config-disablecallbackreceiver
 
-NOTE: In Version 4 and above Callbacks are disabled by default. To enable them please follow [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-version-6-and-above)
+NOTE: In Version 4 and above Callbacks are disabled by default. To enable them follow [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-version-6-and-above).
 
 This means that the queue will not be created and no extra threads will be used to fetch messages from that queue.
 
@@ -83,6 +83,8 @@ WARNING: It is extremely important to use a uniquely identifying property of the
 
 ### Getting full control over the broker connection
 
+NOTE: In Version 4 and above `IManageRabbitMqConnections` is obsolete and there is no option to provide custom connection manager.
+
 The default connection manager that comes with the transport is usually good enough for most users. To control how the connection(s) with the broker is managed implement a custom connection manager by inheriting from `IManageRabbitMqConnections`. This requires that connections be provided for:
 
  1. Administrative actions like creating queues and exchanges
@@ -100,7 +102,7 @@ By the default the RabbitMQ transport will trigger the on critical error action 
 
 snippet:rabbitmq-custom-breaker-settings
 
-In Version 4 and Above xml configuration options for controlling lost connection behavior were replaced by code equivalent.
+In Version 4 and above xml configuration options for controlling lost connection behavior were replaced by code equivalent. 
 
 snippet:rabbitmq-custom-breaker-settings-code
 
