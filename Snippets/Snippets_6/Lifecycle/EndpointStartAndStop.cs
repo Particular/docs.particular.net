@@ -3,20 +3,23 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    #region lifecycle-EndpointStartAndStop
-
-    class RunWhenEndpointStartsAndStops : IWantToRunWhenEndpointStartsAndStops
+    class RunWhenEndpointStartsAndStops
     {
-        public async Task Start(IMessageSession session)
+        static async Task StartAndStopEndpoint()
         {
-            // perform startup logic
-        }
+            #region lifecycle-EndpointStartAndStop
 
-        public async Task Stop(IMessageSession session)
-        {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("SelfHosted");
+
+            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+
+            // perform startup logic
+
+            await endpoint.Stop();
+
             // perform shutdown logic
+
+            #endregion
         }
     }
-
-    #endregion
 }

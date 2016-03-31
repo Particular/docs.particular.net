@@ -292,6 +292,7 @@
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="Host_7\UpgradeGuides\6to7\CustomizingHost.cs" />
+    <Compile Include="Host\EndpointStartAndStop.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="Notifications\SubscribeToNotifications.cs" />
     <Compile Include="Notifications\EventsToObservables.cs" />

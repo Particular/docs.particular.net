@@ -222,12 +222,14 @@
     <Compile Include="Handlers\ReplyingHandler.cs" />
     <Compile Include="Headers\ReadSaga.cs" />
     <Compile Include="Headers\WriteSaga.cs" />
+    <Compile Include="Host\EndpointStartAndStop.cs" />
     <Compile Include="Host\ProgramService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ImmediateDispatch\Usage.cs" />
     <Compile Include="Installers.cs" />
     <Compile Include="InstallSomething.cs" />
+    <Compile Include="Lifecycle\EndpointStartAndStop.cs" />
     <Compile Include="Mutators\MutatorRegistration.cs" />
     <Compile Include="Mutators\Instance\MutateIncomingMessages.cs" />
     <Compile Include="Mutators\Transport\MutateIncomingTransportMessages.cs" />

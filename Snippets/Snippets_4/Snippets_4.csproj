@@ -312,6 +312,7 @@
     <Compile Include="Handlers\ReplyingHandler.cs" />
     <Compile Include="Headers\ReadSaga.cs" />
     <Compile Include="Headers\WriteSaga.cs" />
+    <Compile Include="Host\EndpointStartAndStop.cs" />
     <Compile Include="Host\ProgramService.cs">
       <SubType>Component</SubType>
     </Compile>
