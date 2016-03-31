@@ -50,7 +50,7 @@ The act of Hosting refers to running an Endpoint Instance in some process. This 
 The Transport is the mechanism that NServiceBus Endpoint Instances use to communicate with each other. NServiceBus supports many different transports in a pluggable manner. For Endpoint Instances to communicate they need to share a common Transport technology.
 
 
-### [Input Queue](/nservicebus/endpoints/specify-input-queue-name.md)
+### Input Queue
 
 Each endpoint instance is assigned a single Input Queue. This queue can be shared among instances of same Endpoint but never with other Endpoints.
 
