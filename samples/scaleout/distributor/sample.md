@@ -77,7 +77,7 @@ The Node in the MasterNodeConfig points to the host name where the MasterNode is
 
 ### Parallel processing of messages
 
-In Versions 5 and below, by default the Distributor processes messages sequentially. The following configuration increases the maximum concurrency level to the number of cores of the machine.
+In Versions 5 and below, by default NServiceBus processes messages sequentially. This also applies to the Distributor. The following configuration increases the maximum concurrency level to the number of cores of the machine.
 
 snippet: concurrency
 
