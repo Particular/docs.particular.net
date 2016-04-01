@@ -118,7 +118,7 @@ All of the actions that can be carried out as unattended installation action are
 
 The unattended file does not cover all the settings available to customize the operation of the ServiceControl service. The following PowerShell script shows a simple way to script the modification of some of the optional configuration settings. The provided script makes use of the ServiceControl Management PowerShell module shipped with version 1.7 to find the configuration file locations.
 
-Prior to using the script, modify the `$customSettings` hash table to set the optional configuration settings desired as key/value pairs.
+Prior to using the script, modify the `$customSettings` hash table to set the optional configuration settings desired as key/value pairs. Refer to the [configuration settings](creating-config-file.md) documentation details on how to set those settings.
 
 The provided entries in the `$customSettings` hash table are to illustrate how to set the values and are not meant to be a recommendation on the values for these settings.
 
