@@ -28,14 +28,14 @@ Steps
 1. Refer to ServicePulse folder.
 
 
-ServicePulse, by default, is [installed](installation.md) as a Windows Service that will self-host the ServicePulse web application.
+[ServicePulse](introduction-and-installing-servicepulse.md), by default, is installed as a Windows Service that will self-host the ServicePulse web application.
 
 It is possible to manually install ServicePulse using IIS following these steps:
 
 * Extract ServicePulse files using, at a command prompt, the following command:
 
 ```
-ServicePulse.Host.exe --extract --outPath="C:\inetput\websites\ServicePulse"
+ServicePulse.Host.exe --extract --serviceControlUrl="http://localhost:33333/api" --outPath="C:\ServicePulse"
 ```
 
 When using IIS to host ServicePulse the ServicePulse.Host service is not used. To remove the service uninstall ServicePulse from Add/Remove programs.
@@ -114,7 +114,7 @@ When ServicePulse is hosted in IIS the upgrade process is as follows:
 
 1. Go to the root directory of the IIS web site,
 1. View and record the the current ServicePulse configuration, specifically the value of `serviceControlUrl`. Prior to version 1.3 this was set in `config.js`. For Version 1.3 and above the `app\js\app.constants.js` contains this configuration.
-1. In the advanced config above the api directory is configured to be created. In the upgrade remove everything except that api directory. Or manually create it again.
+1. In the advanced config above we tell them to create the api directory. In the upgrade we want them to remove everything except that api directory. Or they can manually create it again.
 1. Install the new version of ServicePulse using the standard instructions.
 1. Extract the files from the `ServicePulse.Host.exe` using the following command line, replacing the recorded values from step 2 with the values from the `app.constants.js` and `<webroot>` with the path to the root directory of the IIS website.
 ```
@@ -136,4 +136,4 @@ Extension | Mime Type
 .woff | application/font-woff        
 .woff2 | application/font-woff2  
 
-NOTE: Some of these mime types will already be setup on newer versions of IIS. Verify that all the listed mime types are present.
+NOTE: Some of these mime types will already be setup on newer versions of IIS. Please verify that all the listed mime types are present.

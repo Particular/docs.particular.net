@@ -16,7 +16,7 @@ This article explains how this is done, and defines the meaning of each of the t
 
 An NServiceBus endpoint can be set for monitoring by ServicePulse or can remain unmonitored. See [How to configure endpoints for monitoring by ServicePulse](/servicepulse/how-to-configure-endpoints-for-monitoring.md) for detailed instructions on preparing an endpoint for monitoring by ServicePulse.
 
-It is recommended that you configure all the endpoints for monitoring by ServicePulse. Once configured, the endpoint appears in the ServicePulse Configuration page. 
+It is recommended that you configure all your endpoints for monitoring by ServicePulse. Once configured, the endpoint appears in the ServicePulse Configuration page. 
 
 ![ServicePulse Configuration page](images/sp-configuration-page.png)
 

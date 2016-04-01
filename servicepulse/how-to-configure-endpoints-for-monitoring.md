@@ -10,10 +10,10 @@ related:
 
 **ServicePulse monitors NServiceBus endpoints for:**
 
- 1. Endpoint availability (using heartbeat signals sent from the endpoint)
- 1. Failed messages (by monitoring the error queue defined for the endpoints)
- 1. Custom checks (defined and developed per application needs)
- 1. And more (see [An Introduction to ServicePulse for NServiceBus](http://particular.net/blog/an-introduction-to-servicepulse-for-nservicebus) for additional upcoming monitoring features)
+1. Endpoint availability (using heartbeat signals sent from the endpoint)
+1. Failed messages (by monitoring the error queue defined for the endpoints)
+1. Custom checks (defined and developed per application needs)
+1. And more (see [An Introduction to ServicePulse for NServiceBus](http://particular.net/blog/an-introduction-to-servicepulse-for-nservicebus) for additional upcoming monitoring features)
 
 ![ServicePulse dashboard](dashboard.png)
 
@@ -42,19 +42,19 @@ related:
         * [`ServiceControl.Plugin.Nsb3.Heartbeat`](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat/)
         * [`ServiceControl.Plugin.Nsb3.CustomChecks`](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks/)
 
-1. Install the plugins from NuGet in the endpoints:
+1. Install the plugins from NuGet in your endpoints:
      * `install-package ServiceControl.Plugin.Nsb5.Heartbeat`
      * `install-package ServiceControl.Plugin.Nsb5.CustomChecks`
    
-     If saga visualization in ServiceInsight,
+     If you want the saga visualization in ServiceInsight,
      * `install-package ServiceControl.Plugin.Nsb5.SagaAudit`
 
-     * or use the appropriate Version 4 package if the endpoint targets NServiceBus Version 4:
+     * or use the appropriate Version 4 package if your endpoint targets NServiceBus Version 4:
 	     * `install-package ServiceControl.Plugin.Nsb4.Heartbeat`
 	     * `install-package ServiceControl.Plugin.Nsb4.CustomChecks`
      	     * `install-package ServiceControl.Plugin.Nsb4.SagaAudit`
 
-     * or use the appropriate Version 3 package if the endpoint targets NServiceBus Version 3:
+     * or use the appropriate Version 3 package if your endpoint targets NServiceBus Version 3:
 	     * `install-package ServiceControl.Plugin.Nsb3.Heartbeat`
 	     * `install-package ServiceControl.Plugin.Nsb3.CustomChecks`
 

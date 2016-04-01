@@ -29,7 +29,7 @@ tags:
 
 After a period of inactivity, a web application endpoint is failing with the message:
 
-	`Endpoint has failed to send expected heartbeat to ServiceControl. It is possible that the endpoint could be down or is unresponsive. If this condition persists, you might want to restart the endpoint`
+	`Endpoint has failed to send expected heartbeat to ServiceControl. It is possible that the endpoint could be down or is unresponsive. If this condition persists, you might want to restart your endpoint`
 
 When accessed, the web application is working fine. Shortly after accessing the web application, the Heartbeat message is restored and indicates the endpoint status as active.
 
@@ -40,15 +40,15 @@ The issue is due to the way IIS handles application pools. By default after a ce
 
 There are two ways to avoid the issue:
 
- 1. Configuring IIS to avoid recycling
- 1. Use a periodic warm-up HTTP GET to make sure the website is not brought down due to inactivity (the frequency needs to be less than 20 minutes, which is the default IIS recycle-on-idle time)
+1. Configuring IIS to avoid recycling
+2. Use a periodic warm-up HTTP GET to make sure the website is not brought down due to inactivity (the frequency needs to be less than 20 minutes, which is the default IIS recycle-on-idle time)
 
 Starting from IIS 7.5 and above the above steps can be combined into one by following these steps:
 
- 1. Enable `AlwaysRunning` mode for the application pool of the site. Go to the application pool management, open the Advanced Settings under General switch the `Start Mode` to `AlwaysRunning`
- 1. Enabled Preload for the site itself. Right click on the site, then Manage Site under Advanced Settings in the General settings, switch `Enable Preload` to `true`
- 1. Install the Application Initialization Module as described here http://www.iis.net/learn/get-started/whats-new-in-iis-8/iis-80-application-initialization
- 1. Add the following to the web.config under the `<system.webServer>` node
+1. Enable `AlwaysRunning` mode for the application pool of the site. Go to the application pool management, open the Advanced Settings under General switch the `Start Mode` to `AlwaysRunning`
+1. Enabled Preload for the site itself. Right click on the site, then Manage Site under Advanced Settings in the General settings, switch `Enable Preload` to `true`
+1. Install the Application Initialization Module as described here http://www.iis.net/learn/get-started/whats-new-in-iis-8/iis-80-application-initialization
+1. Add the following to your web.config under the `<system.webServer>` node
 
 ```
 <applicationInitialization doAppInitAfterRestart="true" >
@@ -73,5 +73,5 @@ Messages that were forwarded to the audit queue by NSB Version 3.x version of th
 
 To workaround this issue in order to monitor Version 3 endpoints:
 
- - Add the heartbeat plugin to all Version 3 endpoints, which will add the requisite header with the host information, which ServiceControl can then process.
- - Restart ServiceControl to clear the endpoint counter.
+- Add the heartbeat plugin to all Version 3 endpoints, which will add the requisite header with the host information, which ServiceControl can then process.
+- Restart ServiceControl to clear the endpoint counter.
