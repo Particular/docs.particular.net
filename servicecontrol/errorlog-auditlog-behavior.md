@@ -23,7 +23,7 @@ The forwarding queues retain a copy of the original messages ingested by Service
 
 The queues are not directly managed by ServiceControl and are meant as points of external integration.
 
-Note: If you do not have any external integration, we highly recommend turning these off.
+Note: If external integration is not required, it is highly recommend turning forwarding queues off.
 
 
 ### Changing the queues name manually and default naming
