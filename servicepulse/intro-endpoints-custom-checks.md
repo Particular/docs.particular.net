@@ -15,7 +15,7 @@ ServicePulse monitors the health and activity of NServiceBus endpoints using hea
 
 However, an endpoint and its hosting process may be fully functional (in the sense that it and its hosting process are able to send, receive, and process messages) but required external conditions may not be met, and required services that the endpoint's business logic relies on may malfunction. As a result, the endpoints may not be able to function as expected.
 
-These external conditions and services are specific for each solution and/or endpoint. ServicePulse Custom Checks can be programmed to monitor such failures by developing Custom and Periodic Checks: customized logic that verifies that these conditions are met and that all services the endpoint and solution rely on are functioning as expected, and raises alerts whenever they are not.
+These external conditions and services are specific for each solution and/or endpoint. ServicePulse Custom Checks can be programmed to monitor such failures by developing Custom and Periodic Checks: customized logic that verifies that these conditions are met and that all services your endpoint and solution rely on are functioning as expected, and raises alerts whenever they are not.
 
 
 ### Common Scenarios
@@ -31,17 +31,17 @@ It is recommended that you identify and periodically check that the endpoint (an
 
 **Examples:**
 
- * In a store & forward pattern (MSMQ): can an endpoint hosted on one machine connect to another machine, on which another endpoint is located ?
- * In a broker pattern: can the endpoint connect to the broker (e.g., SQL Server)?
- * If required by the endpoint, can the endpoint connect to the local intranet?
- * If required by the endpoint, can the endpoint connect to the internet? 
- * If required by the endpoint, can the endpoint connect with the required security settings, credentials, and VPN software? 
+* In a store & forward pattern (MSMQ): can an endpoint hosted on one machine connect to another machine, on which another endpoint is located ?
+* In a broker pattern: can the endpoint connect to the broker (e.g., SQL Server)?
+* If required by the endpoint, can the endpoint connect to the local intranet?
+* If required by the endpoint, can the endpoint connect to the internet? 
+* If required by the endpoint, can the endpoint connect with the required security settings, credentials, and VPN software? 
 
 
 #### Storage
 
- * When local or remote storage is required by the endpoint, is that storage location available, accessible, and properly configured (security, permissions, quota, etc.)?
- * When local or remote storage is required by the endpoint, is there enough available storage left for required operations? If there is a requirement for a minimum free space available, is that requirement met?
+* When local or remote storage is required by the endpoint, is that storage location available, accessible, and properly configured (security, permissions, quota, etc.)?
+* When local or remote storage is required by the endpoint, is there enough available storage left for required operations? If there is a requirement for a minimum free space available, is that requirement met?
 
 
 #### External Services
@@ -67,7 +67,7 @@ For a detailed display of the currently failed and failing custom checks per end
 
 ![Custom Checks Details page](images/custom-checks-details.png)
 
-Note there are four failing custom checks located on two endpoints (two failures per endpoint).
+As you can see, there are four failing custom checks located on two endpoints (two failures per endpoint).
 
 If one or more of the failures is expected (for example, it may be caused by a planned maintenance activity that brought down an external service the endpoint relies on), you can mute the specific occurrence of the custom check.
 
