@@ -120,7 +120,7 @@ The unattended file does not cover all the settings available to customize the o
 
 Prior to using the script, modify the `$customSettings` hash table to set the optional configuration settings desired as key/value pairs. Refer to the [configuration settings](creating-config-file.md) documentation details on how to set those settings.
 
-The provided entries in the `$customSettings` hash table are to illustrate how to set the values and are not meant to be a recommendation on the values for these settings.
+NOTE: The provided entries in the `$customSettings` hash table are to illustrate how to set the values and are not meant to be a recommendation on the values for these settings.
 
 ```powershell
 #Requires -Version 3
