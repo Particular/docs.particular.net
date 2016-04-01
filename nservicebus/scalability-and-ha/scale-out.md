@@ -60,13 +60,13 @@ WARNING: When using this scaling out technique in a mixed version environment ma
 
 ### Broker transports
 
-The main difference when using broker transports is that queues are not attached to machines but are rather maintained by a central server (or cluster of servers). When running on a broker transport such as RabbitMQ or SQL Server, it is enough to specify the logical routing:
+The main difference when using broker transports is that queues are not attached to machines but rather are maintained by a central server (or cluster of servers). Such design enables usage of the Competing Consumers pattern for scaling out processing power. All instances have empty IDs and connect to the same infrastructure queue. When running on a broker transport such as RabbitMQ or SQL Server, it is enough to specify the logical routing:
 
 snippet:Routing-StaticRoutes-Endpoint-Broker
 
-Scaling out can be done, as in Version 5, by `xcopy`-ing the binaries. In this case all instances have empty IDs and there is only one queue in use.
+New instances can be deployed simply by `xcopy`-ing the binaries to another machine/folder.
 
-Should the need to go past the throughput of a single infrastructure queue or have to address each instance separately, instance IDs can be specified for each deployment of the endpoint. In this case, in addition to the shared `Sales` queue, there will be two instance-specific queues used by the `Sales` endpoint.
+When there is a need to go past the throughput of a single infrastructure queue or to address each instance separately, instance IDs can be specified for each deployment of the endpoint. In this case, in addition to the shared `Sales` queue, there will be two instance-specific queues used by the `Sales` endpoint.
 
 Some upstream endpoints might decide to still treat `Sales` as a single *thing* and depend on the logical routing only. These endpoints will continue to send their messages to the `Sales` queue. Others might include routing file:
 
