@@ -25,7 +25,7 @@ Because of historic reasons, the configuration for MSMQ transport has been coupl
 
 ### Queue permissions
 
-By default, queues are created with `Everyone` and `Anonymous Logon` permissions to allow messages to be sent and received without additional configuration. Whilst initially convenient, this unrestricted access may be a security concern. If required, the appropriate permissions can be set on a queue after its creation.
+By default, queues are created with `Everyone` and `Anonymous Logon` permissions to allow messages to be sent and received without additional configuration. If required, the appropriate permissions can be set on a queue after its creation.
 
 NOTE: From Version 6 if the above default permissions are set, a log message will be written during the transport startup, reminding that the queue is configured with default permissions. During development, if running with an attached debugger, this message will be logged as `INFO` level, otherwise `WARN`.
 
