@@ -60,7 +60,7 @@ WARNING: When using this scaling out technique in a mixed version environment ma
 
 ### Broker transports
 
-The main difference when using broker transports is that queues are not attached to machines but rather are maintained by a central server (or cluster of servers). Such design enables usage of the Competing Consumers pattern for scaling out processing power. All instances have empty IDs and connect to the same infrastructure queue. When running on a broker transport such as RabbitMQ or SQL Server, it is enough to specify the logical routing:
+The main difference when using broker transports is that queues are not attached to machines but rather are maintained by a central server (or cluster of servers). Such design enables usage of the competing consumers pattern for scaling out processing power. All instances have empty IDs and connect to the same infrastructure queue. When running on a broker transport such as RabbitMQ or SQL Server, it is enough to specify the logical routing:
 
 snippet:Routing-StaticRoutes-Endpoint-Broker
 
