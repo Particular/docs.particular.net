@@ -64,7 +64,7 @@ The main difference when using broker transports is that queues are not attached
 
 snippet:Routing-StaticRoutes-Endpoint-Broker
 
-New instances can be deployed simply by `xcopy`-ing the binaries to another machine/folder.
+New instances can be deployed by `xcopy`-ing the binaries to another machine or folder.
 
 When there is a need to go past the throughput of a single infrastructure queue or to address each instance separately, instance IDs can be specified for each deployment of the endpoint. In this case, in addition to the shared `Sales` queue, there will be two instance-specific queues used by the `Sales` endpoint.
 
