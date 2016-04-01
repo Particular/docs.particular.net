@@ -8,17 +8,17 @@ reviewed:
 
 ### Introduction
 
-In SerivcePulse 1.5.0 and higher screens to manage archived messages have been introduced in response to changes in ServiceControl relating to Archived Message retention and disposal.
+In SerivcePulse 1.5.0 and higher screens to manage archived messages have been introduced in response to changes in ServiceControl relating to Archived Message retention and disposal. 
 
 ServiceControl version 1.12.0 and higher has a configurable [ErrorRetentionPeriod](/servicecontrol/creating-config-file.md) that schedules the disposal of archived failed messages.
 
-Archived Messages can be found by going to the failed messages screen.
+Archived messages can be found by going to the failed messages screen.
 
 ![Archived Messages Tab](images/archive.png)
 
 ### Archived Messages
 
-The archived message page will open showing messages archived in the last 2 hours. To limit the set of displayed messages, select an option from the available predefined ranges.
+The Archived Messages page will open showing messages archived in the last 2 hours. To limit the set of displayed messages, select an option from the available predefined range.
 
 ![Archive Filters](images/archive-filters.png)
 
