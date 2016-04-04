@@ -1,6 +1,7 @@
 ---
 title: MSMQ transport
-summary: 'Explains the mechanics of MSMQ transport, its configuration options and various other configuration settings that were at some point coupled to this transport'
+summary: Explains the mechanics of MSMQ transport, its configuration options and various other configuration settings that were at some point coupled to this transport
+reviewed: 2016-04-05
 tags:
 - Transports
 - MSMQ
@@ -8,7 +9,7 @@ redirects:
  - nservicebus/msmqtransportconfig
 ---
 
-Historically, MSMQ is the first transport supported by NServiceBus. In Version 5 it still is by far the most commonly used one. Because of these and also the fact that MSMQ client libraries are included in .NET Base Class Library (`System.Messaging` assembly), MSMQ transport is built into the core of NServiceBus.
+MSMQ transport is built into the core NServiceBus nuget.
 
 
 ## Receiving algorithm
@@ -25,11 +26,11 @@ Because of historic reasons, the configuration for MSMQ transport has been coupl
 
 ### Queue permissions
 
-By default, queues are created with `Everyone` and `Anonymous Logon` permissions to allow messages to be sent and received without additional configuration. Whilst initially convenient, this unrestricted access may be a security concern. If your organization requires it, you should set appropriate permissions on a queue after its creation.
+By default, queues are created with `Everyone` and `Anonymous Logon` permissions to allow messages to be sent and received without additional configuration. If required, the appropriate permissions can be set on a queue after its creation.
 
 NOTE: From Version 6 if the above default permissions are set, a log message will be written during the transport startup, reminding that the queue is configured with default permissions. During development, if running with an attached debugger, this message will be logged as `INFO` level, otherwise `WARN`.
 
-For more on changing MSMQ permissions, check out the [Administer Security for Message Queuing](https://technet.microsoft.com/en-us/library/cc738047.aspx) section on Microsoft TechNet.
+See also [Administer Security for Message Queuing](https://technet.microsoft.com/en-us/library/cc738047.aspx).
 
 
 ### MSMQ-specific
@@ -41,13 +42,11 @@ Following settings are purely related to the MSMQ:
  * `UseConnectionCache`
  * `UseTransactionalQueues`
 
-Read [MSMQ connection strings](connection-strings.md) to understand what these settings mean and their defaults.
+See also [MSMQ connection strings](connection-strings.md).
 
 From Version 4 onwards these settings are configured via a transport connection string (named `nservicebus/transport` for all transports). Before Version 4 some of these properties could be set via `MsmqMessageQueueConfig` configuration section while other (namely the `connectionCache` and the ability to use non-transactional queues) were not available prior to Version 4.
 
 snippet:MessageQueueConfiguration
-
-
 
 
 ### MSMQ Label
@@ -59,28 +58,28 @@ Often when debugging MSMQ using [native tools](viewing-message-content-in-msmq.m
 snippet:ApplyLabelToMessages
 
 
-## Controlling transaction scope options
+## Transactions and delivery guarantees
 
-The following options can be configured when the MSMQ transport is working in the transaction scope mode.
+MSMQ Transport supports the following [Transport Transaction Modes](/nservicebus/messaging/transactions.md):
 
-
-### Isolation level
-
-NServiceBus will by default use the `ReadCommitted` [isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel).
-
-NOTE: Version 3 and below used the default isolation level of .Net which is `Serializable`.
-
-Change the isolation level using
-
-snippet:MsmqTransactionScopeIsolationLevel
+ * Transaction scope
+ * Receive only
+ * Sends atomic with Receive
+ * No transactions
 
 
-### Transaction timeout
+### Transaction scope
 
-NServiceBus will use the [default transaction timeout](https://msdn.microsoft.com/en-us/library/system.transactions.transactionmanager.defaulttimeout) of the machine the endpoint is running on.
+In this mode the ambient transaction is started before receiving the message. The transaction encompasses all stages of processing including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no escalation to Distributed Transaction Coordinator (DTC).
 
-Change the transaction timeout using
 
-snippet:MsmqTransactionScopeTimeout
+### Native transactions
 
-Or via .config file using a [example DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.aspx#Anchor_5).
+In MSMQ transport there is no distinction between the *ReceiveOnly* and *SendsAtomicWithReceive* levels, they are both handled in an identical way.
+
+The native transaction for receiving messages is shared with sending operations. That means the message receive operation and any send or publish operations are committed atomically.
+
+
+### Unreliable (Transactions Disabled)
+
+In this mode, when a message is received, it is immediately removed from the input queue. If processing fails the message is lost because the operation cannot be rolled back. Any other operation that is performed, when processing the message, is executed without a transaction and cannot be rolled back. This can lead to undesired side effects when message processing fails part way through.

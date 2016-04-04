@@ -1,7 +1,7 @@
 ---
 title: SQL Server Transport Design
 summary: The design and implementation details of SQL Server Transport
-reviewed: 2016-03-24
+reviewed: 2016-04-05
 tags:
 - SQL Server
 ---
@@ -26,7 +26,7 @@ Since callback handlers are stored in-memory in the node that registers the call
 
 ### Other queues
 
-Each endpoint also has queues required by timeout (the exact names and number of queues created depends on the version of the transport) and retry mechanisms. 
+Each endpoint also has queues required by timeout (the exact names and number of queues created depends on the version of the transport) and retry mechanisms.
 
 Error and audit queues are usually shared among multiple endpoints.
 
@@ -81,16 +81,17 @@ snippet:sql-2.2.2-ExpiresIndex
 
 ## Transactions and delivery guarantees
 
-SQL Server transport supports all [transaction handling modes](/nservicebus/messaging/transactions.md), i.e. Transaction scope, Receive only, Sends atomic with Receive and No transactions.
+SQL Server transport supports the following [Transport Transaction Modes](/nservicebus/messaging/transactions.md):
 
-Refer to [Transport Transactions](/nservicebus/messaging/transactions.md) for detailed explanation of the supported transaction handling modes and available configuration options. 
+ * Transaction scope
+ * Receive only
+ * Sends atomic with Receive
+ * No transactions
 
 
 ### Transaction scope
 
 In this mode the ambient transaction is started before receiving the message. The transaction encompasses all stages of processing including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no escalation to Distributed Transaction Coordinator (DTC).
-
-snippet:OutboxSqlServerConnectionStrings
 
 See also [Sample covering this mode of operation](/samples/sqltransport-nhpersistence/).
 
@@ -99,7 +100,7 @@ See also [Sample covering this mode of operation](/samples/sqltransport-nhpersis
 
 Because of the limitations of NHibernate connection management infrastructure, it is not possible to provide *exactly-once* message processing guarantees solely by means of sharing instances of `SqlConnection` and `SqlTransaction` between the transport and NHibernate. For that reason NServiceBus does not allow that configuration and throws an exception at start-up.
 
-The [Outbox](/nservicebus/outbox/) feature can be used to mitigate that problem. In such scenario the messages are stored in the same physical store as saga and user data and dispatched after the processing is finished. When NHibernate persistence detects the status of Outbox and the presence of SQLServer transport, it automatically stops reusing the transport connection and transaction. Instead the data access is done within the Outbox ambient transaction. 
+The [Outbox](/nservicebus/outbox/) feature can be used to mitigate that problem. In such scenario the messages are stored in the same physical store as saga and user data and dispatched after the processing is finished. When NHibernate persistence detects the status of Outbox and the presence of SQLServer transport, it automatically stops reusing the transport connection and transaction. Instead the data access is done within the Outbox ambient transaction.
 
 See also [Sample covering this mode of operation](/samples/outbox/sqltransport-nhpersistence/).
 
@@ -108,11 +109,11 @@ See also [Sample covering this mode of operation](/samples/outbox/sqltransport-n
 
 There are two available options within native transaction level:
 
- * **ReceiveOnly** - An input message is received using native transaction. The transaction is committed only when message processing succeeds. 
+ * **ReceiveOnly** - An input message is received using native transaction. The transaction is committed only when message processing succeeds.
 
 NOTE: This transaction is not shared outside of the message receiver. That means there is a possibility of persistent side-effects when processing fails, i.e. *ghost messages* might occur.
 
- * ** SendsAtomicWithReceive** - This mode is very similar to the `ReceiveOnly`, but transaction is shared with sending operations. That means the message receive operation and any send or publish operations are committed atomically.
+ * ** SendsAtomicWithReceive** - This mode is similar to the `ReceiveOnly`, but transaction is shared with sending operations. That means the message receive operation and any send or publish operations are committed atomically.
 
 
 #### Versions 2 and below
@@ -122,7 +123,7 @@ There was no distinction between `ReceiveOnly` and `SendsAtomicWithReceive`. Usi
 
 ### Unreliable (Transactions Disabled)
 
-In this mode when message is received from an input queue it's immediately removed from it. If processing fails the message is lost, because the operation cannot be rolled back. Also any other operation performed when processing the message is executed outside of the transaction, it can't be rolled back. That might lead to undesired side effects.
+In this mode when a message is received it is immediately removed from the input queue. If processing fails the message is lost because the operation cannot be rolled back. Any other operation that is performed when processing the message is executed without a transaction and cannot be rolled back. This can lead to undesired side effects when message processing fails part way through.
 
 
 ## Concurrency
@@ -132,7 +133,7 @@ The SQL Server transport adapts the number of receiving threads (up to `MaximumC
 
 ### Version 3
 
-In Versions 3 and above SQL Server transport maintains a dedicated monitoring thread for each input queue. It is responsible for detecting the number of messages waiting for delivery and creating receive [tasks](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) - one for each pending message. 
+In Versions 3 and above SQL Server transport maintains a dedicated monitoring thread for each input queue. It is responsible for detecting the number of messages waiting for delivery and creating receive [Task](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx)s - one for each pending message.
 
 The maximum number of concurrent tasks will never exceed `MaximumConcurrencyLevel`. The number of tasks does not translate to the number of running threads which is controlled by the TPL scheduling mechanisms.
 

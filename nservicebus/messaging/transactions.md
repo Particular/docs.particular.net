@@ -7,7 +7,7 @@ tags:
 - Consistency
 - Transports
 - TransactionScope
-reviewed: 2016-03-03
+reviewed: 2016-04-05
 ---
 
 This article covers various levels of consistency guarantees NServiceBus provides with regards to:
@@ -33,8 +33,8 @@ The implementation details for each transport are discussed in the dedicated doc
 
 |  | Transaction scope (Distributed transaction) | Transport transaction - Sends atomic with Receive  | Transport transaction - Receive Only | Unreliable (Transactions Disabled) |
 | :------------------| :-: |:-:| :-:| :-: |
-| MSMQ | + | + | + | + |
-| [SQL Server Transport](/nservicebus/sqlserver/design.md#transactions-and-delivery-guarantees) | + | + | + | + |
+| [MSMQ](/nservicebus/msmq/transportconfig.md#transactions-and-delivery-guarantees) | + | + | + | + |
+| [SQL Server](/nservicebus/sqlserver/design.md#transactions-and-delivery-guarantees) | + | + | + | + |
 | RabbitMQ |  - | - | + | + |
 | [Azure Storage Queues](/nservicebus/azure/azure-storage-queues-transport.md#transactions-and-delivery-guarantees)|  - | - | + | + |
 | [Azure Service Bus](/nservicebus/azure/azure-servicebus-transport.md#transactions-and-delivery-guarantees) |  - | + | + | + |
