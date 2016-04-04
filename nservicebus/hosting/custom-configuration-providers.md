@@ -11,11 +11,11 @@ NServiceBus uses the process config file as its default source of configuration.
 
 ## Overriding App.Config section
 
-The preferred method of overriding a specific section is to use the `IProvideConfiguration<T>` model. For example, rather than providing the `RijndaelEncryptionServiceConfig` in app.config,:
+The preferred method of overriding a specific section is to use the `IProvideConfiguration<T>` model. For example, rather than providing the `RijndaelEncryptionServiceConfig` in app.config:
 
 snippet: CustomConfigProvider
 
-Adding the code above is enough since NServiceBus will automatically use it found in the types scanned.
+Adding the code above is enough since NServiceBus will automatically use if found in the types scanned.
 
 
 ## Code only configuration
