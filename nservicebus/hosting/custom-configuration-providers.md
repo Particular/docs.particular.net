@@ -1,7 +1,7 @@
 ---
 title: Overriding app.config settings
 summary: NServiceBus uses the process config file as its default source of configuration.
-reviewed: 2016-03-16
+reviewed: 2016-04-04
 redirects:
  - nservicebus/customizing-nservicebus-configuration
 ---
@@ -17,6 +17,7 @@ snippet: CustomConfigProvider
 
 Adding the code above is enough since NServiceBus will automatically use it found in the types scanned.
 
+NOTE: if multiple instances of `IProvideConfiguration<T>` for the same configuration sections `T` are found, only one instance will be used.
 
 ## Code only configuration
 
