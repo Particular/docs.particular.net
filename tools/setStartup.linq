@@ -3,7 +3,6 @@
   <Namespace>SetStartupProjects</Namespace>
 </Query>
 
-
 void Main()
 {
 	var toolsDiretory = Path.GetDirectoryName(Util.CurrentQueryPath);
@@ -18,7 +17,10 @@ public static void SetStartupProjects(string codeDirectory)
 	foreach (var solutionFile in Directory.EnumerateFiles(codeDirectory, "*.sln", SearchOption.AllDirectories))
 	{
 		var startProjects = GetStartupProjects(solutionFile).ToList();
-		startProjectSuoCreator.CreateForSolutionFile(solutionFile, startProjects);
+		if (startProjects.Any())
+		{
+			startProjectSuoCreator.CreateForSolutionFile(solutionFile, startProjects);
+		}
 	}
 }
 
