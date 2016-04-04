@@ -31,7 +31,7 @@ class Program
                 Console.WriteLine();
 
                 Guid eventId = Guid.NewGuid();
-                
+
                 switch (key.Key)
                 {
                     case ConsoleKey.D1:
@@ -53,7 +53,7 @@ class Program
 
                     default:
                         return;
-                }   
+                }
             }
         }
     }
