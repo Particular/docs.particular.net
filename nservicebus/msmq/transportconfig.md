@@ -48,8 +48,6 @@ From Version 4 onwards these settings are configured via a transport connection 
 snippet:MessageQueueConfiguration
 
 
-
-
 ### MSMQ Label
 
 WARNING: This feature was added in Version 6 and can be used to communicate with Version 5 (and higher) endpoints. However it should **not** be used when communicating to earlier versions (2, 3 or 4) since in those versions the MSMQ Label was used to communicate certain NServiceBus implementation details.
@@ -58,9 +56,15 @@ Often when debugging MSMQ using [native tools](viewing-message-content-in-msmq.m
 
 snippet:ApplyLabelToMessages
 
+
 ## Transactions and delivery guarantees
 
-MSMQ transport supports all [transaction handling modes](/nservicebus/messaging/transactions.md), i.e. Transaction scope, Receive only, Sends atomic with Receive and No transactions.
+MSMQ supports the following transaction modes:
+
+- Transaction scope
+- Receive only
+- Sends atomic with Receive
+- No transactions
 
 Refer to [Transport Transactions](/nservicebus/messaging/transactions.md) for detailed explanation of the supported transaction handling modes and available configuration options. 
 
@@ -79,4 +83,4 @@ The native transaction for receiving messages is shared with sending operations.
 
 ### Unreliable (Transactions Disabled)
 
-In this mode when message is received from an input queue it's immediately removed from it. If processing fails the message is lost, because the operation cannot be rolled back. Also any other operation performed when processing the message is executed outside of the transaction, it can't be rolled back. That might lead to undesired side effects.
+In this mode when a message is received it is immediately removed from the input queue. If processing fails the message is lost because the operation cannot be rolled back. Any other operation that is performed when processing the message is executed without a transaction and cannot be rolled back. This can lead to undesired side effects when message processing fails part way through.
