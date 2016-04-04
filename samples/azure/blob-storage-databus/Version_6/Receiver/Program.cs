@@ -24,7 +24,7 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
-            Console.WriteLine("\r\nPress enter key to stop program\r\n");
+            Console.WriteLine("Press any key to exit");
             Console.Read();
         }
         finally

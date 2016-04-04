@@ -41,7 +41,7 @@ class Program
     static async Task Run(IMessageSession messageSession)
     {
         Console.WriteLine("Press 'Enter' to send a large message (>4MB)");
-        Console.WriteLine("To exit, press Ctrl + C");
+        Console.WriteLine("Press any other key to exit");
 
         while (true)
         {
@@ -50,6 +50,10 @@ class Program
             if (key.Key == ConsoleKey.Enter)
             {
                 await SendMessageLargePayload(messageSession);
+            }
+            else
+            {
+                return;
             }
         }
     }
