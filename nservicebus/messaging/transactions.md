@@ -7,7 +7,7 @@ tags:
 - Consistency
 - Transports
 - TransactionScope
-reviewed: 2016-03-03
+reviewed: 2016-04-05
 ---
 
 This article covers various levels of consistency guarantees NServiceBus provides with regards to:

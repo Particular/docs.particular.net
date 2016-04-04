@@ -1,6 +1,7 @@
 ---
 title: MSMQ transport
-summary: 'Explains the mechanics of MSMQ transport, its configuration options and various other configuration settings that were at some point coupled to this transport'
+summary: Explains the mechanics of MSMQ transport, its configuration options and various other configuration settings that were at some point coupled to this transport
+reviewed: 2016-04-05
 tags:
 - Transports
 - MSMQ
@@ -8,7 +9,7 @@ redirects:
  - nservicebus/msmqtransportconfig
 ---
 
-Historically, MSMQ is the first transport supported by NServiceBus. In Version 5 it still is by far the most commonly used one. Because of these and also the fact that MSMQ client libraries are included in .NET Base Class Library (`System.Messaging` assembly), MSMQ transport is built into the core of NServiceBus.
+MSMQ transport is built into the core NServiceBus nuget.
 
 
 ## Receiving algorithm
@@ -29,7 +30,7 @@ By default, queues are created with `Everyone` and `Anonymous Logon` permissions
 
 NOTE: From Version 6 if the above default permissions are set, a log message will be written during the transport startup, reminding that the queue is configured with default permissions. During development, if running with an attached debugger, this message will be logged as `INFO` level, otherwise `WARN`.
 
-For more on changing MSMQ permissions, check out the [Administer Security for Message Queuing](https://technet.microsoft.com/en-us/library/cc738047.aspx) section on Microsoft TechNet.
+See also [Administer Security for Message Queuing](https://technet.microsoft.com/en-us/library/cc738047.aspx).
 
 
 ### MSMQ-specific
@@ -41,7 +42,7 @@ Following settings are purely related to the MSMQ:
  * `UseConnectionCache`
  * `UseTransactionalQueues`
 
-Read [MSMQ connection strings](connection-strings.md) to understand what these settings mean and their defaults.
+See also [MSMQ connection strings](connection-strings.md).
 
 From Version 4 onwards these settings are configured via a transport connection string (named `nservicebus/transport` for all transports). Before Version 4 some of these properties could be set via `MsmqMessageQueueConfig` configuration section while other (namely the `connectionCache` and the ability to use non-transactional queues) were not available prior to Version 4.
 
@@ -59,14 +60,12 @@ snippet:ApplyLabelToMessages
 
 ## Transactions and delivery guarantees
 
-MSMQ supports the following transaction modes:
+MSMQ Transport supports the following [Transport Transaction Modes](/nservicebus/messaging/transactions.md):
 
-- Transaction scope
-- Receive only
-- Sends atomic with Receive
-- No transactions
-
-Refer to [Transport Transactions](/nservicebus/messaging/transactions.md) for detailed explanation of the supported transaction handling modes and available configuration options. 
+ * Transaction scope
+ * Receive only
+ * Sends atomic with Receive
+ * No transactions
 
 
 ### Transaction scope
@@ -83,4 +82,4 @@ The native transaction for receiving messages is shared with sending operations.
 
 ### Unreliable (Transactions Disabled)
 
-In this mode when a message is received it is immediately removed from the input queue. If processing fails the message is lost because the operation cannot be rolled back. Any other operation that is performed when processing the message is executed without a transaction and cannot be rolled back. This can lead to undesired side effects when message processing fails part way through.
+In this mode, when a message is received, it is immediately removed from the input queue. If processing fails the message is lost because the operation cannot be rolled back. Any other operation that is performed, when processing the message, is executed without a transaction and cannot be rolled back. This can lead to undesired side effects when message processing fails part way through.
