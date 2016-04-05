@@ -31,7 +31,7 @@ To deploy this fix throughout a system endpoints will need to be upgraded and sa
 All endpoints using NServiceBus Azure will need to be upgraded to version 6.2.4 or higher.
 
 ### Patching data
-Saga data stored in Azure will need to be patched using the `NServiceBus.AzureStoragePersistence.SagaDeduplicator' utility which can be downloaded from xxxxxxxxx.
+Saga data stored in Azure will need to be patched using the `NServiceBus.AzureStoragePersistence.SagaDeduplicator` utility which can be downloaded from xxxxxxxxx.
 
 
 ## Patch steps
