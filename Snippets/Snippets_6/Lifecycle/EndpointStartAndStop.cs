@@ -3,23 +3,21 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    class RunWhenEndpointStartsAndStops
+    #region lifecycle-EndpointStartAndStop
+
+    // When using NServiceBus.Host or NService.Host.AzureCloudService
+    class RunWhenEndpointStartsAndStops : IWantToRunWhenEndpointStartsAndStops
     {
-        static async Task StartAndStopEndpoint()
+        public async Task Start(IMessageSession session)
         {
-            #region lifecycle-EndpointStartAndStop
-
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("SelfHosted");
-
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-
             // perform startup logic
+        }
 
-            await endpoint.Stop();
-
+        public async Task Stop(IMessageSession session)
+        {
             // perform shutdown logic
-
-            #endregion
         }
     }
+
+    #endregion
 }
