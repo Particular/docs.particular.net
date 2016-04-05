@@ -29,6 +29,7 @@
         - Title: "Azure"
           Articles:
             - "nservicebus/upgrades/asq-6to7"
+            - "nservicebus/upgrades/asb-6to7"
         - Title: "SQL Transport"
           Articles:
             - "nservicebus/upgrades/sqlserver-2to3"
