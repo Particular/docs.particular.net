@@ -16,7 +16,14 @@ NOTE: The endpoint instance keeps an internal list of instances which need to be
 
 ## Versions 6 and above
 
-The `IWantToRunWhenEndpointStartsAndStops` interface was previously available within the NServiceBus core library as `IWantToRunWhenBusStartsAndStops`. This interface is only available for those using the [NServiceBus.Host](https://www.nuget.org/packages/NServiceBus.Host/). For more information about the NServiceBus.Host, see the [documentation for the host](/nservicebus/hosting/nservicebus-host).
+The `IWantToRunWhenEndpointStartsAndStops` interface was previously available within the NServiceBus core library as `IWantToRunWhenBusStartsAndStops`. The instances of this interface are run as [FeatureStartupTasks](/nservicebus/pipeline/features.md#feature-startup-tasks)
+
+This interface is only available for those using the [NServiceBus.Host](https://www.nuget.org/packages/NServiceBus.Host/). For more information about the NServiceBus.Host, see the [documentation for the host](/nservicebus/hosting/nservicebus-host).
+
+For self-hosting, there are several options for equivalent behavior:
+ - Writing code in the endpoint class after start and stop
+ - [FeatureStartupTask](/nservicebus/pipeline/features.md#feature-startup-tasks)
+ - [Using MEF or Reflection](/samples/plugin-based-config)
 
 Instances are:
 
