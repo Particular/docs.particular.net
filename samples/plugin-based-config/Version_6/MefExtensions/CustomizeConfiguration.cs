@@ -1,0 +1,19 @@
+﻿using System.ComponentModel.Composition;
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Logging;
+
+#region MefCustomizeConfiguration
+[Export(typeof(ICustomizeConfiguration))]
+public class CustomizeConfiguration : ICustomizeConfiguration
+{
+    static ILog log = LogManager.GetLogger<CustomizeConfiguration>();
+
+    public Task Run(EndpointConfiguration endpointConfiguration)
+    {
+        log.Info("Setting serializer to JSON in an extension");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        return Task.FromResult(0);
+    }
+}
+#endregion
