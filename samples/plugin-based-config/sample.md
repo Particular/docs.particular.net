@@ -12,7 +12,7 @@ related:
 
 The Shared project defines all the messages used in the sample.
 
-It also contains the custom extension point definitions for that both the endpoints and the implementations use to communicate. For example the extension point for running code after the endpoint has started is:
+It also contains the custom extension point definitions that both the endpoints and the implementations use to communicate. For example the extension point for running code after the endpoint has started is:
 
 snippet: IRunAfterEndpointStart
 
@@ -27,9 +27,9 @@ The complete list of extension points in this solution are
 
 ## Approaches to executing extension points
 
-Both approaches have a similar parts. 
+Both approaches have a similar parts.
 
- * An endpoint project that starts the endpoint and loads+executes the specific extension points in the Shared project.
+ * An endpoint project that starts the endpoint and loads + executes the specific extension points in the Shared project.
  * An extensions project that contains the implementations for the extension points in the Shared project.
 
 
