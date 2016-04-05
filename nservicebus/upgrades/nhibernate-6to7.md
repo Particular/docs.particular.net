@@ -1,5 +1,5 @@
 ---
-title: NHibernate upgrade Version 6 to 7
+title: NHibernate Persistence upgrade Version 6 to 7
 summary: Instructions on how to upgrade NHibernate Persistence Version 6 to 7.
 reviewed: 2016-03-16
 tags:
