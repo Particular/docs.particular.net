@@ -45,7 +45,7 @@ NOTE: When the endpoint configuration is not specified explicitly, the host scan
 
 ## Custom initialization and startup
 
-As of NServiceBus Version 5, customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on the endpoint configuration class. Call the appropriate methods on the parameter passed to the method.
+For Versions 5 and above, customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on the endpoint configuration class. Call the appropriate methods on the parameter passed to the method.
 
 snippet:customize_nsb_host
 
@@ -70,13 +70,18 @@ Defer any startup behavior until all initialization has been completed. At this 
 
 |Version|Interface|
 |----|----|
-| Versions 6 and above | `IWantToRunWhenEndpointStartsAndStops` |
-| Version 4 to Version 5 | `IWantToRunWhenBusStartsAndStops` |
-| Versions 3 and below | `IWantToRunStartup` |
+| Versions 6 and above | `IWantToRunWhenEndpointStartsAndStops` (in [NServiceBus.Host](/nservicebus/hosting/nservicebus-host) or [NServiceBus.Host.AzureCloudService](/nservicebus/azure/hosting-in-azure-cloud-services.md)) |
+| Versions 4 and 5 | `IWantToRunWhenBusStartsAndStops` |
+| Versions 3 and below | `IWantToRunAtStartup` |
 
-NOTE: As of Version 6, the interface is located in [NServiceBus.Host](/nservicebus/hosting/nservicebus-host) or [NServiceBus.Host.AzureCloudService](/nservicebus/azure/hosting-in-azure-cloud-services.md). In previous versions, it was located in the NServiceBus core library.
+NOTE: For Versions 6 and above, the interface is located in [NServiceBus.Host](/nservicebus/hosting/nservicebus-host) or [NServiceBus.Host.AzureCloudService](/nservicebus/azure/hosting-in-azure-cloud-services.md). In previous versions, it was located in the NServiceBus core library.
 
-An example of behavior suitable to implement with this interface is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing this interface should kick off processes such as web crawling, data mining, and batch jobs.
+Examples of when to use this interface:
+
+- Opening the main form of a Windows Forms application
+- Web crawling
+- Data mining
+- Batch jobs
 
 See [When Endpoint Instance Starts and Stops](/nservicebus/lifecycle/endpointstartandstop.md) for more information.
 
