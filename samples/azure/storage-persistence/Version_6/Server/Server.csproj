@@ -62,10 +62,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.AzureStoragePersistence">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.AzureStoragePersistence.0.2.0-unstable0111\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.AzureStoragePersistence.0.2.0-unstable0115\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1782\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1783\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
