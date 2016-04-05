@@ -71,7 +71,7 @@ Defer any startup behavior until all initialization has been completed. At this 
 |Version|Interface|
 |----|----|
 | Versions 6 and above | `IWantToRunWhenEndpointStartsAndStops` |
-| Versions 4 and 5 | `IWantToRunWhenBusStartsAndStops` |
+| Version 4 to Version 5 | `IWantToRunWhenBusStartsAndStops` |
 | Versions 3 and below | `IWantToRunStartup` |
 
 NOTE: As of Version 6, the interface is located in [NServiceBus.Host](/nservicebus/hosting/nservicebus-host) or [NServiceBus.Host.AzureCloudService](/nservicebus/azure/hosting-in-azure-cloud-services.md). In previous versions, it was located in the NServiceBus core library.
