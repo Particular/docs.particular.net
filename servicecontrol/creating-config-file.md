@@ -119,7 +119,7 @@ This setting was introduced in Version 1.4. The minimum allowed value for this s
 
 Type: int
 
-Default: `32756`. The default for Versions below 1.12.0 is `65512`.
+Default: `65512`.
 
 
 #### ServiceControl/HoursToKeepMessagesBeforeExpiring
