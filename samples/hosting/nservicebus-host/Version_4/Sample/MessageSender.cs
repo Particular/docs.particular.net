@@ -1,5 +1,6 @@
 using NServiceBus;
 
+#region RunWhenStartsAndStops
 public class MessageSender : IWantToRunWhenBusStartsAndStops
 {
     IBus bus;
@@ -18,3 +19,4 @@ public class MessageSender : IWantToRunWhenBusStartsAndStops
     {
     }
 }
+#endregion
