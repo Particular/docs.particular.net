@@ -1,7 +1,7 @@
 ---
 title: OWIN HTTP Message Pass Through
 summary: Illustrates how to hook into the low level OWIN pipeline to place message onto the bus or directly onto the queue
-tags:
+reviewed: 2016-04-05
 related:
  - samples/gateway
  - nservicebus/gateway
@@ -29,7 +29,7 @@ So extensions to NServiceBus that plug into OWIN can be easily applied to [many 
 
 ## The purpose of this sample
 
-The primary purpose of this sample is to illustrate how simple it is to bridge the world of HTTP with the world of a service bus. The secondary purpose is to illustrate, as well as compare and contrast, two ways of communicating with the NServiceBus. i.e. using the Bus api and using the native queue.
+The primary purpose of this sample is to illustrate how simple it is to bridge the world of HTTP with the world of a service bus. The secondary purpose is to illustrate, as well as compare and contrast, two ways of communicating with the NServiceBus. i.e. using the NServiceBus API and using the native queue.
 
 
 ## Comparisons with the [NServiceBus Gateway](/nservicebus/gateway)
@@ -107,19 +107,19 @@ snippet:OwinToBus
 
 ## MSMQ based middleware
 
-The MSMQ based approach takes the following steps
+The MSMQ based approach takes the following steps:
 
- * Reads text for the message body from the HTTP request
- * Reads the message type name from the required headers
+ * Reads text for the message body from the HTTP request.
+ * Reads the message type name from the required headers.
  * Uses the message type name to create a MSMQ transport compatible header string.
- * Places that body and header directly onto MSMQ
+ * Places that body and header directly onto MSMQ.
 
 snippet:OwinToMsmq
 
 
 ### Header Helper
 
-A helper method for creating an header string that is compatible with the NServiceBus MSMQ transport
+A helper method for creating an header string that is compatible with the NServiceBus MSMQ transport:
 
 snippet:msmqheaderserializer
 

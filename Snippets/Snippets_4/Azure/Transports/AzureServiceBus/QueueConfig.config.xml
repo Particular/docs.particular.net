@@ -2,8 +2,8 @@
 <configuration>
   <!-- startcode AzureServiceBusQueueConfig 5 -->
   <configSections>
-    <section name="AzureServiceBusQueueConfig" 
-             type="NServiceBus.Config.AzureServiceBusQueueConfig, NServiceBus.Azure.Transports.WindowsAzureServiceBus" />   
+    <section name="AzureServiceBusQueueConfig"
+             type="NServiceBus.Config.AzureServiceBusQueueConfig, NServiceBus.Azure.Transports.WindowsAzureServiceBus" />
   </configSections>
   <AzureServiceBusQueueConfig ConnectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
   <!-- endcode -->

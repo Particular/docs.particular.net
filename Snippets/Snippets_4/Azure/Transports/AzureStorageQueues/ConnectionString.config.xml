@@ -2,7 +2,7 @@
 <!-- startcode AzureStorageQueueConnectionStringFromAppConfig 5 -->
 <configuration>
   <connectionStrings>
-     <add name="NServiceBus/Transport" 
+     <add name="NServiceBus/Transport"
           connectionString="UseDevelopmentStorage=true" />
   </connectionStrings>
 </configuration>

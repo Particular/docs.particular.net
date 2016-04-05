@@ -1,6 +1,7 @@
 ---
 title: Extensions
-summary: A list of all extensions to NServiceBus including all community contributions and external integrations
+summary: A list of all extensions to NServiceBus including all community contributions and external integrations.
+reviewed: 2016-04-05
 ---
 
 This is a curated list of all the extensions to NServiceBus developed by both the community and Particular. If any extension has been abandoned and no longer maintained [raise an issue](https://github.com/Particular/docs.particular.net/issues).

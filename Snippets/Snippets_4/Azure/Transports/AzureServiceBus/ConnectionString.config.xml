@@ -2,7 +2,7 @@
 <!-- startcode AzureServiceBusConnectionStringFromAppConfig 5 -->
 <configuration>
   <connectionStrings>
-     <add name="NServiceBus/Transport" 
+     <add name="NServiceBus/Transport"
           connectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
   </connectionStrings>
 </configuration>
