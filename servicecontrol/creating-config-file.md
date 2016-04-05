@@ -124,7 +124,7 @@ Default: `65512`.
 
 #### ServiceControl/HoursToKeepMessagesBeforeExpiring
 
-This setting is only applicable in Versiond 1.11.1 and below. 
+This setting is only applicable in Version 1.11.1 and below. 
 
 In higher versions this setting can now be set via `ServiceControl/AuditRetentionPeriod`.
 
