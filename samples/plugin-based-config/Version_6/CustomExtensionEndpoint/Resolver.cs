@@ -30,7 +30,7 @@ public static class Resolver
     {
         foreach (Assembly assembly in assemblies)
         {
-            foreach (Type type in assembly.GetInterfaceTypes<T>())
+            foreach (Type type in assembly.GetImplementationTypes<T>())
             {
                 T instance = (T)Activator.CreateInstance(type);
                 await action(instance);
@@ -38,11 +38,17 @@ public static class Resolver
         }
     }
 
-    static IEnumerable<Type> GetInterfaceTypes<TInterface>(this Assembly assembly)
+    static IEnumerable<Type> GetImplementationTypes<TInterface>(this Assembly assembly)
     {
-        return from type in assembly.GetTypes()
-               where typeof(TInterface).IsAssignableFrom(type)
-               select type;
+        return assembly.GetTypes().Where(IsConcreteClass<TInterface>);
+    }
+
+    static bool IsConcreteClass<TInterface>(Type type)
+    {
+        return typeof(TInterface).IsAssignableFrom(type) &&
+               !type.IsAbstract &&
+               !type.ContainsGenericParameters &&
+               type.IsClass;
     }
 }
 #endregion
