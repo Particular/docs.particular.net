@@ -13,6 +13,6 @@ related:
 
 ## IConfigureThisEndpoint changes
 
-`IConfigureThisEndpoint.Customize` is passed an instance of `EndpointConfiguration` instead of `BusConfiguration `.
+`IConfigureThisEndpoint.Customize` is passed an instance of `EndpointConfiguration` instead of `BusConfiguration`.
 
 snippet: 6to7customize_nsb_host
