@@ -45,7 +45,7 @@ NOTE: When the endpoint configuration is not specified explicitly, the host scan
 
 ## Custom initialization and startup
 
-As of NServiceBus Version 5, customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on the endpoint configuration class. Call the appropriate methods on the `BusConfiguration` parameter passed to the method.
+For Versions 5 and above, customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on the endpoint configuration class. Call the appropriate methods on the parameter passed to the method.
 
 snippet:customize_nsb_host
 
@@ -54,7 +54,7 @@ snippet:customize_nsb_host
 
 To change core settings such as assembly scanning, container, and serialization format, implement
 `IWantCustomInitialization` on the endpoint configuration class (the same class that implements
-`IConfigureThisEndpoint`). Start the configuration expression `With`
+`IConfigureThisEndpoint`). Start the configuration expression with
 
 ```C#
 Configure.With()
@@ -64,8 +64,26 @@ NOTE: Do not perform any startup behaviors in the `Init` method.
 
 After the custom initialization is done the regular core `INeedInitalization` implementations found will be called in the same way as when self hosting.
 
-Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in Version 3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in Version 3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in Version 3.x) should kick off things such as web crawling, data mining, and batch processes.
+#### Startup behavior
 
+Defer any startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement a specific interface, depending on the version of NServiceBus:
+
+|Version|Interface|
+|----|----|
+| Versions 6 and above | `IWantToRunWhenEndpointStartsAndStops` (in [NServiceBus.Host](/nservicebus/hosting/nservicebus-host) or [NServiceBus.Host.AzureCloudService](/nservicebus/azure/hosting-in-azure-cloud-services.md)) |
+| Versions 4 and 5 | `IWantToRunWhenBusStartsAndStops` |
+| Versions 3 and below | `IWantToRunAtStartup` |
+
+NOTE: For Versions 6 and above, the interface is located in [NServiceBus.Host](/nservicebus/hosting/nservicebus-host) or [NServiceBus.Host.AzureCloudService](/nservicebus/azure/hosting-in-azure-cloud-services.md). In previous versions, it was located in the NServiceBus core library.
+
+Examples of when to use this interface:
+
+- Opening the main form of a Windows Forms application
+- Web crawling
+- Data mining
+- Batch jobs
+
+See [When Endpoint Instance Starts and Stops](/nservicebus/lifecycle/endpointstartandstop.md) for more information.
 
 ## Logging
 
