@@ -310,7 +310,7 @@
     <Content Include="Headers\Writers\HeaderWriterSaga_Sending.txt" />
     <Content Include="Headers\Writers\HeaderWriterSaga_Timeout.txt" />
     <Content Include="Headers\Writers\HeaderWriterSend.txt" />
-    <Content Include="Host\ExplicitConfigType.xml">
+    <Content Include="Host_6\ExplicitConfigType.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">
@@ -386,6 +386,7 @@
     <Compile Include="Azure\Transports\AzureServiceBus\NamingConventionsUsage.cs" />
     <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
+    <Compile Include="Host_6\UpgradeGuides\6to7\CustomizingHost.cs" />
     <Compile Include="Notifications\SubscribeToNotifications.cs" />
     <Compile Include="Callback\Enum\Handler.cs" />
     <Compile Include="Callback\Enum\Message.cs" />
@@ -446,7 +447,7 @@
     <Compile Include="Headers\Writers\HeaderWriterEncryption.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDataBusProperty.cs" />
     <Compile Include="Headers\WriteSaga.cs" />
-    <Compile Include="Host\ProgramService.cs">
+    <Compile Include="Host_6\ProgramService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ImmediateDispatch\Usage.cs" />
@@ -523,9 +524,9 @@
     <Compile Include="Headers\OutgoingBehavior.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="HostIdentifier\HostIdFixer_5_1.cs" />
-    <Compile Include="Host\AsAClientEquivalent.cs" />
-    <Compile Include="Host\CustomizingHost.cs" />
-    <Compile Include="Host\CriticalErrors.cs" />
+    <Compile Include="Host_6\AsAClientEquivalent.cs" />
+    <Compile Include="Host_6\CustomizingHost.cs" />
+    <Compile Include="Host_6\CriticalErrors.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />

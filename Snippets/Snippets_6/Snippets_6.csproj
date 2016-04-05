@@ -291,6 +291,7 @@
     <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
+    <Compile Include="Host_7\UpgradeGuides\6to7\CustomizingHost.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="Notifications\SubscribeToNotifications.cs" />
     <Compile Include="Notifications\EventsToObservables.cs" />
@@ -384,7 +385,7 @@
     <Compile Include="Headers\Writers\HeaderWriterSaga.cs" />
     <Compile Include="Headers\Writers\HeaderWriterSend.cs" />
     <Compile Include="Headers\Writers\TransportMessageExtension.cs" />
-    <Compile Include="Host\CustomizingHost.cs" />
+    <Compile Include="Host_7\CustomizingHost.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />
@@ -478,8 +479,8 @@
     <Compile Include="Headers\SomeOtherMessage.cs" />
     <Compile Include="Headers\StaticHeaders.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
-    <Compile Include="Host\CriticalErrors.cs" />
-    <Compile Include="Host\ProgramService.cs">
+    <Compile Include="Host_7\CriticalErrors.cs" />
+    <Compile Include="Host_7\ProgramService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ImmediateDispatch\Usage.cs" />
@@ -623,7 +624,7 @@
     <Content Include="Headers\Writers\HeaderWriterSaga_Sending.txt" />
     <Content Include="Headers\Writers\HeaderWriterSaga_Timeout.txt" />
     <Content Include="Headers\Writers\HeaderWriterSend.txt" />
-    <Content Include="Host\ExplicitConfigType.xml">
+    <Content Include="Host_7\ExplicitConfigType.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">

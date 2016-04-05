@@ -39,6 +39,9 @@
         - Title: "Gateway"
           Articles:
             - "nservicebus/upgrades/gateway-1to2"
+        - Title: "Host"
+          Articles:
+            - "nservicebus/upgrades/host-6to7"
     -
       Title: "Messaging"
       Url: "nservicebus/messaging"

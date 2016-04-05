@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Host
+﻿namespace Snippets6.Host_7
 {
     using NServiceBus;
 

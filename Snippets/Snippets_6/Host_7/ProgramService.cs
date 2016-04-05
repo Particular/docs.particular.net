@@ -1,11 +1,13 @@
-using System;
-using System.ServiceProcess;
-using System.Threading.Tasks;
-using NServiceBus;
+
 
 #region windowsservicehosting
-namespace Snippets6.Host
+namespace Snippets6.Host_7
 {
+    using System;
+    using System.ServiceProcess;
+    using System.Threading.Tasks;
+    using NServiceBus;
+
     class ProgramService : ServiceBase
     {
         IEndpointInstance endpointInstance;

@@ -1,4 +1,4 @@
-namespace Snippets5
+namespace Snippets5.Host_6
 {
     using System;
     using System.ServiceProcess;
