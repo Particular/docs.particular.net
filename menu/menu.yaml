@@ -26,6 +26,9 @@
         - Title: "RabbitMQ Transport"
           Articles:
             - "nservicebus/upgrades/rabbitmq-3to4"
+        - Title: "Azure"
+          Articles:
+            - "nservicebus/upgrades/asq-6to7"
         - Title: "SQL Transport"
           Articles:
             - "nservicebus/upgrades/sqlserver-2to3"

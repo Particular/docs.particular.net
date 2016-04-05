@@ -134,6 +134,10 @@
     <Reference Include="NLog">
       <HintPath>..\..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.7.0.0-unstable0102\lib\net452\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NServiceBus.AzureBlobStorageDataBus, Version=0.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.AzureBlobStorageDataBus.0.2.0-unstable0016\lib\net452\NServiceBus.AzureBlobStorageDataBus.dll</HintPath>
       <Private>True</Private>
@@ -273,6 +277,7 @@
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
+    <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="Injection\Injection.cs" />
@@ -561,6 +566,10 @@
     <Content Include="Azure\Persistence\AzureStorage\AzurePersistence.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Azure\Transports\AzureStorageQueues\ConnectionString.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Azure\Transports\AzureStorageQueues\QueueConfig.config.xml" />
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
