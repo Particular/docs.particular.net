@@ -94,19 +94,9 @@ DANGER: This is a potentially dangerous feature that can result in multiple inst
 
 #### Transaction recovery storage
 
-The RavenDB client requires a method of storing DTC transaction recovery information in the case of process faults. The handling of transaction recovery storage by NServiceBus.RavenDB differs by version.
+The RavenDB client requires a method of storing DTC transaction recovery information in the case of process faults. By default, NServiceBus uses `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage. Under certain high-load situations, this has been known to result in a `TransactionAbortedException` or `IsolatedStorageException`. If these exceptions occur change to use [`LocalDirectoryTransactionRecoveryStorage`](http://ravendb.net/docs/search/latest/csharp?searchTerm=LocalDirectoryTransactionRecoveryStorage).
 
-
-##### NServiceBus.RavenDB 3.1 to 4.x
-
-As of 3.1.0, NServiceBus uses `LocalDirectoryTransactionRecoveryStorage` with a storage location inside `%LOCALAPPDATA%`. It is not necessary to modify this default value.
-
-
-##### NServiceBus.RavenDB 3.0.x and below
-
-These versions of NServiceBus use `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage, which has been proven to be unstable in certain situations, sometimes resulting in a [TransactionAbortedException or IsolatedStorageException](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ).
-
-If experiencing one of these issues and an upgrade to 3.1.0 or later is not possible, the default `TransactionRecoveryStorage` can be changed as shown in the following example.
+The default `TransactionRecoveryStorage` can be changed as shown in the following example.
 
 snippet:ConfiguringTransactionRecoveryStorage
 

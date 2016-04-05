@@ -6,8 +6,6 @@ redirects:
  - nservicebus/ravendb/how-to-change-resourcemanagerid
 ---
 
-WARNING: As of NServiceBus.RavenDB 3.1.0 the RavenDB ResourceManagerId is automatically set to an appropriate value, unique between all endpoints on an individual server, based on a hash of the endpoint's local address and endpoint version. It should not be necessary to manually set this value. All customers are encouraged to upgrade to at least NServiceBus.RavenDB 3.1.0 or higher. This article remains for legacy purposes only.
-
 When using RavenDB in an environment where you are relying also on distributed transactions it can happen that a commit operation fails with the following error:
 
 > "A resource manager with the same identifier is already registered with the specified transaction coordinator"
