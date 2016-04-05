@@ -72,7 +72,6 @@ When the Bus is disposed, all instances of `IWantToRunWhenBusStartsAndStops` are
 
 NOTE: `Stop()` will wait for any outstanding instances of `Start()` to complete. If an instance of `IWantToRunWhenBusStartsAndStops` needs to be long running then it must start it's own background thread. Failure to do so will prevent the bus from being disposed.
 
-NOTE: `Stop()` is not supported in Version 3
 
 ## Code
 
