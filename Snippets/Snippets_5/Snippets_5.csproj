@@ -319,9 +319,6 @@
     <Content Include="Outbox\NHibernate\TimeToKeep.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Outbox\SqlServer\ConnectionStrings.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Outbox\EnablingInConfig.xml">
       <SubType>Designer</SubType>
     </Content>
