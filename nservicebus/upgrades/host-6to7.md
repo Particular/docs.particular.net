@@ -26,3 +26,5 @@ snippet:5to6-EndpointStartAndStop
 
 
 include:5to6removePShelpers
+
+WARNING: If the `EndpointConfig.cs` file already exists in the project, be careful to not override it when upgrading `NServiceBus.Host` package. If VisualStudio detects a conflict, it will ask whether the file should be overwritten. To keep the old configuration, choose `No`.   
