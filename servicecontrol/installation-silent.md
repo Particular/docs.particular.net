@@ -38,8 +38,7 @@ For details on how to make the `unattendedfile.xml` file refer to ServiceControl
 ```bat
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml SERVICEACCOUNT=MyServiceAccount PASSWORD=MyPassword
 ```
-
-NOTE: Version 1.12.0 introduced a new mandatory setting which controls the forwarding of error messages. Unattended files need to be regenerated to include this option. Refer to the ServiceControl Management [PowerShell](installation-powershell.md) documentation.
+NOTE: The settings contained in an unattended installation files are version specific. The file contents will be validated when used and if a required setting is missing an error will be logged. To correct this regenerate the XML file using the `New-ServiceControlUnattendedFile` cmdlet.
 
 
 #### Silently Upgrade ServiceControl during installation
@@ -88,10 +87,42 @@ Particular.ServiceControl.1.11.2.exe /quiet /LV* install.log UPGRADEINSTANCES=AL
 ```
 
 
+#### Specifying AuditRetentionPeriod and ErrorRetentionPeriod during Upgrade
+
+Version 1.13 introduced two new mandatory application configuration settings to control the expiry of database content.  These setting can be set by using two new MSI switches when upgrading.  Both of these value should be expressed as `TimeSpan` values
+
+e.g 20.0:0:0 is 20 days
+
+NOTE: If the current configuration already has values for `ServiceControl/AuditRetentionPeriod` or `ServiceControl/ErrorRetentionPeriod` the command line values will  overwrite the configuration
+
+
+##### AuditRetentionPeriod
+
+If the configuration does not contain the `ServiceControl/AuditRetentionPeriod` or `ServiceControl/HoursToKeepMessagesBeforeExpiring`setting the value for the audit retention period should be included as a command line value. If the configuration does contains an entry for  `ServiceControl/HoursToKeepMessagesBeforeExpiring` then that value will be migrated to `ServiceControl/AuditRetentionPeriod` and no command line option is required.
+The valid range for this property is documented in [configuration settings](creating-config-file.md).  
+
+```bat
+Particular.ServiceControl.1.13.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL AUDITRETENTION=30.0:0:0 
+```
+
+NOTE: This value has a large impact on database size. Monitor the size of the ServiceControl database is recommended to ensure that this value is adequate.
+ 
+##### ErrorRetentionPeriod
+
+If the configuration does not contain the `ServiceControl/ErrorRetentionPeriod` then the command line option is required. 
+The valid range for this property is documented in [configuration settings](creating-config-file.md).
+
+```bat
+Particular.ServiceControl.1.13.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL ERRORRETENTION=30.0:0:0 
+```
+
+NOTE: This value has a large impact on database size. Monitor the size of the ServiceControl database is recommended to ensure that this value is adequate.
+
 #### Combining command line options
 
-It is valid to combine the `LICENSEFILE`, `UNATTENDEDFILE`, `UPGRADEINSTANCES`, `SERVICEACCOUNT` and `PASSWORD` options on the same command line. The `SERVICEACCOUNT` and `PASSWORD` only apply to a new instance, these values are not used on upgrades.
+It is valid to combine the `LICENSEFILE`, `UNATTENDEDFILE`,  `SERVICEACCOUNT` and `PASSWORD` options on the same command line. The `SERVICEACCOUNT` and `PASSWORD` only apply to a new instance, these values are not used on upgrades.
 
+The command line `UPGRADEINSTANCES` can be combined with `FORWARDERRORMESSAGES`, `AUDITRETENTIONPERIOD` and `ERRORRETENTIONPERIOD` 
 
 #### Command line Uninstall
 
