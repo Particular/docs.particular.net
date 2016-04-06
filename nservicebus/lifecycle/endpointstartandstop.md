@@ -16,46 +16,17 @@ NOTE: The endpoint instance keeps an internal list of instances which need to be
 
 ## Versions 6 and above
 
-The `IWantToRunWhenEndpointStartsAndStops` interface was previously available within the NServiceBus core library as `IWantToRunWhenBusStartsAndStops`. The instances of this interface are run as [FeatureStartupTasks](/nservicebus/pipeline/features.md#feature-startup-tasks)
+The `IWantToRunWhenBusStartsAndStops` interface is no longer available.  
 
-This interface is only available for those using the [NServiceBus.Host](https://www.nuget.org/packages/NServiceBus.Host/). For more information about the NServiceBus.Host, see the [documentation for the host](/nservicebus/hosting/nservicebus-host).
-
-For self-hosting, there are several options for equivalent behavior:
+When self-hosting, there are several options for equivalent behavior:
  - Writing code in the endpoint class after start and stop
  - [FeatureStartupTask](/nservicebus/pipeline/features.md#feature-startup-tasks)
  - [Using MEF or Reflection](/samples/plugin-based-config)
 
-Instances of `IWantToRunWhenEndpointStartsAndStops` are:
+A new interface has been added to the Host.
+For NServiceBus.Host Versions 7 and above see the [documentation for using the new interface](/nservicebus/hosting/nservicebus-host).
 
- * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/) during bus creation. These are registered as `Instance Per Call`.
- * Created and Started before the Transport and any Satellites have started. This means no messages will be sent until after all `Start` methods have been called.
- * Created in the same method that starts the endpoint.
- * Created by the [Container](/nservicebus/containers/) which means they:
-  * Will have dependencies injected.
-  * Do not require a default constructor.
- * Started asynchronously in the same method which started the bus.
- * Stopped after the Transport and any Satellites have stopped. While all instances of `IWantToRunWhenEndpointStartsAndStops` are being stopped, no messages will be handled.
- * Stopped asynchronously within the same method which disposed the bus.
-
-Once created `Start` is called on each instance asynchronously without awaiting its completion. Each call to `Start` is called in the `OnStart` method of a [FeatureStartupTask](/nservicebus/pipeline/features.md#feature-startup-tasks). 
-
-Instances of `IWantToRunWhenEndpointStartsAndStops` which successfully start are kept internally to be stopped when the bus is stopped.
-
-NOTE: The call to `IStartableEndpoint.Start` will not return before all instances of `IWantToRunWhenEndpointStartsAndStops.Start` are completed.
-
-NOTE: The `Start` and `Stop` methods will block start up and shut down of the endpoint. For any long running methods, use `Task.Run` so as not to block execution.
-
-When the endpoint is shut down, the `Stop` method for each instance of `IWantToRunWhenEndpointStartsAndStops` is called asynchronously. Each call to `Stop` is called in the `OnStop` method of a [FeatureStartupTask](/nservicebus/pipeline/features.md#feature-startup-tasks).
-
-include: non-null-task
-
-### Exceptions
-
-Exceptions thrown in the constructors of instances of `IWantToRunWhenEndpointStartsAndStops` are unhandled by NServiceBus. These will prevent the endpoint from starting up.
-
-Exceptions raised from the `Start` method will prevent the endpoint from starting. As they are called asynchronously and awaited with `Task.WhenAll`, an exception may prevent other `Start` methods from being called. 
-
-Exceptions raised from the `Stop` method will not prevent the endpoint from shutting down. The exceptions will be logged at the Fatal level.
+For NServiceBus.Host.AzureCloudService Versions 7 and above see the [documentation for using the new interface](/nservicebus/azure/hosting-in-azure-cloud-services.md).
 
 ## Versions 5 and below
 

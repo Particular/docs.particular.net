@@ -43,7 +43,7 @@ The `NServiceBus.Host.exe` creates a separate *service* [Application Domain](htt
 NOTE: When the endpoint configuration is not specified explicitly, the host scans all the assemblies to find it and it does so in the context of the *host* application domain, not the new *service* domain. Because of that, when [redirecting assembly versions](https://msdn.microsoft.com/en-us/library/7wd6ex19.aspx), the `assemblyBinding` element needs to be present in both `NServiceBus.Host.exe.config` and `app.config`.
 
 
-## Custom initialization and startup
+## Custom initialization
 
 For Versions 5 and above, customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on the endpoint configuration class. Call the appropriate methods on the parameter passed to the method.
 
@@ -66,24 +66,60 @@ After the custom initialization is done the regular core `INeedInitalization` im
 
 #### Startup behavior
 
-Defer any startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement a specific interface, depending on the version of NServiceBus:
+NOTE: For Host Versions 7 and above, a new interface called `IWantToRunWhenEndpointStartsAndStops` has been added. In previous versions of the host, the startup interface was located in the NServiceBus core library as shown below.
 
-|Version|Interface|
+|Core Version| Startup Interface|
 |----|----|
-| Versions 6 and above | `IWantToRunWhenEndpointStartsAndStops` (in [NServiceBus.Host](/nservicebus/hosting/nservicebus-host) or [NServiceBus.Host.AzureCloudService](/nservicebus/azure/hosting-in-azure-cloud-services.md)) |
 | Versions 4 and 5 | `IWantToRunWhenBusStartsAndStops` |
 | Versions 3 and below | `IWantToRunAtStartup` |
 
-NOTE: For Versions 6 and above, the interface is located in [NServiceBus.Host](/nservicebus/hosting/nservicebus-host) or [NServiceBus.Host.AzureCloudService](/nservicebus/azure/hosting-in-azure-cloud-services.md). In previous versions, it was located in the NServiceBus core library.
+Defer any startup behavior until all the endpoint initialization has been completed. At startup, NServiceBus invokes all the classes that implement the `IWantToRunWhenEndpointStartsAndStops`interface.
 
-Examples of when to use this interface:
+WARNING: Implementations of `IWantToRunWhenEndpointStartsAndStops` are not started and stopped on a dedicated thread. They are executed on the thread starting and disposing the endpoint. It is the responsibility of the implementing class to execute its operations in parallel if needed (i.e. for CPU bound work). Failure to do so will prevent the endpoint from being started and/or disposed. 
+
+* Instances of `IWantToRunWhenEndpointStartsAndStops` are located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/) during endpoint creation. These are registered as `Instance Per Call`.
+
+* They are started before the transport and any satellites have started. Therefore the endpoint will not receive any messages until this process has completed.
+
+* These instances are created by the [Container](/nservicebus/containers/) which means they:
+  * Will have dependencies injected.
+  * Do not require a default constructor.
+
+* These instances will be started asynchronously in the same method which started the bus.
+
+* Once created `Start` is called on each instance asynchronously without awaiting its completion. Each call to `Start` is called in the `OnStart` method of a [FeatureStartupTask](/nservicebus/pipeline/features.md#feature-startup-tasks). 
+
+* Instances of `IWantToRunWhenEndpointStartsAndStops` which successfully start are kept internally to be stopped when the endpoint is stopped.
+
+* When the endpoint is shut down, the `Stop` method for each instance of `IWantToRunWhenEndpointStartsAndStops` is called asynchronously. Each call to `Stop` is called in the `OnStop` method of a [FeatureStartupTask](/nservicebus/pipeline/features.md#feature-startup-tasks).
+
+* The instances will be stopped only after the transport and any satellites have stopped. While all instances of `IWantToRunWhenEndpointStartsAndStops` are being stopped, the endpoint will not handle any messages received.
+
+* The instances will be stopped asynchronously within the same method which disposed the bus.
+   
+NOTE: The call to `IStartableEndpoint.Start` will not return before all instances of `IWantToRunWhenEndpointStartsAndStops.Start` are completed.
+
+DANGER: The `Start` and `Stop` methods will block start up and shut down of the endpoint. For any long running methods, use `Task.Run` so as not to block execution.
+
+include: non-null-task
+
+Some examples of when to use this interface are:
 
 - Opening the main form of a Windows Forms application
 - Web crawling
 - Data mining
 - Batch jobs
 
-See [When Endpoint Instance Starts and Stops](/nservicebus/lifecycle/endpointstartandstop.md) for more information.
+More information about the startup and shutdown sequence can be found in the [Startup and Shutdown sample](/samples/startup-shutdown-sequence/).
+
+### Exceptions
+
+Exceptions thrown in the constructors of instances of `IWantToRunWhenEndpointStartsAndStops` are unhandled by NServiceBus. These will prevent the endpoint from starting up.
+
+Exceptions raised from the `Start` method will prevent the endpoint from starting. As they are called asynchronously and awaited with `Task.WhenAll`, an exception may prevent other `Start` methods from being called. 
+
+Exceptions raised from the `Stop` method will not prevent the endpoint from shutting down. The exceptions will be logged at the Fatal level.
+
 
 ## Logging
 
