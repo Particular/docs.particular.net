@@ -41,10 +41,10 @@
       <HintPath>..\..\..\..\..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1783\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0001\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NLog">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.NLog.1.2.0-unstable0007\lib\net452\NServiceBus.NLog.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.NLog.1.2.0-alpha0012\lib\net452\NServiceBus.NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
