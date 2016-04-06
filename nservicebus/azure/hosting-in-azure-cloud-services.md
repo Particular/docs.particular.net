@@ -182,13 +182,6 @@ DANGER: The `Start` and `Stop` methods will block start up and shut down of the 
 
 include: non-null-task
 
-Some examples of when to use this interface are:
-
-- Opening the main form of a Windows Forms application
-- Web crawling
-- Data mining
-- Batch jobs
-
 More information about the startup and shutdown sequence can be found in the [Startup and Shutdown sample](/samples/startup-shutdown-sequence/).
 
 ### Exceptions
