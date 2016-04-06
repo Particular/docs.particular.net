@@ -293,6 +293,7 @@
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="Host_7\UpgradeGuides\6to7\CustomizingHost.cs" />
     <Compile Include="Injection\Injection.cs" />
+    <Compile Include="Lifecycle\EndpointStartAndStop.cs" />
     <Compile Include="Notifications\SubscribeToNotifications.cs" />
     <Compile Include="Notifications\EventsToObservables.cs" />
     <Compile Include="Callback\Cancellation\Message.cs" />
@@ -458,6 +459,7 @@
     <Compile Include="Transports\SqlServer_3\UpgradeGuides\Transactions.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameHelper.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
+    <Compile Include="UpgradeGuides\5to6\EndpointStartStop.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
     <Compile Include="UpgradeGuides\5to6\HandlerOrdering.cs" />
     <Compile Include="UpgradeGuides\5to6\Injection.cs" />
@@ -489,7 +491,6 @@
     <Compile Include="License.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
-    <Compile Include="Lifecycle\EndpointStartAndStop.cs" />
     <Compile Include="Logging\BuiltInConfig.cs" />
     <Compile Include="Logging\CommonLogging\Usage.cs" />
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />

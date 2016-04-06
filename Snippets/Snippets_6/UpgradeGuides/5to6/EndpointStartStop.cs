@@ -3,19 +3,22 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    class EndpointStart
+    class EndpointStartStop
     {
         async Task StartEndpoint()
         {
-            #region 5to6-endpoint-start
+            #region 5to6-endpoint-start-stop
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
-            //configure the endpoint
 
-            //Start the endpoint
+            // Custom code before start
             IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+            // Custom code after start
 
-            //Shut down the endpoint
+            // Block the process
+
+            // Custom code before stop
             await endpoint.Stop();
+            // Custom code after stop
             #endregion
         }
     }

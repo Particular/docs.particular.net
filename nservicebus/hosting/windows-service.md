@@ -57,7 +57,7 @@ WARNING: Choose a durable persistence before deploying to production.
 
 ## Installation
 
-When Self-Hosting a Windows Service the startup code is in full control of installation. Windows supports these features though the use of the [Service Control tool](https://technet.microsoft.com/en-us/library/cc754599.aspx). For example a basic install and uninstall commands would be:
+When self-hosting a Windows service the startup code is in full control of installation. Windows supports these features though the use of the [Service Control tool](https://technet.microsoft.com/en-us/library/cc754599.aspx). For example a basic install and uninstall commands would be:
 
     sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
     sc.exe delete SalesEndpoint

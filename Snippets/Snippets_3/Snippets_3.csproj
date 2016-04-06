@@ -228,6 +228,7 @@
     <Compile Include="ImmediateDispatch\Usage.cs" />
     <Compile Include="Installers.cs" />
     <Compile Include="InstallSomething.cs" />
+    <Compile Include="Lifecycle\EndpointStartAndStop.cs" />
     <Compile Include="Mutators\MutatorRegistration.cs" />
     <Compile Include="Mutators\Instance\MutateIncomingMessages.cs" />
     <Compile Include="Mutators\Transport\MutateIncomingTransportMessages.cs" />

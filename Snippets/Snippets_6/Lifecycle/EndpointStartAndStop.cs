@@ -5,6 +5,7 @@
 
     #region lifecycle-EndpointStartAndStop
 
+    // When using NServiceBus.Host or NService.Host.AzureCloudService
     class RunWhenEndpointStartsAndStops : IWantToRunWhenEndpointStartsAndStops
     {
         public async Task Start(IMessageSession session)

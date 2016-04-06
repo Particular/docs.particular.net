@@ -2,16 +2,17 @@
 title: Hosting in Azure Cloud Services
 summary: Using Azure Cloud Services to host NServiceBus.
 tags:
-- Hosting
-- Worker Roles
-- Web Roles
-- Azure
-- Cloud
-- Logging
+ - Hosting
+ - Worker Roles
+ - Web Roles
+ - Azure
+ - Cloud
+ - Logging
 redirects:
  - nservicebus/hosting-nservicebus-in-windows-azure-cloud-services
 related:
  - samples/azure/shared-host
+ - nservicebus/lifecycle
 ---
 
 The Azure Platform and NServiceBus make a perfect fit. On the one hand the Azure platform offers the scalable and flexible platform required, on the other hand NServiceBus makes development on this highly distributed environment a breeze.
@@ -142,6 +143,9 @@ A short explanation of each:
  * `TraceLogger`: Redirects all [logging](/nservicebus/logging/) to the trace logger. This in turn can be configured for diagnostics monitor trace listener.
  * `UseTransport<AzureStorageQueueTransport>`: Sets [Azure storage queues](/nservicebus/azure/azure-storage-queues-transport.md) as the [transport](/nservicebus/transports).
  * `UsePersistence`: Configures [Azure storage](/nservicebus/azure/azure-storage-persistence.md) for [persistence](/nservicebus/persistence).
+
+
+include:host-startup
 
 
 ## Handling critical errors
