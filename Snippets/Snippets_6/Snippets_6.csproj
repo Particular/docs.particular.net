@@ -170,9 +170,8 @@
     <Reference Include="NServiceBus.Host">
       <HintPath>..\..\packages\NServiceBus.Host.7.0.0-unstable0078\lib\net452\NServiceBus.Host.exe</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Log4Net, Version=1.1.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.Log4Net">
       <HintPath>..\..\packages\NServiceBus.Log4Net.1.1.0-alpha0019\lib\net452\NServiceBus.Log4Net.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Newtonsoft.Json, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Newtonsoft.Json.0.3.0-unstable0008\lib\net452\NServiceBus.Newtonsoft.Json.dll</HintPath>
@@ -181,9 +180,8 @@
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\..\packages\NServiceBus.NHibernate.7.0.0-unstable0073\lib\net452\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.NLog, Version=1.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.NLog">
       <HintPath>..\..\packages\NServiceBus.NLog.1.2.0-alpha0012\lib\net452\NServiceBus.NLog.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Autofac, Version=5.1.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Autofac.5.1.0-unstable0003\lib\net451\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
