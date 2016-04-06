@@ -18,6 +18,5 @@
             await endpoint.Stop();
             #endregion
         }
-
     }
 }
