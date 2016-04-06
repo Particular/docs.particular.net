@@ -199,8 +199,6 @@ Exceptions raised from the `Start` method will prevent the endpoint from startin
 
 Exceptions raised from the `Stop` method will not prevent the endpoint from shutting down. The exceptions will be logged at the Fatal level.
 
-See [When Endpoint Instance Starts and Stops](/nservicebus/lifecycle/endpointstartandstop.md) for more information.
-
 
 ## Handling critical errors
 
