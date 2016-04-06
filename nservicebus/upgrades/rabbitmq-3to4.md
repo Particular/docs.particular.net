@@ -46,3 +46,21 @@ Xml configuration options for controlling lost connection behavior were replaced
 snippet:3to4rabbitmq-custom-breaker-settings
 
 snippet:3to4rabbitmq-custom-breaker-settings-code
+
+
+## Routing
+
+
+### UseDirectRoutingTopology
+
+When using `UseDirectRoutingTopology` method parameter's type was changed from `Address` to `string`.
+
+snippet:3to4rabbitmq-config-usedirectroutingtopology
+
+
+### IRoutingTopology
+
+When [changing routing topology](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-changing-routing-topology) some changes were introduced to `IRoutingTopology` interface.
+
+ * `message` parameter type changed from `TransportMessage` to `OutgoingMessage`
+ * `address` parameter type changed from `Address` to `string`

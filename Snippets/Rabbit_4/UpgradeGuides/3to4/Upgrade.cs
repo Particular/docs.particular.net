@@ -22,5 +22,19 @@
 
             #endregion
         }
+
+        void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
+        {
+            #region 3to4rabbitmq-config-usedirectroutingtopology
+            endpointConfiguration.UseTransport<RabbitMQTransport>()
+                .UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
+
+            #endregion
+        }
+
+        string MyRoutingKeyConvention(Type type)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
