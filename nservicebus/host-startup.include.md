@@ -12,9 +12,9 @@ WARNING: Implementations of `IWantToRunWhenEndpointStartsAndStops` are not start
   * Will have dependencies injected.
   * Do not require a default constructor.
  * These instances will be started asynchronously in the same method which started the bus.
- * Once created `Start` is called on each instance asynchronously without awaiting its completion. Each call to `Start` is called in the `OnStart` method of a [FeatureStartupTask](/nservicebus/pipeline/features.md#feature-startup-tasks). 
+ * Once created `Start` is called on each instance asynchronously without awaiting its completion. 
  * Instances of `IWantToRunWhenEndpointStartsAndStops` which successfully start are kept internally to be stopped when the endpoint is stopped.
- * When the endpoint is shut down, the `Stop` method for each instance of `IWantToRunWhenEndpointStartsAndStops` is called asynchronously. Each call to `Stop` is called in the `OnStop` method of a [FeatureStartupTask](/nservicebus/pipeline/features.md#feature-startup-tasks).
+ * When the endpoint is shut down, the `Stop` method for each instance of `IWantToRunWhenEndpointStartsAndStops` is called asynchronously.
  * The instances will be stopped only after the transport and any satellites have stopped. While all instances of `IWantToRunWhenEndpointStartsAndStops` are being stopped, the endpoint will not handle any messages received.
  * The instances will be stopped asynchronously within the same method which disposed the endpoint.
 
