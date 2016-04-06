@@ -1,6 +1,6 @@
 ## Startup Behavior
 
-For Versions 7 and above, a new interface called `IWantToRunWhenEndpointStartsAndStops` has been added. This interface allows code to be executed at startup and shutdown of the Host. In Versions 6 and use the [Endpoint Instance Start and Stop](/nservicebus/lifecycle/endpointstartandstop.md) functionality`.
+For Versions 7 and above, a new interface called `IWantToRunWhenEndpointStartsAndStops` has been added. This interface allows code to be executed at startup and shutdown of the Host. For Versions 6 and below, use the [Endpoint Instance Start and Stop](/nservicebus/lifecycle/endpointstartandstop.md) functionality`.
 
 At startup, the Host invokes all the classes that implement the `IWantToRunWhenEndpointStartsAndStops`interface.
 
