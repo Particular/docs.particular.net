@@ -48,7 +48,7 @@
       <HintPath>..\..\..\..\packages\NServiceBus.6.0.0-beta0001\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Log4Net">
-      <HintPath>..\..\..\..\packages\NServiceBus.Log4Net.1.1.0-unstable0016\lib\net452\NServiceBus.Log4Net.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.Log4Net.1.1.0-alpha0019\lib\net452\NServiceBus.Log4Net.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Autofac, Version=5.1.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\NServiceBus.Autofac.5.1.0-unstable0003\lib\net451\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>

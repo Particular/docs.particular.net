@@ -51,7 +51,7 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.Host.7.0.0-unstable0078\lib\net452\NServiceBus.Host.exe</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Log4Net, Version=1.1.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Log4Net.1.1.0-unstable0016\lib\net452\NServiceBus.Log4Net.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Log4Net.1.1.0-alpha0019\lib\net452\NServiceBus.Log4Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
