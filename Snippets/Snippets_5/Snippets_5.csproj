@@ -387,7 +387,6 @@
     <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="Host_6\UpgradeGuides\6to7\CustomizingHost.cs" />
-    <Compile Include="Host\EndpointStartAndStop.cs" />
     <Compile Include="Notifications\SubscribeToNotifications.cs" />
     <Compile Include="Callback\Enum\Handler.cs" />
     <Compile Include="Callback\Enum\Message.cs" />
