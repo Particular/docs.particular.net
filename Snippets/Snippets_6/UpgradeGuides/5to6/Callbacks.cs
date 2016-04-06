@@ -21,12 +21,12 @@
 
         class RequestMessage : IMessage
         {
-            
+
         }
 
         class ResponseMessage : IMessage
         {
-             
+
         }
     }
 }
