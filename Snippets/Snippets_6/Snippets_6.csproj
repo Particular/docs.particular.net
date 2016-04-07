@@ -153,8 +153,9 @@
     <Reference Include="NServiceBus.AzureStoragePersistence">
       <HintPath>..\..\packages\NServiceBus.AzureStoragePersistence.0.2.0-unstable0115\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Callbacks">
-      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0052\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+    <Reference Include="NServiceBus.Callbacks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-alpha0058\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.CommonLogging">
       <HintPath>..\..\packages\NServiceBus.CommonLogging.2.2.0-beta0001\lib\net452\NServiceBus.CommonLogging.dll</HintPath>
@@ -165,7 +166,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Gateway, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.Gateway.2.0.0-unstable0067\lib\net452\NServiceBus.Gateway.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Gateway.2.0.0-alpha0086\lib\net452\NServiceBus.Gateway.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Host, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
