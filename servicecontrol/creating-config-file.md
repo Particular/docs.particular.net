@@ -1,10 +1,11 @@
 ---
 title: Configuration Settings
 summary: Categorized list of ServiceControl configuration settings.
-reviewed: 2016-03-24
+reviewed: 2016-04-07
 tags:
 - ServiceControl
 ---
+
 
 ## Configuration Settings
 
@@ -115,7 +116,7 @@ Default: `600` (10 minutes). The default for Versions below 1.4 is `60` (1 minut
 
 #### ServiceControl/ExpirationProcessBatchSize
 
-This setting was introduced in Version 1.4. The minimum allowed value for this settings is `10240`, there is no hard coded maximum as this is heavily dependent on system performance.
+This setting was introduced in Version 1.4. The minimum allowed value for this setting is `10240`, there is no hard coded maximum as this is heavily dependent on system performance.
 
 Type: int
 
@@ -123,6 +124,10 @@ Default: `65512`.
 
 
 #### ServiceControl/HoursToKeepMessagesBeforeExpiring
+
+This setting is only applicable in Version 1.11.1 and below. 
+
+In higher versions this setting can now be set via `ServiceControl/AuditRetentionPeriod`.
 
 The number of hours to keep a message for before it is deleted.
 
@@ -133,6 +138,34 @@ Default: `720` (30 days).
 In Versions 1.8.2 and below the valid range for this setting was `24` (1 day) through to `1440` (60 days).
 
 In Versions 1.8.3 and above the upper limit has been removed to allow for longer retention. This was done to allow customers with low volumes of messages to retain them longer. Setting this value too high can cause the embedded RavenDB to become large and unresponsive when indexing. See [Capacity and Planning](capacity-and-planning.md).
+
+
+#### ServiceControl/AuditRetentionPeriod
+
+This setting is only applicable from Versions 1.12.0 and higher.
+
+The period to keep an audit message for before it is deleted.
+
+Type: timespan
+
+Default: There is no default. This setting needs to be specified. 
+
+Valid range for this setting is minimum 1 hour and maximum 364 days.
+
+
+#### ServiceControl/ErrorRetentionPeriod
+
+This setting is only applicable from Version 1.12.0 and higher.
+
+The grace period that faulted messages are kept before they are deleted.
+
+For a message to be considered for deletion, it needs to have a status of either `Archived`, `RetryIssued` or `Resolved`.
+
+Type: timespan
+
+Default: There is no default. This setting needs to be specified.
+
+Valid range for this setting is minimum 10 days and maximum 45 days.
 
 
 ## Performance Tuning
@@ -181,10 +214,9 @@ Default: `NServiceBus.MsmqTransport, NServiceBus.Core`
 
 #### NServiceBus/Transport
 
-Type: string
-
 The connection string for the transport. This setting should be placed in `connectionStrings` section of configuration file.
 
+Type: string
 
 #### ServiceBus/AuditQueue
 
@@ -228,23 +260,24 @@ Use this setting to configure whether processed audit messages are forwarded to 
 
 Type: bool `true` or `false`
 
-Prior to Versions 1.5 this setting had no default.
+Default: `false`. 
 
-In Versions 1.5 through to 1.11.1 this setting default to false but warned if this setting is not explicitly set to true or false a warning in the configuration file. From 1.7 the upgrade and install explicitly writes this setting to the configuration file.
+In Versions 1.5 and above if this setting is not explicitly set to true or false a warning is shown in the logs at start up.
 
-From Version 1.12 this app.config setting is mandatory.
+In Versions 1.12.0 and above there is no default for this setting. This setting needs to be specified.
 
 See [Installation](installation.md) for details on how to set this at install time.
 
 
 #### ServiceControl/ForwardErrorMessages
 
-Use this setting to configure whether processed fault messages are forwarded to another queue or not. This queue is known as the `Error Forwarding Queue`.
+This setting is only applicable from Versions 1.12.0 and above.
+
+Use this setting to configure whether processed error messages are forwarded to another queue or not.
 
 Type: bool `true` or `false`
 
-This setting was introduced in Version 1.12 as a mandatory setting in the configuration file.
-This setting has no default. On installation and upgrade the value for the setting will be requested. if this setting is manually removed ServiceControl will log that it is missing and will fail on startup.
+Default: There is no default. This setting needs to be specified.
 
 This entry should be set to `false` if there is no external process reading messages from the `Error Forwarding Queue`.
  

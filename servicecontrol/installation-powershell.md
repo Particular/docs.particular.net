@@ -104,17 +104,7 @@ Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade>
 ```
 
 The upgrade will stop the service if it is running.
-
-
-Note: Version 1.12 introduced a new mandatory app setting which allows error forwarding to be configured. 
-When upgrading instances running on Version 1.11.1 and below the `Invoke-ServiceControlInstanceUpgrade` requires a value for this setting.
-
-```bat
-Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade> -ForwardErorrMessages [$true|$false]
-```
-
-The Error Forwarding Queue queue exists to allow external tools to receive error messages. If there is no process reading messages from the Error Forwarding Queue this setting should be `$false`.
-
+Additional parameters for `Invoke-ServiceControlInstanceUpgrade` may be required. The configuration file of the existing version is examined prior to deter,in e if all the required settings are present. If a configuration setting is missing  then the cmdlet will throw an error indicating the required additional parameter.
 
 ### Licensing
 
@@ -159,8 +149,7 @@ This sample produces the following Files
 </ServiceControlInstanceMetadata>
 ```
 
-NOTE: Version 1.11.1 and below did not support a configuration option for `ForwardErrorMessages` so the unattended files from those versions are incompatible with Version 1.12 and above. To correct this either regenerate the XML file using the 
-`New-ServiceControlUnattendedFile` or manually update the XML file to include the `ForwardErrorMessages` tag.
+NOTE: The settings contained in an unattended installation files are version specific. The file contents will be validated when used and if a required setting is missing an error will be logged. To correct this regenerate the XML file using the `New-ServiceControlUnattendedFile` cmdlet.
 
 
 ### Testing an unattended install file

@@ -11,13 +11,20 @@ ServiceControl consumes messages from the audit and error queues and stores thes
 
 ServiceControl can also forward these messages to two forwarding queues.
 
-* Error messages are automatically forwarded to the Error forwarding queue.
-* Audit messages are optionally forwarded to the Audit forwarding queue. This behavior can be toggled through the ServiceControl Management utility or by directly changing the  `ServiceControl/ForwardAuditMessages` setting. Refer to [Customizing ServiceControl Configuration](creating-config-file.md) for more details. 
+* Error messages are optionally forwarded to the Error forwarding queue.
+* Audit messages are optionally forwarded to the Audit forwarding queue. 
+
+This behavior can be toggled through the ServiceControl Management utility or by directly changing the  `ServiceControl/ForwardAuditMessages` or `ServiceControl/ForwardErrorMessages` settings. See also [Customizing ServiceControl Configuration](creating-config-file.md#transport).
+
 
 ### Error and Audit Forwarding Queues 
 
 The forwarding queues retain a copy of the original messages ingested by ServiceControl.
+
 The queues are not directly managed by ServiceControl and are meant as points of external integration.
+
+Note: If external integration is not required, it is highly recommend turning forwarding queues off.
+
 
 ### Changing the queues name manually and default naming
 
@@ -27,8 +34,8 @@ Changing the input queue names via the configuration file without considering th
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
     <appSettings>
-		 <add key="ServiceBus/ErrorQueue" value="CustomErrorQueue" />
-	     <!-- "ServiceBus/ErrorLogQueue" will resolve to `CustomErrorQueue.log as it's not set`  -->
+       <add key="ServiceBus/ErrorQueue" value="CustomErrorQueue" />
+       <!-- "ServiceBus/ErrorLogQueue" will resolve to `CustomErrorQueue.log as it's not set`  -->
     </appSettings>
 </configuration>
 ```
@@ -43,7 +50,8 @@ To avoid this confusion it is recommended the names of the output queues be expl
         <add key="ServiceBus/ErrorQueue" value="error" />
         <add key="ServiceBus/ErrorLogQueue" value="error.log" />
         <add key="ServiceBus/AuditLogQueue" value="audit.log" />   
-		<add key="ServiceControl/ForwardAuditMessages" value="False" />
+        <add key="ServiceControl/ForwardAuditMessages" value="False" />
+        <add key="ServiceControl/ForwardErrorMessages" value="False" />
     </appSettings>
 </configuration>
 ```
