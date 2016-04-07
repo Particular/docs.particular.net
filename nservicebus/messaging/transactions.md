@@ -35,7 +35,7 @@ The implementation details for each transport are discussed in the dedicated doc
 | :------------------| :-: |:-:| :-:| :-: |
 | [MSMQ](/nservicebus/msmq/transportconfig.md#transactions-and-delivery-guarantees) | + | + | + | + |
 | [SQL Server](/nservicebus/sqlserver/design.md#transactions-and-delivery-guarantees) | + | + | + | + |
-| RabbitMQ |  - | - | + | + |
+| [RabbitMQ](/nservicebus/rabbitmq/configuration-api.md#transactions-and-delivery-guarantees) |  - | - | + | + |
 | [Azure Storage Queues](/nservicebus/azure/azure-storage-queues-transport.md#transactions-and-delivery-guarantees)|  - | - | + | + |
 | [Azure Service Bus](/nservicebus/azure/azure-servicebus-transport.md#transactions-and-delivery-guarantees) |  - | + | + | + |
 
