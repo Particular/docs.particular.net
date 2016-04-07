@@ -9,7 +9,7 @@ reviewed: 2016-04-06
 
 In Versions 1.5.0 and above screens to manage archived messages have been introduced in response to changes in ServiceControl relating to Archived Message retention and disposal.
 
-ServiceControl version 1.12.0 and above has a configurable [ErrorRetentionPeriod](/servicecontrol/creating-config-file.md) that schedules the disposal of archived failed messages.
+ServiceControl version 1.13.0 and above has a configurable [ErrorRetentionPeriod](/servicecontrol/creating-config-file.md) that schedules the disposal of archived failed messages.
 
 Archived messages can be found by going to the failed messages screen.
 
