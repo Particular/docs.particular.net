@@ -1,19 +1,24 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 
 #region AzureMultiHost_SendPingCommand
 
-public class SendPing : IWantToRunWhenEndpointStartsAndStops
+public class SendPing : IWantToRunWhenBusStartsAndStops
 {
-    public async Task Start(IMessageSession session)
+    IBus bus;
+
+    public SendPing(IBus bus)
     {
-        VerificationLogger.Write("Sender", "Pinging Receiver");
-        await session.Send(new Ping());
+        this.bus = bus;
     }
 
-    public Task Stop(IMessageSession session)
+    public void Start()
     {
-        return Task.FromResult(0);
+        VerificationLogger.Write("Sender", "Pinging Receiver");
+        bus.Send(new Ping());
+    }
+
+    public void Stop()
+    {
     }
 }
 

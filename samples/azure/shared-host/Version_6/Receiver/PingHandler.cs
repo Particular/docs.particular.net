@@ -1,14 +1,20 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 
 #region AzureMultiHost_PingHandler
 
 public class PingHandler : IHandleMessages<Ping>
 {
-    public async Task Handle(Ping message, IMessageHandlerContext context)
+    IBus bus;
+
+    public PingHandler(IBus bus)
+    {
+        this.bus = bus;
+    }
+
+    public void Handle(Ping message)
     {
         VerificationLogger.Write("Receiver", "Got Ping and will reply with Pong");
-        await context.Reply(new Pong());
+        bus.Reply(new Pong());
     }
 }
 
