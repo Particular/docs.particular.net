@@ -44,7 +44,7 @@
       <HintPath>..\..\..\..\..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.CommonLogging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.CommonLogging.2.2.0-alpha0011\lib\net452\NServiceBus.CommonLogging.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.CommonLogging.2.2.0-beta0001\lib\net452\NServiceBus.CommonLogging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">

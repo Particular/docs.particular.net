@@ -157,7 +157,7 @@
       <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0052\lib\net452\NServiceBus.Callbacks.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.CommonLogging">
-      <HintPath>..\..\packages\NServiceBus.CommonLogging.2.2.0-alpha0011\lib\net452\NServiceBus.CommonLogging.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.CommonLogging.2.2.0-beta0001\lib\net452\NServiceBus.CommonLogging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
