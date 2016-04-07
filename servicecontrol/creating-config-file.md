@@ -1,10 +1,11 @@
 ---
 title: Configuration Settings
 summary: Categorized list of ServiceControl configuration settings.
-reviewed: 2016-03-24
+reviewed: 2016-04-07
 tags:
 - ServiceControl
 ---
+
 
 ## Configuration Settings
 
@@ -115,7 +116,7 @@ Default: `600` (10 minutes). The default for Versions below 1.4 is `60` (1 minut
 
 #### ServiceControl/ExpirationProcessBatchSize
 
-This setting was introduced in Version 1.4. The minimum allowed value for this settings is `10240`, there is no hard coded maximum as this is heavily dependent on system performance.
+This setting was introduced in Version 1.4. The minimum allowed value for this setting is `10240`, there is no hard coded maximum as this is heavily dependent on system performance.
 
 Type: int
 
@@ -147,7 +148,7 @@ The period to keep an audit message for before it is deleted.
 
 Type: timespan
 
-Default: There is no default. This settings needs to be specified. 
+Default: There is no default. This setting needs to be specified. 
 
 Valid range for this setting is minimum 1 hour and maximum 364 days.
 
@@ -162,7 +163,7 @@ For a message to be considered for deletion, it needs to have a status of either
 
 Type: timespan
 
-Default: There is no default. This settings needs to be specified. 
+Default: There is no default. This setting needs to be specified.
 
 Valid range for this setting is minimum 10 days and maximum 45 days.
 
@@ -263,7 +264,7 @@ Default: `false`.
 
 In Versions 1.5 and above if this setting is not explicitly set to true or false a warning is shown in the logs at start up.
 
-In Versions 1.12.0 and above there is no default for this setting. This settings needs to be specified.
+In Versions 1.12.0 and above there is no default for this setting. This setting needs to be specified.
 
 See [Installation](installation.md) for details on how to set this at install time.
 
@@ -276,7 +277,7 @@ Use this setting to configure whether processed error messages are forwarded to 
 
 Type: bool `true` or `false`
 
-Default: There is no default. This settings needs to be specified. 
+Default: There is no default. This setting needs to be specified.
 
 This entry should be set to `false` if there is no external process reading messages from the `Error Forwarding Queue`.
  
