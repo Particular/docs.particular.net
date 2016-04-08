@@ -63,6 +63,7 @@
     <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
     <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
     <Content Include="UpgradeGuides\3to4\MsmqTransportConfig.config.xml" />
+    <None Include="App.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -78,7 +79,6 @@
     <Compile Include="Container\Custom\MyCustomObjectBuilder.cs" />
     <Compile Include="Container\Custom\Usage.cs" />
     <Compile Include="Container\MyService.cs" />
-    <Compile Include="CustomChecks.cs" />
     <Compile Include="DataBus\CleanupStrategy\Define.cs" />
     <Compile Include="DataBus\CleanupStrategy\Usage.cs" />
     <Compile Include="DelayedDelivery\DeferForDateTime.cs" />

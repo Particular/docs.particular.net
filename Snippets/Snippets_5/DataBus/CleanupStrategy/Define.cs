@@ -8,7 +8,7 @@
         {
             #region DefineFileLocationForDatabusFiles
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseDataBus<FileShareDataBus>().BasePath(@"c:\databus_files\");
+            busConfiguration.UseDataBus<FileShareDataBus>().BasePath(@"\\machinename\databus_attachments\");
             #endregion
         }
     }
