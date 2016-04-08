@@ -26,10 +26,12 @@ class Program
     {
         Console.Title = "Samples.MultiTenant.Receiver";
 
-        Configuration hibernateConfig = CreateBasicNHibernateConfig();
+        Configuration sharedDatabaseConfiguration = CreateBasicNHibernateConfig();
+
+        Configuration tenantDatabasesConfiguration = CreateBasicNHibernateConfig();
         ModelMapper mapper = new ModelMapper();
         mapper.AddMapping<OrderMap>();
-        hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
+        tenantDatabasesConfiguration.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -37,11 +39,11 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region ReceiverConfiguration
-        
+
         endpointConfiguration.UsePersistence<NHibernatePersistence>()
-            .UseConfiguration(hibernateConfig)
-            .UseSubscriptionStorageConfiguration(CreateBasicNHibernateConfig())
-            .UseTimeoutStorageConfiguration(CreateBasicNHibernateConfig())
+            .UseConfiguration(tenantDatabasesConfiguration)
+            .UseSubscriptionStorageConfiguration(sharedDatabaseConfiguration)
+            .UseTimeoutStorageConfiguration(sharedDatabaseConfiguration)
             .DisableSchemaUpdate();
 
         endpointConfiguration.EnableOutbox();
@@ -54,7 +56,7 @@ class Program
 
         #region ReplaceOpenSqlConnection
 
-        endpointConfiguration.Pipeline.Register<MultiTenantOpenSqlConnectionBehavior.Registration>();
+        endpointConfiguration.Pipeline.Register<ExtractTenantConnectionStringBehavior.Registration>();
 
         #endregion
 
@@ -62,7 +64,7 @@ class Program
 
         endpointConfiguration.Pipeline.Register<PropagateOutgoingTenantIdBehavior.Registration>();
         endpointConfiguration.Pipeline.Register<PropagateIncomingTenantIdBehavior.Registration>();
-        
+
 
         #endregion
 
@@ -75,8 +77,8 @@ class Program
         IStartableEndpoint startableEndpoint = await Endpoint.Create(endpointConfiguration);
         IEndpointInstance endpoint = null;
 
-        CreateSchema(hibernateConfig, "A");
-        CreateSchema(hibernateConfig, "B");
+        CreateSchema(tenantDatabasesConfiguration, "A");
+        CreateSchema(tenantDatabasesConfiguration, "B");
 
         try
         {
