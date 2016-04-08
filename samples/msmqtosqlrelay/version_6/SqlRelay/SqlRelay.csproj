@@ -50,7 +50,7 @@
       <HintPath>..\..\..\..\packages\NServiceBus.6.0.0-beta0001\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NHibernate, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\NServiceBus.NHibernate.6.3.0-unstable0055\lib\net452\NServiceBus.NHibernate.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.NHibernate.6.3.0-beta0001\lib\net452\NServiceBus.NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Transports.SQLServer">
