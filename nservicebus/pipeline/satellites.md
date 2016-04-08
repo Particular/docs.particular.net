@@ -61,4 +61,4 @@ snippet: AdvancedSatelliteFeatureSetup
  
 snippet: AdvancedSatelliteBehavior
 
-In Version 6 and above, the message processing pipeline can handle more advanced scenarios. Some examples are outlined in [NServiceBus Pipeline Samples](/samples/pipeline/) for further details.
+In Versions 6 and above, the message processing pipeline can handle more advanced scenarios. Some examples are outlined in [NServiceBus Pipeline Samples](/samples/pipeline/) for further details.
