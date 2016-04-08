@@ -44,10 +44,10 @@
       <HintPath>..\..\..\..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\packages\NServiceBus.6.0.0-unstable0257\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.6.0.0-beta0001\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
-      <HintPath>..\..\..\..\packages\NServiceBus.NHibernate.7.0.0-unstable0075\lib\net452\NServiceBus.NHibernate.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.NHibernate.7.0.0-beta0001\lib\net452\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.SQLServer">
       <HintPath>..\..\..\..\packages\NServiceBus.SqlServer.3.1.0-alpha0100\lib\net452\NServiceBus.Transports.SQLServer.dll</HintPath>
