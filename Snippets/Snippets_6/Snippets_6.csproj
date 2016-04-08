@@ -292,6 +292,8 @@
     <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
+    <Compile Include="Features\AdvancedSatelliteFeature.cs" />
+    <Compile Include="Features\SatelliteFeature.cs" />
     <Compile Include="Host_7\UpgradeGuides\6to7\CustomizingHost.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="Lifecycle\EndpointStartAndStop.cs" />

@@ -6,22 +6,20 @@
     using NServiceBus.Pipeline;
     using NServiceBus.Transports;
 
+    #region SimpleSatelliteFeature
     public class MySatelliteFeature : Feature
     {
-
         public MySatelliteFeature()
         {
             EnableByDefault();
         }
-
-        #region SatelliteFeatureSetup
         protected override void Setup(FeatureConfigurationContext context)
         {
-            PipelineSettings messageProcessorPipeline = context.AddSatellitePipeline("CustomSatellite", TransportTransactionMode.TransactionScope, PushRuntimeSettings.Default, "targetQueue");
-            messageProcessorPipeline.Register("CustomSatellite", new MySatelliteBehavior(), "Description of what the satellite does");
+            PipelineSettings satelliteMessagePipeline = context.AddSatellitePipeline("CustomSatellite", TransportTransactionMode.TransactionScope, PushRuntimeSettings.Default, "targetQueue");
+            satelliteMessagePipeline.Register("Satellite Identifier", new MySatelliteBehavior(), "Description of what the satellite does");
         }
-        #endregion
     }
+    #endregion
 
     #region SatelliteBehavior
     class MySatelliteBehavior : PipelineTerminator<ISatelliteProcessingContext>

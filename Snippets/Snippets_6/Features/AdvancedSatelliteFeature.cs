@@ -17,10 +17,10 @@
         #region AdvancedSatelliteFeatureSetup
         protected override void Setup(FeatureConfigurationContext context)
         {
-            PipelineSettings messageProcessorPipeline = context.AddSatellitePipeline("AdvancedSatellite", TransportTransactionMode.TransactionScope, PushRuntimeSettings.Default, "targetQueue");
-            
+            PipelineSettings satelliteMessagePipeline = context.AddSatellitePipeline("CustomSatellite", TransportTransactionMode.TransactionScope, PushRuntimeSettings.Default, "targetQueue");
+
             // register the critical error
-            messageProcessorPipeline.Register("AdvancedSatellite", b => new MyAdvancedSatelliteBehavior(b.Build<CriticalError>()),
+            satelliteMessagePipeline.Register("Satellite Identifier", b => new MyAdvancedSatelliteBehavior(b.Build<CriticalError>()),
                     "Description of what the advanced satellite does");
 
         }
