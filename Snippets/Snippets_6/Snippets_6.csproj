@@ -158,9 +158,8 @@
       <HintPath>..\..\packages\NServiceBus.CommonLogging.2.2.0-beta0001\lib\net452\NServiceBus.CommonLogging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.6.0.0-beta0001\lib\net452\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable0257\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Gateway, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Gateway.2.0.0-alpha0086\lib\net452\NServiceBus.Gateway.dll</HintPath>
@@ -178,7 +177,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
-      <HintPath>..\..\packages\NServiceBus.NHibernate.7.0.0-unstable0073\lib\net452\NServiceBus.NHibernate.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.NHibernate.7.0.0-unstable0075\lib\net452\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NLog">
       <HintPath>..\..\packages\NServiceBus.NLog.1.2.0-beta0001\lib\net452\NServiceBus.NLog.dll</HintPath>
