@@ -181,7 +181,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
-      <HintPath>..\..\packages\NServiceBus.NHibernate.7.0.0-unstable0073\lib\net452\NServiceBus.NHibernate.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.NHibernate.7.0.0-beta0001\lib\net452\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NLog">
       <HintPath>..\..\packages\NServiceBus.NLog.1.2.0-beta0001\lib\net452\NServiceBus.NLog.dll</HintPath>
