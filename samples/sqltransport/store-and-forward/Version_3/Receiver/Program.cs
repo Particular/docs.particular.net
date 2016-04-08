@@ -33,10 +33,10 @@ class Program
                 return connection;
             });
 
-        endpointConfiguration.UsePersistence<NHibernatePersistence>();
 
         #endregion
 
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);

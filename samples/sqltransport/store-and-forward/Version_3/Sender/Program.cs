@@ -20,13 +20,13 @@ class Program
         Random random = new Random();
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.StoreAndForwardSender");
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
         #region SenderConfiguration
 
         endpointConfiguration.UseTransport<SqlServerTransport>()
             .EnableLagacyMultiInstanceMode(ConnectionProvider.GetConnecton);
 
-        endpointConfiguration.UsePersistence<NHibernatePersistence>();
         endpointConfiguration.Pipeline.Register("Forward", new ForwardBehavior(), "Forwards messages to destinations.");
         endpointConfiguration.Pipeline.Register("Store",
             b => new SendThroughLocalQueueRoutingToDispatchConnector(b.Build<ReadOnlySettings>().LocalAddress()),
