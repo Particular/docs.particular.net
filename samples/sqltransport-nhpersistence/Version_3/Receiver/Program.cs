@@ -59,8 +59,7 @@ class Program
             });
 
         endpointConfiguration.UsePersistence<NHibernatePersistence>()
-            .UseConfiguration(hibernateConfig)
-            .RegisterManagedSessionInTheContainer();
+            .UseConfiguration(hibernateConfig);
 
         #endregion
 
