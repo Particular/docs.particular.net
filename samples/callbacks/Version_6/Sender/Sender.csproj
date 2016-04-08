@@ -43,7 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Callbacks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0052\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.Callbacks.1.0.0-alpha0058\lib\net452\NServiceBus.Callbacks.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
