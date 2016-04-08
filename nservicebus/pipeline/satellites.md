@@ -28,7 +28,7 @@ In the example below, the satellite input queue is called "targetqueue."
        
 snippet: SatelliteFeatureSetup
 
-The satellite behavior class should inherit from `PipelineTerminator<ISatelliteProcessingContext>`. This class handles the steps of what should occur when a message arrives in the satellite queue. 
+The satellite behavior class should inherit from `PipelineTerminator<ISatelliteProcessingContext>`. The `ISatelliteProcessingContext` provides the Terminate method where post-processing steps are run when a message arrives in the satellite queue. 
 
 snippet: SatelliteBehavior
 
