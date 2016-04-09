@@ -138,20 +138,20 @@
     <Reference Include="NLog">
       <HintPath>..\..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-unstable0513\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
+    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus">
+      <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-unstable0514\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.7.0.0-unstable0102\lib\net452\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.7.0.0-unstable0103\lib\net452\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.AzureBlobStorageDataBus, Version=0.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.AzureBlobStorageDataBus.0.2.0-unstable0016\lib\net452\NServiceBus.AzureBlobStorageDataBus.dll</HintPath>
+    <Reference Include="NServiceBus.AzureBlobStorageDataBus">
+      <HintPath>..\..\packages\NServiceBus.AzureBlobStorageDataBus.0.2.0-unstable0020\lib\net452\NServiceBus.AzureBlobStorageDataBus.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.AzureStoragePersistence">
-      <HintPath>..\..\packages\NServiceBus.AzureStoragePersistence.0.2.0-unstable0115\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.AzureStoragePersistence.0.2.0-unstable0120\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Callbacks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-alpha0058\lib\net452\NServiceBus.Callbacks.dll</HintPath>
@@ -203,11 +203,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.StructureMap, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.StructureMap.6.0.0-unstable0016\lib\net452\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.StructureMap.6.0.0-unstable0032\lib\net452\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Unity, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.Unity.6.3.0-unstable0015\lib\net452\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Unity.6.3.0-unstable0029\lib\net452\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
@@ -235,7 +235,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ServiceControl.Plugin.Nsb6.CustomChecks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceControl.Plugin.Nsb6.CustomChecks.1.0.0-beta0002\lib\net452\ServiceControl.Plugin.Nsb6.CustomChecks.dll</HintPath>
+      <HintPath>..\..\packages\ServiceControl.Plugin.Nsb6.CustomChecks.1.0.0-beta0003\lib\net452\ServiceControl.Plugin.Nsb6.CustomChecks.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Spring.Core, Version=2.0.1.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
