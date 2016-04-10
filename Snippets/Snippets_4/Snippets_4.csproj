@@ -93,7 +93,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ServiceBus">
-      <HintPath>..\..\packages\WindowsAzure.ServiceBus.2.6.7\lib\net40-full\Microsoft.ServiceBus.dll</HintPath>
+      <HintPath>..\..\packages\WindowsAzure.ServiceBus.2.7.6\lib\net40-full\Microsoft.ServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Configuration">
       <HintPath>..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.2.0.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
@@ -183,7 +183,7 @@
       <HintPath>..\..\packages\RavenDB.Client.2.5.25001\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.Contracts">
-      <HintPath>..\..\packages\ServiceControl.Contracts.1.1.1\lib\net40\ServiceControl.Contracts.dll</HintPath>
+      <HintPath>..\..\packages\ServiceControl.Contracts.1.2.0\lib\net40\ServiceControl.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.Plugin.Nsb4.CustomChecks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceControl.Plugin.Nsb4.CustomChecks.1.0.0\lib\net40\ServiceControl.Plugin.Nsb4.CustomChecks.dll</HintPath>
