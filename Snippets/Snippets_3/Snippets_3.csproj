@@ -132,7 +132,7 @@
       <HintPath>..\..\packages\NServiceBus.Testing.3.3.18\lib\net40\NServiceBus.Testing.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.Contracts">
-      <HintPath>..\..\packages\ServiceControl.Contracts.1.2.0\lib\net40\ServiceControl.Contracts.dll</HintPath>
+      <HintPath>..\..\packages\ServiceControl.Contracts.1.2.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.Plugin.Nsb3.CustomChecks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceControl.Plugin.Nsb3.CustomChecks.1.0.0\lib\net40\ServiceControl.Plugin.Nsb3.CustomChecks.dll</HintPath>
