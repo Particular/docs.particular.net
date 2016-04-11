@@ -190,8 +190,8 @@
           Articles:
             - "nservicebus/ravendb/operations-scripting"
             - "nservicebus/ravendb/installation"
-		- Title: "Azure Storage Queues"
-          Url: "nservicebus/azure-storage-queues"
+        - Title: "Azure Storage Persistence"
+          Url: "nservicebus/azure-storage-persistence"         
     -
       Title: "Containers"
       Url: "nservicebus/containers"
