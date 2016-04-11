@@ -127,7 +127,11 @@
         - Title: "Azure ServiceBus"
           Url: "nservicebus/azure-servicebus"
           Articles:
-            - "nservicebus/azure-servicebus/faq"		  
+            - "nservicebus/azure-servicebus/faq"
+            - "nservicebus/azure-servicebus/transaction-support"
+            - "nservicebus/azure-servicebus/configuration"
+            - "nservicebus/azure-servicebus/native-integration"
+            - "nservicebus/azure-servicebus/performance-tuning"
         - Title: "Azure Storage Queues"
           Url: "nservicebus/azure-storage-queues"
           Articles:
