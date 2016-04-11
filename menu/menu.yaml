@@ -126,8 +126,12 @@
       Articles:
         - Title: "Azure ServiceBus"
           Url: "nservicebus/azure-servicebus"
+          Articles:
+            - "nservicebus/azure-servicebus/faq"		  
         - Title: "Azure Storage Queues"
-          Url: "nservicebus/azure-storage-queues"          
+          Url: "nservicebus/azure-storage-queues"
+          Articles:
+            - "nservicebus/azure-storage-queues/faq"
         - Title: "Sql Server"
           Url: "nservicebus/sqlserver"
           Articles:
@@ -229,6 +233,10 @@
           Url: "nservicebus/hosting/nservicebus-host"
           Articles:
             - "nservicebus/hosting/nservicebus-host/profiles"
+        - Title: "Azure Cloud Services Host"
+          Url: "nservicebus/hosting/cloudservices-host"
+          Articles:
+            - "nservicebus/hosting/cloudservices-host/faq"
     -
       Title: "Testing"
       Url: "nservicebus/testing"
