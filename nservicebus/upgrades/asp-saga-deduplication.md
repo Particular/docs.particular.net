@@ -10,7 +10,7 @@ related:
 
 ## Summary
 
-This document explains how to upgrade and patch a system for [Azure Storage Persistence bug #26](hhttps://github.com/Particular/NServiceBus.AzureStoragePersistence/issues/26) using the NServiceBus Azure hotfix release xxxxxxx.
+This document explains how to upgrade and patch a system for [Azure Storage Persistence bug #26](hhttps://github.com/Particular/NServiceBus.AzureStoragePersistence/issues/26) using the NServiceBus Azure hotfix release 6.2.4.
 
 ### How to know if a system may be affected
 
@@ -29,11 +29,11 @@ To deploy this fix throughout a system, all endpoints will need to be upgraded a
 All endpoints using NServiceBus.Azure will need to be upgraded to version 6.2.4 or higher.
 
 ### Patching data
-Saga data stored in Azure will need to be patched using the `NServiceBus.AzureStoragePersistence.SagaDeduplicator` utility which can be downloaded from xxxxxxxxx.
+Saga data stored in Azure will need to be patched using the `NServiceBus.AzureStoragePersistence.SagaDeduplicator` utility which can be downloaded from [https://github.com/Particular/IssueDetection/releases/tag/nsb.asp.26](https://github.com/Particular/IssueDetection/releases/tag/nsb.asp.26).
 
 ## Patch steps
 
-1. Download the de-duplication tool from xxxxxxxxx and put it on a computer that has internet access as well as the .NET Framework 4.5.2 installed.
+1. Download the de-duplication tool from [https://github.com/Particular/IssueDetection/releases/tag/nsb.asp.26](https://github.com/Particular/IssueDetection/releases/tag/nsb.asp.26) and put it on a computer that has internet access as well as the .NET Framework 4.5.2 installed.
 2. Add an Azure Storage connection string to the `NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe.config` file. Example:
 ```		
 <configuration>  
