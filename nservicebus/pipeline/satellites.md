@@ -1,10 +1,10 @@
 ---
 title: Migrating Satellites
-summary: Extension point for handling messages 
+summary: Extension point for handling messages.
+reviewed: 2016-04-11
 related:
  - nservicebus/pipeline/customizing-v6
  - nservicebus/pipeline/features
-redirects:
 ---
 
 
