@@ -16,6 +16,8 @@ or supplying an assembly to scan. Configured `Conventions` will be used to extra
 
 snippet: publisher_names_mapping_by_assembly
 
+_publisherName_ is the name of the endpoint that will deliver mapped message.
+  
 `ITopology` interface exposes a property (`NeedsMappingConfigurationBetweenPublishersAndEventTypes`) to instruct transport environment if mapping must be configured. Custom topologies have to properly configure this property.   
 Configuration is disabled for topologies that don't support mapping. If `RegiterPublisherForType` or `RegisterPublisherForAssembly` methods are called during configuration with a toplogy that doesn't support mapping, transport raises an `InvalidOperationException`.   
 
