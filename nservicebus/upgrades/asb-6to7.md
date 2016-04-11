@@ -6,7 +6,7 @@ tags:
  - upgrade
  - migration
 related:
-- nservicebus/azure/azure-servicebus-transport
+- nservicebus/azure-servicebus
 - nservicebus/upgrades/5to6
 ---
 

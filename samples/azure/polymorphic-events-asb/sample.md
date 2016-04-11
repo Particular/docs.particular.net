@@ -3,7 +3,7 @@ title: Polymorphic events with Azure Service Bus Transport
 summary: Handling polymorphic events with Azure Service Bus Transport.
 reviewed: 2016-03-21
 related:
-- nservicebus/azure/azure-servicebus-transport
+- nservicebus/azure-servicebus
 - nservicebus/messaging/publish-subscribe
 - nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
 - samples/azure/azure-service-bus
@@ -18,7 +18,7 @@ An environment variable named `SamplesAzureServiceBusConnection` that contains t
 
 ## Azure Service Bus Transport
 
-This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure/azure-servicebus-transport.md).
+This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure-servicebus/).
 
 
 ## Code walk-through
