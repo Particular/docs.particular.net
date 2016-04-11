@@ -53,7 +53,7 @@ The cause of this exception is that the MSMQ has run out of space for holding on
 
 WARNING: On production servers uninstalling MSMQ will delete all queues and messages, which may contain business data. Do not attempt uninstalling MSMQ unless message loss is acceptable.
 
-See [Insufficient Resources? Run away, run away!](https://blogs.msdn.microsoft.com/johnbreakwell/2006/09/18/insufficient-resources-run-away-run-away/) for more information.
+For more information on this error, see [John Breakwell's article in MSDN](https://blogs.msdn.microsoft.com/johnbreakwell/2006/09/18/insufficient-resources-run-away-run-away/).
 
 
 ## Virtual Private Networks (VPN)
