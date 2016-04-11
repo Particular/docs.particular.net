@@ -46,13 +46,13 @@ Available subscription persistences include
  * [RavenDB](/nservicebus/ravendb)
  * [NHibernate](/nservicebus/ravendb)
  * [InMemory](/nservicebus/persistence/in-memory.md)
- * [Azure Storage](/nservicebus/azure/azure-storage-persistence.md)
+ * [Azure Storage](/nservicebus/azure-storage-persistence)
 
 Transports that require persistences
 
  * [MSMQ](/nservicebus/msmq)
  * [SQLServer](/nservicebus/sqlserver)
- * [Azure Storage Queues](/nservicebus/azure/azure-storage-queues-transport.md)
+ * [Azure Storage Queues](/nservicebus/azure-storage-queues)
 
 
 #### Subscribe

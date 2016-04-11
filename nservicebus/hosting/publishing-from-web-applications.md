@@ -44,7 +44,7 @@ An endpoint must register its interest in a message by subscribing to a specific
 
 Some transports ([Azure Service Bus](/nservicebus/azure-servicebus/), [RabbitMQ](/nservicebus/rabbitmq/configuration-api.md)) support publish/subscribe natively. This means that when an endpoint wants to subcribe to an event, it contacts the broker directly, and the broker keeps track of subscribers for each event.
 
-For transports that lack native pub/sub capabilities ([MSMQ](/nservicebus/msmq/), [SQL](/nservicebus/sqlserver/), [Azure Storage Queues](/nservicebus/azure/azure-storage-queues-transport.md)) NServiceBus provides similar semantics by using storage-driven publishing with message-driven subscriptions. This means that each endpoint is responsible for maintaining its own subscription storage, usually in a database. When an endpoint wants to subscribe to an event, it sends a subscription request message to the owner endpoint, which will update its own subscription storage.
+For transports that lack native pub/sub capabilities ([MSMQ](/nservicebus/msmq/), [SQL](/nservicebus/sqlserver/), [Azure Storage Queues](/nservicebus/azure-storage-queues/)) NServiceBus provides similar semantics by using storage-driven publishing with message-driven subscriptions. This means that each endpoint is responsible for maintaining its own subscription storage, usually in a database. When an endpoint wants to subscribe to an event, it sends a subscription request message to the owner endpoint, which will update its own subscription storage.
 
 
 ### Publishing

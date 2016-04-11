@@ -186,7 +186,6 @@
       Articles:
         - "nservicebus/persistence/order"
         - "nservicebus/persistence/authoring-custom"
-        - "nservicebus/azure/azure-storage-persistence"
         - "nservicebus/persistence/in-memory"
         - "nservicebus/msmq/subscription-persistence"
         - Title: "NHibernate"

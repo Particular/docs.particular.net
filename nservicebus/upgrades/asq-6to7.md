@@ -6,7 +6,7 @@ tags:
  - upgrade
  - migration
 related:
-- nservicebus/azure/azure-storage-queues-transport
+- nservicebus/azure-storage-queues
 - nservicebus/upgrades/5to6
 ---
 
