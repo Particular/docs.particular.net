@@ -61,7 +61,7 @@ The latter is discussed in depth in the [Outbox - SQL Transport and NHibernate](
 
 ### What extra tables does NHibernate Outbox persistence create
 
-To keep track of duplicate messages, the NHibernate implementation of Outbox requires the creation of two additional tables in the database: `OutboxRecord` and `OutboxOperation`.
+To keep track of duplicate messages, the NHibernate implementation of Outbox requires the creation of `OutboxRecord` table.
 
 
 ### How long are the deduplication records kept
