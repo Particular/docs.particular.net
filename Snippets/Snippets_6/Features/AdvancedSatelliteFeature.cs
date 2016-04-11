@@ -18,11 +18,9 @@
         protected override void Setup(FeatureConfigurationContext context)
         {
             PipelineSettings satelliteMessagePipeline = context.AddSatellitePipeline("CustomSatellite", TransportTransactionMode.TransactionScope, PushRuntimeSettings.Default, "targetQueue");
-
             // register the critical error
             satelliteMessagePipeline.Register("Satellite Identifier", b => new MyAdvancedSatelliteBehavior(b.Build<CriticalError>()),
                     "Description of what the advanced satellite does");
-
         }
         #endregion
     }
@@ -30,16 +28,17 @@
     #region AdvancedSatelliteBehavior
     class MyAdvancedSatelliteBehavior : PipelineTerminator<ISatelliteProcessingContext>
     {
-        CriticalError CriticalError { get; set; }
-        public MyAdvancedSatelliteBehavior(CriticalError CriticalError)
+        CriticalError criticalError;
+
+        public MyAdvancedSatelliteBehavior(CriticalError criticalError)
         {
-            this.CriticalError = CriticalError;
+            this.criticalError = criticalError;
         }
 
         protected override Task Terminate(ISatelliteProcessingContext context)
         {
             // To raise a critical error
-            CriticalError.Raise("Something bad happened - trigger critical error", new Exception("CriticalError occured!!"));
+            criticalError.Raise("Something bad happened - trigger critical error", new Exception("CriticalError occured!!"));
             return Task.FromResult(true);
         }
     }

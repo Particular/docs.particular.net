@@ -15,12 +15,10 @@
 
         public void Start()
         {
-            // Any startup actions
         }
 
         public void Stop()
         {
-            // Any cleanup actions
         }
 
         #region SimpleSatelliteSetup
