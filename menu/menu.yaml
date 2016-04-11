@@ -263,20 +263,6 @@
         - Title: "Samples"
           Url: "samples/logging"
     -
-      Title: "Azure"
-      Url: "nservicebus/azure"
-      Articles:
-        - "nservicebus/azure/azure-servicebus-transport"
-        - "nservicebus/azure/azure-storage-persistence"
-        - "nservicebus/azure/azure-storage-queues-transport"
-        - "nservicebus/azure/azure-transport"
-        - "nservicebus/azure/hosting"
-        - "nservicebus/azure/hosting-in-azure-cloud-services"
-        - "nservicebus/azure/multiple-azure-storage-accounts-for-scaleout"
-        - "nservicebus/azure/shared-hosting-in-azure-cloud-services"
-        - "nservicebus/azure/transactions"
-        - "nservicebus/azure/faq"
-    -
       Title: "Operations"
       Url: "nservicebus/operations"
       Articles:
