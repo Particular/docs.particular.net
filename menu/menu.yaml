@@ -124,11 +124,10 @@
       Title: "Transports"
       Url: "nservicebus/transports"
       Articles:
-        - Title: "Azure"
-          Url: "nservicebus/azure"
-          Articles:
-            - "nservicebus/azure/azure-servicebus-transport"
-            - "nservicebus/azure/azure-transport"
+        - Title: "Azure ServiceBus"
+          Url: "nservicebus/azure-servicebus"
+        - Title: "Azure Storage Queues"
+          Url: "nservicebus/azure-storage-queues"          
         - Title: "Sql Server"
           Url: "nservicebus/sqlserver"
           Articles:
@@ -191,6 +190,8 @@
           Articles:
             - "nservicebus/ravendb/operations-scripting"
             - "nservicebus/ravendb/installation"
+		- Title: "Azure Storage Queues"
+          Url: "nservicebus/azure-storage-queues"
     -
       Title: "Containers"
       Url: "nservicebus/containers"
