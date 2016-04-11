@@ -136,6 +136,8 @@
           Url: "nservicebus/azure-storage-queues"
           Articles:
             - "nservicebus/azure-storage-queues/faq"
+            - "nservicebus/azure-storage-queues/transaction-support"
+            - "nservicebus/azure-storage-queues/configuration"
         - Title: "Sql Server"
           Url: "nservicebus/sqlserver"
           Articles:

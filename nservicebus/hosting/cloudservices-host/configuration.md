@@ -8,6 +8,11 @@ tags:
 
 ## Enabling the Transport
 
-When using one of the NServiceBus provided hosting processes, the `UseTransport<T>` should be called on the endpoint configuration.
+When using one of the NServiceBus provided hosting processes, the `UseTransport<T>` should be called on the endpoint configuration. For example using Azure Service Bus transport
 
 snippet:AzureServiceBusTransportWithAzureHost
+
+
+Example using azure storage queues transport:
+
+snippet:AzureStorageQueueTransportWithAzureHost
