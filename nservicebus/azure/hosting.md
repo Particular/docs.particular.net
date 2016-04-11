@@ -32,7 +32,7 @@ The main difference, as outlined above, is that you should not rely on any techn
 For more information about enabling the Azure storage queues or Azure Service Bus transports, refer to the following documentation:
 
 * [Azure storage queues](azure-storage-queues-transport.md)
-* [Azure Service Bus](azure-servicebus-transport.md)
+* [Azure Service Bus](azure-servicebus)
 
 For persistence you can rely on any option, including RavenDB, SQL Server installed on a Virtual Machine, SQL Azure or Azure storage services.
 
