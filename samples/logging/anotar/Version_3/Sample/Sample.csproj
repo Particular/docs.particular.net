@@ -37,9 +37,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Anotar.NServiceBus, Version=0.0.0.0, Culture=neutral, PublicKeyToken=9d5b24f0733c26f7, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\Anotar.NServiceBus.Fody.3.0.0\lib\Anotar.NServiceBus.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Anotar.NServiceBus">
+      <HintPath>..\..\..\..\..\packages\Anotar.NServiceBus.Fody.3.0.1\Lib\Anotar.NServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.14\lib\net45\NServiceBus.Core.dll</HintPath>
