@@ -1,6 +1,7 @@
 ---
 title: Complex saga finding logic
 summary: Use IFindSaga to write custom code that resolves sagas.
+reviewed: 2016-04-11
 tags:
 - Saga
 related:
@@ -22,7 +23,7 @@ snippet:nhibernate-saga-finder
 
 snippet:ravendb-saga-finder
 
-If a saga can't be found return `null`. 
+If a saga can't be found return `null`.
 
 include: non-null-task
 

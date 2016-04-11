@@ -55,12 +55,6 @@
       <HintPath>..\..\packages\RabbitMQ.Client.3.6.1\lib\net45\RabbitMQ.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Raven.Abstractions">
-      <HintPath>..\..\packages\RavenDB.Client.3.0.30115\lib\net45\Raven.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Client.Lightweight">
-      <HintPath>..\..\packages\RavenDB.Client.3.0.30115\lib\net45\Raven.Client.Lightweight.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -96,8 +90,6 @@
     <Compile Include="RabbitMQ\QueueCreationTests.cs" />
     <Compile Include="RabbitMQ\QueueDeletion.cs" />
     <Compile Include="RabbitMQ\QueueCreation.cs" />
-    <Compile Include="RavenDB\UserCreation.cs" />
-    <Compile Include="RavenDB\UserCreationTests.cs" />
     <Compile Include="SqlServer\ErrorQueue.cs" />
     <Compile Include="SqlServer\ErrorQueueTests.cs" />
     <Compile Include="SqlServer\NativeSend.cs" />

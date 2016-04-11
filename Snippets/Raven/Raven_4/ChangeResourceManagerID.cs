@@ -1,5 +1,5 @@
 ﻿// ReSharper disable EmptyConstructor
-namespace Snippets6.RavenDB
+namespace Raven_4
 {
     class ChangeResourceManagerID
     {

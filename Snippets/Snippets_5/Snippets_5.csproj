@@ -325,7 +325,6 @@
     <Content Include="Errors\SecondLevel\SecondLevelReties.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="RavenDB\SpecificDocumentStoreViaConnectionString.config.xml" />
     <Content Include="UpgradeGuides\5to6\null.xml" />
     <Content Include="XmlDocumentPayload.xml" />
     <Content Include="XmlElementPayload.xml" />
@@ -360,9 +359,6 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Persistence\NHibernate\nhibernate.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="RavenDB\SharedDocumentStoreViaConnectionString.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
@@ -563,8 +559,6 @@
     <Compile Include="PubSub\WithConvention\MessageToPublish.cs" />
     <Compile Include="PubSub\WithConvention\Usage.cs" />
     <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
-    <Compile Include="RavenDB\ChangeResourceManagerID.cs" />
-    <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="RegisterCustomSerializer.cs" />
     <Compile Include="Routing\AutomaticSubscriptions\AutoSubscribeSettings.cs" />
     <Compile Include="Routing\BasicOperations.cs" />
@@ -620,7 +614,6 @@
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Outbox\Usage.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
-    <Compile Include="RavenDB\Configure.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
@@ -650,8 +643,6 @@
     <Compile Include="UnitTesting\Unobtrusive.cs" />
     <Compile Include="UpgradeGuides\4to5\Scheduler.cs" />
     <Compile Include="UpgradeGuides\4to5\Upgrade.cs" />
-    <Compile Include="RavenDB\UpgradeGuides\3to4\HandlerWithRavenSession.cs" />
-    <Compile Include="RavenDB\UpgradeGuides\3to4\SharedSessionEndpointConfig.cs" />
     <Compile Include="UpgradeGuides\5to6\HandlerOrdering.cs" />
     <Compile Include="Transports\SqlServer_2\UpgradeGuides\MultiInstance.cs" />
     <Compile Include="UpgradeGuides\5to6\StartupInterface.cs" />

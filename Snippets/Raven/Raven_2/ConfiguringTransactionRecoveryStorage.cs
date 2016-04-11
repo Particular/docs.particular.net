@@ -1,4 +1,4 @@
-﻿namespace Snippets5.RavenDB
+﻿namespace Raven_2
 {
     using NServiceBus;
     using NServiceBus.Persistence;

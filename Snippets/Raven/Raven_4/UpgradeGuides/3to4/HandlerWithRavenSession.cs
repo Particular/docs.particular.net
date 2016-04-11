@@ -1,9 +1,8 @@
-﻿namespace Snippets6.RavenDB.UpgradeGuides._3to4
+﻿namespace Raven_4.UpgradeGuides._3to4
 {
     using System.Threading.Tasks;
-    using global::Raven.Client;
     using NServiceBus;
-    using Snippets6.Handlers;
+    using Raven.Client;
 
     #region 3to4-acccessingravenfromhandler
     public class HandlerWithRavenSession : IHandleMessages<MyMessage>
@@ -16,4 +15,14 @@
         }
     }
     #endregion
+    public class SomeLibrary
+    {
+        public static Task SomeAsyncMethod(MyMessage message, IAsyncDocumentSession ravenSession)
+        {
+            return Task.FromResult(0);
+        }
+    }
+    public class MyMessage
+    {
+    }
 }

@@ -1,9 +1,9 @@
-﻿namespace Snippets5.RavenDB.UpgradeGuides._3to4
+﻿namespace Raven_3.UpgradeGuides._3to4
 {
     using System;
-    using global::Raven.Client;
     using NServiceBus;
     using NServiceBus.Persistence;
+    using Raven.Client;
 
     class SharedSessionEndpointConfig
     {

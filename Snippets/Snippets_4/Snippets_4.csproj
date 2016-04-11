@@ -460,7 +460,6 @@
     <Compile Include="Distributor\Usage.cs" />
     <Compile Include="Gateway\Usage.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
-    <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
@@ -475,7 +474,6 @@
     <Compile Include="Serialization\XmlSerializerUsage.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DataBus\FileShare\DataBus.cs" />
-    <Compile Include="RavenDB\CustomRavenConfig.cs" />
     <Compile Include="Encryption\Usage.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Installers.cs" />

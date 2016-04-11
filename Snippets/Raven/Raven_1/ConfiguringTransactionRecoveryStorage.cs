@@ -1,4 +1,4 @@
-﻿namespace Snippets4.RavenDB
+﻿namespace Raven_1
 {
     using NServiceBus;
     using Raven.Client.Document;

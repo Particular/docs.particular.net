@@ -6,7 +6,7 @@
     using System.Data.SqlClient;
     using System.Text;
     using System.Transactions;
-    
+
     public static class NativeSend
     {
 
@@ -16,7 +16,7 @@
 
             SendMessage(
                 connectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
-                queue: @"Samples.SqlServer.NativeIntegration",
+                queue: "Samples.SqlServer.NativeIntegration",
                 messageBody: "{\"Property\":\"PropertyValue\"}",
                 headers: new Dictionary<string, string>
                 {
@@ -33,14 +33,14 @@
         {
             string insertSql = string.Format(
               @"INSERT INTO [{0}] (
-                    [Id], 
-                    [Recoverable], 
-                    [Headers], 
+                    [Id],
+                    [Recoverable],
+                    [Headers],
                     [Body])
                 VALUES (
-                    @Id, 
-                    @Recoverable, 
-                    @Headers, 
+                    @Id,
+                    @Recoverable,
+                    @Headers,
                     @Body)", queue);
             using (TransactionScope scope = new TransactionScope())
             {

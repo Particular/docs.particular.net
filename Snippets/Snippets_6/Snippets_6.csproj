@@ -416,8 +416,6 @@
     <Compile Include="Profiles\ConfigureLogging.cs" />
     <Compile Include="Profiles\CustomProfiles.cs" />
     <Compile Include="Profiles\DependentProfile.cs" />
-    <Compile Include="RavenDB\ChangeResourceManagerID.cs" />
-    <Compile Include="RavenDB\Configure.cs" />
     <Compile Include="Routing\RoutingAPIs.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Sagas\FindSagas\NHibernateSagaFinder.cs" />
@@ -559,8 +557,6 @@
     <Compile Include="Transports\SqlServer_3\ConfigurationSettings.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="TransportTransactions.cs" />
-    <Compile Include="RavenDB\UpgradeGuides\3to4\HandlerWithRavenSession.cs" />
-    <Compile Include="RavenDB\UpgradeGuides\3to4\SharedSessionEndpointConfig.cs" />
     <Compile Include="Transports\SqlServer_3\UpgradeGuides\MultiInstance.cs" />
     <Compile Include="UpgradeGuides\5to6\StartupInterface.cs" />
     <Compile Include="UpgradeGuides\5to6\MsmqSubscriptionAuthorization.cs" />
@@ -593,7 +589,6 @@
     </Content>
     <Content Include="Headers\Writers\HeaderWriterError_Error.txt" />
     <Content Include="Headers\Writers\HeaderWriterError_Sending.txt" />
-    <Content Include="RavenDB\SpecificDocumentStoreViaConnectionString.config.xml" />
     <Content Include="Routing\EndpointMapping.config.xml" />
     <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Errors\FirstLevel\flr.config.xml" />
@@ -643,9 +638,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Persistence\NHibernate\nhibernate.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="RavenDB\SharedDocumentStoreViaConnectionString.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Routing\RoutingFile.xml" />

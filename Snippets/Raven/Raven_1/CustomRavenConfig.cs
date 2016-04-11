@@ -1,8 +1,7 @@
-﻿using NServiceBus;
-using NServiceBus.RavenDB;
-
-namespace Snippets4.RavenDB
+﻿namespace Raven_1
 {
+    using NServiceBus;
+    using NServiceBus.RavenDB;
 
     class CustomRavenConfig
     {

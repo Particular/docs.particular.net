@@ -1,22 +1,34 @@
-﻿namespace Snippets6.RavenDB
+﻿namespace Raven_3
 {
-    using System.Threading.Tasks;
     using NServiceBus;
+    using NServiceBus.Persistence;
     using NServiceBus.RavenDB;
+    using NServiceBus.RavenDB.Persistence;
     using Raven.Client;
     using Raven.Client.Document;
 
     class RavenDBConfigure
     {
-        void SharedSessionForSagasAndOutbox(EndpointConfiguration endpointConfiguration)
+        void StaleSagas(BusConfiguration busConfiguration)
+        {
+            #region ravendb-persistence-stale-sagas
+
+            busConfiguration.UsePersistence<RavenDBPersistence>()
+                .AllowStaleSagaReads();
+
+            #endregion
+        }
+
+        void SharedSessionForSagasAndOutbox(BusConfiguration busConfiguration)
         {
             #region ravendb-persistence-shared-session-for-sagas
 
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
-            endpointConfiguration.UsePersistence<RavenDBPersistence>().UseSharedAsyncSession(() =>
+
+            busConfiguration.UsePersistence<RavenDBPersistence>().UseSharedSession(() =>
             {
-                IAsyncDocumentSession session = myDocumentStore.OpenAsyncSession();
+                IDocumentSession session = myDocumentStore.OpenSession();
                 // customize the session properties here
                 return session;
             });
@@ -36,24 +48,31 @@
 
         public class MyMessageHandler : IHandleMessages<MyMessage>
         {
-            public Task Handle(MyMessage message, IMessageHandlerContext context)
+            ISessionProvider sessionProvider;
+
+            public MyMessageHandler(ISessionProvider sessionProvider)
+            {
+                this.sessionProvider = sessionProvider;
+            }
+
+            public void Handle(MyMessage message)
             {
                 MyDocument doc = new MyDocument();
 
-                IAsyncDocumentSession ravenSession = context.SynchronizedStorageSession.RavenSession();
-                return ravenSession.StoreAsync(doc);
+                sessionProvider.Session.Store(doc);
             }
         }
 
         #endregion
 
-        void SpecificExternalDocumentStore(EndpointConfiguration endpointConfiguration)
+        void SpecificExternalDocumentStore(BusConfiguration busConfiguration)
         {
             #region ravendb-persistence-specific-external-store
 
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
-            endpointConfiguration.UsePersistence<RavenDBPersistence>()
+
+            busConfiguration.UsePersistence<RavenDBPersistence>()
                 .UseDocumentStoreForSubscriptions(myDocumentStore)
                 .UseDocumentStoreForSagas(myDocumentStore)
                 .UseDocumentStoreForTimeouts(myDocumentStore);
@@ -61,36 +80,38 @@
             #endregion
         }
 
-        void SpecificDocumentStoreViaConnectionString()
+        public void SpecificDocumentStoreViaConnectionString()
         {
             //See the config file
         }
 
-        void ExternalDocumentStore(EndpointConfiguration endpointConfiguration)
+        void ExternalDocumentStore(BusConfiguration busConfiguration)
         {
             #region ravendb-persistence-external-store
 
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
-            endpointConfiguration.UsePersistence<RavenDBPersistence>()
+
+            busConfiguration.UsePersistence<RavenDBPersistence>()
                 .SetDefaultDocumentStore(myDocumentStore);
 
             #endregion
         }
 
-        void ExternalConnectionParameters(EndpointConfiguration endpointConfiguration)
+        void ExternalConnectionParameters(BusConfiguration busConfiguration)
         {
             #region ravendb-persistence-external-connection-params
 
             ConnectionParameters connectionParams = new ConnectionParameters();
             // configure connection params (ApiKey, DatabaseName, Url) here
-            endpointConfiguration.UsePersistence<RavenDBPersistence>()
+
+            busConfiguration.UsePersistence<RavenDBPersistence>()
                 .SetDefaultDocumentStore(connectionParams);
 
             #endregion
         }
 
-        void SharedDocumentStoreViaConnectionString()
+        public void SharedDocumentStoreViaConnectionString()
         {
             //See the config file
         }

@@ -4,7 +4,7 @@
     using System.Data;
     using System.Data.SqlClient;
     using System.Transactions;
-    
+
     public static class ErrorQueue
     {
 
@@ -14,9 +14,9 @@
 
             ReturnMessageToSourceQueue(
                 errorQueueConnectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
-                errorQueueName: @"errors",
+                errorQueueName: "errors",
                 retryConnectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
-                retryQueueName: @"target",
+                retryQueueName: "target",
                 messageId: Guid.Parse("1667B60E-2948-4EF0-8BB1-8C851A9407D2")
                 );
 
@@ -26,9 +26,9 @@
         #region sqlserver-return-to-source-queue
 
         public static void ReturnMessageToSourceQueue(
-            string errorQueueConnectionString, 
-            string errorQueueName, 
-            string retryConnectionString, 
+            string errorQueueConnectionString,
+            string errorQueueName,
+            string retryConnectionString,
             string retryQueueName,
             Guid messageId)
         {
@@ -51,14 +51,14 @@
         {
             string sql = string.Format(
                 @"INSERT INTO [{0}] (
-                        [Id], 
-                        [Recoverable], 
-                        [Headers], 
+                        [Id],
+                        [Recoverable],
+                        [Headers],
                         [Body])
                     VALUES (
-                        @Id, 
-                        @Recoverable, 
-                        @Headers, 
+                        @Id,
+                        @Recoverable,
+                        @Headers,
                         @Body)", queueName);
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -79,8 +79,8 @@
         static MessageToRetry ReadAndDelete(string connectionString, string queueName, Guid messageId)
         {
             string sql = string.Format(
-                @"DELETE FROM [{0}] 
-                OUTPUT 
+                @"DELETE FROM [{0}]
+                OUTPUT
                    DELETED.Headers,
                    DELETED.Body
                 WHERE Id = @Id", queueName);

@@ -1,13 +1,13 @@
-﻿namespace Snippets6.RavenDB.UpgradeGuides._3to4
+﻿namespace Raven_4.UpgradeGuides._3to4
 {
     using System;
     using System.Threading.Tasks;
-    using global::Raven.Client;
     using NServiceBus;
+    using Raven.Client;
 
     class SharedSessionEndpointConfig
     {
-        async Task DoStuff(EndpointConfiguration endpointConfiguration, IAsyncDocumentSession someAsyncSession)
+        Task DoStuff(EndpointConfiguration endpointConfiguration, IAsyncDocumentSession someAsyncSession)
         {
             #region 3to4-ravensharedsession
             Func<IAsyncDocumentSession> sessionFactory = () => someAsyncSession;
@@ -15,6 +15,8 @@
             endpointConfiguration.UsePersistence<RavenDBPersistence>()
                 .UseSharedAsyncSession(sessionFactory);
             #endregion
+
+            return Task.FromResult(0);
         }
     }
 }
