@@ -3,9 +3,9 @@
 
   <!--startcode 3to4rabbitmq-custom-breaker-settings -->
   <appSettings>
-    <add key="NServiceBus/RabbitMqDequeueStrategy/TimeToWaitBeforeTriggering" 
+    <add key="NServiceBus/RabbitMqDequeueStrategy/TimeToWaitBeforeTriggering"
          value="00:02:00"/>
-    <add key="NServiceBus/RabbitMqDequeueStrategy/DelayAfterFailure" 
+    <add key="NServiceBus/RabbitMqDequeueStrategy/DelayAfterFailure"
          value="00:00:05"/>
   </appSettings>
   <!--endcode-->

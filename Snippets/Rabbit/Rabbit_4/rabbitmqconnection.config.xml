@@ -6,7 +6,7 @@
          connectionString="host=broker1"/>
   </connectionStrings>
   <!--endcode-->
-  
+
   <!--startcode rabbitmqconnectionstring-debug -->
   <connectionStrings>
     <add name="NServiceBus/Transport"
@@ -16,9 +16,9 @@
 
   <!--startcode rabbitmq-custom-breaker-settings -->
   <appSettings>
-    <add key="NServiceBus/RabbitMqDequeueStrategy/TimeToWaitBeforeTriggering" 
+    <add key="NServiceBus/RabbitMqDequeueStrategy/TimeToWaitBeforeTriggering"
          value="00:02:00"/>
-    <add key="NServiceBus/RabbitMqDequeueStrategy/DelayAfterFailure" 
+    <add key="NServiceBus/RabbitMqDequeueStrategy/DelayAfterFailure"
          value="00:00:05"/>
   </appSettings>
   <!--endcode-->
