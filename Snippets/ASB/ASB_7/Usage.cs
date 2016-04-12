@@ -32,7 +32,7 @@
         
         void PublisherNamesMappingByMessageType(EndpointConfiguration endpointConfiguration)
         {
-            #region publisher_names_mapping_by_message_type
+            #region publisher_names_mapping_by_message_type 7
 
             endpointConfiguration.UseTransport<AzureServiceBusTransport>()
                 .UseTopology<EndpointOrientedTopology>()
@@ -43,7 +43,7 @@
 
         void PublisherNamesMappingByAssembly(EndpointConfiguration endpointConfiguration)
         {
-            #region publisher_names_mapping_by_assembly
+            #region publisher_names_mapping_by_assembly 7
 
             endpointConfiguration.UseTransport<AzureServiceBusTransport>()
                 .UseTopology<EndpointOrientedTopology>()
