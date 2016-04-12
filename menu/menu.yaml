@@ -30,7 +30,7 @@
           Articles:
             - "nservicebus/upgrades/asq-6to7"
             - "nservicebus/upgrades/asb-6to7"
-        - Title: "SQL Transport"
+        - Title: "SQL Server Transport"
           Articles:
             - "nservicebus/upgrades/sqlserver-2to3"
         - Title: "NHibernate Persistence"
@@ -138,7 +138,7 @@
             - "nservicebus/azure-storage-queues/faq"
             - "nservicebus/azure-storage-queues/transaction-support"
             - "nservicebus/azure-storage-queues/configuration"
-        - Title: "Sql Server"
+        - Title: "SQL Server Transport"
           Url: "nservicebus/sqlserver"
           Articles:
             - "nservicebus/sqlserver/configuration"
