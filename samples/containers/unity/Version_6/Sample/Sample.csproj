@@ -65,7 +65,7 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0001\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Unity">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Unity.6.3.0-unstable0029\lib\net452\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Unity.7.0.0-alpha0021\lib\net452\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
