@@ -212,7 +212,7 @@
       <HintPath>..\..\packages\NServiceBus.RavenDB.4.0.0-unstable0102\lib\net452\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Testing">
-      <HintPath>..\..\packages\NServiceBus.Testing.6.0.0-unstable0051\lib\net452\NServiceBus.Testing.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Testing.6.0.0-alpha0079\lib\net452\NServiceBus.Testing.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.SQLServer">
       <HintPath>..\..\packages\NServiceBus.SqlServer.3.0.0-alpha0102\lib\net452\NServiceBus.Transports.SQLServer.dll</HintPath>
