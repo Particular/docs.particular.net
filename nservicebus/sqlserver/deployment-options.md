@@ -1,5 +1,5 @@
 ---
-title: SQL Server transport deployment options
+title: SQL Server Transport deployment options
 summary: Describes available SQL Server transport deployment options
 reviewed: 2016-03-24
 tags:
@@ -9,9 +9,10 @@ redirects:
 - nservicebus/sqlserver/multiple-databases
 ---
 
-When using the default configuration, SQL Server transport assumes that all tables used for storing messages for endpoints are located in a single catalog and within a single schema. The configuration can be changed to partition message storage between different schemas and catalogs. The schemas and catalogs can also be specified at a queue level. For example, the error and the audit queues can be configured to use a different schema and a different database catalog.
+When using the default configuration, SQL Server Transport assumes that all tables used for storing messages for endpoints are located in a single catalog and within a single schema. The configuration can be changed to partition message storage between different schemas and catalogs. The schemas and catalogs can also be specified at a queue level. For example, the error and the audit queues can be configured to use a different schema and a different database catalog.
 
 The supported deployment options are:
+
  * **default**: all queues are stored in a single catalog and a single schema.
  * **multi-schema**: queues are stored in a single catalog but in more than one schema. 
  * **multi-instance**: queues are stored in multiple catalogs on more than one SQL Server instance.
