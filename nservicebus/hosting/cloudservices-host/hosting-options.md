@@ -7,6 +7,7 @@ tags:
 - Cloud
 redirects:
  - nservicebus/hosting-nservicebus-in-windows-azure
+ - nservicebus/azure/hosting-nservicebus-in-windows-azure
 related:
  - samples/azure/shared-host
 ---
