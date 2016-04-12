@@ -38,7 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-unstable0034\lib\net452\Ionic.Zip.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-alpha0049\lib\net452\Ionic.Zip.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -81,7 +81,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Hosting.Azure, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-unstable0034\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-alpha0049\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
