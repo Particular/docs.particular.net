@@ -7,7 +7,9 @@ tags:
 - Configuration
 ---
 
+
 ## Version 6 and below
+
 
 ### BrokeredMessage body conventions
 
@@ -20,6 +22,7 @@ snippet: ASB-outgoing-message-convention
 Incoming message:
 
 snippet: ASB-incoming-message-convention
+
 
 ### Naming Conventions
 

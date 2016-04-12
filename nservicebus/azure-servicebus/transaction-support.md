@@ -7,6 +7,7 @@ tags:
 - Configuration
 ---
 
+
 ## Transactions and delivery guarantees
 
 NServiceBus Azure Service Bus transport relies on the underlying Azure Service Bus library which requires the use of the `Serializable` isolation level (the most restrictive isolation level that does not permit `dirty reads`, `phantom reads` and `non repeatable reads`; will block any reader until the writer is committed. For more information refer to [Transaction Isolation Levels Explained in Details](http://dotnetspeak.com/2013/04/transaction-isolation-levels-explained-in-details) article.
@@ -40,4 +41,3 @@ The message is not removed from the queue directly after receive, but it's hidde
 When transactions are disabled then NServiceBus uses the [ASB's ReceiveAndDelete mode](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.messaging.receivemode.aspx).
 
 The message is deleted from the queue directly after receive operation completes, before it is processed.
-

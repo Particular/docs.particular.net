@@ -38,4 +38,3 @@ NOTE: Most of these values are applied when a queue or topic is created and cann
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.
 
 Defaults are just starting values. These values should be always measured and tested against the specific solution and adjusted accordingly.
-
