@@ -21,7 +21,7 @@ This is a curated list of all the extensions to NServiceBus developed by both th
 Provides support for sending messages over [Amazon SQS](http://aws.amazon.com/sqs/).
 
 
-#### <img src="particular-project.png" title="A Particular run project"> [Azure Service Bus](/nservicebus/azure/azure-transport.md)
+#### <img src="particular-project.png" title="A Particular run project"> [Azure Service Bus](/nservicebus/azure-servicebus/)
 
 <a href="https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/"><img src="https://buildstats.info/nuget/NServiceBus.Azure.Transports.WindowsAzureServiceBus" title="NuGet Status"></a>
 
@@ -224,14 +224,14 @@ Support for logging NServiceBus information to [Serilog](http://serilog.net/) lo
 .NET event sourced domain driven design model via [NEventStore](http://www.appccelerate.com/distributedeventbroker.html).
 
 
-#### <img src="particular-project.png" title="A Particular run project"> [Azure Host](/nservicebus/azure/hosting.md)
+#### <img src="particular-project.png" title="A Particular run project"> [Azure Host](/nservicebus/hosting/cloudservices-host/)
 
 <a href="https://www.nuget.org/packages/NServiceBus.Hosting.Azure/"><img src="https://buildstats.info/nuget/NServiceBus.Hosting.Azure" title="NuGet Status"></a>
 
 The process used when hosting an endpoint on [Azure](https://azure.microsoft.com/en-us/).
 
 
-#### <img src="particular-project.png" title="A Particular run project"> [Multi Endpoint Azure Host](/nservicebus/azure/hosting.md)
+#### <img src="particular-project.png" title="A Particular run project"> [Multi Endpoint Azure Host](/nservicebus/hosting/cloudservices-host/)
 
 <a href="https://www.nuget.org/packages/NServiceBus.Hosting.Azure.HostProcess/"><img src="https://buildstats.info/nuget/NServiceBus.Hosting.Azure.HostProcess" title="NuGet Status"></a>
 

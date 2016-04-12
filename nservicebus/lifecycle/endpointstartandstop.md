@@ -29,7 +29,7 @@ When self-hosting, there are several options for equivalent behavior:
 ### Achieving the IWantToRunWhenBusStartsAndStops when using the Hosts
 
  * In the [NServiceBus Host](/nservicebus/hosting/nservicebus-host/) Versions 7 and above, use the [`IWantToRunWhenEndpointStartsAndStops`](/nservicebus/hosting/nservicebus-host) interface.
- * In the [AzureCloudService Host](/nservicebus/azure/hosting-in-azure-cloud-services.md) Versions 7 and above, use the [`IWantToRunWhenEndpointStartsAndStops`](/nservicebus/azure/hosting-in-azure-cloud-services.md) interface.
+ * In the [AzureCloudService Host](/nservicebus/hosting/cloudservices-host/) Versions 7 and above, use the [`IWantToRunWhenEndpointStartsAndStops`](/nservicebus/hosting/cloudservices-host/) interface.
 
 
 ## Versions 5 and below

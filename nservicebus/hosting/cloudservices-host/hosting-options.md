@@ -19,7 +19,7 @@ Azure offers various ways to host applications. Each of these hosting options ca
 
 ## General Considerations
 
-Because of the size and service nature of the Azure platform, you cannot rely on distributed transactions in this environment. You cannot rely on any setup that would require distributed transactions, including the MSMQ transport. For details, refer to ['Understanding transactions in Azure'](transactions.md).
+Because of the size and service nature of the Azure platform, you cannot rely on distributed transactions in this environment. You cannot rely on any setup that would require distributed transactions, including the MSMQ transport. For details, refer to ['Understanding transactions in Azure'](/nservicebus/azure/transactions.md).
 
 
 ## Azure Virtual Machines
@@ -72,7 +72,7 @@ Next to the endpoint, the role definition will also include additional services 
 
 To integrate these facilities with an endpoint use `NServiceBusRoleEntrypoint` which wires the regular host into a role entrypoint. In addition, there are specific NServiceBus `Roles` (not to be confused with Azure roles) such as `AsA_Worker` in the `NServiceBus.Hosting.Azure` package.
 
-To learn more about the details of hosting in Azure cloud services, refer to [Cloud Services](hosting-in-azure-cloud-services.md).
+To learn more about the details of hosting in Azure cloud services, refer to [Cloud Services](/nservicebus/hosting/cloudservices-host/).
 
 
 ## Cloud Services - Shared Hosting
@@ -81,4 +81,4 @@ The Cloud Services model is best suited to building large scale systems, but in 
 
 To support this need to start small a shared hosting option is available using the `AsA_Host` role. In this model, the role entry point doesn't actually host an endpoint itself. Instead, it downloads, invokes, and manages other worker role entry points as child processes on the same machine.
 
-If you want to learn more about the shared hosting options, refer to [Cloud Services - Shared hosting](shared-hosting-in-azure-cloud-services.md).
+If you want to learn more about the shared hosting options, refer to [Cloud Services - Shared hosting](/nservicebus/hosting/cloudservices-host/shared-hosting.md).

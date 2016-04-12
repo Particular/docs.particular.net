@@ -11,6 +11,6 @@ related:
 
 ## IWantToRunWhenEndpointStartsAndStops 
 
-An interface called [`IWantToRunWhenEndpointStartsAndStops`](/nservicebus/azure/hosting-in-azure-cloud-services.md) has been added. This interface replaces the [`IWantToRunWhenBusStartsAndStops`](/nservicebus/lifecycle/endpointstartandstop.md) in the NServiceBus core.
+An interface called `IWantToRunWhenEndpointStartsAndStops` has been added. This interface replaces the [`IWantToRunWhenBusStartsAndStops`](/nservicebus/lifecycle/endpointstartandstop.md) in the NServiceBus core.
 
 snippet:5to6-EndpointStartAndStop
