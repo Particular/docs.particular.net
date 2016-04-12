@@ -199,8 +199,11 @@
           Articles:
             - "nservicebus/ravendb/operations-scripting"
             - "nservicebus/ravendb/installation"
-        - Title: "Azure Storage Persistence"
-          Url: "nservicebus/azure-storage-persistence"         
+        - Title: "Azure Storage"
+          Url: "nservicebus/azure-storage-persistence"  
+          Articles:
+            - "nservicebus/azure-storage-persistence/configuration"
+            - "nservicebus/azure-storage-persistence/performance-tuning"       
     -
       Title: "Containers"
       Url: "nservicebus/containers"
@@ -232,8 +235,6 @@
         - "nservicebus/hosting/assembly-scanning"
         - "nservicebus/hosting/critical-errors"
         - "nservicebus/hosting/publishing-from-web-applications"
-        - "nservicebus/azure/hosting"
-        - "nservicebus/azure/hosting-in-azure-cloud-services"
         - Title: "NServiceBus Host"
           Url: "nservicebus/hosting/nservicebus-host"
           Articles:
@@ -242,6 +243,9 @@
           Url: "nservicebus/hosting/cloudservices-host"
           Articles:
             - "nservicebus/hosting/cloudservices-host/faq"
+            - "nservicebus/hosting/cloudservices-host/configuration"
+            - "nservicebus/hosting/cloudservices-host/shared-hosting"
+            - "nservicebus/hosting/cloudservices-host/hosting-options"
     -
       Title: "Testing"
       Url: "nservicebus/testing"
