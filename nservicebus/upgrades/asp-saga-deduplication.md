@@ -5,7 +5,7 @@ tags:
  - upgrade
 related:
  - nservicebus/sagas
- - nservicebus/azure/azure-storage-persistence
+ - nservicebus/azure-storage-persistence
 ---
 
 ## Summary
