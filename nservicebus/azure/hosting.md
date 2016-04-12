@@ -49,7 +49,7 @@ The advised transports in this environment are `AzureStorageQueuesTransport` and
 
 As it is now also possible to include Azure websites in the same virtual network as Azure virtual machines, [made available in Q4 2014](https://azure.microsoft.com/en-us/blog/azure-websites-virtual-network-integration/), it is also possible to use any other hosted transport that does not rely on distributed transactions, such as RabbitMQ .
 
-To learn more about enabling persistence with Azure storage, refer to [Azure storage persisters](azure-storage-persistence.md).
+To learn more about enabling persistence with Azure storage, refer to [Azure storage persisters](/nservicebus/azure-storage-persistence/).
 
 
 ## Cloud Services
