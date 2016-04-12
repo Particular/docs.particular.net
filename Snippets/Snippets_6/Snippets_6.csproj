@@ -198,7 +198,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Spring">
-      <HintPath>..\..\packages\NServiceBus.Spring.7.0.0-unstable0024\lib\net452\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Spring.7.0.0-alpha0031\lib\net452\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.StructureMap, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.StructureMap.6.0.0-unstable0032\lib\net452\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
