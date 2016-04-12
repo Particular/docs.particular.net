@@ -39,7 +39,7 @@ Uses custom [NHibernate](http://nhibernate.info/) to persister data to an ADO.ne
 A subscription only storage on top of MSMQ.
 
 
-### [Azure Storage](/nservicebus/azure/azure-storage-persistence.md)
+### [Azure Storage](/nservicebus/azure-storage-persistence/)
 
 Uses Azure Tables Storage for storage
 
