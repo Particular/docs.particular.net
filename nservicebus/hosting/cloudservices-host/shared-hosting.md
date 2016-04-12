@@ -13,27 +13,27 @@ redirects:
  - nservicebus/azure/shared-hosting-nservicebus-in-windows-azure-cloud-services
 ---
 
-If real scale is what you're looking for, as in tens, hundreds or even thousands of machines hosting each endpoint, than cloud services is the deployment model you'll need. But very often, you only want this scale when you are eventually successful, not when you are just starting out. To support this scenario, we've created the `AsA_Hos`t endpoint role for Azure cloud services.
+If real scale is needed, as in tens, hundreds or even thousands of machines hosting each endpoint, than cloud services is the suitable deployment model. But very often, one only wants this scale when the project is eventually successful, not when just starting out. To support this scenario, we've created the `AsA_Hos`t endpoint role for Azure cloud services.
 
-This role allows you to co-locate multiple endpoints on the same set of machines, while preserving the regular worker role programming model so that you can easily put each endpoint on it's own role again when required later.
+This role allows to co-locate multiple endpoints on the same set of machines, while preserving the regular worker role programming model so that one can easily put each endpoint on it's own role again when required later.
 
 
 ## How it works
 
-**Prerequisites** This approach assumes you already have the endpoints [hosted in worker roles](hosting-in-azure-cloud-services.md). The rest of this article will focus on how to transition from a multi worker environment to a shared hosting environment.
+**Prerequisites** This approach assumes the endpoints are already [hosted in worker roles](/nservicebus/hosting/cloudservices-host/). The rest of this article will focus on how to transition from a multi worker environment to a shared hosting environment.
 
 Instead of having endpoints packaged & deployed by the Azure infrastructure they are packaged as zip files and placed in a well known location (in Azure blob storage).
 
-Then we'll add a new worker role to the cloud services solution that will act as the host. This host will be configured to pull the endpoints from the well known location, extract them to disk and run them.
+Then add a new worker role to the cloud services solution that will act as the host. This host will be configured to pull the endpoints from the well known location, extract them to disk and run them.
 
 
 ## Preparing the endpoint
 
-Assuming you have a working endpoint hosted in a worker role. Open the cloud services project, expand `Roles` and click remove on the worker role that you're preparing.
+Assuming the working endpoint is hosted in a worker role. Open the cloud services project, expand `Roles` and click remove on the worker role that is being prepared.
 
 NOTE: Visual Studio will remove any configuration setting from the Azure configuration settings file. If any configuration overrides previously existed, effect the way the endpoint behaves, ensure those overrides are moved to the app.config file first or apply the alternative override system for shared hosts. See `Configuration concerns` further down this article for more details on this approach.
 
-The role entry point also doubles as a host process for our endpoint, one that is aware of the service runtime and role context. This functionality needs to be replaced by another process in order to run the endpoint in a similar context as it would have when it was a separate role. This replacement host process is available on NuGet as the `NServiceBus.Hosting.Azure.HostProcess` package, install it in your worker role project.
+The role entry point also doubles as a host process for the endpoint, one that is aware of the service runtime and role context. This functionality needs to be replaced by another process in order to run the endpoint in a similar context as it would have when it was a separate role. This replacement host process is available on NuGet as the `NServiceBus.Hosting.Azure.HostProcess` package, install it in the worker role project.
 
 Notice that an `NServiceBus.Hosting.Azure.HostProcess.exe` is now referenced. This exe can also run on a development machine outside the context of a service runtime. It can also be used to debug an endpoint locally without starting the Azure emulator. This is done by adding this exe to the debug path in the project properties.
 
@@ -46,9 +46,9 @@ Finally go to Azure storage account and create a private container called `endpo
 
 Once prepared and uploaded all endpoints, add a new worker role project to the solution. This worker role will serve as a host for all the endpoints.
 
-In this worker role you need to reference the assembly that contains the Azure role entry point integration. The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Hosting.Azure` package to the project.
+In this worker role one needs to reference the assembly that contains the Azure role entry point integration. The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Hosting.Azure` package to the project.
 
-To integrate the NServiceBus dynamic host into the worker role entry point, all you need to do is create a new instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override.
+To integrate the NServiceBus dynamic host into the worker role entry point, all one needs to do is to create a new instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override.
 
 ```
 public class WorkerRole : RoleEntryPoint
@@ -95,19 +95,19 @@ And specify a local storage resource with the name endpoints as well.
 </WorkerRole>
 ```
 
-Other configuration settings are available as well if you need more fine grained control on how the host works:
+Other configuration settings are available as well if one needs a more fine grained control on how the host works:
 
  * `DynamicHostControllerConfig.Container`: The container where the endpoint packages are stored in the storage account, defaults to `endpoints`
- * `DynamicHostControllerConfig.AutoUpdate`: Turn auto update on or off, defaults to true. Note that if you set it to false you need to reboot for the host to pick new endpoints or versions of endpoints.
+ * `DynamicHostControllerConfig.AutoUpdate`: Turn auto update on or off, defaults to true. Note that if it is set to false, then the host needs a reboot to pick new endpoints or versions of endpoints.
  * `DynamicHostControllerConfig.UpdateInterval`: The time between checks if updates are available, in milliseconds, defaults to `600000`.
  * `DynamicHostControllerConfig.LocalResource`: The name of the local storage resource where the zip archives will be extracted, defaults to `endpoints`
  * `DynamicHostControllerConfig.TimeToWaitUntilProcessIsKilled`: When updating an endpoint to a new version, the host will kill the current process. Sometimes this fails or takes a very long time. This property specifies how long the host should wait, if this time elapses without the process going down, the host will reboot the machine (by throwing an exception). Default value: `10000`.
- * `DynamicHostControllerConfig.RecycleRoleOnError`: By default Azure role instances will reboot when an exception is thrown from the role entrypoint, but not when thrown from a child process. If you want the role instance to reboot in this case as well, set `RecycleRoleOnError` on true. Then the host will start monitoring the child process for errors and request a recycle when it throws.
+ * `DynamicHostControllerConfig.RecycleRoleOnError`: By default Azure role instances will reboot when an exception is thrown from the role entrypoint, but not when thrown from a child process. If one wants the role instance to reboot in this case as well, set `RecycleRoleOnError` on true. Then the host will start monitoring the child process for errors and request a recycle when it throws.
 
 
 ## Configuration concerns
 
 The Azure configuration system applies to all instances of all roles. It has a built in way to separate role types, but not role instance and definitely no separation for processes on those instances. This means that a configuration override put in the service configuration file will automatically apply to all endpoints hosted on those roles. This is obviously not desirable, and can be dealt with in 2 ways.
 
- * Put the configuration settings in the app.config. As autoupdate is available you can easily manage it this way as changing a configuration means uploading a new zip to the Azure storage account and the hosts will update themselves automatically. (This is the default)
- * Alternatively you can separate the configuration settings in the service configuration file by convention. The `.AzureConfigurationSource(prefix)` overload allows you to set a prefix in every endpoint that will be prepended to it's configuration settings. Call this configuration method with a prefix of choice and you can still use the configuration settings file for the hosted endpoints.
+ * Put the configuration settings in the app.config. As autoupdate is available one can easily manage it this way as changing a configuration means uploading a new zip to the Azure storage account and the hosts will update themselves automatically. (This is the default)
+ * Alternatively one can separate the configuration settings in the service configuration file by convention. The `.AzureConfigurationSource(prefix)` overload allows to set a prefix in every endpoint that will be prepended to it's configuration settings. Call this configuration method with a prefix of choice and use the configuration settings file for the hosted endpoints.
