@@ -1,13 +1,11 @@
 ---
-title: Azure ServiceBus FAQ
-summary: Frequently Asked Questions related to the Azure ServiceBus transport.
+title: Azure Service Bus FAQ
+summary: Frequently Asked Questions related to the Azure Service Bus Transport.
 tags:
 - Cloud
 - Azure
 - Transports
 ---
-
-This document captures some frequently asked questions when using azure servicebus as a transport
 
 
 ### Does Azure ServiceBus provide the same consistency model as MSMQ?
