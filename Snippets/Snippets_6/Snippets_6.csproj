@@ -109,7 +109,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Storage">
-      <HintPath>..\..\packages\WindowsAzure.Storage.6.2.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+      <HintPath>..\..\packages\WindowsAzure.Storage.7.0.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
@@ -139,7 +139,7 @@
       <HintPath>..\..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus">
-      <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-unstable0514\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-alpha0359\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
@@ -151,7 +151,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.AzureStoragePersistence">
-      <HintPath>..\..\packages\NServiceBus.AzureStoragePersistence.0.2.0-unstable0120\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.AzureStoragePersistence.1.0.0-alpha0131\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Callbacks">
       <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-beta0001\lib\net452\NServiceBus.Callbacks.dll</HintPath>
