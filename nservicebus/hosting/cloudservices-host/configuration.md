@@ -16,3 +16,12 @@ snippet:AzureServiceBusTransportWithAzureHost
 Example using azure storage queues transport:
 
 snippet:AzureStorageQueueTransportWithAzureHost
+
+
+## Enabling the Persistence
+
+The Azure storage persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config.
+
+snippet:PersistenceWithAzureHost
+
+NOTE: In Version 4, when hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
