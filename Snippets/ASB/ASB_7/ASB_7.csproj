@@ -79,9 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConnectionString.config.xml" />
-    <Content Include="QueueConfig.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Usage.cs" />

@@ -315,6 +315,14 @@
     <Content Include="Audit\Audit.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Azure\Persistence\AzureStorage\AzurePersistence.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Azure\Transports\AzureServiceBus\ConnectionString.config.xml" />
+    <Content Include="Azure\Transports\AzureStorageQueues\ConnectionString.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Azure\Transports\AzureStorageQueues\QueueConfig.config.xml" />
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
