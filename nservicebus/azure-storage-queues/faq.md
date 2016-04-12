@@ -8,7 +8,7 @@ tags:
 ---
 
 
-### Does Azure ServiceBus provide the same consistency model as MSMQ?
+### Do Azure Storage Queues provide the same consistency model as MSMQ?
 
 include: azure-compared-to-msmq
 
