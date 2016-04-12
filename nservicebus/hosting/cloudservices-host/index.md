@@ -11,6 +11,7 @@ tags:
 redirects:
  - nservicebus/hosting-nservicebus-in-windows-azure-cloud-services
  - nservicebus/azure/hosting-nservicebus-in-windows-azure-cloud-services
+ - nservicebus/windows-azure-transport
 related:
  - samples/azure/shared-host
  - nservicebus/lifecycle
@@ -20,7 +21,7 @@ The Azure Platform and NServiceBus make a perfect fit. On the one hand the Azure
 
 If real scale is required (eg in tens, hundreds or even thousands of machines hosting each endpoint) than cloud services is the required deployment model.
 
-NOTE: If this level of scale is not required, there are [other hosting options available](hosting.md).
+NOTE: If this level of scale is not required, there are [other hosting options available](hosting-options.md).
 
 
 ## Cloud Services - Worker Roles

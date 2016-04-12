@@ -3,10 +3,13 @@ title: Azure Storage Queues
 summary: Using Azure Storage Queues as transport
 tags:
 - Azure
-- Cloud
+related:
+ - samples/azure/storage-queues
 ---
 
 In some environments it is not possible or recommended to rely heavily on distributed transactions to ensure reliability and consistency. Therefore in environments such as very large cloud networks or hybrid networks using MSMQ is not the best idea. In those scenarios a good alternative is Azure Storage Queues.
+
+NOTE: As part of the Azure support for NServiceBus, one can choose between two transports provided by the Azure platform Azure Storage Queues and Azure Service Bus. Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits the application's needs, review the Azure article [Azure Queues and Azure Service Bus Queues - Compared and Contrasted](https://azure.microsoft.com/en-us/documentation/articles/service-bus-azure-and-service-bus-queues-compared-contrasted/).
 
 Azure Queue storage is a service hosted on the Azure platform, used for storing large numbers of messages that can be accessed from anywhere in the world via authenticated calls using HTTP or HTTPS.
 
