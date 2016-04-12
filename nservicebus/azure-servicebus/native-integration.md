@@ -1,6 +1,5 @@
 ---
 title: Azure Service Bus Native Integration
-summary: Integrating with native Azure ServiceBus 
 tags:
 - Azure
 - Cloud
