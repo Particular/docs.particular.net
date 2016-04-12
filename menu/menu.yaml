@@ -124,7 +124,7 @@
       Title: "Transports"
       Url: "nservicebus/transports"
       Articles:
-        - Title: "Azure ServiceBus"
+        - Title: "Azure Service Bus"
           Url: "nservicebus/azure-servicebus"
           Articles:
             - "nservicebus/azure-servicebus/faq"
