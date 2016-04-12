@@ -124,11 +124,20 @@
       Title: "Transports"
       Url: "nservicebus/transports"
       Articles:
-        - Title: "Azure"
-          Url: "nservicebus/azure"
+        - Title: "Azure ServiceBus"
+          Url: "nservicebus/azure-servicebus"
           Articles:
-            - "nservicebus/azure/azure-servicebus-transport"
-            - "nservicebus/azure/azure-transport"
+            - "nservicebus/azure-servicebus/faq"
+            - "nservicebus/azure-servicebus/transaction-support"
+            - "nservicebus/azure-servicebus/configuration"
+            - "nservicebus/azure-servicebus/native-integration"
+            - "nservicebus/azure-servicebus/performance-tuning"
+        - Title: "Azure Storage Queues"
+          Url: "nservicebus/azure-storage-queues"
+          Articles:
+            - "nservicebus/azure-storage-queues/faq"
+            - "nservicebus/azure-storage-queues/transaction-support"
+            - "nservicebus/azure-storage-queues/configuration"
         - Title: "Sql Server"
           Url: "nservicebus/sqlserver"
           Articles:
@@ -177,7 +186,6 @@
       Articles:
         - "nservicebus/persistence/order"
         - "nservicebus/persistence/authoring-custom"
-        - "nservicebus/azure/azure-storage-persistence"
         - "nservicebus/persistence/in-memory"
         - "nservicebus/msmq/subscription-persistence"
         - Title: "NHibernate"
@@ -191,6 +199,8 @@
           Articles:
             - "nservicebus/ravendb/operations-scripting"
             - "nservicebus/ravendb/installation"
+        - Title: "Azure Storage Persistence"
+          Url: "nservicebus/azure-storage-persistence"         
     -
       Title: "Containers"
       Url: "nservicebus/containers"
@@ -228,6 +238,10 @@
           Url: "nservicebus/hosting/nservicebus-host"
           Articles:
             - "nservicebus/hosting/nservicebus-host/profiles"
+        - Title: "Azure Cloud Services Host"
+          Url: "nservicebus/hosting/cloudservices-host"
+          Articles:
+            - "nservicebus/hosting/cloudservices-host/faq"
     -
       Title: "Testing"
       Url: "nservicebus/testing"
@@ -247,20 +261,6 @@
         - "nservicebus/operations/auditing"
         - Title: "Samples"
           Url: "samples/logging"
-    -
-      Title: "Azure"
-      Url: "nservicebus/azure"
-      Articles:
-        - "nservicebus/azure/azure-servicebus-transport"
-        - "nservicebus/azure/azure-storage-persistence"
-        - "nservicebus/azure/azure-storage-queues-transport"
-        - "nservicebus/azure/azure-transport"
-        - "nservicebus/azure/hosting"
-        - "nservicebus/azure/hosting-in-azure-cloud-services"
-        - "nservicebus/azure/multiple-azure-storage-accounts-for-scaleout"
-        - "nservicebus/azure/shared-hosting-in-azure-cloud-services"
-        - "nservicebus/azure/transactions"
-        - "nservicebus/azure/faq"
     -
       Title: "Operations"
       Url: "nservicebus/operations"

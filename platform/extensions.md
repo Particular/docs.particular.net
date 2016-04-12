@@ -28,7 +28,7 @@ Provides support for sending messages over [Amazon SQS](http://aws.amazon.com/sq
 Provides support for sending messages over [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/).
 
 
-#### <img src="particular-project.png" title="A Particular run project"> [Azure Storage Queues](/nservicebus/azure/azure-storage-queues-transport.md)
+#### <img src="particular-project.png" title="A Particular run project"> [Azure Storage Queues](/nservicebus/azure-storage-queues/)
 
 <a href="https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/"><img src="https://buildstats.info/nuget/NServiceBus.Azure.Transports.WindowsAzureStorageQueues" title="NuGet Status"></a>
 
@@ -151,7 +151,7 @@ Leverages the [JSONB](http://www.postgresql.org/docs/devel/static/datatype-json.
 <a href="https://www.nuget.org/packages/NServiceBus.RavenDB/"><img src="https://buildstats.info/nuget/NServiceBus.RavenDB" title="NuGet Status"></a>
 
 
-#### <img src="particular-project.png" title="A Particular run project"> [Azure Storage](/nservicebus/azure/azure-storage-persistence.md)
+#### <img src="particular-project.png" title="A Particular run project"> [Azure Storage](/nservicebus/azure-storage-persistence/)
 
 <a href="https://www.nuget.org/packages/NServiceBus.Azure/"><img src="https://buildstats.info/nuget/NServiceBus.Azure" title="NuGet Status"></a>
 

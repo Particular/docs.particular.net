@@ -3,7 +3,7 @@ title: Native Integration with Azure Service Bus Transport
 summary: Consuming messages published by non NServiceBus endpoints
 reviewed: 2016-03-21
 related:
-- nservicebus/azure/azure-servicebus-transport
+- nservicebus/azure-servicebus
 ---
 
 ## Prerequisites
@@ -13,7 +13,7 @@ An environment variable named `AzureServiceBus.ConnectionString` that contains t
 
 ## Azure Service Bus Transport
 
-This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure/azure-servicebus-transport.md).
+This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure-servicebus/).
 
 
 ## Code walk-through

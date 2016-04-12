@@ -141,8 +141,8 @@ A short explanation of each:
 
  * `AzureConfigurationSource`: overrides any settings known to the NServiceBus Azure configuration section within the app.config file with settings from the service configuration file.
  * `TraceLogger`: Redirects all [logging](/nservicebus/logging/) to the trace logger. This in turn can be configured for diagnostics monitor trace listener.
- * `UseTransport<AzureStorageQueueTransport>`: Sets [Azure storage queues](/nservicebus/azure/azure-storage-queues-transport.md) as the [transport](/nservicebus/transports).
- * `UsePersistence`: Configures [Azure storage](/nservicebus/azure/azure-storage-persistence.md) for [persistence](/nservicebus/persistence).
+ * `UseTransport<AzureStorageQueueTransport>`: Sets [Azure storage queues](/nservicebus/azure-storage-queues/) as the [transport](/nservicebus/transports).
+ * `UsePersistence`: Configures [Azure storage](/nservicebus/azure-storage-persistence/) for [persistence](/nservicebus/persistence).
 
 
 include:host-startup

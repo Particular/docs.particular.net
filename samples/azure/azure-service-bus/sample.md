@@ -4,8 +4,7 @@ summary: Using Azure Service Bus Transport.
 reviewed: 2016-03-21
 tags:
 related:
-- nservicebus/azure
-- nservicebus/azure/azure-servicebus-transport
+- nservicebus/azure-servicebus
 ---
 
 ## Prerequisites
@@ -15,7 +14,7 @@ An environment variable named `SamplesAzureServiceBusConnection` that contains t
 
 ## Azure Service Bus Transport
 
-This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure/azure-servicebus-transport.md).
+This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure-servicebus/).
 
 
 ## Code walk-through

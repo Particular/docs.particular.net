@@ -9,8 +9,9 @@ tags:
 related:
 - nservicebus/sagas
 - nservicebus/azure
-- nservicebus/azure/azure-storage-persistence
+- nservicebus/azure-storage-persistence
 ---
+
 
 ## Prerequisites
 
@@ -19,7 +20,7 @@ Ensure that an instance of the [Azure Storage Emulator](https://azure.microsoft.
 
 ## Azure Storage Persistence
 
-This sample utilizes the [Azure Storage Persistence](/nservicebus/azure/azure-storage-persistence.md).
+This sample utilizes the [Azure Storage Persistence](/nservicebus/azure-storage-persistence/).
 
 
 ## Code walk-through

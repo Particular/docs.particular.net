@@ -9,6 +9,7 @@ tags:
 - Performance
 redirects:
  - nservicebus/using-multiple-azure-storage-accounts-for-scaleout
+ - nservicebus/azure/using-multiple-azure-storage-accounts-for-scaleout
 ---
 
 An NServiceBus-based system running on Azure Storage Queues transport using a single storage account is subject to potential throttling once the maximum number of messages is written to the storage account. To overcome this limitation, you can use multiple storage accounts. To better understand scale out options with storage accounts, you need to understand Azure storage account scalability and performance.

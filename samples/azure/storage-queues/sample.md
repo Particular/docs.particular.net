@@ -4,7 +4,7 @@ summary: Use Azure Storage Queues Transport
 reviewed: 2016-03-21
 related:
 - nservicebus/azure
-- nservicebus/azure/azure-storage-queues-transport
+- nservicebus/azure-storage-queues
 ---
 
 ## Prerequisites
@@ -14,7 +14,7 @@ Ensure an instance of the [Azure Storage Emulator](https://azure.microsoft.com/e
 
 ## Azure Storage Queues Transport
 
-This sample utilizes the [Azure Storage Queues Transport](/nservicebus/azure/azure-storage-queues-transport.md).
+This sample utilizes the [Azure Storage Queues Transport](/nservicebus/azure-storage-queues/).
 
 
 ## Code walk-through
