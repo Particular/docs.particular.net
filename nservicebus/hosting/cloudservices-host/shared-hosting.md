@@ -10,6 +10,7 @@ related:
  - samples/azure/shared-host
 redirects:
  - nservicebus/shared-hosting-nservicebus-in-windows-azure-cloud-services
+ - nservicebus/azure/shared-hosting-nservicebus-in-windows-azure-cloud-services
 ---
 
 If real scale is what you're looking for, as in tens, hundreds or even thousands of machines hosting each endpoint, than cloud services is the deployment model you'll need. But very often, you only want this scale when you are eventually successful, not when you are just starting out. To support this scenario, we've created the `AsA_Hos`t endpoint role for Azure cloud services.
