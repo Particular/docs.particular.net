@@ -4,7 +4,6 @@
     using global::RabbitMQ.Client;
     using NServiceBus;
     using NServiceBus.Transports;
-    using NServiceBus.Transports.RabbitMQ;
     using NServiceBus.Transports.RabbitMQ.Routing;
 
     class Usage
@@ -60,7 +59,7 @@
         {
             #region rabbitmq-config-custom-id-strategy
             endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .CustomMessageIdStrategy(deliveryArgs => 
+                .CustomMessageIdStrategy(deliveryArgs =>
                     deliveryArgs.BasicProperties.Headers["MyCustomId"].ToString());
 
             #endregion
@@ -142,22 +141,5 @@
             }
         }
 
-        class MyConnectionManager : IManageRabbitMqConnections
-        {
-            public IConnection GetPublishConnection()
-            {
-                throw new NotImplementedException();
-            }
-
-            public IConnection GetConsumeConnection()
-            {
-                throw new NotImplementedException();
-            }
-
-            public IConnection GetAdministrationConnection()
-            {
-                throw new NotImplementedException();
-            }
-        }
     }
 }
