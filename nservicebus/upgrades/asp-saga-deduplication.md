@@ -10,7 +10,7 @@ related:
 
 ## Summary
 
-This document explains how to upgrade and patch a system for [Azure Storage Persistence bug #26](hhttps://github.com/Particular/NServiceBus.AzureStoragePersistence/issues/26) using the NServiceBus Azure hotfix release 6.2.4.
+This document explains how to upgrade and patch a system for [Azure Storage Persistence bug #26](https://github.com/Particular/NServiceBus.AzureStoragePersistence/issues/26) using the NServiceBus Azure hotfix release 6.2.4.
 
 ### How to know if a system may be affected
 
