@@ -139,6 +139,7 @@
             - "nservicebus/azure-servicebus/configuration"
             - "nservicebus/azure-servicebus/native-integration"
             - "nservicebus/azure-servicebus/performance-tuning"
+            - "nservicebus/azure-servicebus/publisher-names-configuration"
         - Title: "Azure Storage Queues Transport"
           Url: "nservicebus/azure-storage-queues"
           Articles:
