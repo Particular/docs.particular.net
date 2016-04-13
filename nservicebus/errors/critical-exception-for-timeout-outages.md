@@ -1,5 +1,5 @@
 ---
-title: Wait time for raising critical exception
+title: Critical exception wait time
 summary: A critical error is raised when timeout retrieval fails.
 reviewed: 2016-03-02
 tags:
