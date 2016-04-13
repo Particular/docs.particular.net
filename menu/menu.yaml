@@ -205,6 +205,7 @@
         - Title: "Azure Storage Persistence"
           Url: "nservicebus/azure-storage-persistence"  
           Articles:
+            - "nservicebus/upgrades/asp-saga-deduplication"
             - "nservicebus/azure-storage-persistence/configuration"
             - "nservicebus/azure-storage-persistence/performance-tuning"       
     -
