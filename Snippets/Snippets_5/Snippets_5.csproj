@@ -134,7 +134,7 @@
       <HintPath>..\..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Azure">
-      <HintPath>..\..\packages\NServiceBus.Azure.6.2.3\lib\net45\NServiceBus.Azure.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Azure.6.2.4\lib\net45\NServiceBus.Azure.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.6.4.0\lib\net45\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
