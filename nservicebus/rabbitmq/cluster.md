@@ -1,5 +1,5 @@
 ---
-title: RabbitMQ: In a cluster
+title: 'RabbitMQ: In a cluster'
 summary: Guidelines for using RabbitMQ in a cluster
 ---
 

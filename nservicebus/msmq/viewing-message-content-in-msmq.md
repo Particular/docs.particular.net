@@ -1,7 +1,6 @@
 ---
-title: MSMQ: Viewing content
-summary: See queues and message contents
-tags: []
+title: 'MSMQ: Viewing content'
+summary: See queues and message contents.
 redirects:
 - nservicebus/how-can-i-see-the-queues-and-messages-on-a-machine
 - nservicebus/viewing-message-content-in-msmq
