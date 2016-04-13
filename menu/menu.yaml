@@ -124,7 +124,7 @@
       Title: "Transports"
       Url: "nservicebus/transports"
       Articles:
-        - Title: "Azure Service Bus"
+        - Title: "Azure Service Bus Transport"
           Url: "nservicebus/azure-servicebus"
           Articles:
             - "nservicebus/azure-servicebus/faq"
@@ -132,7 +132,7 @@
             - "nservicebus/azure-servicebus/configuration"
             - "nservicebus/azure-servicebus/native-integration"
             - "nservicebus/azure-servicebus/performance-tuning"
-        - Title: "Azure Storage Queues"
+        - Title: "Azure Storage Queues Transport"
           Url: "nservicebus/azure-storage-queues"
           Articles:
             - "nservicebus/azure-storage-queues/faq"
@@ -145,7 +145,7 @@
             - "nservicebus/sqlserver/design"
             - "nservicebus/sqlserver/deployment-options"
             - "nservicebus/sqlserver/operations-scripting"
-        - Title: "MSMQ"
+        - Title: "MSMQ Transport"
           Url: "nservicebus/msmq"
           Articles:
             - "nservicebus/msmq/connection-strings"
@@ -158,7 +158,7 @@
             - "nservicebus/msmq/uninstalling-msmq"
             - "nservicebus/msmq/subscription-persistence"
             - "nservicebus/msmq/full-qualified-domain-name"
-        - Title: "RabbitMQ"
+        - Title: "RabbitMQ Transport"
           Url: "nservicebus/rabbitmq"
           Articles:
             - "nservicebus/rabbitmq/rabbitmqclient-nuget"
@@ -188,18 +188,18 @@
         - "nservicebus/persistence/authoring-custom"
         - "nservicebus/persistence/in-memory"
         - "nservicebus/msmq/subscription-persistence"
-        - Title: "NHibernate"
+        - Title: "NHibernate Persistence"
           Url: "nservicebus/nhibernate"
           Articles:
             - "nservicebus/nhibernate/accessing-data"
             - "nservicebus/nhibernate/saga-concurrency"
             - "nservicebus/nhibernate/sql-azure"
-        - Title: "RavenDB"
+        - Title: "RavenDB Persistence"
           Url: "nservicebus/ravendb"
           Articles:
             - "nservicebus/ravendb/operations-scripting"
             - "nservicebus/ravendb/installation"
-        - Title: "Azure Storage"
+        - Title: "Azure Storage Persistence"
           Url: "nservicebus/azure-storage-persistence"  
           Articles:
             - "nservicebus/azure-storage-persistence/configuration"

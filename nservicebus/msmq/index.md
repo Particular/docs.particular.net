@@ -8,9 +8,10 @@ redirects:
 
 MSMQ is the default transport used by NServiceBus.
 
+
 ## NServiceBus Configuration
 
-NServiceBus requires a specific MSMQ configuration to operate.     
+NServiceBus requires a specific MSMQ configuration to operate.
 
 The supported configuration is to only have the base MSMQ service installed with no optional features.
 To enable the supported configuration either use `NServiceBus Prerequisites` in the [Platform Installer](/platform/installer/) or use the `Install-NServiceBusMSMQ` cmdlet from the [NserviceBus Powershell Module](/nservicebus/operations/management-using-powershell.md).
