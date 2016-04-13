@@ -52,10 +52,17 @@ Saga data stored in Azure will need to be patched using the `NServiceBus.AzureSt
 
 ### Running the de-duplication utility
 1. Open a commandline and run the following command: `NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe directory=<directory> operation=Download` where:
-	- **directory**: This should be the full path of the working directory that the de-duplication tool will use. The tool will need to have read, write and delete permissions on the folder selected. If there are any spaces in the directory path this value should be enclosed in double quotes. If the tool was run previously, ensure that the directory indicated is empty. Example: `directory="C:\my working folder\deduplication"`
+	- **directory**: This should be the full path of the working directory that the de-duplication tool will use for storying conflicting sagas payloads. The tool will need to have read, write and delete permissions on the folder selected. If there are any spaces in the directory path this value should be enclosed in double quotes. If the tool was run previously, ensure that the directory indicated is empty. Example: `directory="C:\my working folder\deduplication"`
 2. The utility will output a list of saga data classes that it found while scanning the assemblies provided. The list of classes is split into two categories: those classes that have a correlation property and those that do not. 
 
-  ![Deduplication Run](saga-deduplication-1.png "width=50%") 
+```
+$ NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe directory=saga operation=Download
+
+Following saga types have correlation properties
+
+Following saga types have NO correlation property marked with [Unique] and won't be searched for duplicates.
+    * OrderSagaState
+```
 
   The saga classes that do have a correlation property will have their data de-duplicated. The classes that do not have a correlation property will need to have the `[Unique]` attribute added later steps. Make note of the classes in this list for use later.
 
