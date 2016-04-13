@@ -1,5 +1,5 @@
 ---
-title: Azure Storage Queues Transaction Support
+title: Azure Storage Queues Transport Transaction Support
 summary: Using Azure Storage Queues as transport
 tags:
 - Azure

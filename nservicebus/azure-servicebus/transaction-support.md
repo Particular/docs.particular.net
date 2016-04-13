@@ -1,6 +1,6 @@
 ---
-title: Azure Service Bus Transaction Support
-summary: Azure ServiceBus Transaction Support
+title: Azure Service Bus Transport Transaction Support
+summary: Azure ServiceBus Transport Transaction Support
 tags:
 - Azure
 - Cloud

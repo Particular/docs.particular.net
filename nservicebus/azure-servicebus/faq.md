@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus FAQ
+title: Azure Service Bus Transport FAQ
 summary: Frequently Asked Questions related to the Azure Service Bus Transport.
 tags:
 - Cloud

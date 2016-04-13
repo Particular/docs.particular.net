@@ -1,5 +1,5 @@
 ---
-title: Multiple Azure Storage Accounts for Scale Out
+title: 'Azure Storage Queues Transport: Multiple  Accounts for Scale Out'
 summary: NServiceBus can use multiple Azure storage accounts for scale out
 tags:
 - Azure

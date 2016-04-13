@@ -1,5 +1,5 @@
 ---
-title: Azure Storage Queues Configuration
+title: Azure Storage Queues Transport Configuration
 summary: Using Azure Storage Queues as transport
 tags:
 - Azure

@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus
+title: Azure Service Bus Transport
 summary: Using Azure ServiceBus as transport
 tags:
 - Azure
