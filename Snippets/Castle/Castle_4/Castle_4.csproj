@@ -49,7 +49,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.CastleWindsor, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.CastleWindsor.4.7.12\lib\net40\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.CastleWindsor.4.7.12\lib\net40\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
