@@ -1,5 +1,5 @@
 ---
-title: Gateway And Scale-Out
+title: Gateway: Scale-Out
 summary: How the Gateway handles Scale-Out
 reviewed: 2016-03-17
 related:
