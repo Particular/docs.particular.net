@@ -1,6 +1,7 @@
-namespace Snippets5.UpgradeGuides._4to5
+namespace SqlServer_2.UpgradeGuides
 {
     using NServiceBus;
+
     class Transactions
     {
         Transactions(BusConfiguration busConfiguration)

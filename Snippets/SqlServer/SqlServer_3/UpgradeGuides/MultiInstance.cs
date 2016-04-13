@@ -1,4 +1,4 @@
-﻿namespace Snippets6.UpgradeGuides._5to6
+﻿namespace SqlServer_3.UpgradeGuides
 {
     using System.Data.SqlClient;
     using NServiceBus;

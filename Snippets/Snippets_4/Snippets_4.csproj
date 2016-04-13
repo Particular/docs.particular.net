@@ -112,9 +112,6 @@
     <Reference Include="NServiceBus.Transports.RabbitMQ">
       <HintPath>..\..\packages\NServiceBus.RabbitMQ.1.1.5\lib\net40\NServiceBus.Transports.RabbitMQ.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Transports.SQLServer">
-      <HintPath>..\..\packages\NServiceBus.SqlServer.1.2.4\lib\net40\NServiceBus.Transports.SQLServer.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>

@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Transports.SqlServer
+﻿namespace SqlServer_2
 {
     using System.Data.SqlClient;
     using NServiceBus;

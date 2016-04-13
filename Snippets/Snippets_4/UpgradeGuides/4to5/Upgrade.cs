@@ -5,6 +5,7 @@
     using NServiceBus.Encryption;
     using NServiceBus.Installation.Environments;
     using NServiceBus.Logging;
+    using NServiceBus.Transports;
     using NServiceBus.Unicast.Config;
     using Snippets4.Encryption.EncryptionService;
 
@@ -64,6 +65,10 @@
             configure.UseTransport<AzureServiceBus>();
 
             #endregion
+        }
+
+        class SqlServer:TransportDefinition
+        {
         }
 
         void InterfaceMessageCreation(IBus Bus)

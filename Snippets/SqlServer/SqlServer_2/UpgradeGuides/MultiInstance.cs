@@ -1,4 +1,4 @@
-﻿namespace Snippets5.UpgradeGuides._5to6
+﻿namespace SqlServer_2.UpgradeGuides
 {
     using NServiceBus;
     using NServiceBus.Transports.SQLServer;

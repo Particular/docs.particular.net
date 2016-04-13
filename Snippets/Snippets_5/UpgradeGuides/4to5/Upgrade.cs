@@ -7,6 +7,7 @@ namespace Snippets5.UpgradeGuides._4to5
     using NServiceBus.Logging;
     using NServiceBus.MessageMutator;
     using NServiceBus.Persistence;
+    using NServiceBus.Transports;
     using Raven.Client.Document;
 
     public class Upgrade
@@ -69,6 +70,10 @@ namespace Snippets5.UpgradeGuides._4to5
             busConfiguration.UseTransport<AzureServiceBusTransport>();
 
             #endregion
+        }
+
+        class SqlServerTransport:TransportDefinition
+        {
         }
 
         void InterfaceMessageCreation(IBus Bus, IMessageCreator messageCreator)
