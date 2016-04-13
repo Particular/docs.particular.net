@@ -1,5 +1,5 @@
 ---
-title: Upgrade Azure Service Bus Transport Version 6 to 7
+title: Azure Service Bus Transport Upgrade Version 6 to 7
 summary: Instructions on how to upgrade Azure Service Bus Transport Version 6 to 7.
 reviewed: 2016-04-05
 tags:

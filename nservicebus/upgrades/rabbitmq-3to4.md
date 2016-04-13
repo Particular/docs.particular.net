@@ -1,5 +1,5 @@
 ---
-title: Upgrade RabbitMQ Transport Version 3 to 4
+title: RabbitMQ Transport Upgrade Version 3 to 4
 summary: Instructions on how to upgrade RabbitMQ Transport Version 3 to 4.
 reviewed: 2016-03-24
 tags:
