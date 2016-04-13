@@ -26,9 +26,11 @@
         - Title: "RabbitMQ Transport"
           Articles:
             - "nservicebus/upgrades/rabbitmq-3to4"
-        - Title: "Azure"
+        - Title: "Azure Storage Queues Transport"
           Articles:
             - "nservicebus/upgrades/asq-6to7"
+        - Title: "Azure Service Bus Transport"
+          Articles:
             - "nservicebus/upgrades/asb-6to7"
         - Title: "SQL Server Transport"
           Articles:
