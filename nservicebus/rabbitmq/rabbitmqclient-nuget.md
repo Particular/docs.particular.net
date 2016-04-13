@@ -1,5 +1,5 @@
 ---
-title: `RabbitMQ Transport: RabbitMQ.Client NuGet usage`
+title: 'RabbitMQ Transport: RabbitMQ.Client NuGet usage'
 summary: Explains why the RabbitMQ.Client NuGet version range is inconsistent with most other NServiceBus extension NuGets.
 ---
 
