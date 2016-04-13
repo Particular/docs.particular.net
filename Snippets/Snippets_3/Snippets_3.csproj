@@ -139,9 +139,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Persistence\NHibernate\nhibernate.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -263,7 +260,6 @@
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
-    <Compile Include="Persistence\NHibernate\Usage.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\MyMessage.cs" />
     <Compile Include="Routing\BasicOperations.cs" />

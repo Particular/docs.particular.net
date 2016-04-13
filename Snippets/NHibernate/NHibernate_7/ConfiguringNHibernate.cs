@@ -36,7 +36,6 @@
         void CustomCommonConfiguration(EndpointConfiguration endpointConfiguration)
         {
             #region CommonNHibernateConfiguration
-
             Configuration nhConfiguration = new Configuration
             {
                 Properties =

@@ -325,9 +325,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Persistence\NHibernate\nhibernate.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
     <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
@@ -501,13 +498,7 @@
     <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
     <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
     <Compile Include="Persistence\Msmq\Usage.cs" />
-    <Compile Include="Persistence\NHibernate\DisableSchemaUpdate.cs" />
-    <Compile Include="Persistence\NHibernate\ConfiguringNHibernateSqlAzure.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
-    <Compile Include="Persistence\NHibernate\AccessingData.cs" />
-    <Compile Include="Persistence\NHibernate\Concurrency\SagaDataWithRowVersion.cs" />
-    <Compile Include="Persistence\NHibernate\Concurrency\SagaDataWithLockMode.cs" />
-    <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="Pipeline\Abort\Behavior.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
