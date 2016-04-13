@@ -41,7 +41,7 @@
         - Title: "Gateway"
           Articles:
             - "nservicebus/upgrades/gateway-1to2"
-        - Title: "Host"
+        - Title: "NServiceBus Host"
           Articles:
             - "nservicebus/upgrades/host-6to7"
     -
