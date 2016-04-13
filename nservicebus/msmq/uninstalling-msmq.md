@@ -1,5 +1,5 @@
 ---
-title: Uninstalling the MSMQ Service
+title: 'MSMQ Transport: Uninstalling the MSMQ Service'
 summary: How to remove the Microsoft Messaging Queue (MSMQ) service
 tags:
 - Transports

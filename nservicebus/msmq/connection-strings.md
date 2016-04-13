@@ -1,5 +1,5 @@
 ---
-title: MSMQ connection strings
+title: MSMQ Transport connection strings
 summary: Detailed connection string information for MSMQ.
 tags:
 - Connection strings

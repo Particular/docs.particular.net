@@ -1,5 +1,5 @@
 ---
-title: 'MSMQ: Viewing content'
+title: 'MSMQ Transport: Viewing content'
 summary: See queues and message contents.
 redirects:
 - nservicebus/how-can-i-see-the-queues-and-messages-on-a-machine

@@ -1,5 +1,5 @@
 ---
-title: Scripting MSMQ
+title: 'MSMQ Transport: Scripting'
 summary: Example code and scripts to facilitate deployment and operational actions against MSMQ.
 reviewed: 2016-03-11
 ---
