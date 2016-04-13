@@ -1,5 +1,5 @@
 ---
-title: Patch Azure Storage Persistence Sagas
+title: Azure Storage Persistence upgrade Version 6.2.3 to higher
 summary: Instructions on how to patch Azure Storage Persistence when saga duplication occurs.
 tags:
  - upgrade
@@ -39,7 +39,7 @@ Saga data stored in Azure will need to be patched using the `NServiceBus.AzureSt
 <configuration>  
   <connectionStrings>  
     <add name="sagas" connectionStrings="--anAzureStorageConnectionString--"/>  
-	</connectionStrings> 
+  </connectionStrings> 
 </configuration>
 ``` 
 3. Copy endpoint dlls to the same folder as the de-duplication tool. These files will be scanned to find all implementations of IContainSagaData which will indicate the sagas that need to be verified in Azure Storage.
