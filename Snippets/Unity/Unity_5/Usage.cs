@@ -1,28 +1,31 @@
-﻿namespace Snippets5.Container
+﻿namespace Unity_5
 {
     using Microsoft.Practices.Unity;
     using NServiceBus;
 
-    class Containers_Unity
+    class Usage
     {
-        Containers_Unity(BusConfiguration busConfiguration)
+        Usage(Configure configure)
         {
             #region Unity
 
-            busConfiguration.UseContainer<UnityBuilder>();
+            configure.UnityBuilder();
 
             #endregion
         }
 
-        void Existing(BusConfiguration busConfiguration)
+        void Existing(Configure configure)
         {
             #region Unity_Existing
 
             UnityContainer container = new UnityContainer();
             container.RegisterInstance(new MyService());
-            busConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
+            configure.UnityBuilder(container);
 
             #endregion
+        }
+        class MyService
+        {
         }
 
     }

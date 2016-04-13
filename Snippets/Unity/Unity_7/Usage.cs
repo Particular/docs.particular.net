@@ -1,11 +1,11 @@
-﻿namespace Snippets6.Container
+﻿namespace Unity_7
 {
     using Microsoft.Practices.Unity;
     using NServiceBus;
 
-    class Containers_Unity
+    class Usage
     {
-        Containers_Unity(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region Unity
 
@@ -25,5 +25,8 @@
             #endregion
         }
 
+        class MyService
+        {
+        }
     }
 }
