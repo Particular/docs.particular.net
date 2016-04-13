@@ -103,9 +103,6 @@
     <Reference Include="NServiceBus.RavenDB">
       <HintPath>..\..\packages\NServiceBus.RavenDB.1.0.4\lib\net40\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Testing">
-      <HintPath>..\..\packages\NServiceBus.Testing.4.7.12\lib\net40\NServiceBus.Testing.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -322,7 +319,6 @@
     <Compile Include="Serialization\JsonSerializerUsage.cs" />
     <Compile Include="Transports\Msmq\AuthorizeSubscriptions.cs" />
     <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
-    <Compile Include="UnitTesting\Usage.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\CompleteOrder.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\OrderSaga.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\OrderSagaData.cs" />
@@ -349,17 +345,6 @@
     <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transports\Throughput\Usage.cs" />
-    <Compile Include="UnitTesting\HeaderManipulation\RequestMessage.cs" />
-    <Compile Include="UnitTesting\HeaderManipulation\ResponseMessage.cs" />
-    <Compile Include="UnitTesting\Saga\MyCommand.cs" />
-    <Compile Include="UnitTesting\Saga\MyEvent.cs" />
-    <Compile Include="UnitTesting\Saga\MyResponse.cs" />
-    <Compile Include="UnitTesting\Saga\MySagaData.cs" />
-    <Compile Include="UnitTesting\Saga\StartsSaga.cs" />
-    <Compile Include="UnitTesting\Saga\Tests.cs" />
-    <Compile Include="UnitTesting\ServiceLayer\RequestMessage.cs" />
-    <Compile Include="UnitTesting\ServiceLayer\ResponseMessage.cs" />
-    <Compile Include="UnitTesting\Unobtrusive.cs" />
     <Compile Include="UpgradeGuides\4to5\Scheduler.cs" />
     <Compile Include="UpgradeGuides\4to5\Upgrade.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
@@ -388,9 +373,6 @@
     <Compile Include="Encryption\Usage.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Installers.cs" />
-    <Compile Include="UnitTesting\AdditionalServices\Tests.cs" />
-    <Compile Include="UnitTesting\ServiceLayer\Tests.cs" />
-    <Compile Include="UnitTesting\HeaderManipulation\Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Errors\SecondLevel\SecondLevelReties.config.xml">

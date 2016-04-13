@@ -59,9 +59,6 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\packages\NServiceBus.3.3.18\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Testing">
-      <HintPath>..\..\packages\NServiceBus.Testing.3.3.18\lib\net40\NServiceBus.Testing.dll</HintPath>
-    </Reference>
     <Reference Include="ServiceControl.Contracts">
       <HintPath>..\..\packages\ServiceControl.Contracts.1.2.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
     </Reference>
@@ -247,8 +244,6 @@
     <Compile Include="Transactions.cs" />
     <Compile Include="Transports\Msmq\AuthorizeSubscriptions.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
-    <Compile Include="UnitTesting\Unobtrusive.cs" />
-    <Compile Include="UnitTesting\Usage.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\CompleteOrder.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\OrderSaga.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\OrderSagaData.cs" />

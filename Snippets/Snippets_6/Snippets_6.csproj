@@ -128,9 +128,6 @@
     <Reference Include="NServiceBus.RavenDB">
       <HintPath>..\..\packages\NServiceBus.RavenDB.4.0.0-unstable0102\lib\net452\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Testing">
-      <HintPath>..\..\packages\NServiceBus.Testing.6.0.0-alpha0079\lib\net452\NServiceBus.Testing.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -316,21 +313,6 @@
     <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
-    <Compile Include="UnitTesting\AdditionalServices\Tests.cs" />
-    <Compile Include="UnitTesting\HeaderManipulation\RequestMessage.cs" />
-    <Compile Include="UnitTesting\HeaderManipulation\ResponseMessage.cs" />
-    <Compile Include="UnitTesting\HeaderManipulation\Tests.cs" />
-    <Compile Include="UnitTesting\Saga\MyCommand.cs" />
-    <Compile Include="UnitTesting\Saga\MyEvent.cs" />
-    <Compile Include="UnitTesting\Saga\MyResponse.cs" />
-    <Compile Include="UnitTesting\Saga\MySaga.cs" />
-    <Compile Include="UnitTesting\Saga\MySagaData.cs" />
-    <Compile Include="UnitTesting\Saga\StartsSaga.cs" />
-    <Compile Include="UnitTesting\Saga\Tests.cs" />
-    <Compile Include="UnitTesting\ServiceLayer\RequestMessage.cs" />
-    <Compile Include="UnitTesting\ServiceLayer\ResponseMessage.cs" />
-    <Compile Include="UnitTesting\ServiceLayer\Tests.cs" />
-    <Compile Include="UnitTesting\Usage.cs" />
     <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameHelper.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />

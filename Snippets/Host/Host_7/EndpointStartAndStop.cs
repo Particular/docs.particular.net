@@ -8,14 +8,16 @@
     // When using NServiceBus.Host or NService.Host.AzureCloudService
     class RunWhenEndpointStartsAndStops : IWantToRunWhenEndpointStartsAndStops
     {
-        public async Task Start(IMessageSession session)
+        public Task Start(IMessageSession session)
         {
             // perform startup logic
+            return Task.FromResult(0);
         }
 
-        public async Task Stop(IMessageSession session)
+        public Task Stop(IMessageSession session)
         {
             // perform shutdown logic
+            return Task.FromResult(0);
         }
     }
 
