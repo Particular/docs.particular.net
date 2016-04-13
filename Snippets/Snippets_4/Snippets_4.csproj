@@ -45,9 +45,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
-    </Reference>
     <Reference Include="Common.Logging">
       <HintPath>..\..\packages\Common.Logging.1.2.0\lib\1.0\Common.Logging.dll</HintPath>
     </Reference>
@@ -133,9 +130,6 @@
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\..\packages\NServiceBus.NHibernate.5.0.3\lib\net40\NServiceBus.NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Autofac">
-      <HintPath>..\..\packages\NServiceBus.Autofac.4.7.12\lib\net40\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Ninject">
       <HintPath>..\..\packages\NServiceBus.Ninject.4.7.12\lib\net40\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>

@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Container
+﻿namespace Autofac_3
 {
     using Autofac;
     using NServiceBus;
