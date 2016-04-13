@@ -72,30 +72,6 @@
       <HintPath>..\..\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.ServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WindowsAzure.ServiceBus.3.1.7\lib\net45-full\Microsoft.ServiceBus.dll</HintPath>
       <Private>True</Private>
@@ -163,10 +139,6 @@
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Autofac">
       <HintPath>..\..\packages\NServiceBus.Autofac.6.0.0-beta0001\lib\net452\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Unity">
-      <HintPath>..\..\packages\NServiceBus.Unity.7.0.0-alpha0021\lib\net452\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">

@@ -67,22 +67,6 @@
       <HintPath>..\..\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unity.Interception.3.0.1304.0\lib\Net45\Microsoft.Practices.Unity.Interception.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unity.Interception.3.0.1304.0\lib\Net45\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.ServiceBus">
       <HintPath>..\..\packages\WindowsAzure.ServiceBus.2.7.6\lib\net40-full\Microsoft.ServiceBus.dll</HintPath>
     </Reference>
@@ -121,9 +105,6 @@
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\..\packages\NServiceBus.NHibernate.5.0.3\lib\net40\NServiceBus.NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Unity">
-      <HintPath>..\..\packages\NServiceBus.Unity.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
       <HintPath>..\..\packages\NServiceBus.RavenDB.1.0.4\lib\net40\NServiceBus.RavenDB.dll</HintPath>
