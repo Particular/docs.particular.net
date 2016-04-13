@@ -1,11 +1,11 @@
-﻿namespace Snippets5.Container
+﻿namespace StructureMap_5
 {
     using NServiceBus;
     using StructureMap;
 
-    class Containers_StructureMap
+    class Usage
     {
-        Containers_StructureMap(BusConfiguration busConfiguration)
+        Usage(BusConfiguration busConfiguration)
         {
             #region StructureMap
 
@@ -25,5 +25,8 @@
             #endregion
         }
 
+        class MyService
+        {
+        }
     }
 }

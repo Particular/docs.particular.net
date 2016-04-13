@@ -1,11 +1,11 @@
-﻿namespace Snippets6.Container
+﻿namespace StructureMap_6
 {
     using NServiceBus;
     using StructureMap;
 
-    class Containers_StructureMap
+    class Usage
     {
-        Containers_StructureMap(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region StructureMap
 
@@ -17,12 +17,15 @@
         void Existing(EndpointConfiguration endpointConfiguration)
         {
             #region StructureMap_Existing
-            
+
             Container container = new Container(x => x.For<MyService>().Use(new MyService()));
             endpointConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
 
             #endregion
         }
 
+        class MyService
+        {
+        }
     }
 }

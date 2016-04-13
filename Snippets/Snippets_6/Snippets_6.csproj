@@ -269,7 +269,6 @@
     <Compile Include="Callback\Object\Message.cs" />
     <Compile Include="Callback\Object\ResponseMessage.cs" />
     <Compile Include="Callback\Object\Usage.cs" />
-    <Compile Include="Container\Containers_StructureMap.cs" />
     <Compile Include="Container\Containers_Unity.cs" />
     <Compile Include="Container\Custom\ContainerCustom.cs" />
     <Compile Include="Container\Custom\MyObjectBuilder.cs" />

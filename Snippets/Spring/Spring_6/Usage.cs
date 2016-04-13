@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Container
+﻿namespace Spring_6
 {
     using NServiceBus;
     using Spring.Context.Support;
