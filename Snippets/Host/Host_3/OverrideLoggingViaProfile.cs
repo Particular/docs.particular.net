@@ -6,7 +6,7 @@
     {
         #region LoggingConfigWithProfile
 
-        public class YourProfileLoggingHandler : 
+        public class YourProfileLoggingHandler :
             IConfigureLoggingForProfile<YourProfile>
         {
             public void Configure(IConfigureThisEndpoint specifier)

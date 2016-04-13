@@ -13,10 +13,13 @@
             #endregion
         }
 
+        //TODO: fix when azure host is split
+        /**
         #region AzureStorageQueueTransportWithAzureHost 5
 
         public class EndpointConfig : IConfigureThisEndpoint, UsingTransport<AzureStorageQueue> { }
 
         #endregion
+    **/
     }
 }

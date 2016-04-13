@@ -1,24 +1,32 @@
 ﻿namespace Snippets5.Logging
 {
     using NServiceBus;
-    using NServiceBus.Log4Net;
+    using NServiceBus.Logging;
 
-    class OverrideViaProfile
+    class OverrideLoggingViaProfile
     {
         #region LoggingConfigWithProfile
 
-        public class YourProfileLoggingHandler : 
+        public class YourProfileLoggingHandler :
             NServiceBus.Hosting.Profiles.IConfigureLoggingForProfile<YourProfile>
         {
             public void Configure(IConfigureThisEndpoint specifier)
             {
                 // setup your logging infrastructure then call
-                NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
+                LogManager.Use<Log4NetFactory>();
             }
+
         }
 
         #endregion
 
+        class Log4NetFactory:LoggingFactoryDefinition
+        {
+            protected override ILoggerFactory GetLoggingFactory()
+            {
+                throw new System.NotImplementedException();
+            }
+        }
         class YourProfile : IProfile
         {
         }

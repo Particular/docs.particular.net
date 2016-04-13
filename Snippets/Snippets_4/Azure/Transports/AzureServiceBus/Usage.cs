@@ -12,7 +12,8 @@
 
             #endregion
         }
-
+        //TODO: fix when azure host is split
+        /**
         #region AzureServiceBusTransportWithAzureHost 5
 
         public class EndpointConfig : IConfigureThisEndpoint, UsingTransport<AzureServiceBus>
@@ -20,5 +21,6 @@
         }
 
         #endregion
+    **/
     }
 }

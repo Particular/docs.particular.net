@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    #region 5to6-EndpointStartAndStop
+    #region 5to6-EndpointStartAndStop 6
     // Use this in NServiceBus.Host or NServiceBus.Host.AzureCloudService
     public class Bootstrapper : IWantToRunWhenEndpointStartsAndStops
     {

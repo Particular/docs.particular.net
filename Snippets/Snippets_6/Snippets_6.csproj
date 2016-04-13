@@ -108,10 +108,6 @@
       <HintPath>..\..\packages\NServiceBus.Gateway.2.0.0-alpha0086\lib\net452\NServiceBus.Gateway.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Host, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.Host.7.0.0-beta0002\lib\net452\NServiceBus.Host.exe</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="NServiceBus.Log4Net">
       <HintPath>..\..\packages\NServiceBus.Log4Net.1.1.0-beta0001\lib\net452\NServiceBus.Log4Net.dll</HintPath>
     </Reference>
@@ -199,7 +195,6 @@
     <Compile Include="Features\AdvancedSatelliteFeature.cs" />
     <Compile Include="Features\SatelliteFeature.cs" />
     <Compile Include="Injection\Injection.cs" />
-    <Compile Include="Lifecycle\EndpointStartAndStop.cs" />
     <Compile Include="Notifications\SubscribeToNotifications.cs" />
     <Compile Include="Notifications\EventsToObservables.cs" />
     <Compile Include="Callback\Cancellation\Message.cs" />
@@ -244,8 +239,6 @@
     <Compile Include="Encryption\MessageBody\Usage.cs" />
     <Compile Include="Encryption\Usage.cs" />
     <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
-    <Compile Include="EndpointName\EndpointConfigByNamespace.cs" />
-    <Compile Include="EndpointName\EndpointConfigWithAttribute.cs" />
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="Errors\ErrorQueue\Usage.cs" />
     <Compile Include="Errors\FirstLevel\ConfigurationSource\ConfigurationSource.cs" />
@@ -305,9 +298,6 @@
     <Compile Include="Pipeline\CustomForkConnector.cs" />
     <Compile Include="Pipeline\CustomStageConnector.cs" />
     <Compile Include="Pipeline\CustomStageForkConnector.cs" />
-    <Compile Include="Profiles\ConfigureLogging.cs" />
-    <Compile Include="Profiles\CustomProfiles.cs" />
-    <Compile Include="Profiles\DependentProfile.cs" />
     <Compile Include="Routing\RoutingAPIs.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Sagas\FindSagas\NHibernateSagaFinder.cs" />
@@ -383,7 +373,6 @@
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\NLog\NLogFiltering.cs" />
     <Compile Include="Logging\NLog\Usage.cs" />
-    <Compile Include="Logging\OverrideViaProfile.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="Logging\UsingLogging.cs" />
     <Compile Include="Mutators\Instance\MutateIncomingMessages.cs" />
@@ -442,7 +431,6 @@
     <Compile Include="Transports\QueueCreation\YourQueueCreator.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="TransportTransactions.cs" />
-    <Compile Include="UpgradeGuides\5to6\StartupInterface.cs" />
     <Compile Include="UpgradeGuides\5to6\MsmqSubscriptionAuthorization.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />

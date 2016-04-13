@@ -97,9 +97,6 @@
     <Reference Include="NServiceBus.Distributor.MSMQ">
       <HintPath>..\..\packages\NServiceBus.Distributor.MSMQ.4.4.9\lib\net40\NServiceBus.Distributor.MSMQ.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Host">
-      <HintPath>..\..\packages\NServiceBus.Host.4.7.12\lib\net40\NServiceBus.Host.exe</HintPath>
-    </Reference>
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\..\packages\NServiceBus.NHibernate.5.0.3\lib\net40\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
@@ -275,8 +272,6 @@
     <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
     <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
-    <Compile Include="EndpointName\EndpointConfigWithAttribute.cs" />
-    <Compile Include="EndpointName\EndpointConfigByNamespace.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Errors\FirstLevel\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />

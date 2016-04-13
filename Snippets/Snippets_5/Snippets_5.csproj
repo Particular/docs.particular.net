@@ -104,10 +104,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NServiceBus.Gateway.1.0.1\lib\net45\NServiceBus.Gateway.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Host, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\NServiceBus.Host.6.0.0\lib\net45\NServiceBus.Host.exe</HintPath>
-    </Reference>
     <Reference Include="NServiceBus.Log4Net, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NServiceBus.Log4Net.1.0.0\lib\net45\NServiceBus.Log4Net.dll</HintPath>
@@ -340,9 +336,6 @@
     <Compile Include="Lifecycle\IWantToRunWhenConfigurationIsComplete.cs" />
     <Compile Include="Lifecycle\EndpointStartAndStop.cs" />
     <Compile Include="Extending\Features.cs" />
-    <Compile Include="Profiles\CustomProfiles.cs" />
-    <Compile Include="Profiles\ConfigureLogging.cs" />
-    <Compile Include="Profiles\DependentProfile.cs" />
     <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="Headers\StaticHeaders.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
@@ -374,8 +367,6 @@
     <Compile Include="Encryption\Configuration\FromCode.cs" />
     <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
     <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
-    <Compile Include="EndpointName\EndpointConfigWithAttribute.cs" />
-    <Compile Include="EndpointName\EndpointConfigByNamespace.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Errors\FirstLevel\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />
@@ -481,7 +472,6 @@
     <Compile Include="Encryption\Usage.cs" />
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="DataBus\Azure\Usage.cs" />
-    <Compile Include="Logging\OverrideViaProfile.cs" />
     <Compile Include="Logging\Log4Net\Usage.cs" />
     <Compile Include="Logging\NLog\Usage.cs" />
     <Compile Include="Logging\BuiltInConfig.cs" />
@@ -521,7 +511,6 @@
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
-    <Compile Include="WCF\Expose_wcf.cs" />
     <Compile Include="XmlSerializationIntegration.cs" />
   </ItemGroup>
   <ItemGroup>

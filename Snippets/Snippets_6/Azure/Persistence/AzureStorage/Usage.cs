@@ -14,7 +14,8 @@
 
             #endregion
         }
-
+        //TODO: fix when we split azure
+        /**
         #region PersistenceWithAzureHost 7
 
         public class EndpointConfig : IConfigureThisEndpoint
@@ -26,6 +27,7 @@
         }
 
         #endregion
+    **/
 
         void CustomizingAzurePersistenceAllConnections_7(EndpointConfiguration endpointConfiguration)
         {

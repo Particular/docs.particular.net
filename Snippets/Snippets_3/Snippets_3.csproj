@@ -59,9 +59,6 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\packages\NServiceBus.3.3.18\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Host">
-      <HintPath>..\..\packages\NServiceBus.Host.3.3.18\lib\net40\NServiceBus.Host.exe</HintPath>
-    </Reference>
     <Reference Include="NServiceBus.Testing">
       <HintPath>..\..\packages\NServiceBus.Testing.3.3.18\lib\net40\NServiceBus.Testing.dll</HintPath>
     </Reference>
@@ -148,7 +145,6 @@
     <Compile Include="ImmediateDispatch\Usage.cs" />
     <Compile Include="Installers.cs" />
     <Compile Include="InstallSomething.cs" />
-    <Compile Include="Lifecycle\EndpointStartAndStop.cs" />
     <Compile Include="Mutators\MutatorRegistration.cs" />
     <Compile Include="Mutators\Instance\MutateIncomingMessages.cs" />
     <Compile Include="Mutators\Transport\MutateIncomingTransportMessages.cs" />
@@ -156,10 +152,6 @@
     <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
     <Compile Include="Persistence\Msmq\Usage.cs" />
-    <Compile Include="Profiles\ProfileBehavior.cs" />
-    <Compile Include="Profiles\ConfigureLogging.cs" />
-    <Compile Include="Profiles\DefiningProfile.cs" />
-    <Compile Include="Profiles\DependentProfile.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
     <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
     <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />
@@ -197,8 +189,6 @@
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Routing\EndpointMapping\ProvideConfiguration.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
-    <Compile Include="EndpointName\EndpointConfigByNamespace.cs" />
-    <Compile Include="EndpointName\EndpointConfigWithAttribute.cs" />
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ErrorQueueConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
@@ -220,7 +210,6 @@
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
-    <Compile Include="Logging\OverrideViaProfile.cs" />
     <Compile Include="Logging\UsingLogging.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
