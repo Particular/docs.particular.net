@@ -5,6 +5,7 @@ tags:
 - Cloud
 - Azure
 - Transports
+reviewed: 2016-04-13
 ---
 
 When `EndpointOrientedTopology` is selected, mapping between publisher names and message types has to be properly configured at transport level to ensure subscriber receives event messages.  
