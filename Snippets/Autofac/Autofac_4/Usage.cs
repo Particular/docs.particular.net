@@ -1,30 +1,33 @@
-﻿namespace Snippets6.Container
+﻿namespace Snippets4.Container
 {
     using Autofac;
     using NServiceBus;
 
-    class Containers_Autofac
+    class Usage
     {
-        Containers_Autofac(EndpointConfiguration endpointConfiguration)
+        Usage(Configure configure)
         {
             #region Autofac
 
-            endpointConfiguration.UseContainer<AutofacBuilder>();
+            configure.AutofacBuilder();
 
             #endregion
         }
 
-        void Existing(EndpointConfiguration endpointConfiguration)
+        void Existing(Configure configure)
         {
             #region Autofac_Existing
 
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterInstance(new MyService());
             IContainer container = builder.Build();
-            endpointConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+            configure.AutofacBuilder(container);
 
             #endregion
         }
 
+        class MyService
+        {
+        }
     }
 }

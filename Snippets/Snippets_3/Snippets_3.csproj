@@ -193,7 +193,6 @@
     <Compile Include="Callback\Object\ObjectResponseMessageHandler.cs" />
     <Compile Include="Callback\Object\ResponseMessage.cs" />
     <Compile Include="Callback\Object\Usage.cs" />
-    <Compile Include="Container\Containers_Autofac.cs" />
     <Compile Include="Container\Containers_Ninject.cs" />
     <Compile Include="Container\Containers_Spring.cs" />
     <Compile Include="Container\Containers_StructureMap.cs" />

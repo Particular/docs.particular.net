@@ -3,9 +3,9 @@
     using Autofac;
     using NServiceBus;
 
-    class Containers_Autofac
+    class Usage
     {
-        Containers_Autofac(BusConfiguration busConfiguration)
+        Usage(BusConfiguration busConfiguration)
         {
             #region Autofac
 
@@ -26,5 +26,8 @@
             #endregion
         }
 
+        class MyService
+        {
+        }
     }
 }
