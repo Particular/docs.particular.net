@@ -3,9 +3,9 @@
     using NServiceBus;
     using Spring.Context.Support;
 
-    class Containers_Spring
+    class Usage
     {
-        void Simple(Configure configure)
+        Usage(Configure configure)
         {
             #region Spring
 
@@ -24,5 +24,8 @@
             #endregion
         }
 
+        class MyService
+        {
+        }
     }
 }

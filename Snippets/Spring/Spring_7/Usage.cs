@@ -1,29 +1,32 @@
-﻿namespace Snippets5.Container
+﻿namespace Snippets6.Container
 {
     using NServiceBus;
     using Spring.Context.Support;
 
-    class Containers_Spring
+    class Usage
     {
-        Containers_Spring(BusConfiguration busConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region Spring
 
-            busConfiguration.UseContainer<SpringBuilder>();
+            endpointConfiguration.UseContainer<SpringBuilder>();
 
             #endregion
         }
 
-        void Existing(BusConfiguration busConfiguration)
+        void Existing(EndpointConfiguration endpointConfiguration)
         {
             #region Spring_Existing
 
             GenericApplicationContext applicationContext = new GenericApplicationContext();
             applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
-            busConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));
+            endpointConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));
 
             #endregion
         }
 
+        class MyService
+        {
+        }
     }
 }

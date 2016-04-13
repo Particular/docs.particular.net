@@ -435,7 +435,6 @@
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
-    <Compile Include="Container\Containers_Spring.cs" />
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
