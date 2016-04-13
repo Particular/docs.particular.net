@@ -71,11 +71,11 @@
   Url: nservicebus/logging/nlog
   NugetOrder:
     - NServiceBus.NLog
-- Key: RabbitMQ
+- Key: Rabbit
   Url: nservicebus/rabbitmq
   NugetOrder:
     - NServiceBus.RabbitMQ
-- Key: RavenDB
+- Key: Raven
   Url: nservicebus/ravendb
   NugetOrder:
     - NServiceBus.RavenDB
