@@ -86,9 +86,6 @@
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\..\packages\NServiceBus.NHibernate.3.3.18\lib\net40\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Spring">
-      <HintPath>..\..\packages\NServiceBus.Spring.3.3.18\lib\net40\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
-    </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.StructureMap">
       <HintPath>..\..\packages\NServiceBus.StructureMap.3.3.18\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
     </Reference>
@@ -104,9 +101,6 @@
     <Reference Include="ServiceControl.Plugin.Nsb3.CustomChecks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceControl.Plugin.Nsb3.CustomChecks.1.0.0\lib\net40\ServiceControl.Plugin.Nsb3.CustomChecks.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Spring.Core, Version=1.3.2.40943, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Spring.Core.1.3.2\lib\net40\Spring.Core.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <HintPath>..\..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>

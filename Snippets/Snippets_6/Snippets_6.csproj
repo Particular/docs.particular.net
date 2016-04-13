@@ -165,9 +165,6 @@
       <HintPath>..\..\packages\NServiceBus.Autofac.6.0.0-beta0001\lib\net452\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Spring">
-      <HintPath>..\..\packages\NServiceBus.Spring.7.0.0-alpha0031\lib\net452\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
-    </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.StructureMap, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.StructureMap.6.0.0-alpha0035\lib\net452\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
       <Private>True</Private>
@@ -200,10 +197,6 @@
     </Reference>
     <Reference Include="ServiceControl.Plugin.Nsb6.CustomChecks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceControl.Plugin.Nsb6.CustomChecks.1.0.0-beta0003\lib\net452\ServiceControl.Plugin.Nsb6.CustomChecks.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Spring.Core, Version=2.0.1.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Spring.Core.2.0.1\lib\net45\Spring.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StructureMap">
