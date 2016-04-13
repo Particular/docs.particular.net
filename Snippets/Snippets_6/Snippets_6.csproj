@@ -335,10 +335,6 @@
     <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
-    <Compile Include="Transports\SqlServer_3\MultiDb.cs" />
-    <Compile Include="Transports\SqlServer_3\MultiSchema.cs" />
-    <Compile Include="Transports\SqlServer_3\SingleDbMultiSchema.cs" />
-    <Compile Include="Transports\SqlServer_3\ConnectionStrings.cs" />
     <Compile Include="UnitTesting\AdditionalServices\Tests.cs" />
     <Compile Include="UnitTesting\HeaderManipulation\RequestMessage.cs" />
     <Compile Include="UnitTesting\HeaderManipulation\ResponseMessage.cs" />
@@ -355,7 +351,6 @@
     <Compile Include="UnitTesting\ServiceLayer\Tests.cs" />
     <Compile Include="UnitTesting\Usage.cs" />
     <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
-    <Compile Include="Transports\SqlServer_3\UpgradeGuides\Transactions.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameHelper.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStartStop.cs" />
@@ -454,10 +449,8 @@
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
     <Compile Include="Transports\QueueCreation\YourMessagePump.cs" />
     <Compile Include="Transports\QueueCreation\YourQueueCreator.cs" />
-    <Compile Include="Transports\SqlServer_3\ConfigurationSettings.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="TransportTransactions.cs" />
-    <Compile Include="Transports\SqlServer_3\UpgradeGuides\MultiInstance.cs" />
     <Compile Include="UpgradeGuides\5to6\StartupInterface.cs" />
     <Compile Include="UpgradeGuides\5to6\MsmqSubscriptionAuthorization.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
@@ -551,9 +544,6 @@
     <None Include="Routing\RoutingFile.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Transports\SqlServer_3\MultiSchema.config" />
-    <None Include="Transports\SqlServer_3\ConnectionStringsNamed.config" />
-    <None Include="Transports\SqlServer_3\ConnectionStrings.config" />
     <None Include="Gateway\UpgradeGuide\1to2\Channel.config" />
   </ItemGroup>
   <ItemGroup>

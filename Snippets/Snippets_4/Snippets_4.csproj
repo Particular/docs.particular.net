@@ -200,9 +200,6 @@
     <Content Include="Transports\Msmq\MessageQueue.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Transports\SqlServer\MultiDb.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>

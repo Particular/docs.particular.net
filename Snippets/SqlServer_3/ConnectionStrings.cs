@@ -17,7 +17,7 @@
 
             #endregion
         }
-		
+
         void ConnectionName(EndpointConfiguration endpointConfiguration)
         {
             #region sqlserver-named-connection-string
