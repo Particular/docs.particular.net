@@ -161,10 +161,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NServiceBus.Autofac.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.StructureMap, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\NServiceBus.StructureMap.5.0.1\lib\net45\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
-    </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Unity, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Unity.6.2.0\lib\net45\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
       <Private>True</Private>
@@ -204,12 +200,6 @@
     <Reference Include="ServiceControl.Plugin.Nsb5.CustomChecks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceControl.Plugin.Nsb5.CustomChecks.1.0.1\lib\net45\ServiceControl.Plugin.Nsb5.CustomChecks.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\..\packages\structuremap.3.1.7.350\lib\net40\StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap.Net4">
-      <HintPath>..\..\packages\structuremap.3.1.7.350\lib\net40\StructureMap.Net4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

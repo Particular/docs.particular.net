@@ -77,9 +77,6 @@
     <Reference Include="NServiceBus.Host">
       <HintPath>..\..\packages\NServiceBus.Host.3.3.18\lib\net40\NServiceBus.Host.exe</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.StructureMap">
-      <HintPath>..\..\packages\NServiceBus.StructureMap.3.3.18\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
-    </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Unity">
       <HintPath>..\..\packages\NServiceBus.Unity.3.3.18\lib\net40\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
     </Reference>
@@ -92,9 +89,6 @@
     <Reference Include="ServiceControl.Plugin.Nsb3.CustomChecks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceControl.Plugin.Nsb3.CustomChecks.1.0.0\lib\net40\ServiceControl.Plugin.Nsb3.CustomChecks.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
