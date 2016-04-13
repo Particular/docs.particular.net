@@ -35,15 +35,16 @@ Saga data stored in Azure will need to be patched using the `NServiceBus.AzureSt
 
 1. Download the de-duplication tool from [https://github.com/Particular/IssueDetection/releases/tag/nsb.asp.26](https://github.com/Particular/IssueDetection/releases/tag/nsb.asp.26) and put it on a computer that has internet access as well as the .NET Framework 4.5.2 installed.
 2. Add an Azure Storage connection string to the `NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe.config` file. Example:
-```		
-<configuration>  
-  <connectionStrings>  
-    <add name="sagas" connectionStrings="--anAzureStorageConnectionString--"/>  
-  </connectionStrings> 
-</configuration>
-``` 
+	
+	```		
+	<configuration>  
+		<connectionStrings>  
+			<add name="sagas" connectionStrings="--anAzureStorageConnectionString--"/>  
+		</connectionStrings> 
+	</configuration>
+	```
 3. Copy endpoint dlls to the same folder as the de-duplication tool. These files will be scanned to find all implementations of IContainSagaData which will indicate the sagas that need to be verified in Azure Storage.
-4. Run de-duplication utility (see below for details)
+4. Run de-duplication utility (refer to the [Running the de-duplication utility](#running-the-de-duplication-utility) section for more details).
 5. All class names returned by the de-duplication tool in the previous step will need to add the `[Unique]` attribute to one property. `IContainSagaData` classes without a property decorated by the `[Unique]` attribute will cause their sagas to throw exceptions post upgrade.
 6. Update NServiceBus.Azure dependency to version 6.2.4 or higher in all endpoints that use it and release the updated endpoints.
 7. Run de-duplication utility again (see below for details). This will fix problem saga data or list conflicts that were introduced to the data store while steps #5 and #6 were being performed.
