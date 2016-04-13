@@ -1,4 +1,4 @@
 ---
-title: RavenDB Upgrade Guides
+title: RavenDB Persistence Upgrade Guides
 summary: Upgrade Guides for RavenDB
 ---

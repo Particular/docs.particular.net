@@ -1,5 +1,5 @@
 ---
-title: Shared Hosting in Azure Cloud Services
+title: 'Azure Cloud Services Host: Shared Hosting in Azure Cloud Services'
 summary: Using Azure Cloud Services to host multiple NServiceBus endpoints on a shared pool of machines.
 tags:
 - Azure

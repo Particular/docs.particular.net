@@ -1,5 +1,5 @@
 ---
-title: Scripting RavenDB
+title: 'RavenDB Persistence: Scripting'
 summary: Example code and scripts to facilitate deployment and operational actions against RavenDB.
 ---
 

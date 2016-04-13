@@ -1,5 +1,5 @@
 ---
-title: Business data using NHibernate
+title: 'NHibernate Persistence: Business data'
 summary: How to access business data in sync with message consumption and modifications to NServiceBus-controlled data.
 reviewed: 2016-03-15
 tags:

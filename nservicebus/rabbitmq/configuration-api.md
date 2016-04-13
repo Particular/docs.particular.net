@@ -1,5 +1,5 @@
 ---
-title: RabbitMQ configuration settings
+title: RabbitMQ Transport configuration settings
 summary: The various ways to customize the RabbitMQ transport
 tags:
 - RabbitMQ

@@ -1,5 +1,5 @@
 ---
-title: Hosting in Azure
+title: Azure Cloud Services Host Options
 summary: Overview on using Azure Cloud Services, websites, and virtual machines to host NServiceBus, with links to detailed articles.
 tags:
 - Hosting

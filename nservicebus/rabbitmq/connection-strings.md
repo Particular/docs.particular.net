@@ -1,5 +1,5 @@
 ---
-title: RabbitMQ connection strings
+title: RabbitMQ Transport connection strings
 summary: Detailed connection string information for RabbitMQ.
 tags:
 - Connection strings

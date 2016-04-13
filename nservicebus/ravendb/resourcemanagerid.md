@@ -1,5 +1,5 @@
 ---
-title: How to change the RavenDB ResourceManagerID
+title: 'RavenDB Persistence: Changing the RavenDB ResourceManagerID'
 summary: 'Guidance on how to change the RavenDB ResourceManagerID'
 tags: [RavenDB, Persistence]
 redirects:

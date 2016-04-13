@@ -1,5 +1,5 @@
 ---
-title: Azure Cloudservices Host Endpoint Configuration
+title: Azure Cloud Services Host Endpoint Configuration
 summary: Configuring your endpoint when hosting in Azure Cloud Services
 tags:
 - Azure
