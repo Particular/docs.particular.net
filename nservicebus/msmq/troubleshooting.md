@@ -7,6 +7,7 @@ tags:
 redirects:
  - nservicebus/messagequeueexception-insufficient-resources-to-perform-operation
  - nservicebus/msmq/messagequeueexception-insufficient-resources-to-perform-operation
+ - nservicebus/msmq/network-load-balancing
 ---
 
 This article details common problems encountered with the MSMQ Transport and how to resolve them.
@@ -61,6 +62,11 @@ For more information on this error, see [John Breakwell's article in MSDN](https
 MSMQ isn't smart enough to dynamically detect network interfaces. If connect a VPN after the MSMQ service starts, a restart of the MSMQ service will be required for it to detect the VPN. Once it starts with the interface, the VPN is free to disconnect/reconnect whenever it wants.
 
 It is recommended to have batch setup scripts that run on server startups to connect the VPN, which then restarts the MSMQ service automatically.
+
+
+## Network Load Balancing cannot be used
+
+While non-transactional messaging in a Network Load Balancing (NLB) environment is possible, it is much harder to achieve load-balancing in transactional MSMQ. [Microsoft provides a detailed answer](https://support.microsoft.com/en-us/kb/899611).
 
 
 ## Useful links

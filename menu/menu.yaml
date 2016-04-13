@@ -19,10 +19,12 @@
       Articles:
         - "nservicebus/upgrades/support-policy"
         - "nservicebus/upgrades/release-policy"
-        - "nservicebus/upgrades/5to6"
-        - "nservicebus/upgrades/4to5"
-        - "nservicebus/upgrades/3to4"
-        - "nservicebus/upgrades/encryption-key-identifiers"
+        - Title: "NServiceBus"
+          Articles:
+            - "nservicebus/upgrades/5to6"
+            - "nservicebus/upgrades/4to5"
+            - "nservicebus/upgrades/3to4"
+            - "nservicebus/upgrades/encryption-key-identifiers"
         - Title: "RabbitMQ Transport"
           Articles:
             - "nservicebus/upgrades/rabbitmq-3to4"
@@ -155,7 +157,6 @@
             - "nservicebus/msmq/transportconfig"
             - "nservicebus/msmq/troubleshooting"
             - "nservicebus/msmq/subscription-authorisation"
-            - "nservicebus/msmq/network-load-balancing"
             - "nservicebus/msmq/operations-scripting"
             - "nservicebus/msmq/uninstalling-msmq"
             - "nservicebus/msmq/subscription-persistence"
