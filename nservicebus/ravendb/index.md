@@ -1,5 +1,5 @@
 ---
-title: RavenDB
+title: RavenDB Persistence
 summary: RavenDB persistence documentation
 tags:
 - RavenDB
