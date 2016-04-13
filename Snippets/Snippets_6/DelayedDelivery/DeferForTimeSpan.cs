@@ -11,7 +11,7 @@
         {
             #region configure-persistence-timeout
 
-            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
 
             #endregion
 

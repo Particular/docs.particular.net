@@ -11,7 +11,7 @@
         {
             #region configure-persistence-timeout
 
-            configuration.UseNHibernateTimeoutPersister();
+            configuration.UseInMemoryTimeoutPersister();
 
             #endregion
 

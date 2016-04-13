@@ -22,7 +22,7 @@
         {
             #region 4to5MessageConventions
 
-            // NOTE: When you're self hosting, '.DefiningXXXAs()' has to be before '.UnicastBus()', 
+            // NOTE: When you're self hosting, '.DefiningXXXAs()' has to be before '.UnicastBus()',
             // otherwise you'll get: 'System.InvalidOperationException: "No destination specified for message(s): MessageTypeName"
             configure.DefaultBuilder();
             configure.DefiningCommandsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"));
@@ -134,7 +134,7 @@
             Configure configure = Configure.With();
             #region 4to5ConfigurePersistence
 
-            // Configure to use InMemory 
+            // Configure to use InMemory
             configure.InMemorySagaPersister();
             configure.UseInMemoryTimeoutPersister();
             configure.InMemorySubscriptionStorage();
@@ -244,7 +244,7 @@
         {
             #region 4to5EncryptionFromIEncryptionService
 
-            //where EncryptionService implements IEncryptionService 
+            //where EncryptionService implements IEncryptionService
             Configure configure = Configure.With();
             configure.Configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
 
@@ -314,7 +314,7 @@
             Configure configure = Configure.With();
             #region 4to5EndpointName
 
-            // To customize the endpoint name via code using the DefineEndpointName method, 
+            // To customize the endpoint name via code using the DefineEndpointName method,
             // it is important to call it first, right after the With() configuration entry point.
             configure.DefineEndpointName("MyEndpoint");
 

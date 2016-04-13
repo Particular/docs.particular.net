@@ -40,7 +40,7 @@
             endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 
             endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
-            
+
             // This one will override the above settings!
             endpointConfiguration.UsePersistence<RavenDBPersistence>();
             #endregion
