@@ -1,6 +1,6 @@
 ---
-title: Azure Cloudservices Hosting FAQ
-summary: Frequently Asked Questions related to the Azure Cloudservices host.
+title: Azure Cloud Services Host FAQ
+summary: Frequently Asked Questions related to the Azure Cloud Services Host.
 tags:
 - Cloud
 - Azure
