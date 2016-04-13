@@ -218,9 +218,6 @@
     <Content Include="Headers\Writers\HeaderWriterSaga_Sending.txt" />
     <Content Include="Headers\Writers\HeaderWriterSaga_Timeout.txt" />
     <Content Include="Headers\Writers\HeaderWriterSend.txt" />
-    <Content Include="Host_6\ExplicitConfigType.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -282,7 +279,6 @@
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="Features\AdvancedSatellite.cs" />
     <Compile Include="Features\SimpleSatellite.cs" />
-    <Compile Include="Host_6\UpgradeGuides\6to7\CustomizingHost.cs" />
     <Compile Include="Notifications\SubscribeToNotifications.cs" />
     <Compile Include="Callback\Enum\Handler.cs" />
     <Compile Include="Callback\Enum\Message.cs" />
@@ -411,8 +407,6 @@
     <Compile Include="Headers\OutgoingBehavior.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="HostIdentifier\HostIdFixer_5_1.cs" />
-    <Compile Include="Host_6\AsAClientEquivalent.cs" />
-    <Compile Include="Host_6\CustomizingHost.cs" />
     <Compile Include="CriticalErrors.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />

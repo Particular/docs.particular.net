@@ -2,7 +2,7 @@
 <!--startcode ExplicitHostConfigType-->
 <configuration>
   <appSettings>
-    <add key="EndpointConfigurationType" 
+    <add key="EndpointConfigurationType"
          value="YourNamespace.YourTypeName, YourAssembly"/>
   </appSettings>
 </configuration>

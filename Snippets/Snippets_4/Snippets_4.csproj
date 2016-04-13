@@ -305,7 +305,6 @@
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Headers\SomeOtherMessage.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
-    <Compile Include="Host\CustomLogging.cs" />
     <Compile Include="CriticalErrors.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />

@@ -9,9 +9,8 @@
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
             // perform some custom configuration
-            endpointConfiguration.UseContainer<AutofacBuilder>();
             endpointConfiguration.UseSerialization<JsonSerializer>();
-            endpointConfiguration.UsePersistence<RavenDBPersistence>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
         }
     }
 

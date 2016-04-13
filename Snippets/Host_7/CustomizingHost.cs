@@ -8,9 +8,9 @@
     {
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
-            // To customize, use the configuration parameter. 
-            // For example, to customize the container:
-            endpointConfiguration.UseContainer<AutofacBuilder>();
+            // To customize, use the configuration parameter.
+            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
         }
     }
 
