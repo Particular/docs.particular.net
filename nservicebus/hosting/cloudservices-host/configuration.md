@@ -1,6 +1,6 @@
 ---
 title: Azure Cloudservices Host Endpoint Configuration
-summary: Configuring your endpoint when hosting in azure cloud services
+summary: Configuring your endpoint when hosting in Azure Cloud Services
 tags:
 - Azure
 - Cloud
@@ -8,7 +8,7 @@ tags:
 
 ## Enabling the Transport
 
-When using one of the NServiceBus provided hosting processes, the `UseTransport<T>` should be called on the endpoint configuration. For example using Azure Service Bus transport
+When using one of the NServiceBus provided hosting processes, the `UseTransport<T>` should be called on the endpoint configuration. For example using Azure Service Bus Transport
 
 snippet:AzureServiceBusTransportWithAzureHost
 
@@ -20,7 +20,7 @@ snippet:AzureStorageQueueTransportWithAzureHost
 
 ## Enabling the Persistence
 
-The Azure storage persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config.
+The Azure Storage Persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config.
 
 snippet:PersistenceWithAzureHost
 
