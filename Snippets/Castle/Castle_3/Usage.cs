@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Container
+﻿namespace Castle_3
 {
     using Castle.MicroKernel.Registration;
     using Castle.Windsor;
