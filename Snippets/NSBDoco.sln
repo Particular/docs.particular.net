@@ -9,11 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snippets_3", "Snippets_3\Sn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snippets_5", "Snippets_5\Snippets_5.csproj", "{30F5B3E6-2B7F-46BE-8086-169FD856BA64}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A33BBB1B-DCFD-4CED-808A-C9D84062889D}"
-	ProjectSection(SolutionItems) = preProject
-		Readme.txt = Readme.txt
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snippets_6", "Snippets_6\Snippets_6.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operations", "Operations\Operations.csproj", "{D52A6FEB-CC19-49C3-AF92-475669D2FF25}"

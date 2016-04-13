@@ -4,9 +4,9 @@
     using NServiceBus;
     using NServiceBus.ObjectBuilder.Ninject;
 
-    class Containers_Ninject
+    class Usage
     {
-        Containers_Ninject(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
             #region Ninject
 

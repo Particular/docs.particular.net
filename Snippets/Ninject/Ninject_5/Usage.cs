@@ -3,9 +3,9 @@
     using Ninject;
     using NServiceBus;
     
-    class Containers_Ninject
+    class Usage
     {
-        Containers_Ninject(BusConfiguration busConfiguration)
+        Usage(BusConfiguration busConfiguration)
         {
             #region Ninject
 

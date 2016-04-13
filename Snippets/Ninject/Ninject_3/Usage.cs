@@ -3,9 +3,9 @@
     using Ninject;
     using NServiceBus;
 
-    class Containers_Ninject
+    class Usage
     {
-        public void Simple(Configure configure)
+        Usage(Configure configure)
         {
             #region Ninject
 
@@ -25,5 +25,8 @@
             #endregion
         }
 
+        class MyService
+        {
+        }
     }
 }

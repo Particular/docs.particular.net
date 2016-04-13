@@ -296,7 +296,6 @@
     <Compile Include="Callback\Object\Message.cs" />
     <Compile Include="Callback\Object\ResponseMessage.cs" />
     <Compile Include="Callback\Object\Usage.cs" />
-    <Compile Include="Container\Containers_Ninject.cs" />
     <Compile Include="Container\Containers_Spring.cs" />
     <Compile Include="Container\Containers_StructureMap.cs" />
     <Compile Include="Container\Containers_Unity.cs" />
