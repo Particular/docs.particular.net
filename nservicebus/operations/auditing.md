@@ -11,19 +11,19 @@ redirects:
 - nservicebus/auditing-with-nservicebus
 ---
 
-The distributed nature of parallel message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Configure NServiceBus to audit and it will capture a copy of every received message and forward it to a specified audit queue.
+The distributed nature of parallel, message-driven systems make them more difficult to debug than their sequential, synchronous and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Configure NServiceBus to audit and it will capture a copy of every received message and forward it to a specified audit queue.
 
-It is recommended to specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). By doing so central auditing within a distributed system can be taken advantage of. This is also required by the Particular Service Platform and especially [ServiceControl](/servicecontrol), which consumes messages from these auditing queues. For more information, see [ServicePulse documentation](/servicepulse/).
+It is recommended to specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). By doing so, you can get an overview of the entire system in one place and see how messages correlate. One can look at the audit queue as a central record of everything that is happening in the system. A central audit queue is also required by the Particular Service Platform and especially [ServiceControl](/servicecontrol), which consumes messages from these auditing queues. For more information, see [ServicePulse documentation](/servicepulse/).
 
 
 ## Handling Audit messages
 
-Those audit messages can then be handles as needed: save them in a database, do custom logging, etc. The important thing is that once a message is from the audit queue and process them, a centralized record of everything that is happening in the system while maintaining all the benefits of keep things distributed.  It is important not to leave the messages in the audit queue however, as most queueing technologies have upper-bound limits on their queue sizes and depth. By not processing these messages the limits of the underlying queue technology may be reached.
+Those audit messages can then be handled as needed: Save them in a database, do custom logging, etc. It is important not to leave the messages in the audit queue however, as most queueing technologies have upper-bound limits on their queue sizes and depth. By not processing these messages, the limits of the underlying queue technology may be reached.
 
 
 ## Audit configuration options
 
-There two settings that control Auditing.
+There two settings that control Auditing:
 
 
 ### Queue Name
