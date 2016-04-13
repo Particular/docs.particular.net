@@ -1,16 +1,15 @@
-
-
-#region windowsservicehosting
-namespace Snippets6.Host_7
+﻿namespace Snippets3
 {
     using System;
     using System.ServiceProcess;
-    using System.Threading.Tasks;
     using NServiceBus;
+    using NServiceBus.Installation.Environments;
+
+    #region windowsservicehosting
 
     class ProgramService : ServiceBase
     {
-        IEndpointInstance endpointInstance;
+        IBus bus;
 
         static void Main()
         {
@@ -19,10 +18,13 @@ namespace Snippets6.Host_7
                 if (Environment.UserInteractive)
                 {
                     service.OnStart(null);
+
                     Console.WriteLine("Bus created and configured");
                     Console.WriteLine("Press any key to exit");
                     Console.ReadKey();
+
                     service.OnStop();
+
                     return;
                 }
                 Run(service);
@@ -31,28 +33,22 @@ namespace Snippets6.Host_7
 
         protected override void OnStart(string[] args)
         {
-            AsyncOnStart().GetAwaiter().GetResult();
-        }
-
-        async Task AsyncOnStart()
-        {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
-            endpointConfiguration.EnableInstallers();
-            endpointInstance = await Endpoint.Start(endpointConfiguration);
+            Configure configure = Configure.With();
+            configure.DefineEndpointName("EndpointName");
+            bus = configure.UnicastBus()
+                .CreateBus()
+                .Start(() => configure.ForInstallationOn<Windows>().Install());
         }
 
         protected override void OnStop()
         {
-            AsyncOnStop().GetAwaiter().GetResult();
-        }
-
-        async Task AsyncOnStop()
-        {
-            if (endpointInstance != null)
+            if (bus != null)
             {
-                await endpointInstance.Stop();
+                ((IDisposable) bus).Dispose();
             }
         }
+
     }
+
+    #endregion
 }
-#endregion

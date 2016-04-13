@@ -142,7 +142,7 @@
     <Compile Include="Handlers\ReplyingHandler.cs" />
     <Compile Include="Headers\ReadSaga.cs" />
     <Compile Include="Headers\WriteSaga.cs" />
-    <Compile Include="Host\ProgramService.cs">
+    <Compile Include="ProgramService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ImmediateDispatch\Usage.cs" />
@@ -215,7 +215,7 @@
     <Compile Include="Headers\WriteHandler.cs" />
     <Compile Include="Headers\MyMessage.cs" />
     <Compile Include="Headers\SomeOtherMessage.cs" />
-    <Compile Include="Host\CriticalErrors.cs" />
+    <Compile Include="CriticalErrors.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />

@@ -366,7 +366,7 @@
     <Compile Include="Headers\Writers\HeaderWriterEncryption.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDataBusProperty.cs" />
     <Compile Include="Headers\WriteSaga.cs" />
-    <Compile Include="Host_6\ProgramService.cs">
+    <Compile Include="ProgramService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ImmediateDispatch\Usage.cs" />
@@ -392,7 +392,7 @@
     <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
-    <Compile Include="CriticalError.cs" />
+    <Compile Include="CriticalErrorConfigAzure.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DataBus\Conventions\Usage.cs" />
     <Compile Include="DataBus\Custom\CustomDataBus.cs" />
@@ -445,7 +445,7 @@
     <Compile Include="HostIdentifier\HostIdFixer_5_1.cs" />
     <Compile Include="Host_6\AsAClientEquivalent.cs" />
     <Compile Include="Host_6\CustomizingHost.cs" />
-    <Compile Include="Host_6\CriticalErrors.cs" />
+    <Compile Include="CriticalErrors.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />

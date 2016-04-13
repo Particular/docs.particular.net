@@ -6,9 +6,9 @@
     using NServiceBus;
     using NServiceBus.Logging;
 
-    class CriticalErrorConfig
+    class CriticalErrorConfigAzure
     {
-        CriticalErrorConfig(EndpointConfiguration endpointConfiguration, ILog log)
+        CriticalErrorConfigAzure(EndpointConfiguration endpointConfiguration, ILog log)
         {
             #region DefineCriticalErrorActionForAzureHost
 

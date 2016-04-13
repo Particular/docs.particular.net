@@ -5,10 +5,10 @@
     using NServiceBus;
     using NServiceBus.Logging;
 
-    class CriticalError
+    class CriticalErrorAzure
     {
 
-        CriticalError(Configure configure, ILog log)
+        CriticalErrorAzure(Configure configure, ILog log)
         {
             #region DefineCriticalErrorActionForAzureHost
 

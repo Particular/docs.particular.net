@@ -237,7 +237,7 @@
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
-    <Compile Include="CriticalError.cs" />
+    <Compile Include="CriticalErrorConfigAzure.cs" />
     <Compile Include="CustomChecks.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DataBus\Azure\Usage.cs" />
@@ -389,8 +389,8 @@
     <Compile Include="Headers\SomeOtherMessage.cs" />
     <Compile Include="Headers\StaticHeaders.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
-    <Compile Include="Host_7\CriticalErrors.cs" />
-    <Compile Include="Host_7\ProgramService.cs">
+    <Compile Include="CriticalErrors.cs" />
+    <Compile Include="ProgramService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ImmediateDispatch\Usage.cs" />

@@ -1,14 +1,14 @@
-namespace Snippets5.Host_6
+#region windowsservicehosting
+namespace Snippets6
 {
     using System;
     using System.ServiceProcess;
+    using System.Threading.Tasks;
     using NServiceBus;
-
-    #region windowsservicehosting
 
     class ProgramService : ServiceBase
     {
-        IBus bus;
+        IEndpointInstance endpointInstance;
 
         static void Main()
         {
@@ -17,13 +17,10 @@ namespace Snippets5.Host_6
                 if (Environment.UserInteractive)
                 {
                     service.OnStart(null);
-
                     Console.WriteLine("Bus created and configured");
                     Console.WriteLine("Press any key to exit");
                     Console.ReadKey();
-
                     service.OnStop();
-
                     return;
                 }
                 Run(service);
@@ -32,21 +29,28 @@ namespace Snippets5.Host_6
 
         protected override void OnStart(string[] args)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.EndpointName("EndpointName");
-            busConfiguration.EnableInstallers();
-            bus = Bus.Create(busConfiguration).Start();
+            AsyncOnStart().GetAwaiter().GetResult();
+        }
+
+        async Task AsyncOnStart()
+        {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
+            endpointConfiguration.EnableInstallers();
+            endpointInstance = await Endpoint.Start(endpointConfiguration);
         }
 
         protected override void OnStop()
         {
-            if (bus != null)
-            {
-                bus.Dispose();
-            }
+            AsyncOnStop().GetAwaiter().GetResult();
         }
 
+        async Task AsyncOnStop()
+        {
+            if (endpointInstance != null)
+            {
+                await endpointInstance.Stop();
+            }
+        }
     }
-
-    #endregion
 }
+#endregion

@@ -1,12 +1,11 @@
 ﻿#pragma warning disable 649
 
-namespace Snippets4.Host
+namespace Snippets4
 {
     using System;
     using System.Threading;
     using NServiceBus;
     using NServiceBus.Logging;
-
 
     class CriticalErrors
     {
@@ -25,11 +24,11 @@ namespace Snippets4.Host
 
         void OnCriticalError(string errorMessage, Exception exception)
         {
-            // If you want the process to be active, dispose the bus. 
+            // If you want the process to be active, dispose the bus.
             // Note that when the bus is disposed sending messages will throw with an ObjectDisposedException.
             bus.Dispose();
 
-            // If you want to kill the process, raise a fail fast error as shown below. 
+            // If you want to kill the process, raise a fail fast error as shown below.
             //string failMessage = string.Format("Critical error shutting down:'{0}'.", errorMessage);
             //Environment.FailFast(failMessage, exception);
         }
@@ -41,7 +40,8 @@ namespace Snippets4.Host
         {
             #region DefaultCriticalErrorActionLogging
 
-            LogManager.GetLogger("NServiceBus").Fatal(errorMessage, exception);
+            LogManager.GetLogger("NServiceBus")
+                .Fatal(errorMessage, exception);
 
             #endregion
         }
@@ -49,7 +49,7 @@ namespace Snippets4.Host
         void DefaultAction(Configure configure)
         {
             //https://github.com/Particular/NServiceBus/blob/support-4.0/src/NServiceBus.Core/ConfigureCriticalErrorAction.cs
-            #region DefaultCriticalErrorAction 
+            #region DefaultCriticalErrorAction
 
             if (!Configure.BuilderIsConfigured())
             {

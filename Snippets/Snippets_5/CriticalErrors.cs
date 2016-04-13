@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 649
-namespace Snippets5.Host_6
+namespace Snippets5
 {
     using System;
     using System.Threading;
@@ -24,11 +24,11 @@ namespace Snippets5.Host_6
 
         void OnCriticalError(string errorMessage, Exception exception)
         {
-            // If you want the process to be active, dispose the bus. 
+            // If you want the process to be active, dispose the bus.
             // Note that when the bus is disposed sending messages will throw with an ObjectDisposedException.
             bus.Dispose();
 
-            // If you want to kill the process, raise a fail fast error as shown below. 
+            // If you want to kill the process, raise a fail fast error as shown below.
             //string failMessage = string.Format("Critical error shutting down:'{0}'.", errorMessage);
             //Environment.FailFast(failMessage, exception);
         }
@@ -86,7 +86,7 @@ namespace Snippets5.Host_6
         {
             #region InvokeCriticalError
             // 'criticalError' is an instance of the NServiceBus.CriticalError class
-            // This instance can be resolved from the container. 
+            // This instance can be resolved from the container.
             criticalError.Raise(errorMessage, exception);
 
             #endregion

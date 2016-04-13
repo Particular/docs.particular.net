@@ -1,6 +1,6 @@
 ﻿#pragma warning disable 649
 
-namespace Snippets6.Host_7
+namespace Snippets6
 {
     using System;
     using System.Threading;
@@ -23,10 +23,10 @@ namespace Snippets6.Host_7
 
         Task OnCriticalError(ICriticalErrorContext context)
         {
-            // If you want the process to be active, stop the endpoint. 
+            // If you want the process to be active, stop the endpoint.
             return context.Stop();
 
-            // If you want to kill the process, await the above, then raise a fail fast error as shown below. 
+            // If you want to kill the process, await the above, then raise a fail fast error as shown below.
             //string failMessage = string.Format("Critical error shutting down:'{0}'.", context.Error);
             //Environment.FailFast(failMessage, context.Exception);
         }
@@ -76,7 +76,7 @@ namespace Snippets6.Host_7
             #region InvokeCriticalError
 
             // 'criticalError' is an instance of the NServiceBus.CriticalError class
-            // This instance can be resolved from the container. 
+            // This instance can be resolved from the container.
             criticalError.Raise(errorMessage, exception);
 
             #endregion

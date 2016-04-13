@@ -246,7 +246,7 @@
     <Compile Include="Handlers\ReplyingHandler.cs" />
     <Compile Include="Headers\ReadSaga.cs" />
     <Compile Include="Headers\WriteSaga.cs" />
-    <Compile Include="Host\ProgramService.cs">
+    <Compile Include="ProgramService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ImmediateDispatch\Usage.cs" />
@@ -321,7 +321,7 @@
     <Compile Include="Headers\SomeOtherMessage.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="Host\CustomLogging.cs" />
-    <Compile Include="Host\CriticalErrors.cs" />
+    <Compile Include="CriticalErrors.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
@@ -401,7 +401,7 @@
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
-    <Compile Include="CriticalError.cs" />
+    <Compile Include="CriticalErrorAzure.cs" />
     <Compile Include="Hosting.cs" />
     <Compile Include="Serialization\XmlSerializerUsage.cs" />
     <Compile Include="License.cs" />
