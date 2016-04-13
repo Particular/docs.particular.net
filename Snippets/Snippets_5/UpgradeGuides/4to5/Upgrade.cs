@@ -30,7 +30,7 @@ namespace Snippets5.UpgradeGuides._4to5
         void MessageConventions(BusConfiguration busConfiguration)
         {
             #region 4to5MessageConventions
-            
+
             ConventionsBuilder conventions = busConfiguration.Conventions();
             conventions.DefiningCommandsAs(t => t.Namespace != null && t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"));
             conventions.DefiningEventsAs(t => t.Namespace != null && t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"));
@@ -72,6 +72,9 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
+        class RabbitMQTransport : TransportDefinition
+        {
+        }
         class SqlServerTransport:TransportDefinition
         {
         }
@@ -145,7 +148,7 @@ namespace Snippets5.UpgradeGuides._4to5
         void Installers(BusConfiguration busConfiguration)
         {
             #region 4to5Installers
-            
+
             busConfiguration.EnableInstallers();
 
             Bus.Create(busConfiguration); //this will run the installers
@@ -158,7 +161,7 @@ namespace Snippets5.UpgradeGuides._4to5
 #pragma warning disable 618
 
             #region 4to5ConfigurePersistence
-            
+
             // Configure to use InMemory for all persistence types
             busConfiguration.UsePersistence<InMemoryPersistence>();
 
@@ -226,7 +229,7 @@ namespace Snippets5.UpgradeGuides._4to5
         void DefineCriticalErrorAction(BusConfiguration busConfiguration, ILog log)
         {
             #region 4to5DefineCriticalErrorAction
-            
+
             // Configuring how NServicebus handles critical errors
             busConfiguration.DefineCriticalErrorAction((message, exception) =>
             {
@@ -241,7 +244,7 @@ namespace Snippets5.UpgradeGuides._4to5
         void FileShareDataBus(BusConfiguration busConfiguration, string databusPath)
         {
             #region 4to5FileShareDataBus
-            
+
             busConfiguration.UseDataBus<FileShareDataBus>()
                 .BasePath(databusPath);
 
@@ -251,7 +254,7 @@ namespace Snippets5.UpgradeGuides._4to5
         void PurgeOnStartup(BusConfiguration busConfiguration)
         {
             #region 4to5PurgeOnStartup
-            
+
             busConfiguration.PurgeOnStartup(true);
 
             #endregion
@@ -269,7 +272,7 @@ namespace Snippets5.UpgradeGuides._4to5
         void License(BusConfiguration busConfiguration)
         {
             #region 4to5License
-            
+
             busConfiguration.LicensePath("PathToLicense");
             //or
             busConfiguration.License("YourCustomLicenseText");
@@ -293,7 +296,7 @@ namespace Snippets5.UpgradeGuides._4to5
         void StaticConfigureEndpoint(BusConfiguration busConfiguration)
         {
             #region 4to5StaticConfigureEndpoint
-            
+
             // SendOnly
             Bus.CreateSendOnly(busConfiguration);
 
@@ -314,7 +317,7 @@ namespace Snippets5.UpgradeGuides._4to5
         void PerformanceMonitoring(BusConfiguration busConfiguration)
         {
             #region 4to5PerformanceMonitoring
-            
+
             busConfiguration.EnableSLAPerformanceCounter();
             //or
             busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));

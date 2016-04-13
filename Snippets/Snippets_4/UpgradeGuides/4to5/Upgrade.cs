@@ -66,6 +66,9 @@
 
             #endregion
         }
+        class RabbitMQ : TransportDefinition
+        {
+        }
 
         class SqlServer:TransportDefinition
         {
@@ -339,4 +342,5 @@
             #endregion
         }
     }
+
 }
