@@ -144,7 +144,7 @@
       <HintPath>..\..\packages\NServiceBus.Unity.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
-      <HintPath>..\..\packages\NServiceBus.RavenDB.1.0.3\lib\net40\NServiceBus.RavenDB.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.RavenDB.1.0.4\lib\net40\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Testing">
       <HintPath>..\..\packages\NServiceBus.Testing.4.7.12\lib\net40\NServiceBus.Testing.dll</HintPath>
