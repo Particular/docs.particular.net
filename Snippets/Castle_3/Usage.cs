@@ -1,28 +1,34 @@
-﻿namespace Snippets5.Container
+﻿namespace Snippets3.Container
 {
     using Castle.MicroKernel.Registration;
     using Castle.Windsor;
     using NServiceBus;
 
-    class Containers_CastleWindsor
+    class Usage
     {
-        Containers_CastleWindsor(BusConfiguration busConfiguration)
+        void Simple(Configure configure)
         {
             #region CastleWindsor
 
-            busConfiguration.UseContainer<WindsorBuilder>();
+            configure.CastleWindsorBuilder();
 
             #endregion
         }
 
-        void Existing(BusConfiguration busConfiguration)
+        void Existing(Configure configure)
         {
             #region CastleWindsor_Existing
+
             WindsorContainer container = new WindsorContainer();
             container.Register(Component.For<MyService>().Instance(new MyService()));
-            busConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
+            configure.CastleWindsorBuilder(container);
             #endregion
+        }
+
+        class MyService
+        {
         }
 
     }
+
 }

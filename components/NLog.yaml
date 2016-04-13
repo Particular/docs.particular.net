@@ -1,4 +1,0 @@
-url: nservicebus/logging/nlog
-ranges: 
-  - nuget: NServiceBus.NLog
-    range: 

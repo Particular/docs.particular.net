@@ -1,4 +1,0 @@
-url: nservicebus/azure/shared-hosting-in-azure-cloud-services
-ranges: 
-  - nuget: NServiceBus.Hosting.Azure.HostProcess
-    range: 

@@ -1,4 +1,0 @@
-url: nservicebus/containers/unity
-ranges: 
-  - nuget: NServiceBus.Unity
-    range: 

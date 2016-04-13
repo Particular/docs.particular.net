@@ -1,6 +1,0 @@
-url: nservicebus/ravendb
-ranges: 
-  - nuget: NServiceBus
-    range: (,4)
-  - nuget: NServiceBus.RavenDB
-    range: 

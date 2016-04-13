@@ -1,4 +1,0 @@
-url: nservicebus/containers/structuremap
-ranges: 
-  - nuget: NServiceBus.StructureMap
-    range: 

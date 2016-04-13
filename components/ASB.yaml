@@ -1,4 +1,0 @@
-url: nservicebus/azure-servicebus
-ranges: 
-  - nuget: NServiceBus.Azure.Transports.WindowsAzureServiceBus
-    range: 

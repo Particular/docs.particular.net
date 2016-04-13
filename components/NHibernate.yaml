@@ -1,4 +1,0 @@
-url: nservicebus/nhibernate
-ranges: 
-  - nuget: NServiceBus.NHibernate
-    range: 

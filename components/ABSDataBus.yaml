@@ -1,6 +1,0 @@
-url: nservicebus/azure
-ranges: 
-  - nuget: NServiceBus.Azure
-    range: (,7)
-  - nuget: NServiceBus.AzureBlobStorageDataBus
-    range: 

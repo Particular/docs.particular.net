@@ -1,4 +1,0 @@
-url: samples/serializers/jil
-ranges: 
-  - nuget: NServiceBus.Jil
-    range: 

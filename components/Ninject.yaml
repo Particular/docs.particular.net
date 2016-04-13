@@ -1,4 +1,0 @@
-url: nservicebus/containers/ninject
-ranges: 
-  - nuget: NServiceBus.Ninject
-    range: 

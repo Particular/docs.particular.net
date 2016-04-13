@@ -1,4 +1,0 @@
-url: nservicebus/testing
-ranges: 
-  - nuget: NServiceBus.Testing
-    range: 

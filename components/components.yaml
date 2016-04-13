@@ -1,0 +1,105 @@
+- Key: ASBDataBus
+  Url: nservicebus/azure
+  NugetOrder:
+    - NServiceBus.AzureBlobStorageDataBus
+    - NServiceBus.Azure
+- Key: ASB
+  Url: nservicebus/azure-servicebus
+  NugetOrder:
+    - NServiceBus.Azure.Transports.WindowsAzureServiceBus
+- Key: ASP
+  Url: nservicebus/azure-storage-persistence
+  NugetOrder:
+    - NServiceBus.AzureStoragePersistence
+    - NServiceBus.Azure
+- Key: ASQ
+  Url: nservicebus/azure-storage-queues
+  NugetOrder:
+    - NServiceBus.Azure.Transports.WindowsAzureStorageQueues
+- Key: Autofac
+  Url: nservicebus/containers/autofac
+  NugetOrder:
+    - NServiceBus.Autofac
+- Key: Callbacks
+  Url: nservicebus/messaging/handling-responses-on-the-client-side
+  NugetOrder:
+    - NServiceBus.Callbacks
+    - NServiceBus
+- Key: Castle
+  Url: nservicebus/containers/castlewindsor
+  NugetOrder:
+    - NServiceBus.CastleWindsor
+- Key: CloudServicesHost
+  Url: nservicebus/azure/shared-hosting-in-azure-cloud-services
+  NugetOrder:
+    - NServiceBus.Hosting.Azure.HostProcess
+    - NServiceBus.Hosting.Azure
+- Key: CommonLogging
+  Url: nservicebus/logging/common-logging
+  NugetOrder:
+    - NServiceBus.CommonLogging
+- Key: Distributor
+  Url: nservicebus/scalability-and-ha/distributor
+  NugetOrder:
+    - NServiceBus.Distributor.MSMQ
+    - NServiceBus
+- Key: Gateway
+  Url: nservicebus/gateway
+  NugetOrder:
+    - NServiceBus.Gateway
+- Key: Host
+  Url: nservicebus/hosting/nservicebus-host
+  NugetOrder:
+    - NServiceBus.Host
+- Key: Jil
+  Url: samples/serializers/jil
+  NugetOrder:
+    - NServiceBus.Jil
+- Key: Log4Net
+  Url: nservicebus/logging/log4net
+  NugetOrder:
+    - NServiceBus.Log4Net
+- Key: Newtonsoft.Json
+  Url: nservicebus/serialization/newtonsoft
+  NugetOrder:
+    - NServiceBus.Newtonsoft.Json
+- Key: NHibernate
+  Url: nservicebus/nhibernate
+  NugetOrder:
+    - NServiceBus.NHibernate
+- Key: NLog
+  Url: nservicebus/logging/nlog
+  NugetOrder:
+    - NServiceBus.NLog
+- Key: RabbitMQ
+  Url: nservicebus/rabbitmq
+  NugetOrder:
+    - NServiceBus.RabbitMQ
+- Key: RavenDB
+  Url: nservicebus/ravendb
+  NugetOrder:
+    - NServiceBus.RavenDB
+- Key: ServiceBootstrap
+  Url: nservicebus/hosting/windows-service
+  NugetOrder:
+    - NServiceBus.Bootstrap.WindowsService
+- Key: Spring
+  Url: nservicebus/containers/spring
+  NugetOrder:
+    - NServiceBus.Spring
+- Key: SqlServer
+  Url: nservicebus/sqlserver
+  NugetOrder:
+    - NServiceBus.SqlServer
+- Key: StructureMap
+  Url: nservicebus/containers/structuremap
+  NugetOrder:
+    - NServiceBus.StructureMap
+- Key: Testing
+  Url: nservicebus/testing
+  NugetOrder:
+    - NServiceBus.Testing
+- Key: Unity
+  Url: nservicebus/containers/unity
+  NugetOrder:
+    - NServiceBus.Unity

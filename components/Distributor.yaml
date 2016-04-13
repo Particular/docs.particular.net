@@ -1,6 +1,0 @@
-url: nservicebus/scalability-and-ha/distributor
-ranges: 
-  - nuget: NServiceBus
-    range: (,5)
-  - nuget: NServiceBus.Distributor.MSMQ
-    range: 
