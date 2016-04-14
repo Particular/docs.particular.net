@@ -66,6 +66,9 @@
 
             #endregion
         }
+        class AzureStorageQueue : TransportDefinition
+        {
+        }
         class AzureServiceBus : TransportDefinition
         {
         }

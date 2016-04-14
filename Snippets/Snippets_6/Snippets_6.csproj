@@ -78,10 +78,6 @@
     <Reference Include="NLog">
       <HintPath>..\..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.7.0.0-alpha0117\lib\net452\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="NServiceBus.AzureBlobStorageDataBus">
       <HintPath>..\..\packages\NServiceBus.AzureBlobStorageDataBus.0.2.0-unstable0020\lib\net452\NServiceBus.AzureBlobStorageDataBus.dll</HintPath>
       <Private>True</Private>

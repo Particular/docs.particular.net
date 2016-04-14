@@ -72,6 +72,9 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
+        class AzureStorageQueueTransport : TransportDefinition
+        {
+        }
         class AzureServiceBusTransport : TransportDefinition
         {
         }

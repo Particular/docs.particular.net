@@ -82,9 +82,6 @@
     <Reference Include="NServiceBus.Azure">
       <HintPath>..\..\packages\NServiceBus.Azure.5.3.12\lib\net40\NServiceBus.Azure.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues">
-      <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.5.3.12\lib\net40\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
-    </Reference>
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\packages\NServiceBus.4.7.12\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
