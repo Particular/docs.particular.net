@@ -15,27 +15,66 @@ For example, custom checks can include checking that a third-party service provi
 
 As mentioned above, there are two types of custom checks.
 
+
 ### Custom check
 
 A custom check is executed once when the endpoint host starts. NServiceBus assembly scanning mechanism detects a class inheriting from `CustomCheck` and creates an instance of that class. The check should happen in the constructor for NServiceBus Version 5 and the result needs to be communicated back using either `ReportPass` or `ReportFailed` methods. For NServiceBus Version 6 the check should happen in the `PerformCheck` method and the result needs to be communicated back using either `CheckResult.Pass` or `CheckResult.Failed` methods.
 
-snippet:CustomCheck
-
 NOTE: Only the instance of a custom check which has been created by the NServiceBus framework is able to report status. The check instances created in user code will not function.
+
+
+#### NServiceBus 3
+
+snippet:CustomCheck3
+
+
+#### NServiceBus 4
+
+snippet:CustomCheck4
+
+
+#### NServiceBus 5
+
+snippet:CustomCheck5
+
+
+#### NServiceBus 6
+
+snippet:CustomCheck6
+
 
 ### Periodic check
 
 A periodic check is executed at defined intervals. The check happens not in the constructor but in a dedicated `PerformCheck` method which returns the check result.
 
-snippet:PeriodicCheck
+
+#### NServiceBus 3
+
+snippet:PeriodicCheck3
+
+
+#### NServiceBus 4
+
+snippet:PeriodicCheck4
+
+
+#### NServiceBus 5
+
+snippet:PeriodicCheck5
+
+
+#### NServiceBus 6
+
+snippet:PeriodicCheck6
 
 NOTE: For NServiceBus Version 6 the `PeriodicCheck` class has been deprecated. Inherit from `CustomCheck` and provided a `TimeSpan` to `repeatAfter` in the constructor of the `CustomCheck`.
+
 
 ### Results
 
 The result of a custom check is either success or a failure (with a detailed description defined by the developer). This result is sent as a message to the ServiceControl queue and status will be shown in the ServicePulse UI.
 
-NOTE: It is essential that you deploy this plugin to the endpoint in production in order to receive error notifications about the custom check failures in the ServicePulse dashboard.
+NOTE: It is essential to deploy this plugin to the endpoint in production in order to receive error notifications about the custom check failures in the ServicePulse dashboard.
 
 
 ## NuGets
@@ -48,4 +87,4 @@ NOTE: It is essential that you deploy this plugin to the endpoint in production 
 
 ### Deprecated NuGet
 
-If you are using the older version of the plugin, namely **ServiceControl.Plugin.CustomChecks** remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.
+If using the older version of the plugin, namely **ServiceControl.Plugin.CustomChecks** remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.

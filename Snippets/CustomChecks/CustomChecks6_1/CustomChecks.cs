@@ -6,7 +6,7 @@
 
     class CustomChecks
     {
-        #region CustomCheck
+        #region CustomCheck6
         public class MyCustomCheck : CustomCheck
         {
             public MyCustomCheck()
@@ -27,7 +27,7 @@
         }
         #endregion
 
-        #region PeriodicCheck
+        #region PeriodicCheck6
         public class MyPeriodicCheck : CustomCheck
         {
             public MyPeriodicCheck()
