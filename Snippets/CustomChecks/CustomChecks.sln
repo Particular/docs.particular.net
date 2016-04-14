@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 12.0.31101.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks3_1", "CustomChecks3_1\CustomChecks3_1.csproj", "{DDDA5052-7A94-471A-8FF3-B809429E96B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks4_1", "CustomChecks4_1\CustomChecks4_1.csproj", "{CD67D90B-62D4-4BBA-898C-7F3DDDC8283B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks5_1", "CustomChecks5_1\CustomChecks5_1.csproj", "{0317B648-900E-4100-B829-294DDBD421E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks6_1", "CustomChecks6_1\CustomChecks6_1.csproj", "{7286B248-4947-4297-9031-811271751643}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDDA5052-7A94-471A-8FF3-B809429E96B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDDA5052-7A94-471A-8FF3-B809429E96B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD67D90B-62D4-4BBA-898C-7F3DDDC8283B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD67D90B-62D4-4BBA-898C-7F3DDDC8283B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0317B648-900E-4100-B829-294DDBD421E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0317B648-900E-4100-B829-294DDBD421E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7286B248-4947-4297-9031-811271751643}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7286B248-4947-4297-9031-811271751643}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = Unity.2.1.505.2\lib\NET35;Unity.Interception.2.1.505.0\lib\NET35;Unity.Interception.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal

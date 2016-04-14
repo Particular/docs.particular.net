@@ -129,10 +129,6 @@
       <HintPath>..\..\packages\ServiceControl.Contracts.1.2.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceControl.Plugin.Nsb6.CustomChecks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceControl.Plugin.Nsb6.CustomChecks.1.0.0-beta0003\lib\net452\ServiceControl.Plugin.Nsb6.CustomChecks.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -200,7 +196,6 @@
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
     <Compile Include="CriticalErrorConfigAzure.cs" />
-    <Compile Include="CustomChecks.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DataBus\Azure\Usage.cs" />
     <Compile Include="DataBus\Conventions\MessageWithLargePayload.cs" />

@@ -126,10 +126,6 @@
       <HintPath>..\..\packages\ServiceControl.Contracts.1.2.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceControl.Plugin.Nsb5.CustomChecks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceControl.Plugin.Nsb5.CustomChecks.1.0.1\lib\net45\ServiceControl.Plugin.Nsb5.CustomChecks.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -261,7 +257,6 @@
     <Compile Include="Container\Custom\ContainerCustom.cs" />
     <Compile Include="Container\Custom\MyObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
-    <Compile Include="CustomChecks.cs" />
     <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="Forwarding\ConfigurationSource.cs" />
