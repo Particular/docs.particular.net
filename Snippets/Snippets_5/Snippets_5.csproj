@@ -244,10 +244,6 @@
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Azure\Transports\AzureServiceBus\ConnectionString.config.xml" />
-    <Content Include="Azure\Transports\AzureServiceBus\QueueConfig.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Azure\Transports\AzureStorageQueues\ConnectionString.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -265,8 +261,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audit\ProvideConfiguration.cs" />
-    <Compile Include="Azure\Transports\AzureServiceBus\BrokeredMessageBodyConventionUsage.cs" />
-    <Compile Include="Azure\Transports\AzureServiceBus\NamingConventionsUsage.cs" />
     <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="Features\AdvancedSatellite.cs" />
@@ -481,7 +475,6 @@
     <Compile Include="Serialization\XmlSerializerUsage.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
     <Compile Include="Transactions.cs" />
-    <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transports\Throughput\Usage.cs" />
     <Compile Include="UpgradeGuides\4to5\Scheduler.cs" />

@@ -124,7 +124,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services.Client" />
-    <Reference Include="System.Runtime" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
@@ -170,8 +169,6 @@
     <Content Include="Monitoring\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Azure\Transports\AzureServiceBus\ConnectionString.config.xml" />
-    <Content Include="Azure\Transports\AzureServiceBus\QueueConfig.config.xml" />
     <Content Include="Azure\Transports\AzureStorageQueues\ConnectionString.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -342,7 +339,6 @@
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="Scheduling\Saga\SchedulerSaga.cs" />
     <Compile Include="Transactions.cs" />
-    <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transports\Throughput\Usage.cs" />
     <Compile Include="UpgradeGuides\4to5\Scheduler.cs" />
