@@ -6,11 +6,7 @@ tags:
 - Cloud
 ---
 
-The default settings can be overridden by adding a configuration section called `AzureServiceBusQueueConfig` to the web.config or app.config files:
-
-snippet:AzureStorageQueueConfig
-
-The following values can be modified using this configuration setting:
+Azure Storage Queues Transport can be configured using following parameters. Depending on the version, parameters' values can  be configured using a custom configuration section or code-first approach. Please find the description of the parameters below:
 
  * `ConnectionString`: Overrides the default "NServiceBus/Transport" value and defaults to "UseDevelopmentStorage=true" if not set. It's recommended to set this value when specifying the configuration setting to prevent unexpected issues.
  * `PeekInterval`: Represents the amount of time that the transport waits before polling the queue in milliseconds, defaults to 50 ms.
@@ -20,3 +16,15 @@ The following values can be modified using this configuration setting:
  * `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. Defaults to 10. Depending on the expected load, I would vary this value between 1 and 1000 (which is the limit)
 
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.
+
+### Via the App.Config
+
+In Versions 5.0 to 6.x the default settings can be overridden by adding a configuration section called `AzureServiceBusQueueConfig` to the web.config or app.config files:
+
+snippet:AzureStorageQueueConfig
+
+### Via code-first
+
+In Version 7.x the default setting can be overriden using only code
+
+snippet:AzureStorageQueueConfigCodeOnly

@@ -73,9 +73,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ConnectionString.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="QueueConfig.config.xml" />
   </ItemGroup>
   <ItemGroup>
