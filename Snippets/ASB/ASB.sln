@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 12.0.31101.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASB_6", "ASB_6\ASB_6.csproj", "{74717D6E-BFCC-408D-8300-06C6A5C04E18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASB_7", "ASB_7\ASB_7.csproj", "{EF1F97BF-AAD9-456C-B8E6-3C7182B0B9F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASB_5", "ASB_5\ASB_5.csproj", "{07078233-1A58-4547-889E-C43A3FDF5889}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74717D6E-BFCC-408D-8300-06C6A5C04E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74717D6E-BFCC-408D-8300-06C6A5C04E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF1F97BF-AAD9-456C-B8E6-3C7182B0B9F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF1F97BF-AAD9-456C-B8E6-3C7182B0B9F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07078233-1A58-4547-889E-C43A3FDF5889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07078233-1A58-4547-889E-C43A3FDF5889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = Unity.2.1.505.2\lib\NET35;Unity.Interception.2.1.505.0\lib\NET35;Unity.Interception.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal

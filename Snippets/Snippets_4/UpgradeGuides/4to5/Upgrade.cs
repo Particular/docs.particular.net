@@ -66,6 +66,10 @@
 
             #endregion
         }
+        class AzureServiceBus : TransportDefinition
+        {
+        }
+
         class RabbitMQ : TransportDefinition
         {
         }
