@@ -81,6 +81,7 @@
     <Content Include="ConnectionString.config.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GettingStarted.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
