@@ -5,7 +5,7 @@
     using NServiceBus;
     using NServiceBus.Hosting.Azure;
 
-    #region HostingInWorkerRole 5
+    #region HostingInWorkerRole
 
     public class WorkerRole : RoleEntryPoint
     {
@@ -28,7 +28,7 @@
 
     #endregion
 
-    #region ConfigureEndpoint 5
+    #region ConfigureEndpoint
 
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
     {
@@ -39,9 +39,10 @@
         }
     }
 
+
     #endregion
 
-    #region HostingInWebRole 5
+    #region HostingInWebRole
 
     public class MvcApplication : HttpApplication
     {
@@ -55,6 +56,5 @@
             IBus bus = startableBus.Start();
         }
     }
-
     #endregion
 }

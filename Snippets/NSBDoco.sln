@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operations", "Operations\Op
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureSnippets", "AzureSnippets\AzureSnippets.csproj", "{0EDBD4EE-42C8-48CE-B8A8-5769260546D3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0EDBD4EE-42C8-48CE-B8A8-5769260546D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0EDBD4EE-42C8-48CE-B8A8-5769260546D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0EDBD4EE-42C8-48CE-B8A8-5769260546D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0EDBD4EE-42C8-48CE-B8A8-5769260546D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
