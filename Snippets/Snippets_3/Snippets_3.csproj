@@ -174,7 +174,6 @@
     <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\Conventions\Usage.cs" />
     <Compile Include="DataBus\FileShare\Usage.cs" />
-    <Compile Include="Distributor\Usage.cs" />
     <Compile Include="Encryption\Configuration\ProvideConfiguration.cs" />
     <Compile Include="Encryption\Conventions\MyMessage.cs" />
     <Compile Include="Encryption\Conventions\Usage.cs" />

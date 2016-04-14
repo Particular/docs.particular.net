@@ -85,9 +85,6 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\packages\NServiceBus.4.7.12\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Distributor.MSMQ">
-      <HintPath>..\..\packages\NServiceBus.Distributor.MSMQ.4.4.9\lib\net40\NServiceBus.Distributor.MSMQ.dll</HintPath>
-    </Reference>
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\..\packages\NServiceBus.NHibernate.5.0.3\lib\net40\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
@@ -336,7 +333,6 @@
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Compile Include="Distributor\Usage.cs" />
     <Compile Include="Gateway\Usage.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
