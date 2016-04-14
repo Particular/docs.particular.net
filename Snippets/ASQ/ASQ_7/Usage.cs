@@ -6,7 +6,7 @@
     {
         Usage(EndpointConfiguration endpointConfiguration)
         {
-            #region AzureStorageQueueTransportWithAzure 7
+            #region AzureStorageQueueTransportWithAzure
 
             endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
 
@@ -15,7 +15,7 @@
 
         //TODO: fix when we split azure
         /**
-        #region AzureStorageQueueTransportWithAzureHost 7
+        #region AzureStorageQueueTransportWithAzureHost
 
         public class EndpointConfig : IConfigureThisEndpoint
         {

@@ -163,10 +163,6 @@
     <Content Include="Monitoring\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Azure\Transports\AzureStorageQueues\ConnectionString.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Azure\Transports\AzureStorageQueues\QueueConfig.config.xml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -181,7 +177,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="Callback\Enum\Message.cs" />
     <Compile Include="Callback\Enum\Handler.cs" />

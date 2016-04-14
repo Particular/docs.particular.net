@@ -6,14 +6,14 @@
     {
         Usage(BusConfiguration busConfiguration)
         {
-            #region AzureStorageQueueTransportWithAzure 6
+            #region AzureStorageQueueTransportWithAzure
 
             busConfiguration.UseTransport<AzureStorageQueueTransport>();
 
             #endregion
         }
 
-        #region AzureStorageQueueTransportWithAzureHost 6
+        #region AzureStorageQueueTransportWithAzureHost
 
         public class EndpointConfig : IConfigureThisEndpoint
         {

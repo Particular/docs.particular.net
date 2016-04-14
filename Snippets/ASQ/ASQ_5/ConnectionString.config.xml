@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!-- startcode AzureStorageQueueConnectionStringFromAppConfig 6 -->
+<!-- startcode AzureStorageQueueConnectionStringFromAppConfig -->
 <configuration>
   <connectionStrings>
      <add name="NServiceBus/Transport"

@@ -177,7 +177,6 @@
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
-    <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="Features\AdvancedSatelliteFeature.cs" />
@@ -421,10 +420,6 @@
     <Content Include="Azure\Persistence\AzureStorage\AzurePersistence.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Azure\Transports\AzureStorageQueues\ConnectionString.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Azure\Transports\AzureStorageQueues\QueueConfig.config.xml" />
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>

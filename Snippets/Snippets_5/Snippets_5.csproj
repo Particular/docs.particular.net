@@ -237,10 +237,6 @@
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Azure\Transports\AzureStorageQueues\ConnectionString.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Azure\Transports\AzureStorageQueues\QueueConfig.config.xml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -254,7 +250,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audit\ProvideConfiguration.cs" />
-    <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="Features\AdvancedSatellite.cs" />
     <Compile Include="Features\SimpleSatellite.cs" />
