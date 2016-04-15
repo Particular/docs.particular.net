@@ -9,7 +9,7 @@
         void MultiInstance(EndpointConfiguration endpointConfiguration)
         {
 #pragma warning disable 0618
-            #region sqlserver-multiinstance-upgrade [3.0,4.0)
+            #region sqlserver-multiinstance-upgrade
 
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .EnableLagacyMultiInstanceMode(async address =>

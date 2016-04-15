@@ -10,7 +10,7 @@
         void OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration)
         {
 #pragma warning disable 0618
-            #region sqlserver-multidb-other-endpoint-connection-pull [3.0,4.0)
+            #region sqlserver-multidb-other-endpoint-connection-pull
 
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .EnableLagacyMultiInstanceMode(async address =>

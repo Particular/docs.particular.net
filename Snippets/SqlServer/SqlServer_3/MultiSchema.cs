@@ -7,7 +7,7 @@
     {
         void NonStandardSchema(EndpointConfiguration endpointConfiguration)
         {
-            #region sqlserver-non-standard-schema 3
+            #region sqlserver-non-standard-schema
 
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .DefaultSchema("myschema");

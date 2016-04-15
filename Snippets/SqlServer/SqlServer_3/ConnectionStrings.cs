@@ -30,7 +30,7 @@
 
         void ConnectionFactory(EndpointConfiguration endpointConfiguration)
         {
-            #region sqlserver-custom-connection-factory 3
+            #region sqlserver-custom-connection-factory
 
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .UseCustomSqlConnectionFactory(async () =>
