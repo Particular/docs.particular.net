@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity.Core.EntityClient;
 
-namespace Snippets_Misc.EfEdmx
+namespace SqlServer_All.EfEdmx
 {
 
     #region DbContextPartialWithEntityConnection

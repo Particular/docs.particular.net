@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity.Core.EntityClient;
 
-namespace Snippets_Misc.EfEdmx
+namespace SqlServer_All.EfEdmx
 {
     class EntityConnectionCreation
     {
@@ -12,7 +12,7 @@ namespace Snippets_Misc.EfEdmx
             {
                 Provider = "System.Data.SqlClient",
                 ProviderConnectionString = "the database connection string",
-                Metadata = @"res://*/MySample.csdl|res://*/MySample.ssdl|res://*/MySample.msl"
+                Metadata = "res://*/MySample.csdl|res://*/MySample.ssdl|res://*/MySample.msl"
             };
 
             EntityConnection entityConn = new EntityConnection(entityBuilder.ToString());
