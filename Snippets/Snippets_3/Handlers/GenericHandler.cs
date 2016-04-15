@@ -1,6 +1,6 @@
 ﻿namespace Snippets3.Handlers
 {
-    using Common.Logging;
+    using log4net;
     using NServiceBus;
 
     #region GenericMessageHandler
