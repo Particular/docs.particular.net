@@ -1,4 +1,4 @@
-﻿namespace Snippets3.PubSub.Publishing
+﻿namespace Core3.PubSub.Publishing
 {
     using NServiceBus;
     using NServiceBus.Installation.Environments;

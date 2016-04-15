@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Gateway
+﻿namespace Core6.Gateway
 {
     using NServiceBus;
     using NServiceBus.Features;

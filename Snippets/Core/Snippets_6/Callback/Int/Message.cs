@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Callback.Int
+﻿namespace Core6.Callback.Int
 {
     using NServiceBus;
 

@@ -1,4 +1,4 @@
-namespace Snippets5.Sagas.Reply
+namespace Core5.Sagas.Reply
 {
     public class StartMessage
     {

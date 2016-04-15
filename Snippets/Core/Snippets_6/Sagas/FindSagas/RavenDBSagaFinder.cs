@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Sagas.FindSagas
+﻿namespace Core6.Sagas.FindSagas
 {
     using System.Linq;
     using System.Threading.Tasks;

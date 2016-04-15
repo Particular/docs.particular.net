@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Errors.SecondLevel.CustomPolicies
+﻿namespace Core6.Errors.SecondLevel.CustomPolicies
 {
     using System;
     using NServiceBus;

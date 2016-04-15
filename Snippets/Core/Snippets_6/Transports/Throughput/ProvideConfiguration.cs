@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Transports.Throughput
+﻿namespace Core6.Transports.Throughput
 {
     using NServiceBus;
 

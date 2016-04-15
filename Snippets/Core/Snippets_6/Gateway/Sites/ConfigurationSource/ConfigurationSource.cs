@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Gateway.Sites.ConfigurationSource
+﻿namespace Core6.Gateway.Sites.ConfigurationSource
 {
     using System.Configuration;
     using NServiceBus.Config;

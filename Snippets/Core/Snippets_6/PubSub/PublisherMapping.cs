@@ -1,4 +1,4 @@
-﻿namespace Snippets6.PubSub
+﻿namespace Core6.PubSub
 {
     using NServiceBus;
 

@@ -1,4 +1,4 @@
-﻿namespace Snippets5.PubSub.Publishing
+﻿namespace Core5.PubSub.Publishing
 {
     using NServiceBus;
 

@@ -1,4 +1,4 @@
-﻿namespace Snippets6.ImmediateDispatch
+﻿namespace Core6.ImmediateDispatch
 {
     using System.Threading.Tasks;
     using System.Transactions;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Snippets6.Notifications
+namespace Core6.Notifications
 {
     using System.Reactive;
     using System.Reactive.Linq;

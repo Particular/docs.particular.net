@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Container
+﻿namespace Core4.Container
 {
     public class MyService
     {

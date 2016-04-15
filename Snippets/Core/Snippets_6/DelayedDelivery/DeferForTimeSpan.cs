@@ -1,4 +1,4 @@
-﻿namespace Snippets6.DelayedDelivery
+﻿namespace Core6.DelayedDelivery
 {
     using System;
     using System.Threading.Tasks;

@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Outbox
+﻿namespace Core5.Outbox
 {
     using NServiceBus;
 

@@ -1,4 +1,4 @@
-namespace Snippets6.Conventions
+namespace Core6.Conventions
 {
     using System;
     using NServiceBus;

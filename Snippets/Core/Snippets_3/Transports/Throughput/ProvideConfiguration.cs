@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Transports.Throughput
+﻿namespace Core3.Transports.Throughput
 {
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;

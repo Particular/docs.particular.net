@@ -1,4 +1,4 @@
-﻿namespace Snippets5.ScaleOut
+﻿namespace Core5.ScaleOut
 {
     using NServiceBus;
 

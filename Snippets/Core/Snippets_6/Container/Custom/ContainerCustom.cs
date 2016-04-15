@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Container.Custom
+﻿namespace Core6.Container.Custom
 {
     using NServiceBus;
     using NServiceBus.Container;

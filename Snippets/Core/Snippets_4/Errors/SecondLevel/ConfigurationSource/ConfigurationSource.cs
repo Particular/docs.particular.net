@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Errors.SecondLevel.ConfigurationSource
+﻿namespace Core4.Errors.SecondLevel.ConfigurationSource
 {
     using System;
     using System.Configuration;

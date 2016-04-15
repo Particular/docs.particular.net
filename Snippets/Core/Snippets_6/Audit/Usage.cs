@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Audit
+﻿namespace Core6.Audit
 {
     using NServiceBus;
 

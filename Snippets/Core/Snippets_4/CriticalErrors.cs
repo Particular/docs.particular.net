@@ -1,6 +1,6 @@
 ﻿#pragma warning disable 649
 
-namespace Snippets4
+namespace Core4
 {
     using System;
     using System.Threading;

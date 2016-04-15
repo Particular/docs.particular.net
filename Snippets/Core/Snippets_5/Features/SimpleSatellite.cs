@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Features
+﻿namespace Core5.Features
 {
     using NServiceBus;
     using NServiceBus.Satellites;

@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Injection
+﻿namespace Core3.Injection
 {
     using System.Net.Mail;
     using NServiceBus;

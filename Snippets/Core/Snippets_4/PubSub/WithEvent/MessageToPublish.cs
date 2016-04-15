@@ -1,4 +1,4 @@
-﻿namespace Snippets4.PubSub.WithEvent
+﻿namespace Core4.PubSub.WithEvent
 {
     using NServiceBus;
 

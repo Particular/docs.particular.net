@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Persistence
+﻿namespace Core6.Persistence
 {
     using NServiceBus;
     using NServiceBus.Persistence;

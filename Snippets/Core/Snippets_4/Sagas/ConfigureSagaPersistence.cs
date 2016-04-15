@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Sagas
+﻿namespace Core4.Sagas
 {
     using NServiceBus;
     using NServiceBus.Features;

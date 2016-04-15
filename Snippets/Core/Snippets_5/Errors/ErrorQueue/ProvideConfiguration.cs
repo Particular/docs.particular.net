@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Errors.ErrorQueue
+﻿namespace Core5.Errors.ErrorQueue
 {
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;

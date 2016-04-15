@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Forwarding
+﻿namespace Core4.Forwarding
 {
     using NServiceBus;
     class ConfigurationSourceUsage

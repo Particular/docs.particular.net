@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Persistence
+﻿namespace Core5.Persistence
 {
     using NServiceBus;
     using NServiceBus.Persistence;

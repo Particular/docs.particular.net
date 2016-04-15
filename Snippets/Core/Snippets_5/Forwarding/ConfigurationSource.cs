@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Forwarding
+﻿namespace Core5.Forwarding
 {
     using System.Configuration;
     using NServiceBus.Config;

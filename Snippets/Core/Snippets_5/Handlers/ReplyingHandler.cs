@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Handlers
+﻿namespace Core5.Handlers
 {
     using NServiceBus;
 

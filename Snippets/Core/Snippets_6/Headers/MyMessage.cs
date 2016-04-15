@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Headers
+﻿namespace Core6.Headers
 {
     public class MyMessage
     {

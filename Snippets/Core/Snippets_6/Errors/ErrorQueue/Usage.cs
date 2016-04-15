@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Errors.ErrorQueue
+﻿namespace Core6.Errors.ErrorQueue
 {
     using NServiceBus;
 

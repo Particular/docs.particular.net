@@ -1,4 +1,4 @@
-namespace Snippets4.Mutators.Transport
+namespace Core4.Mutators.Transport
 {
     public static class ServiceThatChangesBody
     {

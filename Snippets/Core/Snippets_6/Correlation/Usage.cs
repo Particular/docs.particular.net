@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Correlation
+﻿namespace Core6.Correlation
 {
     using System.Threading.Tasks;
     using NServiceBus;

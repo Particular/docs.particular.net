@@ -1,4 +1,4 @@
-﻿namespace Snippets6.HostIdentifier
+﻿namespace Core6.HostIdentifier
 {
     using System;
     using NServiceBus;

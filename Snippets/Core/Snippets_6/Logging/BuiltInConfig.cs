@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Logging
+﻿namespace Core6.Logging
 {
     using NServiceBus.Logging;
 

@@ -1,4 +1,4 @@
-﻿namespace Snippets4.UpgradeGuides._4to5
+﻿namespace Core4.UpgradeGuides._4to5
 {
     using System;
     using NServiceBus;

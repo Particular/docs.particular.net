@@ -1,4 +1,4 @@
-namespace Snippets6.PubSub.Publishing
+namespace Core6.PubSub.Publishing
 {
     using System;
     using System.Threading.Tasks;

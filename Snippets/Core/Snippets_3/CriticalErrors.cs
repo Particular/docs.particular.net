@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 649
-namespace Snippets3.Host
+namespace Core3.Host
 {
     using System;
     using System.Diagnostics;

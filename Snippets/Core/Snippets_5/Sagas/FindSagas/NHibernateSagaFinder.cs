@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Sagas.FindSagas
+﻿namespace Core5.Sagas.FindSagas
 {
     using NServiceBus.Persistence.NHibernate;
     using NServiceBus.Saga;

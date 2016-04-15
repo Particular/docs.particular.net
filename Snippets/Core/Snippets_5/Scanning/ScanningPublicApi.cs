@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Scanning
+﻿namespace Core5.Scanning
 {
     using System;
     using System.Collections.Generic;

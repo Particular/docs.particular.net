@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Handlers
+﻿namespace Core6.Handlers
 {
     public class MyMessage
     {

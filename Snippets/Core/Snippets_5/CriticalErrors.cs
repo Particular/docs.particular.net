@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 649
-namespace Snippets5
+namespace Core5
 {
     using System;
     using System.Threading;

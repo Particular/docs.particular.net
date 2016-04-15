@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Logging.Log4Net
+﻿namespace Core6.Logging.Log4Net
 {
     using log4net.Appender;
     using log4net.Config;

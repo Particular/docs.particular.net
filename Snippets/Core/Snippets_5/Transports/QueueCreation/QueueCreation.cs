@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Transports
+﻿namespace Core5.Transports
 {
     using NServiceBus;
     using NServiceBus.Transports;

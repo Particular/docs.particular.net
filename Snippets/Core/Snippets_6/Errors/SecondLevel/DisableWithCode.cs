@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Errors.SecondLevel
+﻿namespace Core6.Errors.SecondLevel
 {
     using NServiceBus;
     using NServiceBus.Features;

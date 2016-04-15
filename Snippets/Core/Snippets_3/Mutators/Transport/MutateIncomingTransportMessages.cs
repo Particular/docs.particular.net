@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Mutators.Transport
+﻿namespace Core3.Mutators.Transport
 {
     using System.Collections.Generic;
     using NServiceBus.MessageMutator;

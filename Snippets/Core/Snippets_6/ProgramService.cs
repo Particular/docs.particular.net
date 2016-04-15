@@ -1,5 +1,5 @@
 #region windowsservicehosting
-namespace Snippets6
+namespace Core6
 {
     using System;
     using System.ServiceProcess;

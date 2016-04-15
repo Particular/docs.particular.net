@@ -1,4 +1,4 @@
-﻿namespace Snippets4.DataBus.FileShare
+﻿namespace Core4.DataBus.FileShare
 {
     using NServiceBus;
 

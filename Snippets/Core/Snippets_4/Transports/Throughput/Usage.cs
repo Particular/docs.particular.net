@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Transports.Throughput
+﻿namespace Core4.Transports.Throughput
 {
     using NServiceBus.Unicast;
 

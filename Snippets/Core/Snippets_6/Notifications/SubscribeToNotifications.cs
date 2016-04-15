@@ -1,5 +1,5 @@
 ﻿// ReSharper disable UnusedParameter.Local
-namespace Snippets6.BusNotifications
+namespace Core6.BusNotifications
 {
     using NServiceBus;
     using NServiceBus.Faults;

@@ -1,4 +1,4 @@
-﻿namespace Snippets5.NonDurable
+﻿namespace Core5.NonDurable
 {
     using NServiceBus;
 

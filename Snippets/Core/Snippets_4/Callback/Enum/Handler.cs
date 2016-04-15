@@ -1,6 +1,6 @@
 using NServiceBus;
 
-namespace Snippets4.Callback.Enum
+namespace Core4.Callback.Enum
 {
 
     #region EnumCallbackResponse

@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Headers
+﻿namespace Core3.Headers
 {
     class SomeOtherMessage
     {

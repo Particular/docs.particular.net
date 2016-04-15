@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Encryption.EncryptionService
+﻿namespace Core6.Encryption.EncryptionService
 {
     using NServiceBus;
 

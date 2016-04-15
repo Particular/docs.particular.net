@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Gateway.Channels
+﻿namespace Core4.Gateway.Channels
 {
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;

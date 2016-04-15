@@ -1,4 +1,4 @@
-namespace Snippets3.Pipeline.Abort
+namespace Core3.Pipeline.Abort
 {
     public class MyMessage
     {

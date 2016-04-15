@@ -1,4 +1,4 @@
-namespace Snippets6.Sagas.SimpleSaga
+namespace Core6.Sagas.SimpleSaga
 {
     public class StartOrder
     {

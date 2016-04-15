@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Sagas
+﻿namespace Core3.Sagas
 {
     using NServiceBus;
 

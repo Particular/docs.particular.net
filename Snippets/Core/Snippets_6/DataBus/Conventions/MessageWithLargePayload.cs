@@ -1,5 +1,5 @@
 ﻿
-namespace Snippets6.DataBus.Conventions
+namespace Core6.DataBus.Conventions
 {
 
     #region MessageWithLargePayloadUsingConvention

@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Audit
+﻿namespace Core4.Audit
 {
     using System;
     using NServiceBus.Config;

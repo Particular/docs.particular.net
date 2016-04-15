@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Scanning
+﻿namespace Core6.Scanning
 {
     using System;
     using NServiceBus;

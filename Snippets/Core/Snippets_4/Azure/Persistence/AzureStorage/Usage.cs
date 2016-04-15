@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Azure.Persistence.AzureStorage
+﻿namespace Core4.Azure.Persistence.AzureStorage
 {
     using NServiceBus;
 

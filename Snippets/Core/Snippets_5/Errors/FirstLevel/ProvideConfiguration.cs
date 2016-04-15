@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Errors.FirstLevel
+﻿namespace Core5.Errors.FirstLevel
 {
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;

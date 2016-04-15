@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Monitoring
+﻿namespace Core6.Monitoring
 {
     using System;
     using System.Threading.Tasks;

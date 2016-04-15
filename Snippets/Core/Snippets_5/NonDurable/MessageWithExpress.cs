@@ -1,4 +1,4 @@
-﻿namespace Snippets5.NonDurable.ExpressMessages
+﻿namespace Core5.NonDurable.ExpressMessages
 {
     using NServiceBus;
 

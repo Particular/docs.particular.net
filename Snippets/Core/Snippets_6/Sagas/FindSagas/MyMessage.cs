@@ -1,4 +1,4 @@
-namespace Snippets6.Sagas.FindSagas
+namespace Core6.Sagas.FindSagas
 {
     public class MyMessage
     {

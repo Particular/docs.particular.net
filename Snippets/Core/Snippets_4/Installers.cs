@@ -1,4 +1,4 @@
-﻿namespace Snippets4
+﻿namespace Core4
 {
     using NServiceBus;
     using NServiceBus.Installation.Environments;

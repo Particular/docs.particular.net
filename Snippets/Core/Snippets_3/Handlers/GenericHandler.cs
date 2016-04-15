@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Handlers
+﻿namespace Core3.Handlers
 {
     using log4net;
     using NServiceBus;

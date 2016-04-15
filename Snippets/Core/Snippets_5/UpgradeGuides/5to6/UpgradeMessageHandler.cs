@@ -1,7 +1,7 @@
-﻿namespace Snippets5.UpgradeGuides._5to6
+﻿namespace Core5.UpgradeGuides._5to6
 {
     using NServiceBus;
-    using Snippets5.Handlers;
+    using Handlers;
 
     #region 5to6-messagehandler
 

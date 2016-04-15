@@ -1,5 +1,5 @@
 ﻿// ReSharper disable UnusedParameter.Local
-namespace Snippets6.Pipeline.Abort
+namespace Core6.Pipeline.Abort
 {
     using System;
     using System.Threading.Tasks;

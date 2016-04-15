@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Callback.Enum
+﻿namespace Core3.Callback.Enum
 {
     public enum Status
     {

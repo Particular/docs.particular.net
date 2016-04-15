@@ -1,5 +1,5 @@
 ﻿// ReSharper disable UnusedParameter.Local
-namespace Snippets5.Features
+namespace Core5.Features
 {
     using System;
     using NServiceBus;

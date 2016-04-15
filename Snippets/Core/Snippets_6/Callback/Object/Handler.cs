@@ -1,4 +1,4 @@
-namespace Snippets6.Callback.Object
+namespace Core6.Callback.Object
 {
     using System.Threading.Tasks;
     using NServiceBus;

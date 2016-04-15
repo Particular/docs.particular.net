@@ -1,4 +1,4 @@
-namespace Snippets3.Errors.SecondLevel.CustomPolicies
+namespace Core3.Errors.SecondLevel.CustomPolicies
 {
     using NServiceBus;
     using NServiceBus.Unicast.Transport;

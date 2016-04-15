@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Pipeline
+﻿namespace Core4.Pipeline
 {
     using System;
     using NServiceBus.Pipeline;

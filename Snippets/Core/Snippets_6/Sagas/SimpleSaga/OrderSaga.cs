@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 
-namespace Snippets6.Sagas.SimpleSaga
+namespace Core6.Sagas.SimpleSaga
 {
     using System.Threading.Tasks;
 

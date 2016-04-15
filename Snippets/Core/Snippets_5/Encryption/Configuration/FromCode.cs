@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Encryption.Configuration
+﻿namespace Core5.Encryption.Configuration
 {
     using System;
     using System.Collections.Generic;

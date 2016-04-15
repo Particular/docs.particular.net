@@ -1,4 +1,4 @@
-namespace Snippets3.Container.Custom
+namespace Core3.Container.Custom
 {
     using System;
     using System.Collections.Generic;

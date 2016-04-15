@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Mutators
+﻿namespace Core3.Mutators
 {
     using NServiceBus;
 

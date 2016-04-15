@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Scheduling.Saga
+﻿namespace Core6.Scheduling.Saga
 {
     using System;
     using System.Threading.Tasks;

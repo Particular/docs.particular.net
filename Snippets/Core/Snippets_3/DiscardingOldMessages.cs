@@ -1,4 +1,4 @@
-﻿namespace Snippets3
+﻿namespace Core3
 {
     using System;
     using NServiceBus;

@@ -1,4 +1,4 @@
-namespace Snippets6.PubSub.WithConvention
+namespace Core6.PubSub.WithConvention
 {
     using NServiceBus;
 

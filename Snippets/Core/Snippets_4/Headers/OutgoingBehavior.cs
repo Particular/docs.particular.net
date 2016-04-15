@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Headers
+﻿namespace Core4.Headers
 {
     using System;
     using System.Collections.Generic;

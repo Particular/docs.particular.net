@@ -1,4 +1,4 @@
-namespace Snippets3.Sagas.Timeouts
+namespace Core3.Sagas.Timeouts
 {
     using System;
     using NServiceBus.Saga;

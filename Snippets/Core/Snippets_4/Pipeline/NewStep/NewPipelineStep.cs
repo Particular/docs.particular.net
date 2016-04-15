@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Pipeline.NewStep
+﻿namespace Core4.Pipeline.NewStep
 {
     using NServiceBus.Pipeline;
     using NServiceBus.Pipeline.Contexts;

@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Pipeline.Replace
+﻿namespace Core4.Pipeline.Replace
 {
     using System;
     using NServiceBus.Pipeline;

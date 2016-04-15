@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Gateway
+﻿namespace Core4.Gateway
 {
     public class MyMessage
     {

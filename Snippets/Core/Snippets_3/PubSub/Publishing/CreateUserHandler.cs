@@ -1,4 +1,4 @@
-﻿namespace Snippets3.PubSub
+﻿namespace Core3.PubSub
 {
     using NServiceBus;
     #region publishFromHandler

@@ -1,4 +1,4 @@
-namespace Snippets5.DelayedDelivery
+namespace Core5.DelayedDelivery
 {
     using System;
     using NServiceBus;

@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Sagas.SimpleSaga
+﻿namespace Core5.Sagas.SimpleSaga
 {
     using System;
     using NServiceBus.Saga;

@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Encryption.Conventions
+﻿namespace Core3.Encryption.Conventions
 {
     using NServiceBus;
 

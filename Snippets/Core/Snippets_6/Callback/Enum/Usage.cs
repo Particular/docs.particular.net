@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Callback.Enum
+﻿namespace Core6.Callback.Enum
 {
     using NServiceBus;
     using NServiceBus.Logging;

@@ -1,4 +1,4 @@
-﻿namespace Snippets5
+﻿namespace Core5
 {
     using System.Configuration;
     using NServiceBus;

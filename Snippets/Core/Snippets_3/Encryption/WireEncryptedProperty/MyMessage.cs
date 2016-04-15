@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Encryption.WireEncryptedProperty
+﻿namespace Core3.Encryption.WireEncryptedProperty
 {
     using NServiceBus;
 

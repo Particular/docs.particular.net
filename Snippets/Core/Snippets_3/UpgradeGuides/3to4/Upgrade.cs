@@ -1,4 +1,4 @@
-﻿namespace Snippets3.UpgradeGuides._3to4
+﻿namespace Core3.UpgradeGuides._3to4
 {
     using NServiceBus;
     using NServiceBus.Unicast.Config;

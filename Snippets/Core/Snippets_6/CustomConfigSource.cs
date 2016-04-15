@@ -1,4 +1,4 @@
-﻿namespace Snippets6
+﻿namespace Core6
 {
     using System.Configuration;
     using NServiceBus;

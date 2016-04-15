@@ -1,4 +1,4 @@
-﻿namespace Snippets6.EndpointName
+﻿namespace Core6.EndpointName
 {
     using System;
     using NServiceBus;

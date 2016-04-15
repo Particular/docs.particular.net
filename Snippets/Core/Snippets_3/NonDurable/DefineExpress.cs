@@ -1,4 +1,4 @@
-﻿namespace Snippets3.NonDurable.ExpressMessages
+﻿namespace Core3.NonDurable.ExpressMessages
 {
     using NServiceBus;
 

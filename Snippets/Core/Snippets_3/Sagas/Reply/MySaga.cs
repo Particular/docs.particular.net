@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Sagas.Reply
+﻿namespace Core3.Sagas.Reply
 {
     using NServiceBus.Saga;
 

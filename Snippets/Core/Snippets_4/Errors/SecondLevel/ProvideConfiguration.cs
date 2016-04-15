@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Errors.SecondLevel
+﻿namespace Core4.Errors.SecondLevel
 {
     using System;
     using NServiceBus.Config;

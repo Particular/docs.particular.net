@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Sagas.Timeouts
+﻿namespace Core5.Sagas.Timeouts
 {
     public class Message2
     {

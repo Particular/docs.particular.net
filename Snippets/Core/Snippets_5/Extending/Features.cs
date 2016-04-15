@@ -1,6 +1,6 @@
 ﻿using NServiceBus.Features;
 
-namespace Snippets5.Extending
+namespace Core5.Extending
 {
     #region MinimalFeature
     public class MinimalFeature : Feature

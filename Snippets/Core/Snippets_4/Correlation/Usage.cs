@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Correlation
+﻿namespace Core4.Correlation
 {
     using NServiceBus;
 

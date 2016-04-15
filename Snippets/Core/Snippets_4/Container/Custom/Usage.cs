@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Container.Custom
+﻿namespace Core4.Container.Custom
 {
     using NServiceBus;
     using NServiceBus.ObjectBuilder.Common.Config;

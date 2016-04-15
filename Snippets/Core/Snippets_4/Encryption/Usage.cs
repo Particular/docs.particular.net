@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Encryption
+﻿namespace Core4.Encryption
 {
     using NServiceBus;
 

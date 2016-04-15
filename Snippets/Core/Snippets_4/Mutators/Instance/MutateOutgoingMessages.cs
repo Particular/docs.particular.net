@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Mutators.Instance
+﻿namespace Core4.Mutators.Instance
 {
     using NServiceBus.MessageMutator;
 

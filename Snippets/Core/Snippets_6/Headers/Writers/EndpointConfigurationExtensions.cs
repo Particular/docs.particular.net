@@ -1,4 +1,4 @@
-namespace Snippets6.Headers.Writers
+namespace Core6.Headers.Writers
 {
     using System;
     using System.Collections.Generic;

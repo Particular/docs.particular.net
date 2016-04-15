@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Sagas.FindByExpression
+﻿namespace Core5.Sagas.FindByExpression
 {
     using NServiceBus;
     using NServiceBus.Saga;

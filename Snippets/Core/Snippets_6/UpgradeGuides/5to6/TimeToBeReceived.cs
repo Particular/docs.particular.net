@@ -1,5 +1,5 @@
 ﻿// ReSharper disable RedundantAssignment
-namespace Snippets6.UpgradeGuides._5to6
+namespace Core6.UpgradeGuides._5to6
 {
     using System;
     using NServiceBus.DeliveryConstraints;

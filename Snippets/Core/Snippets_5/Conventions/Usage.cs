@@ -1,4 +1,4 @@
-namespace Snippets5.Conventions
+namespace Core5.Conventions
 {
     using System;
     using NServiceBus;

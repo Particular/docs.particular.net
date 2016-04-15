@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Routing.EndpointMapping
+﻿namespace Core5.Routing.EndpointMapping
 {
     using System.Configuration;
     using NServiceBus.Config;

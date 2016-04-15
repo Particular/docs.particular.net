@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Scheduling
+﻿namespace Core3.Scheduling
 {
     using System;
     using NServiceBus;

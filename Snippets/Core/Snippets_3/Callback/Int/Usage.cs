@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Callback.Int
+﻿namespace Core3.Callback.Int
 {
     using log4net;
     using NServiceBus;

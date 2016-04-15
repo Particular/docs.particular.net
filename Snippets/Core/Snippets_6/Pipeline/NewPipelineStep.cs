@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Pipeline
+﻿namespace Core6.Pipeline
 {
     using NServiceBus;
     using NServiceBus.Pipeline;

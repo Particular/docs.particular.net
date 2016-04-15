@@ -1,4 +1,4 @@
-﻿namespace Snippets6.DataBus.Azure
+﻿namespace Core6.DataBus.Azure
 {
     using NServiceBus;
     using NServiceBus.DataBus;

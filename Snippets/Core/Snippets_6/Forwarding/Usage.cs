@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Forwarding
+﻿namespace Core6.Forwarding
 {
     using NServiceBus;
     class Usage

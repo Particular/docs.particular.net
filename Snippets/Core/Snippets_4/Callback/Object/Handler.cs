@@ -1,6 +1,6 @@
 using NServiceBus;
 
-namespace Snippets4.Callback.Object
+namespace Core4.Callback.Object
 {
 
     #region ObjectCallbackResponse

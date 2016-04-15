@@ -1,4 +1,4 @@
-﻿namespace Snippets5.DataBus.DataBusProperty
+﻿namespace Core5.DataBus.DataBusProperty
 {
     using NServiceBus;
 

@@ -1,4 +1,4 @@
-﻿namespace Snippets6.DataBus.Custom
+﻿namespace Core6.DataBus.Custom
 {
     using System;
     using System.IO;

@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Gateway
+﻿namespace Core3.Gateway
 {
     using NServiceBus;
 

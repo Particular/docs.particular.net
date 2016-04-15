@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Errors.FirstLevel.ConfigurationSource
+﻿namespace Core4.Errors.FirstLevel.ConfigurationSource
 {
     using NServiceBus;
 

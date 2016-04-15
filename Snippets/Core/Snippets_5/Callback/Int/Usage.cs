@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Callback.Int
+﻿namespace Core5.Callback.Int
 {
     using NServiceBus;
     using NServiceBus.Logging;

@@ -1,4 +1,4 @@
-﻿namespace Snippets3.PubSub.WithConvention
+﻿namespace Core3.PubSub.WithConvention
 {
 
     #region EventWithConvention

@@ -1,4 +1,4 @@
-﻿namespace Snippets4.UpgradeGuides._4to5
+﻿namespace Core4.UpgradeGuides._4to5
 {
     using System;
     using NServiceBus;
@@ -7,7 +7,7 @@
     using NServiceBus.Logging;
     using NServiceBus.Transports;
     using NServiceBus.Unicast.Config;
-    using Snippets4.Encryption.EncryptionService;
+    using Encryption.EncryptionService;
 
     class Upgrade
     {

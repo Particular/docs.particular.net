@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Lifecycle
+﻿namespace Core3.Lifecycle
 {
     using NServiceBus;
 

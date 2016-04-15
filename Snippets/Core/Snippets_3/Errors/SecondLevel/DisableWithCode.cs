@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Errors.SecondLevel
+﻿namespace Core3.Errors.SecondLevel
 {
     using NServiceBus;
 

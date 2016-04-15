@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Pipeline
+﻿namespace Core5.Pipeline
 {
     using System;
     using NServiceBus.Pipeline;

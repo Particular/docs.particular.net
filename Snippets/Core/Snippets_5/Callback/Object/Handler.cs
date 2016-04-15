@@ -1,4 +1,4 @@
-namespace Snippets5.Callback.Object
+namespace Core5.Callback.Object
 {
     using NServiceBus;
 

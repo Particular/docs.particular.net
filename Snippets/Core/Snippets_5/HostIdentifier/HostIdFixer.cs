@@ -1,6 +1,6 @@
 ﻿#pragma warning disable 618
 
-namespace Snippets5.HostIdentifier
+namespace Core5.HostIdentifier
 {
     using System;
     using System.Collections.Generic;

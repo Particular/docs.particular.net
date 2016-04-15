@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Routing.AutomaticSubscriptions
+﻿namespace Core5.Routing.AutomaticSubscriptions
 {
     using NServiceBus;
     using NServiceBus.Features;

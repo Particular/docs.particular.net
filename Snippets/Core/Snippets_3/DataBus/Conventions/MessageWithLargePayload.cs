@@ -1,4 +1,4 @@
-﻿namespace Snippets3.DataBus.Conventions
+﻿namespace Core3.DataBus.Conventions
 {
 
     #region MessageWithLargePayloadUsingConvention

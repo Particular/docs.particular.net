@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Mutators.Transport
+﻿namespace Core6.Mutators.Transport
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

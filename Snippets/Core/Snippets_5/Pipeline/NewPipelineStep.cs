@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Pipeline.NewStep
+﻿namespace Core5.Pipeline.NewStep
 {
     using NServiceBus;
     using NServiceBus.Pipeline;

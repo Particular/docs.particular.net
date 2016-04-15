@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Monitoring
+﻿namespace Core5.Monitoring
 {
     using System;
     using NServiceBus;

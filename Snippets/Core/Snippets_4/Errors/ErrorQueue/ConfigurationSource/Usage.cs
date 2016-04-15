@@ -1,4 +1,4 @@
-namespace Snippets4.Errors.ErrorQueue.ConfigurationSource
+namespace Core4.Errors.ErrorQueue.ConfigurationSource
 {
     using NServiceBus;
 

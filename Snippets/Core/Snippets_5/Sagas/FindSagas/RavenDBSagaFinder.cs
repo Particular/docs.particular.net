@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Sagas.FindSagas
+﻿namespace Core5.Sagas.FindSagas
 {
     using System.Linq;
     using NServiceBus.RavenDB.Persistence;

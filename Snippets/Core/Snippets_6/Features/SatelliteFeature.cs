@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Features
+﻿namespace Core6.Features
 {
     using System.Threading.Tasks;
     using NServiceBus;

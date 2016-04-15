@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using NServiceBus;
 
-namespace Snippets6
+namespace Core6
 {
     class XmlSerializationIntegration
     {

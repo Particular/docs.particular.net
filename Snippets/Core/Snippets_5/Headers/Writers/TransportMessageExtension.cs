@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Headers.Writers
+﻿namespace Core5.Headers.Writers
 {
     using NServiceBus;
 

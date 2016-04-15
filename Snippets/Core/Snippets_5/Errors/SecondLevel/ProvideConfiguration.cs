@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Errors.SecondLevel
+﻿namespace Core5.Errors.SecondLevel
 {
     using System;
     using NServiceBus.Config;

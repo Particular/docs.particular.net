@@ -1,4 +1,4 @@
-namespace Snippets6.Sagas.FindByExpression
+namespace Core6.Sagas.FindByExpression
 {
     public class Message1
     {

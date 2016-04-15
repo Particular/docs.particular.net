@@ -1,4 +1,4 @@
-﻿namespace Snippets5.ImmediateDispatch
+﻿namespace Core5.ImmediateDispatch
 {
     using System.Transactions;
     using NServiceBus;

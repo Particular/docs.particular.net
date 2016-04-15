@@ -2,7 +2,7 @@
 using NServiceBus.Features;
 using NServiceBus.Unicast.Queuing;
 
-namespace Snippets5.Transports
+namespace Core5.Transports
 {
     #region queuebindings
     public class QueueRegistration : IWantQueueCreated

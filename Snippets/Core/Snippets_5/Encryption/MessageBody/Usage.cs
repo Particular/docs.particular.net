@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Encryption.MessageBody
+﻿namespace Core5.Encryption.MessageBody
 {
     using NServiceBus;
 

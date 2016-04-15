@@ -1,5 +1,5 @@
 ﻿
-namespace Snippets3.Routing.EndpointMapping
+namespace Core3.Routing.EndpointMapping
 {
     using System.Configuration;
     using NServiceBus.Config;

@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Sagas.SimpleSaga
+﻿namespace Core3.Sagas.SimpleSaga
 {
     public class CompleteOrder
     {

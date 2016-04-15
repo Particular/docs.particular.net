@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Logging.NLog
+﻿namespace Core4.Logging.NLog
 {
     using global::NLog;
     using global::NLog.Config;

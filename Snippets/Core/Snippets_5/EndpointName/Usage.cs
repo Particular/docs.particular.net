@@ -1,4 +1,4 @@
-﻿namespace Snippets5.EndpointName
+﻿namespace Core5.EndpointName
 {
     using NServiceBus;
 

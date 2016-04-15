@@ -1,5 +1,5 @@
 ﻿// ReSharper disable UnusedParameter.Local
-namespace Snippets4.Pipeline.Abort
+namespace Core4.Pipeline.Abort
 {
     using System;
     using NServiceBus.Pipeline;

@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Mutators.Transport
+﻿namespace Core5.Mutators.Transport
 {
     using System.Collections.Generic;
     using NServiceBus;

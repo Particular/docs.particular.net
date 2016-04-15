@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Scheduling.Saga
+﻿namespace Core4.Scheduling.Saga
 {
     using System;
     using NServiceBus;

@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Callback.Cancellation
+﻿namespace Core6.Callback.Cancellation
 {
     using System;
     using System.Threading;

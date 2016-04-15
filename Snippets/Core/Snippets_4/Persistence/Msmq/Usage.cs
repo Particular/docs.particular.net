@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Persistence.Msmq
+﻿namespace Core4.Persistence.Msmq
 {
     using NServiceBus;
 

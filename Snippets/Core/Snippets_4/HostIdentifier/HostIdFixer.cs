@@ -1,4 +1,4 @@
-﻿namespace Snippets4.HostIdentifier
+﻿namespace Core4.HostIdentifier
 {
     using System;
     using System.Reflection;

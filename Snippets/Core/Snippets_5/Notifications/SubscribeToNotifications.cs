@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Notifications
+﻿namespace Core5.Notifications
 {
     using System;
     using System.Collections.Generic;

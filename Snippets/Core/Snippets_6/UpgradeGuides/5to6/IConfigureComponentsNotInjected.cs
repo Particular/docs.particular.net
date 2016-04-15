@@ -1,4 +1,4 @@
-﻿namespace Snippets5.UpgradeGuides._5to6
+﻿namespace Core5.UpgradeGuides._5to6
 {
     using NServiceBus;
     using NServiceBus.Features;

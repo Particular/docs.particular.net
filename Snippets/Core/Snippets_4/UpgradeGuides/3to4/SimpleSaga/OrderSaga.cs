@@ -1,4 +1,4 @@
-﻿namespace Snippets4.UpgradeGuides._3to4.SimpleSaga
+﻿namespace Core4.UpgradeGuides._3to4.SimpleSaga
 {
     using NServiceBus;
     using NServiceBus.Saga;

@@ -1,4 +1,4 @@
-namespace Snippets6.Gateway.Channels.ConfigurationSource
+namespace Core6.Gateway.Channels.ConfigurationSource
 {
     using NServiceBus;
 

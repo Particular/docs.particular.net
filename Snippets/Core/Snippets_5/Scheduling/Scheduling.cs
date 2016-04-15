@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Scheduling
+﻿namespace Core5.Scheduling
 {
     using System;
     using NServiceBus;

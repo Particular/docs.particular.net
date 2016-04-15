@@ -1,4 +1,4 @@
-﻿namespace Snippets4.EndpointName
+﻿namespace Core4.EndpointName
 {
     using NServiceBus;
 

@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Persistence.InMemory
+﻿namespace Core3.Persistence.InMemory
 {
     using NServiceBus;
 

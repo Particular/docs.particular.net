@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Routing
+﻿namespace Core6.Routing
 {
     using System.Threading.Tasks;
     using NServiceBus;

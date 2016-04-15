@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Callback.Object
+﻿namespace Core4.Callback.Object
 {
     using NServiceBus;
     using NServiceBus.Logging;

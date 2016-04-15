@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Sagas.Reply
+﻿namespace Core6.Sagas.Reply
 {
     using System.Threading.Tasks;
     using NServiceBus;

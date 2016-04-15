@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Monitoring
+﻿namespace Core3.Monitoring
 {
     using NServiceBus;
 

@@ -1,4 +1,4 @@
-﻿namespace Snippets5.DataBus.Custom
+﻿namespace Core5.DataBus.Custom
 {
     using NServiceBus;
 
