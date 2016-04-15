@@ -12,7 +12,7 @@ related:
 The `IManageMessageFailures` interface has been deprecated. Instead, the same functionality can be achieved by adding a new behavior which is invoked during the message processing pipeline. Read this article on how to [create new pipeline behaviors](/nservicebus/pipeline/customizing-v6.md).
 
 
-### Create a new behavior.
+### Create a new behavior
 
 Implement a new behavior, which extends the `ITransportReceiveContext` context. This context provides details about the message at the transport level. Calling `next()` in the pipeline will invoke the subsequent pipeline processing steps.
 
