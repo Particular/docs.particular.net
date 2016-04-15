@@ -99,10 +99,6 @@
     <Reference Include="NServiceBus.Log4Net">
       <HintPath>..\..\packages\NServiceBus.Log4Net.1.1.0-beta0001\lib\net452\NServiceBus.Log4Net.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Newtonsoft.Json, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.Newtonsoft.Json.0.3.0-unstable0008\lib\net452\NServiceBus.Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\..\packages\NServiceBus.NHibernate.7.0.0-beta0001\lib\net452\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
