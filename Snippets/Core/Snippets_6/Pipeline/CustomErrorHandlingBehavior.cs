@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using NServiceBus;
+    using NServiceBus.Logging;
     using NServiceBus.Pipeline;
 
     #region ErrorHandlingBehavior
@@ -17,6 +18,8 @@
 
     class CustomErrorHandlingBehaviourForDeserializationFailures : Behavior<ITransportReceiveContext>
     {
+        ILog log = LogManager.GetLogger<CustomErrorHandlingBehaviourForDeserializationFailures>();
+
         public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
         {
             #region DeserializationCustomization
@@ -24,9 +27,10 @@
             {
                 await next().ConfigureAwait(false);
             }
-            catch (MessageDeserializationException)
+            catch (MessageDeserializationException deserializationException)
             {
-                // Handle any custom processing that need to occur when a serialization failure occurs.
+                // Handle any custom processing that needs to occur when a serialization failure occurs.
+                log.Error("Message deserialization failed", deserializationException);
                 throw;
             }
             #endregion
@@ -35,6 +39,8 @@
 
     class CustomErrorHandlingBehaviourForAllFailures : Behavior<ITransportReceiveContext>
     {
+        ILog log = LogManager.GetLogger<CustomErrorHandlingBehaviourForAllFailures>();
+
         public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
         {
             #region AllErrorsCustomization
@@ -42,10 +48,11 @@
             {
                 await next().ConfigureAwait(false);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
                 // Handle any custom processing that need to occur when a message always fails.
-                throw;                
+                log.Error("Message processing failed", exception);
+                throw;
             }
             #endregion
         }
