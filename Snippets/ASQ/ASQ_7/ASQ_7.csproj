@@ -78,6 +78,7 @@
     <Content Include="QueueConfig.config.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UpgradeGuides\SerializerDefinition.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
