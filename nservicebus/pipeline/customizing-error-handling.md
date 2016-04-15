@@ -43,7 +43,7 @@ snippet: RollbackMessage
 
 ### Registering the Behavior
 
-In the example below, the behavior `CustomErrorHandlingBehavior` is being registered in the message handling pipeline. This behavior will be invoked after NServiceBus has invoked the first-level retries. 
+In the example below, the new behavior `CustomErrorHandlingBehavior` is registered to be part of the message handling pipeline. This new behavior is registered such that it will be invoked after NServiceBus has invoked the [built-in retry mechanism](/nservicebus/errors/automatic-retries.md).  
 
 snippet: RegisterCustomErrorHandlingBehavior
             
