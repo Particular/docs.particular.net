@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
-  <!-- startcode AzureStorageQueueConfig -->
+  <!-- startcode AzureStorageQueueConfig [6,7) -->
   <configSections>
      <section name="AzureQueueConfig"
               type="NServiceBus.Config.AzureQueueConfig, NServiceBus.Azure.Transports.WindowsAzureStorageQueues" />

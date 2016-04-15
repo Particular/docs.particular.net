@@ -11,6 +11,16 @@
             endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
 
             #endregion
+
+            #region AzureStorageQueueConfigCodeOnly
+
+            endpointConfiguration.UseTransport<AzureStorageQueueTransport>()
+                .ConnectionString("azure-storage-connection-string")
+                .BatchSize(20)
+                .MaximumWaitTimeWhenIdle(1000)
+                .PeekInterval(100);
+
+            #endregion
         }
 
         //TODO: fix when we split azure

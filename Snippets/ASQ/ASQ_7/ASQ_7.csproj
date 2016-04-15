@@ -72,12 +72,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ConnectionString.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="QueueConfig.config.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
