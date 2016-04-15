@@ -39,3 +39,14 @@ snippet:AzureStorageQueueConnectionStringFromAppConfig
 Note that multiple connection string formats apply when working with Azure storage services. When running against the emulated environment the format is `UseDevelopmentStorage=true`, but when running against a cloud hosted storage account the format is `DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;`
 
 For more details refer to [Configuring Azure Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/storage-configure-connection-string/) document.
+
+
+## Securing the connection string
+
+Accidental leaking of sensitive information in the connection string could occur if an error occurs when communicating across untrusted boundaries, or if that information is logged to an unsecured log file. In order to prevent this, Versions 7 and above of `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` it is possible to create a logical name for each connection string, map that to the physical connection string, and only refer to the connection string by it's logical name. This means that only the logical name could be accidentaly leaked in the event of an error, or logging.
+
+This feature can be enabledin Versions 7 and above by specifying `.UseAccountNamesInsteadOfConnectionStrings()` when configuring the `AzureStorageQueueTransport`.
+
+snippet:AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
+
+This feature is not available in Versions 6 and below.
