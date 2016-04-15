@@ -4,29 +4,35 @@ summary: Using Azure Storage Queues as transport
 tags:
 - Azure
 - Cloud
+- ASQ
+- Azure Storage Queues
 ---
 
-The Azure Storage Queues Transport can be configured using the following parameters.
+The Azure Storage Queues Transport can be configured using the following parameters:
 
- * `ConnectionString`: Overrides the default "NServiceBus/Transport" value and defaults to "UseDevelopmentStorage=true" if not set. It's recommended to set this value when specifying the configuration setting to prevent unexpected issues.
- * `PeekInterval`: Represents the amount of time that the transport waits before polling the queue in milliseconds, defaults to 50 ms.
- * `MaximumWaitTimeWhenIdle`: The transport will back of linearly when no messages can be found on the queue to save some money on the transaction operations, but it will never wait longer than the value specified here, also in milliseconds and defaults to 1000 (1 second)
- * `PurgeOnStartup`: Instructs the transport to remove any existing messages from the queue on startup, defaults to false.
- * `MessageInvisibleTime`: The Peek-Lock mechanism, supported by Azure storage queues relies on a period of time that a message becomes locked/invisible after being read. If the processing unit fails to delete the message in the specified time it will reappear on the queue so that another process can retry. This value is defined in milliseconds and defaults to 30000 (30 seconds).
- * `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. Defaults to 10. Depending on the expected load, I would vary this value between 1 and 1000 (which is the limit)
+ * `ConnectionString`: The default value is `UseDevelopmentStorage=true`.
+ * `PeekInterval`: The amount of time that the transport waits before polling the input queue, in milliseconds. The default value is 50 ms.
+ * `MaximumWaitTimeWhenIdle`: In order to save money on the transaction operations, the transport optimizes wait times according to the expected load. The transport will back off when no messages can be found on the queue. The wait time will be increased linearly, but it will never exceed the value specified here, in milliseconds. The default value is 1000 (i.e. 1 second).
+ * `PurgeOnStartup`: Instructs the transport to remove any existing messages from the input queue on startup. The default value is `false`, i.e. messages are not removed when endpoint starts.
+ * `MessageInvisibleTime`: The [Peek-Lock mechanism](https://msdn.microsoft.com/en-us/library/azure/hh780722.aspx), supported by Azure Storage Queues, causes the message to become *locked* or *invisible* after read for a specified period of time. If the processing unit fails to delete the message in the specified time, the message will reappear on the queue. Then another process can retry the message. The default value is 30000, in milliseconds (i.e. 30 seconds).
+ * `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. The default value is 10. Depending on the expected load, the value should vary between 1 and 1000 (the maximum).
 
-NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.
+NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify the endpoint name and select a scale-out option.
 
-Depending on the version, parameters' values can  be configured using a custom configuration section or the code-first approach.
+Parameters' values can be configured in the following ways:
+
+### Via the configuration API
+
+In Version 7 and higher the default settings can be overriden only using configuration API:
+
+snippet:AzureStorageQueueConfigCodeOnly
 
 ### Via the App.Config
 
-In Versions 5 and 6 the default settings can be overridden by adding a configuration section called `AzureServiceBusQueueConfig` to the web.config or app.config files:
+In Versions 5 and 6 all settings can be overridden by adding to the `web.config` or the `app.config` files a configuration section called `AzureServiceBusQueueConfig`:
 
 snippet:AzureStorageQueueConfig
 
-### Via code-first
+Note that the connection string can be also configured by specifying a value for connection string called `NServiceBus/Transport`, however this value will be overriden if another is provided in `AzureServiceBusQueueConfig`:
 
-In Version 7.x the default setting can be overriden using only code
-
-snippet:AzureStorageQueueConfigCodeOnly
+snippet: AzureStorageQueueConnectionStringFromAppConfig
