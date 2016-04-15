@@ -1,7 +1,7 @@
 ---
 title: Migrating Satellites
 summary: Extension point for handling messages.
-reviewed: 2016-04-11
+reviewed: 2016-04-16
 related:
  - nservicebus/pipeline/customizing-v6
  - nservicebus/pipeline/features
@@ -51,7 +51,7 @@ To use this extension, declare a class that implements the `IAdvancedSatellite` 
 
 snippet: AdvancedSatelliteReceiverCustomization
 
-In the above example, the `SatelliteImportFailuresHandler` is a custom error handling routine that implements the `IManageMessageFailures` extension.
+In the above example, the `SatelliteImportFailuresHandler` is a custom error handling routine that implements the [IManageMessageFailures extension](/nservicebus/pipeline/customizing-error-handling.md).
 
 
 ## Injecting CriticalError

@@ -125,6 +125,7 @@
         - "nservicebus/security/encryption"
         - "nservicebus/messaging/databus"
         - "nservicebus/pipeline/features"
+        - "nservicebus/pipeline/customizing-error-handling"
     -
       Title: "Transports"
       Url: "nservicebus/transports"
