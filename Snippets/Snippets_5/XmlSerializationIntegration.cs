@@ -21,7 +21,7 @@ namespace Snippets5
         public class MessageWithXDocument : IMessage
         {
             // name and casing must match the rootnode
-            public XDocument nutrition { get; set; } 
+            public XDocument nutrition { get; set; }
         }
         #endregion
 
@@ -30,7 +30,7 @@ namespace Snippets5
         public class MessageWithXElement : IMessage
         {
             // name and casing must match the rootnode
-            public XElement nutrition { get; set; } 
+            public XElement nutrition { get; set; }
         }
         #endregion
     }
