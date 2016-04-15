@@ -6,7 +6,7 @@ tags:
 - Cloud
 ---
 
-Azure Storage Queues Transport can be configured using following parameters. Depending on the version, parameters' values can  be configured using a custom configuration section or code-first approach. Please find the description of the parameters below:
+The Azure Storage Queues Transport can be configured using the following parameters.
 
  * `ConnectionString`: Overrides the default "NServiceBus/Transport" value and defaults to "UseDevelopmentStorage=true" if not set. It's recommended to set this value when specifying the configuration setting to prevent unexpected issues.
  * `PeekInterval`: Represents the amount of time that the transport waits before polling the queue in milliseconds, defaults to 50 ms.
@@ -17,9 +17,11 @@ Azure Storage Queues Transport can be configured using following parameters. Dep
 
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.
 
+Depending on the version, parameters' values can  be configured using a custom configuration section or the code-first approach.
+
 ### Via the App.Config
 
-In Versions 5.0 to 6.x the default settings can be overridden by adding a configuration section called `AzureServiceBusQueueConfig` to the web.config or app.config files:
+In Versions 5 and 6 the default settings can be overridden by adding a configuration section called `AzureServiceBusQueueConfig` to the web.config or app.config files:
 
 snippet:AzureStorageQueueConfig
 
