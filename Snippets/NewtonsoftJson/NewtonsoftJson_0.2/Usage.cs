@@ -1,4 +1,4 @@
-﻿namespace Newtonsoft.Json_0._2
+﻿namespace NewtonsoftJson0._2
 {
     using System;
     using System.Globalization;

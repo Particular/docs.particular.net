@@ -59,7 +59,7 @@
   Url: nservicebus/logging/log4net
   NugetOrder:
     - NServiceBus.Log4Net
-- Key: Newtonsoft.Json
+- Key: NewtonsoftJson
   Url: nservicebus/serialization/newtonsoft
   NugetOrder:
     - NServiceBus.Newtonsoft.Json

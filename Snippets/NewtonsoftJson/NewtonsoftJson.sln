@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 12.0.31101.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json_0.2", "Newtonsoft.Json_0.2\Newtonsoft.Json_0.2.csproj", "{CDA5F967-42FD-4730-9A00-D8A186E1BF8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewtonsoftJson_0.2", "NewtonsoftJson_0.2\NewtonsoftJson_0.2.csproj", "{CDA5F967-42FD-4730-9A00-D8A186E1BF8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json_1", "Newtonsoft.Json_1\Newtonsoft.Json_1.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewtonsoftJson_1", "NewtonsoftJson_1\NewtonsoftJson_1.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
