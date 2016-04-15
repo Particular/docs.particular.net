@@ -21,6 +21,14 @@
                 .PeekInterval(100);
 
             #endregion
+
+            #region AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
+
+            endpointConfiguration.UseTransport<AzureStorageQueueTransport>()
+                .Addressing()
+                .UseAccountNamesInsteadOfConnectionStrings();
+
+            #endregion
         }
 
         //TODO: fix when we split azure
