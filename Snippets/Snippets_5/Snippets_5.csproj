@@ -263,7 +263,6 @@
     <Compile Include="Forwarding\ConfigurationSourceUsage.cs" />
     <Compile Include="Forwarding\ProvideConfiguration.cs" />
     <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
-    <Compile Include="Serialization\NewtonsoftSerializerUsage.cs" />
     <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
     <Compile Include="UpgradeGuides\5to6\AuthorizeSubscriptions.cs" />
     <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />

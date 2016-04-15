@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Serialization
+﻿namespace Newtonsoft.Json_1
 {
     using System;
     using System.Globalization;
@@ -10,11 +10,11 @@
     using NServiceBus;
     using NServiceBus.Serialization;
 
-    class NewtonsoftSerializerUsage
+    class Usage
     {
-        NewtonsoftSerializerUsage(EndpointConfiguration endpointConfiguration)
+        Usage(EndpointConfiguration endpointConfiguration)
         {
-            #region NewtonsoftSerialization 0.3-pre
+            #region NewtonsoftSerialization
 
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
@@ -23,7 +23,7 @@
 
         void CustomSettings(EndpointConfiguration endpointConfiguration)
         {
-            #region NewtonsoftCustomSettings 0.3-pre
+            #region NewtonsoftCustomSettings
 
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
@@ -44,7 +44,7 @@
 
         void CustomReader(EndpointConfiguration endpointConfiguration)
         {
-            #region NewtonsoftCustomReader 0.3-pre
+            #region NewtonsoftCustomReader
 
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
                 .ReaderCreator(stream =>
@@ -58,7 +58,7 @@
 
         void CustomWriter(EndpointConfiguration endpointConfiguration)
         {
-            #region NewtonsoftCustomWriter 0.3-pre
+            #region NewtonsoftCustomWriter
 
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
                 .WriterCreator(stream =>
@@ -75,7 +75,7 @@
 
         void Bson(EndpointConfiguration endpointConfiguration)
         {
-            #region NewtonsoftBson 0.3-pre
+            #region NewtonsoftBson
 
             SerializationExtentions<NewtonsoftSerializer> serialization =
                 endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
@@ -85,7 +85,7 @@
             #endregion
         }
 
-        #region NewtonsoftAttributes 0.3-pre
+        #region NewtonsoftAttributes
 
         [JsonObject(MemberSerialization.OptIn)]
         public class CreatePersonMessage : IMessage
