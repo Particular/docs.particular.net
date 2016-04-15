@@ -8,6 +8,8 @@ tags:
 - Azure Storage Queues
 ---
 
+## Configuration parameters
+
 The Azure Storage Queues Transport can be configured using the following parameters:
 
  * `ConnectionString`: The default value is `UseDevelopmentStorage=true`.
@@ -21,11 +23,13 @@ NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configu
 
 Parameters' values can be configured in the following ways:
 
+
 ### Via the configuration API
 
-In Version 7 and higher the default settings can be overriden only using configuration API:
+In Versions 7 and below the default settings can be overriden only using configuration API:
 
 snippet:AzureStorageQueueConfigCodeOnly
+
 
 ### Via the App.Config
 
@@ -36,3 +40,23 @@ snippet:AzureStorageQueueConfig
 Note that the connection string can be also configured by specifying a value for connection string called `NServiceBus/Transport`, however this value will be overriden if another is provided in `AzureServiceBusQueueConfig`:
 
 snippet: AzureStorageQueueConnectionStringFromAppConfig
+
+
+## Connection strings
+
+Note that multiple connection string formats apply when working with Azure storage services. When running against the emulated environment the format is `UseDevelopmentStorage=true`, but when running against a cloud hosted storage account the format is `DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;`
+
+For more details refer to [Configuring Azure Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/storage-configure-connection-string/) document.
+
+
+### Securing connection strings
+
+It is possible to accidentally leak sensitive information in the connection string if it's not properly secured. E.g. the information can be leaked if an error occurs when communicating across untrusted boundaries, or if the error information is logged to an unsecured log file.
+
+In order to prevent it, `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 7 and above allow for creating a logical name for each connection string. The name is mapped to the physical connection string, and connection strings are always reffered to by their logical name. In the event of an error or when logging only the logical name can be accidentally leaked.
+
+This feature can be enabled by specifying `.UseAccountNamesInsteadOfConnectionStrings()` when configuring the `AzureStorageQueueTransport`:
+
+snippet:AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
+
+NOTE: This feature is not available in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 6 and below.
