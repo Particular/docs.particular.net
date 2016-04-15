@@ -45,10 +45,10 @@ For more details refer to [Configuring Azure Connection Strings](https://azure.m
 
 It is possible to accidentally leak sensitive information in the connection string if it's not properly secured. E.g. the information can be leaked if an error occurs when communicating across untrusted boundaries, or if the error information is logged to an unsecured log file.
 
-In order to prevent it, `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Version 7 and higher allow for creating a logical name for each connection string. The name is mapped to the physical connection string, and connection strings are always reffered to by their logical name. In the event of an error or when logging only the logical name can be accidentally leaked.
+In order to prevent it, `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 7 and above allow for creating a logical name for each connection string. The name is mapped to the physical connection string, and connection strings are always reffered to by their logical name. In the event of an error or when logging only the logical name can be accidentally leaked.
 
 This feature can be enabled by specifying `.UseAccountNamesInsteadOfConnectionStrings()` when configuring the `AzureStorageQueueTransport`:
 
 snippet:AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
 
-NOTE: This feature is not available in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Version 6 and lower.
+NOTE: This feature is not available in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 6 and below.
