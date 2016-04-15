@@ -40,7 +40,7 @@ For instructions on how to administrate and operate a RavenDB server, refer to t
 
 To upgrade an existing RavenDB installation refer to the [RavenDB website article describing the upgrade process](http://ravendb.net/docs/search/latest/csharp?searchTerm=server-administration%20upgrade).
 
-Note it is highly recommended that the Raven database backed up to upgrading.
+It is highly recommended to backup all databases before upgrading.
 
 
 ## Which versions of RavenDB are compatible?
