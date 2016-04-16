@@ -54,7 +54,7 @@ snippet: RegisterCustomErrorHandlingBehavior
 
 In NServiceBus Versions 5 and below, `IManageMessageFailures` are extension points to customizing actions when messages continue to fail after the [First Level Retries](/nservicebus/errors/automatic-retries.md) have been attempted.
 
-WARNING: When enabling this extension, second-level retries will not be invoked. Versions 6 and above, offer better control of customization through the message pipeline.
+WARNING: When enabling this extension, second-level retries will not be invoked. Versions 6 and above offer better control of customization through the message pipeline.
 
 snippet: CustomFaultManager
 
