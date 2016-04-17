@@ -64,7 +64,7 @@
                 unicastBusConfig.MessageEndpointMappings.Add(new MessageEndpointMapping
                 {
                     AssemblyName = GetType().Assembly.GetName().Name,
-                    Endpoint = EndpointName + "@" + Environment.MachineName
+                    Endpoint = EndpointName
                 });
                 return unicastBusConfig;
             }

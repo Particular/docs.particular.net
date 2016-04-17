@@ -3,19 +3,19 @@ startcode HeaderWriterDataBusProperty 5
 $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = 8cf0a8f78f9cd1885699777c83eb631e
 $.diagnostics.originating.hostid = 8cf0a8f78f9cd1885699777c83eb631e
-CorrId = 9575dcc9-272b-47e0-b936-a59f00ed0693\0
+CorrId = 50202e87-353e-49aa-8f9c-a5eb011b6e9c\0
 NServiceBus.ContentType = text/xml
-NServiceBus.ConversationId = a7200f17-debb-4025-bb67-a59f00ed069a
-NServiceBus.CorrelationId = 9575dcc9-272b-47e0-b936-a59f00ed0693
-NServiceBus.DataBus.2016-02-01_14\1ac6a39a-2a2f-4775-836f-5164cf757ad2 = 2016-02-01_14\1ac6a39a-2a2f-4775-836f-5164cf757ad2
-NServiceBus.DataBus.2016-02-01_14\6f940655-a6df-45bb-ae41-bb16ef3821d0 = 2016-02-01_14\6f940655-a6df-45bb-ae41-bb16ef3821d0
-NServiceBus.EnclosedMessageTypes = Snippets5.Headers.Writers.MyNamespace.MessageToSend, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-NServiceBus.MessageId = 9575dcc9-272b-47e0-b936-a59f00ed0693
+NServiceBus.ConversationId = ee2b7fb3-7cc2-4f20-aefa-a5eb011b6e9d
+NServiceBus.CorrelationId = 50202e87-353e-49aa-8f9c-a5eb011b6e9c
+NServiceBus.DataBus.2016-04-17_17\8da7d90f-7d95-4910-9365-7c26a4a1a52d = 2016-04-17_17\8da7d90f-7d95-4910-9365-7c26a4a1a52d
+NServiceBus.DataBus.2016-04-17_17\9243cfd8-4747-4fcd-b208-3496fd565ca6 = 2016-04-17_17\9243cfd8-4747-4fcd-b208-3496fd565ca6
+NServiceBus.EnclosedMessageTypes = Core5.Headers.Writers.MyNamespace.MessageToSend, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+NServiceBus.MessageId = 50202e87-353e-49aa-8f9c-a5eb011b6e9c
 NServiceBus.MessageIntent = Send
 NServiceBus.OriginatingEndpoint = HeaderWriterDataBusPropertyV5
 NServiceBus.OriginatingMachine = MACHINENAME
 NServiceBus.ReplyToAddress = HeaderWriterDataBusPropertyV5@MACHINENAME
-NServiceBus.TimeSent = 2016-02-01 03:22:59:047831 Z
+NServiceBus.TimeSent = 2016-04-17 07:11:56:674683 Z
 NServiceBus.Version = 5.2.14
 WinIdName = USERNAME
 

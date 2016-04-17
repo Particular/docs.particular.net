@@ -52,9 +52,9 @@
             public DataBusProperty<byte[]> LargeProperty1 { get; set; }
             public DataBusProperty<byte[]> LargeProperty2 { get; set; }
         }
-    
+
         class MessageHandler : IHandleMessages<MessageToSend>
-        { 
+        {
             public Task Handle(MessageToSend message, IMessageHandlerContext context)
             {
                 return Task.FromResult(0);

@@ -8,10 +8,6 @@ public class SnippetLogger : IDisposable
 
     public SnippetLogger([CallerFilePath] string sourceFilePath = null, string suffix = "", string version = "")
     {
-        if (suffix != string.Empty)
-        {
-            suffix = "_" + suffix;
-        }
         string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(sourceFilePath);
         outputFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), fileNameWithoutExtension + suffix + ".txt");
         File.Delete(outputFilePath);

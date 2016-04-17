@@ -3,18 +3,18 @@ startcode HeaderWriterEncryption 5
 $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = 8cf0a8f78f9cd1885699777c83eb631e
 $.diagnostics.originating.hostid = 8cf0a8f78f9cd1885699777c83eb631e
-CorrId = f4dd933b-a294-4f70-9dcb-a59f0104fce6\0
+CorrId = f65f7822-92a1-4fc5-a61e-a5eb011b725d\0
 NServiceBus.ContentType = text/xml
-NServiceBus.ConversationId = e474b0d8-f3ec-48f4-87f0-a59f0104fcec
-NServiceBus.CorrelationId = f4dd933b-a294-4f70-9dcb-a59f0104fce6
-NServiceBus.EnclosedMessageTypes = Snippets5.Headers.Writers.MyNamespace.MessageToSend, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-NServiceBus.MessageId = f4dd933b-a294-4f70-9dcb-a59f0104fce6
+NServiceBus.ConversationId = 8ca6c5c6-2ff8-44e7-ba89-a5eb011b725d
+NServiceBus.CorrelationId = f65f7822-92a1-4fc5-a61e-a5eb011b725d
+NServiceBus.EnclosedMessageTypes = Core5.Headers.Writers.MyNamespace.MessageToSend, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+NServiceBus.MessageId = f65f7822-92a1-4fc5-a61e-a5eb011b725d
 NServiceBus.MessageIntent = Send
 NServiceBus.OriginatingEndpoint = HeaderWriterEncryptionV5
 NServiceBus.OriginatingMachine = MACHINENAME
 NServiceBus.ReplyToAddress = HeaderWriterEncryptionV5@MACHINENAME
 NServiceBus.RijndaelKeyIdentifier = key1
-NServiceBus.TimeSent = 2016-02-01 04:50:13:671263 Z
+NServiceBus.TimeSent = 2016-04-17 07:11:59:879838 Z
 NServiceBus.Version = 5.2.14
 WinIdName = USERNAME
 

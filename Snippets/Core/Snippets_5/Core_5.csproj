@@ -154,26 +154,11 @@
     <Content Include="Gateway\Sites\Sites.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Headers\Writers\HeaderWriterAudit_Audit.txt" />
-    <Content Include="Headers\Writers\HeaderWriterAudit_Send.txt" />
     <Content Include="Headers\Writers\HeaderWriterDataBusConvention.txt" />
-    <Content Include="Headers\Writers\HeaderWriterDataBusConvention_Body.txt" />
     <Content Include="Headers\Writers\HeaderWriterDataBusProperty.txt" />
-    <Content Include="Headers\Writers\HeaderWriterDataBusProperty_Body.txt" />
     <Content Include="Headers\Writers\HeaderWriterDefer.txt" />
     <Content Include="Headers\Writers\HeaderWriterEncryption.txt" />
-    <Content Include="Headers\Writers\HeaderWriterEncryption_Body.txt" />
-    <Content Include="Headers\Writers\HeaderWriterError_Error.txt" />
-    <Content Include="Headers\Writers\HeaderWriterError_Sending.txt" />
     <Content Include="Headers\Writers\HeaderWriterPublish.txt" />
-    <Content Include="Headers\Writers\HeaderWriterReply_Replying.txt" />
-    <Content Include="Headers\Writers\HeaderWriterReply_Sending.txt" />
-    <Content Include="Headers\Writers\HeaderWriterReturn_Returning.txt" />
-    <Content Include="Headers\Writers\HeaderWriterReturn_Sending.txt" />
-    <Content Include="Headers\Writers\HeaderWriterSaga_Replying.txt" />
-    <Content Include="Headers\Writers\HeaderWriterSaga_ReplyingToOriginator.txt" />
-    <Content Include="Headers\Writers\HeaderWriterSaga_Sending.txt" />
-    <Content Include="Headers\Writers\HeaderWriterSaga_Timeout.txt" />
     <Content Include="Headers\Writers\HeaderWriterSend.txt" />
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
