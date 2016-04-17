@@ -3,9 +3,9 @@
     using System;
     using NServiceBus;
 
-    class HostIdFixer_5_1
+    class HostIdFixerCodeOnly
     {
-        HostIdFixer_5_1(BusConfiguration busConfiguration)
+        HostIdFixerCodeOnly(BusConfiguration busConfiguration)
         {
             #region HostIdFixer 5.1
 
@@ -15,7 +15,7 @@
             Guid hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
             busConfiguration.UniquelyIdentifyRunningInstance()
                 .UsingCustomIdentifier(hostId);
-            
+
             #endregion
         }
 
@@ -25,4 +25,4 @@
         }
     }
 }
-    
+

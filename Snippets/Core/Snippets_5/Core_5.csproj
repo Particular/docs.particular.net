@@ -329,7 +329,7 @@
     <Compile Include="Headers\Writers\TransportMessageExtension.cs" />
     <Compile Include="Headers\OutgoingBehavior.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
-    <Compile Include="HostIdentifier\HostIdFixer_5_1.cs" />
+    <Compile Include="HostIdentifier\HostIdFixerCodeOnly.cs" />
     <Compile Include="CriticalErrors.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />

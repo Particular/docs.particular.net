@@ -122,11 +122,11 @@ When replying to a message:
 
 Given an initiating message with the following headers:
 
-snippet: HeaderWriterReply_Sending
+snippet: HeaderWriterReplySending
 
 The headers of reply message will be as follows:
 
-snippet: HeaderWriterReply_Replying
+snippet: HeaderWriterReplyReplying
 
 
 ## Publish Headers
@@ -148,11 +148,11 @@ When returning a message instead of replying:
 
 Given an initiating message with the following headers:
 
-snippet: HeaderWriterReturn_Sending
+snippet: HeaderWriterReturnSending
 
 The headers of reply message will be as follows:
 
-snippet: HeaderWriterReturn_Returning
+snippet: HeaderWriterReturnReturning
 
 
 ## Timeout Headers
@@ -188,7 +188,7 @@ When a message is dispatched from within a Saga the message will contain the fol
 
 ### Example "Send from Saga" Headers
 
-snippet: HeaderWriterSaga_Sending
+snippet: HeaderWriterSagaSending
 
 
 ### Replying to a Saga
@@ -205,12 +205,12 @@ A message Reply is performed from a Saga will have the following headers:
 
 #### Via calling Bus.Reply
 
-snippet: HeaderWriterSaga_Replying
+snippet: HeaderWriterSagaReplying
 
 
 #### Via calling Saga.ReplyToOriginator
 
-snippet: HeaderWriterSaga_ReplyingToOriginator
+snippet: HeaderWriterSagaReplyingToOriginator
 
 
 ### Requesting a Timeout from a Saga
@@ -224,7 +224,7 @@ When requesting a Timeout from a Saga:
 
 #### Example Timeout Headers
 
-snippet: HeaderWriterSaga_Timeout
+snippet: HeaderWriterSagaTimeout
 
 
 ## Defer a Message
@@ -305,11 +305,11 @@ The timestamp the processing of this message started.
 
 Given an initiating message with the following headers:
 
-snippet: HeaderWriterAudit_Send
+snippet: HeaderWriterAuditSend
 
 When that message fails to be processed it will be sent to the Error queue with the following headers:
 
-snippet: HeaderWriterAudit_Audit
+snippet: HeaderWriterAuditAudit
 
 
 ## Retries handling headers
@@ -376,11 +376,11 @@ The [Exception StackTrace](https://msdn.microsoft.com/en-us/library/system.excep
 
 Given an initiating message with the following headers:
 
-snippet: HeaderWriterError_Sending
+snippet: HeaderWriterErrorSending
 
 When that message fails to be processed it will be sent to the Error queue with the following headers:
 
-snippet: HeaderWriterError_Error
+snippet: HeaderWriterErrorError
 
 
 ## Encryption Headers
@@ -400,7 +400,7 @@ snippet: HeaderWriterEncryption
 
 #### Example Body
 
-snippet: HeaderWriterEncryption_Body
+snippet: HeaderWriterEncryptionBody
 
 
 ## FileShare DataBus Headers
@@ -420,7 +420,7 @@ snippet: HeaderWriterDataBusProperty
 
 #### Example Body
 
-snippet: HeaderWriterDataBusProperty_Body
+snippet: HeaderWriterDataBusPropertyBody
 
 
 ### When using Convention
@@ -435,4 +435,4 @@ snippet: HeaderWriterDataBusConvention
 
 #### Example Body
 
-snippet: HeaderWriterDataBusConvention_Body
+snippet: HeaderWriterDataBusConventionBody
