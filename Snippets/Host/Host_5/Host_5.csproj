@@ -51,7 +51,7 @@
     <Compile Include="Profiles\ConfigureLogging.cs" />
     <Compile Include="Profiles\CustomProfiles.cs" />
     <Compile Include="Profiles\DependentProfile.cs" />
-    <Compile Include="Expose_wcf.cs" />
+    <Compile Include="ExposeWcf.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ExplicitConfigType.xml">

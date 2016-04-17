@@ -51,7 +51,7 @@
     <Compile Include="CustomLogging.cs" />
     <Compile Include="EndpointConfigByNamespace.cs" />
     <Compile Include="EndpointConfigWithAttribute.cs" />
-    <Compile Include="Expose_wcf.cs" />
+    <Compile Include="ExposeWcf.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ExplicitConfigType.xml">
