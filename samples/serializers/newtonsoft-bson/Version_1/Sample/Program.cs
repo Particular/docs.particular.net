@@ -17,7 +17,7 @@ static class Program
         Console.Title = "Samples.Serialization.ExternalBson";
         #region config
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalBson");
-        SerializationExtentions<NewtonsoftSerializer> serialization = 
+        SerializationExtentions<NewtonsoftSerializer> serialization =
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         serialization.ReaderCreator(stream => new BsonReader(stream));
         serialization.WriterCreator(stream => new BsonWriter(stream));
