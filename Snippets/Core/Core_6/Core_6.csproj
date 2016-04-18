@@ -34,9 +34,6 @@
       <HintPath>..\..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -50,9 +47,6 @@
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0001\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="NServiceBus.Log4Net">
-      <HintPath>..\..\..\packages\NServiceBus.Log4Net.1.1.0-beta0001\lib\net452\NServiceBus.Log4Net.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\..\..\packages\NServiceBus.NHibernate.7.0.0-beta0001\lib\net452\NServiceBus.NHibernate.dll</HintPath>
@@ -251,8 +245,6 @@
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
     <Compile Include="Logging\BuiltInConfig.cs" />
-    <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
-    <Compile Include="Logging\Log4Net\Usage.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="Logging\UsingLogging.cs" />

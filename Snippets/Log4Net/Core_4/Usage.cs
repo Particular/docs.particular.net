@@ -1,4 +1,4 @@
-﻿namespace Core4.Logging.Log4Net
+﻿namespace Core4
 {
     using log4net.Appender;
     using log4net.Core;

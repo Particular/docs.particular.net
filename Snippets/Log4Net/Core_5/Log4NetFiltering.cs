@@ -1,4 +1,4 @@
-﻿namespace Core6.Logging.Log4Net
+﻿namespace Log4Net_1
 {
     using log4net.Appender;
     using log4net.Config;
@@ -7,7 +7,7 @@
     using log4net.Layout;
     using NServiceBus.Log4Net;
 
-    class Log4NetFiltering
+    public class Log4NetFiltering
     {
         #region Log4NetFilter
 

@@ -115,7 +115,6 @@
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
     <Compile Include="Lifecycle\IWantToRunWhenConfigurationIsComplete.cs" />
     <Compile Include="Headers\StaticHeaders.cs" />
-    <Compile Include="Logging\Log4Net\Usage.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
@@ -155,7 +154,6 @@
     <Compile Include="CriticalErrors.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
-    <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\UsingLogging.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />

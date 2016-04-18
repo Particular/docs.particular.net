@@ -1,13 +1,13 @@
-﻿namespace Core4.Logging.Log4Net
+﻿namespace Log4Net_1_1
 {
     using log4net.Appender;
     using log4net.Config;
     using log4net.Core;
     using log4net.Filter;
     using log4net.Layout;
-    using NServiceBus;
+    using NServiceBus.Log4Net;
 
-    public class Log4NetFiltering
+    class Log4NetFiltering
     {
         #region Log4NetFilter
 
@@ -27,7 +27,6 @@
         }
 
         #endregion
-
         public Log4NetFiltering()
         {
             #region Log4NetFilterUsage
@@ -37,13 +36,13 @@
                 Threshold = Level.Debug,
                 Layout = new SimpleLayout(),
             };
-
+            
             appender.AddFilter(new NServiceBusLogFilter());
             appender.ActivateOptions();
 
             BasicConfigurator.Configure(appender);
 
-            SetLoggingLibrary.Log4Net();
+            NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
 
             #endregion
         }
