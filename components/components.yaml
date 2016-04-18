@@ -91,6 +91,7 @@
   Url: nservicebus/logging/log4net
   NugetOrder:
     - NServiceBus.Log4Net
+    - NServiceBus
 
 - Key: MessagePack
   Url: samples/serializers/message-pack
