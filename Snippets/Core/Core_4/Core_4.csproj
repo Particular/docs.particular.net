@@ -178,7 +178,6 @@
     <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
     <Compile Include="Correlation\Usage.cs" />
-    <Compile Include="DataBus\Azure\Usage.cs" />
     <Compile Include="DataBus\Conventions\MessageConventions.cs" />
     <Compile Include="DataBus\Conventions\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />

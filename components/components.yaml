@@ -8,7 +8,7 @@
   NugetOrder:
     - Anotar.NServiceBus.Fody
 
-- Key: ASBDataBus
+- Key: ABSDataBus
   Url: nservicebus/azure
   NugetOrder:
     - NServiceBus.AzureBlobStorageDataBus

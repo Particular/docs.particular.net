@@ -360,7 +360,6 @@
     <Compile Include="License.cs" />
     <Compile Include="Encryption\Usage.cs" />
     <Compile Include="EndpointName\Usage.cs" />
-    <Compile Include="DataBus\Azure\Usage.cs" />
     <Compile Include="Logging\Log4Net\Usage.cs" />
     <Compile Include="Logging\BuiltInConfig.cs" />
     <Compile Include="Installers.cs" />
