@@ -1,27 +1,36 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
 using NServiceBus;
+using NServiceBus.Installation.Environments;
 
-static class Program
+class Program
 {
     static void Main()
     {
         Console.Title = "Samples.Unity";
-        #region ContainerConfiguration
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Unity");
+        Configure.Serialization.Json();
 
+        #region ContainerConfiguration
+
+        Configure configure = Configure.With();
+        configure.Log4Net();
+        configure.DefineEndpointName("Samples.Unity");
         UnityContainer container = new UnityContainer();
         container.RegisterInstance(new MyService());
-        busConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
-        #endregion
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
+        configure.UnityBuilder(container);
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        #endregion
+
+        configure.InMemorySagaPersister();
+        configure.UseInMemoryTimeoutPersister();
+        configure.InMemorySubscriptionStorage();
+        configure.UseTransport<Msmq>();
+        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
+            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+
             bus.SendLocal(new MyMessage());
+
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
+
 #region InjectingDependency
 public class MyHandler : IHandleMessages<MyMessage>
 {
@@ -10,10 +10,9 @@ public class MyHandler : IHandleMessages<MyMessage>
         this.myService = myService;
     }
 
-    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    public void Handle(MyMessage message)
     {
         myService.WriteHello();
-        return Task.FromResult(0);
     }
 }
 #endregion

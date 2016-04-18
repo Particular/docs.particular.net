@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.Logging;
+using NServiceBus.Saga;
 
 public class OrderSaga : Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
@@ -16,18 +16,16 @@ public class OrderSaga : Saga<OrderSagaData>,
                 .ToSaga(sagaData => sagaData.OrderId);
     }
 
-    public Task Handle(StartOrder message, IMessageHandlerContext context)
+    public void Handle(StartOrder message)
     {
         Data.OrderId = message.OrderId;
         logger.InfoFormat("OrderSaga with OrderId {0} received StartOrder with OrderId {1} (Saga version: {2})", Data.OrderId, message.OrderId, Data.Version);
-        return Task.FromResult(0);
     }
 
-    public Task Handle(CompleteOrder message, IMessageHandlerContext context)
+    public void Handle(CompleteOrder message)
     {
         logger.InfoFormat("OrderSaga with OrderId {0} received CompleteOrder with OrderId {1}", Data.OrderId, message.OrderId);
         MarkAsComplete();
-        return Task.FromResult(0);
     }
 
 }

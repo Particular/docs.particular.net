@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Threading;
 using NHibernate.Cfg;
 using NServiceBus;
 using NServiceBus.Persistence;
@@ -7,13 +7,7 @@ using Environment = NHibernate.Cfg.Environment;
 
 class Program
 {
-
     static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
     {
         Console.Title = "Samples.CustomNhMappings.Default";
         Configuration nhConfiguration = new Configuration();
@@ -23,35 +17,30 @@ class Program
         nhConfiguration.SetProperty(Environment.Dialect, "NHibernate.Dialect.MsSql2008Dialect");
         nhConfiguration.SetProperty(Environment.ConnectionStringName, "NServiceBus/Persistence");
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Default");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.CustomNhMappings.Default");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
 
-        endpointConfiguration
+        busConfiguration
             .UsePersistence<NHibernatePersistence>()
             .UseConfiguration(nhConfiguration);
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-        try
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            await endpoint.SendLocal(new StartOrder
+            bus.SendLocal(new StartOrder
             {
                 OrderId = "123"
             });
 
-            await Task.Delay(2000);
-            await endpoint.SendLocal(new CompleteOrder
+            Thread.Sleep(2000);
+            bus.SendLocal(new CompleteOrder
             {
                 OrderId = "123"
             });
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
-        }
-        finally
-        {
-            await endpoint.Stop();
         }
     }
 

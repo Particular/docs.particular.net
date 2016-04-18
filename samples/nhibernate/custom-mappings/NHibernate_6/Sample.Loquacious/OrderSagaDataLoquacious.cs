@@ -1,5 +1,5 @@
 ﻿using System;
-using NServiceBus;
+using NServiceBus.Saga;
 
 public class OrderSagaDataLoquacious : IContainSagaData
 {

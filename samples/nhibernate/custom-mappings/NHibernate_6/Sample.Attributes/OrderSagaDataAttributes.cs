@@ -1,6 +1,6 @@
 ﻿using System;
+using NServiceBus.Saga;
 using NHibernate.Mapping.Attributes;
-using NServiceBus;
 
 [Class]
 public class OrderSagaDataAttributes : IContainSagaData

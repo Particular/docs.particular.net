@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.Logging;
+using NServiceBus.Saga;
 
 public class OrderSagaLoquacious : Saga<OrderSagaDataLoquacious>,
     IAmStartedByMessages<StartOrder>,
@@ -16,7 +16,7 @@ public class OrderSagaLoquacious : Saga<OrderSagaDataLoquacious>,
                 .ToSaga(sagaData => sagaData.OrderId);
     }
 
-    public Task Handle(StartOrder message, IMessageHandlerContext context)
+    public void Handle(StartOrder message)
     {
         Data.OrderId = message.OrderId;
         logger.InfoFormat("OrderSagaLoquacious with OrderId {0} received StartOrder with OrderId {1} (Saga version: {2})", Data.OrderId, message.OrderId, Data.Version);
@@ -35,14 +35,13 @@ public class OrderSagaLoquacious : Saga<OrderSagaDataLoquacious>,
 
         Data.To.Lat = 51.51558;
         Data.To.Long = -0.12085;
-        return Task.FromResult(0);
     }
 
-    public Task Handle(CompleteOrder message, IMessageHandlerContext context)
+    public void Handle(CompleteOrder message)
     {
         logger.InfoFormat("OrderSagaLoquacious with OrderId {0} received CompleteOrder with OrderId {1}", Data.OrderId, message.OrderId);
         MarkAsComplete();
-        return Task.FromResult(0);
     }
+
 
 }
