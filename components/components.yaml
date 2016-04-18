@@ -75,6 +75,7 @@
   Url: nservicebus/gateway
   NugetOrder:
     - NServiceBus.Gateway
+    - NServiceBus
 
 - Key: Host
   Url: nservicebus/hosting/nservicebus-host

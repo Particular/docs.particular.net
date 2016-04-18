@@ -191,17 +191,6 @@
     <Compile Include="Features\CustomFaultManager.cs" />
     <Compile Include="Features\SimpleSatellite.cs" />
     <Compile Include="Notifications\SubscribeToNotifications.cs" />
-    <Compile Include="Callback\Enum\Handler.cs" />
-    <Compile Include="Callback\Enum\Message.cs" />
-    <Compile Include="Callback\Enum\Status.cs" />
-    <Compile Include="Callback\Enum\Usage.cs" />
-    <Compile Include="Callback\Int\Handler.cs" />
-    <Compile Include="Callback\Int\Message.cs" />
-    <Compile Include="Callback\Int\Usage.cs" />
-    <Compile Include="Callback\Object\Handler.cs" />
-    <Compile Include="Callback\Object\Message.cs" />
-    <Compile Include="Callback\Object\ResponseMessage.cs" />
-    <Compile Include="Callback\Object\Usage.cs" />
     <Compile Include="Container\Custom\ContainerCustom.cs" />
     <Compile Include="Container\Custom\MyObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
@@ -213,7 +202,6 @@
     <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
     <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
     <Compile Include="UpgradeGuides\5to6\AuthorizeSubscriptions.cs" />
-    <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
     <Compile Include="UpgradeGuides\5to6\DelayedDelivery.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStartAndStop.cs" />
