@@ -153,7 +153,6 @@
     <Compile Include="AdditionalDeserializers.cs" />
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="Audit\Usage.cs" />
-    <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="Features\AdvancedSatelliteFeature.cs" />
@@ -391,9 +390,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Audit\Audit.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Azure\Persistence\AzureStorage\AzurePersistence.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Encryption\Configuration\encryption.config.xml">

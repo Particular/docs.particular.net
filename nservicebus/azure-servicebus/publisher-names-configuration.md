@@ -1,6 +1,7 @@
 ---
 title: Publishers name configuration
 summary: Configuration mapping between publisher names and message types for Endpoint Oriented Topology
+component: ASB
 tags:
 - Cloud
 - Azure
@@ -10,11 +11,12 @@ reviewed: 2016-04-13
 
 When `EndpointOrientedTopology` is selected, mapping between publisher names and message types has to be properly configured at transport level to ensure subscriber receives event messages.  
 
-Mapping can be configured for a specific message type:
+Configure mapping for specific message type:
 
 snippet: publisher_names_mapping_by_message_type
 
-or by supplying an assembly to scan. 
+
+Configure mapping for an assembly:
 
 snippet: publisher_names_mapping_by_assembly
 

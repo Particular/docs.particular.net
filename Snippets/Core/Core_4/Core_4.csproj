@@ -133,9 +133,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Azure\Persistence\AzureStorage\AzurePersistence.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Transports\Msmq\MessageQueue.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -252,7 +249,6 @@
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\NLog\NLogFiltering.cs" />
-    <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\MyMessage.cs" />

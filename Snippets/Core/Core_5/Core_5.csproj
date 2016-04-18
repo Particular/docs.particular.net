@@ -182,9 +182,6 @@
     <Content Include="Monitoring\ServiceControlEvents.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Azure\Persistence\AzureStorage\AzurePersistence.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -341,7 +338,6 @@
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="NonDurable\DisableDurable.cs" />
     <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
-    <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
     <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
