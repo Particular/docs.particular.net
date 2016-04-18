@@ -18,3 +18,6 @@ snippet: round_robin_partitioning_strategy
 snippet: fail_over_partitioning_strategy
 
 snippet: replicated_partitioning_strategy
+
+snippet: sharded_partitioning_strategy_configuration
+
