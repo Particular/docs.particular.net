@@ -25,10 +25,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
-    </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
@@ -46,10 +42,6 @@
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\..\..\packages\NServiceBus.NHibernate.6.2.7\lib\net45\NServiceBus.NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Autofac, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\packages\NServiceBus.Autofac.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
       <HintPath>..\..\..\packages\NServiceBus.RavenDB.3.0.8\lib\net45\NServiceBus.RavenDB.dll</HintPath>
