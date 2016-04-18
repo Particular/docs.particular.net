@@ -1,6 +1,8 @@
 ﻿namespace Snippets6.Azure.Transports.AzureServiceBus
 {
+    using System.Reflection;
     using NServiceBus;
+    using NServiceBus.AzureServiceBus;
 
     class Usage
     {
@@ -26,6 +28,32 @@
         }
 
         #endregion
-    **/
+        **/
+        
+        void PublisherNamesMappingByMessageType(EndpointConfiguration endpointConfiguration)
+        {
+            #region publisher_names_mapping_by_message_type 7
+
+            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
+                .UseTopology<EndpointOrientedTopology>()
+                .RegisterPublisherForType("publisherName", typeof(MyMessage));
+
+            #endregion
+        }
+
+        void PublisherNamesMappingByAssembly(EndpointConfiguration endpointConfiguration)
+        {
+            #region publisher_names_mapping_by_assembly 7
+
+            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
+                .UseTopology<EndpointOrientedTopology>()
+                .RegisterPublisherForAssembly("publisherName", Assembly.LoadFrom("path/to/the/assembly/that/contains/messages"));
+
+            #endregion
+        }
+
+        private class MyMessage
+        {
+        }
     }
 }
