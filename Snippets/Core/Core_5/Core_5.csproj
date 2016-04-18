@@ -72,10 +72,6 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\packages\NServiceBus.5.2.14\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Gateway, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\packages\NServiceBus.Gateway.1.0.1\lib\net45\NServiceBus.Gateway.dll</HintPath>
-    </Reference>
     <Reference Include="NServiceBus.Log4Net, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\NServiceBus.Log4Net.1.0.0\lib\net45\NServiceBus.Log4Net.dll</HintPath>
@@ -141,12 +137,6 @@
     <Content Include="EndpointName\EndpointMapping.config.xml" />
     <Content Include="Errors\retriesLogging.txt" />
     <Content Include="Forwarding\ForwardingConfig.xml" />
-    <Content Include="Gateway\Channels\Channels.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Gateway\Sites\Sites.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Headers\Writers\HeaderWriterDataBusConvention.txt" />
     <Content Include="Headers\Writers\HeaderWriterDataBusProperty.txt" />
     <Content Include="Headers\Writers\HeaderWriterDefer.txt" />
@@ -193,7 +183,6 @@
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Gateway\UpgradeGuide\1to2\Channel.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audit\ProvideConfiguration.cs" />
@@ -234,12 +223,6 @@
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Features\FeatureConfiguration.cs" />
     <Compile Include="Features\MyFeature.cs" />
-    <Compile Include="Gateway\Channels\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Gateway\Channels\ConfigurationSource\Usage.cs" />
-    <Compile Include="Gateway\Channels\ProvideConfiguration.cs" />
-    <Compile Include="Gateway\Sites\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Gateway\Sites\ConfigurationSource\Usage.cs" />
-    <Compile Include="Gateway\Sites\ProvideConfiguration.cs" />
     <Compile Include="Handlers\GenericHandler.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
@@ -298,7 +281,6 @@
     <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
     <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Gateway\MyMessage.cs" />
     <Compile Include="Headers\MyMessage.cs" />
     <Compile Include="Headers\ReadHandler.cs" />
     <Compile Include="Headers\MutateOutgoingTransportMessages.cs" />
@@ -386,7 +368,6 @@
     <Compile Include="Scheduling\Saga\SchedulerSaga.cs" />
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
     <Compile Include="Encryption\MessageBody\Usage.cs" />
-    <Compile Include="Gateway\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="License.cs" />
     <Compile Include="Encryption\Usage.cs" />

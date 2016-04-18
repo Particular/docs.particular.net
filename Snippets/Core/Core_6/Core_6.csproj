@@ -75,10 +75,6 @@
       <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0001\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Gateway, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.Gateway.2.0.0-alpha0086\lib\net452\NServiceBus.Gateway.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="NServiceBus.Log4Net">
       <HintPath>..\..\..\packages\NServiceBus.Log4Net.1.1.0-beta0001\lib\net452\NServiceBus.Log4Net.dll</HintPath>
     </Reference>
@@ -210,14 +206,6 @@
     <Compile Include="Extending\Features.cs" />
     <Compile Include="Features\MyStartupTaskThatUsesMessageSession.cs" />
     <Compile Include="Forwarding\Usage.cs" />
-    <Compile Include="Gateway\Channels\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Gateway\Channels\ConfigurationSource\Usage.cs" />
-    <Compile Include="Gateway\Channels\ProvideConfiguration.cs" />
-    <Compile Include="Gateway\MyMessage.cs" />
-    <Compile Include="Gateway\Sites\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Gateway\Sites\ConfigurationSource\Usage.cs" />
-    <Compile Include="Gateway\Sites\ProvideConfiguration.cs" />
-    <Compile Include="Gateway\Usage.cs" />
     <Compile Include="Headers\Writers\BehaviorCleaner.cs" />
     <Compile Include="Headers\Writers\EndpointConfigurationExtensions.cs" />
     <Compile Include="Headers\Writers\HeaderWriterAudit.cs" />
@@ -391,12 +379,6 @@
     <Content Include="Errors\SecondLevel\SecondLevelReties.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Gateway\Channels\Channels.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Gateway\Sites\Sites.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Headers\Writers\HeaderWriterDataBusConvention.txt" />
     <Content Include="Headers\Writers\HeaderWriterDataBusProperty.txt" />
     <Content Include="Headers\Writers\HeaderWriterDefer.txt" />
@@ -430,7 +412,6 @@
     <None Include="Routing\RoutingFile.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Gateway\UpgradeGuide\1to2\Channel.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">

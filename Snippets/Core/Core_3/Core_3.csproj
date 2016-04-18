@@ -157,8 +157,6 @@
     <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />
     <Compile Include="Errors\SecondLevel\ConfigurationSource\Usage.cs" />
     <Compile Include="Errors\SecondLevel\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Gateway\Usage.cs" />
-    <Compile Include="Gateway\MyMessage.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Headers\MutateIncomingTransportMessages.cs" />
     <Compile Include="Headers\MutateOutgoingTransportMessages.cs" />

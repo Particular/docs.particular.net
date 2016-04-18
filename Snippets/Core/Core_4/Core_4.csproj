@@ -99,12 +99,6 @@
   <ItemGroup>
     <Content Include="Errors\retriesLogging.txt" />
     <Content Include="Forwarding\ForwardingConfig.xml" />
-    <Content Include="Gateway\Channels\Channels.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Gateway\Sites\Sites.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -159,12 +153,6 @@
     <Compile Include="Forwarding\ConfigurationSource.cs" />
     <Compile Include="Forwarding\ConfigurationSourceUsage.cs" />
     <Compile Include="Forwarding\ProvideConfiguration.cs" />
-    <Compile Include="Gateway\Channels\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Gateway\Channels\ConfigurationSource\Usage.cs" />
-    <Compile Include="Gateway\Channels\ProvideConfiguration.cs" />
-    <Compile Include="Gateway\Sites\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Gateway\Sites\ConfigurationSource\Usage.cs" />
-    <Compile Include="Gateway\Sites\ProvideConfiguration.cs" />
     <Compile Include="Handlers\GenericHandler.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
@@ -218,7 +206,6 @@
     <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />
     <Compile Include="Errors\SecondLevel\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\SecondLevel\ConfigurationSource\Usage.cs" />
-    <Compile Include="Gateway\MyMessage.cs" />
     <Compile Include="Headers\IncomingBehavior.cs" />
     <Compile Include="Headers\OutgoingBehavior.cs" />
     <Compile Include="Headers\MutateIncomingTransportMessages.cs" />
@@ -293,7 +280,6 @@
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Compile Include="Gateway\Usage.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
