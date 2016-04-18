@@ -2,6 +2,7 @@
 title: Custom Log4Net appender
 summary: Customizing Log4Net by passing in a custom Appender.
 reviewed: 2016-03-21
+component: Log4Net
 tags:
 - Logging
 - Log4Net

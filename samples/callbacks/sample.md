@@ -1,6 +1,7 @@
 ---
 title: Callback Sample
 summary: Illustrates the callback behavior of NServiceBus.
+component: Callbacks
 reviewed: 2016-03-21
 tags:
 - Callback

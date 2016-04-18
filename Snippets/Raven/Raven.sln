@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_3", "Raven_3\Raven_3.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_4", "Raven_4\Raven_4.csproj", "{10CE989A-8E4F-400C-8BBD-3935B9FEE695}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operations", "Operations\Operations.csproj", "{D52A6FEB-CC19-49C3-AF92-475669D2FF25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_All", "Raven_All\Raven_All.csproj", "{D52A6FEB-CC19-49C3-AF92-475669D2FF25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

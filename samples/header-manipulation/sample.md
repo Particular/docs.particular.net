@@ -2,6 +2,7 @@
 title: Header Manipulation
 summary: All extension points for mutating messages.
 reviewed: 2016-03-21
+component: Core
 tags:
 - Header
 - Mutator

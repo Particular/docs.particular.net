@@ -1,6 +1,7 @@
 ---
 title: Jil Serializer
 summary: Using the Jil serializer in an endpoint.
+component: Jil
 reviewed: 2016-03-21
 related:
 - nservicebus/serialization

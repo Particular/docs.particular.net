@@ -2,6 +2,7 @@
 title: MsmqToSql Relay
 summary: Setup a SQL Relay so it can receive events from a MSMQ publisher.
 reviewed: 2016-03-21
+component: Core
 related:
 - nservicebus/transports
 - nservicebus/msmq

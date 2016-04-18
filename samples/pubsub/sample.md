@@ -2,6 +2,7 @@
 title: Publish/Subscribe
 summary: Publish/Subscribe, fault-tolerant messaging, and durable subscriptions.
 reviewed: 2016-03-21
+component: Core
 tags:
 - Publish Subscribe
 - Messaging Patterns

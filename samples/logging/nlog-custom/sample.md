@@ -2,6 +2,7 @@
 title: Custom NLog configuration
 summary: Customizing NLog usage by configuring NLog targets and rules.
 reviewed: 2016-03-21
+component: NLog
 tags:
 - Logging
 - NLog

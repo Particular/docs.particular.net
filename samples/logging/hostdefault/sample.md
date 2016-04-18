@@ -2,6 +2,7 @@
 title: Host Default Logging
 summary: The default logging capability of the NServiceBus host.
 reviewed: 2016-03-30
+component: Host
 tags:
 - Logging
 related:

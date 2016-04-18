@@ -1,6 +1,7 @@
 ---
 title: Azure Storage Persistence
 summary: Using Azure Storage to store Sagas, Timeouts and Subscriptions.
+component: ASP
 reviewed: 2016-03-17
 tags:
 - Saga

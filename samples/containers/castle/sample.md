@@ -1,6 +1,7 @@
 ---
 title: Windsor Container Usage
 summary: Using the Castle Windsor container in an endpoint.
+component: Castle
 reviewed: 2016-03-21
 tags:
 - Container

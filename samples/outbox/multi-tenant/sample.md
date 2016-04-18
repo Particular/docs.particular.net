@@ -2,6 +2,7 @@
 title: Multi-tenant endpoints
 summary: Configure persistence to support multi-tenant scenarios with database-per-tenant isolation.
 reviewed: 2016-03-21
+component: Core
 tags:
 - NHibernate
 - Outbox

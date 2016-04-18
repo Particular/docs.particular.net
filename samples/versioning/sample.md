@@ -2,6 +2,7 @@
 title: Versioning
 summary: Message evolution over time using interfaces.
 reviewed: 2016-03-21
+component: Core
 redirects:
  - nservicebus/versioning-sample
 ---

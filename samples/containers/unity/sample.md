@@ -1,6 +1,7 @@
 ---
 title: Unity Container Usage
 summary: Using the Unity container in an endpoint.
+component: Unity
 reviewed: 2016-03-21
 tags:
 - Container

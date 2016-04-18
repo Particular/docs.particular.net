@@ -2,6 +2,7 @@
 title: Building a transport
 summary: Building a Transport using the file system as a store.
 reviewed: 2016-03-21
+component: Core
 related:
 - nservicebus/transports
 ---

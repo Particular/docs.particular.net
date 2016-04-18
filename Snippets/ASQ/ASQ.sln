@@ -24,7 +24,4 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPath = Unity.2.1.505.2\lib\NET35;Unity.Interception.2.1.505.0\lib\NET35;Unity.Interception.2.1.505.2\lib\NET35
-	EndGlobalSection
 EndGlobal

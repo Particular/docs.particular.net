@@ -2,6 +2,7 @@
 title: Saga Sample
 summary: How build and use a saga.
 reviewed: 2016-03-21
+component: Core
 tags:
 - Saga
 - SagaFinder

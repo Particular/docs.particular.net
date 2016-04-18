@@ -2,6 +2,7 @@
 title: Native integration with RabbitMQ
 summary: Consuming messages published by non-NServiceBus endpoints
 reviewed: 2016-03-11
+component: Rabbit
 tags:
 - RabbitMQ
 related:

@@ -1,6 +1,7 @@
 ---
 title: RavenDB - Evolving Saga Data
 summary: This sample shows how use evolve RavenDB saga data over time.
+component: Raven
 reviewed: 2016-03-21
 tags:
 - Saga

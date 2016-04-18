@@ -2,6 +2,7 @@
 title: CommonLogging Usage
 summary: Using CommonLogging logging capability of NServiceBus.
 reviewed: 2016-03-21
+component: CommonLogging
 tags:
 - Logging
 related:

@@ -64,4 +64,11 @@ Exceptions raised from the `Stop` method will not halt shutdown and will be logg
 
 ## Code
 
-snippet:lifecycle-EndpointStartAndStop
+### Versions 5 and below of NServiceBus
+
+snippet:lifecycle-EndpointStartAndStopCore
+
+
+### Versions 7 and above of the NServiceBus Host
+
+snippet:lifecycle-EndpointStartAndStopHost

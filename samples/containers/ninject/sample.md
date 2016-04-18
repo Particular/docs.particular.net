@@ -1,6 +1,7 @@
 ---
 title: Ninject Container Usage
 summary: Using the Ninject container in an endpoint.
+component: Ninject
 reviewed: 2016-03-21
 tags:
 - Container

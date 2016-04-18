@@ -2,6 +2,7 @@
 title: Appending username using headers
 summary: Using message headers to append the current username to every message.
 reviewed: 2016-03-21
+component: Core
 related:
 - nservicebus/pipeline/message-mutators
 - nservicebus/messaging/headers

@@ -1,6 +1,7 @@
 ---
 title: Using MEF or Reflection to customize NServiceBus
 summary: Using MEF or Reflection to add custom configuration, startup, and shutdown logic to NServiceBus.
+component: Core
 reviewed: 2016-04-05
 related:
 - nservicebus/lifecycle

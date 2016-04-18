@@ -2,6 +2,7 @@
 title: MongoDB Persistence Sample
 summary: Using MongoDB to store Sagas and Timeouts.
 reviewed: 2016-03-21
+component: Mongo
 tags:
 - Saga
 - Timeout

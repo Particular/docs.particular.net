@@ -2,6 +2,7 @@
 title: Message Body Encryption
 summary: Encrypting the full message body using a mutator.
 reviewed: 2016-03-21
+component: Core
 tags:
 - Encryption
 related:

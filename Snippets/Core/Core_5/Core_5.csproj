@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{30F5B3E6-2B7F-46BE-8086-169FD856BA64}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Core5</RootNamespace>
+    <AssemblyName>Core5</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>1684</NoWarn>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.Edm.5.7.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.OData.5.7.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration">
+      <HintPath>..\..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.2.0.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.SqlAzure">
+      <HintPath>..\..\..\packages\NHibernate.SqlAzure.2.1.3\lib\NET45\NHibernate.SqlAzure.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\..\packages\NLog.4.3.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Azure">
+      <HintPath>..\..\..\packages\NServiceBus.Azure.6.2.4\lib\net45\NServiceBus.Azure.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\..\..\packages\NServiceBus.5.2.14\lib\net45\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Gateway, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\NServiceBus.Gateway.1.0.1\lib\net45\NServiceBus.Gateway.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Log4Net, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\NServiceBus.Log4Net.1.0.0\lib\net45\NServiceBus.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.NHibernate">
+      <HintPath>..\..\..\packages\NServiceBus.NHibernate.6.2.7\lib\net45\NServiceBus.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.NLog, Version=1.1.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\NServiceBus.NLog.1.1.0\lib\net45\NServiceBus.NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.ObjectBuilder.Autofac, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\NServiceBus.Autofac.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.RavenDB">
+      <HintPath>..\..\..\packages\NServiceBus.RavenDB.3.0.7\lib\net45\NServiceBus.RavenDB.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\..\..\packages\RavenDB.Client.3.0.30115\lib\net45\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\..\..\packages\RavenDB.Client.3.0.30115\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Contracts">
+      <HintPath>..\..\..\packages\ServiceControl.Contracts.1.2.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\..\..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\..\..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EndpointName\EndpointMapping.config.xml" />
+    <Content Include="Errors\retriesLogging.txt" />
+    <Content Include="Forwarding\ForwardingConfig.xml" />
+    <Content Include="Gateway\Channels\Channels.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Gateway\Sites\Sites.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Headers\Writers\HeaderWriterDataBusConvention.txt" />
+    <Content Include="Headers\Writers\HeaderWriterDataBusProperty.txt" />
+    <Content Include="Headers\Writers\HeaderWriterDefer.txt" />
+    <Content Include="Headers\Writers\HeaderWriterEncryption.txt" />
+    <Content Include="Headers\Writers\HeaderWriterPublish.txt" />
+    <Content Include="Headers\Writers\HeaderWriterSend.txt" />
+    <Content Include="Logging\OverrideInAppConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Outbox\NHibernate\TimeToKeep.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Outbox\EnablingInConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Errors\SecondLevel\SecondLevelReties.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="UpgradeGuides\5to6\null.xml" />
+    <Content Include="XmlDocumentPayload.xml" />
+    <Content Include="XmlElementPayload.xml" />
+    <None Include="app.config" />
+    <Content Include="EndpointMapping\EndpointMapping.config.xml" />
+    <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
+    <Content Include="Errors\FirstLevel\flr.config.xml" />
+    <Content Include="Monitoring\ServiceControlEvents.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Azure\Persistence\AzureStorage\AzurePersistence.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Persistence\Msmq\msmq.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Audit\Audit.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Encryption\Configuration\encryption.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
+    <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
+    <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
+    <Content Include="Transports\Throughput\InitialThroughput.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Gateway\UpgradeGuide\1to2\Channel.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audit\ProvideConfiguration.cs" />
+    <Compile Include="BasicUsageOfIBus.cs" />
+    <Compile Include="Features\AdvancedSatellite.cs" />
+    <Compile Include="Features\CustomFaultManager.cs" />
+    <Compile Include="Features\SimpleSatellite.cs" />
+    <Compile Include="Notifications\SubscribeToNotifications.cs" />
+    <Compile Include="Callback\Enum\Handler.cs" />
+    <Compile Include="Callback\Enum\Message.cs" />
+    <Compile Include="Callback\Enum\Status.cs" />
+    <Compile Include="Callback\Enum\Usage.cs" />
+    <Compile Include="Callback\Int\Handler.cs" />
+    <Compile Include="Callback\Int\Message.cs" />
+    <Compile Include="Callback\Int\Usage.cs" />
+    <Compile Include="Callback\Object\Handler.cs" />
+    <Compile Include="Callback\Object\Message.cs" />
+    <Compile Include="Callback\Object\ResponseMessage.cs" />
+    <Compile Include="Callback\Object\Usage.cs" />
+    <Compile Include="Container\Custom\ContainerCustom.cs" />
+    <Compile Include="Container\Custom\MyObjectBuilder.cs" />
+    <Compile Include="Container\MyService.cs" />
+    <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
+    <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
+    <Compile Include="Forwarding\ConfigurationSource.cs" />
+    <Compile Include="Forwarding\ConfigurationSourceUsage.cs" />
+    <Compile Include="Forwarding\ProvideConfiguration.cs" />
+    <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
+    <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
+    <Compile Include="UpgradeGuides\5to6\AuthorizeSubscriptions.cs" />
+    <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
+    <Compile Include="UpgradeGuides\5to6\DelayedDelivery.cs" />
+    <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
+    <Compile Include="UpgradeGuides\5to6\EndpointStartAndStop.cs" />
+    <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
+    <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
+    <Compile Include="Features\FeatureConfiguration.cs" />
+    <Compile Include="Features\MyFeature.cs" />
+    <Compile Include="Gateway\Channels\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Gateway\Channels\ConfigurationSource\Usage.cs" />
+    <Compile Include="Gateway\Channels\ProvideConfiguration.cs" />
+    <Compile Include="Gateway\Sites\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Gateway\Sites\ConfigurationSource\Usage.cs" />
+    <Compile Include="Gateway\Sites\ProvideConfiguration.cs" />
+    <Compile Include="Handlers\GenericHandler.cs" />
+    <Compile Include="Handlers\MyHandler.cs" />
+    <Compile Include="Handlers\MyMessage.cs" />
+    <Compile Include="Handlers\ReplyingHandler.cs" />
+    <Compile Include="Headers\ReadSaga.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterDataBusConvention.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterEncryption.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterDataBusProperty.cs" />
+    <Compile Include="Headers\WriteSaga.cs" />
+    <Compile Include="ProgramService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImmediateDispatch\Usage.cs" />
+    <Compile Include="InstallSomething.cs" />
+    <Compile Include="Lifecycle\INeedInitialization.cs" />
+    <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
+    <Compile Include="Lifecycle\IWantToRunWhenConfigurationIsComplete.cs" />
+    <Compile Include="Lifecycle\EndpointStartAndStop.cs" />
+    <Compile Include="Extending\Features.cs" />
+    <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
+    <Compile Include="Headers\StaticHeaders.cs" />
+    <Compile Include="Logging\ProvideConfiguration.cs" />
+    <Compile Include="Mutators\Instance\MutateIncomingMessages.cs" />
+    <Compile Include="Mutators\Instance\MutateOutgoingMessages.cs" />
+    <Compile Include="Mutators\MutatorRegistration.cs" />
+    <Compile Include="Mutators\Transport\MutateIncomingTransportMessages.cs" />
+    <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
+    <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
+    <Compile Include="NonDurable\MessageWithExpress.cs" />
+    <Compile Include="NonDurable\DefineExpress.cs" />
+    <Compile Include="Correlation\Usage.cs" />
+    <Compile Include="Correlation\MyRequest.cs" />
+    <Compile Include="CriticalErrorConfigAzure.cs" />
+    <Compile Include="CustomConfigSource.cs" />
+    <Compile Include="DataBus\Conventions\Usage.cs" />
+    <Compile Include="DataBus\Custom\CustomDataBus.cs" />
+    <Compile Include="DataBus\Custom\Usage.cs" />
+    <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />
+    <Compile Include="DataBus\Conventions\MessageWithLargePayload.cs" />
+    <Compile Include="DataBus\FileShare\Usage.cs" />
+    <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="Encryption\Conventions\Message.cs" />
+    <Compile Include="Encryption\Conventions\Usage.cs" />
+    <Compile Include="Encryption\EncryptionService\Usage.cs" />
+    <Compile Include="Encryption\EncryptionService\EncryptionService.cs" />
+    <Compile Include="Encryption\Configuration\ProvideConfiguration.cs" />
+    <Compile Include="Encryption\Configuration\FromCode.cs" />
+    <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
+    <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
+    <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
+    <Compile Include="Errors\FirstLevel\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />
+    <Compile Include="Errors\SecondLevel\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\SecondLevel\ConfigurationSource\Usage.cs" />
+    <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />
+    <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
+    <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
+    <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Gateway\MyMessage.cs" />
+    <Compile Include="Headers\MyMessage.cs" />
+    <Compile Include="Headers\ReadHandler.cs" />
+    <Compile Include="Headers\MutateOutgoingTransportMessages.cs" />
+    <Compile Include="Headers\MutateIncomingTransportMessages.cs" />
+    <Compile Include="Headers\IncomingBehavior.cs" />
+    <Compile Include="Headers\SomeOtherMessage.cs" />
+    <Compile Include="Headers\Writers\ConfigErrorQueue.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterSaga.cs" />
+    <Compile Include="Headers\WriteHandler.cs" />
+    <Compile Include="Headers\Writers\BehaviorCleaner.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterError.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterPublish.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterReply.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterReturn.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterDefer.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterAudit.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterSend.cs" />
+    <Compile Include="Headers\Writers\TransportMessageExtension.cs" />
+    <Compile Include="Headers\OutgoingBehavior.cs" />
+    <Compile Include="HostIdentifier\HostIdFixer.cs" />
+    <Compile Include="HostIdentifier\HostIdFixerCodeOnly.cs" />
+    <Compile Include="CriticalErrors.cs" />
+    <Compile Include="Injection\Injection.cs" />
+    <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
+    <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
+    <Compile Include="Logging\MessageToLog.cs" />
+    <Compile Include="Logging\NLog\NLogFiltering.cs" />
+    <Compile Include="Logging\UsingLogging.cs" />
+    <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
+    <Compile Include="Monitoring\MessageFailedHandler.cs" />
+    <Compile Include="NonDurable\DisableDurable.cs" />
+    <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
+    <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
+    <Compile Include="Persistence\Msmq\Usage.cs" />
+    <Compile Include="Persistence\InMemory\Usage.cs" />
+    <Compile Include="Persistence\PersistenceOrder.cs" />
+    <Compile Include="Pipeline\Abort\Behavior.cs" />
+    <Compile Include="Pipeline\Abort\Handler.cs" />
+    <Compile Include="Pipeline\Abort\MyMessage.cs" />
+    <Compile Include="Pipeline\NewPipelineStep.cs" />
+    <Compile Include="Pipeline\SharingBehaviorData.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />
+    <Compile Include="PubSub\Publishing\PublishAtStartup.cs" />
+    <Compile Include="PubSub\Publishing\UserCreatedEvent.cs" />
+    <Compile Include="PubSub\WithConvention\MessageToPublish.cs" />
+    <Compile Include="PubSub\WithConvention\Usage.cs" />
+    <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
+    <Compile Include="RegisterCustomSerializer.cs" />
+    <Compile Include="Routing\AutomaticSubscriptions\AutoSubscribeSettings.cs" />
+    <Compile Include="Routing\BasicOperations.cs" />
+    <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
+    <Compile Include="Routing\EndpointMapping\ProvideConfiguration.cs" />
+    <Compile Include="Sagas\FindByExpression\Message1.cs" />
+    <Compile Include="Sagas\FindByExpression\Message2.cs" />
+    <Compile Include="Sagas\FindByExpression\MySagaData.cs" />
+    <Compile Include="Sagas\FindSagas\MyMessage.cs" />
+    <Compile Include="Sagas\FindSagas\MySagaData.cs" />
+    <Compile Include="Sagas\Reply\AlmostDoneMessage.cs" />
+    <Compile Include="Sagas\Reply\MySagaData.cs" />
+    <Compile Include="Sagas\Reply\MySaga.cs" />
+    <Compile Include="Sagas\Reply\StartMessage.cs" />
+    <Compile Include="Sagas\FindByExpression\MySaga.cs" />
+    <Compile Include="Serialization\BinarySerializerUsage.cs" />
+    <Compile Include="Serialization\BsonSerializerUsage.cs" />
+    <Compile Include="Serialization\JsonSerializerUsage.cs" />
+    <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
+    <Compile Include="UpgradeGuides\4to5\BusInstance.cs" />
+    <Compile Include="UpgradeGuides\4to5\SagaMappingForUpgrade.cs" />
+    <Compile Include="Sagas\SagaNotFoundHandler.cs" />
+    <Compile Include="Sagas\FindSagas\NHibernateSagaFinder.cs" />
+    <Compile Include="Sagas\SimpleSaga\OrderSagaData.cs" />
+    <Compile Include="Sagas\SimpleSaga\CompleteOrder.cs" />
+    <Compile Include="Sagas\SimpleSaga\OrderSaga.cs" />
+    <Compile Include="Sagas\SimpleSaga\StartOrder.cs" />
+    <Compile Include="Sagas\Timeouts\AlmostDoneMessage.cs" />
+    <Compile Include="Sagas\Timeouts\Message1.cs" />
+    <Compile Include="Sagas\Timeouts\Message2.cs" />
+    <Compile Include="Sagas\Timeouts\MyCustomTimeout.cs" />
+    <Compile Include="Sagas\Timeouts\MySagaData.cs" />
+    <Compile Include="Sagas\Timeouts\MySaga.cs" />
+    <Compile Include="Sagas\Timeouts\TiredOfWaitingForMessage2.cs" />
+    <Compile Include="ScaleOut\IndividualizeQueues.cs" />
+    <Compile Include="Scanning\ScanningPublicApi.cs" />
+    <Compile Include="Scheduling\Saga\SchedulerSaga.cs" />
+    <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
+    <Compile Include="Encryption\MessageBody\Usage.cs" />
+    <Compile Include="Gateway\Usage.cs" />
+    <Compile Include="HandlerOrdering.cs" />
+    <Compile Include="License.cs" />
+    <Compile Include="Encryption\Usage.cs" />
+    <Compile Include="EndpointName\Usage.cs" />
+    <Compile Include="DataBus\Azure\Usage.cs" />
+    <Compile Include="Logging\Log4Net\Usage.cs" />
+    <Compile Include="Logging\NLog\Usage.cs" />
+    <Compile Include="Logging\BuiltInConfig.cs" />
+    <Compile Include="Installers.cs" />
+    <Compile Include="Conventions\Usage.cs" />
+    <Compile Include="Outbox\Usage.cs" />
+    <Compile Include="PerformanceMonitoring.cs" />
+    <Compile Include="Pipeline\SampleBehavior.cs" />
+    <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
+    <Compile Include="Scheduling\Scheduling.cs" />
+    <Compile Include="Hosting.cs" />
+    <Compile Include="Serialization\XmlSerializerUsage.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
+    <Compile Include="Transactions.cs" />
+    <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
+    <Compile Include="Transports\Throughput\Usage.cs" />
+    <Compile Include="UpgradeGuides\4to5\Scheduler.cs" />
+    <Compile Include="UpgradeGuides\4to5\Upgrade.cs" />
+    <Compile Include="UpgradeGuides\5to6\HandlerOrdering.cs" />
+    <Compile Include="UpgradeGuides\5to6\StartupInterface.cs" />
+    <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
+    <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
+    <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
+    <Compile Include="XmlSerializationIntegration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core_All\Core_All.csproj">
+      <Project>{D52A6FEB-CC19-49C3-AF92-475669D2FF25}</Project>
+      <Name>Core_All</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

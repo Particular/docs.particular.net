@@ -52,11 +52,18 @@
     <Compile Include="EndpointConfigByNamespace.cs" />
     <Compile Include="EndpointConfigWithAttribute.cs" />
     <Compile Include="ExposeWcf.cs" />
+    <Compile Include="OverrideLoggingViaProfile.cs" />
+    <Compile Include="PerformanceMonitoring.cs" />
+    <Compile Include="Profiles\DefiningProfile.cs" />
+    <Compile Include="Profiles\ConfigureLogging.cs" />
+    <Compile Include="Profiles\DependentProfile.cs" />
+    <Compile Include="ScanningPublicApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ExplicitConfigType.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

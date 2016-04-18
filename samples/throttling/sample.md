@@ -2,6 +2,7 @@
 title: Throughput Throttling
 summary: Control the throttling of messages.
 reviewed: 2016-03-21
+component: Core
 tags: 
 - Throttling
 related:

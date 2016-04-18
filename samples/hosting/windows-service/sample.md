@@ -2,6 +2,7 @@
 title: Hosting in a Windows Service
 summary: Hosting NServiceBus as a Windows Service in process with support for streamlined debugging experience from Visual Studio.
 reviewed: 2016-03-21
+component: Core
 tags:
 - Hosting
 - Windows Service

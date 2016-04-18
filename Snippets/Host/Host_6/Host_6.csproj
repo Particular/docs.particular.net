@@ -49,9 +49,12 @@
     <Compile Include="EndpointConfigByNamespace.cs" />
     <Compile Include="EndpointConfigWithAttribute.cs" />
     <Compile Include="OverrideLoggingViaProfile.cs" />
+    <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="Profiles\ConfigureLogging.cs" />
     <Compile Include="Profiles\CustomProfiles.cs" />
+    <Compile Include="Profiles\DefiningProfile.cs" />
     <Compile Include="Profiles\DependentProfile.cs" />
+    <Compile Include="ScanningPublicApi.cs" />
     <Compile Include="UpgradeGuides\6to7\CustomizingHost.cs" />
     <Compile Include="ExposeWcf.cs" />
   </ItemGroup>

@@ -2,6 +2,7 @@
 title: Endpoint configuration choices
 summary: Shows the standard configuration options for hosting an endpoint.
 reviewed: 2016-03-18
+component: Core
 related:
 - samples/step-by-step
 - nservicebus/hosting/assembly-scanning

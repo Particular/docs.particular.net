@@ -2,6 +2,7 @@
 title: SQL Bridge
 summary: Setep a SQL subscriber so it can subscribe to events from a MSMQ publisher.
 reviewed: 2016-03-21
+component: Core
 related:
 - nservicebus/transports
 - nservicebus/msmq

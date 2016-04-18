@@ -2,6 +2,7 @@
 title: NServiceBus multi hosting
 summary: Hosting multiple NServiceBus instances in one process.
 reviewed: 2016-03-21
+component: Core
 tags:
 - Hosting
 related:

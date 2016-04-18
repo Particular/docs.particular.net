@@ -2,6 +2,7 @@
 title: RavenDB persistence Sample
 summary: Using RavenDB to store Sagas and Timeouts.
 reviewed: 2016-03-21
+component: Raven
 tags:
 - Saga
 - Timeout

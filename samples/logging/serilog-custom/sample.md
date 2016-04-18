@@ -2,6 +2,7 @@
 title: Custom Serilog configuration
 summary: Customizing Serilog usage by configuring Serilog targets and rules.
 reviewed: 2016-03-21
+component: Serilog
 tags:
 - Logging
 - Serilog

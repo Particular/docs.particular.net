@@ -2,6 +2,7 @@
 title: SQL Server transport store-and-forward
 summary: How to add store-and-forward functionality for external-facing endpoints
 reviewed: 2016-03-30
+component: SqlServer
 tags:
 - SQL Server
 - Store-and-forward

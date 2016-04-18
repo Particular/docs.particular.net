@@ -2,6 +2,7 @@
 title: Scale Out with the Distributor
 summary: Scale out existing message processing by adding workers on different machines.
 reviewed: 2016-03-21
+component: Distributor
 tags:
 - Distributor
 - Scalability

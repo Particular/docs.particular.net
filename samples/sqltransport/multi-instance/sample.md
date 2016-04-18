@@ -2,6 +2,7 @@
 title: SQL Server Transport Multi-Instance Mode
 summary: SqlServer transport running in Multi-Instance Mode.
 reviewed: 2016-03-25
+component: SqlServer
 tags:
 - SQL Server
 - Multi-Instance Mode

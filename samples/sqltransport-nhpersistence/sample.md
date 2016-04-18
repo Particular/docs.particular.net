@@ -2,6 +2,7 @@
 title: SQL Server / NHibernate
 summary: Integrating SQL Server transport with NHibernate persistence without outbox.
 reviewed: 2016-03-21
+component: SqlServer
 tags:
 - SQL Server
 - NHibernate

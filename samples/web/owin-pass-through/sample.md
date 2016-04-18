@@ -2,6 +2,7 @@
 title: OWIN HTTP Message Pass Through
 summary: Illustrates how to hook into the low level OWIN pipeline to place message onto the bus or directly onto the queue
 reviewed: 2016-04-05
+component: Core
 related:
  - samples/gateway
  - nservicebus/gateway

@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    #region lifecycle-EndpointStartAndStop
+    #region lifecycle-EndpointStartAndStopHost
 
     // When using NServiceBus.Host or NService.Host.AzureCloudService
     class RunWhenEndpointStartsAndStops : IWantToRunWhenEndpointStartsAndStops

@@ -22,7 +22,9 @@ snippet: 6to7customize_nsb_host
 
 An interface called [`IWantToRunWhenEndpointStartsAndStops`](/nservicebus/hosting/nservicebus-host/) has been added. This interface replaces the [`IWantToRunWhenBusStartsAndStops`](/nservicebus/lifecycle/endpointstartandstop.md) in the NServiceBus core.
 
-snippet:5to6-EndpointStartAndStop
+snippet:5to6-EndpointStartAndStopCore
+
+snippet:5to6-EndpointStartAndStopHost
 
 
 include:5to6removePShelpers

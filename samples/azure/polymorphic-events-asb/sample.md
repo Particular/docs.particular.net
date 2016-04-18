@@ -1,6 +1,7 @@
 ---
 title: Polymorphic events with Azure Service Bus Transport
 summary: Handling polymorphic events with Azure Service Bus Transport.
+component: ASB
 reviewed: 2016-03-21
 related:
 - nservicebus/azure-servicebus

@@ -2,6 +2,7 @@
 title: Taking control of serialization via the pipeline
 summary: Add support attribute based message serialization.
 reviewed: 2016-03-21
+component: Core
 tags:
 - Pipeline
 - Serialization

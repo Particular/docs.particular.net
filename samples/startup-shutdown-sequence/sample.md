@@ -1,6 +1,7 @@
 ---
 title: Startup and Shutdown Sequence
 summary: The order of startup shutdown operations including all extension points that plug into that process.
+component: Core
 reviewed: 2016-03-30
 related:
 - nservicebus/operations/installers
