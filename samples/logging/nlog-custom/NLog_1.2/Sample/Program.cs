@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -9,8 +10,12 @@ class Program
 
     static void Main()
     {
-        Console.Title = "Samples.Logging.NLogCustom";
+        AsyncMain().GetAwaiter().GetResult();
+    }
 
+    static async Task AsyncMain()
+    {
+        Console.Title = "Samples.Logging.NLogCustom";
         #region ConfigureNLog
 
         LoggingConfiguration config = new LoggingConfiguration();
@@ -28,20 +33,25 @@ class Program
 
         NServiceBus.Logging.LogManager.Use<NLogFactory>();
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Logging.NLogCustom");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Logging.NLogCustom");
 
         #endregion
 
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        try
         {
-            bus.SendLocal(new MyMessage());
+            await endpoint.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }
