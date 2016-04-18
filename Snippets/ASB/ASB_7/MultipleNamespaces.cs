@@ -58,5 +58,18 @@
 
             #endregion
         }
+
+        public void ReplicatedNamespacePartitioning()
+        {
+            #region replicated_partitioning_strategy
+
+            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
+                .NamespacePartitioning().UseStrategy<ReplicatedNamespacePartitioning>()
+                    .AddNamespace("namespace1", "Endpoint=sb://namespace1.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]")
+                    .AddNamespace("namespace2", "Endpoint=sb://namespace2.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]")
+                    .AddNamespace("namespace3", "Endpoint=sb://namespace3.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+
+            #endregion
+        }
     }
 }

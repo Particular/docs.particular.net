@@ -16,3 +16,5 @@ snippet: single_namespace_partitioning_strategy_with_default_connection_string
 snippet: round_robin_partitioning_strategy
 
 snippet: fail_over_partitioning_strategy
+
+snippet: replicated_partitioning_strategy
