@@ -248,7 +248,6 @@
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
-    <Compile Include="Logging\NLog\NLogFiltering.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\MyMessage.cs" />

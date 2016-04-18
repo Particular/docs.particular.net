@@ -332,7 +332,6 @@
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
-    <Compile Include="Logging\NLog\NLogFiltering.cs" />
     <Compile Include="Logging\UsingLogging.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
@@ -401,7 +400,6 @@
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="DataBus\Azure\Usage.cs" />
     <Compile Include="Logging\Log4Net\Usage.cs" />
-    <Compile Include="Logging\NLog\Usage.cs" />
     <Compile Include="Logging\BuiltInConfig.cs" />
     <Compile Include="Installers.cs" />
     <Compile Include="Conventions\Usage.cs" />
