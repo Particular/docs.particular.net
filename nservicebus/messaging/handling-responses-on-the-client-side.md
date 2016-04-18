@@ -1,7 +1,7 @@
 ---
 title: Handling Responses on the Client Side
 summary: The client (or sending process) has its own queue. When messages arrive in the queue, they are handled by a message handler.
-tags: []
+component: Callbacks
 redirects:
 - nservicebus/how-do-i-handle-responses-on-the-client-side
 related:
@@ -16,7 +16,7 @@ snippet:EmptyHandler
 
 ## Handling responses in the context of a message being sent
 
-When sending a message, you can register a callback that is invoked when a response arrives.
+When sending a message, a callback can be registered that will be invoked when a response arrives.
 
 DANGER: If the server process returns multiple responses, NServiceBus cannot know which response message will be the last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a process restart (common scenarios are a crash or an IIS recycle) as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](/nservicebus/sagas/).
 
@@ -98,7 +98,7 @@ The asynchronous callback can be canceled by registering a `CancellationToken` p
 snippet:CancelCallback
 
 
-## When should you use callbacks?
+## When to use callbacks
 
 WARNING: Using callbacks in `IHandleMessages<T>` classes can cause deadlocks and/or other unexpected behavior, so **do not call the callback APIs from inside a `Handle` method in an `IHandleMessages<T>` class**.
 
@@ -110,7 +110,7 @@ When using callbacks in a ASP.NET Web/MVC/Web API, the NServiceBus callbacks can
 ## Message routing
 
 
-### Version 6 and above
+### NServiceBus.Callbacks Version 1 and above
 
 Callbacks are routed using general routing mechanism based on endpoint instance IDs. In order to use callbacks, instance ID needs to be explicitly specified in the requester endpoint configuration
 
@@ -121,7 +121,7 @@ This approach makes it possible to deploy multiple callback-enabled instances of
 WARNING: This ID needs to be stable and it should never be hardcoded. An example approach might be reading it from the configuration file or from the environment (e.g. role ID in Azure).
 
 
-### Versions 5 and below
+### NServiceBus Versions 5 and below
 
 Callbacks are routed to queues based on the machine's hostname. On [broker transports](/nservicebus/transports/#types-of-transports-broker-transports) additional queues are created for each endpoint/hostname combination e.g. `Sales.MachineA`, `Sales.MachineB`. Callbacks do not require any additional queue configuration from the user.
 
