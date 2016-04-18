@@ -46,5 +46,17 @@
 
             #endregion
         }
+
+        public void FailOverNamespacePartitioning()
+        {
+            #region fail_over_partitioning_strategy
+
+            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
+                .NamespacePartitioning().UseStrategy<FailOverNamespacePartitioning>()
+                    .AddNamespace("primary", "Endpoint=sb://primary.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]")
+                    .AddNamespace("secondary", "Endpoint=sb://secondary.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+
+            #endregion
+        }
     }
 }
