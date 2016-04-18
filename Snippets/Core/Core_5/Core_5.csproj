@@ -66,9 +66,6 @@
     <Reference Include="NHibernate.SqlAzure">
       <HintPath>..\..\..\packages\NHibernate.SqlAzure.2.1.3\lib\NET45\NHibernate.SqlAzure.dll</HintPath>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\..\..\packages\NLog.4.3.0\lib\net45\NLog.dll</HintPath>
-    </Reference>
     <Reference Include="NServiceBus.Azure">
       <HintPath>..\..\..\packages\NServiceBus.Azure.6.2.4\lib\net45\NServiceBus.Azure.dll</HintPath>
     </Reference>
@@ -85,10 +82,6 @@
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\..\..\packages\NServiceBus.NHibernate.6.2.7\lib\net45\NServiceBus.NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.NLog, Version=1.1.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\packages\NServiceBus.NLog.1.1.0\lib\net45\NServiceBus.NLog.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Autofac, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
