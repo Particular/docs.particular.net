@@ -120,6 +120,7 @@
   Url: nservicebus/logging/nlog
   NugetOrder:
     - NServiceBus.NLog
+    - NServiceBus
 
 - Key: Rabbit
   Url: nservicebus/rabbitmq
