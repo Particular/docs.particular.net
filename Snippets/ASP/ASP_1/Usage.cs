@@ -12,8 +12,6 @@ class Usage
 
         #endregion
     }
-    //TODO: fix when we split azure
-    /**
     #region PersistenceWithAzureHost
 
     public class EndpointConfig : IConfigureThisEndpoint
@@ -25,7 +23,6 @@ class Usage
     }
 
     #endregion
-**/
 
     void CustomizingAzurePersistenceAllConnections(EndpointConfiguration endpointConfiguration)
     {

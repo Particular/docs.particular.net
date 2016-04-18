@@ -20,22 +20,27 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-alpha0049\lib\net452\Ionic.Zip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Data.Edm, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Data.Edm.5.7.0-beta\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <HintPath>..\..\..\packages\Microsoft.Data.Edm.5.7.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Data.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Data.OData.5.7.0-beta\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <HintPath>..\..\..\packages\Microsoft.Data.OData.5.7.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Data.Services.Client, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.7.0-beta\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Storage, Version=7.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -54,10 +59,14 @@
       <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0001\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NServiceBus.Hosting.Azure, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-alpha0049\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\System.Spatial.5.7.0-beta\lib\net40\System.Spatial.dll</HintPath>
+      <HintPath>..\..\..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -68,6 +77,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
