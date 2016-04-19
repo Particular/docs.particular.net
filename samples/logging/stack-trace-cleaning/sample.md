@@ -42,7 +42,7 @@ snippet: disable-retries
 
 Before the above optimizations the below (45 lines and ~4900 characters) is written to both the log and the error queue when the above handler throws.
 
-```
+```txt
 System.Exception: Foo
    at Handler.Handle(Message message, IMessageHandlerContext context) in C:\Code\docs.particular.net\samples\logging\stack-trace-cleaning\Core_6\SampleWithoutClean\Handler.cs:line 9
    at NServiceBus.InvokeHandlerTerminator.<Terminate>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\InvokeHandlerTerminator.cs:line 19
@@ -144,7 +144,7 @@ snippet: ConfigureNLog
 
 With the above optimizations the following text (14 lines and ~2100 characters) is written to the log.
 
-```
+```txt
 System.Exception: Foo
    at Handler.Handle(Message message, IMessageHandlerContext context) in C:\Code\docs.particular.net\samples\logging\stack-trace-cleaning\Core_6\SampleWithClean\Handler.cs:line 10
    at async NServiceBus.InvokeHandlerTerminator.Terminate(?) in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\InvokeHandlerTerminator.cs:line 19
@@ -166,7 +166,7 @@ System.Exception: Foo
 
 With the above optimizations the following text (14 lines and ~2300 characters)is written to the error queue.
 
-```
+```txt
 System.Exception: Foo
    at Handler.Handle(Message message, IMessageHandlerContext context) in C:\Code\docs.particular.net\samples\logging\stack-trace-cleaning\Core_6\SampleWithClean\Handler.cs:line 10
    at NServiceBus.InvokeHandlerTerminator.&lt;Terminate&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\InvokeHandlerTerminator.cs:line 19
