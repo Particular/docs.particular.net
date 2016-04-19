@@ -55,5 +55,18 @@
         private class MyMessage
         {
         }
+
+        void TopologySelectionUpgradeGuide(EndpointConfiguration endpointConfiguration)
+        {
+            #region topology-selection-upgrade-guide
+
+            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
+                .UseTopology<ForwardingTopology>();
+            // or
+            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
+                .UseTopology<EndpointOrientedTopology>();
+
+            #endregion
+        }
     }
 }
