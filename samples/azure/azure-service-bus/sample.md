@@ -15,7 +15,7 @@ An environment variable named `SamplesAzureServiceBusConnection` that contains t
 
 ## Azure Service Bus Transport
 
-This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure-servicebus/).
+This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure-service-bus/).
 
 
 ## Code walk-through

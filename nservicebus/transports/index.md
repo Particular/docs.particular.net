@@ -33,7 +33,7 @@ Broker transports include:
 
  * [SQL Server](/nservicebus/sqlserver/)
  * [RabbitMQ](/nservicebus/rabbitmq/)
- * [Azure Service Bus](/nservicebus/azure-servicebus/)
+ * [Azure Service Bus](/nservicebus/azure-service-bus/)
  * [Azure Storage Queues](/nservicebus/azure-storage-queues/)
 
 
@@ -55,7 +55,7 @@ Multicast-enabled transports have some notion of a topic or a similar concept th
 Multicast-enabled transports include:
 
  * [RabbitMQ](/nservicebus/rabbitmq/)
- * [Azure Service Bus](/nservicebus/azure-servicebus/)
+ * [Azure Service Bus](/nservicebus/azure-service-bus/)
 
 
 ## Community run transports

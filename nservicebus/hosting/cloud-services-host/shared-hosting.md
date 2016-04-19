@@ -20,7 +20,7 @@ This role allows to co-locate multiple endpoints on the same set of machines, wh
 
 ## How it works
 
-**Prerequisites** This approach assumes the endpoints are already [hosted in worker roles](/nservicebus/hosting/cloudservices-host/). The rest of this article will focus on how to transition from a multi worker environment to a shared hosting environment.
+**Prerequisites** This approach assumes the endpoints are already [hosted in worker roles](/nservicebus/hosting/cloud-services-host/). The rest of this article will focus on how to transition from a multi worker environment to a shared hosting environment.
 
 Instead of having endpoints packaged & deployed by the Azure infrastructure they are packaged as zip files and placed in a well known location (in Azure blob storage).
 
