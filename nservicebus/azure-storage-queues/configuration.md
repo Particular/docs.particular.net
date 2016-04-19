@@ -13,7 +13,10 @@ Azure Storage Queues Transport can be configured using following parameters. Dep
  * `MaximumWaitTimeWhenIdle`: The transport will back of linearly when no messages can be found on the queue to save some money on the transaction operations, but it will never wait longer than the value specified here, also in milliseconds and defaults to 1000 (1 second)
  * `PurgeOnStartup`: Instructs the transport to remove any existing messages from the queue on startup, defaults to false.
  * `MessageInvisibleTime`: The Peek-Lock mechanism, supported by Azure storage queues relies on a period of time that a message becomes locked/invisible after being read. If the processing unit fails to delete the message in the specified time it will reappear on the queue so that another process can retry. This value is defined in milliseconds and defaults to 30000 (30 seconds).
- * `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. Defaults to 10. Depending on the expected load, I would vary this value between 1 and 1000 (which is the limit)
+ * `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. Defaults to 10 in Version 6.0 and below and to 32 in Version 7.0. Depending on the expected load, vary this value between 1 and 32 (which is the limit).
+ * `DegreeOfReceiveParallelism`: The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it. By default this value is set to 8. This means eight message processing loops will receive up to the configured `BatchSize` number of messages in parallel. For example with the default `BatchSize` of 32 and the default degree of parallelism of 8 the transport will be able to receive 256 messages from the storage queue at the same time.
+
+WARNING: You need to carefully select the values of `BatchSize` , `DegreeOfParallelism`, `Concurrency` and the other parameters like `MaximumWaitTimeWhenIdle` in order to get the desired speed out of the transport while not exceeding the boundaries of the allowed number of operations per second.
 
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.
 
