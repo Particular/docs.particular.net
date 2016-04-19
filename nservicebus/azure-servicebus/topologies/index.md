@@ -26,7 +26,7 @@ The `EndpointOrientedTopology` is backward compatible with Azure Service Bus tra
 
 The `ForwardingTopology` was introduced to take advantage of the broker nature of Azure Service Bus and to leverage its native capabilities. It is the recommended option for new projects.
 
-Both topologies create a single input queue per endpoint and implement [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) mechanism. However, there is a significant difference in the way the mechanism is implemented in each of them.
+Both topologies create a single input queue per endpoint and implement [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) mechanism. However, there is a significant difference in the way the mechanism is implemented.
 
 Starting from Version 7, no default topology is set by the Azure Service Bus Transport. Topology has to be configured using [configuration API](/nservicebus/azure-servicebus/configuration.md).
 
@@ -37,7 +37,7 @@ In the `EndpointOrientedTopology` each publishing endpoint creates a topic calle
 
 When a publisher raises an event, it is published to the publisher topic. Then the subscription entities filter events using the associated rules. Finally, the subscriber endpoint pulls events for processing.
 
-Example below demonstrates a publisher called `Publisher` and a subscriber `Subscriber`. `Publisher` can raise two events, `EventA` and `EventB`. A subscriber called `Subscriber` subscribes to both events. Subscriber subscribes by creating two subscription entities, one per event type. Each subscription entity filters out events using a rule associated with the subscription.
+The example below demonstrates a publisher called `Publisher` and a subscriber `Subscriber`. `Publisher` can raise two events, `EventA` and `EventB`. A subscriber called `Subscriber` subscribes to both events. Subscriber subscribes by creating two subscription entities, one per event type. Each subscription entity filters out events using a rule associated with the subscription.
 
 This topology has several drawbacks:
 
