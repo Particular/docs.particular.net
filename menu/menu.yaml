@@ -132,14 +132,14 @@
       Url: "nservicebus/transports"
       Articles:
         - Title: "Azure Service Bus Transport"
-          Url: "nservicebus/azure-servicebus"
+          Url: "nservicebus/azure-service-bus"
           Articles:
-            - "nservicebus/azure-servicebus/faq"
-            - "nservicebus/azure-servicebus/transaction-support"
-            - "nservicebus/azure-servicebus/configuration"
-            - "nservicebus/azure-servicebus/native-integration"
-            - "nservicebus/azure-servicebus/performance-tuning"
-            - "nservicebus/azure-servicebus/publisher-names-configuration"
+            - "nservicebus/azure-service-bus/faq"
+            - "nservicebus/azure-service-bus/transaction-support"
+            - "nservicebus/azure-service-bus/configuration"
+            - "nservicebus/azure-service-bus/native-integration"
+            - "nservicebus/azure-service-bus/performance-tuning"
+            - "nservicebus/azure-service-bus/publisher-names-configuration"
         - Title: "Azure Storage Queues Transport"
           Url: "nservicebus/azure-storage-queues"
           Articles:
@@ -248,12 +248,12 @@
           Articles:
             - "nservicebus/hosting/nservicebus-host/profiles"
         - Title: "Azure Cloud Services Host"
-          Url: "nservicebus/hosting/cloudservices-host"
+          Url: "nservicebus/hosting/cloud-services-host"
           Articles:
-            - "nservicebus/hosting/cloudservices-host/faq"
-            - "nservicebus/hosting/cloudservices-host/configuration"
-            - "nservicebus/hosting/cloudservices-host/shared-hosting"
-            - "nservicebus/hosting/cloudservices-host/hosting-options"
+            - "nservicebus/hosting/cloud-services-host/faq"
+            - "nservicebus/hosting/cloud-services-host/configuration"
+            - "nservicebus/hosting/cloud-services-host/shared-hosting"
+            - "nservicebus/hosting/cloud-services-host/hosting-options"
     -
       Title: "Testing"
       Url: "nservicebus/testing"

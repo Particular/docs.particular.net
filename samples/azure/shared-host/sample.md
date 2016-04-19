@@ -10,7 +10,7 @@ tags:
 - Shared hosting
 - Hosting in Azure
 related:
-- nservicebus/hosting/cloudservices-host/shared-hosting
+- nservicebus/hosting/cloud-services-host/shared-hosting
 ---
 
 

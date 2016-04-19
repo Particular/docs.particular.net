@@ -105,7 +105,7 @@ For transports that support publish–subscribe natively no persistence is requi
 
 Transport that support native publish–subscribe
 
- * [Azure Service Bus](/nservicebus/azure-servicebus/)
+ * [Azure Service Bus](/nservicebus/azure-service-bus/)
  * [RabbitMQ](/nservicebus/rabbitmq/)
 
 

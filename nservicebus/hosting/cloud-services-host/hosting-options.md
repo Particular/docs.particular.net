@@ -33,7 +33,7 @@ The main difference, as outlined above, is that you should not rely on any techn
 For more information about enabling the Azure storage queues or Azure Service Bus transports, refer to the following documentation:
 
 * [Azure storage queues](/nservicebus/azure-storage-queues/)
-* [Azure Service Bus](/nservicebus/azure-servicebus/)
+* [Azure Service Bus](/nservicebus/azure-service-bus/)
 
 For persistence you can rely on any option, including RavenDB, SQL Server installed on a Virtual Machine, SQL Azure or Azure storage services.
 
@@ -72,7 +72,7 @@ Next to the endpoint, the role definition will also include additional services 
 
 To integrate these facilities with an endpoint use `NServiceBusRoleEntrypoint` which wires the regular host into a role entrypoint. In addition, there are specific NServiceBus `Roles` (not to be confused with Azure roles) such as `AsA_Worker` in the `NServiceBus.Hosting.Azure` package.
 
-To learn more about the details of hosting in Azure cloud services, refer to [Cloud Services](/nservicebus/hosting/cloudservices-host/).
+To learn more about the details of hosting in Azure cloud services, refer to [Cloud Services](/nservicebus/hosting/cloud-services-host/).
 
 
 ## Cloud Services - Shared Hosting
@@ -81,4 +81,4 @@ The Cloud Services model is best suited to building large scale systems, but in 
 
 To support this need to start small a shared hosting option is available using the `AsA_Host` role. In this model, the role entry point doesn't actually host an endpoint itself. Instead, it downloads, invokes, and manages other worker role entry points as child processes on the same machine.
 
-If you want to learn more about the shared hosting options, refer to [Cloud Services - Shared hosting](/nservicebus/hosting/cloudservices-host/shared-hosting.md).
+If you want to learn more about the shared hosting options, refer to [Cloud Services - Shared hosting](/nservicebus/hosting/cloud-services-host/shared-hosting.md).

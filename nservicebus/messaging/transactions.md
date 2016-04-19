@@ -37,7 +37,7 @@ The implementation details for each transport are discussed in the dedicated doc
 | [SQL Server](/nservicebus/sqlserver/design.md#transactions-and-delivery-guarantees) | + | + | + | + |
 | [RabbitMQ](/nservicebus/rabbitmq/configuration-api.md#transactions-and-delivery-guarantees) |  - | - | + | + |
 | [Azure Storage Queues](/nservicebus/azure-storage-queues/transaction-support.md#transactions-and-delivery-guarantees)|  - | - | + | + |
-| [Azure Service Bus](/nservicebus/azure-servicebus/transaction-support.md#transactions-and-delivery-guarantees) |  - | + | + | + |
+| [Azure Service Bus](/nservicebus/azure-service-bus/transaction-support.md#transactions-and-delivery-guarantees) |  - | + | + | + |
 
 
 ### Transaction scope (Distributed transaction)

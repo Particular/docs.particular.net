@@ -140,7 +140,7 @@ Related:
 
 ### Hosting in Azure
 
-There are a variety of ways to host in Azure. Depending on the requirements Self Hosting may be an option or, alternatively, a custom Azure host may be required. See [Hosting in Azure Cloud Services](/nservicebus/hosting/cloudservices-host/) and [Hosting in Azure](/nservicebus/hosting/cloudservices-host/hosting-options.md) for more information.
+There are a variety of ways to host in Azure. Depending on the requirements Self Hosting may be an option or, alternatively, a custom Azure host may be required. See [Hosting in Azure Cloud Services](/nservicebus/hosting/cloud-services-host/) and [Hosting in Azure](/nservicebus/hosting/cloud-services-host/hosting-options.md) for more information.
 
 Related:
 

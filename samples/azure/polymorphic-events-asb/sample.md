@@ -4,7 +4,7 @@ summary: Handling polymorphic events with Azure Service Bus Transport.
 component: ASB
 reviewed: 2016-03-21
 related:
-- nservicebus/azure-servicebus
+- nservicebus/azure-service-bus
 - nservicebus/messaging/publish-subscribe
 - nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
 - samples/azure/azure-service-bus
@@ -19,7 +19,7 @@ An environment variable named `SamplesAzureServiceBusConnection` that contains t
 
 ## Azure Service Bus Transport
 
-This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure-servicebus/).
+This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure-service-bus/).
 
 
 ## Code walk-through

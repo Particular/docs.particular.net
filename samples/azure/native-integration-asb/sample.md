@@ -4,7 +4,7 @@ summary: Consuming messages published by non NServiceBus endpoints.
 component: ASB
 reviewed: 2016-03-21
 related:
-- nservicebus/azure-servicebus
+- nservicebus/azure-service-bus
 ---
 
 ## Prerequisites
@@ -14,7 +14,7 @@ An environment variable named `AzureServiceBus.ConnectionString` that contains t
 
 ## Azure Service Bus Transport
 
-This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure-servicebus/).
+This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure-service-bus/).
 
 
 ## Code walk-through

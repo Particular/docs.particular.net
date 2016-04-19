@@ -15,7 +15,7 @@ For many scenarios NServiceBus has built-in [error and exception management](/ns
  * An exception occurs reading from the input queue.
  * In Versions 5 and below when an implementation of `IWantToRunWhenBusStartsAndStops.Start` throws an exception.
  * In Versions 6 and above when an implementation of `FeatureStartupTask.Start` throws an exception.
- * In Versions 6 and above when an implementation of `IWantToRunWhenEndpointStartsAndStops.Start` throws an exception. This interface is only available when using either [NServiceBus.Host](nservicebus-host) or [NServiceBus.Host.AzureCloudService](/nservicebus/hosting/cloudservices-host/).
+ * In Versions 6 and above when an implementation of `IWantToRunWhenEndpointStartsAndStops.Start` throws an exception. This interface is only available when using either [NServiceBus.Host](nservicebus-host) or [NServiceBus.Host.AzureCloudService](/nservicebus/hosting/cloud-services-host/).
 
 
 ### Default action handling in NServiceBus
