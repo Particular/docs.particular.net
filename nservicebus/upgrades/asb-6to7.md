@@ -11,5 +11,11 @@ related:
 ---
 
 
-## Azure Service Bus Transport
+## [Topology](/nservicebus/azure-servicebus/topologies/) is mandatory
+
+In version 7 and above topology is mandatory
+
+snippet: topology-selection-upgrade-guide
+
+## Publishers name configuration
 
