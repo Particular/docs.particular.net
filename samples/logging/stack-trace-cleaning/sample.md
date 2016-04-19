@@ -26,14 +26,14 @@ The solution consists of two projects. `SampleWithoutClean` which takes the stan
 
 ### The Handler
 
-The handler simply throws an Exception.
+The code in the handler throws an exception.
 
 snippet: handler
 
 
 ### Retries are disabled
 
-Retries are disable so as to reduce the noise of the handler throwing exceptions multiple times.
+Retries are disabled so as to reduce the noise of the handler throwing exceptions multiple times.
 
 snippet: disable-retries
 
