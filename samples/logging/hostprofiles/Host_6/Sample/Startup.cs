@@ -1,16 +1,20 @@
-using System.Threading.Tasks;
 using NServiceBus;
 
-public class Startup : IWantToRunWhenEndpointStartsAndStops
+public class Startup : IWantToRunWhenBusStartsAndStops
 {
-    public async Task Start(IMessageSession session)
+    IBus bus;
+
+    public Startup(IBus bus)
     {
-        await session.SendLocal(new MyMessage());
+        this.bus = bus;
     }
 
-    public Task Stop(IMessageSession session)
+    public void Start()
     {
-        return Task.FromResult(0);
+        bus.SendLocal(new MyMessage());
     }
-    
+
+    public void Stop()
+    {
+    }
 }
