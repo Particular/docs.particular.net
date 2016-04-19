@@ -1,5 +1,5 @@
 ---
-title: StackTrace Cleaning
+title: Stack Trace Cleaning
 summary: Shows how to minimize the stack trace written to the Error queue and the log output.
 reviewed: 2016-04-18
 component: Core
