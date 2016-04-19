@@ -137,11 +137,11 @@
         - Title: "Azure Service Bus Transport"
           Url: "nservicebus/azure-service-bus"
           Articles:
+            - "nservicebus/azure-service-bus/configuration"
+            - "nservicebus/azure-service-bus/topologies"
             - "nservicebus/azure-service-bus/faq"
             - "nservicebus/azure-service-bus/transaction-support"
             - "nservicebus/azure/transactions"
-            - "nservicebus/azure-service-bus/configuration"
-            - "nservicebus/azure-service-bus/topologies"
             - "nservicebus/azure-service-bus/message-lock-renewal"
             - "nservicebus/azure-service-bus/native-integration"
             - "nservicebus/azure-service-bus/performance-tuning"
