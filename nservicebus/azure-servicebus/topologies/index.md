@@ -43,15 +43,15 @@ Example below demonstrates a publisher called `Publisher` and a subscriber `Subs
 
 This topology has several drawbacks:
 
-1. In order to subscribe to an event, subscriber must know the publishing endpoint name, causing publisher and subscriber coupling. See Publishers name configuration(LINK /nservicebus/azure-servicebus/publisher-names-configuration.md).
-1. Multiple subscription entities per subscriber cause polymorphic events to be delivered multiple times to the subscribing endpoint. To handle polymorphic events with `EndpointOrientedTopology` a workaround(LINK samples/azure/polymorphic-events-asb/) has to be implemented.
+1. In order to subscribe to an event, subscriber must know the publishing endpoint name, causing publisher and subscriber coupling. See [Publishers name configuration](/nservicebus/azure-servicebus/publisher-names-configuration.md).
+1. Multiple subscription entities per subscriber cause polymorphic events to be delivered multiple times to the subscribing endpoint. To handle polymorphic events with `EndpointOrientedTopology` a [workaround](/samples/azure/polymorphic-events-asb/) has to be implemented.
 1. When a single subscriber if offline for an extended period of time and events are not consumed, it can cause events overflow. Since a single topic per publisher is used for all the subscribers, when events overflow is happening, it will affect all subscribers and not just the one that is offline. 
 
 ![EndpointOrientedTopology](endpoint-oriented-topology.png "width=50%")
 
 ### Forwarding Topology
 
-`ForwardingTopology` is the new topology that was designed to take advantage of several native broker features offered by Azure Service Bus. Unlike `EndpointOrientedTopology`, it doesn't work with a single topic per publisher. All publishers use a topic bundle (link-to-bundles). Subscriptions  are created under topic bundle with one subscription entity per subscribing endpoint. Each subscription contains multiple rules. A rule per event type that subscribing endpoint is interested in. This allows complete decoupling between publishers and subscribers. All messages received by subscription are forwarded to the input queue of the subscriber.
+`ForwardingTopology` is the new topology that was designed to take advantage of several native broker features offered by Azure Service Bus. Unlike `EndpointOrientedTopology`, it doesn't work with a single topic per publisher. All publishers use a topic bundle (LINK link-to-bundles). Subscriptions  are created under topic bundle with one subscription entity per subscribing endpoint. Each subscription contains multiple rules. A rule per event type that subscribing endpoint is interested in. This allows complete decoupling between publishers and subscribers. All messages received by subscription are forwarded to the input queue of the subscriber.
 
 This topology solves the polymorphic events and the events overflow problems `EndpointOrientedTopology` has. 
 
