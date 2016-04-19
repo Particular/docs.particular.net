@@ -17,6 +17,7 @@
             endpointConfiguration.UseTransport<AzureStorageQueueTransport>()
                 .ConnectionString("azure-storage-connection-string")
                 .BatchSize(20)
+                .DegreeOfReceiveParallelism(16)
                 .MaximumWaitTimeWhenIdle(1000)
                 .PeekInterval(100);
 
