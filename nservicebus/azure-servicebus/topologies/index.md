@@ -1,13 +1,12 @@
 ---
 title: Azure Service Bus Topologies
 summary: Azure Service Bus Topologies
+reviewed: 2016-04-19
 tags:
 - Azure
 - Cloud
-redirects:
 related:
  - samples/azure/azure-service-bus
-reviewed: 2016-04-12
 ---
 
 Messaging topology is a specific arrangement of the messaging entities, such as queues, topics, subscriptions, and rules.
@@ -50,7 +49,7 @@ This topology has several drawbacks:
 
 ### Forwarding Topology
 
-`ForwardingTopology` is the new topology that was designed to take advantage of several native broker features offered by Azure Service Bus. Unlike `EndpointOrientedTopology`, it doesn't work with a single topic per publisher. All publishers use a topic bundle (LINK link-to-bundles). Subscriptions  are created under topic bundle with one subscription entity per subscribing endpoint. Each subscription contains multiple rules. A rule per event type that subscribing endpoint is interested in. This allows complete decoupling between publishers and subscribers. All messages received by subscription are forwarded to the input queue of the subscriber.
+`ForwardingTopology` is the new topology that was designed to take advantage of several native broker features offered by Azure Service Bus. Unlike `EndpointOrientedTopology`, it doesn't work with a single topic per publisher. All publishers use a topic bundle. Subscriptions are created under topic bundle with one subscription entity per subscribing endpoint. Each subscription contains multiple rules. A rule per event type that subscribing endpoint is interested in. This allows complete decoupling between publishers and subscribers. All messages received by subscription are forwarded to the input queue of the subscriber.
 
 This topology solves the polymorphic events and the events overflow problems `EndpointOrientedTopology` has.
 
