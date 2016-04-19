@@ -27,7 +27,7 @@ The `ForwardingTopology` was introduced to take advantage of the broker nature o
 
 Both topologies create a single input queue per endpoint and implement [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) mechanism. However, there is a significant difference in the way the mechanism is implemented.
 
-Starting from Version 7, no default topology is set by the Azure Service Bus transport. Topology has to be configured using [configuration API](/nservicebus/azure-service-bus/configuration.md).
+Starting from Version 7, no default topology is set by the Azure Service Bus transport. Topology has to be configured using [configuration API](/nservicebus/azure-service-bus/configuration/configuration.md).
 
 
 ### Endpoint Oriented Topology
