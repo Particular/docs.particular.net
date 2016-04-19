@@ -11,13 +11,11 @@ related:
 ---
 
 
-## [Topology](/nservicebus/azure-servicebus/topologies/) is mandatory
+## [Topology](/nservicebus/azure-service-bus/topologies/) is mandatory
 
-In version 7 and above topology is mandatory
+In version 7 and above the topology selection is mandatory:
 
 snippet: topology-selection-upgrade-guide
 
 
-## Publishers name configuration
-
-TODO
+## [Publisher names configuration](/nservicebus/azure-service-bus/publisher-names-configuration.md)
