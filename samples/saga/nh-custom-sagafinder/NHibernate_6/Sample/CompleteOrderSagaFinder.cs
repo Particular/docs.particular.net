@@ -1,16 +1,21 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Extensibility;
-using NServiceBus.Persistence;
-using NServiceBus.Sagas;
+﻿using NServiceBus.Persistence.NHibernate;
+using NServiceBus.Saga;
+using NHibernate;
 
 class CompleteOrderSagaFinder : IFindSagas<OrderSagaData>.Using<CompleteOrder>
 {
-    public Task<OrderSagaData> FindBy(CompleteOrder message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
+    NHibernateStorageContext storageContext;
+
+    public CompleteOrderSagaFinder(NHibernateStorageContext storageContext)
     {
-        OrderSagaData orderSagaData = storageSession.Session().QueryOver<OrderSagaData>()
+        this.storageContext = storageContext;
+    }
+
+    public OrderSagaData FindBy(CompleteOrder message)
+    {
+        ISession session = storageContext.Session;
+        return session.QueryOver<OrderSagaData>()
             .Where(d => d.OrderId == message.OrderId)
             .SingleOrDefault();
-        return Task.FromResult(orderSagaData);
     }
 }
