@@ -132,14 +132,14 @@
       Url: "nservicebus/transports"
       Articles:
         - Title: "Azure Service Bus Transport"
-          Url: "nservicebus/azure-servicebus"
+          Url: "nservicebus/azure-service-bus"
           Articles:
-            - "nservicebus/azure-servicebus/faq"
-            - "nservicebus/azure-servicebus/transaction-support"
-            - "nservicebus/azure-servicebus/configuration"
-            - "nservicebus/azure-servicebus/native-integration"
-            - "nservicebus/azure-servicebus/performance-tuning"
-            - "nservicebus/azure-servicebus/publisher-names-configuration"
+            - "nservicebus/azure-service-bus/faq"
+            - "nservicebus/azure-service-bus/transaction-support"
+            - "nservicebus/azure-service-bus/configuration"
+            - "nservicebus/azure-service-bus/native-integration"
+            - "nservicebus/azure-service-bus/performance-tuning"
+            - "nservicebus/azure-service-bus/publisher-names-configuration"
         - Title: "Azure Storage Queues Transport"
           Url: "nservicebus/azure-storage-queues"
           Articles:

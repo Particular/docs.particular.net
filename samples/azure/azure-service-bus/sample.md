@@ -5,7 +5,7 @@ reviewed: 2016-03-21
 component: ASB
 tags:
 related:
-- nservicebus/azure-servicebus
+- nservicebus/azure-service-bus
 ---
 
 ## Prerequisites

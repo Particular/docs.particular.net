@@ -15,7 +15,7 @@
     - NServiceBus.Azure
 
 - Key: ASB
-  Url: nservicebus/azure-servicebus
+  Url: nservicebus/azure-service-bus
   NugetOrder:
     - NServiceBus.Azure.Transports.WindowsAzureServiceBus
 
