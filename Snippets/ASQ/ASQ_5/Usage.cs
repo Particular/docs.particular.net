@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Azure.Transports.AzureStorageQueues
+﻿namespace ASQ_5
 {
     using NServiceBus;
 
@@ -6,7 +6,7 @@
     {
         Usage(Configure configure)
         {
-            #region AzureStorageQueueTransportWithAzure 5
+            #region AzureStorageQueueTransportWithAzure
 
             configure.UseTransport<AzureStorageQueue>();
 
@@ -15,7 +15,7 @@
 
         //TODO: fix when azure host is split
         /**
-        #region AzureStorageQueueTransportWithAzureHost 5
+        #region AzureStorageQueueTransportWithAzureHost
 
         public class EndpointConfig : IConfigureThisEndpoint, UsingTransport<AzureStorageQueue> { }
 

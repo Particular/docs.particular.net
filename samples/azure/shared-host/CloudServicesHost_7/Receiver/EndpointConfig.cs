@@ -1,5 +1,4 @@
 ﻿using NServiceBus;
-using NServiceBus.Azure.Transports.WindowsAzureStorageQueues;
 using NServiceBus.Logging;
 
 public class EndpointConfig : IConfigureThisEndpoint
@@ -10,7 +9,7 @@ public class EndpointConfig : IConfigureThisEndpoint
             .ConnectionString("UseDevelopmentStorage=true");
         configuration.UseTransport<AzureStorageQueueTransport>()
             .ConnectionString("UseDevelopmentStorage=true")
-            .SerializeMessageWrapperWith(definition => MessageWrapperSerializer.Json.Value);
+            .SerializeMessageWrapperWith<JsonSerializer>();
         configuration.SendFailedMessagesTo("error");
         LogManager.Use<DefaultFactory>().Level(LogLevel.Debug);
 

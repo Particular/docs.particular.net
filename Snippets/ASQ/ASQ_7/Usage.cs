@@ -1,38 +1,43 @@
-﻿namespace Snippets5.Azure.Transports.AzureStorageQueues
+﻿// ReSharper disable SuggestVarOrType_Elsewhere
+namespace ASQ_7
 {
     using NServiceBus;
 
     class Usage
     {
-        Usage(EndpointConfiguration endpointConfiguration)
+        void UseTransport(EndpointConfiguration endpointConfiguration)
         {
             #region AzureStorageQueueTransportWithAzure
 
             endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
 
             #endregion
+        }
 
+        void CodeOnly(EndpointConfiguration endpointConfiguration)
+        {
             #region AzureStorageQueueConfigCodeOnly
 
-            endpointConfiguration.UseTransport<AzureStorageQueueTransport>()
-                .ConnectionString("azure-storage-connection-string")
-                .BatchSize(20)
-                .MaximumWaitTimeWhenIdle(1000)
-                .PeekInterval(100);
+            var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+            transport.ConnectionString("azure-storage-connection-string");
+            transport.BatchSize(20);
+            transport.MaximumWaitTimeWhenIdle(1000);
+            transport.PeekInterval(100);
 
             #endregion
+        }
 
+        void AccountNamesInsteadOfConnectionStrings(EndpointConfiguration endpointConfiguration)
+        {
             #region AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
 
-            endpointConfiguration.UseTransport<AzureStorageQueueTransport>()
-                .Addressing()
+            var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+            transport.Addressing()
                 .UseAccountNamesInsteadOfConnectionStrings();
 
             #endregion
         }
 
-        //TODO: fix when we split azure
-        /**
         #region AzureStorageQueueTransportWithAzureHost
 
         public class EndpointConfig : IConfigureThisEndpoint
@@ -44,6 +49,5 @@
         }
 
         #endregion
-    **/
     }
 }
