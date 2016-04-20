@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Azure.Transports.AzureServiceBus
+﻿namespace ASB_7
 {
     using System.Reflection;
     using NServiceBus;
@@ -8,7 +8,7 @@
     {
         Usage(EndpointConfiguration endpointConfiguration)
         {
-            #region AzureServiceBusTransportWithAzure 7
+            #region AzureServiceBusTransportWithAzure
 
             endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
@@ -32,7 +32,7 @@
         
         void PublisherNamesMappingByMessageType(EndpointConfiguration endpointConfiguration)
         {
-            #region publisher_names_mapping_by_message_type 7
+            #region publisher_names_mapping_by_message_type
 
             endpointConfiguration.UseTransport<AzureServiceBusTransport>()
                 .UseTopology<EndpointOrientedTopology>()
@@ -43,7 +43,7 @@
 
         void PublisherNamesMappingByAssembly(EndpointConfiguration endpointConfiguration)
         {
-            #region publisher_names_mapping_by_assembly 7
+            #region publisher_names_mapping_by_assembly
 
             endpointConfiguration.UseTransport<AzureServiceBusTransport>()
                 .UseTopology<EndpointOrientedTopology>()
@@ -54,7 +54,7 @@
 
         void PublisherNamesMappingUpgradeGuide(EndpointConfiguration endpointConfiguration)
         {
-            #region publisher_names_mapping_upgrade_guide 7
+            #region publisher_names_mapping_upgrade_guide
 
             endpointConfiguration.UseTransport<AzureServiceBusTransport>()
                 .UseTopology<EndpointOrientedTopology>()
