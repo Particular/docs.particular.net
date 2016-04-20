@@ -15,8 +15,8 @@ To configure _namespace partitioning strategy_ properly users have to select des
 
 ### Single namespace partitioning #
 
-The default _namespace partitioning strategy_ is `SingleNamespacePartitioning`. With the default setup, transports uses only a single namespace to send and receive messages.  
-Users can provide namespace connection string directly with `ConnectionString` extension method:
+The default _namespace partitioning strategy_ is `SingleNamespacePartitioning`. With the default setup, transport uses only a single namespace to send and receive messages.  
+Namespace connection string can be defined via code using `ConnectionString` extension:
 
 snippet: single_namespace_partitioning_strategy_with_default_connection_string
 
