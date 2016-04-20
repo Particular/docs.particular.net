@@ -1,10 +1,12 @@
 ---
 title: Azure Service Bus Transport Transaction Support
 summary: Azure ServiceBus Transport Transaction Support
+reviewed: 2016-04-20
 tags:
 - Azure
 - Cloud
 - Configuration
+- Transactions
 ---
 
 
@@ -17,10 +19,10 @@ NServiceBus AzureServiceBus transport configuration is hard-coded to `Serializab
 
 ### Version 6 and above
 
-Azure Service Bus Transport supports `SendAtomicWithReceive`, `ReceiveOnly` and `Unreliable` levels.
+Azure Service Bus Transport supports `SendAtomicWithReceive`, `ReceiveOnly` and `None` levels.
 
 
-#### SendAtomicWithReceive
+#### Transport transaction - Sends atomic with Receive
 
 Note: `SendAtomicWithReceive` level is supported only when destination and receive queues are in the same namespace.
 
@@ -29,7 +31,7 @@ The `SendAtomicWithReceive` guarantee is achieved by using `ViaEntityPath` prope
 If the `ViaEntityPath` is not empty, then messages will be added to the receive queue. The messages will be forwarded to their actual destination (inside the broker) only when the complete operation is called on the received brokered message. The message won't be forwarded if the lock duration limit is exceeded (30 seconds by default) or if the message is explicitly abandoned.
 
 
-#### ReceiveOnly
+#### Transport transaction - Receive Only
 
 The `ReceiveOnly` guarantee is based on the Azure Service Bus Peek-Lock mechanism. 
 

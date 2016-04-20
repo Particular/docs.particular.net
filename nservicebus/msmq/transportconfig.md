@@ -1,10 +1,11 @@
 ---
 title: MSMQ Transport Configuration
 summary: Explains the mechanics of MSMQ transport, its configuration options and various other configuration settings that were at some point coupled to this transport
-reviewed: 2016-04-05
+reviewed: 2016-04-20
 tags:
 - Transports
 - MSMQ
+- Transactions
 redirects:
  - nservicebus/msmqtransportconfig
 ---
@@ -62,13 +63,13 @@ snippet:ApplyLabelToMessages
 
 MSMQ Transport supports the following [Transport Transaction Modes](/nservicebus/messaging/transactions.md):
 
- * Transaction scope
- * Receive only
- * Sends atomic with Receive
- * No transactions
+ * Transaction scope (Distributed transaction)
+ * Transport transaction - Sends atomic with Receive
+ * Transport transaction - Receive Only 
+ * Unreliable (Transactions Disabled)
 
 
-### Transaction scope
+### Transaction scope (Distributed transaction)
 
 In this mode the ambient transaction is started before receiving the message. The transaction encompasses all stages of processing including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no escalation to Distributed Transaction Coordinator (DTC).
 

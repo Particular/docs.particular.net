@@ -1,9 +1,11 @@
 ---
 title: SQL Server Transport Design
 summary: The design and implementation details of SQL Server Transport
-reviewed: 2016-04-05
+reviewed: 2016-04-20
 tags:
 - SQL Server
+- Transactions
+- Transport
 ---
 
 
@@ -83,13 +85,13 @@ snippet:sql-2.2.2-ExpiresIndex
 
 SQL Server transport supports the following [Transport Transaction Modes](/nservicebus/messaging/transactions.md):
 
- * Transaction scope
- * Receive only
- * Sends atomic with Receive
- * No transactions
+ * Transaction scope (Distributed transaction)
+ * Transport transaction - Sends atomic with Receive
+ * Transport transaction - Receive Only 
+ * Unreliable (Transactions Disabled)
 
 
-### Transaction scope
+### Transaction scope (Distributed transaction)
 
 In this mode the ambient transaction is started before receiving the message. The transaction encompasses all stages of processing including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no escalation to Distributed Transaction Coordinator (DTC).
 
