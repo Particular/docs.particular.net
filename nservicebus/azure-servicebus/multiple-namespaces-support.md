@@ -1,6 +1,6 @@
 ---
 title: Multiple namespace support
-summary: How to configure transport to support different partitioning strategies 
+summary: Configuring Azure ServiceBus transport to support different partitioning strategies. 
 component: ASB
 tags:
 - Cloud
