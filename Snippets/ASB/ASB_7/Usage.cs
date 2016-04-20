@@ -15,8 +15,6 @@
             #endregion
         }
 
-        //TODO: fix when we split azure
-        /**
         #region AzureServiceBusTransportWithAzureHost 7
 
         public class EndpointConfig : IConfigureThisEndpoint
@@ -28,8 +26,7 @@
         }
 
         #endregion
-        **/
-        
+
         void PublisherNamesMappingByMessageType(EndpointConfiguration endpointConfiguration)
         {
             #region publisher_names_mapping_by_message_type
