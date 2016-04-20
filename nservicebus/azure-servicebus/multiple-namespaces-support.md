@@ -30,6 +30,10 @@ With this strategy, only one namespace has to be configured. Configuration throw
 
 ### Round robin namespace partitioning #
 
+Another possible strategy is `RoundRobinNamespacePartitioning`. With this strategy, transport uses each registered namespace cyclically to send messages and it receives messages from all of them.  
+This strategy is useful to avoid throttling by Azure infrastructure and to improve scale-out scenarios.  
+Selecting `RoundRobinNamespacePartitioning` strategy, users have to provide more than one namespace through the configuration API. Configuration throws a `ConfigurationErrorsException` if only one namespace has been configured. 
+
 snippet: round_robin_partitioning_strategy
 
 ### Fail over namespace partitioning #
