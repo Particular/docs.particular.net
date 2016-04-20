@@ -259,7 +259,7 @@ And checking `Ignore YAML Front-matter`
  * Any directory in that structure with a sample.md will be considered a "root for a sample" or Sample Root.
  * A Sample Root may not contain an sample.md in subdirectories.
  * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
- * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root. 
+ * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.
 
 
 ### Startup projects
@@ -312,7 +312,6 @@ Add a file anywhere in the docs repository that is suffixed with `.include.md`. 
 ### Using an include
 
 Add the following to the markdown `include: theKey`
-
 
 
 ## Code Snippets
