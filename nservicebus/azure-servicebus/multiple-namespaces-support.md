@@ -25,6 +25,9 @@ Transport uses namespace name to avoid sharing namespace secrets.
 
 snippet: single_namespace_partitioning_strategy_with_add_namespace
 
+With this strategy, only one namespace has to be configured. Configuration throws a `ConfigurationErrorsException` if more than one namespace has been configured.   
+`SingleNamespacePartitioning` strategy is the easiest one but it's the less relyable: the only configured namespace is a single point of failure for the entire system.
+
 ### Round robin namespace partitioning #
 
 snippet: round_robin_partitioning_strategy
