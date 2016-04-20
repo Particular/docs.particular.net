@@ -5,14 +5,7 @@
 
     class MultipleNamespaces
     {
-        private readonly EndpointConfiguration endpointConfiguration;
-
-        public MultipleNamespaces(EndpointConfiguration endpointConfiguration)
-        {
-            this.endpointConfiguration = endpointConfiguration;
-        }
-
-        public void SingleNamespaceStrategyWithAddNamespace()
+        public void SingleNamespaceStrategyWithAddNamespace(EndpointConfiguration endpointConfiguration)
         {
             #region single_namespace_partitioning_strategy_with_add_namespace
 
@@ -23,7 +16,7 @@
             #endregion
         }
 
-        public void SingleNamespaceStrategyWithDefaultConnectionString()
+        public void SingleNamespaceStrategyWithDefaultConnectionString(EndpointConfiguration endpointConfiguration)
         {
             #region single_namespace_partitioning_strategy_with_default_connection_string
 
@@ -34,7 +27,7 @@
             #endregion
         }
 
-        public void RoundRobinNamespacePartitioning()
+        public void RoundRobinNamespacePartitioning(EndpointConfiguration endpointConfiguration)
         {
             #region round_robin_partitioning_strategy
 
@@ -47,7 +40,7 @@
             #endregion
         }
 
-        public void FailOverNamespacePartitioning()
+        public void FailOverNamespacePartitioning(EndpointConfiguration endpointConfiguration)
         {
             #region fail_over_partitioning_strategy
 
@@ -59,7 +52,7 @@
             #endregion
         }
 
-        public void ReplicatedNamespacePartitioning()
+        public void ReplicatedNamespacePartitioning(EndpointConfiguration endpointConfiguration)
         {
             #region replicated_partitioning_strategy
 
@@ -72,7 +65,7 @@
             #endregion
         }
 
-        public void ShardedNamespacePartitioning()
+        public void ShardedNamespacePartitioning(EndpointConfiguration endpointConfiguration)
         {
             #region sharded_partitioning_strategy_configuration
 
