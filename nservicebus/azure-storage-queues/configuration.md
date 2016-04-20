@@ -80,3 +80,10 @@ This feature can be enabled by specifying `.UseAccountNamesInsteadOfConnectionSt
 snippet:AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
 
 NOTE: This feature is not available in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 6 and below.
+
+## Hashing algorithms
+If the queue is longer than [63 characters](https://msdn.microsoft.com/en-us/library/azure/dd179349.aspx), the Azure Storage Queues Transport uses a hashing algorithm to rename it. The default algorithm is `MD5`. In order to use `SHA1` instead, use the following configuration:
+
+snippet:AzureStorageQueueUseSha1InsteadOfMD5
+
+NOTE: This feature is not available in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 6 and below.
