@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Queues Transport Upgrade Version 6 to 7
 summary: Instructions on how to upgrade Azure Storage Queues Transport Version 6 to 7.
-reviewed: 2016-04-05
+reviewed: 2016-04-20
 tags:
  - upgrade
  - migration
@@ -13,3 +13,11 @@ related:
 
 ## Azure Storage Queues Transport
 
+
+### Serialization
+
+In previous versions, the Azure Storage Queues Transport change the default `SerializationDefinition` to `JsonSerializer`.
+
+In Version 6 of NServiceBus transports no longer have the ability to manipulate serialization. To preserve backward compatibility and ensure that message payloads are small, setting JSON serialization should now be done on the endpoint configuration level.
+
+snippet:6to7-serializer-definition
