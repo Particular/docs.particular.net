@@ -72,6 +72,34 @@ To turn on the gateway, add the following to the configuration:
 
 snippet:GatewayConfiguration
 
+By default the Gateway will retry failed messages 4 times, increasing the delay by 60 seconds each time as follows:
+
+Retry | Delay
+---- | ----
+1 | 60 seconds
+2 | 120 seconds
+3 | 180 seconds
+4 | 240 seconds
+
+The number of retries and the time to increase between retries can be configured as follows:
+
+snippet:GatewayDefaultRetryPolicyConfiguration
+
+The default retry policy can be replaced by implementing a `Func<IncomingMessage,TimeSpan>` to calculate the delay for each retry:
+
+snippet:GatewayCustomRetryPolicyConfiguration
+
+This example custom retry policy will produce the same results as the default retry policy. 
+
+To discontinue retries return `TimeSpan.Zero`.
+
+WARN: something about not using transactions or other sillyness in custom retry policies.
+
+WARN: Make sure the custom retry policy has an ending.
+
+To disable retries in the gateway use the `DisableRetries` setting:
+
+snippet: GatewayDisableRetriesConfiguration
 
 ## Key messages
 
