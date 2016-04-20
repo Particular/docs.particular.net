@@ -29,20 +29,21 @@ Below is the full list of connection string options. Note that they are separate
  * `RequestedHeartbeat`: The interval for the heartbeats between the client and the server. Defaults to `5` seconds
  * `DequeueTimeout` The time period allowed for the dequeue strategy to dequeue a message. Defaults to `1` second
 
-NOTE: In Version 4 and above `DequeueTimeout` is deprecated as it is not longer relevant. See  
+NOTE: In Versions 4 and above `DequeueTimeout` is deprecated as it is not longer relevant. See  
 
  * `PrefetchCount`: The number of messages to [prefetch](http://www.rabbitmq.com/consumer-prefetch.html) when consuming messages from the broker. Defaults to the number of configured threads for the transport(as of v2.1)
 
-NOTE: In Version 4 and above `PrefetchCount` is obsolete and `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` should be used instead. See [Throughput Throttling](/samples/throttling/) sample.
+NOTE: In Versions 4 and above `PrefetchCount` is obsolete and `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` should be used instead. See [Throughput Throttling](/samples/throttling/) sample.
 
  * `UsePublisherConfirms`: Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used. Defaults to `true`
  * `MaxWaitTimeForConfirms`: How long the client should wait for publisher confirms if enabled. Defaults to `30` seconds.
  * `RetryDelay`: The time to wait before trying to reconnect to the broker if connection is lost. Defaults to `10` seconds
 
-In Version 4 and above the following options are added to connection string options.
-* `UseTls`: Indicates if the connection should be done using TLS. If `Port` is not specified and `UseTls` is enabled the port will default to `5671`.
-* `CertPath`: The certificated path that should be used when using TLS.
-* `CertPassphrase`: The certificate password. 
+In Versions 4 and above the following options are added to connection string options.
+
+ * `UseTls`: Indicates if the connection should be done using TLS. If `Port` is not specified and `UseTls` is enabled the port will default to `5671`.
+ * `CertPath`: The certificated path that should be used when using TLS.
+ * `CertPassphrase`: The certificate password. 
 
 To use a custom name for the connection string use:
 
@@ -63,7 +64,7 @@ RabbitMQ is a broker which means that scale out is done by adding more endpoints
 
 snippet:rabbitmq-config-disablecallbackreceiver
 
-NOTE: In Version 4 and above Callbacks are disabled by default. To enable them follow [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-version-6-and-above).
+NOTE: In Versions 4 and above Callbacks are disabled by default. To enable them follow [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-version-6-and-above).
 
 This means that the queue will not be created and no extra threads will be used to fetch messages from that queue.
 
@@ -83,7 +84,7 @@ WARNING: It is extremely important to use a uniquely identifying property of the
 
 ### Getting full control over the broker connection
 
-NOTE: In Version 4 and above `IManageRabbitMqConnections` is obsolete and there is no option to provide custom connection manager.
+NOTE: In Versions 4 and above `IManageRabbitMqConnections` is obsolete and there is no option to provide custom connection manager.
 
 The default connection manager that comes with the transport is usually good enough for most users. To control how the connection(s) with the broker is managed implement a custom connection manager by inheriting from `IManageRabbitMqConnections`. This requires that connections be provided for:
 
@@ -102,9 +103,10 @@ By the default the RabbitMQ transport will trigger the on critical error action 
 
 snippet:rabbitmq-custom-breaker-settings
 
-In Version 4 and above xml configuration options for controlling lost connection behavior were replaced by code equivalent. 
+In Versions 4 and above xml configuration options for controlling lost connection behavior were replaced by code equivalent. 
 
 snippet:rabbitmq-custom-breaker-settings-code
+
 
 ### Changing routing topology
 
@@ -116,7 +118,7 @@ To enable direct routing use the following configuration:
 
 snippet:rabbitmq-config-usedirectroutingtopology
 
-You can adjust the conventions for exchange name and routing key by using the overload:
+Adjust the conventions for exchange name and routing key by using the overload:
 
 snippet:rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
@@ -127,20 +129,24 @@ If the routing topologies mentioned above isn't flexible enough then take full c
 
 snippet:rabbitmq-config-useroutingtopology
 
+
 ## Transactions and delivery guarantees
+
 
 ### Versions 4 and above
 
 The RabbitMQ transport supports the following [Transport Transaction Modes](/nservicebus/messaging/transactions.md):
 
-* `ReceiveOnly`
-* `None`
+ * `ReceiveOnly`
+ * `None`
+
 
 ### ReceiveOnly
 
 When running in `ReceiveOnly` mode, the RabbitMQ transport consumes messages from the broker in manual acknowledgment mode. After a message is successfully processed, it is acknowledged via the AMQP [basic.ack](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.ack) method, which lets the broker know that the message can be removed from the queue. If a message is not successfully processed and needs to be retried, it is requeued via the AMQP [basic.reject](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.reject) method.
 
 WARNING: If the connection to the broker is lost for any reason before a message can be acknowledged, even if the message was successfully processed, the message will automatically be requeued by the broker. This will result in the endpoint processing the same message multiple times.
+
 
 ### None
 
