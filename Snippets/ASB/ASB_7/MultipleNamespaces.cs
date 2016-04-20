@@ -21,8 +21,7 @@
             #region single_namespace_partitioning_strategy_with_default_connection_string
 
             endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-                .ConnectionString("Endpoint=sb://namespace.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]")
-                .NamespacePartitioning().UseStrategy<SingleNamespacePartitioning>();
+                .ConnectionString("Endpoint=sb://namespace.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
 
             #endregion
         }
