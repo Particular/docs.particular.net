@@ -8,7 +8,7 @@ related:
  - samples/gateway
 ---
 
-The purpose of the gateway is to provide durable fire-and-forget messaging with NServiceBus across physically separated sites, where "sites " are locations run using IT infrastructure and not web sites.
+The purpose of the gateway is to provide durable fire-and-forget messaging with NServiceBus across physically separated sites, where "sites" are locations run using IT infrastructure and not web sites.
 
 The gateway only comes into play where the use of regular queued transports for communication are not possible i.e. when setting up a VPN connection is not an option. The reason for not using a VPN could be security concerns, bandwidth limitation, latency problems, high availability constraints, etc.
 
@@ -33,7 +33,7 @@ Prices are usually set for at least a day at a time so it's good enough for the 
 
 Internally in HQ, other business services may need more frequent updates, so model this with another logically different message, `PriceUpdatedForProduct`, which allows the use of the (pub/sub pattern)[/nservicebus/messaging/publish-subscribe] while communicating with other BS.
 
-The gateway doesn't support pub/sub (more on that later) but this isn't a problem since request/response is perfectly fine within a BS, remembering that those sites are physically different but the communication is within the same logical BS. So when using the gateway, the guideline is to model the messages going explicitly across sites. The following picture illustrates When extending the sample to include a sales service responsible for reporting the sales statistics so that the pricing service can set appropriate prices, the following picture:
+The gateway doesn't support pub/sub (more on that later) but this isn't a problem since request/response is perfectly fine within a BS, remembering that those sites are physically different but the communication is within the same logical BS. So when using the gateway, the guideline is to model the messages going explicitly across sites. The following picture illustrates the sample and includes a sales service responsible for reporting the sales statistics so that the pricing service can set appropriate prices.
 
 ![Gateway Store and Headquarters example](store-to-headquarters-pricing-and-sales.png "Logical view")
 
@@ -91,15 +91,15 @@ snippet:GatewayCustomRetryPolicyConfiguration
 
 This example custom retry policy will produce the same results as the default retry policy. 
 
-To discontinue retries return `TimeSpan.Zero`.
+Custom retry policies should eventually give up or a message could get stuck in a loop being retried forever. To discontinue retries return `TimeSpan.Zero` from the custom retry policy and the message will be treated as a fault. [Faulted messages are routed to the configured error queue](/nservicebus/errors/index.md). 
 
-WARN: something about not using transactions or other sillyness in custom retry policies.
-
-WARN: Make sure the custom retry policy has an ending.
+WARN: The recoverability mechanisms built into the Gateway do not roll back the [receieve transaction](/nservicebus/messaging/transactions.md) or any ambient transaction when sending a message to another site fails. Any custom recoverability policy cannot rely on an ambient transaction being rolled back. 
 
 To disable retries in the gateway use the `DisableRetries` setting:
 
 snippet: GatewayDisableRetriesConfiguration
+
+When retries are disabled, any messages that fail to be sent to another site will be immediately treated as faulted and routed to the configured error queue. 
 
 ## Key messages
 
