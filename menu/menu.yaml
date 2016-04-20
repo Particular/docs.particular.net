@@ -28,10 +28,12 @@
         - Title: "RabbitMQ Transport"
           Articles:
             - "nservicebus/upgrades/rabbitmq-3to4"
+        - Title: "Azure Storage Persistence"
+          Articles:
+            - "nservicebus/upgrades/asp-saga-deduplication"
         - Title: "Azure Storage Queues Transport"
           Articles:
             - "nservicebus/upgrades/asq-6to7"
-            - "nservicebus/upgrades/asp-saga-deduplication"
         - Title: "Azure Service Bus Transport"
           Articles:
             - "nservicebus/upgrades/asb-6to7"
