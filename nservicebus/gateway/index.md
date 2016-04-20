@@ -66,13 +66,18 @@ A gateway runs inside each host process. The gateway gets its input from a regul
 
 ### Configuring the gateway
 
-In Version 5 the gateway is provided by the `NServiceBus.Gateway` NuGet. In Version 3 and Version 4 the gateway is included in the core assembly, meaning that every endpoint is capable of running a gateway.
+In Version 5 and above the gateway is provided by the `NServiceBus.Gateway` NuGet. In Version 3 and Version 4 the gateway is included in the core assembly, meaning that every endpoint is capable of running a gateway.
 
 To turn on the gateway, add the following to the configuration:
 
 snippet:GatewayConfiguration
 
-By default the Gateway will retry failed messages 4 times, increasing the delay by 60 seconds each time as follows:
+
+### Retries
+
+In NserviceBus Version 3, Version 4 and Version 5 the gateway uses the general [retries](/nservicebus/errors/automatic-retries.md) configured for the endpoint.
+
+In Version 6 the gateway has its own retry mechanism. It will retry failed messages 4 times by default, increasing the delay by 60 seconds each time as follows:
 
 Retry | Delay
 ---- | ----
