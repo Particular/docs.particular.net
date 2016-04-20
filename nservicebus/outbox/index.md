@@ -72,7 +72,6 @@ These default settings can be changed by specifying new defaults in the config f
 
 snippet:OutboxNHibernateTimeToKeep
 
-
 ## Using Outbox with RavenDB persistence
 
 
@@ -88,3 +87,47 @@ The RavenDB implementation by default keeps deduplication records for 7 days and
 These default settings can be changed by specifying new defaults in the settings dictionary:
 
 snippet:OutboxRavendBTimeToKeep
+
+## Configuring outbox
+
+
+### Cleanup interval
+
+
+An endpoint that processes a high volume of messages per second requires a shorter interval to clean up more frequently.
+
+For example, an endpoint that processes 1,000 messages per second generates 60,000 outbox records per minute. In that case, running the cleanup task every second would result in deleting 1,000 records each interval. Running the cleanup task every 100 milliseconds reduces this number to 100 records each run.
+
+### Idempotency
+
+If the application is idempotent then deduplication is not required. The outbox is then only used to deliver messages in an at-least-once behavior. In such case the deduplication time window could even be set to expire immediately.
+
+Outbox records will only be removed when all the containing transport operations are succeeeded.
+
+### Deduplication time window
+
+There is no exact calculation that yields seven days as a magic number. What needs to be considered is: how fast will an issue be noticed and fixed that can lead to duplication of messages?
+
+#### Server failure
+
+How fast will it be noticed that a sending system goes down between the two operations because of hardware issues? Will this system be recovered in minutes, hours or days? Most likely not minutes unless its a high available cluster, maybe hours when there is a good recovery strategy, but most likely within seven days.
+
+#### Network failure
+
+Network failures like delayed acks and timeout are even harder to resolve due to routing and congestion. Such issues often take a long time often requiring external experts taking days to resolve.
+
+#### OPS Detect, asses and fix period
+
+Minutes or hours is usually too short a period to detect, assess and fix a scenario as mentioned. In seven days it is likely to have detected that something is wrong and resolve it. Having a available infrastructure and a 24x7 expert DevOps team creates the possibility to reduce the deduplication window from 7 days accordingly.
+
+#### Increase time window in case of issues
+
+If an issue is detected and more time is needed to resolve it, there is always the possibility to *increase* the deduplication window on the receivers to create more time to come up with a fix.
+
+#### Adjusting deduplication time window
+
+A large set of deduplication records might need to be deleted when reverting the deduplication time window to the old value. 
+
+For example, the deduplication time window is 1 day. An issue occurs, the ops team sets it to one week. The issue is resolved after 2,5 days including detection and assesment, instead of reverting to 1 day it probably is best to set it to 2,5 days. The 1,5 days of recorded deduplication data will not be purged at the next cleanup interval which can potentially cause congestion and locking issues.
+
+
