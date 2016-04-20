@@ -20,7 +20,7 @@ The Azure Storage Queues Transport can be configured using the following paramet
  * `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. The default value is 10. Depending on the expected load, the value should vary between 1 and 32 (the maximum).
  * `DegreeOfReceiveParallelism`: The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it. By default this value is set to 8. This means eight message processing loops will receive up to the configured `BatchSize` number of messages in parallel. For example with the default `BatchSize` of 32 and the default degree of parallelism of 8 the transport will be able to receive 256 messages from the storage queue at the same time.
 
- WARNING: You need to carefully select the values of `BatchSize` , `DegreeOfParallelism`, `Concurrency` and the other parameters like `MaximumWaitTimeWhenIdle` in order to get the desired speed out of the transport while not exceeding the boundaries of the allowed number of operations per second.
+ WARNING: You need to carefully select the values of `BatchSize` , `DegreeOfParallelism`, `Concurrency` and the other parameters like `MaximumWaitTimeWhenIdle` in order to get the desired speed out of the transport while not exceeding [the boundaries](https://azure.microsoft.com/en-us/documentation/articles/azure-subscription-service-limits/#storage-limits) of the allowed number of operations per second.
 
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify the endpoint name and select a scale-out option.
 
