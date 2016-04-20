@@ -31,7 +31,7 @@ NServiceBus offers four levels of guarantees with regards to message processing.
 
 The implementation details for each transport are discussed in the dedicated documentation sections. They can be accessed by clicking the links with the transport name in the following table:
 
-|  | Transaction scope (Distributed transaction) | Transport transaction - Sends atomic with Receive  | Transport transaction - Receive Only | Unreliable (Transactions Disabled) |
+|  | [Transaction scope (Distributed transaction)](/nservicebus/messaging/transactions.md#transactions-transaction-scope-distributed-transaction) | [Transport transaction - Sends atomic with Receive](/nservicebus/messaging/transactions.md#transactions-transport-transaction-sends-atomic-with-receive)  | [Transport transaction - Receive Only](/nservicebus/messaging/transactions.md#transactions-transport-transaction-receive-only) | [Unreliable (Transactions Disabled)](/nservicebus/messaging/transactions.md#transactions-unreliable-transactions-disabled) |
 | :------------------| :-: |:-:| :-:| :-: |
 | [MSMQ](/nservicebus/msmq/transportconfig.md#transactions-and-delivery-guarantees) | + | + | + | + |
 | [SQL Server](/nservicebus/sqlserver/design.md#transactions-and-delivery-guarantees) | + | + | + | + |
@@ -62,6 +62,20 @@ Distributed transactions do not guarantee atomicity. Changes to the database mig
 NOTE: This mode requires the selected storage to support participating in distributed transactions.
 
 
+### Transport transaction - Sends atomic with Receive
+
+Some transports support enlisting outgoing operations in the current receive transaction. This prevents messages being sent to downstream endpoints during retries. Currently only the MSMQ and SQL Server transports support this type of transaction mode.
+
+Use the following code to use this mode:
+
+snippet:TransportTransactionAtomicSendsWithReceive
+
+
+#### Consistency guarantees
+
+This mode has the same consistency guarantees as the *Receive Only* mode, but additionally it prevents occurrence of *ghost messages* since all outgoing operations are atomic with the ongoing receive operation.
+
+
 ### Transport transaction - Receive Only
 
 In this mode the receive operation is wrapped in a transport's native transaction. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is finished successfully. See also [errors](/nservicebus/errors) for more details on retries.
@@ -85,20 +99,6 @@ When using this mode all handlers must be [idempotent](/nservicebus/concept-over
 See the `Outbox` section below for details on how NServiceBus can handle idempotency at the infrastructure level.
 
 NOTE: Version 5 and below do not support [batched dispatch](/nservicebus/messaging/batched-dispatch.md) and this meant that messages could be sent out without a matching update to business data, depending on the order in which  statements were executed. Such messages are called *ghost messages*. To avoid this situation make sure to perform all bus operations only after modifications to business data. When reviewing the code remember that there can be multiple handlers for a given message and that [handlers are executed in a certain order](/nservicebus/handlers/handler-ordering.md).
-
-
-### Transport transaction - Sends atomic with Receive
-
-Some transports support enlisting outgoing operations in the current receive transaction. This prevents messages being sent to downstream endpoints during retries. Currently only the MSMQ and SQL Server transports support this type of transaction mode.
-
-Use the following code to use this mode:
-
-snippet:TransportTransactionAtomicSendsWithReceive
-
-
-#### Consistency guarantees
-
-This mode has the same consistency guarantees as the *Receive Only* mode, but additionally it prevents occurrence of *ghost messages* since all outgoing operations are atomic with the ongoing receive operation.
 
 
 ### Unreliable (Transactions Disabled)
