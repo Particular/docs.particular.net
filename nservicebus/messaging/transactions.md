@@ -7,7 +7,7 @@ tags:
 - Consistency
 - Transports
 - TransactionScope
-reviewed: 2016-04-05
+reviewed: 2016-04-21
 ---
 
 This article covers various levels of consistency guarantees NServiceBus provides with regards to:
@@ -21,7 +21,7 @@ It does not discuss the transaction isolation aspect. Transaction isolation appl
 
 ## Transactions
 
-NServiceBus offers four levels of guarantees with regards to message processing. What levels are available depends on the selected transport. See also [Transaction handling in Azure](/nservicebus/azure/transactions.md).
+NServiceBus offers four levels of guarantees with regards to message processing. Levels availability depends on the selected transport. See also [Transaction handling in Azure](/nservicebus/azure/transactions.md).
 
 
 ### Transaction levels supported by NServiceBus transports
@@ -33,11 +33,11 @@ The implementation details for each transport are discussed in the dedicated doc
 
 |  | [Transaction scope (Distributed transaction)](/nservicebus/messaging/transactions.md#transactions-transaction-scope-distributed-transaction) | [Transport transaction - Sends atomic with Receive](/nservicebus/messaging/transactions.md#transactions-transport-transaction-sends-atomic-with-receive)  | [Transport transaction - Receive Only](/nservicebus/messaging/transactions.md#transactions-transport-transaction-receive-only) | [Unreliable (Transactions Disabled)](/nservicebus/messaging/transactions.md#transactions-unreliable-transactions-disabled) |
 | :------------------| :-: |:-:| :-:| :-: |
-| [MSMQ](/nservicebus/msmq/transportconfig.md#transactions-and-delivery-guarantees) | + | + | + | + |
-| [SQL Server](/nservicebus/sqlserver/design.md#transactions-and-delivery-guarantees) | + | + | + | + |
-| [RabbitMQ](/nservicebus/rabbitmq/configuration-api.md#transactions-and-delivery-guarantees) |  - | - | + | + |
-| [Azure Storage Queues](/nservicebus/azure-storage-queues/transaction-support.md#transactions-and-delivery-guarantees)|  - | - | + | + |
-| [Azure Service Bus](/nservicebus/azure-service-bus/transaction-support.md#transactions-and-delivery-guarantees) |  - | + | + | + |
+| [MSMQ](/nservicebus/msmq/transportconfig.md#transactions-and-delivery-guarantees) | &#10004; | &#10004; | &#10004; | &#10004; |
+| [SQL Server](/nservicebus/sqlserver/design.md#transactions-and-delivery-guarantees) | &#10004; | &#10004; | &#10004; | &#10004; |
+| [RabbitMQ](/nservicebus/rabbitmq/configuration-api.md#transactions-and-delivery-guarantees) | &#10006; | &#10006; | &#10004; | &#10004; |
+| [Azure Storage Queues](/nservicebus/azure-storage-queues/transaction-support.md#transactions-and-delivery-guarantees)| &#10006; | &#10006; | &#10004; | &#10004; |
+| [Azure Service Bus](/nservicebus/azure-service-bus/transaction-support.md#transactions-and-delivery-guarantees) | &#10006; | &#10004; | &#10004; | &#10004; |
 
 
 ### Transaction scope (Distributed transaction)
@@ -98,7 +98,7 @@ When using this mode all handlers must be [idempotent](/nservicebus/concept-over
 
 See the `Outbox` section below for details on how NServiceBus can handle idempotency at the infrastructure level.
 
-NOTE: Version 5 and below do not support [batched dispatch](/nservicebus/messaging/batched-dispatch.md) and this meant that messages could be sent out without a matching update to business data, depending on the order in which  statements were executed. Such messages are called *ghost messages*. To avoid this situation make sure to perform all bus operations only after modifications to business data. When reviewing the code remember that there can be multiple handlers for a given message and that [handlers are executed in a certain order](/nservicebus/handlers/handler-ordering.md).
+NOTE: Versions 5 and below do not support [batched dispatch](/nservicebus/messaging/batched-dispatch.md) and this meant that messages could be sent out without a matching update to business data, depending on the order in which  statements were executed. Such messages are called *ghost messages*. To avoid this situation make sure to perform all bus operations only after modifications to business data. When reviewing the code remember that there can be multiple handlers for a given message and that [handlers are executed in a certain order](/nservicebus/handlers/handler-ordering.md).
 
 
 ### Unreliable (Transactions Disabled)
