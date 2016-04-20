@@ -15,7 +15,9 @@ related:
 
 In version 7 and above the topology selection is mandatory:
 
-snippet: topology-selection-upgrade-guide
+snippet:topology-selection-upgrade-guide
 
 
-## [Publisher names configuration](/nservicebus/azure-service-bus/publisher-names-configuration.md)
+When the `EndpointOrientedTopology` is selected, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers receive event messages:
+
+snippet:publisher_names_mapping_upgrade_guide

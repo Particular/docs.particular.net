@@ -52,6 +52,21 @@
             #endregion
         }
 
+        void PublisherNamesMappingUpgradeGuide(EndpointConfiguration endpointConfiguration)
+        {
+            #region publisher_names_mapping_upgrade_guide 7
+
+            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
+                .UseTopology<EndpointOrientedTopology>()
+                .RegisterPublisherForType("publisherName", typeof(MyMessage));
+            // or
+            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
+                .UseTopology<EndpointOrientedTopology>()
+                .RegisterPublisherForAssembly("publisherName", Assembly.LoadFrom("path/to/the/assembly/that/contains/messages"));
+
+            #endregion
+        }
+
         private class MyMessage
         {
         }
