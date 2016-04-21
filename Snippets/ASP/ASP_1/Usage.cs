@@ -12,6 +12,7 @@ class Usage
 
         #endregion
     }
+
     #region PersistenceWithAzureHost
 
     public class EndpointConfig : IConfigureThisEndpoint
@@ -28,8 +29,9 @@ class Usage
     {
         #region AzurePersistenceSubscriptionsAllConnectionsCustomization
 
-        endpointConfiguration.UsePersistence<AzureStoragePersistence>()
-            .ConnectionString("connectionString");
+        var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
+        persistence.ConnectionString("connectionString");
+
         #endregion
     }
 
@@ -37,10 +39,11 @@ class Usage
     {
         #region AzurePersistenceSubscriptionsCustomization
 
-        endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()
-            .ConnectionString("connectionString")
-            .TableName("tableName")
-            .CreateSchema(true);
+        var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>();
+        persistence.ConnectionString("connectionString");
+        persistence.TableName("tableName");
+        persistence.CreateSchema(true);
+
         #endregion
     }
 
@@ -48,9 +51,10 @@ class Usage
     {
         #region AzurePersistenceSagasCustomization
 
-        endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>()
-            .ConnectionString("connectionString")
-            .CreateSchema(true);
+        var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>();
+        persistence.ConnectionString("connectionString");
+        persistence.CreateSchema(true);
+
         #endregion
     }
 
@@ -58,13 +62,14 @@ class Usage
     {
         #region AzurePersistenceTimeoutsCustomization
 
-        endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()
-            .ConnectionString("connectionString")
-            .CreateSchema(true)
-            .TimeoutManagerDataTableName("TimeoutManager")
-            .TimeoutDataTableName("TimeoutData")
-            .CatchUpInterval(3600)
-            .PartitionKeyScope("yyyy-MM-dd-HH");
+        var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>();
+        persistence.ConnectionString("connectionString");
+        persistence.CreateSchema(true);
+        persistence.TimeoutManagerDataTableName("TimeoutManager");
+        persistence.TimeoutDataTableName("TimeoutData");
+        persistence.CatchUpInterval(3600);
+        persistence.PartitionKeyScope("yyyy-MM-dd-HH");
+
         #endregion
     }
 }

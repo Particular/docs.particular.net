@@ -21,8 +21,8 @@
         {
             #region rabbitmq-config-connectionstring-in-code
 
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .ConnectionString("My custom connection string");
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.ConnectionString("My custom connection string");
 
             #endregion
         }
@@ -31,8 +31,8 @@
         {
             #region rabbitmq-config-connectionstringname
 
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .ConnectionStringName("MyConnectionStringName");
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.ConnectionStringName("MyConnectionStringName");
 
             #endregion
         }
@@ -51,8 +51,8 @@
         {
             #region rabbitmq-config-custom-id-strategy
 
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .CustomMessageIdStrategy(deliveryArgs =>
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.CustomMessageIdStrategy(deliveryArgs =>
                     deliveryArgs.BasicProperties.Headers["MyCustomId"].ToString());
 
             #endregion
@@ -62,8 +62,8 @@
         {
             #region rabbitmq-config-usedirectroutingtopology
 
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .UseDirectRoutingTopology();
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.UseDirectRoutingTopology();
 
             #endregion
         }
@@ -72,8 +72,8 @@
         {
             #region rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
 
             #endregion
         }
@@ -87,8 +87,8 @@
         {
             #region rabbitmq-config-useroutingtopology
 
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .UseRoutingTopology<MyRoutingTopology>();
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.UseRoutingTopology<MyRoutingTopology>();
 
             #endregion
         }
@@ -97,8 +97,8 @@
         {
             #region rabbitmq-custom-breaker-settings-code
 
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
 
             #endregion
         }

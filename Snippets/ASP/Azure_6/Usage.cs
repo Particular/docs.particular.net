@@ -29,10 +29,10 @@ class Usage
     {
         #region AzurePersistenceSubscriptionsCustomization 6.2
 
-        busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()
-            .ConnectionString("connectionString")
-            .TableName("tableName")
-            .CreateSchema(true);
+        var persistence = busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>();
+        persistence.ConnectionString("connectionString");
+        persistence.TableName("tableName");
+        persistence.CreateSchema(true);
 
         #endregion
     }
@@ -41,9 +41,9 @@ class Usage
     {
         #region AzurePersistenceSagasCustomization 6.2
 
-        busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>()
-            .ConnectionString("connectionString")
-            .CreateSchema(true);
+        var persistence = busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>();
+        persistence.ConnectionString("connectionString");
+        persistence.CreateSchema(true);
 
         #endregion
     }
@@ -52,13 +52,13 @@ class Usage
     {
         #region AzurePersistenceTimeoutsCustomization 6.2
 
-        busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()
-            .ConnectionString("connectionString")
-            .CreateSchema(true)
-            .TimeoutManagerDataTableName("TimeoutManager")
-            .TimeoutDataTableName("TimeoutData")
-            .CatchUpInterval(3600)
-            .PartitionKeyScope("yyyy-MM-dd-HH");
+        var persistence = busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>();
+        persistence.ConnectionString("connectionString");
+        persistence.CreateSchema(true);
+        persistence.TimeoutManagerDataTableName("TimeoutManager");
+        persistence.TimeoutDataTableName("TimeoutData");
+        persistence.CatchUpInterval(3600);
+        persistence.PartitionKeyScope("yyyy-MM-dd-HH");
 
         #endregion
     }

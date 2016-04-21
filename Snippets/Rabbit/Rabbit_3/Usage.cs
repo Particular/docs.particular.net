@@ -21,8 +21,8 @@
         {
             #region rabbitmq-config-connectionstring-in-code
 
-            busConfiguration.UseTransport<RabbitMQTransport>()
-                .ConnectionString("My custom connection string");
+            var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+            transport.ConnectionString("My custom connection string");
 
             #endregion
         }
@@ -31,8 +31,8 @@
         {
             #region rabbitmq-config-connectionstringname
 
-            busConfiguration.UseTransport<RabbitMQTransport>()
-                .ConnectionStringName("MyConnectionStringName");
+            var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+            transport.ConnectionStringName("MyConnectionStringName");
 
             #endregion
         }
@@ -42,8 +42,8 @@
         {
             #region rabbitmq-config-disable-callback-receiver
 
-            busConfiguration.UseTransport<RabbitMQTransport>()
-                .DisableCallbackReceiver();
+            var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+            transport.DisableCallbackReceiver();
 
             #endregion
         }
@@ -53,26 +53,29 @@
         {
             #region rabbitmq-config-callbackreceiver-thread-count
 
-            busConfiguration.UseTransport<RabbitMQTransport>()
-                .CallbackReceiverMaxConcurrency(10);
+            var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+            transport.CallbackReceiverMaxConcurrency(10);
 
             #endregion
         }
+
         void CustomIdStrategy(BusConfiguration busConfiguration)
         {
             #region rabbitmq-config-custom-id-strategy
 
-            busConfiguration.UseTransport<RabbitMQTransport>()
-                .CustomMessageIdStrategy(deliveryArgs => 
+            var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+            transport.CustomMessageIdStrategy(deliveryArgs =>
                     deliveryArgs.BasicProperties.Headers["MyCustomId"].ToString());
 
             #endregion
         }
+
         void UseConnectionManager(BusConfiguration busConfiguration)
         {
             #region rabbitmq-config-useconnectionmanager
 
-            busConfiguration.UseTransport<RabbitMQTransport>()
+            var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+            transport
                 .UseConnectionManager<MyConnectionManager>();
 
             #endregion
@@ -82,8 +85,8 @@
         {
             #region rabbitmq-config-usedirectroutingtopology
 
-            busConfiguration.UseTransport<RabbitMQTransport>()
-                .UseDirectRoutingTopology();
+            var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+            transport.UseDirectRoutingTopology();
 
             #endregion
         }
@@ -92,8 +95,8 @@
         {
             #region rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
-            busConfiguration.UseTransport<RabbitMQTransport>()
-                .UseDirectRoutingTopology(MyRoutingKeyConvention,(address,eventType) => "MyTopic");
+            var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+            transport.UseDirectRoutingTopology(MyRoutingKeyConvention,(address,eventType) => "MyTopic");
 
             #endregion
         }
@@ -107,11 +110,12 @@
         {
             #region rabbitmq-config-useroutingtopology
 
-            busConfiguration.UseTransport<RabbitMQTransport>()
-                .UseRoutingTopology<MyRoutingTopology>();
+            var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+            transport.UseRoutingTopology<MyRoutingTopology>();
 
             #endregion
         }
+
         class MyRoutingTopology : IRoutingTopology
         {
             public void SetupSubscription(IModel channel, Type type, string subscriberName)

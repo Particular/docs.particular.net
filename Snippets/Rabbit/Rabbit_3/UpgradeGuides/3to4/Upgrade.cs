@@ -9,8 +9,8 @@
         {
             #region 3to4rabbitmq-config-callbackreceiver-thread-count
 
-            busConfiguration.UseTransport<RabbitMQTransport>()
-                .CallbackReceiverMaxConcurrency(10);
+            var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+            transport.CallbackReceiverMaxConcurrency(10);
 
             #endregion
         }
@@ -18,8 +18,9 @@
         void UseDirectRoutingTopology(BusConfiguration busConfiguration)
         {
             #region 3to4rabbitmq-config-usedirectroutingtopology
-            busConfiguration.UseTransport<RabbitMQTransport>()
-                .UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
+
+            var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+            transport.UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
 
             #endregion
         }

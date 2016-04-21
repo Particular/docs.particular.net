@@ -18,8 +18,8 @@
             };
             store.Initialize();
 
-            busConfiguration.UsePersistence<RavenDBPersistence>()
-                .SetDefaultDocumentStore(store);
+            var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
+            persistence.SetDefaultDocumentStore(store);
 
             #endregion
         }
