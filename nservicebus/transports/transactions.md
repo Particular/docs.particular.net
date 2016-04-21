@@ -1,5 +1,5 @@
 ---
-title: Transport transactions
+title: Transports Transactions
 summary: Supported transaction modes and their consistency guarantees
 tags:
 - Transactions

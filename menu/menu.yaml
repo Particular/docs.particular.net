@@ -133,6 +133,7 @@
       Title: "Transports"
       Url: "nservicebus/transports"
       Articles:
+        - "nservicebus/transports/transactions"
         - Title: "Azure Service Bus Transport"
           Url: "nservicebus/azure-service-bus"
           Articles:
@@ -182,7 +183,6 @@
           Url: "nservicebus/transports"
           Articles:
             - "nservicebus/transports/queuecreation"
-        - "nservicebus/transports/transactions"
     -
       Title: "Serialization"
       Url: "nservicebus/serialization"
