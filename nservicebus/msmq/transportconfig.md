@@ -61,7 +61,7 @@ snippet:ApplyLabelToMessages
 
 ## Transactions and delivery guarantees
 
-MSMQ Transport supports the following [Transport Transaction Modes](/nservicebus/messaging/transactions.md):
+MSMQ Transport supports the following [Transport Transaction Modes](/nservicebus/transports/transactions.md):
 
  * Transaction scope (Distributed transaction)
  * Transport transaction - Sends atomic with Receive

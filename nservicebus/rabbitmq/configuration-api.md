@@ -214,7 +214,7 @@ snippet:rabbitmq-config-useroutingtopology
 
 ### Versions 4 and above
 
-The RabbitMQ transport supports the following [Transport Transaction Modes](/nservicebus/messaging/transactions.md):
+The RabbitMQ transport supports the following [Transport Transaction Modes](/nservicebus/transports/transactions.md):
 
  * Transport transaction - Receive Only
  * Unreliable (Transactions Disabled)

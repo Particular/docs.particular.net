@@ -133,6 +133,7 @@
       Title: "Transports"
       Url: "nservicebus/transports"
       Articles:
+        - "nservicebus/transports/transactions"
         - Title: "Azure Service Bus Transport"
           Url: "nservicebus/azure-service-bus"
           Articles:
@@ -212,12 +213,12 @@
             - "nservicebus/ravendb/operations-scripting"
             - "nservicebus/ravendb/installation"
         - Title: "Azure Storage Persistence"
-          Url: "nservicebus/azure-storage-persistence"  
+          Url: "nservicebus/azure-storage-persistence"
           Articles:
             - "nservicebus/upgrades/asp-saga-deduplication"
             - "nservicebus/azure-storage-persistence/configuration"
             - "nservicebus/azure/transactions"
-            - "nservicebus/azure-storage-persistence/performance-tuning"       
+            - "nservicebus/azure-storage-persistence/performance-tuning"
     -
       Title: "Containers"
       Url: "nservicebus/containers"
