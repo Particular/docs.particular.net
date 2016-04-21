@@ -1,4 +1,4 @@
-﻿namespace Core6.DataBus.Azure
+﻿namespace ABSDataBus_1
 {
     using NServiceBus;
     using NServiceBus.DataBus;
@@ -23,7 +23,7 @@
             int timeToLiveInSeconds = 1;
             int maxNumberOfRetryAttempts = 3;
             int numberOfIoThreads = 3; // number of parallel operations that may proceed.
-            // number of blocks that may be simultaneously uploaded when uploading a blob that is greater than the value specified by the 
+            // number of blocks that may be simultaneously uploaded when uploading a blob that is greater than the value specified by the
             int backOffIntervalBetweenRetriesInSecs = 1000;
 
             #region AzureDataBusSetup

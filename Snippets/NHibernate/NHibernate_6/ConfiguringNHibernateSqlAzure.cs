@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Persistence.NHibernate
+﻿namespace NHibernate_6
 {
     using global::NHibernate.Cfg;
     using NServiceBus;
@@ -13,8 +13,8 @@
             Configuration nhConfiguration = new Configuration();
             nhConfiguration.Properties["connection.driver_class"] = "NHibernate.SqlAzure.SqlAzureClientDriver, NHibernate.SqlAzure";
 
-            busConfiguration.UsePersistence<NHibernatePersistence>()
-                .UseConfiguration(nhConfiguration);
+            var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.UseConfiguration(nhConfiguration);
 
             #endregion
         }

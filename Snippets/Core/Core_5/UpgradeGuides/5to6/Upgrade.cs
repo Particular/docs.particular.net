@@ -10,13 +10,13 @@
         void CriticalError(BusConfiguration busConfiguration)
         {
             // ReSharper disable RedundantDelegateCreation
-            
+
             #region 5to6CriticalError
 
             busConfiguration.DefineCriticalErrorAction(
                 new Action<string, Exception>((error, exception) =>
                 {
-                    // place you custom handling here 
+                    // place you custom handling here
                 }));
 
             #endregion
@@ -28,8 +28,8 @@
         {
             #region 5to6DoNotWrapHandlersInTransaction
 
-            busConfiguration.Transactions()
-                .DoNotWrapHandlersExecutionInATransactionScope();
+            var transactions = busConfiguration.Transactions();
+            transactions.DoNotWrapHandlersExecutionInATransactionScope();
 
             #endregion
         }
@@ -55,17 +55,19 @@
         void TransportTransactionIsolationLevelAndTimeout(BusConfiguration busConfiguration)
         {
             #region 5to6TransportTransactionScopeOptions
-            busConfiguration.Transactions()
-                .IsolationLevel(IsolationLevel.RepeatableRead)
-                .DefaultTimeout(TimeSpan.FromSeconds(30));
+
+            var transactionSettings = busConfiguration.Transactions();
+            transactionSettings.IsolationLevel(IsolationLevel.RepeatableRead);
+            transactionSettings.DefaultTimeout(TimeSpan.FromSeconds(30));
             #endregion
         }
 
         void WrapHandlersExecutionInATransactionScope(BusConfiguration busConfiguration)
         {
             #region 5to6WrapHandlersExecutionInATransactionScope
-            busConfiguration.Transactions()
-                .WrapHandlersExecutionInATransactionScope();
+
+            var transactionSettings = busConfiguration.Transactions();
+            transactionSettings.WrapHandlersExecutionInATransactionScope();
             #endregion
         }
 
@@ -81,32 +83,36 @@
         void EnableTransactions(BusConfiguration busConfiguration)
         {
             #region 5to6EnableTransactions
-            busConfiguration.Transactions()
-                .Enable();
+
+            var transactionSettings = busConfiguration.Transactions();
+            transactionSettings.Enable();
             #endregion
         }
 
         void DisableTransactions(BusConfiguration busConfiguration)
         {
             #region 5to6DisableTransactions
-            busConfiguration.Transactions()
-                .Disable();
+
+            var transactionSettings = busConfiguration.Transactions();
+            transactionSettings.Disable();
             #endregion
         }
 
         void EnableDistributedTransactions(BusConfiguration busConfiguration)
         {
             #region 5to6EnableDistributedTransactions
-            busConfiguration.Transactions()
-                .EnableDistributedTransactions();
+
+            var transactionSettings = busConfiguration.Transactions();
+            transactionSettings.EnableDistributedTransactions();
             #endregion
         }
 
         void DisableDistributedTransactions(BusConfiguration busConfiguration)
         {
             #region 5to6DisableDistributedTransactions
-            busConfiguration.Transactions()
-                .DisableDistributedTransactions();
+
+            var transactionSettings = busConfiguration.Transactions();
+            transactionSettings.DisableDistributedTransactions();
             #endregion
         }
     }

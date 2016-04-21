@@ -7,7 +7,7 @@
     {
         public object MutateIncoming(object message)
         {
-            // return the same instance 
+            // return the same instance
             // or optionally create and return a new instance
             return message;
         }

@@ -9,8 +9,8 @@
         {
             #region sqlserver-non-standard-schema
 
-            endpointConfiguration.UseTransport<SqlServerTransport>()
-                .DefaultSchema("myschema");
+            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+            transport.DefaultSchema("myschema");
 
             #endregion
         }
@@ -19,8 +19,8 @@
         {
             #region sqlserver-multischema-config-pull
 
-            endpointConfiguration.UseTransport<SqlServerTransport>()
-                .UseSpecificSchema(queueName =>
+            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+            transport.UseSpecificSchema(queueName =>
                 {
                     if (queueName == "sales")
                     {

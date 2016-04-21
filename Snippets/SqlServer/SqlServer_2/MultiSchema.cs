@@ -9,8 +9,8 @@
         {
             #region sqlserver-non-standard-schema 2.1
 
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .DefaultSchema("myschema");
+            var transport = busConfiguration.UseTransport<SqlServerTransport>();
+            transport.DefaultSchema("myschema");
 
             #endregion
         }
@@ -19,8 +19,8 @@
         {
             #region sqlserver-non-standard-schema-connString [2.1,3.0)
 
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True; Queue Schema=myschema");
+            var transport = busConfiguration.UseTransport<SqlServerTransport>();
+            transport.ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database; Queue Schema=myschema");
 
             #endregion
         }
@@ -29,12 +29,12 @@
         {
             #region sqlserver-multischema-config-push [2.1,3.0)
 
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .UseSpecificConnectionInformation(
-                    EndpointConnectionInfo.For("sales")
-                        .UseSchema("sender"),
-                    EndpointConnectionInfo.For("billing")
-                        .UseSchema("receiver")
+            var transport = busConfiguration.UseTransport<SqlServerTransport>();
+            transport.UseSpecificConnectionInformation(
+                EndpointConnectionInfo.For("sales")
+                    .UseSchema("sender"),
+                EndpointConnectionInfo.For("billing")
+                    .UseSchema("receiver")
                 );
 
             #endregion
@@ -44,26 +44,26 @@
         {
             #region sqlserver-multischema-config-pull 2.1
 
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .UseSpecificConnectionInformation(queueName =>
+            var transport = busConfiguration.UseTransport<SqlServerTransport>();
+            transport.UseSpecificConnectionInformation(queueName =>
+            {
+                if (queueName == "sales")
                 {
-                    if (queueName == "sales")
-                    {
-                        return ConnectionInfo.Create()
-                             .UseSchema("salesSchema");
-                    }
-                    if (queueName == "billing")
-                    {
-                        return ConnectionInfo.Create()
-                             .UseSchema("billingSchema");
-                    }
-                    if (queueName == "error")
-                    {
-                        return ConnectionInfo.Create()
-                             .UseSchema("error");
-                    }
-                    return null;
-                });
+                    return ConnectionInfo.Create()
+                        .UseSchema("salesSchema");
+                }
+                if (queueName == "billing")
+                {
+                    return ConnectionInfo.Create()
+                        .UseSchema("billingSchema");
+                }
+                if (queueName == "error")
+                {
+                    return ConnectionInfo.Create()
+                        .UseSchema("error");
+                }
+                return null;
+            });
 
             #endregion
         }

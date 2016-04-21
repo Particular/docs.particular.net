@@ -8,8 +8,8 @@
         {
             #region InstancePerUnitOfWorkRegistration
 
-            configuration.Configurer
-                .ConfigureComponent<MyService>(DependencyLifecycle.InstancePerCall);
+            var configureComponents = configuration.Configurer;
+            configureComponents.ConfigureComponent<MyService>(DependencyLifecycle.InstancePerCall);
 
             #endregion
         }

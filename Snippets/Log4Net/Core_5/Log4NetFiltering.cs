@@ -36,7 +36,7 @@
                 Threshold = Level.Debug,
                 Layout = new SimpleLayout(),
             };
-            
+
             appender.AddFilter(new NServiceBusLogFilter());
             appender.ActivateOptions();
 

@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Azure.CloudServices
+﻿namespace CloudServicesHost_6
 {
     using System.Web;
     using Microsoft.WindowsAzure.ServiceRuntime;

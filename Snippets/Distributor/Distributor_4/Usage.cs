@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Distributor
+﻿namespace Distributor_4
 {
     using NServiceBus;
     using NServiceBus.Settings;
@@ -12,7 +12,7 @@
             // --------------------------------------
             // Running the Distributor and a Worker
             configure.AsMSMQMasterNode();
-            //or 
+            //or
             configure.RunMSMQDistributor();
             // --------------------------------------
 

@@ -31,9 +31,9 @@
         {
             #region publisher_names_mapping_by_message_type
 
-            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-                .UseTopology<EndpointOrientedTopology>()
-                .RegisterPublisherForType("publisherName", typeof(MyMessage));
+            var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+            var topology = transport.UseTopology<EndpointOrientedTopology>();
+            topology.RegisterPublisherForType("publisherName", typeof(MyMessage));
 
             #endregion
         }
@@ -42,9 +42,9 @@
         {
             #region publisher_names_mapping_by_assembly
 
-            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-                .UseTopology<EndpointOrientedTopology>()
-                .RegisterPublisherForAssembly("publisherName", Assembly.LoadFrom("path/to/the/assembly/that/contains/messages"));
+            var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+            var topology = transport.UseTopology<EndpointOrientedTopology>();
+            topology.RegisterPublisherForAssembly("publisherName", Assembly.LoadFrom("path/to/assembly/containing/messages"));
 
             #endregion
         }
@@ -53,13 +53,12 @@
         {
             #region publisher_names_mapping_upgrade_guide
 
-            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-                .UseTopology<EndpointOrientedTopology>()
-                .RegisterPublisherForType("publisherName", typeof(MyMessage));
+            var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+            var topology = transport.UseTopology<EndpointOrientedTopology>();
+
+            topology.RegisterPublisherForType("publisherName", typeof(MyMessage));
             // or
-            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-                .UseTopology<EndpointOrientedTopology>()
-                .RegisterPublisherForAssembly("publisherName", Assembly.LoadFrom("path/to/the/assembly/that/contains/messages"));
+            topology.RegisterPublisherForAssembly("publisherName", Assembly.LoadFrom("path/to/assembly/containing/messages"));
 
             #endregion
         }
@@ -71,12 +70,11 @@
         void TopologySelectionUpgradeGuide(EndpointConfiguration endpointConfiguration)
         {
             #region topology-selection-upgrade-guide
+            var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
-            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-                .UseTopology<ForwardingTopology>();
+            transport.UseTopology<ForwardingTopology>();
             // or
-            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-                .UseTopology<EndpointOrientedTopology>();
+            transport.UseTopology<EndpointOrientedTopology>();
 
             #endregion
         }

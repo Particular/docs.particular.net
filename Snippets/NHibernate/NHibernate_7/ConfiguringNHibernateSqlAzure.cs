@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Persistence.NHibernate
+﻿namespace NHibernate_7
 {
     using global::NHibernate.Cfg;
     using NServiceBus;
@@ -18,8 +18,8 @@
                 }
             };
 
-            endpointConfiguration.UsePersistence<NHibernatePersistence>()
-                .UseConfiguration(nhConfiguration);
+            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.UseConfiguration(nhConfiguration);
 
             #endregion
         }

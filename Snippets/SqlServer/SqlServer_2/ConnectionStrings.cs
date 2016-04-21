@@ -9,8 +9,8 @@
         {
             #region sqlserver-config-connectionstring
 
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
+            var transport = busConfiguration.UseTransport<SqlServerTransport>();
+            transport.ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database");
 
             #endregion
         }
@@ -19,8 +19,8 @@
         {
             #region sqlserver-named-connection-string
 
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .ConnectionStringName("MyConnectionString");
+            var transport = busConfiguration.UseTransport<SqlServerTransport>();
+            transport.ConnectionStringName("MyConnectionString");
 
             #endregion
         }
@@ -29,17 +29,15 @@
         {
             #region sqlserver-custom-connection-factory
 
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .UseCustomSqlConnectionFactory(
-                    connectionString =>
-                    {
-                        SqlConnection newConnection = new SqlConnection(connectionString);
-                        newConnection.Open();
-                        
-                        // custom operations
-
-                        return newConnection;
-                    });
+            var transport = busConfiguration.UseTransport<SqlServerTransport>();
+            transport.UseCustomSqlConnectionFactory(
+                connectionString =>
+                {
+                    SqlConnection newConnection = new SqlConnection(connectionString);
+                    newConnection.Open();
+                    // custom operations
+                    return newConnection;
+                });
 
             #endregion
         }

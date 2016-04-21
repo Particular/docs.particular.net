@@ -12,7 +12,7 @@
             #region PersistenceOrder_Correct 5.0
 
             busConfiguration.UsePersistence<RavenDBPersistence>();
-            
+
             busConfiguration.UsePersistence<NHibernatePersistence>()
                 .For(Storage.Outbox);
 
@@ -93,7 +93,7 @@
             busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 
             busConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
-            
+
             // This one will override the above settings!
             busConfiguration.UsePersistence<RavenDBPersistence>();
             #endregion

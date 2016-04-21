@@ -8,9 +8,8 @@ namespace SqlServer_2.UpgradeGuides
         {
             #region 2to3-enable-native-transaction
 
-            busConfiguration
-                .Transactions()
-                .DisableDistributedTransactions();
+            var transactions = busConfiguration.Transactions();
+            transactions.DisableDistributedTransactions();
 
             #endregion
         }

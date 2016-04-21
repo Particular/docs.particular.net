@@ -2,7 +2,7 @@
 {
     using Ninject;
     using NServiceBus;
-    
+
     class Usage
     {
         Usage(BusConfiguration busConfiguration)

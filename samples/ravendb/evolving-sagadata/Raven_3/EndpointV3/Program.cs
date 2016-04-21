@@ -18,9 +18,9 @@ class Program
         };
         documentStore.Initialize();
 
-        busConfiguration.UsePersistence<RavenDBPersistence>()
-            .DoNotSetupDatabasePermissions() //Only required to simplify the sample setup
-            .SetDefaultDocumentStore(documentStore);
+        var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
+        persistence.DoNotSetupDatabasePermissions(); //Only required to simplify the sample setup
+        persistence.SetDefaultDocumentStore(documentStore);
 
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();

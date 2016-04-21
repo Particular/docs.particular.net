@@ -34,8 +34,8 @@ class Usage
                 }
             }
         };
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
-            .Settings(settings);
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        serialization.Settings(settings);
 
         #endregion
     }
@@ -44,8 +44,8 @@ class Usage
     {
         #region NewtonsoftCustomReader
 
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
-            .ReaderCreator(stream =>
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        serialization.ReaderCreator(stream =>
             {
                 StreamReader streamReader = new StreamReader(stream, Encoding.UTF8);
                 return new JsonTextReader(streamReader);
@@ -58,8 +58,8 @@ class Usage
     {
         #region NewtonsoftCustomWriter
 
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
-            .WriterCreator(stream =>
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        serialization.WriterCreator(stream =>
             {
                 StreamWriter streamWriter = new StreamWriter(stream, Encoding.UTF8);
                 return new JsonTextWriter(streamWriter)
@@ -75,8 +75,7 @@ class Usage
     {
         #region NewtonsoftBson
 
-        SerializationExtentions<NewtonsoftSerializer> serialization =
-            endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         serialization.ReaderCreator(stream => new BsonReader(stream));
         serialization.WriterCreator(stream => new BsonWriter(stream));
 

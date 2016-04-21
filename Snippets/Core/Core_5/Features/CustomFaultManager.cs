@@ -19,7 +19,7 @@
 
         public void Init(Address address)
         {
-            // Implement any intializations for the custom fault manager.
+            // Implement any initializations for the custom fault manager.
         }
     }
     #endregion

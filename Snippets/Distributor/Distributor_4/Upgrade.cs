@@ -1,7 +1,7 @@
-﻿namespace Snippets4.UpgradeGuides._3to4
+﻿namespace Distributor_4
 {
     using NServiceBus;
-    
+
     class Upgrade
     {
 

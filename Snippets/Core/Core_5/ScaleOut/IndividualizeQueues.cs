@@ -4,19 +4,22 @@
 
     class IndividualizeQueues
     {
-        IndividualizeQueues(BusConfiguration busConfiguration)
+        void UniqueQueuePerEndpointInstance(BusConfiguration busConfiguration)
         {
             #region UniqueQueuePerEndpointInstance 5.2
 
-            busConfiguration.ScaleOut()
-                .UniqueQueuePerEndpointInstance();
+            var scaleOutSettings = busConfiguration.ScaleOut();
+            scaleOutSettings.UniqueQueuePerEndpointInstance();
 
             #endregion
+        }
 
+        void UniqueQueuePerEndpointInstanceWithSuffix(BusConfiguration busConfiguration)
+        {
             #region UniqueQueuePerEndpointInstanceWithSuffix 5.2
 
-            busConfiguration.ScaleOut()
-                .UniqueQueuePerEndpointInstance("-MyCustomSuffix");
+            var scaleOutSettings = busConfiguration.ScaleOut();
+            scaleOutSettings.UniqueQueuePerEndpointInstance("-MyCustomSuffix");
 
             #endregion
         }
