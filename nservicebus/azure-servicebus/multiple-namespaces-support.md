@@ -13,7 +13,7 @@ reviewed: 2016-04-18
 
 To configure _namespace partitioning strategy_ properly users have to select desired `INamespacePartitioningStrategy` implementation and map related namespaces, as showed in the next snippets, for each supported strategies.
 
-### Single namespace partitioning #
+## Single namespace partitioning ##
 
 The default _namespace partitioning strategy_ is `SingleNamespacePartitioning`. With the default setup, transport uses only a single namespace to send and receive messages.  
 Namespace connection string can be defined via code using `ConnectionString` extension:
@@ -28,7 +28,7 @@ snippet: single_namespace_partitioning_strategy_with_add_namespace
 With this strategy, only one namespace has to be configured. Configuration throws a `ConfigurationErrorsException` if more than one namespace has been configured.   
 `SingleNamespacePartitioning` strategy is the easiest one but it's the less relyable: the only configured namespace is a single point of failure for the entire system.
 
-### Round robin namespace partitioning #
+## Round robin namespace partitioning ##
 
 Another possible strategy is `RoundRobinNamespacePartitioning`. With this strategy, transport uses each registered namespace cyclically to send messages and it receives messages from all of them.  
 This strategy is useful to avoid throttling by Azure infrastructure and to improve scale-out scenarios.  
@@ -36,15 +36,15 @@ Selecting `RoundRobinNamespacePartitioning` strategy, users have to provide more
 
 snippet: round_robin_partitioning_strategy
 
-### Fail over namespace partitioning #
+## Fail over namespace partitioning ##
 
 snippet: fail_over_partitioning_strategy
 
-### Replicated namespace partitioning #
+## Replicated namespace partitioning ##
 
 snippet: replicated_partitioning_strategy
 
-### Sharded namespace partitioning #
+## Sharded namespace partitioning ##
 
 snippet: sharded_partitioning_strategy_configuration
 
