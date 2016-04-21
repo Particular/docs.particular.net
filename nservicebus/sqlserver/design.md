@@ -83,7 +83,7 @@ snippet:sql-2.2.2-ExpiresIndex
 
 ## Transactions and delivery guarantees
 
-SQL Server transport supports the following [Transport Transaction Modes](/nservicebus/messaging/transactions.md):
+SQL Server transport supports the following [Transport Transaction Modes](/nservicebus/transports/transactions.md):
 
  * Transaction scope (Distributed transaction)
  * Transport transaction - Sends atomic with Receive

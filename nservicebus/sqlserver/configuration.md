@@ -162,9 +162,9 @@ When the SQL Server transport is used in combination [NHibernate persistence](/n
 
 ## Transactions
 
-SQL Server transport supports all [transaction handling modes](/nservicebus/messaging/transactions.md), i.e. Transaction scope, Receive only, Sends atomic with Receive and No transactions.
+SQL Server transport supports all [transaction handling modes](/nservicebus/transports/transactions.md), i.e. Transaction scope, Receive only, Sends atomic with Receive and No transactions.
 
-Refer to [Transport Transactions](/nservicebus/messaging/transactions.md) for detailed explanation of the supported transaction handling modes and available configuration options. 
+Refer to [Transport Transactions](/nservicebus/transports/transactions.md) for detailed explanation of the supported transaction handling modes and available configuration options. 
 
 
 ## Callbacks

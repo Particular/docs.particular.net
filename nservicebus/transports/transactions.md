@@ -7,6 +7,8 @@ tags:
 - Consistency
 - Transports
 - TransactionScope
+redirects:
+- nservicebus/messaging/transactions
 reviewed: 2016-04-21
 ---
 
@@ -31,7 +33,7 @@ NServiceBus offers four levels of guarantees with regards to message processing.
 
 The implementation details for each transport are discussed in the dedicated documentation sections. They can be accessed by clicking the links with the transport name in the following table:
 
-|  | [Transaction scope (Distributed transaction)](/nservicebus/messaging/transactions.md#transactions-transaction-scope-distributed-transaction) | [Transport transaction - Sends atomic with Receive](/nservicebus/messaging/transactions.md#transactions-transport-transaction-sends-atomic-with-receive)  | [Transport transaction - Receive Only](/nservicebus/messaging/transactions.md#transactions-transport-transaction-receive-only) | [Unreliable (Transactions Disabled)](/nservicebus/messaging/transactions.md#transactions-unreliable-transactions-disabled) |
+|  | [Transaction scope (Distributed transaction)](/nservicebus/transports/transactions.md#transactions-transaction-scope-distributed-transaction) | [Transport transaction - Sends atomic with Receive](/nservicebus/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive)  | [Transport transaction - Receive Only](/nservicebus/transports/transactions.md#transactions-transport-transaction-receive-only) | [Unreliable (Transactions Disabled)](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled) |
 | :------------------| :-: |:-:| :-:| :-: |
 | [MSMQ](/nservicebus/msmq/transportconfig.md#transactions-and-delivery-guarantees) | &#10004; | &#10004; | &#10004; | &#10004; |
 | [SQL Server](/nservicebus/sqlserver/design.md#transactions-and-delivery-guarantees) | &#10004; | &#10004; | &#10004; | &#10004; |

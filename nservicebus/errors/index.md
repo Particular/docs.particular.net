@@ -19,7 +19,7 @@ NServiceBus has a built-in exception catching and handling logic, which encompas
 
 When a message fails NServiceBus [automatically retries](/nservicebus/errors/automatic-retries.md) the message. On repeated failure NServiceBus forwards that message to a designated error queue.
 
-WARNING: When running with [transport transactions disabled](/nservicebus/messaging/transactions.md#transactions-unreliable-transactions-disabled) NServiceBus will perform a best-effort error message forwarding, i.e. if moving to the error queue fails, the message will be lost.WARNING: When running with [transport transactions disabled](/nservicebus/messaging/transactions.md#transactions-unreliable-transactions-disabled). Both FLR and SLR will be silently disabled when transactions are turned off.
+WARNING: When running with [transport transactions disabled](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled) NServiceBus will perform a best-effort error message forwarding, i.e. if moving to the error queue fails, the message will be lost.WARNING: When running with [transport transactions disabled](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled). Both FLR and SLR will be silently disabled when transactions are turned off.
 
 Error queue can be configured in several ways.
 
