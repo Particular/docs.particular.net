@@ -153,6 +153,7 @@
             - "nservicebus/azure-storage-queues/transaction-support"
             - "nservicebus/azure/transactions"
             - "nservicebus/azure-storage-queues/configuration"
+            - "nservicebus/azure-storage-queues/performance-tuning"
         - Title: "SQL Server Transport"
           Url: "nservicebus/sqlserver"
           Articles:
