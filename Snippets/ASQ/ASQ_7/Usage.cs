@@ -22,6 +22,7 @@ namespace ASQ_7
             transport.ConnectionString("azure-storage-connection-string");
             transport.BatchSize(20);
             transport.MaximumWaitTimeWhenIdle(1000);
+            transport.DegreeOfReceiveParallelism(16);
             transport.PeekInterval(100);
 
             #endregion
