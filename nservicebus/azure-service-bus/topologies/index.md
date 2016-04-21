@@ -70,7 +70,6 @@ The `ForwardingTopology` supports up to 2,000 endpoints with up to 2,000 events 
 | Publisher/Subscriber coupling  | yes                       | no                 |
 | Polymorphic events support     | no                        | yes                |
 | Events overflow protections    | no                        | yes                |
-| Topic partitioning             | yes                       | no                 |
 
 
 ## Version 6 and below
