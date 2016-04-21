@@ -7,10 +7,10 @@ tags:
 
 To allow a non-privileged account to function as the the service account for ServiceControl the following things should be considered:
 
+
 ### Access Control on queues
 
-For MSMQ, the ACL default for a queue allows Administrators full access. Switching to a low privileged account required the modification of rights to give full control to the custom account. Assuming the service name the ServiceControl service is `particular.servicecontrol` the ServiceControl queues names would be 
-
+For MSMQ, the ACL default for a queue allows Administrators full access. Switching to a low privileged account required the modification of rights to give full control to the custom account. Assuming the service name the ServiceControl service is `particular.servicecontrol` the ServiceControl queues names would be
 
  * `particular.servicecontrol`
  * `particular.servicecontrol.errors`
@@ -26,6 +26,7 @@ In addition the Service requires rights to the configured audit and error queues
  * `audit.log`
 
 If the service account user does not have appropriate rights the service will fail.
+
 
 ### Configuration Changes
 

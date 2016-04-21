@@ -11,6 +11,7 @@ redirects:
 - servicecontrol/external-integrations
 ---
 
+
 ## Custom notification and alerting using ServiceControl events
 
 ServiceControl events allow to build notifications/integrations that will alert of something going wrong in the system.

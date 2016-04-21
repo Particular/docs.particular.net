@@ -40,7 +40,7 @@
 
         void DisableCallbackReceiver(BusConfiguration busConfiguration)
         {
-            #region rabbitmq-config-disablecallbackreceiver
+            #region rabbitmq-config-disable-callback-receiver
 
             busConfiguration.UseTransport<RabbitMQTransport>()
                 .DisableCallbackReceiver();
@@ -63,7 +63,7 @@
             #region rabbitmq-config-custom-id-strategy
 
             busConfiguration.UseTransport<RabbitMQTransport>()
-                .CustomMessageIdStrategy(deliveryArgs => 
+                .CustomMessageIdStrategy(deliveryArgs =>
                     deliveryArgs.BasicProperties.Headers["MyCustomId"].ToString());
 
             #endregion
@@ -116,27 +116,22 @@
         {
             public void SetupSubscription(IModel channel, Type type, string subscriberName)
             {
-                throw new NotImplementedException();
             }
 
             public void TeardownSubscription(IModel channel, Type type, string subscriberName)
             {
-                throw new NotImplementedException();
             }
 
             public void Publish(IModel channel, Type type, TransportMessage message, IBasicProperties properties)
             {
-                throw new NotImplementedException();
             }
 
             public void Send(IModel channel, Address address, TransportMessage message, IBasicProperties properties)
             {
-                throw new NotImplementedException();
             }
 
             public void Initialize(IModel channel, string main)
             {
-                throw new NotImplementedException();
             }
         }
         class MyConnectionManager : IManageRabbitMqConnections

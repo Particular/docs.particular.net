@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport configuration settings
 summary: The various ways to customize the RabbitMQ transport
-reviewed: 2016-04-20
+reviewed: 2016-04-21
 tags:
 - RabbitMQ
 - Transports
@@ -10,30 +10,119 @@ tags:
 
 ## Configuring RabbitMQ transport to be used
 
-To make NServiceBus use RabbitMQ as the underlying transport add this to the configuration:
+To use RabbitMQ as the underlying transport:
 
 snippet:rabbitmq-config-basic
 
-In order to work the transport needs to connect the the RabbitMQ broker. By default the transport will look for a connection string called `NServiceBus/Transport` in the `app.config`.
+The transport needs to connect the the RabbitMQ broker. By default the transport will look for a connection string called `NServiceBus/Transport` in the `app.config`.
 
 A typical connection string would look like this:
 
-snippet:rabbitmqconnectionstring
+snippet:rabbitmq-connectionstring
 
 In the above sample the transport is configured to connect to the RabbitMQ broker running at the machine `broker1`.
 
-Below is the full list of connection string options. Note that they are separated by a `;`.
+Below is the list of connection string options. Note that they are separated by a `;`.
 
- * `Port`: The port where the broker listens. Defaults to `5672`
- * `VirtualHost`: The [virtual host](https://www.rabbitmq.com/access-control.html) to use. Defaults to `/`
- * `UserName`: The username when connecting. Defaults to `guest`
- * `Password`: The password when connecting. Defaults to `guest`
- * `RequestedHeartbeat`: The interval for the heartbeats between the client and the server. Defaults to `5` seconds
- * `DequeueTimeout` The time period allowed for the dequeue strategy to dequeue a message. Defaults to `1` second
- * `PrefetchCount`: The number of messages to [prefetch](http://www.rabbitmq.com/consumer-prefetch.html) when consuming messages from the broker. Defaults to the number of configured threads for the transport(as of v2.1)
- * `UsePublisherConfirms`: Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used. Defaults to `true`
- * `MaxWaitTimeForConfirms`: How long the client should wait for publisher confirms if enabled. Defaults to `30` seconds.
- * `RetryDelay`: The time to wait before trying to reconnect to the broker if connection is lost. Defaults to `10` seconds
+
+#### Port
+
+The port where the broker listens. 
+
+Defaults: `5672`
+
+
+#### VirtualHost
+
+The [virtual host](https://www.rabbitmq.com/access-control.html) to use.
+
+Defaults: `/`
+
+
+#### UserName
+
+The username when connecting. 
+
+Defaults: `guest`
+
+
+#### Password
+
+The password when connecting. 
+
+Defaults: `guest`
+
+
+#### RequestedHeartbeat
+
+The interval for the heartbeats between the client and the server.
+
+Defaults: `5` seconds
+
+
+#### DequeueTimeout
+
+The time period allowed for the dequeue strategy to dequeue a message.
+
+Defaults: `1` second
+
+Versions: 3 and below.
+
+
+#### PrefetchCount
+
+The number of messages to [prefetch](http://www.rabbitmq.com/consumer-prefetch.html) when consuming messages from the broker. 
+
+Defaults: The number of configured threads for the transport(as of v2.1)
+
+Versions: 3 and below. In Versions 4 and above `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` can be used instead. See [Throughput Throttling](/samples/throttling/) sample.
+
+
+#### UsePublisherConfirms
+
+Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used. 
+
+Defaults: `true`
+
+
+#### MaxWaitTimeForConfirms
+
+How long the client should wait for publisher confirms if enabled. 
+
+Defaults: `30` seconds.
+
+
+#### RetryDelay
+
+The time to wait before trying to reconnect to the broker if connection is lost.
+
+Defaults: `10` seconds
+
+
+#### UseTls
+
+Indicates if the connection should be done using TLS. 
+
+Default: If `Port` is not specified and `UseTls` is enabled the port will default to `5671`.
+
+Versions: 4 and above
+
+
+#### CertPath
+
+The certificated path that should be used when using TLS.
+
+Versions: 4 and above
+
+
+#### CertPassphrase
+
+The certificate password.
+
+Versions: 4 and above
+
+
+## Specifying the connection string
 
 To use a custom name for the connection string use:
 
@@ -45,14 +134,16 @@ snippet:rabbitmq-config-connectionstring-in-code
 
 For debugging purposes, increase the `RequestedHeartbeat` and `DequeueTimeout` like this:
 
-snippet:rabbitmqconnectionstring-debug
+snippet:rabbitmq-connectionstring-debug
 
 
 ### Callback support
 
 RabbitMQ is a broker which means that scale out is done by adding more endpoints feeding of the same broker queue. This usually works fine if no state is shared between the different instances. This is not the case for callbacks since they do rely on local state kept in memory. In order to seamlessly support this scenario out of the box the RabbitMQ transport has the concept of a callback receiver. Essentially this is a separate queue named `{endpointname}.{machinename}` to which all callbacks are routed. This means that callbacks are handled by the same instance that requested them. This behavior is on by default. If not using callbacks it can disable it using the following configuration:
 
-snippet:rabbitmq-config-disablecallbackreceiver
+snippet:rabbitmq-config-disable-callback-receiver
+
+NOTE: In Versions 4 and above Callbacks are disabled by default. To enable them follow [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-version-6-and-above).
 
 This means that the queue will not be created and no extra threads will be used to fetch messages from that queue.
 
@@ -72,6 +163,8 @@ WARNING: It is extremely important to use a uniquely identifying property of the
 
 ### Getting full control over the broker connection
 
+NOTE: In Versions 4 and above `IManageRabbitMqConnections` is obsolete and there is no option to provide custom connection manager.
+
 The default connection manager that comes with the transport is usually good enough for most users. To control how the connection(s) with the broker is managed implement a custom connection manager by inheriting from `IManageRabbitMqConnections`. This requires that connections be provided for:
 
  1. Administrative actions like creating queues and exchanges
@@ -89,6 +182,10 @@ By the default the RabbitMQ transport will trigger the on critical error action 
 
 snippet:rabbitmq-custom-breaker-settings
 
+In Versions 4 and above xml configuration options for controlling lost connection behavior were replaced by code equivalent. 
+
+snippet:rabbitmq-custom-breaker-settings-code
+
 
 ### Changing routing topology
 
@@ -100,7 +197,7 @@ To enable direct routing use the following configuration:
 
 snippet:rabbitmq-config-usedirectroutingtopology
 
-You can adjust the conventions for exchange name and routing key by using the overload:
+Adjust the conventions for exchange name and routing key by using the overload:
 
 snippet:rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
@@ -111,20 +208,24 @@ If the routing topologies mentioned above isn't flexible enough then take full c
 
 snippet:rabbitmq-config-useroutingtopology
 
+
 ## Transactions and delivery guarantees
+
 
 ### Versions 4 and above
 
 The RabbitMQ transport supports the following [Transport Transaction Modes](/nservicebus/messaging/transactions.md):
 
-* Transport transaction - Receive Only
-* Unreliable (Transactions Disabled)
+ * Transport transaction - Receive Only
+ * Unreliable (Transactions Disabled)
+
 
 ### Transport transaction - Receive Only
 
 When running in `ReceiveOnly` mode, the RabbitMQ transport consumes messages from the broker in manual acknowledgment mode. After a message is successfully processed, it is acknowledged via the AMQP [basic.ack](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.ack) method, which lets the broker know that the message can be removed from the queue. If a message is not successfully processed and needs to be retried, it is requeued via the AMQP [basic.reject](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.reject) method.
 
 WARNING: If the connection to the broker is lost for any reason before a message can be acknowledged, even if the message was successfully processed, the message will automatically be requeued by the broker. This will result in the endpoint processing the same message multiple times.
+
 
 ### Unreliable (Transactions Disabled)
 
