@@ -20,7 +20,7 @@ The Azure Storage Queues Transport can be configured using the following paramet
  * `PurgeOnStartup`: Instructs the transport to remove any existing messages from the input queue on startup. The default value is `false`, i.e. messages are not removed when endpoint starts.
  * `MessageInvisibleTime`: The [visibilitytimeout mechanism](https://msdn.microsoft.com/en-us/library/azure/dd179474.aspx), supported by Azure Storage Queues, causes the message to become *invisible* after read for a specified period of time. If the processing unit fails to delete the message in the specified time, the message will reappear on the queue. Then another process can retry the message. The default value is 30000, in milliseconds (i.e. 30 seconds).
  * `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. The default value is 10 in Version 6 and below and 32 in Version 7. Depending on the expected load, the value should vary between 1 and 32 (the maximum).
- * `DegreeOfReceiveParallelism`: The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it. By default this value is dynamically set by the endpoints concurrency limit, according to the following equation:
+ * `DegreeOfReceiveParallelism`: The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it. By default this value is dynamically set based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
  
 `Degree of parallelism = square root of MaxConcurrency (rounded)`
 
@@ -35,9 +35,11 @@ The Azure Storage Queues Transport can be configured using the following paramet
 | 1000 | 32 [max] |
 
 This means that `DegreeOfReceiveParallelism` message processing loops will receive up to the configured `BatchSize` number of messages in parallel. For example with the default `BatchSize` of 32 and the default degree of parallelism of 10 the transport will be able to receive 320 messages from the storage queue at the same time.
+  
 
+WARNING: Changing the value of `DegreeOfReceiveParallelism` will influence the total number of storage operations against Azure Storage Services and can result in higher costs.
 
-WARNING: The values of `BatchSize`, `DegreeOfParallelism`, `Concurrency`, [ServicePointManager Settings](/nservicebus/azure-storage-persistence/performance-tuning.md) and the other parameters like `MaximumWaitTimeWhenIdle` have to be selected carefully in order to get the desired speed out of the transport while not exceeding [the boundaries](https://azure.microsoft.com/en-us/documentation/articles/azure-subscription-service-limits/#storage-limits) of the allowed number of operations per second.
+WARNING: The values of `BatchSize` , `DegreeOfParallelism`, `Concurrency`, [ServicePointManager Settings](/nservicebus/azure-storage-persistence/performance-tuning.md) and the other parameters like `MaximumWaitTimeWhenIdle` have to be selected carefully in order to get the desired speed out of the transport while not exceeding [the boundaries](https://azure.microsoft.com/en-us/documentation/articles/azure-subscription-service-limits/#storage-limits) of the allowed number of operations per second.
 
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify the endpoint name and select a scale-out option.
 
