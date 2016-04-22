@@ -143,6 +143,7 @@
             - "nservicebus/azure-service-bus/transaction-support"
             - "nservicebus/azure/transactions"
             - "nservicebus/azure-service-bus/message-lock-renewal"
+            - "nservicebus/azure-service-bus/multiple-namespaces-support"
             - "nservicebus/azure-service-bus/native-integration"
             - "nservicebus/azure-service-bus/performance-tuning"
             - "nservicebus/azure-service-bus/publisher-names-configuration"
