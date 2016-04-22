@@ -22,8 +22,8 @@ namespace Snippets5.DataBus.CleanupStrategy
 
         private void CleanUp(string filename)
         {
+            // Code to clean up
         }
-
         #endregion
     }
 
