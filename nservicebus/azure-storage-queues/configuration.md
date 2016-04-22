@@ -22,22 +22,22 @@ The Azure Storage Queues Transport can be configured using the following paramet
  * `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. The default value is 10 in Version 6 and below and 32 in Version 7. Depending on the expected load, the value should vary between 1 and 32 (the maximum).
  * `DegreeOfReceiveParallelism`: The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it. By default this value is dynamically set by the endpoints concurrency limit, according to the following equation:
  
-	`Degree of parallelism = square root of MaxConcurrency (rounded)`
+`Degree of parallelism = square root of MaxConcurrency (rounded)`
 
-	|`MaxConcurrency` | `DegreeOfReceiveParallelism` |
-	| :-: |:-:|
-	| 1 | 1 |
-	| 10 | 3 |
-	| 20 | 4 |
-	| 50 | 7 |
-	| 100 | 10 [default] |
-	| 200 | 14 |
-	| 1000 | 32 [max] | 
+|`MaxConcurrency` | `DegreeOfReceiveParallelism` |
+| :-: |:-:|
+| 1 | 1 |
+| 10 | 3 |
+| 20 | 4 |
+| 50 | 7 |
+| 100 | 10 [default] |
+| 200 | 14 |
+| 1000 | 32 [max] |
 
-	This means that `DegreeOfReceiveParallelism` message processing loops will receive up to the configured `BatchSize` number of messages in parallel. For example with the default `BatchSize` of 32 and the default degree of parallelism of 10 the transport will be able to receive 320 messages from the storage queue at the same time.
+This means that `DegreeOfReceiveParallelism` message processing loops will receive up to the configured `BatchSize` number of messages in parallel. For example with the default `BatchSize` of 32 and the default degree of parallelism of 10 the transport will be able to receive 320 messages from the storage queue at the same time.
 
 
- WARNING: The values of `BatchSize` , `DegreeOfParallelism`, `Concurrency`, [ServicePointManager Settings](/nservicebus/azure-storage-persistence/performance-tuning.md) and the other parameters like `MaximumWaitTimeWhenIdle` have to be selected carefully in order to get the desired speed out of the transport while not exceeding [the boundaries](https://azure.microsoft.com/en-us/documentation/articles/azure-subscription-service-limits/#storage-limits) of the allowed number of operations per second.
+WARNING: The values of `BatchSize`, `DegreeOfParallelism`, `Concurrency`, [ServicePointManager Settings](/nservicebus/azure-storage-persistence/performance-tuning.md) and the other parameters like `MaximumWaitTimeWhenIdle` have to be selected carefully in order to get the desired speed out of the transport while not exceeding [the boundaries](https://azure.microsoft.com/en-us/documentation/articles/azure-subscription-service-limits/#storage-limits) of the allowed number of operations per second.
 
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify the endpoint name and select a scale-out option.
 
@@ -46,7 +46,7 @@ Parameters' values can be configured in the following ways:
 
 ### Via the configuration API
 
-In Versions 7 and below the default settings can be overriden only using configuration API:
+In Versions 7 and below the default settings can be overridden only using configuration API:
 
 snippet:AzureStorageQueueConfigCodeOnly
 
@@ -57,7 +57,7 @@ In Versions 5 and 6 all settings can be overridden by adding to the `web.config`
 
 snippet:AzureStorageQueueConfig
 
-Note that the connection string can be also configured by specifying a value for connection string called `NServiceBus/Transport`, however this value will be overriden if another is provided in `AzureServiceBusQueueConfig`:
+Note that the connection string can be also configured by specifying a value for connection string called `NServiceBus/Transport`, however this value will be overridden if another is provided in `AzureServiceBusQueueConfig`:
 
 snippet: AzureStorageQueueConnectionStringFromAppConfig
 
