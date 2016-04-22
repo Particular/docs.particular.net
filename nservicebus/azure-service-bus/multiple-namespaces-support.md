@@ -9,9 +9,9 @@ tags:
 reviewed: 2016-04-18
 ---
 
-`Azure Service Bus` transport enables different _namespace partitioning strategies_ to cover different scenarios like High Availability and multiple Data Center support or to overtake [service limits](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/).  
+`Azure Service Bus` transport enables different _namespace partitioning strategies_ to cover different scenarios such as High Availability and multiple Data Center support or to overcome [service limits](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/).  
 
-Configuration APIs give the possibility to select desired _namespace partitioning strategies_ and then to configure specific namespace(s) to use to send and to receive messages through.
+Configuration APIs give the possibility to select desired _namespace partitioning strategies_ and then to configure specific namespace(s) to use.
 
 ## Single namespace partitioning ##
 
