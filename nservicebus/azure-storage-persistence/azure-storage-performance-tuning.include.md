@@ -15,7 +15,7 @@ Performance can be drastically improved by overriding the following settings. Th
 
 The .NET Framework is configured to only allow 2 simultaneous connections to the same resource by default. The throughput to the storage can be highly improved by allowing more connections. 
 
-The optimal value depends on the physical properties of the host machine. Creating new connections is a very expensive operation. The Framework will try to avoid creating new connections by reusing connections from completed requests. Setting the connection limit too high may result in a drop in performance because all requests will be created in parallel instead of reusing existing connections. The ideal number is lower than the average amount of parallel storage operations.
+The optimal value depends on the physical properties of the host machine. Creating new connections is a very expensive operation. The Framework will try to avoid creating new connections by reusing connections from completed requests. Setting the connection limit too high may also result in a drop in performance because all requests will be issued in parallel instead of reusing existing connections. The ideal number is lower than the average amount of parallel storage operations. We recommend to start with a value of 10 and adjusting the value based on the observed performance impact.
 
 
 ### Disable Nagle
@@ -31,13 +31,6 @@ The Nagle algorithm is a performance optimization for TCP/IP based networks but 
 
 Configures the client to not await a 100-Continue response from the server before transmitting data. This is an optimization to avoid sending larger payloads when the server rejects the request which isn't necessary for Azure Storage operations.
 [ServicePointManager.Expect100Continue](https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.expect100continue.aspx)
-
-
-### CheckCertificateRevocationList
-
-  ServicePointManager.CheckCertificateRevocationList = false; // optional, only disable if all dependencies are trusted	
-
---> Todo: Remove?
 
 
 ## Azure Storage Performance Checklist
