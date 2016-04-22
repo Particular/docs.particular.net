@@ -67,7 +67,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.7.0.0-alpha0152\lib\net452\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.7.0.0-alpha0159\lib\net452\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.AzureStoragePersistence">
       <HintPath>..\..\..\..\..\packages\NServiceBus.AzureStoragePersistence.1.0.0-alpha0146\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
