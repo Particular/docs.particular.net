@@ -1,5 +1,6 @@
 ﻿namespace ASB_7
 {
+    using System;
     using System.Reflection;
     using NServiceBus;
     using NServiceBus.AzureServiceBus;
@@ -75,6 +76,18 @@
             transport.UseTopology<ForwardingTopology>();
             // or
             transport.UseTopology<EndpointOrientedTopology>();
+
+            #endregion
+        }
+
+        void AutoLockRenewal(EndpointConfiguration endpointConfiguration)
+        {
+            var maximumProcessingTime = TimeSpan.FromMinutes(5);
+
+            #region asb-auto-lock-renewal
+
+            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
+                .MessageReceivers().AutoRenewTimeout(maximumProcessingTime);
 
             #endregion
         }

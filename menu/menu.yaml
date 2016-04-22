@@ -142,6 +142,7 @@
             - "nservicebus/azure/transactions"
             - "nservicebus/azure-service-bus/configuration"
             - "nservicebus/azure-service-bus/topologies"
+            - "nservicebus/azure-service-bus/message-lock-renewal"
             - "nservicebus/azure-service-bus/native-integration"
             - "nservicebus/azure-service-bus/performance-tuning"
             - "nservicebus/azure-service-bus/publisher-names-configuration"
