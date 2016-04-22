@@ -28,23 +28,23 @@ The configuration API provides fine grained access to the behavior of different 
 
 In order to control the creation of these entities, the API provides direct access to the underlying configuration description objects through the following extension methods.
 
- * `Queues()`
- * `Topics()`
- * `Subscriptions()`
+ * [`Queues()`](nservicebus/azure-service-bus/configuration/configuration#controlling-entities-queues)
+ * [`Topics()`](nservicebus/azure-service-bus/configuration/configuration#controlling-entities-topics)
+ * [`Subscriptions()`](nservicebus/azure-service-bus/configuration/configuration#controlling-entities-subscriptions)
 
 Connectivity settings are available at both the factory as well as receive/send client level.
 
- * `MessagingFactories()`
- * `MessageReceivers()`
- * `MessageSenders()`
+ * [`MessagingFactories()`](nservicebus/azure-service-bus/configuration/configuration#controlling-connectivity-messaging-factories)
+ * [`MessageReceivers()`](nservicebus/azure-service-bus/configuration/configuration#controlling-connectivity-message-receivers)
+ * [`MessageSenders()`](nservicebus/azure-service-bus/configuration/configuration#controlling-connectivity-message-senders)
 
 There have historically been regular changes to the physical addressing logic, from naming conventions to assumptions and validations in both NServiceBus as well as Azure Service Bus itself. The following extension methods provide access to all of the aspects related to this addressing logic, so that the transport can be adapted to any future changes in this respect.
 
- * `NamespacePartitioning()`
- * `Composition()`
- * `Validation()`
- * `Sanitization()`
- * `Individualization()`
+ * [`NamespacePartitioning()`](nservicebus/azure-service-bus/configuration/configuration#physical-addressing-logic-namespace-partitioning)
+ * [`Composition()`](nservicebus/azure-service-bus/configuration/configuration#physical-addressing-logic-composition)
+ * [`Validation()`](nservicebus/azure-service-bus/configuration/configuration#physical-addressing-logic-validation)
+ * [`Sanitization()`](nservicebus/azure-service-bus/configuration/configuration#physical-addressing-logic-sanitization)
+ * [`Individualization()`](nservicebus/azure-service-bus/configuration/configuration#physical-addressing-logic-individiualization)
 
 
 ## AzureServiceBusQueueConfig
