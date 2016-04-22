@@ -66,7 +66,7 @@ NOTE: This mode requires the selected storage to support participating in distri
 
 ### Transport transaction - Sends atomic with Receive
 
-Some transports support enlisting outgoing operations in the current receive transaction. This prevents messages being sent to downstream endpoints during retries. Currently only the MSMQ and SQL Server transports support this type of transaction mode.
+Some transports support enlisting outgoing operations in the current receive transaction. This prevents messages being sent to downstream endpoints during retries.
 
 Use the following code to use this mode:
 
