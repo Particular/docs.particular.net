@@ -10,6 +10,34 @@ related:
 - nservicebus/upgrades/5to6
 ---
 
+## New Configuration API
+
+Prior to version 7 the transport was configured using an XML configuration section called `AzureServiceBusQueueConfig`. This section has been removed in favor of a more granular, code based configuration API.
+
+The new configuration API is accessible through extension methods on the `UseTransport<AzureServiceBusTransport>()` extension point in the endpoint configuration. Refer to the [Full Configuration Page](/nservicebus/azure-service-bus/configuration/configuration.md) for more details as this new configuration API is quite extensive.
+
+snippet:AzureServiceBusTransportWithAzure
+
+### Setting The Connection String
+
+Setting the connection string can still be done using the `ConnectionString` extension method.
+
+snippet:setting_asb_connection_string
+
+### Setting Entity Property Values
+
+The other configuration properties found on `AzureServiceBusQueueConfig` were related to the configuration of Azure Service Bus entities used under the hood. Even though the name implied differently, these settings were not only applied to queues, but also to topics and subscriptions. 
+
+In the new configuration API the settings for queues, topics and subscriptions can be configured individually using the `Queues()`, `Topics()` and `Subscriptions()` extension points. As an example:
+
+Configuring the lock duration on a queue now becomes:
+
+snippet:setting_queue_properties
+
+Or configuring the size of the topics becomes:
+
+snippet:setting_topic_properties
+
 
 ## [Topology](/nservicebus/azure-service-bus/topologies/) is mandatory
 
