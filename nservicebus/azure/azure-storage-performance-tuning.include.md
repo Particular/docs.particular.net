@@ -16,11 +16,11 @@ The .NET Framework is configured to only allow 2 simultaneous connections to the
 
 The optimal value depends on the physical properties of the host machine and the endpoint's expected workload. The ideal number is lower than the average amount of parallel storage operations. We recommend to start with a value of 10 and adjusting the value based on the observed performance impact.
 
-### Disable Nagle
+### Disable Nagle's algorithm
 
 	ServicePointManager.UseNagleAlgorithm = false;
 
-The Nagle algorithm is a performance optimization for TCP/IP based networks but it has a negative impact on performance of requests when using Azure Storage services. See Microsoft's blog post [Nagle’s Algorithm is Not Friendly towards Small Requests](https://blogs.msdn.microsoft.com/windowsazurestorage/2010/06/25/nagles-algorithm-is-not-friendly-towards-small-requests/).
+Nagle's algorithm is a performance optimization for TCP/IP based networks but it has a negative impact on performance of requests when using Azure Storage services. See Microsoft's blog post [Nagle’s Algorithm is Not Friendly towards Small Requests](https://blogs.msdn.microsoft.com/windowsazurestorage/2010/06/25/nagles-algorithm-is-not-friendly-towards-small-requests/).
 
 
 ### Disable Expect100Continue

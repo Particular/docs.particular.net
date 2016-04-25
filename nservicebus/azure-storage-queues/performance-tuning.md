@@ -1,12 +1,12 @@
 ---
 title: Azure Storage Transport Performance Tuning
-summary: Performance Tuning Azure Storage as transport
+summary: Tuning Azure Storage Queues Transport performance
 reviewed: 2016-04-21
 tags:
 - Azure
 - Cloud
-- Persistence
 - Transport
+- Performance
 ---
 
 include: azure-storage-performance-tuning
