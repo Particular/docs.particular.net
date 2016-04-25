@@ -39,6 +39,16 @@ namespace ASQ_7
             #endregion
         }
 
+        void UseSha1(EndpointConfiguration endpointConfiguration)
+        {
+            #region AzureStorageQueueUseSha1
+
+            var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+            transport.UseSha1ForShortening();
+
+            #endregion
+        }
+
         #region AzureStorageQueueTransportWithAzureHost
 
         public class EndpointConfig : IConfigureThisEndpoint
