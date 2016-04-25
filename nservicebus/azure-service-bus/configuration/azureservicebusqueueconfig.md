@@ -1,13 +1,13 @@
 ---
-title: Azure Service Bus Transport Configuration
-summary: Configuring Azure ServiceBus as transport
+title: Azure Service Bus Transport Queue Configuration Section
+summary: Configuring Azure Service Bus as transport
 tags:
 - Azure
 - Cloud
 - Configuration
 ---
 
-## Version 6 and below
+## AzureServiceBusQueueConfig (Version 6 and below)
 
 The default settings can be overridden by adding a configuration section called `AzureServiceBusQueueConfig` to the web.config or app.config files:
 
@@ -35,6 +35,6 @@ NOTE: Most of these values are applied when a queue or topic is created and cann
  * `EnablePartitioning`: Increase overall throughput by allowing to use multiple brokers/stores to handle queues and topics to overcome limitations of a single broker/store at increased cost. Partitioning does reduce number of queues or topics per namespace. Defaults to false.
  * `SupportOrdering`: Specifies whether queues and topics should enable support for message ordering. Defaults to true.
 
-NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.
+NOTE: AzureServiceBusQueueConfig is only available in Versions 6 and below. `QueueName` and `QueuePerInstance` are obsoleted since version 6. Instead, in Versions 7 and higher specify endpoint name and scale-out option.
 
 Defaults are just starting values. These values should be always measured and tested against the specific solution and adjusted accordingly.
