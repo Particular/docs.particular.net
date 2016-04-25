@@ -62,7 +62,7 @@ Defaults:
 
 The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it. 
 
-Defaults: value is dynamically set based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
+Defaults: In Versions 7 and above the value is dynamically calculated based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
  
 `Degree of parallelism = square root of MaxConcurrency (rounded)`
 
@@ -76,10 +76,7 @@ Defaults: value is dynamically set based on the endpoints [message processing co
 | 200 | 14 |
 | 1000 | 32 [max] |
 
-Versions: 7 and above.
-
-This means that `DegreeOfReceiveParallelism` message processing loops will receive up to the configured `BatchSize` number of messages in parallel. For example with the default `BatchSize` of 32 and the default degree of parallelism of 10 the transport will be able to receive 320 messages from the storage queue at the same time.
-  
+This means that `DegreeOfReceiveParallelism` message processing loops will receive up to the configured `BatchSize` number of messages in parallel. For example with the default `BatchSize` of 32 and the default degree of parallelism of 10 the transport will be able to receive 320 messages from the storage queue at the same time.  
 
 WARNING: Changing the value of `DegreeOfReceiveParallelism` will influence the total number of storage operations against Azure Storage Services and can result in higher costs.
 
