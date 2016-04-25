@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Configuration
+title: Azure Service Bus Transport Configuration
 summary: Configuring Azure ServiceBus as transport
 tags:
 - Azure
