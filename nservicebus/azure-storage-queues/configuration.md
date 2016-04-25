@@ -41,6 +41,7 @@ Instructs the transport to remove any existing messages from the input queue on 
 
 Defaults: `false`, i.e. messages are not removed when endpoint starts.
 
+Versions: 6 and below
 
 #### MessageInvisibleTime 
 
@@ -96,7 +97,7 @@ snippet:AzureStorageQueueConfigCodeOnly
 
 ### Via the App.Config
 
-In Versions 5 and 6 all settings can be overridden by adding to the `web.config` or the `app.config` files a configuration section called `AzureServiceBusQueueConfig`:
+In Versions 5 and 6 all settings can be overridden by adding to the `web.config` or the `app.config` files a configuration section called `AzureQueueConfig`:
 
 snippet:AzureStorageQueueConfig
 

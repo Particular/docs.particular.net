@@ -1,6 +1,7 @@
 ﻿// ReSharper disable SuggestVarOrType_Elsewhere
 namespace ASQ_7
 {
+    using System;
     using NServiceBus;
 
     class Usage
@@ -24,6 +25,7 @@ namespace ASQ_7
             transport.MaximumWaitTimeWhenIdle(1000);
             transport.DegreeOfReceiveParallelism(16);
             transport.PeekInterval(100);
+            transport.MessageInvisibleTime(TimeSpan.FromSeconds(30));
 
             #endregion
         }
