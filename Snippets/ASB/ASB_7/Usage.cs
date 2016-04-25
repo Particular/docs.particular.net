@@ -28,6 +28,36 @@
 
         #endregion
 
+        void SettingConnectionString(EndpointConfiguration endpointConfiguration)
+        {
+            #region setting_asb_connection_string
+
+            var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+            transport.ConnectionString("Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedAccessKeyName={yoursasname};SharedAccessKey={yoursaskey}");
+
+            #endregion
+        }
+
+        void SettingQueueProperties(EndpointConfiguration endpointConfiguration)
+        {
+            #region setting_queue_properties
+
+            var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+            transport.Queues().LockDuration(TimeSpan.FromMinutes(1));
+
+            #endregion
+        }
+
+        void SettingTopicProperties(EndpointConfiguration endpointConfiguration)
+        {
+            #region setting_topic_properties
+
+            var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+            transport.Topics().MaxSizeInMegabytes(SizeInMegabytes.Size5120);
+
+            #endregion
+        }
+
         void PublisherNamesMappingByMessageType(EndpointConfiguration endpointConfiguration)
         {
             #region publisher_names_mapping_by_message_type
