@@ -27,13 +27,12 @@ Defaults:
 #### PeekInterval
 
 The amount of time that the transport waits before polling the input queue, in milliseconds. 
-
 Defaults: 50 ms
 
 
 #### MaximumWaitTimeWhenIdle
 
-In order to save money on the transaction operations, the transport optimizes wait times according to the expected load. The transport will back off when no messages can be found on the queue. The wait time will be increased linearly, but it will never exceed the value specified here, in milliseconds. 
+In order to save money on the transaction operations, the transport optimizes wait times according to the expected load. The transport will back off when no messages can be found on the queue. The wait time will be increased linearly, but it will never exceed the value specified here, in milliseconds.
 
 Defaults: 1000 ms (i.e. 1 second)
 
@@ -58,13 +57,13 @@ The number of messages that the transport tries to pull at once from the storage
 
 Defaults:
 
- * 10 in Version 6 and below 
+ * 10 in Version 6 and below
  * 32 in Version 7
 
 
 #### DegreeOfReceiveParallelism
 
-The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it. 
+The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it.
 
 Defaults: In Versions 7 and above the value is dynamically calculated based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
  
@@ -80,7 +79,7 @@ Defaults: In Versions 7 and above the value is dynamically calculated based on t
 | 200 | 14 |
 | 1000 | 32 [max] |
 
-This means that `DegreeOfReceiveParallelism` message processing loops will receive up to the configured `BatchSize` number of messages in parallel. For example with the default `BatchSize` of 32 and the default degree of parallelism of 10 the transport will be able to receive 320 messages from the storage queue at the same time.  
+This means that `DegreeOfReceiveParallelism` message processing loops will receive up to the configured `BatchSize` number of messages in parallel. For example with the default `BatchSize` of 32 and the default degree of parallelism of 10 the transport will be able to receive 320 messages from the storage queue at the same time.
 
 WARNING: Changing the value of `DegreeOfReceiveParallelism` will influence the total number of storage operations against Azure Storage Services and can result in higher costs.
 
@@ -120,7 +119,7 @@ For more details refer to [Configuring Azure Connection Strings](https://azure.m
 
 It is possible to accidentally leak sensitive information in the connection string if it's not properly secured. E.g. the information can be leaked if an error occurs when communicating across untrusted boundaries, or if the error information is logged to an unsecured log file.
 
-In order to prevent it, `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 7 and above allow for creating a logical name for each connection string. The name is mapped to the physical connection string, and connection strings are always reffered to by their logical name. In the event of an error or when logging only the logical name can be accidentally leaked.
+In order to prevent it, `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 7 and above allow for creating a logical name for each connection string. The name is mapped to the physical connection string, and connection strings are always referred to by their logical name. In the event of an error or when logging only the logical name can be accidentally leaked.
 
 This feature can be enabled by specifying `.UseAccountNamesInsteadOfConnectionStrings()` when configuring the `AzureStorageQueueTransport`:
 

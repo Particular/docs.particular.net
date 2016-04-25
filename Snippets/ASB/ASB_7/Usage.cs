@@ -33,7 +33,7 @@
             #region setting_asb_connection_string
 
             var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-            transport.ConnectionString("Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedAccessKeyName={yoursasname};SharedAccessKey={yoursaskey}");
+            transport.ConnectionString("Endpoint=sb://{namespace}.servicebus.windows.net/;SharedAccessKeyName={sasname};SharedAccessKey={saskey}");
 
             #endregion
         }
@@ -75,7 +75,8 @@
 
             var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
             var topology = transport.UseTopology<EndpointOrientedTopology>();
-            topology.RegisterPublisherForAssembly("publisherName", Assembly.LoadFrom("path/to/assembly/containing/messages"));
+            var messagesAssembly = Assembly.LoadFrom("path/to/assembly/containing/messages");
+            topology.RegisterPublisherForAssembly("publisherName", messagesAssembly);
 
             #endregion
         }
@@ -89,7 +90,8 @@
 
             topology.RegisterPublisherForType("publisherName", typeof(MyMessage));
             // or
-            topology.RegisterPublisherForAssembly("publisherName", Assembly.LoadFrom("path/to/assembly/containing/messages"));
+            var messagesAssembly = Assembly.LoadFrom("path/to/assembly/containing/messages");
+            topology.RegisterPublisherForAssembly("publisherName", messagesAssembly);
 
             #endregion
         }
@@ -116,8 +118,8 @@
 
             #region asb-auto-lock-renewal
 
-            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-                .MessageReceivers().AutoRenewTimeout(maximumProcessingTime);
+            var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+            transport.MessageReceivers().AutoRenewTimeout(maximumProcessingTime);
 
             #endregion
         }

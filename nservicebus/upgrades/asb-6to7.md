@@ -10,6 +10,7 @@ related:
 - nservicebus/upgrades/5to6
 ---
 
+
 ## New Configuration API
 
 In Versions 6 and below the Azure Service Bus transport was configured using an XML configuration section called `AzureServiceBusQueueConfig`. This section has been removed in favor of a more granular, code based configuration API.
@@ -18,11 +19,13 @@ The new configuration API is accessible through extension methods on the `UseTra
 
 snippet:AzureServiceBusTransportWithAzure
 
+
 ### Setting The Connection String
 
 Setting the connection string can still be done using the `ConnectionString` extension method:
 
 snippet:setting_asb_connection_string
+
 
 ### Setting Entity Property Values
 
@@ -38,17 +41,18 @@ and the size of the topics can be configured using the `MaxSizeInMegabytes` sett
 
 snippet:setting_topic_properties
 
+
 ### Default value changes
 
 The default values of the following settings have been changed:
 
-* `BatchSize`, which had a default value of 1000, is replaced by `PrefetchCount` with a default value of 200.
-* `MaxDeliveryCount` changed from 6 to 10.
+ * `BatchSize`, which had a default value of 1000, is replaced by `PrefetchCount` with a default value of 200.
+ * `MaxDeliveryCount` changed from 6 to 10.
 
 
 ## [Topology](/nservicebus/azure-service-bus/topologies/) is mandatory
 
-In version 7 and above the topology selection is mandatory:
+In Versions 7 and above the topology selection is mandatory:
 
 snippet:topology-selection-upgrade-guide
 
