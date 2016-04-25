@@ -627,6 +627,12 @@ This will result in the image being re-sized with the following parameters
 It will also wrap the image in a clickable lightbox so the full image can be accessed.
 
 
+### Maintaining images
+
+When creating images, strive to keep sources to for updating and re-creating images later.
+For diagrams, [LucidChart](https://www.lucidchart.com) can be used. LucidChart allows export and import of Visio (VDX) formatted documents. Visio formatted document can be used to generate images and should be committed along with the images. To generate images from LucidChar (or a Visio document), exported image as PNG, using "Crop to content" option.
+
+
 ### Sequence diagrams
 
 Sequence diagram images are generated using https://bramp.github.io/js-sequence-diagrams/ online service. Keep the source text used to generate sequence image in the document as an HTML comment to allow future modifications in case images need to be re-generated.
