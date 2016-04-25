@@ -58,7 +58,7 @@ Defaults:
  * 32 in Version 7
 
 
- #### DegreeOfReceiveParallelism 
+#### DegreeOfReceiveParallelism 
 
 The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it. 
 
