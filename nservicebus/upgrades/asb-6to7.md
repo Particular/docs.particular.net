@@ -38,6 +38,13 @@ Or configuring the size of the topics becomes:
 
 snippet:setting_topic_properties
 
+### Default value changes
+
+Some default values have changed:
+
+* `BatchSize`, which had a default value of 1000, is replaced by `PrefetchCount` with a default value of 200.
+* `MaxDeliveryCount` changed from 6 to 10.
+
 
 ## [Topology](/nservicebus/azure-service-bus/topologies/) is mandatory
 
