@@ -10,7 +10,7 @@ related:
 
 The purpose of the gateway is to provide durable fire-and-forget messaging with NServiceBus across physically separated sites, where "sites" are locations run using IT infrastructure and not web sites.
 
-The gateway only comes into play where the use of regular queued transports for communication are not possible i.e. when setting up a VPN connection is not an option. The reason for not using a VPN could be security concerns, bandwidth limitation, latency problems, high availability constraints, etc.
+The gateway comes into play where the use of regular queued transports for communication are not possible i.e. when setting up a VPN connection is not an option. The reason for not using a VPN could be security concerns, bandwidth limitations, latency problems, high availability constraints, etc.
 
 
 ## When not to use the gateway
