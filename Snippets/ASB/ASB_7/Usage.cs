@@ -123,5 +123,16 @@
 
             #endregion
         }
+
+        void ForwardDeadLettersConditional(EndpointConfiguration endpointConfiguration)
+        {
+            #region forward-deadletter-conditional-queue
+            var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+
+            transport.Queues().ForwardDeadLetteredMessagesTo(entityname => entityname == "yourqueue", "errorqueue");
+
+
+            #endregion
+        }
     }
 }
