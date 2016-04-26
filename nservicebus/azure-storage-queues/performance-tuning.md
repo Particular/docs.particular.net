@@ -1,5 +1,5 @@
 ---
-title: Azure Storage Transport Performance Tuning
+title: Azure Storage Queues Transport Performance Tuning
 summary: Tuning Azure Storage Queues Transport performance
 reviewed: 2016-04-21
 tags:
