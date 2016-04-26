@@ -32,8 +32,7 @@ Note: The configured value describes the minimum number of times a message will 
 
 ### Transport transaction requirements
 
-The FLR mechanism is implemented by rolling back the [transport transaction](/nservicebus/transports/transactions.md). This returns the message to the input queue and the endpoint processes it again immediately. Aborting the receive operation when transactions are turned off would result in a message loss. Therefore FLR cannot be used when transport transactions are disabled. 
-
+The FLR mechanism is implemented by making the message available for consumption again at the top of the queue so that the endpoint can process it again immediately. FLR cannot be used when transport transactions are disabled. For more information about transport transactions, refer to [transport transaction](/nservicebus/transports/transactions.md).
 
 ### Configuring FLR using app.config
 
