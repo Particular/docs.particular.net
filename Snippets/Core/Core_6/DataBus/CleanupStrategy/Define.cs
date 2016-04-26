@@ -8,7 +8,7 @@ namespace Snippets6.DataBus.CleanupStrategy
         {
             #region DefineFileLocationForDatabusFiles
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration("endpointName");
-            endpointConfiguration.UseDataBus<FileShareDataBus>().BasePath(@"c:\databus_attachments\");
+            endpointConfiguration.UseDataBus<FileShareDataBus>().BasePath(@"\\share\databus_attachments\");
 
             #endregion
         }

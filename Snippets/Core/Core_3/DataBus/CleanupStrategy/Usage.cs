@@ -9,7 +9,7 @@ namespace Snippets3.DataBus.CleanupStrategy
         #region FileLocationForDatabusFiles
         public void Handle(MessageWithLargePayload message)
         {
-            string filename = Path.Combine(@"c:\databus_files\", message.LargeBlob.Key);
+            string filename = Path.Combine(@"\\share\databus_attachments\", message.LargeBlob.Key);
             Console.WriteLine(filename);
         }
         #endregion
