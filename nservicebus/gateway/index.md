@@ -15,31 +15,31 @@ The gateway comes into play where the use of regular queued transports for commu
 
 ## When not to use the gateway
 
-The gateway should not be used when the reason for running separate sites is disaster recovery. Under those circumstances all sites are exact replicas and are not logically different from each other. It is recommended  to utilize existing support infrastructure to keep all sites in sync. Examples are SAN snapshots, SQL server log shipping, and RavenDB replication.
+The gateway should not be used for disaster recovery between sites. Under those circumstances all sites are exact replicas and are not logically different. It is recommended to utilize existing support infrastructure to keep all sites in sync.
 
 So if sites are logically similar, use one of the approaches above; if they are logically different, the gateway may come in handy.
 
 
 ## What are logically different sites?
 
-Logically different sites serve different business purposes, i.e., one site differs in behavior from other sites. Imagine a chain of retail stores where headquarters keep the prices for the different goods being sold. Those prices need to be highly available to all the stores. If the link to HQ is down, business is interrupted, and that is bad for sales.
+Logically different sites serve different business purposes where each site differs in behavior from all other sites. For example: A chain of retail stores where the headquarters is responsible for the prices of the goods being sold. Those prices need to be highly available to all the stores. If the link to the headquarters is down, business is interrupted.
 
 Looking at this scenario from a logical point of view, all the pricing communication goes on within the same business service (BS). The different physical sites have different logical behavior. This is a sure sign that the gateway might come in handy. Dig deeper and look at the actual responsibilities of each site:
 
  * Headquarters - Maintains the prices and pushes any price change out to the different stores on a daily basis
  * Store - Stores the prices locally for read-only purposes
 
-Prices are usually set for at least a day at a time so it's good enough for the HQ to push them to the sites once per day. Model this as `DailyPriceUpdatesMessage` containing the list of price updates for the coming business day. Given this design, only one message is required for each site per day, which lowers the requirement for the infrastructure.
+Prices are usually set to remain effective for a minimum of one day so it is sufficient for the headquarters to push the price updates to the sites only once per day. Model this as `DailyPriceUpdatesMessage` containing the list of price updates for the coming business day. Given this design, only one message is required for each site per day, which lowers the infrastructure requirements.
 
-Internally in HQ, other business services may need more frequent updates, so model this with another logically different message, `PriceUpdatedForProduct`, which allows the use of the (pub/sub pattern)[/nservicebus/messaging/publish-subscribe] while communicating with other BS.
+Internally in the headquarters other business services may require more frequent updates, so model this with another logically different message, `PriceUpdatedForProduct`, which allows the use of the (pub/sub pattern)[/nservicebus/messaging/publish-subscribe] while communicating with other BS.
 
-The gateway doesn't support pub/sub (more on that later) but this isn't a problem since request/response is perfectly fine within a BS, remembering that those sites are physically different but the communication is within the same logical BS. So when using the gateway, the guideline is to model the messages going explicitly across sites. The following picture illustrates the sample and includes a sales service responsible for reporting the sales statistics so that the pricing service can set appropriate prices.
+The gateway doesn't support pub/sub but this isn't a problem since request/response is adequate within a BS, remembering that those sites are physically different but the communication is within the same logical BS. So when using the gateway, the guideline is to model the messages going explicitly across sites. The following picture illustrates the sample and includes a sales service responsible for reporting the sales statistics so that the pricing service can set appropriate prices.
 
 ![Gateway Store and Headquarters example](store-to-headquarters-pricing-and-sales.png "Logical view")
 
 The prices are pushed daily to the stores and sales reports are pushed daily to the HQ. Any pub/sub goes on within the same physical site. This is the reason that the NServiceBus gateway doesn't support pub/sub across sites since it shouldn't be needed in a well designed system.
 
-Going across sites usually means radically different transport characteristics like latency, bandwidth, reliability, and explicit messages for the gateway communication, helping to make it obvious for developers that they are about to make cross-site calls. This is where Remote Procedure Call (RPC) really starts to break down as it will meet all the fallacies of distributed computing head on.
+Going across sites usually means radically different transport characteristics like latency, bandwidth, reliability, and explicit messages for the gateway communication, helping to make it obvious for developers that they are about to make cross-site calls. This is where Remote Procedure Call (RPC) really starts to break down as it will meet all [the fallacies of distributed computing](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing) head on.
 
 ## Using the gateway
 
@@ -66,7 +66,7 @@ A gateway runs inside each host process. The gateway gets its input from a regul
 
 ### Configuring the gateway
 
-In Version 5 and above the gateway is provided by the `NServiceBus.Gateway` NuGet. In Version 3 and Version 4 the gateway is included in the core assembly, meaning that every endpoint is capable of running a gateway.
+In Versions 5 and above the gateway is provided by the `NServiceBus.Gateway` NuGet. In Version 3 and Version 4 the gateway is included in the core assembly.
 
 To turn on the gateway, add the following to the configuration:
 
@@ -75,9 +75,9 @@ snippet:GatewayConfiguration
 
 ### Retries
 
-In NserviceBus Version 3, Version 4 and Version 5 the gateway uses the general [retries](/nservicebus/errors/automatic-retries.md) configured for the endpoint.
+In Gateway Version 1 and NServiceBus Versions 4 and below the Gateway shares the core [message retry](/nservicebus/errors/automatic-retries.md) behavior.
 
-In Version 6 the gateway has its own retry mechanism. It will retry failed messages 4 times by default, increasing the delay by 60 seconds each time as follows:
+In Gateway Versions 2 and above the Gateway has its own retry mechanism. It will retry failed messages 4 times by default, increasing the delay by 60 seconds each time as follows:
 
 Retry | Delay
 ---- | ----
@@ -98,7 +98,7 @@ This example custom retry policy will produce the same results as the default re
 
 Custom retry policies should eventually give up or a message could get stuck in a loop being retried forever. To discontinue retries return `TimeSpan.Zero` from the custom retry policy and the message will be treated as a fault. [Faulted messages are routed to the configured error queue](/nservicebus/errors/index.md). 
 
-WARN: The recoverability mechanisms built into the Gateway do not roll back the [receieve transaction](/nservicebus/messaging/transactions.md) or any ambient transaction when sending a message to another site fails. Any custom recoverability policy cannot rely on an ambient transaction being rolled back. 
+WARNING: The recoverability mechanisms built into the Gateway do not roll back the [receieve transaction](/nservicebus/messaging/transactions.md) or any ambient transaction when sending a message to another site fails. Any custom recoverability policy cannot rely on an ambient transaction being rolled back. 
 
 To disable retries in the gateway use the `DisableRetries` setting:
 
