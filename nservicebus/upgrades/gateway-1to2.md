@@ -22,7 +22,7 @@ snippet: 1to2GatewayConfig
 
 ## Automatic retries
 
-In Version 2 and above the gateway has its own retry mechanism. It will retry failed messages 4 times by default, increasing the delay by 60 seconds each time. The default retry policy can be [replaced](/nservicebus/gateway/#retries).
+In Versions 2 and above the gateway has its own retry mechanism. It will retry failed messages 4 times by default, increasing the delay by 60 seconds each time. The default retry policy can be [replaced](/nservicebus/gateway/#retries).
 
 ## Notifications
 
