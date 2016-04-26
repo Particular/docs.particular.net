@@ -10,9 +10,9 @@
             #region ConfigurePropertyInjectionForHandler
 
             configure.DefaultBuilder();
-            configure.Configurer
-                .ConfigureProperty<EmailHandler>(handler => handler.SmtpAddress, "10.0.1.233")
-                .ConfigureProperty<EmailHandler>(handler => handler.SmtpPort, 25);
+            var configureComponents = configure.Configurer;
+            configureComponents.ConfigureProperty<EmailHandler>(handler => handler.SmtpAddress, "10.0.1.233");
+            configureComponents.ConfigureProperty<EmailHandler>(handler => handler.SmtpPort, 25);
 
             #endregion
         }

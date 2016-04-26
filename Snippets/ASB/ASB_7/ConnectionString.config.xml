@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!-- startcode AzureServiceBusConnectionStringFromAppConfig 7 -->
+<!-- startcode AzureServiceBusConnectionStringFromAppConfig -->
 <configuration>
   <connectionStrings>
      <add name="NServiceBus/Transport"

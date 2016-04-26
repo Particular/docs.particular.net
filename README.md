@@ -259,7 +259,7 @@ And checking `Ignore YAML Front-matter`
  * Any directory in that structure with a sample.md will be considered a "root for a sample" or Sample Root.
  * A Sample Root may not contain an sample.md in subdirectories.
  * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
- * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root. 
+ * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.
 
 
 ### Startup projects
@@ -312,7 +312,6 @@ Add a file anywhere in the docs repository that is suffixed with `.include.md`. 
 ### Using an include
 
 Add the following to the markdown `include: theKey`
-
 
 
 ## Code Snippets
@@ -486,14 +485,14 @@ var configure = Configure.With()
 Note none of the tabs have been trimmed.
 
 
-### Why is explicit variable typing used instead of 'var'
+### Explicit variable typing versus 'var'
 
-This is done for two reasons
+Two things are important to remember here
 
- 1. Since the snippets are viewing inline to a page they lack much of the context of a full code file such as using statements. To remove the ambiguity explicit variable declaration is being used
- 2. It makes it much easier to build the docs search engine when the types being used on a page can be inferred by the snippets used.
+ 1. As snippets are viewed inline on a page they lack much of the context of a full code file such as using statements. Often explicit variable declaration helps to remove the ambiguity.
+ 2. Explicit variable declaration makes it easier to build the docs search engine when the types being used on a page can be inferred by the snippets used.
 
-This is enforced by Resharper rules.
+So in general explicit typing should be used.
 
 
 ### Snippets are compiled
@@ -626,6 +625,12 @@ This will result in the image being re-sized with the following parameters
     width="x" height="auto"
 
 It will also wrap the image in a clickable lightbox so the full image can be accessed.
+
+
+### Maintaining images
+
+When creating images, strive to keep sources to for updating and re-creating images later.
+For diagrams, [LucidChart](https://www.lucidchart.com) can be used. LucidChart allows export and import of Visio (VDX) formatted documents. Visio formatted document can be used to generate images and should be committed along with the images. To generate images from LucidChar (or a Visio document), exported image as PNG, using "Crop to content" option.
 
 
 ### Sequence diagrams

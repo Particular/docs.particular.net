@@ -7,7 +7,7 @@
     {
         Injection(BusConfiguration busConfiguration)
         {
-            #region ConfigurePropertyInjectionForHandler 
+            #region ConfigurePropertyInjectionForHandler
 
             busConfiguration.RegisterComponents(c =>
                 c.ConfigureComponent<EmailHandler>(DependencyLifecycle.InstancePerUnitOfWork)
@@ -25,7 +25,7 @@
             #endregion
         }
 
-        #region PropertyInjectionWithHandler 
+        #region PropertyInjectionWithHandler
 
         public class EmailHandler : IHandleMessages<EmailMessage>
         {

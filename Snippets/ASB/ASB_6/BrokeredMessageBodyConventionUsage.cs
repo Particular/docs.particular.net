@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Azure.Transports.AzureServiceBus
+﻿namespace ASB_6
 {
     using System.IO;
     using Microsoft.ServiceBus.Messaging;

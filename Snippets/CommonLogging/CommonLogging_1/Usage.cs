@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Logging.CommonLogging
+﻿namespace CommonLogging_1
 {
     using Common.Logging;
     using Common.Logging.Simple;

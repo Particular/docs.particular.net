@@ -133,7 +133,7 @@ The number of hours to keep a message for before it is deleted.
 
 Type: int
 
-Default: `720` (30 days). 
+Default: `720` (30 days).
 
 In Versions 1.8.2 and below the valid range for this setting was `24` (1 day) through to `1440` (60 days).
 
@@ -148,7 +148,7 @@ The period to keep an audit message for before it is deleted.
 
 Type: timespan
 
-Default: There is no default. This setting needs to be specified. 
+Default: There is no default. This setting needs to be specified.
 
 Valid range for this setting is minimum 1 hour and maximum 364 days.
 
@@ -182,7 +182,7 @@ Default: `350`.
 
 #### ServiceControl/MaxBodySizeToStore
 
-This setting exists in Version 1.6 and above. It allows the upper limit on body size to be configured. 
+This setting exists in Version 1.6 and above. It allows the upper limit on body size to be configured.
 
 In Version 1.5.x and below ServiceControl only stores bodies of audit messages that are smaller than 100Kb.
 
@@ -260,7 +260,7 @@ Use this setting to configure whether processed audit messages are forwarded to 
 
 Type: bool `true` or `false`
 
-Default: `false`. 
+Default: `false`.
 
 In Versions 1.5 and above if this setting is not explicitly set to true or false a warning is shown in the logs at start up.
 

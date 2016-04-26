@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Azure.Transports.AzureServiceBus
+﻿namespace ASB_6
 {
     using NServiceBus;
 
@@ -6,14 +6,14 @@
     {
         Usage(BusConfiguration busConfiguration)
         {
-            #region AzureServiceBusTransportWithAzure 6
+            #region AzureServiceBusTransportWithAzure
 
             busConfiguration.UseTransport<AzureServiceBusTransport>();
 
             #endregion
         }
 
-        #region AzureServiceBusTransportWithAzureHost 6
+        #region AzureServiceBusTransportWithAzureHost
 
         public class EndpointConfig : IConfigureThisEndpoint
         {

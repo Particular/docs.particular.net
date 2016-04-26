@@ -14,14 +14,14 @@
 
             #endregion
         }
-        
+
         #region SecondLevelRetriesCustomPolicyHandler
         TimeSpan MyCustomRetryPolicy(TransportMessage transportMessage)
         {
             // retry max 3 times
             if (transportMessage.NumberOfRetries() >= 3)
             {
-                // sending back a TimeSpan.MinValue tells the 
+                // sending back a TimeSpan.MinValue tells the
                 // SecondLevelRetry not to retry this message
                 return TimeSpan.MinValue;
             }

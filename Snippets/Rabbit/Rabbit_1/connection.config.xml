@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--startcode rabbitmqconnectionstring 1 -->
+<!--startcode rabbitmq-connectionstring -->
 <configuration>
   <connectionStrings>
     <add name="NServiceBus/Transport"

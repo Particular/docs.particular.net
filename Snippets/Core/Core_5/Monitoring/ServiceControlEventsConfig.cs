@@ -6,13 +6,13 @@
     {
         ServiceControlEventsConfig(BusConfiguration busConfiguration)
         {
-            #region ServiceControlEventsConfig 
+            #region ServiceControlEventsConfig
 
             busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.Conventions()
                 .DefiningEventsAs(t => typeof(IEvent).IsAssignableFrom(t) ||
                                        //include ServiceControl events
-                                       t.Namespace != null && 
+                                       t.Namespace != null &&
                                        t.Namespace.StartsWith("ServiceControl.Contracts"));
 
             #endregion

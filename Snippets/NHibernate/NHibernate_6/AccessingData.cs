@@ -1,6 +1,6 @@
-﻿namespace Snippets5.Persistence.NHibernate
+﻿namespace NHibernate_6
 {
-    using global::NHibernate;
+    using NHibernate;
     using NServiceBus;
     using NServiceBus.Persistence;
     using NServiceBus.Persistence.NHibernate;
@@ -18,6 +18,7 @@
         class ViaContext
         {
             #region NHibernateAccessingDataViaContext
+
             public class OrderHandler : IHandleMessages<OrderMessage>
             {
                 NHibernateStorageContext dataContext;
@@ -32,6 +33,7 @@
                     dataContext.Session.Save(new Order());
                 }
             }
+
             #endregion
         }
 
@@ -41,8 +43,8 @@
             {
                 #region NHibernateAccessingDataDirectlyConfig
 
-                busConfiguration.UsePersistence<NHibernatePersistence>()
-                    .RegisterManagedSessionInTheContainer();
+                var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+                persistence.RegisterManagedSessionInTheContainer();
 
                 #endregion
             }
@@ -71,14 +73,12 @@
             {
                 #region CustomSessionCreation
 
-                busConfiguration.UsePersistence<NHibernatePersistence>()
-                    .UseCustomSessionCreationMethod((sessionFactory, connectionString) =>
-                        sessionFactory.OpenSession());
+                var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+                persistence.UseCustomSessionCreationMethod((sessionFactory, connectionString) =>
+                    sessionFactory.OpenSession());
 
                 #endregion
             }
-
-
         }
     }
 }

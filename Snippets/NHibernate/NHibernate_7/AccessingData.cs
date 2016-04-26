@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Persistence.NHibernate
+﻿namespace NHibernate_7
 {
     using System.Threading.Tasks;
     using global::NHibernate;

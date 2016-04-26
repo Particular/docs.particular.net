@@ -18,8 +18,8 @@
             };
             // configure document store properties here and initialize
 
-            busConfiguration.UsePersistence<RavenDBPersistence>()
-                .SetDefaultDocumentStore(myDocumentStore);
+            var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
+            persistence.SetDefaultDocumentStore(myDocumentStore);
 
             #endregion
         }

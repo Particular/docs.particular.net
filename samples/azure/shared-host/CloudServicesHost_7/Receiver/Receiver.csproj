@@ -35,9 +35,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-alpha0049\lib\net452\Ionic.Zip.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-alpha0052\lib\net452\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
@@ -67,25 +66,21 @@
       <HintPath>..\..\..\..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.7.0.0-alpha0117\lib\net452\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.7.0.0-alpha0159\lib\net452\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.AzureStoragePersistence">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.AzureStoragePersistence.1.0.0-alpha0131\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.AzureStoragePersistence.1.0.0-alpha0146\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0001\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Hosting.Azure, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-alpha0049\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Hosting.Azure">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-alpha0052\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Hosting.Azure.HostProcess, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.HostProcess.7.0.0-alpha0049\lib\net452\NServiceBus.Hosting.Azure.HostProcess.exe</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Hosting.Azure.HostProcess">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.HostProcess.7.0.0-alpha0052\lib\net452\NServiceBus.Hosting.Azure.HostProcess.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

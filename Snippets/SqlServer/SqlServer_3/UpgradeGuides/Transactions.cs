@@ -8,9 +8,8 @@
         {
             #region 2to3-enable-native-transaction
 
-            endpointConfiguration
-                .UseTransport<SqlServerTransport>()
-                .Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+            transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
 
             #endregion
         }

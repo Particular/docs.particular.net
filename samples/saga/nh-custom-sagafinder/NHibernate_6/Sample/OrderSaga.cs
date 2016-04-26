@@ -1,7 +1,7 @@
 ﻿using NServiceBus;
 using NServiceBus.Logging;
+using NServiceBus.Saga;
 using System;
-using System.Threading.Tasks;
 
 #region TheSagaNHibernate
 
@@ -18,36 +18,32 @@ public class OrderSaga : Saga<OrderSagaData>,
     }
 
 
-    public Task Handle(StartOrder message, IMessageHandlerContext context)
+    public void Handle(StartOrder message)
     {
         Data.OrderId = message.OrderId;
         Data.PaymentTransactionId = Guid.NewGuid().ToString();
 
         logger.InfoFormat("Saga with OrderId {0} received StartOrder with OrderId {1}", Data.OrderId, message.OrderId);
-        return context.SendLocal(new IssuePaymentRequest
-        {
-            PaymentTransactionId = Data.PaymentTransactionId
-        });
+        Bus.SendLocal(new IssuePaymentRequest
+                      {
+                          PaymentTransactionId = Data.PaymentTransactionId
+                      });
     }
 
-    public Task Handle(PaymentTransactionCompleted message, IMessageHandlerContext context)
+    public void Handle(PaymentTransactionCompleted message)
     {
         logger.InfoFormat("Transaction with Id {0} completed for order id {1}", Data.PaymentTransactionId, Data.OrderId);
-        return context.SendLocal(new CompleteOrder
-        {
-            OrderId = Data.OrderId
-        });
+        Bus.SendLocal(new CompleteOrder
+                      {
+                          OrderId = Data.OrderId
+                      });
     }
 
-
-    public Task Handle(CompleteOrder message, IMessageHandlerContext context)
+    public void Handle(CompleteOrder message)
     {
         logger.InfoFormat("Saga with OrderId {0} received CompleteOrder with OrderId {1}", Data.OrderId, message.OrderId);
         MarkAsComplete();
-
-        return Task.FromResult(0);
     }
-
 }
 
 #endregion

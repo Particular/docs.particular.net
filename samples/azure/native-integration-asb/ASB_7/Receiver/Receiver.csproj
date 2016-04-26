@@ -41,7 +41,7 @@
       <HintPath>..\..\..\..\..\packages\WindowsAzure.ServiceBus.3.1.7\lib\net45-full\Microsoft.ServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-alpha0370\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-alpha0404\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0001\lib\net452\NServiceBus.Core.dll</HintPath>

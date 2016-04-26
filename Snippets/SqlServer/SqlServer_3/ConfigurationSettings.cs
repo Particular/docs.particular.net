@@ -11,8 +11,8 @@
         {
             #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
 
-            endpointConfiguration.UseTransport<SqlServerTransport>()
-                .TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(3));
+            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+            transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(3));
 
             #endregion
         }

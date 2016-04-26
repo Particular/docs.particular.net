@@ -28,10 +28,12 @@
         - Title: "RabbitMQ Transport"
           Articles:
             - "nservicebus/upgrades/rabbitmq-3to4"
+        - Title: "Azure Storage Persistence"
+          Articles:
+            - "nservicebus/upgrades/asp-saga-deduplication"
         - Title: "Azure Storage Queues Transport"
           Articles:
             - "nservicebus/upgrades/asq-6to7"
-            - "nservicebus/upgrades/asp-saga-deduplication"
         - Title: "Azure Service Bus Transport"
           Articles:
             - "nservicebus/upgrades/asb-6to7"
@@ -131,13 +133,18 @@
       Title: "Transports"
       Url: "nservicebus/transports"
       Articles:
+        - "nservicebus/transports/transactions"
         - Title: "Azure Service Bus Transport"
           Url: "nservicebus/azure-service-bus"
           Articles:
-            - "nservicebus/azure-service-bus/faq"
-            - "nservicebus/azure-service-bus/transaction-support"
             - "nservicebus/azure-service-bus/configuration"
             - "nservicebus/azure-service-bus/topologies"
+            - "nservicebus/azure-service-bus/faq"
+            - "nservicebus/azure-service-bus/transaction-support"
+            - "nservicebus/azure/transactions"
+            - "nservicebus/azure-service-bus/message-lock-renewal"
+            - "nservicebus/azure-service-bus/multiple-namespaces-support"
+            - "nservicebus/azure-service-bus/retries"
             - "nservicebus/azure-service-bus/native-integration"
             - "nservicebus/azure-service-bus/performance-tuning"
             - "nservicebus/azure-service-bus/publisher-names-configuration"
@@ -146,7 +153,9 @@
           Articles:
             - "nservicebus/azure-storage-queues/faq"
             - "nservicebus/azure-storage-queues/transaction-support"
+            - "nservicebus/azure/transactions"
             - "nservicebus/azure-storage-queues/configuration"
+            - "nservicebus/azure-storage-queues/performance-tuning"
         - Title: "SQL Server Transport"
           Url: "nservicebus/sqlserver"
           Articles:
@@ -208,11 +217,12 @@
             - "nservicebus/ravendb/operations-scripting"
             - "nservicebus/ravendb/installation"
         - Title: "Azure Storage Persistence"
-          Url: "nservicebus/azure-storage-persistence"  
+          Url: "nservicebus/azure-storage-persistence"
           Articles:
             - "nservicebus/upgrades/asp-saga-deduplication"
             - "nservicebus/azure-storage-persistence/configuration"
-            - "nservicebus/azure-storage-persistence/performance-tuning"       
+            - "nservicebus/azure/transactions"
+            - "nservicebus/azure-storage-persistence/performance-tuning"
     -
       Title: "Containers"
       Url: "nservicebus/containers"

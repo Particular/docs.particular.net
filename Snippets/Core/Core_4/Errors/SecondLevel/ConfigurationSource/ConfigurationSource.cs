@@ -16,7 +16,7 @@
                 SecondLevelRetriesConfig slrConfig = new SecondLevelRetriesConfig
                 {
                     Enabled = true,
-                    NumberOfRetries = 2, 
+                    NumberOfRetries = 2,
                     TimeIncrease = TimeSpan.FromSeconds(10)
                 };
 

@@ -4,12 +4,12 @@ summary: Understanding transactions in Azure and NServiceBus.
 tags:
 - Azure
 - Cloud
-- Transaction
+- Transactions
 - Idempotency
 - DTC
 redirects:
  - nservicebus/understanding-transactions-in-windows-azure
-reviewed: 2016-03-07
+reviewed: 2016-04-20
 ---
 
 The Azure Platform and NServiceBus complement each other. Azure is a distributed, scalable and flexible platform. NServiceBus provides high level abstractions and features that make development in Azure easier. 

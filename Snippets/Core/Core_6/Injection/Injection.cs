@@ -8,7 +8,7 @@
     {
         void ConfigurePropertyInjectionForHandler(EndpointConfiguration endpointConfiguration)
         {
-            #region ConfigurePropertyInjectionForHandler 
+            #region ConfigurePropertyInjectionForHandler
 
             endpointConfiguration.RegisterComponents(c =>
                 c.ConfigureComponent(builder => new EmailHandler
@@ -20,7 +20,7 @@
             #endregion
         }
 
-        #region PropertyInjectionWithHandler 
+        #region PropertyInjectionWithHandler
 
         public class EmailHandler : IHandleMessages<EmailMessage>
         {

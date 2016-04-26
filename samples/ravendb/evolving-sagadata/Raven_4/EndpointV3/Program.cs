@@ -22,9 +22,9 @@ class Program
         };
         documentStore.Initialize();
 
-        endpointConfiguration.UsePersistence<RavenDBPersistence>()
-            .DoNotSetupDatabasePermissions() //Only required to simplify the sample setup
-            .SetDefaultDocumentStore(documentStore);
+        var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
+        persistence.DoNotSetupDatabasePermissions(); //Only required to simplify the sample setup
+        persistence.SetDefaultDocumentStore(documentStore);
 
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();

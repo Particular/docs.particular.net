@@ -1,25 +1,26 @@
-﻿using System.Threading.Tasks;
+﻿using NServiceBus.Persistence.NHibernate;
+using NServiceBus.Saga;
 using NHibernate;
-using NServiceBus;
-using NServiceBus.Extensibility;
-using NServiceBus.Persistence;
-using NServiceBus.Sagas;
 
 #region CustomSagaFinderNHibernate
 
 class StartOrderSagaFinder : IFindSagas<OrderSagaData>.Using<StartOrder>
 {
+    NHibernateStorageContext storageContext;
 
-    public Task<OrderSagaData> FindBy(StartOrder message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
+    public StartOrderSagaFinder(NHibernateStorageContext storageContext)
     {
-        ISession session = storageSession.Session();
+        this.storageContext = storageContext;
+    }
+
+    public OrderSagaData FindBy(StartOrder message)
+    {
+        ISession session = storageContext.Session;
         //if the instance is null a new saga will be automatically created if
         //the Saga handles the message as IAmStartedByMessages<StartOrder>; otherwise an exception is raised.
-        OrderSagaData orderSagaData = session.QueryOver<OrderSagaData>()
+        return session.QueryOver<OrderSagaData>()
             .Where(d => d.OrderId == message.OrderId)
             .SingleOrDefault();
-
-        return Task.FromResult(orderSagaData);
     }
 }
 

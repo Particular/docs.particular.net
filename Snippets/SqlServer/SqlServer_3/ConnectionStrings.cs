@@ -1,5 +1,6 @@
 ﻿namespace SqlServer_3
 {
+    using System.Configuration;
     using System.Data.SqlClient;
     using NServiceBus;
     using NServiceBus.Transports.SQLServer;
@@ -12,8 +13,8 @@
         {
             #region sqlserver-config-connectionstring
 
-            endpointConfiguration.UseTransport<SqlServerTransport>()
-                .ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
+            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+            transport.ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
 
             #endregion
         }
@@ -22,8 +23,8 @@
         {
             #region sqlserver-named-connection-string
 
-            endpointConfiguration.UseTransport<SqlServerTransport>()
-                .ConnectionStringName("MyConnectionString");
+            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+            transport.ConnectionStringName("MyConnectionString");
 
             #endregion
         }
@@ -32,18 +33,18 @@
         {
             #region sqlserver-custom-connection-factory
 
-            endpointConfiguration.UseTransport<SqlServerTransport>()
-                .UseCustomSqlConnectionFactory(async () =>
-                {
-                    connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+            transport.UseCustomSqlConnectionFactory(async () =>
+            {
+                connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
 
-                    SqlConnection connection = new SqlConnection(connectionString);
-                    await connection.OpenAsync();
+                SqlConnection connection = new SqlConnection(connectionString);
+                await connection.OpenAsync();
 
-                    // perform custom operations
+                // perform custom operations
 
-                    return connection;
-                });
+                return connection;
+            });
 
             #endregion
         }

@@ -1,20 +1,21 @@
-﻿using System.Threading.Tasks;
+﻿using NServiceBus.Persistence.NHibernate;
+using NServiceBus.Saga;
 using NHibernate;
-using NServiceBus;
-using NServiceBus.Extensibility;
-using NServiceBus.Persistence;
-using NServiceBus.Sagas;
 
 class PaymentTransactionCompletedSagaFinder : IFindSagas<OrderSagaData>.Using<PaymentTransactionCompleted>
 {
+    NHibernateStorageContext storageContext;
 
-    public Task<OrderSagaData> FindBy(PaymentTransactionCompleted message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
+    public PaymentTransactionCompletedSagaFinder(NHibernateStorageContext storageContext)
     {
-        ISession session = storageSession.Session();
-        OrderSagaData orderSagaData = session.QueryOver<OrderSagaData>()
-            .Where(d => d.PaymentTransactionId == message.PaymentTransactionId)
-            .SingleOrDefault();
-        return Task.FromResult(orderSagaData);
+        this.storageContext = storageContext;
     }
 
+    public OrderSagaData FindBy(PaymentTransactionCompleted message)
+    {
+        ISession session = storageContext.Session;
+        return session.QueryOver<OrderSagaData>()
+            .Where(d => d.PaymentTransactionId == message.PaymentTransactionId)
+            .SingleOrDefault();
+    }
 }

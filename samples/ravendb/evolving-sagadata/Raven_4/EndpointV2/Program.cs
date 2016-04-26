@@ -24,9 +24,9 @@ class Program
         documentStore.Listeners.RegisterListener(new CustomDocumentConverter());
         documentStore.Initialize();
 
-        endpointConfiguration.UsePersistence<RavenDBPersistence>()
-            .DoNotSetupDatabasePermissions() //Only required to simplify the sample setup
-            .SetDefaultDocumentStore(documentStore);
+        var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
+        persistence.DoNotSetupDatabasePermissions(); //Only required to simplify the sample setup
+        persistence.SetDefaultDocumentStore(documentStore);
         #endregion
 
 

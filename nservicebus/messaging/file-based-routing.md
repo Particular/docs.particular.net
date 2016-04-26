@@ -10,7 +10,7 @@ related:
 - nservicebus/messaging/routing
 ---
 
-Before version 6, NServiceBus used fixed [message ownership mappings](/nservicebus/messaging/message-owner.md) in the standard .NET configuration file. The advantage was that operations personnel can adjust the routing should the topology change. This is especially important in case of bus-like transports (e.g. MSMQ) where machine name is part of the routing information. Version 6 introduced [code-first API](/nservicebus/messaging/routing.md), which is a code first API however it still supports introduced file-based routing.
+Before version 6, NServiceBus used fixed [message ownership mappings](/nservicebus/messaging/message-owner.md) in the standard .NET configuration file. The advantage was that operations personnel can adjust the routing should the topology change. This is especially important in case of bus-like transports (e.g. MSMQ) where machine name is part of the routing information. Version 6 introduced [code-first API](/nservicebus/messaging/routing.md), which is a code first API however it still supports file-based routing.
 
 
 ## Configuration

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence;
 
@@ -8,37 +7,28 @@ class Program
 
     static void Main()
     {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
-    {
         Console.Title = "Samples.NHibernateCustomSagaFinder";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.NHibernateCustomSagaFinder");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EnableInstallers();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.NHibernateCustomSagaFinder");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
 
         #region NHibernateSetup
 
-        endpointConfiguration.UsePersistence<NHibernatePersistence>()
+        busConfiguration.UsePersistence<NHibernatePersistence>()
             .ConnectionString(@"Data Source=.\SqlExpress;Initial Catalog=NHCustomSagaFinder;Integrated Security=True");
 
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-        try
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            await endpoint.SendLocal(new StartOrder
+            bus.SendLocal(new StartOrder
                           {
                               OrderId = "123"
                           });
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
-        }
-        finally
-        {
-            await endpoint.Stop();
         }
     }
 }

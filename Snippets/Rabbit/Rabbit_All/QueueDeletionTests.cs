@@ -1,4 +1,4 @@
-﻿namespace Operations.RabbitMQ
+﻿namespace Rabbit_All
 {
     using NUnit.Framework;
 

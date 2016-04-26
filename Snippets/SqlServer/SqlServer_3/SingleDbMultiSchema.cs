@@ -9,8 +9,8 @@
         {
             #region sqlserver-singledb-multischema
 
-            endpointConfiguration.UseTransport<SqlServerTransport>()
-                .DefaultSchema("myschema");
+            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+            transport.DefaultSchema("myschema");
 
             #endregion
         }
@@ -19,8 +19,8 @@
         {
             #region sqlserver-singledb-multidb-pull
 
-            endpointConfiguration.UseTransport<SqlServerTransport>()
-                .UseSpecificSchema(tn => tn == "AnotherEndpoint" ? "receiver1" : null);
+            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+            transport.UseSpecificSchema(tn => tn == "AnotherEndpoint" ? "receiver1" : null);
 
             #endregion
         }

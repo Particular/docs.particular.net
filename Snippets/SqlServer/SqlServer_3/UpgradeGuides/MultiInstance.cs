@@ -9,22 +9,23 @@
         void MultiInstance(EndpointConfiguration endpointConfiguration)
         {
 #pragma warning disable 0618
+
             #region sqlserver-multiinstance-upgrade
 
-            endpointConfiguration.UseTransport<SqlServerTransport>()
-                .EnableLagacyMultiInstanceMode(async address =>
-                {
-                    string connectionString = address.Equals("RemoteEndpoint") ? "SomeConnectionString" : "SomeOtherConnectionString";
-                    SqlConnection connection = new SqlConnection(connectionString);
+            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+            transport.EnableLagacyMultiInstanceMode(async address =>
+            {
+                string connectionString = address.Equals("RemoteEndpoint") ? "SomeConnectionString" : "SomeOtherConnectionString";
+                SqlConnection connection = new SqlConnection(connectionString);
 
-                    await connection.OpenAsync();
+                await connection.OpenAsync();
 
-                    return connection;
-                });
+                return connection;
+            });
 
             #endregion
+
 #pragma warning restore 0618
         }
     }
-
 }

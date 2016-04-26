@@ -1,7 +1,7 @@
 ﻿namespace Rabbit_4
 {
     using System;
-    using global::RabbitMQ.Client;
+    using RabbitMQ.Client;
     using NServiceBus;
     using NServiceBus.Transports;
     using NServiceBus.Transports.RabbitMQ.Routing;
@@ -11,6 +11,7 @@
         Usage(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-basic
+
             endpointConfiguration.UseTransport<RabbitMQTransport>();
 
             #endregion
@@ -20,8 +21,8 @@
         {
             #region rabbitmq-config-connectionstring-in-code
 
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .ConnectionString("My custom connection string");
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.ConnectionString("My custom connection string");
 
             #endregion
         }
@@ -29,57 +30,40 @@
         void CustomConnectionStringName(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-connectionstringname
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .ConnectionStringName("MyConnectionStringName");
+
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.ConnectionStringName("MyConnectionStringName");
 
             #endregion
         }
-
-        /**
-
-        void DisableCallbackReceiver(EndpointConfiguration endpointConfiguration)
-        {
-            #region rabbitmq-config-disablecallbackreceiver
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .DisableCallbackReceiver();
-
-            #endregion
-        }
-
 
         void CallbackReceiverMaxConcurrency(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-callbackreceiver-thread-count
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .CallbackReceiverMaxConcurrency(10);
+
+            endpointConfiguration.UseTransport<RabbitMQTransport>();
+            endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
 
             #endregion
         }
+
         void CustomIdStrategy(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-custom-id-strategy
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .CustomMessageIdStrategy(deliveryArgs =>
+
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.CustomMessageIdStrategy(deliveryArgs =>
                     deliveryArgs.BasicProperties.Headers["MyCustomId"].ToString());
 
             #endregion
         }
-        void UseConnectionManager(EndpointConfiguration endpointConfiguration)
-        {
-            #region rabbitmq-config-useconnectionmanager
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .UseConnectionManager<MyConnectionManager>();
-
-            #endregion
-        }
-    **/
 
         void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-usedirectroutingtopology
 
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .UseDirectRoutingTopology();
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.UseDirectRoutingTopology();
 
             #endregion
         }
@@ -87,8 +71,9 @@
         void UseDirectRoutingTopologyWithCustomConventions(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-usedirectroutingtopologywithcustomconventions
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
+
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
 
             #endregion
         }
@@ -102,8 +87,18 @@
         {
             #region rabbitmq-config-useroutingtopology
 
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .UseRoutingTopology<MyRoutingTopology>();
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.UseRoutingTopology<MyRoutingTopology>();
+
+            #endregion
+        }
+
+        void UseCustomCircuitBreakerSettings(EndpointConfiguration endpointConfiguration)
+        {
+            #region rabbitmq-custom-breaker-settings-code
+
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
 
             #endregion
         }
@@ -112,32 +107,26 @@
         {
             public void SetupSubscription(IModel channel, Type type, string subscriberName)
             {
-                throw new NotImplementedException();
             }
 
             public void TeardownSubscription(IModel channel, Type type, string subscriberName)
             {
-                throw new NotImplementedException();
             }
 
             public void Publish(IModel channel, Type type, OutgoingMessage message, IBasicProperties properties)
             {
-                throw new NotImplementedException();
             }
 
             public void Send(IModel channel, string address, OutgoingMessage message, IBasicProperties properties)
             {
-                throw new NotImplementedException();
             }
 
             public void RawSendInCaseOfFailure(IModel channel, string address, byte[] body, IBasicProperties properties)
             {
-                throw new NotImplementedException();
             }
 
             public void Initialize(IModel channel, string main)
             {
-                throw new NotImplementedException();
             }
         }
 

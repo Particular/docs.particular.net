@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Azure.Transports.AzureServiceBus
+﻿namespace ASB_5
 {
     using NServiceBus;
 
@@ -6,21 +6,19 @@
     {
         Usage(Configure configure)
         {
-            #region AzureServiceBusTransportWithAzure 5
+            #region AzureServiceBusTransportWithAzure
 
             configure.UseTransport<AzureServiceBus>();
 
             #endregion
         }
-        //TODO: fix when azure host is split
-        /**
-        #region AzureServiceBusTransportWithAzureHost 5
+        #region AzureServiceBusTransportWithAzureHost
 
-        public class EndpointConfig : IConfigureThisEndpoint, UsingTransport<AzureServiceBus>
+        public class EndpointConfig : IConfigureThisEndpoint,
+            UsingTransport<AzureServiceBus>
         {
         }
 
         #endregion
-    **/
     }
 }

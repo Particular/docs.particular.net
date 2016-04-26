@@ -13,8 +13,8 @@
         {
             #region ravendb-persistence-stale-sagas
 
-            busConfiguration.UsePersistence<RavenDBPersistence>()
-                .AllowStaleSagaReads();
+            var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
+            persistence.AllowStaleSagaReads();
 
             #endregion
         }
@@ -26,7 +26,8 @@
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
 
-            busConfiguration.UsePersistence<RavenDBPersistence>().UseSharedSession(() =>
+            var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
+            persistence.UseSharedSession(() =>
             {
                 IDocumentSession session = myDocumentStore.OpenSession();
                 // customize the session properties here
@@ -72,10 +73,10 @@
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
 
-            busConfiguration.UsePersistence<RavenDBPersistence>()
-                .UseDocumentStoreForSubscriptions(myDocumentStore)
-                .UseDocumentStoreForSagas(myDocumentStore)
-                .UseDocumentStoreForTimeouts(myDocumentStore);
+            var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
+            persistence.UseDocumentStoreForSubscriptions(myDocumentStore);
+            persistence.UseDocumentStoreForSagas(myDocumentStore);
+            persistence.UseDocumentStoreForTimeouts(myDocumentStore);
 
             #endregion
         }
@@ -92,8 +93,8 @@
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
 
-            busConfiguration.UsePersistence<RavenDBPersistence>()
-                .SetDefaultDocumentStore(myDocumentStore);
+            var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
+            persistence.SetDefaultDocumentStore(myDocumentStore);
 
             #endregion
         }
@@ -105,8 +106,8 @@
             ConnectionParameters connectionParams = new ConnectionParameters();
             // configure connection params (ApiKey, DatabaseName, Url) here
 
-            busConfiguration.UsePersistence<RavenDBPersistence>()
-                .SetDefaultDocumentStore(connectionParams);
+            var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
+            persistence.SetDefaultDocumentStore(connectionParams);
 
             #endregion
         }

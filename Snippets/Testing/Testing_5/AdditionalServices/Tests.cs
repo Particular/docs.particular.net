@@ -55,7 +55,7 @@
     class WithConstructorInjectedBusHandler : IHandleMessages<MyMessage>
     {
         IBus bus;
-        
+
         public WithConstructorInjectedBusHandler(IBus bus)
         {
             this.bus = bus;
