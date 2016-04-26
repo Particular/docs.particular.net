@@ -13,7 +13,7 @@
             #region sqlserver-multiinstance-upgrade
 
             var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-            transport.EnableLagacyMultiInstanceMode(async address =>
+            transport.EnableLegacyMultiInstanceMode(async address =>
             {
                 string connectionString = address.Equals("RemoteEndpoint") ? "SomeConnectionString" : "SomeOtherConnectionString";
                 SqlConnection connection = new SqlConnection(connectionString);
