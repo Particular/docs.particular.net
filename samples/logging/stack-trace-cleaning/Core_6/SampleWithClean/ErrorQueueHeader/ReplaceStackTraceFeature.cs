@@ -19,7 +19,7 @@ public class ReplaceStackTraceFeature : Feature
         public Registration()
             : base("ReplaceStackTrace", typeof(ReplaceStackTraceBehavior), "Replace StackTrace")
         {
-            InsertAfter("FaultHostInformation");
+            InsertAfter("AddExceptionHeaders");
         }
     }
 }
