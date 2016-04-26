@@ -73,7 +73,9 @@
     <Content Include="QueueConfig.config.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UpgradeGuides\6to7\Upgrade.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
