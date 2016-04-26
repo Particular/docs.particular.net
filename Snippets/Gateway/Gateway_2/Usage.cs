@@ -23,10 +23,9 @@
 
             #region GatewayCustomRetryPolicyConfiguration
 
-            endpointConfiguration.Gateway().CustomRetryPolicy(message =>
+            endpointConfiguration.Gateway().CustomRetryPolicy((message,exception,currentRetry) =>
             {
-                var currentRetry = message.GetCurrentRetry();
-                return currentRetry > 4 ? TimeSpan.Zero : TimeSpan.FromSeconds(currentRetry * 60);
+                return currentRetry > 4 ? TimeSpan.MinValue : TimeSpan.FromSeconds(currentRetry * 60);
             });
 
             #endregion
