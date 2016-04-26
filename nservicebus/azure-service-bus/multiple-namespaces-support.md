@@ -6,7 +6,7 @@ tags:
 - Cloud
 - Azure
 - Transports 
-reviewed: 2016-04-18
+reviewed: 2016-04-26
 ---
 
 Azure Service Bus transport enables different _namespace partitioning strategies_ to cover various scenarios such as High Availability and multiple Data Center support or to overcome [service limits](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/).  
@@ -30,7 +30,7 @@ Only one namespace can be configured when using SingleNamespacePartitioning stra
 ## Round robin namespace partitioning
 
 Selecting `RoundRobinNamespacePartitioning` multiple namespace are used. Messages are sent to a single namespace and received from all the namespace. For sending operations, namespaces are cycled through.  
-This strategy is useful to avoid throttling by Azure infrastructure for [capacity limit](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/).   
+This strategy is designed to avoid throttling by the service.   
 Multiple namespaces have to be configured when using `RoundRobinNamespacePartitioning` strategy. When only one namespace is specified, then NServiceBus throws a `ConfigurationErrorsException` at startup.
  
 snippet: round_robin_partitioning_strategy
@@ -40,20 +40,4 @@ snippet: round_robin_partitioning_strategy
 `FailOverNamespacePartitioning` strategy provides transport High Availability by using two different namespaces, a primary and a secondary. The transport uses the primary namespace. When the primary namespace is not available, the transport will switch to the secondary namespace.   
 Exactly two namespaces have to be configured when using `FailOverNamespacePartitioning` strategy. When only one namespace is specified, then NServiceBus throws a `ConfigurationErrorsException` at startup.
 
-snippet: fail_over_partitioning_strategy 
-
-## Replicated namespace partitioning
-
-Scenario covered by `RepliactedNamespacePartitioning` is to support publish messages across different data centers. With this strategy, transport uses all configured namespaces to send and receive messages.  
-When transport has to send a message, it sends the same message to all namespaces.   
-Multiple namespaces have to be configured when using `RepliactedNamespacePartitioning` strategy. When only one namespace is specified, then NServiceBus throws a `ConfigurationErrorsException` at startup.
-
-snippet: replicated_partitioning_strategy
-
-## Sharded namespace partitioning
-
-`ShardedNamespacePartitioning` covers the same scenario as `RoundRobinNamespacePartitioning` but in this case a `ShardingRule` has to be provided to select namespace to use to publish message(s).   
-With `ShardedNamespacePartitioning` messages are sent to the namespace selected by the custom `ShardingRule` defined and provided to the strategy.   
-Multiple namespaces have to be configured when using `ShardedNamespacePartitioning` strategy. When only one namespace is specified, then NServiceBus throws a `ConfigurationErrorsException` at startup.
-
-snippet: sharded_partitioning_strategy_configuration
+snippet: fail_over_partitioning_strategy
