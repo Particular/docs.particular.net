@@ -67,8 +67,8 @@ snippet:6to7-serializer-definition
 
 ## API Changes
 
-In Version 7 it the public API was reduced. As a result, multiple classes that used to be public in Versions 6 and below were marked as obsolete with a comment:
+In Version 7 the public API has been reduced. As a result, multiple classes that used to be public in Versions 6 and below were marked as obsolete with a comment:
 
 > This class served only internal purposes without providing any extensibility point and as such was removed from the public API. For more information, refer to the documentation.
 
-If the code depends on classes that were obsoleted with the above message, and it is not clear how to update it, then [contact Particular support](http://particular.net/contactus) to get help in resolving that issue. 
+If code exist that depends on classes that were obsoleted with the above message, and it is not clear how to update it, then [contact Particular support](http://particular.net/contactus) to get help in resolving that issue. 
