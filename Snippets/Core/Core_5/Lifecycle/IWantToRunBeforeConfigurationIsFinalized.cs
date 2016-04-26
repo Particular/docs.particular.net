@@ -13,6 +13,6 @@
             // after this config.Settings will be frozen
         }
     }
-    
+
     #endregion
 }

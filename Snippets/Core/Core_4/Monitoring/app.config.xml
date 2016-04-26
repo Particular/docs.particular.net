@@ -3,7 +3,7 @@
   <!-- startcode ServiceControlEventsXmlConfig -->
   <UnicastBusConfig>
     <MessageEndpointMappings >
-      <add Assembly="ServiceControl.Contracts" 
+      <add Assembly="ServiceControl.Contracts"
            Endpoint="Particular.ServiceControl" />
     </MessageEndpointMappings>
   </UnicastBusConfig>

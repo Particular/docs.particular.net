@@ -10,11 +10,11 @@ namespace Core5
         {
             #region ConfigureRawXmlSerialization
 
-            busConfiguration.UseSerialization<XmlSerializer>()
+            var serialization = busConfiguration.UseSerialization<XmlSerializer>();
+            serialization
                 .DontWrapRawXml();
             #endregion
         }
-
 
         #region MessageWithXDocument
 

@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Azure.CloudServices
+﻿namespace CloudServicesHost_7
 {
     using System.Threading.Tasks;
     using System.Web;
@@ -48,10 +48,10 @@
     {
         protected void Application_Start()
         {
-            StrartBus().GetAwaiter().GetResult();
+            StartBus().GetAwaiter().GetResult();
         }
 
-        static async Task StrartBus()
+        static async Task StartBus()
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
             endpointConfiguration.AzureConfigurationSource();

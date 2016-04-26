@@ -8,8 +8,8 @@
         {
             #region MutatorRegistration
 
-            configuration.Configurer
-                .ConfigureComponent<MyMutator>(DependencyLifecycle.InstancePerCall);
+            var configureComponents = configuration.Configurer;
+            configureComponents.ConfigureComponent<MyMutator>(DependencyLifecycle.InstancePerCall);
 
             #endregion
         }

@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Distributor
+﻿namespace Distributor_5
 {
     using NServiceBus;
     using NServiceBus.Configuration.AdvanceExtensibility;
@@ -12,7 +12,7 @@
             // --------------------------------------
             // Running the Distributor and a Worker
             busConfiguration.AsMSMQMasterNode();
-            //or 
+            //or
             busConfiguration.RunMSMQDistributor();
             // --------------------------------------
 

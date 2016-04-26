@@ -1,32 +1,41 @@
-﻿namespace Snippets5.Persistence.NHibernate
+﻿namespace NHibernate_6
 {
     using NServiceBus;
     using NServiceBus.Persistence;
     using NServiceBus.Persistence.NHibernate;
 
-    class DisableSchemaUpdate
+    class DisableSchemaUpdates
     {
-        DisableSchemaUpdate(BusConfiguration busConfiguration)
+        void DisableSchemaUpdate(BusConfiguration busConfiguration)
         {
-            #region DisableSchemaUpdate 5.0
+            #region DisableSchemaUpdate
 
             busConfiguration.UsePersistence<NHibernatePersistence>()
                 .DisableSchemaUpdate();
 
             #endregion
-            #region DisableGatewaySchemaUpdate 5.0
+        }
+        void DisableGatewaySchemaUpdate(BusConfiguration busConfiguration)
+        {
+            #region DisableGatewaySchemaUpdate
 
             busConfiguration.UsePersistence<NHibernatePersistence>()
                 .DisableGatewayDeduplicationSchemaUpdate();
 
             #endregion
-            #region DisableSubscriptionSchemaUpdate 5.0
+        }
+        void DisableSubscriptionSchemaUpdate(BusConfiguration busConfiguration)
+        {
+            #region DisableSubscriptionSchemaUpdate
 
             busConfiguration.UsePersistence<NHibernatePersistence>()
                 .DisableSubscriptionStorageSchemaUpdate();
 
             #endregion
-            #region DisableTimeoutSchemaUpdate 5.0
+        }
+        void DisableTimeoutSchemaUpdate(BusConfiguration busConfiguration)
+        {
+            #region DisableTimeoutSchemaUpdate
 
             busConfiguration.UsePersistence<NHibernatePersistence>()
                 .DisableTimeoutStorageSchemaUpdate();

@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Persistence.NHibernate
+﻿namespace NHibernate_5
 {
     using System;
     using global::NHibernate.Cfg;
@@ -9,7 +9,7 @@
         Usage(Configure configure)
         {
             #region ConfiguringNHibernate
-            
+
             configure.UseNHibernateSubscriptionPersister();
             configure.UseNHibernateTimeoutPersister();
             configure.UseNHibernateSagaPersister();
@@ -40,7 +40,7 @@
 
             configure.UseNHibernateSubscriptionPersister(
                 cacheExpiration: TimeSpan.FromSeconds(10));
-            
+
             #endregion
         }
     }

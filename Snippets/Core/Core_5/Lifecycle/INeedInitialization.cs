@@ -9,7 +9,7 @@
         public void Customize(BusConfiguration busConfiguration)
         {
             // Perform initialization
-            // This is after type scanning. Do not call the following here: 
+            // This is after type scanning. Do not call the following here:
             // * configuration.AssembliesToScan();
             // * configuration.ScanAssembliesInDirectory();
             // * configuration.TypesToScan();

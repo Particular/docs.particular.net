@@ -2,7 +2,7 @@
 <configuration>
   <!--startcode OverrideLoggingDefaultsInAppConfig-->
   <configSections>
-    <section name="Logging" 
+    <section name="Logging"
              type="NServiceBus.Config.Logging, NServiceBus.Core" />
   </configSections>
   <Logging Threshold="Debug" />

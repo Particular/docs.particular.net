@@ -1,14 +1,14 @@
 using NServiceBus;
+
 [EndpointName("Samples.Logging.HostProfiles")]
-public class EndpointConfig :
-    IConfigureThisEndpoint,
+public class EndpointConfig : 
+    IConfigureThisEndpoint, 
     AsA_Server
 {
-    public void Customize(EndpointConfiguration endpointConfiguration)
+    public void Customize(BusConfiguration busConfiguration)
     {
-        endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
     }
 }

@@ -12,7 +12,7 @@
         {
             if (typeof(T) == typeof(UnicastBusConfig))
             {
-                //read from existing config 
+                //read from existing config
                 UnicastBusConfig config = (UnicastBusConfig) ConfigurationManager
                     .GetSection(typeof(UnicastBusConfig).Name);
                 if (config == null)

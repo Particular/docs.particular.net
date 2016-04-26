@@ -12,8 +12,8 @@
             #region 3to4-ravensharedsession
             Func<IDocumentSession> sessionFactory = () => someSession;
 
-            busConfiguration.UsePersistence<RavenDBPersistence>()
-                .UseSharedSession(sessionFactory);
+            var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
+            persistence.UseSharedSession(sessionFactory);
             #endregion
         }
     }

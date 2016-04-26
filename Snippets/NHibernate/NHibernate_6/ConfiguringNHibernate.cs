@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Persistence.NHibernate
+﻿namespace NHibernate_6
 {
     using System;
     using global::NHibernate.Cfg;
@@ -30,10 +30,10 @@
 
 
             #region NHibernateSubscriptionCaching 5.0
-            
-            busConfiguration.UsePersistence<NHibernatePersistence>()
-                .EnableCachingForSubscriptionStorage(TimeSpan.FromSeconds(10));
-            
+
+            var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.EnableCachingForSubscriptionStorage(TimeSpan.FromSeconds(10));
+
             #endregion
 #pragma warning restore 618
         }
@@ -56,8 +56,8 @@
 
             #region NHibernateSubscriptionCaching 5.2
 
-            busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>()
-                .EnableCachingForSubscriptionStorage(TimeSpan.FromMinutes(1));
+            var persistence = busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
+            persistence.EnableCachingForSubscriptionStorage(TimeSpan.FromMinutes(1));
 
             #endregion
         }
@@ -72,8 +72,8 @@
             nhConfiguration.Properties["connection.provider"] = "NHibernate.Connection.DriverConnectionProvider";
             nhConfiguration.Properties["connection.driver_class"] = "NHibernate.Driver.Sql2008ClientDriver";
 
-            busConfiguration.UsePersistence<NHibernatePersistence>()
-                .UseConfiguration(nhConfiguration);
+            var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.UseConfiguration(nhConfiguration);
 
             #endregion
         }
@@ -85,16 +85,14 @@
             Configuration nhConfiguration = new Configuration();
             nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
 
-            busConfiguration.UsePersistence<NHibernatePersistence>()
-                .UseSubscriptionStorageConfiguration(nhConfiguration);
-            busConfiguration.UsePersistence<NHibernatePersistence>()
-                .UseGatewayDeduplicationConfiguration(nhConfiguration);
-            busConfiguration.UsePersistence<NHibernatePersistence>()
-                .UseTimeoutStorageConfiguration(nhConfiguration);
+            var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.UseSubscriptionStorageConfiguration(nhConfiguration);
+            persistence.UseGatewayDeduplicationConfiguration(nhConfiguration);
+            persistence.UseTimeoutStorageConfiguration(nhConfiguration);
             #endregion
 
         }
-        
+
 
         void CustomCommonConfigurationWarning(BusConfiguration busConfiguration)
         {
@@ -103,8 +101,8 @@
             Configuration nhConfiguration = new Configuration();
             nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
 
-            busConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>()
-                .UseConfiguration(nhConfiguration);
+            var persistence = busConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
+            persistence.UseConfiguration(nhConfiguration);
             #endregion
         }
     }

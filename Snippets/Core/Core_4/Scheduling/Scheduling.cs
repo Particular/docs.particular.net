@@ -8,7 +8,7 @@
         void ScheduleTask(IBus bus)
         {
             #region ScheduleTask
-            // 'Schedule' is a static class that can be accessed anywhere. 
+            // 'Schedule' is a static class that can be accessed anywhere.
             // To send a message every 5 minutes
             Schedule.Every(TimeSpan.FromMinutes(5))
                 .Action(() => bus.Send(new CallLegacySystem()));

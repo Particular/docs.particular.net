@@ -2,64 +2,67 @@
 using NServiceBus.Persistence;
 using NServiceBus.SagaPersisters;
 
-class Usage
+namespace Azure_6
 {
-    Usage(BusConfiguration busConfiguration)
+    class Usage
     {
-        #region PersistanceWithAzure
-
-        busConfiguration.UsePersistence<AzureStoragePersistence>();
-
-        #endregion
-    }
-
-    #region PersistenceWithAzureHost
-
-    public class EndpointConfig : IConfigureThisEndpoint
-    {
-        public void Customize(BusConfiguration busConfiguration)
+        Usage(BusConfiguration busConfiguration)
         {
+            #region PersistanceWithAzure
+
             busConfiguration.UsePersistence<AzureStoragePersistence>();
+
+            #endregion
         }
-    }
 
-    #endregion
+        #region PersistenceWithAzureHost
 
-    void CustomizingAzurePersistenceSubscriptions_6_2(BusConfiguration busConfiguration)
-    {
-        #region AzurePersistenceSubscriptionsCustomization 6.2
-
-        busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()
-            .ConnectionString("connectionString")
-            .TableName("tableName")
-            .CreateSchema(true);
+        public class EndpointConfig : IConfigureThisEndpoint
+        {
+            public void Customize(BusConfiguration busConfiguration)
+            {
+                busConfiguration.UsePersistence<AzureStoragePersistence>();
+            }
+        }
 
         #endregion
-    }
 
-    void CustomizingAzurePersistenceSagas_6_2(BusConfiguration busConfiguration)
-    {
-        #region AzurePersistenceSagasCustomization 6.2
+        void CustomizingAzurePersistenceSubscriptions_6_2(BusConfiguration busConfiguration)
+        {
+            #region AzurePersistenceSubscriptionsCustomization 6.2
 
-        busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>()
-            .ConnectionString("connectionString")
-            .CreateSchema(true);
+            var persistence = busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>();
+            persistence.ConnectionString("connectionString");
+            persistence.TableName("tableName");
+            persistence.CreateSchema(true);
 
-        #endregion
-    }
+            #endregion
+        }
 
-    void AzurePersistenceTimeoutsCustomization_6_2(BusConfiguration busConfiguration)
-    {
-        #region AzurePersistenceTimeoutsCustomization 6.2
+        void CustomizingAzurePersistenceSagas_6_2(BusConfiguration busConfiguration)
+        {
+            #region AzurePersistenceSagasCustomization 6.2
 
-        busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()
-            .ConnectionString("connectionString")
-            .CreateSchema(true)
-            .TimeoutManagerDataTableName("TimeoutManager")
-            .TimeoutDataTableName("TimeoutData")
-            .CatchUpInterval(3600)
-            .PartitionKeyScope("yyyy-MM-dd-HH");
+            var persistence = busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>();
+            persistence.ConnectionString("connectionString");
+            persistence.CreateSchema(true);
 
-        #endregion
+            #endregion
+        }
+
+        void AzurePersistenceTimeoutsCustomization_6_2(BusConfiguration busConfiguration)
+        {
+            #region AzurePersistenceTimeoutsCustomization 6.2
+
+            var persistence = busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>();
+            persistence.ConnectionString("connectionString");
+            persistence.CreateSchema(true);
+            persistence.TimeoutManagerDataTableName("TimeoutManager");
+            persistence.TimeoutDataTableName("TimeoutData");
+            persistence.CatchUpInterval(3600);
+            persistence.PartitionKeyScope("yyyy-MM-dd-HH");
+
+            #endregion
+        }
     }
 }

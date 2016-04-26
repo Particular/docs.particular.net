@@ -16,9 +16,9 @@
     }
     #endregion
 
-    class CustomErrorHandlingBehaviourForDeserializationFailures : Behavior<ITransportReceiveContext>
+    class CustomErrorHandlingBehaviorForDeserializationFailures : Behavior<ITransportReceiveContext>
     {
-        ILog log = LogManager.GetLogger<CustomErrorHandlingBehaviourForDeserializationFailures>();
+        ILog log = LogManager.GetLogger<CustomErrorHandlingBehaviorForDeserializationFailures>();
 
         public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
         {
@@ -37,9 +37,9 @@
         }
     }
 
-    class CustomErrorHandlingBehaviourForAllFailures : Behavior<ITransportReceiveContext>
+    class CustomErrorHandlingBehaviorForAllFailures : Behavior<ITransportReceiveContext>
     {
-        ILog log = LogManager.GetLogger<CustomErrorHandlingBehaviourForAllFailures>();
+        ILog log = LogManager.GetLogger<CustomErrorHandlingBehaviorForAllFailures>();
 
         public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
         {
@@ -58,7 +58,7 @@
         }
     }
 
-    class CustomErrorHandlingBehaviourRollbackOnFailures : Behavior<ITransportReceiveContext>
+    class CustomErrorHandlingBehaviorRollbackOnFailures : Behavior<ITransportReceiveContext>
     {
         public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
         {

@@ -10,6 +10,6 @@
             endpointConfiguration.LimitMessageProcessingConcurrencyTo(5);
             #endregion
         }
-        
+
     }
 }

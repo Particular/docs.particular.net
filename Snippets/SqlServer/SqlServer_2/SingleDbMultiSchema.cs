@@ -9,8 +9,8 @@
         {
             #region sqlserver-singledb-multischema 2.1
 
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .DefaultSchema("myschema");
+            var transport = busConfiguration.UseTransport<SqlServerTransport>();
+            transport.DefaultSchema("myschema");
 
             #endregion
         }
@@ -20,8 +20,8 @@
         {
             #region sqlserver-singledb-multidb-pull 2.1
 
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .UseSpecificConnectionInformation(x => x == "AnotherEndpoint"
+            var transport = busConfiguration.UseTransport<SqlServerTransport>();
+            transport.UseSpecificConnectionInformation(x => x == "AnotherEndpoint"
                     ? ConnectionInfo.Create()
                         .UseSchema("nsb")
                     : null);

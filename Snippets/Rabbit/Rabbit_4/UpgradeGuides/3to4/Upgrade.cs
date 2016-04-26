@@ -9,8 +9,8 @@
         {
             #region 3to4rabbitmq-custom-breaker-settings-code
 
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
 
             #endregion
         }
@@ -26,8 +26,9 @@
         void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
         {
             #region 3to4rabbitmq-config-usedirectroutingtopology
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
+
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
 
             #endregion
         }

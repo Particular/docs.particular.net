@@ -1,4 +1,4 @@
-﻿namespace Snippets6.UpgradeGuides._5to6
+﻿namespace CloudServicesHost_7.Core5to6
 {
     using System.Threading.Tasks;
     using NServiceBus;

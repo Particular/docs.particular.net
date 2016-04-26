@@ -15,7 +15,6 @@
             // optionally replace the Body
             transportMessage.Body = ServiceThatChangesBody.Mutate(messages);
 
-
             // the outgoing headers
             Dictionary<string, string> headers = transportMessage.Headers;
 

@@ -1,15 +1,18 @@
 ﻿using NServiceBus;
 
-class Usage
+namespace Azure_5
 {
-    Usage(Configure configure)
+    class Usage
     {
-        #region PersistanceWithAzure
+        Usage(Configure configure)
+        {
+            #region PersistanceWithAzure
 
-        configure.AzureSubscriptionStorage();
-        configure.AzureSagaPersister();
-        configure.UseAzureTimeoutPersister();
+            configure.AzureSubscriptionStorage();
+            configure.AzureSagaPersister();
+            configure.UseAzureTimeoutPersister();
 
-        #endregion
+            #endregion
+        }
     }
 }

@@ -1,15 +1,19 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 
 class IssuePaymentRequestHandler : IHandleMessages<IssuePaymentRequest>
 {
- 
-    public Task Handle(IssuePaymentRequest message, IMessageHandlerContext context)
+    IBus bus;
+
+    public IssuePaymentRequestHandler(IBus bus)
     {
-        return context.Publish<PaymentTransactionCompleted>(evt =>
+        this.bus = bus;
+    }
+
+    public void Handle(IssuePaymentRequest message)
+    {
+        bus.Publish<PaymentTransactionCompleted>(evt =>
         {
             evt.PaymentTransactionId = message.PaymentTransactionId;
         });
     }
-    
 }

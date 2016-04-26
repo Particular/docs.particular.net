@@ -7,7 +7,7 @@
         License(BusConfiguration busConfiguration)
         {
             #region License
-     
+
             busConfiguration.LicensePath("PathToLicense");
             //or
             busConfiguration.License("YourCustomLicenseText");

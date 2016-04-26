@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Persistence.NHibernate
+﻿namespace NHibernate_4
 {
     using System;
     using global::NHibernate.Cfg;

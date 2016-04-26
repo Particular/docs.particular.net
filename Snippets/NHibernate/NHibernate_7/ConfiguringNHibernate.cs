@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Persistence.NHibernate
+﻿namespace NHibernate_7
 {
     using System;
     using global::NHibernate.Cfg;
@@ -8,7 +8,7 @@
 
     class ConfiguringNHibernate
     {
-        void Version_5_2(EndpointConfiguration endpointConfiguration)
+        void Simple(EndpointConfiguration endpointConfiguration)
         {
             #region ConfiguringNHibernate
 
@@ -23,11 +23,14 @@
             endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
 
             #endregion
+        }
 
+        void NHibernateSubscriptionCaching(EndpointConfiguration endpointConfiguration)
+        {
             #region NHibernateSubscriptionCaching
 
-            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>()
-                .EnableCachingForSubscriptionStorage(TimeSpan.FromMinutes(1));
+            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
+            persistence.EnableCachingForSubscriptionStorage(TimeSpan.FromMinutes(1));
 
             #endregion
         }
@@ -46,8 +49,8 @@
                 }
             };
 
-            endpointConfiguration.UsePersistence<NHibernatePersistence>()
-                .UseConfiguration(nhConfiguration);
+            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.UseConfiguration(nhConfiguration);
 
             #endregion
         }
@@ -64,12 +67,10 @@
                 }
             };
 
-            endpointConfiguration.UsePersistence<NHibernatePersistence>()
-                .UseSubscriptionStorageConfiguration(nhConfiguration);
-            endpointConfiguration.UsePersistence<NHibernatePersistence>()
-                .UseGatewayDeduplicationConfiguration(nhConfiguration);
-            endpointConfiguration.UsePersistence<NHibernatePersistence>()
-                .UseTimeoutStorageConfiguration(nhConfiguration);
+            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.UseSubscriptionStorageConfiguration(nhConfiguration);
+            persistence.UseGatewayDeduplicationConfiguration(nhConfiguration);
+            persistence.UseTimeoutStorageConfiguration(nhConfiguration);
 
             #endregion
         }
@@ -87,8 +88,8 @@
                 }
             };
 
-            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>()
-                .UseConfiguration(nhConfiguration);
+            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
+            persistence.UseConfiguration(nhConfiguration);
 
             #endregion
         }

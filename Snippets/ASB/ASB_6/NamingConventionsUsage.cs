@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Azure.Transports.AzureServiceBus
+﻿namespace ASB_6
 {
     using System;
     using System.Text.RegularExpressions;
@@ -10,7 +10,7 @@
     {
         NamingConventionsUsage()
         {
-            #region ASB-NamingConventions-entity-sanitization [6.4,7)
+            #region ASB-NamingConventions-entity-sanitization 6.4
 
             NamingConventions.EntitySanitizationConvention = (entityName, entityType) =>
             {
@@ -29,7 +29,7 @@
             };
 
             #endregion
-          
+
             Func<ReadOnlySettings, Type, string, bool, string> DetermineQueueNameUsingCustomLogic = (settings, messagetype, queueName, doNotIndividualize) => "";
             Func<ReadOnlySettings, Type, string, string> DetermineTopicNameUsingCustomLogic = (settings, messageType, endpointName) => "";
             Func<ReadOnlySettings, Type, string, string> DetermineSubscriptionNameUsingCustomLogic = (settings, eventType, endpointName) => "";
@@ -37,7 +37,7 @@
             Func<ReadOnlySettings, Address, bool, Address> DetermineQueueAddressUsingCustomLogic = (settings, address, doNotIndividualize) => new Address("queue", "machine");
             Func<ReadOnlySettings, Address, Address> DeterminePublisherAddressUsingCustomLogic = (settings, address) => new Address("queue", "machine");
 
-            #region ASB-NamingConventions-entity-creation-conventions [6.4,7)
+            #region ASB-NamingConventions-entity-creation-conventions 6.4
 
             NamingConventions.QueueNamingConvention = (settings, messageType, queue, doNotIndividualize) => DetermineQueueNameUsingCustomLogic(settings, messageType, queue, doNotIndividualize);
 

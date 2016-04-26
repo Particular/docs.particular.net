@@ -16,7 +16,7 @@
         {
             Test.Handler<MyMessageHandler>()
                 .SetIncomingHeader("MyHeaderKey", "myHeaderValue")
-                .ExpectReply<ResponseMessage>((m, replyOptions) => 
+                .ExpectReply<ResponseMessage>((m, replyOptions) =>
                     replyOptions.GetHeaders()["MyHeaderKey"] == "myHeaderValue")
                 .OnMessage<RequestMessage>(m => m.String = "hello");
         }

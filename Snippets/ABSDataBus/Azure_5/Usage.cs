@@ -1,4 +1,4 @@
-﻿namespace Core4.DataBus.Azure
+﻿namespace Azure_5
 {
     using NServiceBus;
 

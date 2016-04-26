@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Persistence.NHibernate.Concurrency
+﻿namespace NHibernate_7.Concurrency
 {
     using NServiceBus;
     using NServiceBus.SagaPersisters.NHibernate;

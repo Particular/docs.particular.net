@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Azure.Transports.AzureStorageQueues
+﻿namespace ASQ_6
 {
     using NServiceBus;
 

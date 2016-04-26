@@ -27,7 +27,7 @@ The `ForwardingTopology` was introduced to take advantage of the broker nature o
 
 Both topologies create a single input queue per endpoint and implement [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) mechanism. However, there is a significant difference in the way the mechanism is implemented.
 
-Starting from Version 7, no default topology is set by the Azure Service Bus transport. Topology has to be configured using [configuration API](/nservicebus/azure-service-bus/configuration.md).
+Starting from Version 7, no default topology is set by the Azure Service Bus transport. Topology has to be configured using [configuration API](/nservicebus/azure-service-bus/configuration/configuration.md).
 
 
 ### Endpoint Oriented Topology
@@ -70,7 +70,6 @@ The `ForwardingTopology` supports up to 2,000 endpoints with up to 2,000 events 
 | Publisher/Subscriber coupling  | yes                       | no                 |
 | Polymorphic events support     | no                        | yes                |
 | Events overflow protections    | no                        | yes                |
-| Topic partitioning             | yes                       | no                 |
 
 
 ## Version 6 and below

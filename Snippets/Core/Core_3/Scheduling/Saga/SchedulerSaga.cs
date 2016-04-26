@@ -12,17 +12,17 @@
     {
         public override void ConfigureHowToFindSaga()
         {
-            // To ensure that there is only one saga instance per the task name, 
+            // To ensure that there is only one saga instance per the task name,
             // regardless of if the endpoint is restarted or not.
             ConfigureMapping<StartSaga>(
-                sagaData => sagaData.TaskName, 
+                sagaData => sagaData.TaskName,
                 message => message.TaskName);
         }
 
         public void Handle(StartSaga message)
         {
             Data.TaskName = message.TaskName;
-            // Check to avoid that if the saga is already started, we don't initiate any more tasks 
+            // Check to avoid that if the saga is already started, we don't initiate any more tasks
             // as those timeout messages will arrive when the specified time is up.
             if (!Data.IsTaskAlreadyScheduled)
             {
