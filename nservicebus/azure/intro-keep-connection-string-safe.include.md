@@ -1,0 +1,4 @@
+It is possible to accidentally leak sensitive information in the connection string if it's not properly secured. E.g. the information can be leaked if an error occurs when communicating across untrusted boundaries, or if the error information is logged to an unsecured log file.
+
+In order to prevent it, transport, versions 7 and above, allows for creating a logical name for each connection string. The name is mapped to the physical connection string, and connection strings are always referred to by their logical name.   
+In the event of an error or when logging only the logical name can be accidentally leaked.
