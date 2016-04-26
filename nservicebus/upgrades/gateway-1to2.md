@@ -11,8 +11,7 @@ related:
 
 ## Extensibility
 
-`IForwardMessagesToSites`, `IRouteMessagesToEndpoints`, and `IRouteMessagesToSites` have been deprecated and are no longer available as extension points in the gateway. To override the default HTTP channel, register custom `IChannelSender` and `IChannelReceiver` factory methods through the new extension point `configure.Gateway().ChannelFactories()` in the `EndpointConfiguration` of an endpoint. Dependency injection is not provided for these factory methods. `IChannelSender` and `IChannelReceiver` implementations are also no longer automatically picked up by assembly scanning.
-
+`IForwardMessagesToSites`, `IRouteMessagesToEndpoints`, and `IRouteMessagesToSites` have been deprecated and are no longer available as extension points in the gateway. These have been replaced by [custom channel types](/nservicebus/gateway/#custom-channel-types).
 
 ## Concurrency config
 

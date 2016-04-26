@@ -47,13 +47,13 @@ In order to send message to other sites call `SendToSites` method:
 
 snippet:SendToSites
 
-`SendToSite` accepts a list of sites to send the messages to. Each site can be configured with a different transport mechanism. Currently the supported channels are HTTP/HTTPS but the gateway can be extended with a custom implementations.
+`SendToSite` accepts a list of sites to send the messages to. Each site can be configured with a different transport mechanism.
 
 On the receiving side is another gateway listening on the input channel and forwarding the incoming message to the target endpoint. The image below shows the physical parts involved:
 
 ![](gateway-headquarter-to-site-a.png "Physical view")
 
-A gateway runs inside each host process. The gateway gets its input from a regular MSMQ queue and forwards the message over the desired channel (HTTP in this case) to the receiving gateway. The receiving side de-duplicates the message (ensures it is not a duplicated message, i.e., a message that was already sent) and forwards it to the main input queue of its local endpoint. The gateway has the following features:
+A gateway runs inside each host process. The gateway gets its input from a regular MSMQ queue and forwards the message over the desired channel to the receiving gateway. The receiving side de-duplicates the message (ensures it is not a duplicated message, i.e., a message that was already sent) and forwards it to the main input queue of its local endpoint. The gateway has the following features:
 
 - Automatic retries
 - De-duplication of messages
@@ -90,21 +90,35 @@ The number of retries and the time to increase between retries can be configured
 
 snippet:GatewayDefaultRetryPolicyConfiguration
 
-The default retry policy can be replaced by implementing a `Func<IncomingMessage,TimeSpan>` to calculate the delay for each retry:
+The default retry policy can be replaced by implementing a `Func<IncomingMessage,Exception,int,TimeSpan>` to calculate the delay for each retry:
 
 snippet:GatewayCustomRetryPolicyConfiguration
 
 This example custom retry policy will produce the same results as the default retry policy. 
 
-Custom retry policies should eventually give up or a message could get stuck in a loop being retried forever. To discontinue retries return `TimeSpan.Zero` from the custom retry policy and the message will be treated as a fault. [Faulted messages are routed to the configured error queue](/nservicebus/errors/index.md). 
+Custom retry policies should eventually give up or a message could get stuck in a loop being retried forever. To discontinue retries return `TimeSpan.MinValue` from the custom retry policy and the message will be treated as a fault. [Faulted messages are routed to the configured error queue](/nservicebus/errors/). 
 
-WARNING: The recoverability mechanisms built into the Gateway do not roll back the [receieve transaction](/nservicebus/messaging/transactions.md) or any ambient transaction when sending a message to another site fails. Any custom recoverability policy cannot rely on an ambient transaction being rolled back. 
+WARNING: The recoverability mechanisms built into the Gateway do not roll back the [receieve transaction](/nservicebus/messaging/) or any ambient transaction when sending a message to another site fails. Any custom recoverability policy cannot rely on an ambient transaction being rolled back. 
 
 To disable retries in the gateway use the `DisableRetries` setting:
 
 snippet: GatewayDisableRetriesConfiguration
 
 When retries are disabled, any messages that fail to be sent to another site will be immediately treated as faulted and routed to the configured error queue. 
+
+
+## Custom Channel Types
+
+The Gateway includes an HTTP/HTTPS channel implementation, but it is possible create additional channel types by implementing the `IChannelSender` and `IChannelReceiver` interfaces.
+
+NServiceBus will pass headers / message data to the configured `IChannelSender` which is responsible for transmitting this information over the desired channel to a receiving Gateway.
+
+`IChannelReceiver` must accept transmissions from the incoming channel and provide the incoming headers / message data to NServiceBus through a `DataReceivedOnChannelArgs` instance that is passed to a provided `Func<DataReceivedOnChannelArgs, Task>`.
+
+`IChannelSender` and `IChannelReceiver` implementations are not automatically registered through assembly scanning. The custom channel types must be registered using a channel factory `Func` through the `ChannelFactories` setting:
+
+snippet: GatewayChannelFactoriesConfiguration
+
 
 ## Key messages
 

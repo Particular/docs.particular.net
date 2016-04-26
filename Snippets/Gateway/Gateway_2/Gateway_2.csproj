@@ -34,7 +34,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Gateway, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.Gateway.2.0.0-alpha0091\lib\net452\NServiceBus.Gateway.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.Gateway.2.0.0-alpha0093\lib\net452\NServiceBus.Gateway.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ServiceControl.Contracts">
