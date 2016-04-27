@@ -1,7 +1,6 @@
 ---
 title: Gateway
 summary: NServiceBus enables durable fire-and-forget messaging across physically separated IT infrastructure.
-tags: []
 redirects:
  - nservicebus/introduction-to-the-gateway
 related:
@@ -13,7 +12,7 @@ The purpose of the gateway is to provide durable fire-and-forget messaging with 
 The gateway comes into play where the use of regular queued transports for communication are not possible i.e. when setting up a VPN connection is not an option. The reason for not using a VPN could be security concerns, bandwidth limitations, latency problems, high availability constraints, etc.
 
 
-## When not avoid using the gateway
+## When to avoid using the gateway
 
 The gateway should not be used for disaster recovery between sites. Under those circumstances all sites are exact replicas and are not logically different. It is recommended to utilize existing support infrastructure to keep all sites in sync.
 
