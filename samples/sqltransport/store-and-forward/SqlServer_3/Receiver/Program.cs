@@ -21,8 +21,8 @@ class Program
 
         #region ReceiverConfiguration
 
-        endpointConfiguration.UseTransport<SqlServerTransport>()
-            .EnableLagacyMultiInstanceMode(async transportAddress =>
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.EnableLegacyMultiInstanceMode(async transportAddress =>
             {
                 string connectionString = transportAddress.StartsWith("Samples.SqlServer.StoreAndForwardReceiver") || transportAddress == "error"
                     ? ReceiverConnectionString

@@ -16,8 +16,8 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-            .ConnectionString(Environment.GetEnvironmentVariable("SamplesAzureServiceBusConnection"));
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.ConnectionString(Environment.GetEnvironmentVariable("SamplesAzureServiceBusConnection"));
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);

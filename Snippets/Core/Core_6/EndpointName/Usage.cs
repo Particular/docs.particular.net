@@ -8,25 +8,33 @@
 
     class Usage
     {
-        Usage()
+        void EndpointNameCode()
         {
             #region EndpointNameCode
 
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration("MyEndpoint");
 
             #endregion
-
+        }
+        void InputQueueName(EndpointConfiguration endpointConfiguration)
+        {
             #region InputQueueName
 
-            endpointConfiguration.UseTransport<MyTransport>().AddAddressTranslationException(
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            transport.AddAddressTranslationException(
                 new EndpointInstance("MyEndpoint"), "MyEndpoint.Messages");
 
             #endregion
+        }
 
+        void InputQueueOverrideRouting(EndpointConfiguration endpointConfiguration)
+        {
             #region InputQueueOverrideRouting
 
-            endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(MyMessage), "MyEndpoint");
-            endpointConfiguration.UseTransport<MyTransport>().AddAddressTranslationException(
+            var unicastRouting = endpointConfiguration.UnicastRouting();
+            unicastRouting.RouteToEndpoint(typeof(MyMessage), "MyEndpoint");
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            transport.AddAddressTranslationException(
                 new EndpointInstance("MyEndpoint"), "MyEndpoint.Messages");
 
             #endregion

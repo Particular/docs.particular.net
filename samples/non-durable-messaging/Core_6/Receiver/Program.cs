@@ -13,8 +13,8 @@ static class Program
     {
         Console.Title = "Samples.MessageDurability.Receiver";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MessageDurability.Receiver");
-        endpointConfiguration.UseTransport<MsmqTransport>()
-            .Transactions(TransportTransactionMode.None);
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.Transactions(TransportTransactionMode.None);
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

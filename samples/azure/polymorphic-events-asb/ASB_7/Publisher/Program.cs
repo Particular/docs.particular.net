@@ -16,9 +16,9 @@ class Program
     {
         Console.Title = "Samples.ASB.Polymorphic.Publisher";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ASB.Polymorphic.Publisher");
-        endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-            .UseTopology<EndpointOrientedTopology>()
-            .ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.UseTopology<EndpointOrientedTopology>();
+        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();

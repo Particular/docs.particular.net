@@ -11,10 +11,10 @@ class Program
         #region sqlrelay-config
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("SqlRelay");
-        busConfiguration.UseTransport<SqlServerTransport>()
-            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True");
-        busConfiguration.UsePersistence<NHibernatePersistence>()
-            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True");
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True");
+        var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True");
         busConfiguration.DisableFeature<AutoSubscribe>();
         busConfiguration.EnableInstallers();
         #endregion

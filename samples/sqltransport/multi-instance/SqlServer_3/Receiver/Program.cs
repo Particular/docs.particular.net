@@ -19,8 +19,8 @@ class Program
         #region ReceiverConfiguration
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
-        endpointConfiguration.UseTransport<SqlServerTransport>()
-            .EnableLagacyMultiInstanceMode(ConnectionProvider.GetConnection);
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.EnableLegacyMultiInstanceMode(ConnectionProvider.GetConnection);
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");

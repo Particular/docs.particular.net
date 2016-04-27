@@ -35,9 +35,9 @@ class Program
 
         #region SenderConfiguration
 
-        endpointConfiguration.UseTransport<SqlServerTransport>()
-            .DefaultSchema("sender")
-            .UseSpecificSchema(e =>
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.DefaultSchema("sender");
+        transport.UseSpecificSchema(e =>
             {
                 if (e == "error" || e == "audit")
                 {
@@ -46,8 +46,8 @@ class Program
                 return null;
             });
 
-        endpointConfiguration.UsePersistence<NHibernatePersistence>()
-            .UseConfiguration(hibernateConfig);
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.UseConfiguration(hibernateConfig);
 
         #endregion
 

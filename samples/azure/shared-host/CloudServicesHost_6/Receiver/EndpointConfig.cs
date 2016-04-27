@@ -6,8 +6,8 @@ public class EndpointConfig : IConfigureThisEndpoint
     public void Customize(BusConfiguration busConfiguration)
     {
         busConfiguration.UsePersistence<AzureStoragePersistence>();
-        busConfiguration.UseTransport<AzureStorageQueueTransport>()
-            .ConnectionString("UseDevelopmentStorage=true");
+        var transport = busConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport.ConnectionString("UseDevelopmentStorage=true");
 
         LogManager.Use<DefaultFactory>().Level(LogLevel.Debug);
 

@@ -12,8 +12,8 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.ScaleOut().UseSingleBrokerQueue();
-        busConfiguration.UseTransport<AzureServiceBusTransport>()
-            .ConnectionString(Environment.GetEnvironmentVariable("SamplesAzureServiceBusConnection"));
+        var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.ConnectionString(Environment.GetEnvironmentVariable("SamplesAzureServiceBusConnection"));
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         using (IBus bus = Bus.Create(busConfiguration).Start())

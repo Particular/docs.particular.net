@@ -12,8 +12,8 @@ class Program
 
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MongoDB.Server");
-        busConfiguration.UsePersistence<MongoDbPersistence>()
-            .SetConnectionString("mongodb://localhost:27017/SamplesMongoDBServer");
+        var persistence = busConfiguration.UsePersistence<MongoDbPersistence>();
+        persistence.SetConnectionString("mongodb://localhost:27017/SamplesMongoDBServer");
 
         #endregion
         busConfiguration.UseSerialization<JsonSerializer>();

@@ -21,7 +21,7 @@ class Program
 
         //Create message queue object
         MessageQueue addressOfMsmqBridge = new MessageQueue(queuePath, QueueAccessMode.SendAndReceive);
-        addressOfMsmqBridge.MessageReadPropertyFilter.SetAll(); // for the sample's sake. Might need to fine tune the exact filters we need. 
+        addressOfMsmqBridge.MessageReadPropertyFilter.SetAll(); // for the sample's sake. Might need to fine tune the exact filters we need.
 
         // Add an event handler for the ReceiveCompleted event.
         addressOfMsmqBridge.ReceiveCompleted += MsmqBridgeOnReceiveCompleted;
@@ -34,7 +34,7 @@ class Program
         Console.WriteLine("Press any key to quit.");
         ConsoleKeyInfo key = Console.ReadKey();
     }
-    
+
     static void MsmqBridgeOnReceiveCompleted(object sender, ReceiveCompletedEventArgs receiveCompletedEventArgs)
     {
         string sqlConnectionStr = @"Data Source =.\SQLEXPRESS; Initial Catalog = PersistenceForSqlTransport; Integrated Security = True";
@@ -42,7 +42,7 @@ class Program
 
         using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
         {
-            
+
             // Connect to the queue.
             MessageQueue mq = (MessageQueue)sender;
 
@@ -58,7 +58,7 @@ class Program
 
                 // Serialize to dictionary
                 Dictionary<string, string> headers = ExtractHeaders(Encoding.UTF8.GetString(msg.Extension).TrimEnd('\0'));
-                    
+
                 // If this queue is going to be receiving messages from endpoints older than v4.0, then
                 // set the header["NServiceBus.MessageId"] to be a deterministic guid based on the Id
                 // as Sql transport expects a Guid for the MessageId and not an Id in the MSMQ format.
@@ -74,28 +74,24 @@ class Program
 
             //Commit transaction
             scope.Complete();
-            
+
         }
     }
 
-    static Dictionary<string,string> ExtractHeaders(string headerString)
+    static Dictionary<string, string> ExtractHeaders(string headerString)
     {
         // Deserialize the XML stream from the Extension property on the MSMQ to a dictionary of key-value pairs
         XmlSerializer headerSerializer = new XmlSerializer(typeof(List<HeaderInfo>));
         object headers;
         using (StringReader stream = new StringReader(headerString))
+        using (XmlReader reader = XmlReader.Create(stream, new XmlReaderSettings
         {
-            using (XmlReader reader = XmlReader.Create(stream, new XmlReaderSettings
-            {
-                CheckCharacters = false
-            }))
-            {
-                headers = headerSerializer.Deserialize(reader);
-            }
+            CheckCharacters = false
+        }))
+        {
+            headers = headerSerializer.Deserialize(reader);
         }
-
         return ((List<HeaderInfo>) headers).Where(pair => pair.Key != null).ToDictionary(pair => pair.Key, pair => pair.Value);
-
     }
 
     static void SendMessageToSql(string connectionString, string queue, byte[] messageBody, Dictionary<string, string> headers)
@@ -103,14 +99,14 @@ class Program
         string insertSql =
             $@"INSERT INTO [{queue
                 }] (
-        [Id], 
-        [Recoverable], 
-        [Headers], 
+        [Id],
+        [Recoverable],
+        [Headers],
         [Body])
     VALUES (
-        @Id, 
-        @Recoverable, 
-        @Headers, 
+        @Id,
+        @Recoverable,
+        @Headers,
         @Body)";
 
         using (SqlConnection connection = new SqlConnection(connectionString))
@@ -128,7 +124,7 @@ class Program
                 command.ExecuteNonQuery();
             }
         }
-           
+
     }
 
     static byte[] ConvertStreamToByteArray(Stream input)

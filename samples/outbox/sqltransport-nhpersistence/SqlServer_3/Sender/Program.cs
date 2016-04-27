@@ -22,14 +22,12 @@ class Program
 
         #region SenderConfiguration
 
-        endpointConfiguration
-            .UseTransport<SqlServerTransport>()
-            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True");
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True");
 
-        endpointConfiguration
-            .UsePersistence<NHibernatePersistence>()
-            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True");
-        
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True");
+
         endpointConfiguration.EnableOutbox();
 
         #endregion

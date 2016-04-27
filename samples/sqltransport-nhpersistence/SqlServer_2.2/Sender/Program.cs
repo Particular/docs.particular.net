@@ -26,9 +26,9 @@ class Program
 
         #region SenderConfiguration
 
-        busConfiguration.UseTransport<SqlServerTransport>()
-            .DefaultSchema("sender")
-            .UseSpecificConnectionInformation(endpoint =>
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.DefaultSchema("sender");
+        transport.UseSpecificConnectionInformation(endpoint =>
             {
                 if (endpoint == "error" || endpoint == "audit")
                 {
@@ -40,8 +40,8 @@ class Program
                 }
                 return null;
             });
-        busConfiguration.UsePersistence<NHibernatePersistence>()
-            .UseConfiguration(hibernateConfig);
+        var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.UseConfiguration(hibernateConfig);
 
         #endregion
 

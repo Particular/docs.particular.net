@@ -39,16 +39,16 @@ class MsmqReceiver : IAdvancedSatellite
     }
 
 
-    // Will get invoked, whenever a new event is published by the Msmq publishers and when they notify the bridge. 
+    // Will get invoked, whenever a new event is published by the Msmq publishers and when they notify the bridge.
     // The bridge is a MSMQ and the publishers have an entry for this queue in their subscription storage.
     public bool Handle(TransportMessage message)
     {
         Type[] eventTypes = { Type.GetType(message.Headers["NServiceBus.EnclosedMessageTypes"]) };
 
         string msmqId = message.Headers["NServiceBus.MessageId"];
-            
+
         // Set the Id to a deterministic guid, as Sql message Ids are Guids and Msmq message ids are guid\nnnn.
-        // Newer versions of Nsb already return just a guid for the messageId. So, check to see if the Id is a valid Guid and if 
+        // Newer versions of Nsb already return just a guid for the messageId. So, check to see if the Id is a valid Guid and if
         // not, only then create a valid Guid. This check is important as it affects the retries if the message is rolled back.
         // If the Ids are different, then the FLR/SLR won't know its the same message.
         Guid newGuid;

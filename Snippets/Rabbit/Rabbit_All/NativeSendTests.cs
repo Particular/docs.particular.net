@@ -48,8 +48,8 @@
             busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
             busConfiguration.EndpointName(endpointName);
             busConfiguration.UseSerialization<JsonSerializer>();
-            busConfiguration.UseTransport<RabbitMQTransport>()
-                .ConnectionString("host=localhost");
+            var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+            transport.ConnectionString("host=localhost");
             Type[] rabbitTypes = typeof(RabbitMQTransport).Assembly.GetTypes();
             busConfiguration.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>(rabbitTypes));
             busConfiguration.EnableInstallers();

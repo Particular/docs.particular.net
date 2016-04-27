@@ -12,8 +12,8 @@ class Program
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.ASB.Polymorphic.Publisher");
         busConfiguration.ScaleOut().UseSingleBrokerQueue();
-        busConfiguration.UseTransport<AzureServiceBusTransport>()
-            .ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
+        var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();

@@ -8,9 +8,9 @@ public class ConnectionProvider
 
     public static ConnectionInfo GetConnection(string transportAddress)
     {
-        string connectionString = transportAddress.Equals("Samples.SqlServer.MultiInstanceSender") 
+        string connectionString = transportAddress.Equals("Samples.SqlServer.MultiInstanceSender")
                                                 ? SenderConnectionString : ReceiverConnectionString;
-        
+
         return ConnectionInfo.Create()
                 .UseConnectionString(connectionString);
     }

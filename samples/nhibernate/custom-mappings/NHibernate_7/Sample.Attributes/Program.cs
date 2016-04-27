@@ -32,9 +32,8 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        endpointConfiguration
-            .UsePersistence<NHibernatePersistence>()
-            .UseConfiguration(nhConfiguration);
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.UseConfiguration(nhConfiguration);
 
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try

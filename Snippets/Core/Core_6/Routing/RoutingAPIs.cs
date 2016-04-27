@@ -105,9 +105,8 @@ namespace Core6.Routing
             #region Routing-SpecialCaseTransportAddress
 
             EndpointInstance endpointInstance = new EndpointInstance("Sales", "1");
-            endpointConfiguration
-                .UseTransport<MyTransport>()
-                .AddAddressTranslationException(endpointInstance, "Sales-One@MachineA");
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            transport.AddAddressTranslationException(endpointInstance, "Sales-One@MachineA");
 
             #endregion
         }
@@ -117,9 +116,8 @@ namespace Core6.Routing
         {
             #region Routing-TransportAddressRule
 
-            endpointConfiguration
-                .UseTransport<MyTransport>()
-                .AddAddressTranslationRule(i => CustomTranslationRule(i));
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            transport.AddAddressTranslationRule(i => CustomTranslationRule(i));
 
             #endregion
         }
@@ -136,8 +134,8 @@ namespace Core6.Routing
             endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(AcceptOrder), "Sales");
             endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(SendOrder), "Shipping");
 
-            endpointConfiguration.UseTransport<MsmqTransport>()
-                .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            transport.DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
 
             #endregion
         }
@@ -148,7 +146,8 @@ namespace Core6.Routing
 
             #region Routing-FileBased-ConfigAdvanced
 
-            endpointConfiguration.UnicastRouting().Mapping
+            var unicastRouting = endpointConfiguration.UnicastRouting();
+            unicastRouting.Mapping
                 .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
 
             #endregion

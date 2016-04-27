@@ -20,8 +20,8 @@ class Program
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("MsmqPublisher");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<NHibernatePersistence>()
-            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForMsmqTransport;Integrated Security=True");
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForMsmqTransport;Integrated Security=True");
         #endregion
 
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
@@ -35,7 +35,7 @@ class Program
         }
     }
 
-    
+
     static void Start(IEndpointInstance busSession)
     {
         Console.WriteLine("Press Enter to publish the SomethingHappened Event");

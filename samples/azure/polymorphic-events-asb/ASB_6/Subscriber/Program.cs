@@ -13,8 +13,8 @@ class Program
 
         busConfiguration.EndpointName("Samples.ASB.Polymorphic.Subscriber");
         busConfiguration.ScaleOut().UseSingleBrokerQueue();
-        busConfiguration.UseTransport<AzureServiceBusTransport>()
-            .ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
+        var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
 
         #region DisableAutoSubscripton
 

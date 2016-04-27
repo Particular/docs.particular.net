@@ -16,8 +16,8 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        endpointConfiguration.UnicastRouting()
-            .RouteToEndpoint(typeof(DoSomething), "Samples.SenderSideScaleOut.Server");
+        var routing = endpointConfiguration.UnicastRouting();
+        routing.RouteToEndpoint(typeof(DoSomething), "Samples.SenderSideScaleOut.Server");
 
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press enter to send a message");

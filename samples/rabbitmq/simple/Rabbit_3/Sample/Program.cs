@@ -12,8 +12,8 @@ class Program
 
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.RabbitMQ.Simple");
-        busConfiguration.UseTransport<RabbitMQTransport>()
-            .ConnectionString("host=localhost");
+        var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+        transport.ConnectionString("host=localhost");
 
         #endregion
 

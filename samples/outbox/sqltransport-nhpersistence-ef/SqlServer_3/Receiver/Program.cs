@@ -34,21 +34,20 @@ class Program
 
         #region ReceiverConfiguration
 
-        endpointConfiguration
-            .UseTransport<SqlServerTransport>()
-            .DefaultSchema("receiver")
-            .UseSpecificSchema(queueName =>
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.DefaultSchema("receiver");
+        transport.UseSpecificSchema(queueName =>
+        {
+            if (queueName.Equals("error", StringComparison.OrdinalIgnoreCase) || queueName.Equals("audit", StringComparison.OrdinalIgnoreCase))
             {
-                if (queueName.Equals("error", StringComparison.OrdinalIgnoreCase) || queueName.Equals("audit", StringComparison.OrdinalIgnoreCase))
-                {
-                    return "dbo";
-                }
-                if (queueName.Equals("Samples.SQLNHibernateOutboxEF.Sender", StringComparison.OrdinalIgnoreCase))
-                {
-                    return "sender";
-                }
-                return null;
-            });
+                return "dbo";
+            }
+            if (queueName.Equals("Samples.SQLNHibernateOutboxEF.Sender", StringComparison.OrdinalIgnoreCase))
+            {
+                return "sender";
+            }
+            return null;
+        });
 
         endpointConfiguration
             .UsePersistence<NHibernatePersistence>();

@@ -68,8 +68,8 @@
                 .GetTypes();
             busConfiguration.TypesToScan(TypeScanner.NestedTypes<ErrorQueueTests>(sqlTransportTypes));
             busConfiguration.EnableInstallers();
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .ConnectionString(connectionString);
+            var transport = busConfiguration.UseTransport<SqlServerTransport>();
+            transport.ConnectionString(connectionString);
             busConfiguration.UsePersistence<InMemoryPersistence>();
             busConfiguration.DisableFeature<SecondLevelRetries>();
             return Bus.Create(busConfiguration).Start();

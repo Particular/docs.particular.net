@@ -25,9 +25,8 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
-        busConfiguration
-            .UsePersistence<NHibernatePersistence>()
-            .UseConfiguration(nhConfiguration);
+        var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.UseConfiguration(nhConfiguration);
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {

@@ -38,8 +38,8 @@
         {
             #region 5to6DoNotWrapHandlersInTransaction
 
-            endpointConfiguration.UseTransport<MyTransport>()
-                .Transactions(TransportTransactionMode.ReceiveOnly);
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            transport.Transactions(TransportTransactionMode.ReceiveOnly);
 
             #endregion
         }
@@ -55,7 +55,7 @@
             endpointConfiguration.DefineCriticalErrorAction(
                 new Func<ICriticalErrorContext, Task>(context =>
                 {
-                    // place you custom handling here 
+                    // place you custom handling here
                     return Task.FromResult(0);
                 }));
 
@@ -87,9 +87,9 @@
         {
             #region 5to6TransportTransactionScopeOptions
 
-            endpointConfiguration.UseTransport<MyTransport>()
-                .Transactions(TransportTransactionMode.TransactionScope)
-                .TransactionScopeOptions(isolationLevel: IsolationLevel.RepeatableRead, timeout: TimeSpan.FromSeconds(30));
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            transport.Transactions(TransportTransactionMode.TransactionScope);
+            transport.TransactionScopeOptions(isolationLevel: IsolationLevel.RepeatableRead, timeout: TimeSpan.FromSeconds(30));
 
             #endregion
         }
@@ -132,8 +132,8 @@
         {
             #region 5to6DisableTransactions
 
-            endpointConfiguration.UseTransport<MyTransport>()
-                .Transactions(TransportTransactionMode.None);
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            transport.Transactions(TransportTransactionMode.None);
 
             #endregion
         }
@@ -142,8 +142,8 @@
         {
             #region 5to6EnableDistributedTransactions
 
-            endpointConfiguration.UseTransport<MyTransport>()
-                .Transactions(TransportTransactionMode.TransactionScope);
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            transport.Transactions(TransportTransactionMode.TransactionScope);
 
             #endregion
         }
@@ -152,8 +152,8 @@
         {
             #region 5to6DisableDistributedTransactions
 
-            endpointConfiguration.UseTransport<MyTransport>()
-                .Transactions(TransportTransactionMode.ReceiveOnly);
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            transport.Transactions(TransportTransactionMode.ReceiveOnly);
 
             #endregion
         }
@@ -162,8 +162,8 @@
         {
             #region 5to6DisableDistributedTransactionsNative
 
-            endpointConfiguration.UseTransport<MyTransport>()
-                .Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
 
             #endregion
         }

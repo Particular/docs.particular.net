@@ -3,13 +3,14 @@
     using System;
     using NServiceBus;
 
-    class MsmqSubscriptionAuthorization 
+    class MsmqSubscriptionAuthorization
     {
         MsmqSubscriptionAuthorization(EndpointConfiguration endpointConfiguration)
         {
             #region 5to6-MsmqSubscriptionAuthorizer
-            endpointConfiguration.UseTransport<MsmqTransport>()
-                .SubscriptionAuthorizer(context =>
+
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            transport.SubscriptionAuthorizer(context =>
                 {
                     string subscriptionMessageType = context.MessageHeaders[Headers.SubscriptionMessageType];
                     string messageIntent = context.MessageHeaders[Headers.MessageIntent];

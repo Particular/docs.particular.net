@@ -33,20 +33,18 @@ class Program
 
         #region SenderConfiguration
 
-        endpointConfiguration
-            .UseTransport<SqlServerTransport>()
-            .DefaultSchema("sender")
-            .UseSpecificSchema(queueName =>
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.DefaultSchema("sender");
+        transport.UseSpecificSchema(queueName =>
+        {
+            if (queueName.Equals("error", StringComparison.OrdinalIgnoreCase) || queueName.Equals("audit", StringComparison.OrdinalIgnoreCase))
             {
-                if (queueName.Equals("error", StringComparison.OrdinalIgnoreCase) || queueName.Equals("audit", StringComparison.OrdinalIgnoreCase))
-                {
-                    return "dbo";
-                }
-                return null;
-            });
+                return "dbo";
+            }
+            return null;
+        });
 
-        endpointConfiguration
-            .UsePersistence<NHibernatePersistence>();
+        endpointConfiguration.UsePersistence<NHibernatePersistence>();
 
         endpointConfiguration.EnableOutbox();
 
@@ -55,7 +53,7 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
 
         try
-        { 
+        {
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 

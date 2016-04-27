@@ -15,7 +15,8 @@ class Program
         Console.Title = "Samples.SenderSideScaleOut.Server2";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.Server");
         string discriminator = ConfigurationManager.AppSettings["InstanceId"];
-        endpointConfiguration.ScaleOut().InstanceDiscriminator(discriminator);
+        var scaleOut = endpointConfiguration.ScaleOut();
+        scaleOut.InstanceDiscriminator(discriminator);
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);

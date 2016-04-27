@@ -29,9 +29,10 @@ class Program
             documentStore.RegisterListener(new UniqueConstraintsStoreListener());
             documentStore.Initialize();
 
-            endpointConfiguration.UsePersistence<RavenDBPersistence>()
-                .DoNotSetupDatabasePermissions() //Only required to simplify the sample setup
-                .SetDefaultDocumentStore(documentStore);
+            var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
+            //Only required to simplify the sample setup
+            persistence.DoNotSetupDatabasePermissions();
+            persistence.SetDefaultDocumentStore(documentStore);
 
             IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
             await endpoint.SendLocal(new StartOrder

@@ -11,8 +11,8 @@ class Program
         #region publisher-config
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("MsmqPublisher");
-        busConfiguration.UsePersistence<NHibernatePersistence>()
-            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForMsmqTransport;Integrated Security=True");
+        var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForMsmqTransport;Integrated Security=True");
         busConfiguration.EnableInstallers();
         #endregion
 

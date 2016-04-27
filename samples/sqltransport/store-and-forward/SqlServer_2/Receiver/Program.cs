@@ -13,8 +13,8 @@ class Program
 
         #region ReceiverConfiguration
 
-        busConfiguration.UseTransport<SqlServerTransport>()
-            .UseSpecificConnectionInformation(
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.UseSpecificConnectionInformation(
                 EndpointConnectionInfo.For("Samples.SqlServer.StoreAndForwardSender")
                     .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True"));
 

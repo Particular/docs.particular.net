@@ -40,11 +40,11 @@ class Program
 
         #region ReceiverConfiguration
 
-        endpointConfiguration.UsePersistence<NHibernatePersistence>()
-            .UseConfiguration(tenantDatabasesConfiguration)
-            .UseSubscriptionStorageConfiguration(sharedDatabaseConfiguration)
-            .UseTimeoutStorageConfiguration(sharedDatabaseConfiguration)
-            .DisableSchemaUpdate();
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.UseConfiguration(tenantDatabasesConfiguration);
+        persistence.UseSubscriptionStorageConfiguration(sharedDatabaseConfiguration);
+        persistence.UseTimeoutStorageConfiguration(sharedDatabaseConfiguration);
+        persistence.DisableSchemaUpdate();
 
         endpointConfiguration.EnableOutbox();
 

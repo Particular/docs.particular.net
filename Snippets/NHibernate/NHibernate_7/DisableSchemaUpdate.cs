@@ -10,35 +10,38 @@
         {
             #region DisableSchemaUpdate
 
-            endpointConfiguration.UsePersistence<NHibernatePersistence>()
-                .DisableSchemaUpdate();
+            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.DisableSchemaUpdate();
 
             #endregion
         }
+
         void DisableGatewaySchemaUpdate(EndpointConfiguration endpointConfiguration)
         {
             #region DisableGatewaySchemaUpdate
 
-            endpointConfiguration.UsePersistence<NHibernatePersistence>()
-                .DisableGatewayDeduplicationSchemaUpdate();
+            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.DisableGatewayDeduplicationSchemaUpdate();
 
             #endregion
         }
+
         void DisableSubscriptionSchemaUpdate(EndpointConfiguration endpointConfiguration)
         {
             #region DisableSubscriptionSchemaUpdate
 
-            endpointConfiguration.UsePersistence<NHibernatePersistence>()
-                .DisableSubscriptionStorageSchemaUpdate();
+            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.DisableSubscriptionStorageSchemaUpdate();
 
             #endregion
         }
+
         void DisableTimeoutSchemaUpdate(EndpointConfiguration endpointConfiguration)
         {
             #region DisableTimeoutSchemaUpdate
 
-            endpointConfiguration.UsePersistence<NHibernatePersistence>()
-                .DisableTimeoutStorageSchemaUpdate();
+            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.DisableTimeoutStorageSchemaUpdate();
 
             #endregion
         }

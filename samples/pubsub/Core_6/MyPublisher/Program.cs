@@ -19,8 +19,9 @@ static class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         #region SubscriptionAuthorizer
-        endpointConfiguration.UseTransport<MsmqTransport>()
-            .SubscriptionAuthorizer(context =>
+
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.SubscriptionAuthorizer(context =>
             {
                 string subscriptionType = context.MessageHeaders[Headers.MessageIntent];
                 MessageIntentEnum messageIntentEnum = (MessageIntentEnum) Enum.Parse(typeof(MessageIntentEnum), subscriptionType, true);

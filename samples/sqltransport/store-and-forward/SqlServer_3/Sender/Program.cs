@@ -24,11 +24,12 @@ class Program
 
         #region SenderConfiguration
 
-        endpointConfiguration.UseTransport<SqlServerTransport>()
-            .EnableLagacyMultiInstanceMode(ConnectionProvider.GetConnecton);
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.EnableLegacyMultiInstanceMode(ConnectionProvider.GetConnecton);
 
-        endpointConfiguration.Pipeline.Register("Forward", new ForwardBehavior(), "Forwards messages to destinations.");
-        endpointConfiguration.Pipeline.Register("Store",
+        var pipeline = endpointConfiguration.Pipeline;
+        pipeline.Register("Forward", new ForwardBehavior(), "Forwards messages to destinations.");
+        pipeline.Register("Store",
             b => new SendThroughLocalQueueRoutingToDispatchConnector(b.Build<ReadOnlySettings>().LocalAddress()),
             "Send messages through local endpoint.");
 

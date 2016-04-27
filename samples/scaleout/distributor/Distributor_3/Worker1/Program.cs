@@ -13,9 +13,9 @@ class Program
         configure.DefineEndpointName("Samples.Scaleout.Worker1");
         configure.DefaultBuilder();
         configure.EnlistWithDistributor();
-        #endregion       
+        #endregion
         
-        Address.InitializeLocalAddress("Samples.Scaleout.Worker1");       
+        Address.InitializeLocalAddress("Samples.Scaleout.Worker1");
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
         configure.InMemorySubscriptionStorage();

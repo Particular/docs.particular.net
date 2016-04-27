@@ -16,8 +16,8 @@ class Program
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Endpoint1");
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-            .ConnectionString(Environment.GetEnvironmentVariable("SamplesAzureServiceBusConnection"));
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.ConnectionString(Environment.GetEnvironmentVariable("SamplesAzureServiceBusConnection"));
 
         #endregion
 

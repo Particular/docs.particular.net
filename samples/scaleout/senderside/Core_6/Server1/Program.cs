@@ -18,7 +18,8 @@ class Program
         #region Server-Set-InstanceId
 
         string discriminator = ConfigurationManager.AppSettings["InstanceId"];
-        endpointConfiguration.ScaleOut().InstanceDiscriminator(discriminator);
+        var scaleOut = endpointConfiguration.ScaleOut();
+        scaleOut.InstanceDiscriminator(discriminator);
 
         #endregion
 

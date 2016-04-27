@@ -15,8 +15,8 @@ static class Program
         #region non-transactional
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MessageDurability.Sender");
-        endpointConfiguration.UseTransport<MsmqTransport>()
-            .Transactions(TransportTransactionMode.None);
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.Transactions(TransportTransactionMode.None);
 
         #endregion
 

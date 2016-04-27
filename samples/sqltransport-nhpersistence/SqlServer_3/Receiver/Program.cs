@@ -43,9 +43,9 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseTransport<SqlServerTransport>()
-            .DefaultSchema("receiver")
-            .UseSpecificSchema(e =>
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.DefaultSchema("receiver");
+        transport.UseSpecificSchema(e =>
             {
                 if (e == "error" || e == "audit")
                 {
@@ -58,8 +58,8 @@ class Program
                 return null;
             });
 
-        endpointConfiguration.UsePersistence<NHibernatePersistence>()
-            .UseConfiguration(hibernateConfig);
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.UseConfiguration(hibernateConfig);
 
         #endregion
 

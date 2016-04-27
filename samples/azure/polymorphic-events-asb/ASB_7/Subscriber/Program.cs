@@ -16,9 +16,9 @@ class Program
     {
         Console.Title = "Samples.ASB.Polymorphic.Subscriber";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ASB.Polymorphic.Subscriber");
-        endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-            .UseTopology<EndpointOrientedTopology>()
-            .ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.UseTopology<EndpointOrientedTopology>();
+        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region DisableAutoSubscripton

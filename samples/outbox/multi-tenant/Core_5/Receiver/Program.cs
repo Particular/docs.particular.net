@@ -35,12 +35,12 @@ class Program
 
         #region ReceiverConfiguration
 
-        busConfiguration.UsePersistence<NHibernatePersistence>()
-            .RegisterManagedSessionInTheContainer()
-            .UseConfiguration(hibernateConfig)
-            .UseSubscriptionStorageConfiguration(CreateBasicNHibernateConfig())
-            .UseTimeoutStorageConfiguration(CreateBasicNHibernateConfig())
-            .DisableSchemaUpdate();
+        var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.RegisterManagedSessionInTheContainer();
+        persistence.UseConfiguration(hibernateConfig);
+        persistence.UseSubscriptionStorageConfiguration(CreateBasicNHibernateConfig());
+        persistence.UseTimeoutStorageConfiguration(CreateBasicNHibernateConfig());
+        persistence.DisableSchemaUpdate();
 
         busConfiguration.EnableOutbox();
 

@@ -30,15 +30,13 @@ class Program
 
         #region ReceiverConfiguration
 
-        busConfiguration
-            .UseTransport<SqlServerTransport>()
-            .UseSpecificConnectionInformation(
-                EndpointConnectionInfo.For("Samples.SQLNHibernateOutboxEF.Sender").UseSchema("sender"))
-            .DefaultSchema("receiver");
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.UseSpecificConnectionInformation(
+            EndpointConnectionInfo.For("Samples.SQLNHibernateOutboxEF.Sender").UseSchema("sender"));
+        transport.DefaultSchema("receiver");
 
-        busConfiguration
-            .UsePersistence<NHibernatePersistence>()
-            .RegisterManagedSessionInTheContainer();
+        var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.RegisterManagedSessionInTheContainer();
 
         busConfiguration.EnableOutbox();
 

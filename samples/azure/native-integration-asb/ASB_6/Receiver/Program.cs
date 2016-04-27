@@ -13,16 +13,16 @@ class Program
         #region EndpointAndSingleQueue
 
         busConfiguration.EndpointName("Samples.ASB.NativeIntegration");
-        busConfiguration.ScaleOut()
-            .UseSingleBrokerQueue();
+        var scaleOut = busConfiguration.ScaleOut();
+        scaleOut.UseSingleBrokerQueue();
 
         #endregion
 
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UseTransport<AzureServiceBusTransport>()
-            .ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
+        var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
 
         #region BrokeredMessageConvention
 

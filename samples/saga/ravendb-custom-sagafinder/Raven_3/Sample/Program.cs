@@ -25,9 +25,10 @@ class Program
             documentStore.RegisterListener(new UniqueConstraintsStoreListener());
             documentStore.Initialize();
 
-            busConfiguration.UsePersistence<RavenDBPersistence>()
-                .DoNotSetupDatabasePermissions() //Only required to simplify the sample setup
-                .SetDefaultDocumentStore(documentStore);
+            var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
+            //Only required to simplify the sample setup
+            persistence.DoNotSetupDatabasePermissions();
+            persistence.SetDefaultDocumentStore(documentStore);
 
             using (IBus bus = Bus.Create(busConfiguration).Start())
             {

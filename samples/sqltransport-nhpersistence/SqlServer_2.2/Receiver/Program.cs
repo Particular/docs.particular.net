@@ -37,9 +37,9 @@ class Program
 
         #region ReceiverConfiguration
 
-        busConfiguration.UseTransport<SqlServerTransport>()
-            .DefaultSchema("receiver")
-            .UseSpecificConnectionInformation(endpoint =>
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.DefaultSchema("receiver");
+        transport.UseSpecificConnectionInformation(endpoint =>
             {
                 if (endpoint == "error" || endpoint == "audit")
                 {
@@ -51,9 +51,9 @@ class Program
                 }
                 return null;
             });
-        busConfiguration.UsePersistence<NHibernatePersistence>()
-            .UseConfiguration(hibernateConfig)
-            .RegisterManagedSessionInTheContainer();
+        var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.UseConfiguration(hibernateConfig);
+        persistence.RegisterManagedSessionInTheContainer();
         #endregion
 
         using (Bus.Create(busConfiguration).Start())

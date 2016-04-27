@@ -13,9 +13,9 @@ class Program
 
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SqlServer.MultiInstanceReceiver");
-        busConfiguration.UseTransport<SqlServerTransport>()
-            .UseSpecificConnectionInformation(ConnectionProvider.GetConnection)
-            .ConnectionString(ConnectionProvider.ReceiverConnectionString);
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.UseSpecificConnectionInformation(ConnectionProvider.GetConnection);
+        transport.ConnectionString(ConnectionProvider.ReceiverConnectionString);
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

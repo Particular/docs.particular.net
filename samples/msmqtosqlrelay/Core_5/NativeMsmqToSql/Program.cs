@@ -21,7 +21,7 @@ class Program
 
         //Create message queue object
         MessageQueue addressOfMsmqBridge = new MessageQueue(queuePath, QueueAccessMode.SendAndReceive);
-        addressOfMsmqBridge.MessageReadPropertyFilter.SetAll(); // for the sample's sake. Might need to fine tune the exact filters we need. 
+        addressOfMsmqBridge.MessageReadPropertyFilter.SetAll(); // for the sample's sake. Might need to fine tune the exact filters we need.
 
         // Add an event handler for the ReceiveCompleted event.
         addressOfMsmqBridge.ReceiveCompleted += MsmqBridgeOnReceiveCompleted;
@@ -85,14 +85,12 @@ class Program
         XmlSerializer headerSerializer = new XmlSerializer(typeof(List<HeaderInfo>));
         object headers;
         using (StringReader stream = new StringReader(headerString))
+        using (XmlReader reader = XmlReader.Create(stream, new XmlReaderSettings
         {
-            using (XmlReader reader = XmlReader.Create(stream, new XmlReaderSettings
-            {
-                CheckCharacters = false
-            }))
-            {
-                headers = headerSerializer.Deserialize(reader);
-            }
+            CheckCharacters = false
+        }))
+        {
+            headers = headerSerializer.Deserialize(reader);
         }
 
         return ((List<HeaderInfo>)headers).Where(pair => pair.Key != null).ToDictionary(pair => pair.Key, pair => pair.Value);
@@ -104,14 +102,14 @@ class Program
         string insertSql =
             $@"INSERT INTO [{queue
                 }] (
-        [Id], 
-        [Recoverable], 
-        [Headers], 
+        [Id],
+        [Recoverable],
+        [Headers],
         [Body])
     VALUES (
-        @Id, 
-        @Recoverable, 
-        @Headers, 
+        @Id,
+        @Recoverable,
+        @Headers,
         @Body)";
 
         using (SqlConnection connection = new SqlConnection(connectionString))

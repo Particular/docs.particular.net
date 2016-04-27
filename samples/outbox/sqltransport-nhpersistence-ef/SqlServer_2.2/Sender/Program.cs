@@ -28,14 +28,12 @@ class Program
 
         #region SenderConfiguration
 
-        busConfiguration
-            .UseTransport<SqlServerTransport>()
-            .UseSpecificConnectionInformation(
-                EndpointConnectionInfo.For("Samples.SQLNHibernateOutboxEF.Receiver").UseSchema("receiver"))
-            .DefaultSchema("sender");
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.UseSpecificConnectionInformation(
+            EndpointConnectionInfo.For("Samples.SQLNHibernateOutboxEF.Receiver").UseSchema("receiver"));
+        transport.DefaultSchema("sender");
 
-        busConfiguration
-            .UsePersistence<NHibernatePersistence>();
+        busConfiguration.UsePersistence<NHibernatePersistence>();
 
         busConfiguration.EnableOutbox();
 

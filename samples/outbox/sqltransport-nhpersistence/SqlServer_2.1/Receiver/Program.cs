@@ -36,9 +36,9 @@ class Program
 
         busConfiguration.UseTransport<SqlServerTransport>();
 
-        busConfiguration.UsePersistence<NHibernatePersistence>()
-            .RegisterManagedSessionInTheContainer()
-            .UseConfiguration(hibernateConfig);
+        var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.RegisterManagedSessionInTheContainer();
+        persistence.UseConfiguration(hibernateConfig);
 
         busConfiguration.EnableOutbox();
 

@@ -15,8 +15,8 @@ class Program
 
         #region ConfigureRabbitQueueName
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.NativeIntegration");
-        endpointConfiguration.UseTransport<RabbitMQTransport>()
-            .ConnectionString("host=localhost");
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.ConnectionString("host=localhost");
         #endregion
 
         endpointConfiguration.SendFailedMessagesTo("error");

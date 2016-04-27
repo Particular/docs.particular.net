@@ -39,12 +39,11 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         #region ReceiverConfiguration
 
-        endpointConfiguration
-            .UseTransport<SqlServerTransport>()
-            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True");
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True");
 
-        endpointConfiguration.UsePersistence<NHibernatePersistence>()
-            .UseConfiguration(hibernateConfig);
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.UseConfiguration(hibernateConfig);
 
         endpointConfiguration.EnableOutbox();
 
@@ -54,12 +53,12 @@ class Program
 
         endpointConfiguration.DisableFeature<FirstLevelRetries>();
         endpointConfiguration.DisableFeature<SecondLevelRetries>();
-        
+
         #endregion
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
-        
+
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
