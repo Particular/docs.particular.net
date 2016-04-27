@@ -60,3 +60,13 @@ snippet:topology-selection-upgrade-guide
 When the `EndpointOrientedTopology` is selected, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers receive event messages:
 
 snippet:publisher_names_mapping_upgrade_guide
+
+## Keep connection string safe
+
+In version 7 and above, to avoid sharing sensitive data contained into connection strings, it's possibile to enable `UseNamespaceNameInsteadOfConnectionString` feature: 
+
+snippet: enable_use_namespace_name_instead_of_connection_string
+
+Refer to the [Keep connection string safe page](/nservicebus/azure-service-bus/keep-connectionstring-safe.md) for more details.
+
+  
