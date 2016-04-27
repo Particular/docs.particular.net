@@ -9,7 +9,7 @@ public class ConnectionProvider
     public static async Task<SqlConnection> GetConnecton(string transportAddress)
     {
         string connectionString = transportAddress.StartsWith("Samples.SqlServer.StoreAndForwardSender") || transportAddress == "error"
-            ? SenderConnectionString 
+            ? SenderConnectionString
             : ReceiverConnectionString;
 
         SqlConnection connection = new SqlConnection(connectionString);

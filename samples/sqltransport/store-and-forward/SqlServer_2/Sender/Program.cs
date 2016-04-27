@@ -15,7 +15,7 @@ class Program
         #region SenderConfiguration
 
         busConfiguration.UseTransport<SqlServerTransport>();
-        busConfiguration.UsePersistence<NHibernatePersistence>();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.Pipeline.Register<ForwardBehavior.Registration>();
         busConfiguration.Pipeline.Register<SendThroughLocalQueueBehavior.Registration>();
 

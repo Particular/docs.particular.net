@@ -23,9 +23,10 @@ public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
         }
 
         SendOptions sendOptions = context.DeliveryOptions as SendOptions;
+        var outgoingHeaders = context.OutgoingLogicalMessage.Headers;
         if (sendOptions != null)
         {
-            context.OutgoingLogicalMessage.Headers["$.store-and-forward.destination"] =
+            outgoingHeaders["$.store-and-forward.destination"] =
                 sendOptions.Destination.ToString();
             sendOptions.Destination = configure.LocalAddress;
             //We could as well store other properties of the SendOptions to handle things like delayed delivery
@@ -36,13 +37,13 @@ public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
             if (publishOptions != null)
             {
                 //Technically we don't need to store tha actual type, just a marker that this is a Publish operation
-                context.OutgoingLogicalMessage.Headers["$.store-and-forward.eventtype"] =
+                outgoingHeaders["$.store-and-forward.eventtype"] =
                     publishOptions.EventType.AssemblyQualifiedName;
             }
             else
             {
                 //We should never get here as is makes no sense to reply from outside of a handler
-                throw new NotSupportedException("Not supported delivery option: " + context.DeliveryOptions.GetType().Name);
+                throw new Exception("Not supported delivery option: " + context.DeliveryOptions.GetType().Name);
             }
         }
         context.Set<DeliveryOptions>(new SendOptions(configure.LocalAddress));

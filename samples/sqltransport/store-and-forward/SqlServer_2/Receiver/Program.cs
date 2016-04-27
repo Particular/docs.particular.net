@@ -18,7 +18,7 @@ class Program
                 EndpointConnectionInfo.For("Samples.SqlServer.StoreAndForwardSender")
                     .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True"));
 
-        busConfiguration.UsePersistence<NHibernatePersistence>();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
         #endregion
 
