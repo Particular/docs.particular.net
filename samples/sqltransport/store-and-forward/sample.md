@@ -1,7 +1,7 @@
 ---
 title: SQL Server transport store-and-forward
-summary: How to add store-and-forward functionality for external-facing endpoints
-reviewed: 2016-03-30
+summary: Add store-and-forward functionality for external-facing endpoints.
+reviewed: 2016-04-27
 component: SqlServer
 tags:
 - SQL Server
@@ -54,12 +54,12 @@ The sample contains three projects:
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
  * Receiver - A console application responsible for processing the `OrderSubmitted` message.
 
-Sender and Receiver use different databases, just like in a production scenario where two systems are integrated using NServiceBus. Each database contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence.
+Sender and Receiver use different databases, just like in a production scenario where two systems are integrated using NServiceBus. Each database contains, apart from business data, queues for the NServiceBus endpoint.
 
 
 ### Sender project
 
-The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport with NHibernate persistence.
+The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport.
 
 snippet:SenderConfiguration
 
@@ -73,8 +73,9 @@ The new behavior is added at the beginning of the send pipeline (in Version 2) o
 snippet:SendThroughLocalQueueBehavior
 
 The behavior ignores:
-- Messages sent from a handler, because the incoming message will be retried ensuring the outgoing messages are eventually delivered. 
-- Deferred messages, because their destination is the local timeout manager satellite. 
+
+ * Messages sent from a handler, because the incoming message will be retried ensuring the outgoing messages are eventually delivered. 
+ * Deferred messages, because their destination is the local timeout manager satellite. 
 
 The behavior captures the destination of the message in a header and overrides the original value so that the message is actually sent to the local endpoint (put at the end of the endpoint's incoming queue).
 
@@ -93,9 +94,10 @@ snippet:SlrConfig
 
 NOTE: When both sender's and receiver's databases cannot be accessed in a distributed transaction, the `ForwardBehavior` has to include a `TransactionScope` that suppresses the ambient transaction before forwarding the message.
 
+
 ### Receiver project
 
-The Receiver mimics a back-end system. It is set up to use SQLServer transport with NHibernate persistence. The following code configures it to use the [*multi-instance* mode](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) of the SQL Server transport.
+The Receiver mimics a back-end system. The following code configures it to use the [*multi-instance* mode](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) of the SQL Server transport.
 
 snippet:ReceiverConfiguration
 
