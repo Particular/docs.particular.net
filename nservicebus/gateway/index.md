@@ -13,14 +13,14 @@ The purpose of the gateway is to provide durable fire-and-forget messaging with 
 The gateway comes into play where the use of regular queued transports for communication are not possible i.e. when setting up a VPN connection is not an option. The reason for not using a VPN could be security concerns, bandwidth limitations, latency problems, high availability constraints, etc.
 
 
-## When not to use the gateway
+## When not avoid using the gateway
 
 The gateway should not be used for disaster recovery between sites. Under those circumstances all sites are exact replicas and are not logically different. It is recommended to utilize existing support infrastructure to keep all sites in sync.
 
 So if sites are logically similar, use one of the approaches above; if they are logically different, the gateway may come in handy.
 
 
-## What are logically different sites?
+## Logically different sites
 
 Logically different sites serve different business purposes where each site differs in behavior from all other sites. For example: A chain of retail stores where the headquarters is responsible for the prices of the goods being sold. Those prices need to be highly available to all the stores. If the link to the headquarters is down, business is interrupted.
 
@@ -41,6 +41,7 @@ The prices are pushed daily to the stores and sales reports are pushed daily to 
 
 Going across sites usually means radically different transport characteristics like latency, bandwidth, reliability, and explicit messages for the gateway communication, helping to make it obvious for developers that they are about to make cross-site calls. This is where Remote Procedure Call (RPC) really starts to break down as it will meet all [the fallacies of distributed computing](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing) head on.
 
+
 ## Using the gateway
 
 In order to send message to other sites call `SendToSites` method:
@@ -55,13 +56,13 @@ On the receiving side is another gateway listening on the input channel and forw
 
 A gateway runs inside each host process. The gateway gets its input from a regular MSMQ queue and forwards the message over the desired channel to the receiving gateway. The receiving side de-duplicates the message (ensures it is not a duplicated message, i.e., a message that was already sent) and forwards it to the main input queue of its local endpoint. The gateway has the following features:
 
-- Automatic retries
-- De-duplication of messages
-- Transport level encryption with SSL
-- Support for data bus properties with large payloads
-- Can listen on multiple channels of different types
-- Included in every endpoint
-- Easily extensible with other channels
+ * Automatic retries
+ * De-duplication of messages
+ * Transport level encryption with SSL
+ * Support for data bus properties with large payloads
+ * Can listen on multiple channels of different types
+ * Included in every endpoint
+ * Easily extensible with other channels
 
 
 ### Configuring the gateway
@@ -94,17 +95,17 @@ The default retry policy can be replaced by implementing a `Func<IncomingMessage
 
 snippet:GatewayCustomRetryPolicyConfiguration
 
-This example custom retry policy will produce the same results as the default retry policy. 
+This example custom retry policy will produce the same results as the default retry policy.
 
-Custom retry policies should eventually give up or a message could get stuck in a loop being retried forever. To discontinue retries return `TimeSpan.MinValue` from the custom retry policy and the message will be treated as a fault. [Faulted messages are routed to the configured error queue](/nservicebus/errors/). 
+Custom retry policies should eventually give up or a message could get stuck in a loop being retried forever. To discontinue retries return `TimeSpan.MinValue` from the custom retry policy and the message will be treated as a fault. [Faulted messages are routed to the configured error queue](/nservicebus/errors/).
 
-WARNING: The recoverability mechanisms built into the Gateway do not roll back the [receieve transaction](/nservicebus/messaging/) or any ambient transaction when sending a message to another site fails. Any custom recoverability policy cannot rely on an ambient transaction being rolled back. 
+WARNING: The recoverability mechanisms built into the Gateway do not roll back the [receive transaction](/nservicebus/messaging/) or any ambient transaction when sending a message to another site fails. Any custom recoverability policy cannot rely on an ambient transaction being rolled back.
 
 To disable retries in the gateway use the `DisableRetries` setting:
 
 snippet: GatewayDisableRetriesConfiguration
 
-When retries are disabled, any messages that fail to be sent to another site will be immediately treated as faulted and routed to the configured error queue. 
+When retries are disabled, any messages that fail to be sent to another site will be immediately treated as faulted and routed to the configured error queue.
 
 
 ## Custom Channel Types
@@ -122,7 +123,7 @@ snippet: GatewayChannelFactoriesConfiguration
 
 ## Key messages
 
-- Only use the gateway for logically significant sites.
-- Use explicit messages for cross-site communication.
-- The gateway doesn't support pub/sub.
-- Automatic de-duplication and retries come out of the box.
+ * Only use the gateway for logically significant sites.
+ * Use explicit messages for cross-site communication.
+ * The gateway doesn't support pub/sub.
+ * Automatic de-duplication and retries come out of the box.
