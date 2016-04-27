@@ -11,20 +11,60 @@ reviewed: 2016-04-26
 
 ## Batching store access
 
-To increase entities throughput, Azure Service Bus batches messages prior to writing to its internal store. Write message operations are delayed by 20ms and that helps to increase throughput. Read operations are not affected by this setting. By default batching store access is enabled. To change the default, set `EnableBatching` on [queues](/nservicebus/azure-service-bus/configuration/configuration.md#Queues), [topics](/nservicebus/azure-service-bus/configuration/configuration.md#Topics), and [subscriptions](/nservicebus/azure-service-bus/configuration/configuration.md#Subscriptions).
+In order to increase messages throughput, the Azure Service Bus uses batching prior to writing to its internal store.  That involves delaying write operations. When batching is enabled, the write operations are delayed by 20 ms. Read operations are not affected. This helps to increase the throughput.  
 
-For low throughput scenarios with required low latency, batching store operations should be disabled.
+Batching store operations should be disabled for low throughput scenarios requiring low latency. 
+
+The batching is enabled by default. In order to disable it, set `EnableBatching` to `false` on [queues](/nservicebus/azure-service-bus/configuration/configuration.md#Queues), [topics](/nservicebus/azure-service-bus/configuration/configuration.md#Topics), and [subscriptions](/nservicebus/azure-service-bus/configuration/configuration.md#Subscriptions).
 
 
 ## Client-side batching
 
-Client-side batching allows to delay sending messages to a queue or a topic for a short period of time. Within that period of time, if additional messages where sent to the same queue or topics, messages will be transmitted in a single batch. This setting affects `BatchFlushInterval` of the Azure Service Bus and configured using [`BatchFlushInterval`](/nservicebus/azure-service-bus/configuration/configuration.md#Messaging-Factories). `BatchFlushInterval` is enabled by default.
+Client-side batching allows to delay sending messages to a queue or a topic for a short period of time. Additional messages sent to the same queue or topic within that period of time, they will be grouped and transmitted together in a single batch. This setting affects the Azure Service Bus Message Senders and can be configured using [`BatchFlushInterval`](/nservicebus/azure-service-bus/configuration/configuration.md#messaging-factories). Client-side batching is enabled by default.
 
 
 ## Batching messages sent from a handler
 
-Azure Service Bus optimizes multiple message sends by batching send operations into a single operation. For example, when a handler is sending multiple messages, Azure Service Bus will batch those and send in as few operations as it can. Size of a batch cannot exceed the maximum size on a `BrokeredMessage`. The transport allows to configure what the maximum message size should be used. To configure message maximum size, use [`MaximumMessageSizeInKilobytes`](/nservicebus/azure-service-bus/configuration/configuration.md#Message-Senders) setting of the Message Senders.
+Azure Service Bus optimizes multiple message sends from a handler by batching send operations into a single operation. For example, when a handler is sending multiple messages, Azure Service Bus will batch those and send in as few operations as it can. Size of a batch cannot exceed the maximum size on a `BrokeredMessage`. The transport allows to configure what the maximum message size should be using [`MaximumMessageSizeInKilobytes`](/nservicebus/azure-service-bus/configuration/configuration.md#message-senders) setting of the Message Senders.
 
 NOTE: `BrokeredMessage` size is different between [tiers](https://azure.microsoft.com/en-us/documentation/articles/service-bus-premium-messaging/) of Azure Service Bus. 
 
-When batching messages sent from a handler, the underlying implementation of batching serializes messages. Serialized batch is usually bigger than the original messages combined together. To ensure successful send of the batch, it has to be under the `BrokeredMessage` size. To estimate if a batch is not exceeding the maximum size, `MessageSizePaddingPercentage` is used. The default is set to 5%. To change percentage value, use [`MessageSizePaddingPercentage`](/nservicebus/azure-service-bus/configuration/configuration.md#Message-Senders) configuration of the Message Senders.
+When batching messages sent from a handler, the underlying implementation of batching serializes messages. Serialized batch is usually bigger than the original messages combined. To ensure successful batch sending operation, batch should not exceed the `BrokeredMessage` size. To cater for the overhead caused by serialization, the final batch size is estimated using `MessageSizePaddingPercentage` setting. By default, it's set to 5%. It can be configured using [`MessageSizePaddingPercentage`](/nservicebus/azure-service-bus/configuration/configuration.md#message-senders) ` configuration of the Message Senders.
+
+By default, messages batch exceeding the maximum allowed size by Azure Service Bus, will throw `MessageTooLargeException`. Default behavior can by changed with [`OversizedBrokeredMessageHandler<T>(T)`](/nservicebus/azure-service-bus/configuration/configuration.md#message-senders) configuration of the Message Senders.
+
+### Padding and estimated batch size calculation
+
+The following are taken into consideration for batch size calculation:
+
+* Raw body size in bytes.
+* Custom headers size (keys and values) in bytes.
+* Estimated standard properties size in bytes. For string properties, assumed size is 256 bytes.
+* Additional `MessageSizePaddingPercentage` to account for serialization and internals added by Azure Service Bus library upon sending.
+
+The default value for `MessageSizePaddingPercentage` is 5%. The custom percentage might be required when dealing with consistent size pattern messages. Tables below demonstrate 5% padding and its affect on the message size estimate for various payload sizes.
+
+`BrokeredMessageBodyType` set to `SupportedBrokeredMessageBodyTypes.ByteArray`. 
+`MessageSizePaddingPercentage` set to 5%
+
+| Single message payload size   | Size reported by the broker  | Estimated (padded) size | Increase |
+|---|---:|---:|:---:|
+|0K  | 1,426  | 3,088 | 117% |
+|1K   | 2,859 | 4,538 | 59% |
+| 10K  | 15,147 | 17,440 | 16% |
+| 100K  | 138,029 | 146,464 | 7% |
+| 170K  | 233,550 | 246,815 | 6% |
+| 180K  | 247,201 | 261,149 | 6% |
+
+
+`BrokeredMessageBodyType` set to `SupportedBrokeredMessageBodyTypes.Steam`. 
+`MessageSizePaddingPercentage` set to 5%
+
+| Single message payload size   | Size reported by the broker  | Estimated (padded) size | Increase |
+|---|---:|---:|:---:|
+|0K  | 1,401  | 3,101 | 122% |
+|1K   | 2,769 | 4,538 | 64% |
+| 10K  | 15,057 | 17,440 | 16% |
+| 100K  | 137,937 | 146,464 | 7% |
+| 170K  | 233,509 | 246,815 | 6% |
+| 180K  | 247,161 | 261,149  | 6% |
