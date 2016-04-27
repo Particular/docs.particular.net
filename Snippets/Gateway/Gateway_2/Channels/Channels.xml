@@ -8,7 +8,7 @@
   <GatewayConfig>
     <Channels>
       <Channel Address="http://Headquarter.mycorp.com/"
-               ChannelType="Http" 
+               ChannelType="Http"
                Default="true"/>
       <Channel Address="http://Headquarter.myotherdomain.com/"
                ChannelType="Http"/>
