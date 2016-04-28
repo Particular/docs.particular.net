@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NLog">
-      <HintPath>..\..\..\..\..\packages\NLog.4.3.2\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NLog.4.3.3\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.14\lib\net45\NServiceBus.Core.dll</HintPath>
