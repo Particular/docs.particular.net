@@ -36,7 +36,7 @@ NOTE: `BrokeredMessage` size is different between [tiers](https://azure.microsof
 
 When batching messages sent from a handler, the underlying implementation of batching serializes messages. Serialized batch is usually bigger than the original messages combined. To ensure successful batch sending operation, batch should not exceed the `BrokeredMessage` size. To cater for the overhead caused by serialization, the final batch size is estimated using `MessageSizePaddingPercentage` setting. By default, it's set to 5%. It can be configured using [`MessageSizePaddingPercentage`](/nservicebus/azure-service-bus/configuration/configuration.md#message-senders) configuration of the Message Senders.
 
-By default, message batches exceeding the maximum allowed size by Azure Service Bus, will throw a [`MessageTooLargeException`](https://msdn.microsoft.com/en-us/library/microsoft.azure.devices.client.exceptions.messagetoolargeexception.aspx). The default behavior can by changed with [`OversizedBrokeredMessageHandler<T>(T)`](/nservicebus/azure-service-bus/configuration/configuration.md#message-senders) configuration of the Message Senders.
+By default, message batches exceeding the maximum allowed size by Azure Service Bus, will throw a `MessageTooLargeException`. The default behavior can by changed with [`OversizedBrokeredMessageHandler<T>(T)`](/nservicebus/azure-service-bus/configuration/configuration.md#message-senders) configuration of the Message Senders.
 
 
 ### Padding and estimated batch size calculation
