@@ -49,6 +49,15 @@ If NServiceBus needs to use the same `DocumentStore` instance used elsewhere in 
 snippet:ravendb-persistence-external-store
 
 
+#### External shared store at initialization
+
+To use an external `DocumentStore`, but defer its creation until NServiceBus initializes, a `Func<ReadOnlySettings, IDocumentStore>` can be provided which will allow the `DocumentStore` to be created with access to the `ReadOnlySettings`. This gives the ability to configure the document store based on conventions derived from endpoint data present in the settings object.
+
+*This configuration option is available only in NServiceBus.RavenDB 4.0 and above.*
+
+snippet:ravendb-persistence-create-store-by-func
+
+
 #### Store defined via a connection string for a specific persister
 
 One can configure a RavenDB connection string that is only applicable to a specific store:
@@ -61,6 +70,15 @@ snippet:specific-document-store-via-connection-string
 An externally created `DocumentStore` instance can be passed to NServiceBus for usage in a specific persister (e.g. timeouts) by using the following code:
 
 snippet:ravendb-persistence-specific-external-store
+
+
+#### External store at initialization for a specific persister
+
+A `DocumentStore` can be created when NServiceBus initializes, with access to endpoint settings found in `ReadOnlySettings`, for usage in a specific persister (e.g. timeouts) by using the following code:
+
+*This configuration option is available only in NServiceBus.RavenDB 4.0 and above.*
+
+snippet:ravendb-persistence-specific-create-store-by-func
 
 
 ### Other configuration options
