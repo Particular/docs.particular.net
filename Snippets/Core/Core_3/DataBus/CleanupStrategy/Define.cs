@@ -7,9 +7,8 @@ namespace Snippets3.DataBus.CleanupStrategy
         public Define()
         {
             #region DefineFileLocationForDatabusFiles
-            Configure.With()
-                .FileShareDataBus(@"\\share\databus_attachments\")
-                .DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
+            var configure = Configure.With();
+            configure.FileShareDataBus(@"\\share\databus_attachments\");
             #endregion
         }
     }

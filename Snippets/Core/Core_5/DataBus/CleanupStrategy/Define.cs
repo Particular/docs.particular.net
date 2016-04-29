@@ -8,7 +8,8 @@ namespace Snippets5.DataBus.CleanupStrategy
         {
             #region DefineFileLocationForDatabusFiles
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseDataBus<FileShareDataBus>().BasePath(@"\\machinename\databus_attachments\");
+            var dataBus = busConfiguration.UseDataBus<FileShareDataBus>();
+            dataBus.BasePath(@"\\share\databus_attachments\");
             #endregion
         }
     }
