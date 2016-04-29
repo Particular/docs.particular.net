@@ -1,13 +1,13 @@
-namespace Snippets6.DataBus.CleanupStrategy
+namespace Core6.DataBus.CleanupStrategy
 {
     using NServiceBus;
 
-    public class Define
+    class Define
     {
-        public Define()
+        Define(EndpointConfiguration endpointConfiguration)
         {
             #region DefineFileLocationForDatabusFiles
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("endpointName");
+
             var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
             dataBus.BasePath(@"\\share\databus_attachments\");
 

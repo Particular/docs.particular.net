@@ -231,7 +231,7 @@
     <Compile Include="Sagas\Timeouts\MySaga.cs" />
     <Compile Include="Sagas\Timeouts\TiredOfWaitingForMessage2.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
-    <Compile Include="Scheduling\Saga\SchedulerSaga.cs" />
+    <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transports\Throughput\Usage.cs" />

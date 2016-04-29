@@ -294,7 +294,7 @@
     <Compile Include="Sagas\Timeouts\TiredOfWaitingForMessage2.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="MsmqMessageLabel.cs" />
-    <Compile Include="Scheduling\Saga\SchedulerSaga.cs" />
+    <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Hosting.cs" />
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />

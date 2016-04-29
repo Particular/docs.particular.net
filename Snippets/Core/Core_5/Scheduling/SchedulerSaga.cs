@@ -1,8 +1,8 @@
-﻿namespace Core6.Scheduling.Saga
+﻿namespace Core5.Scheduling
 {
     using System;
-    using System.Threading.Tasks;
     using NServiceBus;
+    using NServiceBus.Saga;
 
     #region ScheduleTaskSaga
 
@@ -12,38 +12,38 @@
     {
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
-            // To ensure that there is only one saga instance per the task name, 
+            // To ensure that there is only one saga instance per the task name,
             // regardless of if the endpoint is restarted or not.
             mapper.ConfigureMapping<StartSaga>(message => message.TaskName)
                 .ToSaga(sagaData => sagaData.TaskName);
         }
 
-        public async Task Handle(StartSaga message, IMessageHandlerContext context)
+        public void Handle(StartSaga message)
         {
             Data.TaskName = message.TaskName;
-            // Check to avoid that if the saga is already started, we don't initiate any more tasks 
+            // Check to avoid that if the saga is already started, we don't initiate any more tasks
             // as those timeout messages will arrive when the specified time is up.
             if (!Data.IsTaskAlreadyScheduled)
             {
                 // Setup a timeout for the specified interval for the task to be executed.
-                await RequestTimeout<ExecuteTask>(context, TimeSpan.FromMinutes(5)); 
+                RequestTimeout<ExecuteTask>(TimeSpan.FromMinutes(5));
                 Data.IsTaskAlreadyScheduled = true;
             }
         }
 
-        public async Task Timeout(ExecuteTask state, IMessageHandlerContext context)
+        public void Timeout(ExecuteTask state)
         {
             // Action that gets executed when the specified time is up
-            await context.Send(new CallLegacySystem());
+            Bus.Send(new CallLegacySystem());
             // Reschedule the task
-            await RequestTimeout<ExecuteTask>(context, TimeSpan.FromMinutes(5));
+            RequestTimeout<ExecuteTask>(TimeSpan.FromMinutes(5));
         }
-
     }
 
     // Associated saga data
     public class MySagaData : ContainSagaData
     {
+        [Unique]
         public string TaskName { get; set; }
         public bool IsTaskAlreadyScheduled { get; set; }
     }

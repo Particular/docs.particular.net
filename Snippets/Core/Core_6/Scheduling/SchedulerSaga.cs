@@ -1,25 +1,24 @@
-﻿namespace Core3.Scheduling.Saga
+﻿namespace Core6.Scheduling
 {
     using System;
+    using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Saga;
 
     #region ScheduleTaskSaga
 
     class MySaga : Saga<MySagaData>,
-        IAmStartedByMessages<StartSaga>, // Saga is started by a message at endpoint startup
-        IHandleTimeouts<ExecuteTask> // task that gets executed when the scheduled time is up.
+       IAmStartedByMessages<StartSaga>, // Saga is started by a message at endpoint startup
+       IHandleTimeouts<ExecuteTask> // task that gets executed when the scheduled time is up.
     {
-        public override void ConfigureHowToFindSaga()
+        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
             // To ensure that there is only one saga instance per the task name,
             // regardless of if the endpoint is restarted or not.
-            ConfigureMapping<StartSaga>(
-                sagaData => sagaData.TaskName,
-                message => message.TaskName);
+            mapper.ConfigureMapping<StartSaga>(message => message.TaskName)
+                .ToSaga(sagaData => sagaData.TaskName);
         }
 
-        public void Handle(StartSaga message)
+        public async Task Handle(StartSaga message, IMessageHandlerContext context)
         {
             Data.TaskName = message.TaskName;
             // Check to avoid that if the saga is already started, we don't initiate any more tasks
@@ -27,30 +26,26 @@
             if (!Data.IsTaskAlreadyScheduled)
             {
                 // Setup a timeout for the specified interval for the task to be executed.
-                RequestUtcTimeout<ExecuteTask>(TimeSpan.FromMinutes(5));
+                await RequestTimeout<ExecuteTask>(context, TimeSpan.FromMinutes(5));
                 Data.IsTaskAlreadyScheduled = true;
             }
         }
 
-        public void Timeout(ExecuteTask state)
+        public async Task Timeout(ExecuteTask state, IMessageHandlerContext context)
         {
             // Action that gets executed when the specified time is up
-            Bus.Send(new CallLegacySystem());
+            await context.Send(new CallLegacySystem());
             // Reschedule the task
-            RequestUtcTimeout<ExecuteTask>(TimeSpan.FromMinutes(5));
+            await RequestTimeout<ExecuteTask>(context, TimeSpan.FromMinutes(5));
         }
+
     }
 
     // Associated saga data
-    public class MySagaData : IContainSagaData
+    public class MySagaData : ContainSagaData
     {
-        [Unique]
         public string TaskName { get; set; }
         public bool IsTaskAlreadyScheduled { get; set; }
-
-        public Guid Id { get; set; }
-        public string OriginalMessageId { get; set; }
-        public string Originator { get; set; }
     }
 
     // Message that starts the saga

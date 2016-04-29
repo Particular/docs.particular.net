@@ -1,10 +1,10 @@
-namespace Snippets3.DataBus.CleanupStrategy
+namespace Core3.DataBus.CleanupStrategy
 {
     using NServiceBus;
 
-    public class Define
+    class Define
     {
-        public Define()
+        Define()
         {
             #region DefineFileLocationForDatabusFiles
             var configure = Configure.With();

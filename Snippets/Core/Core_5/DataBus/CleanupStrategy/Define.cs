@@ -1,13 +1,12 @@
-namespace Snippets5.DataBus.CleanupStrategy
+namespace Core5.DataBus.CleanupStrategy
 {
     using NServiceBus;
 
-    public class Define
+    class Define
     {
-        public Define()
+        Define(BusConfiguration busConfiguration)
         {
             #region DefineFileLocationForDatabusFiles
-            BusConfiguration busConfiguration = new BusConfiguration();
             var dataBus = busConfiguration.UseDataBus<FileShareDataBus>();
             dataBus.BasePath(@"\\share\databus_attachments\");
             #endregion

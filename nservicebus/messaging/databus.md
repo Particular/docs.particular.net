@@ -109,7 +109,7 @@ This same location should be used when performing the cleanup.
 
 So for example this path can be used in a Handler for a message containing databus properties.
 
-snippet:FileLocationForDatabusFiles
+snippet:HandlerThatCleansUpDatabus
 
  
 ## Configuring AzureDataBus

@@ -12,7 +12,7 @@
         public override void ConfigureHowToFindSaga()
         {
             ConfigureMapping<CompleteOrder>(
-                sagaData => sagaData.OrderId, 
+                sagaData => sagaData.OrderId,
                 message => message.OrderId);
         }
 

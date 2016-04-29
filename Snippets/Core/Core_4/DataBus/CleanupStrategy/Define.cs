@@ -1,13 +1,11 @@
-namespace Snippets4.DataBus.CleanupStrategy
+namespace Core4.DataBus.CleanupStrategy
 {
     using NServiceBus;
 
-    public class Define
+    class Define
     {
-        public Define()
+        Define()
         {
-            string databusPath = string.Empty;
-
             #region DefineFileLocationForDatabusFiles
             var configure = Configure.With();
             configure.FileShareDataBus(@"\\share\databus_attachments\");

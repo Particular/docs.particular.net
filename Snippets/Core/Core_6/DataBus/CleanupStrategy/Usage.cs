@@ -1,17 +1,43 @@
-namespace Snippets6.DataBus.CleanupStrategy
+namespace Core6.DataBus.CleanupStrategy
 {
+    using System;
     using System.IO;
     using System.Threading.Tasks;
+    using DataBusProperty;
     using NServiceBus;
-    using Core6.DataBus.DataBusProperty;
 
-    public class Usage
+    #region HandlerThatCleansUpDatabus
+
+    public class Handler :
+        IHandleMessages<MessageWithLargePayload>,
+        IHandleMessages<RemoveDatabusAttachment>
     {
-        #region FileLocationForDatabusFiles
-        public async Task Handle(MessageWithLargePayload message, IMessageHandlerContext context)
+
+        public Task Handle(MessageWithLargePayload message, IMessageHandlerContext context)
         {
-            string filename = Path.Combine(@"c:\databus_attachments\", message.LargeBlob.Key);
+            string filePath = Path.Combine(@"\\share\databus_attachments\", message.LargeBlob.Key);
+            var removeAttachment = new RemoveDatabusAttachment
+            {
+                FilePath = filePath
+            };
+            SendOptions options = new SendOptions();
+            options.RouteToThisEndpoint();
+            options.DelayDeliveryWith(TimeSpan.FromDays(30));
+            return context.Send(removeAttachment, options);
         }
-        #endregion
+
+        public Task Handle(RemoveDatabusAttachment message, IMessageHandlerContext context)
+        {
+            var filePath = message.FilePath;
+            // Code to clean up
+            return Task.FromResult(0);
+        }
+    }
+
+    #endregion
+
+    public class RemoveDatabusAttachment : ICommand
+    {
+        public string FilePath { get; set; }
     }
 }
