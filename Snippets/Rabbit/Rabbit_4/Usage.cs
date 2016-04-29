@@ -4,7 +4,7 @@
     using RabbitMQ.Client;
     using NServiceBus;
     using NServiceBus.Transports;
-    using NServiceBus.Transports.RabbitMQ.Routing;
+    using NServiceBus.Transport.RabbitMQ;
 
     class Usage
     {
