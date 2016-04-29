@@ -129,7 +129,58 @@ class Usage
 
         transport.Queues().ForwardDeadLetteredMessagesTo(entityname => entityname == "yourqueue", "errorqueue");
 
+        #endregion
+    }
+
+    void SwappingValidationStrategy(EndpointConfiguration endpointConfiguration)
+    {
+        #region swap-validation-strategy
+
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.Validation().UseStrategy<MyValidationStrategy>();
 
         #endregion
     }
+
+    void SwappingSanitizationStrategy(EndpointConfiguration endpointConfiguration)
+    {
+        #region swap-sanitization-strategy
+
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.Sanitization().UseStrategy<MySanitizationStrategy>();
+
+        #endregion
+    }
+
+    void SwappingCompositionStrategy(EndpointConfiguration endpointConfiguration)
+    {
+        #region swap-composition-strategy
+
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.Composition().UseStrategy<MyCompositionStrategy>();
+
+        #endregion
+    }
+
+    void SwappingPartitioningStrategy(EndpointConfiguration endpointConfiguration)
+    {
+        #region swap-namespace-partitioning-strategy
+
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.NamespacePartitioning().UseStrategy<MyNamespacePartitioningStrategy>();
+
+        #endregion
+    }
+
+    void SwappingIndividualizationStrategy(EndpointConfiguration endpointConfiguration)
+    {
+        #region swap-individualization-strategy
+
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.Individualization().UseStrategy<MyIndividualizationStrategy>();
+
+        #endregion
+    }
+
 }
+

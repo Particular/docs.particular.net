@@ -88,6 +88,7 @@
     <Compile Include="MultipleNamespaces.cs" />
     <Compile Include="Sanitization.cs" />
     <Compile Include="SecureCredentials.cs" />
+    <Compile Include="AddressingStrategies.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

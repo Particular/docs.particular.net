@@ -7,7 +7,6 @@ tags:
 - Configuration
 ---
 
-
 ## Physical Addressing Logic
 
 One of the responsibilities of the transport is determining the names and physical location of the entities. It is achieved by turning logical endpoint names into physical addresses of the Azure Service Bus entities, which is called *Physical Addressing Logic*.
@@ -28,7 +27,7 @@ In version 7 the configuration API allows to modify all behaviours and assumptio
 
 The following layers are available for replacement in the addressing logic:
 
- * Validation: Determines how entity names are validated and is represented by an implementation of `IValidationStrategy`.
+ * Validation: Determines how entity names and paths are validated.
  * Sanitization: Determines how invalid entity names are cleaned up, represented by an implementation of `ISanitizationStrategy`.
  * Individualization: Determines how entity names are modified when used in different consumption modes, represented by an implementation of `IIndividualizationStrategy`.
  * NamespacePartitioning: Determines how entities are partitioned across namespaces, represented by an implementation `INamespacePartinioningStrategy`.
@@ -36,34 +35,102 @@ The following layers are available for replacement in the addressing logic:
  
 ### Validation
 
- * `UseStrategy<T>()`: An implementation of `IValidationStrategy` that validates the entity path. Following implementations exist:
-	 * `EntityNameValidationV6Rules`: allows letters, numbers, periods (.), hyphens (-), and underscores (-)
-	 * `EntityNameValidationRules` (default): allows letters, numbers, periods (.), hyphens (-), underscores (-) and slashes (/) for queues and topics, no slashes allowed for subscriptions.
+The validation layer is represented by an implementation of `IValidationStrategy`. 
+
+Out of the box there are 2 validation strategies
+ * `EntityNameValidationV6Rules`: allows letters, numbers, periods (.), hyphens (-), and underscores (-)
+ * `EntityNameValidationRules` (default): allows letters, numbers, periods (.), hyphens (-), underscores (-) and slashes (/) for queues and topics, no slashes allowed for subscriptions.
+
+The default implementation of this strategy can be replaced by using the configuration API:
+
+snippet:swap-validation-strategy
+
+#### Implementing a custom validation strategy
+
+snippet:custom-validation-strategy
+
+#### Extending the configuration API for custom validation settings
+
+snippet:custom-validation-strategy-extension
 
 ### Sanitization
 
-* `UseStrategy<T>()`: An implementation of `ISanitizationStrategy` that handles invalid entity names. The following implementations exist:
-	 * `AdjustmentSanitizationV6`: removes invalid characters according to `EntityNameValidationV6Rules`, uses MD5 hashing to reduce the length of an entity name if the maximum length is exceeded.
-	 * `AdjustmentSanitization` (default): removes invalid characters according to `EntityNameValidationRules`, uses SHA1 hashing to reduce the length of an entity name if the maximum length is exceeded.
-	 * `ThrowOnFailingSanitization`: throws an `EndpointValidationException` if the name is invalid.
+The sanitization layer is represented by an implementation of `ISanitizationStrategy`. 
+
+Out of the box there are 3 sanitization strategies
+ * `AdjustmentSanitizationV6`: removes invalid characters according to `EntityNameValidationV6Rules`, uses MD5 hashing to reduce the length of an entity name if the maximum length is exceeded.
+ * `AdjustmentSanitization` (default): removes invalid characters according to `EntityNameValidationRules`, uses SHA1 hashing to reduce the length of an entity name if the maximum length is exceeded.
+ * `ThrowOnFailingSanitization`: throws an `EndpointValidationException` if the name is invalid.
+
+The default implementation of this strategy can be replaced by using the configuration API:
+
+snippet:swap-sanitization-strategy
+
+#### Implementing a custom sanitization strategy
+
+snippet:custom-sanitization-strategy
+
+#### Extending the configuration API for custom sanitization settings
+
+snippet:custom-sanitization-strategy-extension
 
 ### Individualization
 
- * `UseStrategy<T>()`: An implementation of `IIndividualizationStrategy` that modifies an endpoint name to become unique per endpoint instance. Following implementations exist:
-	 * `CoreIndividualization` (default): Makes no modifications, and relies on the individualization logic as defined in the NServiceBus core framework.
-	 * `DiscriminatorBasedIndividualization`: modifies the name of the endpoint by appending a discriminator value to the end.
+The individualization layer is represented by an implementation of `IIndividualizationStrategy`. 
+
+Out of the box, there are 2 individualization strategies
+ * `CoreIndividualization` (default): Makes no modifications, and relies on the individualization logic as defined in the NServiceBus core framework.
+ * `DiscriminatorBasedIndividualization`: modifies the name of the endpoint by appending a discriminator value to the end.
+
+The default implementation of this strategy can be replaced by using the configuration API:
+
+snippet:swap-individualization-strategy
  
+#### Implementing a custom individualization strategy
+
+snippet:custom-individualization-strategy
+
+#### Extending the configuration API for custom individualization settings
+
+snippet:custom-individualization-strategy-extension
+
 ### Namespace Partitioning
 
- * `UseStrategy<T>`: An implementation of `INamespacePartitioningStrategy` that determines how entities are distributed across namespaces. The following strategies exist:
-	 * `SingleNamespacePartitioning` (default): All entities are in a single namespace.
-	 * `FailOverNamespacePartitioning`: assumes all entities are in the primary and secondary namespaces, where only the primary is in use by default. The secondary will function as a fallback in case of problems with the primary.
-	 * `RoundRobinNamespacePartitioning`: assumes all entities are in all namespaces, all namespaces are in use but one at a time in a round robin fashion.
-	 * `ReplicatedNamespacePartitioning`: assumes all entities are in all namespaces, all namespaces are in use, messages are replicated over all namespaces.
-	 * `ShardedNamespacePartitioning`: assumes all entities are in all namespaces, all namespaces are in use, messages are sent to a single namespace based on a sharding rule.
+The namespace partitioning layer is represented by an implementation of `INamespacePartitioningStrategy`. 
+
+Out of the box there are 3 namespace partitioning strategies
+ * `SingleNamespacePartitioning` (default): All entities are in a single namespace.
+ * `FailOverNamespacePartitioning`: assumes all entities are in the primary and secondary namespaces, where only the primary is in use by default. The secondary will function as a fallback in case of problems with the primary.
+ * `RoundRobinNamespacePartitioning`: assumes all entities are in all namespaces, all namespaces are in use but one at a time in a round robin fashion.
+
+The default implementation of this strategy can be replaced by using the configuration API:
+
+snippet:swap-namespace-partitioning-strategy
+
+#### Implementing a custom namespace partitioning strategy
+
+snippet:custom-namespace-partitioning-strategy
+
+#### Extending the configuration API for custom partitioning settings
+
+snippet:custom-namespace-partitioning-strategy-extension
 
 ### Composition
 
- * `UseStrategy<T>()`: An implementation of `ICompositionStrategy` that determines how an entity is positioned inside a namespace hierarchy. The following implementations exist:
-	 * `FlatComposition`: The entity is in the root of the namespace.
-	 * `HierarchyComposition`: The entity is in a namespace hierarchy, at the location generated by the path generator.
+The composition layer is represented by an implementation of `ICompositionStrategy`.
+
+Out of the box there are 2 composition strategies
+ * `FlatComposition`: The entity is in the root of the namespace.
+ * `HierarchyComposition`: The entity is in a namespace hierarchy, at the location generated by the path generator.
+
+The default implementation of this strategy can be replaced by using the configuration API:
+
+snippet:swap-composition-strategy
+
+#### Implementing a custom composition strategy
+
+snippet:custom-composition-strategy
+
+#### Extending the configuration API for custom composition settings
+
+snippet:custom-composition-strategy-extension
