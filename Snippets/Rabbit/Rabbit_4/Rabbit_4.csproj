@@ -27,8 +27,9 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0002\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Transports.RabbitMQ">
-      <HintPath>..\..\..\packages\NServiceBus.RabbitMQ.4.0.0-alpha0216\lib\net452\NServiceBus.Transports.RabbitMQ.dll</HintPath>
+    <Reference Include="NServiceBus.Transports.RabbitMQ, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NServiceBus.RabbitMQ.4.0.0-alpha0233\lib\net452\NServiceBus.Transports.RabbitMQ.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="RabbitMQ.Client, Version=3.6.1.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\RabbitMQ.Client.3.6.1\lib\net45\RabbitMQ.Client.dll</HintPath>
