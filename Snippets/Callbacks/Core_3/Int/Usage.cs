@@ -1,4 +1,4 @@
-﻿namespace Core3.Callback.Int
+﻿namespace Core3.Int
 {
     using log4net;
     using NServiceBus;

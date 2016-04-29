@@ -1,4 +1,4 @@
-﻿namespace Snippets3.Container
+﻿namespace Ninject_3
 {
     using Ninject;
     using NServiceBus;

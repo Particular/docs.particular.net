@@ -7,10 +7,10 @@
     #region header-outgoing-behavior
     public class OutgoingBehavior : Behavior<IOutgoingPhysicalMessageContext>
     {
-        public override async Task Invoke(IOutgoingPhysicalMessageContext context, Func<Task> next)
+        public override Task Invoke(IOutgoingPhysicalMessageContext context, Func<Task> next)
         {
             context.Headers["MyCustomHeader"] = "My custom value";
-            await next().ConfigureAwait(false);
+            return next();
         }
     }
     #endregion

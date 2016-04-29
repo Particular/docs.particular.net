@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using Common;
     using NServiceBus;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
@@ -44,7 +45,7 @@
         class MessageToSend : IMessage
         {
         }
-    
+
         class MessageHandler : IHandleMessages<MessageToSend>
         {
             public void Handle(MessageToSend message)

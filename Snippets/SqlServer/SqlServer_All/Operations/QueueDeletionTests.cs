@@ -1,4 +1,4 @@
-﻿namespace Operations.SqlServer
+﻿namespace SqlServer_All.Operations
 {
     using System.Data.SqlClient;
     using NUnit.Framework;

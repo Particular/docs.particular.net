@@ -1,7 +1,6 @@
-using NServiceBus;
-
-namespace Core4.Callback.Int
+namespace Core4.Int
 {
+    using NServiceBus;
 
     #region IntCallbackResponse
 

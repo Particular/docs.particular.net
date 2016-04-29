@@ -1,7 +1,6 @@
-using NServiceBus;
-
-namespace Core4.Callback.Enum
+namespace Core4.Enum
 {
+    using NServiceBus;
 
     #region EnumCallbackResponse
 

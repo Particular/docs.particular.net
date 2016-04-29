@@ -1,4 +1,4 @@
-﻿namespace Core6.Callback.Object
+﻿namespace Core6.Object
 {
     using NServiceBus;
 

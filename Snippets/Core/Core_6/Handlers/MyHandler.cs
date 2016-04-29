@@ -1,6 +1,7 @@
 ﻿namespace Core6.Handlers
 {
     using System.Threading.Tasks;
+    using Common;
     using NServiceBus;
 
     #region CreatingMessageHandler

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
@@ -78,7 +79,7 @@
             }
         }
 
-        class Saga2 : Saga<Saga2.SagaData>, 
+        class Saga2 : Saga<Saga2.SagaData>,
             IAmStartedByMessages<SendFromSagaMessage>,
             IHandleTimeouts<TimeoutFromSaga>
         {
@@ -99,7 +100,7 @@
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
             {
             }
-            
+
 
             public Task Timeout(TimeoutFromSaga state, IMessageHandlerContext context)
             {
@@ -109,7 +110,7 @@
 
         class Mutator : IMutateIncomingTransportMessages
         {
-        
+
             public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
                 if (context.IsMessageOfTye<SendFromSagaMessage>())

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common;
     using NServiceBus;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
@@ -38,7 +39,7 @@
             IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
 
             //give time for the subscription to happen
-            Thread.Sleep(3000);
+            await Task.Delay(3000);
             await endpoint.Publish(new MessageToPublish());
             ManualResetEvent.WaitOne();
             await endpoint.Stop();

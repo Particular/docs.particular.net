@@ -1,4 +1,4 @@
-﻿namespace Snippets5.UnitTesting
+﻿namespace Testing_5
 {
     using System;
     using NServiceBus.Testing;

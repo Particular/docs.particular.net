@@ -6,7 +6,7 @@
     class ConfigureSagaPersistence
     {
 
-        async void Simple(EndpointConfiguration endpointConfiguration)
+        void Simple(EndpointConfiguration endpointConfiguration)
         {
             #region saga-configure
 

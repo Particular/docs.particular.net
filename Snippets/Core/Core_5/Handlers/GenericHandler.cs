@@ -1,5 +1,6 @@
 ﻿namespace Core5.Handlers
 {
+    using Common;
     using NServiceBus;
     using NServiceBus.Logging;
 

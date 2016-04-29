@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Text;
     using System.Threading;
+    using Common;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
@@ -41,7 +42,7 @@
                 bus.SendLocal(new MessageToSend
                 {
                     LargeProperty1 = new byte[10],
-                    LargeProperty2 = new byte[10] 
+                    LargeProperty2 = new byte[10]
                 });
                 ManualResetEvent.WaitOne();
             }
@@ -52,7 +53,7 @@
             public byte[] LargeProperty1 { get; set; }
             public byte[] LargeProperty2 { get; set; }
         }
-    
+
         class MessageHandler : IHandleMessages<MessageToSend>
         {
             public void Handle(MessageToSend message)

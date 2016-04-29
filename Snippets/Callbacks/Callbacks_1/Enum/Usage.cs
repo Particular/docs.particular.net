@@ -1,4 +1,4 @@
-﻿namespace Core6.Callback.Enum
+﻿namespace Core6.Enum
 {
     using NServiceBus;
     using NServiceBus.Logging;

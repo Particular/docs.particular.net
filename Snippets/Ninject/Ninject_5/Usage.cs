@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Container
+﻿namespace Ninject_5
 {
     using Ninject;
     using NServiceBus;

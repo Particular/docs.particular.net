@@ -1,5 +1,6 @@
 ﻿namespace Core3.Handlers
 {
+    using Common;
     using NServiceBus;
 
     #region CreatingMessageHandler

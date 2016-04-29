@@ -1,4 +1,4 @@
-﻿namespace Core5.Callback.Object
+﻿namespace Core5.Object
 {
     using NServiceBus;
     using NServiceBus.Logging;

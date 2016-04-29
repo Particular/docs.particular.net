@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 414
-namespace Operations.RavenDB
+namespace Operations
 {
     using System.Collections.Generic;
     using System.Linq;

@@ -1,4 +1,4 @@
-﻿namespace Core6.Callback.Int
+﻿namespace Core6.Int
 {
     using NServiceBus;
     using NServiceBus.Logging;

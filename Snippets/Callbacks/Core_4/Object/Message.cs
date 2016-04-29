@@ -1,7 +1,7 @@
-﻿using NServiceBus;
-
-namespace Core4.Callback.Object
+﻿namespace Core4.Object
 {
+    using NServiceBus;
+
     public class Message : IMessage
     {
     }

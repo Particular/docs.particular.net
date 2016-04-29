@@ -1,24 +1,27 @@
-﻿using global::NLog;
-using global::NLog.Config;
-using global::NLog.Targets;
+﻿using NLog;
+using NLog.Config;
+using NLog.Targets;
 using NServiceBus;
 
-public class NLogFiltering
+namespace NLog_1
 {
-    public NLogFiltering()
+    public class NLogFiltering
     {
-        #region NLogFiltering
+        public NLogFiltering()
+        {
+            #region NLogFiltering
 
-        LoggingConfiguration config = new LoggingConfiguration();
+            LoggingConfiguration config = new LoggingConfiguration();
 
-        ColoredConsoleTarget target = new ColoredConsoleTarget();
-        config.AddTarget("console", target);
-        config.LoggingRules.Add(new LoggingRule("MyNamespace.*", LogLevel.Debug, target));
+            ColoredConsoleTarget target = new ColoredConsoleTarget();
+            config.AddTarget("console", target);
+            config.LoggingRules.Add(new LoggingRule("MyNamespace.*", LogLevel.Debug, target));
 
-        LogManager.Configuration = config;
+            LogManager.Configuration = config;
 
-        NServiceBus.Logging.LogManager.Use<NLogFactory>();
+            NServiceBus.Logging.LogManager.Use<NLogFactory>();
 
-        #endregion
+            #endregion
+        }
     }
 }

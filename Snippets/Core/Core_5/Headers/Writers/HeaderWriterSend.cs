@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using Common;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
@@ -42,7 +43,7 @@
         class MessageToSend : IMessage
         {
         }
-    
+
         class MessageHandler : IHandleMessages<MessageToSend>
         {
             public void Handle(MessageToSend message)

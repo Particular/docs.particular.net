@@ -131,7 +131,6 @@
 
         public class OtherMessage
         {
-             
         }
 
         interface IMyMessage

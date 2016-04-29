@@ -1,5 +1,6 @@
 ﻿namespace Core5.UpgradeGuides._5to6
 {
+    using Common;
     using NServiceBus;
     using Handlers;
 

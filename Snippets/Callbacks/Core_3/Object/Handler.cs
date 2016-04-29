@@ -1,4 +1,4 @@
-namespace Core3.Callback.Object
+namespace Core3.Object
 {
     using NServiceBus;
 

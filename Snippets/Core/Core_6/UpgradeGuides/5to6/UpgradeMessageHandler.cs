@@ -1,6 +1,7 @@
 ﻿namespace Core6.UpgradeGuides._5to6
 {
     using System.Threading.Tasks;
+    using Common;
     using NServiceBus;
     using Handlers;
 

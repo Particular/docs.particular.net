@@ -1,4 +1,4 @@
-﻿namespace Core6.Callback.Cancellation
+﻿namespace Core6.Cancellation
 {
     using NServiceBus;
 

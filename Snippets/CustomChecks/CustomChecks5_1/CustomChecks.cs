@@ -1,4 +1,4 @@
-﻿namespace Snippets5
+﻿namespace CustomChecks5_1
 {
     using System;
     using ServiceControl.Plugin.CustomChecks;

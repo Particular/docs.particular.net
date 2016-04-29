@@ -2,20 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-public static class TypeScanner
+namespace Common
 {
-    public static IEnumerable<Type> NestedTypes<T>(params Type[] extraTypes)
+    public static class TypeScanner
     {
-        Type rootType = typeof(T);
-        yield return rootType;
-        foreach (Type nestedType in rootType.GetNestedTypes(BindingFlags.NonPublic))
+        public static IEnumerable<Type> NestedTypes<T>(params Type[] extraTypes)
         {
-            yield return nestedType;
-        }
-        foreach (Type extraType in extraTypes)
-        {
-            yield return extraType;
-        }
+            Type rootType = typeof(T);
+            yield return rootType;
+            foreach (Type nestedType in rootType.GetNestedTypes(BindingFlags.NonPublic))
+            {
+                yield return nestedType;
+            }
+            foreach (Type extraType in extraTypes)
+            {
+                yield return extraType;
+            }
 
+        }
     }
 }

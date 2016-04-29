@@ -1,4 +1,4 @@
-﻿namespace Snippets6.UnitTesting.HeaderManipulation
+﻿namespace Testing_6.HeaderManipulation
 {
     using System.Threading.Tasks;
     using NServiceBus;

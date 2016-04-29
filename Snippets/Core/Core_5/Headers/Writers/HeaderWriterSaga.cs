@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using Common;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NServiceBus.Saga;
@@ -75,11 +76,11 @@
 
             public void Handle(ReplyToOriginatorFromSagaMessage message)
             {
-                
+
             }
         }
 
-        class Saga2 : Saga<Saga2.SagaData>, 
+        class Saga2 : Saga<Saga2.SagaData>,
             IAmStartedByMessages<SendFromSagaMessage>,
             IHandleTimeouts<TimeoutFromSaga>
         {
@@ -131,7 +132,7 @@
                     CountdownEvent.Signal();
                     return;
                 }
-                
+
                 if (transportMessage.IsMessageOfTye<TimeoutFromSaga>())
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);

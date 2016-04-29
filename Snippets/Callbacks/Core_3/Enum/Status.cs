@@ -1,4 +1,4 @@
-﻿namespace Core3.Callback.Enum
+﻿namespace Core3.Enum
 {
     public enum Status
     {

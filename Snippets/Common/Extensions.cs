@@ -4,30 +4,33 @@ using System.Linq;
 using System.Security.Principal;
 using System.Text;
 
-public static class HeaderWriter
+namespace Common
 {
-    static string username = WindowsIdentity.GetCurrent().Name;
-
-    public static string ToFriendlyString<TRootTypeToReplace>(IDictionary<string, string> headers)
+    public static class HeaderWriter
     {
-        StringBuilder stringBuilder = new StringBuilder();
-        foreach (KeyValuePair<string, string> header in headers.OrderBy(x=>x.Key))
+        static string username = WindowsIdentity.GetCurrent().Name;
+
+        public static string ToFriendlyString<TRootTypeToReplace>(IDictionary<string, string> headers)
         {
-            string value = header.Value;
-            if (value != null)
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (KeyValuePair<string, string> header in headers.OrderBy(x=>x.Key))
             {
-                value = value
-                    .Replace("\r\n","\n")
-                    .Replace("\n", "\r\n   ")
-                    .Replace("`","")
-                    .Replace(Environment.MachineName, "MACHINENAME")
-                    .Replace(username, "USERNAME");
+                string value = header.Value;
+                if (value != null)
+                {
+                    value = value
+                        .Replace("\r\n","\n")
+                        .Replace("\n", "\r\n   ")
+                        .Replace("`","")
+                        .Replace(Environment.MachineName, "MACHINENAME")
+                        .Replace(username, "USERNAME");
+                }
+                stringBuilder.AppendFormat("{0} = {1}\r\n", header.Key, value);
             }
-            stringBuilder.AppendFormat("{0} = {1}\r\n", header.Key, value);
+            Type type = typeof(TRootTypeToReplace);
+            return stringBuilder.ToString()
+                .Replace(type.Name + "+", "MyNamespace.")
+                .Replace(", "+type.Assembly.GetName().Name + ",", ", MyAssembly,");
         }
-        Type type = typeof(TRootTypeToReplace);
-        return stringBuilder.ToString()
-            .Replace(type.Name + "+", "MyNamespace.")
-            .Replace(", "+type.Assembly.GetName().Name + ",", ", MyAssembly,");
     }
 }

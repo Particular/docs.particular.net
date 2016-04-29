@@ -1,4 +1,4 @@
-﻿namespace Snippets5.UnitTesting.HeaderManipulation
+﻿namespace Testing_5.HeaderManipulation
 {
     using NServiceBus;
     using NServiceBus.Testing;

@@ -1,4 +1,4 @@
-﻿namespace Snippets4.UnitTesting.Saga
+﻿namespace Testing_4.Saga
 {
     using NServiceBus;
 

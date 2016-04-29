@@ -1,5 +1,6 @@
 ﻿namespace Core3.Handlers
 {
+    using Common;
     using log4net;
     using NServiceBus;
 

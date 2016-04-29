@@ -1,4 +1,4 @@
-namespace Core5.Callback.Enum
+namespace Core5.Enum
 {
     using NServiceBus;
 

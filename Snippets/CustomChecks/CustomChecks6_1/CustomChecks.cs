@@ -1,4 +1,4 @@
-﻿namespace Snippets6
+﻿namespace CustomChecks6_1
 {
     using System;
     using System.Threading.Tasks;

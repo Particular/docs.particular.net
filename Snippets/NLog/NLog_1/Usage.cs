@@ -1,4 +1,4 @@
-﻿namespace Core5.Logging.NLog
+﻿namespace NLog_1
 {
     using global::NLog;
     using global::NLog.Config;

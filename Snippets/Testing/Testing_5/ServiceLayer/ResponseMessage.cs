@@ -1,4 +1,4 @@
-﻿namespace Snippets5.UnitTesting.ServiceLayer
+﻿namespace Testing_5.ServiceLayer
 {
     using NServiceBus;
 

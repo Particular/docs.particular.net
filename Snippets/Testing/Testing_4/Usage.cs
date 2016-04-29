@@ -1,4 +1,4 @@
-﻿namespace Snippets4.UnitTesting
+﻿namespace Testing_4
 {
     using System.Collections.Generic;
     using System.Reflection;

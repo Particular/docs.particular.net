@@ -1,4 +1,4 @@
-﻿namespace Snippets6.UnitTesting.AdditionalServices
+﻿namespace Testing_6.AdditionalServices
 {
     using System.Threading.Tasks;
     using NServiceBus;

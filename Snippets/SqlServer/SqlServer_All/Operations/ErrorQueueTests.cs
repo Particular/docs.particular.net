@@ -1,9 +1,10 @@
-﻿namespace Operations.SqlServer
+﻿namespace SqlServer_All.Operations
 {
     using System;
     using System.Data;
     using System.Data.SqlClient;
     using System.Threading;
+    using Common;
     using NServiceBus;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;

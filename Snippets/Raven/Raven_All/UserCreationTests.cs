@@ -1,4 +1,4 @@
-﻿namespace Operations.RavenDB
+﻿namespace Operations
 {
     using System;
     using NUnit.Framework;

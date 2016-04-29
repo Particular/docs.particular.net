@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Azure.Transports.AzureServiceBus
+﻿namespace ASB_7
 {
     using System.Threading.Tasks;
     using NServiceBus;

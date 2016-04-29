@@ -1,5 +1,6 @@
 ﻿namespace Core4.Handlers
 {
+    using Common;
     using NServiceBus;
 
     #region CreatingMessageHandler

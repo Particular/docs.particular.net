@@ -1,4 +1,4 @@
-﻿namespace Snippets3.UnitTesting
+﻿namespace Testing_3
 {
     using System.Reflection;
     using NServiceBus.Testing;

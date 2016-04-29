@@ -1,27 +1,30 @@
-﻿using global::NLog;
-using global::NLog.Config;
-using global::NLog.Targets;
+﻿using NLog;
+using NLog.Config;
+using NLog.Targets;
 using NServiceBus;
 
-class Usage
+namespace NLog_1._2
 {
-    Usage()
+    class Usage
     {
-        #region NLogInCode
-
-        LoggingConfiguration config = new LoggingConfiguration();
-
-        ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget
+        Usage()
         {
-            Layout = "${level}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"
-        };
-        config.AddTarget("console", consoleTarget);
-        config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, consoleTarget));
+            #region NLogInCode
 
-        LogManager.Configuration = config;
+            LoggingConfiguration config = new LoggingConfiguration();
 
-        NServiceBus.Logging.LogManager.Use<NLogFactory>();
+            ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget
+            {
+                Layout = "${level}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"
+            };
+            config.AddTarget("console", consoleTarget);
+            config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, consoleTarget));
 
-        #endregion
+            LogManager.Configuration = config;
+
+            NServiceBus.Logging.LogManager.Use<NLogFactory>();
+
+            #endregion
+        }
     }
 }
