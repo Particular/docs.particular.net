@@ -62,10 +62,16 @@ NOTE: As of Version 6 NServiceBus will require each saga to have at least one me
 
 ## Correlating messages to a saga
 
-Correlation is needed in order to find existing saga instances based on data on the incoming message. In the example the message is correlated on `CompleteOrder` with the right saga that's already running. Usually, there's some applicative ID in both types of messages that can correlate between them. To declare this use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to. Note that NServiceBus will only the correlation on a single saga property and the type used to find the saga must match the saga property type. If correlating on more than one property is necessary, or match properties of different types, use a custom saga finder mentioned below.
+Correlation is needed in order to find existing saga instances based on data on the incoming message. In the example the `OrderId ` property of the `CompleteOrder` message is used to find the existing saga instance for that order.
+
+To declare this use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to. Note that NServiceBus will only allows correlation on a single saga property the property types on must match. 
+
+NOTE: The value for correlated message properties must have a non default value.
+
+If correlating on more than one property is necessary, or match properties of different types, use a custom saga finder mentioned below.
 
 {{NOTE:
-In Version 6 and above NServiceBus will enforce that all correlated properties have a non default value when the saga instance is persisted.
+In Version 6 and above NServiceBus will enforce that all correlated properties have a non default value when the saga instance is persisted. This means that all messages starting a saga must have a mapping.
 
 In Version 6 and above NServiceBus does not support changing to change the value of correlated properties for existing instances.
 
