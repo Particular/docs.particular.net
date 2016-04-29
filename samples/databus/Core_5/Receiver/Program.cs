@@ -9,8 +9,8 @@ class Program
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.DataBus.Receiver");
         busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UseDataBus<FileShareDataBus>()
-            .BasePath("..\\..\\..\\storage");
+        var dataBus = busConfiguration.UseDataBus<FileShareDataBus>();
+        dataBus.BasePath("..\\..\\..\\storage");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         using (IBus bus = Bus.Create(busConfiguration).Start())

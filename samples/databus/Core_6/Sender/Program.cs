@@ -18,8 +18,8 @@ class Program
 
         #region ConfigureDataBus
 
-        endpointConfiguration.UseDataBus<FileShareDataBus>()
-            .BasePath("..\\..\\..\\storage");
+        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
+        dataBus.BasePath("..\\..\\..\\storage");
 
         #endregion
 

@@ -7,12 +7,12 @@
         Usage(EndpointConfiguration endpointConfiguration, string databusPath)
         {
             #region FileShareDataBus
-            endpointConfiguration.UseDataBus<FileShareDataBus>()
-                .BasePath(databusPath);
+
+            var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
+            dataBus.BasePath(databusPath);
 
             #endregion
         }
-
     }
 
 

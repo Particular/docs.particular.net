@@ -28,7 +28,8 @@
         {
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName(endpointName);
-            busConfiguration.UseDataBus<FileShareDataBus>().BasePath(@"..\..\..\storage");
+            var dataBus = busConfiguration.UseDataBus<FileShareDataBus>();
+            dataBus.BasePath(@"..\..\..\storage");
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusProperty>(typeof(ConfigErrorQueue));
             busConfiguration.TypesToScan(typesToScan);
             busConfiguration.EnableInstallers();

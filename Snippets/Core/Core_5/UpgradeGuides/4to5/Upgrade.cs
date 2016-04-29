@@ -251,8 +251,8 @@ namespace Core5.UpgradeGuides._4to5
         {
             #region 4to5FileShareDataBus
 
-            busConfiguration.UseDataBus<FileShareDataBus>()
-                .BasePath(databusPath);
+            var dataBus = busConfiguration.UseDataBus<FileShareDataBus>();
+            dataBus.BasePath(databusPath);
 
             #endregion
         }

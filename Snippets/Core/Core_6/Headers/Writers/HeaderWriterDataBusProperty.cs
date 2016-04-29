@@ -28,7 +28,8 @@
         public async Task Write()
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration(endpointName);
-            endpointConfiguration.UseDataBus<FileShareDataBus>().BasePath(@"..\..\..\storage");
+            var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
+            dataBus.BasePath(@"..\..\..\storage");
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusProperty>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.SendFailedMessagesTo("error");

@@ -14,8 +14,8 @@ class Program
         Console.Title = "Samples.DataBus.Receiver";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UseDataBus<FileShareDataBus>()
-            .BasePath("..\\..\\..\\storage");
+        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
+        dataBus.BasePath("..\\..\\..\\storage");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

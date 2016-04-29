@@ -10,8 +10,8 @@ class Program
         busConfiguration.EndpointName("Samples.DataBus.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
         #region ConfigureDataBus
-        busConfiguration.UseDataBus<FileShareDataBus>()
-            .BasePath("..\\..\\..\\storage");
+        var dataBus = busConfiguration.UseDataBus<FileShareDataBus>();
+        dataBus.BasePath("..\\..\\..\\storage");
         #endregion
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();

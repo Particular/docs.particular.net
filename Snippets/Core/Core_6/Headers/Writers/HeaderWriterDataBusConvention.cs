@@ -28,7 +28,8 @@
         public async Task Write()
         {
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration(endpointName);
-            endpointConfiguration.UseDataBus<FileShareDataBus>().BasePath(@"..\..\..\storage");
+            var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
+            dataBus.BasePath(@"..\..\..\storage");
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.SendFailedMessagesTo("error");
@@ -36,7 +37,7 @@
             endpointConfiguration.Conventions().DefiningDataBusPropertiesAs(x => x.Name.StartsWith("LargeProperty"));
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            
+
             IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
             await endpoint.SendLocal(new MessageToSend
             {
@@ -52,7 +53,7 @@
             public byte[] LargeProperty1 { get; set; }
             public byte[] LargeProperty2 { get; set; }
         }
-    
+
         class MessageHandler : IHandleMessages<MessageToSend>
         {
             public Task Handle(MessageToSend message, IMessageHandlerContext context)
