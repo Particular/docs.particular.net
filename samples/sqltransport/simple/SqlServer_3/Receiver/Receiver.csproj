@@ -33,14 +33,7 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.SqlServer.3.0.0-alpha0140\lib\net452\NServiceBus.Transports.SQLServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyHandler.cs" />

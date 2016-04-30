@@ -14,7 +14,7 @@ lib/sqlite/System.Data.SQLite.dll
 *.orig
 *.zip
 Samples/DataBus/storage
-Snippets/Core/storage
+*/storage/*
 packages
 PrecompiledWeb
 tempstorage

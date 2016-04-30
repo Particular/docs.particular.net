@@ -9,8 +9,8 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 
     public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        log.InfoFormat(@"Order for Product:{0} placed with id: {1}", message.Product, message.Id);
-        log.InfoFormat(@"Publishing: OrderPlaced for Order Id: {0}", message.Id);
+        log.InfoFormat("Order for Product:{0} placed with id: {1}", message.Product, message.Id);
+        log.InfoFormat("Publishing: OrderPlaced for Order Id: {0}", message.Id);
 
         OrderPlaced orderPlaced = new OrderPlaced
                                   {
