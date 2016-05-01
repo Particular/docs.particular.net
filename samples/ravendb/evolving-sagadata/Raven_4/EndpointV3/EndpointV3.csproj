@@ -33,21 +33,11 @@
     <Reference Include="NServiceBus.RavenDB">
       <HintPath>..\..\..\..\..\packages\NServiceBus.RavenDB.4.0.0-alpha0137\lib\net452\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Abstractions">
-      <HintPath>..\..\..\..\..\packages\RavenDB.Client.3.0.30115\lib\net45\Raven.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="Raven.Client.Lightweight">
       <HintPath>..\..\..\..\..\packages\RavenDB.Client.3.0.30115\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OrdersSaga.cs" />
