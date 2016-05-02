@@ -1,55 +1,52 @@
-﻿namespace Distributor_5
+﻿using NServiceBus;
+using NServiceBus.Configuration.AdvanceExtensibility;
+using NServiceBus.Distributor.MSMQ;
+
+class Usage
 {
-    using NServiceBus;
-    using NServiceBus.Configuration.AdvanceExtensibility;
-    using NServiceBus.Distributor.MSMQ;
-
-    class Usage
+    void ConfiguringDistributor(BusConfiguration busConfiguration)
     {
-        void ConfiguringDistributor(BusConfiguration busConfiguration)
-        {
-            #region ConfiguringDistributor
-            // --------------------------------------
-            // Running the Distributor and a Worker
-            busConfiguration.AsMSMQMasterNode();
-            //or
-            busConfiguration.RunMSMQDistributor();
-            // --------------------------------------
+        #region ConfiguringDistributor
+        // --------------------------------------
+        // Running the Distributor and a Worker
+        busConfiguration.AsMSMQMasterNode();
+        //or
+        busConfiguration.RunMSMQDistributor();
+        // --------------------------------------
 
-            // --------------------------------------
-            // Running the Distributor only
-            busConfiguration.RunMSMQDistributor(false);
-            // --------------------------------------
+        // --------------------------------------
+        // Running the Distributor only
+        busConfiguration.RunMSMQDistributor(false);
+        // --------------------------------------
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void ConfiguringWorker(BusConfiguration busConfiguration)
-        {
-            #region ConfiguringWorker
+    void ConfiguringWorker(BusConfiguration busConfiguration)
+    {
+        #region ConfiguringWorker
 
-            busConfiguration.EnlistWithMSMQDistributor();
+        busConfiguration.EnlistWithMSMQDistributor();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void IsEnabled(BusConfiguration busConfiguration)
-        {
-            #region IsDistributorEnabled
+    void IsEnabled(BusConfiguration busConfiguration)
+    {
+        #region IsDistributorEnabled
 
-            bool isDistributorEnabled = busConfiguration
-                .GetSettings()
-                .GetOrDefault<bool>(typeof(Distributor).FullName);
+        bool isDistributorEnabled = busConfiguration
+            .GetSettings()
+            .GetOrDefault<bool>(typeof(Distributor).FullName);
 
-            #endregion
+        #endregion
 
-            #region IsWorkerEnabled
+        #region IsWorkerEnabled
 
-            bool isWorkerEnabled = busConfiguration
-                .GetSettings()
-                .GetOrDefault<bool>(typeof(WorkerNode).FullName);
+        bool isWorkerEnabled = busConfiguration
+            .GetSettings()
+            .GetOrDefault<bool>(typeof(WorkerNode).FullName);
 
-            #endregion
-        }
+        #endregion
     }
 }

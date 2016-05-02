@@ -1,28 +1,25 @@
-﻿namespace Raven_4.UpgradeGuides._3to4
-{
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using Raven.Client;
+﻿using System.Threading.Tasks;
+using NServiceBus;
+using Raven.Client;
 
-    #region 3to4-acccessingravenfromhandler
-    public class HandlerWithRavenSession : IHandleMessages<MyMessage>
+#region 3to4-acccessingravenfromhandler
+public class HandlerWithRavenSession : IHandleMessages<MyMessage>
+{
+    public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        public async Task Handle(MyMessage message, IMessageHandlerContext context)
-        {
-            IAsyncDocumentSession ravenSession = context.SynchronizedStorageSession
-                .RavenSession();
-            await SomeLibrary.SomeAsyncMethod(message, ravenSession);
-        }
+        IAsyncDocumentSession ravenSession = context.SynchronizedStorageSession
+            .RavenSession();
+        await SomeLibrary.SomeAsyncMethod(message, ravenSession);
     }
-    #endregion
-    public class SomeLibrary
+}
+#endregion
+public class SomeLibrary
+{
+    public static Task SomeAsyncMethod(MyMessage message, IAsyncDocumentSession ravenSession)
     {
-        public static Task SomeAsyncMethod(MyMessage message, IAsyncDocumentSession ravenSession)
-        {
-            return Task.FromResult(0);
-        }
+        return Task.FromResult(0);
     }
-    public class MyMessage
-    {
-    }
+}
+public class MyMessage
+{
 }

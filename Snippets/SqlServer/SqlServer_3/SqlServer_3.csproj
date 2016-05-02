@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigurationSettings.cs" />
-    <Compile Include="ConnectionStrings.cs" />
+    <Compile Include="NamedConnectionString.cs" />
     <Compile Include="MultiDb.cs" />
     <Compile Include="MultiSchema.cs" />
     <Compile Include="SingleDbMultiSchema.cs" />

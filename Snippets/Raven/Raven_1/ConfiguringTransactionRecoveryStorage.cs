@@ -1,23 +1,20 @@
-﻿namespace Raven_1
+﻿using NServiceBus;
+using Raven.Client.Document;
+using Raven.Client.Document.DTC;
+
+class ConfiguringTransactionRecoveryStorage
 {
-    using NServiceBus;
-    using Raven.Client.Document;
-    using Raven.Client.Document.DTC;
-
-    class ConfiguringTransactionRecoveryStorage
+    ConfiguringTransactionRecoveryStorage(Configure configure)
     {
-        ConfiguringTransactionRecoveryStorage(Configure configure)
+        #region ConfiguringTransactionRecoveryStorage
+
+        string transactionRecoveryPath = "path to transaction recovery storage unique per endpoint";
+        configure.CustomiseRavenPersistence(store =>
         {
-            #region ConfiguringTransactionRecoveryStorage
+            DocumentStore documentStore = (DocumentStore) store;
+            documentStore.TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(transactionRecoveryPath);
+        });
 
-            string transactionRecoveryPath = "path to transaction recovery storage unique per endpoint";
-            configure.CustomiseRavenPersistence(store =>
-            {
-                DocumentStore documentStore = (DocumentStore) store;
-                documentStore.TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(transactionRecoveryPath);
-            });
-
-            #endregion
-        }
+        #endregion
     }
 }

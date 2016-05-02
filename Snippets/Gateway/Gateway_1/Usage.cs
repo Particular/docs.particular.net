@@ -1,24 +1,21 @@
-﻿namespace Gateway_1
+﻿using NServiceBus;
+using NServiceBus.Features;
+
+class Usage
 {
-    using NServiceBus;
-    using NServiceBus.Features;
-
-    class Usage
+    Usage(BusConfiguration busConfiguration, IBus Bus)
     {
-        Usage(BusConfiguration busConfiguration, IBus Bus)
-        {
-            #region GatewayConfiguration
+        #region GatewayConfiguration
 
-            busConfiguration.EnableFeature<Gateway>();
+        busConfiguration.EnableFeature<Gateway>();
 
-            #endregion
+        #endregion
 
-            #region SendToSites
+        #region SendToSites
 
-            Bus.SendToSites(new[] { "SiteA", "SiteB" }, new MyMessage());
+        Bus.SendToSites(new[] { "SiteA", "SiteB" }, new MyMessage());
 
-            #endregion
-        }
-
+        #endregion
     }
+
 }

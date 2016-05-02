@@ -1,41 +1,38 @@
-﻿namespace Rabbit_4.UpgradeGuides._3to4
+﻿using System;
+using NServiceBus;
+
+class Upgrade
 {
-    using System;
-    using NServiceBus;
-
-    class Upgrade
+    void UseCustomCircuitBreakerSettings(EndpointConfiguration endpointConfiguration)
     {
-        void UseCustomCircuitBreakerSettings(EndpointConfiguration endpointConfiguration)
-        {
-            #region 3to4rabbitmq-custom-breaker-settings-code
+        #region 3to4rabbitmq-custom-breaker-settings-code
 
-            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-            transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void CallbackReceiverMaxConcurrency(EndpointConfiguration endpointConfiguration)
-        {
-            #region 3to4rabbitmq-config-callbackreceiver-thread-count
-            endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
+    void CallbackReceiverMaxConcurrency(EndpointConfiguration endpointConfiguration)
+    {
+        #region 3to4rabbitmq-config-callbackreceiver-thread-count
+        endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
-        {
-            #region 3to4rabbitmq-config-usedirectroutingtopology
+    void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
+    {
+        #region 3to4rabbitmq-config-usedirectroutingtopology
 
-            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-            transport.UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
 
-            #endregion
-        }
+        #endregion
+    }
 
-        string MyRoutingKeyConvention(Type type)
-        {
-            throw new NotImplementedException();
-        }
+    string MyRoutingKeyConvention(Type type)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -2,77 +2,74 @@
 using NServiceBus.Persistence;
 using NServiceBus.SagaPersisters;
 
-namespace ASP_1
+class Usage
 {
-    class Usage
+    Usage(EndpointConfiguration endpointConfiguration)
     {
-        Usage(EndpointConfiguration endpointConfiguration)
-        {
-            #region PersistanceWithAzure
+        #region PersistanceWithAzure
 
-            endpointConfiguration.UsePersistence<AzureStoragePersistence>();
-
-            #endregion
-        }
-
-        #region PersistenceWithAzureHost
-
-        public class EndpointConfig : IConfigureThisEndpoint
-        {
-            public void Customize(EndpointConfiguration endpointConfiguration)
-            {
-                endpointConfiguration.UsePersistence<AzureStoragePersistence>();
-            }
-        }
+        endpointConfiguration.UsePersistence<AzureStoragePersistence>();
 
         #endregion
+    }
 
-        void CustomizingAzurePersistenceAllConnections(EndpointConfiguration endpointConfiguration)
+    #region PersistenceWithAzureHost
+
+    public class EndpointConfig : IConfigureThisEndpoint
+    {
+        public void Customize(EndpointConfiguration endpointConfiguration)
         {
-            #region AzurePersistenceSubscriptionsAllConnectionsCustomization
-
-            var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
-            persistence.ConnectionString("connectionString");
-
-            #endregion
+            endpointConfiguration.UsePersistence<AzureStoragePersistence>();
         }
+    }
 
-        void CustomizingAzurePersistenceSubscriptions(EndpointConfiguration endpointConfiguration)
-        {
-            #region AzurePersistenceSubscriptionsCustomization
+    #endregion
 
-            var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>();
-            persistence.ConnectionString("connectionString");
-            persistence.TableName("tableName");
-            persistence.CreateSchema(true);
+    void CustomizingAzurePersistenceAllConnections(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzurePersistenceSubscriptionsAllConnectionsCustomization
 
-            #endregion
-        }
+        var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
+        persistence.ConnectionString("connectionString");
 
-        void CustomizingAzurePersistenceSagas(EndpointConfiguration endpointConfiguration)
-        {
-            #region AzurePersistenceSagasCustomization
+        #endregion
+    }
 
-            var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>();
-            persistence.ConnectionString("connectionString");
-            persistence.CreateSchema(true);
+    void CustomizingAzurePersistenceSubscriptions(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzurePersistenceSubscriptionsCustomization
 
-            #endregion
-        }
+        var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>();
+        persistence.ConnectionString("connectionString");
+        persistence.TableName("tableName");
+        persistence.CreateSchema(true);
 
-        void AzurePersistenceTimeoutsCustomization(EndpointConfiguration endpointConfiguration)
-        {
-            #region AzurePersistenceTimeoutsCustomization
+        #endregion
+    }
 
-            var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>();
-            persistence.ConnectionString("connectionString");
-            persistence.CreateSchema(true);
-            persistence.TimeoutManagerDataTableName("TimeoutManager");
-            persistence.TimeoutDataTableName("TimeoutData");
-            persistence.CatchUpInterval(3600);
-            persistence.PartitionKeyScope("yyyy-MM-dd-HH");
+    void CustomizingAzurePersistenceSagas(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzurePersistenceSagasCustomization
 
-            #endregion
-        }
+        var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>();
+        persistence.ConnectionString("connectionString");
+        persistence.CreateSchema(true);
+
+        #endregion
+    }
+
+    void AzurePersistenceTimeoutsCustomization(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzurePersistenceTimeoutsCustomization
+
+        var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>();
+        persistence.ConnectionString("connectionString");
+        persistence.CreateSchema(true);
+        persistence.TimeoutManagerDataTableName("TimeoutManager");
+        persistence.TimeoutDataTableName("TimeoutData");
+        persistence.CatchUpInterval(3600);
+        persistence.PartitionKeyScope("yyyy-MM-dd-HH");
+
+        #endregion
     }
 }

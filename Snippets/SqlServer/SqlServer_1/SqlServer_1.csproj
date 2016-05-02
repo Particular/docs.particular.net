@@ -27,7 +27,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SqlServer\MultiDb.config.xml">
+    <Content Include="MultiDb.config.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

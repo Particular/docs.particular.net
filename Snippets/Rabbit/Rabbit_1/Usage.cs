@@ -1,33 +1,29 @@
-﻿namespace Rabbit_1
+﻿using NServiceBus;
+
+public class Usage
 {
-    using NServiceBus;
-
-    public class Usage
+    void Basic(Configure configure)
     {
-        void Basic(Configure configure)
-        {
-            #region rabbitmq-config-basic
+        #region rabbitmq-config-basic
+        configure.UseTransport<NServiceBus.RabbitMQ>();
 
-            configure.UseTransport<RabbitMQ>();
+        #endregion
+    }
 
-            #endregion
-        }
+    void CustomConnectionString(Configure configure)
+    {
+        #region rabbitmq-config-connectionstring-in-code
 
-        void CustomConnectionString(Configure configure)
-        {
-            #region rabbitmq-config-connectionstring-in-code
+        configure.UseTransport<NServiceBus.RabbitMQ>(() => "My custom connection string");
+        #endregion
+    }
 
-            configure.UseTransport<RabbitMQ>(() => "My custom connection string");
-            #endregion
-        }
+    void CustomConnectionStringName(Configure configure)
+    {
+        #region rabbitmq-config-connectionstringname
 
-        void CustomConnectionStringName(Configure configure)
-        {
-            #region rabbitmq-config-connectionstringname
+        configure.UseTransport<NServiceBus.RabbitMQ>("MyConnectionStringName");
 
-            configure.UseTransport<RabbitMQ>("MyConnectionStringName");
-
-            #endregion
-        }
+        #endregion
     }
 }

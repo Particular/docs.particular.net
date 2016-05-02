@@ -1,43 +1,40 @@
-﻿namespace SqlServer_3
+﻿using NServiceBus;
+using NServiceBus.Transports.SQLServer;
+
+class MultiSchema
 {
-    using NServiceBus;
-    using NServiceBus.Transports.SQLServer;
-
-    class MultiSchema
+    void NonStandardSchema(EndpointConfiguration endpointConfiguration)
     {
-        void NonStandardSchema(EndpointConfiguration endpointConfiguration)
-        {
-            #region sqlserver-non-standard-schema
+        #region sqlserver-non-standard-schema
 
-            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-            transport.DefaultSchema("myschema");
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.DefaultSchema("myschema");
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration)
-        {
-            #region sqlserver-multischema-config-pull
+    void OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration)
+    {
+        #region sqlserver-multischema-config-pull
 
-            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-            transport.UseSpecificSchema(queueName =>
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.UseSpecificSchema(queueName =>
+            {
+                if (queueName == "sales")
                 {
-                    if (queueName == "sales")
-                    {
-                        return "salesSchema";
-                    }
-                    if (queueName == "billing")
-                    {
-                        return "[billingSchema]";
-                    }
-                    if (queueName == "error")
-                    {
-                        return "error";
-                    }
-                    return null;
-                });
+                    return "salesSchema";
+                }
+                if (queueName == "billing")
+                {
+                    return "[billingSchema]";
+                }
+                if (queueName == "error")
+                {
+                    return "error";
+                }
+                return null;
+            });
 
-            #endregion
-        }
+        #endregion
     }
 }

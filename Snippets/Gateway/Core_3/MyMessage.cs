@@ -1,6 +1,3 @@
-﻿namespace Core3
+﻿public class MyMessage
 {
-    public class MyMessage
-    {
-    }
 }

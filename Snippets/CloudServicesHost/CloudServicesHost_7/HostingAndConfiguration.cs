@@ -1,66 +1,63 @@
-﻿namespace CloudServicesHost_7
+﻿using System.Threading.Tasks;
+using System.Web;
+using Microsoft.WindowsAzure.ServiceRuntime;
+using NServiceBus;
+using NServiceBus.Hosting.Azure;
+
+#region HostingInWorkerRole
+
+public class WorkerRole : RoleEntryPoint
 {
-    using System.Threading.Tasks;
-    using System.Web;
-    using Microsoft.WindowsAzure.ServiceRuntime;
-    using NServiceBus;
-    using NServiceBus.Hosting.Azure;
+    NServiceBusRoleEntrypoint nsb = new NServiceBusRoleEntrypoint();
 
-    #region HostingInWorkerRole
-
-    public class WorkerRole : RoleEntryPoint
+    public override bool OnStart()
     {
-        NServiceBusRoleEntrypoint nsb = new NServiceBusRoleEntrypoint();
+        nsb.Start();
 
-        public override bool OnStart()
-        {
-            nsb.Start();
-
-            return base.OnStart();
-        }
-
-        public override void OnStop()
-        {
-            nsb.Stop();
-
-            base.OnStop();
-        }
+        return base.OnStart();
     }
 
-    #endregion
-
-    #region ConfigureEndpoint
-
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
+    public override void OnStop()
     {
-        public void Customize(EndpointConfiguration endpointConfiguration)
-        {
-            endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-            endpointConfiguration.UsePersistence<AzureStoragePersistence>();
-        }
+        nsb.Stop();
+
+        base.OnStop();
     }
-
-    #endregion
-
-    #region HostingInWebRole
-
-    public class MvcApplication : HttpApplication
-    {
-        protected void Application_Start()
-        {
-            StartBus().GetAwaiter().GetResult();
-        }
-
-        static async Task StartBus()
-        {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
-            endpointConfiguration.AzureConfigurationSource();
-            endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-            endpointConfiguration.UsePersistence<AzureStoragePersistence>();
-
-            IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
-        }
-    }
-
-    #endregion
 }
+
+#endregion
+
+#region ConfigureEndpoint
+
+public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
+{
+    public void Customize(EndpointConfiguration endpointConfiguration)
+    {
+        endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        endpointConfiguration.UsePersistence<AzureStoragePersistence>();
+    }
+}
+
+#endregion
+
+#region HostingInWebRole
+
+public class MvcApplication : HttpApplication
+{
+    protected void Application_Start()
+    {
+        StartBus().GetAwaiter().GetResult();
+    }
+
+    static async Task StartBus()
+    {
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
+        endpointConfiguration.AzureConfigurationSource();
+        endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        endpointConfiguration.UsePersistence<AzureStoragePersistence>();
+
+        IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
+    }
+}
+
+#endregion

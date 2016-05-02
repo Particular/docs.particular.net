@@ -1,18 +1,15 @@
-﻿namespace Snippets6.Host_7.UpgradeGuides._6to7
+﻿using NServiceBus;
+
+#region 6to7customize_nsb_host
+
+class CustomizingHostUpgrade : IConfigureThisEndpoint
 {
-    using NServiceBus;
-
-    #region 6to7customize_nsb_host
-
-    class CustomizingHost : IConfigureThisEndpoint
+    public void Customize(EndpointConfiguration endpointConfiguration)
     {
-        public void Customize(EndpointConfiguration endpointConfiguration)
-        {
-            // perform some custom configuration
-            endpointConfiguration.UseSerialization<JsonSerializer>();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        }
+        // perform some custom configuration
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
     }
-
-    #endregion
 }
+
+#endregion

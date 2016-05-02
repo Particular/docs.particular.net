@@ -1,15 +1,12 @@
-﻿namespace CloudServicesHost_6
-{
-    using NServiceBus.Persistence;
-    using NServiceBus.Transports;
+﻿using NServiceBus.Persistence;
+using NServiceBus.Transports;
 
-    public class AzureStorageQueueTransport : TransportDefinition
-    {
-    }
-    public class AzureServiceBusTransport : TransportDefinition
-    {
-    }
-    public class AzureStoragePersistence : PersistenceDefinition
-    {
-    }
+public class AzureStorageQueueTransport : TransportDefinition
+{
+}
+public class AzureServiceBusTransport : TransportDefinition
+{
+}
+public class AzureStoragePersistence : PersistenceDefinition
+{
 }

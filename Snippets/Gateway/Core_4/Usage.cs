@@ -1,29 +1,27 @@
 ﻿using NServiceBus;
 
-namespace Core4
+
+class Usage
 {
-    class Usage
+    Usage(Configure configure, IBus Bus)
     {
-        Usage(Configure configure, IBus Bus)
+        #region GatewayConfiguration
+
+        configure.RunGateway();
+
+        #endregion
+
+
+        #region SendToSites
+
+        Bus.SendToSites(new[]
         {
-            #region GatewayConfiguration
+            "SiteA",
+            "SiteB"
+        }, new MyMessage());
 
-            configure.RunGateway();
-
-            #endregion
-
-
-            #region SendToSites
-
-            Bus.SendToSites(new[]
-            {
-                "SiteA",
-                "SiteB"
-            }, new MyMessage());
-
-            #endregion
-
-        }
+        #endregion
 
     }
+
 }

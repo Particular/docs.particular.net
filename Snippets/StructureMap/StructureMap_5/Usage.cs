@@ -1,32 +1,29 @@
-﻿namespace StructureMap_5
+﻿using NServiceBus;
+using StructureMap;
+
+class Usage
 {
-    using NServiceBus;
-    using StructureMap;
-
-    class Usage
+    Usage(BusConfiguration busConfiguration)
     {
-        Usage(BusConfiguration busConfiguration)
-        {
-            #region StructureMap
+        #region StructureMap
 
-            busConfiguration.UseContainer<StructureMapBuilder>();
+        busConfiguration.UseContainer<StructureMapBuilder>();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void Existing(BusConfiguration busConfiguration)
-        {
-            #region StructureMap_Existing
+    void Existing(BusConfiguration busConfiguration)
+    {
+        #region StructureMap_Existing
 
 
-            Container container = new Container(x => x.For<MyService>().Use(new MyService()));
-            busConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
+        Container container = new Container(x => x.For<MyService>().Use(new MyService()));
+        busConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
 
-            #endregion
-        }
+        #endregion
+    }
 
-        class MyService
-        {
-        }
+    class MyService
+    {
     }
 }

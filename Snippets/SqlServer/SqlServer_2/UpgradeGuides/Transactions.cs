@@ -1,17 +1,14 @@
-namespace SqlServer_2.UpgradeGuides
+using NServiceBus;
+
+class Transactions
 {
-    using NServiceBus;
-
-    class Transactions
+    Transactions(BusConfiguration busConfiguration)
     {
-        Transactions(BusConfiguration busConfiguration)
-        {
-            #region 2to3-enable-native-transaction
+        #region 2to3-enable-native-transaction
 
-            var transactions = busConfiguration.Transactions();
-            transactions.DisableDistributedTransactions();
+        var transactions = busConfiguration.Transactions();
+        transactions.DisableDistributedTransactions();
 
-            #endregion
-        }
+        #endregion
     }
 }

@@ -1,49 +1,46 @@
-﻿namespace SqlServer_2
+﻿using System;
+using NServiceBus;
+
+class SqlServerConfigurationSettings
 {
-    using System;
-    using NServiceBus;
 
-    class SqlServerConfigurationSettings
+    void CallbackReceiverMaxConcurrency(BusConfiguration busConfiguration)
     {
+        #region sqlserver-CallbackReceiverMaxConcurrency
 
-        void CallbackReceiverMaxConcurrency(BusConfiguration busConfiguration)
-        {
-            #region sqlserver-CallbackReceiverMaxConcurrency
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.CallbackReceiverMaxConcurrency(10);
 
-            var transport = busConfiguration.UseTransport<SqlServerTransport>();
-            transport.CallbackReceiverMaxConcurrency(10);
+        #endregion
+    }
 
-            #endregion
-        }
+    void TimeToWaitBeforeTriggeringCircuitBreaker(BusConfiguration busConfiguration)
+    {
+        #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
 
-        void TimeToWaitBeforeTriggeringCircuitBreaker(BusConfiguration busConfiguration)
-        {
-            #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(3));
 
-            var transport = busConfiguration.UseTransport<SqlServerTransport>();
-            transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(3));
+        #endregion
+    }
 
-            #endregion
-        }
+    void PauseAfterReceiveFailure(BusConfiguration busConfiguration)
+    {
+        #region sqlserver-PauseAfterReceiveFailure
 
-        void PauseAfterReceiveFailure(BusConfiguration busConfiguration)
-        {
-            #region sqlserver-PauseAfterReceiveFailure
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.PauseAfterReceiveFailure(TimeSpan.FromSeconds(15));
 
-            var transport = busConfiguration.UseTransport<SqlServerTransport>();
-            transport.PauseAfterReceiveFailure(TimeSpan.FromSeconds(15));
+        #endregion
+    }
 
-            #endregion
-        }
+    void DisableSecondaries(BusConfiguration busConfiguration)
+    {
+        #region sqlserver-config-disable-secondaries
 
-        void DisableSecondaries(BusConfiguration busConfiguration)
-        {
-            #region sqlserver-config-disable-secondaries
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.DisableCallbackReceiver();
 
-            var transport = busConfiguration.UseTransport<SqlServerTransport>();
-            transport.DisableCallbackReceiver();
-
-            #endregion
-        }
+        #endregion
     }
 }

@@ -1,28 +1,25 @@
-﻿namespace ASB_6
+﻿using NServiceBus;
+
+class Usage
 {
-    using NServiceBus;
-
-    class Usage
+    Usage(BusConfiguration busConfiguration)
     {
-        Usage(BusConfiguration busConfiguration)
-        {
-            #region AzureServiceBusTransportWithAzure
+        #region AzureServiceBusTransportWithAzure
 
-            busConfiguration.UseTransport<AzureServiceBusTransport>();
-
-            #endregion
-        }
-
-        #region AzureServiceBusTransportWithAzureHost
-
-        public class EndpointConfig : IConfigureThisEndpoint
-        {
-            public void Customize(BusConfiguration busConfiguration)
-            {
-                busConfiguration.UseTransport<AzureServiceBusTransport>();
-            }
-        }
+        busConfiguration.UseTransport<AzureServiceBusTransport>();
 
         #endregion
     }
+
+    #region AzureServiceBusTransportWithAzureHost
+
+    public class EndpointConfig : IConfigureThisEndpoint
+    {
+        public void Customize(BusConfiguration busConfiguration)
+        {
+            busConfiguration.UseTransport<AzureServiceBusTransport>();
+        }
+    }
+
+    #endregion
 }

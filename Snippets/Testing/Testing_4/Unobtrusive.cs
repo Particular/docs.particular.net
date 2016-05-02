@@ -1,24 +1,21 @@
-﻿namespace Testing_4
+﻿using System;
+using NServiceBus;
+using NServiceBus.Testing;
+
+class Unobtrusive
 {
-    using System;
-    using NServiceBus;
-    using NServiceBus.Testing;
-
-    class Unobtrusive
+    void Setup()
     {
-        void Setup()
-        {
-            #region SetupConventionsForUnitTests
+        #region SetupConventionsForUnitTests
 
-            MessageConventionExtensions.IsMessageTypeAction = MyMessageTypeConvention;
-            Test.Initialize();
+        MessageConventionExtensions.IsMessageTypeAction = MyMessageTypeConvention;
+        Test.Initialize();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        bool MyMessageTypeConvention(Type arg)
-        {
-            return true;
-        }
+    bool MyMessageTypeConvention(Type arg)
+    {
+        return true;
     }
 }

@@ -1,31 +1,28 @@
-﻿namespace Unity_3
+﻿using NServiceBus;
+using Microsoft.Practices.Unity;
+
+class Usage
 {
-    using Microsoft.Practices.Unity;
-    using NServiceBus;
-
-    class Usage
+    Usage(Configure configure)
     {
-        Usage(Configure configure)
-        {
-            #region Unity
+        #region Unity
 
-            configure.UnityBuilder();
+        configure.UnityBuilder();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void Existing(Configure configure)
-        {
-            #region Unity_Existing
+    void Existing(Configure configure)
+    {
+        #region Unity_Existing
 
-            UnityContainer container = new UnityContainer();
-            container.RegisterInstance(new MyService());
-            configure.UnityBuilder(container);
+        UnityContainer container = new UnityContainer();
+        container.RegisterInstance(new MyService());
+        configure.UnityBuilder(container);
 
-            #endregion
-        }
-        class MyService
-        {
-        }
+        #endregion
+    }
+    class MyService
+    {
     }
 }

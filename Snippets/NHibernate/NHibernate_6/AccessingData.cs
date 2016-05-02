@@ -1,84 +1,81 @@
-﻿namespace NHibernate_6
+﻿using NHibernate;
+using NServiceBus;
+using NServiceBus.Persistence;
+using NServiceBus.Persistence.NHibernate;
+
+class AccessingData
 {
-    using NHibernate;
-    using NServiceBus;
-    using NServiceBus.Persistence;
-    using NServiceBus.Persistence.NHibernate;
-
-    class AccessingData
+    class OrderMessage : IMessage
     {
-        class OrderMessage : IMessage
-        {
-        }
+    }
 
-        class Order
-        {
-        }
+    class Order
+    {
+    }
 
-        class ViaContext
-        {
-            #region NHibernateAccessingDataViaContext
+    class ViaContext
+    {
+        #region NHibernateAccessingDataViaContext
 
-            public class OrderHandler : IHandleMessages<OrderMessage>
+        public class OrderHandler : IHandleMessages<OrderMessage>
+        {
+            NHibernateStorageContext dataContext;
+
+            public OrderHandler(NHibernateStorageContext dataContext)
             {
-                NHibernateStorageContext dataContext;
-
-                public OrderHandler(NHibernateStorageContext dataContext)
-                {
-                    this.dataContext = dataContext;
-                }
-
-                public void Handle(OrderMessage message)
-                {
-                    dataContext.Session.Save(new Order());
-                }
+                this.dataContext = dataContext;
             }
+
+            public void Handle(OrderMessage message)
+            {
+                dataContext.Session.Save(new Order());
+            }
+        }
+
+        #endregion
+    }
+
+    class Directly
+    {
+        void Config(BusConfiguration busConfiguration)
+        {
+            #region NHibernateAccessingDataDirectlyConfig
+
+            var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.RegisterManagedSessionInTheContainer();
 
             #endregion
         }
 
-        class Directly
+        #region NHibernateAccessingDataDirectly
+
+        public class OrderHandler : IHandleMessages<OrderMessage>
         {
-            void Config(BusConfiguration busConfiguration)
+            ISession session;
+
+            public OrderHandler(ISession session)
             {
-                #region NHibernateAccessingDataDirectlyConfig
-
-                var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
-                persistence.RegisterManagedSessionInTheContainer();
-
-                #endregion
+                this.session = session;
             }
 
-            #region NHibernateAccessingDataDirectly
-
-            public class OrderHandler : IHandleMessages<OrderMessage>
+            public void Handle(OrderMessage message)
             {
-                ISession session;
-
-                public OrderHandler(ISession session)
-                {
-                    this.session = session;
-                }
-
-                public void Handle(OrderMessage message)
-                {
-                    session.Save(new Order());
-                }
+                session.Save(new Order());
             }
+        }
+
+        #endregion
+
+
+        void Configure(BusConfiguration busConfiguration)
+        {
+            #region CustomSessionCreation
+
+            var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.UseCustomSessionCreationMethod((sessionFactory, connectionString) =>
+                sessionFactory.OpenSession());
 
             #endregion
-
-
-            void Configure(BusConfiguration busConfiguration)
-            {
-                #region CustomSessionCreation
-
-                var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
-                persistence.UseCustomSessionCreationMethod((sessionFactory, connectionString) =>
-                    sessionFactory.OpenSession());
-
-                #endregion
-            }
         }
     }
 }

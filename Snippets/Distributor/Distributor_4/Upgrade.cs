@@ -1,25 +1,22 @@
-﻿namespace Distributor_4
+﻿using NServiceBus;
+
+class Upgrade
 {
-    using NServiceBus;
 
-    class Upgrade
+    void RunDistributor(Configure configure)
     {
+        #region 3to4RunDistributor
 
-        void RunDistributor(Configure configure)
-        {
-            #region 3to4RunDistributor
+        configure.RunMSMQDistributor();
 
-            configure.RunMSMQDistributor();
+        #endregion
+    }
+    void EnlistWithDistributor(Configure configure)
+    {
+        #region 3to4EnlistWithDistributor
 
-            #endregion
-        }
-        void EnlistWithDistributor(Configure configure)
-        {
-            #region 3to4EnlistWithDistributor
+        configure.EnlistWithMSMQDistributor();
 
-            configure.EnlistWithMSMQDistributor();
-
-            #endregion
-        }
+        #endregion
     }
 }

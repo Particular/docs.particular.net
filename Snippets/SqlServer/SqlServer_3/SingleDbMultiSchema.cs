@@ -1,28 +1,25 @@
-﻿namespace SqlServer_3
+﻿using NServiceBus;
+using NServiceBus.Transports.SQLServer;
+
+class SingleDbMultiSchema
 {
-    using NServiceBus;
-    using NServiceBus.Transports.SQLServer;
-
-    class SingleDbMultiSchema
+    void CurrentEndpointSchema(EndpointConfiguration endpointConfiguration)
     {
-        void CurrentEndpointSchema(EndpointConfiguration endpointConfiguration)
-        {
-            #region sqlserver-singledb-multischema
+        #region sqlserver-singledb-multischema
 
-            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-            transport.DefaultSchema("myschema");
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.DefaultSchema("myschema");
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration)
-        {
-            #region sqlserver-singledb-multidb-pull
+    void OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration)
+    {
+        #region sqlserver-singledb-multidb-pull
 
-            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-            transport.UseSpecificSchema(tn => tn == "AnotherEndpoint" ? "receiver1" : null);
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.UseSpecificSchema(tn => tn == "AnotherEndpoint" ? "receiver1" : null);
 
-            #endregion
-        }
+        #endregion
     }
 }

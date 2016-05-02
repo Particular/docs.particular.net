@@ -1,32 +1,29 @@
-﻿namespace Spring_3
+﻿using NServiceBus;
+using Spring.Context.Support;
+
+class Usage
 {
-    using NServiceBus;
-    using Spring.Context.Support;
-
-    class Usage
+    Usage(Configure configure)
     {
-        Usage(Configure configure)
-        {
-            #region Spring
+        #region Spring
 
-            configure.SpringFrameworkBuilder();
+        configure.SpringFrameworkBuilder();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void Existing(Configure configure)
-        {
-            #region Spring_Existing
+    void Existing(Configure configure)
+    {
+        #region Spring_Existing
 
-            GenericApplicationContext applicationContext = new GenericApplicationContext();
-            applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
-            configure.SpringFrameworkBuilder(applicationContext);
+        GenericApplicationContext applicationContext = new GenericApplicationContext();
+        applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
+        configure.SpringFrameworkBuilder(applicationContext);
 
-            #endregion
-        }
+        #endregion
+    }
 
-        class MyService
-        {
-        }
+    class MyService
+    {
     }
 }

@@ -1,34 +1,31 @@
-﻿namespace CloudServicesHost_7
+﻿using NServiceBus.Persistence;
+using NServiceBus.Settings;
+using NServiceBus.Transports;
+
+public class AzureStorageQueueTransport : TransportDefinition
 {
-    using NServiceBus.Persistence;
-    using NServiceBus.Settings;
-    using NServiceBus.Transports;
-
-    public class AzureStorageQueueTransport : TransportDefinition
+    protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
     {
-        protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
-        {
-            throw new System.NotImplementedException();
-        }
+        throw new System.NotImplementedException();
+    }
 
-        public override string ExampleConnectionStringForErrorMessage
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-    }
-    public class AzureServiceBusTransport : TransportDefinition
+    public override string ExampleConnectionStringForErrorMessage
     {
-        protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
-        {
-            throw new System.NotImplementedException();
-        }
+        get { throw new System.NotImplementedException(); }
+    }
+}
+public class AzureServiceBusTransport : TransportDefinition
+{
+    protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+    {
+        throw new System.NotImplementedException();
+    }
 
-        public override string ExampleConnectionStringForErrorMessage
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-    }
-    public class AzureStoragePersistence : PersistenceDefinition
+    public override string ExampleConnectionStringForErrorMessage
     {
+        get { throw new System.NotImplementedException(); }
     }
+}
+public class AzureStoragePersistence : PersistenceDefinition
+{
 }

@@ -1,31 +1,28 @@
-﻿namespace StructureMap_4
+﻿using NServiceBus;
+using StructureMap;
+
+class Usage
 {
-    using NServiceBus;
-    using StructureMap;
-
-    class Usage
+    Usage(Configure configure)
     {
-        Usage(Configure configure)
-        {
-            #region StructureMap
+        #region StructureMap
 
-            configure.StructureMapBuilder();
+        configure.StructureMapBuilder();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void Existing(Configure configure)
-        {
-            #region StructureMap_Existing
+    void Existing(Configure configure)
+    {
+        #region StructureMap_Existing
 
-            Container container = new Container(x => x.For<MyService>().Use(new MyService()));
-            configure.StructureMapBuilder(container);
+        Container container = new Container(x => x.For<MyService>().Use(new MyService()));
+        configure.StructureMapBuilder(container);
 
-            #endregion
-        }
+        #endregion
+    }
 
-        class MyService
-        {
-        }
+    class MyService
+    {
     }
 }

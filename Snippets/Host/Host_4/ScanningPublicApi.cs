@@ -1,19 +1,16 @@
-﻿namespace Core4.Scanning
+﻿using NServiceBus;
+
+class ScanningPublicApi
 {
-    using NServiceBus;
+    #region ScanningConfigurationInNSBHost
 
-    class ScanningPublicApi
+    public class EndpointConfig : IConfigureThisEndpoint, IWantCustomInitialization
     {
-        #region ScanningConfigurationInNSBHost
-
-        public class EndpointConfig : IConfigureThisEndpoint, IWantCustomInitialization
+        public void Init()
         {
-            public void Init()
-            {
-                // use 'Configure' to configure scanning
-            }
+            // use 'Configure' to configure scanning
         }
-
-        #endregion
     }
+
+    #endregion
 }

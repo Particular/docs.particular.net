@@ -1,18 +1,15 @@
-﻿namespace Snippets6.EndpointName
+﻿using NServiceBus;
+
+#region EndpointNameByAttribute
+
+[EndpointName("MyEndpointName")]
+public class EndpointConfigWithAttribute : IConfigureThisEndpoint, AsA_Server
 {
-    using NServiceBus;
+    // ... custom config
 
-    #region EndpointNameByAttribute
+    #endregion
 
-    [EndpointName("MyEndpointName")]
-    public class EndpointConfigWithAttribute : IConfigureThisEndpoint, AsA_Server
+    public void Customize(EndpointConfiguration endpointConfiguration)
     {
-        // ... custom config
-
-        #endregion
-
-        public void Customize(EndpointConfiguration endpointConfiguration)
-        {
-        }
     }
 }

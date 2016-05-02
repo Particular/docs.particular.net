@@ -1,16 +1,13 @@
-﻿namespace Snippets4.EndpointName
+﻿#region EndpointNameByNamespace
+
+namespace MyServer
 {
-    #region EndpointNameByNamespace
+    using NServiceBus;
 
-    namespace MyServer
+    public class EndpointConfigByNamespace : IConfigureThisEndpoint, AsA_Server
     {
-        using NServiceBus;
+        // ... custom config
 
-        public class EndpointConfigByNamespace : IConfigureThisEndpoint, AsA_Server
-        {
-            // ... custom config
-
-            #endregion
-        }
+        #endregion
     }
 }

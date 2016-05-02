@@ -1,63 +1,60 @@
-﻿namespace Ninject_6
+﻿using Ninject;
+using NServiceBus;
+using NServiceBus.ObjectBuilder.Ninject;
+
+class Usage
 {
-    using Ninject;
-    using NServiceBus;
-    using NServiceBus.ObjectBuilder.Ninject;
-
-    class Usage
+    Usage(EndpointConfiguration endpointConfiguration)
     {
-        Usage(EndpointConfiguration endpointConfiguration)
-        {
-            #region Ninject
+        #region Ninject
 
-            endpointConfiguration.UseContainer<NinjectBuilder>();
+        endpointConfiguration.UseContainer<NinjectBuilder>();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void Existing(EndpointConfiguration endpointConfiguration)
-        {
-            #region Ninject_Existing
+    void Existing(EndpointConfiguration endpointConfiguration)
+    {
+        #region Ninject_Existing
 
-            StandardKernel kernel = new StandardKernel();
-            kernel.Bind<MyService>().ToConstant(new MyService());
-            endpointConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
+        StandardKernel kernel = new StandardKernel();
+        kernel.Bind<MyService>().ToConstant(new MyService());
+        endpointConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void UseUnitOfWorkScope()
-        {
-            #region NinjectUnitOfWork [4.0,6.0]
+    void UseUnitOfWorkScope()
+    {
+        #region NinjectUnitOfWork [4.0,6.0]
 
-            StandardKernel kernel = new StandardKernel();
+        StandardKernel kernel = new StandardKernel();
 
-            kernel.Bind<MyService>().ToSelf().InUnitOfWorkScope();
+        kernel.Bind<MyService>().ToSelf().InUnitOfWorkScope();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void UseConditionalBinding()
-        {
-            #region NinjectConditionalBindings [4.0,6.0]
+    void UseConditionalBinding()
+    {
+        #region NinjectConditionalBindings [4.0,6.0]
 
-            StandardKernel kernel = new StandardKernel();
+        StandardKernel kernel = new StandardKernel();
 
-            // always create a new instance when not processing a message
-            kernel.Bind<MyService>().ToSelf()
-                .WhenNotInUnitOfWork()
-                .InTransientScope();
+        // always create a new instance when not processing a message
+        kernel.Bind<MyService>().ToSelf()
+            .WhenNotInUnitOfWork()
+            .InTransientScope();
 
-            // always use the same instance when processing messages
-            kernel.Bind<MyService>().ToSelf()
-                .WhenInUnitOfWork()
-                .InSingletonScope();
+        // always use the same instance when processing messages
+        kernel.Bind<MyService>().ToSelf()
+            .WhenInUnitOfWork()
+            .InSingletonScope();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        class MyService
-        {
-        }
+    class MyService
+    {
     }
 }

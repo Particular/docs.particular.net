@@ -1,28 +1,24 @@
-﻿namespace Testing_4
+﻿using System.Collections.Generic;
+using System.Reflection;
+using NServiceBus.Testing;
+
+class Usage
 {
-    using System.Collections.Generic;
-    using System.Reflection;
-    using NServiceBus.Testing;
-
-    class Usage
+    void InitializeAssemblies()
     {
-        void InitializeAssemblies()
+        #region TestInitializeAssemblies
+
+        List<Assembly> assembliesToScan = new List<Assembly>
         {
-            #region TestInitializeAssemblies
+            typeof(HandlerToTest).Assembly,
+            Assembly.LoadFrom("NServiceBus.Testing.dll")
+        };
+        Test.Initialize(assembliesToScan);
 
-            List<Assembly> assembliesToScan = new List<Assembly>
-            {
-                typeof(HandlerToTest).Assembly,
-                Assembly.LoadFrom("NServiceBus.Testing.dll")
-            };
-            Test.Initialize(assembliesToScan);
-
-            #endregion
-        }
-
-        class HandlerToTest
-        {
-        }
+        #endregion
     }
 
+    class HandlerToTest
+    {
+    }
 }

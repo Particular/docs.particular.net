@@ -1,37 +1,34 @@
-﻿namespace ASB_6
+﻿using System.IO;
+using Microsoft.ServiceBus.Messaging;
+using NServiceBus.Azure.Transports.WindowsAzureServiceBus;
+
+class BrokeredMessageBodyConventionUsage
 {
-    using System.IO;
-    using Microsoft.ServiceBus.Messaging;
-    using NServiceBus.Azure.Transports.WindowsAzureServiceBus;
-
-    class BrokeredMessageBodyConventionUsage
+    BrokeredMessageBodyConventionUsage()
     {
-        BrokeredMessageBodyConventionUsage()
+        #region ASB-outgoing-message-convention 6.3
+
+        BrokeredMessageBodyConversion.InjectBody = bytes =>
         {
-            #region ASB-outgoing-message-convention 6.3
+            MemoryStream messageAsStream = new MemoryStream(bytes);
+            return new BrokeredMessage(messageAsStream);
+        };
 
-            BrokeredMessageBodyConversion.InjectBody = bytes =>
+        #endregion
+
+        #region ASB-incoming-message-convention 6.3
+
+        BrokeredMessageBodyConversion.ExtractBody = brokeredMessage =>
+        {
+            using (MemoryStream stream = new MemoryStream())
+            using (Stream body = brokeredMessage.GetBody<Stream>())
             {
-                MemoryStream messageAsStream = new MemoryStream(bytes);
-                return new BrokeredMessage(messageAsStream);
-            };
+                body.CopyTo(stream);
+                return stream.ToArray();
+            }
+        };
 
-            #endregion
+        #endregion
 
-            #region ASB-incoming-message-convention 6.3
-
-            BrokeredMessageBodyConversion.ExtractBody = brokeredMessage =>
-            {
-                using (MemoryStream stream = new MemoryStream())
-                using (Stream body = brokeredMessage.GetBody<Stream>())
-                {
-                    body.CopyTo(stream);
-                    return stream.ToArray();
-                }
-            };
-
-            #endregion
-
-        }
     }
 }

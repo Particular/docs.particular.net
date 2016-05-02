@@ -1,49 +1,46 @@
-﻿namespace Distributor_4
+﻿using NServiceBus;
+using NServiceBus.Settings;
+
+class Usage
 {
-    using NServiceBus;
-    using NServiceBus.Settings;
-
-    class Usage
+    Usage(Configure configure)
     {
-        Usage(Configure configure)
-        {
-            #region ConfiguringDistributor
+        #region ConfiguringDistributor
 
-            // --------------------------------------
-            // Running the Distributor and a Worker
-            configure.AsMSMQMasterNode();
-            //or
-            configure.RunMSMQDistributor();
-            // --------------------------------------
+        // --------------------------------------
+        // Running the Distributor and a Worker
+        configure.AsMSMQMasterNode();
+        //or
+        configure.RunMSMQDistributor();
+        // --------------------------------------
 
-            // --------------------------------------
-            // Running the Distributor only
-            configure.RunMSMQDistributor(false);
-            // --------------------------------------
+        // --------------------------------------
+        // Running the Distributor only
+        configure.RunMSMQDistributor(false);
+        // --------------------------------------
 
-            #endregion
+        #endregion
 
-            #region ConfiguringWorker
+        #region ConfiguringWorker
 
-            configure.EnlistWithMSMQDistributor();
+        configure.EnlistWithMSMQDistributor();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void IsEnabled()
-        {
-            #region IsDistributorEnabled
+    void IsEnabled()
+    {
+        #region IsDistributorEnabled
 
-            bool isDistributorEnabled = SettingsHolder.GetOrDefault<bool>("Distributor.Enabled");
+        bool isDistributorEnabled = SettingsHolder.GetOrDefault<bool>("Distributor.Enabled");
 
-            #endregion
+        #endregion
 
-            #region IsWorkerEnabled
+        #region IsWorkerEnabled
 
-            bool isWorkerEnabled = SettingsHolder.GetOrDefault<bool>("Worker.Enabled");
+        bool isWorkerEnabled = SettingsHolder.GetOrDefault<bool>("Worker.Enabled");
 
-            #endregion
+        #endregion
 
-        }
     }
 }

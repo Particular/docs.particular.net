@@ -1,154 +1,151 @@
-﻿namespace SqlServer_All.Operations
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.IO;
+using System.Management.Automation;
+using System.Threading;
+using Common;
+using NServiceBus;
+using NServiceBus.Config;
+using NServiceBus.Config.ConfigurationSource;
+using NServiceBus.Features;
+using NUnit.Framework;
+
+[TestFixture]
+[Explicit]
+public class NativeSendTests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Data.SqlClient;
-    using System.IO;
-    using System.Management.Automation;
-    using System.Threading;
-    using Common;
-    using NServiceBus;
-    using NServiceBus.Config;
-    using NServiceBus.Config.ConfigurationSource;
-    using NServiceBus.Features;
-    using NUnit.Framework;
+    string endpointName = "NativeSendTests";
+    static string errorQueueName = "NativeSendTestsError";
+    static string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+    static string schema = "dbo";
 
-    [TestFixture]
-    [Explicit]
-    public class NativeSendTests
+    [SetUp]
+    [TearDown]
+    public void Setup()
     {
-        string endpointName = "NativeSendTests";
-        static string errorQueueName = "NativeSendTestsError";
-        static string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
-        static string schema = "dbo";
-
-        [SetUp]
-        [TearDown]
-        public void Setup()
+        using (SqlConnection connection = new SqlConnection(connectionString))
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                QueueDeletion.DeleteQueuesForEndpoint(connection, schema, endpointName);
-                QueueDeletion.DeleteQueuesForEndpoint(connection, schema, errorQueueName);
-            }
+            connection.Open();
+            QueueDeletion.DeleteQueuesForEndpoint(connection, schema, endpointName);
+            QueueDeletion.DeleteQueuesForEndpoint(connection, schema, errorQueueName);
         }
+    }
 
-        [Test]
-        public void Send()
+    [Test]
+    public void Send()
+    {
+        State state = new State();
+        using (IBus bus = StartBus(state))
         {
-            State state = new State();
-            using (IBus bus = StartBus(state))
+            string message = @"{ Property: 'Value' }";
+
+            Dictionary<string, string> headers = new Dictionary<string, string>
             {
-                string message = @"{ Property: 'Value' }";
+                {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
+            };
 
-                Dictionary<string, string> headers = new Dictionary<string, string>
-                {
-                    {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
-                };
-
-                NativeSend.SendMessage(connectionString, endpointName, message, headers);
-                state.ResetEvent.WaitOne();
-            }
+            NativeSend.SendMessage(connectionString, endpointName, message, headers);
+            state.ResetEvent.WaitOne();
         }
+    }
 
-        [Test]
-        public void SendPowershell()
+    [Test]
+    public void SendPowershell()
+    {
+        State state = new State();
+        using (IBus bus = StartBus(state))
         {
-            State state = new State();
-            using (IBus bus = StartBus(state))
+            string message = @"{ Property: 'Value' }";
+
+            Dictionary<string, string> headers = new Dictionary<string, string>
             {
-                string message = @"{ Property: 'Value' }";
+                {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
+            };
 
-                Dictionary<string, string> headers = new Dictionary<string, string>
-                {
-                    {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
-                };
+            string scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"SqlServer\NativeSend.ps1");
+            string script = File.ReadAllText(scriptPath);
 
-                string scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"SqlServer\NativeSend.ps1");
-                string script = File.ReadAllText(scriptPath);
-
-                using (PowerShell powershell = PowerShell.Create())
-                {
-                    powershell.AddScript(script, false);
-                    powershell.Invoke();
-                    powershell.Commands.Clear();
-                    powershell.AddCommand("SendMessage")
-                        .AddParameter(null, connectionString)
-                        .AddParameter(null, endpointName)
-                        .AddParameter(null, message)
-                        .AddParameter(null, headers);
-                    Collection<PSObject> results = powershell.Invoke();
-                }
-
-                state.ResetEvent.WaitOne();
-            }
-        }
-
-        IBus StartBus(State state)
-        {
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
-            busConfiguration.EndpointName(endpointName);
-            busConfiguration.UseSerialization<JsonSerializer>();
-            var transport = busConfiguration.UseTransport<SqlServerTransport>();
-            transport.ConnectionString(connectionString);
-            Type[] sqlTypes = typeof(SqlServerTransport).Assembly.GetTypes();
-            busConfiguration.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>(sqlTypes));
-            busConfiguration.EnableInstallers();
-            busConfiguration.UsePersistence<InMemoryPersistence>();
-            busConfiguration.DisableFeature<SecondLevelRetries>();
-
-            return Bus.Create(busConfiguration).Start();
-        }
-
-        class MessageHandler : IHandleMessages<MessageToSend>
-        {
-            State state;
-
-            public MessageHandler(State state)
+            using (PowerShell powershell = PowerShell.Create())
             {
-                this.state = state;
+                powershell.AddScript(script, false);
+                powershell.Invoke();
+                powershell.Commands.Clear();
+                powershell.AddCommand("SendMessage")
+                    .AddParameter(null, connectionString)
+                    .AddParameter(null, endpointName)
+                    .AddParameter(null, message)
+                    .AddParameter(null, headers);
+                Collection<PSObject> results = powershell.Invoke();
             }
 
-            public void Handle(MessageToSend message)
+            state.ResetEvent.WaitOne();
+        }
+    }
+
+    IBus StartBus(State state)
+    {
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
+        busConfiguration.EndpointName(endpointName);
+        busConfiguration.UseSerialization<JsonSerializer>();
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.ConnectionString(connectionString);
+        Type[] sqlTypes = typeof(SqlServerTransport).Assembly.GetTypes();
+        busConfiguration.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>(sqlTypes));
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.DisableFeature<SecondLevelRetries>();
+
+        return Bus.Create(busConfiguration).Start();
+    }
+
+    class MessageHandler : IHandleMessages<MessageToSend>
+    {
+        State state;
+
+        public MessageHandler(State state)
+        {
+            this.state = state;
+        }
+
+        public void Handle(MessageToSend message)
+        {
+            Assert.AreEqual("Value", message.Property);
+            state.ResetEvent.Set();
+        }
+    }
+
+    class State
+    {
+        public ManualResetEvent ResetEvent = new ManualResetEvent(false);
+    }
+
+    class MessageToSend : IMessage
+    {
+        public string Property { get; set; }
+    }
+
+    class ConfigTransport : IProvideConfiguration<TransportConfig>
+    {
+        public TransportConfig GetConfiguration()
+        {
+            return new TransportConfig
             {
-                Assert.AreEqual("Value", message.Property);
-                state.ResetEvent.Set();
-            }
+                MaxRetries = 0
+            };
         }
+    }
 
-        class State
+    class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
+    {
+        public MessageForwardingInCaseOfFaultConfig GetConfiguration()
         {
-            public ManualResetEvent ResetEvent = new ManualResetEvent(false);
-        }
-
-        class MessageToSend : IMessage
-        {
-            public string Property { get; set; }
-        }
-
-        class ConfigTransport : IProvideConfiguration<TransportConfig>
-        {
-            public TransportConfig GetConfiguration()
+            return new MessageForwardingInCaseOfFaultConfig
             {
-                return new TransportConfig
-                {
-                    MaxRetries = 0
-                };
-            }
-        }
-
-        class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
-        {
-            public MessageForwardingInCaseOfFaultConfig GetConfiguration()
-            {
-                return new MessageForwardingInCaseOfFaultConfig
-                {
-                    ErrorQueue = errorQueueName
-                };
-            }
+                ErrorQueue = errorQueueName
+            };
         }
     }
 }

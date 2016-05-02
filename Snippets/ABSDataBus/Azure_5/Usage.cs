@@ -1,16 +1,13 @@
-﻿namespace Azure_5
+﻿using NServiceBus;
+
+class Usage
 {
-    using NServiceBus;
-
-    class Usage
+    Usage(Configure configure)
     {
-        Usage(Configure configure)
-        {
-            #region AzureDataBus
+        #region AzureDataBus
 
-            configure.AzureDataBus();
+        configure.AzureDataBus();
 
-            #endregion
-        }
+        #endregion
     }
 }

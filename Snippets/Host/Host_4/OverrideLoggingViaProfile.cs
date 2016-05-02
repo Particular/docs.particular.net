@@ -1,25 +1,22 @@
-﻿namespace Core4.Logging
+﻿using NServiceBus;
+
+class OverrideLoggingViaProfile
 {
-    using NServiceBus;
+    #region LoggingConfigWithProfile
 
-    class OverrideLoggingViaProfile
+    public class YourProfileLoggingHandler :
+        IConfigureLoggingForProfile<YourProfile>
     {
-        #region LoggingConfigWithProfile
-
-        public class YourProfileLoggingHandler :
-            IConfigureLoggingForProfile<YourProfile>
+        public void Configure(IConfigureThisEndpoint specifier)
         {
-            public void Configure(IConfigureThisEndpoint specifier)
-            {
-                // setup your logging infrastructure then call
-                SetLoggingLibrary.Log4Net();
-            }
+            // setup your logging infrastructure then call
+            SetLoggingLibrary.Log4Net();
         }
+    }
 
-        #endregion
+    #endregion
 
-        class YourProfile : IProfile
-        {
-        }
+    class YourProfile : IProfile
+    {
     }
 }

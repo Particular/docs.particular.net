@@ -1,6 +1,3 @@
-﻿namespace Core4
+﻿public class MyMessage
 {
-    public class MyMessage
-    {
-    }
 }

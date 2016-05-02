@@ -186,6 +186,8 @@ related:
 
 The menu is a YAML text document stored at [menu/menu.yaml](menu/menu.yaml).
 
+Any sub items that a prefixed with the title of the parent item will have that prefix removed
+
 
 ## URLs
 

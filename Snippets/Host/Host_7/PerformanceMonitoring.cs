@@ -1,21 +1,18 @@
-﻿namespace Snippets6
+﻿using NServiceBus;
+
+class PerformanceMonitoring
 {
-    using NServiceBus;
 
-    class PerformanceMonitoring
+    #region enable-sla-host-attribute
+
+    [EndpointSLA("00:03:00")]
+    public class EndpointConfig : IConfigureThisEndpoint
     {
+        #endregion
 
-        #region enable-sla-host-attribute
-
-        [EndpointSLA("00:03:00")]
-        public class EndpointConfig : IConfigureThisEndpoint
+        public void Customize(EndpointConfiguration endpointConfiguration)
         {
-            #endregion
-
-            public void Customize(EndpointConfiguration endpointConfiguration)
-            {
-            }
         }
-
     }
+
 }

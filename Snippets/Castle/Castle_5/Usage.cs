@@ -1,31 +1,28 @@
-﻿namespace Castle_5
+﻿using Castle.MicroKernel.Registration;
+using Castle.Windsor;
+using NServiceBus;
+
+class Usage
 {
-    using Castle.MicroKernel.Registration;
-    using Castle.Windsor;
-    using NServiceBus;
-
-    class Usage
+    Usage(BusConfiguration busConfiguration)
     {
-        Usage(BusConfiguration busConfiguration)
-        {
-            #region CastleWindsor
+        #region CastleWindsor
 
-            busConfiguration.UseContainer<WindsorBuilder>();
+        busConfiguration.UseContainer<WindsorBuilder>();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void Existing(BusConfiguration busConfiguration)
-        {
-            #region CastleWindsor_Existing
-            WindsorContainer container = new WindsorContainer();
-            container.Register(Component.For<MyService>().Instance(new MyService()));
-            busConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
-            #endregion
-        }
+    void Existing(BusConfiguration busConfiguration)
+    {
+        #region CastleWindsor_Existing
+        WindsorContainer container = new WindsorContainer();
+        container.Register(Component.For<MyService>().Instance(new MyService()));
+        busConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
+        #endregion
+    }
 
-        class MyService
-        {
-        }
+    class MyService
+    {
     }
 }

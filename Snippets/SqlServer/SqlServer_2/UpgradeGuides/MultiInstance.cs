@@ -1,6 +1,4 @@
-﻿namespace SqlServer_2.UpgradeGuides
-{
-    using NServiceBus;
+﻿    using NServiceBus;
     using NServiceBus.Transports.SQLServer;
 
     class SqlServer
@@ -38,4 +36,3 @@
             #endregion
         }
     }
-}

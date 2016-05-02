@@ -1,32 +1,29 @@
-﻿namespace Spring_7
+﻿using NServiceBus;
+using Spring.Context.Support;
+
+class Usage
 {
-    using NServiceBus;
-    using Spring.Context.Support;
-
-    class Usage
+    Usage(EndpointConfiguration endpointConfiguration)
     {
-        Usage(EndpointConfiguration endpointConfiguration)
-        {
-            #region Spring
+        #region Spring
 
-            endpointConfiguration.UseContainer<SpringBuilder>();
+        endpointConfiguration.UseContainer<SpringBuilder>();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void Existing(EndpointConfiguration endpointConfiguration)
-        {
-            #region Spring_Existing
+    void Existing(EndpointConfiguration endpointConfiguration)
+    {
+        #region Spring_Existing
 
-            GenericApplicationContext applicationContext = new GenericApplicationContext();
-            applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
-            endpointConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));
+        GenericApplicationContext applicationContext = new GenericApplicationContext();
+        applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
+        endpointConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));
 
-            #endregion
-        }
+        #endregion
+    }
 
-        class MyService
-        {
-        }
+    class MyService
+    {
     }
 }

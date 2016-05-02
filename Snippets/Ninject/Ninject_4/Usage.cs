@@ -1,31 +1,28 @@
-﻿namespace Ninject_4
+﻿using Ninject;
+using NServiceBus;
+
+class Usage
 {
-    using Ninject;
-    using NServiceBus;
-
-    class Usage
+    Usage(Configure configure)
     {
-        Usage(Configure configure)
-        {
-            #region Ninject
+        #region Ninject
 
-            configure.NinjectBuilder();
+        configure.NinjectBuilder();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void Existing(Configure configure)
-        {
-            #region Ninject_Existing
+    void Existing(Configure configure)
+    {
+        #region Ninject_Existing
 
-            StandardKernel kernel = new StandardKernel();
-            kernel.Bind<MyService>().ToConstant(new MyService());
-            configure.NinjectBuilder(kernel);
-            #endregion
-        }
+        StandardKernel kernel = new StandardKernel();
+        kernel.Bind<MyService>().ToConstant(new MyService());
+        configure.NinjectBuilder(kernel);
+        #endregion
+    }
 
-        class MyService
-        {
-        }
+    class MyService
+    {
     }
 }

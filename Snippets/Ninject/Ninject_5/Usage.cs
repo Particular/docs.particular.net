@@ -1,32 +1,29 @@
-﻿namespace Ninject_5
+﻿using Ninject;
+using NServiceBus;
+
+class Usage
 {
-    using Ninject;
-    using NServiceBus;
-
-    class Usage
+    Usage(BusConfiguration busConfiguration)
     {
-        Usage(BusConfiguration busConfiguration)
-        {
-            #region Ninject
+        #region Ninject
 
-            busConfiguration.UseContainer<NinjectBuilder>();
+        busConfiguration.UseContainer<NinjectBuilder>();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void Existing(BusConfiguration busConfiguration)
-        {
-            #region Ninject_Existing
+    void Existing(BusConfiguration busConfiguration)
+    {
+        #region Ninject_Existing
 
-            StandardKernel kernel = new StandardKernel();
-            kernel.Bind<MyService>().ToConstant(new MyService());
-            busConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
+        StandardKernel kernel = new StandardKernel();
+        kernel.Bind<MyService>().ToConstant(new MyService());
+        busConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
 
-            #endregion
-        }
+        #endregion
+    }
 
-        class MyService
-        {
-        }
+    class MyService
+    {
     }
 }

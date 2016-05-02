@@ -1,26 +1,22 @@
-﻿namespace ASQ_5
+﻿using NServiceBus;
+
+class Usage
 {
-    using NServiceBus;
-
-    class Usage
+    Usage(Configure configure)
     {
-        Usage(Configure configure)
-        {
-            #region AzureStorageQueueTransportWithAzure
+        #region AzureStorageQueueTransportWithAzure
 
-            configure.UseTransport<AzureStorageQueue>();
-
-            #endregion
-        }
-
-        #region AzureStorageQueueTransportWithAzureHost
-
-        public class EndpointConfig : IConfigureThisEndpoint,
-            UsingTransport<AzureStorageQueue>
-        {
-        }
+        configure.UseTransport<AzureStorageQueue>();
 
         #endregion
     }
 
+    #region AzureStorageQueueTransportWithAzureHost
+
+    public class EndpointConfig : IConfigureThisEndpoint,
+        UsingTransport<AzureStorageQueue>
+    {
+    }
+
+    #endregion
 }

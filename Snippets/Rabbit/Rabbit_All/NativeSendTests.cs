@@ -1,109 +1,106 @@
-﻿namespace Rabbit_All
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using Common;
+using NServiceBus;
+using NServiceBus.Config;
+using NServiceBus.Config.ConfigurationSource;
+using NServiceBus.Features;
+using NServiceBus.Logging;
+using NUnit.Framework;
+
+[TestFixture]
+[Explicit]
+public class NativeSendTests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
-    using Common;
-    using NServiceBus;
-    using NServiceBus.Config;
-    using NServiceBus.Config.ConfigurationSource;
-    using NServiceBus.Features;
-    using NServiceBus.Logging;
-    using NUnit.Framework;
+    string endpointName = "rabbitNativeSendTests";
+    static string errorQueueName = "rabbitNativeSendTestsError";
 
-    [TestFixture]
-    [Explicit]
-    public class NativeSendTests
+    [SetUp]
+    [TearDown]
+    public void Setup()
     {
-        string endpointName = "rabbitNativeSendTests";
-        static string errorQueueName = "rabbitNativeSendTestsError";
+        QueueDeletion.DeleteQueuesForEndpoint("amqp://admin:password@localhost:5672", endpointName);
+        QueueDeletion.DeleteQueuesForEndpoint("amqp://admin:password@localhost:5672", errorQueueName);
+    }
 
-        [SetUp]
-        [TearDown]
-        public void Setup()
+    [Test]
+    public void Send()
+    {
+        State state = new State();
+        using (IBus bus = StartBus(state))
         {
-            QueueDeletion.DeleteQueuesForEndpoint("amqp://admin:password@localhost:5672", endpointName);
-            QueueDeletion.DeleteQueuesForEndpoint("amqp://admin:password@localhost:5672", errorQueueName);
-        }
-
-        [Test]
-        public void Send()
-        {
-            State state = new State();
-            using (IBus bus = StartBus(state))
+            Dictionary<string, object> headers = new Dictionary<string, object>
             {
-                Dictionary<string, object> headers = new Dictionary<string, object>
-                {
-                    {"NServiceBus.EnclosedMessageTypes", "Operations.RabbitMQ.NativeSendTests+MessageToSend"}
-                };
-                NativeSend.SendMessage(Environment.MachineName, endpointName, "admin", "password", @"{""Property"": ""Value"",}", headers);
-                state.ResetEvent.WaitOne();
-            }
+                {"NServiceBus.EnclosedMessageTypes", "Operations.RabbitMQ.NativeSendTests+MessageToSend"}
+            };
+            NativeSend.SendMessage(Environment.MachineName, endpointName, "admin", "password", @"{""Property"": ""Value"",}", headers);
+            state.ResetEvent.WaitOne();
+        }
+    }
+
+    IBus StartBus(State state)
+    {
+        LogManager.Use<DefaultFactory>()
+            .Level(LogLevel.Warn);
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
+        busConfiguration.EndpointName(endpointName);
+        busConfiguration.UseSerialization<JsonSerializer>();
+        var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+        transport.ConnectionString("host=localhost");
+        Type[] rabbitTypes = typeof(RabbitMQTransport).Assembly.GetTypes();
+        busConfiguration.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>(rabbitTypes));
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.DisableFeature<SecondLevelRetries>();
+        return Bus.Create(busConfiguration).Start();
+    }
+
+    class MessageHandler : IHandleMessages<MessageToSend>
+    {
+        State state;
+
+        public MessageHandler(State state)
+        {
+            this.state = state;
         }
 
-        IBus StartBus(State state)
+        public void Handle(MessageToSend message)
         {
-            LogManager.Use<DefaultFactory>()
-                .Level(LogLevel.Warn);
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
-            busConfiguration.EndpointName(endpointName);
-            busConfiguration.UseSerialization<JsonSerializer>();
-            var transport = busConfiguration.UseTransport<RabbitMQTransport>();
-            transport.ConnectionString("host=localhost");
-            Type[] rabbitTypes = typeof(RabbitMQTransport).Assembly.GetTypes();
-            busConfiguration.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>(rabbitTypes));
-            busConfiguration.EnableInstallers();
-            busConfiguration.UsePersistence<InMemoryPersistence>();
-            busConfiguration.DisableFeature<SecondLevelRetries>();
-            return Bus.Create(busConfiguration).Start();
+            Assert.AreEqual("Value", message.Property);
+            state.ResetEvent.Set();
         }
+    }
 
-        class MessageHandler : IHandleMessages<MessageToSend>
+    class State
+    {
+        public ManualResetEvent ResetEvent = new ManualResetEvent(false);
+    }
+
+    class MessageToSend : IMessage
+    {
+        public string Property { get; set; }
+    }
+    class ConfigTransport : IProvideConfiguration<TransportConfig>
+    {
+        public TransportConfig GetConfiguration()
         {
-            State state;
-
-            public MessageHandler(State state)
+            return new TransportConfig
             {
-                this.state = state;
-            }
+                MaxRetries = 0
+            };
+        }
+    }
 
-            public void Handle(MessageToSend message)
+    class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
+    {
+        public MessageForwardingInCaseOfFaultConfig GetConfiguration()
+        {
+            return new MessageForwardingInCaseOfFaultConfig
             {
-                Assert.AreEqual("Value", message.Property);
-                state.ResetEvent.Set();
-            }
-        }
-
-        class State
-        {
-            public ManualResetEvent ResetEvent = new ManualResetEvent(false);
-        }
-
-        class MessageToSend : IMessage
-        {
-            public string Property { get; set; }
-        }
-        class ConfigTransport : IProvideConfiguration<TransportConfig>
-        {
-            public TransportConfig GetConfiguration()
-            {
-                return new TransportConfig
-                {
-                    MaxRetries = 0
-                };
-            }
-        }
-
-        class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
-        {
-            public MessageForwardingInCaseOfFaultConfig GetConfiguration()
-            {
-                return new MessageForwardingInCaseOfFaultConfig
-                {
-                    ErrorQueue = errorQueueName
-                };
-            }
+                ErrorQueue = errorQueueName
+            };
         }
     }
 }

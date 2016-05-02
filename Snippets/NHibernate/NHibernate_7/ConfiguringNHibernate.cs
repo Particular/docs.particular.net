@@ -1,97 +1,94 @@
-﻿namespace NHibernate_7
+﻿using System;
+using global::NHibernate.Cfg;
+using NServiceBus;
+using NServiceBus.Persistence;
+using NServiceBus.Persistence.NHibernate;
+
+class ConfiguringNHibernate
 {
-    using System;
-    using global::NHibernate.Cfg;
-    using NServiceBus;
-    using NServiceBus.Persistence;
-    using NServiceBus.Persistence.NHibernate;
-
-    class ConfiguringNHibernate
+    void Simple(EndpointConfiguration endpointConfiguration)
     {
-        void Simple(EndpointConfiguration endpointConfiguration)
+        #region ConfiguringNHibernate
+
+        //Use NHibernate for all persistence concerns
+        endpointConfiguration.UsePersistence<NHibernatePersistence>();
+
+        //or select specific concerns
+        endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Sagas>();
+        endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
+        endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();
+        endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
+        endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
+
+        #endregion
+    }
+
+    void NHibernateSubscriptionCaching(EndpointConfiguration endpointConfiguration)
+    {
+        #region NHibernateSubscriptionCaching
+
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
+        persistence.EnableCachingForSubscriptionStorage(TimeSpan.FromMinutes(1));
+
+        #endregion
+    }
+
+
+    void CustomCommonConfiguration(EndpointConfiguration endpointConfiguration)
+    {
+        #region CommonNHibernateConfiguration
+        Configuration nhConfiguration = new Configuration
         {
-            #region ConfiguringNHibernate
-
-            //Use NHibernate for all persistence concerns
-            endpointConfiguration.UsePersistence<NHibernatePersistence>();
-
-            //or select specific concerns
-            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Sagas>();
-            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
-            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();
-            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
-            endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
-
-            #endregion
-        }
-
-        void NHibernateSubscriptionCaching(EndpointConfiguration endpointConfiguration)
-        {
-            #region NHibernateSubscriptionCaching
-
-            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
-            persistence.EnableCachingForSubscriptionStorage(TimeSpan.FromMinutes(1));
-
-            #endregion
-        }
-
-
-        void CustomCommonConfiguration(EndpointConfiguration endpointConfiguration)
-        {
-            #region CommonNHibernateConfiguration
-            Configuration nhConfiguration = new Configuration
+            Properties =
             {
-                Properties =
-                {
-                    ["dialect"] = "NHibernate.Dialect.MsSql2008Dialect",
-                    ["connection.provider"] = "NHibernate.Connection.DriverConnectionProvider",
-                    ["connection.driver_class"] = "NHibernate.Driver.Sql2008ClientDriver"
-                }
-            };
+                ["dialect"] = "NHibernate.Dialect.MsSql2008Dialect",
+                ["connection.provider"] = "NHibernate.Connection.DriverConnectionProvider",
+                ["connection.driver_class"] = "NHibernate.Driver.Sql2008ClientDriver"
+            }
+        };
 
-            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-            persistence.UseConfiguration(nhConfiguration);
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.UseConfiguration(nhConfiguration);
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void SpecificNHibernateConfiguration(EndpointConfiguration endpointConfiguration)
+    void SpecificNHibernateConfiguration(EndpointConfiguration endpointConfiguration)
+    {
+        #region SpecificNHibernateConfiguration
+
+        Configuration nhConfiguration = new Configuration
         {
-            #region SpecificNHibernateConfiguration
-
-            Configuration nhConfiguration = new Configuration
+            Properties =
             {
-                Properties =
-                {
-                    ["dialect"] = "NHibernate.Dialect.MsSql2008Dialect"
-                }
-            };
+                ["dialect"] = "NHibernate.Dialect.MsSql2008Dialect"
+            }
+        };
 
-            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-            persistence.UseSubscriptionStorageConfiguration(nhConfiguration);
-            persistence.UseGatewayDeduplicationConfiguration(nhConfiguration);
-            persistence.UseTimeoutStorageConfiguration(nhConfiguration);
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.UseSubscriptionStorageConfiguration(nhConfiguration);
+        persistence.UseGatewayDeduplicationConfiguration(nhConfiguration);
+        persistence.UseTimeoutStorageConfiguration(nhConfiguration);
 
-            #endregion
-        }
+        #endregion
+    }
 
 
-        void CustomCommonConfigurationWarning(EndpointConfiguration endpointConfiguration)
+    void CustomCommonConfigurationWarning(EndpointConfiguration endpointConfiguration)
+    {
+        #region CustomCommonNhibernateConfigurationWarning
+
+        Configuration nhConfiguration = new Configuration
         {
-            #region CustomCommonNhibernateConfigurationWarning
-
-            Configuration nhConfiguration = new Configuration
+            Properties =
             {
-                Properties =
-                {
-                    ["dialect"] = "NHibernate.Dialect.MsSql2008Dialect"
-                }
-            };
+                ["dialect"] = "NHibernate.Dialect.MsSql2008Dialect"
+            }
+        };
 
-            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
-            persistence.UseConfiguration(nhConfiguration);
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
+        persistence.UseConfiguration(nhConfiguration);
 
-            #endregion
-        }
+        #endregion
     }
 }

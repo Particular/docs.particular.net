@@ -56,7 +56,6 @@
     <Compile Include="ServiceLayer\RequestMessage.cs" />
     <Compile Include="ServiceLayer\ResponseMessage.cs" />
     <Compile Include="ServiceLayer\Tests.cs" />
-    <Compile Include="Usage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,6 +1,4 @@
-﻿namespace SqlServer_2
-{
-    using System.Data.SqlClient;
+﻿    using System.Data.SqlClient;
     using NServiceBus;
 
     class NamedConnectionString
@@ -42,4 +40,3 @@
             #endregion
         }
     }
-}

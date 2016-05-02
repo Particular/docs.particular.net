@@ -1,49 +1,46 @@
-﻿namespace NHibernate_7
+﻿using NServiceBus;
+using NServiceBus.Persistence;
+using NServiceBus.Persistence.NHibernate;
+
+class DisableSchemaUpdates
 {
-    using NServiceBus;
-    using NServiceBus.Persistence;
-    using NServiceBus.Persistence.NHibernate;
-
-    class DisableSchemaUpdates
+    void DisableSchemaUpdate(EndpointConfiguration endpointConfiguration)
     {
-        void DisableSchemaUpdate(EndpointConfiguration endpointConfiguration)
-        {
-            #region DisableSchemaUpdate
+        #region DisableSchemaUpdate
 
-            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-            persistence.DisableSchemaUpdate();
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.DisableSchemaUpdate();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void DisableGatewaySchemaUpdate(EndpointConfiguration endpointConfiguration)
-        {
-            #region DisableGatewaySchemaUpdate
+    void DisableGatewaySchemaUpdate(EndpointConfiguration endpointConfiguration)
+    {
+        #region DisableGatewaySchemaUpdate
 
-            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-            persistence.DisableGatewayDeduplicationSchemaUpdate();
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.DisableGatewayDeduplicationSchemaUpdate();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void DisableSubscriptionSchemaUpdate(EndpointConfiguration endpointConfiguration)
-        {
-            #region DisableSubscriptionSchemaUpdate
+    void DisableSubscriptionSchemaUpdate(EndpointConfiguration endpointConfiguration)
+    {
+        #region DisableSubscriptionSchemaUpdate
 
-            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-            persistence.DisableSubscriptionStorageSchemaUpdate();
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.DisableSubscriptionStorageSchemaUpdate();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void DisableTimeoutSchemaUpdate(EndpointConfiguration endpointConfiguration)
-        {
-            #region DisableTimeoutSchemaUpdate
+    void DisableTimeoutSchemaUpdate(EndpointConfiguration endpointConfiguration)
+    {
+        #region DisableTimeoutSchemaUpdate
 
-            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-            persistence.DisableTimeoutStorageSchemaUpdate();
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.DisableTimeoutStorageSchemaUpdate();
 
-            #endregion
-        }
+        #endregion
     }
 }

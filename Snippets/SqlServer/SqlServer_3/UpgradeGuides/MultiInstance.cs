@@ -1,31 +1,28 @@
-﻿namespace SqlServer_3.UpgradeGuides
-{
-    using System.Data.SqlClient;
-    using NServiceBus;
-    using NServiceBus.Transports.SQLServer;
+﻿using System.Data.SqlClient;
+using NServiceBus;
+using NServiceBus.Transports.SQLServer;
 
-    class SqlServer
+class SqlServer
+{
+    void MultiInstance(EndpointConfiguration endpointConfiguration)
     {
-        void MultiInstance(EndpointConfiguration endpointConfiguration)
-        {
 #pragma warning disable 0618
 
-            #region sqlserver-multiinstance-upgrade
+        #region sqlserver-multiinstance-upgrade
 
-            var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-            transport.EnableLegacyMultiInstanceMode(async address =>
-            {
-                string connectionString = address.Equals("RemoteEndpoint") ? "SomeConnectionString" : "SomeOtherConnectionString";
-                SqlConnection connection = new SqlConnection(connectionString);
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.EnableLegacyMultiInstanceMode(async address =>
+        {
+            string connectionString = address.Equals("RemoteEndpoint") ? "SomeConnectionString" : "SomeOtherConnectionString";
+            SqlConnection connection = new SqlConnection(connectionString);
 
-                await connection.OpenAsync();
+            await connection.OpenAsync();
 
-                return connection;
-            });
+            return connection;
+        });
 
-            #endregion
+        #endregion
 
 #pragma warning restore 0618
-        }
     }
 }

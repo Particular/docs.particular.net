@@ -1,27 +1,23 @@
-﻿namespace Testing_3
+﻿using System.Reflection;
+using NServiceBus.Testing;
+
+class Usage
 {
-    using System.Reflection;
-    using NServiceBus.Testing;
-
-    class Usage
+    void InitializeAssemblies()
     {
-        void InitializeAssemblies()
+        #region TestInitializeAssemblies
+
+        Assembly[] assembliesToScan =
         {
-            #region TestInitializeAssemblies
+            typeof(HandlerToTest).Assembly,
+            Assembly.LoadFrom("NServiceBus.Testing.dll")
+        };
+        Test.Initialize(assembliesToScan);
 
-            Assembly[] assembliesToScan =
-            {
-                typeof(HandlerToTest).Assembly,
-                Assembly.LoadFrom("NServiceBus.Testing.dll")
-            };
-            Test.Initialize(assembliesToScan);
-
-            #endregion
-        }
-
-        class HandlerToTest
-        {
-        }
+        #endregion
     }
 
+    class HandlerToTest
+    {
+    }
 }

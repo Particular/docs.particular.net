@@ -1,47 +1,44 @@
-﻿namespace NHibernate_4
+﻿using System;
+using global::NHibernate.Cfg;
+using NServiceBus;
+
+class Usage
 {
-    using System;
-    using global::NHibernate.Cfg;
-    using NServiceBus;
-
-    class Usage
+    Usage(Configure configure)
     {
-        Usage(Configure configure)
-        {
-            #region ConfiguringNHibernate
+        #region ConfiguringNHibernate
 
-            configure.UseNHibernateSubscriptionPersister();
-            configure.UseNHibernateTimeoutPersister();
-            configure.UseNHibernateSagaPersister();
-            configure.UseNHibernateGatewayPersister();
+        configure.UseNHibernateSubscriptionPersister();
+        configure.UseNHibernateTimeoutPersister();
+        configure.UseNHibernateSagaPersister();
+        configure.UseNHibernateGatewayPersister();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void SpecificNHibernateConfiguration(Configure configure)
-        {
-            #region SpecificNHibernateConfiguration
+    void SpecificNHibernateConfiguration(Configure configure)
+    {
+        #region SpecificNHibernateConfiguration
 
-            Configuration nhConfiguration = new Configuration();
-            nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
+        Configuration nhConfiguration = new Configuration();
+        nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
 
-            configure.UseNHibernateSubscriptionPersister(nhConfiguration);
-            configure.UseNHibernateTimeoutPersister(nhConfiguration, true);
-            configure.UseNHibernateSagaPersister(nhConfiguration);
-            configure.UseNHibernateGatewayPersister(nhConfiguration);
+        configure.UseNHibernateSubscriptionPersister(nhConfiguration);
+        configure.UseNHibernateTimeoutPersister(nhConfiguration, true);
+        configure.UseNHibernateSagaPersister(nhConfiguration);
+        configure.UseNHibernateGatewayPersister(nhConfiguration);
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void NHibernateSubscriptionCaching(Configure configure)
-        {
+    void NHibernateSubscriptionCaching(Configure configure)
+    {
 
-            #region NHibernateSubscriptionCaching
+        #region NHibernateSubscriptionCaching
 
-            configure.UseNHibernateSubscriptionPersister(
-                cacheExpiration: TimeSpan.FromSeconds(10));
+        configure.UseNHibernateSubscriptionPersister(
+            cacheExpiration: TimeSpan.FromSeconds(10));
 
-            #endregion
-        }
+        #endregion
     }
 }

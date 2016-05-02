@@ -1,33 +1,30 @@
-﻿namespace Autofac_5
+﻿using Autofac;
+using NServiceBus;
+
+class Usage
 {
-    using Autofac;
-    using NServiceBus;
-
-    class Usage
+    Usage(BusConfiguration busConfiguration)
     {
-        Usage(BusConfiguration busConfiguration)
-        {
-            #region Autofac
+        #region Autofac
 
-            busConfiguration.UseContainer<AutofacBuilder>();
+        busConfiguration.UseContainer<AutofacBuilder>();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void Existing(BusConfiguration busConfiguration)
-        {
-            #region Autofac_Existing
+    void Existing(BusConfiguration busConfiguration)
+    {
+        #region Autofac_Existing
 
-            ContainerBuilder builder = new ContainerBuilder();
-            builder.RegisterInstance(new MyService());
-            IContainer container = builder.Build();
-            busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+        ContainerBuilder builder = new ContainerBuilder();
+        builder.RegisterInstance(new MyService());
+        IContainer container = builder.Build();
+        busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
 
-            #endregion
-        }
+        #endregion
+    }
 
-        class MyService
-        {
-        }
+    class MyService
+    {
     }
 }

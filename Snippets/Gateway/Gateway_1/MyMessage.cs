@@ -1,6 +1,3 @@
-﻿namespace Gateway_1
+﻿public class MyMessage
 {
-    public class MyMessage
-    {
-    }
 }

@@ -1,33 +1,30 @@
-﻿namespace Autofac_3
+﻿using Autofac;
+using NServiceBus;
+
+class Usage
 {
-    using Autofac;
-    using NServiceBus;
-
-    class Usage
+    Usage(Configure configure)
     {
-        Usage(Configure configure)
-        {
-            #region Autofac
+        #region Autofac
 
-            configure.AutofacBuilder();
+        configure.AutofacBuilder();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void Existing(Configure configure)
-        {
-            #region Autofac_Existing
+    void Existing(Configure configure)
+    {
+        #region Autofac_Existing
 
-            ContainerBuilder builder = new ContainerBuilder();
-            builder.RegisterInstance(new MyService());
-            IContainer container = builder.Build();
-            configure.AutofacBuilder(container);
+        ContainerBuilder builder = new ContainerBuilder();
+        builder.RegisterInstance(new MyService());
+        IContainer container = builder.Build();
+        configure.AutofacBuilder(container);
 
-            #endregion
-        }
+        #endregion
+    }
 
-        class MyService
-        {
-        }
+    class MyService
+    {
     }
 }
