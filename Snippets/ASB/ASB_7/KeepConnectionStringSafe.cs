@@ -26,5 +26,15 @@
 
             #endregion
         }
+
+        public void MapDefaultLogiclaNameToConnectionString(EndpointConfiguration endpointConfiguration)
+        {
+            #region map_default_logical_name_to_connection_string
+
+            endpointConfiguration.UseTransport<AzureServiceBusTransport>()
+                .ConnectionString("Endpoint=sb://namespace.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+
+            #endregion
+        }
     }
 }

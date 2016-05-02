@@ -63,9 +63,10 @@ snippet:publisher_names_mapping_upgrade_guide
 
 ## Keep connection string safe
 
-In version 7 and above, to avoid sharing sensitive data contained into connection strings, it's possibile to enable `UseNamespaceNameInsteadOfConnectionString` feature: 
-
-snippet: enable_use_namespace_name_instead_of_connection_string
+Transport guarantees backward compatibility between older transport versions (below to version 7) and newer versions (version 7 and above).  
+In order to be able to enable `UseNamespaceNameInsteadOfConnectionString` follow the next steps:
+- upgrade all endpoints to version 7 or above.
+- switch on `UseNamespaceNameInsteadOfConnectionString` feature one endpoint at time. 
 
 Refer to the [Keep connection string safe page](/nservicebus/azure-service-bus/keep-connectionstring-safe.md) for more details.
 
