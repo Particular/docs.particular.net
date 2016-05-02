@@ -73,6 +73,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageWrapperSerializer.cs" />
     <Compile Include="UpgradeGuides\6to7\SerializerDefinition.cs" />
     <Compile Include="UpgradeGuides\6to7\Upgrade.cs" />
     <Compile Include="Usage.cs" />

@@ -62,6 +62,15 @@ Defaults:
  * 32 in Version 7
 
 
+#### SerializeMessageWrapperWith
+
+Azure Storage Queues Transport wraps messages in a transport specific structure containing message metadata. By default, Azure Storage Queues Transport uses the same serializer for the message wrapper as configured for the contained message. In Versions 7 and above, it's possible to configure a different serializer for the wrapper using the `SerializeMessageWrapperWith` option
+
+snippet:SerializerAndMessageWrapperSerializer
+
+Note: All endpoints in the same system must use the same serializer for the message wrapper. This can be achieved by configuring the same message serializer using the `UseSerializer()` or the above `SerializeMessageWrapperWith` API.
+
+
 #### DegreeOfReceiveParallelism
 
 The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it.
@@ -136,3 +145,8 @@ If a queue name is longer than [63 characters](https://msdn.microsoft.com/en-us/
 snippet:AzureStorageQueueUseSha1
 
 NOTE: This feature is available in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 7 and above.
+
+
+## Serialization
+
+Azure Storage Queues Transport changes the default serializer choice to JSON. The serializer can be changed using the [serialization API](/nservicebus/serialization).
