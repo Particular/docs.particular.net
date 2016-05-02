@@ -9,7 +9,7 @@ If each client is deployed to a machine which is running at least one RabbitMQ n
 
 In Version 2.x of the RabbitMQ transport, multiple hostnames could be specified in the connection string. This capability was removed in Version 3.0 for the reasons stated in the guide. This feature caused the following issues:
 
- - Encouraged a misconception that the RabbitMQ transport was providing load balancing by sending messages to each node in a round-robin fashion.
- - Led to the belief that the RabbitMQ nodes themselves did not need to be clustered.
+ * Encouraged a misconception that the RabbitMQ transport was providing load balancing by sending messages to each node in a round-robin fashion.
+ * Led to the belief that the RabbitMQ nodes themselves did not need to be clustered.
 
-NOTE: RabbitMQ has a concept of a single master queue and this can result in unnecessary network hops. Read more about [load balancing a rabbitmq cluster](http://insidethecpu.com/2014/11/17/load-balancing-a-rabbitmq-cluster/).
+NOTE: RabbitMQ has a concept of a single master queue and this can result in unnecessary network hops. Read more about [load balancing a rabbitmq cluster](https://insidethecpu.com/2014/11/17/load-balancing-a-rabbitmq-cluster/).
