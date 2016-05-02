@@ -5,7 +5,7 @@ using log4net.Filter;
 using log4net.Layout;
 using NServiceBus;
 
-public class Log4NetFiltering
+class Log4NetFiltering
 {
     #region Log4NetFilter
 
@@ -25,7 +25,6 @@ public class Log4NetFiltering
     }
 
     #endregion
-
     public Log4NetFiltering()
     {
         #region Log4NetFilterUsage
@@ -41,7 +40,7 @@ public class Log4NetFiltering
 
         BasicConfigurator.Configure(appender);
 
-        SetLoggingLibrary.Log4Net();
+        NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
 
         #endregion
     }

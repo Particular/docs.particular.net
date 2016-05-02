@@ -7,8 +7,8 @@
     <ProjectGuid>{C7EBC3F6-ADFC-4CC2-8CEB-137D4F0BF983}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core</RootNamespace>
-    <AssemblyName>Core</AssemblyName>
+    <RootNamespace>Core_4</RootNamespace>
+    <AssemblyName>Core_4</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -1,21 +1,18 @@
-﻿namespace CommonLogging_1
+﻿using Common.Logging;
+using Common.Logging.Simple;
+using NServiceBus;
+using NServiceBus.Logging.Loggers;
+
+class Usage
 {
-    using Common.Logging;
-    using Common.Logging.Simple;
-    using NServiceBus;
-    using NServiceBus.Logging.Loggers;
-
-    class Usage
+    Usage()
     {
-        Usage()
-        {
-            #region CommonLoggingInCode
+        #region CommonLoggingInCode
 
-            LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter();
+        LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter();
 
-            SetLoggingLibrary.Custom(new ConsoleLoggerFactory());
+        SetLoggingLibrary.Custom(new ConsoleLoggerFactory());
 
-            #endregion
-        }
+        #endregion
     }
 }

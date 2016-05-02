@@ -1,7 +1,9 @@
 ﻿using log4net.Appender;
+using log4net.Config;
 using log4net.Core;
 using log4net.Layout;
-using NServiceBus;
+using NServiceBus.Log4Net;
+using NServiceBus.Logging;
 
 class Usage
 {
@@ -19,10 +21,12 @@ class Usage
             Threshold = Level.Debug,
             Layout = layout
         };
-        // Note that no ActivateOptions is required since NSB 3 does this internally
+        // Note that ActivateOptions is required in NSB 5 and above
+        consoleAppender.ActivateOptions();
 
-        //Pass the appender to NServiceBus
-        SetLoggingLibrary.Log4Net(null, consoleAppender);
+        BasicConfigurator.Configure(consoleAppender);
+
+        LogManager.Use<Log4NetFactory>();
 
         #endregion
     }

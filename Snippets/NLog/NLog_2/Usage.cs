@@ -1,6 +1,6 @@
-﻿using global::NLog;
-using global::NLog.Config;
-using global::NLog.Targets;
+﻿using NLog;
+using NLog.Config;
+using NLog.Targets;
 using NServiceBus;
 
 class Usage

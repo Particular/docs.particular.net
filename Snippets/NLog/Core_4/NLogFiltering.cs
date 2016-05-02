@@ -3,25 +3,22 @@ using NLog.Config;
 using NLog.Targets;
 using NServiceBus;
 
-namespace Core
+class NLogFiltering
 {
-    class NLogFiltering
+    NLogFiltering()
     {
-        NLogFiltering()
-        {
-            #region NLogFiltering
+        #region NLogFiltering
 
-            LoggingConfiguration config = new LoggingConfiguration();
+        LoggingConfiguration config = new LoggingConfiguration();
 
-            ColoredConsoleTarget target = new ColoredConsoleTarget();
-            config.AddTarget("console", target);
-            config.LoggingRules.Add(new LoggingRule("MyNamespace.*", LogLevel.Debug, target));
+        ColoredConsoleTarget target = new ColoredConsoleTarget();
+        config.AddTarget("console", target);
+        config.LoggingRules.Add(new LoggingRule("MyNamespace.*", LogLevel.Debug, target));
 
-            LogManager.Configuration = config;
+        LogManager.Configuration = config;
 
-            SetLoggingLibrary.NLog();
+        SetLoggingLibrary.NLog();
 
-            #endregion
-        }
+        #endregion
     }
 }
