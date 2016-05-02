@@ -254,6 +254,25 @@ And checking `Ignore YAML Front-matter`
 ## Samples
 
 
+### When to write a sample
+
+Any of the following, or combination thereof, could indicate that something should be a sample
+
+ * When there are multiple non-trivial moving pieces that would be mitigated by being able to download a runnable VS solution.
+ * When illustrating how Particular products/tools interact with 3rd part products/tools.
+ * It is a sample of a significant feature of the Particular platform. eg Databus, encryption, pipeline etc.
+
+Do not write a sample when:
+
+ * The only difference to an existing sample is a minor API usage.
+
+
+### Recommendations
+
+ * Samples should illustrate a feature or scenario with as few moving pieces as possible. For example if the sample is "illustrating IOC with MVC" then "adding signalr" to that sample will only cause confusion. In general the fewer NuGets you need to get the point across the better.
+ * Do not "document things inside a sample". A sample is "to show how something is used" not to document it. Instead update the appropriate documentation page and link to it. As a general rule if you add any content to a sample, where that guidance could possible be applicable to other samples, then that guidance should probably exist in a documentation page.
+
+
 ### Conventions
 
  * Samples are located here https://github.com/Particular/docs.particular.net/tree/master/samples.
@@ -275,11 +294,6 @@ Endpoint1\Endpoint1.csproj
 ```
 
 
-### Recommendations
-
- * Avoid using screen shots in samples as they cause extra effort when the sample needs to be updated.
- * Samples should illustrate a feature or scenario with as few moving pieces as possible. For example if the sample is "illustrating IOC with MVC" then "adding signalr" to that sample will only cause confusion. In general the fewer NuGets you need to get the point across the better.
- * Do not "document things inside a sample". A sample is "to show how something is used" not to document it. Instead update the appropriate documentation page and link to it. As a general rule if you add any content to a sample, where that guidance could possible be applicable to other samples, then that guidance should probably exist in a documentation page.
 
 
 ### Bootstrapping a sample
