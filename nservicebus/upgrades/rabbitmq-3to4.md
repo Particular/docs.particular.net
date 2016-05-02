@@ -26,17 +26,20 @@ See [Tuning](/nservicebus/operations/tuning.md).
 ### PrefetchCount
 
 
-`PrefetchCount` is obsolete and `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` should be used instead. See [Tuning](/nservicebus/operations/tuning.md).
+[PrefetchCount](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-prefetchcount) is obsolete and `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` should be used instead. See [Tuning](/nservicebus/operations/tuning.md).
 
 
 ### DequeueTimeout
 
-`DequeueTimeout` is deprecated as the RabbitMQ Transport message pump does not require a timeout.
+[DequeueTimeout](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-dequeuetimeout) is deprecated as the RabbitMQ Transport message pump does not require a timeout.
 
+### MaxWaitTimeForConfirms
+
+[MaxWaitTimeForConfirms](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-maxwaittimeforconfirms) is deprecated as with current implementation this setting is not used.
 
 ### Added Settings
 
-Several new settings have been added related to TLS and Certs. See [Connection String Options](/nservicebus/rabbitmq/configuration-api.md).
+Several new settings have been added related to Transport Layer Security (TLS) connection. See [TLS Configuration](/nservicebus/rabbitmq/configuration-api.md#specifying-the-connection-string-transport-layer-security-support) for more information.
 
 
 ## Circuit Breaker
@@ -64,3 +67,5 @@ When [changing routing topology](/nservicebus/rabbitmq/configuration-api.md#conf
 
  * `message` parameter type changed from `TransportMessage` to `OutgoingMessage`
  * `address` parameter type changed from `Address` to `string`
+
+`IRoutingTopology` was moved to different namespace, old namespace was: `NServiceBus.Transports.RabbitMQ.Routing`, current namespace is: `NServiceBus.Transport.RabbitMQ`. 

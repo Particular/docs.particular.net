@@ -62,7 +62,7 @@ Defaults: `5` seconds
 
 #### DequeueTimeout
 
-The time period allowed for the dequeue strategy to dequeue a message.
+The time period allowed for the dequeue strategy to dequeue a message. 
 
 Defaults: `1` second
 
@@ -84,12 +84,16 @@ Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should 
 
 Defaults: `true`
 
+Versions: 3 and below.
+
 
 #### MaxWaitTimeForConfirms
 
 How long the client should wait for publisher confirms if enabled. 
 
 Defaults: `30` seconds.
+
+Versions: 3 and below.
 
 
 #### RetryDelay
@@ -101,7 +105,7 @@ Defaults: `10` seconds
 
 #### UseTls
 
-Indicates if the connection should be done using TLS. 
+Indicates if the connection should be done using [TLS](/nservicebus/rabbitmq/configuration-api.md#specifying-the-connection-string-transport-layer-security-support).  
 
 Default: If `Port` is not specified and `UseTls` is enabled the port will default to `5671`.
 
@@ -110,7 +114,7 @@ Versions: 4 and above
 
 #### CertPath
 
-The certificated path that should be used when using TLS.
+The certificated path that should be used when using [TLS](/nservicebus/rabbitmq/configuration-api.md#specifying-the-connection-string-transport-layer-security-support).
 
 Versions: 4 and above
 
@@ -150,6 +154,16 @@ This means that the queue will not be created and no extra threads will be used 
 By default 1 dedicated thread is used for the callbacks. To add more threads, due to a high rate of callbacks, use the following:
 
 snippet:rabbitmq-config-callbackreceiver-thread-count
+
+### Transport Layer Security support
+
+As of Version 4 RabbitMQ transport supports connecting in a secure manner to the broker using Transport Layer Security(TLS). Detailed information on how to configure TLS on RabbitMQ broker refer to [documentation](http://www.rabbitmq.com/ssl.html). In the RabbitMQ transport following settings should be set in a connection string via code:
+
+snippet:rabbitmq-connection-tls
+
+Or configuration:
+
+snippet:rabbitmq-connection-tls-config
 
 
 ### Controlling the message ID strategy

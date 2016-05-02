@@ -35,6 +35,16 @@ class Usage
         #endregion
     }
 
+    void CustomConnectionStringWithTLS(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-connection-tls
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.ConnectionString(@"host=broker1;UseTls=true;CertPath=C:\CertificatePath\ssl.pfx;CertPassphrase=securePassword");
+
+        #endregion
+    }    
+
     void CallbackReceiverMaxConcurrency(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-callbackreceiver-thread-count
