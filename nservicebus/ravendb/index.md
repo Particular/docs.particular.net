@@ -51,7 +51,7 @@ snippet:ravendb-persistence-external-store
 
 #### External shared store at initialization
 
-To use an external `DocumentStore`, but defer its creation until NServiceBus initializes, a `Func<ReadOnlySettings, IDocumentStore>` can be provided which will allow the `DocumentStore` to be created with access to the `ReadOnlySettings`. This gives the ability to configure the document store based on conventions derived from endpoint data present in the settings object. For example is the `DocumentStore` configuration needs access to the [Endpoint Name](/nservicebus/endpoints/specify-endpoint-name.md).
+To use an external `DocumentStore`, but defer its creation until NServiceBus initializes, a `Func<ReadOnlySettings, IDocumentStore>` can be provided which will allow the `DocumentStore` to be created with access to the `ReadOnlySettings`. This gives the ability to configure the document store based on conventions derived from endpoint data present in the settings object. For example, the `DocumentStore` instance can be configured to use the [Endpoint Name](/nservicebus/endpoints/specify-endpoint-name.md) as its database name by accessing `readOnlySettings.EndpointName()`.
 
 Versions: 4 and above.
 
