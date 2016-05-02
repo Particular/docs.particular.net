@@ -4,11 +4,19 @@ using NServiceBus;
 using NServiceBus.AzureServiceBus;
 using NServiceBus.AzureServiceBus.Addressing;
 using NServiceBus.Configuration.AdvanceExtensibility;
+using NServiceBus.Settings;
 
 #region custom-validation-strategy
 
 public class MyValidationStrategy : IValidationStrategy
 {
+    private readonly ReadOnlySettings settings;
+
+    public MyValidationStrategy(ReadOnlySettings settings)
+    {
+        this.settings = settings;
+    }
+
     public bool IsValid(string entityPath, EntityType entityType)
     {
         throw new NotImplementedException();
@@ -37,6 +45,13 @@ public static class AzureServiceBusValidationStrategyExtensions
 
 public class MySanitizationStrategy : ISanitizationStrategy
 {
+    private readonly ReadOnlySettings settings;
+
+    public MySanitizationStrategy(ReadOnlySettings settings)
+    {
+        this.settings = settings;
+    }
+
     public string Sanitize(string entityPath, EntityType entityType)
     {
         throw new NotImplementedException();
@@ -63,6 +78,13 @@ public static class AzureServiceBusSanitizationStrategyExtensions
 
 public class MyNamespacePartitioningStrategy : INamespacePartitioningStrategy
 {
+    private readonly ReadOnlySettings settings;
+
+    public MyNamespacePartitioningStrategy(ReadOnlySettings settings)
+    {
+        this.settings = settings;
+    }
+
     public IEnumerable<RuntimeNamespaceInfo> GetNamespaces(PartitioningIntent partitioningIntent)
     {
         throw new NotImplementedException();
@@ -89,6 +111,13 @@ public static class AzureServiceBusNamespacePartitioningStrategyExtensions
 
 public class MyIndividualizationStrategy : IIndividualizationStrategy
 {
+    private readonly ReadOnlySettings settings;
+
+    public MyIndividualizationStrategy(ReadOnlySettings settings)
+    {
+        this.settings = settings;
+    }
+
     public string Individualize(string endpointname)
     {
         throw new NotImplementedException();
@@ -115,6 +144,13 @@ public static class AzureServiceBusIndividualizationStrategyExtensions
 
 public class MyCompositionStrategy : ICompositionStrategy
 {
+    private readonly ReadOnlySettings settings;
+
+    public MyCompositionStrategy(ReadOnlySettings settings)
+    {
+        this.settings = settings;
+    }
+
     public string GetEntityPath(string entityname, EntityType entityType)
     {
         throw new NotImplementedException();
