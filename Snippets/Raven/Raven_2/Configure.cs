@@ -21,14 +21,14 @@ class Configure
     {
         #region ravendb-persistence-shared-session-for-sagas
 
-        DocumentStore myDocumentStore = new DocumentStore();
-        // configure document store properties here
+        DocumentStore documentStore = new DocumentStore();
+        // configure documentStore properties here
 
         var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.UseSharedSession(() =>
         {
-            IDocumentSession session = myDocumentStore.OpenSession();
-            // customize the session properties here
+            IDocumentSession session = documentStore.OpenSession();
+            // customize session here
             return session;
         });
 
@@ -68,13 +68,13 @@ class Configure
     {
         #region ravendb-persistence-specific-external-store
 
-        DocumentStore myDocumentStore = new DocumentStore();
-        // configure document store properties here
+        DocumentStore documentStore = new DocumentStore();
+        // configure documentStore here
 
         var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
-        persistence.UseDocumentStoreForSubscriptions(myDocumentStore);
-        persistence.UseDocumentStoreForSagas(myDocumentStore);
-        persistence.UseDocumentStoreForTimeouts(myDocumentStore);
+        persistence.UseDocumentStoreForSubscriptions(documentStore);
+        persistence.UseDocumentStoreForSagas(documentStore);
+        persistence.UseDocumentStoreForTimeouts(documentStore);
 
         #endregion
     }
@@ -88,11 +88,11 @@ class Configure
     {
         #region ravendb-persistence-external-store
 
-        DocumentStore myDocumentStore = new DocumentStore();
-        // configure document store properties here
+        DocumentStore documentStore = new DocumentStore();
+        // configure documentStore here
 
         var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
-        persistence.SetDefaultDocumentStore(myDocumentStore);
+        persistence.SetDefaultDocumentStore(documentStore);
 
         #endregion
     }
