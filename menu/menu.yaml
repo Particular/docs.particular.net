@@ -137,10 +137,7 @@
         - Title: "Azure Service Bus Transport"
           Url: "nservicebus/azure-service-bus"
           Articles:
-            - Title: "Configuration"
-            Url "nservicebus/azure-service-bus/configuration"
-            Articles:
-                  - "nservicebus/azure-service-bus/configuration/sanitization"
+            - "nservicebus/azure-service-bus/configuration"
             - "nservicebus/azure-service-bus/topologies"
             - "nservicebus/azure-service-bus/faq"
             - "nservicebus/azure-service-bus/transaction-support"
