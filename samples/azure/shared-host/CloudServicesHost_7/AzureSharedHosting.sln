@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 12.0.31101.0
-Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "HostCloudService", "HostCloudService\HostCloudService.ccproj", "{CD8D25E1-7D63-49DE-A109-4ABF98731C24}"
+Project("{BB40F520-413E-3EBA-ABD4-2177801094F0}") = "HostCloudService", "HostCloudService\HostCloudService.ccproj", "{CD8D25E1-7D63-49DE-A109-4ABF98731C24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HostWorker", "HostWorker\HostWorker.csproj", "{07FDAC8F-A69D-4A5C-ABA1-DAEC52A649FB}"
 EndProject

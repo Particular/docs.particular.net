@@ -1,6 +1,5 @@
 ﻿using NServiceBus;
 using NServiceBus.Persistence;
-using NServiceBus.SagaPersisters;
 
 class Usage
 {
