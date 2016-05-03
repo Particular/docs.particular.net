@@ -155,9 +155,10 @@ By default 1 dedicated thread is used for the callbacks. To add more threads, du
 
 snippet:rabbitmq-config-callbackreceiver-thread-count
 
+
 ### Transport Layer Security support
 
-As of Version 4 RabbitMQ transport supports connecting in a secure manner to the broker using Transport Layer Security(TLS). Detailed information on how to configure TLS on RabbitMQ broker refer to [documentation](http://www.rabbitmq.com/ssl.html). In the RabbitMQ transport following settings should be set in a connection string via code:
+In Versions 4 and above the RabbitMQ transport supports connecting in a secure manner to the broker using Transport Layer Security(TLS). Detailed information on how to configure TLS on RabbitMQ broker refer to [documentation](http://www.rabbitmq.com/ssl.html). The following settings should be set in a connection string via code:
 
 snippet:rabbitmq-connection-tls
 

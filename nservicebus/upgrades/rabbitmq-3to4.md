@@ -33,9 +33,11 @@ See [Tuning](/nservicebus/operations/tuning.md).
 
 [DequeueTimeout](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-dequeuetimeout) is deprecated as the RabbitMQ Transport message pump does not require a timeout.
 
+
 ### MaxWaitTimeForConfirms
 
-[MaxWaitTimeForConfirms](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-maxwaittimeforconfirms) is deprecated as with current implementation this setting is not used.
+[MaxWaitTimeForConfirms](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-maxwaittimeforconfirms) is deprecated as in the current implementation this setting is not used.
+
 
 ### Added Settings
 

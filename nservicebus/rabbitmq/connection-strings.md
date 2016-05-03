@@ -8,7 +8,7 @@ tags:
 - RabbitMQ
 ---
 
-RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.html). Refer to [configuration documentation] (/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used) to see possible configuration parameters.
+RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.html). Refer to [configuration documentation](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used) to see possible configuration parameters.
 
 ```xml
 <connectionStrings>
