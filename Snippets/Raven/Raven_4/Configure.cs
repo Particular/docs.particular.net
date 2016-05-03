@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.RavenDB;
+using NServiceBus.Persistence.RavenDB;
 using Raven.Client;
 using Raven.Client.Document;
 
