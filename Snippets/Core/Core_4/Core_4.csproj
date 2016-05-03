@@ -42,7 +42,7 @@
       <HintPath>..\..\..\packages\NServiceBus.NHibernate.5.0.3\lib\net40\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
-      <HintPath>..\..\..\packages\NServiceBus.RavenDB.1.0.5\lib\net40\NServiceBus.RavenDB.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.RavenDB.1.0.6\lib\net40\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
       <HintPath>..\..\..\packages\RavenDB.Client.2.5.25001\lib\net45\Raven.Abstractions.dll</HintPath>
