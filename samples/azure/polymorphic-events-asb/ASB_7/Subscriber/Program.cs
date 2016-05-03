@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Events;
 using NServiceBus;
 using NServiceBus.AzureServiceBus;
+using NServiceBus.AzureServiceBus.Addressing;
 using NServiceBus.Features;
 
 class Program
@@ -17,8 +18,17 @@ class Program
         Console.Title = "Samples.ASB.Polymorphic.Subscriber";
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ASB.Polymorphic.Subscriber");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.UseTopology<EndpointOrientedTopology>();
         transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
+        var topology = transport.UseTopology<EndpointOrientedTopology>();
+        transport.Sanitization().UseStrategy<EndpointOrientedTopologySanitization>();
+
+        #region RegisterPublisherNames
+
+        topology.RegisterPublisherForType("Samples.ASB.Polymorphic.Publisher", typeof(BaseEvent));
+        topology.RegisterPublisherForType("Samples.ASB.Polymorphic.Publisher", typeof(DerivedEvent));
+
+        #endregion
+        
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region DisableAutoSubscripton
@@ -26,7 +36,6 @@ class Program
         endpointConfiguration.DisableFeature<AutoSubscribe>();
 
         #endregion
-
 
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
