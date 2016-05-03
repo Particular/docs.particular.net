@@ -68,6 +68,45 @@ It is recommended to have batch setup scripts that run on server startups to con
 
 While non-transactional messaging in a Network Load Balancing (NLB) environment is possible, it is much harder to achieve load-balancing in transactional MSMQ. [Microsoft provides a detailed answer](https://support.microsoft.com/en-us/kb/899611).
 
+## MSMQ messages disappear from outbound queue but never arrive in the inbound queue
+
+Message are expected to appear in the destination queue. When MSMQ is stopped at the receiver, the messages pile up in outgoing queues at the sender. When restarting MSMQ on the receiver all messages are gone from the outgoing queues but not visible at the receiver.
+
+### Resolution
+
+- Please check the transactional deadletter queues on both the sender and receiver and see if the messages are shown here. Very often the message is put here together with the reason.
+- Not all messages in the (transactional) dead letter queues are visible via computer management. Use a tool like [QueueExplorer](http://www.cogin.com/mq/) to view all messages.
+- Check that the receiving queue allows the sending account to send messages to the relevant queues.
+- Check that the receiving queue is transactional.
+
+
+## Monitoring MSMQ
+
+The following precautions can be take to monitor MSMQ in a production environment
+
+* Monitor all (transactional) dead letter queues.
+* Monitor the following performance counters, these indicate potential issues:
+ - MSMQ Service / Total bytes in all queues
+ - MSMQ Service / Total messages in all queues
+* Define alert tressholds for the above performance counters to alert operations with monitoring suites like Solarwinds, New Relic, SCOMM or similar tools.
+* It is also advised to monitor the MSMQ service process via performance counters:
+ - Process(mqsvc)\Pool Nonpaged bytes
+ - Process(mqsvc)\Pool pages bytes
+ - Process(mqsvc)\Private bytes
+ - Process(mqsvc)\Working Set
+ - Process(mqsvc)\Working Set - Private
+* Monitor the diskspace available to MSMQ
+
+
+Knowing what values are normal for your environment helps in understanding potential issues before MSMQ reaches its limits in regards to disk and memory usage.
+
+
+
+## Virusscanners
+
+Make sure that the relevant MSMQ folders are excluded from scanning. Virusscanners can prevent certain file actions from happening.
+
+
 
 ## Useful links
 
@@ -78,3 +117,5 @@ While non-transactional messaging in a Network Load Balancing (NLB) environment 
  - [Publicly available tools for troubleshooting MSMQ problems](https://blogs.msdn.microsoft.com/johnbreakwell/2007/12/13/what-publically-available-tools-are-there-for-troubleshooting-msmq-problems/)
  - [MSMQ service might not send or receive messages after a restart](https://support.microsoft.com/en-us/kb/2554746)
  - [Troubleshooting MSDTC issues with the DTCPing tool](https://blogs.msdn.microsoft.com/distributedservices/2008/11/12/troubleshooting-msdtc-issues-with-the-dtcping-tool/)
+ - [Where have my MSMQ messages gone?](https://blogs.msdn.microsoft.com/johnbreakwell/2010/01/22/where-have-my-msmq-messages-gone/)
+ - [Test Connectivity Using MQPing](https://technet.microsoft.com/en-us/library/cc731852%28v=ws.10%29.aspx?f=255&MSPPError=-2147217396)
