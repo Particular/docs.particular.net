@@ -16,8 +16,6 @@ redirects:
 
 ## When using the configuration API
 
-NOTE: these approaches can also be used from [NServiceBus Host](/nservicebus/hosting/nservicebus-host/) via the use of `IConfigureThisEndpoint`.
-
 Define a convention in the endpoint initialization code using this:
 
 snippet:EndpointNameCode
