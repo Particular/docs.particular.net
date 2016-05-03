@@ -142,6 +142,7 @@
             - "nservicebus/azure-service-bus/faq"
             - "nservicebus/azure-service-bus/transaction-support"
             - "nservicebus/azure/transactions"
+            - "nservicebus/azure-service-bus/keep-connectionstring-safe"
             - "nservicebus/azure-service-bus/message-lock-renewal"
             - "nservicebus/azure-service-bus/multiple-namespaces-support"
             - "nservicebus/azure-service-bus/retries"

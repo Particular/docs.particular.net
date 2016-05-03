@@ -61,13 +61,10 @@ When the `EndpointOrientedTopology` is selected, it is also necessary to configu
 
 snippet:publisher_names_mapping_upgrade_guide
 
-## Keep connection string safe
+## [Keep connection string safe page](/nservicebus/azure-service-bus/keep-connectionstring-safe.md)
 
-Transport guarantees backward compatibility between older transport versions (below to version 7) and newer versions (version 7 and above).  
-In order to be able to enable `UseNamespaceNameInsteadOfConnectionString` follow the next steps:
-- upgrade all endpoints to version 7 or above.
-- switch on `UseNamespaceNameInsteadOfConnectionString` feature one endpoint at time. 
-
-Refer to the [Keep connection string safe page](/nservicebus/azure-service-bus/keep-connectionstring-safe.md) for more details.
+In order to enhance security and to avoid sharing sensitive information using `UseNamespaceNameInsteadOfConnectionString` feature follow the next steps:
+- upgrade all endpoints to version 7 or above. Previous versions of transport aren't able to understand namespace name instead of connection string. 
+- configure each endpoint switching on `UseNamespaceNameInsteadOfConnectionString` feature. 
 
   

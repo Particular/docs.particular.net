@@ -8,29 +8,29 @@ tags:
 - Transports 
 - Security
 reviewed: 2016-04-26
+related:
+- nservicebus/upgrades/asb-6to7
 ---
 
-Transport, versions 6 and below, uses raw connection string provided into message headers.  
-For instance, a typical value for `ReplyTo` header could be:  
+Versions 6 and below uses raw the connection string in message headers. For instance, a typical value for `ReplyTo` header could be:  
 
 `[queue name]@Endpoint=sb://[namespace name].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[secrets here]`
   
-It could result in a leak of sensitive information, f.i. logging it.  
-In order to prevent it, transport, versions 7 and above, introduces the needs to map logical namespace name to namespace connection string. This configuration allows transport to convert connection string value to namespace name, if mapping exists, for each incoming message, using the logical name internally.
-If a valid mapping between connection string and namespace name doesn't exist, transport throws a `KeyNotFoundException`.
+This could potentially result in a leak of sensitive information, for example in [log files](/nservicebus/logging/) or in the [error queue](/nservicebus/errors/).   
+In order to prevent this, Versions 7 and above includes the ability to map logical namespace name to namespace connection string.  
+If a valid mapping between connection string and namespace name doesn't exist a [`KeyNotFoundException`](https://msdn.microsoft.com/en-us/library/system.collections.generic.keynotfoundexception.aspx) is thrown.
 
-To configure mapping between a namespace name and the corresponding connection string is possible through `AddNamespace(string name, string connectionString)` configuration API, as shown below for `SingleNamespacePartitioning` strategy:
+Mapping between a namespace name and the corresponding connection string is done as follows:  
 
 snippet: map_logical_name_to_connection_string
 
-For detailed explanation about all supported partitioning strategies and how to configure namespaces mapping for them see related [article](multiple-namespaces-support.md).  
+For detailed explanation about all supported partitioning strategies, and how to configure namespaces mapping, see [Multiple Namespaces Support](multiple-namespaces-support.md).
+  
 Using directly `ConnectionString(string connectionString)` configuration API, as shown below, transport adds a mapping between a namespace name `default` and the provided connection string.
 
 snippet: map_default_logical_name_to_connection_string 
 
-In the event of an error or when logging only, the logical name will be used avoiding sharing of sensitive information.
-
-To enable the same behavior also for outgoing messages, a new feature, provided by transport version 7 and above, has to be switched on:
+To enable the same behavior also for outgoing messages, a new feature, provided in Version 7 and above, has to be enabled:
 
 snippet: enable_use_namespace_name_instead_of_connection_string
 
