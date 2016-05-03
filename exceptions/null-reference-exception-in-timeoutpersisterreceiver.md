@@ -11,6 +11,7 @@ This exception can occur due to:
 
 * Incomplete assembly scanning
 * Version mismatch between NServiceBus and the selected persistence
+* Selected a persistence that does not provide a specific storage feature
 
 
 ## Incomplete assembly scanning
@@ -25,3 +26,7 @@ NServiceBus versions 4.4.8, 4.5.7, 4.6.10, 4.7.7, 5.0.6, 5.1.4 and 5.2.8 introdu
 
 Please update NServiceBus to atleast the its latest patch version to resolve this issue.
 
+
+## Selected a persistence that does not provide a specific storage feature
+
+Not all persistence options support all features. MSMQ for example does not support timeout persistence. When timeout persistence is needed this exception can occur if the persistence does not have an implementation for timeouts.
