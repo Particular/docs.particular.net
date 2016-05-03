@@ -28,6 +28,7 @@ class Program
         #region BrokeredMessageConvention
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.UseTopology<ForwardingTopology>();
         var topologySettings = transport.UseTopology<EndpointOrientedTopology>();
         topologySettings.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
 
