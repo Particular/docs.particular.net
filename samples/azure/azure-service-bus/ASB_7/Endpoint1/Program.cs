@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.AzureServiceBus;
 
 class Program
 {
@@ -17,7 +18,8 @@ class Program
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Endpoint1");
         endpointConfiguration.SendFailedMessagesTo("error");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.ConnectionString(Environment.GetEnvironmentVariable("SamplesAzureServiceBusConnection"));
+        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
+        transport.UseTopology<ForwardingTopology>();
 
         #endregion
 
