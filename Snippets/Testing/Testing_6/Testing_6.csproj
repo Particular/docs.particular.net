@@ -27,9 +27,8 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0002\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Testing, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.Testing.6.0.0-alpha0085\lib\net452\NServiceBus.Testing.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Testing">
+      <HintPath>..\..\..\packages\NServiceBus.Testing.6.0.0-beta0001\lib\net452\NServiceBus.Testing.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
