@@ -34,6 +34,9 @@
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
       <HintPath>..\..\..\..\..\packages\NServiceBus.RavenDB.4.0.0-beta0001\lib\net452\NServiceBus.RavenDB.dll</HintPath>
+    <Reference Include="NServiceBus.RavenDB, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.RavenDB.4.0.0-beta0001\lib\net452\NServiceBus.RavenDB.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Raven.Abstractions">
       <HintPath>..\..\..\..\..\packages\RavenDB.Database.3.0.30115\lib\net45\Raven.Abstractions.dll</HintPath>
