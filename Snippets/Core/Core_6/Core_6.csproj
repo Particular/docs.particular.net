@@ -52,7 +52,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
-      <HintPath>..\..\..\packages\NServiceBus.RavenDB.4.0.0-alpha0143\lib\net452\NServiceBus.RavenDB.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.RavenDB.4.0.0-beta0001\lib\net452\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
