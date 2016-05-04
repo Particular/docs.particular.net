@@ -1,6 +1,6 @@
 ---
 title: Securing Credentials
-summary: Configuring Azure ServiceBus transport to securing credentials.
+summary: 'Azure Service Bus Transport: Securing credentials.'
 component: ASB
 tags:
 - Cloud
