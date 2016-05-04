@@ -6,7 +6,9 @@ tags:
  - migration
  - raven
 related:
-- nservicebus/upgrades/5to6
+ - nservicebus/upgrades/5to6
+redirects:
+ - nservicebus/ravendb/upgrades/3to4
 ---
 
 As part of this update [NServiceBus Version 6](/nservicebus/upgrades/5to6.md) will be required.
