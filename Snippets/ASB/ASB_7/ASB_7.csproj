@@ -81,7 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GettingStarted.cs" />
-    <Compile Include="KeepConnectionStringSafe.cs" />
+    <Compile Include="SecureCredentials.cs" />
     <Compile Include="MultipleNamespaces.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>

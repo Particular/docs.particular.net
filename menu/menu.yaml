@@ -142,7 +142,6 @@
             - "nservicebus/azure-service-bus/faq"
             - "nservicebus/azure-service-bus/transaction-support"
             - "nservicebus/azure/transactions"
-            - "nservicebus/azure-service-bus/keep-connectionstring-safe"
             - "nservicebus/azure-service-bus/message-lock-renewal"
             - "nservicebus/azure-service-bus/multiple-namespaces-support"
             - "nservicebus/azure-service-bus/retries"
@@ -150,6 +149,7 @@
             - "nservicebus/azure-service-bus/performance-tuning"
             - "nservicebus/azure-service-bus/publisher-names-configuration"
             - "nservicebus/azure-service-bus/batching"
+            - "nservicebus/azure-service-bus/secure-credentials"
         - Title: "Azure Storage Queues Transport"
           Url: "nservicebus/azure-storage-queues"
           Articles:

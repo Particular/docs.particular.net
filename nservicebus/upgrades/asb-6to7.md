@@ -56,15 +56,16 @@ In Versions 7 and above the topology selection is mandatory:
 
 snippet:topology-selection-upgrade-guide
 
-
 When the `EndpointOrientedTopology` is selected, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers receive event messages:
 
 snippet:publisher_names_mapping_upgrade_guide
 
-## [Keep connection string safe page](/nservicebus/azure-service-bus/keep-connectionstring-safe.md)
+
+## [Securing Credentials](/nservicebus/azure-service-bus/secure-credentials.md)
+
+include: asb-credential-warning
 
 In order to enhance security and to avoid sharing sensitive information using `UseNamespaceNameInsteadOfConnectionString` feature follow the next steps:
-- upgrade all endpoints to version 7 or above. Previous versions of transport aren't able to understand namespace name instead of connection string. 
-- configure each endpoint switching on `UseNamespaceNameInsteadOfConnectionString` feature. 
 
-  
+ * Upgrade all endpoints to Version 7 or above. Previous versions of transport aren't able to understand namespace name instead of connection string.
+ * After the above has been done and all endpoints deployed configure each endpoint switching on `UseNamespaceNameInsteadOfConnectionString` feature and re-deploy.
