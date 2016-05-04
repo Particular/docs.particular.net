@@ -1,0 +1,2 @@
+Publisher\Publisher.csproj
+Subscriber\Subscriber.csproj
