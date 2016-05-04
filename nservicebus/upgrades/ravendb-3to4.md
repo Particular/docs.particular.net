@@ -21,7 +21,7 @@ The `RavenDBPersistence` has moved from `NServiceBus.Persistence` namespace to `
 
 ## Configuring a shared session
 
-Configuring a shared raven session now requires a `Func<IAsyncDocumentSession>` ([IAsyncDocumentSession](http://ravendb.net/docs/search/latest/csharp?searchTerm=IAsyncDocumentSession)) instead of a `Func<IDocumentSession>` (IDocumentSession)[http://ravendb.net/docs/search/latest/csharp?searchTerm=IDocumentSession]. 
+Configuring a shared raven session now requires a `Func<IAsyncDocumentSession>` ([IAsyncDocumentSession](http://ravendb.net/docs/search/latest/csharp?searchTerm=IAsyncDocumentSession)) instead of a `Func<IDocumentSession>` [IDocumentSession](http://ravendb.net/docs/search/latest/csharp?searchTerm=IDocumentSession).
 
 snippet:3to4-ravensharedsession
 
