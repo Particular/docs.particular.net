@@ -20,7 +20,7 @@ If a heartbeat message is not received by ServiceControl from an endpoint, that 
 
 An inactive endpoint indicates that there is a failure in the communication path between ServiceControl and the monitored endpoint. For example, such failures may be caused by a failure of the endpoint itself, a communication failure in the transport, or when ServiceControl is unable to receive and process the heartbeat messages sent by the endpoint.
 
-NOTE: It is essential that you deploy this plugin to the endpoint in production for ServicePulse to be able to monitor the endpoint.
+NOTE: It is essential to deploy this plugin to the endpoint in production for ServicePulse to be able to monitor the endpoint.
 
 
 ## NuGets
@@ -35,7 +35,7 @@ WARNING: The Heartbeat plugin Version 2 for NServiceBus 5 is currently not suppo
 
 ### Deprecated NuGet
 
-If you are using the older version of the plugin, namely **ServiceControl.Plugin.Heartbeat** remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.
+If are using the older version of the plugin, namely **ServiceControl.Plugin.Heartbeat** remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.
 
 
 ## Configuration
@@ -47,7 +47,7 @@ ServiceControl heartbeats are sent, by the plugin, at a predefined interval of 1
 
 snippet: heartbeatsIntervalConfig
 
-Where the value is convertible to a `TimeSpan` value. In the above sample you are setting the endpoint heartbeat interval to 30 seconds.
+Where the value is convertible to a `TimeSpan` value. The above sample is setting the endpoint heartbeat interval to 30 seconds.
 
 When configuring heartbeat interval, make sure Service Control setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#configuration-options-servicecontrol-heartbeatgraceperiod) is greater than the heartbeat interval.
 
@@ -70,5 +70,4 @@ Heartbeat messages have a time to be received (TTBR) set based on the TTL value.
 
 ### MSMQ
 
-If this dead letter queue behavior is not required then you can disable this. This frequently happens with MSMQ as NServiceBus configures the usage of the DLQ by default. Please read [MSMQ connection strings](/nservicebus/msmq/connection-strings.md) on how to disabled dead letter queue usage.
-
+If this dead letter queue behavior is not required then it can disabled. This frequently happens with MSMQ as NServiceBus configures the usage of the DLQ by default. Read [MSMQ connection strings](/nservicebus/msmq/connection-strings.md) on how to disabled dead letter queue usage.

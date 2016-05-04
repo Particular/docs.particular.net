@@ -14,6 +14,7 @@ There are multiple ways of generating a key. Most implementations rely on a *ran
 
 ### Powershell
 
+
 #### Base64
 
 ```
@@ -49,13 +50,17 @@ using (var e = System.Security.Cryptography.RijndaelManaged.Create())
 }
 ```
 
+
 #### Hex
 
+```
 using (var e = System.Security.Cryptography.RijndaelManaged.Create())
 {
 	e.GenerateKey();
     Console.WriteLine(BitConverter.ToString(e.Key).Replace("-", string.Empty).ToLowerInvariant());
 }
+```
+
 
 ### OpenSSL
 
@@ -63,24 +68,28 @@ OpenSSL is well known for its ability to generate certificates but it can also b
 
 
 #### Base64
+
 Generates 32 random bytes (256bits) in a base64 encoded output:
+
 ```
 openssl rand -base64 32
 ```
 
+
 #### Plaintext
 
 Generates 32 random characters (256bits):
+
 ```
 openssl rand 32
 ```
-NOTE: Be aware that the string parsed by NServiceBus do not use extended ASCII which limits the key range to 7 bits per character.
 
+NOTE: Be aware that the string parsed by NServiceBus do not use extended ASCII which limits the key range to 7 bits per character.
 
 
 ### CryptoKeyGenerator
 
-We have a key generator in our labs that uses the .NET framework crypto provider to generate a key.
+A key generator exists in ParticularLabs that uses the .NET framework crypto provider to generate a key.
 
 Download the [CryptoKeyGenerator](https://github.com/ParticularLabs/CryptoKeyGenerator) labs project, build it and run it and copy paste the random key in its correct format.
 

@@ -20,9 +20,8 @@ When the dialog box opens, browse and find the license file, select it and click
 ![trial period licensed](images/trial-period-licensed.png)
 
 
-### Verifying you license is applied
+### Verifying a license is applied
 
 After loading the license file, click on "Help" \> "Register" menu item. ServiceInsight will then display a licensing message in the bottom right corner of the screen:
 
 ![license verified](images/license-verified.png)
-

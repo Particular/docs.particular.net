@@ -10,14 +10,14 @@ redirects:
  - nservicebus/deploying-nservicebus-in-a-windows-failover-cluster
 ---
 
-NServiceBus is designed for scalability and reliability, but to take advantage of these features, you need to deploy it in a Windows Failover Cluster. Unfortunately, information on how to do this effectively is, as yet, incomplete and scattered. This article describes the process for deploying NServiceBus in a failover cluster. This article does not cover the generic setup of a failover cluster. There are other, better resources for that, such as [Creating a Cluster in Windows Server 2008](https://blogs.msdn.microsoft.com/clustering/2008/01/18/creating-a-cluster-in-windows-server-2008/) or [Server 2012](https://technet.microsoft.com/en-us/library/dn505754.aspx). The focus here is the setup related to NServiceBus.
+NServiceBus is designed for scalability and reliability, but to take advantage of these features, it is necessary to deploy it in a Windows Failover Cluster. Unfortunately, information on how to do this effectively is, as yet, incomplete and scattered. This article describes the process for deploying NServiceBus in a failover cluster. This article does not cover the generic setup of a failover cluster. There are other, better resources for that, such as [Creating a Cluster in Windows Server 2008](https://blogs.msdn.microsoft.com/clustering/2008/01/18/creating-a-cluster-in-windows-server-2008/) or [Server 2012](https://technet.microsoft.com/en-us/library/dn505754.aspx). The focus here is the setup related to NServiceBus.
 
 
 ## Planning the infrastructure
 
 A simple setup for scalability and reliability includes at least two servers in a failover cluster. The failover cluster servers run a distributor process with a timeout manager for each logical message queue.
 
-In addition you have one or more additional servers called worker nodes. These contain endpoints with your message handlers and they are the servers you add more of when you need to scale out. The endpoints on worker nodes request work from the clustered distributors, do the work, and then ask for more.
+In addition there must exist one or more additional servers called worker nodes. These contain endpoints containing message handlers and they are the servers that can be scaled out. The endpoints on worker nodes request work from the clustered distributors, do the work, and then ask for more.
 
 
 ## Setting up the clustered service
@@ -34,7 +34,7 @@ Set up a clustered DTC access point:
 Configure DTC for NServiceBus:
 
  1. On each server, in `Administrative Tools - Component Services`, expand `Component Services - Computers - My Computer - Distributed Transaction Coordinator`.
- 1. For the Local DTC, if the clustered DTC is on the current node, you will see a Clustered DTCs folder with the clustered DTC name inside it.
+ 1. For the Local DTC, if the clustered DTC is on the current node, note the Clustered DTCs folder with the clustered DTC name inside it.
  1. For both instances (so three times counting each node and the clustered instance), right-click, select Properties, and switch to the Security tab.
  1. At the very least, check "Network DTC Access" and "Allow Outbound."
  1. Optionally, check "Allow Remote Clients" and "Allow Inbound."
@@ -47,7 +47,7 @@ Set up a MSMQ Cluster Group. Cluster group is a group of resources that have a u
 
 For more information, see https://technet.microsoft.com/en-us/library/cc753575.aspx
 
-For NServiceBus endpoint destination, we address the queues by the MSMQ cluster group's name, where we will later add all the rest of our clustered resources. In non-cluster terms, we typically add the machine name to address the queue, i.e. `queue@MachineName`. In cluster terms we address it by queue@MSMQ Network name.
+For NServiceBus endpoint destination, queues are addressed by the MSMQ cluster group's name, clustered resources be added will later. In non-cluster terms, typically the machine name is added to the address of the queue, i.e. `queue@MachineName`. In cluster terms it is addressed by queue@MSMQ Network name.
 
 WARNING: These queue(s) must be manually created as they are not created by NServiceBus installation process
 
@@ -121,10 +121,10 @@ Do not try starting the services as they will run in the scope of the local serv
 Now, add each distributor to the cluster:
 
  1. Right-click the MSMQ cluster group, and select Add a Resource - \#4 Generic Service.
- 1. Select the distributor service from the list. The services are listed in random order but typing "Distributor" will get you to the right spot if you named your services as directed above.
+ 1. Select the distributor service from the list. The services are listed in random order. Typing "Distributor" will help locate the desired service.
  1. Finish the wizard. The service should be added to the cluster group, but not activated. Don't activate it yet!
  1. Right click the distributor resource and select Properties.
- 1. Now this is where it gets weird. You will eventually check "Use Network Name for computer name" and add a dependency, but do not do both at the same time! If you do it will complain that it can't figure out what the network name is supposed to be because it can't find it in the dependency chain, which you told it, but it hasn't been saved yet. To get around it, switch to the Dependencies tab and add a dependency for the MSMQ instance. From there, it finds everything else by looking up the tree. Click Apply to save the dependency.
+ 1. Now this is where it gets weird. Eventually check "Use Network Name for computer name" and add a dependency, but do not do both at the same time! If done at the same time it will complain that it can't figure out what the network name is supposed to be because it can't find it in the dependency chain but it hasn't been saved yet. To get around it, switch to the Dependencies tab and add a dependency for the MSMQ instance. From there, it finds everything else by looking up the tree. Click Apply to save the dependency.
  1. Switch back to the General tab and check the "Use Network Name for computer name" checkbox. This tells the application that `Environment.MachineName` should return the cluster name, not the cluster node's computer name. Click Apply.
  1. Repeat for the other distributors.
 
@@ -141,9 +141,9 @@ Set up the worker processes on all worker servers (not the cluster nodes!) as wi
 
 Configure the workers' `MasterNodeConfig` section to point to the machine running the distributor as described on the Distributor Page under [Routing with the Distributor](distributor).
 
-With the distributors running in the cluster and the worker processes coming online, you should see the Storage queues for each process start to fill up. The more worker threads you have configured, the more messages you can expect to see in each Storage queue.
+With the distributors running in the cluster and the worker processes coming online, note the Storage queues for each process start to fill up. The more worker threads configured, the more messages will appear in each Storage queue.
 
-While in development, the endpoint configurations probably don't have any @ symbols in them, in production you have to change all of them to point to the Data Bus queue on the cluster, i.e., for application MyApp and logical queue MyQueue, the worker config looks like this:
+While in development, the endpoint configurations probably don't have any `@` symbols in them, in production change to point to the Data Bus queue on the cluster, i.e., for application MyApp and logical queue MyQueue, the worker config looks like this:
 
 
 ```XML
@@ -165,6 +165,7 @@ While in development, the endpoint configurations probably don't have any @ symb
 
 </configuration>
 ```
+
 
 ## Conclusion
 
