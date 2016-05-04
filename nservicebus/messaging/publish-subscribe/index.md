@@ -44,7 +44,7 @@ Available subscription persistences include
 
  * [MSMQ](/nservicebus/msmq)
  * [RavenDB](/nservicebus/ravendb)
- * [NHibernate](/nservicebus/ravendb)
+ * [NHibernate](/nservicebus/nhibernate)
  * [InMemory](/nservicebus/persistence/in-memory.md)
  * [Azure Storage](/nservicebus/azure-storage-persistence)
 
