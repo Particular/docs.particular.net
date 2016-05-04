@@ -202,9 +202,17 @@ In Versions 4 and above xml configuration options for controlling lost connectio
 snippet:rabbitmq-custom-breaker-settings-code
 
 
-### Changing routing topology
+### Routing topology
 
-By default the RabbitMQ transport create separate exchanges for each message type, including inherited types, being published in the system. This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchange based on the event types that it has handlers for.
+#### Conventional Routing Topology
+
+By default the RabbitMQ transport create separate [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html) for each message type, including inherited types, being published in the system. This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchange based on the event types that it has handlers for.
+
+RabbitMQ transport don't automatically modify or delete existing bindings only add new ones. 
+
+NOTE: When modifying message class hierarchy the existing not relevant bindings should be deleted manually using RabbitMQ tools.
+
+#### Direct Routing Topology
 
 For less complex scenarios use the `DirectRoutingTopology` that routes all events through a single exchange, `amq.topic` by default. The events will be published using a routing key based on the event type and subscribers will use that key to filter their subscriptions.
 
@@ -215,6 +223,8 @@ snippet:rabbitmq-config-usedirectroutingtopology
 Adjust the conventions for exchange name and routing key by using the overload:
 
 snippet:rabbitmq-config-usedirectroutingtopologywithcustomconventions
+
+#### Custom Routing Topology
 
 If the routing topologies mentioned above isn't flexible enough then take full control over how routing is done by implementing a custom routing topology. This is done by:
 
