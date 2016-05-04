@@ -51,14 +51,15 @@
       <HintPath>..\..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.AzureStoragePersistence">
-      <HintPath>..\..\..\packages\NServiceBus.AzureStoragePersistence.1.0.0-alpha0146\lib\net452\NServiceBus.AzureStoragePersistence.dll</HintPath>
-    </Reference>
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0002\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Hosting.Azure">
       <HintPath>..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-alpha0052\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Persistence.AzureStorage, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NServiceBus.Persistence.AzureStorage.1.0.0-beta0001\lib\net452\NServiceBus.Persistence.AzureStorage.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

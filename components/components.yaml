@@ -22,7 +22,7 @@
 - Key: ASP
   Url: nservicebus/azure-storage-persistence
   NugetOrder:
-    - NServiceBus.AzureStoragePersistence
+    - NServiceBus.Persistence.AzureStorage
     - NServiceBus.Azure
 
 - Key: ASQ

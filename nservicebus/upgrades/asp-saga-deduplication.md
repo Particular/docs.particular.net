@@ -12,7 +12,7 @@ related:
 
 ## Summary
 
-This document explains how to upgrade and patch a system for [Azure Storage Persistence bug #26](https://github.com/Particular/NServiceBus.AzureStoragePersistence/issues/26) using the NServiceBus Azure hotfix release 6.2.4.
+This document explains how to upgrade and patch a system for [Azure Storage Persistence bug #26](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/issues/26) using the NServiceBus Azure hotfix release 6.2.4.
 
 
 ### How to know if a system may be affected
@@ -21,7 +21,7 @@ This bug will affect a system only if the following conditions are met on the sa
 
  * NServiceBus Version 5 or lower
  * NServiceBus.Azure Version 6.2.3 or lower
- * AzureStoragePersitence is used
+ * AzureStoragePersistence is used
  * the endpoint contains a saga which has more than one `IAmStartedBy<T>`
  * endpoint concurrency is set to > 1
 

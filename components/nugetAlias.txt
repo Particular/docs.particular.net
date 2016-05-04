@@ -2,7 +2,7 @@ ABSDataBus: NServiceBus.AzureBlobStorageDataBus
 Anotar: Anotar.NServiceBus.Fody
 ASB: NServiceBus.Azure.Transports.WindowsAzureServiceBus
 ASQ: NServiceBus.Azure.Transports.WindowsAzureStorageQueues 
-ASP: NServiceBus.AzureStoragePersistence
+ASP: NServiceBus.Persistence.AzureStorage
 Autofac: NServiceBus.Autofac
 Azure: NServiceBus.Azure
 AzureHost: NServiceBus.Hosting.Azure
