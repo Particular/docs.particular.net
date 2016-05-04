@@ -31,7 +31,7 @@ This will tell NServiceBus to use the suffix registered by the transport or host
 For broker transports that's no longer true, hence the need for a suffix. For on-premise operations the machine name is likely to be used and in cloud scenarios like on Azure the role instance ID is better suited since machines will dynamically change.
 
  * RabbitMQ example: `sales-server1, sales-serverN`
- * Azure ServiceBus example: `sales-1, sales-N` where N is the role instance id
+ * Azure Service Bus example: `sales-1, sales-N` where N is the role instance id
  * SQL Server transport ignores this setting altogether
 
 If full control over the suffix is require or if the transport hasn't registered a default then it can be controlled using:

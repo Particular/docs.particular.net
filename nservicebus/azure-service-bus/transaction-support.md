@@ -1,6 +1,6 @@
 ---
 title: Azure Service Bus Transport Transaction Support
-summary: Azure ServiceBus Transport Transaction Support
+summary: Azure Service Bus Transport Transaction Support
 reviewed: 2016-04-20
 tags:
 - Azure
