@@ -149,6 +149,7 @@
             - "nservicebus/azure-service-bus/performance-tuning"
             - "nservicebus/azure-service-bus/publisher-names-configuration"
             - "nservicebus/azure-service-bus/batching"
+            - "nservicebus/azure-service-bus/secure-credentials"
         - Title: "Azure Storage Queues Transport"
           Url: "nservicebus/azure-storage-queues"
           Articles:
