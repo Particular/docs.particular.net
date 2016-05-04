@@ -58,7 +58,7 @@
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus">
       <HintPath>..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-beta0002\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
-	</Reference>
+    </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-beta0002\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
       <Private>True</Private>
@@ -78,7 +78,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -39,20 +39,13 @@ class Program
 
                 Guid eventId = Guid.NewGuid();
 
-                if (key.Key == ConsoleKey.E)
-                {
-                    await endpoint.Publish<SuperDuperEvent>(e =>
-                    {
-                        e.EventId = eventId;
-                    });
-                    Console.WriteLine("SuperDuperEvent sent. EventId: " + eventId);
-                }
-                else
+                if (key.Key != ConsoleKey.E)
                 {
                     break;
                 }
+                await endpoint.Publish(new SuperDuperEvent { EventId = eventId });
+                Console.WriteLine("SuperDuperEvent sent. EventId: " + eventId);
             }
-
         }
         finally
         {
