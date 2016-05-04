@@ -32,7 +32,7 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.14\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.RavenDB.3.0.8\lib\net45\NServiceBus.RavenDB.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.RavenDB.3.0.9\lib\net45\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
       <HintPath>..\..\..\..\..\packages\RavenDB.Database.3.0.30115\lib\net45\Raven.Abstractions.dll</HintPath>
