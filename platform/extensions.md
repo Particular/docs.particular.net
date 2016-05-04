@@ -155,6 +155,11 @@ Leverages the [JSONB](http://www.postgresql.org/docs/devel/static/datatype-json.
 
 <a href="https://www.nuget.org/packages/NServiceBus.Azure/"><img src="https://buildstats.info/nuget/NServiceBus.Azure" title="NuGet Status"></a>
 
+#### <img src="community-project.png" title="A Community run project"> [Entity Framework](https://github.com/benjaminramey/GoodlyFere.NServiceBus.EntityFramework)
+
+<a href="https://www.nuget.org/packages/GoodlyFere.NServiceBus.EntityFramework/"><img src="https://buildstats.info/nuget/GoodlyFere.NServiceBus.EntityFramework?includePreReleases=true" title="NuGet Status"></a>
+
+
 
 ## Logging
 
