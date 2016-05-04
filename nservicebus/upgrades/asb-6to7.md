@@ -64,8 +64,8 @@ snippet:publisher_names_mapping_upgrade_guide
 
 ## Sanitization
 
-In version 6 sanitization was performed by default and the MD5 algorithm was used to truncate entity names. To maintain backward compatibility, `EndpointOrientedTopologySanitization` sanitization strategy should be registered with the transport as [per documentation](/nservicebus/azure-service-bus/sanitization.md#version-7-and-above).
+In version 6 and below sanitization was performed by default and the MD5 algorithm was used to truncate entity names. To maintain backward compatibility, [use `EndpointOrientedTopologySanitization` strategy](/nservicebus/azure-service-bus/sanitization.md#version-7-and-above).
 
 snippet: asb-endpointorientedtopology-sanitization
 
-In version 6.4.0 `NamingConventions` class was introduced to customize sanitization. The class is obsoleted. Instead, implement a custom sanitization strategy as per [documentation](/nservicebus/azure-service-bus/sanitization.md#version-7-and-above). 
+In version 6.4.0 `NamingConventions` class was introduced to customize sanitization. The class is obsoleted. Instead, implement a [custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#version-7-and-above).

@@ -68,8 +68,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SuperDuperEventHandler.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="SHA1DeterministicNameBuilder.cs" />
+    <Compile Include="Sha1Sanitization.cs" />
+    <Compile Include="SomeEventHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

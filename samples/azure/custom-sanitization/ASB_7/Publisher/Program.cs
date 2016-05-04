@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events;
 using NServiceBus;
 using NServiceBus.AzureServiceBus;
 using NServiceBus.Features;
+using Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events;
 
 class Program
 {
@@ -43,8 +43,8 @@ class Program
                 {
                     break;
                 }
-                await endpoint.Publish(new SuperDuperEvent { EventId = eventId });
-                Console.WriteLine("SuperDuperEvent sent. EventId: " + eventId);
+                await endpoint.Publish(new SomeEvent { EventId = eventId });
+                Console.WriteLine("SomeEvent sent. EventId: " + eventId);
             }
         }
         finally

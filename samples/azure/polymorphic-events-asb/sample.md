@@ -94,6 +94,6 @@ snippet:PublisherOutput-from-sample
 
 snippet:SubscriberOutput-from-sample
 
-NOTE: From version 7, publisher names have to be configured via code for the subscribers.
+NOTE: From versions 7 and above, publisher names have to be configured via code for the subscribers.
 
 snippet: RegisterPublisherNames

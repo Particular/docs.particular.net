@@ -4,9 +4,9 @@ namespace Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events
 {
     using NServiceBus;
 
-    #region SuperDuperEvent
+    #region SomeEvent
 
-    public class SuperDuperEvent : IEvent
+    public class SomeEvent : IEvent
     {
         public Guid EventId { get; set; }
     }

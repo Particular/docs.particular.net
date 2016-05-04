@@ -25,12 +25,12 @@ This sample has two endpoints
 * `Publisher`
 * `Subscriber`
 
-snippet: SuperDuperEvent
+snippet: SomeEvent
 
 
 ## Publisher
 
-`Publisher` publishes `SuperDuperEvent`.
+`Publisher` publishes `SomeEvent`.
 
 
 ## Subscriber
@@ -39,7 +39,7 @@ snippet: SuperDuperEvent
 
 `SuperDuperEvent` full name is `Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events.SuperDuperEvent`. That is 72 characters which exceed the maximum 50 characters limit for a rule name. An attempt to use such a long rule name will result in the following exception:
 
->Invalid Rule name \`Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events.SuperDuperEvent\` that cannot be used with Azure Service Bus. Rule name exceeds maximum allowed length or contains invalid characters. Check for invalid characters, shorten the name, or use \`Sanitization().UseStrategy&lt;ISanitizationStrategy&gt;()\` configuration extension.
+`Invalid Rule name 'Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events.SuperDuperEvent' that cannot be used with Azure Service Bus. Rule name exceeds maximum allowed length or contains invalid characters. Check for invalid characters, shorten the name, or use 'Sanitization().UseStrategy<ISanitizationStrategy>()' configuration extension.`
 
 
 ### Creating custom sanitization

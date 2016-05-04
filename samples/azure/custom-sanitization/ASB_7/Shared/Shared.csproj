@@ -74,7 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SuperDuperEvent.cs" />
+    <Compile Include="SomeEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
