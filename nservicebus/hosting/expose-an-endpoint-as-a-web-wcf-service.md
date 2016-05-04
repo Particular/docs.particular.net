@@ -41,7 +41,7 @@ And finally expose the wcf service via the config file, for the example above th
 </system.serviceModel>
 ```
 
-The service name in `<service name="XXX"` needs to match the [type fullname](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) that derives from `NServiceBus.WcfService<TCommand, TErrorCode>`
+The service name in `<service name="XXX"` needs to match the [`Type.FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) that derives from `NServiceBus.WcfService<TCommand, TErrorCode>`
 
 
 ## Queries and other return values
@@ -53,9 +53,9 @@ If there is some other operation that isn't strictly a query that returns a valu
 
 ## Calling Web/WCF services
 
-If you need to invoke a Web/WCF service as a part of your message handling logic, where that logic also updates transactional resources like a database, the best practice is to split it into two endpoints.
+When invoke a Web/WCF service as a part of message handling logic, where that logic also updates transactional resources like a database, the best practice is to split it into two endpoints.
 
-If you don't require a response from the Web/WCF service, have the first endpoint publish an event to which the second endpoint subscribes to
+If no response is required from the Web/WCF service, have the first endpoint publish an event to which the second endpoint subscribes to
 ([more FAQ info](/nservicebus/messaging/publish-subscribe/)) and have the second endpoint call the Web/WCF service.
 
-If you do need a response from the Web/WCF service, turn the first endpoint into a [saga](/nservicebus/sagas/) that sends (not publishes) a message to the second endpoint, which calls the Web/WCF service and [replies](/nservicebus/messaging/reply-to-a-message.md) with a response that is handled by the saga in the first endpoint.
+If a response is required from the Web/WCF service, turn the first endpoint into a [saga](/nservicebus/sagas/) that sends (not publishes) a message to the second endpoint, which calls the Web/WCF service and [replies](/nservicebus/messaging/reply-to-a-message.md) with a response that is handled by the saga in the first endpoint.

@@ -1,6 +1,6 @@
 ---
 title: Azure Cloud Services Host Endpoint Configuration
-summary: Configuring your endpoint when hosting in Azure Cloud Services
+summary: Configuring the endpoint when hosting in Azure Cloud Services
 tags:
 - Azure
 - Cloud
@@ -59,20 +59,21 @@ The "AzureQueueConfig.ConnectionString" for Azure Queues follows this format:
 
     DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;QueueEndpoint=customEndpoint;
 
-Alternatively, one can use the Azure development environment emulator by using this connection string:
+Alternatively, use the Azure development environment emulator by using this connection string:
 
     UseDevelopmentStorage=True;
 
 In the NServiceBus solution, specify the Endpoint Configuration to use AzureStorageQueue transport:
 
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
-	{
-	    public void Customize(BusConfiguration builder)
-	    {
-	        builder.UseTransport<AzureStorageQueueTransport>();
-	    }
-	}
-
+```
+public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
+{
+    public void Customize(BusConfiguration builder)
+    {
+        builder.UseTransport<AzureStorageQueueTransport>();
+    }
+}
+```
 
 ### Azure Service Bus
 
@@ -88,9 +89,9 @@ schemaVersion="2013-03.2.0">
     <Instances count="1" />
     <ConfigurationSettings>
       <Setting name="AzureServiceBusQueueConfig.ConnectionString"
-      value="Endpoint=sb://{your namespace here}.servicebus.windows.net/;
+      value="Endpoint=sb://{namespace here}.servicebus.windows.net/;
       SharedAccessKeyName=RootManageSharedAccessKey;
-      SharedAccessKey={your shared access key here}" />
+      SharedAccessKey={shared access key here}" />
 ...
     </ConfigurationSettings>
   </Role>
@@ -102,10 +103,12 @@ The "AzureServiceBusQueueConfig.ConnectionString" for Azure Service Bus namespac
 
 In the NServiceBus solution, specify the endpoint configuration to use AzureServiceBus transport:
 
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
-	{
-	    public void Customize(BusConfiguration builder)
-	    {
-	        builder.UseTransport<AzureServiceBusTransport>();
-	    }
-	}
+```
+public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
+{
+    public void Customize(BusConfiguration builder)
+    {
+        builder.UseTransport<AzureServiceBusTransport>();
+    }
+}
+```

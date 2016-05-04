@@ -8,9 +8,9 @@ related:
 - servicepulse/intro-endpoints-custom-checks
 ---
 
-ServicePulse gives you an overview of the system health, based on endpoints heartbeats and custom checks, and a detailed view of all the failed messages.
+ServicePulse gives an overview of the system health, based on endpoints heartbeats and custom checks, and a detailed view of all the failed messages.
 
-Note: You can consume the same information not only via the ServicePulse web interface but also subscribing to [custom notifications and alerts from ServiceControl](/servicecontrol/contracts.md).
+Note: The same information can be consumed, not only via the ServicePulse web interface, but also by subscribing to [custom notifications and alerts from ServiceControl](/servicecontrol/contracts.md).
 
 
 ### Heartbeats
