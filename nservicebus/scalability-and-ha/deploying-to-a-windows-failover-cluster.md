@@ -76,9 +76,9 @@ The "cluster name" is a Network Name created for the cluster as part of the core
 
 In this picture:
 
- * The Cluster Name is W2K8-FC (you can see that in the upper left corner of the picture)
+ * The Cluster Name is W2K8-FC (note that in the upper left corner of the picture)
  * The MSMQ cluster group's name is MSMQ-1
- * The MSMQ network name is named MSMQ-1 (this is the first resource in the group - under "Name: MSMQ-1"). We don't actually see the MSMQ Network Name (DNS Name) in this picture - to see it you would have to right click "Name: MSMQ-1" and select "Properties". Notice something like (Note - this was taken from another resource):
+ * The MSMQ network name is named MSMQ-1 (this is the first resource in the group - under "Name: MSMQ-1"). The MSMQ Network Name (DNS Name) is not shown in this picture - to see it right click "Name: MSMQ-1" and select "Properties". Notice something like (Note - this was taken from another resource):
 
 ![](cluster-properties.png "Cluster Properties")
 
@@ -89,7 +89,7 @@ NOTE: Under "DNS Name" find the MSMQ DNS Name, which may or may not be "MSMQ-1".
 
 Before the `NServiceBus.Host.exe` processes can be clustered, they need to be installed services on all clustered nodes.
 
-Copy the Distributor binary as many times as you have logical queues, and then configure each one as described in the [NServiceBus Distributor](distributor/) page. To keep everything straight, the queues are named according to the following convention:
+Copy the Distributor binary as many times as there are have logical queues, and then configure each one as described in the [NServiceBus Distributor](distributor/) page. To keep everything straight, the queues are named according to the following convention:
 
  * Distributor Data Bus: EndpointName
  * Distributor Control Bus: EndpointName.Distributor.Control

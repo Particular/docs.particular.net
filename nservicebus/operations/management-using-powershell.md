@@ -52,22 +52,23 @@ A list of available cmdlet can be found by issuing the following PowerShell comm
 
 Help for each cmdlet incorporated within the module and can be accessed via the standard [PowerShell Get-Help Command](https://technet.microsoft.com/en-us/library/ee176848.aspx). For example `Get-Help Set-NServiceBusLocalMachineSettings` returns the following information
 
-	NAME
-	    Set-NServiceBusLocalMachineSettings
-   
-	SYNOPSIS
-	    Sets the default Error and Audit queues.
-   
-   
-	SYNTAX
-	    Set-NServiceBusLocalMachineSettings [-ErrorQueue <String>] [-AuditQueue <String>] [<CommonParameters>]
-   
-   
-	DESCRIPTION
-	    Sets the registry settings for the default audit and error queues.
-        These settings can be found in the registry under "HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceBus".
-		On 64 bit operating system the settings are applied to both the 32-bit and 64-bit registry.
+```
+NAME
+    Set-NServiceBusLocalMachineSettings
 
+SYNOPSIS
+    Sets the default Error and Audit queues.
+
+
+SYNTAX
+    Set-NServiceBusLocalMachineSettings [-ErrorQueue <String>] [-AuditQueue <String>] [<CommonParameters>]
+
+
+DESCRIPTION
+    Sets the registry settings for the default audit and error queues.
+    These settings can be found in the registry under "HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceBus".
+    On 64 bit operating system the settings are applied to both the 32-bit and 64-bit registry.
+```
 
 ## Upgrade information
 
