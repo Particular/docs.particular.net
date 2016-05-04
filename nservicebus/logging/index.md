@@ -74,7 +74,6 @@ In NServiceBus Versions 3 and 4 the supported Levels are defined by the [Log4Net
 
  * In Version 4 and below the app.config wins.
  * In Version 5 and above the code wins.
-
 }}
 
 
