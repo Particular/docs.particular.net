@@ -16,7 +16,7 @@ NServiceBus will by default allow the transport to optimize for maximum performa
 
 NOTE: NServiceBus Version 5 and below will by default limit concurrency to `1` if not configured by the user
 
-You can define a maximum concurrency setting that will make sure that no more messages than the specified value is ever being processed at the same time. Set this value to `1` to process messages sequentially. If not specified the transport will choose an optimal value.
+Define a maximum concurrency setting that will make sure that no more messages than the specified value is ever being processed at the same time. Set this value to `1` to process messages sequentially. If not specified the transport will choose an optimal value.
 
 Examples where concurrency tuning is relevant are
 
@@ -28,7 +28,7 @@ Examples where concurrency tuning is relevant are
 
 WARNING: Throughput throttling options have been removed in NServiceBus Version 6.
  
-You can define a maximum value for the number of messages per second that the endpoint will process at any given time. This will help you to avoid the endpoint overloading sensitive resources that it's using like web-services, databases, other endpoints etc. A concrete example here could be an integration endpoint calling a web api, like api.github.com, that have restrictions on the number or requests per unit of time allowed.
+Define a maximum value for the number of messages per second that the endpoint will process at any given time. This will help avoid the endpoint overloading sensitive resources that it's using like web-services, databases, other endpoints etc. A concrete example here could be an integration endpoint calling a web api, like api.github.com, that have restrictions on the number or requests per unit of time allowed.
 
 NServiceBus will not enforce any throughput restrictions by default.
 

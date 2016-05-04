@@ -16,9 +16,9 @@ NOTE: Anyone who can access the ServiceControl URL has complete access to the me
 
 ### Using the ServiceControl Management Utility
 
-1. Click the Configuration Icon for for the Service Instance you wish to modify
-1. Change the Host and Port number fields to the desired values
-1. Click Save
+ 1. Click the Configuration Icon for for the Service Instance to modify.
+ 1. Change the Host and Port number fields to the desired values.
+ 1. Click Save.
 
 The ServiceControl Management Utility will then validate the settings changes and restart the service to apply the changes.
 The utility handles any required URLACL changes so the manual steps outlined in `Updating URL Changes` do not need to be carries out.
@@ -26,8 +26,8 @@ The utility handles any required URLACL changes so the manual steps outlined in 
 
 ### Manually changing the Configuration
 
-1. Open the ServiceControl configuration file
-1. Add or Modify the `ServiceControl/Hostname` and `ServiceControl/Port` settings in the `<appSettings>` section.
+ 1. Open the ServiceControl configuration file
+ 1. Add or Modify the `ServiceControl/Hostname` and `ServiceControl/Port` settings in the `<appSettings>` section.
 
 
 The following example configures ServiceControl to listen to on port 33333. The HostName value in this example is a wildcard. This instructs ServiceControl to respond to requests on all resolvable names for the host ( hostname, IP Address, DNS aliases etc). This change must also be reflected via a URLACL change (see below)
@@ -44,14 +44,15 @@ The following example configures ServiceControl to listen to `http://sc.myspecia
 <add key="ServiceControl/Port" value="33333" />
 ```
 
-NOTE: You must set both the `ServiceControl/Hostname` and the `ServiceControl/Port`, even if the value of one remains unchanged.
+NOTE: Set both the `ServiceControl/Hostname` and the `ServiceControl/Port`, even if the value of one remains unchanged.
+
 
 #### Updating URLACL Settings
 
-If you have modified the hostname settings manually you must change the URLACL settings to allow the service to listen on the resultant URL. 
+If the hostname settings has been modified manually change the URLACL settings to allow the service to listen on the resultant URL. 
 
-1. After modifying the configuration file manually, update the URLACL configurations accordingly.
-1. Allow access to the ports specified for ServiceControl hostname & port number by configuring firewalls.
+ 1. After modifying the configuration file manually, update the URLACL configurations accordingly.
+ 1. Allow access to the ports specified for ServiceControl hostname & port number by configuring firewalls.
 
 For example, the following command line (with the appropriate adjustments for the hostname and port number) adds the relevant URLACL setting: 
 

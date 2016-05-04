@@ -12,7 +12,7 @@ The Platform Installer and the NServiceBus.PowerShell modules provide a simple m
 
 The removal instructions vary depend on the operating system and are detailed below.
 
-## Before you proceed
+## Before proceeding
 
 DANGER: Removing the MSMQ Service is a destructive operation which can result in data loss
 
@@ -24,7 +24,7 @@ When the MSMQ service is uninstalled the following actions are also carried out:
 
 ### Dependent Services
 
-Services in Microsoft Windows can be configured to depend on each other. Prior to removing MSMQ, ensure you have no services are dependent upon the MSMQ. To do this
+Services in Microsoft Windows can be configured to depend on each other. Prior to removing MSMQ, ensure that no services are dependent upon the MSMQ. To do this
 
  * Load the Windows Services MMC snapin `Services.msc`,
  * Right click on `Message Queuing` in the list of services
@@ -52,7 +52,7 @@ Alternatively this can be done from PowerShell via the following command:
  * Scroll down and deselect the `Message Queuing` option and then click `Next`
  * Click the `Remove` Button to complete the removal.
 
-You may need to reboot to finalize the changes.
+A reboot may be required to finalize the changes.
 
 
 #### Windows 2008 R2
@@ -106,7 +106,8 @@ To disable a feature execute the following:
 ```
 DISM /Online /Disable-Feature /FeatureName:<FeatureName>
 ```
-Once you have removed a feature reboot the system to finalize the changes.
+
+Once a feature is remove reboot the system to finalize the changes.
 
 
 #### Removal using PowerShell Prompt

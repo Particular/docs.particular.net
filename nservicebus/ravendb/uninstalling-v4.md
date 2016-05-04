@@ -8,7 +8,7 @@ redirects:
  - nservicebus/using-ravendb-uninstalling-v4
 ---
 
-As of October 15, 2014 the Platform Installer no longer installs RavenDB Version 2.0 in a folder called "NServiceBus.Persistence.v4" under `Program Files` as a prerequisite since NServiceBus Version 5 no longer uses it as the default persistence - [see this document](installation.md). If you previously installed this and want to remove it either because you don't need it or you wish to install RavenDB Version 2.5 (required version for NServiceBus Version 5), then you will need to manually remove it.
+As of October 15, 2014 the Platform Installer no longer installs RavenDB Version 2.0 in a folder called "NServiceBus.Persistence.v4" under `Program Files` as a prerequisite since NServiceBus Version 5 no longer uses it as the default persistence - [see this document](installation.md). If previously installed this and want to remove it it will be necessary to be done manually.
 
 
 ## Manual Removal Instructions
@@ -28,7 +28,7 @@ This may return something like the following:
 
 `Reserved URL            : http://+:8080/`
 
-You can remove it with this command:
+Remove it with this command:
 
 `netsh.exe http delete urlacl url=http://+:8080/`
 

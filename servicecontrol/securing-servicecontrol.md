@@ -9,7 +9,7 @@ tags:
 related:
 - servicecontrol/creating-config-file
 - servicecontrol/configure-ravendb-location
-- servicecontrol/backup-sc-database       
+- servicecontrol/backup-sc-database
 ---
 
 ServiceControl serves as the back-end service for ServicePulse and ServiceInsight, supplying these client applications with the information required for their functionality. It does so by exposing HTTP API that can be accessed by these and other third-party tools.
@@ -28,22 +28,21 @@ This applies also to accessing ServiceControl from ServicePulse and ServiceInsig
 
 ### Extending Access by Changing Host Name
 
-You can allow access to ServiceControl from other machines by [setting a custom host name and port number](setting-custom-hostname.md). The scope of the access extension allowed by this change depends on the specified custom host name and port number. It also depends on various network limitations (e.g., proxy, firewall, DNS settings) that may limit access to the specified ServiceControl host and port.
+To allow access to ServiceControl from other machines by [setting a custom host name and port number](setting-custom-hostname.md). The scope of the access extension allowed by this change depends on the specified custom host name and port number. It also depends on various network limitations (e.g., proxy, firewall, DNS settings) that may limit access to the specified ServiceControl host and port.
 
-Note that ServicePulse and ServiceInsight users need to access the ServiceControl HTTP API using the specified custom host name and port number, so you need to make sure that the network rules enable access when you specifying these details  (as well as when you apply various limiting network rules and policies).
+Note that ServicePulse and ServiceInsight users need to access the ServiceControl HTTP API using the specified custom host name and port number, ensure that the network rules enable access when specifying these details (as well as when applying the various limiting network rules and policies).
 
 
 ### Limiting Access and Data Visibility
 
-After you set the custom host name and port number and apply network rules limiting access to the ServiceControl service, you may want to limit access to very fine-grained aspects of the ServiceControl data. Specifically, you may want to hide the message body, or even parts of the message body from users (for example: the message body may contain credit card information).
+After setting the custom host name and port number and apply network rules limiting access to the ServiceControl service, ensure to limit access to very fine-grained aspects of the ServiceControl data. Specifically, it may be necessary to hide the message body, or even parts of the message body from users (for example: the message body may contain credit card information).
 
 Following are several options for doing so, based on the specific requirements.
 
 
 #### Limiting Access to ServiceControl using Windows Authentication
 
-It is possible to setup IIS to act as a reverse proxy and secure ServiceControl using Windows Authentication.
-Refer to the [instructions](/servicepulse/install-servicepulse-in-iis.md) here on see how to go about this and the limitations of the approach.
+It is possible to setup IIS to act as a reverse proxy and secure ServiceControl using Windows Authentication. Refer to the [instructions](/servicepulse/install-servicepulse-in-iis.md) here on see how to go about this and the limitations of the approach.
 
 
 #### Limiting Access to ServiceControl Through VPN Requirements
@@ -55,7 +54,7 @@ This requires administration and logistical support, but also has the advantage 
 
 #### Restricting Exposure to Message Body
 
-To deny access to the message body's ServiceControl HTTP API, use URLACL. This can serve in extreme cases where you need to hide the message body completely.
+To deny access to the message body's ServiceControl HTTP API, use URLACL. This can serve in extreme cases to hide the message body completely.
 
 To prevent access to the ServiceControl HTTP API `http://{customhostname}:{portname}/api/messages`, add an additional URLACL setting. Any calls to get a message body will fail with an HTTP 503 error ("Service Unavailable").
 
@@ -64,13 +63,13 @@ For more information, see [ServiceControl: Updating URLACL Settings](setting-cus
 
 #### Encrypting Sensitive Properties in Message Body
 
-For a more fine-grained limitation on message body visibility of specific properties, you can encrypt message properties that are sensitive (e.g., credit card numbers).
+For a more fine-grained limitation on message body visibility of specific properties, encrypt message properties that are sensitive (e.g., credit card numbers).
 
 An example of how to set encryption per specific message property can be viewed in the [Encryption Sample](/samples/encryption/basic-encryption/). 
 
 ### Accessing the Embedded RavenDB Database
 
-ServiceControl uses an embedded RavenDB database to store its data. This database is managed internally by ServiceControl and it is not intended for direct access or usage. By default, the database is located on the same machine as the ServiceControl instance is installed. You can select a different location (local or network path) for the database files.
+ServiceControl uses an embedded RavenDB database to store its data. This database is managed internally by ServiceControl and it is not intended for direct access or usage. By default, the database is located on the same machine as the ServiceControl instance is installed. A different location (local or network path) for the database files can be selected.
 
 Access to the location of the database files enables full access to the database contents, so take great care to ensure the database location is secure from unauthorized access and tampering.
 

@@ -6,14 +6,14 @@ redirects:
  - nservicebus/nservicebus-and-wcf
 ---
 
-The main thing missing from WCF is publish/subscribe, but why should you have to build it yourself? With NServiceBus, you get it out of the box.
+The main thing missing from WCF is publish/subscribe, with NServiceBus it is out of the box.
 
-The next important thing is fault-tolerance. Exceptions cause WCF proxies to break, requiring you to "refresh" them in code but the call data is liable to be lost. NServiceBus provides full system rollback. Not only does your database remain consistent, but your messages return to their queues and no valuable data is lost.
+The next important thing is fault-tolerance. Exceptions cause WCF proxies to break, requiring to "refresh" them in code but the call data is liable to be lost. NServiceBus provides full system rollback. Not only does the database remain consistent, but the messages return to their queues and no valuable data is lost.
 
 
 ## Same for plain MSMQ
 
-Whether you're looking at the MSMQ bindings for WCF or programming directly against MSMQ, in both cases you have to handle pub/sub and the transaction and exception management needed for full fault tolerance. You also have to handle long-running processes with MSMQ.
+Whether looking at the MSMQ bindings for WCF or programming directly against MSMQ, in both cases it is required to handle pub/sub and the transaction and exception management needed for full fault tolerance. It is also necessary to handle long-running processes with MSMQ.
 
 
 ## Long-running processes
@@ -29,8 +29,8 @@ Transactions are automatically handled on a per-message basis and inherently spa
 
 ## Interoperability
 
-You can expose your NServiceBus endpoints as WCF services with as little as one line of code and the standard WCF configuration. All you need to do is write an empty class that inherits from NServiceBus.WcfService, specifying the types of the request and the response, and NServiceBus does the rest, as follows:
+It is possible expose the NServiceBus endpoints as WCF services with as little as one line of code and the standard WCF configuration. All that is required it to write an empty class that inherits from NServiceBus.WcfService, specifying the types of the request and the response, and NServiceBus does the rest, as follows:
 
     public class MyService : NServiceBus.WcfService { }
 
-With NServiceBus, you get access to the features you need from WCF, such as interoperability, without giving up the reliability and scalability of messaging.
+NServiceBus provides access to the features of WCF, such as interoperability, without giving up the reliability and scalability of messaging.

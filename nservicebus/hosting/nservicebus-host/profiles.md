@@ -17,6 +17,7 @@ Manual configuration and code changes make this process error-prone and make ver
 
 The NServiceBus Host provides facilities of profiles designed specifically to ease this process and provide structure when versioning the configuration of a system. Read about the [host](/nservicebus/hosting/nservicebus-host/).
 
+
 ## Configuration difficulties
 
 Starting out with NServiceBus development isn't always easy. There are many configuration options for levels of logging, technologies for storing subscribers, and types of saga storage (to name a few). Often, you want an appropriate combination of all these options as long as you can change it later. Profiles give you that flexibility.
@@ -27,6 +28,7 @@ NServiceBus comes with three profiles out of the box: Lite, Integration, and Pro
  * Integration uses technologies closer to production but without scale-out and less logging.
  * Production uses scale-out friendly technologies and minimal file-based logging.
 
+
 ## Specifying which profiles to run
 
 To tell the host to run using a specific profile, you need to pass the namespace-qualified type of the profile class to the NServiceBus host as a command-line parameter. Specify the Lite profile, as follows:
@@ -35,9 +37,9 @@ To tell the host to run using a specific profile, you need to pass the namespace
 NServiceBus.Host.exe NServiceBus.Lite
 ```
 
-You may be concerned about the use of command-line parameters. Be aware that when installing the NServiceBus host as a Windows Service, all provide profiles are baked into the installation. Second, having the ability to sit down at a tester workstation and turn on and off various behaviors without touching configuration files or code makes isolating bugs much easier. It may take some time to get used to, but the benefits are worth it.
+Be aware that when installing the NServiceBus host as a Windows Service, all provide profiles are baked into the installation. Second, having the ability to sit down at a tester workstation and turn on and off various behaviors without touching configuration files or code makes isolating bugs much easier. It may take some time to get used to, but the benefits are worth it.
 
-If you just run the host without specifying a profile, NServiceBus defaults to the Production profile. You can pass in as many profiles as you want and NServiceBus runs them all.
+If you just run the host without specifying a profile, NServiceBus defaults to the Production profile. Pass in as many profiles as you want and NServiceBus runs them all.
 
 
 ## Writing a custom profile
@@ -52,7 +54,7 @@ To tell the host to run the profile and the NServiceBus Lite profile together:
 NServiceBus.Host.exe YourNamespace.YourProfile NServiceBus.Lite
 ```
 
-As you can see, the profile itself does not contain any behavior itself. It is just a place-holder around which different kinds of behavior can be hooked. See how those behaviors are connected to their profiles.
+Note the profile itself does not contain any behavior itself. It is just a place-holder around which different kinds of behavior can be hooked. See how those behaviors are connected to their profiles.
 
 
 ## Profile behaviors
@@ -60,27 +62,27 @@ As you can see, the profile itself does not contain any behavior itself. It is j
 To provide behavior around a profile, implement the `NServiceBus.Hosting.Profiles.IHandleProfile<T>` interface where `T` is the given profile.
 For example, an email component
 
--   Does nothing with the Lite profile
--   Writes emails to disk with the Integration profile
--   Uses an SMTP server with the Production profile
+ * Does nothing with the Lite profile
+ * Writes emails to disk with the Integration profile
+ * Uses an SMTP server with the Production profile
 
 Set it up as follows:
 
 snippet:profile_behavior
 
-With these classes, switching profiles doesn't only change NServiceBus behaviors but also your own behaviors as a consistent set. There is no worry about keeping different parts of a configuration file in sync or changing the configuration file your application uses.
+With these classes, switching profiles doesn't only change NServiceBus behaviors but also custom behaviors as a consistent set. There is no worry about keeping different parts of a configuration file in sync or changing the configuration file the application uses.
 You can also have multiple classes provide behaviors for the same profile, or you can have a single class handle multiple profiles (by implementing `IHandleProfile<T>` for each profile type) if you want identical behavior across profiles.
 
 
 ## Dependent profile behaviors
 
-You may want slight variations of behavior based on the properties of the class that implements `IConfigureThisEndpoint`. Also, you don't necessarily want all profile handlers to be dependent on the type that implements `IConfigureThisEndpoint`, just for it to check whether it also implements some other interface. The host itself does this when it handles publishers. Endpoints that don't publish don't need to have a subscription storage. Those that are publishers do need different storage technologies configured, based on profile. Just as the host defines the `AsAPublisher` interface and customizes behavior around it, you can do the same with your own interfaces.
+You may want slight variations of behavior based on the properties of the class that implements `IConfigureThisEndpoint`. Also, you don't necessarily want all profile handlers to be dependent on the type that implements `IConfigureThisEndpoint`, just for it to check whether it also implements some other interface. The host itself does this when it handles publishers. Endpoints that don't publish don't need to have a subscription storage. Those that are publishers do need different storage technologies configured, based on profile. Just as the host defines the `AsAPublisher` interface and customizes behavior around it, you can do the same with the own interfaces.
 
 For a profile handler to access the type that implements `IConfigureThisEndpoint`, it has to implement `IWantTheEndpointConfig`, like this:
 
 snippet:dependent_profile
 
-This lets you extend the host and write additional profiles and behaviors to customize various aspects of your system, all while maintaining loose-coupling and composability between the various parts of your system.
+This lets you extend the host and write additional profiles and behaviors to customize various aspects of the system, all while maintaining loose-coupling and composability between the various parts of the system.
 
 
 ## Logging behaviors
@@ -91,7 +93,7 @@ The logging behavior configured for the three built-in profiles is shown:
 
 | Profile     | Appender     | Threshold 
 |-------------|--------------|-----
-| Lite        | Console      | Debug                        
+| Lite        | Console      | Debug
 | Integration | Console      | Info
 | Production  | Rolling File | Configurable, Warn by default
 
@@ -108,7 +110,7 @@ To specify logging for a given profile, write a class that implements `IConfigur
 
 snippet:configure_logging
 
- Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
+Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
 
 INFO: While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
 

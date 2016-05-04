@@ -7,7 +7,7 @@ tags:
 - Expiration
 ---
 
-Sometimes, when you select a message in ServiceInsight, the visualization windows will show the message "Data not available". 
+Sometimes, when selecting a message in ServiceInsight, the visualization windows will show the message "Data not available". 
 
 ![No data available](./images/no-conversation-data-available.png)
 

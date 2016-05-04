@@ -6,7 +6,7 @@ redirects:
  - nservicebus/ravendb/how-to-change-resourcemanagerid
 ---
 
-When using RavenDB in an environment where you are relying also on distributed transactions it can happen that a commit operation fails with the following error:
+When using RavenDB in an environment where distributed transactions is relied also on it can happen that a commit operation fails with the following error:
 
 > "A resource manager with the same identifier is already registered with the specified transaction coordinator"
 
@@ -23,7 +23,7 @@ It is possible to configure RavenDB to use a different resource manager ID in tw
           connectionString="Url=http://localhost:8080;ResourceManagerId=d5723e19-92ad-4531-adad-8611e6e05c8a" />
 ```
 
-* At runtime when creating the `DocumentStore` instance, for example when you need to inject your own document store as in the following sample:
+* At runtime when creating the `DocumentStore` instance, for example when injecting a document store as in the following sample:
 
 snippet:ChangeResourceManagerID
 

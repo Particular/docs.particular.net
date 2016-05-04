@@ -16,7 +16,7 @@ The RabbitMQ.Client library does not follow SemVer. This means they are free to 
 
 For example between versions 3.5.1 and 3.5.2 of RabbitMQ.Client the public type `RabbitMQ.Client.Framing.Impl.Connection` had two public fields and three public methods removed (luckily none of these affect the API surface area used by NServiceBus.RabbitMQ).
 
-RabbitMQ.Client's current policy of allowing "breaking changes in any version" makes it difficult for us to select a sensible default when it comes to determining the NuGet dependency version or version range.
+RabbitMQ.Client's current policy of allowing "breaking changes in any version" makes it difficult to select a sensible default when it comes to determining the NuGet dependency version or version range.
 
 
 ### If NServiceBus.RabbitMQ targets a specific version of RabbitMQ.Client
@@ -37,4 +37,4 @@ Our standard approach to targeting NuGet ranges is to target "any Minor in the c
 
 To address this, starting with NServiceBus.RabbitMQ Version 2.1.3, the package will target a "current Minor" range i.e. `≥ CurrentMajor.CurrentMinor && < CurrentMajor.NextMinor`. This is a compromise between the above two approaches. It allows some movement between RabbitMQ.Client versions while reducing the chance of breaking API changes. It also results in fewer deployments of NServiceBus.RabbitMQ to keep in sync.
 
-So, after an upgrade of the RabbitMQ.Client NuGet, if you have any problems with the above exceptions it is most likely a breaking API change. In that scenario [Contact Us](http://particular.net/contactus) or raise an issue in the [NServiceBus.RabbitMQ GitHub Repository](https://github.com/Particular/NServiceBus.RabbitMQ).
+So, after an upgrade of the RabbitMQ.Client NuGet, if there are any problems with the above exceptions it is most likely a breaking API change. In that scenario [Contact Us](http://particular.net/contactus) or raise an issue in the [NServiceBus.RabbitMQ GitHub Repository](https://github.com/Particular/NServiceBus.RabbitMQ).

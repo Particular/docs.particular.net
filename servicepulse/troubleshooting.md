@@ -9,17 +9,17 @@ tags:
 
 ### ServicePulse is unable to connect to ServiceControl
 
-* See [ServiceControl release notes](https://github.com/Particular/ServiceControl/releases/) Troubleshooting section for guidance on detecting ServiceControl HTTP API accessibility
-* Verify that ServicePulse is trying to access the correct ServiceControl URI (based on ServiceControl instance URI defined in ServicePulse installation settings)
-* Check that ServicePulse is not blocked from accessing the ServiceControl URI by firewall settings
+ * See [ServiceControl release notes](https://github.com/Particular/ServiceControl/releases/) Troubleshooting section for guidance on detecting ServiceControl HTTP API accessibility
+ * Verify that ServicePulse is trying to access the correct ServiceControl URI (based on ServiceControl instance URI defined in ServicePulse installation settings)
+ * Check that ServicePulse is not blocked from accessing the ServiceControl URI by firewall settings
 
 
 ### ServicePulse reports that 0 endpoints are active, although Endpoint plugins were deployed
 
-* Make sure you follow the guidance in [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md)
-* Restart the endpoint after copying the Endpoint Plugin files into the endpoint's Bin directory
-* Make sure that the endpoint references NServiceBus Version 4.0.0 or later
-* Make sure auditing is turned on for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl
+ * Endure to follow the guidance in [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md)
+ * Restart the endpoint after copying the Endpoint Plugin files into the endpoint's Bin directory
+ * Make sure that the endpoint references NServiceBus Version 4.0.0 or later
+ * Make sure auditing is turned on for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl
 
 
 ### ASP.NET applications heartbeat failure
@@ -29,7 +29,7 @@ tags:
 
 After a period of inactivity, a web application endpoint is failing with the message:
 
-	`Endpoint has failed to send expected heartbeat to ServiceControl. It is possible that the endpoint could be down or is unresponsive. If this condition persists, you might want to restart the endpoint`
+	Endpoint has failed to send expected heartbeat to ServiceControl. It is possible that the endpoint could be down or is unresponsive. If this condition persists restart the endpoint.
 
 When accessed, the web application is working fine. Shortly after accessing the web application, the Heartbeat message is restored and indicates the endpoint status as active.
 

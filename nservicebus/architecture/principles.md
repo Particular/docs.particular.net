@@ -1,16 +1,17 @@
 ---
 title: Architectural Principles
-summary: NServiceBus helps you write code that is robust in production environments, preventing data loss under failure conditions.
+summary: NServiceBus helps write code that is robust in production environments, preventing data loss under failure conditions.
 tags: []
 redirects:
  - nservicebus/architectural-principles
 ---
 
-Autonomy and loose coupling at design time and at run time are not things that any technology can give you.
+Autonomy and loose coupling at design time and at run time are not things that any technology can give.
 
 Service-oriented architecture (SOA) and event-driven architecture together provide the basis for identifying where to use NServiceBus.
 
 Strategic Domain-Driven Design helps bridge the business/IT divide and drives the choice of business events published using NServiceBus.
+
 
 ## How NServiceBus aligns with SOA
 
@@ -18,17 +19,19 @@ Strategic Domain-Driven Design helps bridge the business/IT divide and drives th
 
 In this presentation, Udi Dahan explains the disadvantages of classical web services thinking that places services at a layer below the user interface and above the business logic. Instead, he describes an approach that cuts across all layers of an application, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
 
+
 ## Drilling down into details
 
 One of the problems with the distributed systems built today is that they are fragile. As one part of the system slows down, the effect tends to ripple out and cripple the entire system. One of the primary design goals of NServiceBus is to eliminate that, guiding developers to write code that is robust in production environments. That robustness prevents data loss under failure conditions.
 
-To make effective use of NServiceBus, you need to understand the distributed systems architecture it is designed to support. In other words, if you design the system according to the principles laid out below, NServiceBus will make life a lot easier. On the other hand, if you do not follow these principles, NServiceBus will probably make it harder.
+To make effective use of NServiceBus, it is necessary to understand the distributed systems architecture it is designed to support. In other words, if designing the system according to the principles laid out below, NServiceBus will make life a lot easier. On the other hand, if these principles are not followed, NServiceBus will probably make it harder.
 
-The extensibility features in NServiceBus enable you to tweak its behavior to suit the specific needs, yet they are documented separately.
+The extensibility features in NServiceBus allow customizing its behavior to suit the specific needs, yet they are documented separately.
 
 The communications pattern that enables robustness is one-way messaging, also known as "fire and forget". This is discussed in more detail shortly.
 
 Since the amount of time it can take to communicate with another machine across the network is both unknown and unbounded, communications are based on a store-and-forward model, as shown in the following figure.
+
 
 ### Store and forward messaging
 
@@ -37,6 +40,7 @@ Since the amount of time it can take to communicate with another machine across 
 In this model, when the client process calls an API to send a message to the server process, the API returns control to the calling thread before the message is sent. At that point, the transfer of the message across the network becomes the responsibility of the messaging technology. There may be various kinds of communications interference, the server machine may be down, or a firewall may be slowing down the transfer. Also, even though the message may have reached the target machine, the target process may currently be down.
 
 While all of this is going on, the client process is oblivious. Critical resources like threads (and it's allocated memory) are not held waiting for the call to complete. This prevents the client process from losing stability as a result of having many threads and all their memory used up waiting for a response from the other machine or process.
+
 
 ### Request/response and one-way messaging
 
@@ -52,9 +56,11 @@ Durable messaging differs from regular store-and-forward messaging in that the m
 
 A different communication style involves one-to-many communication.
 
+
 ### Publish/subscribe
 
 In this style, the sender of the message often does not know the specifics of those that wish to receive the message. This additional loose coupling comes at the cost of subscribers explicitly opting-in to receiving messages, as shown in the following diagram.
+
 
 #### Subscriptions
 
@@ -69,6 +75,7 @@ Subscribers don't necessarily have to subscribe themselves. Through the use of t
 
 Another option that can be used is for multiple physical subscribers to make themselves appear as one single logical subscriber. This makes it possible to load balance the handling of messages between multiple physical subscribers without any explicit coordination on the part of the publisher or the part of any one subscriber. All that is needed is for all subscribers to specify the same return address in the subscription message.
 
+
 #### Publishing
 
 ![Publishing process](publish.png)
@@ -80,6 +87,7 @@ Messages that are published often represent events or things that have happened;
 Since many command messages can be received in a short period of time, publishing a message to all subscribers for every command message multiplies the incoming load and, as such, is a less than optimal solution. A better solution has the publisher rolling up all the changes that occurred in a given period of time into a single published message. The appropriate period of time depends on the Service Level Agreement of the publisher and its commitment to the freshness of the data. For instance, in the financial domain the publishing period may be 10ms, while in the business of consumer e-commerce, a minute may be acceptable.
 
 Another advantage of publishing messages on a timer is that that activity can be offloaded from the endpoint/server processing command messages, effectively scaling out over more servers.
+
 
 ### Command query separation
 

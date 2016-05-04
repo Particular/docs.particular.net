@@ -25,7 +25,7 @@ There are two ways to enable direct access to RavenDB:
 "ExposeRavenDB"="true"
 ```
 
-After restarting the ServiceControl service, you can access the RavenDB studio locally at the following endpoint:
+After restarting the ServiceControl service, access the RavenDB studio locally at the following endpoint:
 
     http://localhost:33333/storage
 

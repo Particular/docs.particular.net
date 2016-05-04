@@ -58,11 +58,11 @@ NOTE: Replace `X.Y` with latest minor/patch version.
 
 RavenDB integration, in both the core and the externalized versions is configured using extension methods. Since these cannot be made distinct using namespace or type,  re-using the same extension method names would result in type conflicts. To avoid the conflicts the externalized version has had to slightly rename the extension points.
 
-So where you would previously do :
+Previously:
 
 snippet:OldRavenDBPersistenceInitialization
 
-You now will use:
+Now:
 
 snippet:Version2_5RavenDBPersistenceInitialization
 

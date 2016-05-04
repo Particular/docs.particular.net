@@ -79,6 +79,6 @@ snippet:InstancePublish
 
 ### Publish an interface
 
-If you are using interfaces to define your event contracts you need to set the message properties by passing in a lambda. NServiceBus will then generate a proxy and set those properties.
+If using interfaces to define event contracts set the message properties by passing in a lambda. NServiceBus will then generate a proxy and set those properties.
 
 snippet:InterfacePublish

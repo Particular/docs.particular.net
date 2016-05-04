@@ -1,6 +1,6 @@
 ---
 title: SagaAudit Plugin
-summary: 'Helps you to visualize and debug Sagas with ServiceInsight.'
+summary: 'Helps visualize and debug Sagas with ServiceInsight.'
 tags:
 - ServiceControl
 ---
@@ -43,20 +43,20 @@ The increase in load is proportional to size of the saga data multiplied by the 
 
 ### Deprecated NuGet
 
-If you are using the older version of the plugin, namely **ServiceControl.Plugin.SagaAudit** remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
+If using the older version of the plugin, namely **ServiceControl.Plugin.SagaAudit** remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.
 
 
 ## Removing the plugin from Production
 
-If you are currently running the endpoint with the SagaAudit plugin in Production, do the following to remove it:
+If currently running the endpoint with the SagaAudit plugin in Production, do the following to remove it:
 
  1. Stop the endpoint
- 1. Delete the SagaAudit plugin dll from the endpoint's bin directory. (Either `ServiceControl.Plugin.Nsb5.SagaAudit.dll` or `ServiceControl.Plugin.Nsb4.SagaAudit.dll`). In addition to that, if you have automated deployment processes in place, ensure that this dll is no longer included.
+ 1. Delete the SagaAudit plugin dll from the endpoint's bin directory. (Either `ServiceControl.Plugin.Nsb5.SagaAudit.dll` or `ServiceControl.Plugin.Nsb4.SagaAudit.dll`). In addition to that, if there is an automated deployment processes in place, ensure that this dll is no longer included.
  1. Restart the endpoint
 
-Doing so will stop sending the saga state change messages to ServiceControl reducing message load to ServiceControl. You can always turn it back on if or when needed.
+Doing so will stop sending the saga state change messages to ServiceControl reducing message load to ServiceControl. Turn it back on if or when needed.
 
 
 ## Temporarily debugging sagas in Production
 
-If you wish to visualize the saga in Production and the plugin is not already deployed, then add the Saga Audit plugin in the same location where your saga is running and restart your endpoint. Use ServiceInsight to view the visualization and when done, follow the steps above to remove the plugin and restart your service. This approach is very similar for example, when you need to use Journaling to debug a message based system, where you turn it on when needed to collect the information you wish to see and then remove it from production.
+To visualize the saga in Production and the plugin is not already deployed, then add the Saga Audit plugin in the same location where the saga is running and restart the endpoint. Use ServiceInsight to view the visualization and when done, follow the steps above to remove the plugin and restart the service.

@@ -5,7 +5,7 @@ related:
  - nservicebus/messaging/publish-subscribe
 ---
 
-When using the Distributor in a full publish-subscribe deployment, you see is a Distributor within each subscriber balancing the load of events being published.
+When using the Distributor in a full publish-subscribe deployment, a Distributor within each subscriber balancing the load of events being published.
 
 
 ## Example Topology
@@ -28,7 +28,7 @@ All the Distributor does at this point is forward the message it receives to ano
 
 ![logical pub/sub and physical distribution 3](nservicebus-pubsub-3.png)
 
-You can think of the Distributor as something like a load balancer. It distributes the received messages to a number of other machines. This kind of physical one-to-many communication is needed for scaling out the number of machines running for a given subscriber, but doesn't actually entail any pub/sub. Each subscriber gets its own Distributor and each of them decides independently to which machine it passes its messages.
+Think of the Distributor as something like a load balancer. It distributes the received messages to a number of other machines. This kind of physical one-to-many communication is needed for scaling out the number of machines running for a given subscriber, but doesn't actually entail any pub/sub. Each subscriber gets its own Distributor and each of them decides independently to which machine it passes its messages.
 
 
 ## Multiple publishers
