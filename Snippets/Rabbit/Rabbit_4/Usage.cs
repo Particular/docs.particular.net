@@ -43,7 +43,7 @@ class Usage
         transport.ConnectionString(@"host=broker1;UseTls=true;CertPath=C:\CertificatePath\ssl.pfx;CertPassphrase=securePassword");
 
         #endregion
-    }    
+    }
 
     void CallbackReceiverMaxConcurrency(EndpointConfiguration endpointConfiguration)
     {
