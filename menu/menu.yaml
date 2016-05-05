@@ -37,9 +37,6 @@
         - Title: "Azure Service Bus Transport"
           Articles:
             - "nservicebus/upgrades/asb-6to7"
-        - Title: "SQL Server Transport"
-          Articles:
-            - "nservicebus/upgrades/sqlserver-2to3"
         - Title: "NHibernate Persistence"
           Articles:
             - "nservicebus/upgrades/nhibernate-6to7"
@@ -49,6 +46,12 @@
         - Title: "NServiceBus Host"
           Articles:
             - "nservicebus/upgrades/host-6to7"
+        - Title: "RavenDB Persistence"
+          Articles:
+            - "nservicebus/upgrades/ravendb-3to4"
+        - Title: "SQL Server Transport"
+          Articles:
+            - "nservicebus/upgrades/sqlserver-2to3"
     -
       Title: "Messaging"
       Url: "nservicebus/messaging"
