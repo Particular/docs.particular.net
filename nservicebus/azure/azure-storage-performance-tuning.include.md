@@ -14,7 +14,7 @@ NOTE: Settings changes must be applied before the application makes any outbound
 
 The .NET Framework is configured to only allow 2 simultaneous connections to the same resource by default. A higher connection limit allows more parallel requests and therefore results in a higher network throughput. Setting the connection limit too high bypasses the built in connection reuse mechanism which may result in a sub-optimal resource usage.
 
-The optimal value depends on the physical properties of the host machine and the endpoint's expected workload. The ideal number is lower than the average amount of parallel storage operations. We recommend to start with a value of 10 and adjusting the value based on the observed performance impact.
+The optimal value depends on the physical properties of the host machine and the endpoint's expected workload. The ideal number is lower than the average amount of parallel storage operations. It is recommended to start with a value of 10 and adjusting the value based on the observed performance impact.
 
 
 ### Disable Nagle's algorithm
