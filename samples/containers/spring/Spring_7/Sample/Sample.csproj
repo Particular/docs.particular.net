@@ -38,7 +38,7 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0002\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Spring">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Spring.7.0.0-alpha0031\lib\net452\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Spring.7.0.0-beta0001\lib\net452\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Core, Version=2.0.1.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
