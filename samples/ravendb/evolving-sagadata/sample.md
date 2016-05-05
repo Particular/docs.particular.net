@@ -63,7 +63,7 @@ snippet:Converter
 
 #### Reading
 
-The `AfterConversionToEntity` handles reading read the saga data from RavenDB.
+The `AfterConversionToEntity` handles reading the saga data from RavenDB.
 
 In this case the `ItemCount` wont exist on the Version 2 saga data so it needs to be read from the raw `RavenJObject`.
 
