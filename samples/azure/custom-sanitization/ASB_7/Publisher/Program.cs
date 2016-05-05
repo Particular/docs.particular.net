@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.AzureServiceBus;
+using NServiceBus.Features;
+using Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events;
 
 class Program
 {
@@ -12,25 +14,22 @@ class Program
 
     static async Task MainAsync()
     {
-        Console.Title = "Samples.Azure.ServiceBus.Endpoint1";
-        #region config
-
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Endpoint1");
-        endpointConfiguration.SendFailedMessagesTo("error");
+        Console.Title = "Samples.ASB.Serialization.Publisher";
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ASB.Serialization.Publisher");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
         transport.UseTopology<ForwardingTopology>();
-
-        #endregion
-
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+
         try
         {
-            Console.WriteLine("Press 'enter' to send a message");
+            Console.WriteLine("Press 'e' to publish an event");
             Console.WriteLine("Press any other key to exit");
 
             while (true)
@@ -38,18 +37,14 @@ class Program
                 ConsoleKeyInfo key = Console.ReadKey();
                 Console.WriteLine();
 
-                if (key.Key != ConsoleKey.Enter)
-                {
-                    return;
-                }
+                Guid eventId = Guid.NewGuid();
 
-                Guid orderId = Guid.NewGuid();
-                Message1 message = new Message1
+                if (key.Key != ConsoleKey.E)
                 {
-                    Property = "Hello from Endpoint1"
-                };
-                await endpoint.Send("Samples.Azure.ServiceBus.Endpoint2", message);
-                Console.WriteLine("Message1 sent");
+                    break;
+                }
+                await endpoint.Publish(new SomeEvent { EventId = eventId });
+                Console.WriteLine("SomeEvent sent. EventId: " + eventId);
             }
         }
         finally

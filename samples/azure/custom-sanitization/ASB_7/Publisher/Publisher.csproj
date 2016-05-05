@@ -7,8 +7,8 @@
     <ProjectGuid>{11641841-C7E9-4B49-9688-99E54187A7E8}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Endpoint1</RootNamespace>
-    <AssemblyName>Endpoint1</AssemblyName>
+    <RootNamespace>Publisher</RootNamespace>
+    <AssemblyName>Publisher</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -41,10 +41,6 @@
     <Reference Include="Microsoft.ServiceBus">
       <HintPath>..\..\..\..\..\packages\WindowsAzure.ServiceBus.3.1.7\lib\net45-full\Microsoft.ServiceBus.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\Newtonsoft.Json.8.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -52,9 +48,6 @@
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-beta0002\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-beta0002\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0002\lib\net452\NServiceBus.Core.dll</HintPath>
@@ -75,7 +68,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Message2Handler.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

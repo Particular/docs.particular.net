@@ -9,12 +9,10 @@ related:
 
 ## Prerequisites
 
-An environment variable named `AzureServiceBus.ConnectionString` that contains the connection string for the Azure Service Bus namespace.
+include: asb-connectionstring
 
 
-## Azure Service Bus Transport
-
-This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure-service-bus/).
+include: asb-transport
 
 
 ## Code walk-through

@@ -60,3 +60,12 @@ snippet:topology-selection-upgrade-guide
 When the `EndpointOrientedTopology` is selected, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers receive event messages:
 
 snippet:publisher_names_mapping_upgrade_guide
+
+
+## Sanitization
+
+In version 6 and below sanitization was performed by default and the MD5 algorithm was used to truncate entity names. To maintain backward compatibility, [use `EndpointOrientedTopologySanitization` strategy](/nservicebus/azure-service-bus/sanitization.md#version-7-and-above).
+
+snippet: asb-endpointorientedtopology-sanitization
+
+In version 6.4.0 `NamingConventions` class was introduced to customize sanitization. The class is obsoleted. Instead, implement a [custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#version-7-and-above).

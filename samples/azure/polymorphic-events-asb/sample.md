@@ -2,7 +2,7 @@
 title: Polymorphic events with Azure Service Bus Transport
 summary: Handling polymorphic events with Azure Service Bus Transport.
 component: ASB
-reviewed: 2016-03-21
+reviewed: 2016-05-03
 related:
 - nservicebus/azure-service-bus
 - nservicebus/messaging/publish-subscribe
@@ -12,14 +12,10 @@ redirects:
 - samples/azure/polyorphic-events-asb
 ---
 
-## Prerequisites
-
-An environment variable named `SamplesAzureServiceBusConnection` that contains the connection string for the Azure Service Bus namespace.
+include: asb-connectionstring
 
 
-## Azure Service Bus Transport
-
-This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure-service-bus/).
+include: asb-transport
 
 
 ## Code walk-through
@@ -97,3 +93,7 @@ Results of the sample now adhere to the expected polymorphic message handling
 snippet:PublisherOutput-from-sample
 
 snippet:SubscriberOutput-from-sample
+
+NOTE: From versions 7 and above, publisher names have to be configured via code for the subscribers.
+
+snippet: RegisterPublisherNames
