@@ -76,7 +76,7 @@ Create a fictive `Orders` table using
 
 snippet: CreateLegacyTable
 
-and create an `on inserted` trigger that will send a `LegacyOrderDetected` message for each new order that is added to the table. Here's the trigger:
+And create an `on inserted` trigger that will send a `LegacyOrderDetected` message for each new order that is added to the table. Here's the trigger:
 
 snippet: CreateTrigger
 
