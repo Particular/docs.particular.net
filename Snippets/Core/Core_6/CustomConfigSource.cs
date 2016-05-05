@@ -24,7 +24,7 @@
     {
         public T GetConfiguration<T>() where T : class, new()
         {
-            // the part you are overriding
+            // the part being overridden
             if (typeof(T) == typeof(RijndaelEncryptionServiceConfig))
             {
                 return new RijndaelEncryptionServiceConfig

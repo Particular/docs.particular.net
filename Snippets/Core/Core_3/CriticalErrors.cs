@@ -31,11 +31,11 @@ namespace Core3.Host
             //Write log entry in version 3 since this is not done by default.
             logger.Fatal("CRITICAL Error");
 
-            // If you want the process to be active, dispose the bus.
+            // To leave the process active, dispose the bus.
             // Note that when the bus is disposed sending messages will throw with an ObjectDisposedException.
             ((IDisposable)bus).Dispose();
 
-            // If you want to kill the process, raise a fail fast error as shown below.
+            // To kill the process, raise a fail fast error as shown below.
             //string failMessage = string.Format("Critical error shutting down:'{0}'.", errorMessage);
             //Environment.FailFast("Fatal bus exception");
         }

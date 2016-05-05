@@ -15,7 +15,7 @@
 
         public void Handle(MyMessage message)
         {
-            // you may also want to log a reason here
+            // may want to log a reason here
             bus.DoNotContinueDispatchingCurrentMessageToHandlers();
         }
     }

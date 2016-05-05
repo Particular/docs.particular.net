@@ -55,7 +55,7 @@
             endpointConfiguration.DefineCriticalErrorAction(
                 new Func<ICriticalErrorContext, Task>(context =>
                 {
-                    // place you custom handling here
+                    // place custom handling here
                     return Task.FromResult(0);
                 }));
 

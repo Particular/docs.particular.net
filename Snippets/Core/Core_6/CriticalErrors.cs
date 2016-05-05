@@ -23,10 +23,10 @@ namespace Core6
 
         Task OnCriticalError(ICriticalErrorContext context)
         {
-            // If you want the process to be active, stop the endpoint.
+            // To leave the process active, stop the endpoint.
             return context.Stop();
 
-            // If you want to kill the process, await the above, then raise a fail fast error as shown below.
+            // To kill the process, await the above, then raise a fail fast error as shown below.
             //string failMessage = string.Format("Critical error shutting down:'{0}'.", context.Error);
             //Environment.FailFast(failMessage, context.Exception);
         }

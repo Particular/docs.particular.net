@@ -24,11 +24,11 @@ namespace Core4
 
         void OnCriticalError(string errorMessage, Exception exception)
         {
-            // If you want the process to be active, dispose the bus.
+            // To leave the process active, dispose the bus.
             // Note that when the bus is disposed sending messages will throw with an ObjectDisposedException.
             bus.Dispose();
 
-            // If you want to kill the process, raise a fail fast error as shown below.
+            // To kill the process, raise a fail fast error as shown below.
             //string failMessage = string.Format("Critical error shutting down:'{0}'.", errorMessage);
             //Environment.FailFast(failMessage, exception);
         }

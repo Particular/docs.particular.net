@@ -70,7 +70,7 @@
             catch (Exception)
             {
                 // Handle any custom processing that need to occur when a message always fails.
-                // if you want to rollback the receive operation instead of mark as processed:
+                // To rollback the receive operation instead of mark as processed:
                 context.AbortReceiveOperation();
             }
             #endregion
