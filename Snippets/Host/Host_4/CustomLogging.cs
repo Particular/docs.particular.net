@@ -5,7 +5,7 @@ class MyEndpointConfig : IConfigureThisEndpoint, IWantCustomLogging
 {
     public void Init()
     {
-        // setup your logging infrastructure then call
+        // setup logging infrastructure
         SetLoggingLibrary.Log4Net(null, new MyLogger());
     }
 }

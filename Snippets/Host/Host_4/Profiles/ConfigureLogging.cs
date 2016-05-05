@@ -5,7 +5,7 @@ class YourProfileLoggingHandler : IConfigureLoggingForProfile<YourProfile>
 {
     public void Configure(IConfigureThisEndpoint specifier)
     {
-        // setup your logging infrastructure here
+        // setup logging infrastructure
     }
 }
 #endregion

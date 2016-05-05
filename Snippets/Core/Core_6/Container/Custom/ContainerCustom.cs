@@ -15,7 +15,7 @@
             endpointConfiguration.UseContainer<MyContainer>();
         }
 
-        // Create a class that implements 'ContainerDefinition' and returns your 'IContainer' implementation.
+        // Create a class that implements 'ContainerDefinition' and returns the 'IContainer' implementation.
         public class MyContainer : ContainerDefinition
         {
             public override IContainer CreateContainer(ReadOnlySettings settings)

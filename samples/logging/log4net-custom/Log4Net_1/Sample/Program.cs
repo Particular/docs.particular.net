@@ -33,7 +33,7 @@ class Program
 
         LogManager.Use<Log4NetFactory>();
 
-        // Then continue with your bus configuration
+        // Then continue with the bus configuration
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Logging.Log4NetCustom");
 

@@ -43,7 +43,7 @@ public class MvcApplication : HttpApplication
 
         ContainerBuilder builder = new ContainerBuilder();
 
-        // Register your MVC controllers.
+        // Register the MVC controllers.
         builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
         // Set the dependency resolver to be Autofac.

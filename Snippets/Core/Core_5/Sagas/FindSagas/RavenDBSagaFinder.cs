@@ -20,7 +20,7 @@
 
             public MySagaData FindBy(MyMessage message)
             {
-                //your custom finding logic here, e.g.
+                //the custom finding logic here, e.g.
                 return sessionProvider.Session
                     .Query<MySagaData>()
                     .SingleOrDefault(x =>

@@ -28,7 +28,7 @@ class Program
         //Pass the appenders to NServiceBus
         SetLoggingLibrary.Log4Net(null, appender);
 
-        // Then continue with your bus configuration
+        // Then continue with the bus configuration
         Configure.Serialization.Json();
         Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Logging.Log4NetCustom");

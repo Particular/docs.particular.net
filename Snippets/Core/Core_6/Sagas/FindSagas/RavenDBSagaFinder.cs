@@ -17,7 +17,7 @@
         {
             public Task<MySagaData> FindBy(MyMessage message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
             {
-                //your custom finding logic here, e.g.
+                // the custom finding logic here, e.g.
                 IAsyncDocumentSession ravenSession = storageSession.RavenSession();
                 MySagaData sagaData = ravenSession
                     .Query<MySagaData>()

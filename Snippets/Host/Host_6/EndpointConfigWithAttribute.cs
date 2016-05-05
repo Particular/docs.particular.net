@@ -4,7 +4,7 @@
 [EndpointName("MyEndpointName")]
 public class EndpointConfigWithAttribute : IConfigureThisEndpoint, AsA_Server
 {
-    // ... your config
+    // ... the config
     #endregion
     public void Customize(BusConfiguration busConfiguration)
     {

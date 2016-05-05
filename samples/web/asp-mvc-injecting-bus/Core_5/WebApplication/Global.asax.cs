@@ -15,7 +15,7 @@ public class MvcApplication : HttpApplication
 
         ContainerBuilder builder = new ContainerBuilder();
 
-        // Register your MVC controllers.
+        // Register the MVC controllers.
         builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
         // Set the dependency resolver to be Autofac.
@@ -24,7 +24,7 @@ public class MvcApplication : HttpApplication
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MvcInjection.WebApplication");
         // ExistingLifetimeScope() ensures that IBus is added to the container as well,
-        // allowing you to resolve IBus from your own components.
+        // allowing you to resolve IBus from the components.
         busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();

@@ -16,7 +16,7 @@
         {
             public Task<MySagaData> FindBy(MyMessage message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
             {
-                //your custom finding logic here, e.g.
+                // the custom finding logic here, e.g.
                 ISession nhibernateSession = storageSession.Session();
                 MySagaData sagaData = nhibernateSession.QueryOver<MySagaData>()
                     .Where(x =>

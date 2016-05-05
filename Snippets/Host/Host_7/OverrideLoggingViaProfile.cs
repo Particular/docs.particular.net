@@ -10,7 +10,7 @@ public class OverrideLoggingViaProfile
     {
         public void Configure(IConfigureThisEndpoint specifier)
         {
-            // setup your logging infrastructure then call
+            // setup logging infrastructure
             LogManager.Use<Log4NetFactory>();
         }
     }

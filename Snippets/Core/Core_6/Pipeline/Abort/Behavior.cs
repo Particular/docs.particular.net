@@ -20,7 +20,7 @@ namespace Core6.Pipeline.Abort
 
         bool ShouldPipelineContinue(IIncomingLogicalMessageContext context)
         {
-            // your custom logic to determine if the pipeline should continue 
+            // the custom logic to determine if the pipeline should continue 
             return true;
         }
     }

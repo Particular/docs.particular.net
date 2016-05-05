@@ -38,7 +38,7 @@ class Program
 
         LogManager.Use<Log4NetFactory>();
 
-        // Then continue with your endpoint configuration
+        // Then continue with the endpoint configuration
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Logging.Log4NetCustom");
 
         #endregion

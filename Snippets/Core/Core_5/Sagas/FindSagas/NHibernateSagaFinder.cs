@@ -14,7 +14,7 @@
 
             public MySagaData FindBy(MyMessage message)
             {
-                //your custom finding logic here, e.g.
+                // the custom finding logic here, e.g.
                 return StorageContext.Session.QueryOver<MySagaData>()
                     .Where(x =>
                         x.SomeID == message.SomeID &&

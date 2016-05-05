@@ -19,7 +19,7 @@ namespace Core4.Pipeline.Abort
 
         bool ShouldPipelineContinue(HandlerInvocationContext context)
         {
-            // your custom logic to determine if the pipeline should continue 
+            // the custom logic to determine if the pipeline should continue 
             return true;
         }
     }
