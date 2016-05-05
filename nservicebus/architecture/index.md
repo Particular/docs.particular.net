@@ -21,7 +21,7 @@ When people hear the term "service bus", they picture a central box through whic
 
 There is no physical WCF one can point to in the network topology. WCF is part of the infrastructure that is run in-process with a given application's code. NServiceBus is the same.
 
-Just like you can write your own host process and activate WCF explicitly within it, you can do the same thing with NServiceBus. The bus in NServiceBus is something virtual - a collection of framework objects running in the various application processes. You can think of it as a peer-to-peer mesh that runs alongside your code, as illustrated in the following diagram:
+Just like it is possible write a host process and activate WCF explicitly within it, the same can be done with NServiceBus. The bus in NServiceBus is something virtual - a collection of framework objects running in the various application processes. Think of it as a peer-to-peer mesh that runs alongside code, as illustrated in the following diagram:
 
 ![deployment topology](deployment-topology.jpg)
 
@@ -32,7 +32,7 @@ The principles that make NServiceBus robust are decades old. Proven to hold up t
 
 As a general purpose communications technology, WCF does not enforce the queued messaging paradigm. NServiceBus does, and the architectural implications are profound.
 
-When developing systems according to the traditional RPC techniques that WCF supports, it simple and straightforward to get something working. That's when the problems start. Scalability and fault-tolerance are inherently hindered by RPC principles. At this point, it is close to impossible to solve these problems and even throwing more hardware at it has little effect. While WCF doesn't force developers down this path, it doesn't prevent them from doing so either. NServiceBus directs you away from these problems right from the beginning.
+When developing systems according to the traditional RPC techniques that WCF supports, it simple and straightforward to get something working. That's when the problems start. Scalability and fault-tolerance are inherently hindered by RPC principles. At this point, it is close to impossible to solve these problems and even throwing more hardware at it has little effect. While WCF doesn't force developers down this path, it doesn't prevent them from doing so either. NServiceBus directs away from these problems right from the beginning.
 
 
 ## Scalability with one-way messaging

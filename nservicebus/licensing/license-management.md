@@ -31,7 +31,7 @@ For 64-bit operating systems the license is written to both the 32-bit and 64-bi
 
 #### Other Manual Options
 
-These following instructions cover installing the license file without using NServiceBus PowerShell Module. These options give a bit more flexibility as they allow you to store the the license in `HKEY_CURRENT_USER` if you wish. If the licenses is stored in `HKEY_CURRENT_USER` it is only accessible to the current user.
+These following instructions cover installing the license file without using NServiceBus PowerShell Module. These options give a bit more flexibility as they support storing the the license in `HKEY_CURRENT_USER`. If the licenses is stored in `HKEY_CURRENT_USER` it is only accessible to the current user.
 
 
 ##### Using PowerShell Command Prompt 
@@ -45,21 +45,21 @@ $content = Get-Content license.xml | Out-String
 Set-ItemProperty -Path HKLM:\Software\ParticularSoftware -Name License -Force -Value $content
 ```
 
-If modifying the registry directly using Registry Editor or a PowerShell script to update the license for ServiceControl, you will need to restart the ServiceControl service, as it only checks for its license information once at startup.
+If modifying the registry directly using Registry Editor or a PowerShell script to update the license for ServiceControl, it is necessary to restart the ServiceControl service, as it only checks for its license information once at startup.
 
 NOTE: For 64 bit operating systems repeat the process in both the Powershell prompt and the PowerShell(x86) console prompt.  This will ensure the license is imported into both the 32 bit and 64 bit registry keys. 
 
 
 ##### Using Registry Editor
 
-- Run `regedit.exe` (usually located in `%windir%`, e.g. `C:\Windows`)
-- Go to `HKEY_LOCAL_MACHINE\Software\ParticularSoftware` or `HKEY_CURRENT_USER\Software\ParticularSoftware`
-- Create a new Multi-String Value (`REG_MULTI_SZ`) named `License`
-- Paste the contents of the license file you received from Particular Software.
+ * Run `regedit.exe` (usually located in `%windir%`, e.g. `C:\Windows`)
+ * Go to `HKEY_LOCAL_MACHINE\Software\ParticularSoftware` or `HKEY_CURRENT_USER\Software\ParticularSoftware`
+ * Create a new Multi-String Value (`REG_MULTI_SZ`) named `License`
+ * Paste the contents of the license file.
 
 If `HKEY_LOCAL_MACHINE`is the chosen license location and the operating system is 64-bit then repeat the import process for the `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ParticularSoftware` key to support 32-bit clients.
 
-You can safely ignore any warnings regarding empty strings.
+It is safe to ignore any warnings regarding empty strings.
 
 
 ### NServiceBus Version 3.3
@@ -70,7 +70,7 @@ To install the license in the registry, use one of these options:
 
  * The `LicenseInstaller.exe` tool that comes with the NServiceBus install.
  * The [Install-License](/nservicebus/operations/management-using-powershell.md) PowerShell commandlet.
- * If your trial license has expired and you are running in debug mode, the endpoint shows you a dialog that enables you to install the license.
+ * If the trial license has expired and running in debug mode, the endpoint shows a dialog that allows installing the license.
 
 
 ### NServiceBus 4.x versions prior to Version 4.5
@@ -80,23 +80,23 @@ When installed using the [Install-NServiceBusLicense](/nservicebus/operations/ma
 In order to install the license file under HKCU (same location in Version 3.3), use the `-c` option on the `LicenseInstaller.exe`
 
 
-## Using a sub-directory in your BIN directory
+## Using a sub-directory in the BIN directory
 
-To have NServiceBus automatically pick up your License.xml file, place it in a subfolder named /License under your BIN folder.
+To have NServiceBus automatically pick up the License.xml file, place it in a subfolder named /License under the BIN folder.
 
 
 ## Using the app.config settings
 
-As a developer you can specify the license in `app.config`:
+It is possible to specify the license in `app.config`:
 
--   Use the key `NServiceBus/LicensePath` to specify the path where NServiceBus looks for your license. For example:
+-   Use the key `NServiceBus/LicensePath` to specify the path where NServiceBus looks for the license. For example:
 
 ```XML
 <appSettings>
   <add key="NServiceBus/LicensePath" value="C:\NServiceBus\License\License.xml" />
 </appSettings>
 ```
--   Use the key `NServiceBus/License` to transfer the actual HTML-encoded contents of your license. For example:
+-   Use the key `NServiceBus/License` to transfer the actual HTML-encoded contents of the license. For example:
 
 ```XML
 <appSettings>
@@ -113,7 +113,7 @@ license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;201
 
 ## Using the configuration API
 
-As a developer you can specify the license to use in your configuration code:
+It is possible to specify the license to use in the configuration code:
 
 snippet:License
 
@@ -142,4 +142,4 @@ In order to find the license, NServiceBus will examine:
 **Notes:**
 
  1. The `Wow6432Node` registry keys are only accessed if running a 32-bit host on a 64-bit OS.
- 2. Storing licenses in the registry by NServiceBus version was abandoned in NServiceBus 4.3. For backwards compatibility, newer versions of NServiceBus will still check this pattern for versions `4.0`, `4.1`, `4.2`, and `4.3`.
+ 1. Storing licenses in the registry by NServiceBus version was abandoned in NServiceBus 4.3. For backwards compatibility, newer versions of NServiceBus will still check this pattern for versions `4.0`, `4.1`, `4.2`, and `4.3`.

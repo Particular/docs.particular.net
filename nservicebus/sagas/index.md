@@ -49,7 +49,7 @@ The important part of a long-running process is its behavior. Just like regular 
 
 ## Starting a saga
 
-Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sagas are, in essence, a message driven state machine. The trigger to started this state machine is the arrival of one or more specified message types. In our previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives. This would be declared by adding `IAmStartedByMessages<StartOrder>` to the saga.
+Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sagas are, in essence, a message driven state machine. The trigger to started this state machine is the arrival of one or more specified message types. In the previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives. This would be declared by adding `IAmStartedByMessages<StartOrder>` to the saga.
 
 NOTE: `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that.
 
@@ -125,11 +125,11 @@ Messages can be publishing from a saga at any time. This is often used to notify
 
 Attempting to use `Bus.Reply()` or `Bus.Return()` to communicate with the caller, that would only achieve the desired result in the case where the current message came from that client, and not in the case where any other partner sent a message arriving at that saga. For this reason, notice that the saga data contains the original client's return address. It also contains the message ID of the original request so that the client can correlate status messages on its end.
 
-To communicate status in our ongoing example:
+To communicate status in the example:
 
 snippet:saga-with-reply
 
-This is one of the methods on the saga base class that would be very difficult to implement yourself without tying the saga code to low-level parts of the NServiceBus infrastructure.
+This is one of the methods on the saga base class that would be very difficult to implement without tying the saga code to low-level parts of the NServiceBus infrastructure.
 
 
 ## Configuring Saga persistence

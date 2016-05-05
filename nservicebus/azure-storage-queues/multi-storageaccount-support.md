@@ -12,7 +12,7 @@ redirects:
  - nservicebus/azure/using-multiple-azure-storage-accounts-for-scaleout
 ---
 
-An NServiceBus-based system running on Azure Storage Queues transport using a single storage account is subject to potential throttling once the maximum number of messages is written to the storage account. To overcome this limitation, you can use multiple storage accounts. To better understand scale out options with storage accounts, you need to understand Azure storage account scalability and performance.
+An NServiceBus-based system running on Azure Storage Queues transport using a single storage account is subject to potential throttling once the maximum number of messages is written to the storage account. To overcome this limitation, use multiple storage accounts. To better understand scale out options with storage accounts, it is necessary understand Azure storage account scalability and performance.
 
 
 ## Azure Storage Scalability and Performance
@@ -62,7 +62,7 @@ Each endpoint uses its own Azure storage account, thereby increasing message thr
 
 ## Scale Units
 
-Scaleout works to a certain extent, but you cannot apply it infinitely while expecting throughput to increase accordingly. You can only get so much throughput from a single resource or group of resources grouped together.
+Scaleout works to a certain extent, but it cannot be applied infinitely while expecting throughput to increase accordingly. Only so much throughput from a single resource or group of resources grouped together is possible.
 
 Suitable techniques in the cloud include resource partitioning and use of scale units. A scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput, create more scale units. Scale units do not share resources.
 
@@ -70,4 +70,4 @@ An example of a partitioned application with a different number of deployed scal
 
 ![Scale units](azure04.png "width=50%")
 
-NOTE: You must use real Azure storage accounts because the Azure storage emulator only supports a single fixed account named `devstoreaccount1`.
+NOTE: Use real Azure storage accounts because the Azure storage emulator only supports a single fixed account named `devstoreaccount1`.

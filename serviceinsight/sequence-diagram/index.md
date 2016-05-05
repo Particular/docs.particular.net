@@ -19,7 +19,7 @@ Use the sequence diagram when the timing of messages handling is important to un
 
 ## Which data is used to generate the diagram
 
-When you send a message through NServiceBus, some headers are added automatically. All messages get the `NServiceBus.MessageId` header. This is a unqiue ID for the message. 
+When a message is sent through NServiceBus, some headers are added automatically. All messages get the `NServiceBus.MessageId` header. This is a unqiue ID for the message. 
 
 If handling a message causes more messages to be sent or published then the `MessageId` of the message being handled is copied to the `NServiceBus.RelatedTo` header of the outgoing messages.
 
@@ -61,7 +61,7 @@ Right-clicking on a message label gives access to actions related to that messag
 
 ![Message processing box](handler.png)
 
-Some time after a message is received it is processed by the endpoint. This is represented as a box on the endpoint lifeline, labeled with the type of message that it is processing. If the endpoint has received multiple messages of the same type you can see which specific instance is being processed by hovering over or selecting the processing box.
+Some time after a message is received it is processed by the endpoint. This is represented as a box on the endpoint lifeline, labeled with the type of message that it is processing. If the endpoint has received multiple messages of the same type it is possible to see which specific instance is being processed by hovering over or selecting the processing box.
 
 If a message arrow is drawn coming out of a processing box then that means that the message was sent as a part of processing the original message. The order that message arrows appear within a processing box is representative of the order they were sent.
 
@@ -69,7 +69,7 @@ NOTE: If a processing box appears further down the diagram then it was executed 
 
 ![Failed processing](failing-handler.png)
 
-If the processing of a message fails, the processing box will be displayed in red with an exclamation mark in it. If the message that failed to process hasn't already been (automatically) retried, you can manually retry the message via the context menu.
+If the processing of a message fails, the processing box will be displayed in red with an exclamation mark in it. If the message that failed to process hasn't already been (automatically) retried, it is possible to manually retry the message via the context menu.
 
 
 ### Events

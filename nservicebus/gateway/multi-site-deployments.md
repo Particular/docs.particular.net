@@ -34,7 +34,7 @@ While each branch of a bank or retail store has significance in each domain, whe
 
 The logical services that make up the business solution can have components installed at multiple physical sites. Some of the components may be the same; others may be different. Multiple logical services in the same site often collaborate closely with each other, and possibly less closely than with their own components at other sites.
 
-For example, you expect the Sales service in a store to talk to the pricing service in the same store for every transaction. On the other hand, the pricing service at the headquarters most likely pushes updated prices daily at most to the stores. Similarly, you expect an end-of-day push of transactions from the sales service at each store to the headquarters.
+For example, expect the Sales service in a store to talk to the pricing service in the same store for every transaction. On the other hand, the pricing service at the headquarters most likely pushes updated prices daily at most to the stores. Similarly, expect an end-of-day push of transactions from the sales service at each store to the headquarters.
 
 ![Store to headquarters pricing and sales interaction](store-to-headquarters-pricing-and-sales.png)
 
@@ -45,16 +45,16 @@ This approach is not only common but is recommended for use in situations where 
 
 When sites have logical significance, the messages passed between them are different from the messages sent within the site.
 
-For example, the act of publishing prices from the headquarters has logical significance. The manager of a store explicitly performs an end-of-day operation after collecting and counting all cash in the tills. Therefore, you design separate classes for the messages passed between sites.
+For example, the act of publishing prices from the headquarters has logical significance. The manager of a store explicitly performs an end-of-day operation after collecting and counting all cash in the tills. Therefore, design separate classes for the messages passed between sites.
 
 
 ## Cross-site data transfer
 
-Depending on the network technology, you can set up a virtual private network (VPN) between sites. This provides Windows networking visibility of queues in the target site from the sending site. You can use standard NServiceBus APIs to direct messages to their relevant targets, in the form of `Bus.Send(toDestination, msg);`.
+Depending on the network technology, it is possible to set up a virtual private network (VPN) between sites. This provides Windows networking visibility of queues in the target site from the sending site. Use standard NServiceBus APIs to direct messages to their relevant targets, in the form of `Bus.Send(toDestination, msg);`.
 
-This model is recommended as it provides all the benefits of durable messaging between unreliably connecting machines; at several sites, the same as within a single site. You can read a great deal of information on [setting up and managing a Windows VPN](https://technet.microsoft.com/en-US/network/dd420463).
+This model is recommended as it provides all the benefits of durable messaging between unreliably connecting machines; at several sites, the same as within a single site. It is possible to read a great deal of information on [setting up and managing a Windows VPN](https://technet.microsoft.com/en-US/network/dd420463).
 
-In cases where you only have access to HTTP for connection between sites, you can enable the NServiceBus Gateway on each site so it transmits messages from a queue in one site to a queue in another site, including the hash of the messages to ensure that the message is transmitted correctly. The following diagram shows how it works:
+In cases where only have access to HTTP for connection between sites, it is possible to enable the NServiceBus Gateway on each site so it transmits messages from a queue in one site to a queue in another site, including the hash of the messages to ensure that the message is transmitted correctly. The following diagram shows how it works:
 
 ![Gateway Headquarter to Site A](gateway-headquarter-to-site-a.png) 
 
@@ -69,12 +69,12 @@ To send a message to a remote site, use the `SendToSites` API call, as shown:
 
 snippet:SendToSites
 
-This values (`SiteA` and `SiteB`) is the list of remote sites where you want the message(s) sent.
+This values (`SiteA` and `SiteB`) is the list of remote sites where the message(s) are sent.
 
 
 ### Configuring Destination
 
-While these URLs can be placed directly in the call, it recommend that you put these settings in `app.config` so  administrators can change them should the need arise. To do this, add this config section:
+While these URLs can be placed directly in the call, it recommend to put these settings in `app.config` so  administrators can change them should the need arise. To do this, add this config section:
 
 
 #### Using App.Config
@@ -113,12 +113,12 @@ Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/
 
 ## Automatic de-duplication
 
-Going across alternate channels like HTTP means that you lose the MSMQ safety guarantee of exactly one message. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid burdening you with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured [Persistence](/nservicebus/persistence/) so potential duplicates can be detected.
+Going across alternate channels like HTTP means that the MSMQ safety guarantees of exactly one message are lost. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid being burdened with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured [Persistence](/nservicebus/persistence/) so potential duplicates can be detected.
 
 
 ### Versions 5 and above
 
-The gateway will use the storage type you configure. At this stage [InMemory](/nservicebus/persistence/in-memory.md), [NHibernate](/nservicebus/nhibernate/) and [RavenDB](/nservicebus/ravendb/) is supported.
+The gateway will use the storage type configured. At this stage [InMemory](/nservicebus/persistence/in-memory.md), [NHibernate](/nservicebus/nhibernate/) and [RavenDB](/nservicebus/ravendb/) is supported.
 
 
 ### Version 4

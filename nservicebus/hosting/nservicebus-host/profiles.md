@@ -20,7 +20,7 @@ The NServiceBus Host provides facilities of profiles designed specifically to ea
 
 ## Configuration difficulties
 
-Starting out with NServiceBus development isn't always easy. There are many configuration options for levels of logging, technologies for storing subscribers, and types of saga storage (to name a few). Often, you want an appropriate combination of all these options as long as you can change it later. Profiles give you that flexibility.
+Starting out with NServiceBus development isn't always easy. There are many configuration options for levels of logging, technologies for storing subscribers, and types of saga storage (to name a few). Often, an appropriate combination of all these options is required, as long as they be changed later. Profiles give that flexibility.
 
 NServiceBus comes with three profiles out of the box: Lite, Integration, and Production. Each profile configures a cohesive combination of technologies:
 
@@ -31,7 +31,7 @@ NServiceBus comes with three profiles out of the box: Lite, Integration, and Pro
 
 ## Specifying which profiles to run
 
-To tell the host to run using a specific profile, you need to pass the namespace-qualified type of the profile class to the NServiceBus host as a command-line parameter. Specify the Lite profile, as follows:
+To tell the host to run using a specific profile, pass the namespace-qualified type of the profile class to the NServiceBus host as a command-line parameter. Specify the Lite profile, as follows:
 
 ```cmd
 NServiceBus.Host.exe NServiceBus.Lite
@@ -39,7 +39,7 @@ NServiceBus.Host.exe NServiceBus.Lite
 
 Be aware that when installing the NServiceBus host as a Windows Service, all provide profiles are baked into the installation. Second, having the ability to sit down at a tester workstation and turn on and off various behaviors without touching configuration files or code makes isolating bugs much easier. It may take some time to get used to, but the benefits are worth it.
 
-If you just run the host without specifying a profile, NServiceBus defaults to the Production profile. Pass in as many profiles as you want and NServiceBus runs them all.
+If the host is run without specifying a profile, NServiceBus defaults to the Production profile. Pass in as many other profiles as required and NServiceBus runs them all.
 
 
 ## Writing a custom profile
@@ -70,24 +70,23 @@ Set it up as follows:
 
 snippet:profile_behavior
 
-With these classes, switching profiles doesn't only change NServiceBus behaviors but also custom behaviors as a consistent set. There is no worry about keeping different parts of a configuration file in sync or changing the configuration file the application uses.
-You can also have multiple classes provide behaviors for the same profile, or you can have a single class handle multiple profiles (by implementing `IHandleProfile<T>` for each profile type) if you want identical behavior across profiles.
+With these classes, switching profiles doesn't only change NServiceBus behaviors but also custom behaviors as a consistent set. There is no worry about keeping different parts of a configuration file in sync or changing the configuration file the application uses. It is possible have multiple classes provide behaviors for the same profile, or have a single class handle multiple profiles (by implementing `IHandleProfile<T>` for each profile type) if identical behavior across profiles is required.
 
 
 ## Dependent profile behaviors
 
-You may want slight variations of behavior based on the properties of the class that implements `IConfigureThisEndpoint`. Also, you don't necessarily want all profile handlers to be dependent on the type that implements `IConfigureThisEndpoint`, just for it to check whether it also implements some other interface. The host itself does this when it handles publishers. Endpoints that don't publish don't need to have a subscription storage. Those that are publishers do need different storage technologies configured, based on profile. Just as the host defines the `AsAPublisher` interface and customizes behavior around it, you can do the same with the own interfaces.
+It is possible to have slight variations of behavior based on the properties of the class that implements `IConfigureThisEndpoint`. Also, it is not necessarily desired to have all profile handlers to be dependent on the type that implements `IConfigureThisEndpoint`, just for it to check whether it also implements some other interface. The host itself does this when it handles publishers. Endpoints that don't publish don't need to have a subscription storage. Those that are publishers do need different storage technologies configured, based on profile. Just as the host defines the `AsAPublisher` interface and customizes behavior around it, it is possible to do the same with the own interfaces.
 
 For a profile handler to access the type that implements `IConfigureThisEndpoint`, it has to implement `IWantTheEndpointConfig`, like this:
 
 snippet:dependent_profile
 
-This lets you extend the host and write additional profiles and behaviors to customize various aspects of the system, all while maintaining loose-coupling and composability between the various parts of the system.
+This allows extending the host and write additional profiles and behaviors to customize various aspects of the system, all while maintaining loose-coupling and composability between the various parts of the system.
 
 
 ## Logging behaviors
 
-Logging is another kind of behavior that you can change from one profile to another. However, unlike other profile behaviors, logging levels and sinks need to be defined before you configure other components, even before the container. For that reason, logging configuration is kept separate from other profile behaviors.
+Logging is another kind of behavior that can be changed from one profile to another. However, unlike other profile behaviors, logging levels and sinks need to be defined before configuring other components, even before the container. For that reason, logging configuration is kept separate from other profile behaviors.
 
 The logging behavior configured for the three built-in profiles is shown:
 
@@ -101,7 +100,7 @@ When running under the production profile, the logs are written to 'logfile' in 
 
 For changes to the configuration to have an effect, the process must be restarted.
 
-If you want different logging behaviors than these, see the next section.
+For different logging behaviors than these, see the next section.
 
 
 ## Customized logging
@@ -110,16 +109,16 @@ To specify logging for a given profile, write a class that implements `IConfigur
 
 snippet:configure_logging
 
-Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
+Here, the host passes the instance of the class that implements `IConfigureThisEndpoint` so it is not necessary to implement `IWantTheEndpointConfig`.
 
-INFO: While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
+INFO: While it is possible have one class configure logging for multiple profile types, it is not possible to have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
 
 See the [logging documentation](/nservicebus/logging/) for more information.
 
 
 ## Persistence
 
-When you use NServiceBus.Host.exe out of the box, you can utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, you can override the configured defaults.
+When using the NServiceBus.Host.exe out of the box, it is possible to utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, it is possible override the configured defaults.
 
 The following table summarizes the different persistence technologies being used by the built-in profiles.
 

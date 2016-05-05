@@ -27,7 +27,7 @@ While the specific needs and dependencies of solutions and endpoints may vary si
 
 Most endpoints require connectivity to local intranet or external internet. Some also require VPN connectivity.
 
-It is recommended that you identify and periodically check that the endpoint (and its host) can indeed connect to the resources it requires.
+It is recommended that to periodically check that the endpoint (and its host) can indeed connect to the resources it requires.
 
 **Examples:**
 
@@ -69,6 +69,6 @@ For a detailed display of the currently failed and failing custom checks per end
 
 Note there are four failing custom checks located on two endpoints (two failures per endpoint).
 
-If one or more of the failures is expected (for example, it may be caused by a planned maintenance activity that brought down an external service the endpoint relies on), you can mute the specific occurrence of the custom check.
+If one or more of the failures is expected (for example, it may be caused by a planned maintenance activity that brought down an external service the endpoint relies on) it is possible to mute the specific occurrence of the custom check.
 
 Muting a custom check means that the specific custom check failure event is discarded. If an additional failure occurs later (for example, when the custom check is defined to run periodically), a new failure event will be raised.

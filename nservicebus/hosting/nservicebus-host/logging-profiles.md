@@ -11,7 +11,7 @@ related:
 - nservicebus/hosting/nservicebus-host/profiles
 ---
 
-Logging can be configured via Profiles. However, unlike other profile behaviors, logging needs to be defined before you configure other components, even before the container. For that reason, logging configuration is kept separate from other profile behaviors.
+Logging can be configured via Profiles. However, unlike other profile behaviors, logging needs to be defined before configuring other components, even before the container. For that reason, logging configuration is kept separate from other profile behaviors.
 
 NServiceBus has three built-in profiles for logging `Lite`, `Integration`, and `Production`.
 
@@ -45,7 +45,7 @@ When running under the production profile, the logs are written to 'logfile' in 
 
 For changes to the configuration to have an effect, the process must be restarted.
 
-If you want different logging behaviors than these, see the next section.
+If different logging behaviors are required, see the next section.
 
 To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type.
 
@@ -56,6 +56,6 @@ To specify logging for a given profile, write a class that implements `IConfigur
 
 snippet:LoggingConfigWithProfile
 
-Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
+Here, the host passes the instance of the class that implements `IConfigureThisEndpoint` so implementing `IWantTheEndpointConfig` is not required.
 
-WARNING: While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
+WARNING: While it is possible to have one class configure logging for multiple profile types, it is not supported to have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.

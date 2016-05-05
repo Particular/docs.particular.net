@@ -54,14 +54,14 @@ snippet:SpecificNHibernateConfiguration
 
 NOTE: Combine both approaches to define a common configuration and override it for one specific concern.
 
-WARNING: When using per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern you are enabling. The following code will set up NHibernate persistence only for `GatewayDeduplication` concern but will override the default configuration **for all the concerns**.
+WARNING: When using per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern being enabled. The following code will set up NHibernate persistence only for `GatewayDeduplication` concern but will override the default configuration **for all the concerns**.
 
 snippet:CustomCommonNhibernateConfigurationWarning
 
 
 ### Using configuration convention
 
-NServiceBus then picks up the connection setting from the `app.config` from `connectionStrings` and `appSettings` sections. The convention used for `appSettings` does not allow you to define settings specific for a single persistence concern. If you need this level of granularity, you need to use code-based approach.
+NServiceBus then picks up the connection setting from the `app.config` from `connectionStrings` and `appSettings` sections. The convention used for `appSettings` does not support defining settings specific for a single persistence concern. If this level of granularity is required use a code-based approach.
 
 NOTE: When using SQL 2012 change the dialect to `MsSql2012Dialect`.
 
@@ -95,7 +95,7 @@ snippet:DisableSchemaUpdate
 
 
 **For Gateway schema update:**
-           
+
 snippet:DisableGatewaySchemaUpdate
 
 

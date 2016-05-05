@@ -93,7 +93,7 @@ NOTE: If multiple Service Control instances are configured on the same machine e
 To change the location ServiceControl stores its logs:
 
  * Open the ServiceControl Management Utility
- * Click the Configuration icon  for the instance you wish to modify.
+ * Click the Configuration icon for the instance to modify.
 
 ![](managementutil-configuration.png)
 
