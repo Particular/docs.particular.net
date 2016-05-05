@@ -1,6 +1,6 @@
 
 -- startcode SendFromTSQL
--- TSql that you can paste into Sql Server Query analyzer to send straight from the DB
+-- TSql that can be pasted into Sql Server Query analyzer to send straight from the DB
 INSERT INTO [Samples.SqlServer.NativeIntegration] ([Id],[Recoverable],[Headers],[Body]) 
 VALUES	(CONVERT(UNIQUEIDENTIFIER, HASHBYTES('MD5','MyUniqueId')),
 		'true',
