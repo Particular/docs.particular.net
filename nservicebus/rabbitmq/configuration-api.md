@@ -208,7 +208,7 @@ snippet:rabbitmq-custom-breaker-settings-code
 
 By default the RabbitMQ transport create separate [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html) for each message type, including inherited types, being published in the system. This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchange based on the event types that it has handlers for.
 
-RabbitMQ transport don't automatically modify or delete existing bindings only add new ones. 
+RabbitMQ transport don't automatically modify or delete existing bindings only adds new ones. 
 
 NOTE: When modifying message class hierarchy the existing not relevant bindings should be deleted manually using RabbitMQ tools.
 
