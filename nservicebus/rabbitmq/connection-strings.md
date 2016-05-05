@@ -8,7 +8,7 @@ tags:
 - RabbitMQ
 ---
 
-RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.html). Refer to [configuration documentation](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used) to see possible configuration parameters.
+RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.html). Refer to the [configuration documentation](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used) to see the possible configuration parameters.
 
 ```xml
 <connectionStrings>
@@ -20,7 +20,7 @@ RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.htm
 
 ### Remote Host
 
-For remote host provide username and password because remote hosts don't accept default guest credentials
+By default, the [guest user can only connect via localhost](https://www.rabbitmq.com/access-control.html), so when connecting to a remote host, a user name and password must be provided.
 
 ```xml
 <connectionStrings>
