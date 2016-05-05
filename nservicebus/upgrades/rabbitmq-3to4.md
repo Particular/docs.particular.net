@@ -71,3 +71,14 @@ When [changing routing topology](/nservicebus/rabbitmq/configuration-api.md#conf
  * `address` parameter type changed from `Address` to `string`
 
 `IRoutingTopology` was moved to different namespace, old namespace was: `NServiceBus.Transports.RabbitMQ.Routing`, current namespace is: `NServiceBus.Transport.RabbitMQ`. 
+
+## Transactions
+
+The RabbitMQ transport supports the following [Transport Transaction Modes](/nservicebus/rabbitmq/configuration-api.md#transactions-and-delivery-guarantees):
+
+* ReceiveOnly (default)
+* None
+
+To change the default transaction mode.
+
+snippet:3to4rabbitmq-config-transactions

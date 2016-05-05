@@ -31,6 +31,16 @@ class Upgrade
         #endregion
     }
 
+    void ChangeTransactionMode(EndpointConfiguration endpointConfiguration)
+    {
+        #region 3to4rabbitmq-config-transactions
+
+        endpointConfiguration.UseTransport<RabbitMQTransport>()
+            .Transactions(TransportTransactionMode.None);
+
+        #endregion
+    }
+
     string MyRoutingKeyConvention(Type type)
     {
         throw new NotImplementedException();
