@@ -21,7 +21,7 @@
         public void Handle(StartSaga message)
         {
             Data.TaskName = message.TaskName;
-            // Check to avoid that if the saga is already started, we don't initiate any more tasks
+            // Check to avoid that if the saga is already started, don't initiate any more tasks
             // as those timeout messages will arrive when the specified time is up.
             if (!Data.IsTaskAlreadyScheduled)
             {
