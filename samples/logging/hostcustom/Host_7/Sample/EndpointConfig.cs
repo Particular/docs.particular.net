@@ -3,7 +3,6 @@ using log4net.Config;
 using log4net.Core;
 using log4net.Layout;
 using NServiceBus;
-using NServiceBus.Log4Net;
 using NServiceBus.Logging;
 
 [EndpointName("Samples.Logging.HostCustom")]

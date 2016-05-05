@@ -2,7 +2,7 @@
 using log4net.Config;
 using log4net.Core;
 using log4net.Layout;
-using NServiceBus.Log4Net;
+using NServiceBus;
 using NServiceBus.Logging;
 
 #region LoggingHelper
