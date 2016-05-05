@@ -16,7 +16,7 @@
             busConfiguration.DefineCriticalErrorAction(
                 new Action<string, Exception>((error, exception) =>
                 {
-                    // place you custom handling here
+                    // place custom handling here
                 }));
 
             #endregion
