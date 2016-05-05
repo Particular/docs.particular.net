@@ -77,7 +77,7 @@ Message are expected to appear in the destination queue. When MSMQ is stopped at
 ### Resolution
 
 - Check the transactional deadletter queues on both the sender and receiver. Verify if the messages are shown there. If the message is put in the deadletter queue then it should contain additional information on the error.
-- Not all messages in the (transactional) dead letter queues are visible via computer management. Use a tool like [QueueExplorer](http://www.cogin.com/mq/) to view all messages.
+- Not all messages in the (transactional) dead letter queues are visible via computer management. Use a tool like [QueueExplorer](http://www.cogin.com/mq/) to view all messages. For more information on inspecting queues content refer to the [MSMQ Transport: Viewing content](/nservicebus/msmq/viewing-message-content-in-msmq.md) article.
 - Check that the receiving queue allows the sending account to send messages to the relevant queues.
 - Check that the receiving queue is transactional.
 
@@ -97,14 +97,14 @@ The following precautions can be taken in order to monitor MSMQ in a production 
  - Process(mqsvc)\Private bytes
  - Process(mqsvc)\Working Set
  - Process(mqsvc)\Working Set - Private
-* Define thresholds for the performance counters. Then create alerts informing when the thresholds are exceeded. The alerts can be integrated with monitoring suites like Solarwinds, New Relic, SCOMM or similar tools.
+* Define thresholds for the performance counters. Then create alerts informing when the thresholds are exceeded. The alerts can be integrated with monitoring suites like Solarwinds, New Relic, SCOM or similar tools.
 
 In order to determine useful thresholds, one needs to know what values are typical for the specific environment. That helps in detecting and addressing potential issues early, e.g. before MSMQ reaches its limits with regards to disk and memory usage.
 
 
-## Virusscanners
+## Virus scanners
 
-Make sure that the relevant MSMQ folders are excluded from scanning. Virusscanners can prevent certain file actions from happening.
+Make sure that the relevant MSMQ folders are excluded from scanning. Virus scanners can prevent certain file actions from happening.
 
 
 ## Useful links
