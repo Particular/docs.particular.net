@@ -25,7 +25,7 @@ class MsmqReceiver : IAdvancedSatellite
         this.publisher = publisher;
     }
 
-    // Since we want to listen to the events published by MSMQ, we are newing up MsmqDequeueStrategy and setting the
+    // Since listening to the events published by MSMQ, a new MsmqDequeueStrategy is constructed and setting the
     // input queue to the queue which will be receiving all the events from the MSMQ publishers.
     public Action<NServiceBus.Unicast.Transport.TransportReceiver> GetReceiverCustomization()
     {
@@ -48,7 +48,7 @@ class MsmqReceiver : IAdvancedSatellite
         string msmqId = message.Headers["NServiceBus.MessageId"];
 
         // Set the Id to a deterministic guid, as Sql message Ids are Guids and Msmq message ids are guid\nnnn.
-        // Newer versions of Nsb already return just a guid for the messageId. So, check to see if the Id is a valid Guid and if
+        // Newer versions of NServiceBus already return just a guid for the messageId. So, check to see if the Id is a valid Guid and if
         // not, only then create a valid Guid. This check is important as it affects the retries if the message is rolled back.
         // If the Ids are different, then the FLR/SLR won't know its the same message.
         Guid newGuid;

@@ -31,7 +31,7 @@ namespace Core5.Features
             // this is not required if the feature uses EnableByDefault()
             busConfiguration.EnableFeature<SecondLevelRetries>();
 
-            // we can disable features we won't use
+            // disable features not in use
             busConfiguration.DisableFeature<Sagas>();
 
             IStartableBus bus = Bus.Create(busConfiguration);

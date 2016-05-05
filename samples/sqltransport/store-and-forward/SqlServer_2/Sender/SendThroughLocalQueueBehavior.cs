@@ -16,7 +16,8 @@ public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
     public void Invoke(OutgoingContext context, Action next)
     {
         #region SendThroughLocalQueueBehavior
-        if (context.IncomingMessage != null) //If we are processing an incoming message (in a handler), we skip this behavior
+        // If processing an incoming message (in a handler), skip this behavior
+        if (context.IncomingMessage != null) 
         {
             next();
             return;
@@ -29,20 +30,20 @@ public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
             outgoingHeaders["$.store-and-forward.destination"] =
                 sendOptions.Destination.ToString();
             sendOptions.Destination = configure.LocalAddress;
-            //We could as well store other properties of the SendOptions to handle things like delayed delivery
+            // Could as well store other properties of the SendOptions to handle things like delayed delivery
         }
         else
         {
             PublishOptions publishOptions = context.DeliveryOptions as PublishOptions;
             if (publishOptions != null)
             {
-                //Technically we don't need to store tha actual type, just a marker that this is a Publish operation
+                // Technically it is not necessary to store the actual type, just a marker that this is a Publish operation
                 outgoingHeaders["$.store-and-forward.eventtype"] =
                     publishOptions.EventType.AssemblyQualifiedName;
             }
             else
             {
-                //We should never get here as is makes no sense to reply from outside of a handler
+                // Should never get here as is makes no sense to reply from outside of a handler
                 throw new Exception("Not supported delivery option: " + context.DeliveryOptions.GetType().Name);
             }
         }

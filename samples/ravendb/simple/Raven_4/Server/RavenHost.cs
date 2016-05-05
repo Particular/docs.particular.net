@@ -21,7 +21,7 @@ class RavenHost : IDisposable
             }
         };
         documentStore.Initialize();
-        //since we are hosting a fake raven server in process we need to remove it from the logging pipeline
+        // since hosting a fake raven server in process remove it from the logging pipeline
         Trace.Listeners.Clear();
         Trace.Listeners.Add(new DefaultTraceListener());
         Console.WriteLine("Raven server started on http://localhost:32076/");

@@ -9,7 +9,7 @@ internal class SagaNotFoundHandler : IHandleSagaNotFound
 
     public Task Handle(object message, IMessageProcessingContext context)
     {
-        log.Error("The correlated saga could not be found. Have you configured the RavenDB.Bundle.UniqueConstrains on your RavenDB server?");
+        log.Error("The correlated saga could not be found. Is RavenDB.Bundle.UniqueConstrains configured on the RavenDB server?");
         return Task.FromResult(0);
     }
 }

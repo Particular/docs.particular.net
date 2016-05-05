@@ -32,7 +32,7 @@ namespace Core6.Features
             // this is not required if the feature uses EnableByDefault()
             endpointConfiguration.EnableFeature<SecondLevelRetries>();
 
-            // we can disable features we won't use
+            // disable features not in use
             endpointConfiguration.DisableFeature<Sagas>();
 
             IStartableEndpoint endpoint = await Endpoint.Create(endpointConfiguration);
