@@ -50,7 +50,7 @@ NOTE: This value is required.
 
 The port where the broker listens.
 
-Default: `5672` or `5671` if `UseTLS` is true
+Default: `5672` or `5671` if `UseTls` is true
 
 
 #### VirtualHost
@@ -140,7 +140,7 @@ Versions: 4 and above
 
 #### CertPassphrase
 
-The password to access the client authentication certifictat specidied in `CertPath`
+The password to access the client authentication certificate specified in `CertPath`
 
 Versions: 4 and above
 
@@ -167,7 +167,7 @@ snippet:rabbitmq-config-callbackreceiver-thread-count
 
 ### Transport Layer Security support
 
-In Versions 4 and above, the RabbitMQ transport supports connecting in a secure manner to the broker using Transport Layer Security (TLS). For information on how to configure TLS on the RabbitMQ broker, refer to the [RabbitMQ documentation](http://www.rabbitmq.com/ssl.html). To enable TLS support, set the `UseTls` setting to true in the connection string. If the RabbitMQ broker has been configured to require client authentication, a client certifite can be specified in the `CertPath` setting. If that certificate requires a password, it can be specified in the `CertPassphrase` setting.
+In Versions 4 and above, the RabbitMQ transport supports connecting in a secure manner to the broker using Transport Layer Security (TLS). For information on how to configure TLS on the RabbitMQ broker, refer to the [RabbitMQ documentation](http://www.rabbitmq.com/ssl.html). To enable TLS support, set the `UseTls` setting to true in the connection string. If the RabbitMQ broker has been configured to require client authentication, a client certificate can be specified in the `CertPath` setting. If that certificate requires a password, it can be specified in the `CertPassphrase` setting.
 
 An example of these settings being set in a connection string via code:
 
@@ -204,11 +204,11 @@ WARNING: In Versions 4 and above, the ability to provide a custom connection man
 
 ### Controlling behavior when the broker connection is lost
 
-By default, the RabbitMQ transport will trigger the critical error action when it continuously fails to connect to the the broker for 2 minutes. The amount of time can be customized using the following configuration setting: (values must be parsable to `System.TimeSpan`)
+By default, the RabbitMQ transport will trigger the critical error action when it continuously fails to connect to the broker for 2 minutes. The amount of time can be customized using the following configuration setting: (values must be parsable to `System.TimeSpan`)
 
 snippet:rabbitmq-custom-breaker-settings
 
-In Versions 4 and above, the xml configuration options for controlling lost connection behavior have been replaced by a code equivalent: 
+In Versions 4 and above, the XML configuration options for controlling lost connection behavior have been replaced by a code equivalent: 
 
 snippet:rabbitmq-custom-breaker-settings-code
 
