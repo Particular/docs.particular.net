@@ -56,10 +56,13 @@ In Versions 7 and above the topology selection is mandatory:
 
 snippet:topology-selection-upgrade-guide
 
-When the `EndpointOrientedTopology` is selected, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers receive event messages:
+The `EndpointOrientedTopology` is backward compatible with the Azure Service Bus transport Version 6 and below. The `ForwardingTopology` is the recommended option for new projects. 
+
+When selecting `EndpointOrientedTopology`, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers receive event messages:
 
 snippet:publisher_names_mapping_upgrade_guide
 
+For more details on topologies refer to the [Azure Service Bus Transport Topologies](/nservicebus/azure-service-bus/topologies/) article.
 
 ## Sanitization
 
@@ -72,7 +75,7 @@ In version 6.4.0 `NamingConventions` class was introduced to customize sanitizat
 
 ## [Securing Credentials](/nservicebus/azure-service-bus/secure-credentials.md)
 
-include: asb-credential-warning
+include:asb-credential-warning
 
 In order to enhance security and to avoid sharing sensitive information using `UseNamespaceNameInsteadOfConnectionString` feature follow the next steps:
 
