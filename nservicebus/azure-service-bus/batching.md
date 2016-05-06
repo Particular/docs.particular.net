@@ -12,16 +12,16 @@ reviewed: 2016-04-26
 
 ## Batching store access
 
-In order to increase messages throughput, the Azure Service Bus batches operations prior to writing to its internal store. This involves delaying write operations. When batching is enabled, the write operations are delayed by 20 ms. Read operations are not affected. This increases throughput.
+In order to increase messages throughput, the Azure Service Bus batches operations prior to writing to its internal store. This involves delaying write operations by 20 ms. Read operations are not affected.
 
 Batching store operations should be disabled for low throughput scenarios requiring low latency.
 
-The batching is enabled by default. In order to disable it, set `EnableBatching` to `false` on [queues](/nservicebus/azure-service-bus/configuration/configuration.md#Queues), [topics](/nservicebus/azure-service-bus/configuration/configuration.md#Topics), and [subscriptions](/nservicebus/azure-service-bus/configuration/configuration.md#Subscriptions).
+Batching is enabled by default. In order to disable it, set `EnableBatching` flag to `false` on [queues](/nservicebus/azure-service-bus/configuration/configuration.md#Queues), [topics](/nservicebus/azure-service-bus/configuration/configuration.md#Topics), and [subscriptions](/nservicebus/azure-service-bus/configuration/configuration.md#Subscriptions).
 
 
 ## Client-side batching
 
-Client-side batching allows messages being sent to a queue or topic to be delayed for a short period of time. Additional messages sent to the same queue or topic within that period will be grouped and transmitted together in a single batch. This setting affects the Azure Service Bus Message Senders and can be configured using [`BatchFlushInterval`](/nservicebus/azure-service-bus/configuration/configuration.md#messaging-factories). Client-side batching is enabled by default.
+Client-side batching allows messages being sent to a queue or topic to be delayed for a short period of time. Additional messages sent to the same queue or topic within the specified time period will be grouped and transmitted together in a single batch. This setting affects the Azure Service Bus Message Senders and can be configured using [`BatchFlushInterval`](/nservicebus/azure-service-bus/configuration/configuration.md#messaging-factories). Client-side batching is enabled by default.
 
 Batching store operations should be disabled for low throughput scenarios requiring low latency. To do so, set the `BatchFlushInterval` to `TimeSpan.Zero`. For high-throughput scenarios, increase the `BatchFlushInterval`.
 
@@ -63,7 +63,7 @@ The default value for `MessageSizePaddingPercentage` is 5%. The custom percentag
 | 180K  | 247,201 | 261,149 | 6% |
 
 
-`BrokeredMessageBodyType` set to `SupportedBrokeredMessageBodyTypes.Steam`. 
+`BrokeredMessageBodyType` set to `SupportedBrokeredMessageBodyTypes.Stream`. 
 `MessageSizePaddingPercentage` set to 5%
 
 | Single message payload size   | Size reported by the broker  | Estimated (padded) size | Increase |
