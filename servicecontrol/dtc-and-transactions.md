@@ -1,21 +1,29 @@
 ---
 title: ServiceControl, MSDTC and transaction support
-summary: ServiceControl uses idempotent message processing and does not rely on MSDTC for exact-once processing but does use transport transactions is supported.
+summary: Summary of ServiceControl messaging reliability
 tags:
 - ServiceControl
 - MSDTC
 ---
 
-ServiceControl does not rely on the Microsoft Distributed Transaction Coordinator (MSDTC) for exact-one processing of its messages. Meaning that ServiceControl can be used in environments that do not rely on MSDTC
+ServiceControl does not rely on the Microsoft Distributed Transaction Coordinator (MSDTC) for exact-one processing of its messages. ServiceControl can be used in environments that do not rely on MSDTC.
+
 
 ## Receiving of messages
 
-It processes its messages idempotently when storing messages in its database. Duplicate messages will not result in any issues.
+All handlers within ServiceControl handle messages idempotently. Messages can be processed multiple times successfully without corrupting ServiceControl data.
+
 
 ## Sending of messages
 
-ServiceControl can be used to retry messages but also publishes several events. These messages are send as atomic as possible. We have potentially two transactions, the transport transaction and the persistence (RavenDB) transaction. 
+### Retries
 
-Tranports that *do not* support transactions will result in potentially sending the same retry more then once. This should not be any issue as this is expected behavior for this transport.
+ServiceControl can be used to retry messages that have been send to the error queue. When a message is retried it is moved to an internally owned staging queue and then forwarded back to the processing endpoint from there.
 
-Transports that *do* support transactions can potentially result in not delivering the retry as the database transaction will be committted before the transport transaction.
+If ServiceControl is running on a transport that supports [Sends atomic with Receive](/nservicebus/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive) transactions then the message is guaranteed to only be sent once. ServiceControl is able to prevent multiple outstanding retries for the same message at once. 
+
+If ServiceControl is running on a transport that does not support this type of transaction then the message may be delivered to the processing endpoint multiple times. This is the expected behavior for these transports.  
+
+### Integration Events
+
+ServiceControl can also publish [external integration events](/servicecontrol/contracts.md). If ServiceControl crashes while sending these messages it is possible that these events can get deleivered to subscribers more than once. 
