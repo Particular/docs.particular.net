@@ -37,6 +37,8 @@ To force a [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) on
 
 Note that while the phrasing is "forwarding a message" in the implementation it is actually "cloning and sending a new message". This is important when considering TimeToBeReceived since the time taken to receive and process the original message is not part of the TimeToBeReceived of the new audit message. So in effect the audit message receives the full time allotment of whatever TimeToBeReceived is used.
 
+Warning: Since MSMQ forces the same TimeToBeReceived on all messages in the a transaction, OverrideTimeToBeReceived is not supported when using the [MSMQ Transport](/nservicebus/msmq/). If OverrideTimeToBeReceived is detected when using MSMQ an exception with the following text will be throw: `Setting a custom OverrideTimeToBeReceived for audits is not supported on transactional MSMQ`.
+
 
 #### Default Value
 
@@ -66,7 +68,7 @@ Note: `OverrideTimeToBeReceived` needs to be a valid [TimeSpan](https://msdn.mic
 
 ### Using IProvideConfiguration
 
-The audit settings can also be configured using code via a  [custom configuration provider](/nservicebus/hosting/custom-configuration-providers.md)
+The audit settings can also be configured using code via a [custom configuration provider](/nservicebus/hosting/custom-configuration-providers.md).
 
 snippet:AuditProvideConfiguration
 
