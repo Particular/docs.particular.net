@@ -2,10 +2,12 @@
 title: Discarding Old Messages
 summary: Automatically discard messages if they have not been processed within a given period of time.
 tags:
-- Message Expiration
-- TimeToBeReceived
+ - Message Expiration
+ - TimeToBeReceived
+related:
+ - nservicebus/operations/auditing
 redirects:
-- nservicebus/how-do-i-discard-old-messages
+ - nservicebus/how-do-i-discard-old-messages
 ---
 
 A message sent through the Particular Service Platform may have TTBR (TimeToBeReceived) set, according to the users’ decision. TTBR indicates to the platform that a delayed message will be discarded, instead of processed, if not handled within a specified period of time. A discarded message might no longer have any business value, and discarding it frees up storage, CPU and memory resources.
