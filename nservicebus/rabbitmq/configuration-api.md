@@ -17,7 +17,7 @@ snippet:rabbitmq-config-basic
 
 ## Specifying the connection string
 
-The transport needs to connect to the RabbitMQ broker. By default, the transport will look for a connection string called `NServiceBus/Transport` in the `app.config`.
+The transport needs to connect to a RabbitMQ broker. By default, the transport will look for a connection string called `NServiceBus/Transport` in the `app.config`.
 
 To use a custom name for the connection string:
 
@@ -31,7 +31,7 @@ A typical connection string would look like this:
 
 snippet:rabbitmq-connectionstring
 
-In the above sample, the transport is configured to connect to the RabbitMQ broker running at the machine `broker1`.
+In the above sample, the transport is configured to connect to a RabbitMQ broker running at the machine `broker1`.
 
 
 ### Connection string options
@@ -140,7 +140,7 @@ Versions: 4 and above
 
 #### CertPassphrase
 
-The password to access the client authentication certificate specified in `CertPath`
+The password for the client authentication certificate specified in `CertPath`
 
 Versions: 4 and above
 
@@ -152,22 +152,30 @@ snippet:rabbitmq-connectionstring-debug
 
 ### Callback support
 
-RabbitMQ is a broker which means that scale out is done by adding more endpoints feeding of the same broker queue. This usually works fine if no state is shared between the different instances. This is not the case for callbacks since they do rely on local state kept in memory. In order to seamlessly support this scenario out of the box the RabbitMQ transport has the concept of a callback receiver. Essentially this is a separate queue named `{endpointname}.{machinename}` to which all callbacks are routed. This means that callbacks are handled by the same instance that requested them. This behavior is on by default. If not using callbacks it can disable it using the following configuration:
+When scaling out an endpoint using the RabbitMQ transport, each instance of the endpoint will consume messages from the same shared broker queue. This works in most scenarios because any instance can handle any incoming message. However, this is not true for callback messages, which need to be handled by the instance that requested the callback. 
+
+
+#### Versions 3 and below
+
+In Versions 3 and below, callbacks are enabled by default, and the transport will create a separate callback receiver queue, named `{endpointname}.{machinename}`, to which all callbacks are routed. If callbacks are not being used, the callback receiver can be disabled using the following setting:
 
 snippet:rabbitmq-config-disable-callback-receiver
 
-NOTE: In Versions 4 and above Callbacks are disabled by default. To enable them follow [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-nservicebus-callbacks-version-1-and-above).
-
 This means that the queue will not be created and no extra threads will be used to fetch messages from that queue.
 
-By default 1 dedicated thread is used for the callbacks. To add more threads, due to a high rate of callbacks, use the following:
+By default, 1 dedicated thread is used for the callbacks. To add more threads, due to a high rate of callbacks, use the following:
 
 snippet:rabbitmq-config-callbackreceiver-thread-count
 
 
+#### Versions 4 and above
+
+In Versions 4 and above, callbacks no longer directly managed by the RabbitMQ transport and are not enabled by default. To enable them, follow the  [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-nservicebus-callbacks-version-1-and-above).
+
+
 ### Transport Layer Security support
 
-In Versions 4 and above, the RabbitMQ transport supports connecting in a secure manner to the broker using Transport Layer Security (TLS). For information on how to configure TLS on the RabbitMQ broker, refer to the [RabbitMQ documentation](http://www.rabbitmq.com/ssl.html). To enable TLS support, set the `UseTls` setting to true in the connection string. If the RabbitMQ broker has been configured to require client authentication, a client certificate can be specified in the `CertPath` setting. If that certificate requires a password, it can be specified in the `CertPassphrase` setting.
+In Versions 4 and above, the RabbitMQ transport supports creating secure connections to the broker using Transport Layer Security (TLS). For information on how to configure TLS on the RabbitMQ broker, refer to the [RabbitMQ documentation](http://www.rabbitmq.com/ssl.html). To enable TLS support, set the `UseTls` setting to true in the connection string. If the RabbitMQ broker has been configured to require client authentication, a client certificate can be specified in the `CertPath` setting. If that certificate requires a password, it can be specified in the `CertPassphrase` setting.
 
 An example of these settings being set in a connection string via code:
 
@@ -204,7 +212,7 @@ WARNING: In Versions 4 and above, the ability to provide a custom connection man
 
 ### Controlling behavior when the broker connection is lost
 
-By default, the RabbitMQ transport will trigger the critical error action when it continuously fails to connect to the broker for 2 minutes. The amount of time can be customized using the following configuration setting: (values must be parsable to `System.TimeSpan`)
+By default, the RabbitMQ transport will trigger the critical error action when it continuously fails to connect to the broker for 2 minutes. The amount of time can be customized using the following configuration settings: (values must be parsable to `System.TimeSpan`)
 
 snippet:rabbitmq-custom-breaker-settings
 
@@ -218,7 +226,7 @@ snippet:rabbitmq-custom-breaker-settings-code
 
 #### Conventional Routing Topology
 
-By default, the RabbitMQ transport create separate [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html) for each message type, including inherited types, being published in the system. This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchanges based on the event types that it has handlers for.
+By default, the RabbitMQ transport creates separate [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html) for each message type, including inherited types, being published in the system. This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchanges based on the event types that it has handlers for.
 
 NOTE: The RabbitMQ transport doesn't automatically modify or delete existing bindings. Because of this, when modifying the message class hierarchy, the existing bindings for the previous class hierarchy will still exist and should be deleted manually.
 
