@@ -130,7 +130,7 @@ RavenDB persistence for NServiceBus 3 to 4 uses these conventions:
  * If a master node is configured, the URL is: `http://{masternode}/:8080`.
  * If a connection string named "NServiceBus/Persistence" is found, the value of the `connectionString` attribute is used.
 
-If NServiceBus detects that any RavenDB related storage is used for sagas, subscriptions, timeouts, etc., it will automatically configures it. There is no need to explicitly configure RavenDB unless it is necessary to override the defaults.
+If NServiceBus detects that any RavenDB related storage is used for sagas, subscriptions, timeouts, etc., it will automatically configure it. There is no need to explicitly configure RavenDB unless it is necessary to override the defaults.
 
 
 ### Overriding the defaults
