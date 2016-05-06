@@ -14,9 +14,15 @@ redirects:
 As part of this update [NServiceBus Version 6](/nservicebus/upgrades/5to6.md) will be required.
 
 
-## Namespace change
+## Namespace changes
 
-The `RavenDBPersistence` has moved from `NServiceBus.Persistence` namespace to `NServiceBus`. There is no need to have an extra using statement if the NServiceBus.RavenDB NuGet package is installed. 
+Namespaces for public types have been consolidated to make customizations more discoverable. The primary namespaces are `NServiceBus` for customization options that need to be discoverable, and `NServiceBus.Persistence.RavenDB` for items off the beaten path. If the NServiceBus.RavenDB NuGet package is installed, a single `using NServiceBus` directive should be sufficient to find all necessary options.
+
+As part of this move, the following classes were moved to different namespaces:
+
+* `NServiceBus.Persistence.RavenDBPersistence` to the `NServiceBus` namespace
+* `NServiceBus.RavenDB.Outbox.RavenDBOutboxExtensions` to the `NServiceBus` namespace
+* `NServiceBus.RavenDB.ConnectionParameters` to the `NServiceBus.Persistence.RavenDB` namespace
 
 
 ## Configuring a shared session
