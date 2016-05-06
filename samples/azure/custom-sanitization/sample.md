@@ -35,11 +35,11 @@ snippet: SomeEvent
 
 ## Subscriber
 
-`Subscriber` subscribes to and handles `SuperDuperEvent`. The topology used by the endpoints is `ForwardingTopology`, which creates a subscription named `Subscriber` and creates a rule for each event the endpoint subscribes to.
+`Subscriber` subscribes to and handles `SomeEvent`. The topology used by the endpoints is `ForwardingTopology`, which creates a subscription named `Subscriber` and creates a rule for each event the endpoint subscribes to.
 
-`SuperDuperEvent` full name is `Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events.SuperDuperEvent`. That is 72 characters which exceed the maximum 50 characters limit for a rule name. An attempt to use such a long rule name will result in the following exception:
+`SomeEvent` full name is `Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events.SomeEvent`. That is 72 characters which exceed the maximum 50 characters limit for a rule name. An attempt to use such a long rule name will result in the following exception:
 
->Invalid Rule name 'Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events.SuperDuperEvent' that cannot be used with Azure Service Bus. Rule name exceeds maximum allowed length or contains invalid characters. Check for invalid characters, shorten the name, or use 'Sanitization().UseStrategy<ISanitizationStrategy>()' configuration extension.`
+>Invalid Rule name 'Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events.SomeEvent' that cannot be used with Azure Service Bus. Rule name exceeds maximum allowed length or contains invalid characters. Check for invalid characters, shorten the name, or use 'Sanitization().UseStrategy<ISanitizationStrategy>()' configuration extension.`
 
 
 ### Creating custom sanitization
