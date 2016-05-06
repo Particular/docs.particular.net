@@ -25,6 +25,11 @@ As part of this move, the following classes were moved to different namespaces:
 * `NServiceBus.RavenDB.ConnectionParameters` to the `NServiceBus.Persistence.RavenDB` namespace
 
 
+## Use of RavenDB Async API
+
+NServiceBus now uses the asynchronous RavenDB API for all operations. If sharing the session between NServiceBus and handler code is required, then handler code will need to be adjusted to utilize the asynchronous RavenDB API as well.
+
+
 ## Configuring a shared session
 
 Configuring a shared raven session now requires a `Func<IAsyncDocumentSession>` ([IAsyncDocumentSession](http://ravendb.net/docs/search/latest/csharp?searchTerm=IAsyncDocumentSession)) instead of a `Func<IDocumentSession>` [IDocumentSession](http://ravendb.net/docs/search/latest/csharp?searchTerm=IDocumentSession).
