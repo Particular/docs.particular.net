@@ -14,11 +14,11 @@ related:
 
 include: asb-credential-warning
 
-Versions 6 and below uses raw the connection string in message headers. For instance, a typical value for `ReplyTo` header could be:
+Versions 6 and below use a raw connection string in message headers. For instance, `ReplyTo` header value was of the following structure:
 
-`[queue name]@Endpoint=sb://[namespace name].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[secrets here]`
+`[queue name]@Endpoint=sb://[namespace name].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[key]`
 
-This could potentially result in a leak of sensitive information, for example in [log files](/nservicebus/logging/) or in the [error queue](/nservicebus/errors/). In order to prevent this, Versions 7 and above includes the ability to map logical namespace name to namespace connection string. If a valid mapping between connection string and namespace name doesn't exist a [`KeyNotFoundException`](https://msdn.microsoft.com/en-us/library/system.collections.generic.keynotfoundexception.aspx) is thrown.
+This could potentially result in a leak of connection strings, for example in [log files](/nservicebus/logging/). To prevent this, Versions 7 and above can map logical namespace name to namespace connection string. If a valid mapping between a namespace name and connection string doesn't exist a [`KeyNotFoundException`](https://msdn.microsoft.com/en-us/library/system.collections.generic.keynotfoundexception.aspx) is thrown.
 
 Mapping between a namespace name and the corresponding connection string is done as follows:
 
@@ -26,12 +26,12 @@ snippet: map_logical_name_to_connection_string
 
 For detailed explanation about all supported partitioning strategies, and how to configure namespaces mapping, see [Multiple Namespaces Support](multiple-namespaces-support.md).
   
-Using directly `ConnectionString(string connectionString)` configuration API, as shown below, transport adds a mapping between a namespace name `default` and the provided connection string.
+Using directly `ConnectionString(string connectionString)` configuration API, as shown below, will cause transport to add a mapping between a namespace name `default` and the provided connection string.
 
 snippet: map_default_logical_name_to_connection_string
 
-To enable the same behavior also for outgoing messages, a new feature, provided in Version 7 and above, has to be enabled:
+To enable the same behavior for outgoing messages as well, use `UseNamespaceNamesInsteadOfConnectionStrings()` configuration API:
 
 snippet: enable_use_namespace_name_instead_of_connection_string
 
-Without enabling this behavior, transport converts back the value to `queueName@connectionString` before delivering the message, to ensure backward compatibility among endpoints of different versions. Enabling `UseNamespaceNameInsteadOfConnectionString` feature, transport ensures the same behavior, avoiding sharing of sensitive information, for all incoming and outgoing messages.
+Without enabling this behavior, transport converts back the value to `queueName@connectionString` before delivering the message, to ensure backward compatibility among endpoints of different versions. By calling `UseNamespaceNameInsteadOfConnectionString()` configuration API, transport ensures the same behavior, avoiding sharing of connections strings, for all incoming and outgoing messages.
