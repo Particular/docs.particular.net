@@ -56,7 +56,6 @@ In Versions 7 and above the topology selection is mandatory:
 
 snippet:topology-selection-upgrade-guide
 
-
 When the `EndpointOrientedTopology` is selected, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers receive event messages:
 
 snippet:publisher_names_mapping_upgrade_guide
@@ -69,3 +68,13 @@ In version 6 and below sanitization was performed by default and the MD5 algorit
 snippet: asb-endpointorientedtopology-sanitization
 
 In version 6.4.0 `NamingConventions` class was introduced to customize sanitization. The class is obsoleted. Instead, implement a [custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#version-7-and-above).
+
+
+## [Securing Credentials](/nservicebus/azure-service-bus/secure-credentials.md)
+
+include: asb-credential-warning
+
+In order to enhance security and to avoid sharing sensitive information using `UseNamespaceNameInsteadOfConnectionString` feature follow the next steps:
+
+ * Upgrade all endpoints to Version 7 or above. Previous versions of transport aren't able to understand namespace name instead of connection string.
+ * After the above has been done and all endpoints deployed configure each endpoint switching on `UseNamespaceNameInsteadOfConnectionString` feature and re-deploy.
