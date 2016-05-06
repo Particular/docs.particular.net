@@ -48,9 +48,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChangeResourceManagerID.cs" />
     <Compile Include="Configure.cs" />
-    <Compile Include="ConfiguringTransactionRecoveryStorage.cs" />
+    <Compile Include="RavenDtcConventions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SharedDocumentStoreViaConnectionString.config.xml">

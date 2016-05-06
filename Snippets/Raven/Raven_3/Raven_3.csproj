@@ -46,9 +46,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChangeResourceManagerID.cs" />
     <Compile Include="Configure.cs" />
-    <Compile Include="ConfiguringTransactionRecoveryStorage.cs" />
+    <Compile Include="RavenDtcConventions.cs" />
     <Compile Include="UpgradeGuides\3to4\HandlerWithRavenSession.cs" />
     <Compile Include="UpgradeGuides\3to4\SharedSessionEndpointConfig.cs" />
   </ItemGroup>
