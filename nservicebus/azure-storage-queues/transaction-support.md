@@ -5,6 +5,8 @@ tags:
 - Azure
 - Cloud
 - Transactions
+- ASQ
+- Azure Storage Queues
 reviewed: 2016-04-20
 ---
 
