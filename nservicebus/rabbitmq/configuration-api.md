@@ -157,7 +157,7 @@ Increasing these settings can help prevent the connection to the broker from tim
 
 ## Callback support
 
-When scaling out an endpoint using the RabbitMQ transport, each instance of the endpoint will consume messages from the same shared broker queue. This works in most scenarios because any instance can handle any incoming message. However, this is not true for callback messages, which need to be handled by the instance that requested the callback. 
+When scaling out an endpoint using the RabbitMQ transport, any of the endpoint instances can consume messages from the same shared broker queue. However, this behavior can cause problems when dealing with callback messages because the reply message for the callback needs to go to the specific instance that requested the callback.
 
 
 ### Versions 3 and below
@@ -175,7 +175,7 @@ snippet:rabbitmq-config-callbackreceiver-thread-count
 
 ### Versions 4 and above
 
-In Versions 4 and above, callbacks no longer directly managed by the RabbitMQ transport and are not enabled by default. To enable them, follow the  [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-nservicebus-callbacks-version-1-and-above).
+In Versions 4 and above, callbacks are no longer directly managed by the RabbitMQ transport and are not enabled by default. To enable them, follow the steps outlined in the [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-nservicebus-callbacks-version-1-and-above).
 
 
 ## Transport Layer Security support
