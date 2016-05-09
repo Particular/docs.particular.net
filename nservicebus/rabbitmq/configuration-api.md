@@ -231,16 +231,16 @@ snippet:rabbitmq-custom-breaker-settings-code
 
 ### Conventional Routing Topology
 
-By default, the RabbitMQ transport creates separate [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html) for each message type, including inherited types, being published in the system. This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchanges based on the event types that it has handlers for.
+By default, the RabbitMQ transport uses the `ConventionalRoutingTopology`, which creates separate [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html) for each message type, including inherited types, being published in the system. This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchanges based on the event types that it has handlers for.
 
 WARNING: The RabbitMQ transport doesn't automatically modify or delete existing bindings. Because of this, when modifying the message class hierarchy, the existing bindings for the previous class hierarchy will still exist and should be deleted manually.
 
 
 ### Direct Routing Topology
 
-For less complex scenarios, use the `DirectRoutingTopology` that routes all events through a single exchange, `amq.topic` by default. Events will be published using a routing key based on the event type, and subscribers will use that key to filter their subscriptions.
+The `DirectRoutingTopology` is another provided routing topology that routes all events through a single exchange, `amq.topic` by default. Events are published using a routing key based on the event type, and subscribers will use that key to filter their subscriptions.
 
-To enable direct routing, use the following configuration:
+To enable the direct routing topology, use the following configuration:
 
 snippet:rabbitmq-config-usedirectroutingtopology
 
