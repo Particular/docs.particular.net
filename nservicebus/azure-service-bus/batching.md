@@ -16,12 +16,12 @@ In order to increase messages throughput, the Azure Service Bus batches operatio
 
 Batching store operations should be disabled for low throughput scenarios requiring low latency.
 
-Batching is enabled by default. In order to disable it, set `EnableBatching` flag to `false` on [queues](/nservicebus/azure-service-bus/configuration/configuration.md#Queues), [topics](/nservicebus/azure-service-bus/configuration/configuration.md#Topics), and [subscriptions](/nservicebus/azure-service-bus/configuration/configuration.md#Subscriptions).
+Batching is enabled by default. In order to disable it, set `EnableBatching` flag to `false` on [queues](/nservicebus/azure-service-bus/configuration/full.md#Queues), [topics](/nservicebus/azure-service-bus/configuration/full.md#Topics), and [subscriptions](/nservicebus/azure-service-bus/configuration/full.md#Subscriptions).
 
 
 ## Client-side batching
 
-Client-side batching allows messages being sent to a queue or topic to be delayed for a short period of time. Additional messages sent to the same queue or topic within the specified time period will be grouped and transmitted together in a single batch. This setting affects the Azure Service Bus Message Senders and can be configured using [`BatchFlushInterval`](/nservicebus/azure-service-bus/configuration/configuration.md#messaging-factories). Client-side batching is enabled by default.
+Client-side batching allows messages being sent to a queue or topic to be delayed for a short period of time. Additional messages sent to the same queue or topic within the specified time period will be grouped and transmitted together in a single batch. This setting affects the Azure Service Bus Message Senders and can be configured using [`BatchFlushInterval`](/nservicebus/azure-service-bus/configuration/full.md#messaging-factories). Client-side batching is enabled by default.
 
 Batching store operations should be disabled for low throughput scenarios requiring low latency. To do so, set the `BatchFlushInterval` to `TimeSpan.Zero`. For high-throughput scenarios, increase the `BatchFlushInterval`.
 
@@ -30,13 +30,13 @@ Batching is only available for asynchronous Send and Complete operations. Synchr
 
 ## Batching messages sent from a handler
 
-Azure Service Bus optimizes multiple message sends from a handler by batching send operations into a single operation. For example, when a handler is sending multiple messages, Azure Service Bus will batch those and send in as few operations as it can. Size of a batch cannot exceed the maximum size on a `BrokeredMessage`. The maximum message size is configured using [`MaximumMessageSizeInKilobytes`](/nservicebus/azure-service-bus/configuration/configuration.md#message-senders) setting of the Message Senders.
+Azure Service Bus optimizes multiple message sends from a handler by batching send operations into a single operation. For example, when a handler is sending multiple messages, Azure Service Bus will batch those and send in as few operations as it can. Size of a batch cannot exceed the maximum size on a `BrokeredMessage`. The maximum message size is configured using [`MaximumMessageSizeInKilobytes`](/nservicebus/azure-service-bus/configuration/full.md#message-senders) setting of the Message Senders.
 
 NOTE: `BrokeredMessage` size is different between [tiers](https://azure.microsoft.com/en-us/documentation/articles/service-bus-premium-messaging/) of Azure Service Bus.
 
-When batching messages sent from a handler, the underlying implementation of batching serializes messages. Serialized batch is usually bigger than the original messages combined. To ensure successful batch sending operation, batch should not exceed the `BrokeredMessage` size. To cater for the overhead caused by serialization, the final batch size is estimated using `MessageSizePaddingPercentage` setting. By default, it's set to 5%. It can be configured using [`MessageSizePaddingPercentage`](/nservicebus/azure-service-bus/configuration/configuration.md#message-senders) configuration of the Message Senders.
+When batching messages sent from a handler, the underlying implementation of batching serializes messages. Serialized batch is usually bigger than the original messages combined. To ensure successful batch sending operation, batch should not exceed the `BrokeredMessage` size. To cater for the overhead caused by serialization, the final batch size is estimated using `MessageSizePaddingPercentage` setting. By default, it's set to 5%. It can be configured using [`MessageSizePaddingPercentage`](/nservicebus/azure-service-bus/configuration/full.md#message-senders) configuration of the Message Senders.
 
-By default, message batches exceeding the maximum allowed size by Azure Service Bus, will throw a `MessageTooLargeException`. The default behavior can by changed with [`OversizedBrokeredMessageHandler<T>(T)`](/nservicebus/azure-service-bus/configuration/configuration.md#message-senders) configuration of the Message Senders.
+By default, message batches exceeding the maximum allowed size by Azure Service Bus, will throw a `MessageTooLargeException`. The default behavior can by changed with [`OversizedBrokeredMessageHandler<T>(T)`](/nservicebus/azure-service-bus/configuration/full.md#message-senders) configuration of the Message Senders.
 
 
 ### Padding and estimated batch size calculation
