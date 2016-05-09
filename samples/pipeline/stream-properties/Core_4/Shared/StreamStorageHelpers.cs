@@ -23,9 +23,9 @@ public static class StreamStorageHelper
     public static void SetStreamStorageLocation(this Configure configure, string location)
     {
         StreamStorageSettings settings = new StreamStorageSettings
-                                         {
-                                             Location = location,
-                                         };
+        {
+            Location = location,
+        };
         configure.Configurer.ConfigureComponent(() => settings, DependencyLifecycle.SingleInstance);
     }
 

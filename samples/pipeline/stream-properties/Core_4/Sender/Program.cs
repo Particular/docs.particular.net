@@ -18,8 +18,11 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
+
         #region configure-stream-storage
+
         configure.SetStreamStorageLocation("..\\..\\..\\storage");
+
         #endregion
 
         using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
@@ -59,16 +62,18 @@ class Program
         #region send-message-with-file-stream
 
         MessageWithStream message = new MessageWithStream
-                                    {
-                                        SomeProperty = "This message contains a stream",
-                                        StreamProperty = File.OpenRead("FileToSend.txt")
-                                    };
+        {
+            SomeProperty = "This message contains a stream",
+            StreamProperty = File.OpenRead("FileToSend.txt")
+        };
         bus.Send("Samples.PipelineStream.Receiver", message);
+
         #endregion
 
         Console.WriteLine();
         Console.WriteLine("Message with file stream sent");
     }
+
     static void SendMessageWithHttpStream(IBus bus)
     {
         #region send-message-with-http-stream
@@ -76,12 +81,13 @@ class Program
         using (WebClient webClient = new WebClient())
         {
             MessageWithStream message = new MessageWithStream
-                                        {
-                                            SomeProperty = "This message contains a stream",
-                                            StreamProperty = webClient.OpenRead("http://www.particular.net")
-                                        };
+            {
+                SomeProperty = "This message contains a stream",
+                StreamProperty = webClient.OpenRead("http://www.particular.net")
+            };
             bus.Send("Samples.PipelineStream.Receiver", message);
         }
+
         #endregion
 
         Console.WriteLine();

@@ -23,9 +23,9 @@ public static class StreamStorageHelper
     public static void SetStreamStorageLocation(this BusConfiguration busConfiguration, string location)
     {
         StreamStorageSettings settings = new StreamStorageSettings
-                                         {
-                                             Location = location,
-                                         };
+        {
+            Location = location,
+        };
         busConfiguration.RegisterComponents(x => x.RegisterSingleton(settings));
     }
 
