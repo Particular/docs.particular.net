@@ -7,6 +7,8 @@ tags:
 - Cloud
 - Transport
 - Performance
+- ASQ
+- Azure Storage Queues
 ---
 
 include: azure-storage-performance-tuning

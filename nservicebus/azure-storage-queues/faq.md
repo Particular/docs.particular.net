@@ -5,6 +5,8 @@ tags:
 - Cloud
 - Azure
 - Transports
+- ASQ
+- Azure Storage Queues
 ---
 
 

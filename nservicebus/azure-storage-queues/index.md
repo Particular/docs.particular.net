@@ -3,6 +3,8 @@ title: Azure Storage Queues Transport
 summary: Using Azure Storage Queues as transport
 tags:
 - Azure
+- ASQ
+- Azure Storage Queues
 related:
  - samples/azure/storage-queues
 ---
