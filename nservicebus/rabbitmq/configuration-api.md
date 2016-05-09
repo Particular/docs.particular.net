@@ -100,7 +100,7 @@ The number of messages to [prefetch](http://www.rabbitmq.com/consumer-prefetch.h
 
 Default: The number of configured threads for the transport(as of v2.1)
 
-Versions: 3 and below.
+Versions: 3 and below. In Versions 4 and above, `PrefetchCount` is controlled through the `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` setting.
 
 
 #### UsePublisherConfirms
