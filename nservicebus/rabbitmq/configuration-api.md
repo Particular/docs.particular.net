@@ -150,12 +150,12 @@ NOTE: For debugging purposes, it can be helpful to increase the `RequestedHeartb
 snippet:rabbitmq-connectionstring-debug
 
 
-### Callback support
+## Callback support
 
 When scaling out an endpoint using the RabbitMQ transport, each instance of the endpoint will consume messages from the same shared broker queue. This works in most scenarios because any instance can handle any incoming message. However, this is not true for callback messages, which need to be handled by the instance that requested the callback. 
 
 
-#### Versions 3 and below
+### Versions 3 and below
 
 In Versions 3 and below, callbacks are enabled by default, and the transport will create a separate callback receiver queue, named `{endpointname}.{machinename}`, to which all callbacks are routed. If callbacks are not being used, the callback receiver can be disabled using the following setting:
 
@@ -168,12 +168,12 @@ By default, 1 dedicated thread is used for the callbacks. To add more threads, d
 snippet:rabbitmq-config-callbackreceiver-thread-count
 
 
-#### Versions 4 and above
+### Versions 4 and above
 
 In Versions 4 and above, callbacks no longer directly managed by the RabbitMQ transport and are not enabled by default. To enable them, follow the  [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-nservicebus-callbacks-version-1-and-above).
 
 
-### Transport Layer Security support
+## Transport Layer Security support
 
 In Versions 4 and above, the RabbitMQ transport supports creating secure connections to the broker using Transport Layer Security (TLS). For information on how to configure TLS on the RabbitMQ broker, refer to the [RabbitMQ documentation](http://www.rabbitmq.com/ssl.html). To enable TLS support, set the `UseTls` setting to true in the connection string. If the RabbitMQ broker has been configured to require client authentication, a client certificate can be specified in the `CertPath` setting. If that certificate requires a password, it can be specified in the `CertPassphrase` setting.
 
@@ -186,7 +186,7 @@ Or configuration:
 snippet:rabbitmq-connection-tls-config
 
 
-### Controlling the message ID strategy
+## Controlling the message ID strategy
 
 By default, NServiceBus uses the `message-id` property of the AMQP standard to relay the message ID. If this header isn't set, the transport will throw an exception, because NServiceBus needs a message ID in order to perform retries, de-duplication etc. in a safe way. For integration scenarios where the sender is not controlled, consider using a custom scheme that extracts a message ID from a custom header or some data contained in the actual message body. This custom strategy can be configured by calling:
 
@@ -195,7 +195,7 @@ snippet:rabbitmq-config-custom-id-strategy
 WARNING: It is extremely important to use a uniquely identifying property of the message in a custom message ID strategy. If the value for a message were to change (for example, if attempting to use `Guid.NewGuid().ToString()`) then message retries would break, as the infrastructure would be unable to determine that it was processing the same message repeatedly.
 
 
-### Getting full control over the broker connection (Versions 3 and below)
+## Getting full control over the broker connection (Versions 3 and below)
 
 The default connection manager that comes with the transport is usually good enough for most users. To control how the connection(s) with the broker is managed, implement a custom connection manager by inheriting from `IManageRabbitMqConnections`. This requires that connections be provided for:
 
@@ -210,7 +210,7 @@ snippet:rabbitmq-config-useconnectionmanager
 WARNING: In Versions 4 and above, the ability to provide a custom connection manager has been removed.
 
 
-### Controlling behavior when the broker connection is lost
+## Controlling behavior when the broker connection is lost
 
 By default, the RabbitMQ transport will trigger the critical error action when it continuously fails to connect to the broker for 2 minutes. The amount of time can be customized using the following configuration settings: (values must be parsable to `System.TimeSpan`)
 
@@ -221,17 +221,17 @@ In Versions 4 and above, the XML configuration options for controlling lost conn
 snippet:rabbitmq-custom-breaker-settings-code
 
 
-### Routing topology
+## Routing topology
 
 
-#### Conventional Routing Topology
+### Conventional Routing Topology
 
 By default, the RabbitMQ transport creates separate [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html) for each message type, including inherited types, being published in the system. This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchanges based on the event types that it has handlers for.
 
 NOTE: The RabbitMQ transport doesn't automatically modify or delete existing bindings. Because of this, when modifying the message class hierarchy, the existing bindings for the previous class hierarchy will still exist and should be deleted manually.
 
 
-#### Direct Routing Topology
+### Direct Routing Topology
 
 For less complex scenarios, use the `DirectRoutingTopology` that routes all events through a single exchange, `amq.topic` by default. Events will be published using a routing key based on the event type, and subscribers will use that key to filter their subscriptions.
 
@@ -244,7 +244,7 @@ Adjust the conventions for exchange name and routing key by using the overload:
 snippet:rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
 
-#### Custom Routing Topology
+### Custom Routing Topology
 
 If the routing topologies mentioned above aren't flexible enough, then take full control over how routing is done by implementing a custom routing topology. This is done by:
 
@@ -265,14 +265,14 @@ The RabbitMQ transport supports the following [Transport Transaction Modes](/nse
  * Unreliable (Transactions Disabled)
 
 
-### Transport transaction - Receive Only
+#### Transport transaction - Receive Only
 
 When running in `ReceiveOnly` mode, the RabbitMQ transport consumes messages from the broker in manual acknowledgment mode. After a message is successfully processed, it is acknowledged via the AMQP [basic.ack](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.ack) method, which lets the broker know that the message can be removed from the queue. If a message is not successfully processed and needs to be retried, it is requeued via the AMQP [basic.reject](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.reject) method.
 
 WARNING: If the connection to the broker is lost for any reason before a message can be acknowledged, even if the message was successfully processed, the message will automatically be requeued by the broker. This will result in the endpoint processing the same message multiple times.
 
 
-### Unreliable (Transactions Disabled)
+#### Unreliable (Transactions Disabled)
 
 When running in `None` mode, the RabbitMQ transport consumes messages from the broker in manual acknowledgment mode. Regardless of whether a message is successfully processed or not, it is acknowledged via the AMQP [basic.ack](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.ack) method after the processing attempt. This means that a message will be attempted once, and moved to the error queue if it fails.
 
