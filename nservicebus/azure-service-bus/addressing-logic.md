@@ -11,21 +11,21 @@ tags:
 
 One of the responsibilities of the transport is determining the names and physical location of entities in the underlying physical infrastructure. This is achieved by turning logical endpoint names into physical addresses of the Azure Service Bus entities, which is called *Physical Addressing Logic*.
 
-Prior to version 7 there was no explicit layer for handling this kind of logic, most assumptions such as assumptions on length limitations, legal characters, differences between paths and names etc... were sprinkled across the transport.
-
-Over time, subtle variations started to show in these assumptions as changes took place inside the implementation of certain namespace types. For example `Mixed` namespaces allowed paths and names up 290 characters, while `Messaging` namespaces are capped at 260. Next to that, customers also figured out ways to game the system (for valid reasons), like embedding `'/'` characters in endpoint names to create subfolders in the Azure Service Bus namespace registration system.
-
 ### Version 6 and below
 
-In older versions some of these changes got exposed over time as lambda expressions and became collectively known as the [Naming Conventions](/nservicebus/azure-service-bus/naming-conventions.md#version-6-and-below-naming-conventions)
+In Versions 6 and below, the *Physical Addressing Logic* implementation made a number of implicit assumptions regarding names, such as length limitations, legal characters, differences between paths and names, etc. There was no way to explicitly control those settings, and over time subtle variations started to show up.
+
+For example `Mixed` namespaces allowed paths and names to have up to 290 characters, while `Messaging` namespaces are capped at 260 characters. Moreover, customers were sometimes forced to game the system for valid reasons. For example they needed to figure out how to embed slashes (`'/'`) in endpoint names to create subfolders in the Azure Service Bus namespace registration system.
+
+To mitigate these changes, the transport started to expose certain checks as lambda expressions, which became collectively known as the [Naming Conventions](/nservicebus/azure-service-bus/naming-conventions.md#version-6-and-below-naming-conventions)
 
 ### Version 7
 
-In version 7 the configuration API allows to modify all behaviours and assumptions related to the addressing logic. This article will mainly focus on describing the layers inside the addressing logic and will show how to replace parts if further changes should occur, for a full list of out of the box options refer to [Full Configuration API](/nservicebus/azure-service-bus/configuration/configuration.md).
+In version 7, and above, the configuration API allows to modify all behaviours and assumptions related to the addressing logic. This article will mainly focus on describing the different aspects of the addressing logic and will show how to replace parts if further changes should occur, for a full list of out of the box options refer to [Full Configuration API](/nservicebus/azure-service-bus/configuration/configuration.md).
 
-### Addressing layers
+### Addressing Aspects
 
-The following layers are found in the addressing logic:
+The following aspects are found in the addressing logic:
 
  * Validation: Determines how entity names and paths are validated.
  * Sanitization: Determines how invalid entity names are cleaned up.
@@ -35,7 +35,7 @@ The following layers are found in the addressing logic:
  
 ### Validation
 
-The validation layer is represented by an implementation of `IValidationStrategy`. 
+The validation aspect is represented by an implementation of `IValidationStrategy`. 
 
 Out of the box there are 2 validation strategies
  * `EntityNameValidationV6Rules`: allows letters, numbers, periods (.), hyphens (-), and underscores (-)
@@ -61,12 +61,11 @@ snippet:custom-validation-strategy-extension
 
 ### Sanitization
 
-The sanitization layer is represented by an implementation of `ISanitizationStrategy`. 
+The sanitization aspect is represented by an implementation of `ISanitizationStrategy`. 
 
-Out of the box there are 3 sanitization strategies
- * `AdjustmentSanitizationV6`: removes invalid characters according to `EntityNameValidationV6Rules`, uses MD5 hashing to reduce the length of an entity name if the maximum length is exceeded.
- * `AdjustmentSanitization` (default): removes invalid characters according to `EntityNameValidationRules`, uses SHA1 hashing to reduce the length of an entity name if the maximum length is exceeded.
- * `ThrowOnFailingSanitization`: throws an `EndpointValidationException` if the name is invalid.
+Out of the box there are 2 sanitization strategies
+ * `EndpointOrientedTopologySanitization`: removes invalid characters according to `EntityNameValidationV6Rules`, uses MD5 hashing to reduce the length of an entity name if the maximum length is exceeded.
+ * `ThrowOnFailingSanitization` (default): throws an `EndpointValidationException` if the name is invalid.
 
 The default implementation of this strategy can be replaced by using the configuration API:
 
@@ -86,9 +85,13 @@ In order to allow configuration of the custom sanitization strategy it is advise
 
 snippet:custom-sanitization-strategy-extension
 
+#### Example custom sanitization strategy
+
+The [AdjustmentSanitization](/samples/azure/custom-sanitization/) sample shows a more concrete implementation of a sanitization strategy, it removes invalid characters and uses SHA1 hashing to reduce the length of an entity name if the maximum length is exceeded.
+
 ### Individualization
 
-The individualization layer is represented by an implementation of `IIndividualizationStrategy`. 
+The individualization aspect is represented by an implementation of `IIndividualizationStrategy`. 
 
 Out of the box, there are 2 individualization strategies
  * `CoreIndividualization` (default): Makes no modifications, and relies on the individualization logic as defined in the NServiceBus core framework.
@@ -114,7 +117,7 @@ snippet:custom-individualization-strategy-extension
 
 ### Namespace Partitioning
 
-The namespace partitioning layer is represented by an implementation of `INamespacePartitioningStrategy`. 
+The namespace partitioning aspect is represented by an implementation of `INamespacePartitioningStrategy`. 
 
 Out of the box there are 3 namespace partitioning strategies
  * `SingleNamespacePartitioning` (default): All entities are in a single namespace.
@@ -146,7 +149,7 @@ snippet:custom-namespace-partitioning-strategy-extension
 
 ### Composition
 
-The composition layer is represented by an implementation of `ICompositionStrategy`.
+The composition aspect is represented by an implementation of `ICompositionStrategy`.
 
 Out of the box there are 2 composition strategies
  * `FlatComposition`: The entity is in the root of the namespace.
