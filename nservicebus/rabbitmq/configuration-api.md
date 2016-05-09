@@ -8,35 +8,39 @@ tags:
 - Transactions
 ---
 
-## Configuring RabbitMQ transport to be used
+## Configuring the endpoint to use the RabbitMQ transport
 
 To use RabbitMQ as the underlying transport:
 
 snippet:rabbitmq-config-basic
 
 
-## Specifying the connection string
+## RabbitMQ connection string
 
-The transport needs to connect to a RabbitMQ broker. By default, the transport will look for a connection string called `NServiceBus/Transport` in the `app.config`.
+The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker. This connection string can be specified via code or via `app.config`.
 
-To use a custom name for the connection string:
 
-snippet:rabbitmq-config-connectionstringname
+### Specifying the connection string via code
 
 To specify the connection string in code:
 
 snippet:rabbitmq-config-connectionstring-in-code
 
-A typical connection string would look like this:
+
+### Specifying the connection string via app.config
+
+By default, the transport will look for a connection string called `NServiceBus/Transport` in `app.config`:
 
 snippet:rabbitmq-connectionstring
 
-In the above sample, the transport is configured to connect to a RabbitMQ broker running at the machine `broker1`.
+To use a custom name for the connection string:
+
+snippet:rabbitmq-config-connectionstringname
 
 
 ### Connection string options
 
-Below is the list of connection string options. Note that they are separated by a `;`.
+Below is the list of connection string options. When constructing a connection string, these options should be separated by a semicolon.
 
 
 #### Host
