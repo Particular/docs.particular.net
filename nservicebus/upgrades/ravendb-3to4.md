@@ -29,7 +29,7 @@ As part of this move, the following classes were moved to different namespaces:
 
 NServiceBus now uses the asynchronous RavenDB API for all operations. If sharing the session between NServiceBus and handler code is required, then handler code will need to be adjusted to utilize the asynchronous RavenDB API as well.
 
-Previously the API exposed an [IDocumentSession](https://github.com/ravendb/ravendb/blob/build-30000/Raven.Client.Lightweight/IDocumentSession.cs), but now exposes [IAsyncDocumentSession](https://github.com/ravendb/ravendb/blob/build-30000/Raven.Client.Lightweight/IAsyncDocumentSession.cs) instead, which contains the same operations but using a Task-based API.
+Previously the API exposed an [`IDocumentSession`](https://github.com/ravendb/ravendb/blob/build-30000/Raven.Client.Lightweight/IDocumentSession.cs), but now exposes [`IAsyncDocumentSession`](https://github.com/ravendb/ravendb/blob/build-30000/Raven.Client.Lightweight/IAsyncDocumentSession.cs) instead, which contains the same operations but using a Task-based API.
 
 
 ## Configuring a shared session
