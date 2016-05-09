@@ -13,7 +13,7 @@ related:
 
 [Azure Service Bus (ASB)](https://azure.microsoft.com/en-us/services/service-bus/)  is a messaging service hosted on the Azure platform, that allows for exchanging messages between various applications in a loosely coupled fashion. ASB Queues offer FIFO (First In, First Out) guaranteed message delivery, and support a range of standard protocols (REST, AMQP, WS*) and APIs (to put/pull messages on/off the queue). ASB Topics deliver messages to multiple subscribers and allow to use fan-out pattern to deliver messages to downstream systems.
 
-NServiceBus is an abstraction over ASB. It takes advantage of ASB's built-in features, such as message deduplication and deferred messages. It also provides higher-level, convenient API for programmers on top of ASB.
+NServiceBus is an abstraction over ASB. It takes advantage of ASB's built-in features, such as message batching and deferred messages. It also provides higher-level, convenient API for programmers on top of ASB.
 
 Note: Publish/Subscribe and Timeouts (including message deferral) are supported natively by the ASB transport and do not require NServiceBus persistence.
 
@@ -40,7 +40,7 @@ snippet:AzureServiceBusTransportWithAzure
 
 ## Setting the Connection String
 
-The default way to set the connection string is using the .NET provided `connectionStrings` configuration section in an `app.config` or a `web.config` file, with the name `NServicebus\Transport`:
+The default way to set the connection string is using `.ConnectionString()` configuration API or the .NET provided `connectionStrings` configuration section in an `app.config` or a `web.config` file, with the name `NServicebus\Transport`:
 
 snippet:AzureServiceBusConnectionStringFromAppConfig
 

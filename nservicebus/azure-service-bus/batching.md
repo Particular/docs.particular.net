@@ -14,7 +14,7 @@ reviewed: 2016-04-26
 
 In order to increase messages throughput, the Azure Service Bus batches operations prior to writing to its internal store. This involves delaying write operations by 20 ms. Read operations are not affected.
 
-Batching store operations should be disabled for low throughput scenarios requiring low latency.
+Batching store operations shuld be disabled for low throughput scenarios requiring low latency.
 
 Batching is enabled by default. In order to disable it, set `EnableBatching` flag to `false` on [queues](/nservicebus/azure-service-bus/configuration/full.md#Queues), [topics](/nservicebus/azure-service-bus/configuration/full.md#Topics), and [subscriptions](/nservicebus/azure-service-bus/configuration/full.md#Subscriptions).
 
@@ -25,7 +25,7 @@ Client-side batching allows messages being sent to a queue or topic to be delaye
 
 Batching store operations should be disabled for low throughput scenarios requiring low latency. To do so, set the `BatchFlushInterval` to `TimeSpan.Zero`. For high-throughput scenarios, increase the `BatchFlushInterval`.
 
-Batching is only available for asynchronous Send and Complete operations. Synchronous operations are immediately sent to the Service Bus service. Batching does not occur for Peek or Receive operations, nor does batching occur across clients.
+Batched store access is only available for asynchronous Send and Complete operations. Synchronous operations are immediately sent to the Service Bus service. Batching does not occur for Peek or Receive operations, nor does batching occur across clients.
 
 
 ## Batching messages sent from a handler
