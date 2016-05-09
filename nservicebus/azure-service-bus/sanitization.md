@@ -23,8 +23,8 @@ When entity name does not follow the rules, an exception is raised by the broker
 
 | Entity Type  | Valid Characters | Path / Name Maximum Length |
 |--------------|------------------|----------------------------|
-| Queue        | Letters, numbers, periods (`.`), hyphens (`-`), underscores (`_`), and forward slashes (/). | 260 |
-| Topic        | Letters, numbers, periods (`.`), hyphens (`-`), underscores (`_`), and forward slashes (/). | 260 |
+| Queue        | Letters, numbers, periods (`.`), hyphens (`-`), underscores (`_`), and forward slashes (`/`). | 260 |
+| Topic        | Letters, numbers, periods (`.`), hyphens (`-`), underscores (`_`), and forward slashes `(/`). | 260 |
 | Subscription | Letters, numbers, periods (`.`), hyphens (`-`), and underscores (`_`). | 50  |
 | Rule         | Letters, numbers, periods (`.`), hyphens (`-`), and underscores (`_`). | 50  |
 
