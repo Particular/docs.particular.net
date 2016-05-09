@@ -20,7 +20,7 @@ RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.htm
 
 ### Remote Host
 
-By default, the [guest user can only connect via localhost](https://www.rabbitmq.com/access-control.html), so when connecting to a remote host, a user name and password must be provided.
+By default, the [guest user can only connect via localhost](https://www.rabbitmq.com/access-control.html). If connecting to a remote host, a user name and password must be provided.
 
 ```xml
 <connectionStrings>
