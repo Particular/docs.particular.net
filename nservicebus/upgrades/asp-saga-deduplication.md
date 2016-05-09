@@ -1,5 +1,5 @@
 ---
-title: Azure Storage Persistence upgrade Version 6.2.3 to higher
+title: Azure Storage Persistence upgrade Version 6.2.3 to 6.2.4
 summary: Instructions on how to patch Azure Storage Persistence when saga duplication occurs.
 reviewed: 2016-04-14
 tags:
@@ -12,8 +12,9 @@ related:
 
 ## Summary
 
-This document explains how to upgrade and patch a system for [Azure Storage Persistence bug #26](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/issues/26) using the NServiceBus Azure hotfix release 6.2.4.
+This document explains how to upgrade and patch a system for [Azure Storage Persistence bug #26](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/issues/26) using the NServiceBus.Azure hotfix release 6.2.4. 
 
+When upgrading to NServiceBus.Persistence.AzureStorage Version 1 or later, the following upgrade will need to be performed prior to beginning any other upgrade steps.
 
 ### How to know if a system may be affected
 
@@ -30,16 +31,13 @@ This bug will affect a system only if the following conditions are met on the sa
 
 To deploy this fix throughout a system, all endpoints will need to be upgraded and saga data that has been stored by the Azure Storage persister will need to be patched.
 
-
 ### Upgrading endpoints
 
 All endpoints using NServiceBus.Azure will need to be upgraded to version 6.2.4 or higher.
 
-
 ### Patching data
 
 Saga data stored in Azure will need to be patched using the `NServiceBus.AzureStoragePersistence.SagaDeduplicator` utility which can be downloaded from [https://github.com/Particular/IssueDetection/releases/tag/nsb.asp.26](https://github.com/Particular/IssueDetection/releases/tag/nsb.asp.26).
-
 
 ## Patch steps
 
@@ -56,7 +54,7 @@ Saga data stored in Azure will need to be patched using the `NServiceBus.AzureSt
  1. Copy endpoint dlls to the same folder as the de-duplication tool. These files will be scanned to find all implementations of `IContainSagaData` which will indicate the sagas that need to be verified in Azure Storage.
  1. Run de-duplication utility (refer to the [Running the de-duplication utility](#running-the-de-duplication-utility) section for more details).
  1. All class names returned by the de-duplication tool in the previous step will need to add the `[Unique]` attribute to one property. `IContainSagaData` classes without a property decorated by the `[Unique]` attribute will cause their sagas to throw exceptions post upgrade.
- 1. Update NServiceBus.Azure dependency to version 6.2.4 or higher in all endpoints that use it and release the updated endpoints.
+ 1. Either update NServiceBus.Azure dependency to version 6.2.4 or higher in all endpoints that use it and release the updated endpoints.
  1. Run de-duplication utility again (see below for details). This will fix problem saga data or list conflicts that were introduced to the data store while steps #5 and #6 were being performed.
  1. If the de-duplication utility has output any classes that require the identification of a correlation property, then return to step #5 above and address those classes.
 
