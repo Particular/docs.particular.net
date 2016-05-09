@@ -193,7 +193,7 @@ snippet:rabbitmq-connection-tls-config
 
 ## Controlling the message ID strategy
 
-By default, NServiceBus uses the `message-id` property of the AMQP standard to relay the message ID. If this header isn't set, the transport will throw an exception, because NServiceBus needs a message ID in order to perform retries, de-duplication etc. in a safe way. For integration scenarios where the sender is not controlled, consider using a custom scheme that extracts a message ID from a custom header or some data contained in the actual message body. This custom strategy can be configured by calling:
+By default, NServiceBus uses the `message-id` property of the AMQP standard to relay the message ID. If this header isn't set, the transport will throw an exception because NServiceBus needs a message ID to perform retries, de-duplication, etc., in a safe way. For integration scenarios where the sender is not controlled, consider using a custom scheme that extracts a message ID from a custom header or some data contained in the actual message body. This custom strategy can be configured by calling:
 
 snippet:rabbitmq-config-custom-id-strategy
 
