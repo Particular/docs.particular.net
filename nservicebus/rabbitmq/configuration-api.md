@@ -200,9 +200,12 @@ snippet:rabbitmq-config-custom-id-strategy
 WARNING: It is extremely important to use a uniquely identifying property of the message in a custom message ID strategy. If the value for a message were to change (for example, if attempting to use `Guid.NewGuid().ToString()`) then message retries would break, as the infrastructure would be unable to determine that it was processing the same message repeatedly.
 
 
-## Getting full control over the broker connection (Versions 3 and below)
+## Providing a custom connection manager
 
-The default connection manager that comes with the transport is usually good enough for most users. To control how the connection(s) with the broker is managed, implement a custom connection manager by inheriting from `IManageRabbitMqConnections`. This requires that connections be provided for:
+
+### Versions 3 and below
+
+The default connection manager that comes with the transport is usually good enough for most users. To control how the connections with the broker are managed, implement a custom connection manager by inheriting from `IManageRabbitMqConnections`. This requires that connections be provided for:
 
  1. Administrative actions like creating queues and exchanges
  2. Publishing messages to the broker
@@ -212,7 +215,10 @@ In order for the transport to use the above, register it as shown below:
 
 snippet:rabbitmq-config-useconnectionmanager
 
-WARNING: In Versions 4 and above, the ability to provide a custom connection manager has been removed.
+
+### Versions 4 and above
+
+In Versions 4 and above, the ability to provide a custom connection manager via the `IManageRabbitMqConnections` interface has been removed.
 
 
 ## Controlling behavior when the broker connection is lost
