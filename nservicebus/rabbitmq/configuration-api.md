@@ -50,7 +50,7 @@ NOTE: This value is required.
 
 The port where the broker listens.
 
-Default: `5672` or `5671` if `UseTls` is true
+Default: `5671` if the `UseTls` setting is set to `true`, otherwise the default value is `5672`
 
 
 #### VirtualHost
