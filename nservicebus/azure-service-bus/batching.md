@@ -12,7 +12,7 @@ reviewed: 2016-04-26
 
 ## Batching store access
 
-In order to increase messages throughput, the Azure Service Bus batches operations prior to writing to its internal store. This involves delaying write operations by 20 ms. Read operations are not affected.
+In order to increase message throughput, the Azure Service Bus batches operations prior to writing to its internal store. This involves delaying write operations by 20 ms. Read operations are not affected.
 
 Batching store operations shuld be disabled for low throughput scenarios requiring low latency.
 
