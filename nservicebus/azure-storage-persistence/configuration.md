@@ -10,7 +10,7 @@ tags:
 
 In NServiceBus.Azure the behavior of the AzureStoragePersister can be controlled by specifying one of the respective configuration sections in the `app.config` and changing the available properties, or by using the code API. The exact same settings are exposed via the `app.config` and the code configuration API.
 
-In NServiceBus.Persistence.AzureStorage v1 and later the only way to configure the behavior of the persister is to use the code configuration API.
+In NServiceBus.Persistence.AzureStorage v1 and above the only way to configure the behavior of the persister is to use the code configuration API.
 
 ### Configuration with Configuration Section
 
