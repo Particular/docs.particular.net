@@ -56,4 +56,4 @@ For Timeouts:
 
 snippet:AzurePersistenceTimeoutsCustomization
 
-NOTE: Subscriptions and Timeouts persistence configuration only has an effect when used with Azure Storage Queues transport from NServiceBus.Azure Version 6.x and NServiceBus.Persistence.AzureStorage Version 1.x and later.
+NOTE: Subscriptions and Timeouts persistence configuration only has an effect when used with Azure Storage Queues transport from NServiceBus.Azure Version 6.x and NServiceBus.Persistence.AzureStorage Version 1.x and above.

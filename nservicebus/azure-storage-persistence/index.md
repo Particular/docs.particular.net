@@ -18,7 +18,7 @@ Certain features of NServiceBus require persistence to permanently store data. A
 
 ## How to enable persistence with Azure Storage Services
 
-First add a reference to the assembly that contains the Azure storage persisters. When working with NServiceBus v5 or lower the recommended way of doing this is by adding a NuGet package reference to `NServiceBus.Azure`. For NServiceBus v6 and higher the NuGet package reference will be to `NServiceBus.Persistence.AzureStorage`.
+First add a reference to the assembly that contains the Azure storage persisters. When working with NServiceBus Version 5 or lower the recommended way of doing this is by adding a NuGet package reference to `NServiceBus.Azure`. For NServiceBus Version 6 and above the NuGet package reference will be to `NServiceBus.Persistence.AzureStorage`.
 
 If self hosting, the persistence technology could be configured using the configuration API and the extension method found in both the `NServiceBus.Azure` and `NServiceBus.Persistence.AzureStorage` assemblies.
 
