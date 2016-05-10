@@ -13,7 +13,7 @@ related:
 
 ## Prerequisites
 
-Ensure an instance of [MongoDB](https://www.mongodb.org/) is running on `localhost:27017`. See [Install MongoDB on Windows](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/).
+Ensure an instance of [MongoDB](https://www.mongodb.com/) is running on `localhost:27017`. See [Install MongoDB on Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/).
 
 
 ### MongoDB Persistence for NServiceBus
@@ -25,7 +25,7 @@ NOTE: There are [two community run MongoDB persistences](/platform/extensions.md
 
 ### MongoDB Management UI
 
-To visualize the data in MongoDB it is useful to have install a [MongoDB administration tool](https://docs.mongodb.org/ecosystem/tools/administration-interfaces/). The screen shots shown in this sample use [Robomongo](https://robomongo.org/).
+To visualize the data in MongoDB it is useful to have install a [MongoDB administration tool](https://docs.mongodb.com/ecosystem/tools/administration-interfaces/). The screen shots shown in this sample use [Robomongo](https://robomongo.org/).
 
 
 ## Code walk-through
