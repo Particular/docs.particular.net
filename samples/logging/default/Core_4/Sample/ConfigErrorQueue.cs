@@ -1,5 +1,4 @@
-﻿using System;
-using NServiceBus.Config;
+﻿using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
 class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
@@ -7,8 +6,8 @@ class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultCon
     public MessageForwardingInCaseOfFaultConfig GetConfiguration()
     {
         return new MessageForwardingInCaseOfFaultConfig
-               {
-                   ErrorQueue = "error"
-               };
+        {
+            ErrorQueue = "error"
+        };
     }
 }

@@ -8,7 +8,7 @@ using NServiceBus;
 #region Config
 public class EndpointConfig :
     IConfigureThisEndpoint,
-    AsA_Server, 
+    AsA_Server,
     IWantCustomInitialization,
     IWantCustomLogging
 {

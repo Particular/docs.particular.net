@@ -6,10 +6,10 @@ using NServiceBus;
 
 [EndpointName("Samples.Logging.HostCustom")]
 #region Config
-public class EndpointConfig : 
-    IConfigureThisEndpoint, 
+public class EndpointConfig :
+    IConfigureThisEndpoint,
     AsA_Server,
-    IWantCustomInitialization, 
+    IWantCustomInitialization,
     IWantCustomLogging
 {
     void IWantCustomLogging.Init()
