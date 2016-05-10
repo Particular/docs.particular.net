@@ -125,9 +125,9 @@ Note that multiple connection string formats apply when working with Azure stora
 For more details refer to [Configuring Azure Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/storage-configure-connection-string/) document.
 
 
-### Securing connection strings
+### Securing connection strings to storage accounts
 
-It is possible to accidentally leak sensitive information in the connection string if it's not properly secured. E.g. the information can be leaked if an error occurs when communicating across untrusted boundaries, or if the error information is logged to an unsecured log file.
+It is possible to accidentally leak sensitive information in the connection string for a storage account if it's not properly secured. E.g. the information can be leaked if an error occurs when communicating across untrusted boundaries, or if the error information is logged to an unsecured log file.
 
 In order to prevent it, `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 7 and above allow for creating a logical name for each connection string. The name is mapped to the physical connection string, and connection strings are always referred to by their logical name. In the event of an error or when logging only the logical name can be accidentally leaked.
 
