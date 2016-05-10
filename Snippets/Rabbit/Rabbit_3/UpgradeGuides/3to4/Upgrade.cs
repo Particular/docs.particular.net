@@ -13,18 +13,5 @@ class Upgrade
         #endregion
     }
 
-    void UseDirectRoutingTopology(BusConfiguration busConfiguration)
-    {
-        #region 3to4rabbitmq-config-usedirectroutingtopology
 
-        var transport = busConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
-
-        #endregion
-    }
-
-    string MyRoutingKeyConvention(Type type)
-    {
-        throw new NotImplementedException();
-    }
 }

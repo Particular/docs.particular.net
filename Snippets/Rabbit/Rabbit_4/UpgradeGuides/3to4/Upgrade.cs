@@ -13,36 +13,12 @@ class Upgrade
         #endregion
     }
 
-    void CallbackReceiverMaxConcurrency(EndpointConfiguration endpointConfiguration)
+    void PrefetchCountReplacement(EndpointConfiguration endpointConfiguration)
     {
-        #region 3to4rabbitmq-config-callbackreceiver-thread-count
+        #region 3to4rabbitmq-config-prefetch-count-replacement
+
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
 
         #endregion
-    }
-
-    void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
-    {
-        #region 3to4rabbitmq-config-usedirectroutingtopology
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
-
-        #endregion
-    }
-
-    void ChangeTransactionMode(EndpointConfiguration endpointConfiguration)
-    {
-        #region 3to4rabbitmq-config-transactions
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.Transactions(TransportTransactionMode.None);
-
-        #endregion
-    }
-
-    string MyRoutingKeyConvention(Type type)
-    {
-        throw new NotImplementedException();
     }
 }
