@@ -23,4 +23,11 @@
   </appSettings>
   <!--endcode-->
 
+  <!--startcode rabbitmq-connection-tls-config 3.2 -->
+  <connectionStrings>
+    <add name="NServiceBus/Transport"
+         connectionString="host=broker1;UseTls=true;CertPath=C:\CertificatePath\ssl.pfx;CertPassphrase=securePassword"/>
+  </connectionStrings>
+  <!--endcode-->
+
 </configuration>

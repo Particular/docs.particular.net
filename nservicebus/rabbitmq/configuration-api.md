@@ -133,21 +133,21 @@ Indicates if the connection to the broker should be secured with [TLS](/nservice
 
 Default: `false`
 
-Versions: 4 and above
+Versions: 3.2 and above
 
 
 #### CertPath
 
 The file path to the client authentication certificate when using [TLS](/nservicebus/rabbitmq/configuration-api.md#specifying-the-connection-string-transport-layer-security-support)
 
-Versions: 4 and above
+Versions: 3.2 and above
 
 
 #### CertPassphrase
 
 The password for the client authentication certificate specified in `CertPath`
 
-Versions: 4 and above
+Versions: 3.2 and above
 
 NOTE: For debugging purposes, it can be helpful to increase the `RequestedHeartbeat` and `DequeueTimeout` settings as shown below:
 
@@ -181,7 +181,7 @@ In Versions 4 and above, callbacks are no longer directly managed by the RabbitM
 
 ## Transport Layer Security support
 
-In Versions 4 and above, the RabbitMQ transport supports creating secure connections to the broker using Transport Layer Security (TLS). For information on how to configure TLS on the RabbitMQ broker, refer to the [RabbitMQ documentation](http://www.rabbitmq.com/ssl.html). To enable TLS support, set the `UseTls` setting to `true` in the connection string. If the RabbitMQ broker has been configured to require client authentication, a client certificate can be specified in the `CertPath` setting. If that certificate requires a password, it can be specified in the `CertPassphrase` setting.
+In Versions 3.2 and above, the RabbitMQ transport supports creating secure connections to the broker using Transport Layer Security (TLS). For information on how to configure TLS on the RabbitMQ broker, refer to the [RabbitMQ documentation](http://www.rabbitmq.com/ssl.html). To enable TLS support, set the `UseTls` setting to `true` in the connection string. If the RabbitMQ broker has been configured to require client authentication, a client certificate can be specified in the `CertPath` setting. If that certificate requires a password, it can be specified in the `CertPassphrase` setting.
 
 An example of these settings being set in a connection string via code:
 
