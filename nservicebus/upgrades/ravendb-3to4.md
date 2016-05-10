@@ -14,14 +14,27 @@ redirects:
 As part of this update [NServiceBus Version 6](/nservicebus/upgrades/5to6.md) will be required.
 
 
-## Namespace change
+## Namespace changes
 
-The `RavenDBPersistence` has moved from `NServiceBus.Persistence` namespace to `NServiceBus`. There is no need to have an extra using statement if the NServiceBus.RavenDB NuGet package is installed. 
+Namespaces for public types have been consolidated to make customizations more discoverable. The primary namespaces are `NServiceBus` for customization options that need to be discoverable, and `NServiceBus.Persistence.RavenDB` for advanced APIs. A single `using NServiceBus` directive should be sufficient to find all necessary options.
+
+As part of this move, the following classes were moved to different namespaces:
+
+ * `NServiceBus.Persistence.RavenDBPersistence` to the `NServiceBus` namespace.
+ * `NServiceBus.RavenDB.Outbox.RavenDBOutboxExtensions` to the `NServiceBus` namespace.
+ * `NServiceBus.RavenDB.ConnectionParameters` to the `NServiceBus.Persistence.RavenDB` namespace.
+
+
+## Use of RavenDB Async API
+
+NServiceBus now uses the asynchronous RavenDB API for all operations. If sharing the session between NServiceBus and handler code is required, then handler code will need to be adjusted to utilize the asynchronous RavenDB API as well.
+
+Previously the API exposed an [`IDocumentSession`](http://ravendb.net/docs/search/latest/csharp?searchTerm=IDocumentSession), but now exposes [`IAsyncDocumentSession`](http://ravendb.net/docs/search/latest/csharp?searchTerm=IAsyncDocumentSession) instead, which contains the same operations but using a Task-based API.
 
 
 ## Configuring a shared session
 
-Configuring a shared raven session now requires a `Func<IAsyncDocumentSession>` ([IAsyncDocumentSession](http://ravendb.net/docs/search/latest/csharp?searchTerm=IAsyncDocumentSession)) instead of a `Func<IDocumentSession>` [IDocumentSession](http://ravendb.net/docs/search/latest/csharp?searchTerm=IDocumentSession).
+Configuring a shared raven session now requires a `Func<IAsyncDocumentSession>` instead of a `Func<IDocumentSession>`.
 
 snippet:3to4-ravensharedsession
 

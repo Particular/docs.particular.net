@@ -33,7 +33,7 @@ To use the default storage, ensure a RavenDB server is running to which the endp
 
 When a master node is defined, NServiceBus understands that all data will be stored on that designated server  instead. This means that the RavenDB server runs on that remote machine and not the local machine where the install is executed.
 
-For instructions on how to administrate and operate a RavenDB server, refer to the [documentation for RavenDB](http://ravendb.net/docs/search/latest/csharp?searchTerm=server-administration).
+See also [Administration of a RavenDB server](http://ravendb.net/docs/search/latest/csharp?searchTerm=server-administration).
 
 
 ## Upgrading RavenDB
