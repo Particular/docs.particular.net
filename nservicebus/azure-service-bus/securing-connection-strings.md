@@ -1,6 +1,6 @@
 ---
-title: Securing Credentials
-summary: 'Azure Service Bus Transport: Securing credentials.'
+title: Securing Connection Strings
+summary: 'Azure Service Bus Transport: Securing connection strings.'
 component: ASB
 tags:
 - Cloud

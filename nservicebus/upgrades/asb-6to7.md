@@ -76,7 +76,7 @@ snippet: asb-endpointorientedtopology-sanitization
 In version 6.4.0 `NamingConventions` class was introduced to customize sanitization. The class is obsoleted. Instead, implement a [custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#version-7-and-above).
 
 
-## [Securing Credentials](/nservicebus/azure-service-bus/secure-credentials.md)
+## [Securing Credentials](/nservicebus/azure-service-bus/securing-connection-strings.md)
 
 include:asb-credential-warning
 
