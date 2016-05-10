@@ -5,11 +5,11 @@ using Raven.Client;
 #region 3to4-acccessingravenfromhandler
 public class HandlerWithRavenSession : IHandleMessages<MyMessage>
 {
-    public async Task Handle(MyMessage message, IMessageHandlerContext context)
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         IAsyncDocumentSession ravenSession = context.SynchronizedStorageSession
             .RavenSession();
-        await SomeLibrary.SomeAsyncMethod(message, ravenSession);
+        return SomeLibrary.SomeAsyncMethod(message, ravenSession);
     }
 }
 #endregion
