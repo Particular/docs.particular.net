@@ -42,6 +42,10 @@ snippet:AzureServiceBusTransportWithAzure
 
 The default way to set the connection string is using `.ConnectionString()` configuration API or the .NET provided `connectionStrings` configuration section in an `app.config` or a `web.config` file, with the name `NServicebus\Transport`:
 
+snippet:setting_asb_connection_string
+
+or
+
 snippet:AzureServiceBusConnectionStringFromAppConfig
 
 For more details on setting up connection strings and securing them, refer to the [Configuration Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-topics-subscriptions/#set-up-a-service-bus-connection-string) and the[Securing Credentials](/nservicebus/azure-service-bus/secure-credentials.md) articles.
