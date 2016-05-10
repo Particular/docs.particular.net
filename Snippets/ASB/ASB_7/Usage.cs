@@ -41,7 +41,8 @@ class Usage
         #region setting_queue_properties
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.Queues().LockDuration(TimeSpan.FromMinutes(1));
+        var queueSettings = transport.Queues();
+        queueSettings.LockDuration(TimeSpan.FromMinutes(1));
 
         #endregion
     }
@@ -51,7 +52,8 @@ class Usage
         #region setting_topic_properties
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.Topics().MaxSizeInMegabytes(SizeInMegabytes.Size5120);
+        var topicSettings = transport.Topics();
+        topicSettings.MaxSizeInMegabytes(SizeInMegabytes.Size5120);
 
         #endregion
     }
@@ -117,7 +119,8 @@ class Usage
         #region asb-auto-lock-renewal
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.MessageReceivers().AutoRenewTimeout(maximumProcessingTime);
+        var receiverSettings = transport.MessageReceivers();
+        receiverSettings.AutoRenewTimeout(maximumProcessingTime);
 
         #endregion
     }
@@ -127,7 +130,8 @@ class Usage
         #region forward-deadletter-conditional-queue
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
-        transport.Queues().ForwardDeadLetteredMessagesTo(entityname => entityname == "yourqueue", "errorqueue");
+        var queueSettings = transport.Queues();
+        queueSettings.ForwardDeadLetteredMessagesTo(entityname => entityname == "yourqueue", "errorqueue");
 
         #endregion
     }
@@ -137,7 +141,8 @@ class Usage
         #region swap-validation-strategy
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.Validation().UseStrategy<MyValidationStrategy>();
+        var validationSettings = transport.Validation();
+        validationSettings.UseStrategy<MyValidationStrategy>();
 
         #endregion
     }
@@ -147,7 +152,8 @@ class Usage
         #region swap-sanitization-strategy
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.Sanitization().UseStrategy<MySanitizationStrategy>();
+        var sanitizationSettings = transport.Sanitization();
+        sanitizationSettings.UseStrategy<MySanitizationStrategy>();
 
         #endregion
     }
@@ -157,7 +163,8 @@ class Usage
         #region swap-composition-strategy
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.Composition().UseStrategy<MyCompositionStrategy>();
+        var compositionSettings = transport.Composition();
+        compositionSettings.UseStrategy<MyCompositionStrategy>();
 
         #endregion
     }
@@ -167,7 +174,8 @@ class Usage
         #region swap-namespace-partitioning-strategy
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.NamespacePartitioning().UseStrategy<MyNamespacePartitioningStrategy>();
+        var partitioningSettings = transport.NamespacePartitioning();
+        partitioningSettings.UseStrategy<MyNamespacePartitioningStrategy>();
 
         #endregion
     }
@@ -177,7 +185,8 @@ class Usage
         #region swap-individualization-strategy
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.Individualization().UseStrategy<MyIndividualizationStrategy>();
+        var individualizationSettings = transport.Individualization();
+        individualizationSettings.UseStrategy<MyIndividualizationStrategy>();
 
         #endregion
     }

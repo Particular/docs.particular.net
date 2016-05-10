@@ -10,7 +10,7 @@ using NServiceBus.Settings;
 
 public class MyValidationStrategy : IValidationStrategy
 {
-    private readonly ReadOnlySettings settings;
+    ReadOnlySettings settings;
 
     public MyValidationStrategy(ReadOnlySettings settings)
     {
@@ -45,7 +45,7 @@ public static class AzureServiceBusValidationStrategyExtensions
 
 public class MySanitizationStrategy : ISanitizationStrategy
 {
-    private readonly ReadOnlySettings settings;
+    ReadOnlySettings settings;
 
     public MySanitizationStrategy(ReadOnlySettings settings)
     {
@@ -78,7 +78,7 @@ public static class AzureServiceBusSanitizationStrategyExtensions
 
 public class MyNamespacePartitioningStrategy : INamespacePartitioningStrategy
 {
-    private readonly ReadOnlySettings settings;
+    ReadOnlySettings settings;
 
     public MyNamespacePartitioningStrategy(ReadOnlySettings settings)
     {
@@ -111,7 +111,7 @@ public static class AzureServiceBusNamespacePartitioningStrategyExtensions
 
 public class MyIndividualizationStrategy : IIndividualizationStrategy
 {
-    private readonly ReadOnlySettings settings;
+    ReadOnlySettings settings;
 
     public MyIndividualizationStrategy(ReadOnlySettings settings)
     {
@@ -144,7 +144,7 @@ public static class AzureServiceBusIndividualizationStrategyExtensions
 
 public class MyCompositionStrategy : ICompositionStrategy
 {
-    private readonly ReadOnlySettings settings;
+    ReadOnlySettings settings;
 
     public MyCompositionStrategy(ReadOnlySettings settings)
     {
