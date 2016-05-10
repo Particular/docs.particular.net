@@ -5,7 +5,7 @@ using NServiceBus.Transports.SQLServer;
 
 class NamedConnectionString
 {
-    private string connectionString;
+    string connectionString;
 
     void ConnectionString(EndpointConfiguration endpointConfiguration)
     {

@@ -94,7 +94,7 @@ class Usage
         #endregion
     }
 
-    private class MyMessage
+    class MyMessage
     {
     }
 

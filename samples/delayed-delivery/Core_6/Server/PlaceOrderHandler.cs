@@ -27,7 +27,7 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
     }
     #endregion
 
-    private bool ShouldMessageBeDelayed(Guid id)
+    bool ShouldMessageBeDelayed(Guid id)
     {
         if (wasMessageDelayed.Contains(id))
         {
