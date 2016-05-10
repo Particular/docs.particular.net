@@ -694,6 +694,14 @@ The word `Bus` should be avoided in documentation. Some replacements include:
 
 The word `Bus` is allowed when a particular piece of documentation refers specifically to version 5 or below and discusses low level implementation details.
 
+
+# Links to 3rd parties
+
+## RavenDB
+
+Avoid deep link into the RavenDB documentation since it is a maintenance pain. For example dont link to `http://ravendb.net/docs/article-page/3.0/Csharp/client-api//session/transaction-support/dtc-transactions#transaction-storage-recovery` since when RavenDB 4 is release `article-page/3.0/Csharp` is invalid and require an update. Also the RavenDB documentation does maintaining structure between versions. eg `http://ravendb.net/docs/article-page/2.0/Csharp/client-api//session/transaction-support/dtc-transactions#transaction-storage-recovery` is a 404. So we cant even trust that "just changing the version will work". Instead link the the RavenDB docs search `http://ravendb.net/docs/search/latest/csharp?searchTerm=THE-SEARCH-TERM`. So for the above example it would be `http://ravendb.net/docs/search/latest/csharp?searchTerm=Transaction-storage-recovery`.
+
+
 # Utilities
 
 Under https://github.com/Particular/docs.particular.net/tree/master/tools there are several utilities to help with the management of this repository. All are in the form of [LINQPad](https://www.linqpad.net/) scripts.
