@@ -48,4 +48,4 @@ or
 
 snippet:AzureServiceBusConnectionStringFromAppConfig
 
-For more details on setting up connection strings and securing them, refer to the [Configuration Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-topics-subscriptions/#set-up-a-service-bus-connection-string) and the[Securing Credentials](/nservicebus/azure-service-bus/secure-credentials.md) articles.
+For more details on setting up connection strings and securing them, refer to the [Configuration Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-topics-subscriptions/#set-up-a-service-bus-connection-string) and the[Securing Credentials](/nservicebus/azure-service-bus/securing-connection-strings.md) articles.
