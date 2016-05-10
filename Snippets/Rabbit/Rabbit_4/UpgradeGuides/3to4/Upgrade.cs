@@ -35,8 +35,8 @@ class Upgrade
     {
         #region 3to4rabbitmq-config-transactions
 
-        endpointConfiguration.UseTransport<RabbitMQTransport>()
-            .Transactions(TransportTransactionMode.None);
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.Transactions(TransportTransactionMode.None);
 
         #endregion
     }

@@ -1,12 +1,13 @@
 ---
 title: RabbitMQ Transport configuration settings
-summary: The various ways to customize the RabbitMQ transport
+summary: The various ways to customize the RabbitMQ transport.
 reviewed: 2016-04-21
 tags:
 - RabbitMQ
 - Transports
 - Transactions
 ---
+
 
 ## Configuring the endpoint to use the RabbitMQ transport
 
@@ -98,7 +99,7 @@ Versions: 3 and below.
 
 The number of messages to [prefetch](http://www.rabbitmq.com/consumer-prefetch.html) when consuming messages from the broker.
 
-Default: The number of configured threads for the transport(as of v2.1)
+Default: The number of configured threads for the transport (as of Version 2.1)
 
 Versions: 3 and below. In Versions 4 and above, `PrefetchCount` is controlled through the `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` setting.
 
@@ -148,12 +149,12 @@ The password for the client authentication certificate specified in `CertPath`
 
 Versions: 4 and above
 
-
 NOTE: For debugging purposes, it can be helpful to increase the `RequestedHeartbeat` and `DequeueTimeout` settings as shown below:
 
 snippet:rabbitmq-connectionstring-debug
 
 Increasing these settings can help prevent the connection to the broker from timing out while the code is paused from hitting a breakpoint.
+
 
 ## Callback support
 
@@ -207,9 +208,9 @@ WARNING: It is extremely important to use a uniquely identifying property of the
 
 The default connection manager that comes with the transport is usually good enough for most users. To control how the connections with the broker are managed, implement a custom connection manager by inheriting from `IManageRabbitMqConnections`. This requires that connections be provided for:
 
- 1. Administrative actions like creating queues and exchanges
- 2. Publishing messages to the broker
- 3. Consuming messages from the broker
+ 1. Administrative actions like creating queues and exchanges.
+ 1. Publishing messages to the broker.
+ 1. Consuming messages from the broker.
 
 In order for the transport to use the above, register it as shown below:
 
@@ -259,8 +260,8 @@ snippet:rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
 If the routing topologies mentioned above aren't flexible enough, then take full control over how routing is done by implementing a custom routing topology. This is done by:
 
- 1. Define the topology by creating a class implementing `IRoutingTopology`
- 1. Register it with the transport calling `UseRoutingTopology` as shown below
+ 1. Define the topology by creating a class implementing `IRoutingTopology`.
+ 1. Register it with the transport calling `UseRoutingTopology` as shown below.
 
 snippet:rabbitmq-config-useroutingtopology
 
@@ -278,13 +279,13 @@ The RabbitMQ transport supports the following [Transport Transaction Modes](/nse
 
 #### Transport transaction - Receive Only
 
-When running in `ReceiveOnly` mode, the RabbitMQ transport consumes messages from the broker in manual acknowledgment mode. After a message is successfully processed, it is acknowledged via the AMQP [basic.ack](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.ack) method, which lets the broker know that the message can be removed from the queue. If a message is not successfully processed and needs to be retried, it is requeued via the AMQP [basic.reject](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.reject) method.
+When running in `ReceiveOnly` mode, the RabbitMQ transport consumes messages from the broker in manual acknowledgment mode. After a message is successfully processed, it is acknowledged via the AMQP [basic.ack](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.ack) method, which lets the broker know that the message can be removed from the queue. If a message is not successfully processed and needs to be retried, it is re-queued via the AMQP [basic.reject](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.reject) method.
 
-WARNING: If the connection to the broker is lost for any reason before a message can be acknowledged, even if the message was successfully processed, the message will automatically be requeued by the broker. This will result in the endpoint processing the same message multiple times.
+WARNING: If the connection to the broker is lost for any reason before a message can be acknowledged, even if the message was successfully processed, the message will automatically be re-queued by the broker. This will result in the endpoint processing the same message multiple times.
 
 
 #### Unreliable (Transactions Disabled)
 
 When running in `None` mode, the RabbitMQ transport consumes messages from the broker in manual acknowledgment mode. Regardless of whether a message is successfully processed or not, it is acknowledged via the AMQP [basic.ack](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.ack) method after the processing attempt. This means that a message will be attempted once, and moved to the error queue if it fails.
 
-WARNING: Since manual acknowledgment mode is being used, if the connection to the broker is lost for any reason before a message can be acknowledged, the message will automatically be requeued by the broker. If this occurs, the message will be retried by the endpoint, despite the transaction mode setting.
+WARNING: Since manual acknowledgment mode is being used, if the connection to the broker is lost for any reason before a message can be acknowledged, the message will automatically be re-queued by the broker. If this occurs, the message will be retried by the endpoint, despite the transaction mode setting.

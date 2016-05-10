@@ -6,8 +6,8 @@ tags:
  - upgrade
  - migration
 related:
-- nservicebus/rabbitmq
-- nservicebus/upgrades/5to6
+ - nservicebus/rabbitmq
+ - nservicebus/upgrades/5to6
 ---
 
 
@@ -70,14 +70,15 @@ When [changing routing topology](/nservicebus/rabbitmq/configuration-api.md#conf
  * `message` parameter type changed from `TransportMessage` to `OutgoingMessage`
  * `address` parameter type changed from `Address` to `string`
 
-`IRoutingTopology` was moved to different namespace, old namespace was: `NServiceBus.Transports.RabbitMQ.Routing`, current namespace is: `NServiceBus.Transport.RabbitMQ`. 
+`IRoutingTopology` was moved to different namespace, old namespace was: `NServiceBus.Transports.RabbitMQ.Routing`, current namespace is: `NServiceBus.Transport.RabbitMQ`.
+
 
 ## Transactions
 
 The RabbitMQ transport supports the following [Transport Transaction Modes](/nservicebus/rabbitmq/configuration-api.md#transactions-and-delivery-guarantees):
 
-* ReceiveOnly (default)
-* None
+ * ReceiveOnly (default)
+ * None
 
 To change the default transaction mode.
 
