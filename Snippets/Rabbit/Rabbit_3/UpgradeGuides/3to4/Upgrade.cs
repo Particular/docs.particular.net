@@ -3,6 +3,16 @@ using NServiceBus;
 
 class Upgrade
 {
+    void PrefetchCountReplacement(BusConfiguration busConfiguration)
+    {
+        #region 3to4rabbitmq-config-prefetch-count-replacement
+
+        var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+        transport.ConnectionString("host=broker1;PrefetchCount=10");
+
+        #endregion
+    }
+
     void CallbackReceiverMaxConcurrency(BusConfiguration busConfiguration)
     {
         #region 3to4rabbitmq-config-callbackreceiver-thread-count
@@ -13,18 +23,5 @@ class Upgrade
         #endregion
     }
 
-    void UseDirectRoutingTopology(BusConfiguration busConfiguration)
-    {
-        #region 3to4rabbitmq-config-usedirectroutingtopology
 
-        var transport = busConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
-
-        #endregion
-    }
-
-    string MyRoutingKeyConvention(Type type)
-    {
-        throw new NotImplementedException();
-    }
 }

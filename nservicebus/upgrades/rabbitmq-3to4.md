@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport Upgrade Version 3 to 4
 summary: Instructions on how to upgrade RabbitMQ Transport Version 3 to 4.
-reviewed: 2016-03-24
+reviewed: 2016-05-12
 tags:
  - upgrade
  - migration
@@ -11,75 +11,81 @@ related:
 ---
 
 
-## CallbackReceiverMaxConcurrency
+## [Connection string options](/nservicebus/rabbitmq/configuration-api.md#rabbitmq-connection-string-connection-string-options)
 
-`CallbackReceiverMaxConcurrency` is obsolete and `LimitMessageProcessingConcurrencyTo` should be used instead.
-
-snippet: 3to4rabbitmq-config-callbackreceiver-thread-count
-
-See [Tuning](/nservicebus/operations/tuning.md).
+When upgrading, there are several connection string options that should be removed from any existing connection strings.
 
 
-## [Connection String Options](/nservicebus/rabbitmq/configuration-api.md)
+### [PrefetchCount](/nservicebus/rabbitmq/configuration-api.md#rabbitmq-connection-string-connection-string-options-prefetchcount)
+
+The [consumer prefetch count](http://www.rabbitmq.com/amqp-0-9-1-reference.html#basic.qos.prefetch-count) is no longer controlled by the `PrefetchCount` setting. Instead, to better integrate with the new concurrency model, the value passed to `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` is used to control the prefetch count. See [Tuning](/nservicebus/operations/tuning.md).
+
+snippet:3to4rabbitmq-config-prefetch-count-replacement
 
 
-### PrefetchCount
+### [DequeueTimeout](/nservicebus/rabbitmq/configuration-api.md#rabbitmq-connection-string-connection-string-options-dequeuetimeout)
+
+The `DequeueTimeout` setting has been removed because the message pump no longer polls for incoming messages, so there is no need for a timeout on how long it should block while waiting for a new message.
 
 
-[PrefetchCount](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-prefetchcount) is obsolete and `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` should be used instead. See [Tuning](/nservicebus/operations/tuning.md).
+### [MaxWaitTimeForConfirms](/nservicebus/rabbitmq/configuration-api.md#rabbitmq-connection-string-connection-string-options-maxwaittimeforconfirms)
+
+The `MaxWaitTimeForConfirms` setting has been removed because the transport no longer requires a timeout for how long it should block while waiting for publisher confirmation messages.
 
 
-### DequeueTimeout
+## [Callback support](/nservicebus/rabbitmq/configuration-api.md#callback-support)
 
-[DequeueTimeout](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-dequeuetimeout) is deprecated as the RabbitMQ Transport message pump does not require a timeout.
-
-
-### MaxWaitTimeForConfirms
-
-[MaxWaitTimeForConfirms](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-maxwaittimeforconfirms) is deprecated as in the current implementation this setting is not used.
+Callbacks are no longer directly managed by the RabbitMQ transport, so the settings related to the callback receiver queue have been removed.
 
 
-### Added Settings
+### DisableCallbackReceiver
 
-Several new settings have been added related to Transport Layer Security (TLS) connection. See [TLS Configuration](/nservicebus/rabbitmq/configuration-api.md#specifying-the-connection-string-transport-layer-security-support) for more information.
-
-
-## Circuit Breaker
-
-Xml configuration options for controlling lost connection behavior were replaced by code equivalent.
-
-snippet:3to4rabbitmq-custom-breaker-settings
-
-snippet:3to4rabbitmq-custom-breaker-settings-code
+This setting has been removed because the RabbitMQ transport no longer directly creates a callback receiver queue.
 
 
-## Routing
+### CallbackReceiverMaxConcurrency
+
+This setting has been removed because the RabbitMQ transport no longer directly creates a callback receiver queue. When callbacks have been enabled by installing the `NServiceBus.Callbacks` NuGet package, the maximum concurrency is no longer separately controlled. The value passed to `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` will be used for the callbacks queue in addition to the main queue.
+
+snippet:3to4rabbitmq-config-callbackreceiver-thread-count
 
 
-### UseDirectRoutingTopology
+## [Providing a custom connection manager](/nservicebus/rabbitmq/configuration-api.md#providing-a-custom-connection-manager)
 
-When using `UseDirectRoutingTopology` method parameter's type was changed from `Address` to `string`.
-
-snippet:3to4rabbitmq-config-usedirectroutingtopology
+The ability to provide a custom connection manager via the `IManageRabbitMqConnections` interface has been removed. Connections are now managed internally by the transport in a way that is not extensible.
 
 
-### IRoutingTopology
+## [Controlling behavior when the broker connection is lost](/nservicebus/rabbitmq/configuration-api.md#controlling-behavior-when-the-broker-connection-is-lost)
 
-When [changing routing topology](/nservicebus/rabbitmq/configuration-api.md#configuring-rabbitmq-transport-to-be-used-changing-routing-topology) some changes were introduced to `IRoutingTopology` interface.
-
- * `message` parameter type changed from `TransportMessage` to `OutgoingMessage`
- * `address` parameter type changed from `Address` to `string`
-
-`IRoutingTopology` was moved to different namespace, old namespace was: `NServiceBus.Transports.RabbitMQ.Routing`, current namespace is: `NServiceBus.Transport.RabbitMQ`.
+The XML configuration options for controlling lost connection behavior have been removed.
 
 
-## Transactions
+### TimeToWaitBeforeTriggering
 
-The RabbitMQ transport supports the following [Transport Transaction Modes](/nservicebus/rabbitmq/configuration-api.md#transactions-and-delivery-guarantees):
+The 'TimeToWaitBeforeTriggering` setting can now be configured via the following:
 
- * ReceiveOnly (default)
- * None
+snippet:3to4rabbitmq-custom-breaker-settings-time-to-wait-before-triggering
 
-To change the default transaction mode.
 
-snippet:3to4rabbitmq-config-transactions
+### DelayAfterFailure
+
+The `DelayAfterFailure` setting has been removed because the message pump no longer polls for incoming messages, so there is no inner loop that needs to pause when a connection failure is detected.
+
+
+## Routing topology
+
+
+### [Direct Routing Topology](/nservicebus/rabbitmq/configuration-api.md#routing-topology-direct-routing-topology)
+
+The `UseDirectRoutingTopology` method's `exchangeNameConvention` parameter's type was changed from `Func<Address, Type, string>` to `Func<string, Type, string>`.
+
+
+### [Custom Routing Topology](/nservicebus/rabbitmq/configuration-api.md#routing-topology-custom-routing-topology)
+
+The following changes have been made to the `IRoutingTopology` interface:
+
+ * The interface's namespace was changed from `NServiceBus.Transports.RabbitMQ.Routing` to `NServiceBus.Transport.RabbitMQ`.
+ * The `Publish` method's `message` parameter's type changed from `TransportMessage` to `OutgoingMessage`.
+ * The `Send` method's `message` parameter's type changed from `TransportMessage` to `OutgoingMessage`.
+ * The `Send` method's `address` parameter's type changed from `Address` to `string`.
+ * The `RawSendInCaseOfFailure` method was added to allow for forwarding messages that cannot be deserialized to the error queue.

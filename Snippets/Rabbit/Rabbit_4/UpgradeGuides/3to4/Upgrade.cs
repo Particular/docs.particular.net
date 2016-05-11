@@ -3,12 +3,11 @@ using NServiceBus;
 
 class Upgrade
 {
-    void UseCustomCircuitBreakerSettings(EndpointConfiguration endpointConfiguration)
+    void PrefetchCountReplacement(EndpointConfiguration endpointConfiguration)
     {
-        #region 3to4rabbitmq-custom-breaker-settings-code
+        #region 3to4rabbitmq-config-prefetch-count-replacement
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
+        endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
 
         #endregion
     }
@@ -16,33 +15,21 @@ class Upgrade
     void CallbackReceiverMaxConcurrency(EndpointConfiguration endpointConfiguration)
     {
         #region 3to4rabbitmq-config-callbackreceiver-thread-count
+
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
 
         #endregion
     }
 
-    void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
+    void UseCustomCircuitBreakerSettings(EndpointConfiguration endpointConfiguration)
     {
-        #region 3to4rabbitmq-config-usedirectroutingtopology
+        #region 3to4rabbitmq-custom-breaker-settings-time-to-wait-before-triggering
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseDirectRoutingTopology(MyRoutingKeyConvention, (address, eventType) => "MyTopic");
+        transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
 
         #endregion
     }
 
-    void ChangeTransactionMode(EndpointConfiguration endpointConfiguration)
-    {
-        #region 3to4rabbitmq-config-transactions
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.Transactions(TransportTransactionMode.None);
-
-        #endregion
-    }
-
-    string MyRoutingKeyConvention(Type type)
-    {
-        throw new NotImplementedException();
-    }
 }
