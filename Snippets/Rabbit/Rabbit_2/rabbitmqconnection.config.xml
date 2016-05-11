@@ -14,7 +14,7 @@
   </connectionStrings>
   <!--endcode-->
 
-  <!--startcode rabbitmq-custom-breaker-settings-time-to-wait-before-triggering -->
+  <!--startcode rabbitmq-custom-breaker-settings-time-to-wait-before-triggering-xml -->
   <appSettings>
     <add key="NServiceBus/RabbitMqDequeueStrategy/TimeToWaitBeforeTriggering"
          value="00:02:00"/>

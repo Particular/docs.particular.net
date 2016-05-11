@@ -237,7 +237,8 @@ Type: `System.TimeSpan`
 
 Default: `00:02:00` (2 minutes)
 
-snippet:rabbitmq-custom-breaker-settings-time-to-wait-before-triggering
+snippet:rabbitmq-custom-breaker-settings-time-to-wait-before-triggering-xml
+snippet:rabbitmq-custom-breaker-settings-time-to-wait-before-triggering-code
 
 
 ### DelayAfterFailure
