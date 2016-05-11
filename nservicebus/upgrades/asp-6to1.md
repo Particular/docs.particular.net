@@ -1,6 +1,6 @@
 ---
-title: Azure Storage Persistence Upgrade Version 6 to 7
-summary: Instructions on how to upgrade Azure Storage Persistence Version 6 to 7.
+title: Azure Storage Persistence Upgrade Version 6 to 1
+summary: Instructions on how to upgrade NServiceBus.Azure Storage Persistence Version 6 to NServiceBus.Persistence.AzureStorage Version 1.
 tags:
  - upgrade
  - migration
@@ -18,7 +18,7 @@ Upgrading requires removing the NServiceBus.Azure Nuget package from the project
 Once the packages have been changed, any use of the `NServiceBus.Azure` namespace needs to be replaced with `NServiceBus.Persistence.AzureStorage`
 
 ## New Configuration API
-In Versions 6 and below the Azure Storage Persistence was configured using XML configuration sections called `AzureSubscriptionStorageConfig`, `AzureSagaPersisterConfig`, and `AzureTimeoutPersisterConfig`. These sections have been removed in favor of a more granular, code based configuration API.
+In Versions 6 and below the Azure Storage Persistence was configured using XML configuration sections called `AzureSubscriptionStorageConfig`, `AzureSagaPersisterConfig`, and `AzureTimeoutPersisterConfig`. These XML configuration sections have been obsoleted in favor of a more granular, code based configuration API.
 
 For example, the following Xml:
 
