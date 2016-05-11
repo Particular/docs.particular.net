@@ -182,6 +182,31 @@ related:
 ```
 
 
+## nugetAlias.txt
+
+All NServiceBus related nugets (used in documentation) are listed in [components/nugetAlias.txt](components/nugetAlias.txt). The alias part of the nuget is the key that is used to infer the version and component for all snippets. So for example [Snippets/Callbacks](Snippets/Callbacks) has, over its lifetime, existed in both the Core nuget and the Callbacks nuget. So the directories under Callbacks are indicative of the nuget (alias) they exist in and then split over the multiple versions of a given nuget.
+
+
+## components.yaml
+
+"Components" is a general terms used to describe a deployable set of functionality. Note that over time a Components may have moved between nugets or split into new nugets. For example the ABS DataBus or the Callbacks.
+
+
+### Component Key
+
+The Component Key allows for shorthand when referring to components in page headers.
+
+
+### Component Url
+
+The component Url is the definitive source of documentation for a given component. This will eventually be used to link back to said documentation from both nuget usages, samples and articles.
+
+
+### Component NugetOrder
+
+Since Components can be split over multiple different nugets it is not possible to infer the order from nuget version alson. So hence we need to have a lookup index. So the NugetOrder allows us to sensible sort component versions. So for example NServiceBus.Callbacks.1.0.0 should sort higher than the version of Callbacks that exists in NServicebus.5.0.0.
+
+
 ## Menu
 
 The menu is a YAML text document stored at [menu/menu.yaml](menu/menu.yaml).
