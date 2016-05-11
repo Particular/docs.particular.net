@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport configuration settings
 summary: The various ways to customize the RabbitMQ transport.
-reviewed: 2016-04-21
+reviewed: 2016-05-12
 tags:
 - RabbitMQ
 - Transports
@@ -106,7 +106,7 @@ Versions: 3 and below. In Versions 4 and above, `PrefetchCount` is controlled th
 
 #### UsePublisherConfirms
 
-Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used. 
+Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used.
 
 Default: `true`
 
@@ -161,6 +161,11 @@ Increasing these settings can help prevent the connection to the broker from tim
 When scaling out an endpoint using the RabbitMQ transport, any of the endpoint instances can consume messages from the same shared broker queue. However, this behavior can cause problems when dealing with callback messages because the reply message for the callback needs to go to the specific instance that requested the callback.
 
 
+### Versions 4 and above
+
+In Versions 4 and above, callbacks are no longer directly managed by the RabbitMQ transport and are not enabled by default. To enable them, follow the steps outlined in the [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-nservicebus-callbacks-version-1-and-above).
+
+
 ### Versions 3 and below
 
 In Versions 3 and below, callbacks are enabled by default, and the transport will create a separate callback receiver queue, named `{endpointname}.{machinename}`, to which all callbacks are routed. If callbacks are not being used, the callback receiver can be disabled using the following setting:
@@ -172,11 +177,6 @@ This means that the queue will not be created and no extra threads will be used 
 By default, 1 dedicated thread is used for the callbacks. To add more threads, due to a high rate of callbacks, use the following:
 
 snippet:rabbitmq-config-callbackreceiver-thread-count
-
-
-### Versions 4 and above
-
-In Versions 4 and above, callbacks are no longer directly managed by the RabbitMQ transport and are not enabled by default. To enable them, follow the steps outlined in the [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-nservicebus-callbacks-version-1-and-above).
 
 
 ## Transport Layer Security support
@@ -191,6 +191,8 @@ Or configuration:
 
 snippet:rabbitmq-connection-tls-config
 
+NOTE: The RabbitMQ transport requires TLS 1.2 to establish a secure connection, so the broker must have TLS 1.2 enabled.
+
 
 ## Controlling the message ID strategy
 
@@ -202,6 +204,11 @@ WARNING: It is extremely important to use a uniquely identifying property of the
 
 
 ## Providing a custom connection manager
+
+
+### Versions 4 and above
+
+In Versions 4 and above, the ability to provide a custom connection manager via the `IManageRabbitMqConnections` interface has been removed.
 
 
 ### Versions 3 and below
@@ -217,24 +224,39 @@ In order for the transport to use the above, register it as shown below:
 snippet:rabbitmq-config-useconnectionmanager
 
 
-### Versions 4 and above
-
-In Versions 4 and above, the ability to provide a custom connection manager via the `IManageRabbitMqConnections` interface has been removed.
-
-
 ## Controlling behavior when the broker connection is lost
 
-By default, the RabbitMQ transport will trigger the critical error action when it continuously fails to connect to the broker for 2 minutes. The amount of time can be customized using the following configuration settings: (values must be parsable to `System.TimeSpan`)
+The RabbitMQ transport monitors the connection to the broker and will trigger the critical error action if the connection fails and stays disconnected for the configured amount of time.
 
-snippet:rabbitmq-custom-breaker-settings
 
-In Versions 4 and above, the XML configuration options for controlling lost connection behavior have been replaced by a code equivalent: 
+### TimeToWaitBeforeTriggering
 
-snippet:rabbitmq-custom-breaker-settings-code
+Controls the amount of time the transport waits after a failure is detected before triggering the critical error action.
+
+Type: `System.TimeSpan`
+
+Default: `00:02:00` (2 minutes)
+
+snippet:rabbitmq-custom-breaker-settings-time-to-wait-before-triggering-xml
+snippet:rabbitmq-custom-breaker-settings-time-to-wait-before-triggering-code
+
+
+### DelayAfterFailure
+
+Controls the amount of time the transport waits after a failure is detected before trying to poll for incoming messages again.
+
+Type: `System.TimeSpan`
+
+Default: `00:00:05` (5 seconds)
+
+snippet:rabbitmq-custom-breaker-settings-delay-after-failure
+
+NOTE: This setting has been removed in Versions 4 and above because the transport no longer needs to poll for incoming messages.
 
 
 ## Routing topology
 
+The RabbitMQ transport has the concept of a routing topology, which controls how it creates exchanges, queues, and the bindings between them in the RabbitMQ broker. The routing topology also controls how the transport uses the exchanges it creates to send and publish messages.
 
 ### Conventional Routing Topology
 

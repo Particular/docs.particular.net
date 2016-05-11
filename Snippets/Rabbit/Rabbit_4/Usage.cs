@@ -45,16 +45,6 @@ class Usage
         #endregion
     }
 
-    void CallbackReceiverMaxConcurrency(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-config-callbackreceiver-thread-count
-
-        endpointConfiguration.UseTransport<RabbitMQTransport>();
-        endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
-
-        #endregion
-    }
-
     void CustomIdStrategy(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-custom-id-strategy
@@ -103,7 +93,7 @@ class Usage
 
     void UseCustomCircuitBreakerSettings(EndpointConfiguration endpointConfiguration)
     {
-        #region rabbitmq-custom-breaker-settings-code
+        #region rabbitmq-custom-breaker-settings-time-to-wait-before-triggering-code
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
