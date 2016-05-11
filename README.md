@@ -182,20 +182,6 @@ related:
 ```
 
 
-## nugetAlias.txt
-
-All NServiceBus related nugets (used in documentation) are listed in [components/nugetAlias.txt](components/nugetAlias.txt). The alias part of the nuget is the key that is used to infer the version and component for all snippets. So for example [Snippets/Callbacks](Snippets/Callbacks) has, over its lifetime, existed in both the Core nuget and the Callbacks nuget. So the directories under Callbacks are indicative of the nuget (alias) they exist in and then split over the multiple versions of a given nuget.
-
-Example aliases:
-
-```
-ASP: NServiceBus.Persistence.AzureStorage
-Autofac: NServiceBus.Autofac
-Azure: NServiceBus.Azure
-AzureHost: NServiceBus.Hosting.Azure
-Callbacks: NServiceBus.Callbacks
-```
-
 ## components.yaml
 
 "Components" is a general terms used to describe a deployable set of functionality. Components exist in [components/components.yaml](components/components.yaml). Note that over time a Component may have moved between nugets or split into new nugets. For example the ABS DataBus or the Callbacks.
@@ -224,6 +210,21 @@ The component Url is the definitive source of documentation for a given componen
 ### Component NugetOrder
 
 Since Components can be split over multiple different nugets it is not possible to infer the order from nuget version alone. So hence we need to have a lookup index. So the NugetOrder allows us to sensibly sort component versions. So for example NServiceBus.Callbacks.1.0.0 should sort higher than the version of Callbacks that exists in NServicebus.5.0.0.
+
+
+## nugetAlias.txt
+
+All NServiceBus related nugets (used in documentation) are listed in [components/nugetAlias.txt](components/nugetAlias.txt). The alias part of the nuget is the key that is used to infer the version and component for all snippets. So for example [Snippets/Callbacks](Snippets/Callbacks) has, over its lifetime, existed in both the Core nuget and the Callbacks nuget. So the directories under Callbacks are indicative of the nuget (alias) they exist in and then split over the multiple versions of a given nuget.
+
+Example aliases:
+
+```
+ASP: NServiceBus.Persistence.AzureStorage
+Autofac: NServiceBus.Autofac
+Azure: NServiceBus.Azure
+AzureHost: NServiceBus.Hosting.Azure
+Callbacks: NServiceBus.Callbacks
+```
 
 
 ## Menu
