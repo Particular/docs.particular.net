@@ -10,6 +10,8 @@ tags:
 reviewed: 2016-04-26
 related:
 - nservicebus/upgrades/asb-6to7
+redirects:
+- nservicebus/azure-service-bus/secure-credentials
 ---
 
 include: asb-credential-warning
