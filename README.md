@@ -683,7 +683,9 @@ Avoid ambiguity.
 
 **Versions X** and NOT **VX** or **version X**.
 
+
 ## Terminology
+
 
 ### Bus
 
@@ -696,6 +698,7 @@ The word `Bus` is allowed when a particular piece of documentation refers specif
 
 
 # Links to 3rd parties
+
 
 ## RavenDB
 
