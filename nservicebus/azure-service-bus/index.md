@@ -11,7 +11,7 @@ related:
  - samples/azure/azure-service-bus
 ---
 
-[Azure Service Bus (ASB)](https://azure.microsoft.com/en-us/services/service-bus/)  is a messaging service hosted on the Azure platform, that allows for exchanging messages between various applications in a loosely coupled fashion. ASB Queues offer FIFO (First In, First Out) guaranteed message delivery, and support a range of standard protocols (REST, AMQP, WS*) and APIs (to put/pull messages on/off the queue). ASB Topics deliver messages to multiple subscribers and allow to use fan-out pattern to deliver messages to downstream systems.
+[Azure Service Bus (ASB)](https://azure.microsoft.com/en-us/services/service-bus/) is a messaging service hosted on the Azure platform, that allows for exchanging messages between various applications in a loosely coupled fashion. ASB Queues offer ["First In, First Out" (FIFO)](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)) guaranteed message delivery, and support a range of standard protocols (REST, AMQP, WS*) and APIs (to put/pull messages on/off the queue). ASB Topics deliver messages to multiple subscribers and allow to use fan-out pattern to deliver messages to downstream systems.
 
 NServiceBus is an abstraction over ASB. It takes advantage of ASB's built-in features, such as message batching and deferred messages. It also provides higher-level, convenient API for programmers on top of ASB.
 
@@ -48,4 +48,4 @@ or
 
 snippet:AzureServiceBusConnectionStringFromAppConfig
 
-For more details on setting up connection strings and securing them, refer to the [Configuration Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-topics-subscriptions/#set-up-a-service-bus-connection-string) and the[Securing Credentials](/nservicebus/azure-service-bus/securing-connection-strings.md) articles.
+For more details on setting up connection strings and securing them, refer to the [Configuration Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-topics-subscriptions/#set-up-a-service-bus-connection-string) and the [Securing Credentials](/nservicebus/azure-service-bus/securing-connection-strings.md) articles.

@@ -20,7 +20,7 @@ snippet:AzureServiceBusTransportGettingStarted
 
 ## Full Configuration API
 
-As from version 7, the Azure Service Bus transport has an extensive, code-only, configuration API. This API can be accessed from the `UseTransport<AzureServiceBusTransport>()` extension method. A full listing of the API can be found on [the configuration API page](/nservicebus/azure-service-bus/configuration/full.md)
+In Versions 7 and above, the Azure Service Bus transport has an extensive, code-only, configuration API. This API can be accessed from the `UseTransport<AzureServiceBusTransport>()` extension method. A full listing of the API can be found on [the configuration API page](/nservicebus/azure-service-bus/configuration/full.md)
 
 The configuration API provides fine grained access to the behavior of different layers in the transport.
 

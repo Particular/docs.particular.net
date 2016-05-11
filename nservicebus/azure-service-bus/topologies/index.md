@@ -14,9 +14,9 @@ Messaging topology is a specific arrangement of the messaging entities, such as 
 Azure Service Bus transport operates on a topology created on the broker. Topology handles exchanging messages between endpoints, by creating and configuring Azure Service Bus entities.
 
 
-## Version 7 and above
+## Versions 7 and above
 
-In Version 7 and above, the following topologies are available:
+In Versions 7 and above, the following topologies are available:
 
  1. `EndpointOrientedTopology`
  1. `ForwardingTopology`
@@ -27,7 +27,7 @@ The `ForwardingTopology` was introduced to take advantage of the broker nature o
 
 Both topologies create a single input queue per endpoint and implement [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) mechanism. However, there is a significant difference in the way the mechanism is implemented.
 
-Starting from Version 7, no default topology is set by the Azure Service Bus transport. Topology has to be  explicitly configured using [configuration API](/nservicebus/azure-service-bus/configuration/full.md).
+Starting from Version 7, no default topology is set by the Azure Service Bus transport. Topology has to be explicitly configured using [configuration API](/nservicebus/azure-service-bus/configuration/full.md).
 
 
 ### Endpoint Oriented Topology
@@ -53,7 +53,7 @@ The `ForwardingTopology` is a topology introduced in Version 7, that was designe
 
 Subscriptions are created under topic bundle with one subscription entity per subscribing endpoint. Each subscription contains multiple rules; there's one rule per event type that the subscribing endpoint is interested in. This enables a complete decoupling between publishers and subscribers. All messages received by subscription are forwarded to the input queue of the subscriber.
 
-This topology solves the polymorphic events and the events overflow problems  that the `EndpointOrientedTopology` has.
+This topology solves the polymorphic events and the events overflow problems that the `EndpointOrientedTopology` has.
 
 ![ForwardingTopology](forwarding-topology.png "width=50%")
 
@@ -72,6 +72,6 @@ The `ForwardingTopology` supports up to 2,000 endpoints with up to 2,000 events 
 | Events overflow protections    | no                        | yes                |
 
 
-## Version 6 and below
+## Versions 6 and below
 
 The Azure Service Bus transport has always supported a single default topology out-of-the-box. It is equivalent to the `EndpointOrientedTopology` introduced in Version 7 and above.
