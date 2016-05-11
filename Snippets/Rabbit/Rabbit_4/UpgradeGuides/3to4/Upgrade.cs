@@ -3,16 +3,6 @@ using NServiceBus;
 
 class Upgrade
 {
-    void UseCustomCircuitBreakerSettings(EndpointConfiguration endpointConfiguration)
-    {
-        #region 3to4rabbitmq-custom-breaker-settings-code
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
-
-        #endregion
-    }
-
     void PrefetchCountReplacement(EndpointConfiguration endpointConfiguration)
     {
         #region 3to4rabbitmq-config-prefetch-count-replacement
@@ -21,4 +11,25 @@ class Upgrade
 
         #endregion
     }
+
+    void CallbackReceiverMaxConcurrency(EndpointConfiguration endpointConfiguration)
+    {
+        #region 3to4rabbitmq-config-callbackreceiver-thread-count
+
+        endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
+
+        #endregion
+    }
+
+    void UseCustomCircuitBreakerSettings(EndpointConfiguration endpointConfiguration)
+    {
+        #region 3to4rabbitmq-custom-breaker-settings-time-to-wait-before-triggering
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
+
+        #endregion
+    }
+
+
 }
