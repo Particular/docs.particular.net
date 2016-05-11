@@ -189,7 +189,7 @@ All NServiceBus related nugets (used in documentation) are listed in [components
 
 ## components.yaml
 
-"Components" is a general terms used to describe a deployable set of functionality. Note that over time a Components may have moved between nugets or split into new nugets. For example the ABS DataBus or the Callbacks.
+"Components" is a general terms used to describe a deployable set of functionality. Components exist in [components/components.yaml](components/components.yaml). Note that over time a Components may have moved between nugets or split into new nugets. For example the ABS DataBus or the Callbacks.
 
 
 ### Component Key
