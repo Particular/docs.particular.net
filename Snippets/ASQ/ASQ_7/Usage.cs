@@ -33,8 +33,23 @@ class Usage
         #region AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.Addressing()
+        transport
             .UseAccountNamesInsteadOfConnectionStrings();
+
+        #endregion
+    }
+
+    void MultipleAccountNamesInsteadOfConnectionStrings(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings
+
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport
+            .UseAccountNamesInsteadOfConnectionStrings(mapping =>
+            {
+                mapping.MapLocalAccount("default"); // the account used by this endpoint
+                mapping.MapAccount("another","azure_storage_account_connection_string"); // to enable sending messages to another account using the following address notation "queue_name@another"
+            });
 
         #endregion
     }
