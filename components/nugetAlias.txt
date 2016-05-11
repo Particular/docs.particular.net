@@ -1,4 +1,4 @@
-ABSDataBus: NServiceBus.AzureBlobStorageDataBus
+ABSDataBus: NServiceBus.DataBus.AzureBlobStorage
 Anotar: Anotar.NServiceBus.Fody
 ASB: NServiceBus.Azure.Transports.WindowsAzureServiceBus
 ASQ: NServiceBus.Azure.Transports.WindowsAzureStorageQueues 

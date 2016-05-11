@@ -11,7 +11,7 @@
 - Key: ABSDataBus
   Url: nservicebus/azure
   NugetOrder:
-    - NServiceBus.AzureBlobStorageDataBus
+    - NServiceBus.DataBus.AzureBlobStorage
     - NServiceBus.Azure
 
 - Key: ASB
