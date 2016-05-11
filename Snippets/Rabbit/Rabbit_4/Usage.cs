@@ -45,16 +45,6 @@ class Usage
         #endregion
     }
 
-    void CallbackReceiverMaxConcurrency(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-config-callbackreceiver-thread-count
-
-        endpointConfiguration.UseTransport<RabbitMQTransport>();
-        endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
-
-        #endregion
-    }
-
     void CustomIdStrategy(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-custom-id-strategy
