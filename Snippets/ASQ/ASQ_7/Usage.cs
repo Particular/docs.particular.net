@@ -39,16 +39,33 @@ class Usage
         #endregion
     }
 
-    void MultipleAccountNamesInsteadOfConnectionStrings(EndpointConfiguration endpointConfiguration)
+    void MultipleAccountNamesInsteadOfConnectionStrings1(EndpointConfiguration endpointConfiguration)
     {
-        #region AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings
+        #region AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings1
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport
+            .ConnectionString("default_connection_string")
             .UseAccountNamesInsteadOfConnectionStrings(mapping =>
             {
-                mapping.MapLocalAccount("default"); // the account used by this endpoint
-                mapping.MapAccount("another","azure_storage_account_connection_string"); // to enable sending messages to another account using the following address notation "queue_name@another"
+                mapping.MapLocalAccount("default");
+                mapping.MapAccount("another","another_connection_string");
+            });
+
+        #endregion
+    }
+
+    void MultipleAccountNamesInsteadOfConnectionStrings2(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings2
+
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport
+            .ConnectionString("another_connection_string")
+            .UseAccountNamesInsteadOfConnectionStrings(mapping =>
+            {
+                mapping.MapLocalAccount("another");
+                mapping.MapAccount("default", "default_connection_string");
             });
 
         #endregion
