@@ -33,8 +33,40 @@ class Usage
         #region AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.Addressing()
+        transport
             .UseAccountNamesInsteadOfConnectionStrings();
+
+        #endregion
+    }
+
+    void MultipleAccountNamesInsteadOfConnectionStrings1(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings1
+
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport
+            .ConnectionString("default_connection_string")
+            .UseAccountNamesInsteadOfConnectionStrings(mapping =>
+            {
+                mapping.MapLocalAccount("default");
+                mapping.MapAccount("another","another_connection_string");
+            });
+
+        #endregion
+    }
+
+    void MultipleAccountNamesInsteadOfConnectionStrings2(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings2
+
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport
+            .ConnectionString("another_connection_string")
+            .UseAccountNamesInsteadOfConnectionStrings(mapping =>
+            {
+                mapping.MapLocalAccount("another");
+                mapping.MapAccount("default", "default_connection_string");
+            });
 
         #endregion
     }

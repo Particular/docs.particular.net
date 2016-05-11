@@ -135,6 +135,11 @@ This feature can be enabled by specifying `.UseAccountNamesInsteadOfConnectionSt
 
 snippet:AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
 
+When multiple accounts are used, they can have their connection string mapped to names, enabling sends to `queue@name`:
+
+snippet:AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings1
+snippet:AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings2
+
 NOTE: This feature is available in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 7 and above.
 
 
