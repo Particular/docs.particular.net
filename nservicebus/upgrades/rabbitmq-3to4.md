@@ -20,7 +20,7 @@ When upgrading, there are several connection string options that should be remov
 
 The [consumer prefetch count](http://www.rabbitmq.com/amqp-0-9-1-reference.html#basic.qos.prefetch-count) is no longer controlled by the `PrefetchCount` setting. Instead, to better integrate with the new concurrency model, the value passed to `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` is used to control the prefetch count. See [Tuning](/nservicebus/operations/tuning.md).
 
-snippet: 3to4rabbitmq-config-prefetch-count-replacement
+snippet:3to4rabbitmq-config-prefetch-count-replacement
 
 
 ### [DequeueTimeout](/nservicebus/rabbitmq/configuration-api.md#rabbitmq-connection-string-connection-string-options-dequeuetimeout)
@@ -47,7 +47,7 @@ This setting has been removed because the RabbitMQ transport no longer directly 
 This setting has been removed because the RabbitMQ transport no longer directly creates a callback receiver queue. When callbacks have been enabled by installing the `NServiceBus.Callbacks` NuGet package, the maximum concurrency
 is no longer separately controlled. The value passed to `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` will be used for the callbacks queue in addition to the main queue.
 
-snippet: 3to4rabbitmq-config-callbackreceiver-thread-count
+snippet:3to4rabbitmq-config-callbackreceiver-thread-count
 
 
 ## [Providing a custom connection manager](/nservicebus/rabbitmq/configuration-api.md#providing-a-custom-connection-manager)
@@ -63,7 +63,7 @@ The XML configuration options for controlling lost connection behavior have been
 
 The 'TimeToWaitBeforeTriggering` setting can now be configured via the following:
 
-snippet: 3to4rabbitmq-custom-breaker-settings-time-to-wait-before-triggering
+snippet:3to4rabbitmq-custom-breaker-settings-time-to-wait-before-triggering
 
 
 ### DelayAfterFailure
