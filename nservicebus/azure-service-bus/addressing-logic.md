@@ -24,7 +24,7 @@ To mitigate these changes, the transport started to expose certain checks as lam
 
 ### Versions 7 and above
 
-In Versions 7 and above the configuration API allows to modify all behaviors and assumptions related to the addressing logic. This article will mainly focus on describing the different aspects of the addressing logic and will show how to replace parts if further changes should occur, for a full list of out of the box options refer to [Full Configuration API](/nservicebus/azure-service-bus/configuration/configuration.md).
+In Versions 7 and above the configuration API allows to modify all behaviors and assumptions related to the addressing logic. This article will mainly focus on describing the different aspects of the addressing logic and will show how to replace parts if further changes should occur, for a full list of out of the box options refer to [Full Configuration API](/nservicebus/azure-service-bus/configuration/full.md).
 
 
 ### Addressing Aspects
