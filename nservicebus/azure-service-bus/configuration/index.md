@@ -20,7 +20,7 @@ snippet:AzureServiceBusTransportGettingStarted
 
 ## Full Configuration API
 
-As from version 7, the Azure Service Bus transport has an extensive, code-only, configuration API. This API can be accessed from the `UseTransport<AzureServiceBusTransport>()` extension method. A full listing of the API can be found on [the configuration API page](/nservicebus/azure-service-bus/configuration/configuration.md)
+In Versions 7 and above, the Azure Service Bus transport has an extensive, code-only, configuration API. This API can be accessed from the `UseTransport<AzureServiceBusTransport>()` extension method. A full listing of the API can be found on [the configuration API page](/nservicebus/azure-service-bus/configuration/full.md)
 
 The configuration API provides fine grained access to the behavior of different layers in the transport.
 
@@ -28,23 +28,23 @@ The configuration API provides fine grained access to the behavior of different 
 
 In order to control the creation of these entities, the API provides direct access to the underlying configuration description objects through the following extension methods.
 
- * [`Queues()`](/nservicebus/azure-service-bus/configuration/configuration.md#controlling-entities-queues)
- * [`Topics()`](/nservicebus/azure-service-bus/configuration/configuration.md#controlling-entities-topics)
- * [`Subscriptions()`](/nservicebus/azure-service-bus/configuration/configuration.md#controlling-entities-subscriptions)
+ * [`Queues()`](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-queues)
+ * [`Topics()`](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-topics)
+ * [`Subscriptions()`](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-subscriptions)
 
 Connectivity settings are available at both the factory as well as receive/send client level.
 
- * [`MessagingFactories()`](/nservicebus/azure-service-bus/configuration/configuration.md#controlling-connectivity-messaging-factories)
- * [`MessageReceivers()`](/nservicebus/azure-service-bus/configuration/configuration.md#controlling-connectivity-message-receivers)
- * [`MessageSenders()`](/nservicebus/azure-service-bus/configuration/configuration.md#controlling-connectivity-message-senders)
+ * [`MessagingFactories()`](/nservicebus/azure-service-bus/configuration/full.md#controlling-connectivity-messaging-factories)
+ * [`MessageReceivers()`](/nservicebus/azure-service-bus/configuration/full.md#controlling-connectivity-message-receivers)
+ * [`MessageSenders()`](/nservicebus/azure-service-bus/configuration/full.md#controlling-connectivity-message-senders)
 
 There have historically been regular changes to the physical addressing logic, from naming conventions to assumptions and validations in both NServiceBus as well as Azure Service Bus itself. The following extension methods provide access to all of the aspects related to this addressing logic, so that the transport can be adapted to any future changes in this respect.
 
- * [`NamespacePartitioning()`](/nservicebus/azure-service-bus/configuration/configuration.md#physical-addressing-logic-namespace-partitioning)
- * [`Composition()`](/nservicebus/azure-service-bus/configuration/configuration.md#physical-addressing-logic-composition)
- * [`Validation()`](/nservicebus/azure-service-bus/configuration/configuration.md#physical-addressing-logic-validation)
- * [`Sanitization()`](/nservicebus/azure-service-bus/configuration/configuration.md#physical-addressing-logic-sanitization)
- * [`Individualization()`](/nservicebus/azure-service-bus/configuration/configuration.md#physical-addressing-logic-individiualization)
+ * [`NamespacePartitioning()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-namespace-partitioning)
+ * [`Composition()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-composition)
+ * [`Validation()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-validation)
+ * [`Sanitization()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-sanitization)
+ * [`Individualization()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-individiualization)
 
 
 ## AzureServiceBusQueueConfig

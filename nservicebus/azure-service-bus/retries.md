@@ -12,7 +12,7 @@ This article describes the relationship between NServiceBus retry behavior and A
 
 NServiceBus supports First Level Retries and Second Level Retries features at the endpoint instance level as described in the [Automatic Retries](/nservicebus/errors/automatic-retries.md) article.
 
-Azure Service Bus supports a `MaxDeliveryCount` at the entity level, which defines how many times Azure Service Bus attempts to deliver a message before sending it to the dead letter queue. Refer to [the full configuration API](/nservicebus/azure-service-bus/configuration/configuration.md#controlling-entities-queues) article to learn how to adjust this setting.
+Azure Service Bus supports a `MaxDeliveryCount` at the entity level, which defines how many times Azure Service Bus attempts to deliver a message before sending it to the dead letter queue. Refer to [the full configuration API](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-queues) article to learn how to adjust this setting.
 
 ## First Level Retries vs MaxDeliveryCount
 

@@ -5,6 +5,8 @@ tags:
 - Azure
 - Cloud
 - Configuration
+redirects:
+- nservicebus/azure-service-bus/configuration/configuration
 ---
 
 
