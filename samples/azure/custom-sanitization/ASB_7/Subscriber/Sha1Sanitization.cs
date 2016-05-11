@@ -18,7 +18,7 @@ class Sha1Sanitization : ISanitizationStrategy
             entityPathOrName = regexLeadingAndTrailingForwardSlashes.Replace(entityPathOrName, string.Empty);
         }
 
-        if (entityType == EntityType.Subscription || entityType == EntityType.Rule || entityType == EntityType.EventHub)
+        if (entityType == EntityType.Subscription || entityType == EntityType.Rule)
         {
             var rgx = new Regex(@"[^a-zA-Z0-9\-\._]");
             entityPathOrName = rgx.Replace(entityPathOrName, "");
