@@ -180,32 +180,31 @@
             - "nservicebus/transports/queuecreation"
     -
       Title: "Azure Service Bus Transport"
-          Url: "nservicebus/azure-service-bus"
-          Articles:
-            - "nservicebus/azure-service-bus/topologies"
-            - Title: "Configuration"
-            - Articles:
-                - "nservicebus/azure-service-bus/configuration"
-                - "nservicebus/azure-service-bus/retries"
-                - "nservicebus/azure-service-bus/sanitization"
-                - "nservicebus/azure-service-bus/addressing-logic"
-            - Title: Routing
-            - Articles:
-                - "nservicebus/azure-service-bus/publisher-names-configuration"
-                - "nservicebus/azure-service-bus/multiple-namespaces-support"
-            - Title: Performance Tuning
-            - Articles:
-                - "nservicebus/azure-service-bus/performance-tuning"
-                - "nservicebus/azure-service-bus/batching"
-                - "nservicebus/azure-service-bus/message-lock-renewal"
-                - "nservicebus/azure-service-bus/multiple-namespaces-support"
-            - Title: "Security"
-            - Articles: 
-                - "nservicebus/azure-service-bus/securing-connection-strings"
-            - "nservicebus/azure-service-bus/faq"
-            - "nservicebus/azure-service-bus/transaction-support"
-            - "nservicebus/azure/transactions"
-            - "nservicebus/azure-service-bus/native-integration"
+      Url: "nservicebus/azure-service-bus"
+      Articles:
+        - "nservicebus/azure-service-bus/topologies"
+        - Title: "Configuration"
+        - Url: "nservicebus/azure-service-bus/configuration"
+        - Articles:
+            - "nservicebus/azure-service-bus/retries"
+            - "nservicebus/azure-service-bus/sanitization"
+            - "nservicebus/azure-service-bus/addressing-logic"
+        - Title: Routing
+        - Articles:
+            - "nservicebus/azure-service-bus/publisher-names-configuration"
+            - "nservicebus/azure-service-bus/multiple-namespaces-support"
+        - Title: Performance Tuning
+        - Url: "nservicebus/azure-service-bus/performance-tuning"
+        - Articles:
+            - "nservicebus/azure-service-bus/batching"
+            - "nservicebus/azure-service-bus/message-lock-renewal"
+            - "nservicebus/azure-service-bus/multiple-namespaces-support"
+        - Title: "Security"
+        - Url:"nservicebus/azure-service-bus/securing-connection-strings"
+        - "nservicebus/azure-service-bus/faq"
+        - "nservicebus/azure-service-bus/transaction-support"
+        - "nservicebus/azure/transactions"
+        - "nservicebus/azure-service-bus/native-integration"
     -
       Title: "Serialization"
       Url: "nservicebus/serialization"
