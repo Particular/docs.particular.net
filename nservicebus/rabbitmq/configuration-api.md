@@ -106,7 +106,7 @@ Versions: 3 and below. In Versions 4 and above, `PrefetchCount` is controlled th
 
 #### UsePublisherConfirms
 
-Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used. 
+Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used.
 
 Default: `true`
 
@@ -224,13 +224,31 @@ In Versions 4 and above, the ability to provide a custom connection manager via 
 
 ## Controlling behavior when the broker connection is lost
 
-By default, the RabbitMQ transport will trigger the critical error action when it continuously fails to connect to the broker for 2 minutes. The amount of time can be customized using the following configuration settings: (values must be parsable to `System.TimeSpan`)
+The RabbitMQ transport monitors the connection to the broker and will trigger the critical error action if the connection fails and stays disconnected for the configured amount of time.
 
-snippet:rabbitmq-custom-breaker-settings
 
-In Versions 4 and above, the XML configuration options for controlling lost connection behavior have been replaced by a code equivalent: 
+### TimeToWaitBeforeTriggering
 
-snippet:rabbitmq-custom-breaker-settings-code
+Controls the amount of time the transport waits after a failure is detected before triggering the critical error action.
+
+Type: `System.TimeSpan`
+
+Default: `00:02:00` (2 minutes)
+
+snippet:rabbitmq-custom-breaker-settings-time-to-wait-before-triggering
+
+
+### DelayAfterFailure
+
+Controls the amount of time the transport waits after a failure is detected before trying to poll for incoming messages again.
+
+Type: `System.TimeSpan`
+
+Default: `00:00:05` (5 seconds)
+
+snippet:rabbitmq-custom-breaker-settings-delay-after-failure
+
+NOTE: This setting has been removed in Versions 4 and above because the transport no longer needs to poll for incoming messages.
 
 
 ## Routing topology

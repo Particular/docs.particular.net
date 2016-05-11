@@ -93,7 +93,7 @@ class Usage
 
     void UseCustomCircuitBreakerSettings(EndpointConfiguration endpointConfiguration)
     {
-        #region rabbitmq-custom-breaker-settings-code
+        #region rabbitmq-custom-breaker-settings-time-to-wait-before-triggering
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));

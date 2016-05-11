@@ -14,10 +14,15 @@
   </connectionStrings>
   <!--endcode-->
 
-  <!--startcode rabbitmq-custom-breaker-settings -->
+  <!--startcode rabbitmq-custom-breaker-settings-time-to-wait-before-triggering -->
   <appSettings>
     <add key="NServiceBus/RabbitMqDequeueStrategy/TimeToWaitBeforeTriggering"
          value="00:02:00"/>
+  </appSettings>
+  <!--endcode-->
+
+  <!--startcode rabbitmq-custom-breaker-settings-delay-after-failure -->
+  <appSettings>
     <add key="NServiceBus/RabbitMqDequeueStrategy/DelayAfterFailure"
          value="00:00:05"/>
   </appSettings>
