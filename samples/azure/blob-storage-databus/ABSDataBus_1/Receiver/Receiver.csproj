@@ -55,6 +55,9 @@
     </Reference>
     <Reference Include="NServiceBus.DataBus.AzureBlobStorage">
       <HintPath>..\..\..\..\..\packages\NServiceBus.DataBus.AzureBlobStorage.1.0.0-beta0001\lib\net452\NServiceBus.DataBus.AzureBlobStorage.dll</HintPath>
+    <Reference Include="NServiceBus.DataBus.AzureBlobStorage, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.DataBus.AzureBlobStorage.1.0.0-beta0001\lib\net452\NServiceBus.DataBus.AzureBlobStorage.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
