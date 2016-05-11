@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport configuration settings
 summary: The various ways to customize the RabbitMQ transport.
-reviewed: 2016-04-21
+reviewed: 2016-05-12
 tags:
 - RabbitMQ
 - Transports
@@ -161,6 +161,11 @@ Increasing these settings can help prevent the connection to the broker from tim
 When scaling out an endpoint using the RabbitMQ transport, any of the endpoint instances can consume messages from the same shared broker queue. However, this behavior can cause problems when dealing with callback messages because the reply message for the callback needs to go to the specific instance that requested the callback.
 
 
+### Versions 4 and above
+
+In Versions 4 and above, callbacks are no longer directly managed by the RabbitMQ transport and are not enabled by default. To enable them, follow the steps outlined in the [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-nservicebus-callbacks-version-1-and-above).
+
+
 ### Versions 3 and below
 
 In Versions 3 and below, callbacks are enabled by default, and the transport will create a separate callback receiver queue, named `{endpointname}.{machinename}`, to which all callbacks are routed. If callbacks are not being used, the callback receiver can be disabled using the following setting:
@@ -172,11 +177,6 @@ This means that the queue will not be created and no extra threads will be used 
 By default, 1 dedicated thread is used for the callbacks. To add more threads, due to a high rate of callbacks, use the following:
 
 snippet:rabbitmq-config-callbackreceiver-thread-count
-
-
-### Versions 4 and above
-
-In Versions 4 and above, callbacks are no longer directly managed by the RabbitMQ transport and are not enabled by default. To enable them, follow the steps outlined in the [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-nservicebus-callbacks-version-1-and-above).
 
 
 ## Transport Layer Security support
@@ -206,6 +206,11 @@ WARNING: It is extremely important to use a uniquely identifying property of the
 ## Providing a custom connection manager
 
 
+### Versions 4 and above
+
+In Versions 4 and above, the ability to provide a custom connection manager via the `IManageRabbitMqConnections` interface has been removed.
+
+
 ### Versions 3 and below
 
 The default connection manager that comes with the transport is usually good enough for most users. To control how the connections with the broker are managed, implement a custom connection manager by inheriting from `IManageRabbitMqConnections`. This requires that connections be provided for:
@@ -217,11 +222,6 @@ The default connection manager that comes with the transport is usually good eno
 In order for the transport to use the above, register it as shown below:
 
 snippet:rabbitmq-config-useconnectionmanager
-
-
-### Versions 4 and above
-
-In Versions 4 and above, the ability to provide a custom connection manager via the `IManageRabbitMqConnections` interface has been removed.
 
 
 ## Controlling behavior when the broker connection is lost
