@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport Upgrade Version 3 to 4
 summary: Instructions on how to upgrade RabbitMQ Transport Version 3 to 4.
-reviewed: 2016-03-24
+reviewed: 2016-05-12
 tags:
  - upgrade
  - migration
@@ -42,10 +42,10 @@ Callbacks are no longer directly managed by the RabbitMQ transport, so the setti
 
 This setting has been removed because the RabbitMQ transport no longer directly creates a callback receiver queue.
 
+
 ### CallbackReceiverMaxConcurrency
 
-This setting has been removed because the RabbitMQ transport no longer directly creates a callback receiver queue. When callbacks have been enabled by installing the `NServiceBus.Callbacks` NuGet package, the maximum concurrency
-is no longer separately controlled. The value passed to `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` will be used for the callbacks queue in addition to the main queue.
+This setting has been removed because the RabbitMQ transport no longer directly creates a callback receiver queue. When callbacks have been enabled by installing the `NServiceBus.Callbacks` NuGet package, the maximum concurrency is no longer separately controlled. The value passed to `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` will be used for the callbacks queue in addition to the main queue.
 
 snippet:3to4rabbitmq-config-callbackreceiver-thread-count
 
@@ -59,6 +59,7 @@ The ability to provide a custom connection manager via the `IManageRabbitMqConne
 
 The XML configuration options for controlling lost connection behavior have been removed.
 
+
 ### TimeToWaitBeforeTriggering
 
 The 'TimeToWaitBeforeTriggering` setting can now be configured via the following:
@@ -68,7 +69,7 @@ snippet:3to4rabbitmq-custom-breaker-settings-time-to-wait-before-triggering
 
 ### DelayAfterFailure
 
-The 'DelayAfterFailure` setting has been removed because the message pump no longer polls for incoming messages, so there is no inner loop that needs to pause when a connection failure is detected.
+The `DelayAfterFailure` setting has been removed because the message pump no longer polls for incoming messages, so there is no inner loop that needs to pause when a connection failure is detected.
 
 
 ## Routing topology
@@ -83,8 +84,8 @@ The `UseDirectRoutingTopology` method's `exchangeNameConvention` parameter's typ
 
 The following changes have been made to the `IRoutingTopology` interface:
 
-* The interface's namespace was changed from `NServiceBus.Transports.RabbitMQ.Routing` to `NServiceBus.Transport.RabbitMQ`.
-* The `Publish` method's `message` parameter's type changed from `TransportMessage` to `OutgoingMessage`.
-* The `Send` method's `message` parameter's type changed from `TransportMessage` to `OutgoingMessage`.
-* The `Send` method's `address` parameter's type changed from `Address` to `string`.
-* The `RawSendInCaseOfFailure` method was added to allow for forwarding messages that cannot be deserialized to the error queue.
+ * The interface's namespace was changed from `NServiceBus.Transports.RabbitMQ.Routing` to `NServiceBus.Transport.RabbitMQ`.
+ * The `Publish` method's `message` parameter's type changed from `TransportMessage` to `OutgoingMessage`.
+ * The `Send` method's `message` parameter's type changed from `TransportMessage` to `OutgoingMessage`.
+ * The `Send` method's `address` parameter's type changed from `Address` to `string`.
+ * The `RawSendInCaseOfFailure` method was added to allow for forwarding messages that cannot be deserialized to the error queue.
