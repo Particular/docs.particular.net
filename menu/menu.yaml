@@ -222,6 +222,7 @@
           Articles:
             - "nservicebus/ravendb/operations-scripting"
             - "nservicebus/ravendb/installation"
+            - "nservicebus/ravendb/manual-dtc-settings"
         - Title: "Azure Storage Persistence"
           Url: "nservicebus/azure-storage-persistence"
           Articles:

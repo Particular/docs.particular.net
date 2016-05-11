@@ -110,13 +110,11 @@ snippet:ravendb-persistence-stale-sagas
 DANGER: This is a potentially dangerous feature that can result in multiple instances of saga being created instead of one in cases of high contention.
 
 
-#### Transaction recovery storage
+#### Distributed Transaction Coordinator settings
 
-The RavenDB client requires a method of storing DTC transaction recovery information in the case of process faults. By default, NServiceBus uses `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage. Under certain high-load situations, this has been known to result in a `TransactionAbortedException` or `IsolatedStorageException`. If these exceptions occur change to use [`LocalDirectoryTransactionRecoveryStorage`](http://ravendb.net/docs/search/latest/csharp?searchTerm=LocalDirectoryTransactionRecoveryStorage).
+The RavenDB client requires a unique Guid to identify it to the Distributed Transaction Coordinator, and a method of storing DTC transaction recovery information in the case of process faults. By default, NServiceBus uses `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage. Under certain high-load situations, this has been known to result in a `TransactionAbortedException` or `IsolatedStorageException`.
 
-The default `TransactionRecoveryStorage` can be changed as shown in the following example.
-
-snippet:ConfiguringTransactionRecoveryStorage
+In order to set DTC settings that are safe for production use, refer to [Setting RavenDB DTC settings manually](manual-dtc-settings.md).
 
 ## NServiceBus 3 and NServiceBus 4
 

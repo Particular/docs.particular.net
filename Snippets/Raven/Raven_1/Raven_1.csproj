@@ -47,8 +47,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="CustomRavenConfig.cs" />
+    <Compile Include="RavenDtcConventions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
