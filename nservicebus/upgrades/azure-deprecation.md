@@ -9,7 +9,7 @@ related:
 - nservicebus/upgrades/absdatabus-6to1
 ---
 
-## `NServiceBus.Azure` package deprecated
+## NServiceBus.Azure package deprecated
 
 `NServiceBus.Azure` package is no longer provided. All functionality has been moved to individual packages as listed below.
 
