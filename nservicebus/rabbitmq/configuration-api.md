@@ -191,6 +191,8 @@ Or configuration:
 
 snippet:rabbitmq-connection-tls-config
 
+NOTE: The RabbitMQ transport requires TLS 1.2 to establish a secure connection, so the broker must have TLS 1.2 enabled.
+
 
 ## Controlling the message ID strategy
 
