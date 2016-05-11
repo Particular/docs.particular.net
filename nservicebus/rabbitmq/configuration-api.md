@@ -253,6 +253,7 @@ NOTE: This setting has been removed in Versions 4 and above because the transpor
 
 ## Routing topology
 
+The RabbitMQ transport has the concept of a routing topology, which controls how it creates exchanges, queues, and the bindings between them in the RabbitMQ broker. The routing topology also controls how the transport uses the exchanges it creates to send and publish messages.
 
 ### Conventional Routing Topology
 
