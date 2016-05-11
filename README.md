@@ -186,10 +186,29 @@ related:
 
 All NServiceBus related nugets (used in documentation) are listed in [components/nugetAlias.txt](components/nugetAlias.txt). The alias part of the nuget is the key that is used to infer the version and component for all snippets. So for example [Snippets/Callbacks](Snippets/Callbacks) has, over its lifetime, existed in both the Core nuget and the Callbacks nuget. So the directories under Callbacks are indicative of the nuget (alias) they exist in and then split over the multiple versions of a given nuget.
 
+Example aliases:
+
+```
+ASP: NServiceBus.Persistence.AzureStorage
+Autofac: NServiceBus.Autofac
+Azure: NServiceBus.Azure
+AzureHost: NServiceBus.Hosting.Azure
+Callbacks: NServiceBus.Callbacks
+```
 
 ## components.yaml
 
 "Components" is a general terms used to describe a deployable set of functionality. Components exist in [components/components.yaml](components/components.yaml). Note that over time a Component may have moved between nugets or split into new nugets. For example the ABS DataBus or the Callbacks.
+
+Example Component:
+
+```
+- Key: Callbacks
+  Url: nservicebus/messaging/handling-responses-on-the-client-side
+  NugetOrder:
+    - NServiceBus.Callbacks
+    - NServiceBus
+```
 
 
 ### Component Key
