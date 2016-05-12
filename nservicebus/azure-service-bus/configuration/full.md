@@ -187,7 +187,7 @@ The validation settings determine how entity names are validated. They should co
  * `UseSubscriptionPathMaximumLength(int)`: The maximum length of a subscription path (path = name), defaults to 50.
  * `UseStrategy<T>()`: An implementation of `IValidationStrategy` that validates the entity path. Following implementations exist:
 	 * `EntityNameValidationV6Rules`: allows letters, numbers, periods (`.`), hyphens (`-`), and underscores (`-`)
-	 * `EntityNameValidationRules` (default): allows letters, numbers, periods (`.`), hyphens (`-`), underscores (`-`) and slashes (`/`) for queues and topics, no slashes allowed for subscriptions.
+	 * `EntityNameValidationRules` (default): allows letters, numbers, periods (`.`), hyphens (`-`), underscores (`-`) and slashes (`/`) for queues and topics, no slashes allowed for subscriptions and rules.
 
 
 ### Sanitization
@@ -195,8 +195,7 @@ The validation settings determine how entity names are validated. They should co
 Sanitization refers to the cleanup logic, that turns invalid entity names into valid ones.
 
  * `UseStrategy<T>()`: An implementation of `ISanitizationStrategy` that handles invalid entity names. The following implementations exist:
-	 * `AdjustmentSanitizationV6`: removes invalid characters according to `EntityNameValidationV6Rules`, uses MD5 hashing to reduce the length of an entity name if the maximum length is exceeded.
-	 * `AdjustmentSanitization` (default): removes invalid characters according to `EntityNameValidationRules`, uses SHA1 hashing to reduce the length of an entity name if the maximum length is exceeded.
+	 * `EndpointOrientedTopologySanitization`: removes invalid characters according to `EntityNameValidationV6Rules`, uses MD5 hashing to reduce the length of an entity name if the maximum length is exceeded.
 	 * `ThrowOnFailingSanitization`: throws an `EndpointValidationException` if the name is invalid.
 
 
@@ -218,8 +217,6 @@ The settings that determine how entities are partitioned across namespaces:
 	 * `SingleNamespacePartitioning` (default): All entities are in a single namespace.
 	 * `FailOverNamespacePartitioning`: assumes all entities are in the primary and secondary namespaces, where only the primary is in use by default. The secondary will function as a fallback in case of problems with the primary.
 	 * `RoundRobinNamespacePartitioning`: assumes all entities are in all namespaces, all namespaces are in use but one at a time in a round robin fashion.
-	 * `ReplicatedNamespacePartitioning`: assumes all entities are in all namespaces, all namespaces are in use, messages are replicated over all namespaces.
-	 * `ShardedNamespacePartitioning`: assumes all entities are in all namespaces, all namespaces are in use, messages are sent to a single namespace based on a sharding rule.
 
 
 ### Composition
