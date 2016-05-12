@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
-using NServiceBus.Transports.SQLServer;
+using NServiceBus.Transport.SQLServer;
 #pragma warning disable 618
 
 public class Program

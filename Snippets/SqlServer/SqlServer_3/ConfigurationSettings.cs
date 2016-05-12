@@ -1,6 +1,6 @@
 ﻿using System;
 using NServiceBus;
-using NServiceBus.Transports.SQLServer;
+using NServiceBus.Transport.SQLServer;
 
 class ConfigurationSettings
 {

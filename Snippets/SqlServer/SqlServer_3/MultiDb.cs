@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 using NServiceBus;
-using NServiceBus.Transports.SQLServer;
+using NServiceBus.Transport.SQLServer;
 
 class MultiDb
 {

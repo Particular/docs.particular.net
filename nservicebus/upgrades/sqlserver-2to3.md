@@ -14,6 +14,10 @@ related:
 ## SQL Server Transport
 
 
+## Namespace changes
+
+The primary namespace is `NServiceBus`. Advanced customization APIs have been moved to `NServiceBus.Transport.SqlServer`. A `using NServiceBus` directive should be sufficient to find all basic options. A `using NServicebus.Transport.SqlServer` is needed to access advanced configuration options.
+
 ### Transactions
 
 The native transaction support has been split into two different levels: `ReceiveOnly` and `SendAtomicWithReceive`. SQL Server Transport supports both. `SendAtomicWithReceive` is equivalent to disabling distributed transactions in NServiceBus Version 5.
