@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Transports.SQLServer;
+using NServiceBus.Transport.SQLServer;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus.Persistence;

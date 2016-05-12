@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Settings;
-using NServiceBus.Transports.SQLServer;
+using NServiceBus.Transport.SQLServer;
 #pragma warning disable 618
 
 class Program
