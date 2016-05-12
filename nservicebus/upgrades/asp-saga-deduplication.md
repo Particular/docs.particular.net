@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Persistence upgrade Version 6.2.3 to 6.2.4
 summary: Instructions on how to patch Azure Storage Persistence when saga duplication occurs.
-reviewed: 2016-04-14
+reviewed: 2016-05-12
 tags:
  - upgrade
 related:
@@ -14,7 +14,7 @@ related:
 
 This document explains how to upgrade and patch a system for [Azure Storage Persistence bug #26](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/issues/26) using the NServiceBus.Azure hotfix release 6.2.4. 
 
-When upgrading to NServiceBus.Persistence.AzureStorage Version 1 and above, the following upgrade will need to be performed prior to beginning any other upgrade steps.
+WARNING: When upgrading to NServiceBus.Persistence.AzureStorage Version 1 and above, the following upgrade will need to be performed prior to beginning any other upgrade steps.
 
 ### How to know if a system may be affected
 
