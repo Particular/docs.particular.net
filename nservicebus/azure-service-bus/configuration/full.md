@@ -79,7 +79,7 @@ The following settings are available to define how topics should be created:
  * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message, defaults to `TimeSpan.MaxValue`. 
  * `AutoDeleteOnIdle(TimeSpan)`: Automatically deletes the topic if it hasn't been used for the specified time period. By default the topic will not be automatically deleted.
  * `EnableBatchedOperations(bool)`: Enables server side batched operations, defaults to `true`.
- * `EnableExpress(bool)`: Enables express mode, defaults to `false`. For more information refer to  the[TopicDescription.EnableExpress Property](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.topicdescription.enableexpress.aspx) documentation on MSDN.
+ * `EnableExpress(bool)`: Enables express mode, defaults to `false`. For more information refer to  the [TopicDescription.EnableExpress Property](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.topicdescription.enableexpress.aspx) documentation on MSDN.
  * `EnableExpress(Func<string, bool>, bool)`: Enables express mode when the given condition is `true`.
  * `EnableFilteringMessagesBeforePublishing(bool)`: Enables filtering messages before they are published, which validates that subscribers exist before a message is published. Defaults to `false`.
  * `EnablePartitioning(bool)`: Enables partitioning, defaults to `false`. For more information on partitioning refer to the [Partitioned messaging entities](https://azure.microsoft.com/en-us/documentation/articles/service-bus-partitioning/) article on MSDN.
@@ -186,8 +186,8 @@ The validation settings determine how entity names are validated. They should co
  * `UseTopicPathMaximumLength(int)`: The maximum length of a topic path (path = name + namespace hierarchy), defaults to 260.
  * `UseSubscriptionPathMaximumLength(int)`: The maximum length of a subscription path (path = name), defaults to 50.
  * `UseStrategy<T>()`: An implementation of `IValidationStrategy` that validates the entity path. Following implementations exist:
-	 * `EntityNameValidationV6Rules`: allows letters, numbers, periods (.), hyphens (-), and underscores (-)
-	 * `EntityNameValidationRules` (default): allows letters, numbers, periods (.), hyphens (-), underscores (-) and slashes (/) for queues and topics, no slashes allowed for subscriptions.
+	 * `EntityNameValidationV6Rules`: allows letters, numbers, periods (`.`), hyphens (`-`), and underscores (`-`)
+	 * `EntityNameValidationRules` (default): allows letters, numbers, periods (`.`), hyphens (`-`), underscores (`-`) and slashes (`/`) for queues and topics, no slashes allowed for subscriptions.
 
 
 ### Sanitization
