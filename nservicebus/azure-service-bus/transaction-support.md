@@ -17,7 +17,7 @@ NServiceBus Azure Service Bus transport relies on the underlying Azure Service B
 NServiceBus AzureServiceBus transport configuration is hard-coded to `Serializable` isolation level. Users can't override it.
 
 
-### Version 6 and above
+### Versions 6 and above
 
 Azure Service Bus Transport supports `SendAtomicWithReceive`, `ReceiveOnly` and `None` levels.
 

@@ -8,7 +8,7 @@ tags:
 ---
 
 
-## Version 6 and below
+## Versions 6 and below
 
 
 ### BrokeredMessage body conventions
