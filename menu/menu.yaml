@@ -25,9 +25,12 @@
             - "nservicebus/upgrades/4to5"
             - "nservicebus/upgrades/3to4"
             - "nservicebus/upgrades/encryption-key-identifiers"
-        - Title: "RabbitMQ Transport"
+        - Title: "NServiceBus Host"
           Articles:
-            - "nservicebus/upgrades/rabbitmq-3to4"
+            - "nservicebus/upgrades/host-6to7"
+        - Title: "Azure BlobStorage DataBus"
+          Articles:
+            - "nservicebus/upgrades/absdatabus-6to1"
         - Title: "Azure Storage Persistence"
           Articles:
             - "nservicebus/upgrades/asp-saga-deduplication"
@@ -37,15 +40,15 @@
         - Title: "Azure Service Bus Transport"
           Articles:
             - "nservicebus/upgrades/asb-6to7"
-        - Title: "NHibernate Persistence"
-          Articles:
-            - "nservicebus/upgrades/nhibernate-6to7"
         - Title: "Gateway"
           Articles:
             - "nservicebus/upgrades/gateway-1to2"
-        - Title: "NServiceBus Host"
+        - Title: "NHibernate Persistence"
           Articles:
-            - "nservicebus/upgrades/host-6to7"
+            - "nservicebus/upgrades/nhibernate-6to7"
+        - Title: "RabbitMQ Transport"
+          Articles:
+            - "nservicebus/upgrades/rabbitmq-3to4"
         - Title: "RavenDB Persistence"
           Articles:
             - "nservicebus/upgrades/ravendb-3to4"
