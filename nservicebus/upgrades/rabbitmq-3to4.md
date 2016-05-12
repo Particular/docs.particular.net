@@ -11,9 +11,9 @@ related:
 ---
 
 
-## [Connection string options](/nservicebus/rabbitmq/configuration-api.md#rabbitmq-connection-string-connection-string-options)
+## Connection string options
 
-When upgrading, there are several connection string options that should be removed from any existing connection strings.
+When upgrading, there are several [connection string options](/nservicebus/rabbitmq/configuration-api.md#rabbitmq-connection-string-connection-string-options) that should be removed from any existing connection strings.
 
 
 ### [PrefetchCount](/nservicebus/rabbitmq/configuration-api.md#rabbitmq-connection-string-connection-string-options-prefetchcount)
@@ -33,46 +33,48 @@ The `DequeueTimeout` setting has been removed because the message pump no longer
 The `MaxWaitTimeForConfirms` setting has been removed because the transport no longer requires a timeout for how long it should block while waiting for publisher confirmation messages.
 
 
-## [Callback support](/nservicebus/rabbitmq/configuration-api.md#callback-support)
+## Callback support
 
-Callbacks are no longer directly managed by the RabbitMQ transport, so the settings related to the callback receiver queue have been removed.
+[Callbacks](/nservicebus/rabbitmq/configuration-api.md#callback-support) are no longer directly managed by the RabbitMQ transport, so the settings related to the callback receiver queue have been removed.
 
 
-### DisableCallbackReceiver
+### [DisableCallbackReceiver]](/nservicebus/rabbitmq/configuration-api.md#callback-support-versions-3-and-below-disablecallbackreceiver)
 
 This setting has been removed because the RabbitMQ transport no longer directly creates a callback receiver queue.
 
 
-### CallbackReceiverMaxConcurrency
+### [CallbackReceiverMaxConcurrency](/nservicebus/rabbitmq/configuration-api.md#callback-support-versions-3-and-below-callbackreceivermaxconcurrency)
 
 This setting has been removed because the RabbitMQ transport no longer directly creates a callback receiver queue. When callbacks have been enabled by installing the `NServiceBus.Callbacks` NuGet package, the maximum concurrency is no longer separately controlled. The value passed to `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` will be used for the callbacks queue in addition to the main queue.
 
 snippet:3to4rabbitmq-config-callbackreceiver-thread-count
 
 
-## [Providing a custom connection manager](/nservicebus/rabbitmq/configuration-api.md#providing-a-custom-connection-manager)
+## Providing a custom connection manager
 
-The ability to provide a custom connection manager via the `IManageRabbitMqConnections` interface has been removed. Connections are now managed internally by the transport in a way that is not extensible.
-
-
-## [Controlling behavior when the broker connection is lost](/nservicebus/rabbitmq/configuration-api.md#controlling-behavior-when-the-broker-connection-is-lost)
-
-The XML configuration options for controlling lost connection behavior have been removed.
+The ability to [provide a custom connection manager](/nservicebus/rabbitmq/configuration-api.md#providing-a-custom-connection-manager-versions-3-and-below) via the `IManageRabbitMqConnections` interface has been removed. Connections are now managed internally by the transport in a way that is not extensible.
 
 
-### TimeToWaitBeforeTriggering
+## Controlling behavior when the broker connection is lost
+
+The XML configuration options for [controlling lost connection behavior](/nservicebus/rabbitmq/configuration-api.md#controlling-behavior-when-the-broker-connection-is-lost) have been removed.
+
+
+### [TimeToWaitBeforeTriggering](/nservicebus/rabbitmq/configuration-api.md#controlling-behavior-when-the-broker-connection-is-lost-timetowaitbeforetriggering)
 
 The 'TimeToWaitBeforeTriggering` setting can now be configured via the following:
 
 snippet:3to4rabbitmq-custom-breaker-settings-time-to-wait-before-triggering
 
 
-### DelayAfterFailure
+### [DelayAfterFailure](/nservicebus/rabbitmq/configuration-api.md#controlling-behavior-when-the-broker-connection-is-lost-delayafterfailure)
 
 The `DelayAfterFailure` setting has been removed because the message pump no longer polls for incoming messages, so there is no inner loop that needs to pause when a connection failure is detected.
 
 
 ## Routing topology
+
+The changes to the RabbitMQ transport's [routing topologies](/nservicebus/rabbitmq/configuration-api.md#routing-topology) are listed below.
 
 
 ### [Direct Routing Topology](/nservicebus/rabbitmq/configuration-api.md#routing-topology-direct-routing-topology)
