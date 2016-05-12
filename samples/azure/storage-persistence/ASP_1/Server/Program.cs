@@ -16,7 +16,8 @@ class Program
         #region config
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.StoragePersistence.Server");
-        endpointConfiguration.UsePersistence<AzureStoragePersistence>();
+        var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
+        persistence.ConnectionString("UseDevelopmentStorage=true");
 
         #endregion
         endpointConfiguration.UseSerialization<JsonSerializer>();
