@@ -35,16 +35,6 @@ class Usage
         #endregion
     }
 
-    void CustomConnectionStringWithTLS(BusConfiguration busConfiguration)
-    {
-        #region rabbitmq-connection-tls 3.2
-
-        var transport = busConfiguration.UseTransport<RabbitMQTransport>();
-        transport.ConnectionString(@"host=broker1;UseTls=true;CertPath=C:\CertificatePath\ssl.pfx;CertPassphrase=securePassword");
-
-        #endregion
-    }
-
     void DisableCallbackReceiver(BusConfiguration busConfiguration)
     {
         #region rabbitmq-config-disable-callback-receiver

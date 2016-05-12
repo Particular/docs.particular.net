@@ -42,6 +42,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="rabbitmq-connection-tls.txt" />
     <Content Include="rabbitmqconnection.config.xml" />
   </ItemGroup>
   <ItemGroup>

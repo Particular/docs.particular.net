@@ -45,6 +45,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="rabbitmq-connection-tls.txt" />
     <Content Include="rabbitmqconnection.config.xml" />
     <Content Include="UpgradeGuides\3to4\rabbitmqconnection.config.xml">
       <SubType>Designer</SubType>
