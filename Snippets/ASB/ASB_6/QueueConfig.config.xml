@@ -5,6 +5,6 @@
     <section name="AzureServiceBusQueueConfig"
              type="NServiceBus.Config.AzureServiceBusQueueConfig, NServiceBus.Azure.Transports.WindowsAzureServiceBus" />
   </configSections>
-  <AzureServiceBusQueueConfig ConnectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
+  <AzureServiceBusQueueConfig ConnectionString="Endpoint=sb://{namespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={key}" />
   <!-- endcode -->
 </configuration>

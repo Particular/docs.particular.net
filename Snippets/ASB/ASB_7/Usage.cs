@@ -31,7 +31,7 @@ class Usage
         #region setting_asb_connection_string
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.ConnectionString("Endpoint=sb://{namespace}.servicebus.windows.net/;SharedAccessKeyName={sasname};SharedAccessKey={saskey}");
+        transport.ConnectionString("Endpoint=sb://{namespace}.servicebus.windows.net/;SharedAccessKeyName={name};SharedAccessKey={key}");
 
         #endregion
     }
