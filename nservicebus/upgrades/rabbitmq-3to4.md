@@ -38,7 +38,7 @@ The `MaxWaitTimeForConfirms` setting has been removed because the transport no l
 [Callbacks](/nservicebus/rabbitmq/configuration-api.md#callback-support) are no longer directly managed by the RabbitMQ transport, so the settings related to the callback receiver queue have been removed.
 
 
-### [DisableCallbackReceiver]](/nservicebus/rabbitmq/configuration-api.md#callback-support-versions-3-and-below-disablecallbackreceiver)
+### [DisableCallbackReceiver](/nservicebus/rabbitmq/configuration-api.md#callback-support-versions-3-and-below-disablecallbackreceiver)
 
 This setting has been removed because the RabbitMQ transport no longer directly creates a callback receiver queue.
 
