@@ -49,4 +49,4 @@ There have historically been regular changes to the physical addressing logic, f
 
 ## AzureServiceBusQueueConfig
 
-In version 6 and below, configuration values are provided using the `AzureServiceBusQueueConfig` configuration section, refer to the [AzureServiceBusQueueConfig configuration page](/nservicebus/azure-service-bus/configuration/azureservicebusqueueconfig.md) for more details.
+In versions 6 and below, configuration values are provided using the `AzureServiceBusQueueConfig` configuration section, refer to the [AzureServiceBusQueueConfig configuration page](/nservicebus/azure-service-bus/configuration/azureservicebusqueueconfig.md) for more details.
