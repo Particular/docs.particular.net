@@ -65,11 +65,11 @@ The `ForwardingTopology` supports up to 2,000 endpoints with up to 2,000 events 
 
 #### Topologies comparison
 
-|                                | EndpointOrientedTopology  | ForwardingTopology |
-|--------------------------------|---------------------------|--------------------|
-| Publisher/Subscriber coupling  | yes                       | no                 |
-| Polymorphic events support     | no                        | yes                |
-| Events overflow protections    | no                        | yes                |
+|                                    | EndpointOrientedTopology  | ForwardingTopology |
+|------------------------------------|---------------------------|--------------------|
+| Decoupled Publishers / Subscribers | no                        | yes                |
+| Polymorphic events support         | no                        | yes                |
+| Events overflow protections        | no                        | yes                |
 
 
 ## Versions 6 and below
