@@ -11,12 +11,11 @@ tags:
 
 In NServiceBus.Azure the behavior of the `AzureStoragePersister` can be controlled by working with the appropriate configuration section(s) in the `app.config` or by using the code API. Both approaches to configuring the persister can access the same configuration options.
 
+
 In NServiceBus.Persistence.AzureStorage Version 1 and above XML based configuration is no longer available. Configuring the behavior of the persister is done using the code configuration API.
 
 ### Configuration with Configuration Section
 In NServiceBus.Azure Version 6 and lower configuration can be performed using configuration sections and properties in the `app.config` file.
-
-NOTE: This configuration technique is not supported in NServiceBus.Persistence.AzureStorage Version 1 and later.
 
 snippet:AzurePersistenceFromAppConfig
 
@@ -39,7 +38,11 @@ For Timeouts:
 
 snippet:AzurePersistenceTimeoutsCustomization
 
-### Configurable Properties
+### Configuration Properties
+Each area of the persister (Sagas, Subscriptions and Timeouts) have various values that can be set or changed.
+
+NOTE: Subscriptions and Timeouts persistence configurations have no effect when used with NServiceBus.Azure Version 5 and lower.
+
 #### Saga Configuration
   
 When using XML based configuration, the following properties can be set through the `AzureSagaPersisterConfig` section:
@@ -81,6 +84,3 @@ The following settings are available for changing the behavior of timeout persis
 
 For more information on connection string configuration see [Configuring Azure Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/storage-configure-connection-string/)
 
-
-
-NOTE: Subscriptions and Timeouts persistence configuration only has an effect when used with Azure Storage Queues transport from NServiceBus.Azure Version 6 and NServiceBus.Persistence.AzureStorage Version 1 and above.
