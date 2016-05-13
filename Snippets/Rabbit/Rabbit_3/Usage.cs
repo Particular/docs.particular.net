@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using global::RabbitMQ.Client;
 using NServiceBus;
 using NServiceBus.Transports.RabbitMQ;
