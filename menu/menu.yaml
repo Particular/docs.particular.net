@@ -136,6 +136,12 @@
         - "nservicebus/pipeline/customizing-error-handling"
         - "nservicebus/pipeline/satellites"
     -
+      Title: "Transports"
+      Url: "nservicebus/transports"
+      Articles:
+        - "nservicebus/transports/transactions"
+        - "nservicebus/transports/queuecreation"
+    -
       Title: "Azure Service Bus Transport"
       Url: "nservicebus/azure-service-bus"
       Articles:
@@ -200,10 +206,6 @@
         - "nservicebus/rabbitmq/configuration-api"
         - "nservicebus/rabbitmq/cluster"
         - "nservicebus/rabbitmq/operations-scripting"
-        - Title: "Extending"
-          Url: "nservicebus/transports"
-          Articles:
-            - "nservicebus/transports/queuecreation"
     -
       Title: "Serialization"
       Url: "nservicebus/serialization"
