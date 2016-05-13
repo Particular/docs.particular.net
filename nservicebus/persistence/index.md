@@ -31,7 +31,7 @@ Uses the [RavenDB document database](http://ravendb.net/) for storage.
 
 ### [NHibernate](/nservicebus/nhibernate/)
 
-Uses custom [NHibernate](http://nhibernate.info/) to persister data to an ADO.net data store (eg SQL Server).
+Uses custom [NHibernate](http://nhibernate.info/) to persist data to an ADO.net data store (eg SQL Server).
 
 
 ### [MSMQ](/nservicebus/msmq/subscription-persistence.md)
