@@ -10,6 +10,8 @@ tags:
 redirects:
  - nservicebus/using-multiple-azure-storage-accounts-for-scaleout
  - nservicebus/azure/using-multiple-azure-storage-accounts-for-scaleout
+related:
+ - nservicebus/azure-storage-queues/configuration
 ---
 
 An NServiceBus-based system running on Azure Storage Queues transport using a single storage account is subject to potential throttling once the maximum number of messages is written to the storage account. To overcome this limitation, use multiple storage accounts. To better understand scale out options with storage accounts, it is necessary understand Azure storage account scalability and performance.
@@ -59,6 +61,28 @@ Each endpoint uses its own Azure storage account, thereby increasing message thr
 
 ![Scale out with multiple storage accounts](azure03.png "width=50%")
 
+## Securing connection strings to storage accounts for Scale Out
+
+[Securing connection strings to storage accounts](/nservicebus/azure-storage-queues/configuration.md#securing-connection-strings-to-storage-accounts) has been introduced in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Version 7. When using a single account, securing connection string is limited to calling `.UseAccountNamesInsteadOfConnectionStrings()`. When Scaling Out is applied, securing connection strings requires using logical names of the accounts.
+Consider the following example:
+
+- two endpoints `default` and `another` using different accounts for their input queues
+- the `default` endpoint uses account with the following connection string `default_connection_string`
+- the `another` endpoint uses account with the following connection string `another_connection_string`
+- every endpoint sends/replies to messages to the other using `@` notation
+ - `queue@default` is a `queue` of the `default` endpoint where `another` sends messages to
+ - `queue@another` is a `queue` of the `another` endpoint where `default` sends messages to
+
+To enable sending from `default` to `another`, following configuration has to be applied in the `default` endpoint
+
+snippet:AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings1
+
+To enable sending from `another` to `default`, following configuration has to be applied in the `another` endpoint
+
+snippet:AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings2
+
+`.MapLocalAccount()` is important from a receiver perspective. It enables identifing the sender and mapping its connection string.
+`.MapAccount()` is important from a sender perspective. It enables to obtain an access to the receiver storage account. 
 
 ## Scale Units
 
