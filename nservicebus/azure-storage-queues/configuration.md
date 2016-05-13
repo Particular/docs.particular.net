@@ -135,7 +135,7 @@ This feature can be enabled by specifying `.UseAccountNamesInsteadOfConnectionSt
 
 snippet:AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
 
-For securing connection strings to storage accounts in Scale Out, see [Securing connection strings to storage accounts for Scale Out](/nservicebus/azure-storage-queues/multi-storageaccount-support.md#securing-connection-strings-to-storage-accounts-for-scale-out)
+For securing connection strings to storage accounts in Scale Out mode, see [Securing connection strings to storage accounts for Scale Out](/nservicebus/azure-storage-queues/multi-storageaccount-support.md#securing-connection-strings-to-storage-accounts-for-scale-out)
 
 ## Hashing algorithms
 
