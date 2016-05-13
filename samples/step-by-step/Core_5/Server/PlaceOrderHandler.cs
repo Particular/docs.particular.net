@@ -20,9 +20,9 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
         log.InfoFormat(@"Publishing: OrderPlaced for Order Id: {0}", message.Id);
 
         OrderPlaced orderPlaced = new OrderPlaced
-                                  {
-                                      OrderId = message.Id
-                                  };
+        {
+            OrderId = message.Id
+        };
         bus.Publish(orderPlaced);
     }
 }

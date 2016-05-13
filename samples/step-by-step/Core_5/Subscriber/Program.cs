@@ -1,10 +1,9 @@
-    using System;
-    using NServiceBus;
-
+using System;
+using NServiceBus;
 
 class Program
 {
-
+    #region SubscriberInit
     static void Main()
     {
         Console.Title = "Samples.StepByStep.Subscriber";
@@ -20,4 +19,5 @@ class Program
             Console.ReadKey();
         }
     }
+    #endregion
 }

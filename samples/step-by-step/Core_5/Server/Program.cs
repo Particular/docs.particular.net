@@ -3,7 +3,7 @@ using NServiceBus;
 
 class Program
 {
-
+    #region ServerInit
     static void Main()
     {
         Console.Title = "Samples.StepByStep.Server";
@@ -19,4 +19,5 @@ class Program
             Console.ReadKey();
         }
     }
+    #endregion
 }
