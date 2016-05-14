@@ -4,7 +4,7 @@ using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.NHibernate;
 
-class ConfiguringNHibernate
+class Usage
 {
     void Simple(EndpointConfiguration endpointConfiguration)
     {

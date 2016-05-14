@@ -2,9 +2,9 @@
 using NServiceBus;
 using NServiceBus.Persistence;
 
-class ConfiguringNHibernateSqlAzure
+class UsageSqlAzure
 {
-    ConfiguringNHibernateSqlAzure(BusConfiguration busConfiguration)
+    UsageSqlAzure(BusConfiguration busConfiguration)
     {
         #region SqlAzureNHibernateDriverConfiguration
 

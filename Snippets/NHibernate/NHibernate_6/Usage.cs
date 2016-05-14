@@ -4,13 +4,13 @@ using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.NHibernate;
 
-class ConfiguringNHibernate
+class Usage
 {
     void Version_5_0(BusConfiguration busConfiguration)
     {
 #pragma warning disable 618
 
-        #region ConfiguringNHibernate 5.0
+        #region ConfiguringNHibernate [5.0,5.2)
 
         //Use NHibernate for all persistence concerns
         busConfiguration.UsePersistence<NHibernatePersistence>();
@@ -27,7 +27,7 @@ class ConfiguringNHibernate
         #endregion
 
 
-        #region NHibernateSubscriptionCaching 5.0
+        #region NHibernateSubscriptionCaching [5.0,5.2)
 
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.EnableCachingForSubscriptionStorage(TimeSpan.FromSeconds(10));

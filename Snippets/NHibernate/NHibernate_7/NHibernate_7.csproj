@@ -46,8 +46,8 @@
     <Compile Include="AccessingData.cs" />
     <Compile Include="Concurrency\SagaDataWithLockMode.cs" />
     <Compile Include="Concurrency\SagaDataWithRowVersion.cs" />
-    <Compile Include="ConfiguringNHibernate.cs" />
-    <Compile Include="ConfiguringNHibernateSqlAzure.cs" />
+    <Compile Include="Usage.cs" />
+    <Compile Include="UsageSqlAzure.cs" />
     <Compile Include="DisableSchemaUpdate.cs" />
     <Compile Include="UpgradeGuides\6to7\AccessingSession.cs" />
   </ItemGroup>
