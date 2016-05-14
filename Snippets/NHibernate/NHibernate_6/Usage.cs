@@ -6,39 +6,9 @@ using NServiceBus.Persistence.NHibernate;
 
 class Usage
 {
-    void Version_5_0(BusConfiguration busConfiguration)
+    Usage(BusConfiguration busConfiguration)
     {
-#pragma warning disable 618
-
-        #region ConfiguringNHibernate [5.0,5.2)
-
-        //Use NHibernate for all persistence concerns
-        busConfiguration.UsePersistence<NHibernatePersistence>();
-
-        //or select specific concerns
-        busConfiguration.UsePersistence<NHibernatePersistence>()
-            .For(
-                Storage.Sagas,
-                Storage.Subscriptions,
-                Storage.Timeouts,
-                Storage.Outbox,
-                Storage.GatewayDeduplication);
-
-        #endregion
-
-
-        #region NHibernateSubscriptionCaching [5.0,5.2)
-
-        var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.EnableCachingForSubscriptionStorage(TimeSpan.FromSeconds(10));
-
-        #endregion
-#pragma warning restore 618
-    }
-
-    void Version_5_2(BusConfiguration busConfiguration)
-    {
-        #region ConfiguringNHibernate 5.2
+        #region ConfiguringNHibernate
 
         //Use NHibernate for all persistence concerns
         busConfiguration.UsePersistence<NHibernatePersistence>();
@@ -52,7 +22,7 @@ class Usage
 
         #endregion
 
-        #region NHibernateSubscriptionCaching 5.2
+        #region NHibernateSubscriptionCaching
 
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
         persistence.EnableCachingForSubscriptionStorage(TimeSpan.FromMinutes(1));
