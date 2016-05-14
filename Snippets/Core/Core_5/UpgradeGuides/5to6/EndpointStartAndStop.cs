@@ -11,13 +11,14 @@
 
             // Custom code before start
             IStartableBus startable = Bus.Create(busConfiguration);
-            IBus endpoint = startable.Start();
-            // Custom code after start
+            using (IBus endpoint = startable.Start())
+            {
+                // Custom code after start
 
-            // Block the process
+                // Block the process
 
-            // Custom code before stop
-            endpoint.Dispose();
+                // Custom code before stop
+            }
             // Custom code after stop
             #endregion
         }
