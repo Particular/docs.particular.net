@@ -61,7 +61,7 @@ snippet: server
 
 ### Worker1 and Worker2
 
-The works are simply host for running the handlers defined in `Worker.Handlers`
+The workers are hosts for running the handlers defined in `Worker.Handlers`
 
 
 #### Startup code
@@ -75,7 +75,8 @@ snippet: workerConfig
 
 The Node in the `MasterNodeConfig` points to the host name where the MasterNode is running. If running the Worker from the same machine as the Distributor, Node should equal `localhost`.
 
-NOTE: As of Version 6 `MasterNodeConfig` is obsolete and `endpointConfiguraiton.EnlistWithLegacyMSMQDistributor` should be used as in code above. 
+NOTE: In Versions 6 and above `MasterNodeConfig` is obsolete and `endpointConfiguraiton.EnlistWithLegacyMSMQDistributor` should be used as in code above. 
+
 
 ## Running the code
 

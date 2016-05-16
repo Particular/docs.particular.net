@@ -65,7 +65,7 @@ Publish Subscribe is the interaction of
 
 ### [Handler](/nservicebus/handlers/)
 
-A Message Handler (or simply Handler) is a piece of code that processes a message of a given type. Message handlers are stateless.
+A Message Handler (sometimes referred as a "Handler") is a piece of code that processes a message of a given type. Message handlers are stateless.
 
 
 ### [Saga](/nservicebus/sagas/)
