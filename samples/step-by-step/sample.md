@@ -7,16 +7,16 @@ redirects:
 - nservicebus/nservicebus-step-by-step-guide
 ---
 
-This sample illustrates most of the basic NServiceBus concepts in a step-by-step fashion. Download the code from the link above and run it, or build it  following the instructions here.
+This sample illustrates basic NServiceBus concepts in a step-by-step fashion. Alternatively, the completed sample code can be downloaded above.
 
 
 ## Concepts
 
-When complete, this sample will show a very simple ordering system that:
+The goal of this step-by-step sample is to show how to build a simple system that uses messaging to:
 
- * sends a command from a client to a server
- * that server handles the command and publishes a new event about the success
- * a subscriber listens to, and handles, the event
+ * Send a command from a client to a server
+ * Receive a message from a client on the server that publishes a new event
+ * Add a new subscriber that can receive published events
 
 Completing these steps will serve as an introduction to many important NServiceBus concepts:
 
