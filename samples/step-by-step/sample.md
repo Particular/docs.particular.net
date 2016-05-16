@@ -60,24 +60,24 @@ The easiest way to differentiate commands and events is to use the `ICommand` an
 
 Let's define the `PlaceOrder` command by creating a class that implements `ICommand` in the Shared project called `PlaceOrder`:
 
-snippet:PlaceOrder
+snippet:StepByStep-PlaceOrder
 
 Next, define the `OrderPlaced` event by creating a class that implements `IEvent` in the Shared project called `OrderPlaced`:
 
-snippet:OrderPlaced
+snippet:StepByStep-OrderPlaced
 
 
 ## The Client
 
 Next, the Client application must be ready to send messages with NServiceBus. In the Client application, add the following code to the program's Main method. Don't worry about the `SendOrder` method, that will be covered soon.
 
-snippet:ClientInit
+snippet:StepByStep-ClientInit
 
 With a `PlaceOrder` command defined, and NServiceBus initialized, a loop can be created to send a new command message every time the Enter key is pressed.
 
 In the Client application, add this code to the Program class:
 
-snippet:SendOrder
+snippet:StepByStep-SendOrder
 
 In order to actually run, each endpoint needs to specify an error queue. This defines where messages are sent when they cannot be processed due to repetitive exceptions during message processing.
 
@@ -85,7 +85,7 @@ While it is possible to [configure the error queue in an App.config file](/nserv
 
 In the Shared project, create a class named `ConfigErrorQueue`:
 
-snippet:ConfigErrorQueue
+snippet:StepByStep-ConfigErrorQueue
 
 The Client application is now complete, and could now be executed. However, doing so would throw an exception when trying to send the message. The Client is sending the `PlaceOrder` command to an endpoint named `Samples.StepByStep.Server`, which will not exist yet. A server application must be created to handle that command.
 
@@ -96,7 +96,7 @@ Like the client, the Server application is going to need to be configured as an 
 
 In the Server application, add the following code to the program's Main method:
 
-snippet:ServerInit
+snippet:StepByStep-ServerInit
 
 In the previous snippet, notice the change in endpoint name, which differentiates this endpoint from the Client.
 
@@ -104,7 +104,7 @@ Next, create a handler for the `PlaceOrder` command being sent by the Client.
 
 Create a new class in the Server project named `PlaceOrderHandler` using the following code:
 
-snippet:PlaceOrderHandler
+snippet:StepByStep-PlaceOrderHandler
 
 The handler class is automatically discovered by NServiceBus because it implements the `IHandleMessages<T>` interface. The dependency injection system (which supports constructor or property injection) injects the `IBus` instance into the handler to access messaging operations.
 
@@ -119,7 +119,7 @@ Like the client and the server, the Subscriber application also needs to be conf
 
 In the Subscriber application, add the following code to the program's Main method:
 
-snippet:SubscriberInit
+snippet:StepByStep-SubscriberInit
 
 This is almost identical to the Server configuration, except for the different endpoint name.
 
@@ -127,7 +127,7 @@ Next, create a message handler for the `OrderPlaced` event. Note that whether ha
 
 Create a new class in the Subscriber project named `OrderCreatedHandler` using the following code:
 
-snippet:OrderCreatedHandler
+snippet:StepByStep-OrderCreatedHandler
 
 The handler only logs the fact that the message was received. In a real system, a subscriber to `OrderPlaced` could charge a credit card for the order, start to prepare the order for shipment, or even update information in a customer loyalty database to track when the customer is eligible for different purchase-driven incentives. The fact that these disparate tasks can be accomplished in completely separate message handlers instead of one monolithic process is one of the many strengths of the Publish/Subscribe messaging pattern.
 
@@ -135,7 +135,7 @@ Next, the message publisher must be notified that the subscriber is interested i
 
 In the Subscriber application, create an App.config file and add the following XML configuration:
 
-snippet:subscriptionConfig
+snippet:StepByStep-subscriptionConfig
 
 The important part is in the `MessageEndpointMappings` section. The `add` directive says that for messages of type `OrderPlaced` within the `Shared` assembly, subscription requests should be sent to the `Samples.StepByStep.Server` endpoint, which is the endpoint that is responsible for publishing `OrderPlaced` events.
 

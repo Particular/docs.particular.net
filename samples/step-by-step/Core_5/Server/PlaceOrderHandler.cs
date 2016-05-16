@@ -1,7 +1,7 @@
 ﻿using NServiceBus;
 using NServiceBus.Logging;
 
-#region PlaceOrderHandler
+#region StepByStep-PlaceOrderHandler
 
 public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 {

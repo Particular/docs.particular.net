@@ -3,7 +3,7 @@ using NServiceBus;
 
 class Program
 {
-    #region ServerInit
+    #region StepByStep-ServerInit
     static void Main()
     {
         Console.Title = "Samples.StepByStep.Server";

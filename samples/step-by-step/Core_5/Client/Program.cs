@@ -3,7 +3,7 @@ using NServiceBus;
 
 class Program
 {
-    #region ClientInit
+    #region StepByStep-ClientInit
     static void Main()
     {
         // This makes it easier to tell console windows apart.
@@ -36,7 +36,7 @@ class Program
     #endregion
 
 
-    #region SendOrder
+    #region StepByStep-SendOrder
     static void SendOrder(IBus bus)
     {
 

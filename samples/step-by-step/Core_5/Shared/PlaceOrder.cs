@@ -1,7 +1,7 @@
 ﻿
 using System;
 using NServiceBus;
-#region PlaceOrder
+#region StepByStep-PlaceOrder
 public class PlaceOrder : ICommand
 {
     public Guid Id { get; set; }

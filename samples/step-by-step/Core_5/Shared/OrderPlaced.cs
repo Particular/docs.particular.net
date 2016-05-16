@@ -1,7 +1,7 @@
 ﻿using System;
 using NServiceBus;
 
-#region OrderPlaced
+#region StepByStep-OrderPlaced
 public class OrderPlaced : IEvent
 {
     public Guid OrderId { get; set; }
