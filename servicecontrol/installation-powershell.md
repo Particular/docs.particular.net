@@ -185,7 +185,7 @@ This example shows the available ports out of a range of ports
 ### Checking and manipulating UrlAcls
 
 The Window HTTPServer API is used by underlying components in ServiceControl. This API uses a permissions system to limit what accounts can add a HTTP listener to a specific URI.
-The standard mechanism for viewing and manipulating these ports in via the [netsh.exe](https://technet.microsoft.com/en-us/library/Cc725882%28v=WS.10%29.aspx) command line tool.
+The standard mechanism for viewing and manipulating these ports in via the [netsh.exe](https://technet.microsoft.com/en-us/library/Cc725882.aspx) command line tool.
 
 For example `netsh.exe http show urlacl` will list all of the available. This output is detailed but not very friendly to query. The ServiceControl Management PowerShell provides simplified PowerShell equivalents for listing, add and removing UrlAcls and makes the output easier to query.
 

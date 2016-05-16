@@ -39,7 +39,7 @@ Provides support for sending messages over [Azure Storage Queue](https://azure.m
 
 <a href="https://www.nuget.org/packages/NServiceBus/"><img src="https://buildstats.info/nuget/NServiceBus" title="NuGet Status"></a>
 
-Provides support for sending messages over [Microsoft Message Queuing (MSMQ)](https://msdn.microsoft.com/en-us/library/ms711472%28v=vs.85%29.aspx). This is the default transport in the NServiceBus core.
+Provides support for sending messages over [Microsoft Message Queuing (MSMQ)](https://msdn.microsoft.com/en-us/library/ms711472.aspx). This is the default transport in the NServiceBus core.
 
 
 #### <img src="community-project.png" title="A Community run project"> [OracleAQ](https://github.com/rosieks/NServiceBus.OracleAQ)
