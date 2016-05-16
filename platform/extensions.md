@@ -73,7 +73,7 @@ https://www.nuget.org/packages/NServiceBus
 Using an ILMeged copy of [Json.NET](http://www.newtonsoft.com/json) built into the NServiceBus core.
 
 
-#### <img src="particular-project.png" title="A Particular run project"> [Newtonsot Json](/nservicebus/serialization/newtonsoft.md)
+#### <img src="particular-project.png" title="A Particular run project"> [Newtonsoft Json](/nservicebus/serialization/newtonsoft.md)
 
 https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json
 
