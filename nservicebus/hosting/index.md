@@ -62,26 +62,7 @@ The only configuration when running in this mode is the destination when [Sendin
 
 ### Web Hosting
 
-NServiceBus can be hosted in any web technology that support .NET. This includes
-
- * ASP.net
- * ASP.MVC
- * WCF
- * Web API
- * NancyFX
-
-And many others.
-
-As most web technologies operate in a scale out manner NServiceBus is **usually** hosted in a "Send-only" manner. In this mode they act as a "forwarder" of messages rather than the "processor". So the handling code (MVC controller, NancyFX module etc) of a given web request simply leverages the `Bus` send APIs and no processing is done in the web process. The actually message handling is done in a [Windows Service Endpoint](windows-service.md).
-
-NOTE: There are some [Caveats when publishing from a Web Application](publishing-from-web-applications.md).
-
-NOTE: In a web hosted scenario a [IIS Recycle](https://msdn.microsoft.com/en-us/library/ms525803.aspx) is considered a shutdown and restart of the bus.
-
-Related:
-
- * [Web Samples](/samples/web/)
- * [Handling Responses on the Client Side](/nservicebus/messaging/handling-responses-on-the-client-side.md)
+NServiceBus can be hosted in any web technology that support .NET. See [Web Application Hosting](web-application.md).
 
 
 ### Multi-Hosting

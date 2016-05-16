@@ -259,6 +259,7 @@
         - "nservicebus/hosting/custom-configuration-providers"
         - "nservicebus/hosting/assembly-scanning"
         - "nservicebus/hosting/critical-errors"
+        - "nservicebus/hosting/web-application"
         - "nservicebus/hosting/publishing-from-web-applications"
         - Title: "NServiceBus Host"
           Url: "nservicebus/hosting/nservicebus-host"
