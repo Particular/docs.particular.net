@@ -2,8 +2,7 @@
 {
     using System;
     using NServiceBus;
-    using NServiceBus.RavenDB.Outbox;
-
+    
     class TimeToKeep
     {
         TimeToKeep(EndpointConfiguration endpointConfiguration)

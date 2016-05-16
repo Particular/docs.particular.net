@@ -16,6 +16,7 @@
 
         class MyDependency
         {
+            // ReSharper disable once UnusedParameter.Local
             public MyDependency(object container)
             {
                 throw new System.NotImplementedException();
