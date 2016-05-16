@@ -1,6 +1,6 @@
 ---
 title: Azure Storage Persistence Upgrade Version 6 to 1
-summary: Instructions on how to upgrade NServiceBus.Azure Storage Persistence Version 6 to NServiceBus.Persistence.AzureStorage Version 1.
+summary: Instructions on how to migrate from NServiceBus.Azure Storage Persistence Version 6 to NServiceBus.Persistence.AzureStorage Version 1.
 reviewed: 2016-05-12
 tags:
  - upgrade
@@ -10,10 +10,12 @@ related:
 - nservicebus/upgrades/asp-saga-deduplication
 ---
 
-DANGER: Upgrades from NServiceBus.Azure v6.2.3 or lower will need to apply the [saga de-duplication patch](/nservicebus/upgrades/asp-saga-deduplication.md) before completing the remainder of these upgrade steps.
+WARNING: Upgrades from NServiceBus.Azure v6.2.3 or lower will need to apply the [saga de-duplication patch](/nservicebus/upgrades/asp-saga-deduplication.md) before completing the remainder of these upgrade steps.
 
 ## Changing Nuget Packages and namespaces
-Upgrading requires removing the NServiceBus.Azure Nuget package from the project and adding the NServiceBus.Persistence.AzureStorage package.
+One of the most visible changes for this persister was moving it from the NServicBus.Azure package to the NServiceBus.Persistence.AzureStorage package. This change in packaging has reset the version number to Version 1.
+
+Upgrading to the new package requires removing the NServiceBus.Azure Nuget package from the project and adding the NServiceBus.Persistence.AzureStorage package.
 
 Once the packages have been changed, any use of the `NServiceBus.Azure` namespace needs to be replaced with `NServiceBus.Persistence.AzureStorage`
 
