@@ -100,6 +100,28 @@ WARNING: The default configuration for ServiceControl only allows access to REST
 
 It is also recommended that the IIS web site be configured to use SSL if an authorization provider is used.
 
+### Configuring Reverse Proxy in a non-root directory
+
+Currently due to the fact of a bug in JQuery SignalR JS library usage of reverse proxy in a non-root directory requires additional URL Rewrite Rule on api sub folder. This rule make sure that SignalR uses correct path when being hosted in a sub directory. This newly rule should look like the following: 
+
+```xml
+</rules>
+<outboundRules>
+    <rule name="Update Url property" preCondition="JSON" enabled="true" stopProcessing="true">
+        <match filterByTags="None" pattern="\&quot;Url\&quot;:\&quot;(.+?)\&quot;" />
+        <conditions>
+            <add input="{URL}" pattern="(.*)/api/" />
+        </conditions>
+        <action type="Rewrite" value="&quot;Url&quot;:&quot;{C:1}{R:1}&quot;" />
+    </rule>
+    <preConditions>
+        <preCondition name="JSON">
+            <add input="{URL}" pattern="/api/messagestream/negotiate" />
+            <add input="{RESPONSE_CONTENT_TYPE}" pattern="application/json" />
+        </preCondition>
+    </preConditions>
+</outboundRules>
+``` 
 
 ### Limitations
 
