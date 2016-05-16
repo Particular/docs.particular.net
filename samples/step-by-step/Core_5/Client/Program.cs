@@ -6,28 +6,27 @@ class Program
     #region StepByStep-ClientInit
     static void Main()
     {
-        // This makes it easier to tell console windows apart.
+        // This makes it easier to tell console windows apart
         Console.Title = "Samples.StepByStep.Client";
 
         BusConfiguration busConfiguration = new BusConfiguration();
 
         // The endpoint name will be used to determine queue names and serves
-        // as the address, or identity, of the endpoint.
+        // as the address, or identity, of the endpoint
         busConfiguration.EndpointName("Samples.StepByStep.Client");
 
         // Use JSON to serialize and deserialize messages (which are just
-        // plain classes) to and from message queues.
+        // plain classes) to and from message queues
         busConfiguration.UseSerialization<JsonSerializer>();
 
-        // Ask NServiceBus to automatically create message queues for us.
+        // Ask NServiceBus to automatically create message queues
         busConfiguration.EnableInstallers();
 
         // Store information in memory for this example, rather than in
-        // a database. In this sample, we will only end up storing
-        // subscription information.
+        // a database. In this sample, only subscription information is stored
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        // Initialize the endpoint with the configuration we've built
+        // Initialize the endpoint with the finished configuration
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
            SendOrder(bus);
