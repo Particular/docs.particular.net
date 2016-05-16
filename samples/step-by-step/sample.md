@@ -7,9 +7,10 @@ redirects:
 - nservicebus/nservicebus-step-by-step-guide
 ---
 
-This sample illustrates most of the basic NServiceBus concepts in a step-by-step fashion. You can either download the code from the link above and run it, or you can build it yourself following the instructions here.
+This sample illustrates most of the basic NServiceBus concepts in a step-by-step fashion. Download the code from the link above and run it, or build it  following the instructions here.
 
-## What you'll learn
+
+## Concepts
 
 When complete, this sample will show a very simple ordering system that:
 
@@ -17,7 +18,7 @@ When complete, this sample will show a very simple ordering system that:
  * that server handles the command and publishes a new event about the success
  * a subscriber listens to, and handles, the event
 
-By completing these steps, you will have received an introduction to many important NServiceBus concepts:
+Completing these steps will serve as an introduction to many important NServiceBus concepts:
 
 * Basic project setup
 * Self-hosting NServiceBus within a console application
@@ -25,6 +26,7 @@ By completing these steps, you will have received an introduction to many import
 * Handling messages
 * Defining and publishing events
 * Logging
+
 
 ## Project structure
 
@@ -39,17 +41,18 @@ The client's job will be to send `PlaceOrder` commands to the server. The server
 
 The shared project will be referenced by all of the applications and serve as a central location to store message definition classes and common pieces of configuration. This is not a best practice to combine all these things in one place, but serves to illustrate how things work for this simple example.
 
+
 ### Setting dependencies
 
 Before beginning, set up the necessary dependencies.
 
 * Add a reference to the `Shared` project to the `Client`, `Server`, and `Subscriber` projects.
-* In each project, add a reference to the `NServiceBus` NuGet package, either using the Package Manager Console or the NuGet Package Manager visual tool. This sample contains examples covering all supported major versions, so take a moment to note what version you are using and ensure you refer to the correct code snippets going forward.
+* In each project, add a reference to the `NServiceBus` NuGet package, either using the Package Manager Console or the NuGet Package Manager visual tool.
 
 
 ## Defining messages
 
-First we need to define the messages that will be used by the system. The client will send a `PlaceOrder` command to the server, and in response, the server will publish an `OrderPlaced` event.
+First, the messages that will be used by the system must be defined. The client will send a `PlaceOrder` command to the server, and in response, the server will publish an `OrderPlaced` event.
 
 There is a difference between commands and events. A **command** is a request to perform a task, which is sent to one specific location. In contrast, an **event** is an announcement that something has happened, which is published from one location and can be consumed by multiple subscribers.
 
@@ -66,11 +69,11 @@ snippet:OrderPlaced
 
 ## The Client
 
-Next we need to get the Client application ready to send messages with NServiceBus. In your Client application, add the following code to the program's Main method. Don't worry about the `SendOrder` method, we will get to that soon.
+Next, the Client application must be ready to send messages with NServiceBus. In the Client application, add the following code to the program's Main method. Don't worry about the `SendOrder` method, that will be covered soon.
 
 snippet:ClientInit
 
-With a `PlaceOrder` command defined, and NServiceBus initialized, we can now create a loop to send a new command message every time we press the Enter key.
+With a `PlaceOrder` command defined, and NServiceBus initialized, a loop can be created to send a new command message every time the Enter key is pressed.
 
 In the Client application, add this code to the Program class:
 
@@ -78,20 +81,18 @@ snippet:SendOrder
 
 In order to actually run, each endpoint needs to specify an error queue. This defines where messages are sent when they cannot be processed due to repetitive exceptions during message processing.
 
-While it is possible to [configure the error queue in an App.config file](nservicebus/errors), we can use the `IProvideConfiguration` interface to [override app.config settings](nservicebus/hosting/custom-configuration-providers), which has the benefit able to be shared between all our endpoints.
+While it is possible to [configure the error queue in an App.config file](/nservicebus/errors/), the `IProvideConfiguration` interface can be used to [override app.config settings](/nservicebus/hosting/custom-configuration-providers.md), which has the benefit able to be shared between all endpoints.
 
 In the Shared project, create a class named `ConfigErrorQueue`:
 
 snippet:ConfigErrorQueue
 
-The Client application is now complete, which we could run. However, doing so would throw an exception when trying to send the message.
-
-From looking at the code, you may notice that it is sending the `PlaceOrder` command to an endpoint named `Samples.StepByStep.Server`, which will not exist yet. We need to create the server to handle that command.
+The Client application is now complete, and could now be executed. However, doing so would throw an exception when trying to send the message. The Client is sending the `PlaceOrder` command to an endpoint named `Samples.StepByStep.Server`, which will not exist yet. A server application must be created to handle that command.
 
 
 ## The Server
 
-Like our client, the Server application is going to need to be configured as an NServiceBus endpoint as well.
+Like the client, the Server application is going to need to be configured as an NServiceBus endpoint as well.
 
 In the Server application, add the following code to the program's Main method:
 
@@ -99,7 +100,7 @@ snippet:ServerInit
 
 In the previous snippet, notice the change in endpoint name, which differentiates this endpoint from the Client.
 
-Next, we need to create a handler for the `PlaceOrder` command being sent by the Client.
+Next, create a handler for the `PlaceOrder` command being sent by the Client.
 
 Create a new class in the Server project named `PlaceOrderHandler` using the following code:
 
@@ -107,9 +108,9 @@ snippet:PlaceOrderHandler
 
 The handler class is automatically discovered by NServiceBus because it implements the `IHandleMessages<T>` interface. The dependency injection system (which supports constructor or property injection) injects the `IBus` instance into the handler to access messaging operations.
 
-When a `PlaceOrder` command is received, NServiceBus will create a new instance of the `PlaceOrderHandler` class and invoke the `Handle(PlaceOrder message)` method. Normally a handler is where we would take the information from the message and save it to a database, or call a web service, or some other business function, but in this example, we simply log that the message was received.
+When a `PlaceOrder` command is received, NServiceBus will create a new instance of the `PlaceOrderHandler` class and invoke the `Handle(PlaceOrder message)` method. Normally a handler is where  information from the message would be saved it to a database, or used to call a web service, or some other business function, but in this example, it is simply logged to show that the message was received.
 
-Next, the handler publishes a new `OrderPlaced` message. This won't actually send any messages, because we don't have any subscribers yet. The next step is to create a subscriber for this message.
+Next, the handler publishes a new `OrderPlaced` message. This won't actually send any messages, because there aren't any subscribers yet. The next step is to create a subscriber for this message.
 
 
 ## The Subscriber
@@ -118,19 +119,19 @@ Like the client and the server, the Subscriber application also needs to be conf
 
 In the Subscriber application, add the following code to the program's Main method:
 
-snippet:SubscriberConfig
+snippet:SubscriberInit
 
 This is almost identical to the Server configuration, except for the different endpoint name.
 
-Next we create a message handler for the `OrderPlaced` event. Note that whether handling a command or an event, the syntax for a message handler remains the same.
+Next, create a message handler for the `OrderPlaced` event. Note that whether handling a command or an event, the syntax for a message handler remains the same.
 
 Create a new class in the Subscriber project named `OrderCreatedHandler` using the following code:
 
 snippet:OrderCreatedHandler
 
-Here we are only logging the fact that the message was received. In a real system, a subscriber to `OrderPlaced` could charge a credit card for the order, start to prepare the order for shipment, or even update information in a customer loyalty database to track when the customer is eligible for different purchase-driven incentives. The fact that these disparate tasks can be accomplished in completely separate message handlers instead of one monolithic process is one of the many strengths of the Publish/Subscribe messaging pattern.
+The handler only logs the fact that the message was received. In a real system, a subscriber to `OrderPlaced` could charge a credit card for the order, start to prepare the order for shipment, or even update information in a customer loyalty database to track when the customer is eligible for different purchase-driven incentives. The fact that these disparate tasks can be accomplished in completely separate message handlers instead of one monolithic process is one of the many strengths of the Publish/Subscribe messaging pattern.
 
-Next, we need to let the message publisher know that we are interested in being notified when `OrderPlaced` events are published. To do that we need to [configure subscriptions in XML](nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed).
+Next, the message publisher must be notified that the subscriber is interested in being notified when `OrderPlaced` events are published. To do that, [subscriptions need to be configured in XML](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
 
 In the Subscriber application, create an App.config file and add the following XML configuration:
 
@@ -143,14 +144,14 @@ When the Subscriber endpoint initializes, it will read this configuration, and k
 
 ## Running the solution
 
-If you have built the solution yourself, you need to configure it so that multiple projects will start when you debug.
+If following along with this tutorial, Visual Studio must be configured so that multiple projects will start when debugging.
 
 1. Right-click the solution file, and select **Properties**.
 2. In the Property Pages dialog, select **Common Properties** > **Startup Project**.
 3. Select the **Multiple startup projects** radio button.
 4. Set the value in the **Action** column to **Start** for the Client, Server, and Subscriber projects.
 
-If you downloaded the solution, this will be set up for you.
+If the solution was downloaded, this will already be set up.
 
 Run the solution, and three console windows will appear, and NServiceBus will initialize in each one.
 
