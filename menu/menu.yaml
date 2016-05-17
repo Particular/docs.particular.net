@@ -30,7 +30,7 @@
             - "nservicebus/upgrades/host-6to7"
         - Title: "Azure BlobStorage DataBus"
           Articles:
-            - Title: "Moving Off NServiceBus.Azure"
+            - Title: "Upgrade From NServiceBus.Azure"
               Url: "nservicebus/upgrades/absdatabus-6to1"
         - Title: "Azure Storage Persistence"
           Articles:
