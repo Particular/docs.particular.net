@@ -52,7 +52,7 @@ Before beginning, set up the necessary dependencies.
 
 ## Defining messages
 
-First, the messages that will be used by the system must be defined. The client will send a `PlaceOrder` command to the server, and in response, the server will publish an `OrderPlaced` event.
+First, define the messages that will be used by the system. The client will send a `PlaceOrder` command to the server, and in response, the server will publish an `OrderPlaced` event.
 
 There is a difference between commands and events. A **command** is a request to perform a task, which is sent to one specific location. In contrast, an **event** is an announcement that something has happened, which is published from one location and can be consumed by multiple subscribers.
 
