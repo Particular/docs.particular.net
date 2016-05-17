@@ -32,7 +32,7 @@ The Product Name value cannot exceed 20 characters.
 The field ListPrice must be between 1 and 5.
 ```
 
-Now let's look at the code.
+Now look at the code.
 
 
 ## Code walk-through

@@ -23,7 +23,7 @@ Profiles are divided into two main categories, depending on what they control:
 
 Technically there is no difference between the environment- and feature-related profiles.
 
-Let's look at each of them, starting with the environment-related profiles.
+Look at each of them, starting with the environment-related profiles.
 
 
 ## Environment-related profiles

@@ -29,7 +29,7 @@ This sample contains three projects:
 
 ### Shared project
 
-Let's look at the Shared project:
+Look at the Shared project:
 
 snippet:MessageWithLargePayload
 

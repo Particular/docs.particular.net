@@ -50,8 +50,6 @@ Bring the `MyPublisher` process to the foreground.
 
 Click Enter repeatedly in the `MyPublisher` processes console window, and see how the messages appear in the other console windows. `Subscriber2` handles every published message and `Subscriber2` only handles `EventMessage` and `AnotherEventMessage`.
 
-Now let's see some of the other features of NServiceBus.
-
 
 ## Fault-tolerant messaging
 

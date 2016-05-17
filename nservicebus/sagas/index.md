@@ -49,7 +49,7 @@ The important part of a long-running process is its behavior. Just like regular 
 
 ## Starting a saga
 
-Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sagas are, in essence, a message driven state machine. The trigger to started this state machine is the arrival of one or more specified message types. In the previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives. This would be declared by adding `IAmStartedByMessages<StartOrder>` to the saga.
+Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sagas are, in essence, a message driven state machine. The trigger to started this state machine is the arrival of one or more specified message types. In the previous example, assume say that a new saga should be started every time a message of type `StartOrder` message arrives. This would be declared by adding `IAmStartedByMessages<StartOrder>` to the saga.
 
 NOTE: `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that.
 

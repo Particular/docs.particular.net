@@ -54,7 +54,7 @@ Note that the 'Server' processes all those messages, and the `Samples.FaultToler
 
 ### Make the handler fail
 
-So, let's make the handling of messages in the 'Server' endpoint fail. Open `MyHandler.cs`.
+So, make the handling of messages in the 'Server' endpoint fail. Open `MyHandler.cs`.
 
 snippet:MyHandler
 
