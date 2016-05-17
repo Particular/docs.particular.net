@@ -1,5 +1,5 @@
 ---
-title: Azure Storage Persistence Upgrade Version 6 to 1
+title: Migrate from NServiceBus Azure Version 6 to NServiceBus Azure Storage Persistence Version 1
 summary: Instructions on how to migrate from NServiceBus.Azure Storage Persistence Version 6 to NServiceBus.Persistence.AzureStorage Version 1.
 reviewed: 2016-05-12
 tags:
