@@ -105,22 +105,28 @@ It is also recommended that the IIS web site be configured to use SSL if an auth
 Due to a bug in SignalR (as at Microsoft.AspNet.SignalR.JS version 2.2.0), usage of IIS as a reverse proxy in a virtual directory requires an additional URL Rewrite Rule on the `/api/` sub folder. This rule makes sure that SignalR uses the correct path when hosted within a virtual directory. This rule should look as follows: 
 
 ```xml
-</rules>
-<outboundRules>
-    <rule name="Update Url property" preCondition="JSON" enabled="true" stopProcessing="true">
-        <match filterByTags="None" pattern="\&quot;Url\&quot;:\&quot;(.+?)\&quot;" />
-        <conditions>
-            <add input="{URL}" pattern="(.*)/api/" />
-        </conditions>
-        <action type="Rewrite" value="&quot;Url&quot;:&quot;{C:1}{R:1}&quot;" />
-    </rule>
-    <preConditions>
-        <preCondition name="JSON">
-            <add input="{URL}" pattern="/api/messagestream/negotiate" />
-            <add input="{RESPONSE_CONTENT_TYPE}" pattern="application/json" />
-        </preCondition>
-    </preConditions>
-</outboundRules>
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <system.webServer>
+        <rewrite>
+            <outboundRules>
+                <rule name="Update Url property" preCondition="JSON" enabled="true" stopProcessing="true">
+                    <match filterByTags="None" pattern="\&quot;Url\&quot;:\&quot;(.+?)\&quot;" />
+                    <conditions>
+                        <add input="{URL}" pattern="(.*)/api/" />
+                    </conditions>
+                    <action type="Rewrite" value="&quot;Url&quot;:&quot;{C:1}{R:1}&quot;" />
+                </rule>
+                <preConditions>
+                    <preCondition name="JSON">
+                        <add input="{URL}" pattern="/api/messagestream/negotiate" />
+                        <add input="{RESPONSE_CONTENT_TYPE}" pattern="application/json" />
+                    </preCondition>
+                </preConditions>
+            </outboundRules>
+        </rewrite>
+    </system.webServer>
+</configuration>
 ``` 
 
 ### Limitations
