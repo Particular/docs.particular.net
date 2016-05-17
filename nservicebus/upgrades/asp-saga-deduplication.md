@@ -16,15 +16,16 @@ This document explains how to upgrade and patch a system for [Azure Storage Pers
 
 WARNING: When upgrading to NServiceBus.Persistence.AzureStorage Version 1 and above, the following upgrade will need to be performed prior to beginning any other upgrade steps.
 
+
 ### How to know if a system may be affected
 
 This bug will affect a system only if the following conditions are met on the same endpoint:
 
- * NServiceBus Version 5 or lower
- * NServiceBus.Azure Version 6.2.3 or lower
- * AzureStoragePersistence is used
- * the endpoint contains a saga which has more than one `IAmStartedBy<T>`
- * endpoint concurrency is set to > 1
+ * NServiceBus Version 5 or lower.
+ * NServiceBus.Azure Version 6.2.3 or lower.
+ * AzureStoragePersistence is used.
+ * the endpoint contains a saga which has more than one `IAmStartedBy<T>`.
+ * endpoint concurrency is set to > 1.
 
 
 ## Patch Requirements

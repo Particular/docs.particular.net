@@ -23,4 +23,3 @@ First add a reference to the assembly that contains the Azure storage persisters
 If self hosting, configure the persistence technology using the configuration API.
 
 snippet:PersistanceWithAzure
-

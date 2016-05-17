@@ -12,14 +12,18 @@ related:
 
 WARNING: Upgrades from NServiceBus.Azure v6.2.3 or lower will need to apply the [saga de-duplication patch](/nservicebus/upgrades/asp-saga-deduplication.md) before completing the remainder of these upgrade steps.
 
+
 ## Changing Nuget Packages and namespaces
+
 One of the most visible changes for this persister was moving it from the NServicBus.Azure package to the NServiceBus.Persistence.AzureStorage package. This change in packaging has reset the version number to Version 1.
 
 Upgrading to the new package requires removing the NServiceBus.Azure Nuget package from the project and adding the NServiceBus.Persistence.AzureStorage package.
 
-Once the packages have been changed, any use of the `NServiceBus.Azure` namespace needs to be replaced with `NServiceBus.Persistence.AzureStorage`
+Once the packages have been changed, any use of the `NServiceBus.Azure` namespace needs to be replaced with `NServiceBus.Persistence.AzureStorage`.
+
 
 ## New Configuration API
+
 In Versions 6 and below the Azure Storage Persistence was configured using XML configuration sections called `AzureSubscriptionStorageConfig`, `AzureSagaPersisterConfig`, and `AzureTimeoutPersisterConfig`. These XML configuration sections have been obsoleted in favor of a more granular, code based configuration API.
 
 For example, the following Xml:
