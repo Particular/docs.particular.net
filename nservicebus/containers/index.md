@@ -49,6 +49,6 @@ NOTE: Do NOT call `IBus.Dispose` when using an external container, instead call 
 
 ## Plugging in the container
 
-If a specific container is not already supported by create a plugin centering around the `IContainer` abstraction. Once this is created and registered, NServiceBus will use the custom container to look up its own dependencies.
+If a specific container is not already supported, then create a plugin using the `IContainer` abstraction. Once this is created and registered, NServiceBus will use the custom container to look up its own dependencies.
 
 snippet:CustomContainers
