@@ -5,9 +5,9 @@ summary: Describes how to send messages without the IBus
 
 Starting with Versions 6 and above, the `IBus` interface has been deprecated.
 
-The `IBus` interface was one of the key interfaces when using previous versions of NServiceBus. It provided access to many of the important operations like sending messages, subscribing to events, and manipulating headers. The `IBus` interface was injected into the container using dependency injection and was accessible in all the message handlers and other injected components in the container as well. 
+The `IBus` interface was one of the key interfaces when using previous versions of NServiceBus. It provided access to many of the important operations like sending messages, subscribing to events, and manipulating headers. The `IBus` interface was available through dependency injection in message handlers and any custom components that were registered in the container. 
 
-There are several scenarios when using IBus:
+Some scenarios involving `IBus` include endpoint creation, sending messages during endpoint startup, sending messages from within message handlers, using the injected `IBus` in custom components also registered in the container. 
 
 ## During Endpoint Creation
 
@@ -23,7 +23,7 @@ Starting the endpoint, provides access to `IEndpointInstance` which can be used 
 
 ## Sending messages outside message handlers
 
-A common use of `IBus` is to invoke bus operations outside of message handlers, such as sending a message from an ASP.NET request or from a UI input. Instead of an `IBus` the `IEndpointInstance` offers all available bus operations outside the message processing pipeline. For example:
+A common use of `IBus` is to invoke bus operations outside of message handlers, such as sending a message from an ASP.NET request or from a client application. Instead of an `IBus` the `IEndpointInstance` offers all available bus operations outside the message processing pipeline. For example:
 
 If the endpoint is hosted using NServiceBus.Host, use the [IWantToRunWhenEndpointStartsAndStops interface](/nservicebus/upgrades/host-6to7.md) as outlined in the NServiceBus.Host documentation.
 
@@ -45,9 +45,9 @@ snippet: 5to6-messagecontext
 
 ## Dependency Injection
 
-In previous versions of NServiceBus the `IBus` interface was automatically registered in the IoC container. In Version 6, the new context aware interfaces namely the `IEndpointInstance`, `IMessageSession` or `IMessageHandlerContext` will not be automatically registered in the IoC container. 
+In previous versions of NServiceBus the `IBus` interface was automatically registered in the IoC container. In Version 6, the new context aware interfaces namely the `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext` will not be automatically registered in the IoC container. 
 
-The `IEndpointInstance` interface or the `IMessageSession` interface when using the NServiceBus.Host can be injected into the container.
+The `IEndpointInstance` interface can be injected into the container when self hosting. When using NServiceBus.Host, the `IMessageSession` interface can be injected into the container.
 
 ### When injecting IBus in Custom Components
 
