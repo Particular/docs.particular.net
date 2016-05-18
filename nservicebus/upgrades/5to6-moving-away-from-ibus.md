@@ -49,9 +49,20 @@ In previous versions of NServiceBus the `IBus` interface was automatically regis
 
 The `IEndpointInstance` interface or the `IMessageSession` interface when using the NServiceBus.Host can be injected into the container.
 
-## When not to inject IEndpointInstance
+### When injecting IBus in Custom Components
 
-While the `IEndpointInstance` can be injected in the container in order to send messages outside the scope of message handlers, for example, in a MVC Controller class, do not use the injected `IEndpointInstance` from within message handlers. It is important to use the appropriate `IMessageHandlerContext` parameter from the message handler to send or publish messages.
+When containers are used for dependency injection, if the `IBus` was previously being used in the injected custom classes, there are two options depending on the usage of the custom component and where it was invoked.
+
+#### Using the Custom Components outside of message handlers
+
+If the custom component was sending messages using the injected `IBus`from outside of message handlers, for example, in a MVC Controller class, then it is safe to use register either the `IEndpointInstance` when self hosting or register the `IMessageSession` when using the NServiceBus.Host in the container. This interface can then be used to send messages. 
+
+
+### Using the Custom Components inside message handlers
+
+However if the custom component is accessed from within message handlers in order to either send or publish events, then it is not safe to use the injected `IEndpointInstance` or `IMessageSession`. Instead the `IMessageHandlerContext` parameter should be passed to the custom component instead to either send or publish messages.  
+
+It is important to use the appropriate `IMessageHandlerContext` parameter from the message handler to send or publish messages.
 
 If the `IEndpointInstance` interface is used inside a message handler to send or publish messages, then:
 
