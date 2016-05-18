@@ -1,7 +1,7 @@
 ﻿using NServiceBus;
 using NServiceBus.Logging;
 
-#region StepByStep-OrderCreatedHandler
+#region OrderCreatedHandler
 public class OrderCreatedHandler : IHandleMessages<OrderPlaced>
 {
     static ILog log = LogManager.GetLogger<OrderCreatedHandler>();

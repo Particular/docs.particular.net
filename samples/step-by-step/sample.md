@@ -15,17 +15,19 @@ This sample illustrates basic NServiceBus concepts in a step-by-step fashion. Al
 The goal of this step-by-step sample is to show how to build a simple system that uses messaging to:
 
  * Send a command from a client to a server
- * Receive a message from a client on the server that publishes a new event
+ * Receive that message and process it on the server
+ * From the server handler, publish an event
  * Add a new subscriber that can receive published events
 
 Completing these steps will serve as an introduction to many important NServiceBus concepts:
 
 * Basic project setup
-* Self-hosting NServiceBus within a console application
-* Defining and sending commands
-* Handling messages
-* Defining and publishing events
-* Logging
+* [Self-hosting NServiceBus](/nservicebus/hosting/) within a console application
+* [Defining commands and events](/nservicebus/messaging/messages-events-commands.md)
+* [Sending commands](/nservicebus/messaging/send-a-message.md)
+* [Handling messages](/nservicebus/handlers/)
+* [Publishing events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md)
+* [Logging](/nservicebus/logging/)
 
 
 ## Project structure
@@ -47,45 +49,45 @@ The shared project will be referenced by all of the applications and serve as a 
 Before beginning, set up the necessary dependencies.
 
 * Add a reference to the `Shared` project to the `Client`, `Server`, and `Subscriber` projects.
-* In each project, add a reference to the `NServiceBus` NuGet package, either using the Package Manager Console or the NuGet Package Manager visual tool.
+* In each project, add a reference to the `NServiceBus` NuGet package.
 
 
 ## Defining messages
 
 First, define the messages that will be used by the system. The client will send a `PlaceOrder` command to the server, and in response, the server will publish an `OrderPlaced` event.
 
-There is a difference between commands and events. A **command** is a request to perform a task, which is sent to one specific location. In contrast, an **event** is an announcement that something has happened, which is published from one location and can be consumed by multiple subscribers.
+There is a [difference between commands and events](/nservicebus/messaging/messages-events-commands.md). A **command** is a request to perform a task, which is sent to one specific location. In contrast, an **event** is an announcement that something has happened, which is published from one location and can be consumed by multiple subscribers.
 
 The easiest way to differentiate commands and events is to use the `ICommand` and `IEvent` marker interfaces.
 
-Let's define the `PlaceOrder` command by creating a class that implements `ICommand` in the Shared project called `PlaceOrder`:
+Define the `PlaceOrder` command by creating a class that implements `ICommand` in the Shared project called `PlaceOrder`:
 
-snippet:StepByStep-PlaceOrder
+snippet:PlaceOrder
 
 Next, define the `OrderPlaced` event by creating a class that implements `IEvent` in the Shared project called `OrderPlaced`:
 
-snippet:StepByStep-OrderPlaced
+snippet:OrderPlaced
 
 
 ## The Client
 
 Next, the Client application must be ready to send messages with NServiceBus. In the Client application, add the following code to the program's Main method. Don't worry about the `SendOrder` method, that will be covered soon.
 
-snippet:StepByStep-ClientInit
+snippet:ClientInit
 
 With a `PlaceOrder` command defined, and NServiceBus initialized, a loop can be created to send a new command message every time the Enter key is pressed.
 
 In the Client application, add this code to the Program class:
 
-snippet:StepByStep-SendOrder
+snippet:SendOrder
 
-In order to actually run, each endpoint needs to specify an error queue. This defines where messages are sent when they cannot be processed due to repetitive exceptions during message processing.
+Each endpoint needs to [specify an error queue](/nservicebus/errors/). This defines where messages are sent when they cannot be processed due to repetitive exceptions during message processing.
 
 While it is possible to [configure the error queue in an App.config file](/nservicebus/errors/), the `IProvideConfiguration` interface can be used to [override app.config settings](/nservicebus/hosting/custom-configuration-providers.md), which has the benefit able to be shared between all endpoints.
 
 In the Shared project, create a class named `ConfigErrorQueue`:
 
-snippet:StepByStep-ConfigErrorQueue
+snippet:ConfigErrorQueue
 
 The Client application is now complete, and could now be executed. However, doing so would throw an exception when trying to send the message. The Client is sending the `PlaceOrder` command to an endpoint named `Samples.StepByStep.Server`, which will not exist yet. A server application must be created to handle that command.
 
@@ -96,17 +98,17 @@ Like the client, the Server application is going to need to be configured as an 
 
 In the Server application, add the following code to the program's Main method:
 
-snippet:StepByStep-ServerInit
+snippet:ServerInit
 
-In the previous snippet, notice the change in endpoint name, which differentiates this endpoint from the Client.
+In the previous code, notice the change in endpoint name, which differentiates this endpoint from the Client.
 
 Next, create a handler for the `PlaceOrder` command being sent by the Client.
 
 Create a new class in the Server project named `PlaceOrderHandler` using the following code:
 
-snippet:StepByStep-PlaceOrderHandler
+snippet:PlaceOrderHandler
 
-The handler class is automatically discovered by NServiceBus because it implements the `IHandleMessages<T>` interface. The dependency injection system (which supports constructor or property injection) injects the `IBus` instance into the handler to access messaging operations.
+The handler class is automatically discovered by NServiceBus because it implements the `IHandleMessages<T>` interface. The [dependency injection system](/nservicebus/containers/) (which supports constructor or property injection) injects the `IBus` instance into the handler to access messaging operations.
 
 When a `PlaceOrder` command is received, NServiceBus will create a new instance of the `PlaceOrderHandler` class and invoke the `Handle(PlaceOrder message)` method. Normally a handler is where  information from the message would be saved it to a database, or used to call a web service, or some other business function, but in this example, it is simply logged to show that the message was received.
 
@@ -119,7 +121,7 @@ Like the client and the server, the Subscriber application also needs to be conf
 
 In the Subscriber application, add the following code to the program's Main method:
 
-snippet:StepByStep-SubscriberInit
+snippet:SubscriberInit
 
 This is almost identical to the Server configuration, except for the different endpoint name.
 
@@ -127,7 +129,7 @@ Next, create a message handler for the `OrderPlaced` event. Note that whether ha
 
 Create a new class in the Subscriber project named `OrderCreatedHandler` using the following code:
 
-snippet:StepByStep-OrderCreatedHandler
+snippet:OrderCreatedHandler
 
 The handler only logs the fact that the message was received. In a real system, a subscriber to `OrderPlaced` could charge a credit card for the order, start to prepare the order for shipment, or even update information in a customer loyalty database to track when the customer is eligible for different purchase-driven incentives. The fact that these disparate tasks can be accomplished in completely separate message handlers instead of one monolithic process is one of the many strengths of the Publish/Subscribe messaging pattern.
 
@@ -135,7 +137,7 @@ Next, the message publisher must be notified that the subscriber is interested i
 
 In the Subscriber application, create an App.config file and add the following XML configuration:
 
-snippet:StepByStep-subscriptionConfig
+snippet:subscriptionConfig
 
 The important part is in the `MessageEndpointMappings` section. The `add` directive says that for messages of type `OrderPlaced` within the `Shared` assembly, subscription requests should be sent to the `Samples.StepByStep.Server` endpoint, which is the endpoint that is responsible for publishing `OrderPlaced` events.
 
@@ -144,7 +146,7 @@ When the Subscriber endpoint initializes, it will read this configuration, and k
 
 ## Running the solution
 
-If following along with this tutorial, Visual Studio must be configured so that multiple projects will start when debugging.
+First, set Client, Server, and Subscriber to be startup projects:
 
 1. Right-click the solution file, and select **Properties**.
 2. In the Property Pages dialog, select **Common Properties** > **Startup Project**.

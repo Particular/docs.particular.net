@@ -3,7 +3,7 @@ using NServiceBus;
 
 class Program
 {
-    #region StepByStep-SubscriberInit
+    #region SubscriberInit
     static void Main()
     {
         Console.Title = "Samples.StepByStep.Subscriber";
