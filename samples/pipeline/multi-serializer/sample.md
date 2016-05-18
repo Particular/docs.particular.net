@@ -20,7 +20,7 @@ This sample leverages the pipeline to provide an attribute based message seriali
 
 It is currently hard coded to only support xml and json serialization. It uses attributes, defined at the message level, to switch messages between different serializations but any code could be substituted here to control the choice of serialization.
 
-WARNING: This sample is not compatible with message serialization against Version 3 or Version 4 of NServiceBus. The reason is that, for simplicity of the sample, some wire compatibility workarounds are excluded. Have a look at the current serialization behaviors in the core of NServiceBus for more details.
+WARNING: This sample is not compatible with message serialization against Version 4 and below of NServiceBus. The reason is that, for simplicity of the sample, some wire compatibility workarounds are excluded. Have a look at the current serialization behaviors in the core of NServiceBus for more details.
 
 
 ## Code Walk Through

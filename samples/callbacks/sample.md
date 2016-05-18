@@ -94,10 +94,3 @@ snippet:IntMessageHandler
 Note that this scenario requires a `Reply` with a real message.
 
 snippet:ObjectMessageHandler
-
-
-## Fake Handler in Version 3
-
-Note: In Version 3 if no handler exists for a received message then NServiceBus will throw an exception. As such for this scenario to operate a fake message handler is needed on the callback side.
-
-snippet:ObjectResponseMessageHandler
