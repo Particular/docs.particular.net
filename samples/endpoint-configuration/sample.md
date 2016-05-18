@@ -36,8 +36,6 @@ All messages received by an endpoint will be forwarded to the audit queue.
 
 snippet:audit
 
-snippet:auditxml
-
 
 ## Select and configure [Logging](/nservicebus/logging)
 
