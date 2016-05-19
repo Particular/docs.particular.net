@@ -146,14 +146,7 @@ When the Subscriber endpoint initializes, it will read this configuration, and k
 
 ## Running the solution
 
-First, set Client, Server, and Subscriber to be startup projects:
-
-1. Right-click the solution file, and select **Properties**.
-2. In the Property Pages dialog, select **Common Properties** > **Startup Project**.
-3. Select the **Multiple startup projects** radio button.
-4. Set the value in the **Action** column to **Start** for the Client, Server, and Subscriber projects.
-
-If the solution was downloaded, this will already be set up.
+First, set Client, Server, and Subscriber to be [startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx). If the solution was downloaded, this will already be set up.
 
 Run the solution, and three console windows will appear, and NServiceBus will initialize in each one.
 
