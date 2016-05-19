@@ -8,7 +8,8 @@ class Usage
     {
         #region AzureStorageQueueTransportWithAzure
 
-        endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        endpointConfiguration.UseTransport<AzureStorageQueueTransport>()
+                             .ConnectionString("DefaultEndpointsProtocol=https;AccountName={youraccount};AccountKey={yourkey};");
 
         #endregion
     }
@@ -18,7 +19,7 @@ class Usage
         #region AzureStorageQueueConfigCodeOnly
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.ConnectionString("azure-storage-connection-string");
+        transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName={youraccount};AccountKey={yourkey};");
         transport.BatchSize(20);
         transport.MaximumWaitTimeWhenIdle(TimeSpan.FromSeconds(1));
         transport.DegreeOfReceiveParallelism(16);
@@ -87,7 +88,8 @@ class Usage
     {
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
-            endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+            endpointConfiguration.UseTransport<AzureStorageQueueTransport>()
+                                 .ConnectionString("DefaultEndpointsProtocol=https;AccountName={youraccount};AccountKey={yourkey};");
         }
     }
 

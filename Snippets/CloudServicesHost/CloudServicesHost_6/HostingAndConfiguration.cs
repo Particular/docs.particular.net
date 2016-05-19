@@ -26,13 +26,14 @@ public class WorkerRole : RoleEntryPoint
 
 #endregion
 
-#region ConfigureEndpoint
+#region AzureServiceBusTransportWithAzureHost
 
 public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
 {
     public void Customize(BusConfiguration builder)
     {
-        builder.UseTransport<AzureServiceBusTransport>();
+        builder.UseTransport<AzureServiceBusTransport>()
+               .ConnectionString("Endpoint=sb://{namespace}.servicebus.windows.net/;SharedAccessKeyName={keyname};SharedAccessKey={keyvalue}");
         builder.UsePersistence<AzureStoragePersistence>();
     }
 }
@@ -55,3 +56,18 @@ public class MvcApplication : HttpApplication
     }
 }
 #endregion
+
+namespace AsAHost
+{
+    #region AsAHost
+
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Host
+    {
+        public void Customize(BusConfiguration configuration)
+        {
+            
+        }
+    }
+
+    #endregion
+}
