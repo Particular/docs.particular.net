@@ -30,25 +30,35 @@ Completing these steps will serve as an introduction to many important NServiceB
 * [Logging](/nservicebus/logging/)
 
 
+## Prerequisites
+
+* NServiceBus 5.x requires [.NET Framework Version 4.5](https://www.microsoft.com/en-au/download/details.aspx?id=30653)
+* Microsoft Message Queueing (MSMQ) must be [properly installed and configured](/nservicebus/msmq/)
+
+
 ## Project structure
 
-The finished solution will contain four projects. Create a new Visual Studio solution and create the following:
+The finished solution will contain four projects. Create a new Visual Studio solution containing the following:
 
-* A Console Application named `Client`: The client's job will be to send `PlaceOrder` commands to the Server.
-* A Console Application named `Server`: The server's job will be to handle the `PlaceOrder` command, and then publish an `OrderPlaced` event to any interested subscribers.
-* A Console Application named `Subscriber`: The subscriber will subscribe to 
-* A Class Library named `Shared`.
+* A Console Application named `Client`
+* A Console Application named `Server`
+* A Console Application named `Subscriber` 
+* A Class Library named `Shared`
 
-The client's job will be to send `PlaceOrder` commands to the server. The server will process the `PlaceOrder` commands, and then publish an `OrderPlaced` event to any interested subscribers. The subscriber will subscribe to `OrderPlaced` events published from the server, and process those events when they arrive.
+Each of the console applications will be configured to be **messaging endpoints**, meaning they are able to send and receive NServiceBus messages. Commonly they will be referred to simply as **endpoints**.
 
-The shared project will be referenced by all of the applications and serve as a central location to store message definition classes and common pieces of configuration. This is not a best practice to combine all these things in one place, but serves to illustrate how things work for this simple example.
+The client endpoint's job will be to send `PlaceOrder` commands to the server. The server endpoint will process the `PlaceOrder` commands, and then publish an `OrderPlaced` event to any interested subscribers. The subscriber endpoint will subscribe to `OrderPlaced` events published from the server, and process those events when they arrive.
+
+The shared project will be referenced by all of the endpoints and serve as a central location to store message definition classes and common pieces of configuration.
+
+NOTE: Storing all message definitions in a single location is not a best practice, but serves to illustrate how things work for this simple example.
 
 
 ### Setting dependencies
 
 Before beginning, set up the necessary dependencies.
 
-* Add a reference to the `Shared` project to the `Client`, `Server`, and `Subscriber` projects.
+* In the `Client`, `Server`, and `Subscriber` projects, add a reference to the `Shared` project.
 * In each project, add a reference to the `NServiceBus` NuGet package.
 
 
@@ -71,7 +81,7 @@ snippet:OrderPlaced
 
 ## The Client
 
-Next, the Client application must be ready to send messages with NServiceBus. In the Client application, add the following code to the program's Main method. Don't worry about the `SendOrder` method, that will be covered soon.
+Next, the Client application must be ready to send messages with NServiceBus. In the Client application, add the following code to the program's Main method. Don't worry about the missing `SendOrder` method, it'll be added it very soon.
 
 snippet:ClientInit
 
@@ -81,13 +91,13 @@ In the Client application, add this code to the Program class:
 
 snippet:SendOrder
 
-Each endpoint needs to [specify an error queue](/nservicebus/errors/). This defines where messages are sent when they cannot be processed due to repetitive exceptions during message processing.
-
-While it is possible to [configure the error queue in an App.config file](/nservicebus/errors/), the `IProvideConfiguration` interface can be used to [override app.config settings](/nservicebus/hosting/custom-configuration-providers.md), which has the benefit able to be shared between all endpoints.
-
 In the Shared project, create a class named `ConfigErrorQueue`:
 
 snippet:ConfigErrorQueue
+
+Each endpoint needs to [specify an error queue](/nservicebus/errors/). This defines where messages are sent when they cannot be processed due to repetitive exceptions during message processing.
+
+NOTE: While it is possible to [configure the error queue in an App.config file](/nservicebus/errors/), the `IProvideConfiguration` interface can be used to [override app.config settings](/nservicebus/hosting/custom-configuration-providers.md), which has the benefit able to be shared between all endpoints.
 
 The Client application is now complete, and could now be executed. However, doing so would throw an exception when trying to send the message. The Client is sending the `PlaceOrder` command to an endpoint named `Samples.StepByStep.Server`, which will not exist yet. A server application must be created to handle that command.
 
@@ -102,17 +112,17 @@ snippet:ServerInit
 
 In the previous code, notice the change in endpoint name, which differentiates this endpoint from the Client.
 
-Next, create a handler for the `PlaceOrder` command being sent by the Client.
-
-Create a new class in the Server project named `PlaceOrderHandler` using the following code:
+Next, create a new class in the Server project named `PlaceOrderHandler` using the following code:
 
 snippet:PlaceOrderHandler
 
-The handler class is automatically discovered by NServiceBus because it implements the `IHandleMessages<T>` interface. The [dependency injection system](/nservicebus/containers/) (which supports constructor or property injection) injects the `IBus` instance into the handler to access messaging operations.
+This class is the message handler that processes the `PlaceOrder` command being sent by the Client. The handler class is automatically discovered by NServiceBus because it implements the `IHandleMessages<T>` interface. The [dependency injection system](/nservicebus/containers/) (which supports constructor or property injection) injects the `IBus` instance into the handler to access messaging operations.
 
-When a `PlaceOrder` command is received, NServiceBus will create a new instance of the `PlaceOrderHandler` class and invoke the `Handle(PlaceOrder message)` method. Normally a handler is where  information from the message would be saved it to a database, or used to call a web service, or some other business function, but in this example, it is simply logged to show that the message was received.
+When a `PlaceOrder` command is received, NServiceBus will create a new instance of the `PlaceOrderHandler` class and invoke the `Handle(PlaceOrder message)` method. A handler is where a message is processed; very often this will involve saving information from the message into a database, calling a web service, or some other business function. In this example, the message is logged, so the fact the message was received will be visible in the Console window.
 
-Next, the handler publishes a new `OrderPlaced` message. This won't actually send any messages, because there aren't any subscribers yet. The next step is to create a subscriber for this message.
+Next, the handler publishes a new `OrderPlaced` event. The next step is to create a subscriber for this event.
+
+NOTE: The solution could be executed right now, but no physical messages would result from publishing the `OrderPlaced` event. It's perfectly valid to have a publisher with no subscribers, in order to support adding additional functionality in a new subscriber at a later date.
 
 
 ## The Subscriber
@@ -131,17 +141,19 @@ Create a new class in the Subscriber project named `OrderCreatedHandler` using t
 
 snippet:OrderCreatedHandler
 
-The handler only logs the fact that the message was received. In a real system, a subscriber to `OrderPlaced` could charge a credit card for the order, start to prepare the order for shipment, or even update information in a customer loyalty database to track when the customer is eligible for different purchase-driven incentives. The fact that these disparate tasks can be accomplished in completely separate message handlers instead of one monolithic process is one of the many strengths of the Publish/Subscribe messaging pattern.
+The handler only logs the fact that the message was received. In a real system, a subscriber to `OrderPlaced` could charge a credit card for the order, start to prepare the order for shipment, or even update information in a customer loyalty database to track when the customer is eligible for different purchase-driven incentives. 
 
-Next, the message publisher must be notified that the subscriber is interested in being notified when `OrderPlaced` events are published. To do that, [subscriptions need to be configured in XML](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
+In fact, all of those activities could be handled by different subscribers to the same event. The fact that these disparate tasks can be accomplished in completely separate message handlers instead of one monolithic process is one of the many strengths of the Publish/Subscribe messaging pattern. Each subscriber is focused on one task, and any failure in one doesn't affect the others.
+
+Next, the subscriber needs to inform the publisher that it wants to receive `OrderPlaced` events when they are published To do that, [subscriptions need to be configured in XML](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
 
 In the Subscriber application, create an App.config file and add the following XML configuration:
 
 snippet:subscriptionConfig
 
-The important part is in the `MessageEndpointMappings` section. The `add` directive says that for messages of type `OrderPlaced` within the `Shared` assembly, subscription requests should be sent to the `Samples.StepByStep.Server` endpoint, which is the endpoint that is responsible for publishing `OrderPlaced` events.
+The important part is in the `MessageEndpointMappings` section. The `add` directive identifies messages of type `OrderPlaced` within the `Shared` assembly. The `Endpoint` attribute determines that subscription requests should be sent to the `Samples.StepByStep.Server` endpoint. Since that endpoint is responsible for publishing `OrderPlaced` events, the subscription requests must be directed there as well.
 
-When the Subscriber endpoint initializes, it will read this configuration, and knowing that it contains a message handler for `OrderPlaced`, it will send a special subscription message to the `Samples.StepByStep.Server` endpoint. When that endpoint receives the subscription request, it will store it locally (in this sample, using in-memory storage, but in a production system a database would be used) so that when it publishes a message, it can send a copy to every subscriber that expressed interest.
+When the Subscriber endpoint initializes, it will read this configuration. Because the endpoint also contains a message handler for `OrderPlaced`, it will send a special subscription message to the `Samples.StepByStep.Server` endpoint. When that endpoint receives the subscription request, it will store it locally. In this sample, in-memory storage will be used, but in a production system a database would be used instead. When publishing a message, it can consult the subscriber list and send a copy to every subscriber that expressed interest.
 
 
 ## Running the solution
