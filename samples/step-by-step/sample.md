@@ -32,8 +32,8 @@ Completing these steps will serve as an introduction to many important NServiceB
 
 ## Prerequisites
 
-* NServiceBus 5.x requires [.NET Framework Version 4.5](https://www.microsoft.com/en-au/download/details.aspx?id=30653)
-* Microsoft Message Queueing (MSMQ) must be [properly installed and configured](/nservicebus/msmq/)
+* [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642)
+* Microsoft Message Queueing (MSMQ) must be [properly installed and configured](/nservicebus/msmq/). The easiest way to do this is using the [Platform Installer](/platform/installer/) tool.
 
 
 ## Project structure
