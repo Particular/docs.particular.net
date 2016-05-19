@@ -51,7 +51,7 @@ In Versions 5 and below, if [unobtrusive mode](/nservicebus/messaging/unobtrusiv
 
 snippet:SetupConventionsForUnitTests
 
-Note: With Version 6, unobtrusive message conventions configuration is no longer required.
+Note: With Version 6, unobtrusive message conventions configuration is no longer required for the NServiceBus Testing Framework.
 
 
 ### Testing interface messages
