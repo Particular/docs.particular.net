@@ -5,6 +5,11 @@ using NServiceBus.Logging;
 class ConsoleLog : ILog
 {
     string name;
+    public bool IsDebugEnabled { get; }
+    public bool IsInfoEnabled { get; }
+    public bool IsWarnEnabled { get; }
+    public bool IsErrorEnabled { get; }
+    public bool IsFatalEnabled { get; }
 
     public ConsoleLog(string name, LogLevel level)
     {
@@ -33,144 +38,123 @@ class ConsoleLog : ILog
 
     public void Debug(string message)
     {
-        if (!IsDebugEnabled)
+        if (IsDebugEnabled)
         {
-            return;
+            Write("Debug", message);
         }
-        Write("Debug", message);
     }
 
     public void Debug(string message, Exception exception)
     {
-        if (!IsDebugEnabled)
+        if (IsDebugEnabled)
         {
-            return;
+            Write("Debug", message, exception);
         }
-        Write("Debug", message, exception);
     }
-
 
     public void DebugFormat(string format, params object[] args)
     {
-        if (!IsDebugEnabled)
+        if (IsDebugEnabled)
         {
-            return;
+            Write("Debug", format, args);
         }
-        Write("Debug", format, args);
     }
-
+    // Other log methods excluded for brevity
+    #endregion
     public void Info(string message)
     {
-        if (!IsInfoEnabled)
+        if (IsInfoEnabled)
         {
-            return;
+            Write("Info", message);
         }
-        Write("Info", message);
     }
 
     public void Info(string message, Exception exception)
     {
-        if (!IsInfoEnabled)
+        if (IsInfoEnabled)
         {
-            return;
+            Write("Info", message, exception);
         }
-        Write("Info", message, exception);
     }
 
     public void InfoFormat(string format, params object[] args)
     {
-        if (!IsInfoEnabled)
+        if (IsInfoEnabled)
         {
-            return;
+            Write("Info", format, args);
         }
-        Write("Info", format, args);
     }
 
     public void Warn(string message)
     {
-        if (!IsWarnEnabled)
+        if (IsWarnEnabled)
         {
-            return;
+            Write("Warn", message);
         }
-        Write("Warn", message);
     }
 
     public void Warn(string message, Exception exception)
     {
-        if (!IsWarnEnabled)
+        if (IsWarnEnabled)
         {
-            return;
+            Write("Warn", message, exception);
         }
-        Write("Warn", message, exception);
     }
 
     public void WarnFormat(string format, params object[] args)
     {
-        if (!IsWarnEnabled)
+        if (IsWarnEnabled)
         {
-            return;
+            Write("Warn", format, args);
         }
-        Write("Warn", format, args);
     }
 
     public void Error(string message)
     {
-        if (!IsErrorEnabled)
+        if (IsErrorEnabled)
         {
-            return;
+            Write("Error", message);
         }
-        Write("Error", message);
     }
 
     public void Error(string message, Exception exception)
     {
-        if (!IsErrorEnabled)
+        if (IsErrorEnabled)
         {
-            return;
+            Write("Error", message, exception);
         }
-        Write("Error", message, exception);
     }
 
     public void ErrorFormat(string format, params object[] args)
     {
-        if (!IsErrorEnabled)
+        if (IsErrorEnabled)
         {
-            return;
+            Write("Error", format, args);
         }
-        Write("Error", format, args);
     }
 
     public void Fatal(string message)
     {
-        if (!IsFatalEnabled)
+        if (IsFatalEnabled)
         {
-            return;
+            Write("Fatal", message);
         }
-        Write("Fatal", message);
     }
 
     public void Fatal(string message, Exception exception)
     {
-        if (!IsFatalEnabled)
+        if (IsFatalEnabled)
         {
-            return;
+            Write("Fatal", message, exception);
         }
-        Write("Fatal", message, exception);
     }
 
     public void FatalFormat(string format, params object[] args)
     {
-        if (!IsFatalEnabled)
+        if (IsFatalEnabled)
         {
-            return;
+            Write("Fatal", format, args);
         }
-        Write("Fatal", format, args);
     }
 
-    public bool IsDebugEnabled { get; }
-    public bool IsInfoEnabled { get; }
-    public bool IsWarnEnabled { get; }
-    public bool IsErrorEnabled { get; }
-    public bool IsFatalEnabled { get; }
 }
-#endregion
