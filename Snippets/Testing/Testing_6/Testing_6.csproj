@@ -27,6 +27,10 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0002\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.Gateway, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NServiceBus.Gateway.2.0.0-beta0001\lib\net452\NServiceBus.Gateway.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NServiceBus.Testing">
       <HintPath>..\..\..\packages\NServiceBus.Testing.6.0.0-beta0001\lib\net452\NServiceBus.Testing.dll</HintPath>
     </Reference>
@@ -42,9 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalServices\Tests.cs" />
+    <Compile Include="Handlers\GatewayTest.cs" />
     <Compile Include="HeaderManipulation\RequestMessage.cs" />
     <Compile Include="HeaderManipulation\ResponseMessage.cs" />
     <Compile Include="HeaderManipulation\Tests.cs" />
+    <Compile Include="Saga\ConfigureSagaMessageId.cs" />
     <Compile Include="Saga\MyCommand.cs" />
     <Compile Include="Saga\MyEvent.cs" />
     <Compile Include="Saga\MyResponse.cs" />
