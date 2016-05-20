@@ -1,64 +1,100 @@
 - Key: Core
-  Url: nservicebus
+  Name: NServiceBus
+  DocoUrl: nservicebus
+  Category: Core
+  ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
     - NServiceBus
 
 - Key: Anotar
-  Url: samples/logging/anotar
+  Name: Anotar Logger
+  DocoUrl: samples/logging/anotar
+  Category: Logger
+  ProjectUrl: https://github.com/Fody/Anotar
   NugetOrder:
     - Anotar.NServiceBus.Fody
 
 - Key: ABSDataBus
-  Url: nservicebus/azure
+  Name: Azure Blob Storage Databus
+  DocoUrl: nservicebus/azure
+  Category: Databus
+  ProjectUrl: https://github.com/Particular/NServiceBus.DataBus.AzureBlobStorage
   NugetOrder:
     - NServiceBus.DataBus.AzureBlobStorage
     - NServiceBus.Azure
 
 - Key: ASB
-  Url: nservicebus/azure-service-bus
+  Name: Azure Service Bus Transport
+  DocoUrl: nservicebus/azure-service-bus
+  Category: Transport
+  ProjectUrl: https://github.com/Particular/NServiceBus.AzureServiceBus
   NugetOrder:
     - NServiceBus.Azure.Transports.WindowsAzureServiceBus
 
 - Key: ASP
-  Url: nservicebus/azure-storage-persistence
+  Name: Azure Storage Persistence 
+  DocoUrl: nservicebus/azure-storage-persistence
+  Category: Persistence
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.AzureStorage
   NugetOrder:
     - NServiceBus.Persistence.AzureStorage
     - NServiceBus.Azure
 
 - Key: ASQ
-  Url: nservicebus/azure-storage-queues
+  Name: Azure Storage Queues Transport
+  DocoUrl: nservicebus/azure-storage-queues
+  Category: Transport
+  ProjectUrl: https://github.com/Particular/NServiceBus.AzureStorageQueues
   NugetOrder:
     - NServiceBus.Azure.Transports.WindowsAzureStorageQueues
 
 - Key: Autofac
-  Url: nservicebus/containers/autofac
+  Name: Autofac Container
+  DocoUrl: nservicebus/containers/autofac
+  Category: Container
+  ProjectUrl: https://github.com/Particular/NServiceBus.Autofac
   NugetOrder:
     - NServiceBus.Autofac
 
 - Key: Callbacks
-  Url: nservicebus/messaging/handling-responses-on-the-client-side
+  Name: Callbacks
+  DocoUrl: nservicebus/messaging/handling-responses-on-the-client-side
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Callbacks
   NugetOrder:
     - NServiceBus.Callbacks
     - NServiceBus
 
 - Key: Castle
-  Url: nservicebus/containers/castlewindsor
+  Name: Castle Container
+  DocoUrl: nservicebus/containers/castlewindsor
+  Category: Container
+  ProjectUrl: https://github.com/Particular/NServiceBus.CastleWindsor
   NugetOrder:
     - NServiceBus.CastleWindsor
 
 - Key: CloudServicesHost
-  Url: nservicebus/azure/shared-hosting-in-azure-cloud-services
+  Name: Azure Cloud Service Host
+  DocoUrl: nservicebus/azure/shared-hosting-in-azure-cloud-services
+  Category: Host
+  ProjectUrl: https://github.com/Particular/NServiceBus.Host.AzureCloudService
   NugetOrder:
     - NServiceBus.Hosting.Azure.HostProcess
     - NServiceBus.Hosting.Azure
 
 - Key: CommonLogging
-  Url: nservicebus/logging/common-logging
+  Name: CommonLogging
+  DocoUrl: nservicebus/logging/common-logging
+  Category: Logger
+  ProjectUrl: https://github.com/Particular/NServiceBus.CommonLogging
   NugetOrder:
     - NServiceBus.CommonLogging
 
 - Key: CustomChecks
-  Url: servicecontrol/plugins/custom-checks
+  Name: ServiceControl CustomChecks
+  DocoUrl: servicecontrol/plugins/custom-checks
+  Category: Other
+  ProjectUrl: https://github.com/Particular/?query=CustomChecks
   NugetOrder:
     - ServiceControl.Plugin.Nsb6.CustomChecks
     - ServiceControl.Plugin.Nsb5.CustomChecks
@@ -66,110 +102,173 @@
     - ServiceControl.Plugin.Nsb3.CustomChecks
 
 - Key: Distributor
-  Url: nservicebus/scalability-and-ha/distributor
+  Name: Distributor
+  DocoUrl: nservicebus/scalability-and-ha/distributor
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Distributor.Msmq
   NugetOrder:
     - NServiceBus.Distributor.MSMQ
     - NServiceBus
 
 - Key: Gateway
-  Url: nservicebus/gateway
+  Name: Gateway
+  DocoUrl: nservicebus/gateway
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Gateway
   NugetOrder:
     - NServiceBus.Gateway
     - NServiceBus
 
 - Key: Host
-  Url: nservicebus/hosting/nservicebus-host
+  Name: NServiceBus Host
+  DocoUrl: nservicebus/hosting/nservicebus-host
+  Category: Host
+  ProjectUrl: https://github.com/Particular/NServiceBus.Host
   NugetOrder:
     - NServiceBus.Host
 
 - Key: Jil
-  Url: samples/serializers/jil
+  Name: Jil Serializer
+  DocoUrl: samples/serializers/jil
+  Category: Serializer
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Jil
   NugetOrder:
     - NServiceBus.Jil
 
 - Key: Log4Net
-  Url: nservicebus/logging/log4net
+  Name: Log4Net Logger
+  DocoUrl: nservicebus/logging/log4net
+  Category: Logger
+  ProjectUrl: https://github.com/Particular/NServiceBus.Host
   NugetOrder:
     - NServiceBus.Log4Net
     - NServiceBus
 
 - Key: MessagePack
-  Url: samples/serializers/message-pack
+  Name: MessagePack Serializer
+  DocoUrl: samples/serializers/message-pack
+  Category: Serializer
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.MessagePack
   NugetOrder:
     - NServiceBus.MessagePack
 
 - Key: Mongo
-  Url: samples/mongodb
+  Name: MongoDB Persistence
+  DocoUrl: samples/mongodb
+  Category: Persistence
+  ProjectUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb
   NugetOrder:
     - NServiceBus.Persistence.MongoDb
 
 - Key: Newtonsoft
-  Url: nservicebus/serialization/newtonsoft
+  Name: Newtonsoft Serializer
+  DocoUrl: nservicebus/serialization/newtonsoft
+  Category: Serializer
+  ProjectUrl: https://github.com/Particular/NServiceBus.Newtonsoft.Json
   NugetOrder:
     - NServiceBus.Newtonsoft.Json
 
 - Key: NHibernate
-  Url: nservicebus/nhibernate
+  Name: NHibernate Persistence
+  DocoUrl: nservicebus/nhibernate
+  Category: Persistence
+  ProjectUrl: https://github.com/Particular/NServiceBus.NHibernate
   NugetOrder:
     - NServiceBus.NHibernate
 
 - Key: Ninject
-  Url: nservicebus/containers/ninject
+  Name: Ninject Container
+  DocoUrl: nservicebus/containers/ninject
+  Category: Container
+  ProjectUrl: https://github.com/Particular/NServiceBus.Ninject
   NugetOrder:
     - NServiceBus.Ninject
 
 - Key: NLog
-  Url: nservicebus/logging/nlog
+  Name: NLog Logger
+  DocoUrl: nservicebus/logging/nlog
+  Category: Logger
+  ProjectUrl: https://github.com/Particular/NServiceBus.NLog
   NugetOrder:
     - NServiceBus.NLog
     - NServiceBus
 
 - Key: Rabbit
-  Url: nservicebus/rabbitmq
+  Name: RabbitMQ Transport
+  DocoUrl: nservicebus/rabbitmq
+  Category: Transport
+  ProjectUrl: https://github.com/Particular/NServiceBus.RabbitMQ
   NugetOrder:
     - NServiceBus.RabbitMQ
 
 - Key: Raven
-  Url: nservicebus/ravendb
+  Name: RavenDB Persistence
+  DocoUrl: nservicebus/ravendb
+  Category: Persistence
+  ProjectUrl: https://github.com/Particular/NServiceBus.RavenDB
   NugetOrder:
     - NServiceBus.RavenDB
 
 - Key: Serilog
-  Url: samples/logging/serilog-custom
+  Name: Serilog Logger
+  DocoUrl: samples/logging/serilog-custom
+  Category: Logger
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Serilog
   NugetOrder:
     - NServiceBus.Serilog
 
 - Key: ServiceBootstrap
-  Url: nservicebus/hosting/windows-service
+  Name: Windows Service Bootstrap
+  DocoUrl: nservicebus/hosting/windows-service
+  Category: Host
+  ProjectUrl: https://github.com/Particular/NServiceBus.Bootstrap.WindowsService
   NugetOrder:
     - NServiceBus.Bootstrap.WindowsService
 
 - Key: Spring
-  Url: nservicebus/containers/spring
+  Name: Spring Container
+  DocoUrl: nservicebus/containers/spring
+  Category: Container
+  ProjectUrl: https://github.com/Particular/NServiceBus.Spring
   NugetOrder:
     - NServiceBus.Spring
 
 - Key: SqlServer
-  Url: nservicebus/sqlserver
+  Name: SQL Server Transport
+  DocoUrl: nservicebus/sqlserver
+  Category: Transport
+  ProjectUrl: https://github.com/Particular/NServiceBus.SqlServer
   NugetOrder:
     - NServiceBus.SqlServer
 
 - Key: StructureMap
-  Url: nservicebus/containers/structuremap
+  Name: StructureMap Container
+  DocoUrl: nservicebus/containers/structuremap
+  Category: Container
+  ProjectUrl: https://github.com/Particular/NServiceBus.StructureMap
   NugetOrder:
     - NServiceBus.StructureMap
 
 - Key: Testing
-  Url: nservicebus/testing
+  Name: 
+  DocoUrl: nservicebus/testing
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Testing
   NugetOrder:
     - NServiceBus.Testing
 
 - Key: Unity
-  Url: nservicebus/containers/unity
+  Name: Unity Container
+  DocoUrl: nservicebus/containers/unity
+  Category: Container
+  ProjectUrl: https://github.com/Particular/NServiceBus.Unity
   NugetOrder:
     - NServiceBus.Unity
 
 - Key: Wire
-  Url: samples/serializers/wire
+  Name: Wire Serializer
+  DocoUrl: samples/serializers/wire
+  Category: Serializer
+  ProjectUrl: https://github.com/hmemcpy/NServiceBus.Wire
   NugetOrder:
     - NServiceBus.Wire
