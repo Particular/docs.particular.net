@@ -34,17 +34,17 @@ It is no longer required to call `Test.Initialize()` before executing a test. Al
 With the removal of `Test.Initialize()` it is also no longer required to configure unobtrusive message conventions.
 
 
-## Testing MessageHandlers
+## Testing Message Handlers
 
 
-### ExpectReturn
+### ExpectReturn Method
 
 Use `ExpectReply` instead of `ExpectReturn`.
 
 
-### SendToSites Expecations
+### SendToSites Methods
 
-`ExpectSendToSites` and `ExpectNotSendToSites` have been removed from the Testing Framework. Handlers using the Gateway can still be tested using the `ExpectSend` overload which provides the `SendOption`:
+`ExpectSendToSites` and `ExpectNotSendToSites` methods have been removed from the Testing Framework. Handlers using the Gateway can still be tested using the `ExpectSend` overload which provides the `SendOption`:
 
 snippet:ExpectSendToSiteV6
 
@@ -52,7 +52,7 @@ snippet:ExpectSendToSiteV6
 ## Testing Sagas
 
 
-### When
+### Using When
 
 In NServiceBus Versions 6 and above, message handlers have an additional `IMessageHandlerContext` parameter.  This context parameter needs to be provided when defining the method to invoke.
 
