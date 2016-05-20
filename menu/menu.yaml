@@ -60,7 +60,7 @@
             - "nservicebus/upgrades/sqlserver-2to3"
         - Title: "NServiceBus Testing"
           Articles:
-            - "nservicebus/upgrades/testing-5to6"
+            - "nservicebus/upgrades/5to6-testing"
     -
       Title: "Messaging"
       Url: "nservicebus/messaging"
