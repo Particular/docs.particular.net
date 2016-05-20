@@ -25,6 +25,7 @@ class ConsoleLog : ILog
     {
         Console.WriteLine($"{name}. {level}. {message}. Exception: {exception}");
     }
+
     void Write(string level, string message)
     {
         Console.WriteLine($"{name}. {level}. {message}.");
