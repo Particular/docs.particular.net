@@ -13,7 +13,7 @@ related:
 
 NServiceBus.Testing references NServiceBus Version 6.
 
-All projects which reference NServiceBus.Testing must first be upgraded to NServiceBus Version 6 first. For the detailed list of changes, refer to the [NServiceBus Version 6 Upgrade Guide](/nservicebus/upgrades/5to6.md). 
+All projects which reference NServiceBus.Testing must first be upgraded to NServiceBus Version 6. For the detailed list of changes, refer to the [NServiceBus Version 6 Upgrade Guide](/nservicebus/upgrades/5to6.md). 
 
 
 ## New Unit Testing capabilities
