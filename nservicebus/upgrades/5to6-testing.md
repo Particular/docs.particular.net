@@ -9,11 +9,11 @@ related:
 ---
 
 
-## Move to .NET 4.5.2
+## Upgrade to NServiceBus Version 6
 
-NServiceBus.Testing Version 6 requires .NET Framework version 4.5.2 or higher.
+NServiceBus.Testing references NServiceBus Version 6.
 
-**All projects which reference NServiceBus.Testing must first be upgraded to .NET 4.5.2 before upgrading to NServiceBus.Testing Version 6**
+All projects which reference NServiceBus.Testing must first be upgraded to NServiceBus Version 6 first. For the detailed list of changes, refer to the [NServiceBus Version 6 Upgrade Guide](/nservicebus/upgrades/5to6.md). 
 
 
 ## New Unit Testing capabilities
@@ -54,20 +54,11 @@ snippet:ExpectSendToSiteV6
 
 ### Using When
 
-In NServiceBus Versions 6 and above, message handlers have an additional `IMessageHandlerContext` parameter.  This context parameter needs to be provided when defining the method to invoke.
+In NServiceBus Versions 6 and above, message handlers have an additional `IMessageHandlerContext` parameter.  This context parameter needs to be provided when defining the method to invoke. A new overload has been added to simplify this:
 
-`.When(s => s.Handle(new StartsSaga()))`
-
-becomes
-
-`.When((s, context) => s.Handle(new StartsSaga(), context))`
+snippet: 5to6-usingWhen
 
 WARNING: It's important to pass the context provided by the delegate arguments to the handle method.
-
-A new overload allows for a more convenient invocation:
-
-`.When(s => s.Handle, new StartsSaga())`
-
 
 ### Configuring a message ID
 

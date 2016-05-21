@@ -58,6 +58,7 @@
     <Compile Include="ServiceLayer\ResponseMessage.cs" />
     <Compile Include="ServiceLayer\Tests.cs" />
     <Compile Include="Unobtrusive.cs" />
+    <Compile Include="UpgradeGuides\5to6\UsingWhen.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
