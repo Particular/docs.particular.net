@@ -1,24 +1,26 @@
 ---
 title: Upgrade NServiceBus.Testing Version 5 to 6
 summary: Instructions on how to upgrade NServiceBus.Testing Version 5 to 6.
+reviewed: 2016-05-23
 tags:
  - upgrade
  - migration
 related:
-- nservicebus/testing
+ - nservicebus/testing
+ - nservicebus/upgrades/5to6
 ---
 
 
 ## Upgrade to NServiceBus Version 6
 
-NServiceBus.Testing references NServiceBus Version 6.
+NServiceBus.Testing requires NServiceBus Version 6.
 
-All projects which reference NServiceBus.Testing must first be upgraded to NServiceBus Version 6. For the detailed list of changes, refer to the [NServiceBus Version 6 Upgrade Guide](/nservicebus/upgrades/5to6.md). 
+As part of upgrading to NServiceBus.Testing Version 6, projects will also require an upgrade to [NServiceBus Version 6](/nservicebus/upgrades/5to6.md).
 
 
 ## New Unit Testing capabilities
 
-NserviceBus.Testing Version 6 provides an alternative way to write tests using a more traditional *Arrange Act Assert* pattern. This allows for easier extension and tooling integration. For more details on the new testing capabilities, see the [Unit Testing NServiceBus 6 Sample](/samples/unit-testing).
+NServiceBus.Testing Version 6 provides an alternative way to write tests using a more traditional *Arrange Act Assert* pattern. This allows for easier extension and tooling integration. For more details on the new testing capabilities, see the [Unit Testing NServiceBus 6 Sample](/samples/unit-testing).
 
 
 ## Testing Framework
@@ -64,6 +66,7 @@ snippet: 5to6-usingNewOverload
 
 WARNING: It's important to pass the context provided by the delegate arguments to the handle method.
 
+
 ### Configuring a message ID
 
 The message ID can be manually configured using the `ConfigureMessageHandler` option. See [Configuring the context](#configuring-the-context) section below for more details.
@@ -74,4 +77,3 @@ The message ID can be manually configured using the `ConfigureMessageHandler` op
 Both Saga and Handler tests contain a `ConfigureHandlerContext` method to enable custom configuration of the `IMessageHandlerContext` which is passed to the invoked handler methods.
 
 snippet:ConfigureSagaMessageId
-
