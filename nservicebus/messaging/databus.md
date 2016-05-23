@@ -22,6 +22,7 @@ The `DataBus` approach is to store a large payload in a location that both the s
 
 The FileShare DataBus also [leverage both serialization and headers](/nservicebus/messaging/headers.md#fileshare-databus-headers) to provide its functionality.
 
+NOTE: The DataBus does not work with callbacks. Please use regular handlers instead.
 
 ## Enabling the DataBus
 
