@@ -1,5 +1,6 @@
 using System;
 using NServiceBus;
+using Shared;
 
 class Program
 {

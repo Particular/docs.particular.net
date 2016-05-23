@@ -56,7 +56,7 @@ NOTE: Storing all message definitions in a single location is not a best practic
 
 ### Setting dependencies
 
-Before beginning, set up the necessary dependencies.
+First, set up the necessary dependencies:
 
 * In the `Client`, `Server`, and `Subscriber` projects, add a reference to the `Shared` project.
 * In each project, add a reference to the `NServiceBus` NuGet package.
@@ -81,13 +81,13 @@ snippet:OrderPlaced
 
 ## The Client
 
-Next, the Client application must be ready to send messages with NServiceBus. In the Client application, add the following code to the program's Main method. Don't worry about the missing `SendOrder` method, it'll be added it very soon.
+Next, the Client application must be ready to send messages with NServiceBus. In the Client application, add the following code to the program's Main method. Don't worry about the missing `SendOrder` method, it will be added very soon.
 
 snippet:ClientInit
 
 With a `PlaceOrder` command defined, and NServiceBus initialized, a loop can be created to send a new command message every time the Enter key is pressed.
 
-In the Client application, add this code to the Program class:
+In the Client endpoint, add this code to the Program class:
 
 snippet:SendOrder
 
@@ -97,32 +97,32 @@ snippet:ConfigErrorQueue
 
 Each endpoint needs to [specify an error queue](/nservicebus/errors/). This defines where messages are sent when they cannot be processed due to repetitive exceptions during message processing.
 
-NOTE: While it is possible to [configure the error queue in an App.config file](/nservicebus/errors/), the `IProvideConfiguration` interface can be used to [override app.config settings](/nservicebus/hosting/custom-configuration-providers.md), which has the benefit able to be shared between all endpoints.
+NOTE: While it is possible to [configure the error queue in an App.config file](/nservicebus/errors/), the `IProvideConfiguration` interface can be used to [override app.config settings](/nservicebus/hosting/custom-configuration-providers.md), which allows sharing the same configuration across all endpoints.
 
-The Client application is now complete, and could now be executed. However, doing so would throw an exception when trying to send the message. The Client is sending the `PlaceOrder` command to an endpoint named `Samples.StepByStep.Server`, which will not exist yet. A server application must be created to handle that command.
+The Client endpoint is now complete, and could now be executed. However, doing so would throw an exception when trying to send the message. The Client is sending the `PlaceOrder` command to an endpoint named `Samples.StepByStep.Server`, which will not exist yet. A server endpoint must be created to handle that command.
 
 
 ## The Server
 
-Like the client, the Server application is going to need to be configured as an NServiceBus endpoint as well.
+Like the client, the Server application needs to be configured as an NServiceBus endpoint.
 
 In the Server application, add the following code to the program's Main method:
 
 snippet:ServerInit
 
-In the previous code, notice the change in endpoint name, which differentiates this endpoint from the Client.
+Notice that the endpoint name is different, which differentiates the Server endpoint from the Client.
 
 Next, create a new class in the Server project named `PlaceOrderHandler` using the following code:
 
 snippet:PlaceOrderHandler
 
-This class is the message handler that processes the `PlaceOrder` command being sent by the Client. The handler class is automatically discovered by NServiceBus because it implements the `IHandleMessages<T>` interface. The [dependency injection system](/nservicebus/containers/) (which supports constructor or property injection) injects the `IBus` instance into the handler to access messaging operations.
+This class is the message handler that processes the `PlaceOrder` command being sent by the Client. A handler is where a message is processed; very often this will involve saving information from the message into a database, calling a web service, or some other business function. In this example, the message is logged, so the fact the message was received will be visible in the Console window. Next, the handler publishes a new `OrderPlaced` event.
 
-When a `PlaceOrder` command is received, NServiceBus will create a new instance of the `PlaceOrderHandler` class and invoke the `Handle(PlaceOrder message)` method. A handler is where a message is processed; very often this will involve saving information from the message into a database, calling a web service, or some other business function. In this example, the message is logged, so the fact the message was received will be visible in the Console window.
+The handler class is automatically discovered by NServiceBus because it implements the `IHandleMessages<T>` interface. The [dependency injection system](/nservicebus/containers/) (which supports constructor or property injection) injects the `IBus` instance into the handler to access messaging operations. When a `PlaceOrder` command is received, NServiceBus will create a new instance of the `PlaceOrderHandler` class and invoke the `Handle(PlaceOrder message)` method. 
 
-Next, the handler publishes a new `OrderPlaced` event. The next step is to create a subscriber for this event.
+ The next step is to create a subscriber for this event.
 
-NOTE: The solution could be executed right now, but no physical messages would result from publishing the `OrderPlaced` event. It's perfectly valid to have a publisher with no subscribers, in order to support adding additional functionality in a new subscriber at a later date.
+NOTE: The solution could be executed at this stage and would run without exceptions. However, there are no subscribers to the `OrderPlaced` event, so our sample is not complete. In practice it's perfectly valid to have a publisher with no subscribers; a new subscriber can be added at a later date. In such a situation, no messages are exchanged on the transport level, meaning there's no actual communication between endpoints when the event is published.
 
 
 ## The Subscriber
@@ -145,7 +145,7 @@ The handler only logs the fact that the message was received. In a real system, 
 
 In fact, all of those activities could be handled by different subscribers to the same event. The fact that these disparate tasks can be accomplished in completely separate message handlers instead of one monolithic process is one of the many strengths of the Publish/Subscribe messaging pattern. Each subscriber is focused on one task, and any failure in one doesn't affect the others.
 
-Next, the subscriber needs to inform the publisher that it wants to receive `OrderPlaced` events when they are published To do that, [subscriptions need to be configured in XML](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
+Next, the subscriber needs to inform the publisher that it wants to receive `OrderPlaced` events when they are published. To do that, [subscriptions need to be configured in XML](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
 
 In the Subscriber application, create an App.config file and add the following XML configuration:
 

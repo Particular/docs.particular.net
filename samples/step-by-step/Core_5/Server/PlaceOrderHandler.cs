@@ -1,5 +1,6 @@
 ﻿using NServiceBus;
 using NServiceBus.Logging;
+using Shared;
 
 #region PlaceOrderHandler
 
