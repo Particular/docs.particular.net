@@ -58,6 +58,9 @@
         - Title: "SQL Server Transport"
           Articles:
             - "nservicebus/upgrades/sqlserver-2to3"
+        - Title: "NServiceBus Testing"
+          Articles:
+            - "nservicebus/upgrades/testing-5to6"
     -
       Title: "Messaging"
       Url: "nservicebus/messaging"

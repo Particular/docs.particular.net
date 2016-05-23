@@ -27,11 +27,15 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0002\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.Gateway, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NServiceBus.Gateway.2.0.0-beta0001\lib\net452\NServiceBus.Gateway.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NServiceBus.Testing">
       <HintPath>..\..\..\packages\NServiceBus.Testing.6.0.0-beta0001\lib\net452\NServiceBus.Testing.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -42,9 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalServices\Tests.cs" />
+    <Compile Include="Handlers\GatewayTest.cs" />
     <Compile Include="HeaderManipulation\RequestMessage.cs" />
     <Compile Include="HeaderManipulation\ResponseMessage.cs" />
     <Compile Include="HeaderManipulation\Tests.cs" />
+    <Compile Include="Saga\ConfigureSagaMessageId.cs" />
     <Compile Include="Saga\MyCommand.cs" />
     <Compile Include="Saga\MyEvent.cs" />
     <Compile Include="Saga\MyResponse.cs" />
@@ -55,6 +61,8 @@
     <Compile Include="ServiceLayer\RequestMessage.cs" />
     <Compile Include="ServiceLayer\ResponseMessage.cs" />
     <Compile Include="ServiceLayer\Tests.cs" />
+    <Compile Include="UpgradeGuides\5to6\UsingWhen.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,11 +6,10 @@
     using NUnit.Framework;
 
     [Explicit]
-    #region TestingSaga
-
     [TestFixture]
     public class Tests
     {
+        #region TestingSaga
         [Test]
         public void Run()
         {
@@ -25,6 +24,7 @@
                 .WhenSagaTimesOut()
                     .AssertSagaCompletionIs(true);
         }
+        #endregion
     }
 
     public class MySaga : NServiceBus.Saga.Saga<MySagaData>,
@@ -45,6 +45,4 @@
             MarkAsComplete();
         }
     }
-
-    #endregion
 }
