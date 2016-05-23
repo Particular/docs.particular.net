@@ -151,6 +151,8 @@ In the Subscriber application, create an App.config file and add the following X
 
 snippet:subscriptionConfig
 
+NOTE: The `Assembly` and `Type` values must exactly match the full name (including namespace) for the `OrderPlaced` event.
+
 The important part is in the `MessageEndpointMappings` section. The `add` directive identifies messages of type `OrderPlaced` within the `Shared` assembly. The `Endpoint` attribute determines that subscription requests should be sent to the `Samples.StepByStep.Server` endpoint. Since that endpoint is responsible for publishing `OrderPlaced` events, the subscription requests must be directed there as well.
 
 When the Subscriber endpoint initializes, it will read this configuration. Because the endpoint also contains a message handler for `OrderPlaced`, it will send a special subscription message to the `Samples.StepByStep.Server` endpoint. When that endpoint receives the subscription request, it will store it locally. In this sample, in-memory storage will be used, but in a production system a database would be used instead. When publishing a message, it can consult the subscriber list and send a copy to every subscriber that expressed interest.
