@@ -38,7 +38,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="ErrorCodes.cs" />
     <Compile Include="Command.cs" />
   </ItemGroup>
