@@ -21,7 +21,6 @@ namespace Core6.Sagas.SimpleSaga
 
         public async Task Handle(StartOrder message, IMessageHandlerContext context)
         {
-            Data.OrderId = message.OrderId;
         }
 
         public async Task Handle(CompleteOrder message, IMessageHandlerContext context)
