@@ -11,8 +11,6 @@
 
         public async Task Handle(StartMessage message, IMessageHandlerContext context)
         {
-            Data.SomeID = message.SomeID;
-
             await ReplyToOriginator(context, new AlmostDoneMessage
             {
                 SomeID = Data.SomeID
