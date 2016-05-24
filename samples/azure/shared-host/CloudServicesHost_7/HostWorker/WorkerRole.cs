@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
-using NServiceBus.Hosting.Azure;
-
+using NServiceBus;
 
 public class WorkerRole : RoleEntryPoint
 {
