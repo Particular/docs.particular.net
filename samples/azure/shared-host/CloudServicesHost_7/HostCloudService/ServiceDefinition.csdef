@@ -3,10 +3,10 @@
   <!-- startcode AzureSharedHosting_CloudServiceDefinition -->
   <WorkerRole name="HostWorker" vmsize="Small">
     <ConfigurationSettings>
-      <Setting name="DynamicHostControllerConfig.ConnectionString" />
-      <Setting name="DynamicHostControllerConfig.AutoUpdate" />
-      <Setting name="DynamicHostControllerConfig.UpdateInterval" />
-      <Setting name="DynamicHostControllerConfig.Container" />
+      <Setting name="HostWorker.ConnectionString" />
+      <Setting name="HostWorker.AutoUpdate" />
+      <Setting name="HostWorker.UpdateInterval" />
+      <Setting name="HostWorker.Container" />
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
     </ConfigurationSettings>
     <LocalResources>

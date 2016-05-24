@@ -4,10 +4,10 @@
   <Role name="HostWorker">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="DynamicHostControllerConfig.ConnectionString" value="UseDevelopmentStorage=true" />
-      <Setting name="DynamicHostControllerConfig.AutoUpdate" value="true" />
-      <Setting name="DynamicHostControllerConfig.UpdateInterval" value="5000" />
-      <Setting name="DynamicHostControllerConfig.Container" value="endpoints" />
+      <Setting name="HostWorker.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="HostWorker.AutoUpdate" value="true" />
+      <Setting name="HostWorker.UpdateInterval" value="5000" />
+      <Setting name="HostWorker.Container" value="endpoints" />
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
     </ConfigurationSettings>
   </Role>
