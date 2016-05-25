@@ -321,6 +321,7 @@
     <Compile Include="UpgradeGuides\4to5\Scheduler.cs" />
     <Compile Include="UpgradeGuides\4to5\Upgrade.cs" />
     <Compile Include="UpgradeGuides\5to6\HandlerOrdering.cs" />
+    <Compile Include="UpgradeGuides\5to6\Saga.cs" />
     <Compile Include="UpgradeGuides\5to6\StartupInterface.cs" />
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />

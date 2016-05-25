@@ -1,14 +1,13 @@
-﻿using NServiceBus;
-
-namespace Core6.Sagas.SimpleSaga
+﻿namespace Core5.UpgradeGuides._5to6
 {
-    using System.Threading.Tasks;
+    using Core5.Sagas.SimpleSaga;
+    using NServiceBus;
+    using NServiceBus.Saga;
 
-    #region simple-saga
 
     public class OrderSaga : Saga<OrderSagaData>,
-                            IAmStartedByMessages<StartOrder>,
-                            IHandleMessages<CompleteOrder>
+                                IAmStartedByMessages<StartOrder>,
+                                IHandleMessages<CompleteOrder>
     {
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
         {
@@ -19,17 +18,18 @@ namespace Core6.Sagas.SimpleSaga
                     .ToSaga(sagaData => sagaData.OrderId);
         }
 
-        public async Task Handle(StartOrder message, IMessageHandlerContext context)
+        #region 5to6-NoSagaDataCorrelationNeeded
+        public void Handle(StartOrder message)
         {
+            Data.OrderId = message.OrderId;
+            // The processing logic for the StartOrder message
         }
+        #endregion
 
-        public async Task Handle(CompleteOrder message, IMessageHandlerContext context)
+        public void Handle(CompleteOrder message)
         {
             // code to handle order completion
             MarkAsComplete();
         }
     }
-
-    #endregion
-
 }

@@ -19,7 +19,6 @@
 
         public async Task Handle(Message1 message, IMessageHandlerContext context)
         {
-            Data.SomeID = message.SomeID;
             await RequestTimeout<MyCustomTimeout>(context, TimeSpan.FromHours(1));
         }
 

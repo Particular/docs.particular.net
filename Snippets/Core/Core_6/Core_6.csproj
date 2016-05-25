@@ -297,6 +297,7 @@
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="TransportTransactions.cs" />
     <Compile Include="UpgradeGuides\5to6\MsmqSubscriptionAuthorization.cs" />
+    <Compile Include="UpgradeGuides\5to6\Saga.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
     <Compile Include="UpgradeGuides\5to6\RawSend.cs" />
