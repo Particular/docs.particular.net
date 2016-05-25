@@ -102,7 +102,7 @@ It is also recommended that the IIS web site be configured to use SSL if an auth
 
 ### Configuring Reverse Proxy in a non-root directory
 
-Due to a bug in SignalR (as at Microsoft.AspNet.SignalR.JS version 2.2.0), usage of IIS as a reverse proxy in a virtual directory requires an additional URL Rewrite Rule on the `/api/` sub folder. This rule makes sure that SignalR uses the correct path when hosted within a virtual directory. This rule should look as follows: 
+Due to a [bug in SignalR](https://github.com/SignalR/SignalR/issues/3649) in Microsoft.AspNet.SignalR.JS version 2.2.0, usage of IIS as a reverse proxy in a virtual directory requires an additional URL Rewrite Rule on the `/api/` sub folder. This rule makes sure that SignalR uses the correct path when hosted within a virtual directory. This rule should look as follows: 
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
