@@ -3,23 +3,21 @@ title: Moving away from `IBus` in NServiceBus Version 6
 summary: Describes how to send messages without the IBus
 ---
 
-Starting with Versions 6 and above, the `IBus` interface has been deprecated.
+Starting with Version 6, the `IBus` interface has been deprecated.
 
-The `IBus` interface was one of the key interfaces when using previous versions of NServiceBus. It provided access to many of the important operations like sending messages, subscribing to events, and manipulating headers. The `IBus` interface was available through dependency injection in message handlers and any custom components that were registered in the container. 
+The `IBus` interface was one of the key interfaces when using previous versions of NServiceBus. It provided access to many of the operations like sending messages, subscribing to events, and manipulating headers. The `IBus` interface was available through dependency injection in message handlers, any custom components that were registered in the container and through other mechanisms like the saga base class.
 
 Some scenarios involving `IBus` include endpoint creation, sending messages during endpoint startup, sending messages from within message handlers, using the injected `IBus` in custom components also registered in the container. 
 
 ## During Endpoint Creation
 
-In previous versions of NServiceBus to start a new instance of an endpoint, either the `Bus` static class or the `IStartableBus` interface was used. In Version 6 these two concepts have been replaced. More information can be found in the [hosting](/nservicebus/hosting/) section of the documentation.
+In previous versions of NServiceBus to start a new instance of an endpoint, either the `Bus` static class or the `IStartableBus` interface was used. In Version 6 these two concepts have been replaced. More information can be found in the [hosting](/nservicebus/hosting/) section of the documentation. Instead of the `Bus` class, a new class called `Endpoint` helps to start the endpoint.
 
 `BusConfiguration` has been deprecated. Use `EndpointConfiguration` instead to configure and start the endpoint. 
 
-Instead of the `Bus` class, a new class called `Endpoint` helps to start the endpoint.
-
 snippet: 5to6-endpoint-start-stop
 
-Starting the endpoint, provides access to `IEndpointInstance` which can be used to send messages during endpoint start up instead.
+Starting the endpoint, provides access to `IEndpointInstance` which can be used to send messages during endpoint start up instead of using the `IBus` interface.
 
 ## Sending messages outside message handlers
 
@@ -45,24 +43,13 @@ snippet: 5to6-messagecontext
 
 ## Dependency Injection
 
-In previous versions of NServiceBus the `IBus` interface was automatically registered in the IoC container. In Version 6, the new context aware interfaces namely the `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext` will not be automatically registered in the IoC container. 
+In previous versions of NServiceBus the `IBus` interface was automatically registered in the IoC container. In Version 6, the new context aware interfaces, for example, the `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., will not be automatically registered in the IoC container.  
 
-The `IEndpointInstance` interface can be injected into the container when self hosting. When using NServiceBus.Host, the `IMessageSession` interface can be injected into the container.
+When containers are used for dependency injection, if the `IBus` was previously being used in the injected custom classes:
 
-### When injecting IBus in Custom Components
+If the custom component was sending messages using the injected `IBus`from outside of message handlers, for example, in a MVC Controller class, then it is safe to use register the `IEndpointInstance` when self hosting. This interface can then be used to send messages. 
 
-When containers are used for dependency injection, if the `IBus` was previously being used in the injected custom classes, there are two options depending on the usage of the custom component and where it was invoked.
-
-#### Using the Custom Components outside of message handlers
-
-If the custom component was sending messages using the injected `IBus`from outside of message handlers, for example, in a MVC Controller class, then it is safe to use register either the `IEndpointInstance` when self hosting or register the `IMessageSession` when using the NServiceBus.Host in the container. This interface can then be used to send messages. 
-
-
-### Using the Custom Components inside message handlers
-
-However if the custom component is accessed from within message handlers in order to either send or publish events, then it is not safe to use the injected `IEndpointInstance` or `IMessageSession`. Instead the `IMessageHandlerContext` parameter should be passed to the custom component instead to either send or publish messages.  
-
-It is important to use the appropriate `IMessageHandlerContext` parameter from the message handler to send or publish messages.
+However if the custom component is accessed from within message handlers then the `IMessageHandlerContext` parameter should be passed to the custom component instead of the `IEndpointInstance` interface to either send or publish messages. It is not safe to inject the `IEndpointInstance` for the following reasons: 
 
 If the `IEndpointInstance` interface is used inside a message handler to send or publish messages, then:
 
