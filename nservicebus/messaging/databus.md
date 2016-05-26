@@ -22,7 +22,8 @@ The `DataBus` approach is to store a large payload in a location that both the s
 
 The FileShare DataBus also [leverage both serialization and headers](/nservicebus/messaging/headers.md#fileshare-databus-headers) to provide its functionality.
 
-NOTE: The DataBus does not work with callbacks. Please use regular handlers instead.
+NOTE: The DataBus does not support [callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md), and will not rehydrate `DataBusProperty<T>` properties in a callback message. Callback registrations are stored in-memory, and as a result are not durable and may never arrive if, for example, the server restarts before the callback arrives. Therefore, callbacks are not reliable for transporting large amounts of data using the DataBus. If an application requires a response message containing DataBus data, it should implement a normal [message handler](/nservicebus/handlers/) which will be handled reliably.
+
 
 ## Enabling the DataBus
 
