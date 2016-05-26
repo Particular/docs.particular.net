@@ -33,7 +33,7 @@ class Program
                     #endregion
 
                     #region CreateNativePayload
-                    string payload = @"<MyMessage><SomeProperty>Hello from native sender</SomeProperty></MyMessage>";
+                    string payload = "<MyMessage><SomeProperty>Hello from native sender</SomeProperty></MyMessage>";
                     #endregion
 
                     #region SendMessage
