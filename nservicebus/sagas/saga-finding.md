@@ -11,7 +11,7 @@ related:
 - nservicebus/sagas/concurrency
 ---
 
-As described in [Correlating messages to a saga](/nservicebus/sagas/#correlating-messages-to-a-saga), every saga definition needs to specify how the existing saga instance should be found for an incoming message. The mechanisms described in that section should be the default choice and are suitable for many real-life scenarios. However, sometimes the mapping logic is too complex and it's necessary to define a custom saga finder.
+A saga can handle multiple messages. When NServiceBus receives a message that should be handled by a saga, it uses the [configured mapping information](/nservicebus/sagas/#correlating-messages-to-a-saga) to determine the correct saga instance that should handle the incoming message. However, in some complex scenarios, one property in the message may not be sufficient to resolve a saga instance. For example, two or more properties might together identify the correct saga instance. In such cases it becomes necessary to define a custom saga finder.
 
 
 ### [NHibernate](/nservicebus/nhibernate/) Saga Finder
