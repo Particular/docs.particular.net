@@ -7,7 +7,7 @@ Starting with Version 6, the `IBus` interface has been deprecated.
 
 The `IBus` interface was one of the key interfaces when using previous versions of NServiceBus. It provided access to many of the operations like sending messages, subscribing to events, and manipulating headers. The `IBus` interface was available through dependency injection in message handlers, any custom components that were registered in the container and through other mechanisms like the saga base class.
 
-Some scenarios involving `IBus` include endpoint creation, sending messages during endpoint startup, sending messages from within message handlers, using the injected `IBus` in custom components also registered in the container. 
+Some scenarios involving `IBus` include: endpoint creation, sending messages during endpoint startup, sending messages from within message handlers, using the injected `IBus` in custom components also registered in the container. 
 
 ## During Endpoint Creation
 
