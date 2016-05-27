@@ -29,9 +29,9 @@ If the endpoint is hosted using NServiceBus.Host, use the [IWantToRunWhenEndpoin
 
 ## Sending messages inside message handlers
 
-The public `IBus` injection property in message handlers can now be safely deleted.
+Instances of `IBus` that were being injected into message handler classes by the IoC container can be safely deleted. 
 
-The message handlers now includes an additional `IMessageHandlerContext` parameter, which provides the methods that used to be called from `IBus`. Use the `IMessageHandlerContext` to send and publish messages from within the message handler. 
+The message handler signature now includes an additional `IMessageHandlerContext` parameter, which provides the methods that used to be called from `IBus`. Use the `IMessageHandlerContext` to send and publish messages from within the message handler. 
 
 snippet:5to6-bus-send-publish
 
@@ -47,17 +47,17 @@ snippet: 5to6-messagecontext
 
 In previous versions of NServiceBus the `IBus` interface was automatically registered in the IoC container. In Version 6, the new context aware interfaces, for example, the `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., will not be automatically registered in the IoC container.  
 
-When containers are used for dependency injection, if the `IBus` was previously being used in the injected custom classes:
+When a custom component received an instance of `IBus` via dependency injection:
 
-If the custom component was sending messages using the injected `IBus`from outside of message handlers, for example, in a MVC Controller class, then it is safe to use register the `IEndpointInstance` when self hosting. This interface can then be used to send messages. 
+If the custom component was sending messages using the injected `IBus` from outside of message handlers, for example, in an MVC Controller class, then it is safe to register the `IEndpointInstance` when self hosting. This interface can then be used to send messages. See [Injecting the Bus into ASP.NET MVC Controller](/samples/web/asp-mvc-injecting-bus/) for an example of this.
 
-However if the custom component is accessed from within message handlers then the `IMessageHandlerContext` parameter should be passed to the custom component instead of the `IEndpointInstance` interface to either send or publish messages. 
+If the custom component is accessed from within message handlers then the `IMessageHandlerContext` parameter should be passed to the custom component instead of the `IEndpointInstance` interface to either send or publish messages. 
 
-It is not safe to inject the `IEndpointInstance`. If the `IEndpointInstance` interface is used inside a message handler to send or publish messages, then:
+It is not safe to simply replace all instances of `IBus` with `IEndpointInstance`. If the `IEndpointInstance` interface is used inside a message handler to send or publish messages, then:
 
 - those messages will not participate in the same transaction scope as that of the message handler. This could result in messages dispatched or events published via the `IEndpointInstance` interface even if the message handler resulted in an exception and the operation was rolled back.
 
-- those messages will not be part of the [batching operation](/nservicebus/messaging/batched-dispatch.md) and therefore will not have the benefits that Version 6 provides.
+- those messages will not be part of the [batching operation](/nservicebus/messaging/batched-dispatch.md).
 
 - those messages will not contain any important message header information that is available via the `IHandlerMessageContext` interface parameter, e.g., CorrelationId.  
 
