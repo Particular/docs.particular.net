@@ -21,5 +21,22 @@
             // Custom code after stop
             #endregion
         }
+
+        async Task SendMessagesOutsideMessageHandler()
+        {
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
+            
+            #region 5to6-endpoint-send-messages-outside-handlers
+            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+            await endpoint.Send(new SomeMessage());
+            #endregion
+            await endpoint.Stop();
+            // Custom code after stop
+            
+        }
+    }
+
+    class SomeMessage
+    {
     }
 }

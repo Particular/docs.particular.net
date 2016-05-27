@@ -23,6 +23,8 @@ Starting the endpoint, provides access to `IEndpointInstance` which can be used 
 
 A common use of `IBus` is to invoke bus operations outside of message handlers, such as sending a message from an ASP.NET request or from a client application. Instead of an `IBus` the `IEndpointInstance` offers all available bus operations outside the message processing pipeline. For example:
 
+snippet:5to6-endpoint-send-messages-outside-handlers
+
 If the endpoint is hosted using NServiceBus.Host, use the [IWantToRunWhenEndpointStartsAndStops interface](/nservicebus/upgrades/host-6to7.md) as outlined in the NServiceBus.Host documentation.
 
 ## Sending messages inside message handlers
@@ -49,13 +51,13 @@ When containers are used for dependency injection, if the `IBus` was previously 
 
 If the custom component was sending messages using the injected `IBus`from outside of message handlers, for example, in a MVC Controller class, then it is safe to use register the `IEndpointInstance` when self hosting. This interface can then be used to send messages. 
 
-However if the custom component is accessed from within message handlers then the `IMessageHandlerContext` parameter should be passed to the custom component instead of the `IEndpointInstance` interface to either send or publish messages. It is not safe to inject the `IEndpointInstance` for the following reasons: 
+However if the custom component is accessed from within message handlers then the `IMessageHandlerContext` parameter should be passed to the custom component instead of the `IEndpointInstance` interface to either send or publish messages. 
 
-If the `IEndpointInstance` interface is used inside a message handler to send or publish messages, then:
+It is not safe to inject the `IEndpointInstance`. If the `IEndpointInstance` interface is used inside a message handler to send or publish messages, then:
 
 - those messages will not participate in the same transaction scope as that of the message handler. This could result in messages dispatched or events published via the `IEndpointInstance` interface even if the message handler resulted in an exception and the operation was rolled back.
 
-- those messages will be part of the [batching operation](/nservicebus/messaging/batched-dispatch.md) and therefore will not have the benefits that Version 6 provides.
+- those messages will not be part of the [batching operation](/nservicebus/messaging/batched-dispatch.md) and therefore will not have the benefits that Version 6 provides.
 
 - those messages will not contain any important message header information that is available via the `IHandlerMessageContext` interface parameter, e.g., CorrelationId.  
 
@@ -74,9 +76,10 @@ This is no longer supported. It is advised to, instead of using `IBuilder` direc
 
 ### Setting the host information
 
-Control over `HostInformation` was previously done using `UnicastBus.HostInformation`. This is now done using the more explicit API to set the host identifier, see `busConfiguration.UniquelyIdentifyRunningInstance()`.
+Control over `HostInformation` was previously done using `UnicastBus.HostInformation`. This is now done using a [more explicit API to set the host identifier](/nservicebus/hosting/override-hostid.md#how-do-i-override-an-endpoint-host-identifier) using the endpoint configuration. 
 
+snippet: 5to6-Specifying-HostId-Using-Api
 
 ### Accessing ReadOnlySettings
 
-`ReadOnlySettings` have been exposed on `UnicastBus.Settings`. The settings should only be accessed inside features, the pipeline and the start/stop infrastructure. Therefore accessing the settings over the `UnicastBus` is no longer supported.
+Accessing `ReadOnlySettings` using `UnicastBus.Settings` is no longer supported as these settings should only be accessed inside features, the pipeline and the start/stop infrastructure. 
