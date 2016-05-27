@@ -1,5 +1,5 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using RabbitMQ.Client;
 
 [TestFixture]
 [Explicit]
@@ -8,11 +8,19 @@ public class ErrorQueueTests
     [Test]
     public void ReturnMessageToSourceQueue()
     {
-        ErrorQueue.ReturnMessageToSourceQueue(
-            errorQueueMachine: Environment.MachineName,
-            errorQueueName: "error",
-            userName: "guest",
-            password: "guest",
-            messageId: "6698f196-bd50-4f3c-8819-a49e0163d57b");
+        ConnectionFactory connectionFactory = new ConnectionFactory
+        {
+            HostName = "localhost",
+            Port = AmqpTcpEndpoint.UseDefaultPort,
+            UserName = "guest",
+            Password = "guest",
+        };
+        using (var connection = connectionFactory.CreateConnection())
+        {
+            ErrorQueue.ReturnMessageToSourceQueue(
+                brokerConnection: connection,
+                errorQueueName: "error",
+                messageId: "26afdee3-ac53-4990-95ef-a61300ca15c8");
+        }
     }
 }
