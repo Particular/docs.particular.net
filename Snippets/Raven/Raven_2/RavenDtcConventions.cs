@@ -21,6 +21,7 @@ public class EndpointConfig : IConfigureThisEndpoint
 
 static class RavenDtcExtensions
 {
+  //TODO
     public static PersistenceExtentions<RavenDBPersistence> SetRavenDtcSettings(this PersistenceExtentions<RavenDBPersistence> persistenceConfig, string endpointName)
     {
         DocumentStore store = new DocumentStore
