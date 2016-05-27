@@ -1,73 +1,74 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using global::RabbitMQ.Client;
-using global::RabbitMQ.Client.Events;
+using System.Threading;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 
 public static class ErrorQueue
 {
 
-    public static void ReturnMessageToSourceQueueUsage()
+    public static void ReturnMessageToSourceQueueUsage(ConnectionFactory connectionFactory)
     {
         #region rabbit-return-to-source-queue-usage
 
-        ReturnMessageToSourceQueue(
-            errorQueueMachine: Environment.MachineName,
-            errorQueueName: "error",
-            userName: "admin",
-            password: "password",
-            messageId: "6698f196-bd50-4f3c-8819-a49e0163d57b");
+        using (IConnection brokerConnection = connectionFactory.CreateConnection())
+        {
+            ReturnMessageToSourceQueue(
+                brokerConnection: brokerConnection,
+                errorQueueName: "error",
+                messageId: "6698f196-bd50-4f3c-8819-a49e0163d57b");
+        }
 
         #endregion
     }
 
     #region rabbit-return-to-source-queue
 
-    public static void ReturnMessageToSourceQueue(string errorQueueMachine, string errorQueueName, string userName, string password, string messageId)
+    public static void ReturnMessageToSourceQueue(IConnection brokerConnection, string errorQueueName, string messageId)
     {
-        using (IModel errorConnection = OpenConnection(errorQueueMachine, userName, password))
+        using (IModel model = brokerConnection.CreateModel())
         {
-            Dictionary<string, object> query = new Dictionary<string, object>
+            EventingBasicConsumer consumer = new EventingBasicConsumer(model);
+            BasicDeliverEventArgs deliverArgs = null;
+            ManualResetEvent resetEvent = new ManualResetEvent(false);
+            consumer.Received += (sender, args) =>
             {
-                {"message_id", messageId}
+                // already received
+                if (deliverArgs != null)
+                {
+                    return;
+                }
+                // filter based on specific id
+                if (args.BasicProperties.MessageId == messageId)
+                {
+                    deliverArgs = args;
+                    resetEvent.Set();
+                }
             };
-            QueueingBasicConsumer consumer = new QueueingBasicConsumer(errorConnection);
-            string basicConsume = errorConnection.BasicConsume(errorQueueName, false, Environment.UserName, false, true, query, consumer);
-
-            BasicDeliverEventArgs deliverArgs = consumer.Queue.Dequeue();
+            model.BasicConsume(errorQueueName, false, Environment.UserName, consumer);
+            if (!resetEvent.WaitOne(TimeSpan.FromSeconds(10)))
+            {
+                throw new Exception($"Could not find message with id '{messageId}' within 10 seconds.");
+            }
 
             string failedQueueName;
-            string failedMachineName;
-            ReadFailedQueueHeader(out failedQueueName, deliverArgs, out failedMachineName);
+            ReadFailedQueueHeader(out failedQueueName, deliverArgs);
 
-            using (IModel targetConnection = OpenConnection(failedMachineName, userName, password))
-            {
-                targetConnection.BasicPublish(string.Empty, failedQueueName, false, deliverArgs.BasicProperties, deliverArgs.Body);
-            }
-            errorConnection.BasicAck(deliverArgs.DeliveryTag, true);
+            model.BasicPublish(string.Empty, failedQueueName, false, deliverArgs.BasicProperties, deliverArgs.Body);
+            model.BasicAck(deliverArgs.DeliveryTag, true);
         }
     }
 
-    static void ReadFailedQueueHeader(out string queueName, BasicDeliverEventArgs deliverArgs, out string machineName)
+    static void ReadFailedQueueHeader(out string queueName, BasicDeliverEventArgs deliverArgs)
     {
         byte[] headerBytes = (byte[]) deliverArgs.BasicProperties.Headers["NServiceBus.FailedQ"];
         string header = Encoding.UTF8.GetString(headerBytes);
-        queueName = header.Split('@')[0];
-        machineName = header.Split('@')[1];
-    }
-
-    static IModel OpenConnection(string machine, string userName, string password)
-    {
-        ConnectionFactory factory = new ConnectionFactory
-        {
-            HostName = machine,
-            Port = AmqpTcpEndpoint.UseDefaultPort,
-            UserName = userName,
-            Password = password,
-        };
-        IConnection conn = factory.CreateConnection();
-        return conn.CreateModel();
+        // in Version 5 and below the machine name will be included after the @
+        // in Version 6 and above it will only be the queue name
+        queueName = header.Split('@').First();
     }
 
     #endregion
 }
+
