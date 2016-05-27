@@ -71,7 +71,7 @@ When using the `IBuilder` interface outside the infrastructure of NServiceBus it
 
     var builder = ((UnicastBus)bus).Builder
 
-This is no longer supported. It is advised to, instead of using `IBuilder` directly, use dependency injection via the container of choice.
+This is no longer supported. It is advised to, instead of using `IBuilder` directly, use dependency injection via the [container](/nservicebus/containers/) of choice.
 
 
 ### Setting the host information
