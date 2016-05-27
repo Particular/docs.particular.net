@@ -31,7 +31,8 @@ public static class NativeSend
 
     public static void SendMessage(string machineName, string queueName, string userName, string password, string messageBody, Dictionary<string, object> headers)
     {
-        using (var channel = OpenConnection(machineName, userName, password))
+        using (var connection = OpenConnection(machineName, userName, password))
+        using (var channel = connection.CreateModel())
         {
             var properties = channel.CreateBasicProperties();
             properties.MessageId = Guid.NewGuid().ToString();
@@ -40,7 +41,7 @@ public static class NativeSend
         }
     }
 
-    static IModel OpenConnection(string machine, string userName, string password)
+    static IConnection OpenConnection(string machine, string userName, string password)
     {
         var connectionFactory = new ConnectionFactory
         {
@@ -50,8 +51,7 @@ public static class NativeSend
             Password = password,
         };
 
-        var connection = connectionFactory.CreateConnection();
-        return connection.CreateModel();
+        return connectionFactory.CreateConnection();
     }
 
     #endregion

@@ -61,9 +61,8 @@ public static class QueueCreation
         };
 
         using (var connection = connectionFactory.CreateConnection())
+        using (var channel = connection.CreateModel())
         {
-            var channel = connection.CreateModel();
-
             channel.QueueDeclare(
                 queue: queueName,
                 durable: durableMessages,
