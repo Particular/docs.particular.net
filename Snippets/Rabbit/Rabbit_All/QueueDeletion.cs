@@ -25,15 +25,17 @@ public static class QueueDeletion
 
         #endregion
     }
+
     #region rabbit-delete-queues
     public static void DeleteQueue(string uri, string queueName)
     {
-        var factory = new ConnectionFactory
+        var connectionFactory = new ConnectionFactory
         {
             Uri = uri,
         };
-        using (var conn = factory.CreateConnection())
-        using (var channel = conn.CreateModel())
+
+        using (var connection = connectionFactory.CreateConnection())
+        using (var channel = connection.CreateModel())
         {
             channel.QueueUnbind(queueName, queueName, string.Empty, null);
             channel.ExchangeDelete(queueName);

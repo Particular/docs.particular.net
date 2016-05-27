@@ -42,15 +42,16 @@ public static class NativeSend
 
     static IModel OpenConnection(string machine, string userName, string password)
     {
-        var factory = new ConnectionFactory
+        var connectionFactory = new ConnectionFactory
         {
             HostName = machine,
             Port = AmqpTcpEndpoint.UseDefaultPort,
             UserName = userName,
             Password = password,
         };
-        var conn = factory.CreateConnection();
-        return conn.CreateModel();
+
+        var connection = connectionFactory.CreateConnection();
+        return connection.CreateModel();
     }
 
     #endregion

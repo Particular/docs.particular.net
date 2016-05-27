@@ -11,10 +11,10 @@ public static class ErrorQueue
     {
         #region rabbit-return-to-source-queue-usage
 
-        using (var brokerConnection = connectionFactory.CreateConnection())
+        using (var connection = connectionFactory.CreateConnection())
         {
             ReturnMessageToSourceQueue(
-                brokerConnection: brokerConnection,
+                connection: connection,
                 errorQueueName: "error",
                 messageId: "6698f196-bd50-4f3c-8819-a49e0163d57b");
         }
@@ -24,23 +24,23 @@ public static class ErrorQueue
 
     #region rabbit-return-to-source-queue
 
-    public static void ReturnMessageToSourceQueue(IConnection brokerConnection, string errorQueueName, string messageId)
+    public static void ReturnMessageToSourceQueue(IConnection connection, string errorQueueName, string messageId)
     {
-        using (var model = brokerConnection.CreateModel())
+        using (var channel = connection.CreateModel())
         {
             BasicGetResult getResult = null;
 
             do
             {
-                getResult = model.BasicGet(errorQueueName, false);
+                getResult = channel.BasicGet(errorQueueName, false);
 
                 if (getResult?.BasicProperties.MessageId == messageId)
                 {
                     string failedQueueName;
                     ReadFailedQueueHeader(out failedQueueName, getResult);
 
-                    model.BasicPublish(string.Empty, failedQueueName, false, getResult.BasicProperties, getResult.Body);
-                    model.BasicAck(getResult.DeliveryTag, false);
+                    channel.BasicPublish(string.Empty, failedQueueName, false, getResult.BasicProperties, getResult.Body);
+                    channel.BasicAck(getResult.DeliveryTag, false);
 
                     return;
                 }

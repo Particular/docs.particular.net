@@ -55,14 +55,14 @@ public static class QueueCreation
 
     public static void CreateQueue(string uri, string queueName, bool durableMessages, bool createExchange)
     {
-        var factory = new ConnectionFactory
+        var connectionFactory = new ConnectionFactory
         {
             Uri = uri,
         };
 
-        using (var conn = factory.CreateConnection())
+        using (var connection = connectionFactory.CreateConnection())
         {
-            var channel = conn.CreateModel();
+            var channel = connection.CreateModel();
 
             channel.QueueDeclare(
                 queue: queueName,
@@ -70,6 +70,7 @@ public static class QueueCreation
                 exclusive: false,
                 autoDelete: false,
                 arguments: null);
+
             if (createExchange)
             {
                 CreateExchange(channel, queueName, durableMessages);
