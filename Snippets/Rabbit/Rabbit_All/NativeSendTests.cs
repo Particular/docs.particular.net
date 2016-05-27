@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using Common;
 using NServiceBus;
 using NServiceBus.Config;
@@ -16,66 +17,55 @@ public class NativeSendTests
     string endpointName = "rabbitNativeSendTests";
     static string errorQueueName = "rabbitNativeSendTestsError";
 
+    static ManualResetEvent ResetEvent = new ManualResetEvent(false);
+
     [SetUp]
     [TearDown]
     public void Setup()
     {
-        QueueDeletion.DeleteQueuesForEndpoint("amqp://admin:password@localhost:5672", endpointName);
-        QueueDeletion.DeleteQueuesForEndpoint("amqp://admin:password@localhost:5672", errorQueueName);
+        QueueDeletion.DeleteQueuesForEndpoint("amqp://guest:guest@localhost:5672", endpointName);
+        QueueDeletion.DeleteQueuesForEndpoint("amqp://guest:guest@localhost:5672", errorQueueName);
     }
 
     [Test]
-    public void Send()
+    public async Task Send()
     {
-        State state = new State();
-        using (IBus bus = StartBus(state))
+        IEndpointInstance endpoint = await StartBus();
+        Dictionary<string, object> headers = new Dictionary<string, object>
         {
-            Dictionary<string, object> headers = new Dictionary<string, object>
-            {
-                {"NServiceBus.EnclosedMessageTypes", "Operations.RabbitMQ.NativeSendTests+MessageToSend"}
-            };
-            NativeSend.SendMessage(Environment.MachineName, endpointName, "admin", "password", @"{""Property"": ""Value"",}", headers);
-            state.ResetEvent.WaitOne();
-        }
+            {"NServiceBus.EnclosedMessageTypes", "NativeSendTests+MessageToSend"}
+        };
+        NativeSend.SendMessage("localhost", endpointName, "guest", "guest", @"{""Property"": ""Value"",}", headers);
+        ResetEvent.WaitOne();
+        await endpoint.Stop();
     }
 
-    IBus StartBus(State state)
+    Task<IEndpointInstance> StartBus()
     {
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Warn);
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
-        busConfiguration.EndpointName(endpointName);
-        busConfiguration.UseSerialization<JsonSerializer>();
-        var transport = busConfiguration.UseTransport<RabbitMQTransport>();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration(endpointName);
+        endpointConfiguration.SendFailedMessagesTo(errorQueueName);
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=localhost");
         Type[] rabbitTypes = typeof(RabbitMQTransport).Assembly.GetTypes();
-        busConfiguration.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>(rabbitTypes));
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.DisableFeature<SecondLevelRetries>();
-        return Bus.Create(busConfiguration).Start();
+        IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<NativeSendTests>(rabbitTypes);
+        endpointConfiguration.SetTypesToScan(typesToScan);
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        return Endpoint.Start(endpointConfiguration);
     }
 
     class MessageHandler : IHandleMessages<MessageToSend>
     {
-        State state;
-
-        public MessageHandler(State state)
-        {
-            this.state = state;
-        }
-
-        public void Handle(MessageToSend message)
+        public Task Handle(MessageToSend message, IMessageHandlerContext context)
         {
             Assert.AreEqual("Value", message.Property);
-            state.ResetEvent.Set();
+            ResetEvent.Set();
+            return Task.FromResult(0);
         }
-    }
-
-    class State
-    {
-        public ManualResetEvent ResetEvent = new ManualResetEvent(false);
     }
 
     class MessageToSend : IMessage
@@ -93,14 +83,4 @@ public class NativeSendTests
         }
     }
 
-    class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
-    {
-        public MessageForwardingInCaseOfFaultConfig GetConfiguration()
-        {
-            return new MessageForwardingInCaseOfFaultConfig
-            {
-                ErrorQueue = errorQueueName
-            };
-        }
-    }
 }

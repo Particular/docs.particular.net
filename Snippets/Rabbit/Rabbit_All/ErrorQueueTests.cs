@@ -11,8 +11,8 @@ public class ErrorQueueTests
         ErrorQueue.ReturnMessageToSourceQueue(
             errorQueueMachine: Environment.MachineName,
             errorQueueName: "error",
-            userName:"admin",
-            password:"password",
+            userName: "guest",
+            password: "guest",
             messageId: "6698f196-bd50-4f3c-8819-a49e0163d57b");
     }
 }
