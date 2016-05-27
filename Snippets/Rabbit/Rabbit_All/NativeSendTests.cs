@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using Common;
 using NServiceBus;
@@ -17,7 +16,7 @@ public class NativeSendTests
     string endpointName = "rabbitNativeSendTests";
     static string errorQueueName = "rabbitNativeSendTestsError";
 
-    static ManualResetEvent ResetEvent = new ManualResetEvent(false);
+    static TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
     [SetUp]
     [TearDown]
@@ -37,7 +36,7 @@ public class NativeSendTests
             {"NServiceBus.EnclosedMessageTypes", "NativeSendTests+MessageToSend"}
         };
         NativeSend.SendMessage("localhost", endpointName, "guest", "guest", @"{""Property"": ""Value"",}", headers);
-        ResetEvent.WaitOne();
+        await tcs.Task.ConfigureAwait(false);
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
@@ -65,7 +64,7 @@ public class NativeSendTests
         public Task Handle(MessageToSend message, IMessageHandlerContext context)
         {
             Assert.AreEqual("Value", message.Property);
-            ResetEvent.Set();
+            tcs.SetResult(true);
             return Task.FromResult(0);
         }
     }
@@ -74,6 +73,7 @@ public class NativeSendTests
     {
         public string Property { get; set; }
     }
+
     class ConfigTransport : IProvideConfiguration<TransportConfig>
     {
         public TransportConfig GetConfiguration()
