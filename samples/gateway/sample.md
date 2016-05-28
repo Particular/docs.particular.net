@@ -30,7 +30,7 @@ The central endpoint of the Sample.
  * Maps the site key `RemoteSite` to `http://localhost:25899/RemoteSite`
  * Receives incoming messages on `http://localhost:25899/Headquarters/`
 
-snippet: HeadquatersGatewayConfig
+snippet: HeadquartersGatewayConfig
 
 
 ## AcknowledgedHandler
