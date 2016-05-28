@@ -15,7 +15,7 @@ static class Program
     {
         Console.Title = "Samples.PubSub.MyPublisher";
         LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.PubSub.MyPublisher");
+        var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.MyPublisher");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         #region SubscriptionAuthorizer
@@ -23,14 +23,14 @@ static class Program
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         transport.SubscriptionAuthorizer(context =>
             {
-                string subscriptionType = context.MessageHeaders[Headers.MessageIntent];
-                MessageIntentEnum messageIntentEnum = (MessageIntentEnum) Enum.Parse(typeof(MessageIntentEnum), subscriptionType, true);
+                var subscriptionType = context.MessageHeaders[Headers.MessageIntent];
+                var messageIntentEnum = (MessageIntentEnum) Enum.Parse(typeof(MessageIntentEnum), subscriptionType, true);
                 if (messageIntentEnum == MessageIntentEnum.Unsubscribe)
                 {
                     return true;
                 }
 
-                string lowerEndpointName = context.MessageHeaders[Headers.SubscriberEndpoint]
+                var lowerEndpointName = context.MessageHeaders[Headers.SubscriberEndpoint]
                     .ToLowerInvariant();
                 return lowerEndpointName.StartsWith("samples.pubsub.subscriber1") ||
                        lowerEndpointName.StartsWith("samples.pubsub.subscriber2");
@@ -39,14 +39,17 @@ static class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await Start(endpoint);
+            await Start(endpointInstance)
+                .ConfigureAwait(false);
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 
@@ -59,10 +62,10 @@ static class Program
         #region PublishLoop
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
 
-            Guid eventId = Guid.NewGuid();
+            var eventId = Guid.NewGuid();
             switch (key.Key)
             {
                 case ConsoleKey.D1:
@@ -71,28 +74,31 @@ static class Program
                         m.EventId = eventId;
                         m.Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null;
                         m.Duration = TimeSpan.FromSeconds(99999D);
-                    });
-                    Console.WriteLine("Published IMyEvent with Id {0}.", eventId);
+                    })
+                    .ConfigureAwait(false);
+                    Console.WriteLine($"Published IMyEvent with Id {eventId}.");
                     continue;
                 case ConsoleKey.D2:
-                    EventMessage eventMessage = new EventMessage
+                    var eventMessage = new EventMessage
                     {
                         EventId = eventId,
                         Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null,
                         Duration = TimeSpan.FromSeconds(99999D)
                     };
-                    await endpointInstance.Publish(eventMessage);
-                    Console.WriteLine("Published EventMessage with Id {0}.", eventId);
+                    await endpointInstance.Publish(eventMessage)
+                        .ConfigureAwait(false);
+                    Console.WriteLine($"Published EventMessage with Id {eventId}.");
                     continue;
                 case ConsoleKey.D3:
-                    AnotherEventMessage anotherEventMessage = new AnotherEventMessage
+                    var anotherEventMessage = new AnotherEventMessage
                     {
                         EventId = eventId,
                         Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null,
                         Duration = TimeSpan.FromSeconds(99999D)
                     };
-                    await endpointInstance.Publish(anotherEventMessage);
-                    Console.WriteLine("Published AnotherEventMessage with Id {0}.", eventId);
+                    await endpointInstance.Publish(anotherEventMessage)
+                        .ConfigureAwait(false);
+                    Console.WriteLine($"Published AnotherEventMessage with Id {eventId}.");
                     continue;
                 default:
                     return;

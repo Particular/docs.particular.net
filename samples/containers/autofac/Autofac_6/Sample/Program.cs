@@ -13,13 +13,14 @@ static class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Autofac";
+
         #region ContainerConfiguration
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Autofac");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Autofac");
 
-        ContainerBuilder builder = new ContainerBuilder();
+        var builder = new ContainerBuilder();
         builder.RegisterInstance(new MyService());
-        IContainer container = builder.Build();
+        var container = builder.Build();
         endpointConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
 
         #endregion
@@ -29,16 +30,19 @@ static class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new MyMessage());
+            await endpointInstance.SendLocal(new MyMessage())
+                .ConfigureAwait(false);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

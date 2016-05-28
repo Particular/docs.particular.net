@@ -12,7 +12,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.SqlNHibernate.Receiver";
-        Configuration hibernateConfig = new Configuration();
+        var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
             x.ConnectionStringName = "NServiceBus/Persistence";
@@ -25,13 +25,13 @@ class Program
 
         #endregion
 
-        ModelMapper mapper = new ModelMapper();
+        var mapper = new ModelMapper();
         mapper.AddMapping<OrderMap>();
         hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
         new SchemaExport(hibernateConfig).Execute(false, true, false);
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SqlNHibernate.Receiver");
         busConfiguration.EnableInstallers();
 

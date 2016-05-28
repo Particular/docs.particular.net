@@ -25,7 +25,7 @@ public class MvcApplication : HttpApplication
 
     void StartBus()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Callbacks.WebSender");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();

@@ -26,24 +26,26 @@ class SerializeConnector : StageConnector<IOutgoingLogicalMessageContext, IOutgo
     {
         if (context.ShouldSkipSerialization())
         {
-            IOutgoingPhysicalMessageContext emptyPhysicalMessageContext = this.CreateOutgoingPhysicalMessageContext(new byte[0], context.RoutingStrategies, context);
-            await stage(emptyPhysicalMessageContext).ConfigureAwait(false);
+            var emptyPhysicalMessageContext = this.CreateOutgoingPhysicalMessageContext(new byte[0], context.RoutingStrategies, context);
+            await stage(emptyPhysicalMessageContext)
+                .ConfigureAwait(false);
             return;
         }
 
-        Type messageType = context.Message.MessageType;
-        IMessageSerializer messageSerializer = serializationMapper.GetSerializer(messageType);
+        var messageType = context.Message.MessageType;
+        var messageSerializer = serializationMapper.GetSerializer(messageType);
         context.Headers[Headers.ContentType] = messageSerializer.ContentType;
         context.Headers[Headers.EnclosedMessageTypes] = SerializeEnclosedMessageTypes(messageType);
 
         byte[] array = Serialize(messageSerializer, context);
-        IOutgoingPhysicalMessageContext physicalMessageContext = this.CreateOutgoingPhysicalMessageContext(array, context.RoutingStrategies, context);
-        await stage(physicalMessageContext).ConfigureAwait(false);
+        var physicalMessageContext = this.CreateOutgoingPhysicalMessageContext(array, context.RoutingStrategies, context);
+        await stage(physicalMessageContext)
+            .ConfigureAwait(false);
     }
 
     byte[] Serialize(IMessageSerializer messageSerializer, IOutgoingLogicalMessageContext context)
     {
-        using (MemoryStream stream = new MemoryStream())
+        using (var stream = new MemoryStream())
         {
             messageSerializer.Serialize(context.Message.Instance, stream);
             return stream.ToArray();
@@ -52,7 +54,7 @@ class SerializeConnector : StageConnector<IOutgoingLogicalMessageContext, IOutgo
 
     string SerializeEnclosedMessageTypes(Type messageType)
     {
-        MessageMetadata metadata = messageMetadataRegistry.GetMessageMetadata(messageType);
+        var metadata = messageMetadataRegistry.GetMessageMetadata(messageType);
         IEnumerable<Type> distinctTypes = metadata.MessageHierarchy.Distinct();
         return string.Join(";", distinctTypes.Select(t => t.AssemblyQualifiedName));
     }

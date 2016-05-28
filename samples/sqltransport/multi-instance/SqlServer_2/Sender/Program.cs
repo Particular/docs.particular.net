@@ -1,8 +1,6 @@
 ﻿using System;
 using Messages;
 using NServiceBus;
-using NServiceBus.Config;
-using NServiceBus.Config.ConfigurationSource;
 
 public class Program
 {
@@ -12,7 +10,7 @@ public class Program
 
         #region SenderConfiguration
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SqlServer.MultiInstanceSender");
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.UseSpecificConnectionInformation(ConnectionProvider.GetConnection);
@@ -22,7 +20,7 @@ public class Program
 
         #endregion
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press <enter> to send a message");
             Console.WriteLine("Press any other key to exit");
@@ -36,7 +34,7 @@ public class Program
 
                 #region SendMessage
 
-                ClientOrder order = new ClientOrder
+                var order = new ClientOrder
                 {
                     OrderId = Guid.NewGuid()
                 };
@@ -45,19 +43,9 @@ public class Program
 
                 #endregion
 
-                Console.WriteLine("ClientOrder message sent with ID {0}", order.OrderId);
+                Console.WriteLine($"ClientOrder message sent with ID {order.OrderId}");
             }
         }
     }
 
-    class ProvideConfiguration : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
-    {
-        public MessageForwardingInCaseOfFaultConfig GetConfiguration()
-        {
-            return new MessageForwardingInCaseOfFaultConfig
-            {
-                ErrorQueue = "error"
-            };
-        }
-    }
 }

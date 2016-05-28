@@ -12,7 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.AsyncPages.Server";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.Server");
+        var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.Server");
         endpointConfiguration.ScaleOut()
             .InstanceDiscriminator("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -20,7 +20,8 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -28,7 +29,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

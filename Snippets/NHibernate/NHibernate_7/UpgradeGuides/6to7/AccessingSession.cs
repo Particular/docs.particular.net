@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using global::NHibernate;
 using NServiceBus;
 
 class AccessingSession
@@ -18,7 +17,7 @@ class AccessingSession
     {
         public Task Handle(OrderMessage message, IMessageHandlerContext context)
         {
-            ISession nhibernateSession = context.SynchronizedStorageSession.Session();
+            var nhibernateSession = context.SynchronizedStorageSession.Session();
             nhibernateSession.Save(new Order());
             return Task.FromResult(0);
         }

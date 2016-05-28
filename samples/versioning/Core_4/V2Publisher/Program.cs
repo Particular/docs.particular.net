@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.Versioning.V2Publisher";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Versioning.V2Publisher");
         configure.DefaultBuilder();
@@ -16,15 +16,15 @@ class Program
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             
             Console.WriteLine("Press enter to publish a message");
             Console.WriteLine("Press any key to exit");
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)

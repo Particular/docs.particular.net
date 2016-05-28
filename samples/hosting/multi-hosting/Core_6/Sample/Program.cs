@@ -19,8 +19,10 @@ class Program
         IEndpointInstance endpoint2 = null;
         try
         {
-            endpoint1 = await StartInstance1();
-            endpoint2 = await StartInstance2();
+            endpoint1 = await StartInstance1()
+                .ConfigureAwait(false);
+            endpoint2 = await StartInstance2()
+                .ConfigureAwait(false);
 
             Console.WriteLine("Press '1' to send a message from Instance1 to Instance2");
             Console.WriteLine("Press '2' to send a message from Instance2 to Instance1");
@@ -28,16 +30,19 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
+                var message = new MyMessage();
                 if (key.Key == ConsoleKey.D1)
                 {
-                    await endpoint1.Send("Samples.MultiHosting.Instance2", new MyMessage());
+                    await endpoint1.Send("Samples.MultiHosting.Instance2", message)
+                        .ConfigureAwait(false);
                     continue;
                 }
                 if (key.Key == ConsoleKey.D2)
                 {
-                    await endpoint2.Send("Samples.MultiHosting.Instance1", new MyMessage());
+                    await endpoint2.Send("Samples.MultiHosting.Instance1", message)
+                        .ConfigureAwait(false);
                     continue;
                 }
                 return;
@@ -47,22 +52,24 @@ class Program
         {
             if (endpoint1 != null)
             {
-                await endpoint1.Stop();
+                await endpoint1.Stop()
+                    .ConfigureAwait(false);
             }
             if (endpoint2 != null)
             {
-                await endpoint2.Stop();
+                await endpoint2.Stop()
+                    .ConfigureAwait(false);
             }
         }
 
         #endregion
     }
 
-    static async Task<IEndpointInstance> StartInstance1()
+    static Task<IEndpointInstance> StartInstance1()
     {
         #region multi-hosting-assembly-scan
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.Instance1");
+        var endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.Instance1");
         //Exclude Instance2.dll and, by inference, include all other assemblies
         endpointConfiguration.ExcludeAssemblies("Instance2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -70,20 +77,20 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        return await Endpoint.Start(endpointConfiguration);
+        return Endpoint.Start(endpointConfiguration);
 
         #endregion
     }
 
-    static async Task<IEndpointInstance> StartInstance2()
+    static Task<IEndpointInstance> StartInstance2()
     {
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.Instance2");
+        var endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.Instance2");
         endpointConfiguration.ExcludeAssemblies("Instance1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        return await Endpoint.Start(endpointConfiguration);
+        return Endpoint.Start(endpointConfiguration);
     }
 }

@@ -7,8 +7,8 @@
         DefineExpress(EndpointConfiguration endpointConfiguration)
         {
             #region ExpressMessageConvention
-            ConventionsBuilder builder = endpointConfiguration.Conventions();
-            builder.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
+            var conventionsBuilder = endpointConfiguration.Conventions();
+            conventionsBuilder.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
 
             #endregion
         }

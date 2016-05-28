@@ -10,13 +10,13 @@ class Program
         Console.Title = "Samples.FullDuplex.Client";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.FullDuplex.Client");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
@@ -25,17 +25,17 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
                 {
                     return;
                 }
-                Guid guid = Guid.NewGuid();
-                Console.WriteLine("Requesting to get data by id: {0}", guid.ToString("N"));
+                var guid = Guid.NewGuid();
+                Console.WriteLine($"Requesting to get data by id: {guid.ToString("N")}");
 
-                RequestDataMessage message = new RequestDataMessage
+                var message = new RequestDataMessage
                 {
                     DataId = guid,
                     String = "String property value"

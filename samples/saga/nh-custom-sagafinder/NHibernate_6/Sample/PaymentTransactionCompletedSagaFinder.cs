@@ -1,6 +1,5 @@
 ﻿using NServiceBus.Persistence.NHibernate;
 using NServiceBus.Saga;
-using NHibernate;
 
 class PaymentTransactionCompletedSagaFinder : IFindSagas<OrderSagaData>.Using<PaymentTransactionCompleted>
 {
@@ -13,7 +12,7 @@ class PaymentTransactionCompletedSagaFinder : IFindSagas<OrderSagaData>.Using<Pa
 
     public OrderSagaData FindBy(PaymentTransactionCompleted message)
     {
-        ISession session = storageContext.Session;
+        var session = storageContext.Session;
         return session.QueryOver<OrderSagaData>()
             .Where(d => d.PaymentTransactionId == message.PaymentTransactionId)
             .SingleOrDefault();

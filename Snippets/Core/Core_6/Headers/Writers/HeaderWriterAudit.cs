@@ -1,7 +1,5 @@
 ﻿namespace Core6.Headers.Writers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Common;
@@ -27,8 +25,8 @@
         [Test]
         public async Task Write()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration(endpointName);
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterAudit>();
+            var endpointConfiguration = new EndpointConfiguration(endpointName);
+            var typesToScan = TypeScanner.NestedTypes<HeaderWriterAudit>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.SendFailedMessagesTo("error");
@@ -36,10 +34,13 @@
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
 
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-            await endpoint.SendLocal(new MessageToSend());
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
+            await endpointInstance.SendLocal(new MessageToSend())
+                .ConfigureAwait(false);
             ManualResetEvent.WaitOne();
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
 
         class MessageToSend : IMessage
@@ -63,12 +64,18 @@
                 if (!receivedFirstMessage)
                 {
                     receivedFirstMessage = true;
-                    string sendText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(context.Headers);
-                    SnippetLogger.Write(text: sendText, suffix: "Send", version: "6");
+                    var sendText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(context.Headers);
+                    SnippetLogger.Write(
+                        text: sendText,
+                        suffix: "Send",
+                        version: "6");
                     return Task.FromResult(0);
                 }
-                string auditText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(context.Headers);
-                SnippetLogger.Write(text: auditText, suffix: "Audit", version: "6");
+                var auditText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(context.Headers);
+                SnippetLogger.Write(
+                    text: auditText,
+                    suffix: "Audit",
+                    version: "6");
                 ManualResetEvent.Set();
                 return Task.FromResult(0);
             }

@@ -16,13 +16,14 @@ class Program
         Console.Title = "Samples.FullDuplex.Server";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.FullDuplex.Server");
+        var endpointConfiguration = new EndpointConfiguration("Samples.FullDuplex.Server");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -30,7 +31,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

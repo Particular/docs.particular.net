@@ -10,7 +10,7 @@ class ExtractTenantConnectionStringBehavior : Behavior<ITransportReceiveContext>
 
     public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
     {
-        string defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"]
+        var defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"]
             .ConnectionString;
 
         #region OpenTenantDatabaseConnection
@@ -20,13 +20,14 @@ class ExtractTenantConnectionStringBehavior : Behavior<ITransportReceiveContext>
         {
             throw new InvalidOperationException("No tenant id");
         }
-        string connectionString = ConfigurationManager.ConnectionStrings[tenant]
+        var connectionString = ConfigurationManager.ConnectionStrings[tenant]
             .ConnectionString;
 
         ConnectionStringHolder.Value = connectionString;
         try
         {
-            await next().ConfigureAwait(false);
+            await next()
+                .ConfigureAwait(false);
         }
         finally
         {

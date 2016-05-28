@@ -12,12 +12,12 @@ class Program
         Console.Title = "Samples.RavenDBCustomSagaFinder";
         using (new RavenHost())
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName("Samples.RavenDBCustomSagaFinder");
             busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.EnableInstallers();
 
-            DocumentStore documentStore = new DocumentStore
+            var documentStore = new DocumentStore
             {
                 Url = "http://localhost:32076",
                 DefaultDatabase = "NServiceBus"
@@ -30,7 +30,7 @@ class Program
             persistence.DoNotSetupDatabasePermissions();
             persistence.SetDefaultDocumentStore(documentStore);
 
-            using (IBus bus = Bus.Create(busConfiguration).Start())
+            using (var bus = Bus.Create(busConfiguration).Start())
             {
                 bus.SendLocal(new StartOrder
                 {

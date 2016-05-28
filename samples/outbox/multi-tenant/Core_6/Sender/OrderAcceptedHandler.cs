@@ -8,7 +8,7 @@ public class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
 
     public Task Handle(OrderAccepted message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Order {0} accepted.", message.OrderId);
+        log.Info($"Order {message.OrderId} accepted.");
 
         return Task.FromResult(0);
     }

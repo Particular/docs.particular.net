@@ -9,7 +9,7 @@ public class CustomExceptionLayoutRenderer : ExceptionLayoutRenderer
 {
     protected override void AppendToString(StringBuilder stringBuilder, Exception exception)
     {
-        string asyncString = exception.ToAsyncString();
+        var asyncString = exception.ToAsyncString();
         stringBuilder.Append(asyncString);
     }
 }

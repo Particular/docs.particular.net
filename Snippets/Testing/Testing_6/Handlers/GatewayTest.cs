@@ -21,12 +21,12 @@
 
         class MyHandler : IHandleMessages<MyMessage>
         {
-            public async Task Handle(MyMessage message, IMessageHandlerContext context)
+            public Task Handle(MyMessage message, IMessageHandlerContext context)
             {
-                SendOptions options = new SendOptions();
-                options.RouteToSites("myFavouriteSite");
+                var options = new SendOptions();
+                options.RouteToSites("myFavoriteSite");
 
-                await context.Send(new GatewayMessage(), options);
+                return context.Send(new GatewayMessage(), options);
             }
         }
         #endregion

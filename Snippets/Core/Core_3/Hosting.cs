@@ -3,7 +3,6 @@
     using System;
     using NServiceBus;
     using NServiceBus.Unicast;
-    using NServiceBus.Unicast.Config;
 
     class Hosting
     {
@@ -11,9 +10,9 @@
         {
             #region Hosting-SendOnly
 
-            Configure configure = Configure.With();
-            ConfigUnicastBus configUnicastBus = configure.UnicastBus();
-            IBus bus = configUnicastBus.SendOnly();
+            var configure = Configure.With();
+            var configUnicastBus = configure.UnicastBus();
+            var bus = configUnicastBus.SendOnly();
 
             #endregion
         }
@@ -22,17 +21,17 @@
         {
             #region Hosting-Startup
 
-            Configure configure = Configure.With();
-            ConfigUnicastBus configUnicastBus = configure.UnicastBus();
-            IStartableBus startableBus = configUnicastBus.CreateBus();
-            IBus bus = startableBus.Start();
+            var configure = Configure.With();
+            var configUnicastBus = configure.UnicastBus();
+            var startableBus = configUnicastBus.CreateBus();
+            var bus = startableBus.Start();
             #endregion
         }
 
         void Shutdown(IBus bus)
         {
             #region Hosting-Shutdown
-            UnicastBus busImpl = (UnicastBus) bus;
+            var busImpl = (UnicastBus) bus;
             busImpl.Dispose();
             #endregion
         }

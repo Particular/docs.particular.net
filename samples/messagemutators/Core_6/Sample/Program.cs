@@ -12,7 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.MessageMutators";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MessageMutators");
+        var endpointConfiguration = new EndpointConfiguration("Samples.MessageMutators");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -25,14 +25,17 @@ class Program
         });
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await Runner.Run(endpoint);
+            await Runner.Run(endpointInstance)
+                .ConfigureAwait(false);
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

@@ -21,19 +21,22 @@ static class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
 
             switch (key.Key)
             {
                 case ConsoleKey.E:
-                    await SendEnum();
+                    await SendEnum()
+                        .ConfigureAwait(false);
                     continue;
                 case ConsoleKey.I:
-                    await SendInt();
+                    await SendInt()
+                        .ConfigureAwait(false);
                     continue;
                 case ConsoleKey.O:
-                    await SendObject();
+                    await SendObject()
+                        .ConfigureAwait(false);
                     continue;
             }
             return;
@@ -42,45 +45,53 @@ static class Program
 
     static async Task SendEnum()
     {
-        EnumMessage message = new EnumMessage
+        var message = new EnumMessage
         {
             Property = "The Property Value"
         };
-        Status response = await Send<EnumMessage, Status>(message);
+        var response = await Send<EnumMessage, Status>(message)
+            .ConfigureAwait(false);
         Console.WriteLine("Response: " + response);
     }
 
     static async Task SendInt()
     {
-        IntMessage message = new IntMessage
+        var message = new IntMessage
         {
             Property = "The Property Value"
         };
 
-        int response = await Send<IntMessage, int>(message);
+        var response = await Send<IntMessage, int>(message)
+            .ConfigureAwait(false);
         Console.WriteLine("Response: " + response);
     }
 
     #region Send
+
     static async Task SendObject()
     {
-        ObjectMessage message = new ObjectMessage
+        var message = new ObjectMessage
         {
             Property = "The Property Value"
         };
-        ReplyMessage response = await Send<ObjectMessage, ReplyMessage>(message);
+        var response = await Send<ObjectMessage, ReplyMessage>(message)
+            .ConfigureAwait(false);
         Console.WriteLine("Response: " + response.Property);
     }
+
     #endregion
 
     #region SendHelper
-    static async Task<TResponse> Send<TRequest,TResponse>(TRequest request)
+
+    static async Task<TResponse> Send<TRequest, TResponse>(TRequest request)
     {
         using (ChannelFactory<ICallbackService<TRequest, TResponse>> channelFactory = ClientChannelBuilder.GetChannelFactory<TRequest, TResponse>(serverUrl))
         using (ICallbackService<TRequest, TResponse> client = channelFactory.CreateChannel())
         {
-            return await client.SendRequest(request);
+            return await client.SendRequest(request)
+                .ConfigureAwait(false);
         }
     }
-#endregion
+
+    #endregion
 }

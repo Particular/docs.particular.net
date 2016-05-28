@@ -8,7 +8,7 @@ public class MyMessageHandler : IHandleMessages<MyMessage>
     static ILog log = LogManager.GetLogger<MyMessageHandler>();
     IBus bus;
     static ConcurrentDictionary<Guid, string> Last = new ConcurrentDictionary<Guid, string>();
-    
+
     public MyMessageHandler(IBus bus)
     {
         this.bus = bus;
@@ -16,7 +16,7 @@ public class MyMessageHandler : IHandleMessages<MyMessage>
 
     public void Handle(MyMessage message)
     {
-        IMessageContext context = bus.CurrentMessageContext;
+        var context = bus.CurrentMessageContext;
         log.InfoFormat("ReplyToAddress: {0} MessageId:{1}", context.ReplyToAddress, context.Id);
 
         string numOfRetries;

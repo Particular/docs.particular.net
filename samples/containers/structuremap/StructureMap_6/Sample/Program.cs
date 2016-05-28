@@ -14,8 +14,8 @@ static class Program
     {
         Console.Title = "Samples.StructureMap";
         #region ContainerConfiguration
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.StructureMap");
-        Container container = new Container(x => x.For<MyService>().Use(new MyService()));
+        var endpointConfiguration = new EndpointConfiguration("Samples.StructureMap");
+        var container = new Container(x => x.For<MyService>().Use(new MyService()));
         endpointConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
         #endregion
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -23,17 +23,20 @@ static class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new MyMessage());
+            var myMessage = new MyMessage();
+            await endpointInstance.SendLocal(myMessage)
+                .ConfigureAwait(false);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
-
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

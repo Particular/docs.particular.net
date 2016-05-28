@@ -22,24 +22,27 @@ public class OrderSaga : Saga<OrderSagaData>,
     public async Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
-        logger.InfoFormat("Saga with OrderId {0} received StartOrder with OrderId {1}", Data.OrderId, message.OrderId);
-        await context.SendLocal(new CompleteOrder
+        logger.InfoFormat($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
+        var completeOrder = new CompleteOrder
         {
             OrderId = Data.OrderId
-        });
-        await RequestTimeout<CancelOrder>(context, TimeSpan.FromMinutes(30));
+        };
+        await context.SendLocal(completeOrder)
+            .ConfigureAwait(false);
+        await RequestTimeout<CancelOrder>(context, TimeSpan.FromMinutes(30))
+            .ConfigureAwait(false);
     }
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        logger.InfoFormat("Saga with OrderId {0} received CompleteOrder with OrderId {1}", Data.OrderId, message.OrderId);
+        logger.InfoFormat($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
         return Task.FromResult(0);
     }
 
     public Task Timeout(CancelOrder state, IMessageHandlerContext context)
     {
-        logger.InfoFormat("Complete not received soon enough OrderId {0}", Data.OrderId);
+        logger.InfoFormat($"Complete not received soon enough OrderId {Data.OrderId}");
         MarkAsComplete();
         return Task.FromResult(0);
     }

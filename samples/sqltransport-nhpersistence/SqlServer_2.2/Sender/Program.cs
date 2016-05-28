@@ -12,11 +12,11 @@ class Program
     {
         Console.Title = "Samples.SqlNHibernate.Sender";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-        Random random = new Random();
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var random = new Random();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SqlNHibernate.Sender");
         busConfiguration.EnableInstallers();
-        Configuration hibernateConfig = new Configuration();
+        var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
             x.ConnectionStringName = "NServiceBus/Persistence";
@@ -45,7 +45,7 @@ class Program
 
         #endregion
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
 
             Console.WriteLine("Press enter to send a message");
@@ -53,7 +53,7 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
@@ -61,13 +61,13 @@ class Program
                     return;
                 }
 
-                string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                bus.Publish(new OrderSubmitted
+                var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+                var orderSubmitted = new OrderSubmitted
                 {
                     OrderId = orderId,
                     Value = random.Next(100)
-                });
-
+                };
+                bus.Publish(orderSubmitted);
             }
         }
     }

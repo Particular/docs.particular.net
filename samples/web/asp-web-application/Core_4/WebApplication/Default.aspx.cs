@@ -9,20 +9,22 @@ public partial class Default : Page
         {
             return;
         }
+
         #region ActionHandling
+
         int number;
         if (!int.TryParse(TextBox1.Text, out number))
         {
             return;
         }
-        Command command = new Command
-                        {
-                            Id = number
-                        };
+        var command = new Command
+        {
+            Id = number
+        };
 
         Global.Bus.Send("Samples.AsyncPages.Server", command)
-            .Register<ErrorCodes>(code => Label1.Text = Enum.GetName(typeof (ErrorCodes), code));
+            .Register<ErrorCodes>(code => Label1.Text = Enum.GetName(typeof(ErrorCodes), code));
+
         #endregion
     }
-
 }

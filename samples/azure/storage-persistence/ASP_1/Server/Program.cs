@@ -13,18 +13,21 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Azure.StoragePersistence.Server";
+
         #region config
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.StoragePersistence.Server");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Azure.StoragePersistence.Server");
         var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
         persistence.ConnectionString("UseDevelopmentStorage=true");
 
         #endregion
+
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -32,7 +35,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

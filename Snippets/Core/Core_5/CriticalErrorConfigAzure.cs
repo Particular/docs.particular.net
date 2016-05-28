@@ -14,14 +14,14 @@
             // Configuring how NServicebus handles critical errors
             busConfiguration.DefineCriticalErrorAction((message, exception) =>
             {
-                string output = string.Format("Critical exception: '{0}'", message);
+                var output = $"Critical exception: '{message}'";
                 log.Error(output, exception);
                 if (Environment.UserInteractive)
                 {
                     Thread.Sleep(10000); // so that user can see on their screen the problem
                 }
 
-                string fatalMessage = string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", message);
+                var fatalMessage = $"The following critical error was encountered by NServiceBus:\n{message}\nNServiceBus is shutting down.";
                 Environment.FailFast(fatalMessage, exception);
             });
 

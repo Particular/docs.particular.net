@@ -18,10 +18,10 @@ namespace Core6.Notifications
                 handler => notifications.Errors.MessageSentToErrorQueue += handler,
                 handler => notifications.Errors.MessageSentToErrorQueue -= handler);
 
-            IDisposable subscription = failedMessages
+            var subscription = failedMessages
                 .Subscribe(x =>
                 {
-                    FailedMessage failedMessage = x.EventArgs;
+                    var failedMessage = x.EventArgs;
                     log.Error($"Message {failedMessage.MessageId} moved to error queue", failedMessage.Exception);
                 });
 

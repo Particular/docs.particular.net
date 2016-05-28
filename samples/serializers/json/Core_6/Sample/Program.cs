@@ -14,7 +14,7 @@ static class Program
     {
         Console.Title = "Samples.Serialization.Json";
         #region config
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Json");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Json");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         // register the mutator so the the message on the wire is written
         endpointConfiguration.RegisterComponents(components =>
@@ -26,11 +26,12 @@ static class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             #region message
-            CreateOrder message = new CreateOrder
+            var message = new CreateOrder
             {
                 OrderId = 9,
                 Date = DateTime.Now,
@@ -49,7 +50,8 @@ static class Program
                     },
                 }
             };
-            await endpoint.SendLocal(message);
+            await endpointInstance.SendLocal(message)
+                .ConfigureAwait(false);
             #endregion
             Console.WriteLine("Order Sent");
             Console.WriteLine("Press any key to exit");
@@ -57,7 +59,8 @@ static class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

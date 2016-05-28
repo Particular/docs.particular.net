@@ -9,7 +9,7 @@ static class Program
     {
         Console.Title = "Samples.Serialization.Xml";
         #region config
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Serialization.Xml");
         // this is optional since Xml is the default serializer
         busConfiguration.UseSerialization<XmlSerializer>();
@@ -23,10 +23,10 @@ static class Program
         busConfiguration.EnableInstallers();
 
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             #region message
-            CreateOrder message = new CreateOrder
+            var message = new CreateOrder
             {
                 OrderId = 9,
                 Date = DateTime.Now,

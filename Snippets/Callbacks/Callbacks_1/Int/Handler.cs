@@ -7,9 +7,9 @@ namespace Core6.Int
 
     public class Handler : IHandleMessages<Message>
     {
-        public async Task Handle(Message message, IMessageHandlerContext context)
+        public Task Handle(Message message, IMessageHandlerContext context)
         {
-            await context.Reply(10);
+            return context.Reply(10);
         }
     }
 

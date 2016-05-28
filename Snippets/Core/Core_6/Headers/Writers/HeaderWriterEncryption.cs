@@ -1,7 +1,5 @@
 ﻿namespace Core6.Headers.Writers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
@@ -28,21 +26,24 @@
         [Test]
         public async Task Write()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration(endpointName);
+            var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.RijndaelEncryptionService("2015-10", Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
             endpointConfiguration.Conventions().DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>();
+            var typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-            await endpoint.SendLocal(new MessageToSend
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
+            var messageToSend = new MessageToSend
             {
                 EncryptedProperty1 = "String 1",
                 EncryptedProperty2 = "String 2"
-            });
+            };
+            await endpointInstance.SendLocal(messageToSend)
+                .ConfigureAwait(false);
             ManualResetEvent.WaitOne();
         }
 
@@ -64,7 +65,7 @@
         {
             public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
-                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterEncryption>(context.Headers);
+                var headerText = HeaderWriter.ToFriendlyString<HeaderWriterEncryption>(context.Headers);
                 SnippetLogger.Write(headerText, version: "6");
                 SnippetLogger.Write(Encoding.Default.GetString(context.Body), version: "6", suffix: "Body");
                 ManualResetEvent.Set();

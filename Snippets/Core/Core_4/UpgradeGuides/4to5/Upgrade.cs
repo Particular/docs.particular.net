@@ -6,7 +6,6 @@
     using NServiceBus.Installation.Environments;
     using NServiceBus.Logging;
     using NServiceBus.Transports;
-    using NServiceBus.Unicast.Config;
     using Encryption.EncryptionService;
 
     class Upgrade
@@ -14,7 +13,7 @@
         void RemovePrincipalHack(Configure configure)
         {
             #region 4to5RemovePrincipalHack
-            ConfigUnicastBus unicastBus = configure.UnicastBus();
+            var unicastBus = configure.UnicastBus();
             unicastBus.RunHandlersUnderIncomingPrincipal(true);
             #endregion
         }
@@ -41,7 +40,7 @@
         {
             #region 4to5CustomConfigOverrides
 
-            Configure configure = Configure.With(AllAssemblies.Except("NotThis.dll"));
+            var configure = Configure.With(AllAssemblies.Except("NotThis.dll"));
             configure.DefaultBuilder();
             configure.DefineEndpointName("MyEndpointName");
             configure.DefiningEventsAs(type => type.Name.EndsWith("Event"));
@@ -85,7 +84,7 @@
         {
             #region 4to5InterfaceMessageCreation
 
-            MyInterfaceMessage message = Bus.CreateInstance<MyInterfaceMessage>(o =>
+            var message = Bus.CreateInstance<MyInterfaceMessage>(o =>
             {
                 o.OrderNumber = 1234;
             });
@@ -119,7 +118,7 @@
             #region 4to5StartupAction
 
             configure.UnicastBus();
-            IStartableBus startableBus = configure.CreateBus();
+            var startableBus = configure.CreateBus();
             startableBus.Start(MyCustomAction);
 
             #endregion
@@ -134,9 +133,9 @@
         {
             #region 4to5Installers
 
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             configure.UnicastBus();
-            IStartableBus startableBus = configure.CreateBus();
+            var startableBus = configure.CreateBus();
             startableBus.Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 
             #endregion
@@ -146,7 +145,7 @@
         public void Persistence()
         {
 
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             #region 4to5ConfigurePersistence
 
             // Configure to use InMemory
@@ -200,10 +199,10 @@
         {
             #region 4to5RunCustomAction
 
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             configure.UnicastBus();
             configure.RunCustomAction(MyCustomAction);
-            IStartableBus startableBus = configure.CreateBus();
+            var startableBus = configure.CreateBus();
             startableBus.Start();
 
             #endregion
@@ -214,10 +213,10 @@
             #region 4to5DefineCriticalErrorAction
 
             // Configuring how NServicebus handles critical errors
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             configure.DefineCriticalErrorAction((message, exception) =>
             {
-                string output = string.Format("Critical exception: '{0}'", message);
+                var output = $"Critical exception: '{message}'";
                 log.Error(output, exception);
                 // Perhaps end the process??
             });
@@ -229,7 +228,7 @@
         {
             #region 4to5FileShareDataBus
 
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             configure.FileShareDataBus(databusPath);
 
             #endregion
@@ -239,7 +238,7 @@
         {
             #region 4to5PurgeOnStartup
 
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             configure.PurgeOnStartup(true);
 
             #endregion
@@ -249,7 +248,7 @@
         {
             #region 4to5EncryptionServiceSimple
 
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             configure.RijndaelEncryptionService();
 
             #endregion
@@ -260,7 +259,7 @@
             #region 4to5EncryptionFromIEncryptionService
 
             //where EncryptionService implements IEncryptionService
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             configure.Configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
 
             #endregion
@@ -268,7 +267,7 @@
 
         public void License()
         {
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             #region 4to5License
 
             configure.LicensePath("PathToLicense");
@@ -307,7 +306,7 @@
         {
             #region 4to5PerformanceMonitoring
 
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             configure.EnablePerformanceCounters();
             configure.SetEndpointSLA(TimeSpan.FromMinutes(3));
 
@@ -318,7 +317,7 @@
         {
             #region 4to5DoNotCreateQueues
 
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             configure.DoNotCreateQueues();
 
             #endregion
@@ -326,7 +325,7 @@
 
         public void EndpointName()
         {
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             #region 4to5EndpointName
 
             // To customize the endpoint name via code using the DefineEndpointName method,
@@ -338,13 +337,13 @@
 
         public void SendOnly()
         {
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             #region 4to5SendOnly
 
             configure.DefaultBuilder();
             //Other config
             configure.UnicastBus();
-            IBus bus = configure.SendOnly();
+            var bus = configure.SendOnly();
 
             #endregion
         }

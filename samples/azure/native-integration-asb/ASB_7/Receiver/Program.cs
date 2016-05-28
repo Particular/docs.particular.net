@@ -16,7 +16,7 @@ class Program
 
         #region EndpointAndSingleQueue
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ASB.NativeIntegration");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ASB.NativeIntegration");
 
         #endregion
 
@@ -36,7 +36,8 @@ class Program
 
         topologySettings.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -44,7 +45,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

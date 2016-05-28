@@ -9,7 +9,7 @@ public class Handler : IHandleMessages<CreateProductCommand>
 
     public Task Handle(CreateProductCommand message, IMessageHandlerContext context)
     {
-        logger.InfoFormat("Received a CreateProductCommand message: {0}", message);
+        logger.Info($"Received a CreateProductCommand message: {message}");
         return Task.FromResult(0);
     }
 }

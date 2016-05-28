@@ -10,15 +10,17 @@ class Dispatcher : IDispatchMessages
 {
     public Task Dispatch(TransportOperations outgoingMessages, ContextBag context)
     {
-        foreach (UnicastTransportOperation transportOperation in outgoingMessages.UnicastTransportOperations)
+        foreach (var transportOperation in outgoingMessages.UnicastTransportOperations)
         {
-            string basePath = BaseDirectoryBuilder.BuildBasePath(transportOperation.Destination);
-            string nativeMessageId = Guid.NewGuid().ToString();
-            string bodyPath = Path.Combine(basePath, ".bodies", nativeMessageId) + ".xml";
+            var basePath = BaseDirectoryBuilder.BuildBasePath(transportOperation.Destination);
+            var nativeMessageId = Guid.NewGuid().ToString();
+            var bodyPath = Path.Combine(basePath, ".bodies", nativeMessageId) + ".xml";
 
             var dir = Path.GetDirectoryName(bodyPath);
             if (!Directory.Exists(dir))
+            {
                 Directory.CreateDirectory(dir);
+            }
             File.WriteAllBytes(bodyPath, transportOperation.Message.Body);
 
             List<string> messageContents = new List<string>
@@ -29,7 +31,7 @@ class Dispatcher : IDispatchMessages
 
             DirectoryBasedTransaction transaction;
 
-            string messagePath = Path.Combine(basePath, nativeMessageId) + ".txt";
+            var messagePath = Path.Combine(basePath, nativeMessageId) + ".txt";
 
             if (transportOperation.RequiredDispatchConsistency != DispatchConsistency.Isolated &&
                 context.TryGet(out transaction))
@@ -38,7 +40,7 @@ class Dispatcher : IDispatchMessages
             }
             else
             {
-                string tempFile = Path.GetTempFileName();
+                var tempFile = Path.GetTempFileName();
 
                 //write to temp file first so an atomic move can be done
                 //this avoids the file being locked when the receiver tries to process it

@@ -13,11 +13,12 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.MultiSerializer.Receiver";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MultiSerializer.Receiver");
+        var endpointConfiguration = new EndpointConfiguration("Samples.MultiSerializer.Receiver");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -25,7 +26,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop().
+                ConfigureAwait(false);
         }
     }
 }

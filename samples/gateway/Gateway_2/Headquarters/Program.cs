@@ -14,14 +14,15 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Gateway.Headquarters";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Gateway.Headquarters");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Gateway.Headquarters");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.EnableFeature<Gateway>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press 'Enter' to send a message to RemoteSite which will reply.");
@@ -29,7 +30,7 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
@@ -40,20 +41,22 @@ class Program
                 {
                     "RemoteSite"
                 };
-                PriceUpdated priceUpdated = new PriceUpdated
+                var priceUpdated = new PriceUpdated
                 {
                     ProductId = 2,
                     NewPrice = 100.0,
                     ValidFrom = DateTime.Today,
                 };
-                await endpoint.SendToSites(siteKeys, priceUpdated);
+                await endpointInstance.SendToSites(siteKeys, priceUpdated)
+                    .ConfigureAwait(false);
 
                 Console.WriteLine("Message sent, check the output in RemoteSite");
             }
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

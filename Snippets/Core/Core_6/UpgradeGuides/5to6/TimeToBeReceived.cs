@@ -11,7 +11,7 @@ namespace Core6.UpgradeGuides._5to6
         TimeToBeReceived(IRoutingContext context)
         {
             #region SetDeliveryConstraintDiscardIfNotReceivedBefore
-            TimeSpan timeToBeReceived = TimeSpan.FromSeconds(25);
+            var timeToBeReceived = TimeSpan.FromSeconds(25);
             context.Extensions.AddDeliveryConstraint(new DiscardIfNotReceivedBefore(timeToBeReceived));
             #endregion
 

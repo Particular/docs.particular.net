@@ -9,17 +9,20 @@
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            SendOptions sendOptions = new SendOptions();
+            var sendOptions = new SendOptions();
             sendOptions.SetHeader("MyCustomHeader", "My custom value");
-            await context.Send(new SomeOtherMessage(), sendOptions);
+            await context.Send(new SomeOtherMessage(), sendOptions)
+                .ConfigureAwait(false);
 
-            ReplyOptions replyOptions = new ReplyOptions();
+            var replyOptions = new ReplyOptions();
             replyOptions.SetHeader("MyCustomHeader", "My custom value");
-            await context.Reply(new SomeOtherMessage(), replyOptions);
+            await context.Reply(new SomeOtherMessage(), replyOptions)
+                .ConfigureAwait(false);
 
-            PublishOptions publishOptions = new PublishOptions();
+            var publishOptions = new PublishOptions();
             publishOptions.SetHeader("MyCustomHeader", "My custom value");
-            await context.Publish(new SomeOtherMessage(), publishOptions);
+            await context.Publish(new SomeOtherMessage(), publishOptions)
+                .ConfigureAwait(false);
         }
     }
 

@@ -12,7 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Callbacks.Receiver";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.Receiver");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
@@ -20,7 +20,8 @@ class Program
         endpointConfiguration.ScaleOut()
             .InstanceDiscriminator("1");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -28,7 +29,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+            .ConfigureAwait(false);
         }
     }
 }

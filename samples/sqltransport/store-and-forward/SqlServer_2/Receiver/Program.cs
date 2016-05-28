@@ -8,7 +8,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.SqlServer.StoreAndForwardReceiver";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SqlServer.StoreAndForwardReceiver");
 
         #region ReceiverConfiguration

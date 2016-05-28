@@ -7,7 +7,7 @@
         EndpointNameRequired()
         {
             #region 5to6-endpointNameRequired
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName("MyEndpointName");
             #endregion
         }

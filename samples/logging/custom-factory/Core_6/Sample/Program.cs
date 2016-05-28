@@ -16,23 +16,26 @@ class Program
         Console.Title = "Samples.Logging.CustomFactory";
         #region ConfigureLogging
         var loggerDefinition = LogManager.Use<ConsoleLoggerDefinition>();
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Logging.CustomFactory");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Logging.CustomFactory");
         #endregion
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new MyMessage());
+            await endpointInstance.SendLocal(new MyMessage())
+                .ConfigureAwait(false);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

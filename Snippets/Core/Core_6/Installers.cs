@@ -11,7 +11,9 @@
 
             endpointConfiguration.EnableInstallers();
 
-            await Endpoint.Start(endpointConfiguration);//this will run the installers
+            //this will run the installers
+            await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
 
             #endregion
         }

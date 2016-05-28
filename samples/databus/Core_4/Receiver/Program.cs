@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.DataBus.Receiver";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.DataBus.Receiver");
         configure.DefaultBuilder();
@@ -17,9 +17,9 @@ class Program
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
         configure.FileShareDataBus("..\\..\\..\\storage");
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus
+            var bus = startableBus
                 .Start(() => configure.ForInstallationOn<Windows>().Install());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

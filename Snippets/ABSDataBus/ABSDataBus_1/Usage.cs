@@ -14,15 +14,15 @@ class Usage
 
     void Complex(EndpointConfiguration endpointConfiguration)
     {
-        string azureStorageConnectionString = "";
-        string basePathWithinContainer = "";
-        string containerName = "";
-        int blockSize = 10;
-        int timeToLiveInSeconds = 1;
-        int maxNumberOfRetryAttempts = 3;
-        int numberOfIoThreads = 3; // number of parallel operations that may proceed.
+        var azureStorageConnectionString = "";
+        var basePathWithinContainer = "";
+        var containerName = "";
+        var blockSize = 10;
+        var timeToLiveInSeconds = 1;
+        var maxNumberOfRetryAttempts = 3;
+        var numberOfIoThreads = 3; // number of parallel operations that may proceed.
         // number of blocks that may be simultaneously uploaded when uploading a blob that is greater than the value specified by the
-        int backOffIntervalBetweenRetriesInSecs = 1000;
+        var backOffIntervalBetweenRetriesInSecs = 1000;
 
         #region AzureDataBusSetup
 

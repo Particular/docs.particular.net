@@ -20,14 +20,14 @@ class SerializeBehavior : IBehavior<OutgoingContext>
 
     public void Invoke(OutgoingContext context, Action next)
     {
-        TransportMessage transportMessage = context.OutgoingMessage;
+        var transportMessage = context.OutgoingMessage;
         if (!transportMessage.IsControlMessage())
         {
-            LogicalMessage logicalMessage = context.OutgoingLogicalMessage;
-            object messageInstance = logicalMessage.Instance;
-            Type messageType = messageInstance.GetType();
+            var logicalMessage = context.OutgoingLogicalMessage;
+            var messageInstance = logicalMessage.Instance;
+            var messageType = messageInstance.GetType();
             
-            IMessageSerializer messageSerializer = serializationMapper.GetSerializer(messageType);
+            var messageSerializer = serializationMapper.GetSerializer(messageType);
             transportMessage.Body = Serialize(messageSerializer, messageInstance);
 
             Dictionary<string, string> transportHeaders = transportMessage.Headers;
@@ -45,7 +45,7 @@ class SerializeBehavior : IBehavior<OutgoingContext>
 
     static byte[] Serialize(IMessageSerializer messageSerializer, object messageInstance)
     {
-        using (MemoryStream stream = new MemoryStream())
+        using (var stream = new MemoryStream())
         {
             messageSerializer.Serialize(messageInstance, stream);
             return stream.ToArray();

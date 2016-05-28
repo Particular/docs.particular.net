@@ -7,16 +7,16 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.Encryption.Endpoint1";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Encryption.Endpoint1");
         #region enableEncryption
         busConfiguration.RijndaelEncryptionService();
         #endregion
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseSerialization<JsonSerializer>();
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
-            MessageWithSecretData message = new MessageWithSecretData
+            var message = new MessageWithSecretData
             {
                 Secret = "betcha can't guess my secret",
                 SubProperty = new MySecretSubProperty

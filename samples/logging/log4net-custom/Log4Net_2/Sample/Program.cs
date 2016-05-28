@@ -19,12 +19,12 @@ class Program
     {
         Console.Title = "Samples.Logging.Log4NetCustom";
         #region ConfigureLog4Net
-        PatternLayout layout = new PatternLayout
+        var layout = new PatternLayout
         {
             ConversionPattern = "%d [%t] %-5p %c [%x] - %m%n"
         };
         layout.ActivateOptions();
-        ConsoleAppender consoleAppender = new ConsoleAppender
+        var consoleAppender = new ConsoleAppender
         {
             Threshold = Level.Info,
             Layout = layout
@@ -39,7 +39,7 @@ class Program
         LogManager.Use<Log4NetFactory>();
 
         // Then continue with the endpoint configuration
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Logging.Log4NetCustom");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Logging.Log4NetCustom");
 
         #endregion
 
@@ -48,16 +48,19 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new MyMessage());
+            await endpointInstance.SendLocal(new MyMessage())
+                .ConfigureAwait(false);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

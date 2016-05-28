@@ -27,23 +27,26 @@ public class SendAsyncController : AsyncController
         {
             return;
         }
+
         #region AsyncController
-        Command command = new Command
-                        {
-                            Id = number
-                        };
+
+        var command = new Command
+        {
+            Id = number
+        };
         bus.Send("Samples.Mvc.Server", command)
             .Register<int>(status =>
             {
-                AsyncManager.Parameters["errorCode"] = Enum.GetName(typeof (ErrorCodes), status);
+                AsyncManager.Parameters["errorCode"] = Enum.GetName(typeof(ErrorCodes), status);
             });
+
         #endregion
     }
 
     public ActionResult IndexCompleted(string errorCode)
     {
-        ViewBag.Title = "SendAsync"; 
-        ViewBag.ResponseText = errorCode; 
+        ViewBag.Title = "SendAsync";
+        ViewBag.ResponseText = errorCode;
         return View("Index");
     }
 }

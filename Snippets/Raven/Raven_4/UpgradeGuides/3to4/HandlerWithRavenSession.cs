@@ -7,7 +7,7 @@ public class HandlerWithRavenSession : IHandleMessages<MyMessage>
 {
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        IAsyncDocumentSession ravenSession = context.SynchronizedStorageSession
+        var ravenSession = context.SynchronizedStorageSession
             .RavenSession();
         return SomeLibrary.SomeAsyncMethod(message, ravenSession);
     }

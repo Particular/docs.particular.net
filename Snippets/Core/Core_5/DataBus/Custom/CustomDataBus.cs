@@ -15,7 +15,7 @@
 
         public string Put(Stream stream, TimeSpan timeToBeReceived)
         {
-            using (FileStream destination = File.OpenWrite("blob.dat"))
+            using (var destination = File.OpenWrite("blob.dat"))
             {
                 stream.CopyTo(destination);
             }

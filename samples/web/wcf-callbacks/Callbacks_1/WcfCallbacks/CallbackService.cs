@@ -16,11 +16,11 @@ class CallbackService<TRequest, TResponse> : ICallbackService<TRequest, TRespons
         this.endpointInstance = endpointInstance;
     }
 
-    public async Task<TResponse> SendRequest(TRequest request)
+    public Task<TResponse> SendRequest(TRequest request)
     {
-        SendOptions sendOptions = new SendOptions();
+        var sendOptions = new SendOptions();
         sendOptions.RouteToThisEndpoint();
-        return await endpointInstance.Request<TResponse>(request, sendOptions);
+        return endpointInstance.Request<TResponse>(request, sendOptions);
     }
 
     public void Dispose()

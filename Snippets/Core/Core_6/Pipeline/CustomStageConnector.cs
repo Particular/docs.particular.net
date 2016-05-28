@@ -9,7 +9,7 @@
     #region CustomStageConnector
     public class CustomStageConnector : StageConnector<IOutgoingLogicalMessageContext, IOutgoingPhysicalMessageContext>
     {
-        public override async Task Invoke(IOutgoingLogicalMessageContext context, Func<IOutgoingPhysicalMessageContext, Task> stage)
+        public override Task Invoke(IOutgoingLogicalMessageContext context, Func<IOutgoingPhysicalMessageContext, Task> stage)
         {
             // Finalize the work in the current stage
 
@@ -17,7 +17,7 @@
             RoutingStrategy[] routingStrategies = { };
 
             // Start the next stage
-            await stage(this.CreateOutgoingPhysicalMessageContext(body, routingStrategies, context)).ConfigureAwait(false);
+            return stage(this.CreateOutgoingPhysicalMessageContext(body, routingStrategies, context));
         }
     }
     #endregion

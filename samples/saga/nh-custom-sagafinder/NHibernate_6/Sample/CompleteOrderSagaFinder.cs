@@ -1,6 +1,5 @@
 ﻿using NServiceBus.Persistence.NHibernate;
 using NServiceBus.Saga;
-using NHibernate;
 
 class CompleteOrderSagaFinder : IFindSagas<OrderSagaData>.Using<CompleteOrder>
 {
@@ -13,7 +12,7 @@ class CompleteOrderSagaFinder : IFindSagas<OrderSagaData>.Using<CompleteOrder>
 
     public OrderSagaData FindBy(CompleteOrder message)
     {
-        ISession session = storageContext.Session;
+        var session = storageContext.Session;
         return session.QueryOver<OrderSagaData>()
             .Where(d => d.OrderId == message.OrderId)
             .SingleOrDefault();

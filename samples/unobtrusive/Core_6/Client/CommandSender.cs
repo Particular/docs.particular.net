@@ -16,28 +16,32 @@ public class CommandSender
         Console.WriteLine("Press 'X' to send a message that is marked with expiration time.");
         Console.WriteLine("Press any key to exit");
 
-
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
 
             switch (key.Key)
             {
                 case ConsoleKey.C:
-                    await SendCommand(endpointInstance);
+                    await SendCommand(endpointInstance)
+                        .ConfigureAwait(false);
                     continue;
                 case ConsoleKey.R:
-                    await SendRequest(endpointInstance);
+                    await SendRequest(endpointInstance)
+                        .ConfigureAwait(false);
                     continue;
                 case ConsoleKey.E:
-                    await Express(endpointInstance);
+                    await Express(endpointInstance)
+                        .ConfigureAwait(false);
                     continue;
                 case ConsoleKey.D:
-                    await Data(endpointInstance);
+                    await Data(endpointInstance)
+                        .ConfigureAwait(false);
                     continue;
                 case ConsoleKey.X:
-                    await Expiration(endpointInstance);
+                    await Expiration(endpointInstance)
+                        .ConfigureAwait(false);
                     continue;
             }
             return;
@@ -49,59 +53,69 @@ public class CommandSender
     // Shut down server before sending this message, after 30 seconds, the message will be moved to Transactional dead-letter messages queue.
     static async Task Expiration(IEndpointInstance endpointInstance)
     {
-        await endpointInstance.Send(new MessageThatExpires
-                 {
-                     RequestId = new Guid()
-                 });
+        var messageThatExpires = new MessageThatExpires
+        {
+            RequestId = new Guid()
+        };
+        await endpointInstance.Send(messageThatExpires)
+            .ConfigureAwait(false);
         Console.WriteLine("message with expiration was sent");
     }
 
     static async Task Data(IEndpointInstance endpointInstance)
     {
-        Guid requestId = Guid.NewGuid();
+        var requestId = Guid.NewGuid();
 
-        await endpointInstance.Send(new LargeMessage
+        var largeMessage = new LargeMessage
         {
             RequestId = requestId,
             LargeDataBus = new byte[1024*1024*5]
-        });
+        };
+        await endpointInstance.Send(largeMessage)
+            .ConfigureAwait(false);
 
         Console.WriteLine("Request sent id: " + requestId);
     }
 
     static async Task Express(IEndpointInstance endpointInstance)
     {
-        Guid requestId = Guid.NewGuid();
+        var requestId = Guid.NewGuid();
 
-        await endpointInstance.Send(new RequestExpress
+        var requestExpress = new RequestExpress
         {
             RequestId = requestId
-        });
+        };
+        await endpointInstance.Send(requestExpress)
+            .ConfigureAwait(false);
 
         Console.WriteLine("Request sent id: " + requestId);
     }
 
     static async Task SendRequest(IEndpointInstance endpointInstance)
     {
-        Guid requestId = Guid.NewGuid();
+        var requestId = Guid.NewGuid();
 
-        await endpointInstance.Send(new Request
+        var request = new Request
         {
             RequestId = requestId
-        });
+        };
+        await endpointInstance.Send(request)
+            .ConfigureAwait(false);
 
         Console.WriteLine("Request sent id: " + requestId);
     }
 
     static async Task SendCommand(IEndpointInstance endpointInstance)
     {
-        Guid commandId = Guid.NewGuid();
+        var commandId = Guid.NewGuid();
 
-        await endpointInstance.Send(new MyCommand
-                 {
-                     CommandId = commandId,
-                     EncryptedString = "Some sensitive information"
-                 });
+        var myCommand = new MyCommand
+        {
+            CommandId = commandId,
+            EncryptedString = "Some sensitive information"
+        };
+        await endpointInstance.Send(myCommand)
+            .ConfigureAwait(false);
 
         Console.WriteLine("Command sent id: " + commandId);
     }

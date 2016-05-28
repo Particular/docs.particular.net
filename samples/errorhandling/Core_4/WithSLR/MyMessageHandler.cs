@@ -16,7 +16,7 @@ public class MyMessageHandler : IHandleMessages<MyMessage>
 
     public void Handle(MyMessage message)
     {
-        IMessageContext context = bus.CurrentMessageContext;
+        var context = bus.CurrentMessageContext;
         log.InfoFormat("ReplyToAddress: {0} MessageId:{1}", context.ReplyToAddress, context.Id);
 
         string numOfRetries;

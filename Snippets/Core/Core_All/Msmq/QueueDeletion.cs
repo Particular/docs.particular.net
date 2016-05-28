@@ -27,7 +27,7 @@
         public static void DeleteAllQueues()
         {
             MessageQueue[] machineQueues = MessageQueue.GetPrivateQueuesByMachine(".");
-            foreach (MessageQueue q in machineQueues)
+            foreach (var q in machineQueues)
             {
                 MessageQueue.Delete(q.Path);
             }
@@ -35,7 +35,7 @@
 
         public static void DeleteQueue(string queueName)
         {
-            string path = string.Format(@"{0}\private$\{1}", Environment.MachineName, queueName);
+            var path = $@"{Environment.MachineName}\private$\{queueName}";
             if (MessageQueue.Exists(path))
             {
                 MessageQueue.Delete(path);

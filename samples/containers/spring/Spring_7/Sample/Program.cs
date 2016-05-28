@@ -14,8 +14,8 @@ static class Program
     {
         Console.Title = "Samples.Spring";
         #region ContainerConfiguration
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Spring");
-        GenericApplicationContext applicationContext = new GenericApplicationContext();
+        var endpointConfiguration = new EndpointConfiguration("Samples.Spring");
+        var applicationContext = new GenericApplicationContext();
         applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
         endpointConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));
         #endregion
@@ -24,16 +24,20 @@ static class Program
 
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new MyMessage());
+            var myMessage = new MyMessage();
+            await endpointInstance.SendLocal(myMessage)
+                .ConfigureAwait(false);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

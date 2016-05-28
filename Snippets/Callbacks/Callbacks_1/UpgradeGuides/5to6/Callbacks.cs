@@ -13,8 +13,9 @@
 
             #region 5to6-Callbacks
 
-            RequestMessage message = new RequestMessage();
-            ResponseMessage response = await endpoint.Request<ResponseMessage>(message, sendOptions);
+            var message = new RequestMessage();
+            var response = await endpoint.Request<ResponseMessage>(message, sendOptions)
+                .ConfigureAwait(false);
 
             #endregion
         }

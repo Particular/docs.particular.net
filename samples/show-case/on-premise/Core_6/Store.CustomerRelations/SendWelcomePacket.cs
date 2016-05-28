@@ -14,7 +14,7 @@ class SendWelcomePacket : IHandleMessages<ClientBecamePreferred>
         {
             Debugger.Break();
         }
-        log.InfoFormat("Handler WhenCustomerIsPreferredSendWelcomeEmail invoked for CustomerId: {0}", message.ClientId);
+        log.InfoFormat($"Handler WhenCustomerIsPreferredSendWelcomeEmail invoked for CustomerId: {message.ClientId}");
         return Task.FromResult(0);
     }
 

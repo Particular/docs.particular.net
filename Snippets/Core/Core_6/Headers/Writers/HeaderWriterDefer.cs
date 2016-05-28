@@ -1,7 +1,6 @@
 ﻿namespace Core6.Headers.Writers
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Common;
@@ -29,27 +28,30 @@
         [Test]
         public async Task Write()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration(EndpointName);
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDefer>();
+            var endpointConfiguration = new EndpointConfiguration(EndpointName);
+            var typesToScan = TypeScanner.NestedTypes<HeaderWriterDefer>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
 
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
 
-            SendOptions options = new SendOptions();
+            var options = new SendOptions();
             options.DelayDeliveryWith(TimeSpan.FromMilliseconds(10));
-            await endpoint.Send(new MessageToSend(),options);
+            await endpointInstance.Send(new MessageToSend(),options)
+                .ConfigureAwait(false);
             ManualResetEvent.WaitOne();
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
 
         class MessageToSend : IMessage
         {
         }
-    
+
         class MessageHandler : IHandleMessages<MessageToSend>
         {
             public Task Handle(MessageToSend message, IMessageHandlerContext context)
@@ -62,21 +64,20 @@
         {
             public UnicastBusConfig GetConfiguration()
             {
-                UnicastBusConfig unicastBusConfig = new UnicastBusConfig();
+                var unicastBusConfig = new UnicastBusConfig();
                 unicastBusConfig.MessageEndpointMappings.Add(new MessageEndpointMapping
                 {
                     AssemblyName = GetType().Assembly.GetName().Name,
-                    Endpoint = EndpointName +"@" + Environment.MachineName
+                    Endpoint = $"{EndpointName}@{Environment.MachineName}"
                 });
                 return unicastBusConfig;
             }
         }
         class Mutator : IMutateIncomingTransportMessages
         {
-
             public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
-                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterDefer>(context.Headers);
+                var headerText = HeaderWriter.ToFriendlyString<HeaderWriterDefer>(context.Headers);
                 SnippetLogger.Write(headerText, version: "6");
                 ManualResetEvent.Set();
                 return Task.FromResult(0);

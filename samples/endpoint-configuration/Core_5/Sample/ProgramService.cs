@@ -18,7 +18,7 @@ class ProgramService : ServiceBase
     static void Main()
     {
         Console.Title = "Samples.FirstEndpoint";
-        using (ProgramService service = new ProgramService())
+        using (var service = new ProgramService())
         {
             if (Environment.UserInteractive)
             {
@@ -38,12 +38,12 @@ class ProgramService : ServiceBase
     protected override void OnStart(string[] args)
     {
         #region logging
-        PatternLayout layout = new PatternLayout
+        var layout = new PatternLayout
         {
             ConversionPattern = "%d %-5p %c - %m%n"
         };
         layout.ActivateOptions();
-        ConsoleAppender appender = new ConsoleAppender
+        var appender = new ConsoleAppender
         {
             Layout = layout,
             Threshold = Level.Info
@@ -56,15 +56,15 @@ class ProgramService : ServiceBase
         #endregion
 
         #region create-config
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.FirstEndpoint");
         #endregion
 
         #region container
-        ContainerBuilder builder = new ContainerBuilder();
+        var builder = new ContainerBuilder();
         //configure custom services
         //builder.RegisterInstance(new MyService());
-        IContainer container = builder.Build();
+        var container = builder.Build();
         busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
         #endregion
 
@@ -86,10 +86,10 @@ class ProgramService : ServiceBase
         busConfiguration.DefineCriticalErrorAction((errorMessage, exception) =>
         {
             // Log the critical error
-            logger.Fatal(string.Format("CRITICAL: {0}", errorMessage), exception);
+            logger.Fatal($"CRITICAL: {errorMessage}", exception);
 
             // Kill the process on a critical error
-            string output = string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage);
+            var output = $"The following critical error was encountered by NServiceBus:\n{errorMessage}\nNServiceBus is shutting down.";
             Environment.FailFast(output, exception);
         });
         #endregion
@@ -107,11 +107,9 @@ class ProgramService : ServiceBase
     protected override void OnStop()
     {
         #region stop-endpoint
-        if (bus != null)
-        {
-            bus.Dispose();
-        }
+
+        bus?.Dispose();
+
         #endregion
     }
-
 }

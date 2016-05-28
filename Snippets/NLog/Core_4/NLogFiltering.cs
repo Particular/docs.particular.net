@@ -9,9 +9,9 @@ class NLogFiltering
     {
         #region NLogFiltering
 
-        LoggingConfiguration config = new LoggingConfiguration();
+        var config = new LoggingConfiguration();
 
-        ColoredConsoleTarget target = new ColoredConsoleTarget();
+        var target = new ColoredConsoleTarget();
         config.AddTarget("console", target);
         config.LoggingRules.Add(new LoggingRule("MyNamespace.*", LogLevel.Debug, target));
 

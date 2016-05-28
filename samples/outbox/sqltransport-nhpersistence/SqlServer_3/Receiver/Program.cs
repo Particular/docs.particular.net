@@ -21,13 +21,13 @@ class Program
         Console.Title = "Samples.SQLNHibernateOutbox.Receiver";
         #region NHibernate
 
-        Configuration hibernateConfig = new Configuration();
+        var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
             x.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True";
             x.Dialect<MsSql2012Dialect>();
         });
-        ModelMapper mapper = new ModelMapper();
+        var mapper = new ModelMapper();
         mapper.AddMapping<OrderMap>();
         hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
@@ -35,7 +35,7 @@ class Program
 
         new SchemaExport(hibernateConfig).Execute(false, true, false);
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SQLNHibernateOutbox.Receiver");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SQLNHibernateOutbox.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         #region ReceiverConfiguration
 
@@ -59,7 +59,8 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -67,7 +68,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

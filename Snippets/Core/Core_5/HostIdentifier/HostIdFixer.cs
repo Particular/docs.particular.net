@@ -20,9 +20,9 @@ namespace Core5.HostIdentifier
 
         public HostIdFixer(UnicastBus bus, ReadOnlySettings settings)
         {
-            Guid hostId = CreateGuid(Environment.MachineName, settings.EndpointName());
-            string location = Assembly.GetExecutingAssembly().Location;
-            Dictionary<string, string> properties = new Dictionary<string, string>
+            var hostId = CreateGuid(Environment.MachineName, settings.EndpointName());
+            var location = Assembly.GetExecutingAssembly().Location;
+            var properties = new Dictionary<string, string>
             {
                 {"Location", location}
             };
@@ -31,10 +31,10 @@ namespace Core5.HostIdentifier
 
         static Guid CreateGuid(params string[] data)
         {
-            using (MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider())
+            using (var provider = new MD5CryptoServiceProvider())
             {
-                byte[] inputBytes = Encoding.Default.GetBytes(string.Concat(data));
-                byte[] hashBytes = provider.ComputeHash(inputBytes);
+                var inputBytes = Encoding.Default.GetBytes(string.Concat(data));
+                var hashBytes = provider.ComputeHash(inputBytes);
                 return new Guid(hashBytes);
             }
         }

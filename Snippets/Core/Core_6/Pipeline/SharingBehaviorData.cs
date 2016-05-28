@@ -8,23 +8,22 @@
 
     public class ParentBehavior : Behavior<IIncomingPhysicalMessageContext>
     {
-        public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
+        public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
         {
             // set some shared information on the context
             context.Extensions.Set(new SharedData());
-
-            await next().ConfigureAwait(false);
+            return next();
         }
     }
 
     public class ChildBehavior : Behavior<IIncomingLogicalMessageContext>
     {
-        public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
+        public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
         {
             // access the shared data
-            SharedData data = context.Extensions.Get<SharedData>();
+            var sharedData = context.Extensions.Get<SharedData>();
 
-            await next().ConfigureAwait(false);
+            return next();
         }
     }
 

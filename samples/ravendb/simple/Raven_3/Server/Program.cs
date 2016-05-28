@@ -13,9 +13,9 @@ class Program
         {
             #region Config
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName("Samples.RavenDB.Server");
-            DocumentStore documentStore = new DocumentStore
+            var documentStore = new DocumentStore
             {
                 Url = "http://localhost:32076",
                 DefaultDatabase = "RavenSampleData"
@@ -31,7 +31,7 @@ class Program
             busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.EnableInstallers();
 
-            using (IBus bus = Bus.Create(busConfiguration).Start())
+            using (var bus = Bus.Create(busConfiguration).Start())
             {
                 Console.WriteLine("Press any key to exit");
                 Console.ReadKey();

@@ -13,7 +13,7 @@ namespace Core3.Routing.EndpointMapping.ConfigurationSource
             if (typeof(T) == typeof(UnicastBusConfig))
             {
                 //read from existing config
-                UnicastBusConfig config = (UnicastBusConfig)ConfigurationManager
+                var config = (UnicastBusConfig)ConfigurationManager
                     .GetSection(typeof(UnicastBusConfig).Name);
                 if (config == null)
                 {

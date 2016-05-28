@@ -16,11 +16,12 @@
         async Task DisablePerMessage(IPipelineContext context)
         {
             #region DisableBestPracticeEnforcementPerMessage
-            SendOptions options = new SendOptions();
+            var options = new SendOptions();
 
             options.DoNotEnforceBestPractices();
 
-            await context.Send(new MyEvent(), options);
+            await context.Send(new MyEvent(), options)
+                .ConfigureAwait(false);
             #endregion
         }
 

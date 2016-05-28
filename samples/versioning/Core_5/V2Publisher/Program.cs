@@ -8,20 +8,20 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.Versioning.V2Publisher";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Versioning.V2Publisher");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press enter to publish a message");
             Console.WriteLine("Press any key to exit");
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)

@@ -4,7 +4,6 @@ using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.RavenDB;
 using NServiceBus.RavenDB.Persistence;
-using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Document.DTC;
 
@@ -24,13 +23,13 @@ class Configure
     {
         #region ravendb-persistence-shared-session-for-sagas
 
-        DocumentStore documentStore = new DocumentStore();
+        var documentStore = new DocumentStore();
         // configure documentStore properties here
 
         var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.UseSharedSession(() =>
         {
-            IDocumentSession session = documentStore.OpenSession();
+            var session = documentStore.OpenSession();
             // customize session here
             return session;
         });
@@ -59,7 +58,7 @@ class Configure
 
         public void Handle(MyMessage message)
         {
-            MyDocument doc = new MyDocument();
+            var doc = new MyDocument();
 
             sessionProvider.Session.Store(doc);
         }
@@ -71,7 +70,7 @@ class Configure
     {
         #region ravendb-persistence-specific-external-store
 
-        DocumentStore documentStore = new DocumentStore();
+        var documentStore = new DocumentStore();
         // configure documentStore here
 
         var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
@@ -91,7 +90,7 @@ class Configure
     {
         #region ravendb-persistence-external-store
 
-        DocumentStore documentStore = new DocumentStore();
+        var documentStore = new DocumentStore();
         // configure documentStore here
 
         var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
@@ -104,7 +103,7 @@ class Configure
     {
         #region ravendb-persistence-external-connection-params
 
-        ConnectionParameters connectionParams = new ConnectionParameters();
+        var connectionParams = new ConnectionParameters();
         // configure connection params (ApiKey, DatabaseName, Url) here
 
         var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
@@ -120,16 +119,16 @@ class Configure
 
     void ManualDtcSettingExample()
     {
-        string UrlToRavenDB = "http://localhost:8080";
+        var UrlToRavenDB = "http://localhost:8080";
 
         #region RavenDBManualDtcSettingExample
         // Value must uniquely identify endpoint on the machine and remain stable on process restarts
-        Guid resourceManagerId = new Guid("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
+        var resourceManagerId = new Guid("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
 
-        string dtcRecoveryBasePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-        string recoveryPath = Path.Combine(dtcRecoveryBasePath, "NServiceBus.RavenDB", resourceManagerId.ToString());
+        var dtcRecoveryBasePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+        var recoveryPath = Path.Combine(dtcRecoveryBasePath, "NServiceBus.RavenDB", resourceManagerId.ToString());
 
-        DocumentStore store = new DocumentStore
+        var store = new DocumentStore
         {
             Url = UrlToRavenDB,
             ResourceManagerId = resourceManagerId,
@@ -137,7 +136,7 @@ class Configure
         };
         store.Initialize();
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.SetDefaultDocumentStore(store);
 

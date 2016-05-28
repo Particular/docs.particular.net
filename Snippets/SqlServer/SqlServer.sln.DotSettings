@@ -2,4 +2,5 @@
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=2EF370E98D1FDC4E9FD6E29F173EB613/RelativePath/@EntryValue">..\..\..\tools\Shared.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=2EF370E98D1FDC4E9FD6E29F173EB613/@KeyIndexDefined">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File2EF370E98D1FDC4E9FD6E29F173EB613/@KeyIndexDefined">True</s:Boolean>
-	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File2EF370E98D1FDC4E9FD6E29F173EB613/RelativePriority/@EntryValue">1</s:Double></wpf:ResourceDictionary>
+	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File2EF370E98D1FDC4E9FD6E29F173EB613/RelativePriority/@EntryValue">1</s:Double>
+	<s:String x:Key="/Default/CodeInspection/CSharpLanguageProject/LanguageLevel/@EntryValue">‌​CSharp60</s:String></wpf:ResourceDictionary>

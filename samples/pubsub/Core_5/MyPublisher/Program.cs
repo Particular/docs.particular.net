@@ -9,12 +9,12 @@ static class Program
     {
         Console.Title = "Samples.PubSub.MyPublisher";
         LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PubSub.MyPublisher");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Start(bus);
         }
@@ -29,10 +29,10 @@ static class Program
         #region PublishLoop
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
 
-            Guid eventId = Guid.NewGuid();
+            var eventId = Guid.NewGuid();
             switch (key.Key)
             {
                 case ConsoleKey.D1:
@@ -42,27 +42,27 @@ static class Program
                         m.Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null;
                         m.Duration = TimeSpan.FromSeconds(99999D);
                     });
-                    Console.WriteLine("Published IMyEvent with Id {0}.", eventId);
+                    Console.WriteLine($"Published IMyEvent with Id {eventId}.");
                     continue;
                 case ConsoleKey.D2:
-                    EventMessage eventMessage = new EventMessage
+                    var eventMessage = new EventMessage
                     {
                         EventId = eventId,
                         Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null,
                         Duration = TimeSpan.FromSeconds(99999D)
                     };
                     bus.Publish(eventMessage);
-                    Console.WriteLine("Published EventMessage with Id {0}.", eventId);
+                    Console.WriteLine($"Published EventMessage with Id {eventId}.");
                     continue;
                 case ConsoleKey.D3:
-                    AnotherEventMessage anotherEventMessage = new AnotherEventMessage
+                    var anotherEventMessage = new AnotherEventMessage
                     {
                         EventId = eventId,
                         Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null,
                         Duration = TimeSpan.FromSeconds(99999D)
                     };
                     bus.Publish(anotherEventMessage);
-                    Console.WriteLine("Published AnotherEventMessage with Id {0}.", eventId);
+                    Console.WriteLine($"Published AnotherEventMessage with Id {eventId}.");
                     continue;
                 default:
                     return;

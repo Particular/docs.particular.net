@@ -27,9 +27,9 @@
 
         public void Handle(RequestMessage message)
         {
-            string header = Bus.GetMessageHeader(message, "MyHeaderKey");
+            var header = Bus.GetMessageHeader(message, "MyHeaderKey");
 
-            ResponseMessage responseMessage = new ResponseMessage();
+            var responseMessage = new ResponseMessage();
             Bus.SetMessageHeader(responseMessage, "MyHeaderKey", header);
             Bus.Reply(responseMessage);
         }

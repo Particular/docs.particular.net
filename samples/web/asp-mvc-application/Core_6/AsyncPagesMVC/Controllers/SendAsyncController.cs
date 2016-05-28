@@ -29,15 +29,16 @@ public class SendAsyncController : AsyncController
             return View("Index");
         }
         #region AsyncController
-        Command command = new Command
+        var command = new Command
                         {
                             Id = number
                         };
 
-        SendOptions sendOptions = new SendOptions();
+        var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Mvc.Server");
 
-        ErrorCodes status = await endpoint.Request<ErrorCodes>(command, sendOptions);
+        var status = await endpoint.Request<ErrorCodes>(command, sendOptions)
+            .ConfigureAwait(false);
 
         return IndexCompleted(Enum.GetName(typeof(ErrorCodes), status));
 
@@ -46,8 +47,8 @@ public class SendAsyncController : AsyncController
 
     public ActionResult IndexCompleted(string errorCode)
     {
-        ViewBag.Title = "SendAsync"; 
-        ViewBag.ResponseText = errorCode; 
+        ViewBag.Title = "SendAsync";
+        ViewBag.ResponseText = errorCode;
         return View("Index");
     }
 }

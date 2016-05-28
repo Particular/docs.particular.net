@@ -12,7 +12,7 @@ namespace Core5
 
         static void Main()
         {
-            using (ProgramService service = new ProgramService())
+            using (var service = new ProgramService())
             {
                 if (Environment.UserInteractive)
                 {
@@ -32,7 +32,7 @@ namespace Core5
 
         protected override void OnStart(string[] args)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName("EndpointName");
             busConfiguration.EnableInstallers();
             bus = Bus.Create(busConfiguration).Start();
@@ -40,12 +40,8 @@ namespace Core5
 
         protected override void OnStop()
         {
-            if (bus != null)
-            {
-                bus.Dispose();
-            }
+            bus?.Dispose();
         }
-
     }
 
     #endregion

@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.AzureBlobStorageDataBus.Sender";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.AzureBlobStorageDataBus.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
 
@@ -20,7 +20,7 @@ class Program
 
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Run(bus);
         }
@@ -33,7 +33,7 @@ class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
 
             if (key.Key == ConsoleKey.Enter)
             {
@@ -52,7 +52,7 @@ class Program
 
         #region SendMessageLargePayload
 
-        MessageWithLargePayload message = new MessageWithLargePayload
+        var message = new MessageWithLargePayload
         {
             Description = "This message contains a large payload that will be sent on the Azure data bus",
             LargePayload = new DataBusProperty<byte[]>(new byte[1024*1024*5]) // 5MB

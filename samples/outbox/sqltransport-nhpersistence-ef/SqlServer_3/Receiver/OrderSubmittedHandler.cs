@@ -1,4 +1,3 @@
-using System.Data;
 using NServiceBus;
 using System.Data.Common;
 using System.Threading.Tasks;
@@ -11,45 +10,49 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Order {0} worth {1} submitted", message.OrderId, message.Value);
+        log.InfoFormat($"Order {message.OrderId} worth {message.Value} submitted");
 
         #region StoreUserData
 
-        ISession storageContext = context.SynchronizedStorageSession.Session();
+        var storageContext = context.SynchronizedStorageSession.Session();
 
-        using (ReceiverDataContext ctx = new ReceiverDataContext(storageContext.Connection))
+        using (var receiverDataContext = new ReceiverDataContext(storageContext.Connection))
         {
-            DbTransaction tx = ExtractTransactionFromSession(storageContext);
+            var dbTransaction = ExtractTransactionFromSession(storageContext);
 
-            ctx.Database.UseTransaction(tx);
-            ctx.Orders.Add(new Order
-                            {
-                                OrderId = message.OrderId,
-                                Value = message.Value
-                            });
-            ctx.SaveChanges();
+            receiverDataContext.Database.UseTransaction(dbTransaction);
+            var order = new Order
+            {
+                OrderId = message.OrderId,
+                Value = message.Value
+            };
+            receiverDataContext.Orders.Add(order);
+            await receiverDataContext.SaveChangesAsync()
+                .ConfigureAwait(false);
         }
 
         #endregion
 
         #region Reply
 
-        await context.Reply(new OrderAccepted
-                    {
-                        OrderId = message.OrderId,
-                    });
+        var orderAccepted = new OrderAccepted
+        {
+            OrderId = message.OrderId,
+        };
+        await context.Reply(orderAccepted)
+            .ConfigureAwait(false);
 
         #endregion
     }
 
     static DbTransaction ExtractTransactionFromSession(ISession storageContext)
     {
-        DbTransaction tx;
-        using (IDbCommand helper = storageContext.Connection.CreateCommand())
+        DbTransaction dbTransaction;
+        using (var helper = storageContext.Connection.CreateCommand())
         {
             storageContext.Transaction.Enlist(helper);
-            tx = (DbTransaction) helper.Transaction;
+            dbTransaction = (DbTransaction) helper.Transaction;
         }
-        return tx;
+        return dbTransaction;
     }
 }

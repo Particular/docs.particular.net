@@ -22,7 +22,7 @@ class Usage
     {
         #region NewtonsoftCustomSettings
 
-        JsonSerializerSettings settings = new JsonSerializerSettings
+        var settings = new JsonSerializerSettings
         {
             TypeNameHandling = TypeNameHandling.Auto,
             Converters =
@@ -46,7 +46,7 @@ class Usage
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         serialization.ReaderCreator(stream =>
         {
-            StreamReader streamReader = new StreamReader(stream, Encoding.UTF8);
+            var streamReader = new StreamReader(stream, Encoding.UTF8);
             return new JsonTextReader(streamReader);
         });
 
@@ -60,7 +60,7 @@ class Usage
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         serialization.WriterCreator(stream =>
         {
-            StreamWriter streamWriter = new StreamWriter(stream, Encoding.UTF8);
+            var streamWriter = new StreamWriter(stream, Encoding.UTF8);
             return new JsonTextWriter(streamWriter)
             {
                 Formatting = Formatting.None

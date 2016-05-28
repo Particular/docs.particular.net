@@ -13,10 +13,7 @@
 
         public override string ToString()
         {
-            return string.Format(
-                "MyMessage: EventId={0}, Time={1}, Duration={2}",
-                EventId, Time, Duration
-                );
+            return $"MyMessage: EventId={EventId}, Time={Time}, Duration={Duration}";
         }
     }
 

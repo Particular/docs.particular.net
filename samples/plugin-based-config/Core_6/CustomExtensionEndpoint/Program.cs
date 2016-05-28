@@ -16,13 +16,17 @@ static class Program
     {
         Console.Title = "Samples.CustomExtensionEndpoint";
         LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.CustomExtensionEndpoint");
+        var endpointConfiguration = new EndpointConfiguration("Samples.CustomExtensionEndpoint");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
-        await RunCustomizeConfiguration( endpointConfiguration);
-        await RunBeforeEndpointStart();
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-        await RunAfterEndpointStart(endpoint);
+        await RunCustomizeConfiguration(endpointConfiguration)
+            .ConfigureAwait(false);
+        await RunBeforeEndpointStart()
+            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
+        await RunAfterEndpointStart(endpointInstance)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -30,38 +34,41 @@ static class Program
         }
         finally
         {
-            await RunBeforeEndpointStop( endpoint);
-            await endpoint.Stop();
+            await RunBeforeEndpointStop( endpointInstance)
+                .ConfigureAwait(false);
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
-        await RunAfterEndpointStop();
+        await RunAfterEndpointStop()
+            .ConfigureAwait(false);
     }
 
-    static async Task RunBeforeEndpointStart()
+    static Task RunBeforeEndpointStart()
     {
-       await Resolver.Execute<IRunBeforeEndpointStart>(_ => _.Run());
+       return Resolver.Execute<IRunBeforeEndpointStart>(_ => _.Run());
     }
 
     // Other injection points excluded, but follow the same pattern as above
 
     #endregion
 
-    static async Task RunCustomizeConfiguration(EndpointConfiguration endpointConfiguration)
+    static Task RunCustomizeConfiguration(EndpointConfiguration endpointConfiguration)
     {
-        await Resolver.Execute<ICustomizeConfiguration>(_ => _.Run(endpointConfiguration));
+        return Resolver.Execute<ICustomizeConfiguration>(_ => _.Run(endpointConfiguration));
     }
 
-    static async Task RunAfterEndpointStop()
+    static Task RunAfterEndpointStop()
     {
-        await Resolver.Execute<IRunAfterEndpointStop>(_ => _.Run());
+        return Resolver.Execute<IRunAfterEndpointStop>(_ => _.Run());
     }
 
-    static async Task RunBeforeEndpointStop(IEndpointInstance endpoint)
+    static Task RunBeforeEndpointStop(IEndpointInstance endpoint)
     {
-       await  Resolver.Execute<IRunBeforeEndpointStop>(_ => _.Run(endpoint));
+       return Resolver.Execute<IRunBeforeEndpointStop>(_ => _.Run(endpoint));
     }
 
-    static async Task RunAfterEndpointStart(IEndpointInstance endpoint)
+    static Task RunAfterEndpointStart(IEndpointInstance endpoint)
     {
-        await Resolver.Execute<IRunAfterEndpointStart>(_ => _.Run(endpoint));
+        return Resolver.Execute<IRunAfterEndpointStart>(_ => _.Run(endpoint));
     }
 }

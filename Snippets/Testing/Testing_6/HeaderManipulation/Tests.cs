@@ -24,15 +24,15 @@
 
     class MyMessageHandler : IHandleMessages<RequestMessage>
     {
-        public async Task Handle(RequestMessage message, IMessageHandlerContext context)
+        public Task Handle(RequestMessage message, IMessageHandlerContext context)
         {
-            string header = context.MessageHeaders["MyHeaderKey"];
+            var header = context.MessageHeaders["MyHeaderKey"];
 
-            ResponseMessage responseMessage = new ResponseMessage();
+            var responseMessage = new ResponseMessage();
 
-            ReplyOptions options = new ReplyOptions();
+            var options = new ReplyOptions();
             options.SetHeader("MyHeaderKey", header);
-            await context.Reply(responseMessage, options);
+            return context.Reply(responseMessage, options);
         }
     }
 

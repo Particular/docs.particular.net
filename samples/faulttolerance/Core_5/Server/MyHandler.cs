@@ -8,7 +8,7 @@ public class MyHandler : IHandleMessages<MyMessage>
 
     public void Handle(MyMessage message)
     {
-        log.InfoFormat(@"Message received. Id: {0}", message.Id);
+        log.InfoFormat("Message received. Id: {0}", message.Id);
         // throw new Exception("Uh oh - something went wrong....");
     }
 }

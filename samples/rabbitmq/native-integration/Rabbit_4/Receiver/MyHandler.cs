@@ -8,7 +8,7 @@ public class MyHandler : IHandleMessages<MyMessage>
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Got `MyMessage` with id: {0}, property value: {1}", context.MessageId, message.SomeProperty);
+        log.Info($"Got `MyMessage` with id: {context.MessageId}, property value: {message.SomeProperty}");
         return Task.FromResult(0);
     }
 }

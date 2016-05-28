@@ -13,13 +13,14 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.FaultTolerance.Client";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.FaultTolerance.Client");
+        var endpointConfiguration = new EndpointConfiguration("Samples.FaultTolerance.Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press enter to send a message");
@@ -27,24 +28,26 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 if (key.Key != ConsoleKey.Enter)
                 {
                     return;
                 }
-                Guid id = Guid.NewGuid();
-
-                await endpoint.Send("Samples.FaultTolerance.Server", new MyMessage
+                var id = Guid.NewGuid();
+                var myMessage = new MyMessage
                 {
                     Id = id
-                });
+                };
+                await endpointInstance.Send("Samples.FaultTolerance.Server", myMessage)
+                    .ConfigureAwait(false);
 
-                Console.WriteLine("Sent a new message with id: {0}", id.ToString("N"));
+                Console.WriteLine($"Sent a new message with id: {id.ToString("N")}");
             }
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

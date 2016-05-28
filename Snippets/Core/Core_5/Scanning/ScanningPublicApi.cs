@@ -11,7 +11,7 @@
         {
             #region ScanningDefault
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
 
             #endregion
         }
@@ -20,7 +20,7 @@
         {
             #region ScanningExcludeByName
 
-            IExcludesBuilder excludesBuilder = AllAssemblies
+            var excludesBuilder = AllAssemblies
                 .Except("MyAssembly1.dll")
                 .And("MyAssembly2.dll");
             busConfiguration.AssembliesToScan(excludesBuilder);
@@ -52,7 +52,7 @@
         {
             #region ScanningIncludeByPattern
 
-            IIncludesBuilder includesBuilder = AllAssemblies
+            var includesBuilder = AllAssemblies
                 .Matching("NServiceBus")
                 .And("MyCompany.")
                 .And("SomethingElse");
@@ -74,7 +74,7 @@
         {
             #region ScanningMixingIncludeAndExclude
 
-            IExcludesBuilder excludesBuilder = AllAssemblies
+            var excludesBuilder = AllAssemblies
                 .Matching("NServiceBus")
                 .And("MyCompany.")
                 .Except("BadAssembly.dll");
@@ -88,7 +88,7 @@
         {
             #region 5to6ScanningUpgrade
 
-            IExcludesBuilder excludesBuilder =
+            var excludesBuilder =
                 AllAssemblies.Matching("NServiceBus")
                     .And("MyCompany.")
                     .Except("BadAssembly1.dll")

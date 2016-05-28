@@ -15,13 +15,14 @@ public class PriceUpdatedHandler : IHandleMessages<PriceUpdated>
 
     public void Handle(PriceUpdated message)
     {
-        string messageHeader = bus.GetMessageHeader(message, Headers.OriginatingSite);
+        var messageHeader = bus.GetMessageHeader(message, Headers.OriginatingSite);
         log.InfoFormat("Price update for product: {0} received. Going to reply over channel: {1}", message.ProductId, messageHeader);
 
-        bus.Reply(new PriceUpdateAcknowledged
-                  {
-                      BranchOffice = "RemoteSite"
-                  });
+        var updateAcknowledged = new PriceUpdateAcknowledged
+        {
+            BranchOffice = "RemoteSite"
+        };
+        bus.Reply(updateAcknowledged);
     }
 }
 

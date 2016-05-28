@@ -10,7 +10,7 @@ class Program
         Console.Title = "Samples.SqlBridge";
         #region bridge-config
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("SqlBridge");
         busConfiguration.EnableInstallers();
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
@@ -19,7 +19,7 @@ class Program
         transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=NServiceBus;Integrated Security=True");
 
         #endregion
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("\r\nPress any key to stop program\r\n");
             Console.ReadKey();

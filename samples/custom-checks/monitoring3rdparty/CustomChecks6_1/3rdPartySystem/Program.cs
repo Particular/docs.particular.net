@@ -21,7 +21,7 @@ class Program3rdParty
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
@@ -49,8 +49,8 @@ class Program3rdParty
         {
             return;
         }
-        HttpListenerContext context = listener.EndGetContext(result);
-        HttpListenerResponse response = context.Response;
+        var context = listener.EndGetContext(result);
+        var response = context.Response;
         if (isReturningOk)
         {
             WriteResponse(response, HttpStatusCode.OK);
@@ -66,8 +66,8 @@ class Program3rdParty
     static void WriteResponse(HttpListenerResponse response, HttpStatusCode statusCode)
     {
         response.StatusCode = (int)statusCode;
-        string text = statusCode.ToString();
-        using (StreamWriter streamWriter = new StreamWriter(response.OutputStream))
+        var text = statusCode.ToString();
+        using (var streamWriter = new StreamWriter(response.OutputStream))
         {
             streamWriter.Write(text);
         }

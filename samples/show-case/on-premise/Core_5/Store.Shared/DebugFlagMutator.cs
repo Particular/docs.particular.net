@@ -8,14 +8,11 @@ public class DebugFlagMutator :
     IMutateTransportMessages,
     INeedInitialization
 {
-    public static bool Debug
-    {
-        get { return debug.Value; }
-    }
+    public static bool Debug => debug.Value;
 
     public void MutateIncoming(TransportMessage transportMessage)
     {
-        string debugFlag = transportMessage.Headers.ContainsKey("Debug") ? transportMessage.Headers["Debug"] : "false";
+        var debugFlag = transportMessage.Headers.ContainsKey("Debug") ? transportMessage.Headers["Debug"] : "false";
         if (debugFlag != null && debugFlag.Equals("true", StringComparison.OrdinalIgnoreCase))
         {
             debug.Value = true;

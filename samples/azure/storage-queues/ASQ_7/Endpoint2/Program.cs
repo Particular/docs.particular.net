@@ -13,14 +13,15 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Azure.StorageQueues.Endpoint2";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.StorageQueues.Endpoint2");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Azure.StorageQueues.Endpoint2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -28,7 +29,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

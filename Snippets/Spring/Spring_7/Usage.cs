@@ -16,7 +16,7 @@ class Usage
     {
         #region Spring_Existing
 
-        GenericApplicationContext applicationContext = new GenericApplicationContext();
+        var applicationContext = new GenericApplicationContext();
         applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
         endpointConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));
 

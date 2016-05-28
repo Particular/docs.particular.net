@@ -11,11 +11,11 @@ public class MyHandler : IHandleMessages<MyMessage>
 
     static Random random = new Random();
 
-    public async Task Handle(MyMessage message, IMessageHandlerContext context)
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        int sleepTime = random.Next(1, 1000);
-        await Task.Delay(sleepTime);
-        logger.InfoFormat("Hello from MyHandler. Slept for {0}ms", sleepTime);
+        var sleepTime = random.Next(1, 1000);
+        logger.Info($"Hello from MyHandler. Slept for {sleepTime}ms");
+        return Task.Delay(sleepTime);
     }
 
 }

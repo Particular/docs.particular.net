@@ -35,7 +35,7 @@ class Usage
     {
         #region IsDistributorEnabled
 
-        bool isDistributorEnabled = busConfiguration
+        var isDistributorEnabled = busConfiguration
             .GetSettings()
             .GetOrDefault<bool>(typeof(Distributor).FullName);
 
@@ -43,7 +43,7 @@ class Usage
 
         #region IsWorkerEnabled
 
-        bool isWorkerEnabled = busConfiguration
+        var isWorkerEnabled = busConfiguration
             .GetSettings()
             .GetOrDefault<bool>(typeof(WorkerNode).FullName);
 

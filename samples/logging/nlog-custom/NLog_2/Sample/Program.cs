@@ -19,9 +19,9 @@ class Program
 
         #region ConfigureNLog
 
-        LoggingConfiguration config = new LoggingConfiguration();
+        var config = new LoggingConfiguration();
 
-        ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget
+        var consoleTarget = new ColoredConsoleTarget
         {
             Layout = "${level}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"
         };
@@ -36,7 +36,7 @@ class Program
 
         NServiceBus.Logging.LogManager.Use<NLogFactory>();
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Logging.NLogCustom");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Logging.NLogCustom");
 
         #endregion
 
@@ -45,16 +45,19 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new MyMessage());
+            await endpointInstance.SendLocal(new MyMessage())
+                .ConfigureAwait(false);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

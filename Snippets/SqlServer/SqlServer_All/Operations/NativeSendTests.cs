@@ -25,7 +25,7 @@ public class NativeSendTests
     [TearDown]
     public void Setup()
     {
-        using (SqlConnection connection = new SqlConnection(connectionString))
+        using (var connection = new SqlConnection(connectionString))
         {
             connection.Open();
             QueueDeletion.DeleteQueuesForEndpoint(connection, schema, endpointName);
@@ -36,12 +36,12 @@ public class NativeSendTests
     [Test]
     public void Send()
     {
-        State state = new State();
-        using (IBus bus = StartBus(state))
+        var state = new State();
+        using (var bus = StartBus(state))
         {
-            string message = @"{ Property: 'Value' }";
+            var message = @"{ Property: 'Value' }";
 
-            Dictionary<string, string> headers = new Dictionary<string, string>
+            var headers = new Dictionary<string, string>
             {
                 {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
             };
@@ -54,20 +54,20 @@ public class NativeSendTests
     [Test]
     public void SendPowershell()
     {
-        State state = new State();
-        using (IBus bus = StartBus(state))
+        var state = new State();
+        using (var bus = StartBus(state))
         {
-            string message = @"{ Property: 'Value' }";
+            var message = @"{ Property: 'Value' }";
 
-            Dictionary<string, string> headers = new Dictionary<string, string>
+            var headers = new Dictionary<string, string>
             {
                 {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
             };
 
-            string scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"SqlServer\NativeSend.ps1");
-            string script = File.ReadAllText(scriptPath);
+            var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"SqlServer\NativeSend.ps1");
+            var script = File.ReadAllText(scriptPath);
 
-            using (PowerShell powershell = PowerShell.Create())
+            using (var powershell = PowerShell.Create())
             {
                 powershell.AddScript(script, false);
                 powershell.Invoke();
@@ -86,7 +86,7 @@ public class NativeSendTests
 
     IBus StartBus(State state)
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
         busConfiguration.EndpointName(endpointName);
         busConfiguration.UseSerialization<JsonSerializer>();

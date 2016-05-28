@@ -16,7 +16,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlServer.StoreAndForwardReceiver";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.StoreAndForwardReceiver");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.StoreAndForwardReceiver");
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region ReceiverConfiguration
@@ -24,12 +24,13 @@ class Program
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.EnableLegacyMultiInstanceMode(async transportAddress =>
             {
-                string connectionString = transportAddress.StartsWith("Samples.SqlServer.StoreAndForwardReceiver") || transportAddress == "error"
+                var connectionString = transportAddress.StartsWith("Samples.SqlServer.StoreAndForwardReceiver") || transportAddress == "error"
                     ? ReceiverConnectionString
                     : SenderConnectionString;
 
-                SqlConnection connection = new SqlConnection(connectionString);
-                await connection.OpenAsync();
+                var connection = new SqlConnection(connectionString);
+                await connection.OpenAsync()
+                .ConfigureAwait(false);
                 return connection;
             });
 
@@ -39,7 +40,8 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -48,7 +50,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 

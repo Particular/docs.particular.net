@@ -23,7 +23,7 @@ public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
             return;
         }
 
-        SendOptions sendOptions = context.DeliveryOptions as SendOptions;
+        var sendOptions = context.DeliveryOptions as SendOptions;
         var outgoingHeaders = context.OutgoingLogicalMessage.Headers;
         if (sendOptions != null)
         {
@@ -34,7 +34,7 @@ public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
         }
         else
         {
-            PublishOptions publishOptions = context.DeliveryOptions as PublishOptions;
+            var publishOptions = context.DeliveryOptions as PublishOptions;
             if (publishOptions != null)
             {
                 // Technically it is not necessary to store the actual type, just a marker that this is a Publish operation

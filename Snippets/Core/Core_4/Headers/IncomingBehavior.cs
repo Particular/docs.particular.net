@@ -1,7 +1,6 @@
 ﻿namespace Core4.Headers
 {
     using System;
-    using System.Collections.Generic;
     using NServiceBus;
     using NServiceBus.Pipeline;
     using NServiceBus.Pipeline.Contexts;
@@ -11,9 +10,9 @@
     {
         public void Invoke(ReceivePhysicalMessageContext context, Action next)
         {
-            Dictionary<string, string> headers = context.PhysicalMessage.Headers;
-            string nsbVersion = headers[Headers.NServiceBusVersion];
-            string customHeader = headers["MyCustomHeader"];
+            var headers = context.PhysicalMessage.Headers;
+            var nsbVersion = headers[Headers.NServiceBusVersion];
+            var customHeader = headers["MyCustomHeader"];
             next();
         }
     }

@@ -10,13 +10,13 @@ static class Program
     {
         Console.Title = "Samples.CustomExtensionEndpoint";
         LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.CustomExtensionEndpoint");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         RunCustomizeConfiguration(busConfiguration);
         RunBeforeEndpointStart();
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             RunAfterEndpointStart(bus);
             Console.WriteLine("Press any key to exit");

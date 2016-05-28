@@ -11,36 +11,37 @@ public class TransportMessageCompressionMutator : IMutateIncomingTransportMessag
 
     public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {
-        logger.InfoFormat("transportMessage.Body size before compression: {0}", context.OutgoingBody.Length);
+        logger.Info($"transportMessage.Body size before compression: {context.OutgoingBody.Length}");
 
-        MemoryStream mStream = new MemoryStream(context.OutgoingBody);
-        MemoryStream outStream = new MemoryStream();
+        var mStream = new MemoryStream(context.OutgoingBody);
+        var outStream = new MemoryStream();
 
-        using (GZipStream tinyStream = new GZipStream(outStream, CompressionMode.Compress))
+        using (var tinyStream = new GZipStream(outStream, CompressionMode.Compress))
         {
             mStream.CopyTo(tinyStream);
         }
-        // copy the compressed buffer only after the GZipStream is disposed, 
+        // copy the compressed buffer only after the GZipStream is disposed,
         // otherwise, not all the compressed message will be copied.
         context.OutgoingBody = outStream.ToArray();
         context.OutgoingHeaders["IWasCompressed"]= "true";
-        logger.InfoFormat("transportMessage.Body size after compression: {0}", context.OutgoingBody.Length);
+        logger.Info($"transportMessage.Body size after compression: {context.OutgoingBody.Length}");
         return Task.FromResult(0);
     }
 
-    public Task MutateIncoming(MutateIncomingTransportMessageContext context)
+    public async Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
         if (!context.Headers.ContainsKey("IWasCompressed"))
         {
-            return Task.FromResult(0);
+            return;
         }
-        using (GZipStream bigStream = new GZipStream(new MemoryStream(context.Body), CompressionMode.Decompress))
+        var memoryStream = new MemoryStream(context.Body);
+        using (var bigStream = new GZipStream(memoryStream, CompressionMode.Decompress))
         {
-            MemoryStream bigStreamOut = new MemoryStream();
-            bigStream.CopyTo(bigStreamOut);
+            var bigStreamOut = new MemoryStream();
+            await bigStream.CopyToAsync(bigStreamOut)
+                .ConfigureAwait(false);
             context.Body = bigStreamOut.ToArray();
         }
-        return Task.FromResult(0);
     }
 }
 #endregion

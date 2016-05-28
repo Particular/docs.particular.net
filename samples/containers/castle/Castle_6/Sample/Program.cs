@@ -14,11 +14,12 @@ static class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Castle";
+
         #region ContainerConfiguration
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Castle");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Castle");
 
-        WindsorContainer container = new WindsorContainer();
+        var container = new WindsorContainer();
         container.Register(Component.For<MyService>().Instance(new MyService()));
 
         endpointConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
@@ -30,16 +31,19 @@ static class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new MyMessage());
+            await endpointInstance.SendLocal(new MyMessage())
+                .ConfigureAwait(false);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

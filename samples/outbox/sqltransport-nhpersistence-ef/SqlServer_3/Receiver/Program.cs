@@ -15,12 +15,12 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SQLNHibernateOutboxEF.Receiver";
-        using (ReceiverDataContext ctx = new ReceiverDataContext())
+        using (var receiverDataContext = new ReceiverDataContext())
         {
-            ctx.Database.Initialize(true);
+            receiverDataContext.Database.Initialize(true);
         }
 
-        Configuration hibernateConfig = new Configuration();
+        var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
             x.ConnectionStringName = "NServiceBus/Persistence";
@@ -29,7 +29,7 @@ class Program
 
         hibernateConfig.SetProperty("default_schema", "receiver");
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SQLNHibernateOutboxEF.Receiver");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SQLNHibernateOutboxEF.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #region ReceiverConfiguration
@@ -56,7 +56,8 @@ class Program
 
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         try
         {
@@ -65,7 +66,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

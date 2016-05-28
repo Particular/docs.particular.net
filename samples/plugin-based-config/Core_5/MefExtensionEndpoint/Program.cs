@@ -10,20 +10,20 @@ static class Program
 
     static void Main()
     {
-        AggregateCatalog catalog = new AggregateCatalog();
+        var catalog = new AggregateCatalog();
         catalog.Catalogs.Add(new DirectoryCatalog("."));
 
-        CompositionContainer compositionContainer = new CompositionContainer(catalog);
+        var compositionContainer = new CompositionContainer(catalog);
 
         Console.Title = "Samples.MefExtensionEndpoint";
         LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MefExtensionEndpoint");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         RunCustomizeConfiguration(compositionContainer, busConfiguration);
         RunBeforeEndpointStart(compositionContainer);
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             RunAfterEndpointStart(compositionContainer, bus);
             Console.WriteLine("Press any key to exit");

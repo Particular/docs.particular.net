@@ -9,9 +9,9 @@
     #region ErrorHandlingBehavior
     class CustomErrorHandlingBehavior : Behavior<ITransportReceiveContext>
     {
-        public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
+        public override Task Invoke(ITransportReceiveContext context, Func<Task> next)
         {
-            await next().ConfigureAwait(false);
+            return next();
         }
     }
     #endregion
@@ -25,7 +25,8 @@
             #region DeserializationCustomization
             try
             {
-                await next().ConfigureAwait(false);
+                await next()
+                    .ConfigureAwait(false);
             }
             catch (MessageDeserializationException deserializationException)
             {
@@ -46,7 +47,8 @@
             #region AllErrorsCustomization
             try
             {
-                await next().ConfigureAwait(false);
+                await next()
+                    .ConfigureAwait(false);
             }
             catch (Exception exception)
             {
@@ -65,7 +67,8 @@
             #region RollbackMessage
             try
             {
-                await next().ConfigureAwait(false);
+                await next()
+                    .ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -81,7 +84,7 @@
     class NewMessageProcessingPipelineStep : RegisterStep
     {
         public NewMessageProcessingPipelineStep()
-            : base("CustomErrorHandlingBehaviour", typeof(CustomErrorHandlingBehavior), "Adds custom error behavior to pipeline")
+            : base("CustomErrorHandlingBehavior", typeof(CustomErrorHandlingBehavior), "Adds custom error behavior to pipeline")
         {
             InsertAfter("MoveFaultsToErrorQueue");
             InsertBeforeIfExists("FirstLevelRetries");

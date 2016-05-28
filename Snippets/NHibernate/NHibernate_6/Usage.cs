@@ -35,10 +35,15 @@ class Usage
     {
         #region CommonNHibernateConfiguration
 
-        Configuration nhConfiguration = new Configuration();
-        nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
-        nhConfiguration.Properties["connection.provider"] = "NHibernate.Connection.DriverConnectionProvider";
-        nhConfiguration.Properties["connection.driver_class"] = "NHibernate.Driver.Sql2008ClientDriver";
+        var nhConfiguration = new Configuration
+        {
+            Properties =
+            {
+                ["dialect"] = "NHibernate.Dialect.MsSql2008Dialect",
+                ["connection.provider"] = "NHibernate.Connection.DriverConnectionProvider",
+                ["connection.driver_class"] = "NHibernate.Driver.Sql2008ClientDriver"
+            }
+        };
 
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(nhConfiguration);
@@ -50,8 +55,13 @@ class Usage
     {
         #region SpecificNHibernateConfiguration
 
-        Configuration nhConfiguration = new Configuration();
-        nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
+        var nhConfiguration = new Configuration
+        {
+            Properties =
+            {
+                ["dialect"] = "NHibernate.Dialect.MsSql2008Dialect"
+            }
+        };
 
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseSubscriptionStorageConfiguration(nhConfiguration);
@@ -66,8 +76,13 @@ class Usage
     {
         #region CustomCommonNhibernateConfigurationWarning
 
-        Configuration nhConfiguration = new Configuration();
-        nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
+        var nhConfiguration = new Configuration
+        {
+            Properties =
+            {
+                ["dialect"] = "NHibernate.Dialect.MsSql2008Dialect"
+            }
+        };
 
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
         persistence.UseConfiguration(nhConfiguration);

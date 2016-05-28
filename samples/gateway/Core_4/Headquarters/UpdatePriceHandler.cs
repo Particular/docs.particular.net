@@ -16,15 +16,16 @@ public class UpdatePriceHandler : IHandleMessages<UpdatePrice>
     public void Handle(UpdatePrice message)
     {
         log.Info("Price update request received from the webclient, going to push it to RemoteSite");
-        string[] siteKeys = {
-                                "RemoteSite",
-                            };
-        PriceUpdated priceUpdated = new PriceUpdated
-                                    {
-                                        ProductId = message.ProductId,
-                                        NewPrice = message.NewPrice,
-                                        ValidFrom = message.ValidFrom,
-                                    };
+        string[] siteKeys =
+        {
+            "RemoteSite",
+        };
+        var priceUpdated = new PriceUpdated
+        {
+            ProductId = message.ProductId,
+            NewPrice = message.NewPrice,
+            ValidFrom = message.ValidFrom,
+        };
         bus.SendToSites(siteKeys, priceUpdated);
     }
 }

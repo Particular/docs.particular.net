@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.Encryption.Endpoint2";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Encryption.Endpoint2");
         configure.DefaultBuilder();
@@ -17,7 +17,7 @@ class Program
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
             startableBus
                 .Start(() => configure.ForInstallationOn<Windows>().Install());

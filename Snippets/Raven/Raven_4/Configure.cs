@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.RavenDB;
-using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Document.DTC;
 
@@ -13,12 +12,12 @@ class Configure
     {
         #region ravendb-persistence-shared-session-for-sagas
 
-        DocumentStore documentStore = new DocumentStore();
+        var documentStore = new DocumentStore();
         // configure documentStore here
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.UseSharedAsyncSession(() =>
         {
-            IAsyncDocumentSession session = documentStore.OpenAsyncSession();
+            var session = documentStore.OpenAsyncSession();
             // customize session here
             return session;
         });
@@ -40,9 +39,9 @@ class Configure
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            MyDocument doc = new MyDocument();
+            var doc = new MyDocument();
 
-            IAsyncDocumentSession ravenSession = context.SynchronizedStorageSession.RavenSession();
+            var ravenSession = context.SynchronizedStorageSession.RavenSession();
             return ravenSession.StoreAsync(doc);
         }
     }
@@ -53,7 +52,7 @@ class Configure
     {
         #region ravendb-persistence-specific-external-store
 
-        DocumentStore documentStore = new DocumentStore();
+        var documentStore = new DocumentStore();
         // configure documentStore here
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.UseDocumentStoreForSubscriptions(documentStore);
@@ -70,25 +69,25 @@ class Configure
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.UseDocumentStoreForSubscriptions(readOnlySettings =>
         {
-            DocumentStore documentStore = new DocumentStore();
+            var documentStore = new DocumentStore();
             // configure documentStore here
             return documentStore;
         });
         persistence.UseDocumentStoreForSagas(readOnlySettings =>
         {
-            DocumentStore documentStore = new DocumentStore();
+            var documentStore = new DocumentStore();
             // configure documentStore here
             return documentStore;
         });
         persistence.UseDocumentStoreForTimeouts(readOnlySettings =>
         {
-            DocumentStore documentStore = new DocumentStore();
+            var documentStore = new DocumentStore();
             // configure documentStore here
             return documentStore;
         });
         persistence.UseDocumentStoreForGatewayDeduplication(readOnlySettings =>
         {
-            DocumentStore documentStore = new DocumentStore();
+            var documentStore = new DocumentStore();
             // configure documentStore here
             return documentStore;
         });
@@ -105,7 +104,7 @@ class Configure
     {
         #region ravendb-persistence-external-store
 
-        DocumentStore documentStore = new DocumentStore();
+        var documentStore = new DocumentStore();
         // configure documentStore here
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.SetDefaultDocumentStore(documentStore);
@@ -117,7 +116,7 @@ class Configure
     {
         #region ravendb-persistence-external-connection-params
 
-        ConnectionParameters connectionParams = new ConnectionParameters();
+        var connectionParams = new ConnectionParameters();
         // configure connection params (ApiKey, DatabaseName, Url) here
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.SetDefaultDocumentStore(connectionParams);
@@ -132,7 +131,7 @@ class Configure
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.SetDefaultDocumentStore(readOnlySettings =>
         {
-            DocumentStore documentStore = new DocumentStore();
+            var documentStore = new DocumentStore();
             // configure documentStore here
             return documentStore;
         });
@@ -147,16 +146,16 @@ class Configure
 
     void ManualDtcSettingExample()
     {
-        string UrlToRavenDB = "http://localhost:8080";
+        var UrlToRavenDB = "http://localhost:8080";
 
         #region RavenDBManualDtcSettingExample
         // Value must uniquely identify endpoint on the machine and remain stable on process restarts
-        Guid resourceManagerId = new Guid("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
+        var resourceManagerId = new Guid("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
 
-        string dtcRecoveryBasePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-        string recoveryPath = Path.Combine(dtcRecoveryBasePath, "NServiceBus.RavenDB", resourceManagerId.ToString());
+        var dtcRecoveryBasePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+        var recoveryPath = Path.Combine(dtcRecoveryBasePath, "NServiceBus.RavenDB", resourceManagerId.ToString());
 
-        DocumentStore store = new DocumentStore
+        var store = new DocumentStore
         {
             Url = UrlToRavenDB,
             ResourceManagerId = resourceManagerId,
@@ -164,7 +163,7 @@ class Configure
         };
         store.Initialize();
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
+        var endpointConfiguration = new EndpointConfiguration("EndpointName");
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.SetDefaultDocumentStore(store);
 

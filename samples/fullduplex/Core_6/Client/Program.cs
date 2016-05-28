@@ -16,13 +16,14 @@ class Program
         Console.Title = "Samples.FullDuplex.Client";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.FullDuplex.Client");
+        var endpointConfiguration = new EndpointConfiguration("Samples.FullDuplex.Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press enter to send a message");
@@ -32,29 +33,31 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
                 {
                     return;
                 }
-                Guid guid = Guid.NewGuid();
-                Console.WriteLine("Requesting to get data by id: {0}", guid.ToString("N"));
+                var guid = Guid.NewGuid();
+                Console.WriteLine($"Requesting to get data by id: {guid.ToString("N")}");
 
-                RequestDataMessage message = new RequestDataMessage
+                var message = new RequestDataMessage
                 {
                     DataId = guid,
                     String = "String property value"
                 };
-                await endpoint.Send("Samples.FullDuplex.Server", message);
+                await endpointInstance.Send("Samples.FullDuplex.Server", message)
+                    .ConfigureAwait(false);
             }
 
             #endregion
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

@@ -13,7 +13,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
 {
     static ILog log = LogManager.GetLogger<ProcessOrderSaga>();
 
-    public async Task Handle(SubmitOrder message, IMessageHandlerContext context)
+    public Task Handle(SubmitOrder message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
@@ -24,8 +24,8 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
         Data.ProductIds = message.ProductIds;
         Data.ClientId = message.ClientId;
 
-        await RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
-        log.InfoFormat("Starting cool down period for order #{0}.", Data.OrderNumber);
+        log.InfoFormat($"Starting cool down period for order #{Data.OrderNumber}.");
+        return RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
     }
 
     public async Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
@@ -40,11 +40,12 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
                 e.OrderNumber = Data.OrderNumber;
                 e.ProductIds = Data.ProductIds;
                 e.ClientId = Data.ClientId;
-            });
+            })
+            .ConfigureAwait(false);
 
         MarkAsComplete();
 
-        log.InfoFormat("Cooling down period for order #{0} has elapsed.", Data.OrderNumber);
+        log.InfoFormat($"Cooling down period for order #{Data.OrderNumber} has elapsed.");
     }
 
     public async Task Handle(CancelOrder message, IMessageHandlerContext context)
@@ -60,9 +61,10 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
             {
                 o.OrderNumber = message.OrderNumber;
                 o.ClientId = message.ClientId;
-            });
+            })
+            .ConfigureAwait(false);
 
-        log.InfoFormat("Order #{0} was cancelled.", message.OrderNumber);
+        log.InfoFormat($"Order #{message.OrderNumber} was cancelled.");
     }
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderData> mapper)

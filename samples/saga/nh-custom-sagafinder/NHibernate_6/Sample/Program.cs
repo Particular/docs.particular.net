@@ -8,7 +8,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.NHibernateCustomSagaFinder";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.NHibernateCustomSagaFinder");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
@@ -20,7 +20,7 @@ class Program
 
         #endregion
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.SendLocal(new StartOrder
                           {

@@ -18,10 +18,10 @@ public class WcfMapper : IDisposable
 
     public void StartListening<TMessage, TResponse>()
     {
-        ServiceHost host = new ServiceHost(new CallbackService<TMessage, TResponse>(bus));
-        BasicHttpBinding binding = new BasicHttpBinding();
-        string address = AddressBuilder.GetAddress<TMessage, TResponse>(server);
-        Type contract = typeof(ICallbackService<TMessage, TResponse>);
+        var host = new ServiceHost(new CallbackService<TMessage, TResponse>(bus));
+        var binding = new BasicHttpBinding();
+        var address = AddressBuilder.GetAddress<TMessage, TResponse>(server);
+        var contract = typeof(ICallbackService<TMessage, TResponse>);
         host.AddServiceEndpoint(contract, binding, address);
         host.Open();
         serviceHosts.Add(host);
@@ -29,7 +29,7 @@ public class WcfMapper : IDisposable
 
     public void Dispose()
     {
-        foreach (ServiceHost serviceHost in serviceHosts)
+        foreach (var serviceHost in serviceHosts)
         {
             serviceHost.Abort();
             serviceHost.Close();

@@ -1,6 +1,5 @@
 ﻿using NServiceBus.RavenDB.Persistence;
 using NServiceBus.Saga;
-using Raven.Client;
 using Raven.Client.UniqueConstraints;
 
 class CompleteOrderSagaFinder : IFindSagas<OrderSagaData>.Using<CompleteOrder>
@@ -14,7 +13,7 @@ class CompleteOrderSagaFinder : IFindSagas<OrderSagaData>.Using<CompleteOrder>
 
     public OrderSagaData FindBy(CompleteOrder message)
     {
-        IDocumentSession session = sessionProvider.Session;
+        var session = sessionProvider.Session;
         return session.LoadByUniqueConstraint<OrderSagaData>(d => d.OrderId, message.OrderId);
     }
 }

@@ -14,7 +14,7 @@
 
             // the incoming message
             // optionally replace the message instance by setting context.Message
-            object message = context.Message;
+            var message = context.Message;
 
             
             return Task.FromResult(0);

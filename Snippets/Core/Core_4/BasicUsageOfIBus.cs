@@ -1,15 +1,14 @@
 ﻿namespace Core4
 {
     using NServiceBus;
-    using NServiceBus.Unicast.Config;
 
     class BasicUsageOfIBus
     {
         void Send()
         {
             #region BasicSend
-            ConfigUnicastBus configUnicastBus = Configure.With().UnicastBus();
-            IBus bus = configUnicastBus.CreateBus().Start();
+            var configUnicastBus = Configure.With().UnicastBus();
+            var bus = configUnicastBus.CreateBus().Start();
 
             bus.Send(new MyMessage());
             #endregion

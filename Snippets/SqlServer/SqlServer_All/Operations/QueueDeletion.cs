@@ -5,11 +5,11 @@ public static class QueueDeletion
 {
     public static void DeleteQueuesForEndpoint()
     {
-        string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
 
         #region sqlserver-delete-queues-endpoint-usage
 
-        using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+        using (var sqlConnection = new SqlConnection(connectionString))
         {
             sqlConnection.Open();
             DeleteQueuesForEndpoint(
@@ -23,11 +23,11 @@ public static class QueueDeletion
 
     public static void DeleteSharedQueues()
     {
-        string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
 
         #region sqlserver-delete-queues-shared-usage
 
-        using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+        using (var sqlConnection = new SqlConnection(connectionString))
         {
             sqlConnection.Open();
             DeleteQueue(
@@ -47,11 +47,11 @@ public static class QueueDeletion
 
     public static void DeleteQueue(SqlConnection connection, string schema, string queueName)
     {
-        string sql = @"
+        var sql = @"
                 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{0}].[{1}]') AND type in (N'U'))
                 DROP TABLE [{0}].[{1}]";
-        string deleteScript = string.Format(sql, schema, queueName);
-        using (SqlCommand command = new SqlCommand(deleteScript, connection))
+        var deleteScript = string.Format(sql, schema, queueName);
+        using (var command = new SqlCommand(deleteScript, connection))
         {
             command.ExecuteNonQuery();
         }

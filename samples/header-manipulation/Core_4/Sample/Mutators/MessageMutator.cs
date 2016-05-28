@@ -12,11 +12,8 @@ public class MessageMutator : IMessageMutator
     }
     public object MutateOutgoing(object message)
     {
-        IMessageContext incomingContext = bus.CurrentMessageContext;
-        if (incomingContext != null)
-        {
-            string incomingMessageId = incomingContext.Headers["NServiceBus.MessageId"];
-        }
+        var incomingContext = bus.CurrentMessageContext;
+        var incomingMessageId = incomingContext?.Headers["NServiceBus.MessageId"];
 
         bus.SetMessageHeader(message, "MessageMutater_Outgoing", "ValueMessageMutater_Outgoing");
         return message;

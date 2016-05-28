@@ -8,15 +8,16 @@ public class PriceUpdatedHandler : IHandleMessages<PriceUpdated>
 {
     static ILog log = LogManager.GetLogger<PriceUpdatedHandler>();
 
-    public async Task Handle(PriceUpdated message, IMessageHandlerContext context)
+    public Task Handle(PriceUpdated message, IMessageHandlerContext context)
     {
-        string messageHeader = context.MessageHeaders[Headers.OriginatingSite];
-        log.InfoFormat("Price update for product: {0} received. Going to reply over channel: {1}", message.ProductId, messageHeader);
+        var messageHeader = context.MessageHeaders[Headers.OriginatingSite];
+        log.Info($"Price update for product: {message.ProductId} received. Going to reply over channel: {messageHeader}");
 
-        await context.Reply(new PriceUpdateAcknowledged
-                  {
-                      BranchOffice = "RemoteSite"
-                  });
+        var updateAcknowledged = new PriceUpdateAcknowledged
+        {
+            BranchOffice = "RemoteSite"
+        };
+        return context.Reply(updateAcknowledged);
     }
 }
 

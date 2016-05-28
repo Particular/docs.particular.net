@@ -19,28 +19,28 @@ public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloa
             {"platform", "http://particular.net/service-platform"},
         };
 
-    public async Task Handle(ProvisionDownloadResponse message, IMessageHandlerContext context)
+    public Task Handle(ProvisionDownloadResponse message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
             Debugger.Break();
         }
 
-        log.InfoFormat("Download for Order # {0} has been provisioned, Publishing Download ready event", message.OrderNumber);
+        log.InfoFormat($"Download for Order # {message.OrderNumber} has been provisioned, Publishing Download ready event");
 
-        await context.Publish<DownloadIsReady>(e =>
+        log.InfoFormat($"Downloads for Order #{message.OrderNumber} is ready, publishing it.");
+        return context.Publish<DownloadIsReady>(e =>
         {
             e.OrderNumber = message.OrderNumber;
             e.ClientId = message.ClientId;
             e.ProductUrls = new Dictionary<string, string>();
 
-            foreach (string productId in message.ProductIds)
+            foreach (var productId in message.ProductIds)
             {
                 e.ProductUrls.Add(productId, productIdToUrlMap[productId]);
             }
         });
 
-        log.InfoFormat("Downloads for Order #{0} is ready, publishing it.", message.OrderNumber);
     }
-    
+
 }

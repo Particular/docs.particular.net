@@ -31,7 +31,7 @@
             transport.UseCustomSqlConnectionFactory(
                 connectionString =>
                 {
-                    SqlConnection newConnection = new SqlConnection(connectionString);
+                    var newConnection = new SqlConnection(connectionString);
                     newConnection.Open();
                     // custom operations
                     return newConnection;

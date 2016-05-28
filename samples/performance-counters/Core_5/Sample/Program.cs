@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.PerfCounters";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PerfCounters");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
@@ -18,7 +18,7 @@ class Program
         busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromSeconds(100));
         #endregion
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
 
             Console.WriteLine("Press enter to send 10 messages with random sleep");
@@ -26,14 +26,14 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
                 {
                     return;
                 }
-                for (int i = 0; i < 10; i++)
+                for (var i = 0; i < 10; i++)
                 {
                     bus.SendLocal(new MyMessage());
                 }

@@ -12,7 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SenderSideScaleOut.AwareClient";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.AwareClient");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.AwareClient");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
@@ -30,19 +30,22 @@ class Program
 
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         Console.WriteLine("Press enter to send a message");
         Console.WriteLine("Press any key to exit");
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             if (key.Key != ConsoleKey.Enter)
             {
                 break;
             }
-            await endpoint.Send(new DoSomething());
+            await endpointInstance.Send(new DoSomething())
+                .ConfigureAwait(false);
             Console.WriteLine("Message Sent");
         }
-        await endpoint.Stop();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

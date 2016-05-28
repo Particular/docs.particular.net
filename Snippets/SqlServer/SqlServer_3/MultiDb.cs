@@ -14,9 +14,10 @@ class MultiDb
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.EnableLegacyMultiInstanceMode(async address =>
         {
-            string connectionString = address.Equals("RemoteEndpoint") ? "SomeConnectionString" : "SomeOtherConnectionString";
-            SqlConnection connection = new SqlConnection(connectionString);
-            await connection.OpenAsync();
+            var connectionString = address.Equals("RemoteEndpoint") ? "SomeConnectionString" : "SomeOtherConnectionString";
+            var connection = new SqlConnection(connectionString);
+            await connection.OpenAsync()
+            .ConfigureAwait(false);
             return connection;
         });
 

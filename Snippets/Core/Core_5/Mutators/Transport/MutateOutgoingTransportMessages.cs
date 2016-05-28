@@ -1,6 +1,5 @@
 ﻿namespace Core5.Mutators.Transport
 {
-    using System.Collections.Generic;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NServiceBus.Unicast.Messages;
@@ -11,10 +10,10 @@
         public void MutateOutgoing(LogicalMessage logicalMessage, TransportMessage transportMessage)
         {
             // the outgoing message instance
-            object instance = logicalMessage.Instance;
+            var instance = logicalMessage.Instance;
 
             // the bytes containing the serialized outgoing messages.
-            byte[] bytes = transportMessage.Body;
+            var bytes = transportMessage.Body;
 
             // optionally replace the Body. 
             // this can be done using either the information from the logicalMessage or transportMessage
@@ -22,7 +21,7 @@
 
 
             // the outgoing headers
-            Dictionary<string, string> headers = transportMessage.Headers;
+            var headers = transportMessage.Headers;
 
             // optional manipulate headers
 

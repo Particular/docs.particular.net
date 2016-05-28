@@ -8,21 +8,21 @@ using NServiceBus;
 public class MvcApplication : HttpApplication
 {
     IEndpointInstance endpoint;
-    
+
 
     protected void Application_Start()
     {
         #region ApplicationStart
 
-        ContainerBuilder builder = new ContainerBuilder();
+        var builder = new ContainerBuilder();
 
         // Register MVC controllers.
         builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
         // Set the dependency resolver to be Autofac.
-        IContainer container = builder.Build();
+        var container = builder.Build();
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MvcInjection.WebApplication");
+        var endpointConfiguration = new EndpointConfiguration("Samples.MvcInjection.WebApplication");
         // instruct NServiceBus to use a custom AutoFac configuration
         endpointConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -32,7 +32,7 @@ public class MvcApplication : HttpApplication
 
         endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 
-        ContainerBuilder updater = new ContainerBuilder();
+        var updater = new ContainerBuilder();
         updater.RegisterInstance(endpoint);
         updater.Update(container);
 

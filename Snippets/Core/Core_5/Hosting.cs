@@ -9,8 +9,8 @@
         {
             #region Hosting-SendOnly
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            ISendOnlyBus bus = Bus.CreateSendOnly(busConfiguration);
+            var busConfiguration = new BusConfiguration();
+            var sendOnlyBus = Bus.CreateSendOnly(busConfiguration);
 
             #endregion
         }
@@ -18,10 +18,10 @@
         void Startup()
         {
             #region Hosting-Startup
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             //Apply configuration
-            IStartableBus startableBus = Bus.Create(busConfiguration);
-            IBus bus = startableBus.Start();
+            var startableBus = Bus.Create(busConfiguration);
+            var bus = startableBus.Start();
             #endregion
         }
 

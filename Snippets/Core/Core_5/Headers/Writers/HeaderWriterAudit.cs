@@ -1,7 +1,5 @@
 ﻿namespace Core5.Headers.Writers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Threading;
     using Common;
     using NServiceBus;
@@ -28,14 +26,14 @@
         [Test]
         public void Write()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName(endpointName);
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterAudit>(typeof(ConfigErrorQueue));
+            var typesToScan = TypeScanner.NestedTypes<HeaderWriterAudit>(typeof(ConfigErrorQueue));
             busConfiguration.TypesToScan(typesToScan);
             busConfiguration.EnableInstallers();
             busConfiguration.UsePersistence<InMemoryPersistence>();
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IBus bus = Bus.Create(busConfiguration).Start())
+            using (var bus = Bus.Create(busConfiguration).Start())
             {
                 bus.SendLocal(new MessageToSend());
                 ManualResetEvent.WaitOne();
@@ -62,11 +60,11 @@
                 if (!receivedFirstMessage)
                 {
                     receivedFirstMessage = true;
-                    string sendText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(transportMessage.Headers);
+                    var sendText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(transportMessage.Headers);
                     SnippetLogger.Write(text: sendText, suffix: "Send",version:"5");
                     return;
                 }
-                string auditText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(transportMessage.Headers);
+                var auditText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(transportMessage.Headers);
                 SnippetLogger.Write(text: auditText, suffix: "Audit", version: "5");
                 ManualResetEvent.Set();
             }

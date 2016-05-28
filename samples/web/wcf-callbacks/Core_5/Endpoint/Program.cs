@@ -11,7 +11,7 @@ static class Program
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.WcfCallbacks.Endpoint");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
@@ -19,7 +19,7 @@ static class Program
 
         #region startbus
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         using (StartWcfHost(bus))
         {
             Console.WriteLine("Press any key to exit");
@@ -33,7 +33,7 @@ static class Program
 
     static IDisposable StartWcfHost(IBus bus)
     {
-        WcfMapper wcfMapper = new WcfMapper(bus, "http://localhost:8080");
+        var wcfMapper = new WcfMapper(bus, "http://localhost:8080");
         wcfMapper.StartListening<EnumMessage, Status>();
         wcfMapper.StartListening<ObjectMessage, ReplyMessage>();
         wcfMapper.StartListening<IntMessage, int>();

@@ -1,6 +1,5 @@
 ﻿using NServiceBus.Persistence.NHibernate;
 using NServiceBus.Saga;
-using NHibernate;
 
 #region CustomSagaFinderNHibernate
 
@@ -15,7 +14,7 @@ class StartOrderSagaFinder : IFindSagas<OrderSagaData>.Using<StartOrder>
 
     public OrderSagaData FindBy(StartOrder message)
     {
-        ISession session = storageContext.Session;
+        var session = storageContext.Session;
         //if the instance is null a new saga will be automatically created if
         //the Saga handles the message as IAmStartedByMessages<StartOrder>; otherwise an exception is raised.
         return session.QueryOver<OrderSagaData>()

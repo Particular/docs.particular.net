@@ -21,7 +21,7 @@
         {
             #region ScanningExcludeByName
 
-            IExcludesBuilder excludesBuilder = AllAssemblies
+            var excludesBuilder = AllAssemblies
                 .Except("MyAssembly1.dll")
                 .And("MyAssembly2.dll");
             Configure.With(excludesBuilder);
@@ -55,7 +55,7 @@
         {
             #region ScanningIncludeByPattern
 
-            IIncludesBuilder includesBuilder = AllAssemblies
+            var includesBuilder = AllAssemblies
                 .Matching("NServiceBus")
                 .And("MyCompany.")
                 .And("SomethingElse");
@@ -78,7 +78,7 @@
         {
             #region ScanningMixingIncludeAndExclude
 
-            IExcludesBuilder excludesBuilder = AllAssemblies
+            var excludesBuilder = AllAssemblies
                 .Matching("NServiceBus")
                 .And("MyCompany.")
                 .Except("BadAssembly.dll");

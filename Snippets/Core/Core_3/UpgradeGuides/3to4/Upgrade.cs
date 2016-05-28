@@ -1,7 +1,6 @@
 ﻿namespace Core3.UpgradeGuides._3to4
 {
     using NServiceBus;
-    using NServiceBus.Unicast.Config;
 
     class Upgrade
     {
@@ -10,7 +9,7 @@
         {
             #region 3to4RenamePrincipalHack
 
-            ConfigUnicastBus unicastBus = configure.UnicastBus();
+            var unicastBus = configure.UnicastBus();
             unicastBus.ImpersonateSender(true);
 
             #endregion
@@ -56,7 +55,7 @@
         {
             #region 3to4SetMessageHeader
 
-            MyMessage myMessage = new MyMessage();
+            var myMessage = new MyMessage();
             myMessage.SetHeader("SendingMessage", "ValueSendingMessage");
             bus.SendLocal(myMessage);
 

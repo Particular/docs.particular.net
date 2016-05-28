@@ -31,9 +31,9 @@ public static class NativeSend
 
     public static void SendMessage(string machineName, string queueName, string userName, string password, string messageBody, Dictionary<string, object> headers)
     {
-        using (IModel channel = OpenConnection(machineName, userName, password))
+        using (var channel = OpenConnection(machineName, userName, password))
         {
-            IBasicProperties properties = channel.CreateBasicProperties();
+            var properties = channel.CreateBasicProperties();
             properties.MessageId = Guid.NewGuid().ToString();
             properties.Headers = headers;
             channel.BasicPublish(string.Empty, queueName, false, properties, Encoding.UTF8.GetBytes(messageBody));
@@ -42,14 +42,14 @@ public static class NativeSend
 
     static IModel OpenConnection(string machine, string userName, string password)
     {
-        ConnectionFactory factory = new ConnectionFactory
+        var factory = new ConnectionFactory
         {
             HostName = machine,
             Port = AmqpTcpEndpoint.UseDefaultPort,
             UserName = userName,
             Password = password,
         };
-        IConnection conn = factory.CreateConnection();
+        var conn = factory.CreateConnection();
         return conn.CreateModel();
     }
 

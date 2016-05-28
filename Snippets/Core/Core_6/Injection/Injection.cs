@@ -29,7 +29,7 @@
 
             public Task Handle(EmailMessage message, IMessageHandlerContext context)
             {
-                SmtpClient client = new SmtpClient(SmtpAddress, SmtpPort);
+                var client = new SmtpClient(SmtpAddress, SmtpPort);
                 // ...
 
                 return Task.FromResult(0);

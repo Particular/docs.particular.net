@@ -10,10 +10,7 @@ public class Global : HttpApplication
 
     public override void Dispose()
     {
-        if (Bus != null)
-        {
-            ((IDisposable)Bus).Dispose();
-        }
+        ((IDisposable) Bus)?.Dispose();
         base.Dispose();
     }
 
@@ -21,7 +18,7 @@ public class Global : HttpApplication
     {
         #region ApplicationStart
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.AsyncPages.WebApplication");
         configure.DefaultBuilder();

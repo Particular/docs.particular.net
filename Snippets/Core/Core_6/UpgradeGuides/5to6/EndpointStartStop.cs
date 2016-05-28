@@ -8,16 +8,18 @@
         async Task StartEndpoint()
         {
             #region 5to6-endpoint-start-stop
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
+            var endpointConfiguration = new EndpointConfiguration("EndpointName");
 
             // Custom code before start
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
             // Custom code after start
 
             // Block the process
 
             // Custom code before stop
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
             // Custom code after stop
             #endregion
         }

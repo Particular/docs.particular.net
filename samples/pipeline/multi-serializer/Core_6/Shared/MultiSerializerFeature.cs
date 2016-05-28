@@ -1,6 +1,5 @@
 ﻿using NServiceBus;
 using NServiceBus.Features;
-using NServiceBus.Pipeline;
 
 #region behavior-configuration
 
@@ -13,7 +12,7 @@ public class MultiSerializerFeature : Feature
 
     protected override void Setup(FeatureConfigurationContext context)
     {
-        PipelineSettings pipeline = context.Pipeline;
+        var pipeline = context.Pipeline;
         pipeline.Replace("NServiceBus.DeserializeLogicalMessagesConnector", typeof(DeserializeConnector));
         pipeline.Replace("NServiceBus.SerializeMessageConnector", typeof(SerializeConnector));
         context.Container.ConfigureComponent<SerializationMapper>(DependencyLifecycle.SingleInstance);

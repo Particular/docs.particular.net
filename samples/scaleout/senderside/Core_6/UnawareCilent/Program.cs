@@ -12,26 +12,29 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SenderSideScaleOut.UnawareCilent";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.UnawareCilent");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.UnawareCilent");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         var routing = endpointConfiguration.UnicastRouting();
         routing.RouteToEndpoint(typeof(DoSomething), "Samples.SenderSideScaleOut.Server");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         Console.WriteLine("Press enter to send a message");
         Console.WriteLine("Press any key to exit");
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             if (key.Key != ConsoleKey.Enter)
             {
                 break;
             }
-            await endpoint.Send(new DoSomething());
+            await endpointInstance.Send(new DoSomething())
+                .ConfigureAwait(false);
             Console.WriteLine("Message Sent");
         }
-        await endpoint.Stop();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

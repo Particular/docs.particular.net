@@ -20,7 +20,7 @@ public class UpdatePriceHandler : IHandleMessages<UpdatePrice>
         {
             "RemoteSite",
         };
-        PriceUpdated priceUpdated = new PriceUpdated
+        var priceUpdated = new PriceUpdated
         {
             ProductId = message.ProductId,
             NewPrice = message.NewPrice,

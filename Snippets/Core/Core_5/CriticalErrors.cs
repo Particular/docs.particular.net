@@ -52,7 +52,7 @@ namespace Core5
 
             #region DefaultCriticalErrorAction
 
-            IConfigureComponents components = configure.Builder.Build<IConfigureComponents>();
+            var components = configure.Builder.Build<IConfigureComponents>();
             if (!components.HasComponent<IBus>())
             {
                 return;
@@ -76,7 +76,7 @@ namespace Core5
                 Thread.Sleep(10000); // so that user can see on their screen the problem
             }
 
-            string fatalMessage = string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage);
+            var fatalMessage = $"The following critical error was encountered by NServiceBus:\n{errorMessage}\nNServiceBus is shutting down.";
             Environment.FailFast(fatalMessage, exception);
 
             #endregion

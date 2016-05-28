@@ -2,7 +2,6 @@
 using System.Threading;
 using NServiceBus;
 using NServiceBus.Installation.Environments;
-using NServiceBus.Unicast.Config;
 
 class Program
 {
@@ -13,19 +12,19 @@ class Program
 
         Configure.Features.Enable<MyFeature>();
         Logger.WriteLine("Starting configuration");
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.StartupShutdown");
         configure.DefaultBuilder();
         configure.UseInMemoryTimeoutPersister();
 
         Logger.WriteLine("Calling Configure.UnicastBus");
-        ConfigUnicastBus unicastBus = configure.UnicastBus();
+        var unicastBus = configure.UnicastBus();
         Logger.WriteLine("Calling ConfigUnicastBus.CreateBus");
-        using (IStartableBus startableBus = unicastBus.CreateBus())
+        using (var startableBus = unicastBus.CreateBus())
         {
             Logger.WriteLine("Calling IStartableBus.Start");
-            IBus bus = startableBus
+            var bus = startableBus
                 .Start(() =>
                 {
                     Logger.WriteLine("Calling ForInstallationOn.Install");

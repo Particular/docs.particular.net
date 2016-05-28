@@ -2,7 +2,6 @@
 {
     using System.Transactions;
     using NServiceBus;
-    using NServiceBus.Unicast.Config;
 
     class Upgrade
     {
@@ -10,7 +9,7 @@
         void RenamePrincipalHack(Configure configure)
         {
             #region 3to4RenamePrincipalHack
-            ConfigUnicastBus unicastBus = configure.UnicastBus();
+            var unicastBus = configure.UnicastBus();
             unicastBus.RunHandlersUnderIncomingPrincipal(true);
             #endregion
         }
@@ -47,7 +46,7 @@
         {
             #region 3to4SetMessageHeader
 
-            MyMessage myMessage = new MyMessage();
+            var myMessage = new MyMessage();
             bus.SetMessageHeader(myMessage, "SendingMessage", "ValueSendingMessage");
             bus.SendLocal(myMessage);
 

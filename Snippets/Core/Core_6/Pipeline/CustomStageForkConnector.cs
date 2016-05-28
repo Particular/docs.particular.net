@@ -12,16 +12,18 @@
         public override async Task Invoke(ITransportReceiveContext context, Func<IIncomingPhysicalMessageContext, Task> stage, Func<IBatchDispatchContext, Task> fork)
         {
             // Finalize the work in the current stage
-            IIncomingPhysicalMessageContext physicalMessageContext = this.CreateIncomingPhysicalMessageContext(context.Message, context);
+            var physicalMessageContext = this.CreateIncomingPhysicalMessageContext(context.Message, context);
 
             // Start the next stage
-            await stage(physicalMessageContext).ConfigureAwait(false);
+            await stage(physicalMessageContext)
+                .ConfigureAwait(false);
 
             TransportOperation[] operations = { };
-            IBatchDispatchContext batchDispatchContext = this.CreateBatchDispatchContext(operations, physicalMessageContext);
+            var batchDispatchContext = this.CreateBatchDispatchContext(operations, physicalMessageContext);
 
             // Fork into new pipeline
-            await fork(batchDispatchContext).ConfigureAwait(false);
+            await fork(batchDispatchContext)
+                .ConfigureAwait(false);
         }
     }
     #endregion

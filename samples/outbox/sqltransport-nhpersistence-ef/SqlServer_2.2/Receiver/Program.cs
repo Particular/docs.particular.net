@@ -10,12 +10,12 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.SQLNHibernateOutboxEF.Receiver";
-        using (ReceiverDataContext ctx = new ReceiverDataContext())
+        using (var receiverDataContext = new ReceiverDataContext())
         {
-            ctx.Database.Initialize(true);
+            receiverDataContext.Database.Initialize(true);
         }
 
-        Configuration hibernateConfig = new Configuration();
+        var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
             x.ConnectionStringName = "NServiceBus/Persistence";
@@ -24,7 +24,7 @@ class Program
 
         hibernateConfig.SetProperty("default_schema", "receiver");
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EndpointName("Samples.SQLNHibernateOutboxEF.Receiver");
 

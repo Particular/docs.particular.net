@@ -1,7 +1,6 @@
 ﻿namespace Core3
 {
     using NServiceBus;
-    using NServiceBus.Unicast.Config;
 
     class BasicUsageOfIBus
     {
@@ -9,8 +8,8 @@
         {
             #region BasicSend
 
-            ConfigUnicastBus configUnicastBus = configure.UnicastBus();
-            IBus bus = configUnicastBus.CreateBus().Start();
+            var configUnicastBus = configure.UnicastBus();
+            var bus = configUnicastBus.CreateBus().Start();
 
             bus.Send(new MyMessage());
 

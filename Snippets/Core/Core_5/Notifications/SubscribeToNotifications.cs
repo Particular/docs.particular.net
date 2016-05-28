@@ -25,21 +25,21 @@
 
         public void Start()
         {
-            ErrorsNotifications errors = busNotifications.Errors;
-            DefaultScheduler scheduler = Scheduler.Default;
+            var errorsNotifications = busNotifications.Errors;
+            var defaultScheduler = Scheduler.Default;
             unsubscribeStreams.Add(
-                errors.MessageSentToErrorQueue
-                    .ObserveOn(scheduler)
+                errorsNotifications.MessageSentToErrorQueue
+                    .ObserveOn(defaultScheduler)
                     .Subscribe(LogEvent)
                 );
             unsubscribeStreams.Add(
-                errors.MessageHasBeenSentToSecondLevelRetries
-                    .ObserveOn(scheduler)
+                errorsNotifications.MessageHasBeenSentToSecondLevelRetries
+                    .ObserveOn(defaultScheduler)
                     .Subscribe(LogEvent)
                 );
             unsubscribeStreams.Add(
-                errors.MessageHasFailedAFirstLevelRetryAttempt
-                    .ObserveOn(scheduler)
+                errorsNotifications.MessageHasFailedAFirstLevelRetryAttempt
+                    .ObserveOn(defaultScheduler)
                     .Subscribe(LogEvent)
                 );
         }
@@ -61,7 +61,7 @@
 
         public void Stop()
         {
-            foreach (IDisposable unsubscribeStream in unsubscribeStreams)
+            foreach (var unsubscribeStream in unsubscribeStreams)
             {
                 unsubscribeStream.Dispose();
             }

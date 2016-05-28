@@ -9,13 +9,13 @@ static class Program
     {
         Console.Title = "Samples.PubSub.Subscriber2";
         LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PubSub.Subscriber2");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.DisableFeature<AutoSubscribe>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.Subscribe<IMyEvent>();
             Console.WriteLine("Press any key to exit");

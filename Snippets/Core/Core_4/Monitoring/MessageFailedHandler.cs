@@ -9,15 +9,12 @@
     {
         public void Handle(MessageFailed message)
         {
-            string failedMessageId = message.FailedMessageId;
-            string exceptionMessage = message.FailureDetails.Exception.Message;
+            var failedMessageId = message.FailedMessageId;
+            var exceptionMessage = message.FailureDetails.Exception.Message;
 
-            string chatMessage = string.Format("Message with id: {0} failed with reason: '{1}'. Open in ServiceInsight: {2}",
-                failedMessageId,
-                exceptionMessage,
-                GetServiceInsightUri(failedMessageId));
+            var chatMessage = $"Message with id: {failedMessageId} failed with reason: '{exceptionMessage}'. Open in ServiceInsight: {GetServiceInsightUri(failedMessageId)}";
 
-            using (HipchatClient client = new HipchatClient())
+            using (var client = new HipchatClient())
             {
                 client.PostChatMessage(chatMessage);
             }
@@ -26,7 +23,7 @@
         #endregion
         string GetServiceInsightUri(string failedMessageId)
         {
-            return string.Format("si://localhost:33333/api?Search={0}", failedMessageId);
+            return $"si://localhost:33333/api?Search={failedMessageId}";
         }
     }
 

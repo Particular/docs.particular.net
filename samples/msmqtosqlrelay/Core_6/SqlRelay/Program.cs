@@ -16,7 +16,7 @@ class Program
     {
         Console.Title = "Samples.MsmqToSqlRelay.SqlRelay";
         #region sqlrelay-config
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("SqlRelay");
+        var endpointConfiguration = new EndpointConfiguration("SqlRelay");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.DisableFeature<AutoSubscribe>();
@@ -27,7 +27,8 @@ class Program
         #endregion
 
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("\r\nSqlRelay is running - This endpoint will relay all events received to subscribers. Press any key to stop program\r\n");
@@ -35,7 +36,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

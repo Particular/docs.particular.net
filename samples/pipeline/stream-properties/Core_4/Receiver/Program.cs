@@ -9,7 +9,7 @@ class Program
     {
         Console.Title = "Samples.PipelineStream.Receiver";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.PipelineStream.Receiver");
         configure.DefaultBuilder();
@@ -18,9 +18,9 @@ class Program
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
         configure.SetStreamStorageLocation("..\\..\\..\\storage");
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus
+            var bus = startableBus
                 .Start(() => configure.ForInstallationOn<Windows>().Install());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

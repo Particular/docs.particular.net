@@ -1,7 +1,5 @@
 ﻿namespace Core6.Headers.Writers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Common;
@@ -26,17 +24,19 @@
         [Test]
         public async Task Write()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration(endpointName);
-            Type[] callbackTypes = typeof(RequestResponseExtensions).Assembly.GetTypes();
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterReply>(callbackTypes);
+            var endpointConfiguration = new EndpointConfiguration(endpointName);
+            var callbackTypes = typeof(RequestResponseExtensions).Assembly.GetTypes();
+            var typesToScan = TypeScanner.NestedTypes<HeaderWriterReply>(callbackTypes);
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.ScaleOut().InstanceDiscriminator("A");
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-            await endpoint.SendLocal(new MessageToSend());
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
+            await endpointInstance.SendLocal(new MessageToSend())
+                .ConfigureAwait(false);
             ManualResetEvent.WaitOne();
         }
 
@@ -46,9 +46,9 @@
 
         class MessageHandler : IHandleMessages<MessageToSend>
         {
-            public async Task Handle(MessageToSend message, IMessageHandlerContext context)
+            public Task Handle(MessageToSend message, IMessageHandlerContext context)
             {
-                await context.Reply(new MessageToReply());
+                return context.Reply(new MessageToReply());
             }
         }
 
@@ -63,14 +63,20 @@
             {
                 if (context.IsMessageOfTye<MessageToReply>())
                 {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(context.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Replying", version: "6");
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(context.Headers);
+                    SnippetLogger.Write(
+                        text: headerText,
+                        suffix: "Replying",
+                        version: "6");
                     ManualResetEvent.Set();
                 }
                 if (context.IsMessageOfTye<MessageToSend>())
                 {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(context.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Sending", version: "6");
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(context.Headers);
+                    SnippetLogger.Write(
+                        text: headerText,
+                        suffix: "Sending",
+                        version: "6");
                 }
                 return Task.FromResult(0);
             }

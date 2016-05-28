@@ -14,18 +14,19 @@ namespace Core6.UpgradeGuides._5to6
         {
             #region DispatcherRawSending
 
-            Dictionary<string, string> headers = new Dictionary<string, string>();
-            OutgoingMessage outgoingMessage = new OutgoingMessage("MessageId", headers, new byte[]
+            var headers = new Dictionary<string, string>();
+            var outgoingMessage = new OutgoingMessage("MessageId", headers, new byte[]
             {
             });
             NonDurableDelivery[] constraints =
             {
                 new NonDurableDelivery()
             };
-            UnicastAddressTag address = new UnicastAddressTag("Destination");
-            TransportOperation transportOperation = new TransportOperation(outgoingMessage, address, DispatchConsistency.Default, constraints);
-            TransportOperations operations = new TransportOperations(transportOperation);
-            await dispatcher.Dispatch(operations, new ContextBag());
+            var address = new UnicastAddressTag("Destination");
+            var transportOperation = new TransportOperation(outgoingMessage, address, DispatchConsistency.Default, constraints);
+            var operations = new TransportOperations(transportOperation);
+            await dispatcher.Dispatch(operations, new ContextBag())
+                .ConfigureAwait(false);
 
             #endregion
         }

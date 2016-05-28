@@ -13,7 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.PerfCounters";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.PerfCounters");
+        var endpointConfiguration = new EndpointConfiguration("Samples.PerfCounters");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
@@ -24,7 +24,8 @@ class Program
         endpointConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromSeconds(100));
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press enter to send 10 messages with random sleep");
@@ -32,22 +33,24 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
                 {
                     break;
                 }
-                for (int i = 0; i < 10; i++)
+                for (var i = 0; i < 10; i++)
                 {
-                    await endpoint.SendLocal(new MyMessage());
+                    await endpointInstance.SendLocal(new MyMessage())
+                        .ConfigureAwait(false);
                 }
             }
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

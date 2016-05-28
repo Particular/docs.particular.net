@@ -7,9 +7,9 @@
         StaticHeaders(BusConfiguration busConfiguration)
         {
             #region header-static-endpoint
-            IStartableBus startableBus = Bus.Create(busConfiguration);
+            var startableBus = Bus.Create(busConfiguration);
             startableBus.OutgoingHeaders.Add("AllOutgoing", "ValueAllOutgoing");
-            using (IBus bus = startableBus.Start())
+            using (var bus = startableBus.Start())
             {
                 #endregion
             }

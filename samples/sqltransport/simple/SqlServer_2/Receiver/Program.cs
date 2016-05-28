@@ -6,7 +6,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.SqlServer.SimpleReceiver";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SqlServer.SimpleReceiver");
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=SqlServerSimple;Integrated Security=True");

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
@@ -19,31 +18,31 @@ class StreamReceiveBehavior : IBehavior<IncomingContext>
     {
 #endregion
         #region write-stream-properties-back
-        object message = context.IncomingLogicalMessage.Instance;
-        List<FileStream> streamsToCleanUp = new List<FileStream>();
-        foreach (PropertyInfo property in StreamStorageHelper
+        var message = context.IncomingLogicalMessage.Instance;
+        var streamsToCleanUp = new List<FileStream>();
+        foreach (var property in StreamStorageHelper
             .GetStreamProperties(message))
         {
-            string headerKey = StreamStorageHelper.GetHeaderKey(message, property);
+            var headerKey = StreamStorageHelper.GetHeaderKey(message, property);
             string dataBusKey;
             //only attempt to process properties that have an associated header
-            string key = "NServiceBus.PropertyStream." + headerKey;
+            var key = "NServiceBus.PropertyStream." + headerKey;
             if (!context.IncomingLogicalMessage.Headers.TryGetValue(key, out dataBusKey))
             {
                 continue;
             }
 
-            string filePath = Path.Combine(location, dataBusKey);
+            var filePath = Path.Combine(location, dataBusKey);
 
             // If the file doesnt exist then something has gone wrong with the file share.
             // Perhaps he file has been manually deleted.
             // For safety send the message to the error queue
             if (!File.Exists(filePath))
             {
-                string format = string.Format("Expected a file to exist in '{0}'. It is possible the file has been prematurely cleaned up.", filePath);
+                var format = $"Expected a file to exist in '{filePath}'. It is possible the file has been prematurely cleaned up.";
                 throw new Exception(format);
             }
-            FileStream fileStream = File.OpenRead(filePath);
+            var fileStream = File.OpenRead(filePath);
             property.SetValue(message, fileStream);
             streamsToCleanUp.Add(fileStream);
         }
@@ -53,7 +52,7 @@ class StreamReceiveBehavior : IBehavior<IncomingContext>
         next();
         // Clean up all the temporary streams after handler processing
         // via the "next()" delegate has occurred
-        foreach (FileStream fileStream in streamsToCleanUp)
+        foreach (var fileStream in streamsToCleanUp)
         {
             fileStream.Dispose();
         }

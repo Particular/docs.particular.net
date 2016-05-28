@@ -37,7 +37,7 @@ class Usage
     void CustomCommonConfiguration(EndpointConfiguration endpointConfiguration)
     {
         #region CommonNHibernateConfiguration
-        Configuration nhConfiguration = new Configuration
+        var nhConfiguration = new Configuration
         {
             Properties =
             {
@@ -57,7 +57,7 @@ class Usage
     {
         #region SpecificNHibernateConfiguration
 
-        Configuration nhConfiguration = new Configuration
+        var nhConfiguration = new Configuration
         {
             Properties =
             {
@@ -78,7 +78,7 @@ class Usage
     {
         #region CustomCommonNhibernateConfigurationWarning
 
-        Configuration nhConfiguration = new Configuration
+        var nhConfiguration = new Configuration
         {
             Properties =
             {

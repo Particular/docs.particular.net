@@ -8,17 +8,14 @@ public class Global : HttpApplication
 
     public override void Dispose()
     {
-        if (Bus != null)
-        {
-            Bus.Dispose();
-        }
+        Bus?.Dispose();
         base.Dispose();
     }
     protected void Application_Start(object sender, EventArgs e)
     {
         #region ApplicationStart
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.AsyncPages.WebApplication");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();

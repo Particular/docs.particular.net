@@ -8,9 +8,10 @@
     {
         public async Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
         {
-            foreach (string address in queueBindings.ReceivingAddresses)
+            foreach (var address in queueBindings.ReceivingAddresses)
             {
-                await CreateQueue(address);
+                await CreateQueue(address)
+                    .ConfigureAwait(false);
             }
         }
         #endregion

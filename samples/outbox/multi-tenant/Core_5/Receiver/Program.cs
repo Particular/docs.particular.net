@@ -12,7 +12,6 @@ using NServiceBus.Features;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.NHibernate;
 using NServiceBus.Pipeline;
-using NServiceBus.Settings;
 using NServiceBus.Unicast;
 using Configuration = NHibernate.Cfg.Configuration;
 
@@ -24,12 +23,12 @@ class Program
     {
         Console.Title = "Samples.MultiTenant.Receiver";
 
-        Configuration hibernateConfig = CreateBasicNHibernateConfig();
-        ModelMapper mapper = new ModelMapper();
+        var hibernateConfig = CreateBasicNHibernateConfig();
+        var mapper = new ModelMapper();
         mapper.AddMapping<OrderMap>();
         hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EndpointName("Samples.MultiTenant.Receiver");
 
@@ -44,7 +43,7 @@ class Program
 
         busConfiguration.EnableOutbox();
 
-        SettingsHolder settingsHolder = busConfiguration.GetSettings();
+        var settingsHolder = busConfiguration.GetSettings();
         settingsHolder.Set("NHibernate.Timeouts.AutoUpdateSchema", true);
         settingsHolder.Set("NHibernate.Subscriptions.AutoUpdateSchema", true);
 
@@ -66,7 +65,7 @@ class Program
 
         #region CreateSchema
 
-        IStartableBus startableBus = Bus.Create(busConfiguration);
+        var startableBus = Bus.Create(busConfiguration);
 
         CreateSchema(hibernateConfig, "A");
         CreateSchema(hibernateConfig, "B");
@@ -88,7 +87,7 @@ class Program
 
     static Configuration CreateBasicNHibernateConfig()
     {
-        Configuration hibernateConfig = new Configuration();
+        var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
             #region ConnectionProvider
@@ -105,8 +104,8 @@ class Program
 
     static void CreateSchema(Configuration hibernateConfig, string tenantId)
     {
-        string connectionString = ConfigurationManager.ConnectionStrings[tenantId].ConnectionString;
-        using (SqlConnection connection = new SqlConnection(connectionString))
+        var connectionString = ConfigurationManager.ConnectionStrings[tenantId].ConnectionString;
+        using (var connection = new SqlConnection(connectionString))
         {
             connection.Open();
             new SchemaExport(hibernateConfig)

@@ -14,7 +14,7 @@
 
         public void Handle(MyMessage message)
         {
-            SomeOtherMessage someOtherMessage = new SomeOtherMessage();
+            var someOtherMessage = new SomeOtherMessage();
             bus.SetMessageHeader(someOtherMessage, "MyCustomHeader", "My custom value");
             bus.Send(someOtherMessage);
         }

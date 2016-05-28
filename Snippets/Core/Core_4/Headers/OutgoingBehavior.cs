@@ -1,7 +1,6 @@
 ﻿namespace Core4.Headers
 {
     using System;
-    using System.Collections.Generic;
     using NServiceBus.Pipeline;
     using NServiceBus.Pipeline.Contexts;
 
@@ -10,7 +9,7 @@
     {
         public void Invoke(SendPhysicalMessageContext context, Action next)
         {
-            Dictionary<string, string> headers = context.MessageToSend.Headers;
+            var headers = context.MessageToSend.Headers;
             headers["MyCustomHeader"] = "My custom value";
             next();
         }

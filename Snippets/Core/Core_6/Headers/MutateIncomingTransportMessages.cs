@@ -11,8 +11,8 @@
         public async Task MutateIncoming(MutateIncomingTransportMessageContext context)
         {
             IDictionary<string, string> headers = context.Headers;
-            string nsbVersion = headers[Headers.NServiceBusVersion];
-            string customHeader = headers["MyCustomHeader"];
+            var nsbVersion = headers[Headers.NServiceBusVersion];
+            var customHeader = headers["MyCustomHeader"];
         }
     }
     #endregion

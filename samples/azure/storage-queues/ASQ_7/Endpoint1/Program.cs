@@ -13,7 +13,8 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Azure.StorageQueues.Endpoint1";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.StorageQueues.Endpoint1");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Azure.StorageQueues.Endpoint1");
+
         #region config
 
         endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
@@ -25,7 +26,8 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press 'enter' to send a message");
@@ -33,7 +35,7 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
@@ -41,18 +43,20 @@ class Program
                     return;
                 }
 
-                Guid orderId = Guid.NewGuid();
-                Message1 message = new Message1
+                var orderId = Guid.NewGuid();
+                var message = new Message1
                 {
                     Property = "Hello from Endpoint1"
                 };
-                await endpoint.Send("Samples.Azure.StorageQueues.Endpoint2", message);
+                await endpointInstance.Send("Samples.Azure.StorageQueues.Endpoint2", message)
+                    .ConfigureAwait(false);
                 Console.WriteLine("Message1 sent");
             }
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

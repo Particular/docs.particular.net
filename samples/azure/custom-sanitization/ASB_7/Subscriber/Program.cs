@@ -14,7 +14,7 @@ class Program
     static async Task MainAsync()
     {
         Console.Title = "Samples.ASB.Serialization.Subscriber";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ASB.Serialization.Subscriber");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Serialization.Subscriber");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
         var topology = transport.UseTopology<ForwardingTopology>();
@@ -32,8 +32,8 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
-
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Subscriber is ready to receive events");
@@ -42,7 +42,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

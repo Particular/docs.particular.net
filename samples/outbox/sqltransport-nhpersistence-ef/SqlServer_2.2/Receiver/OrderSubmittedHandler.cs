@@ -21,25 +21,27 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
         #region StoreUserData
 
-        using (ReceiverDataContext ctx = new ReceiverDataContext(storageContext.Connection))
+        using (var receiverDataContext = new ReceiverDataContext(storageContext.Connection))
         {
-            ctx.Database.UseTransaction((DbTransaction) storageContext.DatabaseTransaction);
-            ctx.Orders.Add(new Order
-                            {
-                                OrderId = message.OrderId,
-                                Value = message.Value
-                            });
-            ctx.SaveChanges();
+            receiverDataContext.Database.UseTransaction((DbTransaction) storageContext.DatabaseTransaction);
+            var order = new Order
+            {
+                OrderId = message.OrderId,
+                Value = message.Value
+            };
+            receiverDataContext.Orders.Add(order);
+            receiverDataContext.SaveChanges();
         }
 
         #endregion
 
         #region Reply
 
-        bus.Reply(new OrderAccepted
-                    {
-                        OrderId = message.OrderId,
-                    });
+        var orderAccepted = new OrderAccepted
+        {
+            OrderId = message.OrderId,
+        };
+        bus.Reply(orderAccepted);
 
         #endregion
     }

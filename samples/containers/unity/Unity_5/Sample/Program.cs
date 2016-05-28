@@ -12,10 +12,10 @@ class Program
 
         #region ContainerConfiguration
 
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Unity");
-        UnityContainer container = new UnityContainer();
+        var container = new UnityContainer();
         container.RegisterInstance(new MyService());
         configure.UnityBuilder(container);
 
@@ -25,11 +25,12 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
 
-            bus.SendLocal(new MyMessage());
+            var myMessage = new MyMessage();
+            bus.SendLocal(myMessage);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

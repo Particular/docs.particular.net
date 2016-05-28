@@ -8,7 +8,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.UsernameHeader.Endpoint1";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.UsernameHeader.Endpoint1");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseSerialization<JsonSerializer>();
@@ -18,7 +18,7 @@ class Program
             components.ConfigureComponent<UsernameMutator>(DependencyLifecycle.InstancePerCall);
         });
         #endregion
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             #region SendMessage
             Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("FakeUser"), new string[0]);

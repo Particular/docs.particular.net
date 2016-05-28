@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.MessageBodyEncryption.Endpoint1";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.MessageBodyEncryption.Endpoint1");
         configure.DefaultBuilder();
@@ -19,11 +19,11 @@ class Program
         #region RegisterMessageEncryptor
         configure.RegisterMessageEncryptor();
         #endregion
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
 
-            CompleteOrder completeOrder = new CompleteOrder
+            var completeOrder = new CompleteOrder
             {
                 CreditCard = "123-456-789"
             };

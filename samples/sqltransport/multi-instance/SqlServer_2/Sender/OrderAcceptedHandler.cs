@@ -13,6 +13,6 @@ public class OrderAcceptedHandler : IHandleMessages<ClientOrderAccepted>
 
     public void Handle(ClientOrderAccepted message)
     {
-        Console.WriteLine("Received ClientOrderAccepted for ID {0}", message.OrderId);
+        Console.WriteLine($"Received ClientOrderAccepted for ID {message.OrderId}");
     }
 }

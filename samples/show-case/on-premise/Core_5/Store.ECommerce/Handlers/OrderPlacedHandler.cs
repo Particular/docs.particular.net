@@ -6,9 +6,10 @@ public class OrderPlacedHandler : IHandleMessages<OrderPlaced>
 {
     public void Handle(OrderPlaced message)
     {
-        IHubContext context = GlobalHost.ConnectionManager.GetHubContext<OrdersHub>();
+        var hubContext = GlobalHost.ConnectionManager.GetHubContext<OrdersHub>();
 
-        context.Clients.Client(message.ClientId).orderReceived(new
+        hubContext.Clients.Client(message.ClientId)
+            .orderReceived(new
             {
                 message.OrderNumber,
                 message.ProductIds

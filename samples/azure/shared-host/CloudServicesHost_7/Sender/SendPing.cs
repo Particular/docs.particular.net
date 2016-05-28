@@ -5,10 +5,10 @@ using NServiceBus;
 
 public class SendPing : IWantToRunWhenEndpointStartsAndStops
 {
-    public async Task Start(IMessageSession session)
+    public Task Start(IMessageSession session)
     {
         VerificationLogger.Write("Sender", "Pinging Receiver");
-        await session.Send(new Ping());
+        return session.Send(new Ping());
     }
 
     public Task Stop(IMessageSession session)

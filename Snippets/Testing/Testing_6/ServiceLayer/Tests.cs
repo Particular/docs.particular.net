@@ -22,13 +22,13 @@
     public class MyHandler :
         IHandleMessages<RequestMessage>
     {
-        public async Task Handle(RequestMessage message, IMessageHandlerContext context)
+        public Task Handle(RequestMessage message, IMessageHandlerContext context)
         {
-            ResponseMessage reply = new ResponseMessage
+            var reply = new ResponseMessage
             {
                 String = message.String
             };
-            await context.Reply(reply);
+            return context.Reply(reply);
         }
     }
 

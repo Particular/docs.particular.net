@@ -1,7 +1,6 @@
 ﻿using System;
 using NServiceBus;
 using NServiceBus.Installation.Environments;
-using NServiceBus.Unicast.Config;
 
 class Program
 {
@@ -9,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.UsernameHeader.Endpoint2";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.UsernameHeader.Endpoint2");
         configure.DefaultBuilder();
@@ -18,11 +17,11 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
 
-        #region manipulate-principal 
+        #region manipulate-principal
 
-        ConfigUnicastBus unicastBus = configure.UnicastBus();
+        var unicastBus = configure.UnicastBus();
         unicastBus.RunHandlersUnderIncomingPrincipal(true);
-        using (IStartableBus startableBus = unicastBus.CreateBus())
+        using (var startableBus = unicastBus.CreateBus())
         {
             #endregion
 

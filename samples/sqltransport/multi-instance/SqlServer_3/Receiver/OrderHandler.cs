@@ -7,10 +7,14 @@ public class OrderHandler : IHandleMessages<ClientOrder>
 {
     #region Reply
 
-    public async Task Handle(ClientOrder message, IMessageHandlerContext context)
+    public Task Handle(ClientOrder message, IMessageHandlerContext context)
     {
-        Console.WriteLine("Handling ClientOrder with ID {0}", message.OrderId);
-        await context.Reply(new ClientOrderAccepted { OrderId = message.OrderId });
+        Console.WriteLine($"Handling ClientOrder with ID {message.OrderId}");
+        var clientOrderAccepted = new ClientOrderAccepted
+        {
+            OrderId = message.OrderId
+        };
+        return context.Reply(clientOrderAccepted);
     }
 
     #endregion

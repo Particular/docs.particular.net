@@ -11,11 +11,11 @@ class Program
     {
         Console.Title = "Samples.Scaleout.Worker1";
         #region Workerstartup
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
-        string discriminator = ConfigurationManager.AppSettings["InstanceId"];
+        var endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
+        var discriminator = ConfigurationManager.AppSettings["InstanceId"];
         endpointConfiguration.ScaleOut().InstanceDiscriminator(discriminator);
-        string masterNodeAddress = ConfigurationManager.AppSettings["MasterNodeAddress"];
-        string masterNodeControlAddress = ConfigurationManager.AppSettings["MasterNodeControlAddress"];
+        var masterNodeAddress = ConfigurationManager.AppSettings["MasterNodeAddress"];
+        var masterNodeControlAddress = ConfigurationManager.AppSettings["MasterNodeControlAddress"];
         endpointConfiguration.EnlistWithLegacyMSMQDistributor(masterNodeAddress, masterNodeControlAddress, 10);
         #endregion
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -27,9 +27,11 @@ class Program
 
     static async Task Run(EndpointConfiguration endpointConfiguration)
     {
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpoint.Stop();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

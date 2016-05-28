@@ -18,7 +18,7 @@ public class CommandSender
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
 
             switch (key.Key)
@@ -57,7 +57,7 @@ public class CommandSender
 
     static void Data(IBus bus)
     {
-        Guid requestId = Guid.NewGuid();
+        var requestId = Guid.NewGuid();
 
         bus.Send("Samples.Unobtrusive.Server", new LargeMessage
         {
@@ -70,7 +70,7 @@ public class CommandSender
 
     static void Express(IBus bus)
     {
-        Guid requestId = Guid.NewGuid();
+        var requestId = Guid.NewGuid();
 
         bus.Send("Samples.Unobtrusive.Server", new RequestExpress
         {
@@ -82,7 +82,7 @@ public class CommandSender
 
     static void SendRequest(IBus bus)
     {
-        Guid requestId = Guid.NewGuid();
+        var requestId = Guid.NewGuid();
 
         bus.Send("Samples.Unobtrusive.Server", new Request
         {
@@ -94,13 +94,14 @@ public class CommandSender
 
     static void SendCommand(IBus bus)
     {
-        Guid commandId = Guid.NewGuid();
+        var commandId = Guid.NewGuid();
 
-        bus.Send("Samples.Unobtrusive.Server", new MyCommand 
+        var myCommand = new MyCommand
         {
             CommandId = commandId,
             EncryptedString = "Some sensitive information"
-        });
+        };
+        bus.Send("Samples.Unobtrusive.Server", myCommand);
 
         Console.WriteLine("Command sent id: " + commandId);
 

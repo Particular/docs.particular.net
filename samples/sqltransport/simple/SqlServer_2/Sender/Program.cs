@@ -6,7 +6,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.SqlServer.SimpleSender";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SqlServer.SimpleSender");
 
         #region TransportConfiguration
@@ -17,7 +17,7 @@ class Program
         #endregion
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.Send("Samples.SqlServer.SimpleReceiver", new MyMessage());
             Console.WriteLine("Press any key to exit");

@@ -8,9 +8,9 @@
     #region 5to6-messagehandler
     public class UpgradeMyAsynchronousHandler : IHandleMessages<MyMessage>
     {
-        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            await SomeLibrary.SomeAsyncMethod(message);
+            return SomeLibrary.SomeAsyncMethod(message);
         }
     }
 
@@ -30,8 +30,10 @@
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            await context.Send(new MyOtherMessage());
-            await context.Publish(new MyEvent());
+            await context.Send(new MyOtherMessage())
+                .ConfigureAwait(false);
+            await context.Publish(new MyEvent())
+                .ConfigureAwait(false);
         }
     }
     #endregion

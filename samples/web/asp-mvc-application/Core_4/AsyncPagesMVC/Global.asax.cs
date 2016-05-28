@@ -30,10 +30,7 @@ public class MvcApplication : HttpApplication
 
     public override void Dispose()
     {
-        if (bus != null)
-        {
-            ((IDisposable)bus).Dispose();
-        }
+        ((IDisposable) bus)?.Dispose();
         base.Dispose();
     }
 
@@ -41,18 +38,18 @@ public class MvcApplication : HttpApplication
     {
         #region ApplicationStart
 
-        ContainerBuilder builder = new ContainerBuilder();
+        var builder = new ContainerBuilder();
 
         // Register the MVC controllers.
         builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
         // Set the dependency resolver to be Autofac.
-        IContainer container = builder.Build();
+        var container = builder.Build();
 
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.DefineEndpointName("Samples.Mvc.WebApplication");
         configure.AutofacBuilder(container);
         configure.InMemorySagaPersister();

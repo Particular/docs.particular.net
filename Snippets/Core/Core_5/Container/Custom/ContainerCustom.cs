@@ -11,7 +11,7 @@
 
         public void CustomContainerExtensionUsage()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             busConfiguration.UseContainer<MyContainer>();
         }
 

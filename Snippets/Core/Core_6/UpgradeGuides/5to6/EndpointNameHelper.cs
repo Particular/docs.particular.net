@@ -11,11 +11,11 @@
     {
         public static string GetDefaultEndpointName()
         {
-            Type entryType = GetEntryType();
+            var entryType = GetEntryType();
 
             if (entryType != null)
             {
-                string endpointName = entryType.Namespace ?? entryType.Assembly.GetName().Name;
+                var endpointName = entryType.Namespace ?? entryType.Assembly.GetName().Name;
                 if (endpointName != null)
                 {
                     return endpointName;
@@ -27,8 +27,8 @@
 
         static Type GetEntryType()
         {
-            StackTrace stackTraceToExamine = new StackTrace();
-            Assembly entryAssembly = Assembly.GetEntryAssembly();
+            var stackTraceToExamine = new StackTrace();
+            var entryAssembly = Assembly.GetEntryAssembly();
             if (entryAssembly?.EntryPoint != null)
             {
                 return entryAssembly.EntryPoint.ReflectedType;
@@ -36,7 +36,7 @@
 
             StackFrame targetFrame = null;
 
-            StackFrame[] stackFrames = new StackTrace().GetFrames();
+            var stackFrames = new StackTrace().GetFrames();
             if (stackFrames != null)
             {
                 targetFrame =
@@ -56,7 +56,7 @@
                     stackFrames.FirstOrDefault(
                         f =>
                         {
-                            Type declaringType = f.GetMethod().DeclaringType;
+                            var declaringType = f.GetMethod().DeclaringType;
                             return declaringType != typeof(EndpointConfiguration);
                         });
             }

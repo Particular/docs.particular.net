@@ -10,7 +10,7 @@ class Program
         Console.Title = "Samples.MongoDB.Server";
         #region mongoDbConfig
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MongoDB.Server");
         var persistence = busConfiguration.UsePersistence<MongoDbPersistence>();
         persistence.SetConnectionString("mongodb://localhost:27017/SamplesMongoDBServer");
@@ -19,7 +19,7 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

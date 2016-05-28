@@ -12,7 +12,7 @@ namespace Core4.Sites.ConfigurationSource
         {
             if (typeof(T) == typeof(GatewayConfig))
             {
-                GatewayConfig gatewayConfig = new GatewayConfig
+                var gatewayConfig = new GatewayConfig
                 {
                     Sites = new SiteCollection
                     {

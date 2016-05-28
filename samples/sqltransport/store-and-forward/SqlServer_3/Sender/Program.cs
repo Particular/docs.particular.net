@@ -17,8 +17,8 @@ class Program
     {
         Console.Title = "Samples.SqlServer.StoreAndForwardSender";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-        Random random = new Random();
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.StoreAndForwardSender");
+        var random = new Random();
+        var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.StoreAndForwardSender");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
@@ -35,31 +35,35 @@ class Program
 
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press enter to publish a message");
             Console.WriteLine("Press any key to exit");
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
                 if (key.Key != ConsoleKey.Enter)
                 {
                     break;
                 }
-                string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                await endpoint.Publish(new OrderSubmitted
+                var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+                var orderSubmitted = new OrderSubmitted
                 {
                     OrderId = orderId,
                     Value = random.Next(100)
-                });
-                Console.WriteLine("Order {0} placed", orderId);
+                };
+                await endpointInstance.Publish(orderSubmitted)
+                    .ConfigureAwait(false);
+                Console.WriteLine($"Order {orderId} placed");
             }
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 

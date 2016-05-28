@@ -5,11 +5,11 @@ public static class QueueCreation
 {
     public static void CreateQueuesForEndpoint()
     {
-        string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
 
         #region sqlserver-create-queues-endpoint-usage
 
-        using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+        using (var sqlConnection = new SqlConnection(connectionString))
         {
             sqlConnection.Open();
             CreateQueuesForEndpoint(
@@ -22,7 +22,7 @@ public static class QueueCreation
 
         #region sqlserver-create-queues-shared-usage
 
-        using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+        using (var sqlConnection = new SqlConnection(connectionString))
         {
             sqlConnection.Open();
             CreateQueue(
@@ -61,7 +61,7 @@ public static class QueueCreation
 
     public static void CreateQueue(SqlConnection connection, string schema, string queueName)
     {
-        string createQueueScript =
+        var createQueueScript =
             @"IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{0}].[{1}]') AND type in (N'U'))
                 BEGIN
                 CREATE TABLE [{0}].[{1}](
@@ -73,15 +73,15 @@ public static class QueueCreation
 	                [Headers] [varchar](max) NOT NULL,
 	                [Body] [varbinary](max),
 	                [RowVersion] [bigint] IDENTITY(1,1) NOT NULL
-                ) ON [PRIMARY];                    
-                CREATE CLUSTERED INDEX [Index_RowVersion] ON [{0}].[{1}] 
+                ) ON [PRIMARY];
+                CREATE CLUSTERED INDEX [Index_RowVersion] ON [{0}].[{1}]
                 (
 	                [RowVersion] ASC
                 ) ON [PRIMARY]
                 END";
 
-        string sql = string.Format(createQueueScript, schema, queueName);
-        using (SqlCommand command = new SqlCommand(sql, connection))
+        var sql = string.Format(createQueueScript, schema, queueName);
+        using (var command = new SqlCommand(sql, connection))
         {
             command.ExecuteNonQuery();
         }

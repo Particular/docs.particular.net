@@ -10,22 +10,23 @@ class Program
         Console.Title = "Samples.Autofac";
         Configure.Serialization.Json();
         #region ContainerConfiguration
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Autofac");
-        ContainerBuilder builder = new ContainerBuilder();
+        var builder = new ContainerBuilder();
         builder.RegisterInstance(new MyService());
-        IContainer container = builder.Build();
+        var container = builder.Build();
         configure.AutofacBuilder(container);
         #endregion
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
-            bus.SendLocal(new MyMessage());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var myMessage = new MyMessage();
+            bus.SendLocal(myMessage);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

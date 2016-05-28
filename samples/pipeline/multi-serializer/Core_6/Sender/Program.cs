@@ -13,19 +13,22 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.MultiSerializer.Sender";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MultiSerializer.Sender");
+        var endpointConfiguration = new EndpointConfiguration("Samples.MultiSerializer.Sender");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await Run(endpoint);
+            await Run(endpointInstance)
+                .ConfigureAwait(false);
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 
@@ -38,17 +41,19 @@ class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
 
             if (key.Key == ConsoleKey.X)
             {
-                await SendXmlMessage(endpointInstance);
+                await SendXmlMessage(endpointInstance)
+                    .ConfigureAwait(false);
                 continue;
             }
             if (key.Key == ConsoleKey.J)
             {
-                await SendJsonMessage(endpointInstance);
+                await SendJsonMessage(endpointInstance)
+                    .ConfigureAwait(false);
                 continue;
             }
             break;
@@ -57,21 +62,23 @@ class Program
 
     static async Task SendXmlMessage(IEndpointInstance endpointInstance)
     {
-        MessageWithXml message = new MessageWithXml
+        var message = new MessageWithXml
         {
             SomeProperty = "Some content in a Xml message",
         };
-        await endpointInstance.Send("Samples.MultiSerializer.Receiver", message);
+        await endpointInstance.Send("Samples.MultiSerializer.Receiver", message)
+            .ConfigureAwait(false);
         Console.WriteLine("XML message sent");
     }
 
     static async Task SendJsonMessage(IEndpointInstance endpointInstance)
     {
-        MessageWithJson message = new MessageWithJson
+        var message = new MessageWithJson
         {
             SomeProperty = "Some content in a json message",
         };
-        await endpointInstance.Send("Samples.MultiSerializer.Receiver", message);
+        await endpointInstance.Send("Samples.MultiSerializer.Receiver", message)
+            .ConfigureAwait(false);
         Console.WriteLine("Json Message sent");
     }
 }

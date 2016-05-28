@@ -19,7 +19,7 @@ public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
         // Process Order...
         log.Info("Processing received order....");
 
-        OrderPlaced message = new OrderPlaced
+        var message = new OrderPlaced
         {
             OrderId = placeOrder.OrderId,
             WorkerName = Assembly.GetEntryAssembly().GetName().Name

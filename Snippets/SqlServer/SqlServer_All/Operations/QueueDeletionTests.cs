@@ -9,8 +9,8 @@ public class QueueDeletionTests
     [Test]
     public void DeleteQueuesForEndpoint()
     {
-        string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
-        using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+        using (var sqlConnection = new SqlConnection(connectionString))
         {
             sqlConnection.Open();
             QueueDeletion.DeleteQueuesForEndpoint(
@@ -23,8 +23,8 @@ public class QueueDeletionTests
     [Test]
     public void DeleteSharedQueues()
     {
-        string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
-        using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+        using (var sqlConnection = new SqlConnection(connectionString))
         {
             sqlConnection.Open();
             QueueDeletion.DeleteQueue(

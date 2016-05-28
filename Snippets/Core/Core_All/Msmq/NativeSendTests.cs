@@ -27,10 +27,10 @@
         [Test]
         public void Send()
         {
-            State state = new State();
-            using (IBus bus = StartBus(state))
+            var state = new State();
+            using (var bus = StartBus(state))
             {
-                List<NativeSend.HeaderInfo> headers = new List<NativeSend.HeaderInfo>
+                var headers = new List<NativeSend.HeaderInfo>
                 {
                     new NativeSend.HeaderInfo
                     {
@@ -45,7 +45,7 @@
 
         IBus StartBus(State state)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
             busConfiguration.EndpointName(endpointName);
             busConfiguration.UseSerialization<JsonSerializer>();

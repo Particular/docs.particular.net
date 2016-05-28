@@ -9,7 +9,7 @@ class Program
     {
         Console.Title = "Samples.PipelineHandlerTimer";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.PipelineHandlerTimer");
         configure.DefaultBuilder();
@@ -17,9 +17,9 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus
+            var bus = startableBus
                 .Start(() => configure.ForInstallationOn<Windows>().Install());
             Run(bus);
         }
@@ -32,7 +32,7 @@ class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             if (key.Key == ConsoleKey.Enter)
             {
                 SendMessage(bus);
@@ -44,7 +44,7 @@ class Program
 
     static void SendMessage(IBus bus)
     {
-        Message message = new Message();
+        var message = new Message();
         bus.SendLocal(message);
 
         Console.WriteLine();

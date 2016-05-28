@@ -19,13 +19,13 @@ public class OrderSaga : Saga<OrderSagaData>,
     public Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
-        logger.InfoFormat("OrderSaga with OrderId {0} received StartOrder with OrderId {1} (Saga version: {2})", Data.OrderId, message.OrderId, Data.Version);
+        logger.Info($"OrderSaga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId} (Saga version: {Data.Version})");
         return Task.FromResult(0);
     }
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        logger.InfoFormat("OrderSaga with OrderId {0} received CompleteOrder with OrderId {1}", Data.OrderId, message.OrderId);
+        logger.Info($"OrderSaga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
         return Task.FromResult(0);
     }

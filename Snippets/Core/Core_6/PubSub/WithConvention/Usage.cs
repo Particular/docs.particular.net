@@ -7,8 +7,8 @@ namespace Core6.PubSub.WithConvention
         Usage(EndpointConfiguration endpointConfiguration)
         {
             #region DefiningEventsAs
-            ConventionsBuilder conventions = endpointConfiguration.Conventions();
-            conventions.DefiningEventsAs(t =>
+            var conventionsBuilder = endpointConfiguration.Conventions();
+            conventionsBuilder.DefiningEventsAs(t =>
                 t.Namespace != null &&
                 t.Namespace.StartsWith("Domain") &&
                 t.Name.EndsWith("Event"));

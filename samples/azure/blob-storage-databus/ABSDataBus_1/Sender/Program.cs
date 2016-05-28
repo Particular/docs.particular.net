@@ -12,7 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.AzureBlobStorageDataBus.Sender";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Sender");
+        var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #region ConfiguringDataBusLocation
@@ -26,14 +26,17 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await Run(endpoint);
+            await Run(endpointInstance)
+                .ConfigureAwait(false);
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 
@@ -44,11 +47,12 @@ class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
 
             if (key.Key == ConsoleKey.Enter)
             {
-                await SendMessageLargePayload(messageSession);
+                await SendMessageLargePayload(messageSession)
+                    .ConfigureAwait(false);
             }
             else
             {
@@ -63,12 +67,13 @@ class Program
 
         #region SendMessageLargePayload
 
-        MessageWithLargePayload message = new MessageWithLargePayload
+        var message = new MessageWithLargePayload
         {
             Description = "This message contains a large payload that will be sent on the Azure data bus",
             LargePayload = new DataBusProperty<byte[]>(new byte[1024*1024*5]) // 5MB
         };
-        await messageSession.Send("Samples.AzureBlobStorageDataBus.Receiver", message);
+        await messageSession.Send("Samples.AzureBlobStorageDataBus.Receiver", message)
+            .ConfigureAwait(false);
 
         #endregion
 

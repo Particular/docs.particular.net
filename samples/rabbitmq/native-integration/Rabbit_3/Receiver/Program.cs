@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.RabbitMQ.NativeIntegration.Receiver";
         #region ConfigureRabbitQueueName
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.RabbitMQ.NativeIntegration");
         var transport = busConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=localhost");
@@ -17,7 +17,7 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

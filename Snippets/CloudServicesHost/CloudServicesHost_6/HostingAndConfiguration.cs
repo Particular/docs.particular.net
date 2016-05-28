@@ -46,12 +46,12 @@ public class MvcApplication : HttpApplication
 {
     protected void Application_Start()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.AzureConfigurationSource();
         busConfiguration.UseTransport<AzureStorageQueueTransport>();
         busConfiguration.UsePersistence<AzureStoragePersistence>();
-        IStartableBus startableBus = Bus.Create(busConfiguration);
-        IBus bus = startableBus.Start();
+        var startableBus = Bus.Create(busConfiguration);
+        var bus = startableBus.Start();
     }
 }
 #endregion

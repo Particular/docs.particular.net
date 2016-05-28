@@ -13,9 +13,10 @@ public class HomeController : Controller
 
     public async Task<ActionResult> SendEnumMessage()
     {
-        EnumMessage message = new EnumMessage();
-        Task<Status> statusTask = MvcApplication.Bus.Send("Samples.Callbacks.Receiver", message)
-            .Register<Status>();
+        var message = new EnumMessage();
+        var statusTask = MvcApplication.Bus.Send("Samples.Callbacks.Receiver", message)
+            .Register<Status>()
+            .ConfigureAwait(false);
 
         return View("SendEnumMessage", await statusTask);
     }
@@ -26,9 +27,10 @@ public class HomeController : Controller
 
     public async Task<ActionResult> SendIntMessage()
     {
-        IntMessage message = new IntMessage();
-        Task<int> responseTask = MvcApplication.Bus.Send("Samples.Callbacks.Receiver", message)
-            .Register();
+        var message = new IntMessage();
+        var responseTask = MvcApplication.Bus.Send("Samples.Callbacks.Receiver", message)
+            .Register()
+            .ConfigureAwait(false);
 
         return View("SendIntMessage", await responseTask);
     }
@@ -39,9 +41,10 @@ public class HomeController : Controller
 
     public async Task<ActionResult> SendObjectMessage()
     {
-        ObjectMessage message = new ObjectMessage();
-        Task<ObjectResponseMessage> responseTask = MvcApplication.Bus.Send("Samples.Callbacks.Receiver", message)
-            .Register(completion => (ObjectResponseMessage) completion.Messages[0]);
+        var message = new ObjectMessage();
+        var responseTask = MvcApplication.Bus.Send("Samples.Callbacks.Receiver", message)
+            .Register(completion => (ObjectResponseMessage) completion.Messages[0])
+            .ConfigureAwait(false);
 
         return View("SendObjectMessage", await responseTask);
     }

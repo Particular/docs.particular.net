@@ -7,7 +7,7 @@
         void ConcreteMessage(IBus bus)
         {
             #region InstancePublish
-            MyEvent message = new MyEvent { SomeProperty = "Hello world" };
+            var message = new MyEvent { SomeProperty = "Hello world" };
             bus.Publish(message);
             #endregion
 

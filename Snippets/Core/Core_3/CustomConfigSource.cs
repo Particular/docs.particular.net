@@ -11,7 +11,7 @@
         {
             #region RegisterCustomConfigSource
 
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             //this call needs to happen right after With()
             configure.CustomConfigurationSource(new MyCustomConfigurationSource());
 

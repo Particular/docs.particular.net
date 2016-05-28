@@ -16,7 +16,7 @@ class Usage
     {
         #region Ninject_Existing
 
-        StandardKernel kernel = new StandardKernel();
+        var kernel = new StandardKernel();
         kernel.Bind<MyService>().ToConstant(new MyService());
         configure.NinjectBuilder(kernel);
 

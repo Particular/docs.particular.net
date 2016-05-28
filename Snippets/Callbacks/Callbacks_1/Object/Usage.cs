@@ -1,22 +1,25 @@
 ﻿namespace Core6.Object
 {
+    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Logging;
 
     class Usage
     {
-        async void Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, SendOptions sendOptions, ILog log)
+        async Task Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, SendOptions sendOptions, ILog log)
         {
             #region Callbacks-InstanceId
 
-            endpointConfiguration.ScaleOut().InstanceDiscriminator("uniqueId");
+            endpointConfiguration.ScaleOut()
+                .InstanceDiscriminator("uniqueId");
 
             #endregion
 
             #region ObjectCallback
 
-            Message message = new Message();
-            ResponseMessage response = await endpoint.Request<ResponseMessage>(message, sendOptions);
+            var message = new Message();
+            var response = await endpoint.Request<ResponseMessage>(message, sendOptions)
+                .ConfigureAwait(false);
             log.Info("Callback received with response:" + response.Property);
 
             #endregion

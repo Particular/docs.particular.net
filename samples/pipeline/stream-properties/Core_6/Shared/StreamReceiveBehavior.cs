@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
@@ -22,21 +21,21 @@ class StreamReceiveBehavior : Behavior<IIncomingLogicalMessageContext>
 
         #region write-stream-properties-back
 
-        object message = context.Message.Instance;
-        List<FileStream> streamsToCleanUp = new List<FileStream>();
-        foreach (PropertyInfo property in StreamStorageHelper
+        var message = context.Message.Instance;
+        var streamsToCleanUp = new List<FileStream>();
+        foreach (var property in StreamStorageHelper
             .GetStreamProperties(message))
         {
-            string headerKey = StreamStorageHelper.GetHeaderKey(message, property);
+            var headerKey = StreamStorageHelper.GetHeaderKey(message, property);
             string dataBusKey;
             //only attempt to process properties that have an associated header
-            string key = "NServiceBus.PropertyStream." + headerKey;
+            var key = "NServiceBus.PropertyStream." + headerKey;
             if (!context.Headers.TryGetValue(key, out dataBusKey))
             {
                 continue;
             }
 
-            string filePath = Path.Combine(location, dataBusKey);
+            var filePath = Path.Combine(location, dataBusKey);
 
             // If the file doesnt exist then something has gone wrong with the file share. 
             // Perhaps he file has been manually deleted.
@@ -46,7 +45,7 @@ class StreamReceiveBehavior : Behavior<IIncomingLogicalMessageContext>
                 string format = $"Expected a file to exist in '{filePath}'. It is possible the file has been prematurely cleaned up.";
                 throw new Exception(format);
             }
-            FileStream fileStream = File.OpenRead(filePath);
+            var fileStream = File.OpenRead(filePath);
             property.SetValue(message, fileStream);
             streamsToCleanUp.Add(fileStream);
         }
@@ -55,10 +54,11 @@ class StreamReceiveBehavior : Behavior<IIncomingLogicalMessageContext>
 
         #region cleanup-after-nested-action
 
-        await next().ConfigureAwait(false);
+        await next()
+            .ConfigureAwait(false);
         // Clean up all the temporary streams after handler processing
         // via the "next()" delegate has occurred
-        foreach (FileStream fileStream in streamsToCleanUp)
+        foreach (var fileStream in streamsToCleanUp)
         {
             fileStream.Dispose();
         }

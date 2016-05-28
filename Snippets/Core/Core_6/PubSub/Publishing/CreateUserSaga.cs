@@ -5,17 +5,20 @@ namespace Core6.PubSub.Publishing
     using NServiceBus;
 
     #region publishFromSaga
+
     public class CreateUserSaga : Saga<CreateUserSaga.SagaData>,
         IHandleMessages<CreateUserCommand>
     {
-        public async Task Handle(CreateUserCommand message, IMessageHandlerContext context)
+        public Task Handle(CreateUserCommand message, IMessageHandlerContext context)
         {
-            await context.Publish<UserCreatedEvent>(e =>
+            return context.Publish<UserCreatedEvent>(e =>
             {
                 e.Name = message.Name;
             });
         }
-#endregion
+
+        #endregion
+
         public class SagaData : IContainSagaData
         {
             public Guid Id { get; set; }

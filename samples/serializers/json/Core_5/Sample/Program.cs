@@ -8,7 +8,7 @@ static class Program
     {
         Console.Title = "Samples.Serialization.Json";
         #region config
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Serialization.Json");
         busConfiguration.UseSerialization<JsonSerializer>();
         // register the mutator so the the message on the wire is written
@@ -21,10 +21,10 @@ static class Program
         busConfiguration.EnableInstallers();
 
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             #region message
-            CreateOrder message = new CreateOrder
+            var message = new CreateOrder
             {
                 OrderId = 9,
                 Date = DateTime.Now,

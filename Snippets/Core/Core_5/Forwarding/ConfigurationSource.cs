@@ -11,7 +11,7 @@
             //To Provide UnicastBusConfig
             if (typeof(T) == typeof(UnicastBusConfig))
             {
-                UnicastBusConfig forwardingConfig = new UnicastBusConfig
+                var forwardingConfig = new UnicastBusConfig
                 {
                     ForwardReceivedMessagesTo = "destinationQueue@machine"
                 };

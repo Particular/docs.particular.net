@@ -1,7 +1,5 @@
 ﻿namespace Core5.Headers.Writers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Threading;
     using Common;
     using NServiceBus;
@@ -25,14 +23,14 @@
         [Test]
         public void Write()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName(endpointName);
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterReply>(typeof(ConfigErrorQueue));
+            var typesToScan = TypeScanner.NestedTypes<HeaderWriterReply>(typeof(ConfigErrorQueue));
             busConfiguration.TypesToScan(typesToScan);
             busConfiguration.EnableInstallers();
             busConfiguration.UsePersistence<InMemoryPersistence>();
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IBus bus = Bus.Create(busConfiguration).Start())
+            using (var bus = Bus.Create(busConfiguration).Start())
             {
                 bus.SendLocal(new MessageToSend());
                 ManualResetEvent.WaitOne();
@@ -68,13 +66,13 @@
             {
                 if (transportMessage.IsMessageOfTye<MessageToReply>())
                 {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(transportMessage.Headers);
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(transportMessage.Headers);
                     SnippetLogger.Write(text: headerText, suffix: "Replying", version: "5");
                     ManualResetEvent.Set();
                 }
                 if (transportMessage.IsMessageOfTye<MessageToSend>())
                 {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(transportMessage.Headers);
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(transportMessage.Headers);
                     SnippetLogger.Write(text: headerText, suffix: "Sending", version: "5");
                 }
             }

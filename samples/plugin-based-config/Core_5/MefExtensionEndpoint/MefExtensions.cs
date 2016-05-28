@@ -7,7 +7,7 @@ public static class MefExtensions
 {
     public static void ExecuteExports<T>(this CompositionContainer container, Action<T> action)
     {
-        foreach (T export in container.GetAllExports<T>())
+        foreach (var export in container.GetAllExports<T>())
         {
             action(export);
         }

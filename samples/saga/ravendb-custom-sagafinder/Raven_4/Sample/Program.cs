@@ -16,12 +16,12 @@ class Program
         Console.Title = "Samples.RavenDBCustomSagaFinder";
         using (new RavenHost())
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.RavenDBCustomSagaFinder");
+            var endpointConfiguration = new EndpointConfiguration("Samples.RavenDBCustomSagaFinder");
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.SendFailedMessagesTo("error");
 
-            DocumentStore documentStore = new DocumentStore
+            var documentStore = new DocumentStore
             {
                 Url = "http://localhost:32076",
                 DefaultDatabase = "NServiceBus"
@@ -34,16 +34,20 @@ class Program
             persistence.DoNotSetupDatabasePermissions();
             persistence.SetDefaultDocumentStore(documentStore);
 
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-            await endpoint.SendLocal(new StartOrder
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
+            var startOrder = new StartOrder
             {
                 OrderId = "123"
-            });
+            };
+            await endpointInstance.SendLocal(startOrder)
+                .ConfigureAwait(false);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
 
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

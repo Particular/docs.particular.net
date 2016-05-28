@@ -22,7 +22,7 @@ static class RavenDtcExtensions
 {
     public static Configure UseRavenWithDtcSettings(this Configure configure, string endpointName)
     {
-        DocumentStore store = new DocumentStore
+        var store = new DocumentStore
         {
             Url = "http://localhost:8083", // RavenServerUrl
             DefaultDatabase = endpointName
@@ -30,11 +30,11 @@ static class RavenDtcExtensions
 
         // Calculate a ResourceManagerId unique to this endpoint using just endpoint name
         // Not suitable for side-by-side installations!
-        Guid resourceManagerId = DeterministicGuidBuilder(endpointName);
+        var resourceManagerId = DeterministicGuidBuilder(endpointName);
 
         // Calculate a DTC transaction recovery storage path including the ResourceManagerId
-        string programDataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-        string txRecoveryPath = Path.Combine(programDataPath, "NServiceBus.RavenDB", resourceManagerId.ToString());
+        var programDataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+        var txRecoveryPath = Path.Combine(programDataPath, "NServiceBus.RavenDB", resourceManagerId.ToString());
 
         store.ResourceManagerId = resourceManagerId;
         store.TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(txRecoveryPath);

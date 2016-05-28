@@ -8,10 +8,10 @@
 
     public class MyAsyncHandler : IHandleMessages<MyMessage>
     {
-        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             //do something with the message data
-            await SomeLibrary.SomeAsyncMethod(message.Data);
+            return SomeLibrary.SomeAsyncMethod(message.Data);
         }
     }
 

@@ -15,12 +15,12 @@ namespace Core6.DataBus.CleanupStrategy
 
         public Task Handle(MessageWithLargePayload message, IMessageHandlerContext context)
         {
-            string filePath = Path.Combine(@"\\share\databus_attachments\", message.LargeBlob.Key);
+            var filePath = Path.Combine(@"\\share\databus_attachments\", message.LargeBlob.Key);
             var removeAttachment = new RemoveDatabusAttachment
             {
                 FilePath = filePath
             };
-            SendOptions options = new SendOptions();
+            var options = new SendOptions();
             options.RouteToThisEndpoint();
             options.DelayDeliveryWith(TimeSpan.FromDays(30));
             return context.Send(removeAttachment, options);

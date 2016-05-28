@@ -12,7 +12,8 @@ class SomethingHappenedHandler : IHandleMessages<SomethingHappened>
     {
         log.Info("Sql Relay has now received this event from the MSMQ. Publishing this event for downstream SQLSubscribers");
         // relay this event to other interested SQL subscribers
-        await context.Publish(message);
+        await context.Publish(message)
+            .ConfigureAwait(false);
     }
 }
 #endregion

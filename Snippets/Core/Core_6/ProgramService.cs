@@ -12,7 +12,7 @@ namespace Core6
 
         static void Main()
         {
-            using (ProgramService service = new ProgramService())
+            using (var service = new ProgramService())
             {
                 if (Environment.UserInteractive)
                 {
@@ -34,9 +34,10 @@ namespace Core6
 
         async Task AsyncOnStart()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
+            var endpointConfiguration = new EndpointConfiguration("EndpointName");
             endpointConfiguration.EnableInstallers();
-            endpointInstance = await Endpoint.Start(endpointConfiguration);
+            endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
         }
 
         protected override void OnStop()
@@ -44,12 +45,13 @@ namespace Core6
             AsyncOnStop().GetAwaiter().GetResult();
         }
 
-        async Task AsyncOnStop()
+        Task AsyncOnStop()
         {
             if (endpointInstance != null)
             {
-                await endpointInstance.Stop();
+                return endpointInstance.Stop();
             }
+            return Task.FromResult(0);
         }
     }
 }

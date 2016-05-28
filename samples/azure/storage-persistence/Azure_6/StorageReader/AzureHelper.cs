@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.WindowsAzure.Storage.Table;
 using NUnit.Framework;
 
@@ -11,7 +11,7 @@ public class AzureHelper
 {
     [Test]
     [Explicit]
-    public void WriteOutData()
+    public Task WriteOutData()
     {
         #region UsingHelpers
 
@@ -19,25 +19,27 @@ public class AzureHelper
         WriteOutTable("Subscription", true);
         WriteOutTable("TimeoutDataTableName", false);
         WriteOutTable("TimeoutManagerDataTable", false);
-        WriteOutBlobContainer("timeoutstate");
+        return WriteOutBlobContainer("timeoutstate");
 
         #endregion
     }
 
     #region WriteOutBlobContainer
 
-    static void WriteOutBlobContainer(string containerName)
+    static async Task WriteOutBlobContainer(string containerName)
     {
-        CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
-        CloudBlobClient tableClient = storageAccount.CreateCloudBlobClient();
-        CloudBlobContainer container = tableClient.GetContainerReference(containerName);
-        Debug.WriteLine(string.Format("'{0}' container contents", containerName));
-        foreach (IListBlobItem blob in container.ListBlobs())
+        var storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+        var tableClient = storageAccount.CreateCloudBlobClient();
+        var container = tableClient.GetContainerReference(containerName);
+        Debug.WriteLine($"'{containerName}' container contents");
+        foreach (var blob in container.ListBlobs())
         {
-            string name = blob.Uri.AbsolutePath.Split('/').Last();
+            var name = blob.Uri.AbsolutePath.Split('/').Last();
             Debug.WriteLine("  Blob:= " + name);
-            CloudBlockBlob blockBlobReference = container.GetBlockBlobReference(name);
-            Debug.WriteLine("    " + blockBlobReference.DownloadText());
+            var blockBlobReference = container.GetBlockBlobReference(name);
+            var text = await blockBlobReference.DownloadTextAsync()
+                .ConfigureAwait(false);
+            Debug.WriteLine("    " + text);
         }
         Debug.WriteLine("");
     }
@@ -48,24 +50,24 @@ public class AzureHelper
 
     static void WriteOutTable(string tableName, bool decodeRowKey)
     {
-        CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
-        CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-        CloudTable table = tableClient.GetTableReference(tableName);
+        var storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+        var tableClient = storageAccount.CreateCloudTableClient();
+        var table = tableClient.GetTableReference(tableName);
         List<DynamicTableEntity> entities = table.ExecuteQuery(new TableQuery()).ToList();
-        Debug.WriteLine(string.Format("'{0}' table contents", tableName));
-        foreach (DynamicTableEntity entity in entities)
+        Debug.WriteLine($"'{tableName}' table contents");
+        foreach (var entity in entities)
         {
             Debug.WriteLine(string.Format("  PartitionKey:= " + entity.PartitionKey));
             Debug.WriteLine(string.Format("    RowKey:= " + entity.RowKey));
             if (decodeRowKey)
             {
-                string decodedRowKey = entity.RowKey.DecodeFromKey();
+                var decodedRowKey = entity.RowKey.DecodeFromKey();
                 Debug.WriteLine("    DecodedRowKey:= " + decodedRowKey);
             }
             foreach (KeyValuePair<string, EntityProperty> property in entity.Properties)
             {
-                string propertyAsObject = property.Value.PropertyAsObject.ToString().Truncate(50);
-                Debug.WriteLine("    {0}:= {1}", property.Key, propertyAsObject);
+                var propertyAsObject = property.Value.PropertyAsObject.ToString().Truncate(50);
+                Debug.WriteLine($"    {property.Key}:= {propertyAsObject}");
             }
         }
         Debug.WriteLine("");
@@ -75,28 +77,33 @@ public class AzureHelper
 
     [Test]
     [Explicit]
-    public void DeleteData()
+    public async Task DeleteData()
     {
-        DeleteBlobContainer("timeoutstate");
-        DeleteTable("OrderSagaData");
-        DeleteTable("Subscription");
-        DeleteTable("TimeoutDataTableName");
-        DeleteTable("TimeoutManagerDataTable");
+        await DeleteBlobContainer("timeoutstate")
+            .ConfigureAwait(false);
+        await DeleteTable("OrderSagaData")
+            .ConfigureAwait(false);
+        await DeleteTable("Subscription")
+            .ConfigureAwait(false);
+        await DeleteTable("TimeoutDataTableName")
+            .ConfigureAwait(false);
+        await DeleteTable("TimeoutManagerDataTable")
+            .ConfigureAwait(false);
     }
 
-    static void DeleteTable(string tableName)
+    static Task DeleteTable(string tableName)
     {
-        CloudStorageAccount developmentStorageAccount = CloudStorageAccount.DevelopmentStorageAccount;
-        CloudTableClient cloudTableClient = developmentStorageAccount.CreateCloudTableClient();
-        CloudTable tableReference = cloudTableClient.GetTableReference(tableName);
-        tableReference.DeleteIfExists();
+        var developmentStorageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+        var cloudTableClient = developmentStorageAccount.CreateCloudTableClient();
+        var tableReference = cloudTableClient.GetTableReference(tableName);
+        return tableReference.DeleteIfExistsAsync();
     }
 
-    static void DeleteBlobContainer(string containerName)
+    static Task DeleteBlobContainer(string containerName)
     {
-        CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
-        CloudBlobClient tableClient = storageAccount.CreateCloudBlobClient();
-        CloudBlobContainer container = tableClient.GetContainerReference(containerName);
-        container.DeleteIfExists();
+        var storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+        var tableClient = storageAccount.CreateCloudBlobClient();
+        var container = tableClient.GetContainerReference(containerName);
+        return container.DeleteIfExistsAsync();
     }
 }

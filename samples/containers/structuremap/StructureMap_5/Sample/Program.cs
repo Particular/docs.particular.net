@@ -8,22 +8,22 @@ static class Program
     {
         Console.Title = "Samples.StructureMap";
         #region ContainerConfiguration
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.StructureMap");
 
-        Container container = new Container(x => x.For<MyService>().Use(new MyService()));
+        var container = new Container(x => x.For<MyService>().Use(new MyService()));
         busConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
         #endregion
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
-            bus.SendLocal(new MyMessage());
+            var myMessage = new MyMessage();
+            bus.SendLocal(myMessage);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
-
         }
     }
 }

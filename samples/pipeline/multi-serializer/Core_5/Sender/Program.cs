@@ -7,11 +7,11 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.MultiSerializer.Sender";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MultiSerializer.Sender");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Run(bus);
         }
@@ -26,7 +26,7 @@ class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
 
             if (key.Key == ConsoleKey.X)
@@ -45,7 +45,7 @@ class Program
 
     static void SendXmlMessage(IBus bus)
     {
-        MessageWithXml message = new MessageWithXml
+        var message = new MessageWithXml
         {
             SomeProperty = "Some content in a xml message",
         };
@@ -55,7 +55,7 @@ class Program
 
     static void SendJsonMessage(IBus bus)
     {
-        MessageWithJson message = new MessageWithJson
+        var message = new MessageWithJson
         {
             SomeProperty = "Some content in a json message",
         };

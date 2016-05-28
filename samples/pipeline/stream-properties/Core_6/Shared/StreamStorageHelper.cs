@@ -22,7 +22,7 @@ public static class StreamStorageHelper
 
     public static void SetStreamStorageLocation(this EndpointConfiguration endpointConfiguration, string location)
     {
-        StreamStorageSettings settings = new StreamStorageSettings
+        var settings = new StreamStorageSettings
         {
             Location = location,
         };

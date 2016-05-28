@@ -11,8 +11,8 @@
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             IReadOnlyDictionary<string, string> headers = context.MessageHeaders;
-            string nsbVersion = headers[Headers.NServiceBusVersion];
-            string customHeader = headers["MyCustomHeader"];
+            var nsbVersion = headers[Headers.NServiceBusVersion];
+            var customHeader = headers["MyCustomHeader"];
         }
         #endregion
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ReadSagaData> mapper)

@@ -30,9 +30,9 @@ public static class ErrorQueue
         string retryQueueName,
         Guid messageId)
     {
-        using (TransactionScope scope = new TransactionScope())
+        using (var scope = new TransactionScope())
         {
-            MessageToRetry messageToRetry = ReadAndDelete(errorQueueConnectionString, errorQueueName, messageId);
+            var messageToRetry = ReadAndDelete(errorQueueConnectionString, errorQueueName, messageId);
             RetryMessage(retryConnectionString, retryQueueName,  messageToRetry);
             scope.Complete();
         }
@@ -47,8 +47,7 @@ public static class ErrorQueue
 
     static void RetryMessage(string connectionString, string queueName, MessageToRetry messageToRetry)
     {
-        string sql = string.Format(
-            @"INSERT INTO [{0}] (
+        var sql = $@"INSERT INTO [{queueName}] (
                     [Id],
                     [Recoverable],
                     [Headers],
@@ -57,13 +56,13 @@ public static class ErrorQueue
                     @Id,
                     @Recoverable,
                     @Headers,
-                    @Body)", queueName);
-        using (SqlConnection connection = new SqlConnection(connectionString))
+                    @Body)";
+        using (var connection = new SqlConnection(connectionString))
         {
             connection.Open();
-            using (SqlCommand command = new SqlCommand(sql, connection))
+            using (var command = new SqlCommand(sql, connection))
             {
-                SqlParameterCollection parameters = command.Parameters;
+                var parameters = command.Parameters;
                 command.CommandType = CommandType.Text;
                 parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = messageToRetry.Id;
                 parameters.Add("Headers", SqlDbType.VarChar).Value = messageToRetry.Headers;
@@ -76,23 +75,22 @@ public static class ErrorQueue
 
     static MessageToRetry ReadAndDelete(string connectionString, string queueName, Guid messageId)
     {
-        string sql = string.Format(
-            @"DELETE FROM [{0}]
+        var sql = $@"DELETE FROM [{queueName}]
             OUTPUT
                 DELETED.Headers,
                 DELETED.Body
-            WHERE Id = @Id", queueName);
-        using (SqlConnection connection = new SqlConnection(connectionString))
+            WHERE Id = @Id";
+        using (var connection = new SqlConnection(connectionString))
         {
             connection.Open();
-            using (SqlCommand command = new SqlCommand(sql, connection))
+            using (var command = new SqlCommand(sql, connection))
             {
                 command.Parameters.AddWithValue("Id", messageId);
-                using (SqlDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow))
+                using (var reader = command.ExecuteReader(CommandBehavior.SingleRow))
                 {
                     if (!reader.Read())
                     {
-                        string message = string.Format("Could not find error entry with messageId '{0}'", messageId);
+                        var message = $"Could not find error entry with messageId '{messageId}'";
                         throw new Exception(message);
                     }
                     return new MessageToRetry

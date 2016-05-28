@@ -17,7 +17,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.CustomNhMappings.Loquacious";
-        Configuration nhConfiguration = new Configuration();
+        var nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
         nhConfiguration.SetProperty(Environment.ConnectionDriver, "NHibernate.Driver.Sql2008ClientDriver");
@@ -26,7 +26,7 @@ class Program
 
         nhConfiguration = AddFluentMappings(nhConfiguration);
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Loquacious");
+        var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Loquacious");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -34,26 +34,33 @@ class Program
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(nhConfiguration);
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new StartOrder
+            var startOrder = new StartOrder
             {
                 OrderId = "123"
-            });
-            await Task.Delay(2000);
+            };
+            await endpointInstance.SendLocal(startOrder)
+                .ConfigureAwait(false);
+            await Task.Delay(2000)
+                .ConfigureAwait(false);
 
-            await endpoint.SendLocal(new CompleteOrder
+            var completeOrder = new CompleteOrder
             {
                 OrderId = "123"
-            });
+            };
+            await endpointInstance.SendLocal(completeOrder)
+                .ConfigureAwait(false);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 

@@ -14,7 +14,7 @@ public class HandlerWithRavenSession : IHandleMessages<MyMessage>
 
     public void Handle(MyMessage message)
     {
-        IDocumentSession ravenSession = sessionProvider.Session;
+        var ravenSession = sessionProvider.Session;
         SomeLibrary.SomeMethod(message, ravenSession);
     }
 }

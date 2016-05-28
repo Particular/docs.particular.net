@@ -12,7 +12,7 @@ static class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.WcfCallbacks.Endpoint";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.WcfCallbacks.Endpoint");
+        var endpointConfiguration = new EndpointConfiguration("Samples.WcfCallbacks.Endpoint");
         endpointConfiguration.ScaleOut()
             .InstanceDiscriminator("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -22,10 +22,11 @@ static class Program
 
         #region startbus
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            using (StartWcfHost(endpoint))
+            using (StartWcfHost(endpointInstance))
             {
                 Console.WriteLine("Press any key to exit");
                 Console.ReadKey();
@@ -33,7 +34,8 @@ static class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
 
         #endregion
@@ -43,7 +45,7 @@ static class Program
 
     static IDisposable StartWcfHost(IEndpointInstance endpointInstance)
     {
-        WcfMapper wcfMapper = new WcfMapper(endpointInstance, "http://localhost:8080");
+        var wcfMapper = new WcfMapper(endpointInstance, "http://localhost:8080");
         wcfMapper.StartListening<EnumMessage, Status>();
         wcfMapper.StartListening<ObjectMessage, ReplyMessage>();
         wcfMapper.StartListening<IntMessage, int>();

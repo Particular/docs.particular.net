@@ -28,7 +28,7 @@
 
         public void Handle(RequestMessage message)
         {
-            ResponseMessage reply = new ResponseMessage
+            var reply = new ResponseMessage
             {
                 String = message.String
             };

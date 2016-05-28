@@ -11,10 +11,11 @@ public class MessageWithStreamHandler : IHandleMessages<MessageWithStream>
     public async Task Handle(MessageWithStream message, IMessageHandlerContext context)
     {
         log.Info("Message received, size of stream property: " + message.StreamProperty.Length + " Bytes");
-        using (StreamReader streamReader = new StreamReader(message.StreamProperty))
+        using (var streamReader = new StreamReader(message.StreamProperty))
         {
-            string streamContents = await streamReader.ReadToEndAsync();
-            log.InfoFormat("Stream content: {0}...", streamContents.Substring(0, 20));
+            var streamContents = await streamReader.ReadToEndAsync()
+                .ConfigureAwait(false);
+            log.InfoFormat($"Stream content: {streamContents.Substring(0, 20)}...");
         }
     }
 

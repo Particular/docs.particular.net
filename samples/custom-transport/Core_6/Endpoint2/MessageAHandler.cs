@@ -7,11 +7,11 @@ public class MessageAHandler : IHandleMessages<MessageA>
 {
     static ILog logger = LogManager.GetLogger<MessageAHandler>();
 
-    public async Task Handle(MessageA message, IMessageHandlerContext context)
+    public Task Handle(MessageA message, IMessageHandlerContext context)
     {
         logger.Info("MessageA Handled");
         logger.Info("Replying with MessageB");
-        await context.Reply(new MessageB());
+        return context.Reply(new MessageB());
     }
 
 }

@@ -27,28 +27,30 @@ public class OwinToBus
 
     async Task Invoke(IDictionary<string, object> environment)
     {
-        string messageBody = await GetMessageBody(environment);
-        IDictionary<string, string[]> requestHeaders = (IDictionary<string, string[]>) environment["owin.RequestHeaders"];
-        string typeName = requestHeaders["MessageType"].Single();
-        Type objectType = Type.GetType(typeName);
-        object deserialize = Deserialize(messageBody, objectType);
+        var messageBody = await GetMessageBody(environment)
+            .ConfigureAwait(false);
+        var requestHeaders = (IDictionary<string, string[]>) environment["owin.RequestHeaders"];
+        var typeName = requestHeaders["MessageType"].Single();
+        var objectType = Type.GetType(typeName);
+        var deserialize = Deserialize(messageBody, objectType);
         bus.SendLocal(deserialize);
     }
 
     object Deserialize(string messageBody, Type objectType)
     {
-        using (StringReader textReader = new StringReader(messageBody))
+        using (var stringReader = new StringReader(messageBody))
         {
-            return serializer.Deserialize(textReader, objectType);
+            return serializer.Deserialize(stringReader, objectType);
         }
     }
 
     async Task<string> GetMessageBody(IDictionary<string, object> environment)
     {
-        using (Stream requestStream = (Stream) environment["owin.RequestBody"])
-        using (StreamReader streamReader = new StreamReader(requestStream))
+        using (var requestStream = (Stream) environment["owin.RequestBody"])
+        using (var streamReader = new StreamReader(requestStream))
         {
-            return await streamReader.ReadToEndAsync();
+            return await streamReader.ReadToEndAsync()
+                .ConfigureAwait(false);
         }
     }
 }

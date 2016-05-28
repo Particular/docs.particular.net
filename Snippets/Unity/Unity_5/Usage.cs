@@ -16,7 +16,7 @@ class Usage
     {
         #region Unity_Existing
 
-        UnityContainer container = new UnityContainer();
+        var container = new UnityContainer();
         container.RegisterInstance(new MyService());
         configure.UnityBuilder(container);
 

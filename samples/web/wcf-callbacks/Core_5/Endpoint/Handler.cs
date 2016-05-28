@@ -1,7 +1,7 @@
 ﻿using NServiceBus;
 using NServiceBus.Logging;
 
-public class Handler : 
+public class Handler :
     IHandleMessages<EnumMessage>,
     IHandleMessages<IntMessage>,
     IHandleMessages<ObjectMessage>
@@ -31,7 +31,7 @@ public class Handler :
         log.InfoFormat("Received ObjectMessage. Property:'{0}'", message.Property);
         bus.Reply(new ReplyMessage
         {
-            Property = string.Format("Handler Received '{0}'", message.Property)
+            Property = $"Handler Received '{message.Property}'"
         });
     }
 }

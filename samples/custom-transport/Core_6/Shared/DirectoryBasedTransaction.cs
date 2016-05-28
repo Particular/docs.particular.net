@@ -10,7 +10,7 @@ class DirectoryBasedTransaction : TransportTransaction
     public DirectoryBasedTransaction(string basePath)
     {
         this.basePath = basePath;
-        string transactionId = Guid.NewGuid().ToString();
+        var transactionId = Guid.NewGuid().ToString();
 
         transactionDir = Path.Combine(basePath, ".pending", transactionId);
         commitDir = Path.Combine(basePath, ".committed", transactionId);
@@ -27,7 +27,7 @@ class DirectoryBasedTransaction : TransportTransaction
 
     public void Commit()
     {
-        string dispatchFile = Path.Combine(transactionDir, "dispatch.txt");
+        var dispatchFile = Path.Combine(transactionDir, "dispatch.txt");
         File.WriteAllLines(dispatchFile, outgoingFiles.Select(file => $"{file.TxPath}=>{file.TargetPath}").ToArray());
 
         Directory.Move(transactionDir, commitDir);
@@ -45,8 +45,8 @@ class DirectoryBasedTransaction : TransportTransaction
 
     public void Enlist(string messagePath, List<string> messageContents)
     {
-        string txPath = Path.Combine(transactionDir, Path.GetFileName(messagePath));
-        string committedPath = Path.Combine(commitDir, Path.GetFileName(messagePath));
+        var txPath = Path.Combine(transactionDir, Path.GetFileName(messagePath));
+        var committedPath = Path.Combine(commitDir, Path.GetFileName(messagePath));
 
         File.WriteAllLines(txPath, messageContents);
         outgoingFiles.Add(new OutgoingFile(committedPath, messagePath));
@@ -60,7 +60,7 @@ class DirectoryBasedTransaction : TransportTransaction
             return;
         }
 
-        foreach (OutgoingFile outgoingFile in outgoingFiles)
+        foreach (var outgoingFile in outgoingFiles)
         {
             File.Move(outgoingFile.TxPath, outgoingFile.TargetPath);
         }

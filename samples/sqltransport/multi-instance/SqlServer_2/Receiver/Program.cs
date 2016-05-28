@@ -1,7 +1,5 @@
 ﻿using System;
 using NServiceBus;
-using NServiceBus.Config;
-using NServiceBus.Config.ConfigurationSource;
 
 class Program
 {
@@ -11,7 +9,7 @@ class Program
 
         #region ReceiverConfiguration
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SqlServer.MultiInstanceReceiver");
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.UseSpecificConnectionInformation(ConnectionProvider.GetConnection);
@@ -29,14 +27,4 @@ class Program
         }
     }
 
-    class ProvideConfiguration : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
-    {
-        public MessageForwardingInCaseOfFaultConfig GetConfiguration()
-        {
-            return new MessageForwardingInCaseOfFaultConfig
-            {
-                ErrorQueue = "error"
-            };
-        }
-    }
 }

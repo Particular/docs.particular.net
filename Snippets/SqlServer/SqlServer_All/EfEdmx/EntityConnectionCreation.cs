@@ -7,16 +7,16 @@ class EntityConnectionCreation
     {
         #region EntityConnectionCreationAndUsage
 
-        EntityConnectionStringBuilder entityBuilder = new EntityConnectionStringBuilder
+        var entityBuilder = new EntityConnectionStringBuilder
         {
             Provider = "System.Data.SqlClient",
             ProviderConnectionString = "the database connection string",
             Metadata = "res://*/MySample.csdl|res://*/MySample.ssdl|res://*/MySample.msl"
         };
 
-        EntityConnection entityConn = new EntityConnection(entityBuilder.ToString());
+        var entityConn = new EntityConnection(entityBuilder.ToString());
 
-        using (MySampleContainer ctx = new MySampleContainer(entityConn))
+        using (var mySampleContainer = new MySampleContainer(entityConn))
         {
             //use the DbContext as required
         }

@@ -1,7 +1,6 @@
 ﻿namespace Core5.Headers.Writers
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading;
     using Common;
     using NServiceBus;
@@ -28,14 +27,14 @@
         [Test]
         public void Write()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName(EndpointName);
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterPublish>(typeof(ConfigErrorQueue));
+            var typesToScan = TypeScanner.NestedTypes<HeaderWriterPublish>(typeof(ConfigErrorQueue));
             busConfiguration.TypesToScan(typesToScan);
             busConfiguration.EnableInstallers();
             busConfiguration.UsePersistence<InMemoryPersistence>();
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IBus bus = Bus.Create(busConfiguration).Start())
+            using (var bus = Bus.Create(busConfiguration).Start())
             {
                 //give time for the subscription to happen
                 Thread.Sleep(3000);
@@ -59,7 +58,7 @@
         {
             public UnicastBusConfig GetConfiguration()
             {
-                UnicastBusConfig unicastBusConfig = new UnicastBusConfig();
+                var unicastBusConfig = new UnicastBusConfig();
                 unicastBusConfig.MessageEndpointMappings.Add(new MessageEndpointMapping
                 {
                     AssemblyName = GetType().Assembly.GetName().Name,
@@ -73,7 +72,7 @@
         {
             public void MutateIncoming(TransportMessage transportMessage)
             {
-                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterPublish>(transportMessage.Headers);
+                var headerText = HeaderWriter.ToFriendlyString<HeaderWriterPublish>(transportMessage.Headers);
                 SnippetLogger.Write(headerText, version: "5");
                 ManualResetEvent.Set();
             }

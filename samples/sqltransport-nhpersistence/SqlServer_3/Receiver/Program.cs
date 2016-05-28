@@ -18,7 +18,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlNHibernate.Receiver";
-        Configuration hibernateConfig = new Configuration();
+        var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
             x.ConnectionStringName = "NServiceBus/Persistence";
@@ -31,7 +31,7 @@ class Program
 
         #endregion
 
-        ModelMapper mapper = new ModelMapper();
+        var mapper = new ModelMapper();
         mapper.AddMapping<OrderMap>();
         hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
@@ -39,7 +39,7 @@ class Program
 
         #region ReceiverConfiguration
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlNHibernate.Receiver");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SqlNHibernate.Receiver");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
@@ -63,7 +63,8 @@ class Program
 
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -71,7 +72,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

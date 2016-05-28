@@ -31,10 +31,7 @@ class RavenHost : IDisposable
 
     public void Dispose()
     {
-        if (documentStore != null)
-        {
-            documentStore.Dispose();
-        }
+        documentStore?.Dispose();
     }
 }
 #endregion

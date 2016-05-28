@@ -7,20 +7,20 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.MongoDB.Client";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MongoDB.Client");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press 'enter' to send a StartOrder messages");
             Console.WriteLine("Press any other key to exit");
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
@@ -28,11 +28,12 @@ class Program
                     return;
                 }
 
-                Guid orderId = Guid.NewGuid();
-                bus.Send(new StartOrder
-                          {
-                              OrderId = orderId
-                          });
+                var orderId = Guid.NewGuid();
+                var startOrder = new StartOrder
+                {
+                    OrderId = orderId
+                };
+                bus.Send(startOrder);
                 Console.WriteLine("StartOrder Message sent with OrderId  " + orderId);
             }
         }

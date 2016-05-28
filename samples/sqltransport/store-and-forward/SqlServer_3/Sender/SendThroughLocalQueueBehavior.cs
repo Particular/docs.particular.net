@@ -21,7 +21,7 @@ class SendThroughLocalQueueRoutingToDispatchConnector : ForkConnector<IRoutingCo
     public override Task Invoke(IRoutingContext context, Func<Task> next, Func<IDispatchContext, Task> fork)
     {
         IncomingMessage incomingMessage;
-        bool fromHandler = context.Extensions.TryGet(out incomingMessage);
+        var fromHandler = context.Extensions.TryGet(out incomingMessage);
 
         DelayedDeliveryConstraint constraint;
         if (context.Extensions.TryGetDeliveryConstraint(out constraint) || fromHandler)
@@ -36,12 +36,12 @@ class SendThroughLocalQueueRoutingToDispatchConnector : ForkConnector<IRoutingCo
 
     TransportOperation RouteThroughLocalEndpointInstance(RoutingStrategy routingStrategy, IRoutingContext context)
     {
-        Dictionary<string, string> headers = new Dictionary<string, string>(context.Message.Headers);
-        AddressTag originalTag = routingStrategy.Apply(headers);
-        UnicastAddressTag unicastTag = originalTag as UnicastAddressTag;
+        var headers = new Dictionary<string, string>(context.Message.Headers);
+        var originalTag = routingStrategy.Apply(headers);
+        var unicastTag = originalTag as UnicastAddressTag;
         if (unicastTag == null)
         {
-            MulticastAddressTag multicastTag = originalTag as MulticastAddressTag;
+            var multicastTag = originalTag as MulticastAddressTag;
             if (multicastTag != null)
             {
                 headers["$.store-and-forward.eventtype"] = multicastTag.MessageType.AssemblyQualifiedName;
@@ -55,7 +55,7 @@ class SendThroughLocalQueueRoutingToDispatchConnector : ForkConnector<IRoutingCo
         {
             headers["$.store-and-forward.destination"] = unicastTag.Destination;
         }
-        OutgoingMessage message = new OutgoingMessage(context.Message.MessageId, headers, context.Message.Body);
+        var message = new OutgoingMessage(context.Message.MessageId, headers, context.Message.Body);
         return new TransportOperation(message, new UnicastAddressTag(localAddress), DispatchConsistency.Default, context.Extensions.GetDeliveryConstraints());
     }
 

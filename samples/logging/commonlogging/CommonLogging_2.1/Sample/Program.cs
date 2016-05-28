@@ -20,7 +20,7 @@ class Program
 
         NServiceBus.Logging.LogManager.Use<CommonLoggingFactory>();
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Logging.CommonLogging");
 
         #endregion
@@ -29,7 +29,7 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");

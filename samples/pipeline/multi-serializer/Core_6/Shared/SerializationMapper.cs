@@ -38,8 +38,8 @@ public class SerializationMapper
 
     public IMessageSerializer GetSerializer(Type messageType)
     {
-        bool isJsonMessage = messageType.ContainsAttribute<SerializeWithJsonAttribute>();
-        bool isXmlMessage = messageType.ContainsAttribute<SerializeWithXmlAttribute>();
+        var isJsonMessage = messageType.ContainsAttribute<SerializeWithJsonAttribute>();
+        var isXmlMessage = messageType.ContainsAttribute<SerializeWithXmlAttribute>();
         if (isXmlMessage && isJsonMessage)
         {
             throw new Exception($"Choose either [SerializeWithXml] or [SerializeWithJson] for serialization of '{messageType.Name}'.");

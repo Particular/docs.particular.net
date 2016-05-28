@@ -16,7 +16,7 @@ class Program
     static async Task MainAsync()
     {
         Console.Title = "Samples.ASB.Polymorphic.Subscriber";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ASB.Polymorphic.Subscriber");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Polymorphic.Subscriber");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
         var topology = transport.UseTopology<EndpointOrientedTopology>();
@@ -28,7 +28,7 @@ class Program
         topology.RegisterPublisherForType("Samples.ASB.Polymorphic.Publisher", typeof(DerivedEvent));
 
         #endregion
-        
+
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region DisableAutoSubscripton
@@ -42,13 +42,14 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
-
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             #region ControledSubscriptions
 
-            await endpoint.Subscribe<BaseEvent>();
+            await endpointInstance.Subscribe<BaseEvent>()
+                .ConfigureAwait(false);
 
             #endregion
 
@@ -58,7 +59,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

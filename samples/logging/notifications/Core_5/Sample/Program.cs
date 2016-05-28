@@ -9,18 +9,18 @@ class Program
     {
         Console.Title = "Samples.Notifications";
         #region logging
-        DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
+        var defaultFactory = LogManager.Use<DefaultFactory>();
         defaultFactory.Level(LogLevel.Fatal);
         #endregion
         #region endpointConfig
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Notifications");
         #endregion
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");

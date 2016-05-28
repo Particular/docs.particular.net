@@ -6,7 +6,7 @@ internal class Program
 {
     static void Main()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Scaleout.Sender");
         busConfiguration.EnableInstallers();
         busConfiguration.UseSerialization<JsonSerializer>();
@@ -14,13 +14,13 @@ internal class Program
         busConfiguration.Conventions()
             .DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof (IMessage)));
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press 'Enter' to send a message.");
             Console.WriteLine("Press any other key to exit.");
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
@@ -35,7 +35,7 @@ internal class Program
 
     static void SendMessage(IBus bus)
     {
-        PlaceOrder placeOrder = new PlaceOrder
+        var placeOrder = new PlaceOrder
         {
             OrderId = Guid.NewGuid()
         };
@@ -46,6 +46,6 @@ internal class Program
 
         #endregion
 
-        Console.WriteLine("Sent PlacedOrder command with order id [{0}].", placeOrder.OrderId);
+        Console.WriteLine($"Sent PlacedOrder command with order id [{placeOrder.OrderId}].");
     }
 }

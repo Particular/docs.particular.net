@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
@@ -17,25 +16,28 @@ class Program
         LogManager.Use<DefaultFactory>().Level(LogLevel.Error);
         #region Program
         Logger.WriteLine("Starting configuration");
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.StartupShutdown");
+        var endpointConfiguration = new EndpointConfiguration("Samples.StartupShutdown");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.EnableFeature<MyFeature>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         Logger.WriteLine("Calling Endpoint.Start");
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             //simulate some activity
-            Thread.Sleep(500);
+            await Task.Delay(500)
+                .ConfigureAwait(false);
 
             Logger.WriteLine("Endpoint is processing messages");
         }
         finally
         {
             Logger.WriteLine("Calling IEndpointInstance.Stop");
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
         Logger.WriteLine("Finished");
         #endregion

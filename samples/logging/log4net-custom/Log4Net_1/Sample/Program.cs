@@ -14,12 +14,12 @@ class Program
     {
         Console.Title = "Samples.Logging.Log4NetCustom";
         #region ConfigureLog4Net
-        PatternLayout layout = new PatternLayout
+        var layout = new PatternLayout
         {
             ConversionPattern = "%d [%t] %-5p %c [%x] - %m%n"
         };
         layout.ActivateOptions();
-        ConsoleAppender consoleAppender = new ConsoleAppender
+        var consoleAppender = new ConsoleAppender
         {
             Threshold = Level.Info,
             Layout = layout
@@ -34,7 +34,7 @@ class Program
         LogManager.Use<Log4NetFactory>();
 
         // Then continue with the bus configuration
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Logging.Log4NetCustom");
 
         #endregion
@@ -43,7 +43,7 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");

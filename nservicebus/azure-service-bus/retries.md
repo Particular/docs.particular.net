@@ -1,6 +1,6 @@
 ---
-title: Azure Service Bus Transport Retry behaviour
-summary: Describes the relationship between NServiceBus' retry behaviour and Azure Service Bus' native retry behaviour
+title: Azure Service Bus Transport Retry behavior
+summary: Describes the relationship between NServiceBus' retry behavior and Azure Service Bus' native retry behavior
 component: ASB
 tags:
 - Cloud
@@ -8,7 +8,7 @@ tags:
 - Transports
 ---
 
-This article describes the relationship between NServiceBus retry behavior and Azure Service Bus native retry behaviour.
+This article describes the relationship between NServiceBus retry behavior and Azure Service Bus native retry behavior.
 
 NServiceBus supports First Level Retries and Second Level Retries features at the endpoint instance level as described in the [Automatic Retries](/nservicebus/errors/automatic-retries.md) article.
 

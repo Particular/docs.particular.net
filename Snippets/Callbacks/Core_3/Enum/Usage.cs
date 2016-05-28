@@ -9,7 +9,7 @@
         Usage(IBus bus, ILog log)
         {
             #region EnumCallback
-            Message message = new Message();
+            var message = new Message();
             bus.Send(message)
                 .Register<Status>(response =>
                 {

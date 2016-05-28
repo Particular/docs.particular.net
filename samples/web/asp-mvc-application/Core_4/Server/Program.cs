@@ -8,16 +8,16 @@ class Program
     {
         Console.Title = "Samples.Mvc.Server";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.DefineEndpointName("Samples.Mvc.Server");
         configure.DefaultBuilder();
         configure.UseTransport<Msmq>();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus
+            var bus = startableBus
                 .Start(() => configure.ForInstallationOn<Windows>().Install());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

@@ -9,13 +9,13 @@ class Program
         Console.Title = "Samples.SelfHosting";
         #region self-hosting
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SelfHosting");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
             bus.SendLocal(new MyMessage());

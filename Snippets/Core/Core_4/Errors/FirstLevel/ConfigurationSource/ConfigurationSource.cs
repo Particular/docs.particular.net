@@ -12,7 +12,7 @@
             //To Provide FLR Config
             if (typeof(T) == typeof(TransportConfig))
             {
-                TransportConfig flrConfig = new TransportConfig
+                var flrConfig = new TransportConfig
                 {
                     MaxRetries = 2
                 };

@@ -9,7 +9,7 @@ public class SomeEventHandler : IHandleMessages<SomeEvent>
 
     public Task Handle(SomeEvent message, IMessageHandlerContext context)
     {
-        logger.InfoFormat("Received SomeEvent. EventId: {0}", message.EventId);
+        logger.Info($"Received SomeEvent. EventId: {message.EventId}");
         return Task.FromResult(0);
     }
 }

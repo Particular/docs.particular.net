@@ -13,7 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.CustomTransport.Endpoint1";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.CustomTransport.Endpoint1");
+        var endpointConfiguration = new EndpointConfiguration("Samples.CustomTransport.Endpoint1");
 #region UseDefinition
         endpointConfiguration.UseTransport<FileTransport>();
 #endregion
@@ -22,18 +22,23 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.DisableFeature<TimeoutManager>();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             #region StartMessageInteraction
-            await endpoint.Send("Samples.CustomTransport.Endpoint2", new MessageA());
+
+            var messageA = new MessageA();
+            await endpointInstance.Send("Samples.CustomTransport.Endpoint2", messageA)
+                .ConfigureAwait(false);
             #endregion
             Console.WriteLine("MessageA sent. Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

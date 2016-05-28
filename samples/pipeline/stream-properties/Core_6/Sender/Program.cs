@@ -15,7 +15,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.PipelineStream.Sender";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.PipelineStream.Sender");
+        var endpointConfiguration = new EndpointConfiguration("Samples.PipelineStream.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -27,14 +27,17 @@ class Program
         #endregion
 
         endpointConfiguration.EnableInstallers();
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await Run(endpoint);
+            await Run(endpointInstance)
+                .ConfigureAwait(false);
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 
@@ -47,16 +50,18 @@ class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
 
             if (key.Key == ConsoleKey.F)
             {
-                await SendMessageWithFileStream(endpointInstance);
+                await SendMessageWithFileStream(endpointInstance)
+                    .ConfigureAwait(false);
                 continue;
             }
             if (key.Key == ConsoleKey.H)
             {
-                await SendMessageWithHttpStream(endpointInstance);
+                await SendMessageWithHttpStream(endpointInstance)
+                    .ConfigureAwait(false);
                 continue;
             }
             break;
@@ -67,12 +72,13 @@ class Program
     {
         #region send-message-with-file-stream
 
-        MessageWithStream message = new MessageWithStream
+        var message = new MessageWithStream
         {
             SomeProperty = "This message contains a stream",
             StreamProperty = File.OpenRead("FileToSend.txt")
         };
-        await endpointInstance.Send("Samples.PipelineStream.Receiver", message);
+        await endpointInstance.Send("Samples.PipelineStream.Receiver", message)
+            .ConfigureAwait(false);
 
         #endregion
 
@@ -84,14 +90,15 @@ class Program
     {
         #region send-message-with-http-stream
 
-        using (WebClient webClient = new WebClient())
+        using (var webClient = new WebClient())
         {
-            MessageWithStream message = new MessageWithStream
+            var message = new MessageWithStream
             {
                 SomeProperty = "This message contains a stream",
                 StreamProperty = webClient.OpenRead("http://www.particular.net")
             };
-            await endpointInstance.Send("Samples.PipelineStream.Receiver", message);
+            await endpointInstance.Send("Samples.PipelineStream.Receiver", message)
+                .ConfigureAwait(false);
         }
 
         #endregion

@@ -11,7 +11,7 @@ class Program
 
 #pragma warning disable 618
         #region Workerstartup
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Scaleout.Worker1");
         configure.DefaultBuilder();
@@ -24,7 +24,7 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
             startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
 

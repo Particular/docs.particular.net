@@ -11,12 +11,12 @@ class Program
     {
         Console.Title = "Samples.Logging.Log4NetCustom";
         #region ConfigureLog4Net
-        PatternLayout layout = new PatternLayout
+        var layout = new PatternLayout
         {
             ConversionPattern = "%d [%t] %-5p %c [%x] - %m%n"
         };
         layout.ActivateOptions();
-        ConsoleAppender appender = new ConsoleAppender
+        var appender = new ConsoleAppender
         {
             Threshold = Level.Info,
             Layout = layout
@@ -30,7 +30,7 @@ class Program
 
         // Then continue with the bus configuration
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.DefineEndpointName("Samples.Logging.Log4NetCustom");
         #endregion
 
@@ -39,9 +39,9 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             bus.SendLocal(new MyMessage());
 
             Console.WriteLine("Press any key to exit");

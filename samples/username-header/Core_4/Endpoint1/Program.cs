@@ -10,7 +10,7 @@ class Program
     {
         Console.Title = "Samples.UsernameHeader.Endpoint1";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.UsernameHeader.Endpoint1");
         configure.DefaultBuilder();
@@ -24,9 +24,9 @@ class Program
             .ConfigureComponent<UsernameMutator>(DependencyLifecycle.InstancePerCall);
         #endregion
 
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             #region SendMessage
             Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("FakeUser"), new string[0]);
             bus.Send("Samples.UsernameHeader.Endpoint2", new MyMessage());

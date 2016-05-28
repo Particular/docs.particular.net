@@ -10,9 +10,9 @@ static class Program
     {
         Console.Title = "Samples.Serialization.ExternalJson";
         #region config
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Serialization.ExternalJson"); 
-        JsonSerializerSettings settings = new JsonSerializerSettings
+        var settings = new JsonSerializerSettings
         {
             Formatting = Formatting.Indented
         };
@@ -27,10 +27,10 @@ static class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             #region message
-            CreateOrder message = new CreateOrder
+            var message = new CreateOrder
             {
                 OrderId = 9,
                 Date = DateTime.Now,

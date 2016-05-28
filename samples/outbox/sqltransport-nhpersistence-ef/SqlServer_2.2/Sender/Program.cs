@@ -11,9 +11,9 @@ class Program
     {
         Console.Title = "Samples.SQLNHibernateOutboxEF.Sender";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-        Random random = new Random();
+        var random = new Random();
 
-        Configuration hibernateConfig = new Configuration();
+        var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
             x.ConnectionStringName = "NServiceBus/Persistence";
@@ -22,7 +22,7 @@ class Program
 
         hibernateConfig.SetProperty("default_schema", "sender");
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EndpointName("Samples.SQLNHibernateOutboxEF.Sender");
 
@@ -39,27 +39,27 @@ class Program
 
         #endregion
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
                 {
                     return;
                 }
-                string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                bus.Publish(new OrderSubmitted
+                var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+                var orderSubmitted = new OrderSubmitted
                 {
                     OrderId = orderId,
                     Value = random.Next(100)
-                });
-
+                };
+                bus.Publish(orderSubmitted);
             }
         }
     }

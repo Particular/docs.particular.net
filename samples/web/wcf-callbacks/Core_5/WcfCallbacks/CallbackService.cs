@@ -20,20 +20,23 @@ class CallbackService<TRequest, TResponse> : ICallbackService<TRequest, TRespons
     {
         if (typeof(TResponse).IsEnum)
         {
-            ICallback enumLocal = bus.SendLocal(request);
-            return await enumLocal.Register<TResponse>();
+            var enumLocal = bus.SendLocal(request);
+            return await enumLocal.Register<TResponse>()
+                .ConfigureAwait(false);
         }
         if (typeof(TResponse) == typeof(int))
         {
-            ICallback intLocal = bus.SendLocal(request);
-            object intValue = await intLocal.Register();
+            var intLocal = bus.SendLocal(request);
+            object intValue = await intLocal.Register()
+                .ConfigureAwait(false);
             return (TResponse)intValue;
         }
         return await bus.SendLocal(request).Register(ar =>
         {
             object[] messages = ar.Messages;
             return (TResponse)messages[0];
-        });
+        })
+        .ConfigureAwait(false);
 
     }
 

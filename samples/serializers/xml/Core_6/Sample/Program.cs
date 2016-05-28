@@ -15,7 +15,7 @@ static class Program
     {
         Console.Title = "Samples.Serialization.Xml";
         #region config
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Xml");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Xml");
         // this is optional since Xml is the default serializer
         endpointConfiguration.UseSerialization<XmlSerializer>();
         // register the mutator so the the message on the wire is written
@@ -28,11 +28,12 @@ static class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             #region message
-            CreateOrder message = new CreateOrder
+            var message = new CreateOrder
             {
                 OrderId = 9,
                 Date = DateTime.Now,
@@ -51,7 +52,8 @@ static class Program
                     },
                 }
             };
-            await endpoint.SendLocal(message);
+            await endpointInstance.SendLocal(message)
+                .ConfigureAwait(false);
             #endregion
             Console.WriteLine("Order Sent");
             Console.WriteLine("Press any key to exit");
@@ -59,7 +61,8 @@ static class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

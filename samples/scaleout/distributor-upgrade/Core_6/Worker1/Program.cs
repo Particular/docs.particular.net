@@ -12,7 +12,7 @@ internal class Program
 
         #region WorkerIdentity
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
         endpointConfiguration.ScaleOut()
             .InstanceDiscriminator(ConfigurationManager.AppSettings["InstanceId"]);
 
@@ -39,9 +39,11 @@ internal class Program
 
     static async Task Run(EndpointConfiguration busConfiguration)
     {
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        var endpointInstance = await Endpoint.Start(busConfiguration)
+            .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpoint.Stop();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

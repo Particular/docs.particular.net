@@ -13,17 +13,18 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Encryption.Endpoint1";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Encryption.Endpoint1");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Encryption.Endpoint1");
         #region enableEncryption
         endpointConfiguration.RijndaelEncryptionService();
         #endregion
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            MessageWithSecretData message = new MessageWithSecretData
+            var message = new MessageWithSecretData
             {
                 Secret = "betcha can't guess my secret",
                 SubProperty = new MySecretSubProperty
@@ -44,14 +45,16 @@ class Program
                     }
                 }
             };
-            await endpoint.Send("Samples.Encryption.Endpoint2", message);
+            await endpointInstance.Send("Samples.Encryption.Endpoint2", message)
+                .ConfigureAwait(false);
 
             Console.WriteLine("MessageWithSecretData sent. Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

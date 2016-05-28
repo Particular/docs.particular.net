@@ -19,7 +19,8 @@ public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>,
 
         #region Timeout
 
-        await RequestTimeout(context, TimeSpan.FromSeconds(5), new OrderTimeout());
+        await RequestTimeout(context, TimeSpan.FromSeconds(5), new OrderTimeout())
+            .ConfigureAwait(false);
 
         #endregion
     }

@@ -1,6 +1,5 @@
 ﻿namespace Core3.Mutators.Transport
 {
-    using System.Collections.Generic;
     using NServiceBus.MessageMutator;
     using NServiceBus.Unicast.Transport;
 
@@ -10,13 +9,13 @@
         public void MutateOutgoing(object[] messages, TransportMessage transportMessage)
         {
             // the bytes containing the serialized outgoing messages.
-            byte[] bytes = transportMessage.Body;
+            var bytes = transportMessage.Body;
 
             // optionally replace the Body
             transportMessage.Body = ServiceThatChangesBody.Mutate(messages);
 
             // the outgoing headers
-            Dictionary<string, string> headers = transportMessage.Headers;
+            var headers = transportMessage.Headers;
 
             // optional manipulate headers
 

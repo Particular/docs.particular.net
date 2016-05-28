@@ -1,7 +1,5 @@
 ﻿namespace Core6.Headers.Writers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Common;
@@ -29,20 +27,24 @@
         [Test]
         public async Task Write()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration(EndpointName);
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterPublish>();
+            var endpointConfiguration = new EndpointConfiguration(EndpointName);
+            var typesToScan = TypeScanner.NestedTypes<HeaderWriterPublish>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
 
             //give time for the subscription to happen
-            await Task.Delay(3000);
-            await endpoint.Publish(new MessageToPublish());
+            await Task.Delay(3000)
+                .ConfigureAwait(false);
+            await endpointInstance.Publish(new MessageToPublish())
+                .ConfigureAwait(false);
             ManualResetEvent.WaitOne();
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
 
         class MessageToPublish : IEvent
@@ -61,7 +63,7 @@
         {
             public UnicastBusConfig GetConfiguration()
             {
-                UnicastBusConfig unicastBusConfig = new UnicastBusConfig();
+                var unicastBusConfig = new UnicastBusConfig();
                 unicastBusConfig.MessageEndpointMappings.Add(new MessageEndpointMapping
                 {
                     AssemblyName = GetType().Assembly.GetName().Name,
@@ -75,7 +77,7 @@
         {
             public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
-                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterPublish>(context.Headers);
+                var headerText = HeaderWriter.ToFriendlyString<HeaderWriterPublish>(context.Headers);
                 SnippetLogger.Write(headerText, version: "6");
                 ManualResetEvent.Set();
                 return Task.FromResult(0);

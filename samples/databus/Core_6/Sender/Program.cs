@@ -13,7 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.DataBus.Sender";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Sender");
+        var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #region ConfigureDataBus
@@ -26,7 +26,8 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press 'D' to send a databus large message");
@@ -35,18 +36,20 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key == ConsoleKey.N)
                 {
-                    await SendMessageTooLargePayload(endpoint);
+                    await SendMessageTooLargePayload(endpointInstance)
+                        .ConfigureAwait(false);
                     continue;
                 }
 
                 if (key.Key == ConsoleKey.D)
                 {
-                    await SendMessageLargePayload(endpoint);
+                    await SendMessageLargePayload(endpointInstance)
+                        .ConfigureAwait(false);
                     continue;
                 }
                 return;
@@ -54,7 +57,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 
@@ -63,12 +67,13 @@ class Program
     {
         #region SendMessageLargePayload
 
-        MessageWithLargePayload message = new MessageWithLargePayload
+        var message = new MessageWithLargePayload
         {
             SomeProperty = "This message contains a large blob that will be sent on the data bus",
             LargeBlob = new DataBusProperty<byte[]>(new byte[1024*1024*5]) //5MB
         };
-        await endpointInstance.Send("Samples.DataBus.Receiver", message);
+        await endpointInstance.Send("Samples.DataBus.Receiver", message)
+            .ConfigureAwait(false);
 
         #endregion
 
@@ -79,11 +84,12 @@ class Program
     {
         #region SendMessageTooLargePayload
 
-        AnotherMessageWithLargePayload message = new AnotherMessageWithLargePayload
+        var message = new AnotherMessageWithLargePayload
         {
             LargeBlob = new byte[1024*1024*5] //5MB
         };
-        await endpointInstance.Send("Samples.DataBus.Receiver", message);
+        await endpointInstance.Send("Samples.DataBus.Receiver", message)
+            .ConfigureAwait(false);
 
         #endregion
     }

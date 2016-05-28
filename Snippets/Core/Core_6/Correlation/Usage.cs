@@ -8,11 +8,12 @@
         async Task Correlation(IPipelineContext context)
         {
             #region custom-correlationid
-            SendOptions options = new SendOptions();
+            var options = new SendOptions();
 
             options.SetCorrelationId("My custom correlation id");
 
-            await context.Send(new MyRequest(),options);
+            await context.Send(new MyRequest(),options)
+                .ConfigureAwait(false);
 
             #endregion
         }

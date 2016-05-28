@@ -10,12 +10,12 @@
         {
             #region ObjectCallback
 
-            Message message = new Message();
+            var message = new Message();
             bus.Send(message)
                 .Register(ar =>
                 {
-                    CompletionResult localResult = (CompletionResult)ar.AsyncState;
-                    ResponseMessage response = (ResponseMessage)localResult.Messages[0];
+                    var localResult = (CompletionResult)ar.AsyncState;
+                    var response = (ResponseMessage)localResult.Messages[0];
                     log.Info("Callback received with response:" + response.Property);
                 }, null);
 

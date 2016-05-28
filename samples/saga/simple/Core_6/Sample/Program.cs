@@ -13,29 +13,33 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.ComplexSagaFindingLogic";
-        EndpointConfiguration busConfiguration = new EndpointConfiguration("Samples.ComplexSagaFindingLogic");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.SendFailedMessagesTo("error");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ComplexSagaFindingLogic");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new StartOrder
+            await endpointInstance.SendLocal(new StartOrder
                           {
                               OrderId = "123"
-                          });
-            await endpoint.SendLocal(new StartOrder
+                          })
+                          .ConfigureAwait(false);
+            await endpointInstance.SendLocal(new StartOrder
                           {
                               OrderId = "456"
-                          });
+                          })
+                          .ConfigureAwait(false);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

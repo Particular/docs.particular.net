@@ -12,22 +12,22 @@
         {
             if (typeof(T) == typeof(GatewayConfig))
             {
-                GatewayConfig gatewayConfig = new GatewayConfig
+                var gatewayConfig = new GatewayConfig
                 {
                     Channels = new ChannelCollection
-                {
-                    new ChannelConfig
                     {
-                        Address = "http://Headquarter.mycorp.com/",
-                        Default = true,
-                        ChannelType = "Http"
-                    },
-                    new ChannelConfig
-                    {
-                        Address = "http://Headquarter.myotherdomain.com/",
-                        ChannelType = "Http"
-                    },
-                }
+                        new ChannelConfig
+                        {
+                            Address = "http://Headquarter.mycorp.com/",
+                            Default = true,
+                            ChannelType = "Http"
+                        },
+                        new ChannelConfig
+                        {
+                            Address = "http://Headquarter.myotherdomain.com/",
+                            ChannelType = "Http"
+                        },
+                    }
                 };
 
                 return gatewayConfig as T;

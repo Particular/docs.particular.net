@@ -40,16 +40,16 @@ class CustomRavenConfig
 
     void ManualDtcSettingExample(Configure configure)
     {
-        string UrlToRavenDB = "http://localhost:8080";
+        var UrlToRavenDB = "http://localhost:8080";
 
         #region RavenDBManualDtcSettingExample
         // Value must uniquely identify endpoint on the machine and remain stable on process restarts
-        Guid resourceManagerId = new Guid("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
+        var resourceManagerId = new Guid("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
 
-        string dtcRecoveryBasePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-        string recoveryPath = Path.Combine(dtcRecoveryBasePath, "NServiceBus.RavenDB", resourceManagerId.ToString());
+        var dtcRecoveryBasePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+        var recoveryPath = Path.Combine(dtcRecoveryBasePath, "NServiceBus.RavenDB", resourceManagerId.ToString());
 
-        DocumentStore store = new DocumentStore
+        var store = new DocumentStore
         {
             Url = UrlToRavenDB,
             ResourceManagerId = resourceManagerId,

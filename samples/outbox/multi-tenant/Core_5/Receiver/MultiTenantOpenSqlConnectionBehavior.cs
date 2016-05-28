@@ -10,7 +10,7 @@ class MultiTenantOpenSqlConnectionBehavior : IBehavior<IncomingContext>
 
     public void Invoke(IncomingContext context, Action next)
     {
-        string defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"]
+        var defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"]
             .ConnectionString;
         #region OpenTenantDatabaseConnection
 
@@ -19,11 +19,11 @@ class MultiTenantOpenSqlConnectionBehavior : IBehavior<IncomingContext>
         {
             throw new InvalidOperationException("No tenant id");
         }
-        string connectionString = ConfigurationManager.ConnectionStrings[tenant]
+        var connectionString = ConfigurationManager.ConnectionStrings[tenant]
             .ConnectionString;
-        Lazy<IDbConnection> lazyConnection = new Lazy<IDbConnection>(() =>
+        var lazyConnection = new Lazy<IDbConnection>(() =>
         {
-            SqlConnection connection = new SqlConnection(connectionString);
+            var connection = new SqlConnection(connectionString);
             connection.Open();
             return connection;
         });

@@ -13,9 +13,9 @@ namespace Core5.Features
 #region FeatureSetup
         protected override void Setup(FeatureConfigurationContext context)
         {
-            SecondLevelRetriesConfig retriesConfig = context.Settings.GetConfigSection<SecondLevelRetriesConfig>();
+            var retriesConfig = context.Settings.GetConfigSection<SecondLevelRetriesConfig>();
 
-            SecondLevelRetryPolicy retryPolicy = new SecondLevelRetryPolicy(retriesConfig.NumberOfRetries, retriesConfig.TimeIncrease);
+            var retryPolicy = new SecondLevelRetryPolicy(retriesConfig.NumberOfRetries, retriesConfig.TimeIncrease);
             context.Container.RegisterSingleton(typeof(SecondLevelRetryPolicy), retryPolicy);
 
             context.Pipeline.Register<SecondLevelRetriesBehavior.Registration>();
@@ -34,7 +34,7 @@ namespace Core5.Features
             // disable features not in use
             busConfiguration.DisableFeature<Sagas>();
 
-            IStartableBus bus = Bus.Create(busConfiguration);
+            var startableBus = Bus.Create(busConfiguration);
 #endregion
         }
 

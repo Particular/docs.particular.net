@@ -1,7 +1,6 @@
 ﻿namespace Core5.Headers.Writers
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading;
     using Common;
     using NServiceBus;
@@ -27,14 +26,14 @@
         [Test]
         public void Write()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName(endpointName);
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterSaga>(typeof(ConfigErrorQueue));
+            var typesToScan = TypeScanner.NestedTypes<HeaderWriterSaga>(typeof(ConfigErrorQueue));
             busConfiguration.TypesToScan(typesToScan);
             busConfiguration.EnableInstallers();
             busConfiguration.UsePersistence<InMemoryPersistence>();
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (UnicastBus bus = (UnicastBus) Bus.Create(busConfiguration).Start())
+            using (var bus = (UnicastBus) Bus.Create(busConfiguration).Start())
             {
                 bus.SendLocal(new StartSaga1Message());
                 CountdownEvent.Wait();
@@ -113,21 +112,21 @@
             {
                 if (transportMessage.IsMessageOfTye<SendFromSagaMessage>())
                 {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
                     SnippetLogger.Write(text: headerText, suffix: "Sending", version: "5");
                     CountdownEvent.Signal();
                     return;
                 }
                 if (transportMessage.IsMessageOfTye<ReplyFromSagaMessage>())
                 {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
                     SnippetLogger.Write(text: headerText, suffix: "Replying", version: "5");
                     CountdownEvent.Signal();
                     return;
                 }
                 if (transportMessage.IsMessageOfTye<ReplyToOriginatorFromSagaMessage>())
                 {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
                     SnippetLogger.Write(text: headerText, suffix: "ReplyingToOriginator", version: "5");
                     CountdownEvent.Signal();
                     return;
@@ -135,7 +134,7 @@
 
                 if (transportMessage.IsMessageOfTye<TimeoutFromSaga>())
                 {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
                     SnippetLogger.Write(text: headerText, suffix: "Timeout", version: "5");
                     CountdownEvent.Signal();
                     return;

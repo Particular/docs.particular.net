@@ -6,7 +6,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.DataBus.Sender";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.DataBus.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
         #region ConfigureDataBus
@@ -15,7 +15,7 @@ class Program
         #endregion
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press 'D' to send a databus large message");
             Console.WriteLine("Press 'N' to send a normal large message exceed the size limit and throw");
@@ -23,7 +23,7 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key == ConsoleKey.N)
@@ -46,7 +46,7 @@ class Program
     static void SendMessageLargePayload(IBus bus)
     {
         #region SendMessageLargePayload
-        MessageWithLargePayload message = new MessageWithLargePayload
+        var message = new MessageWithLargePayload
         {
             SomeProperty = "This message contains a large blob that will be sent on the data bus",
             LargeBlob = new DataBusProperty<byte[]>(new byte[1024*1024*5]) //5MB
@@ -60,7 +60,7 @@ class Program
     static void SendMessageTooLargePayload(IBus bus)
     {
         #region SendMessageTooLargePayload
-        AnotherMessageWithLargePayload message = new AnotherMessageWithLargePayload
+        var message = new AnotherMessageWithLargePayload
         {
             LargeBlob = new byte[1024 * 1024 * 5] //5MB
         };

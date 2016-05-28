@@ -36,8 +36,9 @@ class NamedConnectionString
         {
             connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
 
-            SqlConnection connection = new SqlConnection(connectionString);
-            await connection.OpenAsync();
+            var connection = new SqlConnection(connectionString);
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
 
             // perform custom operations
 

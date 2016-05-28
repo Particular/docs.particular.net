@@ -2,7 +2,6 @@
 {
     using NServiceBus;
     using NServiceBus.Installation.Environments;
-    using NServiceBus.Unicast.Config;
 
     class ForInstallationOn
     {
@@ -10,8 +9,8 @@
         {
             #region Installers
 
-            ConfigUnicastBus configUnicastBus = configure.UnicastBus();
-            IStartableBus startableBus = configUnicastBus.CreateBus();
+            var configUnicastBus = configure.UnicastBus();
+            var startableBus = configUnicastBus.CreateBus();
             startableBus.Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 
             #endregion

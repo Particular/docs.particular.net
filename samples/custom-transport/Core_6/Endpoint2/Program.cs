@@ -13,14 +13,15 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.CustomTransport.Endpoint2";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.CustomTransport.Endpoint2");
+        var endpointConfiguration = new EndpointConfiguration("Samples.CustomTransport.Endpoint2");
         endpointConfiguration.UseTransport<FileTransport>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.DisableFeature<TimeoutManager>();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -28,7 +29,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

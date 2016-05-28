@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.Unobtrusive.Server";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Unobtrusive.Server");
         configure.DefaultBuilder();
@@ -19,9 +19,9 @@ class Program
         configure.RijndaelEncryptionService();
         configure.ApplyCustomConventions();
 
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus
+            var bus = startableBus
                 .Start(() => configure.ForInstallationOn<Windows>().Install());
 
             CommandSender.Start(bus);

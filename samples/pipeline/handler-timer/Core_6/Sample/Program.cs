@@ -13,20 +13,23 @@ class Program
     static async Task Start()
     {
         Console.Title = "Samples.PipelineHandlerTimer";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.PipelineHandlerTimer");
+        var endpointConfiguration = new EndpointConfiguration("Samples.PipelineHandlerTimer");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error"); 
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await Run(endpoint);
+            await Run(endpointInstance)
+                .ConfigureAwait(false);
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 
@@ -37,23 +40,23 @@ class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             if (key.Key == ConsoleKey.Enter)
             {
-                await SendMessage(endpointInstance);
+                await SendMessage(endpointInstance)
+                    .ConfigureAwait(false);
                 continue;
             }
             return;
         }
     }
 
-    static async Task SendMessage(IEndpointInstance endpointInstance)
+    static Task SendMessage(IEndpointInstance endpointInstance)
     {
-        Message message = new Message();
-        await endpointInstance.SendLocal(message);
-
         Console.WriteLine();
         Console.WriteLine("Message sent");
+        var message = new Message();
+        return endpointInstance.SendLocal(message);
     }
 
 }

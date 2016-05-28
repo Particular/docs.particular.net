@@ -21,11 +21,11 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlNHibernate.Sender";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlNHibernate.Sender");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SqlNHibernate.Sender");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
-        Configuration hibernateConfig = new Configuration();
+        var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
             x.ConnectionStringName = "NServiceBus/Persistence";
@@ -51,7 +51,8 @@ class Program
 
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press enter to send a message");
@@ -59,7 +60,7 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
@@ -67,17 +68,20 @@ class Program
                     return;
                 }
 
-                string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                await endpoint.Publish(new OrderSubmitted
+                var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+                var orderSubmitted = new OrderSubmitted
                 {
                     OrderId = orderId,
                     Value = random.Next(100)
-                });
+                };
+                await endpointInstance.Publish(orderSubmitted)
+                .ConfigureAwait(false);
             }
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

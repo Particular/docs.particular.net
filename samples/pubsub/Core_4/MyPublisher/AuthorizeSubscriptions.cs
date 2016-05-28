@@ -7,7 +7,7 @@ class AuthorizeSubscriptions : IAuthorizeSubscriptions
 
     public bool AuthorizeSubscribe(string messageType, string clientEndpoint, IDictionary<string, string> headers)
     {
-        string lowerEndpointName = clientEndpoint.ToLowerInvariant();
+        var lowerEndpointName = clientEndpoint.ToLowerInvariant();
         return lowerEndpointName.StartsWith("samples.pubsub.subscriber1") ||
                lowerEndpointName.StartsWith("samples.pubsub.subscriber2");
     }

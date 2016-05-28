@@ -15,40 +15,42 @@ class Program
     {
         Console.Title = "Samples.MultiTenant.Sender";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-        Random random = new Random();
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Sender");
+        var random = new Random();
+        var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         endpointConfiguration.UsePersistence<NHibernatePersistence>();
         endpointConfiguration.EnableOutbox();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         try
         {
             Console.WriteLine("Press A or B to publish a message (A and B are tenant IDs)");
-            List<char> acceptableInput = new List<char> { 'A', 'B' };
+            var acceptableInput = new List<char> { 'A', 'B' };
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
-                char uppercaseKey = char.ToUpperInvariant(key.KeyChar);
+                var uppercaseKey = char.ToUpperInvariant(key.KeyChar);
 
                 if (acceptableInput.Contains(uppercaseKey))
                 {
-                    string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                    OrderSubmitted message = new OrderSubmitted
+                    var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+                    var message = new OrderSubmitted
                     {
                         OrderId = orderId,
                         Value = random.Next(100)
                     };
 
-                    PublishOptions options = new PublishOptions();
+                    var options = new PublishOptions();
                     options.SetHeader("TenantId", uppercaseKey.ToString());
 
-                    await endpoint.Publish(message, options);
+                    await endpointInstance.Publish(message, options)
+                        .ConfigureAwait(false);
                 }
                 else
                 {
@@ -58,7 +60,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

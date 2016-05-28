@@ -12,7 +12,7 @@ class CommandSender
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
 
             switch (key.Key)
@@ -27,7 +27,7 @@ class CommandSender
 
     static void PublishEvent(IBus bus)
     {
-        Guid eventId = Guid.NewGuid();
+        var eventId = Guid.NewGuid();
 
         bus.Publish<IMyEvent>(m =>
         {

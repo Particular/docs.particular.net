@@ -7,12 +7,12 @@
         void StartEndpoint()
         {
             #region 5to6-endpoint-start
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             //configure the bus
 
             //Start the endpoint
-            IStartableBus startable = Bus.Create(busConfiguration);
-            IBus endpoint = startable.Start();
+            var startableBus = Bus.Create(busConfiguration);
+            var endpoint = startableBus.Start();
 
             //Shut down the endpoint
             endpoint.Dispose();

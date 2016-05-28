@@ -1,5 +1,4 @@
 using NServiceBus;
-using System;
 using System.Threading.Tasks;
 using NServiceBus.Logging;
 
@@ -12,18 +11,19 @@ public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
 
     public async Task Handle(RequestDataMessage message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Received request {0}.", message.DataId);
-        log.InfoFormat("String received: {0}.", message.String);
+        log.Info($"Received request {message.DataId}.");
+        log.Info($"String received: {message.String}.");
 
         #region DataResponseReply
 
-        DataResponseMessage response = new DataResponseMessage
-                                       {
-                                           DataId = message.DataId,
-                                           String = message.String
-                                       };
+        var response = new DataResponseMessage
+        {
+            DataId = message.DataId,
+            String = message.String
+        };
 
-        await context.Reply(response);
+        await context.Reply(response)
+            .ConfigureAwait(false);
 
         #endregion
     }

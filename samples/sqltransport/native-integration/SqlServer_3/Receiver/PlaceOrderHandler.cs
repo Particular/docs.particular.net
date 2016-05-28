@@ -8,7 +8,7 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Order {0} placed", message.OrderId);
+        log.InfoFormat($"Order {message.OrderId} placed");
         return Task.FromResult(0);
     }
 

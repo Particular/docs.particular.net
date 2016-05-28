@@ -13,7 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Unobtrusive.Client";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Unobtrusive.Client");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Unobtrusive.Client");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseDataBus<FileShareDataBus>()
@@ -24,14 +24,17 @@ class Program
 
         endpointConfiguration.ApplyCustomConventions();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await CommandSender.Start(endpoint);
+            await CommandSender.Start(endpointInstance)
+                .ConfigureAwait(false);
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

@@ -24,7 +24,7 @@ static class Logger
 
     public static void WriteLine(string message)
     {
-        message = string.Format("Thread:{0} {1}\r\n", Thread.CurrentThread.ManagedThreadId, message);
+        message = $"Thread:{Thread.CurrentThread.ManagedThreadId} {message}\r\n";
         log.Info(message);
         lock (locker)
         {

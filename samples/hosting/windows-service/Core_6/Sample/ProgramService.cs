@@ -5,14 +5,14 @@ using NServiceBus;
 
 class ProgramService : ServiceBase
 {
-    IEndpointInstance endpoint;
+    IEndpointInstance endpointInstance;
 
     #region windowsservice-hosting-main
 
     static void Main()
     {
         Console.Title = "Samples.WindowsServiceAndConsole";
-        using (ProgramService service = new ProgramService())
+        using (var service = new ProgramService())
         {
             if (Environment.UserInteractive)
             {
@@ -41,14 +41,16 @@ class ProgramService : ServiceBase
 
     async Task AsyncOnStart()
     {
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.WindowsServiceAndConsole");
+        var endpointConfiguration = new EndpointConfiguration("Samples.WindowsServiceAndConsole");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
-        endpoint = await Endpoint.Start(endpointConfiguration);
+        endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         // run any startup actions on the bus
-        await endpoint.SendLocal(new MyMessage());
+        await endpointInstance.SendLocal(new MyMessage())
+            .ConfigureAwait(false);
     }
 
     #endregion
@@ -57,7 +59,7 @@ class ProgramService : ServiceBase
 
     protected override void OnStop()
     {
-        endpoint?.Stop().GetAwaiter().GetResult();
+        endpointInstance?.Stop().GetAwaiter().GetResult();
     }
 
     #endregion

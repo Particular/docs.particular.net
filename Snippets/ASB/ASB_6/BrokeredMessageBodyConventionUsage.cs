@@ -10,7 +10,7 @@ class BrokeredMessageBodyConventionUsage
 
         BrokeredMessageBodyConversion.InjectBody = bytes =>
         {
-            MemoryStream messageAsStream = new MemoryStream(bytes);
+            var messageAsStream = new MemoryStream(bytes);
             return new BrokeredMessage(messageAsStream);
         };
 
@@ -20,8 +20,8 @@ class BrokeredMessageBodyConventionUsage
 
         BrokeredMessageBodyConversion.ExtractBody = brokeredMessage =>
         {
-            using (MemoryStream stream = new MemoryStream())
-            using (Stream body = brokeredMessage.GetBody<Stream>())
+            using (var stream = new MemoryStream())
+            using (var body = brokeredMessage.GetBody<Stream>())
             {
                 body.CopyTo(stream);
                 return stream.ToArray();

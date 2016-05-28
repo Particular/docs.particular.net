@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Mapping.Attributes;
@@ -18,7 +17,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.CustomNhMappings.Attributes";
-        Configuration nhConfiguration = new Configuration();
+        var nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
         nhConfiguration.SetProperty(Environment.ConnectionDriver, "NHibernate.Driver.Sql2008ClientDriver");
@@ -27,7 +26,7 @@ class Program
 
         AddAttributeMappings(nhConfiguration);
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Attributes");
+        var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Attributes");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -35,25 +34,32 @@ class Program
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(nhConfiguration);
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpoint = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new StartOrder
+            var startOrder = new StartOrder
             {
                 OrderId = "123"
-            });
-            await Task.Delay(2000);
-            await endpoint.SendLocal(new CompleteOrder
+            };
+            await endpoint.SendLocal(startOrder)
+                .ConfigureAwait(false);
+            await Task.Delay(2000)
+                .ConfigureAwait(false);
+            var completeOrder = new CompleteOrder
             {
                 OrderId = "123"
-            });
+            };
+            await endpoint.SendLocal(completeOrder)
+                .ConfigureAwait(false);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpoint.Stop()
+                .ConfigureAwait(false);
         }
     }
 
@@ -61,12 +67,12 @@ class Program
 
     static void AddAttributeMappings(Configuration nhConfiguration)
     {
-        HbmSerializer hbmSerializer = new HbmSerializer
+        var hbmSerializer = new HbmSerializer
         {
             Validate = true
         };
 
-        using (MemoryStream stream = hbmSerializer.Serialize(typeof(Program).Assembly))
+        using (var stream = hbmSerializer.Serialize(typeof(Program).Assembly))
         {
             nhConfiguration.AddInputStream(stream);
         }

@@ -8,13 +8,14 @@ public class ObjectMessageHandler : IHandleMessages<ObjectMessage>
 {
     static ILog log = LogManager.GetLogger<ObjectMessageHandler>();
 
-    public async Task Handle(ObjectMessage message, IMessageHandlerContext context)
+    public Task Handle(ObjectMessage message, IMessageHandlerContext context)
     {
         log.Info("Message received, Returning");
-        await context.Reply(new ObjectResponseMessage
+        var objectResponseMessage = new ObjectResponseMessage
         {
             Property = "PropertyValue"
-        });
+        };
+        return context.Reply(objectResponseMessage);
     }
 }
 

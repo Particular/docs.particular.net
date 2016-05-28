@@ -9,9 +9,10 @@
         async Task RequestImmediateDispatch(IPipelineContext context)
         {
             #region RequestImmediateDispatch
-            SendOptions options = new SendOptions();
+            var options = new SendOptions();
             options.RequireImmediateDispatch();
-            await context.Send(new MyMessage(), options);
+            await context.Send(new MyMessage(), options)
+                .ConfigureAwait(false);
             #endregion
         }
 
@@ -20,7 +21,8 @@
             #region RequestImmediateDispatchUsingScope
             using (new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
             {
-                await context.SendLocal(new MyMessage());
+                await context.SendLocal(new MyMessage())
+                    .ConfigureAwait(false);
             }
             #endregion
         }

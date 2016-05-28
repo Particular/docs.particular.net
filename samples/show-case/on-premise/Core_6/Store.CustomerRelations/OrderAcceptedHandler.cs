@@ -9,21 +9,21 @@ class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
 {
     static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
 
-    public async Task Handle(OrderAccepted message, IMessageHandlerContext context)
+    public Task Handle(OrderAccepted message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
             Debugger.Break();
         }
 
-        log.InfoFormat("Customer: {0} is now a preferred customer publishing for other service concerns", message.ClientId);
+        log.InfoFormat($"Customer: {message.ClientId} is now a preferred customer publishing for other service concerns");
 
         // publish this event as an asynchronous event
-        await context.Publish<ClientBecamePreferred>(m =>
+        return context.Publish<ClientBecamePreferred>(m =>
         {
             m.ClientId = message.ClientId;
             m.PreferredStatusExpiresOn = DateTime.Now.AddMonths(2);
         });
     }
-    
+
 }

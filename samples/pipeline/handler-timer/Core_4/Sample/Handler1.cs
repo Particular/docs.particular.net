@@ -11,7 +11,7 @@ public class Handler1 : IHandleMessages<Message>
 
     public void Handle(Message message)
     {
-        int milliseconds = random.Next(100, 1000);
+        var milliseconds = random.Next(100, 1000);
         logger.InfoFormat("Message received going to Thread.Sleep({0}ms)", milliseconds);
         Thread.Sleep(milliseconds);
     }

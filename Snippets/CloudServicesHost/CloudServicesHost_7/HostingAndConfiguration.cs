@@ -2,7 +2,6 @@
 using System.Web;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using NServiceBus;
-using NServiceBus.Hosting.Azure;
 
 #region HostingInWorkerRole
 
@@ -51,12 +50,13 @@ public class MvcApplication : HttpApplication
 
     static async Task StartBus()
     {
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
+        var endpointConfiguration = new EndpointConfiguration("EndpointName");
         endpointConfiguration.AzureConfigurationSource();
         endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         endpointConfiguration.UsePersistence<AzureStoragePersistence>();
 
-        IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
     }
 }
 

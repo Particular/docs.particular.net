@@ -17,13 +17,15 @@
 
             #region delayed-delivery-timespan
 
-            SendOptions options = new SendOptions();
+            var sendOptions = new SendOptions();
 
-            options.DelayDeliveryWith(TimeSpan.FromMinutes(30));
+            sendOptions.DelayDeliveryWith(TimeSpan.FromMinutes(30));
 
-            await handlerContext.Send(new MessageToBeSentLater(), options);
+            await handlerContext.Send(new MessageToBeSentLater(), sendOptions)
+                .ConfigureAwait(false);
             // OR
-            await endpoint.Send(new MessageToBeSentLater(), options);
+            await endpoint.Send(new MessageToBeSentLater(), sendOptions)
+                .ConfigureAwait(false);
 
             #endregion
         }

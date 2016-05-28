@@ -12,9 +12,9 @@
 #pragma warning disable 618
             #region EncryptionFromCode
 
-            string encryptionKeyIdentifier = "2015-10";
-            byte[] encryptionKey = Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
-            List<byte[]> expiredKeys = new List<byte[]>
+            var encryptionKeyIdentifier = "2015-10";
+            var encryptionKey = Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
+            var expiredKeys = new List<byte[]>
             {
                 Encoding.ASCII.GetBytes("abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"),
                 Encoding.ASCII.GetBytes("cdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6")

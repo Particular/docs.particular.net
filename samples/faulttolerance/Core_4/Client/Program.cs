@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.FaultTolerance.Client";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.FaultTolerance.Client");
         configure.DefaultBuilder();
@@ -16,28 +16,29 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus
+            var bus = startableBus
                 .Start(() => configure.ForInstallationOn<Windows>().Install());
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 if (key.Key != ConsoleKey.Enter)
                 {
                     return;
                 }
-                Guid id = Guid.NewGuid();
+                var id = Guid.NewGuid();
 
-                bus.Send("Samples.FaultTolerance.Server", new MyMessage
+                var myMessage = new MyMessage
                 {
                     Id = id
-                });
+                };
+                bus.Send("Samples.FaultTolerance.Server", myMessage);
 
-                Console.WriteLine("Sent a new message with id: {0}", id.ToString("N"));
+                Console.WriteLine($"Sent a new message with id: {id.ToString("N")}");
             }
         }
     }

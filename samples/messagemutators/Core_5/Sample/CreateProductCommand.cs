@@ -16,9 +16,7 @@ public class CreateProductCommand : ICommand
 
     public override string ToString()
     {
-        return string.Format(
-            "CreateProductCommand: ProductId={0}, ProductName={1}, ListPrice={2} Image (length)={3}",
-            ProductId, ProductName, ListPrice, (Image == null ? 0 : Image.Length));
+        return $"CreateProductCommand: ProductId={ProductId}, ProductName={ProductName}, ListPrice={ListPrice} Image (length)={(Image == null ? 0 : Image.Length)}";
     }
 }
 

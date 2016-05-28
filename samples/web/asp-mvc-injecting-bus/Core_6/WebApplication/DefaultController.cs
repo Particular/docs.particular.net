@@ -20,7 +20,8 @@ public class DefaultController : Controller
     [AllowAnonymous]
     public async Task<ActionResult> Send()
     {
-        await endpoint.Send("Samples.Mvc.Endpoint", new MyMessage());
+        await endpoint.Send("Samples.Mvc.Endpoint", new MyMessage())
+            .ConfigureAwait(false);
         return RedirectToAction("Index", "Default");
     }
 }

@@ -4,7 +4,7 @@ using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 
 #region Mutator
-public class UsernameMutator : 
+public class UsernameMutator :
     IMutateOutgoingTransportMessages
 {
     static ILog logger = LogManager.GetLogger("Handler");

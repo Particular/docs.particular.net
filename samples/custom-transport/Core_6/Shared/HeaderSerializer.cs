@@ -8,8 +8,8 @@ static class HeaderSerializer
 {
     public static string Serialize(Dictionary<string, string> instance)
     {
-        DataContractJsonSerializer serializer = BuildSerializer();
-        using (MemoryStream stream = new MemoryStream())
+        var serializer = BuildSerializer();
+        using (var stream = new MemoryStream())
         {
             serializer.WriteObject(stream, instance);
             return Encoding.UTF8.GetString(stream.ToArray());
@@ -18,8 +18,8 @@ static class HeaderSerializer
 
     public static Dictionary<string, string> DeSerialize(string json)
     {
-        DataContractJsonSerializer serializer = BuildSerializer();
-        using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
+        var serializer = BuildSerializer();
+        using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
         {
             return (Dictionary<string, string>) serializer.ReadObject(stream);
         }
@@ -27,7 +27,7 @@ static class HeaderSerializer
 
     static DataContractJsonSerializer BuildSerializer()
     {
-        DataContractJsonSerializerSettings settings = new DataContractJsonSerializerSettings
+        var settings = new DataContractJsonSerializerSettings
         {
             UseSimpleDictionaryFormat = true,
         };

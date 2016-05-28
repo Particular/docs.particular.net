@@ -7,17 +7,17 @@
     {
         #region ReplyingMessageHandler
 
-        public async Task Handle(RequestDataMessage message, IMessageHandlerContext context)
+        public Task Handle(RequestDataMessage message, IMessageHandlerContext context)
         {
             //Create a response message:
-            DataResponseMessage response = new DataResponseMessage
+            var response = new DataResponseMessage
             {
                 DataId = message.DataId,
                 String = message.String
             };
 
             //Underneath the covers, Reply sends a new message to the return address on the message being handled.
-            await context.Reply(response);
+            return context.Reply(response);
         }
 
         #endregion ReplyingMessageHandler

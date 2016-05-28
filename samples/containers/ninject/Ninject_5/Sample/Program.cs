@@ -8,10 +8,10 @@ static class Program
     {
         Console.Title = "Samples.Ninject";
         #region ContainerConfiguration
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Ninject");
 
-        StandardKernel kernel = new StandardKernel();
+        var kernel = new StandardKernel();
         kernel.Bind<MyService>().ToConstant(new MyService());
         busConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
         #endregion
@@ -19,7 +19,7 @@ static class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");

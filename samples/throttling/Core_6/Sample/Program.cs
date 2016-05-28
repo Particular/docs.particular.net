@@ -13,7 +13,7 @@ class Program
     {
         Console.Title = "Samples.Throttling";
         #region Configuration
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Throttling");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Throttling");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         #endregion
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
@@ -26,20 +26,23 @@ class Program
                    "implements API throttling for GitHub APIs");
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("\r\nPress any key to stop program\r\n");
 
             Console.WriteLine("Sending messages...");
-            for (int i = 0; i < 100; i++)
+            for (var i = 0; i < 100; i++)
             {
-                await endpoint.SendLocal(new SearchGitHub
+                var searchGitHub = new SearchGitHub
                 {
                     Repository = "NServiceBus",
                     RepositoryOwner = "Particular",
                     SearchFor = "IBus"
-                });
+                };
+                await endpointInstance.SendLocal(searchGitHub)
+                .ConfigureAwait(false);
             }
             Console.WriteLine("Messages sent.");
             Console.WriteLine("Press any key to exit");
@@ -48,7 +51,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

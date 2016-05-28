@@ -8,13 +8,13 @@ namespace Common
     {
         public static IEnumerable<Type> NestedTypes<T>(params Type[] extraTypes)
         {
-            Type rootType = typeof(T);
+            var rootType = typeof(T);
             yield return rootType;
-            foreach (Type nestedType in rootType.GetNestedTypes(BindingFlags.NonPublic))
+            foreach (var nestedType in rootType.GetNestedTypes(BindingFlags.NonPublic))
             {
                 yield return nestedType;
             }
-            foreach (Type extraType in extraTypes)
+            foreach (var extraType in extraTypes)
             {
                 yield return extraType;
             }

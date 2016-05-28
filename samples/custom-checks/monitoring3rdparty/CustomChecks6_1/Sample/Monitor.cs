@@ -12,7 +12,7 @@ class ThirdPartyMonitor : CustomCheck
     static ILog logger = LogManager.GetLogger<ThirdPartyMonitor>();
 
     public ThirdPartyMonitor()
-        : base(string.Format("Monitor {0}", url), "Monitor 3rd Party ", TimeSpan.FromSeconds(10))
+        : base($"Monitor {url}", "Monitor 3rd Party ", TimeSpan.FromSeconds(10))
     {
     }
 
@@ -21,25 +21,26 @@ class ThirdPartyMonitor : CustomCheck
     {
         try
         {
-            using (HttpClient client = new HttpClient
+            using (var client = new HttpClient
             {
                 Timeout = TimeSpan.FromSeconds(3),
             })
-            using (HttpResponseMessage response = await client.GetAsync(url))
+            using (var response = await client.GetAsync(url)
+                .ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    logger.InfoFormat("Succeeded in contacting {0}", url);
+                    logger.Info($"Succeeded in contacting {url}");
                     return CheckResult.Pass;
                 }
-                string error = string.Format("Failed to contact '{0}'. HttpStatusCode: {1}", url, response.StatusCode);
+                var error = $"Failed to contact '{url}'. HttpStatusCode: {response.StatusCode}";
                 logger.Info(error);
                 return CheckResult.Failed(error);
             }
         }
         catch (Exception exception)
         {
-            string error = string.Format("Failed to contact '{0}'. Error: {1}", url, exception.Message);
+            var error = $"Failed to contact '{url}'. Error: {exception.Message}";
             logger.Info(error);
             return CheckResult.Failed(error);
         }

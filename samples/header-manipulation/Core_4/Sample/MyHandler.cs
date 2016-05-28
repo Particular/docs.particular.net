@@ -17,9 +17,9 @@ public class MyHandler : IHandleMessages<MyMessage>
     public void Handle(MyMessage message)
     {
         logger.Info("Hello from MyHandler");
-        foreach (string line in bus.CurrentMessageContext
+        foreach (var line in bus.CurrentMessageContext
             .Headers.OrderBy(x => x.Key)
-            .Select(x => string.Format("Key={0}, Value={1}", x.Key, x.Value)))
+            .Select(x => $"Key={x.Key}, Value={x.Value}"))
         {
             logger.Info(line);
         }

@@ -19,7 +19,7 @@ public class OrderSagaAttributes : Saga<OrderSagaDataAttributes>,
     public Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
-        logger.InfoFormat("OrderSagaAttributes with OrderId {0} received StartOrder with OrderId {1} (Saga version: {2})", Data.OrderId, message.OrderId, Data.Version);
+        logger.Info($"OrderSagaAttributes with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId} (Saga version: {Data.Version})");
 
         if (Data.From == null)
         {
@@ -40,7 +40,7 @@ public class OrderSagaAttributes : Saga<OrderSagaDataAttributes>,
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        logger.InfoFormat("OrderSagaAttributes with OrderId {0} received CompleteOrder with OrderId {1}", Data.OrderId, message.OrderId);
+        logger.Info($"OrderSagaAttributes with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
         return Task.FromResult(0);
     }

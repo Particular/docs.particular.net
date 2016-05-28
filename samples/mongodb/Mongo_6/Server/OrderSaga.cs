@@ -26,11 +26,11 @@ public class OrderSaga : Saga<OrderSagaData>,
     public void Handle(StartOrder message)
     {
         Data.OrderId = message.OrderId;
-        string orderDescription = "The saga for order " + message.OrderId;
+        var orderDescription = "The saga for order " + message.OrderId;
         Data.OrderDescription = orderDescription;
         logger.InfoFormat("Received StartOrder message {0}. Starting Saga", Data.OrderId);
         logger.Info("Order will complete in 5 seconds");
-        CompleteOrder timeoutData = new CompleteOrder
+        var timeoutData = new CompleteOrder
         {
             OrderDescription = orderDescription
         };

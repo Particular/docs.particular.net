@@ -9,16 +9,13 @@ public class MvcApplication : HttpApplication
 
     public override void Dispose()
     {
-        if (Bus != null)
-        {
-            Bus.Dispose();
-        }
+        Bus?.Dispose();
         base.Dispose();
     }
 
     protected void Application_Start()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Store.ECommerce");
         busConfiguration.PurgeOnStartup(true);
 

@@ -8,8 +8,8 @@
         {
             #region DefineMessageWithLargePayloadUsingConvention
 
-            ConventionsBuilder conventions = busConfiguration.Conventions();
-            conventions.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
+            var conventionsBuilder = busConfiguration.Conventions();
+            conventionsBuilder.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
 
             #endregion
 

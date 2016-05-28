@@ -29,8 +29,7 @@ public static class NativeSend
 
     public static void SendMessage(string connectionString, string queue, string messageBody, Dictionary<string, string> headers)
     {
-        string insertSql = string.Format(
-            @"INSERT INTO [{0}] (
+        var insertSql = $@"INSERT INTO [{queue}] (
                 [Id],
                 [Recoverable],
                 [Headers],
@@ -39,18 +38,18 @@ public static class NativeSend
                 @Id,
                 @Recoverable,
                 @Headers,
-                @Body)", queue);
-        using (TransactionScope scope = new TransactionScope())
+                @Body)";
+        using (var scope = new TransactionScope())
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand(insertSql, connection))
+                using (var command = new SqlCommand(insertSql, connection))
                 {
-                    SqlParameterCollection parameters = command.Parameters;
+                    var parameters = command.Parameters;
                     command.CommandType = CommandType.Text;
                     parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
-                    string serializeHeaders = Newtonsoft.Json.JsonConvert.SerializeObject(headers);
+                    var serializeHeaders = Newtonsoft.Json.JsonConvert.SerializeObject(headers);
                     parameters.Add("Headers", SqlDbType.VarChar).Value = serializeHeaders;
                     parameters.Add("Body", SqlDbType.VarBinary).Value = Encoding.UTF8.GetBytes(messageBody);
                     parameters.Add("Recoverable", SqlDbType.Bit).Value = true;

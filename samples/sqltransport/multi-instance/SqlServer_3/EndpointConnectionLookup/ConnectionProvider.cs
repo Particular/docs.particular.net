@@ -9,11 +9,12 @@ public class ConnectionProvider
 
     public static async Task<SqlConnection> GetConnection(string transportAddress)
     {
-        string connectionString = transportAddress.Equals("Samples.SqlServer.MultiInstanceSender@[dbo]") 
+        var connectionString = transportAddress.Equals("Samples.SqlServer.MultiInstanceSender@[dbo]")
                                                 ? ReceiverConnectionString : SenderConnectionString;
-        SqlConnection connection = new SqlConnection(connectionString);
+        var connection = new SqlConnection(connectionString);
 
-        await connection.OpenAsync();
+        await connection.OpenAsync()
+            .ConfigureAwait(false);
 
         return connection;
     }

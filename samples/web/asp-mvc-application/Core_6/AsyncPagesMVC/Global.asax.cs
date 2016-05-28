@@ -35,17 +35,17 @@ public class MvcApplication : HttpApplication
     {
         #region ApplicationStart
 
-        ContainerBuilder builder = new ContainerBuilder();
+        var builder = new ContainerBuilder();
 
         // Register the MVC controllers.
         builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
         // Set the dependency resolver to be Autofac.
-        IContainer container = builder.Build();
+        var container = builder.Build();
 
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Mvc.WebApplication");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.WebApplication");
         endpointConfiguration.ScaleOut()
             .InstanceDiscriminator("1");
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -56,7 +56,7 @@ public class MvcApplication : HttpApplication
 
         endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 
-        ContainerBuilder updater = new ContainerBuilder();
+        var updater = new ContainerBuilder();
         updater.RegisterInstance(endpoint);
         updater.Update(container);
 

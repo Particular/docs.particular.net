@@ -20,7 +20,7 @@ namespace Core5.DataBus.CleanupStrategy
 
         public void Handle(MessageWithLargePayload message)
         {
-            string filePath = Path.Combine(@"\\share\databus_attachments\", message.LargeBlob.Key);
+            var filePath = Path.Combine(@"\\share\databus_attachments\", message.LargeBlob.Key);
             var removeAttachment = new RemoveDatabusAttachment
             {
                 FilePath = filePath

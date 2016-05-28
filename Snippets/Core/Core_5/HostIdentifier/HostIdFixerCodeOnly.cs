@@ -9,10 +9,10 @@
         {
             #region HostIdFixer 5.1
 
-            HostInfoSettings hostInfoSettings = busConfiguration.UniquelyIdentifyRunningInstance();
+            var hostInfoSettings = busConfiguration.UniquelyIdentifyRunningInstance();
             hostInfoSettings.UsingNames("endpointName", Environment.MachineName);
             // or
-            Guid hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
+            var hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
             hostInfoSettings.UsingCustomIdentifier(hostId);
 
             #endregion

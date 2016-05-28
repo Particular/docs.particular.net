@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.Azure.StoragePersistence.Server";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         #region config
 
         busConfiguration.EndpointName("Samples.Azure.StoragePersistence.Server");
@@ -17,7 +17,7 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

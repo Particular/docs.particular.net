@@ -11,15 +11,15 @@ class ReplaceStackTraceBehavior : Behavior<IFaultContext>
     public override Task Invoke(IFaultContext context, Func<Task> next)
     {
         Dictionary<string, string> headers = context.Message.Headers;
-        string stackTraceKey = "NServiceBus.ExceptionInfo.StackTrace";
-        string stackTrace = headers[stackTraceKey];
+        var stackTraceKey = "NServiceBus.ExceptionInfo.StackTrace";
+        var stackTrace = headers[stackTraceKey];
 
-        StringBuilder builder = new StringBuilder();
-        using (StringReader reader = new StringReader(stackTrace))
+        var builder = new StringBuilder();
+        using (var reader = new StringReader(stackTrace))
         {
             while (true)
             {
-                string line = reader.ReadLine();
+                var line = reader.ReadLine();
                 if (line == null)
                 {
                     break;

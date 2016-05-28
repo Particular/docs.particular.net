@@ -20,8 +20,13 @@ class Usage
     {
         #region SpecificNHibernateConfiguration
 
-        Configuration nhConfiguration = new Configuration();
-        nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
+        var nhConfiguration = new Configuration
+        {
+            Properties =
+            {
+                ["dialect"] = "NHibernate.Dialect.MsSql2008Dialect"
+            }
+        };
 
         configure.UseNHibernateSubscriptionPersister(nhConfiguration);
         configure.UseNHibernateTimeoutPersister(nhConfiguration, true);

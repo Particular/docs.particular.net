@@ -22,7 +22,8 @@ class Program
         transport.UseTopology<ForwardingTopology>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -30,8 +31,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
-
     }
 }

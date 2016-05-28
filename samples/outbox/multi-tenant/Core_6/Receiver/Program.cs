@@ -12,7 +12,6 @@ using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Features;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.NHibernate;
-using NServiceBus.Settings;
 using Configuration = NHibernate.Cfg.Configuration;
 
 class Program
@@ -26,14 +25,14 @@ class Program
     {
         Console.Title = "Samples.MultiTenant.Receiver";
 
-        Configuration sharedDatabaseConfiguration = CreateBasicNHibernateConfig();
+        var sharedDatabaseConfiguration = CreateBasicNHibernateConfig();
 
-        Configuration tenantDatabasesConfiguration = CreateBasicNHibernateConfig();
-        ModelMapper mapper = new ModelMapper();
+        var tenantDatabasesConfiguration = CreateBasicNHibernateConfig();
+        var mapper = new ModelMapper();
         mapper.AddMapping<OrderMap>();
         tenantDatabasesConfiguration.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
+        var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -48,7 +47,7 @@ class Program
 
         endpointConfiguration.EnableOutbox();
 
-        SettingsHolder settingsHolder = endpointConfiguration.GetSettings();
+        var settingsHolder = endpointConfiguration.GetSettings();
         settingsHolder.Set("NHibernate.Timeouts.AutoUpdateSchema", true);
         settingsHolder.Set("NHibernate.Subscriptions.AutoUpdateSchema", true);
 
@@ -74,31 +73,34 @@ class Program
 
         #endregion
 
-        IStartableEndpoint startableEndpoint = await Endpoint.Create(endpointConfiguration);
-        IEndpointInstance endpoint = null;
+        var startableEndpoint = await Endpoint.Create(endpointConfiguration)
+            .ConfigureAwait(false);
+        IEndpointInstance endpointInstance = null;
 
         CreateSchema(tenantDatabasesConfiguration, "A");
         CreateSchema(tenantDatabasesConfiguration, "B");
 
         try
         {
-            endpoint = await startableEndpoint.Start();
+            endpointInstance = await startableEndpoint.Start()
+                .ConfigureAwait(false);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            if (endpoint != null)
+            if (endpointInstance != null)
             {
-                await endpoint.Stop();
+                await endpointInstance.Stop()
+                    .ConfigureAwait(false);
             }
         }
     }
 
     static Configuration CreateBasicNHibernateConfig()
     {
-        Configuration hibernateConfig = new Configuration();
+        var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
             #region ConnectionProvider
@@ -115,8 +117,8 @@ class Program
 
     static void CreateSchema(Configuration hibernateConfig, string tenantId)
     {
-        string connectionString = ConfigurationManager.ConnectionStrings[tenantId].ConnectionString;
-        using (SqlConnection connection = new SqlConnection(connectionString))
+        var connectionString = ConfigurationManager.ConnectionStrings[tenantId].ConnectionString;
+        using (var connection = new SqlConnection(connectionString))
         {
             connection.Open();
             new SchemaExport(hibernateConfig)

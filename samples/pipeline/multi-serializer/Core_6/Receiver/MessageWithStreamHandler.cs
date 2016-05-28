@@ -10,14 +10,14 @@ public class MessageHandler :
 
     public Task Handle(MessageWithJson message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Received JSON message with property '{0}'", message.SomeProperty);
+        log.Info($"Received JSON message with property '{message.SomeProperty}'");
         return Task.FromResult(0);
     }
 
     public Task Handle(MessageWithXml message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Received XML message with property '{0}'", message.SomeProperty);
+        log.Info($"Received XML message with property '{message.SomeProperty}'");
         return Task.FromResult(0);
     }
-    
+
 }

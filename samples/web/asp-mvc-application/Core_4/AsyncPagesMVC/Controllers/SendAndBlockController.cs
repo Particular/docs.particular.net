@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
 using NServiceBus;
-using System.Threading;
 
 public class SendAndBlockController : Controller
 {
@@ -28,20 +27,23 @@ public class SendAndBlockController : Controller
         if (!int.TryParse(textField, out number))
             return View();
         #region SendAndBlockController
-        Command command = new Command { Id = number };
+        var command = new Command
+        {
+            Id = number
+        };
 
-        IAsyncResult res =  bus.Send("Samples.Mvc.Server", command)
+        var asyncResult =  bus.Send("Samples.Mvc.Server", command)
             .Register(SimpleCommandCallback, this);
-        WaitHandle asyncWaitHandle = res.AsyncWaitHandle;
+        var asyncWaitHandle = asyncResult.AsyncWaitHandle;
         asyncWaitHandle.WaitOne(50000);
         #endregion
         return View();
     }
-        
+
     void SimpleCommandCallback(IAsyncResult asyncResult)
     {
-        CompletionResult result = (CompletionResult)asyncResult.AsyncState;
-        SendAndBlockController controller = (SendAndBlockController)result.State;
+        var result = (CompletionResult)asyncResult.AsyncState;
+        var controller = (SendAndBlockController)result.State;
         controller.ViewBag.ResponseText = Enum.GetName(typeof (ErrorCodes), result.ErrorCode);
     }
 

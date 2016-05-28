@@ -15,7 +15,7 @@ static class Program
     {
         Console.Title = "Samples.Serialization.Wire";
         #region config
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Wire");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Wire");
         endpointConfiguration.UseSerialization<WireSerializer>();
 #endregion
 
@@ -23,12 +23,13 @@ static class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             #region message
 
-            CreateOrder message = new CreateOrder
+            var message = new CreateOrder
             {
                 OrderId = 9,
                 Date = DateTime.Now,
@@ -47,7 +48,8 @@ static class Program
                     },
                 }
             };
-            await endpoint.SendLocal(message);
+            await endpointInstance.SendLocal(message)
+                .ConfigureAwait(false);
 
             #endregion
 
@@ -57,7 +59,8 @@ static class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

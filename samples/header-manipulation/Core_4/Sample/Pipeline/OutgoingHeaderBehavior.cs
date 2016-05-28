@@ -17,11 +17,8 @@ public class OutgoingHeaderBehavior : IBehavior<SendPhysicalMessageContext>
 
     public void Invoke(SendPhysicalMessageContext context, Action next)
     {
-        IMessageContext incomingContext = bus.CurrentMessageContext;
-        if (incomingContext != null)
-        {
-            string incomingMessageId = incomingContext.Headers["NServiceBus.MessageId"];
-        }
+        var incomingContext = bus.CurrentMessageContext;
+        var incomingMessageId = incomingContext?.Headers["NServiceBus.MessageId"];
 
         context.MessageToSend
             .Headers

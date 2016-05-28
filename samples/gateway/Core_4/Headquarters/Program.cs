@@ -8,7 +8,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.Gateway.Headquarters";
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Gateway.Headquarters");
         configure.DefaultBuilder();
@@ -19,16 +19,16 @@ class Program
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
 
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus
+            var bus = startableBus
                 .Start(() => configure.ForInstallationOn<Windows>().Install());
             Console.WriteLine("Press 'Enter' to send a message to RemoteSite which will reply.");
             Console.WriteLine("Press any other key to exit");
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
@@ -39,7 +39,7 @@ class Program
                 {
                     "RemoteSite"
                 };
-                PriceUpdated priceUpdated = new PriceUpdated
+                var priceUpdated = new PriceUpdated
                 {
                     ProductId = 2,
                     NewPrice = 100.0,

@@ -71,7 +71,7 @@ namespace Core6.Routing
         {
             #region Routing-StaticEndpointMapping
 
-            EndpointName sales = new EndpointName("Sales");
+            var sales = new EndpointName("Sales");
             endpointConfiguration.UnicastRouting().Mapping.Physical
                 .Add(sales,
                     new EndpointInstance(sales, "1", null),
@@ -104,7 +104,7 @@ namespace Core6.Routing
         {
             #region Routing-SpecialCaseTransportAddress
 
-            EndpointInstance endpointInstance = new EndpointInstance("Sales", "1");
+            var endpointInstance = new EndpointInstance("Sales", "1");
             var transport = endpointConfiguration.UseTransport<MyTransport>();
             transport.AddAddressTranslationException(endpointInstance, "Sales-One@MachineA");
 
@@ -142,7 +142,7 @@ namespace Core6.Routing
 
         public void FileBasedRoutingAdvanced()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Endpoint");
+            var endpointConfiguration = new EndpointConfiguration("Endpoint");
 
             #region Routing-FileBased-ConfigAdvanced
 

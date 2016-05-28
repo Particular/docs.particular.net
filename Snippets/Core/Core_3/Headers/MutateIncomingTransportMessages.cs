@@ -1,6 +1,5 @@
 ﻿namespace Core3.Headers
 {
-    using System.Collections.Generic;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NServiceBus.Unicast.Transport;
@@ -10,9 +9,9 @@
     {
         public void MutateIncoming(TransportMessage transportMessage)
         {
-            Dictionary<string, string> headers = transportMessage.Headers;
-            string nsbVersion = headers[Headers.NServiceBusVersion];
-            string customHeader = headers["MyCustomHeader"];
+            var headers = transportMessage.Headers;
+            var nsbVersion = headers[Headers.NServiceBusVersion];
+            var customHeader = headers["MyCustomHeader"];
         }
     }
     #endregion

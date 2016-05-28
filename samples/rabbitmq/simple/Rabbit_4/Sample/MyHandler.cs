@@ -9,7 +9,6 @@ public class MyHandler : IHandleMessages<MyMessage>
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         logger.Info("Hello from MyHandler");
-
         return Task.FromResult(0);
     }
 }

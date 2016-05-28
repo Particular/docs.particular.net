@@ -14,7 +14,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.NHibernateCustomSagaFinder";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.NHibernateCustomSagaFinder");
+        var endpointConfiguration = new EndpointConfiguration("Samples.NHibernateCustomSagaFinder");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
@@ -25,20 +25,24 @@ class Program
 
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new StartOrder
-                          {
-                              OrderId = "123"
-                          });
+            var startOrder = new StartOrder
+            {
+                OrderId = "123"
+            };
+            await endpointInstance.SendLocal(startOrder)
+                .ConfigureAwait(false);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

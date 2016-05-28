@@ -9,9 +9,9 @@ class Usage
     {
         #region NLogInCode
 
-        LoggingConfiguration config = new LoggingConfiguration();
+        var config = new LoggingConfiguration();
 
-        ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget
+        var consoleTarget = new ColoredConsoleTarget
         {
             Layout = "${level}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"
         };

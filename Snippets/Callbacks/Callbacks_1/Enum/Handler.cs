@@ -7,9 +7,9 @@ namespace Core6.Enum
 
     public class Handler : IHandleMessages<Message>
     {
-        public async Task Handle(Message message, IMessageHandlerContext context)
+        public Task Handle(Message message, IMessageHandlerContext context)
         {
-            await context.Reply(Status.OK);
+            return context.Reply(Status.OK);
         }
     }
 

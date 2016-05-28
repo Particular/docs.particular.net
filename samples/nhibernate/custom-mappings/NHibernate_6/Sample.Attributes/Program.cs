@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading;
 using NHibernate.Cfg;
 using NHibernate.Mapping.Attributes;
@@ -12,7 +11,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.CustomNhMappings.Attributes";
-        Configuration nhConfiguration = new Configuration();
+        var nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
         nhConfiguration.SetProperty(Environment.ConnectionDriver, "NHibernate.Driver.Sql2008ClientDriver");
@@ -21,7 +20,7 @@ class Program
 
         AddAttributeMappings(nhConfiguration);
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.CustomNhMappings.Attributes");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
@@ -29,17 +28,19 @@ class Program
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(nhConfiguration);
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
-            bus.SendLocal(new StartOrder
+            var startOrder = new StartOrder
             {
                 OrderId = "123"
-            });
+            };
+            bus.SendLocal(startOrder);
             Thread.Sleep(2000);
-            bus.SendLocal(new CompleteOrder
+            var completeOrder = new CompleteOrder
             {
                 OrderId = "123"
-            });
+            };
+            bus.SendLocal(completeOrder);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
@@ -50,12 +51,12 @@ class Program
 
     static void AddAttributeMappings(Configuration nhConfiguration)
     {
-        HbmSerializer hbmSerializer = new HbmSerializer
+        var hbmSerializer = new HbmSerializer
         {
             Validate = true
         };
 
-        using (MemoryStream stream = hbmSerializer.Serialize(typeof(Program).Assembly))
+        using (var stream = hbmSerializer.Serialize(typeof(Program).Assembly))
         {
             nhConfiguration.AddInputStream(stream);
         }

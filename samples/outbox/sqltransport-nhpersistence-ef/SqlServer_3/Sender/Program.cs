@@ -17,9 +17,9 @@ class Program
     {
         Console.Title = "Samples.SQLNHibernateOutboxEF.Sender";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-        Random random = new Random();
+        var random = new Random();
 
-        Configuration hibernateConfig = new Configuration();
+        var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
             x.ConnectionStringName = "NServiceBus/Persistence";
@@ -28,7 +28,7 @@ class Program
 
         hibernateConfig.SetProperty("default_schema", "sender");
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SQLNHibernateOutboxEF.Sender");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SQLNHibernateOutboxEF.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #region SenderConfiguration
@@ -50,7 +50,8 @@ class Program
 
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         try
         {
@@ -59,24 +60,27 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
                 {
                     return;
                 }
-                string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                await endpoint.Publish(new OrderSubmitted
+                var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+                var orderSubmitted = new OrderSubmitted
                 {
                     OrderId = orderId,
                     Value = random.Next(100)
-                });
+                };
+                await endpointInstance.Publish(orderSubmitted)
+                    .ConfigureAwait(false);
             }
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

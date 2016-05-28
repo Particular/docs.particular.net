@@ -12,7 +12,7 @@
             endpointConfiguration.UniquelyIdentifyRunningInstance()
                 .UsingNames("endpointName", Environment.MachineName);
             // or
-            Guid hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
+            var hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
             endpointConfiguration.UniquelyIdentifyRunningInstance()
                 .UsingCustomIdentifier(hostId);
             

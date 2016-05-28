@@ -7,8 +7,8 @@ using NServiceBus.Faults;
 using NServiceBus.Logging;
 
 #region subscriptions
-public class SubscribeToNotifications : 
-    IWantToRunWhenBusStartsAndStops, 
+public class SubscribeToNotifications :
+    IWantToRunWhenBusStartsAndStops,
     IDisposable
 {
     static ILog log = LogManager.GetLogger<SubscribeToNotifications>();
@@ -22,21 +22,21 @@ public class SubscribeToNotifications :
 
     public void Start()
     {
-        ErrorsNotifications errors = busNotifications.Errors;
-        DefaultScheduler scheduler = Scheduler.Default;
+        var errors = busNotifications.Errors;
+        var scheduler = Scheduler.Default;
         unsubscribeStreams.Add(
             errors.MessageSentToErrorQueue
-                .ObserveOn(scheduler) 
+                .ObserveOn(scheduler)
                 .Subscribe(Log)
             );
         unsubscribeStreams.Add(
             errors.MessageHasBeenSentToSecondLevelRetries
-                .ObserveOn(scheduler) 
+                .ObserveOn(scheduler)
                 .Subscribe(Log)
             );
         unsubscribeStreams.Add(
             errors.MessageHasFailedAFirstLevelRetryAttempt
-                .ObserveOn(scheduler) 
+                .ObserveOn(scheduler)
                 .Subscribe(Log)
             );
     }
@@ -58,7 +58,7 @@ public class SubscribeToNotifications :
 
     public void Stop()
     {
-        foreach (IDisposable unsubscribeStream in unsubscribeStreams)
+        foreach (var unsubscribeStream in unsubscribeStreams)
         {
             unsubscribeStream.Dispose();
         }

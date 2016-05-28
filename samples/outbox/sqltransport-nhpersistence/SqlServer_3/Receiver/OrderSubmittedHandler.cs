@@ -1,35 +1,37 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NHibernate;
 using NServiceBus.Logging;
 
 public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 {
     static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
     static readonly Random ChaosGenerator = new Random();
-    
+
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Order {0} worth {1} submitted", message.OrderId, message.Value);
+        log.Info($"Order {message.OrderId} worth {message.Value} submitted");
 
         #region StoreUserData
 
-        ISession nhibernateSession = context.SynchronizedStorageSession.Session();
-        nhibernateSession.Save(new Order
+        var nhibernateSession = context.SynchronizedStorageSession.Session();
+        var order = new Order
         {
             OrderId = message.OrderId,
             Value = message.Value
-        });
+        };
+        nhibernateSession.Save(order);
 
         #endregion
 
         #region Reply
 
-        await context.Reply(new OrderAccepted
+        var orderAccepted = new OrderAccepted
         {
             OrderId = message.OrderId,
-        });
+        };
+        await context.Reply(orderAccepted)
+            .ConfigureAwait(false);
 
         #endregion
 

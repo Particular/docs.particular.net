@@ -1,14 +1,12 @@
 ﻿namespace Core6.Headers.Writers
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Common;
     using NServiceBus;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
-    using NServiceBus.Faults;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
     using Operations.Msmq;
@@ -29,17 +27,19 @@
         [Test]
         public async Task Write()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration(endpointName);
+            var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.SendFailedMessagesTo("error");
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterError>();
+            var typesToScan = TypeScanner.NestedTypes<HeaderWriterError>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
 
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
 
-            await endpoint.SendLocal(new MessageToSend());
+            await endpointInstance.SendLocal(new MessageToSend())
+                .ConfigureAwait(false);
             ManualResetEvent.WaitOne();
         }
 
@@ -84,10 +84,10 @@
         {
             public Mutator(Notifications busNotifications)
             {
-                ErrorsNotifications errors = busNotifications.Errors;
-                errors.MessageSentToErrorQueue += (sender, retry) =>
+                var errorsNotifications = busNotifications.Errors;
+                errorsNotifications.MessageSentToErrorQueue += (sender, retry) =>
                 {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(retry.Headers);
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(retry.Headers);
                     headerText = BehaviorCleaner.CleanStackTrace(headerText);
                     headerText = StackTraceCleaner.CleanStackTrace(headerText);
                     SnippetLogger.Write(text: headerText, suffix: "Error", version: "6");
@@ -102,8 +102,11 @@
                 if (!hasCapturedMessage && context.IsMessageOfTye<MessageToSend>())
                 {
                     hasCapturedMessage = true;
-                    string sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(context.Headers);
-                    SnippetLogger.Write(text: sendingText, suffix: "Sending", version: "6");
+                    var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(context.Headers);
+                    SnippetLogger.Write(
+                        text: sendingText,
+                        suffix: "Sending",
+                        version: "6");
                 }
                 return Task.FromResult(0);
             }

@@ -14,12 +14,12 @@ namespace Common
             {
                 return string.Empty;
             }
-            using (StringReader stringReader = new StringReader(stackTrace))
+            using (var stringReader = new StringReader(stackTrace))
             {
-                StringBuilder stringBuilder = new StringBuilder();
+                var stringBuilder = new StringBuilder();
                 while (true)
                 {
-                    string line = stringReader.ReadLine();
+                    var line = stringReader.ReadLine();
                     if (line == null)
                     {
                         break;

@@ -18,16 +18,16 @@ class Program
     {
         Console.Title = "Samples.SampleWithoutClean";
 
-        LoggingConfiguration config = new LoggingConfiguration();
+        var config = new LoggingConfiguration();
 
-        string layout = "${logger}|${message}${onexception:${newline}${exception:format=tostring}}";
-        ConsoleTarget consoleTarget = new ConsoleTarget
+        var layout = "${logger}|${message}${onexception:${newline}${exception:format=tostring}}";
+        var consoleTarget = new ConsoleTarget
         {
             Layout = layout
         };
         config.AddTarget("console", consoleTarget);
         config.LoggingRules.Add(new LoggingRule("*", LogLevel.Info, consoleTarget));
-        FileTarget fileTarget = new FileTarget
+        var fileTarget = new FileTarget
         {
             FileName = "log.txt",
             Layout = layout
@@ -38,7 +38,7 @@ class Program
         LogManager.Configuration = config;
 
         NServiceBus.Logging.LogManager.Use<NLogFactory>();
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SampleWithoutClean");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SampleWithoutClean");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
@@ -46,14 +46,17 @@ class Program
         endpointConfiguration.DisableFeature<SecondLevelRetries>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await Run(endpoint);
+            await Run(endpointInstance)
+                .ConfigureAwait(false);
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 
@@ -64,13 +67,14 @@ class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             if (key.Key != ConsoleKey.Enter)
             {
                 return;
             }
-            Message message = new Message();
-            await endpointInstance.SendLocal(message);
+            var message = new Message();
+            await endpointInstance.SendLocal(message)
+                .ConfigureAwait(false);
             Console.WriteLine();
             Console.WriteLine("Message sent");
         }

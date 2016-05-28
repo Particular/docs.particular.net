@@ -1,7 +1,5 @@
 ﻿namespace Core5.Headers.Writers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Threading;
     using Common;
     using NServiceBus;
@@ -25,14 +23,14 @@
         [Test]
         public void Write()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName(endpointName);
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterReturn>(typeof(ConfigErrorQueue));
+            var typesToScan = TypeScanner.NestedTypes<HeaderWriterReturn>(typeof(ConfigErrorQueue));
             busConfiguration.TypesToScan(typesToScan);
             busConfiguration.EnableInstallers();
             busConfiguration.UsePersistence<InMemoryPersistence>();
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IBus bus = Bus.Create(busConfiguration).Start())
+            using (var bus = Bus.Create(busConfiguration).Start())
             {
                 bus.SendLocal(new MessageToSend());
                 ManualResetEvent.WaitOne();
@@ -64,12 +62,12 @@
             {
                 if (transportMessage.IsMessageOfTye<MessageToSend>())
                 {
-                    string sendingText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(transportMessage.Headers);
+                    var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(transportMessage.Headers);
                     SnippetLogger.Write(text: sendingText, suffix: "Sending", version: "5");
                 }
                 else
                 {
-                    string returnText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(transportMessage.Headers);
+                    var returnText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(transportMessage.Headers);
                     SnippetLogger.Write(text: returnText, suffix: "Returning", version: "5");
                     ManualResetEvent.Set();
                 }

@@ -49,16 +49,16 @@
 
         public static void CreateQueue(string queueName, string account)
         {
-            string path = string.Format(@"{0}\private$\{1}", Environment.MachineName, queueName);
+            var path = $@"{Environment.MachineName}\private$\{queueName}";
             if (MessageQueue.Exists(path))
             {
-                using (MessageQueue messageQueue = new MessageQueue(path))
+                using (var messageQueue = new MessageQueue(path))
                 {
                     SetPermissionsForQueue(messageQueue, account);
                     return;
                 }
             }
-            using (MessageQueue messageQueue = MessageQueue.Create(path, true))
+            using (var messageQueue = MessageQueue.Create(path, true))
             {
                 SetPermissionsForQueue(messageQueue, account);
             }
@@ -66,7 +66,7 @@
 
         static void SetPermissionsForQueue(MessageQueue queue, string account)
         {
-            AccessControlEntryType allow = AccessControlEntryType.Allow;
+            var allow = AccessControlEntryType.Allow;
             queue.SetPermissions(AdminGroup, MessageQueueAccessRights.FullControl, allow);
             queue.SetPermissions(EveryoneGroup, MessageQueueAccessRights.WriteMessage, allow);
             queue.SetPermissions(AnonymousLogon, MessageQueueAccessRights.WriteMessage, allow);

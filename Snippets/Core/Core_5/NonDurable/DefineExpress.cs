@@ -8,8 +8,8 @@
         {
             #region ExpressMessageConvention
 
-            ConventionsBuilder builder = busConfiguration.Conventions();
-            builder.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
+            var conventionsBuilder = busConfiguration.Conventions();
+            conventionsBuilder.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
 
             #endregion
         }

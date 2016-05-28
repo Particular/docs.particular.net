@@ -15,13 +15,13 @@ class Program
         Console.Title = "Samples.SQLNHibernateOutbox.Receiver";
         #region NHibernate
 
-        Configuration hibernateConfig = new Configuration();
+        var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
             x.ConnectionStringName = "NServiceBus/Persistence";
             x.Dialect<MsSql2012Dialect>();
         });
-        ModelMapper mapper = new ModelMapper();
+        var mapper = new ModelMapper();
         mapper.AddMapping<OrderMap>();
         hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
@@ -29,7 +29,7 @@ class Program
 
         new SchemaExport(hibernateConfig).Execute(false, true, false);
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EndpointName("Samples.SQLNHibernateOutbox.Receiver");
         #region ReceiverConfiguration

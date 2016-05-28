@@ -9,12 +9,12 @@
         {
             #region 5to6-Callbacks
 
-            RequestMessage requestMessage = new RequestMessage();
+            var requestMessage = new RequestMessage();
             bus.Send(requestMessage)
                 .Register(ar =>
                 {
-                    CompletionResult localResult = (CompletionResult) ar.AsyncState;
-                    ResponseMessage response = (ResponseMessage) localResult.Messages[0];
+                    var localResult = (CompletionResult) ar.AsyncState;
+                    var response = (ResponseMessage) localResult.Messages[0];
                 }, null);
 
             #endregion

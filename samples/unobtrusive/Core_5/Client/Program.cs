@@ -7,7 +7,7 @@ class Program
     public static void Main()
     {
         Console.Title = "Samples.Unobtrusive.Client";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Unobtrusive.Client");
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
@@ -18,7 +18,7 @@ class Program
 
         busConfiguration.ApplyCustomConventions();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             CommandSender.Start(bus);
         }

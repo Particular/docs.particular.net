@@ -9,8 +9,8 @@ class Program
         Console.Title = "Samples.MultiHosting";
         #region multi-hosting
 
-        using (IBus bus1 = StartInstance1())
-        using (IBus bus2 = StartInstance2())
+        using (var bus1 = StartInstance1())
+        using (var bus2 = StartInstance2())
         {
             Console.WriteLine("Press '1' to send a message from Instance1 to Instance2");
             Console.WriteLine("Press '2' to send a message from Instance2 to Instance1");
@@ -18,7 +18,7 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
                 if (key.Key == ConsoleKey.D1)
                 {
@@ -41,7 +41,7 @@ class Program
     {
         #region multi-hosting-assembly-scan
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
 
         busConfiguration.EndpointName("Samples.MultiHosting.Instance1");
         //only include Instance1.dll and dependent assemblies
@@ -57,7 +57,7 @@ class Program
 
     static IBus StartInstance2()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
 
         busConfiguration.EndpointName("Samples.MultiHosting.Instance2");
         busConfiguration.AssembliesToScan(AllAssemblies.Matching("Instance2.").And("Shared"));

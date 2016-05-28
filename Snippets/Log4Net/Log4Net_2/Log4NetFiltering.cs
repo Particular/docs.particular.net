@@ -29,7 +29,7 @@ class Log4NetFiltering
     {
         #region Log4NetFilterUsage
 
-        ConsoleAppender appender = new ConsoleAppender
+        var appender = new ConsoleAppender
         {
             Threshold = Level.Debug,
             Layout = new SimpleLayout(),

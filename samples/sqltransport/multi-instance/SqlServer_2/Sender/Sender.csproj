@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="OrderAcceptedHandler.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ConfigErrorQueue.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

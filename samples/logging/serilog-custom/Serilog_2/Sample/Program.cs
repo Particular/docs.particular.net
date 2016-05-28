@@ -9,7 +9,6 @@ class Program
 
     static void Main()
     {
-
         Console.Title = "Samples.Logging.SerilogCustom";
         #region ConfigureSerilog
         Log.Logger = new LoggerConfiguration()
@@ -21,7 +20,7 @@ class Program
         #region UseConfig
         LogManager.Use<SerilogFactory>();
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Logging.SerilogCustom");
 
         #endregion
@@ -30,7 +29,7 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");

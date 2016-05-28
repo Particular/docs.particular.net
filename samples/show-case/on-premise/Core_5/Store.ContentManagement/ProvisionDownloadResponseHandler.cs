@@ -32,14 +32,14 @@ public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloa
         }
 
         log.InfoFormat("Download for Order # {0} has been provisioned, Publishing Download ready event", message.OrderNumber);
-         
+
         bus.Publish<DownloadIsReady>(e =>
         {
             e.OrderNumber = message.OrderNumber;
             e.ClientId = message.ClientId;
             e.ProductUrls = new Dictionary<string, string>();
 
-            foreach (string productId in message.ProductIds)
+            foreach (var productId in message.ProductIds)
             {
                 e.ProductUrls.Add(productId, productIdToUrlMap[productId]);
             }

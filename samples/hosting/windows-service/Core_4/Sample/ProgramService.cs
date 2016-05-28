@@ -13,7 +13,7 @@ class ProgramService : ServiceBase
     static void Main()
     {
         Console.Title = "Samples.WindowsServiceAndConsole";
-        using (ProgramService service = new ProgramService())
+        using (var service = new ProgramService())
         {
             if (Environment.UserInteractive)
             {
@@ -40,7 +40,7 @@ class ProgramService : ServiceBase
         Configure.Serialization.Json();
         Configure.Features.Enable<Sagas>();
 
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.WindowsServiceAndConsole");
         configure.DefaultBuilder();
@@ -63,10 +63,7 @@ class ProgramService : ServiceBase
 
     protected override void OnStop()
     {
-        if (bus != null)
-        {
-            ((IDisposable)bus).Dispose();
-        }
+        ((IDisposable) bus)?.Dispose();
     }
 
     #endregion

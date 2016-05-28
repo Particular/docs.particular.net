@@ -8,7 +8,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.ASB.NativeIntegration";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
 
         #region EndpointAndSingleQueue
 
@@ -28,8 +28,8 @@ class Program
 
         BrokeredMessageBodyConversion.ExtractBody = brokeredMessage =>
         {
-            using (MemoryStream stream = new MemoryStream())
-            using (Stream body = brokeredMessage.GetBody<Stream>())
+            using (var stream = new MemoryStream())
+            using (var body = brokeredMessage.GetBody<Stream>())
             {
                 body.CopyTo(stream);
                 return stream.ToArray();

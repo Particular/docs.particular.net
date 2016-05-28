@@ -9,7 +9,7 @@ public class PlaceDelayedOrderHandler : IHandleMessages<PlaceDelayedOrder>
 
     public Task Handle(PlaceDelayedOrder message, IMessageHandlerContext context)
     {
-        log.InfoFormat("[Defer Message Delivery] Order for Product:{0} placed with id: {1}", message.Product, message.Id);
+        log.Info($"[Defer Message Delivery] Order for Product:{message.Product} placed with id: {message.Id}");
         return Task.FromResult(0);
     }
 }

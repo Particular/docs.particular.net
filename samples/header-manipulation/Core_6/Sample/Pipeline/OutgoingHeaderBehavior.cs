@@ -6,10 +6,10 @@ using NServiceBus.Pipeline;
 
 class OutgoingHeaderBehavior : Behavior<IOutgoingPhysicalMessageContext>
 {
-    public override async Task Invoke(IOutgoingPhysicalMessageContext context, Func<Task> next)
+    public override Task Invoke(IOutgoingPhysicalMessageContext context, Func<Task> next)
     {
         context.Headers["OutgoingHeaderBehavior"] = "ValueOutgoingHeaderBehavior";
-        await next();
+        return next();
     }
 }
 

@@ -38,7 +38,7 @@
         {
             #region 5to6SuppressDistributedTransactions
 
-            bool suppressDistributedTransactions = transactionSettings.SuppressDistributedTransactions;
+            var suppressDistributedTransactions = transactionSettings.SuppressDistributedTransactions;
 
             #endregion
         }
@@ -47,7 +47,7 @@
         {
             #region 5to6IsTransactional
 
-            bool isTransactional = transactionSettings.IsTransactional;
+            var isTransactional = transactionSettings.IsTransactional;
 
             #endregion
         }

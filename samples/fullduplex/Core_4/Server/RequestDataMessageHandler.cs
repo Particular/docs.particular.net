@@ -4,7 +4,9 @@ using NServiceBus.Logging;
 #region RequestDataMessageHandler
 
 public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
-#endregion
+
+    #endregion
+
 {
     static ILog log = LogManager.GetLogger(typeof(RequestDataMessageHandler));
     IBus bus;
@@ -21,11 +23,11 @@ public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
 
         #region DataResponseReply
 
-        DataResponseMessage response = new DataResponseMessage
-                                       {
-                                           DataId = message.DataId,
-                                           String = message.String
-                                       };
+        var response = new DataResponseMessage
+        {
+            DataId = message.DataId,
+            String = message.String
+        };
 
         bus.Reply(response);
 

@@ -1,7 +1,6 @@
 ﻿namespace Core6.Sagas.FindSagas
 {
     using System.Threading.Tasks;
-    using NHibernate;
     using NServiceBus;
     using NServiceBus.Extensibility;
     using NServiceBus.Persistence;
@@ -17,8 +16,8 @@
             public Task<MySagaData> FindBy(MyMessage message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
             {
                 // the custom finding logic here, e.g.
-                ISession nhibernateSession = storageSession.Session();
-                MySagaData sagaData = nhibernateSession.QueryOver<MySagaData>()
+                var nhibernateSession = storageSession.Session();
+                var sagaData = nhibernateSession.QueryOver<MySagaData>()
                     .Where(x =>
                         x.SomeID == message.SomeID &&
                         x.SomeData == message.SomeData)

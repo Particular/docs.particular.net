@@ -9,7 +9,7 @@ class Program
         Console.Title = "Samples.Azure.ServiceBus.Endpoint1";
         #region config
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Azure.ServiceBus.Endpoint1");
         busConfiguration.ScaleOut().UseSingleBrokerQueue();
         var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
@@ -21,14 +21,14 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press 'enter' to send a message");
             Console.WriteLine("Press any other key to exit");
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
@@ -36,8 +36,8 @@ class Program
                     return;
                 }
 
-                Guid orderId = Guid.NewGuid();
-                Message1 message = new Message1
+                var orderId = Guid.NewGuid();
+                var message = new Message1
                 {
                     Property = "Hello from Endpoint1"
                 };

@@ -15,24 +15,28 @@ static class Program
     {
         Console.Title = "Samples.PubSub.Subscriber2";
         LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Subscriber2");
+        var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Subscriber2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.DisableFeature<AutoSubscribe>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.Subscribe<IMyEvent>();
+            await endpointInstance.Subscribe<IMyEvent>()
+                .ConfigureAwait(false);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
-            await endpoint.Unsubscribe<IMyEvent>();
+            await endpointInstance.Unsubscribe<IMyEvent>()
+                .ConfigureAwait(false);
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

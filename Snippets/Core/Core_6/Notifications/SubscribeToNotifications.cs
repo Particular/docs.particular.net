@@ -14,16 +14,16 @@ namespace Core6.BusNotifications
 
         void EndpointStartup()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
+            var endpointConfiguration = new EndpointConfiguration("EndpointName");
             Subscribe(endpointConfiguration.Notifications);
         }
 
         void Subscribe(Notifications notifications)
         {
-            ErrorsNotifications errors = notifications.Errors;
-            errors.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => LogEvent(retry);
-            errors.MessageHasFailedAFirstLevelRetryAttempt += (sender, retry) => LogEvent(retry);
-            errors.MessageSentToErrorQueue += (sender, retry) => LogEvent(retry);
+            var errorsNotifications = notifications.Errors;
+            errorsNotifications.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => LogEvent(retry);
+            errorsNotifications.MessageHasFailedAFirstLevelRetryAttempt += (sender, retry) => LogEvent(retry);
+            errorsNotifications.MessageSentToErrorQueue += (sender, retry) => LogEvent(retry);
         }
 
         void LogEvent(FailedMessage failedMessage)

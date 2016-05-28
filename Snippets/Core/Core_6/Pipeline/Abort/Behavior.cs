@@ -9,18 +9,19 @@ namespace Core6.Pipeline.Abort
 
     public class Behavior : Behavior<IIncomingLogicalMessageContext>
     {
-        public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
+        public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
         {
             if (ShouldPipelineContinue(context))
             {
-                await next().ConfigureAwait(false);
+                return next();
             }
             // since next is not invoke all downstream behaviors will be skipped
+            return Task.FromResult(0);
         }
 
         bool ShouldPipelineContinue(IIncomingLogicalMessageContext context)
         {
-            // the custom logic to determine if the pipeline should continue 
+            // the custom logic to determine if the pipeline should continue
             return true;
         }
     }

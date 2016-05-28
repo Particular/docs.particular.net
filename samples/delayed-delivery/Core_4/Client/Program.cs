@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.DelayedDelivery.Client";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.DelayedDelivery.Client");
         configure.DefaultBuilder();
@@ -16,13 +16,13 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             SendOrder(bus);
         }
     }
-    
+
     static void SendOrder(IBus bus)
     {
         Console.WriteLine("Press '1' to send PlaceOrder - defer message handling");
@@ -31,32 +31,32 @@ class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
-            Guid id = Guid.NewGuid();
+            var id = Guid.NewGuid();
 
             switch (key.Key)
             {
                 case ConsoleKey.D1:
                     #region SendOrder
-                    PlaceOrder placeOrder = new PlaceOrder
+                    var placeOrder = new PlaceOrder
                     {
                         Product = "New shoes",
                         Id = id
                     };
                     bus.Send("Samples.DelayedDelivery.Server", placeOrder);
-                    Console.WriteLine("[Defer Message Handling] Sent a new PlaceOrder message with id: {0}", id.ToString("N"));
+                    Console.WriteLine($"[Defer Message Handling] Sent a new PlaceOrder message with id: {id.ToString("N")}");
                     #endregion
                     continue;
                 case ConsoleKey.D2:
                     #region DeferOrder
-                    PlaceDelayedOrder placeDelayedOrder = new PlaceDelayedOrder
+                    var placeDelayedOrder = new PlaceDelayedOrder
                     {
                         Product = "New shoes",
                         Id = id
                     };
                     bus.Defer(TimeSpan.FromSeconds(5), placeDelayedOrder);
-                    Console.WriteLine("[Defer Message Delivery] Deferred a new PlaceDelayedOrder message with id: {0}", id.ToString("N"));
+                    Console.WriteLine($"[Defer Message Delivery] Deferred a new PlaceDelayedOrder message with id: {id.ToString("N")}");
                     #endregion
                     continue;
                 case ConsoleKey.Enter:

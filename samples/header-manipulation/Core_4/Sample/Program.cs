@@ -1,7 +1,6 @@
 ﻿using System;
 using NServiceBus;
 using NServiceBus.Installation.Environments;
-using NServiceBus.ObjectBuilder;
 
 class Program
 {
@@ -9,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.Headers";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Headers");
         configure.DefaultBuilder();
@@ -17,7 +16,7 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        IConfigureComponents components = configure.Configurer;
+        var components = configure.Configurer;
         components.ConfigureComponent<MutateIncomingMessages>(DependencyLifecycle.InstancePerCall);
         components.ConfigureComponent<MutateIncomingTransportMessages>(DependencyLifecycle.InstancePerCall);
         components.ConfigureComponent<MutateOutgoingMessages>(DependencyLifecycle.InstancePerCall);
@@ -27,16 +26,16 @@ class Program
 
         #region global-all-outgoing
 
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
             startableBus.OutgoingHeaders.Add("AllOutgoing", "ValueAllOutgoing");
 
             #endregion
 
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
 
             #region sending
-            MyMessage myMessage = new MyMessage();
+            var myMessage = new MyMessage();
             bus.SetMessageHeader(myMessage, "SendingMessage", "ValueSendingMessage");
             bus.SendLocal(myMessage);
             #endregion

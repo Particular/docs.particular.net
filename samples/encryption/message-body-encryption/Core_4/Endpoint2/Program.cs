@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.MessageBodyEncryption.Endpoint2";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.MessageBodyEncryption.Endpoint2");
         configure.DefaultBuilder();
@@ -17,7 +17,7 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.RegisterMessageEncryptor();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
             startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             Console.WriteLine("Press any key to exit");

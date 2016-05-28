@@ -8,10 +8,10 @@ static class Program
     {
         Console.Title = "Samples.Spring";
         #region ContainerConfiguration
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Spring");
 
-        GenericApplicationContext applicationContext = new GenericApplicationContext();
+        var applicationContext = new GenericApplicationContext();
         applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
         busConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));
         #endregion
@@ -19,7 +19,7 @@ static class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");

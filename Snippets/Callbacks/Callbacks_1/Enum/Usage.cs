@@ -1,15 +1,17 @@
 ﻿namespace Core6.Enum
 {
+    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Logging;
 
     class Usage
     {
-        async void Simple(IEndpointInstance endpoint, SendOptions sendOptions, ILog log)
+        async Task Simple(IEndpointInstance endpoint, SendOptions sendOptions, ILog log)
         {
             #region EnumCallback
-            Message message = new Message();
-            Status response = await endpoint.Request<Status>(message, sendOptions);
+            var message = new Message();
+            var response = await endpoint.Request<Status>(message, sendOptions)
+                .ConfigureAwait(false);
             log.Info("Callback received with response:" + response);
             #endregion
         }

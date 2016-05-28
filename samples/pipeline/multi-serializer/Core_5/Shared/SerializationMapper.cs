@@ -37,17 +37,17 @@ public class SerializationMapper
         {
             return xmlSerializer;
         }
-        string message = string.Format("Could not derive serializer for contentType='{0}'", contentType);
+        var message = $"Could not derive serializer for contentType='{contentType}'";
         throw new Exception(message);
     }
 
     public IMessageSerializer GetSerializer(Type messageType)
     {
-        bool isJsonMessage = messageType.ContainsAttribute<SerializeWithJsonAttribute>();
-        bool isXmlMessage = messageType.ContainsAttribute<SerializeWithXmlAttribute>();
+        var isJsonMessage = messageType.ContainsAttribute<SerializeWithJsonAttribute>();
+        var isXmlMessage = messageType.ContainsAttribute<SerializeWithXmlAttribute>();
         if (isXmlMessage && isJsonMessage)
         {
-            string message = string.Format("Choose either [SerializeWithXml] or [SerializeWithJson] for serialization of '{0}'.", messageType.Name);
+            var message = $"Choose either [SerializeWithXml] or [SerializeWithJson] for serialization of '{messageType.Name}'.";
             throw new Exception(message);
         }
         if (isXmlMessage)

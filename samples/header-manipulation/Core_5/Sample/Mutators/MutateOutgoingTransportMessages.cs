@@ -14,11 +14,8 @@ public class MutateOutgoingTransportMessages : IMutateOutgoingTransportMessages
 
     public void MutateOutgoing(LogicalMessage logicalMessage, TransportMessage transportMessage)
     {
-        IMessageContext incomingContext = bus.CurrentMessageContext;
-        if (incomingContext != null)
-        {
-            string incomingMessageId = incomingContext.Headers["NServiceBus.MessageId"];
-        }
+        var incomingContext = bus.CurrentMessageContext;
+        var incomingMessageId = incomingContext?.Headers["NServiceBus.MessageId"];
 
         transportMessage.Headers
             .Add("MutateOutgoingTransportMessages", "ValueMutateOutgoingTransportMessages");

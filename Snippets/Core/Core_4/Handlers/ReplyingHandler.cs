@@ -16,7 +16,7 @@
         public void Handle(RequestDataMessage message)
         {
             //Create a response message
-            DataResponseMessage response = new DataResponseMessage
+            var response = new DataResponseMessage
             {
                 DataId = message.DataId,
                 String = message.String

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>, 
+public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>,
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {
@@ -18,7 +18,10 @@ public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>,
         Data.OrderId = message.OrderId;
 
         #region Timeout
-        await RequestTimeout(context, TimeSpan.FromSeconds(5), new OrderTimeout());
+
+        var orderTimeout = new OrderTimeout();
+        await RequestTimeout(context, TimeSpan.FromSeconds(5), orderTimeout)
+            .ConfigureAwait(false);
         #endregion
     }
 

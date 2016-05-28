@@ -15,7 +15,7 @@ public static class UserCreation
     {
         #region raven-add-user-usage
 
-        using (DocumentStore documentStore = new DocumentStore
+        using (var documentStore = new DocumentStore
         {
             Url = "http://locationOfRavenDbInstance:8083/"
         })
@@ -30,19 +30,19 @@ public static class UserCreation
     #region raven-add-user
     public static void AddUserToDatabase(IDocumentStore documentStore, string username)
     {
-        IDatabaseCommands systemCommands = documentStore
+        var systemCommands = documentStore
             .DatabaseCommands
             .ForSystemDatabase();
-        WindowsAuthDocument windowsAuthDocument = GetWindowsAuthDocument(systemCommands);
+        var windowsAuthDocument = GetWindowsAuthDocument(systemCommands);
         AddOrUpdateAuthUser(windowsAuthDocument, username, "<system>");
 
-        RavenJObject ravenJObject = RavenJObject.FromObject(windowsAuthDocument);
+        var ravenJObject = RavenJObject.FromObject(windowsAuthDocument);
         systemCommands.Put("Raven/Authorization/WindowsSettings", null, ravenJObject, new RavenJObject());
     }
 
     static WindowsAuthDocument GetWindowsAuthDocument(IDatabaseCommands systemCommands)
     {
-        JsonDocument existing = systemCommands.Get("Raven/Authorization/WindowsSettings");
+        var existing = systemCommands.Get("Raven/Authorization/WindowsSettings");
         if (existing == null)
         {
             return new WindowsAuthDocument();
@@ -54,7 +54,7 @@ public static class UserCreation
 
     static void AddOrUpdateAuthUser(WindowsAuthDocument windowsAuthDocument, string identity, string tenantId)
     {
-        WindowsAuthData windowsAuthForUser = windowsAuthDocument
+        var windowsAuthForUser = windowsAuthDocument
             .RequiredUsers
             .FirstOrDefault(x => x.Name == identity);
         if (windowsAuthForUser == null)
@@ -72,7 +72,7 @@ public static class UserCreation
 
     static void AddOrUpdateDataAccess(WindowsAuthData windowsAuthForUser, string tenantId)
     {
-        ResourceAccess dataAccess = windowsAuthForUser
+        var dataAccess = windowsAuthForUser
             .Databases
             .FirstOrDefault(x => x.TenantId == tenantId);
         if (dataAccess == null)

@@ -10,39 +10,39 @@ public class OrdersHub : Hub
 
     public void CancelOrder(int orderNumber)
     {
-        CancelOrder command = new CancelOrder
+        var command = new CancelOrder
         {
             ClientId = Context.ConnectionId,
             OrderNumber = orderNumber
         };
 
-        bool isDebug = (bool)Clients.Caller.debug;
-        SendOptions sendOptions = new SendOptions();
+        var isDebug = (bool)Clients.Caller.debug;
+        var sendOptions = new SendOptions();
         sendOptions.SetHeader("Debug", isDebug.ToString());
-        MvcApplication.Endpoint.Send(command,sendOptions);
+        MvcApplication.EndpointInstance.Send(command,sendOptions);
     }
 
     public void PlaceOrder(string[] productIds)
     {
-        bool isDebug = (bool)Clients.Caller.debug;
+        var isDebug = (bool)Clients.Caller.debug;
         if (isDebug)
         {
             Debugger.Break();
         }
 
-        SubmitOrder command = new SubmitOrder
+        var command = new SubmitOrder
         {
             ClientId = Context.ConnectionId,
             OrderNumber = Interlocked.Increment(ref orderNumber),
             ProductIds = productIds,
-            // This property will be encrypted. Therefore when viewing the message in the queue, the actual values will not be shown. 
+            // This property will be encrypted. Therefore when viewing the message in the queue, the actual values will not be shown.
             EncryptedCreditCardNumber = "4000 0000 0000 0008",
             // This property will be encrypted.
-            EncryptedExpirationDate = "10/13" 
+            EncryptedExpirationDate = "10/13"
         };
 
-        SendOptions sendOptions = new SendOptions();
+        var sendOptions = new SendOptions();
         sendOptions.SetHeader("Debug", isDebug.ToString());
-        MvcApplication.Endpoint.Send(command, sendOptions);
+        MvcApplication.EndpointInstance.Send(command, sendOptions);
     }
 }

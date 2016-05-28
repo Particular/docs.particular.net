@@ -22,10 +22,10 @@
             }
 
             // the outgoing message
-            object outgoingMessage = context.OutgoingMessage;
+            var outgoingMessage = context.OutgoingMessage;
             
             // the bytes containing the serialized outgoing messages.
-            byte[] bytes = context.OutgoingBody;
+            var bytes = context.OutgoingBody;
 
             // optionally replace the Body. 
             // this can be done using any information from the context

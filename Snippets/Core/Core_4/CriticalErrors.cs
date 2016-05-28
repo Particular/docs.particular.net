@@ -78,7 +78,7 @@ namespace Core4
                 Thread.Sleep(10000); // so that user can see on their screen the problem
             }
 
-            string fatalMessage = string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage);
+            var fatalMessage = $"The following critical error was encountered by NServiceBus:\n{errorMessage}\nNServiceBus is shutting down.";
             Environment.FailFast(fatalMessage, exception);
 
             #endregion

@@ -7,12 +7,12 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.Callbacks.Sender";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Callbacks.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press 'E' to send a message with an enum return");
             Console.WriteLine("Press 'I' to send a message with an int return");
@@ -21,7 +21,7 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key == ConsoleKey.E)
@@ -49,7 +49,7 @@ class Program
     {
         #region SendEnumMessage
 
-        EnumMessage message = new EnumMessage();
+        var message = new EnumMessage();
         bus.Send("Samples.Callbacks.Receiver", message)
             .Register<Status>(status =>
             {
@@ -65,7 +65,7 @@ class Program
     {
         #region SendIntMessage
 
-        IntMessage message = new IntMessage();
+        var message = new IntMessage();
         bus.Send("Samples.Callbacks.Receiver", message)
             .Register<int>(response =>
             {
@@ -81,12 +81,12 @@ class Program
     {
         #region SendObjectMessage
 
-        ObjectMessage message = new ObjectMessage();
+        var message = new ObjectMessage();
         bus.Send("Samples.Callbacks.Receiver", message)
             .Register(ar =>
             {
-                CompletionResult localResult = (CompletionResult) ar.AsyncState;
-                ObjectResponseMessage response = (ObjectResponseMessage)localResult.Messages[0];
+                var localResult = (CompletionResult) ar.AsyncState;
+                var response = (ObjectResponseMessage)localResult.Messages[0];
                 Console.WriteLine("Callback received with response property value:" + response.Property);
             }, null);
 

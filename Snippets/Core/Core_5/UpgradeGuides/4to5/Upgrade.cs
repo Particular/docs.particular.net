@@ -18,9 +18,9 @@ namespace Core5.UpgradeGuides._4to5
         {
             public void MutateIncoming(TransportMessage message)
             {
-                string windowsIdentityName = message.Headers[Headers.WindowsIdentityName];
-                GenericIdentity identity = new GenericIdentity(windowsIdentityName);
-                GenericPrincipal principal = new GenericPrincipal(identity, new string[0]);
+                var windowsIdentityName = message.Headers[Headers.WindowsIdentityName];
+                var identity = new GenericIdentity(windowsIdentityName);
+                var principal = new GenericPrincipal(identity, new string[0]);
                 Thread.CurrentPrincipal = principal;
             }
         }
@@ -31,14 +31,14 @@ namespace Core5.UpgradeGuides._4to5
         {
             #region 4to5MessageConventions
 
-            ConventionsBuilder conventions = busConfiguration.Conventions();
-            conventions.DefiningCommandsAs(t => t.Namespace != null && t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"));
-            conventions.DefiningEventsAs(t => t.Namespace != null && t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"));
-            conventions.DefiningMessagesAs(t => t.Namespace != null && t.Namespace == "Messages");
-            conventions.DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"));
-            conventions.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
-            conventions.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
-            conventions.DefiningTimeToBeReceivedAs(t => t.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
+            var conventionsBuilder = busConfiguration.Conventions();
+            conventionsBuilder.DefiningCommandsAs(t => t.Namespace != null && t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"));
+            conventionsBuilder.DefiningEventsAs(t => t.Namespace != null && t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"));
+            conventionsBuilder.DefiningMessagesAs(t => t.Namespace != null && t.Namespace == "Messages");
+            conventionsBuilder.DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"));
+            conventionsBuilder.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
+            conventionsBuilder.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
+            conventionsBuilder.DefiningTimeToBeReceivedAs(t => t.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
 
             #endregion
         }
@@ -99,9 +99,9 @@ namespace Core5.UpgradeGuides._4to5
             #region 4to5ReflectionInterfaceMessageCreation
 
             //This type would be derived from some other runtime information
-            Type messageType = typeof(MyInterfaceMessage);
+            var messageType = typeof(MyInterfaceMessage);
 
-            object instance = messageCreator.CreateInstance(messageType);
+            var instance = messageCreator.CreateInstance(messageType);
 
             //use reflection to set properties on the constructed instance
 
@@ -119,7 +119,7 @@ namespace Core5.UpgradeGuides._4to5
         {
             #region 4to5CustomRavenConfig
 
-            DocumentStore documentStore = new DocumentStore
+            var documentStore = new DocumentStore
             {
                 Url = "http://localhost:8080",
                 DefaultDatabase = "MyDatabase",
@@ -127,7 +127,7 @@ namespace Core5.UpgradeGuides._4to5
 
             documentStore.Initialize();
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
 
             busConfiguration.UsePersistence<RavenDBPersistence>()
                 .SetDefaultDocumentStore(documentStore);
@@ -139,9 +139,9 @@ namespace Core5.UpgradeGuides._4to5
         {
             #region 4to5StartupAction
 
-            IStartableBus bus = Bus.Create(new BusConfiguration());
+            var startableBus = Bus.Create(new BusConfiguration());
             MyCustomAction();
-            bus.Start();
+            startableBus.Start();
 
             #endregion
         }
@@ -225,9 +225,9 @@ namespace Core5.UpgradeGuides._4to5
         {
             #region 4to5RunCustomAction
 
-            IStartableBus bus = Bus.Create(new BusConfiguration());
+            var startableBus = Bus.Create(new BusConfiguration());
             MyCustomAction();
-            bus.Start();
+            startableBus.Start();
 
             #endregion
         }
@@ -239,7 +239,7 @@ namespace Core5.UpgradeGuides._4to5
             // Configuring how NServicebus handles critical errors
             busConfiguration.DefineCriticalErrorAction((message, exception) =>
             {
-                string output = string.Format("Critical exception: '{0}'", message);
+                var output = $"Critical exception: '{message}'";
                 log.Error(output, exception);
                 // Perhaps end the process??
             });
@@ -353,7 +353,7 @@ namespace Core5.UpgradeGuides._4to5
         {
             #region 4to5SendOnly
 
-            ISendOnlyBus bus = Bus.CreateSendOnly(busConfiguration);
+            var sendOnlyBus = Bus.CreateSendOnly(busConfiguration);
 
             #endregion
         }

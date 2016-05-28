@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Pipeline;
-using NServiceBus.Serialization;
 using NServiceBus.Transports;
 using NServiceBus.Unicast.Messages;
 
@@ -30,14 +29,15 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
 
     public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> stage)
     {
-        IncomingMessage incomingMessage = context.Message;
+        var incomingMessage = context.Message;
 
         List<LogicalMessage> messages = ExtractWithExceptionHandling(incomingMessage);
 
-        foreach (LogicalMessage message in messages)
+        foreach (var message in messages)
         {
-            IIncomingLogicalMessageContext logicalMessageContext = this.CreateIncomingLogicalMessageContext(message, context);
-            await stage(logicalMessageContext).ConfigureAwait(false);
+            var logicalMessageContext = this.CreateIncomingLogicalMessageContext(message, context);
+            await stage(logicalMessageContext)
+                .ConfigureAwait(false);
         }
     }
 
@@ -65,11 +65,11 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
 
         if (physicalMessage.Headers.TryGetValue(Headers.EnclosedMessageTypes, out messageTypeIdentifier))
         {
-            foreach (string messageTypeString in messageTypeIdentifier.Split(';'))
+            foreach (var messageTypeString in messageTypeIdentifier.Split(';'))
             {
-                string typeString = messageTypeString;
+                var typeString = messageTypeString;
 
-                MessageMetadata metadata = messageMetadataRegistry.GetMessageMetadata(typeString);
+                var metadata = messageMetadataRegistry.GetMessageMetadata(typeString);
 
                 if (metadata == null)
                 {
@@ -81,13 +81,13 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
 
             if (messageMetadata.Count == 0 && physicalMessage.GetMesssageIntent() != MessageIntentEnum.Publish)
             {
-                logger.WarnFormat("Could not determine message type from message header '{0}'. MessageId: {1}", messageTypeIdentifier, physicalMessage.MessageId);
+                logger.Warn($"Could not determine message type from message header '{messageTypeIdentifier}'. MessageId: {physicalMessage.MessageId}");
             }
         }
 
-        using (MemoryStream stream = new MemoryStream(physicalMessage.Body))
+        using (var stream = new MemoryStream(physicalMessage.Body))
         {
-            IMessageSerializer messageSerializer = serializationMapper.GetSerializer(physicalMessage.Headers);
+            var messageSerializer = serializationMapper.GetSerializer(physicalMessage.Headers);
             List<Type> messageTypes = messageMetadata.Select(metadata => metadata.MessageType).ToList();
             return messageSerializer.Deserialize(stream, messageTypes)
                 .Select(x => logicalMessageFactory.Create(x.GetType(), x))

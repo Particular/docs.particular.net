@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
-using NServiceBus.Unicast.Messages;
 
 #region SendBehaviorDefinition
 class StreamSendBehavior : IBehavior<OutgoingContext>
@@ -19,26 +17,26 @@ class StreamSendBehavior : IBehavior<OutgoingContext>
     public void Invoke(OutgoingContext context, Action next)
     {
         #region copy-stream-properties-to-disk
-        LogicalMessage logicalMessage = context.OutgoingLogicalMessage;
-        TimeSpan timeToBeReceived = logicalMessage.Metadata.TimeToBeReceived;
+        var logicalMessage = context.OutgoingLogicalMessage;
+        var timeToBeReceived = logicalMessage.Metadata.TimeToBeReceived;
 
-        object message = logicalMessage.Instance;
+        var message = logicalMessage.Instance;
 
-        foreach (PropertyInfo property in StreamStorageHelper.GetStreamProperties(message))
+        foreach (var property in StreamStorageHelper.GetStreamProperties(message))
         {
-            Stream sourceStream = (Stream)property.GetValue(message, null);
+            var sourceStream = (Stream)property.GetValue(message, null);
 
             //Ignore null stream properties
             if (sourceStream == null)
             {
                 continue;
             }
-            string fileKey = GenerateKey(timeToBeReceived);
+            var fileKey = GenerateKey(timeToBeReceived);
 
-            string filePath = Path.Combine(location, fileKey);
+            var filePath = Path.Combine(location, fileKey);
             Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 
-            using (FileStream target = File.OpenWrite(filePath))
+            using (var target = File.OpenWrite(filePath))
             {
                 sourceStream.CopyTo(target);
             }
@@ -50,7 +48,7 @@ class StreamSendBehavior : IBehavior<OutgoingContext>
             sourceStream.Dispose();
 
             //Store the header so on the receiving endpoint the file name is known
-            string headerKey = StreamStorageHelper.GetHeaderKey(message, property);
+            var headerKey = StreamStorageHelper.GetHeaderKey(message, property);
             logicalMessage.Headers["NServiceBus.PropertyStream." + headerKey] = fileKey;
         }
 
@@ -65,7 +63,7 @@ class StreamSendBehavior : IBehavior<OutgoingContext>
             timeToBeReceived = MaxMessageTimeToLive;
         }
 
-        DateTime keepMessageUntil = DateTime.MaxValue;
+        var keepMessageUntil = DateTime.MaxValue;
 
         if (timeToBeReceived < TimeSpan.MaxValue)
         {

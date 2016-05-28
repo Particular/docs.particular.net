@@ -15,22 +15,25 @@ class Program
         Console.Title = "Samples.SelfHosting";
         #region self-hosting
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SelfHosting");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SelfHosting");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
-            await endpoint.SendLocal(new MyMessage());
+            await endpointInstance.SendLocal(new MyMessage())
+                .ConfigureAwait(false);
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
 
         #endregion

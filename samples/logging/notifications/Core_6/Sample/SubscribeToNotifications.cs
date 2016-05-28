@@ -6,13 +6,13 @@ using NServiceBus.Logging;
 
 #region subscriptions
 
-public static class SubscribeToNotifications 
+public static class SubscribeToNotifications
 {
     static ILog log = LogManager.GetLogger(typeof(SubscribeToNotifications));
 
     public static void Subscribe(EndpointConfiguration endpointConfiguration)
     {
-        ErrorsNotifications errors = endpointConfiguration.Notifications.Errors;
+        var errors = endpointConfiguration.Notifications.Errors;
         errors.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => Log(retry);
         errors.MessageHasFailedAFirstLevelRetryAttempt += (sender, retry) => Log(retry);
         errors.MessageSentToErrorQueue += (sender, retry) => Log(retry);

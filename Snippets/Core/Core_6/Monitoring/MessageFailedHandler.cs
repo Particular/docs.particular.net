@@ -10,15 +10,16 @@
     {
         public async Task Handle(MessageFailed message, IMessageHandlerContext context)
         {
-            string failedMessageId = message.FailedMessageId;
-            string exceptionMessage = message.FailureDetails.Exception.Message;
+            var failedMessageId = message.FailedMessageId;
+            var exceptionMessage = message.FailureDetails.Exception.Message;
             string serviceInsightUri = $"si://localhost:33333/api?Search={failedMessageId}";
 
             string chatMessage = $"Message with id: {failedMessageId} failed with reason: '{exceptionMessage}'. Open in ServiceInsight: {serviceInsightUri}";
 
-            using (ChatClient client = new ChatClient())
+            using (var client = new ChatClient())
             {
-                await client.PostChatMessage(chatMessage);
+                await client.PostChatMessage(chatMessage)
+                    .ConfigureAwait(false);
             }
         }
     }

@@ -10,7 +10,7 @@ namespace Core6.Pipeline
     {
         public override Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
         {
-            OutgoingLogicalMessage outgoingLogicalMessage = context.Message;
+            var outgoingLogicalMessage = context.Message;
             if (outgoingLogicalMessage.MessageType == typeof(int))
             {
                 context.Headers["MyCustomHeader"] = outgoingLogicalMessage.Instance.ToString();

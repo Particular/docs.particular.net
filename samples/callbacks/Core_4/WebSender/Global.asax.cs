@@ -33,7 +33,7 @@ public class MvcApplication : HttpApplication
     void StartBus()
     {
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Callbacks.WebSender");
         configure.DefaultBuilder();

@@ -8,9 +8,9 @@
 
     public class SagaNotFoundHandler : IHandleSagaNotFound
     {
-        public async Task Handle(object message, IMessageProcessingContext context)
+        public Task Handle(object message, IMessageProcessingContext context)
         {
-            await context.Reply(new SagaDisappearedMessage());
+            return context.Reply(new SagaDisappearedMessage());
         }
     }
 

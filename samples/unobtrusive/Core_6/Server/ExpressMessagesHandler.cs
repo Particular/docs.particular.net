@@ -9,7 +9,7 @@ public class ExpressMessagesHandler : IHandleMessages<RequestExpress>
 
     public Task Handle(RequestExpress message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Message [{0}] received, id: [{1}]", message.GetType(), message.RequestId);
+        log.InfoFormat($"Message [{message.GetType()}] received, id: [{message.RequestId}]");
         return Task.FromResult(0);
     }
 

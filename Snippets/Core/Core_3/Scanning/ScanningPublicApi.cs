@@ -50,7 +50,7 @@
         {
             #region ScanningExcludeByName
 
-            AllAssemblies allAssemblies = AllAssemblies
+            var allAssemblies = AllAssemblies
                 .Except("MyAssembly1.dll")
                 .And("MyAssembly2.dll");
             Configure.With(allAssemblies);

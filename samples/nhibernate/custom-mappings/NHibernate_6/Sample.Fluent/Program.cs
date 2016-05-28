@@ -11,7 +11,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.CustomNhMappings.Loquacious";
-        Configuration nhConfiguration = new Configuration();
+        var nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
         nhConfiguration.SetProperty(Environment.ConnectionDriver, "NHibernate.Driver.Sql2008ClientDriver");
@@ -20,7 +20,7 @@ class Program
 
         nhConfiguration = AddFluentMappings(nhConfiguration);
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.CustomNhMappings.Loquacious");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
@@ -28,18 +28,20 @@ class Program
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(nhConfiguration);
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
-            bus.SendLocal(new StartOrder
+            var startOrder = new StartOrder
             {
                 OrderId = "123"
-            });
+            };
+            bus.SendLocal(startOrder);
 
             Thread.Sleep(2000);
-            bus.SendLocal(new CompleteOrder
+            var completeOrder = new CompleteOrder
             {
                 OrderId = "123"
-            });
+            };
+            bus.SendLocal(completeOrder);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

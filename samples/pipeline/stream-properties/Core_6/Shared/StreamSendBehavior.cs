@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
 using NServiceBus.DeliveryConstraints;
 using NServiceBus.Performance.TimeToBeReceived;
@@ -19,7 +18,7 @@ class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
     {
 #endregion
         #region copy-stream-properties-to-disk
-        TimeSpan timeToBeReceived = TimeSpan.MaxValue;
+        var timeToBeReceived = TimeSpan.MaxValue;
         DiscardIfNotReceivedBefore constraint;
 
         if (context.Extensions.TryGetDeliveryConstraint(out constraint))
@@ -27,25 +26,26 @@ class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
             timeToBeReceived = constraint.MaxTime;
         }
 
-        object message = context.Message.Instance;
+        var message = context.Message.Instance;
 
-        foreach (PropertyInfo property in StreamStorageHelper.GetStreamProperties(message))
+        foreach (var property in StreamStorageHelper.GetStreamProperties(message))
         {
-            Stream sourceStream = (Stream)property.GetValue(message, null);
+            var sourceStream = (Stream)property.GetValue(message, null);
 
             //Ignore null stream properties
             if (sourceStream == null)
             {
                 continue;
             }
-            string fileKey = GenerateKey(timeToBeReceived);
+            var fileKey = GenerateKey(timeToBeReceived);
 
-            string filePath = Path.Combine(location, fileKey);
+            var filePath = Path.Combine(location, fileKey);
             Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 
-            using (FileStream target = File.OpenWrite(filePath))
+            using (var target = File.OpenWrite(filePath))
             {
-                await sourceStream.CopyToAsync(target).ConfigureAwait(false);
+                await sourceStream.CopyToAsync(target)
+                    .ConfigureAwait(false);
             }
 
             //Reset the property to null so no other serializer attempts to use the property
@@ -55,11 +55,12 @@ class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
             sourceStream.Dispose();
 
             //Store the header so on the receiving endpoint the file name is known
-            string headerKey = StreamStorageHelper.GetHeaderKey(message, property);
+            var headerKey = StreamStorageHelper.GetHeaderKey(message, property);
             context.Headers["NServiceBus.PropertyStream." + headerKey] = fileKey;
         }
 
-        await next().ConfigureAwait(false);
+        await next()
+            .ConfigureAwait(false);
         #endregion
     }
 
@@ -71,7 +72,7 @@ class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
             timeToBeReceived = MaxMessageTimeToLive;
         }
 
-        DateTime keepMessageUntil = DateTime.MaxValue;
+        var keepMessageUntil = DateTime.MaxValue;
 
         if (timeToBeReceived < TimeSpan.MaxValue)
         {

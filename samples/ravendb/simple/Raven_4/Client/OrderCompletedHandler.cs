@@ -8,8 +8,7 @@ public class OrderCompletedHandler : IHandleMessages<OrderCompleted>
 
     public Task Handle(OrderCompleted message, IMessageHandlerContext context)
     {
-        logger.InfoFormat("Received OrderCompleted for OrderId {0}", message.OrderId);
-
+        logger.InfoFormat($"Received OrderCompleted for OrderId {message.OrderId}");
         return Task.FromResult(0);
     }
 }

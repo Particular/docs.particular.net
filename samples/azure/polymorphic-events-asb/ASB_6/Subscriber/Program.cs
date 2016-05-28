@@ -9,7 +9,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.ASB.Polymorphic.Subscriber";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
 
         busConfiguration.EndpointName("Samples.ASB.Polymorphic.Subscriber");
         busConfiguration.ScaleOut().UseSingleBrokerQueue();
@@ -29,7 +29,7 @@ class Program
         busConfiguration.DisableFeature<SecondLevelRetries>();
 
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             #region ControledSubscriptions
 

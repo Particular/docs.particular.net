@@ -8,8 +8,8 @@ namespace Core5.PubSub.WithConvention
         {
             #region DefiningEventsAs
 
-            ConventionsBuilder conventions = busConfiguration.Conventions();
-            conventions.DefiningEventsAs(t =>
+            var conventionsBuilder = busConfiguration.Conventions();
+            conventionsBuilder.DefiningEventsAs(t =>
                 t.Namespace != null &&
                 t.Namespace.StartsWith("Domain") &&
                 t.Name.EndsWith("Event"));

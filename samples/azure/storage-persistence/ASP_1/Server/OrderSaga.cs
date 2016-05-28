@@ -20,25 +20,27 @@ public class OrderSaga : Saga<OrderSagaData>,
     public Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
-        string orderDescription = "The saga for order " + message.OrderId;
+        var orderDescription = "The saga for order " + message.OrderId;
         Data.OrderDescription = orderDescription;
-        logger.InfoFormat("Received StartOrder message {0}. Starting Saga", Data.OrderId);
+        logger.Info($"Received StartOrder message {Data.OrderId}. Starting Saga");
         logger.Info("Order will complete in 5 seconds");
-        CompleteOrder timeoutData = new CompleteOrder
+        var timeoutData = new CompleteOrder
         {
             OrderDescription = orderDescription
         };
-        
+
         return RequestTimeout(context, TimeSpan.FromSeconds(5), timeoutData);
     }
 
     public async Task Timeout(CompleteOrder state, IMessageHandlerContext context)
     {
-        logger.InfoFormat("Saga with OrderId {0} completed", Data.OrderId);
-        await context.Publish(new OrderCompleted
+        logger.Info($"Saga with OrderId {Data.OrderId} completed");
+        var orderCompleted = new OrderCompleted
         {
             OrderId = Data.OrderId
-        });
+        };
+        await context.Publish(orderCompleted)
+            .ConfigureAwait(false);
         MarkAsComplete();
     }
 }

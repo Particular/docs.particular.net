@@ -11,8 +11,8 @@
 
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            string messageId = context.MessageId;
-            string replyToAddress = context.ReplyToAddress;
+            var messageId = context.MessageId;
+            var replyToAddress = context.ReplyToAddress;
             IReadOnlyDictionary<string, string> headers = context.MessageHeaders;
         }
 

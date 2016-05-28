@@ -8,7 +8,7 @@ class CompleteOrderSagaFinder : IFindSagas<OrderSagaData>.Using<CompleteOrder>
 {
     public Task<OrderSagaData> FindBy(CompleteOrder message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
     {
-        OrderSagaData orderSagaData = storageSession.Session().QueryOver<OrderSagaData>()
+        var orderSagaData = storageSession.Session().QueryOver<OrderSagaData>()
             .Where(d => d.OrderId == message.OrderId)
             .SingleOrDefault();
         return Task.FromResult(orderSagaData);

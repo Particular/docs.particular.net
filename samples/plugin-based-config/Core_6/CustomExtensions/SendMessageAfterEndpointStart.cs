@@ -6,10 +6,10 @@ using NServiceBus.Logging;
 public class SendMessageAfterEndpointStart : IRunAfterEndpointStart
 {
     static ILog log = LogManager.GetLogger<SendMessageAfterEndpointStart>();
-    public async Task Run(IEndpointInstance endpoint)
+    public Task Run(IEndpointInstance endpoint)
     {
         log.Info("Sending Message.");
-        await endpoint.SendLocal(new MyMessage());
+        return endpoint.SendLocal(new MyMessage());
     }
 }
 #endregion

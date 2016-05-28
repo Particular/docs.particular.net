@@ -10,7 +10,7 @@ class Program
         // This makes it easier to tell console windows apart
         Console.Title = "Samples.StepByStep.Client";
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
 
         // The endpoint name will be used to determine queue names and serves
         // as the address, or identity, of the endpoint
@@ -28,7 +28,7 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         // Initialize the endpoint with the finished configuration
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
            SendOrder(bus);
         }
@@ -45,23 +45,23 @@ class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
 
             if (key.Key != ConsoleKey.Enter)
             {
                 return;
             }
-            Guid id = Guid.NewGuid();
+            var id = Guid.NewGuid();
 
-            PlaceOrder placeOrder = new PlaceOrder
+            var placeOrder = new PlaceOrder
             {
                 Product = "New shoes",
                 Id = id
             };
             bus.Send("Samples.StepByStep.Server", placeOrder);
 
-            Console.WriteLine("Sent a new PlaceOrder message with id: {0}", id.ToString("N"));
+            Console.WriteLine($"Sent a new PlaceOrder message with id: {id.ToString("N")}");
 
         }
 

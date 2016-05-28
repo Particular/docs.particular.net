@@ -13,15 +13,17 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SenderSideScaleOut.Server2";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.Server");
-        string discriminator = ConfigurationManager.AppSettings["InstanceId"];
+        var endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.Server");
+        var discriminator = ConfigurationManager.AppSettings["InstanceId"];
         var scaleOut = endpointConfiguration.ScaleOut();
         scaleOut.InstanceDiscriminator(discriminator);
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         Console.WriteLine("Press enter to exit.");
         Console.ReadLine();
-        await endpoint.Stop();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

@@ -9,7 +9,7 @@ public class DerivedEventHandler : IHandleMessages<DerivedEvent>
 
     public Task Handle(DerivedEvent message, IMessageHandlerContext context)
     {
-        logger.InfoFormat("Received DerivedEvent. EventId: {0} Data: {1}", message.EventId, message.Data);
+        logger.Info($"Received DerivedEvent. EventId: {message.EventId} Data: {message.Data}");
         return Task.FromResult(0);
     }
 }

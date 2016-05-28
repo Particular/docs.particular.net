@@ -14,8 +14,8 @@ static class Program
     {
         Console.Title = "Samples.Unity";
         #region ContainerConfiguration
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Unity");
-        UnityContainer container = new UnityContainer();
+        var endpointConfiguration = new EndpointConfiguration("Samples.Unity");
+        var container = new UnityContainer();
         container.RegisterInstance(new MyService());
         endpointConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
         #endregion
@@ -24,16 +24,19 @@ static class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new MyMessage());
+            await endpointInstance.SendLocal(new MyMessage())
+                .ConfigureAwait(false);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

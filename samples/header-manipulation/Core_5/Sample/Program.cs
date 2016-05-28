@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.Headers";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Headers");
 
         busConfiguration.UseSerialization<JsonSerializer>();
@@ -26,14 +26,14 @@ class Program
 
         #region global-all-outgoing
 
-        IStartableBus startableBus = Bus.Create(busConfiguration);
+        var startableBus = Bus.Create(busConfiguration);
         startableBus.OutgoingHeaders.Add("AllOutgoing", "ValueAllOutgoing");
-        using (IBus bus = startableBus.Start())
+        using (var bus = startableBus.Start())
         {
             #endregion
 
             #region sending
-            MyMessage myMessage = new MyMessage();
+            var myMessage = new MyMessage();
             bus.SetMessageHeader(myMessage, "SendingMessage", "ValueSendingMessage");
             bus.SendLocal(myMessage);
             #endregion

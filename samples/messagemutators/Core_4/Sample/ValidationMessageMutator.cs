@@ -23,22 +23,22 @@ public class ValidationMessageMutator : IMessageMutator
 
     static void ValidateDataAnnotations(object message)
     {
-        ValidationContext context = new ValidationContext(message, null, null);
-        List<ValidationResult> results = new List<ValidationResult>();
+        var context = new ValidationContext(message, null, null);
+        var results = new List<ValidationResult>();
 
-        bool isValid = Validator.TryValidateObject(message, context, results, true);
+        var isValid = Validator.TryValidateObject(message, context, results, true);
 
         if (isValid)
         {
-            logger.InfoFormat("Validation succeeded for message: {0}", message);
+            logger.Info($"Validation succeeded for message: {message}");
             return;
         }
 
-        StringBuilder errorMessage = new StringBuilder();
-        string error = string.Format("Validation failed for message {0}, with the following error/s: " + Environment.NewLine,message);
+        var errorMessage = new StringBuilder();
+        var error = string.Format("Validation failed for message {0}, with the following error/s: " + Environment.NewLine,message);
         errorMessage.Append(error);
 
-        foreach (ValidationResult validationResult in results)
+        foreach (var validationResult in results)
         {
             errorMessage.Append(validationResult.ErrorMessage + Environment.NewLine);
         }

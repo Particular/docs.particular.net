@@ -7,10 +7,10 @@ class MultiTenantConnectionProvider : DriverConnectionProvider
     {
         #region GetConnectionFromContext
 
-        string connectionString = ExtractTenantConnectionStringBehavior.ConnectionStringHolder.Value;
+        var connectionString = ExtractTenantConnectionStringBehavior.ConnectionStringHolder.Value;
         if (connectionString != null)
         {
-            IDbConnection connection = Driver.CreateConnection();
+            var connection = Driver.CreateConnection();
             connection.ConnectionString = connectionString;
             connection.Open();
             return connection;

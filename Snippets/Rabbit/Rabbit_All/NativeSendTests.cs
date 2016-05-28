@@ -30,21 +30,23 @@ public class NativeSendTests
     [Test]
     public async Task Send()
     {
-        IEndpointInstance endpoint = await StartBus();
+        var endpointInstance = await StartBus()
+             .ConfigureAwait(false);
         Dictionary<string, object> headers = new Dictionary<string, object>
         {
             {"NServiceBus.EnclosedMessageTypes", "NativeSendTests+MessageToSend"}
         };
         NativeSend.SendMessage("localhost", endpointName, "guest", "guest", @"{""Property"": ""Value"",}", headers);
         ResetEvent.WaitOne();
-        await endpoint.Stop();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
     Task<IEndpointInstance> StartBus()
     {
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Warn);
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration(endpointName);
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
         endpointConfiguration.SendFailedMessagesTo(errorQueueName);
         endpointConfiguration.UseSerialization<JsonSerializer>();
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();

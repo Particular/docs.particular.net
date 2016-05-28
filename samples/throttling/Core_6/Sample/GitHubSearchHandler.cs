@@ -14,11 +14,12 @@ public class GitHubSearchHandler : IHandleMessages<SearchGitHub>
     {
         log.Info($"Received search request for \"{message.SearchFor}\" on {message.RepositoryOwner}/{message.Repository}...");
 
-        SearchCodeRequest request = new SearchCodeRequest(
+        var request = new SearchCodeRequest(
             message.SearchFor,
             message.RepositoryOwner,
             message.Repository);
-        SearchCodeResult result = await GitHubClient.Search.SearchCode(request);
+        var result = await GitHubClient.Search.SearchCode(request)
+            .ConfigureAwait(false);
 
         log.Info($"Found {result.TotalCount} results for {message.SearchFor}.");
     }

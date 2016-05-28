@@ -1,7 +1,5 @@
 ﻿namespace Core5.Headers.Writers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Text;
     using System.Threading;
     using Common;
@@ -27,17 +25,17 @@
         [Test]
         public void Write()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName(endpointName);
             var dataBus = busConfiguration.UseDataBus<FileShareDataBus>();
             dataBus.BasePath(@"..\..\..\storage");
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>(typeof(ConfigErrorQueue));
+            var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>(typeof(ConfigErrorQueue));
             busConfiguration.TypesToScan(typesToScan);
             busConfiguration.EnableInstallers();
             busConfiguration.Conventions().DefiningDataBusPropertiesAs(x => x.Name.StartsWith("LargeProperty"));
             busConfiguration.UsePersistence<InMemoryPersistence>();
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IBus bus = Bus.Create(busConfiguration).Start())
+            using (var bus = Bus.Create(busConfiguration).Start())
             {
                 bus.SendLocal(new MessageToSend
                 {
@@ -65,7 +63,7 @@
         {
             public void MutateIncoming(TransportMessage transportMessage)
             {
-                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusConvention>(transportMessage.Headers)
+                var headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusConvention>(transportMessage.Headers)
                     .Replace(typeof(MessageToSend).FullName, "MessageToSend");
                 SnippetLogger.Write(headerText, version: "5");
                 SnippetLogger.Write(Encoding.Default.GetString(transportMessage.Body), version: "5", suffix: "Body");

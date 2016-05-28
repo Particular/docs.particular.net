@@ -9,7 +9,7 @@ class Program
     {
         Console.Title = "Samples.Encryption.Endpoint1";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Encryption.Endpoint1");
         configure.DefaultBuilder();
@@ -20,11 +20,11 @@ class Program
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
 
-            MessageWithSecretData message = new MessageWithSecretData
+            var message = new MessageWithSecretData
             {
                 Secret = "betcha can't guess my secret",
                 SubProperty = new MySecretSubProperty

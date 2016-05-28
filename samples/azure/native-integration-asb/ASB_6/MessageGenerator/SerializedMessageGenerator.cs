@@ -9,13 +9,13 @@ public class SerializedMessageGenerator
     [Test]
     public static void Generate()
     {
-        NativeMessage message = new NativeMessage
+        var message = new NativeMessage
         {
             Content = "Hello from native sender",
             SendOnUtc = DateTime.UtcNow
         };
-        string serializedMessage = JsonConvert.SerializeObject(message);
+        var serializedMessage = JsonConvert.SerializeObject(message);
         Debug.WriteLine("Serialized message to paste in code:\n");
-        Debug.WriteLine(string.Format("@\"{0}\"", serializedMessage.Replace("\"", "\"\"")));
+        Debug.WriteLine($"@\"{serializedMessage.Replace("\"", "\"\"")}\"");
     }
 }

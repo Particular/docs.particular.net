@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.FaultTolerance.Server";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.FaultTolerance.Server");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
@@ -15,8 +15,7 @@ class Program
 
         // To disable second level retries(SLR), uncomment the following line. SLR is enabled by default.
         // busConfiguration.DisableFeature<SecondLevelRetries>();
-        
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

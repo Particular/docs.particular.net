@@ -14,7 +14,7 @@ public class HandlerUsingCustomHeader : IHandleMessages<MyMessage>
 
     public void Handle(MyMessage message)
     {
-        string usernameFromCustomHeader = bus.CurrentMessageContext.Headers["UserName"];
+        var usernameFromCustomHeader = bus.CurrentMessageContext.Headers["UserName"];
         logger.Info("Username extracted from custom message header: " + usernameFromCustomHeader);
     }
 }

@@ -17,25 +17,28 @@ public class ThrottlingBehavior : Behavior<IInvokeHandlerContext>
         if (rateLimitReset.HasValue && rateLimitReset >= DateTime.UtcNow)
         {
             log.Info($"rate limit already exceeded. Retry after {rateLimitReset} UTC");
-            await DelayMessage(context, rateLimitReset.Value).ConfigureAwait(false);
+            await DelayMessage(context, rateLimitReset.Value)
+                .ConfigureAwait(false);
             return;
         }
 
         try
         {
-            await next().ConfigureAwait(false);
+            await next()
+                .ConfigureAwait(false);
         }
         catch (RateLimitExceededException ex)
         {
             DateTime? nextReset = nextRateLimitReset = ex.Reset.UtcDateTime;
             log.Info($"rate limit exceeded. Limit resets resets at {nextReset} UTC");
-            await DelayMessage(context, nextReset.Value).ConfigureAwait(false);
+            await DelayMessage(context, nextReset.Value)
+                .ConfigureAwait(false);
         }
     }
 
     Task DelayMessage(IInvokeHandlerContext context, DateTime deliverAt)
     {
-        SendOptions sendOptions = new SendOptions();
+        var sendOptions = new SendOptions();
 
         // delay the message to the specified delivery date
         sendOptions.DoNotDeliverBefore(deliverAt);

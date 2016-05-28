@@ -12,9 +12,9 @@ public class Handler : IHandleMessages<MessageWithSecretData>
 
         log.Info("SubSecret: " + message.SubProperty.Secret);
 
-        foreach (CreditCardDetails creditCard in message.CreditCards)
+        foreach (var creditCard in message.CreditCards)
         {
-            log.InfoFormat("CreditCard: {0} is valid to {1}", creditCard.Number.Value, creditCard.ValidTo);
+            log.Info($"CreditCard: {creditCard.Number.Value} is valid to {creditCard.ValidTo}");
         }
         return Task.FromResult(0);
     }

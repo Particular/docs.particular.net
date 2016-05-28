@@ -17,8 +17,8 @@ class Program
         {
             #region Config
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Server");
-            DocumentStore documentStore = new DocumentStore
+            var endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Server");
+            var documentStore = new DocumentStore
             {
                 Url = "http://localhost:32076",
                 DefaultDatabase = "RavenSampleData"
@@ -35,12 +35,14 @@ class Program
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.EnableInstallers();
 
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
 
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

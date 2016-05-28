@@ -10,7 +10,7 @@ class Program
     {
         Console.Title = "Samples.PipelineStream.Sender";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.PipelineStream.Sender");
         configure.DefaultBuilder();
@@ -25,9 +25,9 @@ class Program
 
         #endregion
 
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             Run(bus);
         }
     }
@@ -41,7 +41,7 @@ class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
 
             if (key.Key == ConsoleKey.F)
             {
@@ -61,7 +61,7 @@ class Program
     {
         #region send-message-with-file-stream
 
-        MessageWithStream message = new MessageWithStream
+        var message = new MessageWithStream
         {
             SomeProperty = "This message contains a stream",
             StreamProperty = File.OpenRead("FileToSend.txt")
@@ -78,9 +78,9 @@ class Program
     {
         #region send-message-with-http-stream
 
-        using (WebClient webClient = new WebClient())
+        using (var webClient = new WebClient())
         {
-            MessageWithStream message = new MessageWithStream
+            var message = new MessageWithStream
             {
                 SomeProperty = "This message contains a stream",
                 StreamProperty = webClient.OpenRead("http://www.particular.net")

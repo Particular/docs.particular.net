@@ -15,14 +15,15 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Versioning.V2Subscriber";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V2Subscriber");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V2Subscriber");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press any key to exit");
@@ -30,7 +31,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

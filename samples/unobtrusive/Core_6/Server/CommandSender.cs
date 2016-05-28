@@ -13,13 +13,14 @@ class CommandSender
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
 
             switch (key.Key)
             {
                 case ConsoleKey.E:
-                    await PublishEvent(endpointInstance);
+                    await PublishEvent(endpointInstance)
+                        .ConfigureAwait(false);
                     continue;
             }
             return;
@@ -28,14 +29,14 @@ class CommandSender
 
     static async Task PublishEvent(IEndpointInstance endpointInstance)
     {
-        Guid eventId = Guid.NewGuid();
+        var eventId = Guid.NewGuid();
 
         await endpointInstance.Publish<IMyEvent>(m =>
         {
             m.EventId = eventId;
-        });
+        })
+        .ConfigureAwait(false);
         Console.WriteLine("Event published, id: " + eventId);
-
     }
 
 }

@@ -20,7 +20,7 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 
         log.InfoFormat("Publishing: OrderPlaced for Order Id: {0}", message.Id);
 
-        OrderPlaced orderPlaced = new OrderPlaced
+        var orderPlaced = new OrderPlaced
         {
             OrderId = message.Id
         };

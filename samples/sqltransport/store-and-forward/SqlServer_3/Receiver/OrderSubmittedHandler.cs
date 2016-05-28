@@ -8,10 +8,11 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
     public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Order {0} worth {1} submitted", message.OrderId, message.Value);
-        return context.Reply(new OrderAccepted
+        log.InfoFormat($"Order {message.OrderId} worth {message.Value} submitted");
+        var orderAccepted = new OrderAccepted
         {
             OrderId = message.OrderId,
-        });
+        };
+        return context.Reply(orderAccepted);
     }
 }

@@ -18,7 +18,7 @@ class Program
 
         #region ReceiverConfiguration
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.EnableLegacyMultiInstanceMode(ConnectionProvider.GetConnection);
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -27,12 +27,14 @@ class Program
 
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         Console.WriteLine("Press any key to exit");
         Console.WriteLine("Waiting for Order messages from the Sender");
         Console.ReadKey();
-        await endpoint.Stop();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
 }

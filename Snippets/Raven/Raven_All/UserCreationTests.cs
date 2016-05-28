@@ -9,7 +9,7 @@ public class UserCreationTests
     [Test]
     public void Foo()
     {
-        using (DocumentStore documentStore = new DocumentStore
+        using (var documentStore = new DocumentStore
         {
             Url = "http://localhost:8083/"
         })

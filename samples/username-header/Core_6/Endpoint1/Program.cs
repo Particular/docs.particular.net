@@ -14,11 +14,11 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.UsernameHeader.Endpoint1";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint1");
+        var endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint1");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
-        
+
         #region ComponentRegistartion
         endpointConfiguration.RegisterComponents(components =>
         {
@@ -26,19 +26,22 @@ class Program
         });
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             #region SendMessage
             Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("FakeUser"), new string[0]);
-            await endpoint.Send("Samples.UsernameHeader.Endpoint2", new MyMessage());
+            await endpointInstance.Send("Samples.UsernameHeader.Endpoint2", new MyMessage())
+                .ConfigureAwait(false);
             #endregion
             Console.WriteLine("Message sent. Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

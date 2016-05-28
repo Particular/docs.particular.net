@@ -18,7 +18,7 @@ static class Program
 
         #region config
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Jil");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Jil");
         endpointConfiguration.UseSerialization<JilSerializer>()
             .Options(
                 new Options(
@@ -37,12 +37,13 @@ static class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             #region message
 
-            CreateOrder message = new CreateOrder
+            var message = new CreateOrder
             {
                 OrderId = 9,
                 Date = DateTime.Now,
@@ -61,7 +62,8 @@ static class Program
                     },
                 }
             };
-            await endpoint.SendLocal(message);
+            await endpointInstance.SendLocal(message)
+                .ConfigureAwait(false);
 
             #endregion
 
@@ -71,7 +73,8 @@ static class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

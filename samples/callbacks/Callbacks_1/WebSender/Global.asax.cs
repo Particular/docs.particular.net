@@ -6,7 +6,7 @@ using NServiceBus;
 
 public class MvcApplication : HttpApplication
 {
-    public static IEndpointInstance Endpoint;
+    public static IEndpointInstance EndpointInstance;
 
     protected void Application_Start()
     {
@@ -21,12 +21,12 @@ public class MvcApplication : HttpApplication
 
     protected void Application_End()
     {
-        Endpoint?.Stop().GetAwaiter().GetResult();
+        EndpointInstance?.Stop().GetAwaiter().GetResult();
     }
 
     async Task StartBus()
     {
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.WebSender");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.WebSender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
@@ -34,7 +34,8 @@ public class MvcApplication : HttpApplication
         endpointConfiguration.ScaleOut()
             .InstanceDiscriminator("1");
 
-        Endpoint = await NServiceBus.Endpoint.Start(endpointConfiguration);
+        EndpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
     }
 
 }

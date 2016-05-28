@@ -6,7 +6,6 @@
     using NServiceBus.Extensibility;
     using NServiceBus.Persistence;
     using NServiceBus.Sagas;
-    using Raven.Client;
 
     public class RavenDBSagaFinder
     {
@@ -18,8 +17,8 @@
             public Task<MySagaData> FindBy(MyMessage message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
             {
                 // the custom finding logic here, e.g.
-                IAsyncDocumentSession ravenSession = storageSession.RavenSession();
-                MySagaData sagaData = ravenSession
+                var ravenSession = storageSession.RavenSession();
+                var sagaData = ravenSession
                     .Query<MySagaData>()
                     .SingleOrDefault(x =>
                         x.SomeID == message.SomeID &&

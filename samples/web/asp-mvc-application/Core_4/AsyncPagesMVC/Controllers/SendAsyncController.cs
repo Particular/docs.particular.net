@@ -30,7 +30,7 @@ public class SendAsyncController : AsyncController
 
         #region AsyncController
 
-        Command command = new Command
+        var command = new Command
         {
             Id = number
         };

@@ -13,7 +13,7 @@ static class Program
         Console.Title = "Samples.OwinPassThrough";
         #region startbus
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.OwinPassThrough");
         configure.DefaultBuilder();
@@ -21,9 +21,9 @@ static class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             using (StartOwinHost(bus))
             {
                 Console.WriteLine("Press any key to exit");
@@ -37,8 +37,8 @@ static class Program
     #region startowin
     static IDisposable StartOwinHost(IBus bus)
     {
-        string baseUrl = "http://localhost:12345/";
-        StartOptions startOptions = new StartOptions(baseUrl)
+        var baseUrl = "http://localhost:12345/";
+        var startOptions = new StartOptions(baseUrl)
         {
             ServerFactory = "Microsoft.Owin.Host.HttpListener",
         };
@@ -53,14 +53,14 @@ static class Program
 
     static void MapToBus(IAppBuilder builder, IBus bus)
     {
-        OwinToBus owinToBus = new OwinToBus(bus);
+        var owinToBus = new OwinToBus(bus);
         builder.Map("/to-bus", app => { app.Use(owinToBus.Middleware()); });
     }
 
     static void MapToMsmq(IAppBuilder builder)
     {
-        string queue = Environment.MachineName + @"\private$\Samples.OwinPassThrough";
-        OwinToMsmq owinToMsmq = new OwinToMsmq(queue);
+        var queue = Environment.MachineName + @"\private$\Samples.OwinPassThrough";
+        var owinToMsmq = new OwinToMsmq(queue);
         builder.Map("/to-msmq", app => { app.Use(owinToMsmq.Middleware()); });
     }
 #endregion

@@ -8,7 +8,7 @@ public class Handler : IHandleMessages<CreateProductCommand>
 
     public void Handle(CreateProductCommand createProductCommand)
     {
-        logger.InfoFormat("Received a CreateProductCommand message: {0}", createProductCommand);
+        logger.Info($"Received a CreateProductCommand message: {createProductCommand}");
     }
 }
 #endregion

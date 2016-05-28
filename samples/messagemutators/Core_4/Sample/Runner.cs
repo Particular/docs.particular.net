@@ -11,7 +11,7 @@ public class Runner
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
             Console.WriteLine();
             switch (key.Key)

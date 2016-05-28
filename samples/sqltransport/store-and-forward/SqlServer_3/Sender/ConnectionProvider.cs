@@ -8,13 +8,14 @@ public class ConnectionProvider
 
     public static async Task<SqlConnection> GetConnecton(string transportAddress)
     {
-        string connectionString = transportAddress.StartsWith("Samples.SqlServer.StoreAndForwardSender") || transportAddress == "error"
+        var connectionString = transportAddress.StartsWith("Samples.SqlServer.StoreAndForwardSender") || transportAddress == "error"
             ? SenderConnectionString
             : ReceiverConnectionString;
 
-        SqlConnection connection = new SqlConnection(connectionString);
+        var connection = new SqlConnection(connectionString);
 
-        await connection.OpenAsync();
+        await connection.OpenAsync()
+            .ConfigureAwait(false);
 
         return connection;
     }

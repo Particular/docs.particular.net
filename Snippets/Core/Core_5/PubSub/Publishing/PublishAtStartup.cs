@@ -8,7 +8,7 @@
         {
             #region publishAtStartup
 
-            using (IBus bus = Bus.Create(busConfiguration).Start())
+            using (var bus = Bus.Create(busConfiguration).Start())
             {
                 bus.Publish(new MyEvent());
                 #endregion

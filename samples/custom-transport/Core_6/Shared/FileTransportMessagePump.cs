@@ -47,12 +47,12 @@ class FileTransportMessagePump : IPushMessages
     {
         cancellationTokenSource.Cancel();
 
-        Task timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
+        var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
         IEnumerable<Task> allTasks = runningReceiveTasks.Values.Concat(new[]
         {
                 messagePumpTask
             });
-        Task finishedTask = await Task.WhenAny(Task.WhenAll(allTasks), timeoutTask)
+        var finishedTask = await Task.WhenAny(Task.WhenAll(allTasks), timeoutTask)
             .ConfigureAwait(false);
 
         if (finishedTask.Equals(timeoutTask))
@@ -69,7 +69,8 @@ class FileTransportMessagePump : IPushMessages
     {
         try
         {
-            await InnerProcessMessages().ConfigureAwait(false);
+            await InnerProcessMessages()
+                .ConfigureAwait(false);
         }
         catch (OperationCanceledException)
         {
@@ -82,7 +83,8 @@ class FileTransportMessagePump : IPushMessages
 
         if (!cancellationToken.IsCancellationRequested)
         {
-            await ProcessMessages().ConfigureAwait(false);
+            await ProcessMessages()
+                .ConfigureAwait(false);
         }
     }
 
@@ -90,25 +92,27 @@ class FileTransportMessagePump : IPushMessages
     {
         while (!cancellationTokenSource.IsCancellationRequested)
         {
-            bool filesFound = false;
+            var filesFound = false;
 
-            foreach (string filePath in Directory.EnumerateFiles(path, "*.*"))
+            foreach (var filePath in Directory.EnumerateFiles(path, "*.*"))
             {
                 filesFound = true;
 
-                string nativeMessageId = Path.GetFileNameWithoutExtension(filePath);
+                var nativeMessageId = Path.GetFileNameWithoutExtension(filePath);
 
-                DirectoryBasedTransaction transaction = new DirectoryBasedTransaction(path);
+                var transaction = new DirectoryBasedTransaction(path);
 
                 transaction.BeginTransaction(filePath);
 
-                await concurrencyLimiter.WaitAsync(cancellationToken).ConfigureAwait(false);
+                await concurrencyLimiter.WaitAsync(cancellationToken)
+                    .ConfigureAwait(false);
 
-                Task task = Task.Run(async () =>
+                var task = Task.Run(async () =>
                 {
                     try
                     {
-                        await ProcessFile(transaction, nativeMessageId);
+                        await ProcessFile(transaction, nativeMessageId)
+                        .ConfigureAwait(false);
                         transaction.Complete();
                     }
                     finally
@@ -130,7 +134,8 @@ class FileTransportMessagePump : IPushMessages
 
             if (!filesFound)
             {
-                await Task.Delay(10, cancellationToken);
+                await Task.Delay(10, cancellationToken)
+                    .ConfigureAwait(false);
             }
         }
     }
@@ -140,17 +145,17 @@ class FileTransportMessagePump : IPushMessages
         try
         {
             string[] message = File.ReadAllLines(transaction.FileToProcess);
-            string bodyPath = message.First();
-            string json = string.Join("", message.Skip(1));
+            var bodyPath = message.First();
+            var json = string.Join("", message.Skip(1));
             Dictionary<string, string> headers = HeaderSerializer.DeSerialize(json);
 
             string ttbrString;
 
             if (headers.TryGetValue(Headers.TimeToBeReceived, out ttbrString))
             {
-                TimeSpan ttbr = TimeSpan.Parse(ttbrString);
+                var ttbr = TimeSpan.Parse(ttbrString);
                 //file.move preserves create time
-                DateTime sentTime = File.GetCreationTimeUtc(transaction.FileToProcess);
+                var sentTime = File.GetCreationTimeUtc(transaction.FileToProcess);
 
                 if (sentTime + ttbr < DateTime.UtcNow)
                 {
@@ -158,15 +163,16 @@ class FileTransportMessagePump : IPushMessages
                     return;
                 }
             }
-            CancellationTokenSource tokenSource = new CancellationTokenSource();
+            var tokenSource = new CancellationTokenSource();
 
-            using (FileStream bodyStream = new FileStream(bodyPath, FileMode.Open))
+            using (var bodyStream = new FileStream(bodyPath, FileMode.Open))
             {
-                ContextBag context = new ContextBag();
+                var context = new ContextBag();
                 context.Set(transaction);
 
-                PushContext pushContext = new PushContext(messageId, headers, bodyStream, transaction, tokenSource, context);
-                await pipeline(pushContext).ConfigureAwait(false);
+                var pushContext = new PushContext(messageId, headers, bodyStream, transaction, tokenSource, context);
+                await pipeline(pushContext)
+                    .ConfigureAwait(false);
             }
 
             if (tokenSource.IsCancellationRequested)

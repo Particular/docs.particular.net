@@ -9,7 +9,7 @@ class Program
         Console.Title = "Samples.Logging.Default";
         Configure.Serialization.Json();
         #region ConfigureLogging
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         //Configures a ConsoleAppender with a threshold of Debug
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Logging.Default");
@@ -19,9 +19,9 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             bus.SendLocal(new MyMessage());
 
             Console.WriteLine("Press any key to exit");

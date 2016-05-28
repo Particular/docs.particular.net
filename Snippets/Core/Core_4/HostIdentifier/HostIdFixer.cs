@@ -16,17 +16,17 @@
 
         public HostIdFixer(UnicastBus bus)
         {
-            Guid hostId = CreateGuid(Environment.MachineName, Configure.EndpointName);
-            string identifier = Assembly.GetExecutingAssembly().Location;
+            var hostId = CreateGuid(Environment.MachineName, Configure.EndpointName);
+            var identifier = Assembly.GetExecutingAssembly().Location;
             bus.HostInformation = new HostInformation(hostId, Environment.MachineName, identifier);
         }
 
         static Guid CreateGuid(params string[] data)
         {
-            using (MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider())
+            using (var provider = new MD5CryptoServiceProvider())
             {
-                byte[] inputBytes = Encoding.Default.GetBytes(string.Concat(data));
-                byte[] hashBytes = provider.ComputeHash(inputBytes);
+                var inputBytes = Encoding.Default.GetBytes(string.Concat(data));
+                var hashBytes = provider.ComputeHash(inputBytes);
                 return new Guid(hashBytes);
             }
         }

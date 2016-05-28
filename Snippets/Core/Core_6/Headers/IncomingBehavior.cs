@@ -9,12 +9,12 @@
     #region header-incoming-behavior
     public class IncomingBehavior : Behavior<IIncomingPhysicalMessageContext>
     {
-        public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
+        public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
         {
             Dictionary<string, string> headers = context.Message.Headers;
-            string nsbVersion = headers[Headers.NServiceBusVersion];
-            string customHeader = headers["MyCustomHeader"];
-            await next().ConfigureAwait(false);
+            var nsbVersion = headers[Headers.NServiceBusVersion];
+            var customHeader = headers["MyCustomHeader"];
+            return next();
         }
     }
     #endregion

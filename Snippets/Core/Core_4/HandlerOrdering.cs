@@ -1,7 +1,6 @@
 ﻿namespace Core4
 {
     using NServiceBus;
-    using NServiceBus.Unicast.Config;
 
     public class HandlerOrdering
     {
@@ -9,7 +8,7 @@
         {
             #region HandlerOrderingWithCode
 
-            ConfigUnicastBus configUnicastBus = configure.UnicastBus();
+            var configUnicastBus = configure.UnicastBus();
             configUnicastBus.LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>());
 
             #endregion

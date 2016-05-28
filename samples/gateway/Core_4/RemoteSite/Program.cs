@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.Gateway.RemoteSite";
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Gateway.RemoteSite");
         configure.DefaultBuilder();
@@ -17,9 +17,9 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus
+            var bus = startableBus
                 .Start(() => configure.ForInstallationOn<Windows>().Install());
             Console.WriteLine("\r\nPress any key to stop program\r\n");
             Console.ReadKey();

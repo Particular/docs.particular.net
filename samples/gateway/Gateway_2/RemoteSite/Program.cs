@@ -13,14 +13,14 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Gateway.RemoteSite";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Gateway.RemoteSite");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Gateway.RemoteSite");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.EnableFeature<Gateway>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("\r\nPress any key to stop program\r\n");
@@ -28,7 +28,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

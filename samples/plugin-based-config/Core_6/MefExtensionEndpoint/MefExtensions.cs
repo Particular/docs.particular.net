@@ -9,9 +9,10 @@ public static class MefExtensions
 {
     public static async Task ExecuteExports<T>(this CompositionContainer container, Func<T, Task> action)
     {
-        foreach (T export in container.GetAllExports<T>())
+        foreach (var export in container.GetAllExports<T>())
         {
-            await action(export);
+            await action(export)
+                .ConfigureAwait(false);
         }
     }
     static IEnumerable<T> GetAllExports<T>(this CompositionContainer container)

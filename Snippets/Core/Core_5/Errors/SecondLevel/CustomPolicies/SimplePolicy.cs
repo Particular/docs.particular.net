@@ -2,7 +2,6 @@
 {
     using System;
     using NServiceBus;
-    using NServiceBus.SecondLevelRetries.Config;
 
     class SimplePolicy
     {
@@ -10,7 +9,7 @@
         {
             #region SecondLevelRetriesCustomPolicy
 
-            SecondLevelRetriesSettings retriesSettings = busConfiguration.SecondLevelRetries();
+            var retriesSettings = busConfiguration.SecondLevelRetries();
             retriesSettings.CustomRetryPolicy(MyCustomRetryPolicy);
 
             #endregion

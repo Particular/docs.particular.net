@@ -18,7 +18,7 @@ static class Program
             .Level(LogLevel.Warn);
 
         #region DisableSLR
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ErrorHandling.WithoutSLR");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ErrorHandling.WithoutSLR");
         endpointConfiguration.DisableFeature<SecondLevelRetries>();
         #endregion
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -26,7 +26,8 @@ static class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press enter to send a message that will throw an exception.");
@@ -34,21 +35,23 @@ static class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 if (key.Key != ConsoleKey.Enter)
                 {
                     return;
                 }
-                MyMessage m = new MyMessage
+                var myMessage = new MyMessage
                 {
                     Id = Guid.NewGuid()
                 };
-                await endpoint.SendLocal(m);
+                await endpointInstance.SendLocal(myMessage)
+                    .ConfigureAwait(false);
             }
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

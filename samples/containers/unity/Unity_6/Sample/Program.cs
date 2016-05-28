@@ -8,10 +8,10 @@ static class Program
     {
         Console.Title = "Samples.Unity";
         #region ContainerConfiguration
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Unity");
 
-        UnityContainer container = new UnityContainer();
+        var container = new UnityContainer();
         container.RegisterInstance(new MyService());
         busConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
         #endregion
@@ -19,7 +19,7 @@ static class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");

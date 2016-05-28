@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.MessageMutator;
 
-public class DebugFlagMutator : 
+public class DebugFlagMutator :
     IMutateIncomingTransportMessages,
-    IMutateOutgoingTransportMessages, 
+    IMutateOutgoingTransportMessages,
     INeedInitialization
 {
     public static bool Debug => debug.Value;
@@ -21,7 +21,7 @@ public class DebugFlagMutator :
 
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
-        string debugFlag = context.Headers.ContainsKey("Debug") ? context.Headers["Debug"] : "false";
+        var debugFlag = context.Headers.ContainsKey("Debug") ? context.Headers["Debug"] : "false";
         if (debugFlag != null && debugFlag.Equals("true", StringComparison.OrdinalIgnoreCase))
         {
             debug.Value = true;

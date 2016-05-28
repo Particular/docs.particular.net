@@ -7,7 +7,7 @@
         EndpointNameRequired()
         {
             #region 5to6-endpointNameRequired
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("MyEndpointName");
+            var endpointConfiguration = new EndpointConfiguration("MyEndpointName");
             #endregion
         }
 

@@ -9,7 +9,7 @@
         {
             #region OverrideLoggingDefaultsInCode
 
-            DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
+            var defaultFactory = LogManager.Use<DefaultFactory>();
             defaultFactory.Directory("pathToLoggingDirectory");
             defaultFactory.Level(LogLevel.Debug);
 
@@ -20,7 +20,7 @@
         {
             #region OverrideLoggingLevelInCode
 
-            DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
+            var defaultFactory = LogManager.Use<DefaultFactory>();
             defaultFactory.Level(LogLevel.Debug);
 
             #endregion

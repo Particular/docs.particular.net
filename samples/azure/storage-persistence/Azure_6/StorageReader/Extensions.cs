@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-public static class Extensions
+static class Extensions
 {
     public static string Truncate(this string str, int maxLength)
     {
@@ -11,10 +11,10 @@ public static class Extensions
         }
         return str;
     }
-    
+
     public static string DecodeFromKey(this string encodedKey)
     {
-        string base64 = encodedKey.Replace('_', '/');
+        var base64 = encodedKey.Replace('_', '/');
         byte[] bytes = Convert.FromBase64String(base64);
         return Encoding.UTF8.GetString(bytes);
     }

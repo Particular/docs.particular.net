@@ -12,15 +12,15 @@ public static class Resolver
 
     static Resolver()
     {
-        string codebase = typeof(Resolver).Assembly.CodeBase.Remove(0, 8);
-        string currentDirectory = Path.GetDirectoryName(codebase);
+        var codebase = typeof(Resolver).Assembly.CodeBase.Remove(0, 8);
+        var currentDirectory = Path.GetDirectoryName(codebase);
         assemblies = Directory.GetFiles(currentDirectory, "*.dll")
             .Select(Assembly.LoadFrom)
-            .Where(ReferecesShared)
+            .Where(ReferencesShared)
             .ToList();
     }
 
-    static bool ReferecesShared(Assembly assembly)
+    static bool ReferencesShared(Assembly assembly)
     {
         return assembly.GetReferencedAssemblies()
             .Any(name => name.Name == "Shared");
@@ -28,12 +28,13 @@ public static class Resolver
 
     public static async Task Execute<T>(Func<T, Task> action)
     {
-        foreach (Assembly assembly in assemblies)
+        foreach (var assembly in assemblies)
         {
-            foreach (Type type in assembly.GetImplementationTypes<T>())
+            foreach (var type in assembly.GetImplementationTypes<T>())
             {
-                T instance = (T)Activator.CreateInstance(type);
-                await action(instance);
+                var instance = (T)Activator.CreateInstance(type);
+                await action(instance)
+                    .ConfigureAwait(false);
             }
         }
     }

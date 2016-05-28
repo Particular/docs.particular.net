@@ -10,7 +10,7 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomIni
         Configure.Serialization.Json();
         Configure.Features.Enable<Sagas>();
 
-        Configure configure = Configure.With();
+        var configure = Configure.With();
 
         configure.DefineEndpointName("Samples.NServiceBus.Host");
         configure.DefaultBuilder();

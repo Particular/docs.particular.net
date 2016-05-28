@@ -14,10 +14,10 @@ public class Program
     {
         Console.Title = "Samples.Ninject";
         #region ContainerConfiguration
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Ninject");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Ninject");
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        StandardKernel kernel = new StandardKernel();
+        var kernel = new StandardKernel();
         kernel.Bind<MyService>().ToConstant(new MyService());
         endpointConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
         #endregion
@@ -26,18 +26,22 @@ public class Program
         endpointConfiguration.EnableInstallers();
 
 
-        IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         try
         {
-            await endpointInstance.SendLocal(new MyMessage());
+            var myMessage = new MyMessage();
+            await endpointInstance.SendLocal(myMessage)
+                .ConfigureAwait(false);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally 
         {
-            await endpointInstance.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

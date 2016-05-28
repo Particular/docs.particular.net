@@ -9,11 +9,11 @@ public class Handler1 : IHandleMessages<Message>
     static ILog logger = LogManager.GetLogger<Handler1>();
     static Random random = new Random();
 
-    public async Task Handle(Message message, IMessageHandlerContext context)
+    public Task Handle(Message message, IMessageHandlerContext context)
     {
-        int milliseconds = random.Next(100, 1000);
-        logger.InfoFormat("Message received going to Task.Delay({0}ms)", milliseconds);
-        await Task.Delay(milliseconds);
+        var milliseconds = random.Next(100, 1000);
+        logger.Info($"Message received going to Task.Delay({milliseconds}ms)");
+        return Task.Delay(milliseconds);
     }
 }
 #endregion

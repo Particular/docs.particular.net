@@ -25,13 +25,14 @@ public class OwinToMsmq
 
     public async Task Invoke(IDictionary<string, object> environment)
     {
-        using (Stream memoryStream = await RequestAsStream(environment))
-        using (MessageQueue queue = new MessageQueue(queuePath))
-        using (Message message = new Message())
+        using (var memoryStream = await RequestAsStream(environment)
+            .ConfigureAwait(false))
+        using (var queue = new MessageQueue(queuePath))
+        using (var message = new Message())
         {
             message.BodyStream = memoryStream;
-            IDictionary<string, string[]> requestHeaders = (IDictionary<string, string[]>) environment["owin.RequestHeaders"];
-            string messageType = requestHeaders["MessageType"].Single();
+            var requestHeaders = (IDictionary<string, string[]>) environment["owin.RequestHeaders"];
+            var messageType = requestHeaders["MessageType"].Single();
             message.Extension = MsmqHeaderSerializer.CreateHeaders(messageType);
             queue.Send(message, MessageQueueTransactionType.Single);
         }
@@ -39,10 +40,11 @@ public class OwinToMsmq
 
     async Task<Stream> RequestAsStream(IDictionary<string, object> environment)
     {
-        MemoryStream memoryStream = new MemoryStream();
-        using (Stream requestStream = (Stream)environment["owin.RequestBody"])
+        var memoryStream = new MemoryStream();
+        using (var requestStream = (Stream)environment["owin.RequestBody"])
         {
-            await requestStream.CopyToAsync(memoryStream);
+            await requestStream.CopyToAsync(memoryStream)
+                .ConfigureAwait(false);
         }
         return memoryStream;
     }

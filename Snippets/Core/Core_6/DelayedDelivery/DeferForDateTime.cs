@@ -9,12 +9,14 @@ namespace Core6.DelayedDelivery
         async Task SendDelayedMessage(IEndpointInstance endpoint, IMessageHandlerContext handlerContext)
         {
             #region delayed-delivery-datetime
-            SendOptions options = new SendOptions();
+            var options = new SendOptions();
             options.DoNotDeliverBefore(new DateTime(2016, 12, 25));
 
-            await handlerContext.Send(new MessageToBeSentLater(), options);
+            await handlerContext.Send(new MessageToBeSentLater(), options)
+                .ConfigureAwait(false);
             // OR
-            await endpoint.Send(new MessageToBeSentLater(), options);
+            await endpoint.Send(new MessageToBeSentLater(), options)
+                .ConfigureAwait(false);
             #endregion
         }
 

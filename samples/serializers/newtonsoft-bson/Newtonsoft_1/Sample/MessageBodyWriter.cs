@@ -11,7 +11,7 @@ public class MessageBodyWriter :
 
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
-        string bodyAsString = Encoding.UTF8
+        var bodyAsString = Encoding.UTF8
             .GetString(context.Body);
         log.Info("Serialized Message Body:");
         log.Info(bodyAsString);

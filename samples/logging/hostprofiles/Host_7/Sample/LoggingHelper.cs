@@ -10,12 +10,12 @@ static class LoggingHelper
 {
     public static void ConfigureLogging(Level threshold)
     {
-        PatternLayout layout = new PatternLayout
+        var layout = new PatternLayout
         {
             ConversionPattern = "%d %-5p %c - %m%n"
         };
         layout.ActivateOptions();
-        ConsoleAppender appender = new ConsoleAppender
+        var appender = new ConsoleAppender
         {
             Layout = layout,
             Threshold = threshold

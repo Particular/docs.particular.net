@@ -16,6 +16,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Logging.CommonLogging";
+
         #region ConfigureLogging
 
         Common.Logging.LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter
@@ -25,7 +26,7 @@ class Program
 
         NServiceBus.Logging.LogManager.Use<CommonLoggingFactory>();
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Logging.CommonLogging");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Logging.CommonLogging");
 
         #endregion
 
@@ -34,16 +35,19 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new MyMessage());
+            await endpointInstance.SendLocal(new MyMessage())
+                .ConfigureAwait(false);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

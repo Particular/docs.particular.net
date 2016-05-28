@@ -7,12 +7,12 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.PipelineHandlerTimer";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PipelineHandlerTimer");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Run(bus);
         }
@@ -25,7 +25,7 @@ class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             if (key.Key == ConsoleKey.Enter)
             {
                 SendMessage(bus);
@@ -37,7 +37,7 @@ class Program
 
     static void SendMessage(IBus bus)
     {
-        Message message = new Message();
+        var message = new Message();
         bus.SendLocal(message);
 
         Console.WriteLine();

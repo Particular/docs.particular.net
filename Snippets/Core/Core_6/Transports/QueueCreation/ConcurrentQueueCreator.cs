@@ -7,9 +7,9 @@
     #region ConcurrentCustomQueueCreator
     class ConcurrentQueueCreator : ICreateQueues
     {
-        public async Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
+        public Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
         {
-            await Task.WhenAll(queueBindings.SendingAddresses.Select(CreateQueue));
+            return Task.WhenAll(queueBindings.SendingAddresses.Select(CreateQueue));
         }
         #endregion
         static Task CreateQueue(string address)

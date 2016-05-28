@@ -14,13 +14,14 @@ public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
         // Process Order...
         log.Info("Processing received order....");
 
-        OrderPlaced message = new OrderPlaced
+        var message = new OrderPlaced
         {
             OrderId = placeOrder.OrderId,
             WorkerName = Assembly.GetEntryAssembly().GetName().Name
         };
-        await context.Reply(message);
-        log.InfoFormat("Sent Order placed event for orderId [{0}].", placeOrder.OrderId);
+        await context.Reply(message)
+            .ConfigureAwait(false);
+        log.InfoFormat($"Sent Order placed event for orderId [{placeOrder.OrderId}].");
     }
 }
 

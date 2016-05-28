@@ -14,11 +14,10 @@ public class CommandSender
         Console.WriteLine("Press 'D' to send a large message that is marked to be sent using Data Bus");
         Console.WriteLine("Press 'X' to send a message that is marked with expiration time.");
         Console.WriteLine("Press any key to exit");
-
-
+        
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
 
             switch (key.Key)
@@ -57,50 +56,54 @@ public class CommandSender
 
     static void Data(IBus bus)
     {
-        Guid requestId = Guid.NewGuid();
+        var requestId = Guid.NewGuid();
 
-        bus.Send(new LargeMessage
+        var largeMessage = new LargeMessage
         {
             RequestId = requestId,
             LargeDataBus = new byte[1024*1024*5]
-        });
+        };
+        bus.Send(largeMessage);
 
         Console.WriteLine("Request sent id: " + requestId);
     }
 
     static void Express(IBus bus)
     {
-        Guid requestId = Guid.NewGuid();
+        var requestId = Guid.NewGuid();
 
-        bus.Send(new RequestExpress
+        var requestExpress = new RequestExpress
         {
             RequestId = requestId
-        });
+        };
+        bus.Send(requestExpress);
 
         Console.WriteLine("Request sent id: " + requestId);
     }
 
     static void SendRequest(IBus bus)
     {
-        Guid requestId = Guid.NewGuid();
+        var requestId = Guid.NewGuid();
 
-        bus.Send(new Request
+        var request = new Request
         {
             RequestId = requestId
-        });
+        };
+        bus.Send(request);
 
         Console.WriteLine("Request sent id: " + requestId);
     }
 
     static void SendCommand(IBus bus)
     {
-        Guid commandId = Guid.NewGuid();
+        var commandId = Guid.NewGuid();
 
-        bus.Send(new MyCommand
-                 {
-                     CommandId = commandId,
-                     EncryptedString = "Some sensitive information"
-                 });
+        var myCommand = new MyCommand
+        {
+            CommandId = commandId,
+            EncryptedString = "Some sensitive information"
+        };
+        bus.Send(myCommand);
 
         Console.WriteLine("Command sent id: " + commandId);
 

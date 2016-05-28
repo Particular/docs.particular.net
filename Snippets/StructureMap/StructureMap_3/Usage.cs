@@ -16,7 +16,7 @@ class Usage
     {
         #region StructureMap_Existing
 
-        Container container = new Container(x => x.For<MyService>().Use(new MyService()));
+        var container = new Container(x => x.For<MyService>().Use(new MyService()));
         configure.StructureMapBuilder(container);
 
         #endregion

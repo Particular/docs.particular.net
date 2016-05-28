@@ -15,11 +15,11 @@ class Program
     {
         Console.Title = "Samples.Notifications";
         #region logging
-        DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
+        var defaultFactory = LogManager.Use<DefaultFactory>();
         defaultFactory.Level(LogLevel.Fatal);
         #endregion
         #region endpointConfig
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Notifications");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Notifications");
         SubscribeToNotifications.Subscribe(endpointConfiguration);
         #endregion
 
@@ -28,17 +28,19 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await endpoint.SendLocal(new MyMessage());
+            await endpointInstance.SendLocal(new MyMessage())
+                .ConfigureAwait(false);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

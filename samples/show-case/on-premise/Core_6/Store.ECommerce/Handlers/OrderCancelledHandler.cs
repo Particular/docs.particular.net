@@ -7,9 +7,10 @@ public class OrderCancelledHandler : IHandleMessages<OrderCancelled>
 {
     public Task Handle(OrderCancelled message, IMessageHandlerContext context)
     {
-        IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<OrdersHub>();
+        var hubContext = GlobalHost.ConnectionManager.GetHubContext<OrdersHub>();
 
-        hubContext.Clients.Client(message.ClientId).orderCancelled(new
+        hubContext.Clients.Client(message.ClientId)
+            .orderCancelled(new
             {
                 message.OrderNumber,
             });

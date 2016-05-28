@@ -8,18 +8,18 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.ASB.NativeIntegration.Sender";
-        string connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
-        QueueClient queueClient = QueueClient.CreateFromConnectionString(connectionString, "Samples.ASB.NativeIntegration");
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        var queueClient = QueueClient.CreateFromConnectionString(connectionString, "Samples.ASB.NativeIntegration");
 
         #region SerializedMessage
 
-        string nativeMessage = @"{""Content"":""Hello from native sender"",""SendOnUtc"":""2015-10-27T20:47:27.4682716Z""}";
+        var nativeMessage = @"{""Content"":""Hello from native sender"",""SendOnUtc"":""2015-10-27T20:47:27.4682716Z""}";
 
         #endregion
 
-        MemoryStream nativeMessageAsStream = new MemoryStream(Encoding.UTF8.GetBytes(nativeMessage));
+        var nativeMessageAsStream = new MemoryStream(Encoding.UTF8.GetBytes(nativeMessage));
 
-        BrokeredMessage message = new BrokeredMessage(nativeMessageAsStream)
+        var message = new BrokeredMessage(nativeMessageAsStream)
         {
             MessageId = Guid.NewGuid().ToString()
         };

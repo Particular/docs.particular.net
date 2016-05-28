@@ -15,8 +15,12 @@ public class OrderHandler : IHandleMessages<ClientOrder>
 
     public void Handle(ClientOrder message)
     {
-        Console.WriteLine("Handling ClientOrder with ID {0}", message.OrderId);
-        bus.Reply(new ClientOrderAccepted { OrderId = message.OrderId });
+        Console.WriteLine($"Handling ClientOrder with ID {message.OrderId}");
+        var clientOrderAccepted = new ClientOrderAccepted
+        {
+            OrderId = message.OrderId
+        };
+        bus.Reply(clientOrderAccepted);
     }
 
     #endregion

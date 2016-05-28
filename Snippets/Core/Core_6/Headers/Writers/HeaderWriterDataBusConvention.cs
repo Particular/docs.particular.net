@@ -1,7 +1,5 @@
 ﻿namespace Core6.Headers.Writers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
@@ -28,10 +26,10 @@
         [Test]
         public async Task Write()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration(endpointName);
+            var endpointConfiguration = new EndpointConfiguration(endpointName);
             var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
             dataBus.BasePath(@"..\..\..\storage");
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
+            var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
@@ -39,14 +37,18 @@
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
 
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-            await endpoint.SendLocal(new MessageToSend
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
+            var messageToSend = new MessageToSend
             {
                 LargeProperty1 = new byte[10],
                 LargeProperty2 = new byte[10]
-            });
+            };
+            await endpointInstance.SendLocal(messageToSend)
+                .ConfigureAwait(false);
             ManualResetEvent.WaitOne();
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
 
         class MessageToSend : IMessage
@@ -68,7 +70,7 @@
 
             public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
-                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusConvention>(context.Headers)
+                var headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusConvention>(context.Headers)
                     .Replace(typeof(MessageToSend).FullName, "MessageToSend");
                 SnippetLogger.Write(headerText, version: "6");
                 SnippetLogger.Write(Encoding.Default.GetString(context.Body), version: "6", suffix: "Body");

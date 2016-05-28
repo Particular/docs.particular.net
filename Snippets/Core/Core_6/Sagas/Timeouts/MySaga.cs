@@ -17,25 +17,27 @@
                 .ToSaga(sagaData => sagaData.SomeID);
         }
 
-        public async Task Handle(Message1 message, IMessageHandlerContext context)
+        public Task Handle(Message1 message, IMessageHandlerContext context)
         {
-            await RequestTimeout<MyCustomTimeout>(context, TimeSpan.FromHours(1));
+            return RequestTimeout<MyCustomTimeout>(context, TimeSpan.FromHours(1));
         }
 
-        public async Task Handle(Message2 message, IMessageHandlerContext context)
+        public Task Handle(Message2 message, IMessageHandlerContext context)
         {
             Data.Message2Arrived = true;
-            await RequestTimeout(context, TimeSpan.FromHours(1), new AlmostDoneMessage
+            var almostDoneMessage = new AlmostDoneMessage
             {
                 SomeID = Data.SomeID
-            });
+            };
+            return RequestTimeout(context, TimeSpan.FromHours(1), almostDoneMessage);
         }
 
         public async Task Timeout(MyCustomTimeout state, IMessageHandlerContext context)
         {
             if (!Data.Message2Arrived)
             {
-                await RequestTimeout(context, TimeSpan.FromHours(1), new TiredOfWaitingForMessage2());
+                await RequestTimeout(context, TimeSpan.FromHours(1), new TiredOfWaitingForMessage2())
+                    .ConfigureAwait(false);
             }
         }
     }

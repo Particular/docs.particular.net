@@ -12,7 +12,7 @@
             //To Provide FLR Config
             if (typeof(T) == typeof(MsmqTransportConfig))
             {
-                MsmqTransportConfig flrConfig = new MsmqTransportConfig
+                var flrConfig = new MsmqTransportConfig
                 {
                     MaxRetries = 2
                 };

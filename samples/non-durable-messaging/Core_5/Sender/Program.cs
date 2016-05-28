@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.MessageDurability.Sender";
         #region non-transactional
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.Transactions()
             .Disable();
         #endregion
@@ -16,8 +16,8 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.Send("Samples.MessageDurability.Receiver", new MyMessage());
             Console.WriteLine("Press any key to exit");

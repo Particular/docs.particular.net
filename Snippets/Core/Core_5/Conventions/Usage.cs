@@ -9,7 +9,7 @@ namespace Core5.Conventions
         {
             #region MessageConventions
 
-            ConventionsBuilder conventions = busConfiguration.Conventions();
+            var conventions = busConfiguration.Conventions();
             conventions.DefiningCommandsAs(t => t.Namespace == "MyNamespace.Messages.Commands");
             conventions.DefiningEventsAs(t => t.Namespace == "MyNamespace.Messages.Events");
             conventions.DefiningMessagesAs(t => t.Namespace == "MyNamespace.Messages");

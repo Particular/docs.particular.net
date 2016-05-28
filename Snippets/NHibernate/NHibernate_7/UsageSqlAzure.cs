@@ -8,7 +8,7 @@ class UsageSqlAzure
     {
         #region SqlAzureNHibernateDriverConfiguration
 
-        Configuration nhConfiguration = new Configuration
+        var nhConfiguration = new Configuration
         {
             Properties =
             {

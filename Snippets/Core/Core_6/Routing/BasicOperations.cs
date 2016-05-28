@@ -8,24 +8,30 @@
         async Task ConcreteMessage(IPipelineContext context)
         {
             #region InstancePublish
-            MyEvent message = new MyEvent { SomeProperty = "Hello world" };
-            await context.Publish(message);
+            var message = new MyEvent
+            {
+                SomeProperty = "Hello world"
+            };
+            await context.Publish(message)
+                .ConfigureAwait(false);
             #endregion
         }
 
-        async Task InterfaceMessage(IPipelineContext context)
+        Task InterfaceMessage(IPipelineContext context)
         {
             #region InterfacePublish
-            await context.Publish<IMyEvent>(m => { m.SomeProperty = "Hello world"; });
+            return context.Publish<IMyEvent>(m => { m.SomeProperty = "Hello world"; });
             #endregion
         }
 
         async Task Subscribe(IEndpointInstance endpoint)
         {
             #region ExplicitSubscribe
-            await endpoint.Subscribe<MyEvent>();
+            await endpoint.Subscribe<MyEvent>()
+                .ConfigureAwait(false);
 
-            await endpoint.Unsubscribe<MyEvent>();
+            await endpoint.Unsubscribe<MyEvent>()
+                .ConfigureAwait(false);
             #endregion
         }
 

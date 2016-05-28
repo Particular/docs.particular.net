@@ -26,7 +26,7 @@
 
             // the outgoing message
             // optionally replace the message instance by setting context.OutgoingMessage
-            object outgoingMessage = context.OutgoingMessage;
+            var outgoingMessage = context.OutgoingMessage;
 
 
             return Task.FromResult(0);

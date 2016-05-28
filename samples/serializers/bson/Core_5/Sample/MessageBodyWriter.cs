@@ -12,7 +12,7 @@ public class MessageBodyWriter :
 
     public void MutateIncoming(TransportMessage transportMessage)
     {
-        string bodyAsString = Encoding.UTF8
+        var bodyAsString = Encoding.UTF8
             .GetString(transportMessage.Body);
         log.Info("Serialized Message Body:");
         Console.WriteLine(bodyAsString);

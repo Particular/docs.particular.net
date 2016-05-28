@@ -22,7 +22,7 @@
         public void Invoke(IncomingContext context, Action next)
         {
             // access the shared data
-            SharedData data = context.Get<SharedData>();
+            var data = context.Get<SharedData>();
 
             next();
         }

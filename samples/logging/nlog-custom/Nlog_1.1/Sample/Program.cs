@@ -13,9 +13,9 @@ class Program
 
         #region ConfigureNLog
 
-        LoggingConfiguration config = new LoggingConfiguration();
+        var config = new LoggingConfiguration();
 
-        ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget
+        var consoleTarget = new ColoredConsoleTarget
         {
             Layout = "${level}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"
         };
@@ -30,7 +30,7 @@ class Program
 
         NServiceBus.Logging.LogManager.Use<NLogFactory>();
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Logging.NLogCustom");
 
         #endregion
@@ -39,7 +39,7 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");

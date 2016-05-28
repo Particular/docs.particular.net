@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Bson;
 using NServiceBus;
-using NServiceBus.Serialization;
 
 static class Program
 {
@@ -16,9 +15,8 @@ static class Program
     {
         Console.Title = "Samples.Serialization.ExternalBson";
         #region config
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalBson");
-        SerializationExtentions<NewtonsoftSerializer> serialization =
-            endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalBson");
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         serialization.ReaderCreator(stream => new BsonReader(stream));
         serialization.WriterCreator(stream => new BsonWriter(stream));
 
@@ -32,11 +30,12 @@ static class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             #region message
-            CreateOrder message = new CreateOrder
+            var message = new CreateOrder
             {
                 OrderId = 9,
                 Date = DateTime.Now,
@@ -55,7 +54,8 @@ static class Program
                     },
                 }
             };
-            await endpoint.SendLocal(message);
+            await endpointInstance.SendLocal(message)
+                .ConfigureAwait(false);
             #endregion
             Console.WriteLine("Order Sent");
             Console.WriteLine("Press any key to exit");
@@ -63,7 +63,8 @@ static class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

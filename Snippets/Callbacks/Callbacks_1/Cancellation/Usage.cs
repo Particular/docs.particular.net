@@ -2,22 +2,24 @@
 {
     using System;
     using System.Threading;
+    using System.Threading.Tasks;
     using NServiceBus;
 
     class Usage
     {
-        async void Simple(IEndpointInstance endpoint)
+        async Task Simple(IEndpointInstance endpoint)
         {
             #region CancelCallback
 
-            SendOptions sendOptions = new SendOptions();
-            CancellationTokenSource cancellationToken = new CancellationTokenSource();
+            var sendOptions = new SendOptions();
+            var cancellationToken = new CancellationTokenSource();
             sendOptions.RegisterCancellationToken(cancellationToken.Token);
             cancellationToken.CancelAfter(TimeSpan.FromSeconds(5));
-            Message message = new Message();
+            var message = new Message();
             try
             {
-                int response = await endpoint.Request<int>(message, sendOptions);
+                var response = await endpoint.Request<int>(message, sendOptions)
+                    .ConfigureAwait(false);
             }
             catch (OperationCanceledException)
             {

@@ -14,7 +14,7 @@ public class ForwardBehavior : ForkConnector<IIncomingPhysicalMessageContext, ID
         string destination;
         if (context.Message.Headers.TryGetValue("$.store-and-forward.destination", out destination))
         {
-            TransportOperation operation = new TransportOperation(
+            var operation = new TransportOperation(
                 new OutgoingMessage(context.MessageId, context.Message.Headers, context.Message.Body),
                 new UnicastAddressTag(destination));
             return fork(new DispatchContext(operation, context));
@@ -22,8 +22,8 @@ public class ForwardBehavior : ForkConnector<IIncomingPhysicalMessageContext, ID
         }
         if (context.Message.Headers.TryGetValue("$.store-and-forward.eventtype", out destination))
         {
-            Type messageType = Type.GetType(destination, true);
-            TransportOperation operation = new TransportOperation(
+            var messageType = Type.GetType(destination, true);
+            var operation = new TransportOperation(
                 new OutgoingMessage(context.MessageId, context.Message.Headers, context.Message.Body),
                 new MulticastAddressTag(messageType));
             return fork(new DispatchContext(operation, context));

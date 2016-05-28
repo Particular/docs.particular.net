@@ -13,8 +13,8 @@
             #endregion
 
             #region ReadTuning
-            int messageThroughputPerSecond = unicastBus.Transport.MaximumMessageThroughputPerSecond;
-            int maximumConcurrencyLevel = unicastBus.Transport.MaximumConcurrencyLevel;
+            var messageThroughputPerSecond = unicastBus.Transport.MaximumMessageThroughputPerSecond;
+            var maximumConcurrencyLevel = unicastBus.Transport.MaximumConcurrencyLevel;
 
             #endregion
         }

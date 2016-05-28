@@ -7,12 +7,13 @@ namespace Core6.Object
 
     public class Handler : IHandleMessages<Message>
     {
-        public async Task Handle(Message message, IMessageHandlerContext context)
+        public Task Handle(Message message, IMessageHandlerContext context)
         {
-            await context.Reply(new ResponseMessage
+            var responseMessage = new ResponseMessage
             {
                 Property = "PropertyValue"
-            });
+            };
+            return context.Reply(responseMessage);
         }
     }
 

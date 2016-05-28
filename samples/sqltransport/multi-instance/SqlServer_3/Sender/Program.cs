@@ -18,7 +18,7 @@ public class Program
 
         #region SenderConfiguration
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.EnableLegacyMultiInstanceMode(ConnectionProvider.GetConnection);
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -27,7 +27,8 @@ public class Program
 
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         Console.WriteLine("Press <enter> to send a message");
         Console.WriteLine("Press any other key to exit");
@@ -39,12 +40,13 @@ public class Program
                 {
                     return;
                 }
-                PlaceOrder(endpoint);
+                PlaceOrder(endpointInstance);
             }
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 
@@ -52,7 +54,7 @@ public class Program
     {
         #region SendMessage
 
-        ClientOrder order = new ClientOrder
+        var order = new ClientOrder
         {
             OrderId = Guid.NewGuid()
         };
@@ -61,7 +63,7 @@ public class Program
 
         #endregion
 
-        Console.WriteLine("ClientOrder message sent with ID {0}", order.OrderId);
+        Console.WriteLine($"ClientOrder message sent with ID {order.OrderId}");
     }
 
 }

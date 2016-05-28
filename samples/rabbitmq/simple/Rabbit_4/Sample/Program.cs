@@ -14,7 +14,7 @@ class Program
         Console.Title = "Samples.RabbitMQ.Simple";
         #region ConfigureRabbit
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.Simple");
+        var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.Simple");
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=localhost");
 
@@ -24,10 +24,13 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-        await endpoint.SendLocal(new MyMessage());
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
+        await endpointInstance.SendLocal(new MyMessage())
+            .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpoint.Stop();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

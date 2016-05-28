@@ -5,10 +5,10 @@ using NServiceBus;
 
 public class PingHandler : IHandleMessages<Ping>
 {
-    public async Task Handle(Ping message, IMessageHandlerContext context)
+    public Task Handle(Ping message, IMessageHandlerContext context)
     {
         VerificationLogger.Write("Receiver", "Got Ping and will reply with Pong");
-        await context.Reply(new Pong());
+        return context.Reply(new Pong());
     }
 }
 

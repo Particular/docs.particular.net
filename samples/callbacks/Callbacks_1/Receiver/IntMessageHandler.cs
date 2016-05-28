@@ -8,10 +8,10 @@ public class IntMessageHandler : IHandleMessages<IntMessage>
 {
     static ILog log = LogManager.GetLogger<EnumMessageHandler>();
 
-    public async Task Handle(IntMessage message, IMessageHandlerContext context)
+    public Task Handle(IntMessage message, IMessageHandlerContext context)
     {
         log.Info("Message received, Returning");
-        await context.Reply(10);
+        return context.Reply(10);
     }
 }
 

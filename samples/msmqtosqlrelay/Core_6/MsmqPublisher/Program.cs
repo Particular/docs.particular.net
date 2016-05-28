@@ -17,21 +17,23 @@ class Program
         Console.Title = "Samples.MsmqToSqlRelay.MsmqPublisher";
         #region publisher-config
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("MsmqPublisher");
+        var endpointConfiguration = new EndpointConfiguration("MsmqPublisher");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForMsmqTransport;Integrated Security=True");
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            Start(endpoint);
+            Start(endpointInstance);
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 
@@ -44,7 +46,7 @@ class Program
         #region publisher-loop
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
 
             if (key.Key != ConsoleKey.Enter)

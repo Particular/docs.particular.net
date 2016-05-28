@@ -25,7 +25,8 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         try
         {
@@ -43,7 +44,7 @@ class Program
                 switch (key.Key)
                 {
                     case ConsoleKey.D1:
-                        await endpoint.Publish<BaseEvent>(e =>
+                        await endpointInstance.Publish<BaseEvent>(e =>
                         {
                             e.EventId = eventId;
                         });
@@ -51,7 +52,7 @@ class Program
                         break;
 
                     case ConsoleKey.D2:
-                        await endpoint.Publish<DerivedEvent>(e =>
+                        await endpointInstance.Publish<DerivedEvent>(e =>
                         {
                             e.EventId = eventId;
                             e.Data = "more data";
@@ -67,7 +68,7 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop();
         }
     }
 }

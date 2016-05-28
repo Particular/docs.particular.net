@@ -4,7 +4,7 @@ using NServiceBus.Pipeline;
 
 internal class PropagateOutgoingTenantIdBehavior : Behavior<IOutgoingLogicalMessageContext>
 {
-    public override async Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
+    public override Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
     {
         #region PropagateTenantIdOutgoing
 
@@ -13,7 +13,7 @@ internal class PropagateOutgoingTenantIdBehavior : Behavior<IOutgoingLogicalMess
         {
             context.Headers["TenantId"] = tenant;
         }
-        await next().ConfigureAwait(false);
+        return next();
 
         #endregion
     }

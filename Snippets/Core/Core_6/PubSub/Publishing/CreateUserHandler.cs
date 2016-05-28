@@ -6,12 +6,13 @@
     #region publishFromHandler
     public class CreateUserHandler : IHandleMessages<CreateUserCommand>
     {
-        public async Task Handle(CreateUserCommand message, IMessageHandlerContext context)
+        public Task Handle(CreateUserCommand message, IMessageHandlerContext context)
         {
-            await context.Publish<UserCreatedEvent>(e =>
+            var userCreatedEvent = new UserCreatedEvent
             {
-                e.Name = message.Name;
-            });
+                Name = message.Name
+            };
+            return context.Publish(userCreatedEvent);
         }
     }
     #endregion

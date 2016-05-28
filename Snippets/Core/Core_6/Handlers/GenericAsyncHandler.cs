@@ -11,10 +11,10 @@
     {
         static ILog logger = LogManager.GetLogger<GenericAsyncHandler>();
 
-        public async Task Handle(object message, IMessageHandlerContext context)
+        public Task Handle(object message, IMessageHandlerContext context)
         {
-            logger.InfoFormat("Received a message of type {0}.", message.GetType().Name);
-            await SomeLibrary.SomeAsyncMethod(message);
+            logger.InfoFormat($"Received a message of type {message.GetType().Name}.");
+            return SomeLibrary.SomeAsyncMethod(message);
         }
     }
 

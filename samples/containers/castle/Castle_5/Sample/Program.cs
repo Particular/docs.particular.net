@@ -9,10 +9,10 @@ static class Program
     {
         Console.Title = "Samples.Castle";
         #region ContainerConfiguration
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Castle");
 
-        WindsorContainer container = new WindsorContainer();
+        var container = new WindsorContainer();
         container.Register(Component.For<MyService>().Instance(new MyService()));
 
         busConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
@@ -22,7 +22,7 @@ static class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");

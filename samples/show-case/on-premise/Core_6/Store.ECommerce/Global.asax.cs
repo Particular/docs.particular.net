@@ -6,11 +6,11 @@ using NServiceBus;
 
 public class MvcApplication : HttpApplication
 {
-    public static IEndpointInstance Endpoint;
+    public static IEndpointInstance EndpointInstance;
 
     public override void Dispose()
     {
-        Endpoint?.Stop().GetAwaiter().GetResult();
+        EndpointInstance?.Stop().GetAwaiter().GetResult();
         base.Dispose();
     }
 
@@ -21,13 +21,14 @@ public class MvcApplication : HttpApplication
 
     static async Task AsyncStart()
     {
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Store.ECommerce");
+        var endpointConfiguration = new EndpointConfiguration("Store.ECommerce");
         endpointConfiguration.PurgeOnStartup(true);
 
         endpointConfiguration.ApplyCommonConfiguration();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        Endpoint = await NServiceBus.Endpoint.Start(endpointConfiguration);
+        EndpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         AreaRegistration.RegisterAllAreas();
         FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -13,7 +13,7 @@ class Program
     static async Task AsyncRun()
     {
         Console.Title = "Samples.Headers";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Headers");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Headers");
 
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
@@ -33,13 +33,15 @@ class Program
         endpointConfiguration.AddHeaderToAllOutgoingMessages("AllOutgoing", "ValueAllOutgoing");
 
         #endregion
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             #region sending
 
-            MyMessage myMessage = new MyMessage();
-            await endpoint.SendLocal(myMessage);
+            var myMessage = new MyMessage();
+            await endpointInstance.SendLocal(myMessage)
+                .ConfigureAwait(false);
 
             #endregion
 
@@ -48,7 +50,8 @@ class Program
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

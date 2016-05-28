@@ -8,7 +8,7 @@ public class HandlerUsingManipulatedPrincipal : IHandleMessages<MyMessage>
 
     public void Handle(MyMessage message)
     {
-        string usernameFromThread = Thread.CurrentPrincipal.Identity.Name;
+        var usernameFromThread = Thread.CurrentPrincipal.Identity.Name;
         logger.Info("Username extracted from Thread.CurrentPrincipal: " + usernameFromThread);
     }
 }

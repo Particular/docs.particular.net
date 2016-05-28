@@ -12,20 +12,21 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.RavenDB.Client";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Client");
+        var endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         Console.WriteLine("Press 'enter' to send a StartOrder messages");
         Console.WriteLine("Press any other key to exit");
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
 
             if (key.Key != ConsoleKey.Enter)
@@ -33,14 +34,17 @@ class Program
                 break;
             }
 
-            Guid orderId = Guid.NewGuid();
-            await endpoint.Send(new StartOrder
+            var orderId = Guid.NewGuid();
+            var startOrder = new StartOrder
             {
                 OrderId = orderId
-            });
+            };
+            await endpointInstance.Send(startOrder)
+                .ConfigureAwait(false);
             Console.WriteLine("StartOrder Message sent with OrderId  " + orderId);
         }
 
-        await endpoint.Stop();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

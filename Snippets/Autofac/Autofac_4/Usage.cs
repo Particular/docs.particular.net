@@ -16,9 +16,9 @@ class Usage
     {
         #region Autofac_Existing
 
-        ContainerBuilder builder = new ContainerBuilder();
+        var builder = new ContainerBuilder();
         builder.RegisterInstance(new MyService());
-        IContainer container = builder.Build();
+        var container = builder.Build();
         configure.AutofacBuilder(container);
 
         #endregion

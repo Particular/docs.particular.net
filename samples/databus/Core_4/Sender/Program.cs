@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.DataBus.Sender";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.DataBus.Sender");
         configure.DefaultBuilder();
@@ -19,16 +19,16 @@ class Program
         #region ConfigureDataBus
         configure.FileShareDataBus("..\\..\\..\\storage");
         #endregion
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             Console.WriteLine("Press 'D' to send a databus large message");
             Console.WriteLine("Press 'N' to send a normal large message exceed the size limit and throw");
             Console.WriteLine("Press any other key to exit");
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key == ConsoleKey.N)
@@ -51,7 +51,7 @@ class Program
     static void SendMessageLargePayload(IBus bus)
     {
         #region SendMessageLargePayload
-        MessageWithLargePayload message = new MessageWithLargePayload
+        var message = new MessageWithLargePayload
         {
             SomeProperty = "This message contains a large blob that will be sent on the data bus",
             LargeBlob = new DataBusProperty<byte[]>(new byte[1024 * 1024 * 5]) //5MB
@@ -65,7 +65,7 @@ class Program
     static void SendMessageTooLargePayload(IBus bus)
     {
         #region SendMessageTooLargePayload
-        AnotherMessageWithLargePayload message = new AnotherMessageWithLargePayload
+        var message = new AnotherMessageWithLargePayload
         {
             LargeBlob = new byte[1024 * 1024 * 5] //5MB
         };

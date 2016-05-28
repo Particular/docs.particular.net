@@ -8,7 +8,7 @@ public class ErrorQueueTests
     [Test]
     public void ReturnMessageToSourceQueue()
     {
-        ConnectionFactory connectionFactory = new ConnectionFactory
+        var connectionFactory = new ConnectionFactory
         {
             HostName = "localhost",
             Port = AmqpTcpEndpoint.UseDefaultPort,

@@ -11,9 +11,10 @@
         {
             #region Hosting-SendOnly
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
+            var endpointConfiguration = new EndpointConfiguration("EndpointName");
             endpointConfiguration.SendOnly();
-            IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
 
             #endregion
         }
@@ -21,20 +22,23 @@
         async Task Startup()
         {
             #region Hosting-Startup
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
+            var endpointConfiguration = new EndpointConfiguration("EndpointName");
             //Apply configuration
-            IStartableEndpoint startableEndpoint = await Endpoint.Create(endpointConfiguration);
-            IEndpointInstance endpointInstance = await startableEndpoint.Start();
+            var startableEndpoint = await Endpoint.Create(endpointConfiguration)
+                .ConfigureAwait(false);
+            var endpointInstance = await startableEndpoint.Start()
+                .ConfigureAwait(false);
 
             //Shortcut
-            IEndpointInstance endpointInstance2 = await Endpoint.Start(endpointConfiguration);
+            var endpointInstance2 = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
             #endregion
         }
 
-        async Task Shutdown(IEndpointInstance endpointInstance)
+        Task Shutdown(IEndpointInstance endpointInstance)
         {
             #region Hosting-Shutdown
-            await endpointInstance.Stop();
+            return endpointInstance.Stop();
             #endregion
         }
 
@@ -56,10 +60,11 @@
         async Task InjectEndpoint()
         {
             #region Hosting-Inject
-            ContainerBuilder containerBuilder = new ContainerBuilder();
+            var containerBuilder = new ContainerBuilder();
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
-            IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
+            var endpointConfiguration = new EndpointConfiguration("EndpointName");
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
             containerBuilder.Register(_ => endpointInstance).InstancePerDependency();
 
             #endregion

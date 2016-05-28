@@ -12,7 +12,7 @@
         public UnicastBusConfig GetConfiguration()
         {
             //read from existing config
-            UnicastBusConfig config = (UnicastBusConfig) ConfigurationManager
+            var config = (UnicastBusConfig) ConfigurationManager
                 .GetSection(typeof(UnicastBusConfig).Name);
             if (config == null)
             {

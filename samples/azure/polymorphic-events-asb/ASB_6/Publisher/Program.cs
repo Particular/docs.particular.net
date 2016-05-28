@@ -9,7 +9,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.ASB.Polymorphic.Publisher";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.ASB.Polymorphic.Publisher");
         busConfiguration.ScaleOut().UseSingleBrokerQueue();
         var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
@@ -19,7 +19,7 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.DisableFeature<SecondLevelRetries>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press '1' to publish the base event");
             Console.WriteLine("Press '2' to publish the derived event");
@@ -27,10 +27,10 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
-                Guid eventId = Guid.NewGuid();
+                var eventId = Guid.NewGuid();
 
                 switch (key.Key)
                 {

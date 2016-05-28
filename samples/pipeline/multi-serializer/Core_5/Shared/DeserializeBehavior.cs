@@ -6,7 +6,6 @@ using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
-using NServiceBus.Serialization;
 using NServiceBus.Unicast.Messages;
 
 #region deserialize-behavior
@@ -26,7 +25,7 @@ class DeserializeBehavior : IBehavior<IncomingContext>
 
     public void Invoke(IncomingContext context, Action next)
     {
-        TransportMessage transportMessage = context.PhysicalMessage;
+        var transportMessage = context.PhysicalMessage;
 
         if (transportMessage.IsControlMessage())
         {
@@ -77,9 +76,9 @@ class DeserializeBehavior : IBehavior<IncomingContext>
 
     List<LogicalMessage> Deserialize(TransportMessage physicalMessage, List<MessageMetadata> messageMetadata)
     {
-        IMessageSerializer messageSerializer = serializationMapper.GetSerializer(physicalMessage.Headers);
+        var messageSerializer = serializationMapper.GetSerializer(physicalMessage.Headers);
         List<Type> messageTypesToDeserialize = messageMetadata.Select(x => x.MessageType).ToList();
-        using (MemoryStream stream = new MemoryStream(physicalMessage.Body))
+        using (var stream = new MemoryStream(physicalMessage.Body))
         {
             return messageSerializer.Deserialize(stream, messageTypesToDeserialize)
                 .Select(x => logicalMessageFactory.Create(x.GetType(), x, physicalMessage.Headers))

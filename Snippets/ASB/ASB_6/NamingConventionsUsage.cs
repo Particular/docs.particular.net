@@ -14,15 +14,15 @@ class NamingConventionsUsage
         {
             if (entityType == EntityType.Queue || entityType == EntityType.Topic)
             {
-                Regex regexQueueAndTopicValidCharacters = new Regex(@"[^a-zA-Z0-9\-\._\/]");
-                Regex regexLeadingAndTrailingForwardSlashes = new Regex(@"^\/|\/$");
+                var regexQueueAndTopicValidCharacters = new Regex(@"[^a-zA-Z0-9\-\._\/]");
+                var regexLeadingAndTrailingForwardSlashes = new Regex(@"^\/|\/$");
 
-                string result = regexQueueAndTopicValidCharacters.Replace(entityName, "");
+                var result = regexQueueAndTopicValidCharacters.Replace(entityName, "");
                 return regexLeadingAndTrailingForwardSlashes.Replace(result, "");
             }
 
             // Subscription
-            Regex regexSubscriptionValidCharacters = new Regex(@"[^a-zA-Z0-9\-\._]");
+            var regexSubscriptionValidCharacters = new Regex(@"[^a-zA-Z0-9\-\._]");
             return regexSubscriptionValidCharacters.Replace(entityName, "");
         };
 

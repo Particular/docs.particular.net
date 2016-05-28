@@ -1,6 +1,5 @@
 ﻿namespace Core5.Headers
 {
-    using System.Collections.Generic;
     using NServiceBus;
     using NServiceBus.Saga;
 
@@ -10,9 +9,9 @@
     {
         public void Handle(MyMessage message)
         {
-            IDictionary<string, string> headers = Bus.CurrentMessageContext.Headers;
-            string nsbVersion = headers[Headers.NServiceBusVersion];
-            string customHeader = headers["MyCustomHeader"];
+            var headers = Bus.CurrentMessageContext.Headers;
+            var nsbVersion = headers[Headers.NServiceBusVersion];
+            var customHeader = headers["MyCustomHeader"];
         }
 
         #endregion

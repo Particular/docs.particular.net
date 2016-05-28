@@ -11,7 +11,7 @@ class Program
         #region non-transactional
         Configure.Transactions.Disable();
         #endregion
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.MessageDurability.Sender");
         configure.DefaultBuilder();
@@ -19,9 +19,9 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             bus.Send("Samples.MessageDurability.Receiver", new MyMessage());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

@@ -17,7 +17,7 @@ class Usage
     {
         #region Ninject_Existing
 
-        StandardKernel kernel = new StandardKernel();
+        var kernel = new StandardKernel();
         kernel.Bind<MyService>().ToConstant(new MyService());
         endpointConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
 
@@ -28,7 +28,7 @@ class Usage
     {
         #region NinjectUnitOfWork [4.0,6.0]
 
-        StandardKernel kernel = new StandardKernel();
+        var kernel = new StandardKernel();
 
         kernel.Bind<MyService>().ToSelf().InUnitOfWorkScope();
 
@@ -39,7 +39,7 @@ class Usage
     {
         #region NinjectConditionalBindings [4.0,6.0]
 
-        StandardKernel kernel = new StandardKernel();
+        var kernel = new StandardKernel();
 
         // always create a new instance when not processing a message
         kernel.Bind<MyService>().ToSelf()

@@ -9,7 +9,7 @@ class Program
         Console.Title = "Samples.RabbitMQ.Simple";
         Configure.Serialization.Json();
         #region ConfigureRabbit
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.RabbitMQ.Simple");
         configure.DefaultBuilder();
@@ -18,9 +18,9 @@ class Program
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             bus.SendLocal(new MyMessage());
 
             Console.WriteLine("Press any key to exit");

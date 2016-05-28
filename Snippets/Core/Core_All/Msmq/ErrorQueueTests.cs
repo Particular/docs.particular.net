@@ -35,11 +35,11 @@
         [Test]
         public void ReturnMessageToSourceQueue()
         {
-            State state = new State();
-            using (IBus bus = StartBus(state))
+            var state = new State();
+            using (var bus = StartBus(state))
             {
                 bus.SendLocal(new MessageToSend());
-                string msmqMessageId = GetMsmqMessageId();
+                var msmqMessageId = GetMsmqMessageId();
 
                 state.ShouldHandlerThrow = false;
 
@@ -55,19 +55,19 @@
         [Test]
         public void ReturnMessageToSourceQueuePS()
         {
-            State state = new State();
-            using (IBus bus = StartBus(state))
+            var state = new State();
+            using (var bus = StartBus(state))
             {
                 bus.SendLocal(new MessageToSend());
-                string msmqMessageId = GetMsmqMessageId();
+                var msmqMessageId = GetMsmqMessageId();
                 state.ShouldHandlerThrow = false;
-                string currentDirectory = Path.GetDirectoryName(GetType().Assembly.CodeBase.Remove(0, 8));
-                string scriptPath = Path.Combine(currentDirectory, "msmq/ErrorQueue.ps1");
-                using (PowerShell powerShell = PowerShell.Create())
+                var currentDirectory = Path.GetDirectoryName(GetType().Assembly.CodeBase.Remove(0, 8));
+                var scriptPath = Path.Combine(currentDirectory, "msmq/ErrorQueue.ps1");
+                using (var powerShell = PowerShell.Create())
                 {
                     powerShell.AddScript(File.ReadAllText(scriptPath));
                     powerShell.Invoke();
-                    PowerShell command = powerShell.AddCommand("ReturnMessageToSourceQueue");
+                    var command = powerShell.AddCommand("ReturnMessageToSourceQueue");
                     command.AddParameter("ErrorQueueMachine", Environment.MachineName);
                     command.AddParameter("ErrorQueueName", errorQueueName);
                     command.AddParameter("MessageId", msmqMessageId);
@@ -79,7 +79,7 @@
 
         IBus StartBus(State state)
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             busConfiguration.RegisterComponents(c=>c.ConfigureComponent(x => state,DependencyLifecycle.SingleInstance));
             busConfiguration.EndpointName(endpointName);
             busConfiguration.TypesToScan(TypeScanner.NestedTypes<ErrorQueueTests>());
@@ -97,8 +97,8 @@
 
         string GetMsmqMessageId()
         {
-            string path = @".\private$\" + errorQueueName;
-            using (MessageQueue errorQueue = new MessageQueue(path))
+            var path = @".\private$\" + errorQueueName;
+            using (var errorQueue = new MessageQueue(path))
             {
                 return errorQueue.Peek().Id;
             }

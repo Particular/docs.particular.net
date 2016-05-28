@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using NHibernate;
 using NServiceBus;
 using NServiceBus.Extensibility;
 using NServiceBus.Persistence;
@@ -10,8 +9,8 @@ class PaymentTransactionCompletedSagaFinder : IFindSagas<OrderSagaData>.Using<Pa
 
     public Task<OrderSagaData> FindBy(PaymentTransactionCompleted message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
     {
-        ISession session = storageSession.Session();
-        OrderSagaData orderSagaData = session.QueryOver<OrderSagaData>()
+        var session = storageSession.Session();
+        var orderSagaData = session.QueryOver<OrderSagaData>()
             .Where(d => d.PaymentTransactionId == message.PaymentTransactionId)
             .SingleOrDefault();
         return Task.FromResult(orderSagaData);

@@ -12,7 +12,7 @@
         {
             if (typeof(T) == typeof(MessageForwardingInCaseOfFaultConfig))
             {
-                MessageForwardingInCaseOfFaultConfig errorConfig = new MessageForwardingInCaseOfFaultConfig
+                var errorConfig = new MessageForwardingInCaseOfFaultConfig
                 {
                     ErrorQueue = "error"
                 };

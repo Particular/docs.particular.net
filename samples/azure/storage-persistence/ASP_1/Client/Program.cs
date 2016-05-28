@@ -13,13 +13,14 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Azure.StoragePersistence.Client";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.StoragePersistence.Client");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Azure.StoragePersistence.Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press 'enter' to send a StartOrder messages");
@@ -27,7 +28,7 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
@@ -35,18 +36,20 @@ class Program
                     return;
                 }
 
-                Guid orderId = Guid.NewGuid();
-                await endpoint.Send(new StartOrder
-                          {
-                              OrderId = orderId
-                          });
+                var orderId = Guid.NewGuid();
+                await endpointInstance.Send(new StartOrder
+                {
+                    OrderId = orderId
+                })
+                    .ConfigureAwait(false);
                 Console.WriteLine("StartOrder Message sent with OrderId  " + orderId);
             }
 
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

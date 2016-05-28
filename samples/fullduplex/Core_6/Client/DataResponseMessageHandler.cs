@@ -9,7 +9,7 @@ class DataResponseMessageHandler : IHandleMessages<DataResponseMessage>
     static ILog log = LogManager.GetLogger<DataResponseMessageHandler>();
     public Task Handle(DataResponseMessage message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Response received with description: {0}", message.String);
+        log.Info($"Response received with description: {message.String}");
         return Task.FromResult(0);
     }
 

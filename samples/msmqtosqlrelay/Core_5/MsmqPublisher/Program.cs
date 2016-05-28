@@ -9,14 +9,14 @@ class Program
     {
         Console.Title = "Samples.MsmqToSqlRelay.MsmqPublisher";
         #region publisher-config
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("MsmqPublisher");
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForMsmqTransport;Integrated Security=True");
         busConfiguration.EnableInstallers();
         #endregion
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press enter to publish an event");
             Console.WriteLine("Press any key to exit");
@@ -24,7 +24,7 @@ class Program
             #region publisher-loop
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)

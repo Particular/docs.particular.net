@@ -18,7 +18,7 @@ class ProgramService : ServiceBase
     static void Main()
     {
         Console.Title = "Samples.FirstEndpoint";
-        using (ProgramService service = new ProgramService())
+        using (var service = new ProgramService())
         {
             if (Environment.UserInteractive)
             {
@@ -44,12 +44,12 @@ class ProgramService : ServiceBase
     {
         #region logging
 
-        PatternLayout layout = new PatternLayout
+        var layout = new PatternLayout
         {
             ConversionPattern = "%d %-5p %c - %m%n"
         };
         layout.ActivateOptions();
-        ConsoleAppender appender = new ConsoleAppender
+        var appender = new ConsoleAppender
         {
             Layout = layout,
             Threshold = Level.Info
@@ -64,16 +64,16 @@ class ProgramService : ServiceBase
 
         #region create-config
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.FirstEndpoint");
+        var endpointConfiguration = new EndpointConfiguration("Samples.FirstEndpoint");
 
         #endregion
 
         #region container
 
-        ContainerBuilder builder = new ContainerBuilder();
+        var builder = new ContainerBuilder();
         //configure custom services
         //builder.RegisterInstance(new MyService());
-        IContainer container = builder.Build();
+        var container = builder.Build();
         endpointConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
 
         #endregion
@@ -83,8 +83,11 @@ class ProgramService : ServiceBase
         endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #endregion
+
         #region error
+
         endpointConfiguration.SendFailedMessagesTo("error");
+
         #endregion
 
         #region transport
@@ -102,12 +105,14 @@ class ProgramService : ServiceBase
         #endregion
 
         #region critical-errors
+
         endpointConfiguration.DefineCriticalErrorAction(async context =>
         {
             // Log the critical error
             logger.Fatal($"CRITICAL: {context.Error}", context.Exception);
 
-            await context.Stop();
+            await context.Stop()
+                .ConfigureAwait(false);
 
             // Kill the process on a critical error
             string output = $"The following critical error was encountered by NServiceBus:\n{context.Error}\nNServiceBus is shutting down.";
@@ -119,11 +124,13 @@ class ProgramService : ServiceBase
         #region start-bus
 
         endpointConfiguration.EnableInstallers();
-        endpoint = await Endpoint.Start(endpointConfiguration);
+        endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
+
         #endregion
 
-
-        await endpoint.SendLocal(new MyMessage());
+        await endpointInstance.SendLocal(new MyMessage())
+            .ConfigureAwait(false);
     }
 
 
@@ -131,7 +138,7 @@ class ProgramService : ServiceBase
     {
         #region stop-endpoint
 
-        endpoint?.Stop().GetAwaiter().GetResult();
+        endpointInstance?.Stop().GetAwaiter().GetResult();
 
         #endregion
     }

@@ -13,11 +13,11 @@ public class HomeController : Controller
 
     public async Task<ActionResult> SendEnumMessage()
     {
-        EnumMessage message = new EnumMessage();
-        SendOptions sendOptions = new SendOptions();
+        var message = new EnumMessage();
+        var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        Task<Status> statusTask = MvcApplication.Endpoint.Request<Status>(message, sendOptions);
-        return View("SendEnumMessage", await statusTask);
+        Task<Status> statusTask = MvcApplication.EndpointInstance.Request<Status>(message, sendOptions);
+        return View("SendEnumMessage", await statusTask.ConfigureAwait(false));
     }
 
     #endregion
@@ -26,11 +26,11 @@ public class HomeController : Controller
 
     public async Task<ActionResult> SendIntMessage()
     {
-        IntMessage message = new IntMessage();
-        SendOptions sendOptions = new SendOptions();
+        var message = new IntMessage();
+        var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        Task<int> statusTask = MvcApplication.Endpoint.Request<int>(message, sendOptions);
-        return View("SendIntMessage", await statusTask);
+        Task<int> statusTask = MvcApplication.EndpointInstance.Request<int>(message, sendOptions);
+        return View("SendIntMessage", await statusTask.ConfigureAwait(false));
     }
 
     #endregion
@@ -39,11 +39,11 @@ public class HomeController : Controller
 
     public async Task<ActionResult> SendObjectMessage()
     {
-        ObjectMessage message = new ObjectMessage();
-        SendOptions sendOptions = new SendOptions();
+        var message = new ObjectMessage();
+        var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        Task<ObjectResponseMessage> responseTask = MvcApplication.Endpoint.Request<ObjectResponseMessage>(message, sendOptions);
-        return View("SendObjectMessage", await responseTask);
+        Task<ObjectResponseMessage> responseTask = MvcApplication.EndpointInstance.Request<ObjectResponseMessage>(message, sendOptions);
+        return View("SendObjectMessage", await responseTask.ConfigureAwait(false));
     }
 
     #endregion

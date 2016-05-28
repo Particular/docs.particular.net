@@ -13,62 +13,66 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.DelayedDelivery.Client";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.DelayedDelivery.Client");
+        var endpointConfiguration = new EndpointConfiguration("Samples.DelayedDelivery.Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
-            await SendOrder(endpoint);
+            await SendOrder(endpointInstance)
+                .ConfigureAwait(false);
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 
     static async Task SendOrder(IEndpointInstance endpointInstance)
     {
-
         Console.WriteLine("Press '1' to send PlaceOrder - defer message handling");
         Console.WriteLine("Press '2' to send PlaceDelayedOrder - defer message delivery");
         Console.WriteLine("Press enter key to exit");
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine();
-            Guid id = Guid.NewGuid();
+            var id = Guid.NewGuid();
 
             switch (key.Key)
             {
                 case ConsoleKey.D1:
                     #region SendOrder
-                    PlaceOrder placeOrder = new PlaceOrder
+                    var placeOrder = new PlaceOrder
                     {
                         Product = "New shoes",
                         Id = id
                     };
-                    await endpointInstance.Send("Samples.DelayedDelivery.Server", placeOrder);
-                    Console.WriteLine("[Defer Message Handling] Sent a new PlaceOrder message with id: {0}", id.ToString("N"));
+                    await endpointInstance.Send("Samples.DelayedDelivery.Server", placeOrder)
+                        .ConfigureAwait(false);
+                    Console.WriteLine($"[Defer Message Handling] Sent a new PlaceOrder message with id: {id.ToString("N")}");
                     #endregion
                     continue;
                 case ConsoleKey.D2:
                     #region DeferOrder
-                    PlaceDelayedOrder placeDelayedOrder = new PlaceDelayedOrder
+                    var placeDelayedOrder = new PlaceDelayedOrder
                     {
                         Product = "New shoes",
                         Id = id
                     };
-                    SendOptions options = new SendOptions();
+                    var options = new SendOptions();
 
                     options.SetDestination("Samples.DelayedDelivery.Server");
                     options.DelayDeliveryWith(TimeSpan.FromSeconds(5));
-                    await endpointInstance.Send(placeDelayedOrder, options);
-                    Console.WriteLine("[Defer Message Delivery] Deferred a new PlaceDelayedOrder message with id: {0}", id.ToString("N"));
+                    await endpointInstance.Send(placeDelayedOrder, options)
+                        .ConfigureAwait(false);
+                    Console.WriteLine($"[Defer Message Delivery] Deferred a new PlaceDelayedOrder message with id: {id.ToString("N")}");
                     #endregion
                     continue;
                 case ConsoleKey.Enter:

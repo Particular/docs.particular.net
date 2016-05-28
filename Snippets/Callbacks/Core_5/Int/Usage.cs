@@ -10,7 +10,7 @@
         {
             #region IntCallback
 
-            Message message = new Message();
+            var message = new Message();
             bus.Send(message)
                 .Register<int>(response =>
                 {

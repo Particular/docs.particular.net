@@ -8,8 +8,8 @@ public class QueueCreationTests
     [Test]
     public void CreateQueuesForEndpoint()
     {
-        string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
-        using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+        using (var sqlConnection = new SqlConnection(connectionString))
         {
             sqlConnection.Open();
             QueueCreation.CreateQueuesForEndpoint(

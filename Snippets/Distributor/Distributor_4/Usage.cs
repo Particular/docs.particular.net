@@ -32,13 +32,13 @@ class Usage
     {
         #region IsDistributorEnabled
 
-        bool isDistributorEnabled = SettingsHolder.GetOrDefault<bool>("Distributor.Enabled");
+        var isDistributorEnabled = SettingsHolder.GetOrDefault<bool>("Distributor.Enabled");
 
         #endregion
 
         #region IsWorkerEnabled
 
-        bool isWorkerEnabled = SettingsHolder.GetOrDefault<bool>("Worker.Enabled");
+        var isWorkerEnabled = SettingsHolder.GetOrDefault<bool>("Worker.Enabled");
 
         #endregion
 

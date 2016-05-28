@@ -1,6 +1,5 @@
 ﻿namespace Core4.Headers
 {
-    using System.Collections.Generic;
     using NServiceBus;
 
     #region header-incoming-handler
@@ -15,9 +14,9 @@
 
         public void Handle(MyMessage message)
         {
-            IDictionary<string, string> headers = bus.CurrentMessageContext.Headers;
-            string nsbVersion = headers[Headers.NServiceBusVersion];
-            string customHeader = headers["MyCustomHeader"];
+            var headers = bus.CurrentMessageContext.Headers;
+            var nsbVersion = headers[Headers.NServiceBusVersion];
+            var customHeader = headers["MyCustomHeader"];
         }
     }
     #endregion

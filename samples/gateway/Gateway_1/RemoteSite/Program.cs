@@ -7,13 +7,13 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.Gateway.RemoteSite";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Gateway.RemoteSite");
         busConfiguration.EnableInstallers();
         busConfiguration.EnableFeature<Gateway>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("\r\nPress any key to stop program\r\n");
             Console.ReadKey();

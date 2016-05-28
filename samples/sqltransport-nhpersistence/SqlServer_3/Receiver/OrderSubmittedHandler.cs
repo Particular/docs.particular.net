@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using NHibernate;
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -9,11 +8,11 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Order {0} worth {1} submitted", message.OrderId, message.Value);
+        log.InfoFormat($"Order {message.OrderId} worth {message.Value} submitted");
 
         #region StoreUserData
 
-        ISession nhibernateSession = context.SynchronizedStorageSession.Session();
+        var nhibernateSession = context.SynchronizedStorageSession.Session();
         nhibernateSession.Save(new Order
         {
             OrderId = message.OrderId,
@@ -24,10 +23,12 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
         #region Reply
 
-        await context.Reply(new OrderAccepted
+        var orderAccepted = new OrderAccepted
         {
             OrderId = message.OrderId,
-        });
+        };
+        await context.Reply(orderAccepted)
+            .ConfigureAwait(false);
 
         #endregion
     }

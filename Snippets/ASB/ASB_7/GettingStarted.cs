@@ -8,15 +8,17 @@ class GettingStarted
     {
         #region AzureServiceBusTransportGettingStarted 7
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("myendpoint");
+        var endpointConfiguration = new EndpointConfiguration("myendpoint");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         transport.UseTopology<ForwardingTopology>();
         transport.ConnectionString("Paste connectionstring here");
 
-        IStartableEndpoint initializableEndpoint = await Endpoint.Create(endpointConfiguration);
-        IEndpointInstance endpoint = await initializableEndpoint.Start();
+        var initializableEndpoint = await Endpoint.Create(endpointConfiguration)
+            .ConfigureAwait(false);
+        var endpointInstance = await initializableEndpoint.Start()
+            .ConfigureAwait(false);
 
         #endregion
     }

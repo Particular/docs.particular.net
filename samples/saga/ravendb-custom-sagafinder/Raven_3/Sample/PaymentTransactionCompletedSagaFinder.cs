@@ -1,6 +1,5 @@
 ﻿using NServiceBus.RavenDB.Persistence;
 using NServiceBus.Saga;
-using Raven.Client;
 using Raven.Client.UniqueConstraints;
 
 
@@ -15,7 +14,7 @@ class PaymentTransactionCompletedSagaFinder : IFindSagas<OrderSagaData>.Using<Pa
 
     public OrderSagaData FindBy(PaymentTransactionCompleted message)
     {
-        IDocumentSession session = sessionProvider.Session;
+        var session = sessionProvider.Session;
         return session.LoadByUniqueConstraint<OrderSagaData>(d => d.PaymentTransactionId, message.PaymentTransactionId);
     }
 }

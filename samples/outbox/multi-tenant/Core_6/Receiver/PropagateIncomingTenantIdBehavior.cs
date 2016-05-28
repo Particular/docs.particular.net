@@ -4,16 +4,16 @@ using NServiceBus.Pipeline;
 
 internal class PropagateIncomingTenantIdBehavior : Behavior<IIncomingLogicalMessageContext>
 {
-    public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
+    public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
     {
         #region PropagateTenantId
-        
+
         string tenant;
         if (context.MessageHeaders.TryGetValue("TenantId", out tenant))
         {
             context.Extensions.Set("TenantId", tenant);
         }
-        await next().ConfigureAwait(false);
+        return next();
 
         #endregion
     }

@@ -22,15 +22,10 @@
         }
 
         #region SimpleSatelliteSetup
-        public Address InputAddress
-        {
-            get { return Address.Parse("targetqueue"); }
-        }
+        public Address InputAddress => Address.Parse("targetqueue");
 
-        public bool Disabled
-        {
-            get { return false; }
-        }
+        public bool Disabled => false;
+
         #endregion
     }
 }

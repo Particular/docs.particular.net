@@ -12,17 +12,17 @@ class HandlerTimerBehavior : IBehavior<HandlerInvocationContext>
 
     public void Invoke(HandlerInvocationContext context, Action next)
     {
-        Stopwatch stopwatch = Stopwatch.StartNew();
+        var stopwatch = Stopwatch.StartNew();
         try
         {
             next();
         }
         finally
         {
-            long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
+            var elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
             if (elapsedMilliseconds > 500)
             {
-                string handlerName = context.MessageHandler.Instance.GetType().Name;
+                var handlerName = context.MessageHandler.Instance.GetType().Name;
                 logger.WarnFormat("{1} took {0}ms to process", elapsedMilliseconds, handlerName);
             }
         }

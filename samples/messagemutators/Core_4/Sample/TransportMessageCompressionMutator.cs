@@ -11,12 +11,12 @@ public class TransportMessageCompressionMutator : IMutateTransportMessages
 
     public void MutateOutgoing(object[] messages, TransportMessage transportMessage)
     {
-        logger.InfoFormat("transportMessage.Body size before compression: {0}", transportMessage.Body.Length);
+        logger.Info($"transportMessage.Body size before compression: {transportMessage.Body.Length}");
 
-        MemoryStream mStream = new MemoryStream(transportMessage.Body);
-        MemoryStream outStream = new MemoryStream();
+        var mStream = new MemoryStream(transportMessage.Body);
+        var outStream = new MemoryStream();
 
-        using (GZipStream tinyStream = new GZipStream(outStream, CompressionMode.Compress))
+        using (var tinyStream = new GZipStream(outStream, CompressionMode.Compress))
         {
             mStream.CopyTo(tinyStream);
         }
@@ -24,7 +24,7 @@ public class TransportMessageCompressionMutator : IMutateTransportMessages
         // otherwise, not all the compressed message will be copied.
         transportMessage.Body = outStream.ToArray();
         transportMessage.Headers["IWasCompressed"] = "true";
-        logger.InfoFormat("transportMessage.Body size after compression: {0}", transportMessage.Body.Length);
+        logger.Info($"transportMessage.Body size after compression: {transportMessage.Body.Length}");
     }
 
     public void MutateIncoming(TransportMessage transportMessage)
@@ -33,9 +33,10 @@ public class TransportMessageCompressionMutator : IMutateTransportMessages
         {
             return;
         }
-        using (GZipStream bigStream = new GZipStream(new MemoryStream(transportMessage.Body), CompressionMode.Decompress))
+        var memoryStream = new MemoryStream(transportMessage.Body);
+        using (var bigStream = new GZipStream(memoryStream, CompressionMode.Decompress))
         {
-            MemoryStream bigStreamOut = new MemoryStream();
+            var bigStreamOut = new MemoryStream();
             bigStream.CopyTo(bigStreamOut);
             transportMessage.Body = bigStreamOut.ToArray();
         }

@@ -13,7 +13,7 @@
 
         static void Main()
         {
-            using (ProgramService service = new ProgramService())
+            using (var service = new ProgramService())
             {
                 if (Environment.UserInteractive)
                 {
@@ -33,7 +33,7 @@
 
         protected override void OnStart(string[] args)
         {
-            Configure configure = Configure.With();
+            var configure = Configure.With();
             configure.DefineEndpointName("EndpointName");
             bus = configure.UnicastBus()
                 .CreateBus()
@@ -42,12 +42,8 @@
 
         protected override void OnStop()
         {
-            if (bus != null)
-            {
-                ((IDisposable) bus).Dispose();
-            }
+            ((IDisposable) bus)?.Dispose();
         }
-
     }
 
     #endregion

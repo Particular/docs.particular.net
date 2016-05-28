@@ -10,22 +10,26 @@ public partial class Default : Page
         {
             return;
         }
+
         #region ActionHandling
+
         int number;
         if (!int.TryParse(TextBox1.Text, out number))
         {
             return;
         }
-        Command command = new Command
-                        {
-                            Id = number
-                        };
+        var command = new Command
+        {
+            Id = number
+        };
 
-        SendOptions sendOptions = new SendOptions();
+        var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.AsyncPages.Server");
 
-        ErrorCodes code = await Global.Endpoint.Request<ErrorCodes>(command, sendOptions);
+        var code = await Global.Endpoint.Request<ErrorCodes>(command, sendOptions)
+            .ConfigureAwait(false);
         Label1.Text = Enum.GetName(typeof(ErrorCodes), code);
+
         #endregion
     }
 

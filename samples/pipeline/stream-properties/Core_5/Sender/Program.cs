@@ -9,7 +9,7 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.PipelineStream.Sender";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PipelineStream.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
@@ -21,7 +21,7 @@ class Program
         #endregion
 
         busConfiguration.EnableInstallers();
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Run(bus);
         }
@@ -36,7 +36,7 @@ class Program
 
         while (true)
         {
-            ConsoleKeyInfo key = Console.ReadKey();
+            var key = Console.ReadKey();
 
             if (key.Key == ConsoleKey.F)
             {
@@ -56,7 +56,7 @@ class Program
     {
         #region send-message-with-file-stream
 
-        MessageWithStream message = new MessageWithStream
+        var message = new MessageWithStream
         {
             SomeProperty = "This message contains a stream",
             StreamProperty = File.OpenRead("FileToSend.txt")
@@ -73,9 +73,9 @@ class Program
     {
         #region send-message-with-http-stream
 
-        using (WebClient webClient = new WebClient())
+        using (var webClient = new WebClient())
         {
-            MessageWithStream message = new MessageWithStream
+            var message = new MessageWithStream
             {
                 SomeProperty = "This message contains a stream",
                 StreamProperty = webClient.OpenRead("http://www.particular.net")

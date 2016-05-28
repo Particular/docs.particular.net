@@ -6,7 +6,7 @@ class Program
     public static void Main()
     {
         Console.Title = "Samples.MessageMutators";
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MessageMutators");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseSerialization<JsonSerializer>();
@@ -18,7 +18,7 @@ class Program
             components.ConfigureComponent<TransportMessageCompressionMutator>(DependencyLifecycle.InstancePerCall);
         });
         #endregion
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             Runner.Run(bus);
         }

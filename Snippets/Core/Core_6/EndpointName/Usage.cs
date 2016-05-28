@@ -12,7 +12,7 @@
         {
             #region EndpointNameCode
 
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("MyEndpoint");
+            var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
 
             #endregion
         }

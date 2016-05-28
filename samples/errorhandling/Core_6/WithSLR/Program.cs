@@ -16,13 +16,14 @@ static class Program
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Warn);
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ErrorHandling.WithSLR");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ErrorHandling.WithSLR");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press enter to send a message that will throw an exception.");
@@ -30,21 +31,23 @@ static class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 if (key.Key != ConsoleKey.Enter)
                 {
                     return;
                 }
-                MyMessage m = new MyMessage
+                var myMessage = new MyMessage
                 {
                     Id = Guid.NewGuid()
                 };
-                await endpoint.SendLocal(m);
+                await endpointInstance.SendLocal(myMessage)
+                    .ConfigureAwait(false);
             }
         }
         finally
         {
-            await endpoint.Stop();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

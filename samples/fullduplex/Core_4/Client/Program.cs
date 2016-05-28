@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.FullDuplex.Client";
         Configure.Serialization.Json();
-        Configure configure = Configure.With();
+        var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.FullDuplex.Client");
         configure.DefaultBuilder();
@@ -16,9 +16,9 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        using (var startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus
+            var bus = startableBus
                 .Start(() => configure.ForInstallationOn<Windows>().Install());
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
@@ -27,17 +27,17 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
                 if (key.Key != ConsoleKey.Enter)
                 {
                     return;
                 }
-                Guid guid = Guid.NewGuid();
-                Console.WriteLine("Requesting to get data by id: {0}", guid.ToString("N"));
+                var guid = Guid.NewGuid();
+                Console.WriteLine($"Requesting to get data by id: {guid.ToString("N")}");
 
-                RequestDataMessage message = new RequestDataMessage
+                var message = new RequestDataMessage
                 {
                     DataId = guid,
                     String = "String property value"

@@ -1,6 +1,5 @@
 ﻿namespace Core5.Headers
 {
-    using System.Collections.Generic;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NServiceBus.Unicast.Messages;
@@ -10,7 +9,7 @@
     {
         public void MutateOutgoing(LogicalMessage logicalMessage, TransportMessage transportMessage)
         {
-            Dictionary<string, string> headers = transportMessage.Headers;
+            var headers = transportMessage.Headers;
             headers["MyCustomHeader"] = "My custom value";
         }
     }

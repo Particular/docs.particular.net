@@ -6,20 +6,21 @@ using NServiceBus.Log4Net;
 using NServiceBus.Logging;
 
 #region LoggingHelper
+
 static class LoggingHelper
 {
     public static void ConfigureLogging(Level threshold)
     {
-        PatternLayout layout = new PatternLayout
-                     {
-                         ConversionPattern = "%d %-5p %c - %m%n"
-                     };
+        var layout = new PatternLayout
+        {
+            ConversionPattern = "%d %-5p %c - %m%n"
+        };
         layout.ActivateOptions();
-        ConsoleAppender appender = new ConsoleAppender
-                       {
-                           Layout = layout,
-                           Threshold = threshold
-                       };
+        var appender = new ConsoleAppender
+        {
+            Layout = layout,
+            Threshold = threshold
+        };
         appender.ActivateOptions();
 
         BasicConfigurator.Configure(appender);
@@ -27,4 +28,5 @@ static class LoggingHelper
         LogManager.Use<Log4NetFactory>();
     }
 }
+
 #endregion

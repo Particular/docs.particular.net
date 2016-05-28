@@ -8,9 +8,9 @@
         PublishAtStartup(Configure configure)
         {
             #region publishAtStartup
-            using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+            using (var startableBus = configure.UnicastBus().CreateBus())
             {
-                IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+                var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
                 bus.Publish(new MyEvent());
 
                 #endregion
