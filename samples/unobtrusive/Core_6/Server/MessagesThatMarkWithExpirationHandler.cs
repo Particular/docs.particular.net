@@ -9,7 +9,7 @@ public class MessagesThatMarkWithExpirationHandler : IHandleMessages<MessageThat
 
     public Task Handle(MessageThatExpires message, IMessageHandlerContext context)
     {
-        log.InfoFormat($"Message [{message.GetType()}] received, id: [{message.RequestId}]");
+        log.Info($"Message [{message.GetType()}] received, id: [{message.RequestId}]");
         return Task.FromResult(0);
     }
 }

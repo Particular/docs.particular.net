@@ -8,7 +8,7 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        log.InfoFormat($"Order {message.OrderId} worth {message.Value} submitted");
+        log.Info($"Order {message.OrderId} worth {message.Value} submitted");
 
         #region StoreUserData
 

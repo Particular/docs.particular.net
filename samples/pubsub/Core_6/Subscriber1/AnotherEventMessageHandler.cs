@@ -8,9 +8,9 @@ public class AnotherEventMessageHandler : IHandleMessages<AnotherEventMessage>
 
     public Task Handle(AnotherEventMessage message, IMessageHandlerContext context)
     {
-        log.InfoFormat($"Subscriber 1 received AnotherEventMessage with Id {message.EventId}.");
-        log.InfoFormat($"Message time: {message.Time}.");
-        log.InfoFormat($"Message duration: {message.Duration}.");
+        log.Info($"Subscriber 1 received AnotherEventMessage with Id {message.EventId}.");
+        log.Info($"Message time: {message.Time}.");
+        log.Info($"Message duration: {message.Duration}.");
         return Task.FromResult(0);
     }
 }

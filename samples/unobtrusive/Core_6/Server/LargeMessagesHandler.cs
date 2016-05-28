@@ -13,11 +13,11 @@ namespace Server
         {
             if (message.LargeDataBus == null)
             {
-                log.InfoFormat($"Message [{message.GetType()}] received, id:{message.RequestId}");
+                log.Info($"Message [{message.GetType()}] received, id:{message.RequestId}");
             }
             else
             {
-                log.InfoFormat($"Message [{message.GetType()}] received, id:{message.RequestId} and payload {message.LargeDataBus.Length} bytes");
+                log.Info($"Message [{message.GetType()}] received, id:{message.RequestId} and payload {message.LargeDataBus.Length} bytes");
             }
             return Task.FromResult(0);
         }

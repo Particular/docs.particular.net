@@ -15,7 +15,7 @@ public class MessageWithStreamHandler : IHandleMessages<MessageWithStream>
         {
             var streamContents = await streamReader.ReadToEndAsync()
                 .ConfigureAwait(false);
-            log.InfoFormat($"Stream content: {streamContents.Substring(0, 20)}...");
+            log.Info($"Stream content: {streamContents.Substring(0, 20)}...");
         }
     }
 

@@ -16,11 +16,11 @@ public class SubmitOrderHandler : IHandleMessages<SubmitOrder>
             Debugger.Break();
         }
 
-        log.InfoFormat($"We have received an order #{message.OrderNumber} for [{string.Join(", ", message.ProductIds)}] products(s).");
+        log.Info($"We have received an order #{message.OrderNumber} for [{string.Join(", ", message.ProductIds)}] products(s).");
 
-        log.InfoFormat("The credit card values will be encrypted when looking at the messages in the queues");
-        log.InfoFormat($"CreditCard Number is {message.EncryptedCreditCardNumber}");
-        log.InfoFormat($"CreditCard Expiration Date is {message.EncryptedExpirationDate}");
+        log.Info("The credit card values will be encrypted when looking at the messages in the queues");
+        log.Info($"CreditCard Number is {message.EncryptedCreditCardNumber}");
+        log.Info($"CreditCard Expiration Date is {message.EncryptedExpirationDate}");
 
         // tell the client the order was received
         return context.Publish<OrderPlaced>(o =>

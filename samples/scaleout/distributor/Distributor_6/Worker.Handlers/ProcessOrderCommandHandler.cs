@@ -21,7 +21,7 @@ public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
         };
         await context.Reply(message)
             .ConfigureAwait(false);
-        log.InfoFormat($"Sent Order placed event for orderId [{placeOrder.OrderId}].");
+        log.Info($"Sent Order placed event for orderId [{placeOrder.OrderId}].");
     }
 }
 

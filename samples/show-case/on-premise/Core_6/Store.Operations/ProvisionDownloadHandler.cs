@@ -15,7 +15,7 @@ public class ProvisionDownloadHandler : IHandleMessages<ProvisionDownloadRequest
             Debugger.Break();
         }
 
-        log.InfoFormat($"Provision the products and make the Urls available to the Content management for download ...[{string.Join(", ", message.ProductIds)}] product(s) to provision");
+        log.Info("Provision the products and make the Urls available to the Content management for download ...[{string.Join(", ", message.ProductIds)}] product(s) to provision");
 
         return context.Reply(new ProvisionDownloadResponse
             {

@@ -9,7 +9,7 @@ public class SomethingHappenedHandler : IHandleMessages<ISomethingHappened>
 
     public Task Handle(ISomethingHappened message, IMessageHandlerContext context)
     {
-        log.InfoFormat($"Something happened with some data {message.SomeData} and no more info");
+        log.Info($"Something happened with some data {message.SomeData} and no more info");
         return Task.FromResult(0);
     }
 }

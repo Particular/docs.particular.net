@@ -26,9 +26,9 @@ public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloa
             Debugger.Break();
         }
 
-        log.InfoFormat($"Download for Order # {message.OrderNumber} has been provisioned, Publishing Download ready event");
+        log.Info($"Download for Order # {message.OrderNumber} has been provisioned, Publishing Download ready event");
 
-        log.InfoFormat($"Downloads for Order #{message.OrderNumber} is ready, publishing it.");
+        log.Info($"Downloads for Order #{message.OrderNumber} is ready, publishing it.");
         return context.Publish<DownloadIsReady>(e =>
         {
             e.OrderNumber = message.OrderNumber;

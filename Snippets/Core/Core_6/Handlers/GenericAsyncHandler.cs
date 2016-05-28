@@ -13,7 +13,7 @@
 
         public Task Handle(object message, IMessageHandlerContext context)
         {
-            logger.InfoFormat($"Received a message of type {message.GetType().Name}.");
+            logger.Info($"Received a message of type {message.GetType().Name}.");
             return SomeLibrary.SomeAsyncMethod(message);
         }
     }

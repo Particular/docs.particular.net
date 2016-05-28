@@ -22,7 +22,7 @@ public class OrderSaga : Saga<OrderSagaData>,
         Data.OrderId = message.OrderId;
         var orderDescription = "The saga for order " + message.OrderId;
         Data.OrderDescription = orderDescription;
-        logger.InfoFormat($"Received StartOrder message {Data.OrderId}. Starting Saga");
+        logger.Info($"Received StartOrder message {Data.OrderId}. Starting Saga");
 
         var shipOrder = new ShipOrder
         {
@@ -43,7 +43,7 @@ public class OrderSaga : Saga<OrderSagaData>,
 
     public async Task Timeout(CompleteOrder state, IMessageHandlerContext context)
     {
-        logger.InfoFormat($"Saga with OrderId {Data.OrderId} completed");
+        logger.Info("Saga with OrderId {Data.OrderId} completed");
         var orderCompleted = new OrderCompleted
         {
             OrderId = Data.OrderId

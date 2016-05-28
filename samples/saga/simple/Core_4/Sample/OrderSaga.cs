@@ -22,7 +22,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     public void Handle(StartOrder message)
     {
         Data.OrderId = message.OrderId;
-        logger.InfoFormat($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
+        logger.Info($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
         var completeOrder = new CompleteOrder
         {
             OrderId = Data.OrderId
@@ -33,13 +33,13 @@ public class OrderSaga : Saga<OrderSagaData>,
 
     public void Handle(CompleteOrder message)
     {
-        logger.InfoFormat($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
+        logger.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
     }
 
     public void Timeout(CancelOrder state)
     {
-        logger.InfoFormat($"Complete not received soon enough OrderId {Data.OrderId}");
+        logger.Info($"Complete not received soon enough OrderId {Data.OrderId}");
         MarkAsComplete();
     }
 
