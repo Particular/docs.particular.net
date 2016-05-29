@@ -12,7 +12,7 @@ using NServiceBus.Persistence;
 
 class ProgramService : ServiceBase
 {
-    IEndpointInstance endpoint;
+    IEndpointInstance endpointInstance;
     static ILog logger = LogManager.GetLogger("ProgramService");
 
     static void Main()

@@ -15,13 +15,15 @@ public class ProvisionDownloadHandler : IHandleMessages<ProvisionDownloadRequest
             Debugger.Break();
         }
 
-        log.Info("Provision the products and make the Urls available to the Content management for download ...[{string.Join(", ", message.ProductIds)}] product(s) to provision");
+        var products = string.Join(", ", message.ProductIds);
+        log.Info($"Provision the products and make the Urls available to the Content management for download ...[{products}] product(s) to provision");
 
-        return context.Reply(new ProvisionDownloadResponse
-            {
-                OrderNumber = message.OrderNumber,
-                ProductIds = message.ProductIds,
-                ClientId = message.ClientId
-            });
+        var response = new ProvisionDownloadResponse
+        {
+            OrderNumber = message.OrderNumber,
+            ProductIds = message.ProductIds,
+            ClientId = message.ClientId
+        };
+        return context.Reply(response);
     }
 }

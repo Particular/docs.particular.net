@@ -22,14 +22,14 @@ public class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
         }
 
         log.InfoFormat("Order # {0} has been accepted, Let's provision the download -- Sending ProvisionDownloadRequest to the Store.Operations endpoint", message.OrderNumber);
-            
-        //send out a request (a event will be published when the response comes back)
-        bus.Send<ProvisionDownloadRequest>(r =>
-        {
-            r.ClientId = message.ClientId;
-            r.OrderNumber = message.OrderNumber;
-            r.ProductIds = message.ProductIds;
-        });
 
+        //send out a request (a event will be published when the response comes back)
+        var request = new ProvisionDownloadRequest
+        {
+            ClientId = message.ClientId,
+            OrderNumber = message.OrderNumber,
+            ProductIds = message.ProductIds
+        };
+        bus.Send(request);
     }
 }

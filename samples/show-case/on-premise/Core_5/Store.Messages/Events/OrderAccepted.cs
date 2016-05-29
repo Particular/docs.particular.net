@@ -1,6 +1,5 @@
 ﻿namespace Store.Messages.Events
 {
-    //NServiceBus messages can be defined using both classes and interfaces
     public interface OrderAccepted 
     {
         int OrderNumber { get; set; }
