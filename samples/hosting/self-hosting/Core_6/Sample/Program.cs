@@ -26,7 +26,8 @@ class Program
         try
         {
             Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
-            await endpointInstance.SendLocal(new MyMessage())
+            var myMessage = new MyMessage();
+            await endpointInstance.SendLocal(myMessage)
                 .ConfigureAwait(false);
             Console.ReadKey();
         }

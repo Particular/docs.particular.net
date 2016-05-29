@@ -3,14 +3,15 @@ using NServiceBus;
 
 public class Startup : IWantToRunWhenEndpointStartsAndStops
 {
-    public async Task Start(IMessageSession session)
+    public Task Start(IMessageSession session)
     {
-        await session.SendLocal(new MyMessage());
+        var myMessage = new MyMessage();
+        return session.SendLocal(myMessage);
     }
 
     public Task Stop(IMessageSession session)
     {
         return Task.FromResult(0);
     }
-    
+
 }

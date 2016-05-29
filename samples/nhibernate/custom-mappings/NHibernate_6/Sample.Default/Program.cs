@@ -27,16 +27,18 @@ class Program
 
         using (var bus = Bus.Create(busConfiguration).Start())
         {
-            bus.SendLocal(new StartOrder
+            var startOrder = new StartOrder
             {
                 OrderId = "123"
-            });
+            };
+            bus.SendLocal(startOrder);
 
             Thread.Sleep(2000);
-            bus.SendLocal(new CompleteOrder
+            var completeOrder = new CompleteOrder
             {
                 OrderId = "123"
-            });
+            };
+            bus.SendLocal(completeOrder);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

@@ -35,7 +35,8 @@
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
             using (var bus = (UnicastBus) Bus.Create(busConfiguration).Start())
             {
-                bus.SendLocal(new StartSaga1Message());
+                var message = new StartSaga1Message();
+                bus.SendLocal(message);
                 CountdownEvent.Wait();
             }
         }
@@ -55,7 +56,8 @@
         {
             public void Handle(StartSaga1Message message)
             {
-                Bus.SendLocal(new SendFromSagaMessage());
+                var sendFromSagaMessage = new SendFromSagaMessage();
+                Bus.SendLocal(sendFromSagaMessage);
             }
 
             public class SagaData : IContainSagaData
@@ -85,8 +87,10 @@
         {
             public void Handle(SendFromSagaMessage message)
             {
-                Bus.Reply(new ReplyFromSagaMessage());
-                ReplyToOriginator(new ReplyToOriginatorFromSagaMessage());
+                var replyFromSagaMessage = new ReplyFromSagaMessage();
+                Bus.Reply(replyFromSagaMessage);
+                var replyToOriginatorFromSagaMessage = new ReplyToOriginatorFromSagaMessage();
+                ReplyToOriginator(replyToOriginatorFromSagaMessage);
                 RequestTimeout(TimeSpan.FromMilliseconds(1), new TimeoutFromSaga());
             }
 

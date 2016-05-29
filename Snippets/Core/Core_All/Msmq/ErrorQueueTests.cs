@@ -38,7 +38,8 @@
             var state = new State();
             using (var bus = StartBus(state))
             {
-                bus.SendLocal(new MessageToSend());
+                var messageToSend = new MessageToSend();
+                bus.SendLocal(messageToSend);
                 var msmqMessageId = GetMsmqMessageId();
 
                 state.ShouldHandlerThrow = false;
@@ -58,7 +59,8 @@
             var state = new State();
             using (var bus = StartBus(state))
             {
-                bus.SendLocal(new MessageToSend());
+                var messageToSend = new MessageToSend();
+                bus.SendLocal(messageToSend);
                 var msmqMessageId = GetMsmqMessageId();
                 state.ShouldHandlerThrow = false;
                 var currentDirectory = Path.GetDirectoryName(GetType().Assembly.CodeBase.Remove(0, 8));

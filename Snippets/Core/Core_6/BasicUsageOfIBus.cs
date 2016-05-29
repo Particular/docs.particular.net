@@ -115,7 +115,8 @@
             #region BasicReplyReplyToThisInstance
             var options = new ReplyOptions();
             options.RouteReplyToThisInstance();
-            await context.Reply(new MyMessage(), options)
+            var myMessage = new MyMessage();
+            await context.Reply(myMessage, options)
                 .ConfigureAwait(false);
             #endregion
         }
@@ -125,7 +126,8 @@
             #region BasicReplyReplyToAnyInstance
             var options = new ReplyOptions();
             options.RouteReplyToAnyInstance();
-            await context.Reply(new MyMessage(), options)
+            var myMessage = new MyMessage();
+            await context.Reply(myMessage, options)
                 .ConfigureAwait(false);
             #endregion
         }
@@ -135,7 +137,8 @@
             #region BasicReplyReplyToDestination
             var options = new ReplyOptions();
             options.RouteReplyTo("MyDestination");
-            await context.Reply(new MyMessage(), options)
+            var myMessage = new MyMessage();
+            await context.Reply(myMessage, options)
                 .ConfigureAwait(false);
             #endregion
         }

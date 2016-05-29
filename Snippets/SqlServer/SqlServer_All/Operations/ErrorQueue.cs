@@ -1,29 +1,31 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using System.Transactions;
 
 public static class ErrorQueue
 {
 
-    static void Usage()
+    static async Task Usage()
     {
         #region sqlserver-return-to-source-queue-usage
 
-        ReturnMessageToSourceQueue(
+        await ReturnMessageToSourceQueue(
             errorQueueConnectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
             errorQueueName: "errors",
             retryConnectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
             retryQueueName: "target",
             messageId: Guid.Parse("1667B60E-2948-4EF0-8BB1-8C851A9407D2")
-            );
+            )
+            .ConfigureAwait(false);
 
         #endregion
     }
 
     #region sqlserver-return-to-source-queue
 
-    public static void ReturnMessageToSourceQueue(
+    public static async Task ReturnMessageToSourceQueue(
         string errorQueueConnectionString,
         string errorQueueName,
         string retryConnectionString,
@@ -32,8 +34,10 @@ public static class ErrorQueue
     {
         using (var scope = new TransactionScope())
         {
-            var messageToRetry = ReadAndDelete(errorQueueConnectionString, errorQueueName, messageId);
-            RetryMessage(retryConnectionString, retryQueueName,  messageToRetry);
+            var messageToRetry = await ReadAndDelete(errorQueueConnectionString, errorQueueName, messageId)
+                .ConfigureAwait(false);
+            await RetryMessage(retryConnectionString, retryQueueName,  messageToRetry)
+                .ConfigureAwait(false);
             scope.Complete();
         }
     }
@@ -45,7 +49,7 @@ public static class ErrorQueue
         public byte[] Body;
     }
 
-    static void RetryMessage(string connectionString, string queueName, MessageToRetry messageToRetry)
+    static async Task RetryMessage(string connectionString, string queueName, MessageToRetry messageToRetry)
     {
         var sql = $@"INSERT INTO [{queueName}] (
                     [Id],
@@ -59,7 +63,8 @@ public static class ErrorQueue
                     @Body)";
         using (var connection = new SqlConnection(connectionString))
         {
-            connection.Open();
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
             using (var command = new SqlCommand(sql, connection))
             {
                 var parameters = command.Parameters;
@@ -68,12 +73,13 @@ public static class ErrorQueue
                 parameters.Add("Headers", SqlDbType.VarChar).Value = messageToRetry.Headers;
                 parameters.Add("Body", SqlDbType.VarBinary).Value = messageToRetry.Body;
                 parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync()
+                    .ConfigureAwait(false);
             }
         }
     }
 
-    static MessageToRetry ReadAndDelete(string connectionString, string queueName, Guid messageId)
+    static async Task<MessageToRetry> ReadAndDelete(string connectionString, string queueName, Guid messageId)
     {
         var sql = $@"DELETE FROM [{queueName}]
             OUTPUT
@@ -82,13 +88,16 @@ public static class ErrorQueue
             WHERE Id = @Id";
         using (var connection = new SqlConnection(connectionString))
         {
-            connection.Open();
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
             using (var command = new SqlCommand(sql, connection))
             {
                 command.Parameters.AddWithValue("Id", messageId);
-                using (var reader = command.ExecuteReader(CommandBehavior.SingleRow))
+                using (var reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow)
+                    .ConfigureAwait(false))
                 {
-                    if (!reader.Read())
+                    if (!await reader.ReadAsync()
+                        .ConfigureAwait(false))
                     {
                         var message = $"Could not find error entry with messageId '{messageId}'";
                         throw new Exception(message);

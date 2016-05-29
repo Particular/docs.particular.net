@@ -22,7 +22,8 @@ class Program
 
         using (var bus = Bus.Create(busConfiguration).Start())
         {
-            bus.SendLocal(new MyMessage());
+            var myMessage = new MyMessage();
+            bus.SendLocal(myMessage);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

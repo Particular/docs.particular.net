@@ -10,7 +10,8 @@
     {
         public Task Handle(object message, IMessageProcessingContext context)
         {
-            return context.Reply(new SagaDisappearedMessage());
+            var sagaDisappearedMessage = new SagaDisappearedMessage();
+            return context.Reply(sagaDisappearedMessage);
         }
     }
 

@@ -48,7 +48,8 @@
         {
             public Task Handle(MessageToSend message, IMessageHandlerContext context)
             {
-                return context.Reply(new MessageToReply());
+                var messageToReply = new MessageToReply();
+                return context.Reply(messageToReply);
             }
         }
 

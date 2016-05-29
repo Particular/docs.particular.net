@@ -48,7 +48,8 @@
                         SnippetLogger.Write(text: headerText, suffix: "Error", version: "5");
                         ManualResetEvent.Set();
                     });
-                bus.SendLocal(new MessageToSend());
+                var messageToSend = new MessageToSend();
+                bus.SendLocal(messageToSend);
                 ManualResetEvent.WaitOne();
             }
         }

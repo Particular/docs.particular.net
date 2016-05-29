@@ -54,7 +54,8 @@ class ProgramService : ServiceBase
             .Start(() => configure.ForInstallationOn<Windows>().Install());
 
         // run any startup actions on the bus
-        bus.SendLocal(new MyMessage());
+        var myMessage = new MyMessage();
+        bus.SendLocal(myMessage);
     }
 
     #endregion

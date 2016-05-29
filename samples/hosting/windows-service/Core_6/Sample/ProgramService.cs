@@ -49,7 +49,8 @@ class ProgramService : ServiceBase
         endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         // run any startup actions on the bus
-        await endpointInstance.SendLocal(new MyMessage())
+        var myMessage = new MyMessage();
+        await endpointInstance.SendLocal(myMessage)
             .ConfigureAwait(false);
     }
 

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
+using System.Threading.Tasks;
 using Common;
 using NServiceBus;
 using NServiceBus.Config;
@@ -25,33 +26,38 @@ public class ErrorQueueTests
 
     [SetUp]
     [TearDown]
-    public void Setup()
+    public async Task Setup()
     {
         using (var connection = new SqlConnection(connectionString))
         {
-            connection.Open();
-            QueueDeletion.DeleteQueuesForEndpoint(connection, schema, endpointName);
-            QueueDeletion.DeleteQueuesForEndpoint(connection, schema, errorQueueName);
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
+            await QueueDeletion.DeleteQueuesForEndpoint(connection, schema, endpointName)
+                .ConfigureAwait(false);
+            await QueueDeletion.DeleteQueuesForEndpoint(connection, schema, errorQueueName)
+                .ConfigureAwait(false);
         }
     }
 
     [Test]
-    public void ReturnMessageToSourceQueue()
+    public async Task ReturnMessageToSourceQueue()
     {
         var state = new State();
         using (var bus = StartBus(state))
         {
             bus.SendLocal(new MessageToSend());
-            var msmqMessageId = GetMsmqMessageId();
+            var msmqMessageId = await GetMsmqMessageId()
+                .ConfigureAwait(false);
 
             state.ShouldHandlerThrow = false;
 
-            ErrorQueue.ReturnMessageToSourceQueue(
+            await ErrorQueue.ReturnMessageToSourceQueue(
                 errorQueueConnectionString: connectionString,
                 errorQueueName: errorQueueName,
                 retryConnectionString: connectionString,
                 retryQueueName: endpointName,
-                messageId: msmqMessageId);
+                messageId: msmqMessageId)
+                .ConfigureAwait(false);
 
             state.ResetEvent.WaitOne();
         }
@@ -80,23 +86,27 @@ public class ErrorQueueTests
         public bool ShouldHandlerThrow = true;
     }
 
-    Guid GetMsmqMessageId()
+   async Task< Guid> GetMsmqMessageId()
     {
         var sql = $"SELECT Id FROM [{errorQueueName}]";
         using (var connection = new SqlConnection(connectionString))
         {
-            connection.Open();
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
             using (var command = new SqlCommand(sql, connection))
             {
                 while (true)
                 {
-                    using (var reader = command.ExecuteReader(CommandBehavior.SingleRow))
+                    using (var reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow)
+                        .ConfigureAwait(false))
                     {
-                        if (reader.Read())
+                        if (await reader.ReadAsync()
+                            .ConfigureAwait(false))
                         {
                             return reader.GetGuid(0);
                         }
-                        Thread.Sleep(100);
+                        await Task.Delay(100)
+                            .ConfigureAwait(false);
                     }
                 }
             }

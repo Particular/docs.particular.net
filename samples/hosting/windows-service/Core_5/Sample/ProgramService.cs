@@ -44,7 +44,8 @@ class ProgramService : ServiceBase
         bus = Bus.Create(busConfiguration).Start();
 
         // run any startup actions on the bus
-        bus.SendLocal(new MyMessage());
+        var myMessage = new MyMessage();
+        bus.SendLocal(myMessage);
     }
 
     #endregion

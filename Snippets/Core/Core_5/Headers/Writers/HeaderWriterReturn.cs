@@ -32,7 +32,8 @@
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
             using (var bus = Bus.Create(busConfiguration).Start())
             {
-                bus.SendLocal(new MessageToSend());
+                var messageToSend = new MessageToSend();
+                bus.SendLocal(messageToSend);
                 ManualResetEvent.WaitOne();
             }
         }

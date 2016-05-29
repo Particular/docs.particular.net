@@ -181,7 +181,8 @@
         {
             public void Handle(MyMessage message)
             {
-                this.Bus().Reply(new OtherMessage());
+                var otherMessage = new OtherMessage();
+                this.Bus().Reply(otherMessage);
             }
         }
 

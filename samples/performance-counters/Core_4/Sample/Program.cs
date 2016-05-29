@@ -40,7 +40,8 @@ class Program
                 }
                 for (var i = 0; i < 10; i++)
                 {
-                    bus.SendLocal(new MyMessage());
+                    var myMessage = new MyMessage();
+                    bus.SendLocal(myMessage);
                 }
             }
         }

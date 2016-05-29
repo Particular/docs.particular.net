@@ -207,7 +207,8 @@ namespace Core5.UpgradeGuides._4to5
 
             public void Handle(MyMessage message)
             {
-                bus.Reply(new OtherMessage());
+                var otherMessage = new OtherMessage();
+                bus.Reply(otherMessage);
             }
         }
 

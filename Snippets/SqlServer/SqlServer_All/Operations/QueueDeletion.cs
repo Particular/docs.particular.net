@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 public static class QueueDeletion
 {
-    public static void DeleteQueuesForEndpoint()
+    public static async Task DeleteQueuesForEndpoint()
     {
         var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
 
@@ -11,17 +12,19 @@ public static class QueueDeletion
 
         using (var sqlConnection = new SqlConnection(connectionString))
         {
-            sqlConnection.Open();
-            DeleteQueuesForEndpoint(
+            await sqlConnection.OpenAsync()
+                .ConfigureAwait(false);
+            await DeleteQueuesForEndpoint(
                 connection: sqlConnection,
                 schema: "dbo",
-                endpointName: "myendpoint");
+                endpointName: "myendpoint")
+                .ConfigureAwait(false);
         }
 
         #endregion
     }
 
-    public static void DeleteSharedQueues()
+    public static async Task DeleteSharedQueues()
     {
         var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
 
@@ -29,15 +32,18 @@ public static class QueueDeletion
 
         using (var sqlConnection = new SqlConnection(connectionString))
         {
-            sqlConnection.Open();
-            DeleteQueue(
+            await sqlConnection.OpenAsync()
+                .ConfigureAwait(false);
+            await DeleteQueue(
                 connection: sqlConnection,
                 schema: "dbo",
-                queueName: "audit");
-            DeleteQueue(
+                queueName: "audit")
+                .ConfigureAwait(false);
+            await DeleteQueue(
                 connection: sqlConnection,
                 schema: "dbo",
-                queueName: "error");
+                queueName: "error")
+                .ConfigureAwait(false);
         }
 
         #endregion
@@ -45,7 +51,7 @@ public static class QueueDeletion
 
     #region sqlserver-delete-queues
 
-    public static void DeleteQueue(SqlConnection connection, string schema, string queueName)
+    public static async Task DeleteQueue(SqlConnection connection, string schema, string queueName)
     {
         var sql = @"
                 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{0}].[{1}]') AND type in (N'U'))
@@ -53,26 +59,32 @@ public static class QueueDeletion
         var deleteScript = string.Format(sql, schema, queueName);
         using (var command = new SqlCommand(deleteScript, connection))
         {
-            command.ExecuteNonQuery();
+            await command.ExecuteNonQueryAsync()
+                .ConfigureAwait(false);
         }
     }
 
-    public static void DeleteQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
+    public static async Task DeleteQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
     {
         //main queue
-        DeleteQueue(connection, schema, endpointName);
+        await DeleteQueue(connection, schema, endpointName)
+            .ConfigureAwait(false);
 
         //callback queue
-        DeleteQueue(connection, schema, endpointName + "." + Environment.MachineName);
+        await DeleteQueue(connection, schema, endpointName + "." + Environment.MachineName)
+            .ConfigureAwait(false);
 
         //retries queue
-        DeleteQueue(connection, schema, endpointName + ".Retries");
+        await DeleteQueue(connection, schema, endpointName + ".Retries")
+            .ConfigureAwait(false);
 
         //timeout queue
-        DeleteQueue(connection, schema, endpointName + ".Timeouts");
+        await DeleteQueue(connection, schema, endpointName + ".Timeouts")
+            .ConfigureAwait(false);
 
         //timeout dispatcher queue
-        DeleteQueue(connection, schema, endpointName + ".TimeoutsDispatcher");
+        await DeleteQueue(connection, schema, endpointName + ".TimeoutsDispatcher")
+            .ConfigureAwait(false);
     }
 
     #endregion

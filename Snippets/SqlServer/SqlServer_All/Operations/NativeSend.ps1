@@ -11,15 +11,15 @@ Function SendMessage
 		[string] $ConnectionString,
 
 		[Parameter(Mandatory=$true)]
-		[ValidateNotNullOrEmpty()] 
+		[ValidateNotNullOrEmpty()]
 		[string] $Queue,
 
 		[Parameter(Mandatory=$true)]
-		[ValidateNotNullOrEmpty()] 
+		[ValidateNotNullOrEmpty()]
 		[string] $MessageBody,
 
 		[Parameter(Mandatory=$true)]
-		[ValidateNotNull()] 
+		[ValidateNotNull()]
 		[HashTable] $Headers
 	)
 
@@ -28,7 +28,7 @@ Function SendMessage
 
 	$sqlConnection = New-Object System.Data.SqlClient.SqlConnection($ConnectionString)
 	$sqlConnection.Open()
-	
+
     $sqlCommand = $sqlConnection.CreateCommand()
 	$sqlCommand.CommandText = "INSERT INTO [$Queue] ([Id],[Recoverable],[Headers],[Body]) VALUES (@Id, @Recoverable, @Headers, @Body)"
 	$sqlCommand.Parameters.Add("Id", [System.Data.SqlDbType]::UniqueIdentifier).Value = [System.Guid]::NewGuid()
@@ -53,8 +53,8 @@ Function Usage
 	# Alternative usage using Powershell Splatting (e.g. passing params as a hashtable)
 
 	$payload = @{
-		ConnectionString = "Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True" 
-		Queue = "sqlserverNativeSendTests" 
+		ConnectionString = "Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True"
+		Queue = "sqlserverNativeSendTests"
 		Headers  = @{
 			"NServiceBus.EnclosedMessageTypes" = "Operations.SqlServer.NativeSendTests+MessageToSend"
 		}
@@ -62,7 +62,7 @@ Function Usage
 	}
 
 	SendMessage @payload
-	
+
 	# endregion
 
 }

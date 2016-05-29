@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.Threading.Tasks;
 using System.Transactions;
 
 public static class NativeSend
 {
 
-    static void Usage()
+    static async Task Usage()
     {
         #region sqlserver-nativesend-usage
 
-        SendMessage(
+        await SendMessage(
             connectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
             queue: "Samples.SqlServer.NativeIntegration",
             messageBody: "{\"Property\":\"PropertyValue\"}",
@@ -20,14 +21,15 @@ public static class NativeSend
             {
                 {"NServiceBus.EnclosedMessageTypes", "MessageTypeToSend"}
             }
-            );
+            )
+            .ConfigureAwait(false);
 
         #endregion
     }
 
     #region sqlserver-nativesend
 
-    public static void SendMessage(string connectionString, string queue, string messageBody, Dictionary<string, string> headers)
+    public static async Task SendMessage(string connectionString, string queue, string messageBody, Dictionary<string, string> headers)
     {
         var insertSql = $@"INSERT INTO [{queue}] (
                 [Id],
@@ -43,7 +45,8 @@ public static class NativeSend
         {
             using (var connection = new SqlConnection(connectionString))
             {
-                connection.Open();
+                await connection.OpenAsync()
+                    .ConfigureAwait(false);
                 using (var command = new SqlCommand(insertSql, connection))
                 {
                     var parameters = command.Parameters;
@@ -53,7 +56,8 @@ public static class NativeSend
                     parameters.Add("Headers", SqlDbType.VarChar).Value = serializeHeaders;
                     parameters.Add("Body", SqlDbType.VarBinary).Value = Encoding.UTF8.GetBytes(messageBody);
                     parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
-                    command.ExecuteNonQuery();
+                    await command.ExecuteNonQueryAsync()
+                        .ConfigureAwait(false);
                 }
             }
             scope.Complete();

@@ -36,11 +36,12 @@
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
             using (var bus = Bus.Create(busConfiguration).Start())
             {
-                bus.SendLocal(new MessageToSend
+                var messageToSend = new MessageToSend
                 {
                     EncryptedProperty1 = "String 1",
                     EncryptedProperty2 = "String 2"
-                });
+                };
+                bus.SendLocal(messageToSend);
                 ManualResetEvent.WaitOne();
             }
         }

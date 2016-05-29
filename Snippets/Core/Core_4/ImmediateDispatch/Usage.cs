@@ -10,8 +10,10 @@
             #region RequestImmediateDispatchUsingScope
             using (new TransactionScope(TransactionScopeOption.Suppress))
             {
-                bus.Send(new MyMessage());
+                var myMessage = new MyMessage();
+                bus.Send(myMessage);
             }
+
             #endregion
         }
 

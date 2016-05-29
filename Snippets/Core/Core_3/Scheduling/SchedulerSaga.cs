@@ -34,7 +34,8 @@
         public void Timeout(ExecuteTask state)
         {
             // Action that gets executed when the specified time is up
-            Bus.Send(new CallLegacySystem());
+            var callLegacySystem = new CallLegacySystem();
+            Bus.Send(callLegacySystem);
             // Reschedule the task
             RequestUtcTimeout<ExecuteTask>(TimeSpan.FromMinutes(5));
         }

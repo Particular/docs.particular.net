@@ -9,7 +9,8 @@ public class SendMessageAfterEndpointStart : IRunAfterEndpointStart
     public Task Run(IEndpointInstance endpoint)
     {
         log.Info("Sending Message.");
-        return endpoint.SendLocal(new MyMessage());
+        var myMessage = new MyMessage();
+        return endpoint.SendLocal(myMessage);
     }
 }
 #endregion

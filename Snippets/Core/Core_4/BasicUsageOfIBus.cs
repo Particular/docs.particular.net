@@ -10,7 +10,8 @@
             var configUnicastBus = Configure.With().UnicastBus();
             var bus = configUnicastBus.CreateBus().Start();
 
-            bus.Send(new MyMessage());
+            var myMessage = new MyMessage();
+            bus.Send(myMessage);
             #endregion
         }
 
@@ -27,7 +28,8 @@
 
             public void Handle(MyMessage message)
             {
-                bus.Send(new OtherMessage());
+                var otherMessage = new OtherMessage();
+                bus.Send(otherMessage);
             }
         }
         #endregion
@@ -49,7 +51,8 @@
         void ThisEndpoint(IBus bus)
         {
             #region BasicSendToAnyInstance
-            bus.SendLocal(new MyMessage());
+            var myMessage = new MyMessage();
+            bus.SendLocal(myMessage);
             #endregion
         }
 

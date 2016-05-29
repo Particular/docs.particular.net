@@ -18,7 +18,8 @@ class Program
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
-            bus.SendLocal(new MyMessage());
+            var myMessage = new MyMessage();
+            bus.SendLocal(myMessage);
             Console.ReadKey();
         }
 

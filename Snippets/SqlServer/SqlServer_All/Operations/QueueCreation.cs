@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 public static class QueueCreation
 {
-    public static void CreateQueuesForEndpoint()
+    public static async Task CreateQueuesForEndpoint()
     {
         var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
 
@@ -11,11 +12,13 @@ public static class QueueCreation
 
         using (var sqlConnection = new SqlConnection(connectionString))
         {
-            sqlConnection.Open();
-            CreateQueuesForEndpoint(
+            await sqlConnection.OpenAsync()
+                .ConfigureAwait(false);
+            await CreateQueuesForEndpoint(
                 connection: sqlConnection,
                 schema: "dbo",
-                endpointName: "myendpoint");
+                endpointName: "myendpoint")
+                .ConfigureAwait(false);
         }
 
         #endregion
@@ -24,16 +27,19 @@ public static class QueueCreation
 
         using (var sqlConnection = new SqlConnection(connectionString))
         {
-            sqlConnection.Open();
-            CreateQueue(
+            await sqlConnection.OpenAsync()
+                .ConfigureAwait(false);
+            await CreateQueue(
                 connection: sqlConnection,
                 schema: "dbo",
-                queueName: "error");
+                queueName: "error")
+                .ConfigureAwait(false);
 
-            CreateQueue(
+            await CreateQueue(
                 connection: sqlConnection,
                 schema: "dbo",
-                queueName: "audit");
+                queueName: "audit")
+                .ConfigureAwait(false);
         }
 
         #endregion
@@ -41,25 +47,30 @@ public static class QueueCreation
 
     #region sqlserver-create-queues
 
-    public static void CreateQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
+    public static async Task CreateQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
     {
         //main queue
-        CreateQueue(connection, schema, endpointName);
+        await CreateQueue(connection, schema, endpointName)
+            .ConfigureAwait(false);
 
         //callback queue
-        CreateQueue(connection, schema, endpointName + "." + Environment.MachineName);
+        await CreateQueue(connection, schema, endpointName + "." + Environment.MachineName)
+            .ConfigureAwait(false);
 
         //retries queue
-        CreateQueue(connection, schema, endpointName + ".Retries");
+        await CreateQueue(connection, schema, endpointName + ".Retries")
+            .ConfigureAwait(false);
 
         //timeout queue
-        CreateQueue(connection, schema, endpointName + ".Timeouts");
+        await CreateQueue(connection, schema, endpointName + ".Timeouts")
+            .ConfigureAwait(false);
 
         //timeout dispatcher queue
-        CreateQueue(connection, schema, endpointName + ".TimeoutsDispatcher");
+        await CreateQueue(connection, schema, endpointName + ".TimeoutsDispatcher")
+            .ConfigureAwait(false);
     }
 
-    public static void CreateQueue(SqlConnection connection, string schema, string queueName)
+    public static async Task CreateQueue(SqlConnection connection, string schema, string queueName)
     {
         var createQueueScript =
             @"IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{0}].[{1}]') AND type in (N'U'))
@@ -83,7 +94,8 @@ public static class QueueCreation
         var sql = string.Format(createQueueScript, schema, queueName);
         using (var command = new SqlCommand(sql, connection))
         {
-            command.ExecuteNonQuery();
+            await command.ExecuteNonQueryAsync()
+                .ConfigureAwait(false);
         }
     }
 

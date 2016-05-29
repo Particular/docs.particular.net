@@ -10,7 +10,8 @@ public class SendMessageAfterEndpointStart : IRunAfterEndpointStart
     public void Run(IBus bus)
     {
         log.Info("Sending Message.");
-        bus.SendLocal(new MyMessage());
+        var myMessage = new MyMessage();
+        bus.SendLocal(myMessage);
     }
 }
 #endregion

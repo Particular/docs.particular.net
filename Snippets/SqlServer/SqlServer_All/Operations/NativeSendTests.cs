@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Management.Automation;
 using System.Threading;
+using System.Threading.Tasks;
 using Common;
 using NServiceBus;
 using NServiceBus.Config;
@@ -23,18 +24,21 @@ public class NativeSendTests
 
     [SetUp]
     [TearDown]
-    public void Setup()
+    public async Task Setup()
     {
         using (var connection = new SqlConnection(connectionString))
         {
-            connection.Open();
-            QueueDeletion.DeleteQueuesForEndpoint(connection, schema, endpointName);
-            QueueDeletion.DeleteQueuesForEndpoint(connection, schema, errorQueueName);
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
+            await QueueDeletion.DeleteQueuesForEndpoint(connection, schema, endpointName)
+                .ConfigureAwait(false);
+            await QueueDeletion.DeleteQueuesForEndpoint(connection, schema, errorQueueName)
+                .ConfigureAwait(false);
         }
     }
 
     [Test]
-    public void Send()
+    public async Task Send()
     {
         var state = new State();
         using (var bus = StartBus(state))
@@ -46,7 +50,8 @@ public class NativeSendTests
                 {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
             };
 
-            NativeSend.SendMessage(connectionString, endpointName, message, headers);
+            await NativeSend.SendMessage(connectionString, endpointName, message, headers)
+                .ConfigureAwait(false);
             state.ResetEvent.WaitOne();
         }
     }

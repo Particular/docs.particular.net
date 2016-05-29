@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System.Threading.Tasks;
 using NUnit.Framework;
 
 [TestFixture]
@@ -6,26 +7,30 @@ using NUnit.Framework;
 public class QueueCreationTests
 {
     [Test]
-    public void CreateQueuesForEndpoint()
+    public async Task CreateQueuesForEndpoint()
     {
         var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
         using (var sqlConnection = new SqlConnection(connectionString))
         {
-            sqlConnection.Open();
-            QueueCreation.CreateQueuesForEndpoint(
+            await sqlConnection.OpenAsync()
+                .ConfigureAwait(false);
+            await QueueCreation.CreateQueuesForEndpoint(
                 connection: sqlConnection,
                 schema: "dbo",
-                endpointName: "myendpoint");
+                endpointName: "myendpoint")
+                .ConfigureAwait(false);
 
-            QueueCreation.CreateQueue(
-                connection: sqlConnection, 
-                schema: "dbo",
-                queueName: "error");
-
-            QueueCreation.CreateQueue(
+            await QueueCreation.CreateQueue(
                 connection: sqlConnection,
                 schema: "dbo",
-                queueName: "audit");
+                queueName: "error")
+                .ConfigureAwait(false);
+
+            await QueueCreation.CreateQueue(
+                connection: sqlConnection,
+                schema: "dbo",
+                queueName: "audit")
+                .ConfigureAwait(false);
         }
 
     }

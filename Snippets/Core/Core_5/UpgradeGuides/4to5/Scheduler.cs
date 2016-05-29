@@ -20,10 +20,18 @@
             public void Start()
             {
                 // To send a message every 5 minutes
-                schedule.Every(TimeSpan.FromMinutes(5), () => bus.SendLocal(new MyMessage()));
+                schedule.Every(TimeSpan.FromMinutes(5), () =>
+                {
+                    var myMessage = new MyMessage();
+                    bus.SendLocal(myMessage);
+                });
 
                 // Name a schedule task and invoke it every 5 minutes
-                schedule.Every(TimeSpan.FromMinutes(5), "Task name", () => bus.SendLocal(new MyMessage()));
+                schedule.Every(TimeSpan.FromMinutes(5), "Task name", () =>
+                {
+                    var myMessage = new MyMessage();
+                    bus.SendLocal(myMessage);
+                });
             }
 
             public void Stop()

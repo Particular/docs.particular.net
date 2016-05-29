@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System.Threading.Tasks;
 using NUnit.Framework;
 
 [TestFixture]
@@ -7,34 +8,39 @@ public class QueueDeletionTests
 {
 
     [Test]
-    public void DeleteQueuesForEndpoint()
+    public async Task DeleteQueuesForEndpoint()
     {
         var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
         using (var sqlConnection = new SqlConnection(connectionString))
         {
-            sqlConnection.Open();
-            QueueDeletion.DeleteQueuesForEndpoint(
+            await sqlConnection.OpenAsync()
+                .ConfigureAwait(false);
+            await QueueDeletion.DeleteQueuesForEndpoint(
                 connection: sqlConnection,
                 schema: "dbo",
-                endpointName: "myendpoint");
+                endpointName: "myendpoint")
+                .ConfigureAwait(false);
         }
     }
 
     [Test]
-    public void DeleteSharedQueues()
+    public async Task DeleteSharedQueues()
     {
         var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
         using (var sqlConnection = new SqlConnection(connectionString))
         {
-            sqlConnection.Open();
-            QueueDeletion.DeleteQueue(
+            await sqlConnection.OpenAsync()
+                .ConfigureAwait(false);
+            await QueueDeletion.DeleteQueue(
                 connection: sqlConnection,
                 schema: "dbo",
-                queueName: "audit");
-            QueueDeletion.DeleteQueue(
+                queueName: "audit")
+                .ConfigureAwait(false);
+            await QueueDeletion.DeleteQueue(
                 connection: sqlConnection,
                 schema: "dbo",
-                queueName: "error");
+                queueName: "error")
+                .ConfigureAwait(false);
         }
 
     }

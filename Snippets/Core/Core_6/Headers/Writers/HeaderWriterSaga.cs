@@ -86,9 +86,11 @@
         {
             public async Task Handle(SendFromSagaMessage message, IMessageHandlerContext context)
             {
-                await context.Reply(new ReplyFromSagaMessage())
+                var replyFromSagaMessage = new ReplyFromSagaMessage();
+                await context.Reply(replyFromSagaMessage)
                     .ConfigureAwait(false);
-                await ReplyToOriginator(context, new ReplyToOriginatorFromSagaMessage())
+                var replyToOriginatorFromSagaMessage = new ReplyToOriginatorFromSagaMessage();
+                await ReplyToOriginator(context, replyToOriginatorFromSagaMessage)
                     .ConfigureAwait(false);
                 await RequestTimeout(context, TimeSpan.FromMilliseconds(1), new TimeoutFromSaga())
                     .ConfigureAwait(false);

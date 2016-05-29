@@ -16,7 +16,8 @@
 
         public void Handle(object message)
         {
-            bus.Reply(new SagaDisappearedMessage());
+            var sagaDisappearedMessage = new SagaDisappearedMessage();
+            bus.Reply(sagaDisappearedMessage);
         }
     }
 

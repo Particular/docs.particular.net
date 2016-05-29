@@ -11,7 +11,8 @@ public class Startup : IWantToRunWhenBusStartsAndStops
 
     public void Start()
     {
-        bus.SendLocal(new MyMessage());
+        var myMessage = new MyMessage();
+        bus.SendLocal(myMessage);
     }
 
     public void Stop()

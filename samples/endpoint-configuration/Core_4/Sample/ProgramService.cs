@@ -104,7 +104,8 @@ class ProgramService : ServiceBase
             .Start(() => configure.ForInstallationOn<Windows>().Install());
         #endregion
 
-        bus.SendLocal(new MyMessage());
+        var myMessage = new MyMessage();
+        bus.SendLocal(myMessage);
     }
 
 

@@ -29,7 +29,8 @@ class Program
         {
             var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
 
-            bus.SendLocal(new MyMessage());
+            var myMessage = new MyMessage();
+            bus.SendLocal(myMessage);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

@@ -22,14 +22,16 @@ class Program
         {
             var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
 
-            bus.SendLocal(new StartOrder
+            var startOrder1 = new StartOrder
             {
                 OrderId = "123"
-            });
-            bus.SendLocal(new StartOrder
+            };
+            bus.SendLocal(startOrder1);
+            var startOrder2 = new StartOrder
             {
                 OrderId = "456"
-            });
+            };
+            bus.SendLocal(startOrder2);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

@@ -129,7 +129,8 @@ class ProgramService : ServiceBase
 
         #endregion
 
-        await endpointInstance.SendLocal(new MyMessage())
+        var myMessage = new MyMessage();
+        await endpointInstance.SendLocal(myMessage)
             .ConfigureAwait(false);
     }
 

@@ -100,7 +100,8 @@ class ProgramService : ServiceBase
         #endregion
 
 
-        bus.SendLocal(new MyMessage());
+        var myMessage = new MyMessage();
+        bus.SendLocal(myMessage);
     }
 
 

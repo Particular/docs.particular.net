@@ -42,7 +42,8 @@ class Program
                 }
                 for (var i = 0; i < 10; i++)
                 {
-                    await endpointInstance.SendLocal(new MyMessage())
+                    var myMessage = new MyMessage();
+                    await endpointInstance.SendLocal(myMessage)
                         .ConfigureAwait(false);
                 }
             }

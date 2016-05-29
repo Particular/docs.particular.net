@@ -22,7 +22,7 @@ class Program
         //Create message queue object
         var addressOfMsmqBridge = new MessageQueue(queuePath, QueueAccessMode.SendAndReceive);
         // for the sample's sake. Might need to fine tune the exact filters required.
-        addressOfMsmqBridge.MessageReadPropertyFilter.SetAll(); 
+        addressOfMsmqBridge.MessageReadPropertyFilter.SetAll();
 
         // Add an event handler for the ReceiveCompleted event.
         addressOfMsmqBridge.ReceiveCompleted += MsmqBridgeOnReceiveCompleted;
