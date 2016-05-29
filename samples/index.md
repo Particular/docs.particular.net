@@ -37,7 +37,7 @@ Unless otherwise specified (by an individual sample) the following are the defau
 
 ### C# Language Level
 
-All samples that target NServiceBus Version 6 and above have the C# Language Level set to **6.0** to take advantage of the newer language features.
+All samples target **C# 6.0** to take advantage of the newer language features. If any help is required in converting to earlier versions of C# then [raise an issue](https://github.com/Particular/docs.particular.net/issues).
 
 
 ### [Transport](/nservicebus/transports/)
@@ -94,8 +94,3 @@ Many samples make use of `SendLocal` and sending to an endpoint directly by spec
 ### [Container](/nservicebus/containers/)
 
 Samples default to using the built-in container since it does not require pulling in any external NuGets. Switching to an external container will give greater flexibility in DI customizations.
-
-
-### Async/await
-
-Samples by default use `await` and declare the surrounding method `async` everywhere, even if the Task could be returned by the called API. Furthermore, `ConfigureAwait(false)` is not used when awaiting an asynchronous method execution. This is a conscious choice, although it is not following the best practices around `async`/`await`, to simplify readability of samples. 
