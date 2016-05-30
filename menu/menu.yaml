@@ -13,6 +13,7 @@
         - "nservicebus/operations/transactions-message-processing"
         - "nservicebus/architecture/nservicebus-and-wcf"
         - "nservicebus/architecture/nservicebus-and-biztalk"
+        - "nservicebus/licensing/license-management"
     -
       Title: "Upgrade Guides"
       Url: "nservicebus/upgrades"
