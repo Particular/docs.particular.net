@@ -9,7 +9,7 @@ related:
 - samples/header-manipulation
 - nservicebus/messaging/headers
 - nservicebus/pipeline/message-mutators
-- nservicebus/pipeline/customizing
+- nservicebus/pipeline
 - nservicebus/handlers
 - nservicebus/sagas
 ---
