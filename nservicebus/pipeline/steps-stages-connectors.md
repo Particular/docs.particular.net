@@ -1,43 +1,27 @@
 ---
-title: Customizing the Pipeline in NServiceBus Version 6
-summary: Customizing the message handling pipeline in NServiceBus Version 6.
+title: Pipeline Steps, Stages and Connectors
+summary: The pipeline is composed of a number of Stages that communicate via Connectors.
 tags:
 - Pipeline
+- Connector
+- Stage
 related:
-- nservicebus/pipeline/customizing
+- nservicebus/pipeline/manipulate-with-behaviors
 ---
 
-NServiceBus version 6 splits the existing pipelines into smaller composable units called "Stages". A stage is a group of steps acting on the same level of abstraction. This allows scenarios such as 
- * Defining a step that works with the "incoming physical" message before it has been deserialized  
- * Defining a step that is executed before and after each handler invocation (remember: there can be multiple message handlers per message)
 
-Extending the pipeline is done with a custom behavior implementing `Behavior<TContext>`. `TContext` is the context of the stage that the behavior belongs to.
+NServiceBus has the concept of a "pipeline" which refers to the series of actions taken when an incoming message is process and an outgoing message is sent.
 
-snippet:SamplePipelineBehavior
+NServiceBus has always had the concept of a pipeline execution order that is executed when a message is received or dispatched. From NServiceBus Version 5 on, this pipeline has been made a first level concept and exposes it for extensibility. This allows users to take full control of the incoming and outgoing message processing.
 
-In the above code snippet the `SampleBehavior` class derives from `Behavior<IIncomingLogicalMessageContext>`. This tells the framework to execute this behavior after the incoming raw message has been deserialized and a matching message type has been found. At runtime, the pipeline will call the `Invoke` method of each registered behavior passing in as arguments the current message context and an action to invoke the next behavior in the pipeline.
+In NServiceBus there are two explicit pipelines: one for the outgoing messages and one for the incoming messages.
 
-Warning: Each behavior is responsible to call the next step in the pipeline chain by invoking `next()`.
+Each pipeline is composed of "steps". A step is an identifiable value in the pipeline used to programmatically define order of execution. Each step represents a behavior which will be executed at the given place within the pipeline. To add additional behavior to the pipeline by registering a new step or replace the behavior of an existing step with the custom implementation.
 
-
-## Add a new step
-
-To add a custom behavior to the pipeline define a step for it:
-
-snippet:NewPipelineStep
-
-Then register the new step in the pipeline settings:
-
-snippet:AddPipelineStep
+NServiceBus Version 6 further splits the existing pipelines into smaller composable units called "Stages" and "Connectors". A stage is a group of steps acting on the same level of abstraction.
 
 
-## Replace an existing step
-
-To replace the implementation of an existing step replace it with a custom behavior:
-
-snippet:ReplacePipelineStep
-
-Note: Steps can also be registered from a [Feature](features.md).
+WARNING: The following concepts are specific to NServiceBus Versions 6 and above.
 
 
 ## Stages
@@ -60,24 +44,9 @@ The following lists describe some of the common stages that behaviors can be bui
  * Fault message processing: This is a dedicated stage for processing faulty messages that are being moved to the error queue. Behaviors have access to message, exception and error address. This stage provides `IFaultContext` to it's behaviors.
  * Physical message processing: Enables to access the serialized message. This stage provides `IOutgoingPhysicalMessageContext` to it's behaviors.
 
-NOTE: As in Version 5 steps can be ordered by using `WellKnownSteps`. It is recommended not rely on the existence of certain steps but to choose the appropriate stage instead.
 
 
-## Sharing data between behaviors
-
-Sometimes a parent behavior might need to pass some information to a child behavior and vice versa. The `context` parameter of a behavior's Invoke method facilitates passing data between behaviors. The context is very similar to a shared dictionary which allows adding and retrieving information from different behaviors.
-
-snippet:SharingBehaviorData
-
-Note that the context respects the stage hierarchy and only allows adding new entries in the scope of the current context. A child behavior (later in the pipeline chain) can read and even modify entries set by a parent behavior (earlier in the pipeline chain) but entries added by the child cannot be accessed from the parent.
-
-include: customizing-exception-handling
-
-
-## Advanced concepts
-
-
-### Stage Connectors
+## Stage Connectors
 
 ![Stage Connector](stage-connectors.svg)
 
@@ -86,7 +55,7 @@ Stage connectors connect from the current stage (i.ex. `IOutgoingLogicalMessageC
 snippet:CustomStageConnector
 
 
-### Fork Connectors
+## Fork Connectors
 
 ![Fork Connector](fork-connectors.svg)
 
@@ -97,7 +66,7 @@ snippet:CustomForkConnector
 There is currently no mechanism available to create pipelines which are not known to NServiceBus.
 
 
-### Stage Fork Connector
+## Stage Fork Connector
 
 ![Stage Fork Connector](stage-fork-connectors.svg)
 
@@ -105,15 +74,4 @@ Stage fork connectors are essentially a marriage of a stage connector and a fork
 
 snippet:CustomStageForkConnector
 
-There is currently no mechanism available to create pipelines which are not known to NServiceBus.
-
-
-## Skip Serialization in the pipeline
-
-When writing extensions to the pipeline it may be necessary to either take control of the serialization or to skip it entirely. One example usage of this is the [Callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md). Callbacks skips serialization for integers and enums and instead embeds them in the message headers.
-
-To skip serialization implement a behavior that targets `IOutgoingLogicalMessageContext`. For example the following behavior skips serialization if a send on an integer is requested. It instead places that in the header.
-
-snippet: SkipSerialization
-
-On the receiving side this header can then be extracted from the headers and decisions on the incoming message processing pipeline can be made based on it.
+Note: There is currently no mechanism available to create pipelines which are not known to NServiceBus.

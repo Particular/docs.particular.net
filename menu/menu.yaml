@@ -132,7 +132,8 @@
       Title: "Pipeline"
       Url: "nservicebus/pipeline"
       Articles:
-        - "nservicebus/pipeline/customizing"
+        - "nservicebus/pipeline/steps-stages-connectors.md"
+        - "nservicebus/pipeline/manipulate-with-behaviors"
         - "nservicebus/pipeline/message-mutators"
         - "nservicebus/pipeline/unit-of-work"
         - "nservicebus/pipeline/aborting"

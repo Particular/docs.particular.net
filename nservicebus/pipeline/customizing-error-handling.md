@@ -3,14 +3,14 @@ title: Migrating IManageMessageFailures
 summary: Extension point for handling message failures.
 reviewed: 2016-04-16
 related:
- - nservicebus/pipeline/customizing-v6
+ - nservicebus/pipeline/manipulate-with-behaviors
  - nservicebus/pipeline/features
 ---
 
 
 ## Versions 6 and Above
 
-The `IManageMessageFailures` interface has been deprecated. Instead, the same functionality can be achieved by adding a new behavior which is invoked during the message processing pipeline. Read this article on how to [create new pipeline behaviors](/nservicebus/pipeline/customizing-v6.md).
+The `IManageMessageFailures` interface has been deprecated. Instead, the same functionality can be achieved by adding a new behavior which is invoked during the message processing pipeline. Read this article on how to [manipulate the pipeline with behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md).
 
 
 ### Create a new behavior

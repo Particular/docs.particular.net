@@ -15,7 +15,8 @@ NServiceBus has the concept of a "pipeline" which refers to the series of action
 
 There are several ways to customize this pipeline with varying levels of complexity.
 
- * [Custom behaviors](/nservicebus/pipeline/customizing.md)
+ * [Manipulate the Pipeline with Behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md)
+ * [Steps, Stages and Connectors](/nservicebus/pipeline/steps-stages-connectors.md)
  * [Message Mutators](/nservicebus/pipeline/message-mutators.md)
  * [Aborting the Pipeline](/nservicebus/pipeline/aborting.md)
 
@@ -24,4 +25,3 @@ There are several ways to customize this pipeline with varying levels of complex
  * [DataBus](/nservicebus/messaging/databus.md)
  * [Encryption](/nservicebus/security/encryption.md)
  * [Second Level Retries](/nservicebus/errors/automatic-retries.md)
-  
