@@ -1,5 +1,5 @@
 ---
-title: How to install the NServiceBus license file
+title: Install the NServiceBus license
 summary: 'Make sure the NServiceBus endpoints use the license: Configuration API, app.config, subfolder in the BIN directory, or registry.'
 tags:
 - license
