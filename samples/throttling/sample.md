@@ -7,7 +7,7 @@ tags:
 - Throttling
 related:
 - samples/throttling
-- nservicebus/pipeline/customizing-v6
+- nservicebus/pipeline/manipulate-with-behaviors
 ---
 
 This sample demonstrates performing a search query against [GitHub API](https://developer.github.com/v3/) using the [Octokit library](https://github.com/octokit/octokit.net) in unauthenticated mode, which is limited to a fixed number of requests per minute. Upon hitting this limit, the endpoint will delay processing additional messages, until the limit resets.

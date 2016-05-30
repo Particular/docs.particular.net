@@ -93,7 +93,7 @@ Messages that fail all retries are send to a error queue for triage for either a
 The Pipeline refers to the series of actions taken when an incoming message is processed and an outgoing message is sent.
 
 
-### [Behavior](/nservicebus/pipeline/customizing.md)
+### [Behavior](/nservicebus/pipeline/manipulate-with-behaviors.md)
 
 A Behavior is a single step in the Pipeline.
 

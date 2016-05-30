@@ -3,7 +3,7 @@ title: Migrating Satellites
 summary: Extension point for handling messages.
 reviewed: 2016-04-16
 related:
- - nservicebus/pipeline/customizing-v6
+ - nservicebus/pipeline/manipulate-with-behaviors
  - nservicebus/pipeline/features
 ---
 
@@ -18,7 +18,7 @@ snippet: SimpleSatelliteFeature
 
 The call to `AddSatellitePipeline` in the `Setup` method creates a new message processing pipeline for the satellite. In this call, the queue that needs to be watched is configured. In the above example, the satellite will watch a queue named `targetqueue`.
 
-The action of what should occur when the messages arrive at the `targetqueue` is specified as a new `Behavior`. See also [Create pipeline behaviors](/nservicebus/pipeline/customizing-v6.md).
+The action of what should occur when the messages arrive at the `targetqueue` is specified as a new `Behavior`. See also [Create pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md).
 
 The satellite behavior class should inherit from **`PipelineTerminator<ISatelliteProcessingContext>`**. The `ISatelliteProcessingContext` provides the Terminate method where post-processing steps are run when a message arrives in the satellite queue.
 
