@@ -41,7 +41,7 @@ The host role entry point and host process no longer depend on the following com
 
 ## Deprecation of profiles
 
-The infrastructure backing profiles has been removed from the host and therefore the `Development` and `Production` profile are no longer available. Note that the effect of of these profiles already disappeared quite a while ago when visual studio introduced native logging. Refer to the [logging documentation](/nservicebus/hosting/cloud-services-host/logging.md) to learn how to set this up.
+The infrastructure backing profiles has been removed from the host and therefore the `Development` and `Production` profiles are no longer available. Note that Visual Studio native logging has replaced the profiles. Refer to the [logging documentation](/nservicebus/hosting/cloud-services-host/logging.md) to learn how to set this up.
 
 Any code in custom profile handlers should be moved into the `IConfigureThisEndpoint` or `IConfigureThisHost` configuration extension points.
 

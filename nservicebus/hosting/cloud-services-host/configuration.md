@@ -11,11 +11,11 @@ tags:
 
 Cloud Services is a hosting model provided by the Azure cloud, which is specifically designed for hosting large applications. For a detailed description of the cloud service configuration in Azure, see [What is the Cloud Service model and how do I package it?](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-model-and-package/).
 
-When configuring NServiceBus for hosting in Cloud Services, it needs to connect to a specific Azure storage account (for Azure Queues) or a Azure Service Bus namespace. For more information on the connection string formats, refer to [the windows azure connection string formats](http://www.connectionstrings.com/windows-azure/).
+When NServiceBus is hosted in Cloud Services, it needs to connect to a specific Azure storage account (for Azure Storage Queues) or an Azure Service Bus namespace. For more information on required connection string formats refer to [the windows azure connection string formats](http://www.connectionstrings.com/windows-azure/) article.
 
 ## Configuring an endpoint
 
-When using the Azure Cloud Services hosting entrypoint to host an endpoint, it should be configured using and implementation of `IConfigureThisEndpoint`.
+When an endpoint is hosted in Azure Cloud Services, then it should be configured by implementing the  `IConfigureThisEndpoint` interface.
 
 ### Enabling the Transport
 
@@ -37,25 +37,25 @@ snippet:PersistenceWithAzureHost
 
 NOTE: In Version 4, when hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
-## Configuration override convention
+## Convention to override configuration
 
-Because Azure cloud services has it's own configuration model, but NServiceBus is typically used with it's configuration in app.config, a convention based configuration source is provided. Where most of the configuration is in app.config, but any setting can be added 'by convention' to the service configuration file to override the original value in app.config. This makes it easy to develop locally (without the service runtime), but still make use of this feature in production.
+NServiceBus is typically configured using an `app.config` file, however Azure Cloud Services have their own configuration model. That makes settings management between various environments (e.g. local machine and production) complicated. In order to simplify the process, NServiceBus also supports a convention-based configuration. It allows for adding any NServiceBus setting to the service configuration file. The value specified in the service configuration file will override the value specified in the `app.config` file.
 
-NOTE: As most implementations for NServiceBus (like transports and persisters) are moving towards a code only configuration model, this feature will lose most of it's value over time.
+NOTE: NServiceBus is moving towards a code only configuration model, in NServiceBus Version 6 code configuration is the recommended model. When using code configuration model, the convention-based overrides are no longer necessary.
 
 The configuration source can be turned on like this:
 
 snippet:AzureConfigurationSource
 
-This convention based override model works for all configuration sections used by NServicebus, but for the sake of example, let's use the `AzureServiceBusQueueConfig` section which is available in Azure Service Bus transport version 6 and below:
+The convention-based override model works for all configuration sections used by NServiceBus. For example, it's possible to override the `AzureServiceBusQueueConfig` section which is available in Azure Service Bus transport Version 6 and below:
 
 Snippet:AzureServiceBusQueueConfigSection
 
-This setting can then be set in the app.config file, by specifying this config section:
+It is configured in the `app.config` file by specifying a dedicated config section:
 
 Snippet:AzureServiceBusQueueConfig
 
-When hosting in a Azure cloud service this setting can be overridden in the service configuration (`.cscfg`) file.
+That setting can then be overridden in the service configuration file (`.cscfg`), when hosting in the Azure Cloud Service.
 
 First define the setting in the service definition file (`.csdef`).
 
@@ -65,13 +65,13 @@ Then specify the value for every cloud service deployment in the Cloud Services 
 
 Snippet:AzureServiceBusQueueConfigCsCfg
 
-The name to be used for the property override is always structured like this: `TagName.PropertyName`. If tags were nested it's a repetition of the pattern `ParentTagName.ChildTagName.PropertyName`. It's currently impossible to override parent tags that would contain multiple of the same child tag, therefore it's impossible to override `MessageEndpointMappings` in this way.
+Names used for property overrides always have the following structure:  `TagName.PropertyName`. Tags can be nested: `ParentTagName.ChildTagName.PropertyName`. It's currently not possible to override parent tags that contain multiple child tags with the same name, therefore `MessageEndpointMappings` can't be overridden using this approach.
 
-The override order used in this example applies, lowest priority is the default value set on the config section, then the app.config value is applied, and then the service configuration value is applied.
+The default value set in the config section has the lowest priority. It can be overridden by the value specified in the `app.config` file. The value provided in the service configuration file takes precedence over the value specified in the `app.config` file.
 
 ### Applying configuration changes
 
-Azure Cloud Services allows to change the configuration settings from within the Azure Portal. But, any changes made to them will not be applied automatically into the NServiceBus configuration system, because the original values have often been copied into settings fields or private member fields of downstream components.
+Azure Cloud Services allows to change the configuration settings from within the Azure Portal. However, the changes made in the Azure Portal are not automatically applied to the all NServiceBus components.
 
 If configuration changes should result in a reconfiguration of the endpoint, consider instructing the `RoleEnvironment` to restart the role instances by subscribing to the [RoleEnvironment.Changing event](https://msdn.microsoft.com/en-us/library/microsoft.windowsazure.serviceruntime.roleenvironment.changing.aspx) and setting `e.Cancel = true;`
 

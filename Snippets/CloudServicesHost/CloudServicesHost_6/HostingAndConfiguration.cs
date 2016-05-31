@@ -57,17 +57,14 @@ public class MvcApplication : HttpApplication
 }
 #endregion
 
-namespace AsAHost
+#region AsAHost
+
+public class EndpointHostConfig : IConfigureThisEndpoint, AsA_Host
 {
-    #region AsAHost
-
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Host
+    public void Customize(BusConfiguration configuration)
     {
-        public void Customize(BusConfiguration configuration)
-        {
-            
-        }
-    }
 
-    #endregion
+    }
 }
+
+#endregion
