@@ -148,7 +148,7 @@
     <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
-    <Compile Include="Extending\Features.cs" />
+    <Compile Include="Features\Features.cs" />
     <Compile Include="Features\MyStartupTaskThatUsesMessageSession.cs" />
     <Compile Include="Forwarding\Usage.cs" />
     <Compile Include="Headers\Writers\BehaviorCleaner.cs" />
@@ -206,6 +206,7 @@
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStartStop.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
+    <Compile Include="UpgradeGuides\5to6\DependentFeature.cs" />
     <Compile Include="UpgradeGuides\5to6\HandlerOrdering.cs" />
     <Compile Include="UpgradeGuides\5to6\IConfigureComponentsNotInjected.cs" />
     <Compile Include="UpgradeGuides\5to6\Injection.cs" />
