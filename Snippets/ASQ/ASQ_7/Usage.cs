@@ -8,7 +8,8 @@ class Usage
     {
         #region AzureStorageQueueTransportWithAzure
 
-        endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName={youraccount};AccountKey={yourkey};");
 
         #endregion
     }
@@ -18,7 +19,7 @@ class Usage
         #region AzureStorageQueueConfigCodeOnly
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.ConnectionString("azure-storage-connection-string");
+        transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName={youraccount};AccountKey={yourkey};");
         transport.BatchSize(20);
         transport.MaximumWaitTimeWhenIdle(TimeSpan.FromSeconds(1));
         transport.DegreeOfReceiveParallelism(16);
@@ -33,8 +34,7 @@ class Usage
         #region AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport
-            .UseAccountNamesInsteadOfConnectionStrings();
+        transport.UseAccountNamesInsteadOfConnectionStrings();
 
         #endregion
     }
@@ -44,9 +44,8 @@ class Usage
         #region AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings1
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport
-            .ConnectionString("default_connection_string")
-            .UseAccountNamesInsteadOfConnectionStrings(mapping =>
+        transport.ConnectionString("default_connection_string");
+        transport.UseAccountNamesInsteadOfConnectionStrings(mapping =>
             {
                 mapping.MapLocalAccount("default");
                 mapping.MapAccount("another","another_connection_string");
@@ -60,9 +59,8 @@ class Usage
         #region AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings2
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport
-            .ConnectionString("another_connection_string")
-            .UseAccountNamesInsteadOfConnectionStrings(mapping =>
+        transport.ConnectionString("another_connection_string");
+        transport.UseAccountNamesInsteadOfConnectionStrings(mapping =>
             {
                 mapping.MapLocalAccount("another");
                 mapping.MapAccount("default", "default_connection_string");
@@ -87,7 +85,8 @@ class Usage
     {
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
-            endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+            var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+            transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName={youraccount};AccountKey={yourkey};");
         }
     }
 

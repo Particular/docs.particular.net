@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System.Configuration;
+using NServiceBus;
 
 class Usage
 {
@@ -6,18 +7,27 @@ class Usage
     {
         #region AzureServiceBusTransportWithAzure
 
-        busConfiguration.UseTransport<AzureServiceBusTransport>();
+        var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.ConnectionString("Endpoint=sb://{namespace}.servicebus.windows.net/;SharedAccessKeyName={keyname};SharedAccessKey={keyvalue}");
 
         #endregion
     }
 
-    #region AzureServiceBusTransportWithAzureHost
+    #region AzureServiceBusQueueConfigSection
 
-    public class EndpointConfig : IConfigureThisEndpoint
+    public class AzureServiceBusQueueConfig : ConfigurationSection
     {
-        public void Customize(BusConfiguration busConfiguration)
+        [ConfigurationProperty("ConnectionString", IsRequired = true)]
+        public string ConnectionString
         {
-            busConfiguration.UseTransport<AzureServiceBusTransport>();
+            get
+            {
+                return this["ConnectionString"] as string;
+            }
+            set
+            {
+                this["ConnectionString"] = value;
+            }
         }
     }
 

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- startcode AzureServiceBusQueueConfigCsDef -->
+<WorkerRole name="WorkerRole">
+  <ConfigurationSettings>
+    <Setting name="AzureServiceBusQueueConfig.ConnectionString"/>
+  </ConfigurationSettings>
+</WorkerRole>
+<!-- endcode -->

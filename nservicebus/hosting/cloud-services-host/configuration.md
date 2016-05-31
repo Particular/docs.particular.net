@@ -1,114 +1,78 @@
 ---
-title: Azure Cloud Services Host Endpoint Configuration
+title: Configuration
 summary: Configuring the endpoint when hosting in Azure Cloud Services
 tags:
 - Azure
 - Cloud
+- Configuration
 ---
 
-## Enabling the Transport
+## Configuring for Cloud Services hosting
 
-When using one of the NServiceBus provided hosting processes, the `UseTransport<T>` should be called on the endpoint configuration. For example using Azure Service Bus Transport
+Cloud Services is a hosting model provided by the Azure cloud, which is specifically designed for hosting large applications. For a detailed description of the cloud service configuration in Azure, see [What is the Cloud Service model and how do I package it?](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-model-and-package/).
+
+When NServiceBus is hosted in Cloud Services, it needs to connect to a specific Azure storage account (for Azure Storage Queues) or an Azure Service Bus namespace. For more information on required connection string formats refer to [the windows azure connection string formats](http://www.connectionstrings.com/windows-azure/) article.
+
+## Configuring an endpoint
+
+When an endpoint is hosted in Azure Cloud Services, then it should be configured by implementing the  `IConfigureThisEndpoint` interface.
+
+### Enabling the Transport
+
+To enable a transport of choice, the `UseTransport<T>` should be called on the endpoint configuration and a connection string must be provided.
+
+For example using Azure Service Bus Transport
 
 snippet:AzureServiceBusTransportWithAzureHost
 
-
-Example using azure storage queues transport:
+Or using the Azure Storage Queues Transport:
 
 snippet:AzureStorageQueueTransportWithAzureHost
 
+### Enabling the Persistence
 
-## Enabling the Persistence
-
-The Azure Storage Persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config.
+The Azure Storage Persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config as well.
 
 snippet:PersistenceWithAzureHost
 
 NOTE: In Version 4, when hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
-## Configuring for cloud service hosting
+## Convention to override configuration
 
-For a detailed description of the cloud service configuration in Azure, see [What is the Cloud Service model and how do I package it?](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-model-and-package/).
+NServiceBus is typically configured using an `app.config` file, however Azure Cloud Services have their own configuration model. That makes settings management between various environments (e.g. local machine and production) complicated. In order to simplify the process, NServiceBus also supports a convention-based configuration. It allows for adding any NServiceBus setting to the service configuration file. The value specified in the service configuration file will override the value specified in the `app.config` file.
 
-To configure NServiceBus to connect to a specific Azure storage account (for Azure Queues) or a Azure Service Bus namespace, one must set the [appropriate connection string for each option](http://www.connectionstrings.com/windows-azure/).
+NOTE: NServiceBus is moving towards a code only configuration model, in NServiceBus Version 6 code configuration is the recommended model. When using code configuration model, the convention-based overrides are no longer necessary.
 
+The configuration source can be turned on like this:
 
-### Azure Storage Queues
+snippet:AzureConfigurationSource
 
-In the Azure Service Configuration file (ServiceConfiguration.cscfg), add the following sections:
+The convention-based override model works for all configuration sections used by NServiceBus. For example, it's possible to override the `AzureServiceBusQueueConfig` section which is available in Azure Service Bus transport Version 6 and below:
 
-```
-<?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="AzureService"
-xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration"
-schemaVersion="2013-03.2.0">
-  <Role name="{role name}">
-    <Instances count="1" />
-    <ConfigurationSettings>
-      <Setting name="AzureQueueConfig.ConnectionString"
-      value="DefaultEndpointsProtocol=https;AccountName={the account name here};
-      AccountKey={the account key here}" />
-      <Setting name="AzureQueueConfig.QueueName" value="{the queue name here}" />
-...
-    </ConfigurationSettings>
-  </Role>
-</ServiceConfiguration>
-```
+Snippet:AzureServiceBusQueueConfigSection
 
-The "AzureQueueConfig.ConnectionString" for Azure Queues follows this format:
+It is configured in the `app.config` file by specifying a dedicated config section:
 
-    DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;QueueEndpoint=customEndpoint;
+Snippet:AzureServiceBusQueueConfig
 
-Alternatively, use the Azure development environment emulator by using this connection string:
+That setting can then be overridden in the service configuration file (`.cscfg`), when hosting in the Azure Cloud Service.
 
-    UseDevelopmentStorage=True;
+First define the setting in the service definition file (`.csdef`).
 
-In the NServiceBus solution, specify the Endpoint Configuration to use AzureStorageQueue transport:
+Snippet:AzureServiceBusQueueConfigCsDef
 
-```
-public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
-{
-    public void Customize(BusConfiguration builder)
-    {
-        builder.UseTransport<AzureStorageQueueTransport>();
-    }
-}
-```
+Then specify the value for every cloud service deployment in the Cloud Services project.
 
-### Azure Service Bus
+Snippet:AzureServiceBusQueueConfigCsCfg
 
-In the Azure Service Configuration file
-(ServiceConfiguration.cscfg), add the following sections:
+Names used for property overrides always have the following structure:  `TagName.PropertyName`. Tags can be nested: `ParentTagName.ChildTagName.PropertyName`. It's currently not possible to override parent tags that contain multiple child tags with the same name, therefore `MessageEndpointMappings` can't be overridden using this approach.
 
-```
-<?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="AzureService"
-xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration"
-schemaVersion="2013-03.2.0">
-  <Role name="{role name}">
-    <Instances count="1" />
-    <ConfigurationSettings>
-      <Setting name="AzureServiceBusQueueConfig.ConnectionString"
-      value="Endpoint=sb://{namespace here}.servicebus.windows.net/;
-      SharedAccessKeyName=RootManageSharedAccessKey;
-      SharedAccessKey={shared access key here}" />
-...
-    </ConfigurationSettings>
-  </Role>
-</ServiceConfiguration>
-```
+The default value set in the config section has the lowest priority. It can be overridden by the value specified in the `app.config` file. The value provided in the service configuration file takes precedence over the value specified in the `app.config` file.
 
+### Applying configuration changes
 
-The "AzureServiceBusQueueConfig.ConnectionString" for Azure Service Bus namespace connection string can be retrieved from the Azure portal using an authorized account.
+Azure Cloud Services allows to change the configuration settings from within the Azure Portal. However, the changes made in the Azure Portal are not automatically applied to the all NServiceBus components.
 
-In the NServiceBus solution, specify the endpoint configuration to use AzureServiceBus transport:
+If configuration changes should result in a reconfiguration of the endpoint, consider instructing the `RoleEnvironment` to restart the role instances by subscribing to the [RoleEnvironment.Changing event](https://msdn.microsoft.com/en-us/library/microsoft.windowsazure.serviceruntime.roleenvironment.changing.aspx) and setting `e.Cancel = true;`
 
-```
-public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
-{
-    public void Customize(BusConfiguration builder)
-    {
-        builder.UseTransport<AzureServiceBusTransport>();
-    }
-}
-```
+If at least 2 role instances are running, then this will result in a configuration change without inflicting downtime on the overall system. Each instance may reboot individually in the process, but this is orchestrated across update and fault domains so that at any point in time an instance is operational.

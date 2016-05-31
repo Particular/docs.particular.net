@@ -26,13 +26,14 @@ public class WorkerRole : RoleEntryPoint
 
 #endregion
 
-#region ConfigureEndpoint
+#region AzureServiceBusTransportWithAzureHost 7
 
 public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
 {
     public void Customize(EndpointConfiguration endpointConfiguration)
     {
-        endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.ConnectionString("Endpoint=sb://{namespace}.servicebus.windows.net/;SharedAccessKeyName={keyname};SharedAccessKey={keyvalue}");
         endpointConfiguration.UsePersistence<AzureStoragePersistence>();
     }
 }
@@ -57,6 +58,18 @@ public class MvcApplication : HttpApplication
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
+    }
+}
+
+#endregion
+
+#region AsAHost
+
+public class EndpointHostConfig : IConfigureThisHost
+{
+    public HostingSettings Configure()
+    {
+        return new HostingSettings("DefaultEndpointsProtocol=https;AccountName={yourAccount};AccountKey={yourKey};");
     }
 }
 

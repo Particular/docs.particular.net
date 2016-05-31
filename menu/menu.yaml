@@ -290,10 +290,12 @@
         - Title: "Azure Cloud Services Host"
           Url: "nservicebus/hosting/cloud-services-host"
           Articles:
-            - "nservicebus/hosting/cloud-services-host/faq"
             - "nservicebus/hosting/cloud-services-host/configuration"
+            - "nservicebus/hosting/cloud-services-host/logging"
+            - "nservicebus/hosting/cloud-services-host/startup"
             - "nservicebus/hosting/cloud-services-host/shared-hosting"
-            - "nservicebus/hosting/cloud-services-host/hosting-options"
+            - "nservicebus/hosting/cloud-services-host/critical"
+            - "nservicebus/hosting/cloud-services-host/faq"
     -
       Title: "Testing"
       Url: "nservicebus/testing"
