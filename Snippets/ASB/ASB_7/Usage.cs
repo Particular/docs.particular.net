@@ -9,8 +9,8 @@ class Usage
     {
         #region AzureServiceBusTransportWithAzure
 
-        endpointConfiguration.UseTransport<AzureServiceBusTransport>()
-                             .ConnectionString("Endpoint=sb://{namespace}.servicebus.windows.net/;SharedAccessKeyName={keyname};SharedAccessKey={keyvalue}");
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.ConnectionString("Endpoint=sb://{namespace}.servicebus.windows.net/;SharedAccessKeyName={keyname};SharedAccessKey={keyvalue}");
 
         #endregion
     }
