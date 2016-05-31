@@ -1,19 +1,26 @@
 ---
 title: Features
 summary: Implement a Feature for advanced extension of NServiceBus.
-reviewed: 2016-03-21
+reviewed: 2016-05-31
 tags:
  - feature
  - pipeline
+related:
+ - samples/feature
+ - samples/header-manipulation
+ - samples/logging/stack-trace-cleaning
+ - samples/pipeline/handler-timer
+ - samples/pipeline/multi-serializer
+ - samples/startup-shutdown-sequence
 ---
 
 While NServiceBus provides some simple interfaces to plug in the code at certain steps in the life-cycle, Features offer a more complete approach to write and distribute custom extensions.
 
 Features allow:
 
- * Configure required dependencies for the Feature
- * Enable or disable a Feature via configuration or based on conditions and dependencies
- * Get full access to the pipeline, settings and the container
+ * Configure required dependencies for the Feature.
+ * Enable or disable a Feature via configuration or based on conditions and dependencies.
+ * Get full access to the pipeline, settings and the container.
 
 
 ## Feature API
@@ -35,6 +42,8 @@ snippet:DependentFeature
 A feature might use either strongly or loosely typed API when declaring dependencies (the latter can be useful if a dependency is declared in an external assembly).
 
 NOTE: The feature name is derived from the name of the type, however the suffix `Feature`, if present in the type name, is removed from the name of the feature.
+
+WARNING: In Versions 6 and above the dependency string must be prefixed with the namespace of the target Feature.
 
 The API also allows to declare optional dependencies on one or more of listed features.
 
@@ -119,7 +128,7 @@ The task will only be created and called if the feature is enabled. The `Feature
 
 Note: In Version 5 `FeatureStartupTask` are executed synchronously. Avoid long running operations which will delay the bus startup time.
 
-Note: In Versions 6 and above `FeatureStartupTask` run asynchronously the calling thread which initialized the endpoint. 
+Note: In Versions 6 and above `FeatureStartupTask` run asynchronously the calling thread which initialized the endpoint.
 
 
 ### Accessing the Endpoint Instance

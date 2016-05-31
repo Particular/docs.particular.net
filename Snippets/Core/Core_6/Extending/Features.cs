@@ -25,8 +25,8 @@ namespace Core6.Extending
         public DependentFeature()
         {
             DependsOn<DependencyAFeature>();
-            DependsOn("DependencyB");
-            DependsOnAtLeastOne("DependencyC", "DependencyD");
+            DependsOn("Namespace.DependencyB");
+            DependsOnAtLeastOne("Namespace.DependencyC", "Namespace.DependencyD");
         }
 
         protected override void Setup(FeatureConfigurationContext context)
