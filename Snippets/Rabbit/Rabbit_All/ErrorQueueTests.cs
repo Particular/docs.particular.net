@@ -15,10 +15,11 @@ public class ErrorQueueTests
             UserName = "guest",
             Password = "guest",
         };
+
         using (var connection = connectionFactory.CreateConnection())
         {
             ErrorQueue.ReturnMessageToSourceQueue(
-                brokerConnection: connection,
+                connection: connection,
                 errorQueueName: "error",
                 messageId: "26afdee3-ac53-4990-95ef-a61300ca15c8");
         }

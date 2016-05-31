@@ -31,7 +31,8 @@ public static class NativeSend
 
     public static void SendMessage(string machineName, string queueName, string userName, string password, string messageBody, Dictionary<string, object> headers)
     {
-        using (var channel = OpenConnection(machineName, userName, password))
+        using (var connection = OpenConnection(machineName, userName, password))
+        using (var channel = connection.CreateModel())
         {
             var properties = channel.CreateBasicProperties();
             properties.MessageId = Guid.NewGuid().ToString();
@@ -40,17 +41,17 @@ public static class NativeSend
         }
     }
 
-    static IModel OpenConnection(string machine, string userName, string password)
+    static IConnection OpenConnection(string machine, string userName, string password)
     {
-        var factory = new ConnectionFactory
+        var connectionFactory = new ConnectionFactory
         {
             HostName = machine,
             Port = AmqpTcpEndpoint.UseDefaultPort,
             UserName = userName,
             Password = password,
         };
-        var conn = factory.CreateConnection();
-        return conn.CreateModel();
+
+        return connectionFactory.CreateConnection();
     }
 
     #endregion

@@ -9,7 +9,7 @@ class Program
         Console.Title = "Samples.RabbitMQ.NativeIntegration.Sender";
         var connectionFactory = new ConnectionFactory();
 
-        using (var connection = connectionFactory.CreateConnection())
+        using (var connection = connectionFactory.CreateConnection(Console.Title))
         {
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
