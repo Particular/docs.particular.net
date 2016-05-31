@@ -7,14 +7,13 @@ public class AuditFilterContextBehavior : Behavior<IIncomingPhysicalMessageConte
 {
     public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
     {
-        context.Extensions.Set(new AuditFilterContext { SkipAudit = false });
+        var auditFilterContext = new AuditFilterContext
+        {
+            SkipAudit = false
+        };
+        context.Extensions.Set(auditFilterContext);
 
         return next();
     }
 }
 #endregion
-
-class AuditFilterContext
-{
-    public bool SkipAudit { get; set; }
-}

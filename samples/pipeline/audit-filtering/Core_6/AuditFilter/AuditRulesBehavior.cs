@@ -9,7 +9,8 @@ public class AuditRulesBehavior : Behavior<IIncomingLogicalMessageContext>
     {
         if (context.Message.MessageType == typeof(DoNotAuditThisMessage))
         {
-            context.Extensions.Get<AuditFilterContext>().SkipAudit = true;
+            var auditFilterContext = context.Extensions.Get<AuditFilterContext>();
+            auditFilterContext.SkipAudit = true;
         }
 
         return next();
