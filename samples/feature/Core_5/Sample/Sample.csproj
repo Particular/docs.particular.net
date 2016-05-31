@@ -46,7 +46,6 @@
     <Compile Include="DiagnosticsFeature.cs" />
     <Compile Include="CustomLogger.cs" />
     <Compile Include="ConfigErrorQueue.cs" />
-    <Compile Include="DiagnosticsStartupTask.cs" />
     <Compile Include="Handler\Handler2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Handler\Handler1.cs" />

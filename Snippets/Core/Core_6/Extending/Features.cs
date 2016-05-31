@@ -92,10 +92,12 @@ namespace Core6.Extending
     public class FeatureWithPrerequisites : Feature
     {
         #region FeatureWithPrerequisites
+
         public FeatureWithPrerequisites()
         {
-            Prerequisite(c => c.Settings.HasExplicitValue("SomeKey"),"The key SomeKey was not present.");
+            Prerequisite(c => c.Settings.HasExplicitValue("SomeKey"), "The key SomeKey was not present.");
         }
+
         #endregion
 
         protected override void Setup(FeatureConfigurationContext context)
