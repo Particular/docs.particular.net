@@ -47,18 +47,17 @@ snippet: 5to6-messagecontext
 
 In previous versions of NServiceBus the `IBus` interface was automatically registered in the IoC container. In Version 6, the new context aware interfaces, for example, the `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., will not be automatically registered in the IoC container.  
 
-When a custom component received an instance of `IBus` via dependency injection:
+In NServiceBus Versions 5 and below, when a custom component was registered in the container, the custom component had access to the `IBus` instance via dependency injection.
 
-If the custom component was sending messages using the injected `IBus` from outside of message handlers, for example, in an MVC Controller class, then it is safe to register the `IEndpointInstance` when self hosting. This interface can then be used to send messages. See [Injecting the Bus into ASP.NET MVC Controller](/samples/web/asp-mvc-injecting-bus/) for an example of this.
+WARNING: When upgrading such custom components to Version 6, it is **not safe** to simply replace all instances of `IBus` with `IEndpointInstance`. It depends on the usage of the `IBus` inside the custom component. 
 
-If the custom component is accessed from within message handlers then the `IMessageHandlerContext` parameter should be passed to the custom component instead of the `IEndpointInstance` interface to either send or publish messages. 
+Scenario 1: If the custom component was sending messages using the injected `IBus` from outside of message handlers, for example, in an MVC Controller class, then it is safe to register the `IEndpointInstance` when self hosting. This interface can then be used to send messages. See [Injecting the Bus into ASP.NET MVC Controller](/samples/web/asp-mvc-injecting-bus/) for an example of this.
 
-It is not safe to simply replace all instances of `IBus` with `IEndpointInstance`. If the `IEndpointInstance` interface is used inside a message handler to send or publish messages, then:
+Scenario 2: If the custom component is accessed from within message handlers then the `IMessageHandlerContext` parameter should be passed to the custom component instead of the `IEndpointInstance` interface to either send or publish messages. 
 
+Some of the dangers when using an `IEndpointInstance` interface inside a message handler to send or publish messages are:
 - those messages will not participate in the same transaction scope as that of the message handler. This could result in messages dispatched or events published via the `IEndpointInstance` interface even if the message handler resulted in an exception and the operation was rolled back.
-
 - those messages will not be part of the [batching operation](/nservicebus/messaging/batched-dispatch.md).
-
 - those messages will not contain any important message header information that is available via the `IHandlerMessageContext` interface parameter, e.g., CorrelationId.  
 
 
