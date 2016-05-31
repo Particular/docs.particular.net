@@ -26,7 +26,7 @@ public class WorkerRole : RoleEntryPoint
 
 #endregion
 
-#region AzureServiceBusTransportWithAzureHost 7
+#region AzureServiceBusTransportWithAzureHost
 
 public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
 {

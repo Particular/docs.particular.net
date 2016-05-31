@@ -10,12 +10,5 @@ class Usage
 
         #endregion
     }
-    #region AzureServiceBusTransportWithAzureHost
 
-    public class EndpointConfig : IConfigureThisEndpoint,
-        UsingTransport<AzureServiceBus>
-    {
-    }
-
-    #endregion
 }

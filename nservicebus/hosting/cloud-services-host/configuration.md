@@ -1,11 +1,13 @@
 ---
 title: Configuration
 summary: Configuring the endpoint when hosting in Azure Cloud Services
+component: CloudServicesHost
 tags:
 - Azure
 - Cloud
 - Configuration
 ---
+
 
 ## Configuring for Cloud Services hosting
 
@@ -13,9 +15,11 @@ Cloud Services is a hosting model provided by the Azure cloud, which is specific
 
 When NServiceBus is hosted in Cloud Services, it needs to connect to a specific Azure storage account (for Azure Storage Queues) or an Azure Service Bus namespace. For more information on required connection string formats refer to [the windows azure connection string formats](http://www.connectionstrings.com/windows-azure/) article.
 
+
 ## Configuring an endpoint
 
 When an endpoint is hosted in Azure Cloud Services, then it should be configured by implementing the  `IConfigureThisEndpoint` interface.
+
 
 ### Enabling the Transport
 
@@ -29,13 +33,15 @@ Or using the Azure Storage Queues Transport:
 
 snippet:AzureStorageQueueTransportWithAzureHost
 
+
 ### Enabling the Persistence
 
 The Azure Storage Persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config as well.
 
 snippet:PersistenceWithAzureHost
 
-NOTE: In Version 4, when hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
+NOTE: In Version 4, when hosting in the Azure RoleEntryPoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
+
 
 ## Convention to override configuration
 
@@ -68,6 +74,7 @@ Snippet:AzureServiceBusQueueConfigCsCfg
 Names used for property overrides always have the following structure:  `TagName.PropertyName`. Tags can be nested: `ParentTagName.ChildTagName.PropertyName`. It's currently not possible to override parent tags that contain multiple child tags with the same name, therefore `MessageEndpointMappings` can't be overridden using this approach.
 
 The default value set in the config section has the lowest priority. It can be overridden by the value specified in the `app.config` file. The value provided in the service configuration file takes precedence over the value specified in the `app.config` file.
+
 
 ### Applying configuration changes
 

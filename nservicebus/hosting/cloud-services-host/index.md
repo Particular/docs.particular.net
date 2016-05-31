@@ -1,6 +1,7 @@
 ---
 title: Hosting in Azure Cloud Services
 summary: Using Azure Cloud Services to host NServiceBus.
+component: CloudServicesHost
 tags:
  - Hosting
  - Worker Roles
@@ -19,7 +20,8 @@ related:
 
 The Azure Platform and NServiceBus make a perfect fit. On the one hand the Azure platform offers the scalable and flexible platform required, on the other hand NServiceBus makes development on this highly distributed environment a breeze.
 
-If real scale is required (eg in tens, hundreds or even thousands of machines hosting each endpoint) then Cloud Services is the required deployment model.
+If real scale is required (e.g. in tens, hundreds or even thousands of machines hosting each endpoint) then Cloud Services is the required deployment model.
+
 
 ## Cloud Services - Worker Roles
 
@@ -43,7 +45,6 @@ This will integrate and configure the default infrastructure:
  * Saga's are enabled by default and persisted in the chosen persistence store.
  * Timeouts are enabled by default and persisted in the chosen persistence store.
 
-For more information on configuration refer to the [configuration page](configuration.md). For more information on setting up logging, refer tot the [logging page](logging.md) 
 
 ## Cloud Services - Web Roles
 
@@ -61,5 +62,3 @@ A short explanation of each:
  *  Logs will be sent to the `Trace` infrastructure, which should have been configured with Azure diagnostic monitor trace listener by the Visual Studio tooling.
  * `UseTransport<AzureStorageQueueTransport>`: Sets [Azure storage queues](/nservicebus/azure-storage-queues/) as the [transport](/nservicebus/transports).
  * `UsePersistence<AzureStoragePersistence>`: Configures [Azure storage](/nservicebus/azure-storage-persistence/) for [persistence](/nservicebus/persistence).
-
-For more information on configuration refer to the [Azure Cloud Services Host Endpoint Configuration](configuration.md) page. For more information on setting up logging, refer tot the [Logging in Azure Cloud Services](logging.md) page 
