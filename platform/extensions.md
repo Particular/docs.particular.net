@@ -143,7 +143,7 @@ https://www.nuget.org/packages/NServiceBus.NHibernate
 
 https://www.nuget.org/packages/NServiceBus.PostgreSQL
 
-Leverages the [JSONB](http://www.postgresql.org/docs/devel/static/datatype-json.html) data type for storing data in [PostgreSQL](http://www.postgresql.org/).
+Leverages the [JSONB](https://www.postgresql.org/docs/devel/static/datatype-json.html) data type for storing data in [PostgreSQL](https://www.postgresql.org/).
 
 
 #### <img src="particular-project.png" title="A Particular run project"> [RavenDB](/nservicebus/ravendb/)
