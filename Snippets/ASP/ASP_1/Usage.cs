@@ -7,8 +7,8 @@ class Usage
     {
         #region PersistanceWithAzure
 
-        endpointConfiguration.UsePersistence<AzureStoragePersistence>()
-                             .ConnectionString("DefaultEndpointsProtocol=https;AccountName={youraccount};AccountKey={yourkey};");
+        var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
+        persistence.ConnectionString("DefaultEndpointsProtocol=https;AccountName={youraccount};AccountKey={yourkey};");
 
         #endregion
     }
@@ -19,8 +19,8 @@ class Usage
     {
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
-            endpointConfiguration.UsePersistence<AzureStoragePersistence>()
-                                 .ConnectionString("DefaultEndpointsProtocol=https;AccountName={youraccount};AccountKey={yourkey};");
+            var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
+            persistence.ConnectionString("DefaultEndpointsProtocol=https;AccountName={youraccount};AccountKey={yourkey};");
         }
     }
 
