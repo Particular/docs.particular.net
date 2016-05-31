@@ -52,3 +52,13 @@ snippet: PacketsImmediateDispatchHandler
 Brain dump: You can limit concurrency
 
 snippet: ConcurrencyLimittingImmediateDispatchHandler
+
+### Integration with non-tasked based APIs
+
+#### Events
+
+snippet: HandlerWhichIntegratesWithEvent
+
+#### Asynchronous programming model pattern
+
+snippet: HandlerWhichIntegratesWithAPM

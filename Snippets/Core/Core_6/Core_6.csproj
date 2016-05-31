@@ -108,7 +108,9 @@
     <Compile Include="Errors\SecondLevel\SlrCodeFirstConfiguration.cs" />
     <Compile Include="Features\AdvancedSatelliteFeature.cs" />
     <Compile Include="Features\SatelliteFeature.cs" />
+    <Compile Include="Handlers\AsyncHandler.cs" />
     <Compile Include="Injection\Injection.cs" />
+    <Compile Include="Handlers\IntegrationWithNonTaskBasedAPI.cs" />
     <Compile Include="Notifications\SubscribeToNotifications.cs" />
     <Compile Include="Notifications\EventsToObservables.cs" />
     <Compile Include="Container\Custom\ContainerCustom.cs" />
