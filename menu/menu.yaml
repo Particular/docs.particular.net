@@ -354,9 +354,8 @@
         - "serviceinsight/application-invocation"
         - "serviceinsight/logging"
         - "serviceinsight/sequence-diagram"
-        - "serviceinsight/logging"
-        - "serviceinsight/license"
         - "serviceinsight/no-data-available"
+        - "serviceinsight/install-license"
 -
   Name: "ServicePulse"
   Topics:
