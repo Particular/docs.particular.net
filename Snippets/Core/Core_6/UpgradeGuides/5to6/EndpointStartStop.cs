@@ -11,28 +11,24 @@
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
 
             // Custom code before start
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+            IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
             // Custom code after start
 
             // Block the process
 
             // Custom code before stop
-            await endpoint.Stop();
+            await endpointInstance.Stop();
             // Custom code after stop
             #endregion
         }
 
-        async Task SendMessagesOutsideMessageHandler()
+        async Task SendMessagesOutsideMessageHandler(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
-            
             #region 5to6-endpoint-send-messages-outside-handlers
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-            await endpoint.Send(new SomeMessage());
+            IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
+            var messageSession = (IMessageSession)endpointInstance;
+            await messageSession.Send(new SomeMessage());
             #endregion
-            await endpoint.Stop();
-            // Custom code after stop
-            
         }
     }
 
