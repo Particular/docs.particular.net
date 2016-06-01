@@ -391,6 +391,7 @@
         - "servicecontrol/logging"
         - "servicecontrol/errorlog-auditlog-behavior"
         - "servicecontrol/deploying-servicecontrol-in-a-cluster"
+        - "servicecontrol/troubleshooting"
         - Title: "Integration"
           Url: "servicecontrol/plugins"
           Articles:
@@ -410,7 +411,3 @@
         - "servicecontrol/backup-sc-database"
         - "servicecontrol/configure-non-privileged-service-account"
         - "servicecontrol/db-compaction"
-    -
-      Title: "Troubleshooting"
-      Articles:
-        - "servicecontrol/troubleshooting"
