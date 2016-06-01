@@ -40,10 +40,9 @@ public class MvcApplication : HttpApplication
         #endregion
     }
 
-    public override void Dispose()
+    protected void Application_End()
     {
         bus?.Dispose();
-        base.Dispose();
     }
 
     void RegisterRoutes(RouteCollection routes)

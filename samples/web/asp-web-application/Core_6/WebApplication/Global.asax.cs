@@ -6,10 +6,9 @@ public class Global : HttpApplication
 {
     public static IEndpointInstance Endpoint;
 
-    public override void Dispose()
+    protected void Application_End()
     {
         Endpoint?.Stop().GetAwaiter().GetResult();
-        base.Dispose();
     }
 
     protected void Application_Start(object sender, EventArgs e)

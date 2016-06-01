@@ -44,10 +44,9 @@ public class MvcApplication : HttpApplication
         #endregion
     }
 
-    public override void Dispose()
+    protected void Application_End()
     {
         endpoint?.Stop().GetAwaiter().GetResult();
-        base.Dispose();
     }
 
     void RegisterRoutes(RouteCollection routes)

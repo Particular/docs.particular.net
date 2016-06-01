@@ -8,10 +8,9 @@ public class MvcApplication : HttpApplication
 {
     public static IEndpointInstance EndpointInstance;
 
-    public override void Dispose()
+    protected void Application_End()
     {
         EndpointInstance?.Stop().GetAwaiter().GetResult();
-        base.Dispose();
     }
 
     protected void Application_Start()

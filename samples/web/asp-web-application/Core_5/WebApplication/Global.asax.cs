@@ -6,10 +6,9 @@ public class Global : HttpApplication
 {
     public static IBus Bus;
 
-    public override void Dispose()
+    protected void Application_End()
     {
         Bus?.Dispose();
-        base.Dispose();
     }
     protected void Application_Start(object sender, EventArgs e)
     {

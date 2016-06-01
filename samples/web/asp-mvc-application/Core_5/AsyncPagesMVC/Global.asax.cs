@@ -26,10 +26,9 @@ public class MvcApplication : HttpApplication
             );
     }
 
-    public override void Dispose()
+    protected void Application_End()
     {
         bus?.Dispose();
-        base.Dispose();
     }
 
     protected void Application_Start()
