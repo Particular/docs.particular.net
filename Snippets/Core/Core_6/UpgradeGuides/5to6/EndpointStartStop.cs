@@ -11,13 +11,13 @@
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration("EndpointName");
 
             // Custom code before start
-            IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
+            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
             // Custom code after start
 
             // Block the process
 
             // Custom code before stop
-            await endpointInstance.Stop();
+            await endpoint.Stop();
             // Custom code after stop
             #endregion
         }
