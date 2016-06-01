@@ -1,5 +1,5 @@
 ---
-title: Azure Cloud Service Host Upgrade Version 6 to 7
+title: Azure Cloud Services Host Upgrade Version 6 to 7
 summary: Instructions on how to upgrade Azure Cloud Service Host from Version 6 to 7.
 tags:
  - upgrade
