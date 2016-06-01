@@ -23,6 +23,7 @@ class Program
             .ConfigureAwait(false);
         Console.WriteLine("Press enter to send a message");
         Console.WriteLine("Press any key to exit");
+        var sequenceId = 0;
         while (true)
         {
             var key = Console.ReadKey();
@@ -30,9 +31,10 @@ class Program
             {
                 break;
             }
-            await endpointInstance.Send(new DoSomething())
+            var command = new DoSomething { SequenceId = ++sequenceId };
+            await endpointInstance.Send(command)
                 .ConfigureAwait(false);
-            Console.WriteLine("Message Sent");
+            Console.WriteLine($"Message {command.SequenceId} Sent");
         }
         await endpointInstance.Stop()
             .ConfigureAwait(false);
