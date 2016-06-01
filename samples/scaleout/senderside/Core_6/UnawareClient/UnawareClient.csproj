@@ -7,8 +7,8 @@
     <ProjectGuid>{D867E8E1-159C-467F-A9B0-510342B498EA}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnawareCilent</RootNamespace>
-    <AssemblyName>UnawareCilent</AssemblyName>
+    <RootNamespace>UnawareClient</RootNamespace>
+    <AssemblyName>UnawareClient</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

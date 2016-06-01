@@ -4,8 +4,8 @@
   <endpoints>
     <endpoint name="Server">
       <!-- Scaled-out endpoint -->
-      <instance discriminator="1" />
-      <instance discriminator="2" />
+      <instance discriminator="instance1" />
+      <instance discriminator="instance2" />
     </endpoint>
   </endpoints>
   <!-- endcode -->
