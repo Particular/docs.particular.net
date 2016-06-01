@@ -28,6 +28,7 @@ snippet:5to6-EndpointStartAndStopCore
 
 snippet:5to6-EndpointStartAndStopHost
 
+The `IMessageSession` parameter provides all the necessary methods to send messages as part of the endpoint start up.
 
 include:5to6removePShelpers
 
