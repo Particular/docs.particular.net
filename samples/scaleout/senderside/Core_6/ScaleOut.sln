@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server1", "Server1\Server1.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{83485B93-3606-4014-AFF6-5C4289357BB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnawareCilent", "UnawareCilent\UnawareCilent.csproj", "{D867E8E1-159C-467F-A9B0-510342B498EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnawareClient", "UnawareClient\UnawareClient.csproj", "{D867E8E1-159C-467F-A9B0-510342B498EA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server2", "Server2\Server2.csproj", "{0217AE59-43A6-4BA4-8858-DB21C01E30EB}"
 EndProject
