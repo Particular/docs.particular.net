@@ -1,6 +1,6 @@
 ---
 title: Install the license in ServiceInsight
-summary: Installing the Particular Software license in Serviceinsight.
+summary: Install the Particular Software license in Serviceinsight.
 tags:
  - ServiceInsight
  - license
