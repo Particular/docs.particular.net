@@ -46,7 +46,7 @@ In `AsyncPagesMvc`, open `Global.asax.cs` and see the code for the `ApplicationS
 
 snippet:ApplicationStart
 
-For more details on how to inject NServiceBus classes into the controllers, check the [ASP.NET Controller Injection Sample](/samples/web/asp-mvc-injecting-bus/).
+For more details on how to inject NServiceBus classes into the controllers, check the [Sending from an ASP.NET MVC Controller](/samples/web/send-from-mvc-controller/).
 
 
 ## Sending a message

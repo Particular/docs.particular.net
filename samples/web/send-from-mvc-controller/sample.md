@@ -1,10 +1,11 @@
 ---
-title: Injecting the Bus into ASP.NET MVC Controller
-summary: Leverages Autofac MVC integration to inject endpoint instance into MVC Controllers.
+title: Sending from an ASP.NET MVC Controller
+summary: Leverages Autofac MVC integration to inject an endpoint instance into MVC Controllers.
 component: Core
-reviewed: 2016-03-21
+reviewed: 2016-06-01
 redirects:
 - nservicebus/injecting-the-bus-into-asp.net-mvc-controller
+- samples/web/asp-mvc-injecting-bus
 related:
 - nservicebus/containers
 - nservicebus/hosting
