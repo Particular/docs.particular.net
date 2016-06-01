@@ -27,9 +27,11 @@
         async Task SendMessagesOutsideMessageHandler(EndpointConfiguration endpointConfiguration)
         {
             #region 5to6-endpoint-send-messages-outside-handlers
-            IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
             var messageSession = (IMessageSession)endpointInstance;
-            await messageSession.Send(new SomeMessage());
+            await messageSession.Send(new SomeMessage())
+                .ConfigureAwait(false);
             #endregion
         }
     }

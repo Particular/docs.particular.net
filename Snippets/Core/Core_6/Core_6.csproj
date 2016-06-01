@@ -205,7 +205,6 @@
     <Compile Include="UpgradeGuides\5to6\EndpointNameHelper.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStartStop.cs" />
-    <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
     <Compile Include="UpgradeGuides\5to6\DependentFeature.cs" />
     <Compile Include="UpgradeGuides\5to6\HandlerOrdering.cs" />
     <Compile Include="UpgradeGuides\5to6\IConfigureComponentsNotInjected.cs" />

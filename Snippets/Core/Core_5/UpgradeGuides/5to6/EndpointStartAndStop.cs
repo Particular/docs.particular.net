@@ -11,7 +11,7 @@
 
             // Custom code before start
             var startableBus = Bus.Create(busConfiguration);
-            using (var endpoint = startableBus.Start())
+            using (var bus = startableBus.Start())
             {
                 // Custom code after start
 
