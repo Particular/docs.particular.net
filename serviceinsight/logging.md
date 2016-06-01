@@ -2,7 +2,9 @@
 title: Logging in ServiceInsight
 summary: How logging works and how to access the log files if necessary.
 tags:
-- Logging
+ - Logging
+redirects:
+ - serviceinsight/how-logging-works
 ---
 
 When launching ServiceInsight note the Log Window. This window is like the Output window of the IDE and shows of the most important logs in the system without parsing log files.

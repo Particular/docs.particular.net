@@ -352,7 +352,10 @@
       Title: "Getting Started"
       Articles:
         - "serviceinsight/application-invocation"
-        - "serviceinsight/how-logging-works"
+        - "serviceinsight/logging"
+        - "serviceinsight/sequence-diagram"
+        - "serviceinsight/no-data-available"
+        - "serviceinsight/install-license"
 -
   Name: "ServicePulse"
   Topics:
@@ -387,6 +390,7 @@
         - "servicecontrol/logging"
         - "servicecontrol/errorlog-auditlog-behavior"
         - "servicecontrol/deploying-servicecontrol-in-a-cluster"
+        - "servicecontrol/troubleshooting"
         - Title: "Integration"
           Url: "servicecontrol/plugins"
           Articles:
@@ -400,13 +404,10 @@
       Articles:
         - "servicecontrol/securing-servicecontrol"
         - "servicecontrol/capacity-and-planning"
+        - "servicecontrol/install-license"
         - "servicecontrol/servicecontrol-in-practice"
         - "servicecontrol/how-purge-expired-data"
         - "servicecontrol/use-ravendb-studio"
         - "servicecontrol/backup-sc-database"
         - "servicecontrol/configure-non-privileged-service-account"
         - "servicecontrol/db-compaction"
-    -
-      Title: "Troubleshooting"
-      Articles:
-        - "servicecontrol/troubleshooting"

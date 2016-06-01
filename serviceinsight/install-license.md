@@ -1,9 +1,11 @@
 ---
-title: How to install the license file in ServiceInsight
-summary: Short guide on installing the Particular Software license in Serviceinsight user interface
+title: Install the license in ServiceInsight
+summary: Install the Particular Software license in Serviceinsight.
 tags:
-- ServiceInsight
-- license
+ - ServiceInsight
+ - license
+redirects:
+ - serviceinsight/how-to-install-your-license-file-serviceinsight
 ---
 
 When the trial period is over, ServiceInsight will display the following dialog:

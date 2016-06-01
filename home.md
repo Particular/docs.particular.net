@@ -258,7 +258,7 @@ span.blue {
     <p></p>
     <ul>
       <li><a href="/serviceinsight/application-invocation.md">Application invocation</a></li>
-      <li><a href="/serviceinsight/how-logging-works.md">Logging in ServiceInsight</a></li>
+      <li><a href="/serviceinsight/logging.md">Logging in ServiceInsight</a></li>
     </ul>
     <a href="/serviceinsight/"><h3>All ServiceInsight articles</h3></a><br/>
     <div style="clear: both"></div>
