@@ -2,7 +2,7 @@
 <root>
   <!-- startcode Physical-Routes -->
   <endpoints>
-    <endpoint name="Server">
+    <endpoint name="Samples.SenderSideScaleOut.Server">
       <!-- Scaled-out endpoint -->
       <instance discriminator="instance1" />
       <instance discriminator="instance2" />

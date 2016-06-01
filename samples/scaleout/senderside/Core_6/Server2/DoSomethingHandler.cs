@@ -8,7 +8,7 @@ public class DoSomethingHandler : IHandleMessages<DoSomething>
 
     public Task Handle(DoSomething message, IMessageHandlerContext context)
     {
-        log.Info("Message received.");
+        log.Info($"Message {message.SequenceId} received.");
         return Task.FromResult(0);
     }
 }
