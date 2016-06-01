@@ -352,7 +352,11 @@
       Title: "Getting Started"
       Articles:
         - "serviceinsight/application-invocation"
-        - "serviceinsight/how-logging-works"
+        - "serviceinsight/logging"
+        - "serviceinsight/sequence-diagram"
+        - "serviceinsight/logging"
+        - "serviceinsight/license"
+        - "serviceinsight/no-data-available"
 -
   Name: "ServicePulse"
   Topics:
