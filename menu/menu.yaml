@@ -45,6 +45,9 @@
         - Title: "Azure Service Bus Transport"
           Articles:
             - "nservicebus/upgrades/asb-6to7"
+        - Title: "Azure Cloud Services Host"
+          Articles:
+            - "/nservicebus/upgrades/acs-host-6to7"
         - Title: "Gateway"
           Articles:
             - "nservicebus/upgrades/gateway-1to2"
