@@ -23,6 +23,7 @@
         - Title: "NServiceBus"
           Articles:
             - "nservicebus/upgrades/5to6"
+            - "nservicebus/upgrades/5to6-moving-away-from-ibus"
             - "nservicebus/upgrades/4to5"
             - "nservicebus/upgrades/3to4"
             - "nservicebus/upgrades/encryption-key-identifiers"
@@ -352,7 +353,10 @@
       Title: "Getting Started"
       Articles:
         - "serviceinsight/application-invocation"
-        - "serviceinsight/how-logging-works"
+        - "serviceinsight/logging"
+        - "serviceinsight/sequence-diagram"
+        - "serviceinsight/no-data-available"
+        - "serviceinsight/license"
 -
   Name: "ServicePulse"
   Topics:
@@ -381,12 +385,14 @@
         - "servicecontrol/installation"
         - "servicecontrol/installation-silent"
         - "servicecontrol/installation-powershell"
+        - "servicecontrol/license"
         - "servicecontrol/creating-config-file"
         - "servicecontrol/configure-ravendb-location"
         - "servicecontrol/setting-custom-hostname"
         - "servicecontrol/logging"
         - "servicecontrol/errorlog-auditlog-behavior"
         - "servicecontrol/deploying-servicecontrol-in-a-cluster"
+        - "servicecontrol/troubleshooting"
         - Title: "Integration"
           Url: "servicecontrol/plugins"
           Articles:
@@ -406,7 +412,3 @@
         - "servicecontrol/backup-sc-database"
         - "servicecontrol/configure-non-privileged-service-account"
         - "servicecontrol/db-compaction"
-    -
-      Title: "Troubleshooting"
-      Articles:
-        - "servicecontrol/troubleshooting"
