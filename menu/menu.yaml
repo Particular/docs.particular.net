@@ -404,6 +404,7 @@
       Articles:
         - "servicecontrol/securing-servicecontrol"
         - "servicecontrol/capacity-and-planning"
+        - "servicecontrol/install-license"
         - "servicecontrol/servicecontrol-in-practice"
         - "servicecontrol/how-purge-expired-data"
         - "servicecontrol/use-ravendb-studio"
