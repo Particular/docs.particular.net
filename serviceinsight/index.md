@@ -7,8 +7,6 @@ tags:
 redirects:
 - serviceinsight/getting-started-overview
 - servicepulse/introduction-and-installing-servicepulse
-related:
-- serviceinsight/managing-errors-and-retries
 ---
 
 include: serviceinsight
