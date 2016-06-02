@@ -4,11 +4,11 @@
 
     public class ReplyingHandler : IHandleMessages<RequestDataMessage>
     {
-        IBus Bus;
+        IBus bus;
 
         public ReplyingHandler(IBus bus)
         {
-            Bus = bus;
+            this.bus = bus;
         }
 
 #region ReplyingMessageHandler
@@ -23,10 +23,10 @@
             };
 
             //Underneath the covers, Reply sends a new message to the return address on the message being handled.
-            Bus.Reply(response);
+            bus.Reply(response);
             
             //Reply is equivalent to the following code:
-            Bus.Send(Bus.CurrentMessageContext.ReplyToAddress, Bus.CurrentMessageContext.Id, response);
+            bus.Send(bus.CurrentMessageContext.ReplyToAddress, bus.CurrentMessageContext.Id, response);
         }
 
         #endregion ReplyingMessageHandler
