@@ -41,9 +41,7 @@ snippet:DependentFeature
 
 A feature might use either strongly or loosely typed API when declaring dependencies (the latter can be useful if a dependency is declared in an external assembly).
 
-NOTE: The feature name is derived from the name of the type, however the suffix `Feature`, if present in the type name, is removed from the name of the feature.
-
-WARNING: In Versions 6 and above the dependency string must be prefixed with the namespace of the target Feature.
+WARNING: The feature name is derived from the name of the type. In Version 5 and below the suffix `Feature`, if present in the type name, must be removed from the name of the feature (e.g. use `DependsOn("Demo")` instead of `DependsOn("DemoFeature")`). In Versions 6 and above the `Feature` suffix must not be removed and dependency strings must be prefixed with the namespace of the target Feature.
 
 The API also allows to declare optional dependencies on one or more of listed features.
 
