@@ -183,3 +183,21 @@ NServiceBus.Host.exe /uninstall /serviceName:ServiceName /instance:InstanceName
 ```
 
 To invoke the infrastructure installers, run the host with the `/installInfrastructure` switch.
+
+
+### When are they invoked?
+
+When using the NServiceBus host, installers are invoked as shown:
+
+| Command Line Parameters          | Infrastructure (v3.0 Only) Installers | Regular Installers
+|----------------------------------|:-------------------------------------:|:------------------:
+| /install NServiceBus.Production  | &#10004;                              | &#10004;
+| NServiceBus.Production           | &#10006;                              | &#10006;
+| /install NServiceBus.Integration | &#10004;                              | &#10004;
+|  NServiceBus.Integration         | &#10006;                              | &#10004;
+| /install NServiceBus.Lite        | &#10004;                              | &#10004;
+| NServiceBus.Lite                 | &#10006;                              | &#10004;
+
+The installers are controlled by both the `/install` command line option to the host and the current profile in use. Custom profiles can be created to meet other specific requirements.
+
+NOTE: The use of `/installInfrastructure` flag with the `NServiceBus.Host` has been deprecated in Version 4.0. To install needed infrastructure, use the [PowerShell commandlets](/nservicebus/operations/management-using-powershell.md) instead.
