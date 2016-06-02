@@ -112,31 +112,3 @@ ServiceInsight obviates the need for MSMQ tools provided by Windows. ServiceInsi
 ServiceInsight leverages the ServiceControl API to retrieve information. The Log tab of the Flow Diagram window displays details of the interactions as ServiceInsight polls ServiceControl for more data.
 
 ![Log View Tab](images/overview-logview.png)
-
-
-## Errors and Retries
-
-ServiceInsight provides added visibility, and NServiceBus provides durability and retries. Where intervention is required, no manually correlation of log files or access remote servers to research an error. The views within ServiceInsight illustrate messages with errors and supply the error information.
-
-
-### Status in the Message List
-
-The status of an errant message is illustrated in the message window.
-
-![An Error in the Message Window](images/overview-messagewindowerror.png)
-
-
-### The Flow Diagram
-
-The flow diagram highlights errors in red and provides details with access to the stack trace.
-
-![Error in the flow diagram](images/overview-flowdiagramwitherror.png)
-
-
-### The Sequence Diagram
-
-The sequence diagram highlights handlers with errors in red.
-
-![Error in the sequence diagram](images/overview-sequence-diagram-witherror.png)
-
-After the NServiceBus completes auto-retry, the errant message goes to an error queue. Instead of using the return-to-sender console application, to return the message to the queue from where it originated, click `Retry Message`.
