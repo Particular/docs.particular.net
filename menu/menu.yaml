@@ -9,6 +9,7 @@
         - "nservicebus/concept-overview"
         - "samples/endpoint-configuration"
         - "samples/step-by-step"
+        - "nservicebus/architecture"
         - "nservicebus/architecture/principles"
         - "nservicebus/operations/transactions-message-processing"
         - "nservicebus/architecture/nservicebus-and-wcf"
