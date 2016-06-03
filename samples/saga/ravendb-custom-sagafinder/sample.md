@@ -3,13 +3,15 @@ title: Custom Saga Finding Logic (RavenDB)
 summary: Perform custom saga finding logic based on custom query logic when the Saga storage is RavenDB and how to use multiple Unique attributes.
 component: Raven
 tags:
-- Saga
-- SagaFinder
-- RavenDB
+ - Saga
+ - SagaFinder
+ - RavenDB
 related:
-- nservicebus/sagas
-- nservicebus/ravendb
+ - nservicebus/sagas
+ - nservicebus/ravendb
 ---
+
+include: raven-resourcemanagerid-warning
 
 
 ## Code walk-through
@@ -18,8 +20,8 @@ When the default Saga message mappings do not satisfy the requirements, custom l
 
 This sample shows how to:
 
- * perform custom saga finding logic based on custom query logic;
- * use multiple Unique attributes using the default [RavenDB Unique Constraint bundle](http://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints).
+ * Perform custom saga finding logic based on custom query logic.
+ * Use multiple Unique attributes using the default [RavenDB Unique Constraint bundle](http://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints).
 
 
 ### RavenDB setup

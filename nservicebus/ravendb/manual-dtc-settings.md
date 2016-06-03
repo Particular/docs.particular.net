@@ -1,7 +1,9 @@
 ---
-title: 'Setting RavenDB DTC settings manually'
-summary: 'Guidance on how to change the RavenDB ResourceManagerID and TransactionRecoveryStorage.'
-tags: [RavenDB, Persistence]
+title: Setting RavenDB DTC settings manually
+summary: Guidance on how to change the RavenDB ResourceManagerID and TransactionRecoveryStorage.
+tags: 
+ - RavenDB
+ - Persistence
 redirects:
  - nservicebus/ravendb/how-to-change-resourcemanagerid
  - nservicebus/ravendb/resourcemanagerid
@@ -9,9 +11,11 @@ redirects:
 
 In order to provide reliable support for distributed transactions in RavenDB, a custom DocumentStore must be provided to NServiceBus and configured to uniquely identify the NServiceBus endpoint to the Distributed Transaction Coordinator (DTC) and provide a storage location for uncommitted transaction recovery.
 
+
 ## Definitions
 
 Support for the Distributed Transaction Coordinator (DTC) in RavenDB is dependent upon the **ResourceManagerId** and **TransactionRecoveryStorage** settings.
+
 
 ### ResourceManagerId
 
@@ -21,11 +25,13 @@ The ResourceManagerId is a Guid that uniquely identifies a transactional resourc
 
 NOTE: It is possible to [configure the ResourceManagerId from a RavenDB connection string](http://ravendb.net/docs/search/3.0/csharp?searchTerm=connection-string), however this is not recommended as this method does not allow for the configuration of a suitable TransactionRecoveryStorage.
 
+
 ### TransactionRecoveryStorage
 
 To guard against the loss of a committed transaction, RavenDB requires a storage location to persist data in the event of a process crash immediately following a transaction commit.
 
 RavenDB provides [transaction recovery storage options](http://ravendb.net/docs/search/3.0/csharp?searchTerm=TransactionRecoveryStorage) for volatile (in-memory) storage, IsolatedStorage, and local directory storage. `LocalDirectoryTransactionRecoveryStorage` is recommended as the only stable and reliable option.
+
 
 ## Configuring safe settings
 
@@ -35,8 +41,9 @@ snippet:RavenDBManualDtcSettingExample
 
 In order to provide transaction safety, the following must be observed:
 
-* `documentStore.ResourceManagerId` must be constant across process restarts, and uniquely identify the process running on the machine. (Do not use `Guid.NewGuid()`.) Otherwise, the transaction recovery process will fail when the process restarts.
-* `documentStore.TransactionRecoveryStorage` must be set to an instance of `LocalDirectoryTransactionRecoveryStorage`, configured to a directory that is constant across process restarts, and writable by the process.
+ * `documentStore.ResourceManagerId` must be constant across process restarts, and uniquely identify the process running on the machine. **Do not use `Guid.NewGuid()`. Otherwise, the transaction recovery process will fail when the process restarts.**
+ * `documentStore.TransactionRecoveryStorage` must be set to an instance of `LocalDirectoryTransactionRecoveryStorage`, configured to a directory that is constant across process restarts, and writable by the process.
+
 
 ## Configuration by convention
 
@@ -51,6 +58,7 @@ The string provided to DeterministicGuidBuilder will define the ResourceManagerI
 An exception is side-by-side deployment, where an old version and new version of the same endpoint run concurrently, processing messages from the same queue, in order to verify the new version and enable rollback to the previous version. In this case using EndpointName or LocalAddress would result in duplicate ResourceManagerId values on the same server, which would lead to DTC exceptions. In this case, each release of the endpoint must be versioned (for example, with the [AssemblyFileVersion attribute](https://msdn.microsoft.com/en-us/library/system.reflection.assemblyfileversionattribute.aspx)), and the endpoint's version must be included in the string provided to DeterministicGuidBuilder.
 
 The exact convention used must be appropriately defined to match the deployment strategy in use for the endpoint. If a new endpoint version is deployed by taking the old one offline, replacing the binaries, and then starting it back up, fixed values should be used at all times so that the new version can recover transactions for the old version. If endpoint versions are run side-by-side, then independent values should be used for each version, and old versions should be safely decommissioned when they are shut down.
+
 
 ## Safely decommissioning endpoints
 
