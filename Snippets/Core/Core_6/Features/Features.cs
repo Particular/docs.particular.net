@@ -12,7 +12,7 @@ namespace Core6.Extending
     }
     #endregion
 
-    public class DependencyAFeature : Feature
+    public class ComponentBFeature : Feature
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
@@ -20,20 +20,24 @@ namespace Core6.Extending
     }
 
     #region DependentFeature
-    public class DependentFeature : Feature
+    public class ComponentAFeature : Feature
     {
-        public DependentFeature()
+        public ComponentAFeature()
         {
-            DependsOn<DependencyAFeature>();
-            DependsOn("Namespace.DependencyB");
-            DependsOnAtLeastOne("Namespace.DependencyC", "Namespace.DependencyD");
+            DependsOn<ComponentBFeature>();
+            // Assuming type names are
+            // Namespace.ComponentCFeature
+            // Namespace.ComponentDFeature
+            // Namespace.ComponentEFeature
+            DependsOn("Namespace.ComponentCFeature");
+            DependsOnAtLeastOne("Namespace.ComponentDFeature", "Namespace.ComponentEFeature");
         }
+        #endregion
 
         protected override void Setup(FeatureConfigurationContext context)
         {
         }
     }
-    #endregion
 
     #region FeatureEnabledByDefault
     public class FeatureEnabledByDefault : Feature
