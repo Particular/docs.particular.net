@@ -11,7 +11,7 @@ related:
 - nservicebus/sagas/concurrency
 ---
 
-A saga can handle multiple messages. When NServiceBus receives a message that should be handled by a saga, it uses the [configured mapping information](/nservicebus/sagas/#correlating-messages-to-a-saga) to determine the correct saga instance that should handle the incoming message. In many cases the correlation logic is simple and can be specified using the `ConfigureHowToFindSaga` method, which is the recommended default approach. However, if the correlation logic is very complex it might be necessary to define a custom saga finder.
+A saga can handle multiple messages. When NServiceBus receives a message that should be handled by a saga, it uses the [configured mapping information](/nservicebus/sagas/#correlating-messages-to-a-saga) to determine the correct saga instance that should handle the incoming message. In many cases the correlation logic is simple and can be specified using the provided [mapping function](/nservicebus/sagas/#correlating-messages-to-a-saga), which is the recommended default approach. However, if the correlation logic is very complex it might be necessary to define a custom saga finder.
 
 
 ### [NHibernate](/nservicebus/nhibernate/) Saga Finder
