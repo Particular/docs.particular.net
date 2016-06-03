@@ -39,7 +39,6 @@ class Program
     #region SendOrder
     static void SendOrder(IBus bus)
     {
-
         Console.WriteLine("Press enter to send a message");
         Console.WriteLine("Press any key to exit");
 
@@ -60,11 +59,8 @@ class Program
                 Id = id
             };
             bus.Send("Samples.StepByStep.Server", placeOrder);
-
             Console.WriteLine($"Sent a new PlaceOrder message with id: {id.ToString("N")}");
-
         }
-
     }
     #endregion
 }
