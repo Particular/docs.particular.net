@@ -24,8 +24,6 @@ In the above code snippet the `SampleBehavior` class derives from the Behavior c
 
 Warning: Each behavior is responsible to call the next step in the pipeline chain by invoking `next()`.
 
-NOTE: Steps can be ordered by using `WellKnownSteps`. It is recommended not rely on the existence of certain steps but to choose the appropriate stage instead.
-
 
 ## Add a new step
 
