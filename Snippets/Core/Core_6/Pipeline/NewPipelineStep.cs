@@ -10,8 +10,6 @@
         public NewPipelineStep()
             : base("NewPipelineStep", typeof(SampleBehavior), "Logs a warning when processing takes too long")
         {
-            // Optional: Specify where it needs to be invoked in the pipeline, for example InsertBefore or InsertAfter
-            InsertBefore(WellKnownStep.InvokeHandlers);
         }
     }
 

@@ -22,7 +22,7 @@ public class StreamReceiveRegistration : RegisterStep
     public StreamReceiveRegistration()
         : base("StreamReceive", typeof(StreamReceiveBehavior), "Copies the shared data back to the logical messages")
     {
-        InsertAfter(WellKnownStep.MutateIncomingMessages);
+        InsertAfter("MutateIncomingMessages");
         //Note that in V6 invocation of handlers is in a different stage so no "before" is needed
     }
 }
@@ -32,7 +32,7 @@ public class StreamSendRegistration : RegisterStep
     public StreamSendRegistration()
         : base("StreamSend", typeof(StreamSendBehavior), "Saves the payload into the shared location")
     {
-        InsertAfter(WellKnownStep.MutateOutgoingMessages);
+        InsertAfter("MutateOutgoingMessages");
         InsertBefore("ApplyTimeToBeReceived");
     }
 }
