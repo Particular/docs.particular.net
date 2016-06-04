@@ -33,8 +33,8 @@ class Program
                 {
                     OrderId = orderId
                 };
-                bus.Send(startOrder);
-                Console.WriteLine("StartOrder Message sent with OrderId  " + orderId);
+                bus.Send("Samples.MongoDB.Server", startOrder);
+                Console.WriteLine($"StartOrder Message sent with OrderId {orderId}");
             }
         }
     }
