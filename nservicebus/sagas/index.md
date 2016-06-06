@@ -9,7 +9,7 @@ related:
 - samples/saga
 ---
 
-Long-running business processes exist in many systems. Whether the steps are automated, manual, or a combination, effective handling of these processes is critical. NServiceBus employs event-driven architectural principles to bake fault-tolerance and scalability into these processes.The saga is a pattern that addresses the challenges uncovered by the relational database community years ago, packaged in NServiceBus for ease of use.
+Long-running business processes exist in many systems. Whether the steps are automated, manual, or a combination, effective handling of these processes is critical. NServiceBus employs event-driven architectural principles to bake fault-tolerance and scalability into these processes. The saga is a pattern that addresses the challenges uncovered by the relational database community years ago, packaged in NServiceBus for ease of use.
 
 One of the common mistakes developers make when designing distributed systems is based on the assumptions that time is constant. If something runs quickly on their machine, they're liable to assume it will run with a similar performance characteristic when in production. Network invocations (like web service calls) are misleading this way. When invoked on the developer's local machine, they perform well. In production, across firewalls and data centers, they don't perform nearly as well.
 
@@ -49,7 +49,7 @@ The important part of a long-running process is its behavior. Just like regular 
 
 ## Starting a saga
 
-Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sagas are, in essence, a message driven state machine. The trigger to started this state machine is the arrival of one or more specified message types. In the previous example, assume say that a new saga should be started every time a message of type `StartOrder` arrives. This would be declared by adding `IAmStartedByMessages<StartOrder>` to the saga.
+Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sagas are, in essence, a message driven state machine. The trigger to start this state machine is the arrival of one or more specified message types. In the previous example, assume a new saga should be started every time a message of type `StartOrder` arrives. This would be declared by adding `IAmStartedByMessages<StartOrder>` to the saga.
 
 NOTE: `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that.
 
@@ -64,11 +64,9 @@ NOTE: As of Version 6 NServiceBus will require each saga to have at least one me
 
 Correlation is needed in order to find existing saga instances based on data on the incoming message. In the example the `OrderId ` property of the `CompleteOrder` message is used to find the existing saga instance for that order.
 
-To declare this use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to. Note that NServiceBus will only allow correlation on a single saga property and that the property types must match. 
+To declare this use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to. Note that NServiceBus will only allow correlation on a single saga property and that the property types must match.
 
 NOTE: The value for correlated message properties must have a non default value.
-
-If correlating on more than one property is necessary, or match properties of different types, use a custom saga finder mentioned below.
 
 {{NOTE:
 In Version 6 and above NServiceBus will enforce that all correlated properties have a non default value when the saga instance is persisted. This means that all messages starting a saga must have a mapping.
@@ -84,10 +82,14 @@ snippet:saga-find-by-expression
 
 Underneath the covers, when `CompleteOrder` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `OrderSagaData` that has a property `OrderId` whose value is the same as the `OrderId` property of the message. If found the saga instance will be loaded and the `Handle` method for the `CompleteOrder` message will be invoked. Should the saga instance not be found and the message not be allowed to start a saga, the [saga not found](/nservicebus/sagas/saga-not-found.md) handlers will be invoked.
 
+If correlating on more than one property is necessary, or matched properties are of different types, use a [custom saga finder](saga-finding.md).
+
 
 ### Auto correlation
 
-A common usage of sagas is to have them send out a request message to get some work done and receive a response message back when the work is complete. To make this easier NServiceBus will auto correlate those response messages back to the correct saga instance without any need for mappings.
+A common usage of sagas is to have them send out a request message to get some work done and receive a response message back when the work is complete. To make this easier NServiceBus will automatically correlate those response messages back to the correct saga instance.
+
+NOTE: If it's not clear if the message can be auto correlated, it's better to provide the mappings. In case the message will be auto correlated, the mappings will be ignored.
 
 NOTE: A caveat of this feature is that it currently doesn't support auto correlation between sagas. If the request is handled by a another saga relevant message properties must be added and mapped to the requesting saga using the syntax described above.
 
