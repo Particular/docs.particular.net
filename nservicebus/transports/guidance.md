@@ -28,17 +28,17 @@ Any NServiceBus endpoint operates and manages different types of data, those are
  * Persistence data - infrastructure level data including: saga data, timeout manager state and message driven pub/sub information
  * Transport data - messaging infrastructure state
 
-Sql Server Transport manages transport data and puts no constraints on the type and configuration of storage technology used for persistence and business data. It can work with any of available persisters i.e. NHibernate and RavenDB, as well as any storage mechanisms used inside message handlers. However sharing storage technology (MS Sql Server) between transport, persistence and/or business data offers unique advantages (see next section) and as a result this guidance will focus on such scenario.
+SQL Server Transport manages transport data and puts no constraints on the type and configuration of storage technology used for persistence and business data. It can work with any of available persisters i.e. NHibernate and RavenDB, as well as any storage mechanisms used inside message handlers. However, sharing storage technology (SQL Server) between transport, persistence and/or business data offers unique advantages (see next section) and, as a result, this guidance will focus on such scenario.
 
-From data perspective, deployment model chosen by system architect answers the question of how business, persistence and transport data is stored in terms of MS Sql server instances, catalogs and schemas.
+From data perspective, deployment model chosen by system architect answers the question of how business, persistence and transport data is stored in terms of SQL Server instances, catalogs and schemas.
 
-NOTE: No matter which deployment option is chosen there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside on a single MS SQL server instance**.  
+NOTE: No matter which deployment option is chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside on a single SQL Server catalog**.  
 
 ### Transactionality (Exactly once message delivery)
 When sharing single technology for different types of data it is possible to provide `exactly-once` message processing without need for DTC. In all other cases it is required to turn on DTC.
 
 #### Business, Persistence and Transport data in single catalog
-Enables `exactly-once` message delivery with native transactions. Multi-catalog with local transactions are possible in principle but currently not supported by Sql Server transport. There is possibility to use different schemas.
+Enables `exactly-once` message delivery with native transactions. Multi-catalog with local transactions are possible in principle but currently not supported by SQL Server transport. There is possibility to use different schemas.
 
 #### Business and Persistence data in a single catalog
 Enables `exactly-once` message delivery using `Outbox` feature. There is possibility to use different schemas.
