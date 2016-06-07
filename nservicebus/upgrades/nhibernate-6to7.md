@@ -26,3 +26,10 @@ The reasoning behind removing the registration from the IoC Container was not ex
 It is no longer possible to customize `ISession` creation process. As such, the extension method call `UseCustomSessionCreationMethod()` is no longer needed and should be removed. 
 
 Since most of the methods available on the `ISessionFactory` are related to caching and with this [existing NHibernate bug](https://nhibernate.jira.com/browse/NH-3023) (also listed [here](/nservicebus/nhibernate/accessing-data.md) as a known limitation), the benefit of having customizable `ISession` creation is debatable. To customize the created `ISession` object, for example to apply a filter on the session level, the code needs to be moved to the handler and applied to the `ISession` object on the Context.
+
+
+## Unique attribute no longer needed
+
+NServiceBus will automatically make the correlated saga property unique without the need for an explicit `[Unique]` attribute to be used. This attribute can be safely removed from saga data types.
+
+Refer to the [NServiceBus upgrade guide for migrating from Version 5 to 6](http://docs.particular.net/nservicebus/upgrades/5to6#sagas) to learn more about changes regarding sagas.
