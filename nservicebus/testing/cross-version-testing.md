@@ -6,7 +6,7 @@ related:
  - samples/unit-testing
 ---
 
-At times it is required to run different versions of NServiceBus across your distributed system. A common theme is when an update needs to be rolled out and these updates are usually rolled out gradually. The rest of the system should remain intact and functional. As such, it is essential that endpoints running different versions are cross-compatible.
+At times it is required to run different versions of NServiceBus across a distributed system. A common theme is when an update needs to be rolled out and these updates are usually rolled out gradually. The rest of the system should remain intact and functional. As such, it is essential that endpoints running different versions are cross-compatible.
 
 In order to ensure endpoints using various versions of NServiceBus can communicate with each other, it is necessary to extensively test multiple aspects of cross-version compatibility. The automated tests are publicly available in the [Particular/EndToEnd](https://github.com/Particular/EndToEnd/) repository and are evaluated as part of pre-release activities.
 
@@ -14,7 +14,7 @@ Those tests might be useful for NServiceBus users in order to verify that the fr
 
 ## How it works?
 
-The tests are standard integration-style tests. You'll need SQLServer Express or higher installed with an empty database to run the tests as described in the [Readme](https://github.com/Particular/EndToEnd/blob/master/README.md) file.
+The tests are standard integration-style tests. SQLServer Express or higher needs to be installed to run the tests as described in the [Readme](https://github.com/Particular/EndToEnd/blob/master/README.md) file.
 
 
 ### Pulling packages from NuGet
