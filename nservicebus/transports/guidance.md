@@ -1,7 +1,6 @@
 ---
 title: SQL Server Transport usage guidance
 summary: Usage guidance for SQL Server transport
-reviewed: 2016-03-22
 tags:
 - SQL Server
 ---
@@ -21,8 +20,38 @@ The SQL Server transport is a hybrid queueing system which is neither store-and-
  * Throughput on par with MSMQ
  * Scaling out of processing is simple because of support for competing consumers at the queue level
 
-## Usage scenarios - deployment size
+## Deployment considerations
 
+### Introduction
+Any NServiceBus endpoint operates and manages different types of data, those are:
+ * Business data - data used for implementing business capabilities
+ * Persistence data - infrastructure level data including: saga data, timeout manager state and message driven pub/sub information
+ * Transport data - messaging infrastructure state
+
+Sql Server Transport manages transport data and puts no constraints on the type and configuration of storage technology used for persistence and business data. It can work with any of available persisters i.e. NHibernate and RavenDB, as well as any storage mechanisms used inside message handlers. However sharing storage technology (MS Sql Server) between transport, persistence and/or business data offers unique advantages (see next section) and as a result this guidance will focus on such scenario.
+
+From data perspective, deployment model chosen by system architect answers the question of how business, persistence and transport data is stored in terms of MS Sql server instances, catalogs and schemas.
+
+NOTE: No matter which deployment option is chosen there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside on a single MS SQL server instance**.  
+
+### Transactionality (Exactly once message delivery)
+When sharing single technology for different types of data it is possible to provide `exactly-once` message processing without need for DTC. In all other cases it is required to turn on DTC.
+
+#### Business, Persistence and Transport data in single catalog
+Enables `exactly-once` message delivery with native transactions. Multi-catalog with local transactions are possible in principle but currently not supported by Sql Server transport. There is possibility to use different schemas.
+
+#### Business and Persistence data in a single catalog
+Enables `exactly-once` message delivery using `Outbox` feature. There is possibility to use different schemas.
+  
+### Security 
+
+### Performance
+
+### Availability 
+
+### Monitoring (Service Control)
+
+## Sample usage scenarios
 ### Tiny
 
 The SQL Server transport is an ideal choice for extending an existing web application with asynchronous processing capabilities as an alternative for tedious batch jobs that tend to quickly get out of synch with the main codebase. Assuming the application already uses SQL Server as a database, this scenario does not require any additional infrastructure.
