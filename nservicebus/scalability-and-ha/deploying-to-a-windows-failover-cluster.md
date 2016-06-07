@@ -133,7 +133,7 @@ Again, try swapping the cluster back and forth, to ensure it can move freely bet
 
 ## Setting up the workers
 
-include: distributor_inV6
+include: distributor-inV6
 
 Ensure that the worker servers have [unique QMIds](distributor/#worker-qmid-needs-to-be-unique).
 

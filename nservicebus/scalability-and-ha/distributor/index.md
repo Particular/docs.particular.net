@@ -81,7 +81,7 @@ For more information about Pub/Sub in a distributor scenario see [What the distr
 
 ## Distributor configuration
 
-include: distributor_inV6
+include: distributor-inV6
 
 ### When hosting endpoints in NServiceBus.Host.exe
 
