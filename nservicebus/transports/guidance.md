@@ -28,28 +28,32 @@ Any NServiceBus endpoint operates and manages different types of data, those are
  * Persistence data - infrastructure level data including: saga data, timeout manager state and message driven pub/sub information
  * Transport data - messaging infrastructure state
 
-Sql Server Transport manages transport data and puts no constraints on the type and configuration of storage technology used for persistence and business data. It can work with any of available persisters i.e. NHibernate and RavenDB, as well as any storage mechanisms used inside message handlers. However sharing storage technology (MS Sql Server) between transport, persistence and/or business data offers unique advantages (see next section) and as a result this guidance will focus on such scenario.
+Sql Server Transport manages transport data and puts no constraints on the type and configuration of storage technology used for persistence and business data. It can work with any of available persisters i.e. NHibernate and RavenDB, as well as any storage mechanisms used inside message handlers.
 
-From data perspective, deployment model chosen by system architect answers the question of how business, persistence and transport data is stored in terms of MS Sql server instances, catalogs and schemas.
+Building any system based on NServiceBus requires answering questions on how and where business, persistence and transport data will be stored. The purpose of this section is to define what needs to be considered from Sql Server Transport's perspective.
+ 
+NOTE: No matter what deployment options are chosen there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside on a single MS SQL server instance**. Multi-instance deployments are technically possible but have been deprecated as of Sql Server transport version 3. Please see: ###Section### for migration guidance.  
 
-NOTE: No matter which deployment option is chosen there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside on a single MS SQL server instance**.  
+### Transactionality
+Sql Server Transport supports all [transaction modes](/nservicebus/transports/transactions.md) in particular `TransactionScope` which enables `exactly once` message processing with usage of distributed transactions. However when transport, persistence and business data are all stored in a single MS SQL Server catalog it is possible to achieve `exactly-once` message delivery without need for distributed transactions (###Link to Sample###).
 
-### Transactionality (Exactly once message delivery)
-When sharing single technology for different types of data it is possible to provide `exactly-once` message processing without need for DTC. In all other cases it is required to turn on DTC.
-
-#### Business, Persistence and Transport data in single catalog
-Enables `exactly-once` message delivery with native transactions. Multi-catalog with local transactions are possible in principle but currently not supported by Sql Server transport. There is possibility to use different schemas.
-
-#### Business and Persistence data in a single catalog
-Enables `exactly-once` message delivery using `Outbox` feature. There is possibility to use different schemas.
-  
+NOTE: `Exactly once` message processing without distributed transactions can be achieved with any transport (and SQL Server Transport in particular) using [Outbox](/nservicebus/outbox/) feature. It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage.
+     
 ### Security 
+Security considerations for Sql Server Transport should follow minimal required access rights rule. For that each endpoint should use dedicated Sql Server account with SELECT and DELETE permissions on it's input queues as well as INSERT permissions on other endpoint's input queues, audit queue and error queue. 
+Mulit-schema configuration can be used to ease (Really? I'm not sure about this) the maintenance of security configuration. 
 
 ### Performance
 
+ * Separate file groups for hot queues?
+ * In mem OLTP? 
+ 
 ### Availability 
-
+ * Linked servers?
+ * Availability groups?
+ 
 ### Monitoring (Service Control)
+All deployment options for Sql Server Transport described in this section are supported by Service Control. For details on Service Control running on top of Sql Server Transport please ###Link Here###
 
 ## Sample usage scenarios
 ### Tiny
