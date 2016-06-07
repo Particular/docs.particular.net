@@ -7,19 +7,17 @@ using NServiceBus;
 
 public class WorkerRole : RoleEntryPoint
 {
-    NServiceBusRoleEntrypoint nsb = new NServiceBusRoleEntrypoint();
+    NServiceBusRoleEntrypoint roleEntrypoint = new NServiceBusRoleEntrypoint();
 
     public override bool OnStart()
     {
-        nsb.Start();
-
+        roleEntrypoint.Start();
         return base.OnStart();
     }
 
     public override void OnStop()
     {
-        nsb.Stop();
-
+        roleEntrypoint.Stop();
         base.OnStop();
     }
 }
