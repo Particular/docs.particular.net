@@ -5,7 +5,6 @@ ASQ: NServiceBus.Azure.Transports.WindowsAzureStorageQueues
 ASP: NServiceBus.Persistence.AzureStorage
 Autofac: NServiceBus.Autofac
 Azure: NServiceBus.Azure
-AzureHost: NServiceBus.Hosting.Azure
 Callbacks: NServiceBus.Callbacks
 Castle: NServiceBus.CastleWindsor
 CommonLogging: NServiceBus.CommonLogging
@@ -14,7 +13,7 @@ CustomChecks3: ServiceControl.Plugin.Nsb3.CustomChecks
 CustomChecks4: ServiceControl.Plugin.Nsb4.CustomChecks
 CustomChecks5: ServiceControl.Plugin.Nsb5.CustomChecks
 CustomChecks6: ServiceControl.Plugin.Nsb6.CustomChecks
-CloudServicesHost: NServiceBus.Hosting.Azure.HostProcess
+CloudServicesHost: NServiceBus.Hosting.Azure
 Distributor: NServiceBus.Distributor.MSMQ
 Gateway: NServiceBus.Gateway
 Host: NServiceBus.Host

@@ -222,7 +222,6 @@ Example aliases:
 ASP: NServiceBus.Persistence.AzureStorage
 Autofac: NServiceBus.Autofac
 Azure: NServiceBus.Azure
-AzureHost: NServiceBus.Hosting.Azure
 Callbacks: NServiceBus.Callbacks
 ```
 

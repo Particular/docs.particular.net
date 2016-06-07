@@ -79,7 +79,6 @@
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Host.AzureCloudService
   NugetOrder:
-    - NServiceBus.Hosting.Azure.HostProcess
     - NServiceBus.Hosting.Azure
 
 - Key: CommonLogging
