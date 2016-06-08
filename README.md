@@ -412,9 +412,9 @@ For non-code snippets apply a similar approach as in code, using comments approp
 
 |Tag        |XML-based                    |PowerShell            |SQL script             |Plain text          |
 |-----------|-----------------------------|----------------------|-----------------------|--------------------|
-|**Open**   |```<!-- startcode name -->```|```# startcode name```|```-- startcode name```|```startcode name```|
+|**Open**   |`<!-- startcode name -->`|`# startcode name`|`-- startcode name`|`startcode name`|
 |Content    |                             |                      |                       |                    |
-|**Close**  |```<!-- endcode -->```       |```# endcode```       |```-- endcode```       |```endcode```       |
+|**Close**  |`<!-- endcode -->`       |`# endcode`       |`-- endcode`       |`endcode`       |
 
 
 #### Using regions
