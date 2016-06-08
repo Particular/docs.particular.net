@@ -337,8 +337,6 @@ Endpoint1\Endpoint1.csproj
 ```
 
 
-
-
 ### Bootstrapping a sample
 
 At the moment the best way to get started on a sample is to copy an existing one. Ideally one that is similar to what you are trying to achieve.
@@ -391,7 +389,14 @@ File extensions scanned for snippets include:
  * `.sql`
  * `.txt`
  * `.xml`
+ * 
 
+### Snippets are highlighted using highlightjs
+
+ * [Documentation](http://highlightjs.readthedocs.io/)
+ * [Language List](http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases)
+ * Use `no-highlight` for no language.
+ * 
 
 #### Using comments
 
