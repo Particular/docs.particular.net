@@ -12,18 +12,24 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Throttling";
+
         #region Configuration
+
         var endpointConfiguration = new EndpointConfiguration("Samples.Throttling");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
+
         #endregion
+
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region RegisterBehavior
+
         endpointConfiguration.Pipeline.Register(
-                   "GitHub API Throttling",
-                   typeof(ThrottlingBehavior),
-                   "implements API throttling for GitHub APIs");
+            "GitHub API Throttling",
+            typeof(ThrottlingBehavior),
+            "implements API throttling for GitHub APIs");
+
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
@@ -42,7 +48,7 @@ class Program
                     SearchFor = "IBus"
                 };
                 await endpointInstance.SendLocal(searchGitHub)
-                .ConfigureAwait(false);
+                    .ConfigureAwait(false);
             }
             Console.WriteLine("Messages sent.");
             Console.WriteLine("Press any key to exit");

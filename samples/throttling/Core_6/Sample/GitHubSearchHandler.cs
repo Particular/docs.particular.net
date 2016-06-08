@@ -5,14 +5,14 @@ using Octokit;
 
 public class GitHubSearchHandler : IHandleMessages<SearchGitHub>
 {
-    static ILog log = LogManager.GetLogger<GitHubSearchHandler> ();
+    static ILog log = LogManager.GetLogger<GitHubSearchHandler>();
 
     // use anonymous access which has strict rate limitations
     GitHubClient GitHubClient = new GitHubClient(new ProductHeaderValue("ThroughputThrottlingSample"));
 
     public async Task Handle(SearchGitHub message, IMessageHandlerContext context)
     {
-        log.Info($"Received search request for \"{message.SearchFor}\" on {message.RepositoryOwner}/{message.Repository}...");
+        log.Info($"Received search request for '{message.SearchFor}' on {message.RepositoryOwner}/{message.Repository}...");
 
         var request = new SearchCodeRequest(
             message.SearchFor,

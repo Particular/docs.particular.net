@@ -11,28 +11,24 @@ public class ThrottlingBehavior : Behavior<IInvokeHandlerContext>
     static ILog log = LogManager.GetLogger<Behavior<IInvokeHandlerContext>>();
     static DateTime? nextRateLimitReset;
 
-    public override async Task Invoke(IInvokeHandlerContext context, Func<Task> next)
+    public override Task Invoke(IInvokeHandlerContext context, Func<Task> next)
     {
-        DateTime? rateLimitReset = nextRateLimitReset;
+        var rateLimitReset = nextRateLimitReset;
         if (rateLimitReset.HasValue && rateLimitReset >= DateTime.UtcNow)
         {
             log.Info($"rate limit already exceeded. Retry after {rateLimitReset} UTC");
-            await DelayMessage(context, rateLimitReset.Value)
-                .ConfigureAwait(false);
-            return;
+            return DelayMessage(context, rateLimitReset.Value);
         }
 
         try
         {
-            await next()
-                .ConfigureAwait(false);
+            return next();
         }
         catch (RateLimitExceededException ex)
         {
-            DateTime? nextReset = nextRateLimitReset = ex.Reset.UtcDateTime;
+            var nextReset = nextRateLimitReset = ex.Reset.UtcDateTime;
             log.Info($"rate limit exceeded. Limit resets resets at {nextReset} UTC");
-            await DelayMessage(context, nextReset.Value)
-                .ConfigureAwait(false);
+            return DelayMessage(context, nextReset.Value);
         }
     }
 
