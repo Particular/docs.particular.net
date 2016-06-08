@@ -45,9 +45,9 @@ The transport will route messages to destination based on the configuration. If 
 
 ### Multi-instance
 
-WARNING: The *multi-instance* option won't be directly supported in Versions 4 and higher. Instead, a guidance will be provided on how to achieve a similar result using built-in SQL Server features. However, in Versions 4 and higher the *multi-catalog* option will be directly supported.
+WARNING: The *multi-instance* option won't be supported in Versions 4 and higher. Version 3 supports *multi-instance* mode only with DTC.
 
- * Requires DTC, or using Outbox and storing business data in the same database as Outbox data.
+ * Requires DTC, or in case of Version 2 using Outbox and storing business data in the same database as Outbox data.
  * Can't be monitored with ServiceControl.
 
 
