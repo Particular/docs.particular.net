@@ -48,11 +48,11 @@ Saga data stored in Azure will need to be patched using the `NServiceBus.AzureSt
  1. Download the de-duplication tool from [https://github.com/Particular/IssueDetection/releases/tag/nsb.asp.26](https://github.com/Particular/IssueDetection/releases/tag/nsb.asp.26) and put it on a computer that has internet access as well as the .NET Framework 4.5.2 installed.
  1. Add an Azure Storage connection string to the `NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe.config` file. For example:
 	
-	```		
-	<configuration>  
-		<connectionStrings>  
-			<add name="sagas" connectionStrings="--anAzureStorageConnectionString--"/>  
-		</connectionStrings> 
+	```xml
+	<configuration>
+		<connectionStrings>
+			<add name="sagas" connectionStrings="--anAzureStorageConnectionString--"/>
+		</connectionStrings>
 	</configuration>
 	```
  1. Copy endpoint dlls to the same folder as the de-duplication tool. These files will be scanned to find all implementations of `IContainSagaData` which will indicate the sagas that need to be verified in Azure Storage.
@@ -77,7 +77,7 @@ Open a commandline and run the following command `NServiceBus.AzureStoragePersis
 
 The utility will output a list of saga data classes that it found while scanning the assemblies provided. The list of classes is split into two categories: those classes that have a correlation property and those that do not.
 
-```
+```dos
 $ NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe directory=saga operation=Download
 
 Following saga types have correlation properties
@@ -88,11 +88,12 @@ Following saga types have NO correlation property marked with [Unique] and won't
 
 The saga classes that do have a correlation property will have their data de-duplicated. The classes that do not have a correlation property will need to have the `[Unique]` attribute added later steps. Make note of the classes in this list for use later.
 
+
 #### 3. Unresolved Conflicts
 
 The de-duplication utility will have fixed the data for all saga instances that it could. There can, however, be situations where the utility was unable to resolve the correct saga instance. When this happens the de-duplication tool will download conflicting sagas to the working directory that was provided as a command line parameter. Every set of conflicting sagas is downloaded to a separate directory containing files named with conflicting sagas identifiers. For example, running the utility with `directory=data` against an assembly that has a `TwoInstanceSagaState` class that implements `IContainSagaData` will result in a following structure:
 
-```
+```no-highlight
 data
 └───TwoInstanceSagaState
     └───d10c2f15-06d2-1370-e0ee-781710b5d598
@@ -102,7 +103,7 @@ data
 
 where the `0e36dc9a-eec0-455c-a4d3-b8b275711d15` and `8ee2f4b2-eaf2-4d12-a87e-a5e000aaa815` folders contain the JSON payload of each of the conflicting sagas. In addition to the saga properties the JSON payload contains a property, `"$Choose_this_saga"`, to indicate which of the conflicting sagas is to be used as the selected saga.
 
-```
+```json
 {
   "OrderId": "8ca3f5a2-009f-4796-9727-d8493e47288f",
   "Id": "0e36dc9a-eec0-455c-a4d3-b8b275711d15",
@@ -116,7 +117,7 @@ where the `0e36dc9a-eec0-455c-a4d3-b8b275711d15` and `8ee2f4b2-eaf2-4d12-a87e-a5
 
 Initially, its value is `"$Choose_this_saga": false`. For each set of conflicting sagas, one saga should be updated accordingly and marked chosen by setting the `$Choose_this_saga` property to `true`.
 
-```
+```json
 {
   "OrderId": "8ca3f5a2-009f-4796-9727-d8493e47288f",
   "Id": "0e36dc9a-eec0-455c-a4d3-b8b275711d15",
@@ -135,7 +136,7 @@ This saga selection will need to be performed on all sagas that are downloaded t
 
 Once all conflicting sagas have been resolved, run the following command: `NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe directory=<directory> operation=Upload`. This step will update the Azure Storage to contain the conflicted sagas that were marked `"$Choose_this_saga": true` in step #3.
 
-  * All of the commandline parameters, with the exception of `operation=Upload`, should be exactly the same as they were in step #1.
+ * All of the commandline parameters, with the exception of `operation=Upload`, should be exactly the same as they were in step #1.
 
 
 ## After the patch process
