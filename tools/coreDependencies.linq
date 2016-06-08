@@ -1,29 +1,51 @@
 <Query Kind="Statements">
   <NuGetReference>NuGet.Core</NuGetReference>
   <Namespace>NuGet</Namespace>
+  <Namespace>System.Threading.Tasks</Namespace>
 </Query>
 
-var nuGet = PackageRepositoryFactory.Default.CreateRepository("https://www.nuget.org/api/v2/");	
+var location = Util.CurrentQuery.Location;
+//var location = @"C:\Code\docs.particular.net\tools";
+var nuGet = PackageRepositoryFactory.Default.CreateRepository("https://www.nuget.org/api/v2/");
 var corePackageName = "NServiceBus";
-var nugetAliasFile = Path.Combine(Util.CurrentQuery.Location, @"..\components\nugetAlias.txt");
+var coreDependencies = Path.Combine(location, @"..\components\core-dependencies");
+Directory.CreateDirectory(coreDependencies);
+var filePaths = Directory.GetFiles(coreDependencies, "*.txt");
+foreach (var filePath in filePaths)
+{
+    File.Delete(filePath);
+}
 
-(
+var nugetAliasFile = Path.Combine(location, @"..\components\nugetAlias.txt");
 
-	from line in File.ReadLines(nugetAliasFile).AsParallel()
-	let packageName = line.Split(':').Last().Trim()
-	where packageName != corePackageName
-	from package in nuGet.FindPackagesById(packageName)
-	where package.IsListed()
-	let dependencySet = package.DependencySets.FirstOrDefault()
-	let nsbDependency = dependencySet?.Dependencies?.SingleOrDefault(d => d.Id == corePackageName)
-	orderby package.Id ascending, package.Version descending
-	group new 
-	{ 
-		PackageVersion = package.Version.ToString(), 
-		CoreVersionRange = nsbDependency?.VersionSpec?.ToString(), 
-		CoreMajor = nsbDependency?.VersionSpec?.MinVersion?.Version?.Major
+Parallel.ForEach(File.ReadAllLines(nugetAliasFile), line =>
+{
+    var packageName = line.Split(':').Last().Trim();
+    if (packageName == corePackageName)
+    {
+        return;
+    }
+    var packages = nuGet.FindPackagesById(packageName).Where(package => package.IsListed());
+    var targetPath = Path.Combine(coreDependencies, $"{packageName}.txt");
+	using (var writer = File.CreateText(targetPath))
+	{
+		var processed = new List<SemanticVersion>();
+		foreach (var package in packages.OrderByDescending(x => x.Version))
+		{
+			var nsbDependency = package.DependencySets
+				.SelectMany(x => x.Dependencies)
+				.SingleOrDefault(d => d.Id == corePackageName);
+			if (nsbDependency != null)
+			{
+				var semanticVersion = package.Version;
+				if (processed.Any(_ => _.Version == semanticVersion.Version))
+				{
+					continue;
+				}
+				processed.Add(semanticVersion);
+				writer.WriteLine(semanticVersion + " : " + nsbDependency.VersionSpec);
+			}
+		}
+		writer.Flush();
 	}
-	by package.Id into g
-	select g
-	
-).Dump();
+});
