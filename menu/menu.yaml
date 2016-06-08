@@ -361,7 +361,9 @@
         - "nservicebus/scalability-and-ha/scale-out"
         - "nservicebus/scalability-and-ha/deploying-to-a-windows-failover-cluster"
         - "nservicebus/scalability-and-ha/individualizing-queues-when-scaling-out"
-        - Title: "Distributor"
+        - Title: "Scaling out with sender-side distribution"
+          Url: "nservicebus/scalability-and-ha/sender-side-distribution"
+        - Title: "Scaling out with the Distributor"
           Url: "nservicebus/scalability-and-ha/distributor"
           Articles:
             - "nservicebus/scalability-and-ha/distributor/when-worker-goes-down"
