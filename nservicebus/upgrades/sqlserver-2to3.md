@@ -60,8 +60,7 @@ The configuration API for [multi-instance support](/nservicebus/sqlserver/deploy
 
 snippet:sqlserver-multiinstance-upgrade
 
-Note that this method has been introduced only for backwards compatibility in Version 3. In Versions 4 and higher it will be replaced by `multi-catalog` support on the transport level, and appropriate guidance on how to achieve benefits of `multi-instance` by using features provided by SQL Server.
-
+Note that `multi-instance` mode has been deprecated and will not be supported in Versions 4 and higher.
 
 ### Circuit breaker
 
