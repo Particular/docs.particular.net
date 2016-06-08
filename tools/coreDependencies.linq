@@ -25,11 +25,12 @@ Parallel.ForEach(File.ReadAllLines(nugetAliasFile), line =>
     {
         return;
     }
-    var packages = nuGet.FindPackagesById(packageName).Where(package => package.IsListed());
-    var targetPath = Path.Combine(coreDependencies, $"{packageName}.txt");
+	var packages = nuGet.FindPackagesById(packageName).Where(package => package.IsListed());
+	var targetPath = Path.Combine(coreDependencies, $"{packageName}.txt");
+	var processed = new List<SemanticVersion>();
+	var minVersion = new SemanticVersion(3, 3, 0, 0);
 	using (var writer = File.CreateText(targetPath))
 	{
-		var processed = new List<SemanticVersion>();
 		foreach (var package in packages.OrderByDescending(x => x.Version))
 		{
 			var nsbDependency = package.DependencySets
@@ -37,6 +38,10 @@ Parallel.ForEach(File.ReadAllLines(nugetAliasFile), line =>
 				.SingleOrDefault(d => d.Id == corePackageName);
 			if (nsbDependency != null)
 			{
+				if (nsbDependency.VersionSpec.MinVersion < minVersion)
+				{
+					continue;
+				}
 				var semanticVersion = package.Version;
 				if (processed.Any(_ => _.Version == semanticVersion.Version))
 				{
