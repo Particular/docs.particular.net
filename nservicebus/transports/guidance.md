@@ -5,19 +5,20 @@ tags:
 - SQL Server
 ---
 
-The SQL Server transport implements a message queueing mechanism on top of Microsoft SQL Server. It provides support for sending messages over [SQL Server](http://www.microsoft.com/en-au/server-cloud/products/sql-server/) tables. It does **not** make any use of ServiceBroker, a messaging technology built into the SQL Server.
+The SQL Server transport allows endpoints to exchange messages using the Microsoft SQL Server Database Engine. It implements queues on top of database tables and send / receive operations as `INSERT` and `DELETE` operations.
 
+Please note that the SQL Server transport does not use or depend on SQL Server Service Broker.
 
 ## How it works
 
-The SQL Server transport is a hybrid queueing system which is neither store-and-forward (like MSMQ) nor a broker (like RabbitMQ). It treats the SQL Server as a storage infrastructure for the queues while the queue implementation logic is executed inside the client process.
+SQL Server provides a central place to store queues and messages but the queue implementation is executed entirely within the endpoint process. As such, SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than store-and-forward transport such as MSMQ.
 
 
 ### Advantages of SQL Server Transport
 
  * No additional licensing and training costs, as majority of Microsoft stack organizations already have SQL Server installed and have knowledge required to run it
  * Great general-purpose tooling (SSMS)
- * Throughput on par with MSMQ
+ * Free to start (Express edition)
  * Scaling out of processing is simple because of support for competing consumers at the queue level
 
 ## Deployment considerations
@@ -26,7 +27,7 @@ The SQL Server transport is a hybrid queueing system which is neither store-and-
 Any NServiceBus endpoint operates and manages different types of data, those are:
  * Business data - data used for implementing business capabilities
  * Persistence data - infrastructure level data including: saga data, timeout manager state and message driven pub/sub information
- * Transport data - messaging infrastructure state
+ * Transport data - queues and messages
 
 SQL Server Transport manages transport data and puts no constraints on the type and configuration of storage technology used for persistence and business data. It can work with any of available persisters i.e. NHibernate and RavenDB, as well as any storage mechanisms used inside message handlers.
 
@@ -38,10 +39,11 @@ NOTE: No matter what deployment options are chosen, there is one general rule th
 SQL Server Transport supports all [transaction modes](/nservicebus/transports/transactions.md) in particular `TransactionScope` which enables `exactly once` message processing with usage of distributed transactions. However when transport, persistence and business data are all stored in a single SQL Server catalog it is possible to achieve `exactly-once` message delivery without need for distributed transactions (###Link to Sample###).
 
 NOTE: `Exactly once` message processing without distributed transactions can be achieved with any transport (and SQL Server Transport in particular) using [Outbox](/nservicebus/outbox/). It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage.
-     
+
 ### Security 
-Security considerations for SQL Server Transport should follow minimal required access rights rule. For that each endpoint should use dedicated SQL Server account with SELECT and DELETE permissions on it's input queues as well as INSERT permissions on other endpoint's input queues, audit queue and error queue. 
-Mulit-schema configuration can be used to ease (Really? I'm not sure about this) the maintenance of security configuration. 
+Security considerations for SQL Server Transport should follow the principle of least privilege. For that each endpoint should use dedicated SQL Server account with SELECT and DELETE permissions on it's input queues as well as INSERT permissions on other endpoint's input queues, audit queue and error queue. 
+
+Mulit-schema configuration can be used to ease the maintenance of security configuration because each endpoint may own a number of queues.
 
 ### Performance
 
@@ -60,22 +62,13 @@ All deployment options for Sql Server Transport described in this section are su
 
 The SQL Server transport is an ideal choice for extending an existing web application with asynchronous processing capabilities as an alternative for tedious batch jobs that tend to quickly get out of synch with the main codebase. Assuming the application already uses SQL Server as a database, this scenario does not require any additional infrastructure.
 
-The queue tables are hosted in the same catalog as business data and the NServiceBus runtime can be hosted in the web worker. In some cases there is a need for a separate process for NServiceBus. In most cases these systems consists of 1 to 3 non-scaled out endpoints. Because they consist of a single logical service or bounded context, there is usually no need to create separate schemas for the queues.
+The queue tables are hosted in the same catalog as business data and the NServiceBus runtime can be hosted in the web worker. In some cases there is a need for a separate process for NServiceBus. Because they consist of a single logical service or bounded context, there is usually no need to create separate schemas for the queues.
 
 ### Small
 
-The SQL Server transport is a good choice for a pilot project to prove feasibility of NServiceBus in a given organization as well as for a small, well-defined green field application. It usually requires nothing more than a database. Such a system usually consists of 2-10 fairly independent non-scaled out endpoints.
+The SQL Server transport is a good choice for a pilot project to prove feasibility of NServiceBus in a given organization as well as for a small, well-defined green field application. It usually requires nothing more than a single shared database.
 
-The best option is to store the queues in the same catalog as the business data. Schemas can be used to make maintenance easier and allow for finer-grained security. 
-
-#### Security
-
-For best results, both in terms of security and maintainability, each endpoint should run in context of a different account. Each such account should own three schemas on the database level
- * the data schema (e.g. `sales`) for which it has exclusive write access. Other accounts might optionally have read access to this schema.
- * the incoming queue schema (e.g. `sales-incoming`) for which it has exclusive `DELETE` access. Other accounts should have `INSERT` permissions to this schema
- * the private queue schema (e.g. `sales-nsb`) for which it has exclusive access. No other accounts should have any permissions to this schema.
-
-This approach ensures that endpoints are allowed to send messages to each other and (optionally) read each other's data. They are not allowed to receive other endpoint's messages nor modify their data directly.
+The best option is to store the queues in the same catalog as the business data. Schemas can be used to make maintenance easier. 
 
 ### Medium to large
 
@@ -91,18 +84,12 @@ Another options is to use Outbox, which is a unique feature of NServiceBus, that
 
 #### Scaling up
 
+Standard techniques for scaling up OLTP workloads can be employed when high message throughput is required.
+
 **TODO**
 
  * Separate file groups for hot queues?
  * In mem OLTP? 
-
-#### Security
-
-For best results both in terms of security and maintainability each endpoint should run in context of a different account. Each such account should own two schemas in the transport catalog
- * the incoming queue schema (e.g. `sales-incoming`) for which it has exclusive `DELETE` access. Other accounts should have `INSERT` permissions to this schema
- * the private queue schema (e.g. `sales-nsb`) for which it has exclusive access. No other accounts should have any permissions to this schema.
-
-This approach ensures that endpoints are allowed to send messages to each other but they are not allowed to receive other endpoint's messages.
 
 ### Distributed
 
