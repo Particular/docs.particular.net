@@ -169,25 +169,29 @@ Run the solution, and three console windows will appear, and NServiceBus will in
 
 The output will be
 
-    Press enter to send a message
-    Press any key to exit
+```no-highlight
+Press enter to send a message
+Press any key to exit
+```
 
 Hit enter to send a message, or any other key to exit.
 
-    Sent a new PlaceOrder message with id: 5e906f84397e4205ae486f0aa79935e2
+```no-highlight
+Sent a new PlaceOrder message with id: 5e906f84397e4205ae486f0aa79935e2
+```
 
 
 ### Server Output
 
 Note that the Server will indicate that it received a subscription request from the Subscriber:
 
-```
+```no-highlight
 INFO  NServiceBus.SubscriptionReceiverBehavior Subscribing Samples.StepByStep.Subscriber@MACHINENAME to message type OrderPlaced, Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 ```
 
 The rest of the output shows the results of sending a message from the Client:
 
-```
+```no-highlight
 Press any key to exit
 INFO  PlaceOrderHandler Order for Product:New shoes placed with id: 1c7f01eb-6de3-4506-9e56-a914f9486d9d
 INFO  PlaceOrderHandler Publishing: OrderPlaced for Order Id: 1c7f01eb-6de3-4506-9e56-a914f9486d9d
@@ -196,11 +200,12 @@ INFO  PlaceOrderHandler Publishing: OrderPlaced for Order Id: 1c7f01eb-6de3-4506
 ### Subscriber Output
 
 Note that the Subscriber will indicate it is sending a subscription request to the Server endpoint:
-```
+
+```no-highlight
 INFO  NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubscriptionManager Subscribing to OrderPlaced, Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null at publisher queue Samples.StepByStep.Server@MACHINENAME
 ```
 
-```
+```no-highlight
 Press any key to exit
 INFO  PlaceOrderHandler Publishing: OrderPlaced for Order Id: 1c7f01eb-6de3-4506-9e56-a914f9486d9d
 ```
