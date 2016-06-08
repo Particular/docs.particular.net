@@ -143,7 +143,9 @@ Once all conflicting sagas have been resolved, run the following command: `NServ
 
 Once the patch process has been completed there will be exceptions thrown, and logged, when duplicates are found in the course of normal message processing. The exception that is logged will be `DuplicateSagaFoundException` and will have the following message structure:
 
-	Sagas of type {sagaType.Name} with the following identifiers '<comma separated list of message identifiers>' are considered duplicates because of the violation of the Unique property {propertyName}.
+```no-highlight
+Sagas of type {sagaType.Name} with the following identifiers '<comma separated list of message identifiers>' are considered duplicates because of the violation of the Unique property {propertyName}.
+```
 
 When this happens the involved messages will be sent to the error queue. There are two ways to re-queue these messages.
 
