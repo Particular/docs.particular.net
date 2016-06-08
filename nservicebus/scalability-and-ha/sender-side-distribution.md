@@ -1,6 +1,6 @@
 ---
 title: Scaling out with sender-side distribution
-summary: 
+summary: How to scale out with sender-side distribution when using the MSMQ transport.
 tags:
 - Scale Out
 - Routing
