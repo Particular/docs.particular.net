@@ -4,6 +4,7 @@ namespace Core6.Routing
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using NServiceBus;
     using NServiceBus.Routing;
     using NServiceBus.Settings;
@@ -117,6 +118,15 @@ namespace Core6.Routing
             #endregion
         }
 
+        void CustomDistributionStrategy(EndpointConfiguration endpointConfiguration)
+        {
+            #region Routing-CustomDistributionStrategy
+
+            var routing = endpointConfiguration.UnicastRouting();
+            routing.Mapping.SetMessageDistributionStrategy(new CustomStrategy(), messageType => messageType.GetInterfaces().Contains(typeof(IUseCustomDistributionStrategy)));
+            #endregion
+        }
+
         void SpecialCaseTransportAddress(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-SpecialCaseTransportAddress
@@ -171,6 +181,17 @@ namespace Core6.Routing
             #endregion
         }
 
+        interface IUseCustomDistributionStrategy
+        {
+        }
+
+        class CustomStrategy : DistributionStrategy
+        {
+            public override IEnumerable<UnicastRoutingTarget> SelectDestination(IEnumerable<UnicastRoutingTarget> allInstances)
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         IEnumerable<IUnicastRoute> LoadFromDatabaseAndPutToCache(List<Type> type)
         {

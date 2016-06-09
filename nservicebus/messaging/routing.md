@@ -166,6 +166,15 @@ snippet:Routing-DynamicEndpointMapping
 
 In this example the rule returns two instances in which case providing a discriminator is mandatory. In addition to that, the instance "1" specifies a custom property which can be used by the transport to generate the actual address. The instance "2" uses an MSMQ-specific convenience method to achieve the same goal.
 
+#### Distribution
+
+After the list of potential target instances has been computed, NServiceBus needs to figure out which instances should actually get the message. By default NServiceBus sends any given message to a single instance of each endpoint meant to receive it. Selecting the particular instance is done using a round robin algorithm.
+
+This default behavior can be modified by registering a custom distribution strategy for a given set of types
+
+snippet:Routing-CustomDistributionStrategy
+
+NOTE: There is a single instance of a distribution strategy per *registration* and that instance is invoked concurrently on multiple threads so any required state needs to be thread-safe (e.g. using `ConcurrentDictionary`). To learn how to implement a custom distribution strategy look at the [sample](/samples/scaleout/distribution-strategy).  
 
 ### Address mapping layer
 
