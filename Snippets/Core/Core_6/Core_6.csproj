@@ -42,17 +42,17 @@
       <HintPath>..\..\..\packages\NServiceBus.Callbacks.1.0.0-beta0001\lib\net452\NServiceBus.Callbacks.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0003\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0004\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
-      <HintPath>..\..\..\packages\NServiceBus.NHibernate.7.0.0-beta0003\lib\net452\NServiceBus.NHibernate.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.NHibernate.7.0.0-beta0004\lib\net452\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Autofac">
       <HintPath>..\..\..\packages\NServiceBus.Autofac.6.0.0-beta0001\lib\net452\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
-      <HintPath>..\..\..\packages\NServiceBus.RavenDB.4.0.0-beta0004\lib\net452\NServiceBus.RavenDB.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.RavenDB.4.0.0-beta0005\lib\net452\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
@@ -94,6 +94,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\GlobalSuppressions.cs">
+      <Link>GlobalSuppressions.cs</Link>
+    </Compile>
     <Compile Include="AdditionalDeserializers.cs" />
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="Audit\Usage.cs" />

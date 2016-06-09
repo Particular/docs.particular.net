@@ -81,17 +81,16 @@ namespace Core6.Routing
 
             #endregion
         }
-
         void StaticEndpointMapping(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-StaticEndpointMapping
 
-            var sales = new EndpointName("Sales");
+            var sales = "Sales";
             var routing = endpointConfiguration.UnicastRouting();
             routing.Mapping.Physical
-                .Add(sales,
-                    new EndpointInstance(sales, "1", null),
-                    new EndpointInstance(sales, "2", null));
+                .Add(
+                    new EndpointInstance(sales, "1"),
+                    new EndpointInstance(sales, "2"));
 
             #endregion
         }
