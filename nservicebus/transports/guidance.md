@@ -35,12 +35,12 @@ Building an NServiceBus system requires that each kind of data is persisted in s
 NOTE: No matter what deployment options are chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside in a single SQL Server catalog**. Multi-instance/multi-catalog deployment topology is deprecated in version 3 of the SQL Server transport and will be removed in version 4.
 
 ### Transactionality
-SQL Server Transport supports all [transaction modes](/nservicebus/transports/transactions.md) in particular `TransactionScope` which enables `exactly once` message processing with usage of distributed transactions. However when transport, persistence and business data are all stored in a single SQL Server catalog it is possible to achieve `exactly-once` message delivery without need for distributed transactions. [Sql Server Native integration sample](/samples/sqltransport/native-integration/) contains more information on such setup.
+SQL Server Transport supports all [transaction modes](/nservicebus/transports/transactions.md) in particular `TransactionScope` which enables `exactly once` message processing with usage of distributed transactions. However when transport, persistence and business data are all stored in a single SQL Server catalog it is possible to achieve `exactly-once` message delivery without need for distributed transactions. [SQL Server native integration sample](/samples/sqltransport/native-integration/) contains more information on such setup.
 
 NOTE: `Exactly once` message processing without distributed transactions can be achieved with any transport (and SQL Server Transport in particular) using [Outbox](/nservicebus/outbox/). It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage.
 
 ### Security 
-Security considerations for SQL Server Transport should follow the principle of least privilege. For that each endpoint should use dedicated SQL Server principal with SELECT and DELETE permissions on it's input queues as well as INSERT permissions on other endpoint's input queues, audit queue and error queue. 
+Security considerations for SQL Server Transport should follow the principle of least privilege. For that each endpoint should use dedicated SQL Server principal with `SELECT` and `DELETE` permissions on it's input queues as well as `INSERT` permissions on other endpoint's input queues, audit queue and error queue. 
 
 Multi-schema configuration can be used to ease the maintenance of security configuration because each endpoint may own a number of queues.
 
