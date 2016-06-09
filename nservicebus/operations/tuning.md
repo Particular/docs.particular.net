@@ -9,6 +9,7 @@ redirects:
 related:
 - nservicebus/licensing/licensing-limitations
 ---
+
 NServiceBus will by default allow the transport to optimize for maximum performance when it comes to message processing. While this is usually the preferred mode of operation there are situations where tuning needs to be applied.
 
 
@@ -40,9 +41,12 @@ The default limits of an endpoint can be changed in both code and via app.config
 
 ### Via Code
 
-By [overriding app.config settings](/nservicebus/hosting/custom-configuration-providers.md).
-
 snippet: TuningFromCode
+
+
+### Via a IConfigurationProvider
+
+snippet: TuningFromConfigurationProvider
 
 
 ### Via app.config

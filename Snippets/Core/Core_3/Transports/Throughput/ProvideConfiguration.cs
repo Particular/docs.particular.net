@@ -3,7 +3,7 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
-    #region TuningFromCode
+    #region TuningFromConfigurationProvider
 
     public class ProvideConfiguration :
         IProvideConfiguration<MsmqTransportConfig>

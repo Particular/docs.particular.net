@@ -295,7 +295,7 @@
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
     <Compile Include="Transports\QueueCreation\YourMessagePump.cs" />
     <Compile Include="Transports\QueueCreation\YourQueueCreator.cs" />
-    <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
+    <Compile Include="Transports\Throughput\ConcurrencyConfiguration.cs" />
     <Compile Include="TransportTransactions.cs" />
     <Compile Include="UpgradeGuides\5to6\MsmqSubscriptionAuthorization.cs" />
     <Compile Include="UpgradeGuides\5to6\Saga.cs" />
