@@ -5,6 +5,11 @@ tags:
 - Scale Out
 - Routing
 - MSMQ
+redirects:
+- nservicebus/messaging/file-based-routing
+related:
+- nservicebus/messaging/message-owner
+- nservicebus/messaging/routing
 ---
 
 NServiceBus endpoints using the MSMQ transport are unable to use the competing consumers pattern to scale out by adding additional worker instances. Sender-side distribution is a method of scaling out an NServiceBus endpoint using the MSMQ transport, without relying on a centralized [distributor](distributor/) assigning messages to available workers.
@@ -26,8 +31,6 @@ To map message types to logical endpoints, use the following config:
 
 snippet:Routing-FileBased-Config
 
-**TODO: Consider splitting the snippet above into 2 snippets, splitting endpoint mappings from file-based instance mapping.**
-
 This creates mappings specifying that the `AcceptOrder` command is handled by the **Sales** endpoint, while the `SendOrder` command is handled by the **Shipping** endpoint.
 
 Meanwhile, the logical-to-physical mappings will be configured in the Routes.xml file, as this information is an operational concern that must be changed for deployment to multiple machines.
@@ -46,15 +49,13 @@ By default, a round-robin distribution strategy is used to distribute messages b
 
 ## Location of mapping file
 
-The routing file is a simple XML file that has to be located either on local hard drive or a network drive. It is processed before the endpoint starts up and then re-processed in regular intervals (every 30 seconds by default) so the changes in the document are reflected in the behavior of NServiceBus automatically. If the document is not present in its configured location when endpoint starts up, NServiceBus will refuse to run. If it is deleted when the endpoint is already running, it will continue to run normally (with the last successfully read routes).
+The routing file is a simple XML file that has to be located either on a local hard drive or a network drive. It is processed before the endpoint starts up and then re-processed in regular intervals so the changes in the document are reflected in the behavior of NServiceBus automatically. If the document is not present in its configured location when endpoint starts up, NServiceBus will refuse to run. If it is deleted when the endpoint is already running, it will continue to run normally (with the last successfully read routes).
 
 There are many different options to consider when deploying routing configuration.
 
-Many endpoints can be configured to use one centralized mapping file on a network drive accessible by all, creating a single file that describes how messages flow across an entire system. Any given endpoint will not care if the file contains information for endpoints it does not need.
-
-The mapping file can also be kept in a centralized location and replicated out to many servers on demand, allowing each endpoint to read the file from a location on the local disk.
-
-Or, rather than having a centralized file, each endpoint can keep its own routing file containing only information for the endpoints it needs to know about, which can be deployed in the same directory as the endpoint binaries and only modified as part of a controlled deployment process.
+* Many endpoints can be configured to use one centralized mapping file on a network drive accessible by all, creating a single file that describes how messages flow across an entire system. Any given endpoint will not care if the file contains information for endpoints it does not need.
+* The mapping file can be kept in a centralized location and replicated out to many servers on demand, allowing each endpoint to read the file from a location on the local disk.
+* Each endpoint can keep its own routing file containing only information for the endpoints it needs to know about, which can be deployed in the same directory as the endpoint binaries and only modified as part of a controlled deployment process.
 
 
 ## Decommissioning endpoint instances
@@ -68,4 +69,4 @@ Therefore, when scaling down (removing a "target" endpoint instance from service
 3. Allow time (30 seconds by default) for all endpoints to reread the mapping file, and ensure no new messages are arriving in the target instance's queue.
 4. Allow the target endpoint instance to complete processing all messages in its queue.
 5. Disable the target endpoint instance.
-6. Ensure that no new messages arrive before removing the target instance completely.
+7. Check the input queue of the decommissioned instance for leftover messages and move them to other instances if necessary.

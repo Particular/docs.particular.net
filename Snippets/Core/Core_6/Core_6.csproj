@@ -365,9 +365,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Routing\RoutingFile.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">

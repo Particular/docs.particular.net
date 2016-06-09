@@ -16,8 +16,8 @@
   <endpoints>
     <endpoint name="Sales">
       <!-- Scaled-out endpoint -->
-      <instance discriminator="1"/>
-      <instance discriminator="2"/>
+      <instance discriminator="instance1"/>
+      <instance discriminator="instance2"/>
     </endpoint>
     <!-- No need to specify instances for non-scaled-out endpoint (Shipping) -->
   </endpoints>
