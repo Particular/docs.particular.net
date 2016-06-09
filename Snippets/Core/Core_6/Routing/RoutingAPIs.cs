@@ -124,7 +124,7 @@ namespace Core6.Routing
 
             var routing = endpointConfiguration.UnicastRouting();
             routing.Mapping.SetMessageDistributionStrategy(new CustomStrategy(), 
-                messageType => messageType.GetInterfaces().Contains(typeof(IUseCustomDistributionStrategy)));
+				messageType => messageType == typeof(AcceptOrder));
             #endregion
         }
 
