@@ -549,12 +549,7 @@ Note that none of the tabs have been trimmed.
 
 ### Explicit variable typing versus 'var'
 
-Two things are important to remember here:
-
- 1. As snippets are viewed inline on a page they lack much of the context of a full code file such as using statements. Often explicit variable declaration helps to remove the ambiguity.
- 2. Explicit variable declaration makes it easier to build the docs search engine when the types being used on a page can be inferred by the snippets used.
-
-So in general explicit typing should be used.
+Use `var` everywhere.
 
 
 ### Snippets are compiled
