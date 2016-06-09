@@ -123,7 +123,8 @@ namespace Core6.Routing
             #region Routing-CustomDistributionStrategy
 
             var routing = endpointConfiguration.UnicastRouting();
-            routing.Mapping.SetMessageDistributionStrategy(new CustomStrategy(), messageType => messageType.GetInterfaces().Contains(typeof(IUseCustomDistributionStrategy)));
+            routing.Mapping.SetMessageDistributionStrategy(new CustomStrategy(), 
+                messageType => messageType.GetInterfaces().Contains(typeof(IUseCustomDistributionStrategy)));
             #endregion
         }
 
