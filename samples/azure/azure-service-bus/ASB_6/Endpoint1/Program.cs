@@ -13,7 +13,7 @@ class Program
         busConfiguration.EndpointName("Samples.Azure.ServiceBus.Endpoint1");
         busConfiguration.ScaleOut().UseSingleBrokerQueue();
         var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.ConnectionString(Environment.GetEnvironmentVariable("SamplesAzureServiceBusConnection"));
+        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
 
         #endregion
 
