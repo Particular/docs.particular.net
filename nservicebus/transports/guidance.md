@@ -51,19 +51,19 @@ All deployment options for Sql Server Transport described in this section are su
 ## Sample usage scenarios
 ### Tiny
 
-The SQL Server transport is an ideal choice for extending an existing web application with asynchronous processing capabilities as an alternative for tedious batch jobs that tend to quickly get out of synch with the main codebase. Assuming the application already uses SQL Server as a database, this scenario does not require any additional infrastructure.
+The SQL Server transport is an ideal choice for extending an existing web application with asynchronous processing capabilities as an alternative for tedious batch jobs that tend to quickly get out of synch with the main codebase. Assuming the application already uses SQL Server as a data store, this scenario does not require any additional infrastructure.
 
 The queue tables are hosted in the same catalog as business data and the NServiceBus runtime can be hosted in the web worker. In some cases there might a need for a separate process for hosting NServiceBus. Because system consists of a single logical service or bounded context, there is usually no need to create separate schemas for the queues.
 
 ### Small
 
-The SQL Server transport is a good choice for a pilot project to prove feasibility of NServiceBus in a given organization as well as for a small, well-defined green field application. It usually requires nothing more than a single shared database.
+The SQL Server transport is a good choice for a pilot project to prove feasibility of NServiceBus in a given organization as well as for a small, well-defined green field application. It usually requires nothing more than a single shared Sql Server instance.
 
 The best option is to store the queues in the same catalog as the business data. Schemas can be used to make maintenance easier. 
 
 ### Medium to large
 
-For larger systems it usually makes more sense to have separate databases for each service or bounded context. It is also not unusual to see NoSQL databases in at least some of the services. The SQL databases might be hosted in a single instance of SQL Server or in separate instances depending on the IT policy.
+For larger systems it usually makes more sense to have dedicated catalogs for each service or bounded context. It is also not unusual to see NoSQL data stores in at least some of the services. The SQL catalogs might be hosted in a single instance of SQL Server or in separate instances depending on the IT policy.
 
 Such systems consist of tens to hundreds of endpoints. Some of the endpoints might be scaled out for higher throughput. 
 
