@@ -11,29 +11,42 @@ namespace Core6.Routing
 
     class RoutingAPIs
     {
-        void StaticRoutes(EndpointConfiguration endpointConfiguration)
+        void StaticRoutesEndpoint(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-StaticRoutes-Endpoint
 
-            endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            var routing = endpointConfiguration.UnicastRouting();
+            routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
 
             #endregion
+        }
 
+        void StaticRoutesEndpointMsmq(EndpointConfiguration endpointConfiguration)
+        {
             #region Routing-StaticRoutes-Endpoint-Msmq
 
-            endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            var routing = endpointConfiguration.UnicastRouting();
+            routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
 
             #endregion
+        }
 
+        void StaticRoutesEndpointBroker(EndpointConfiguration endpointConfiguration)
+        {
             #region Routing-StaticRoutes-Endpoint-Broker
 
-            endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            var routing = endpointConfiguration.UnicastRouting();
+            routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
 
             #endregion
+        }
 
+        void StaticRoutesAddress(EndpointConfiguration endpointConfiguration)
+        {
             #region Routing-StaticRoutes-Address
 
-            endpointConfiguration.UnicastRouting().Mapping.Logical
+            var routing = endpointConfiguration.UnicastRouting();
+            routing.Mapping.Logical
                 .RouteToAddress(typeof(AcceptOrder), "Sales@SomeMachine");
 
             #endregion
@@ -43,7 +56,8 @@ namespace Core6.Routing
         {
             #region Routing-DynamicRoutes
 
-            endpointConfiguration.UnicastRouting().Mapping.Logical
+            var routing = endpointConfiguration.UnicastRouting();
+            routing.Mapping.Logical
                 .AddDynamic((types, contextBag) => new[]
                 {
                     //Use endpoint name
@@ -61,7 +75,8 @@ namespace Core6.Routing
         {
             #region Routing-CustomRoutingStore
 
-            endpointConfiguration.UnicastRouting().Mapping.Logical.AddDynamic((t, c) =>
+            var routing = endpointConfiguration.UnicastRouting();
+            routing.Mapping.Logical.AddDynamic((t, c) =>
                 LoadFromCache(t) ?? LoadFromDatabaseAndPutToCache(t));
 
             #endregion
@@ -72,7 +87,8 @@ namespace Core6.Routing
             #region Routing-StaticEndpointMapping
 
             var sales = new EndpointName("Sales");
-            endpointConfiguration.UnicastRouting().Mapping.Physical
+            var routing = endpointConfiguration.UnicastRouting();
+            routing.Mapping.Physical
                 .Add(sales,
                     new EndpointInstance(sales, "1", null),
                     new EndpointInstance(sales, "2", null));
@@ -84,7 +100,8 @@ namespace Core6.Routing
         {
             #region Routing-DynamicEndpointMapping
 
-            endpointConfiguration.UnicastRouting().Mapping.Physical.AddDynamic(async e =>
+            var routing = endpointConfiguration.UnicastRouting();
+            routing.Mapping.Physical.AddDynamic(async e =>
             {
                 if (e.ToString().StartsWith("Sales"))
                 {
@@ -131,8 +148,9 @@ namespace Core6.Routing
         {
             #region Routing-FileBased-Config
 
-            endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(AcceptOrder), "Sales");
-            endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(SendOrder), "Shipping");
+            var routing = endpointConfiguration.UnicastRouting();
+            routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            routing.RouteToEndpoint(typeof(SendOrder), "Shipping");
 
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
             transport.DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
@@ -146,8 +164,8 @@ namespace Core6.Routing
 
             #region Routing-FileBased-ConfigAdvanced
 
-            var unicastRouting = endpointConfiguration.UnicastRouting();
-            unicastRouting.Mapping
+            var routing = endpointConfiguration.UnicastRouting();
+            routing.Mapping
                 .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
 
             #endregion

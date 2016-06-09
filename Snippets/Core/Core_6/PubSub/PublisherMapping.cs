@@ -7,8 +7,10 @@
         void MapPublishers(EndpointConfiguration endpointConfiguration)
         {
             #region PubSub-CodePublisherMapping
-            endpointConfiguration.UnicastRouting().AddPublisher("Sales", typeof(MyEvent));
-            endpointConfiguration.UnicastRouting().AddPublisher("Sales", typeof(OtherEvent).Assembly);
+
+            var routing = endpointConfiguration.UnicastRouting();
+            routing.AddPublisher("Sales", typeof(MyEvent));
+            routing.AddPublisher("Sales", typeof(OtherEvent).Assembly);
             #endregion
         }
     }
