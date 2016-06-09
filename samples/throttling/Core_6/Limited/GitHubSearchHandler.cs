@@ -2,6 +2,7 @@
 using NServiceBus;
 using NServiceBus.Logging;
 using Octokit;
+#region SearchHandler
 
 public class GitHubSearchHandler : IHandleMessages<SearchGitHub>
 {
@@ -20,7 +21,14 @@ public class GitHubSearchHandler : IHandleMessages<SearchGitHub>
             message.Repository);
         var result = await GitHubClient.Search.SearchCode(request)
             .ConfigureAwait(false);
-
-        log.Info($"Found {result.TotalCount} results for {message.SearchFor}.");
+        log.Info($"Found {result.TotalCount} results for {message.SearchFor}. Replying.");
+        var response = new SearchResponse
+        {
+            SearchedFor = message.SearchFor,
+            TotalCount = result.TotalCount
+        };
+        await context.Reply(response)
+            .ConfigureAwait(false);
     }
 }
+#endregion

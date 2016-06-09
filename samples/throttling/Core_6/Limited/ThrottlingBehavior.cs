@@ -8,27 +8,32 @@ using Octokit;
 #region ThrottlingBehavior
 public class ThrottlingBehavior : Behavior<IInvokeHandlerContext>
 {
-    static ILog log = LogManager.GetLogger<Behavior<IInvokeHandlerContext>>();
+    static ILog log = LogManager.GetLogger<ThrottlingBehavior>();
     static DateTime? nextRateLimitReset;
 
-    public override Task Invoke(IInvokeHandlerContext context, Func<Task> next)
+    public override async Task Invoke(IInvokeHandlerContext context, Func<Task> next)
     {
         var rateLimitReset = nextRateLimitReset;
         if (rateLimitReset.HasValue && rateLimitReset >= DateTime.UtcNow)
         {
-            log.Info($"rate limit already exceeded. Retry after {rateLimitReset} UTC");
-            return DelayMessage(context, rateLimitReset.Value);
+            var localTime = rateLimitReset?.ToLocalTime();
+            log.Info($"Rate limit already exceeded. Retry after {rateLimitReset} UTC ({localTime} local).");
+            await DelayMessage(context, rateLimitReset.Value)
+                .ConfigureAwait(false);
         }
 
         try
         {
-            return next();
+            await next()
+                .ConfigureAwait(false);
         }
         catch (RateLimitExceededException exception)
         {
             var nextReset = nextRateLimitReset = exception.Reset.UtcDateTime;
-            log.Info($"Rate limit exceeded. Limit resets at {nextReset} UTC");
-            return DelayMessage(context, nextReset.Value);
+            var localTime = nextReset?.ToLocalTime();
+            log.Info($"Rate limit exceeded. Limit resets at {nextReset} UTC ({localTime} local).");
+            await DelayMessage(context, nextReset.Value)
+                .ConfigureAwait(false);
         }
     }
 
