@@ -10,15 +10,17 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
     {
         log.Info($"Order {message.OrderId} worth {message.Value} submitted");
 
-        context.SynchronizedStorageSession.Session().Save(new Order
+        var order = new Order
         {
             OrderId = message.OrderId,
             Value = message.Value
-        });
+        };
+        context.SynchronizedStorageSession.Session().Save(order);
 
-        return context.Reply(new OrderAccepted
+        var orderAccepted = new OrderAccepted
         {
             OrderId = message.OrderId,
-        });
+        };
+        return context.Reply(orderAccepted);
     }
 }

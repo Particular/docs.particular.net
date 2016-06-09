@@ -10,6 +10,8 @@ public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>,
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderLifecycleSagaData> mapper)
     {
+        mapper.ConfigureMapping<OrderSubmitted>(message => message.OrderId)
+            .ToSaga(saga => saga.OrderId);
     }
 
     public void Handle(OrderSubmitted message)

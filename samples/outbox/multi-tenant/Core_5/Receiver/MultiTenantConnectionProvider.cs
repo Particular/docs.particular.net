@@ -15,7 +15,7 @@ class MultiTenantConnectionProvider : DriverConnectionProvider
 
         Lazy<IDbConnection> lazy;
         var pipelineExecutor = Program.PipelineExecutor;
-        string key = $"LazySqlConnection-{defaultConnectionString}";
+        var key = $"LazySqlConnection-{defaultConnectionString}";
         if (pipelineExecutor != null && pipelineExecutor.CurrentContext.TryGet(key, out lazy))
         {
             var connection = Driver.CreateConnection();

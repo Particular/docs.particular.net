@@ -18,15 +18,17 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
     {
         log.Info($"Order {message.OrderId} worth {message.Value} submitted");
 
-        session.Save(new Order
+        var order = new Order
         {
             OrderId = message.OrderId,
             Value = message.Value
-        });
+        };
+        session.Save(order);
 
-        bus.Reply(new OrderAccepted
+        var orderAccepted = new OrderAccepted
         {
             OrderId = message.OrderId,
-        });
+        };
+        bus.Reply(orderAccepted);
     }
 }

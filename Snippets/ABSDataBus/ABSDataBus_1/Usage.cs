@@ -1,5 +1,4 @@
 ﻿using NServiceBus;
-using NServiceBus.DataBus;
 
 class Usage
 {
@@ -26,7 +25,7 @@ class Usage
 
         #region AzureDataBusSetup
 
-        DataBusExtentions<AzureDataBus> dataBus = endpointConfiguration.UseDataBus<AzureDataBus>();
+        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>();
         dataBus.ConnectionString(azureStorageConnectionString);
         dataBus.Container(containerName);
         dataBus.BasePath(basePathWithinContainer);

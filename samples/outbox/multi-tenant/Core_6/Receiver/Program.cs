@@ -64,7 +64,6 @@ class Program
         endpointConfiguration.Pipeline.Register<PropagateOutgoingTenantIdBehavior.Registration>();
         endpointConfiguration.Pipeline.Register<PropagateIncomingTenantIdBehavior.Registration>();
 
-
         #endregion
 
         endpointConfiguration.DisableFeature<SecondLevelRetries>();

@@ -27,7 +27,7 @@ class MultiTenantOpenSqlConnectionBehavior : IBehavior<IncomingContext>
             connection.Open();
             return connection;
         });
-        string key = $"LazySqlConnection-{defaultConnectionString}";
+        var key = $"LazySqlConnection-{defaultConnectionString}";
         context.Set(key, lazyConnection);
         try
         {
@@ -39,7 +39,6 @@ class MultiTenantOpenSqlConnectionBehavior : IBehavior<IncomingContext>
             {
                 lazyConnection.Value.Dispose();
             }
-
             context.Remove(key);
         }
 

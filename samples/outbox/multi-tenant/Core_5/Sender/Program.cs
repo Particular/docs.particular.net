@@ -20,7 +20,7 @@ class Program
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press A or B to publish a message (A and B are tenant IDs)");
-            List<char> acceptableInput = new List<char> { 'A', 'B' };
+            var acceptableInput = new List<char> { 'A', 'B' };
 
             while (true)
             {
