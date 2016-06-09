@@ -11,7 +11,7 @@ tags:
 - reply
 related:
 - nservicebus/messaging/message-owner
-- nservicebus/messaging/file-based-routing
+- nservicebus/scalability-and-ha/sender-side-distribution
 ---
 
 One of the core features of NServiceBus is routing of messages. The only thing required is to perform a Send, Publish or Reply and the actual message destination is calculated by the framework. Flexible message routing is a feature added in Version 6. In previous versions NServiceBus used fixed [message ownership mappings](/nservicebus/messaging/message-owner.md) that allowed only to map the message type (or all types in an assembly or a namespace) to physical addresses (queue names). The flexible routing in Version 6 splits this mapping up into a series of individually configurable steps. NServiceBus 6 still understands the old configuration in form of message-endpoint mappings for backwards compatibility.
