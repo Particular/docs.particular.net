@@ -1,27 +1,20 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using NServiceBus;
 using NServiceBus.Routing;
 
 class WeightedDistributionStrategy : DistributionStrategy
-{
-    /// <summary>
-    /// Selects destination instances from all known instances of a given endpoint based on their relative weight.
-    /// </summary>
+{    
     public override IEnumerable<UnicastRoutingTarget> SelectDestination(IList<UnicastRoutingTarget> currentAllInstances)
     {
         if (currentAllInstances.Count == 0)
         {
-            return Enumerable.Empty<UnicastRoutingTarget>();
+            yield break;
         }
         var endpointName = currentAllInstances[0].Endpoint.ToString();
         var index = indexes.AddOrUpdate(endpointName, e => 0L, (e, i) => i + ShouldMoveToNextInstance(CurrentInstance(currentAllInstances, i)));
-        return new[]
-        {
-                CurrentInstance(currentAllInstances, index)
-            };
+        yield return CurrentInstance(currentAllInstances, index);
     }
 
     /// <summary>
