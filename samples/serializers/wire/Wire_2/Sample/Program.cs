@@ -14,10 +14,13 @@ static class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Serialization.Wire";
+
         #region config
+
         var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Wire");
         endpointConfiguration.UseSerialization<WireSerializer>();
-#endregion
+
+        #endregion
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
