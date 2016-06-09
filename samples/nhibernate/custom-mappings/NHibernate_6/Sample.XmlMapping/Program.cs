@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading;
 using NHibernate.Cfg;
 using NServiceBus;
 using NServiceBus.Persistence;
@@ -36,14 +35,7 @@ class Program
                 OrderId = "123"
             };
             bus.SendLocal(startOrder);
-
-            Thread.Sleep(2000);
-            var completeOrder = new CompleteOrder
-            {
-                OrderId = "123"
-            };
-            bus.SendLocal(completeOrder);
-
+            
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

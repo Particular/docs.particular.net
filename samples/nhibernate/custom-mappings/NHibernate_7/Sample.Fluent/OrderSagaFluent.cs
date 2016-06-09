@@ -35,7 +35,12 @@ public class OrderSagaFluent : Saga<OrderSagaDataFluent>,
 
         Data.To.Lat = 51.51558;
         Data.To.Long = -0.12085;
-        return Task.FromResult(0);
+
+        var completeOrder = new CompleteOrder
+        {
+            OrderId = "123"
+        };
+        return context.SendLocal(completeOrder);
     }
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
@@ -44,6 +49,5 @@ public class OrderSagaFluent : Saga<OrderSagaDataFluent>,
         MarkAsComplete();
         return Task.FromResult(0);
     }
-
 
 }

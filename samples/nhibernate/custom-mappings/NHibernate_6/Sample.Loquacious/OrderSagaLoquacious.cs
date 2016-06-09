@@ -35,6 +35,12 @@ public class OrderSagaLoquacious : Saga<OrderSagaDataLoquacious>,
 
         Data.To.Lat = 51.51558;
         Data.To.Long = -0.12085;
+
+        var completeOrder = new CompleteOrder
+        {
+            OrderId = "123"
+        };
+        Bus.SendLocal(completeOrder);
     }
 
     public void Handle(CompleteOrder message)

@@ -44,15 +44,6 @@ class Program
             };
             await endpoint.SendLocal(startOrder)
                 .ConfigureAwait(false);
-            await Task.Delay(2000)
-                .ConfigureAwait(false);
-            var completeOrder = new CompleteOrder
-            {
-                OrderId = "123"
-            };
-            await endpoint.SendLocal(completeOrder)
-                .ConfigureAwait(false);
-
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

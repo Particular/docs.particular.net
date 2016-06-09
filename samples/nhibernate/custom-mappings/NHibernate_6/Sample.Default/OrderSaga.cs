@@ -20,6 +20,12 @@ public class OrderSaga : Saga<OrderSagaData>,
     {
         Data.OrderId = message.OrderId;
         logger.InfoFormat("OrderSaga with OrderId {0} received StartOrder with OrderId {1} (Saga version: {2})", Data.OrderId, message.OrderId, Data.Version);
+
+        var completeOrder = new CompleteOrder
+        {
+            OrderId = "123"
+        };
+        Bus.SendLocal(completeOrder);
     }
 
     public void Handle(CompleteOrder message)

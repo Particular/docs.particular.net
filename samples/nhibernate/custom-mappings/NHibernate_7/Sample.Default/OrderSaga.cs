@@ -20,7 +20,12 @@ public class OrderSaga : Saga<OrderSagaData>,
     {
         Data.OrderId = message.OrderId;
         logger.Info($"OrderSaga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId} (Saga version: {Data.Version})");
-        return Task.FromResult(0);
+
+        var completeOrder = new CompleteOrder
+        {
+            OrderId = "123"
+        };
+        return context.SendLocal(completeOrder);
     }
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
