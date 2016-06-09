@@ -24,10 +24,10 @@ public class ThrottlingBehavior : Behavior<IInvokeHandlerContext>
         {
             return next();
         }
-        catch (RateLimitExceededException ex)
+        catch (RateLimitExceededException exception)
         {
-            var nextReset = nextRateLimitReset = ex.Reset.UtcDateTime;
-            log.Info($"rate limit exceeded. Limit resets resets at {nextReset} UTC");
+            var nextReset = nextRateLimitReset = exception.Reset.UtcDateTime;
+            log.Info($"Rate limit exceeded. Limit resets at {nextReset} UTC");
             return DelayMessage(context, nextReset.Value);
         }
     }
