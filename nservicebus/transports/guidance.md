@@ -11,8 +11,7 @@ Please note that the SQL Server transport does not use or depend on SQL Server S
 
 ## How it works
 
-SQL Server provides a central place to store queues and messages but the queue implementation is executed entirely within the endpoint process. As such, SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than store-and-forward transport such as MSMQ.
-
+SQL Server provides a central place to store queues and messages but the message queuing implementation resides entirely within the endpoint process. SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than store-and-forward transport such as MSMQ.
 
 ### Advantages of SQL Server Transport
 
@@ -27,16 +26,16 @@ SQL Server provides a central place to store queues and messages but the queue i
 Any NServiceBus endpoint operates and manages different types of data, those are:
  * Business data - data managed by NServiceBus user, usually via code executed from inside message handlers
  * Persistence data - data managed by infrastructure including: saga data, timeout manager state and message driven pub/sub information
- * Transport data - queues and messages manged by the transport
+ * Transport data - queues and messages managed by the transport
 
-SQL Server Transport manages transport data and puts no constraints on the type and configuration of storage technology used for persistence and business data. It can work with any of available persisters i.e. NHibernate and RavenDB, as well as any storage mechanisms used inside message handlers.
+SQL Server Transport manages transport data and puts no constraints on the type and configuration of storage technology used for persistence and business data. It can work with any of available persisters i.e. NHibernate and RavenDB, as well as any storage mechanisms used from inside message handlers.
 
 Building an NServiceBus system requires that each kind of data is persisted in some way. This section explains what are the important factors to consider when choosing persistence technology to use in combination with the SQL Server transport.
  
-NOTE: No matter what deployment options are chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside in a single SQL Server catalog**. Multi-instance deployment topology is deprecated in version 3 of the SQL Server transport and will be removed in version 4.
+NOTE: No matter what deployment options are chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside in a single SQL Server catalog**. Multi-instance/multi-catalog deployment topology is deprecated in version 3 of the SQL Server transport and will be removed in version 4.
 
 ### Transactionality
-SQL Server Transport supports all [transaction modes](/nservicebus/transports/transactions.md) in particular `TransactionScope` which enables `exactly once` message processing with usage of distributed transactions. However when transport, persistence and business data are all stored in a single SQL Server catalog it is possible to achieve `exactly-once` message delivery without need for distributed transactions (###Link to Sample###).
+SQL Server Transport supports all [transaction modes](/nservicebus/transports/transactions.md) in particular `TransactionScope` which enables `exactly once` message processing with usage of distributed transactions. However when transport, persistence and business data are all stored in a single SQL Server catalog it is possible to achieve `exactly-once` message delivery without need for distributed transactions. [Sql Server Native integration sample](/samples/sqltransport/native-integration/) contains more information on such setup.
 
 NOTE: `Exactly once` message processing without distributed transactions can be achieved with any transport (and SQL Server Transport in particular) using [Outbox](/nservicebus/outbox/). It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage.
 
