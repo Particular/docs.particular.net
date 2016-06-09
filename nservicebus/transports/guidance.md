@@ -25,9 +25,9 @@ SQL Server provides a central place to store queues and messages but the queue i
 
 ### Introduction
 Any NServiceBus endpoint operates and manages different types of data, those are:
- * Business data - data used for implementing business capabilities
- * Persistence data - infrastructure level data including: saga data, timeout manager state and message driven pub/sub information
- * Transport data - queues and messages
+ * Business data - data managed by NServiceBus user, usually via code executed from inside message handlers
+ * Persistence data - data managed by infrastructure including: saga data, timeout manager state and message driven pub/sub information
+ * Transport data - queues and messages manged by the transport
 
 SQL Server Transport manages transport data and puts no constraints on the type and configuration of storage technology used for persistence and business data. It can work with any of available persisters i.e. NHibernate and RavenDB, as well as any storage mechanisms used inside message handlers.
 
