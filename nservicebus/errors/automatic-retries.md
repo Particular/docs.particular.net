@@ -55,6 +55,10 @@ snippet:FLRConfigurationSource
 snippet:FLRConfigurationSourceUsage
 
 
+### Disabling SLR through code
+
+snippet:DisableFlrWithCode
+
 ## Second Level Retries
 
 SLR introduces another level of retry mechanism for messages that fail processing. SLR picks up the message and defers its delivery, by default first for 10 seconds, then 20, and lastly for 30 seconds, then returns it to the original worker queue.
