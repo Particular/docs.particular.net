@@ -11,12 +11,11 @@ public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>,
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderLifecycleSagaData> mapper)
     {
+        mapper.ConfigureMapping<OrderSubmitted>(m => m.OrderId).ToSaga(s => s.OrderId);
     }
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        Data.OrderId = message.OrderId;
-
         #region Timeout
 
         await RequestTimeout(context, TimeSpan.FromSeconds(5), new OrderTimeout())
