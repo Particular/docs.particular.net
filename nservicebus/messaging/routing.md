@@ -143,7 +143,7 @@ Endpoint mapping should be done via a config file so it can be modified without 
 
 snippet:Routing-FileBased-Config
 
-To read more see [file-based endpoint mapping](/nservicebus/messaging/file-based-routing.md).
+To read more see [file-based endpoint mapping with sender-side distribution](/nservicebus/scalability-and-ha/sender-side-distribution.md).
 
 When using transports other than MSMQ the filed-based mapping can be configured using the following API:
 
