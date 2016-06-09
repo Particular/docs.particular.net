@@ -6,8 +6,8 @@ Thread:1 Inside WantToRunBeforeConfigurationIsFinalized.Run
 Thread:1 Inside Feature.Setup
 Thread:1 Inside INeedToInstallSomething.Install
 Thread:1 Inside FeatureStartupTask.OnStart
-Thread:1 Endpoint is processing messages
-Thread:1 Calling IEndpointInstance.Stop
-Thread:5 Inside FeatureStartupTask.OnStop
-Thread:5 Finished
+Thread:8 Endpoint is processing messages
+Thread:8 Calling IEndpointInstance.Stop
+Thread:6 Inside FeatureStartupTask.OnStop
+Thread:6 Finished
 endcode

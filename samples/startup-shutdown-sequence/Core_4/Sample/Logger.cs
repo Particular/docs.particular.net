@@ -7,19 +7,19 @@ using NServiceBus.Logging;
 static class Logger
 {
     static ILog log = LogManager.GetLogger(typeof(Logger));
-    static string outputFilePath = Path.GetFullPath(@"..\..\..\StartupShutdownSequence.txt");
+    public static string OutputFilePath = Path.GetFullPath(@"..\..\..\StartupShutdownSequence.txt");
     static object locker = new object();
 
     static Logger()
     {
         AppDomain.CurrentDomain.ProcessExit += Exit;
-        File.Delete(outputFilePath);
-        File.AppendAllText(outputFilePath, "startcode StartupShutdownSequence\r\n");
+        File.Delete(OutputFilePath);
+        File.AppendAllText(OutputFilePath, "startcode StartupShutdownSequence\r\n");
     }
 
     static void Exit(object sender, EventArgs e)
     {
-        File.AppendAllText(outputFilePath, "endcode");
+        File.AppendAllText(OutputFilePath, "endcode");
     }
 
     public static void WriteLine(string message)
@@ -28,9 +28,8 @@ static class Logger
         log.Info(message);
         lock (locker)
         {
-            File.AppendAllText(outputFilePath, message);
+            File.AppendAllText(OutputFilePath, message);
         }
     }
-
 }
 #endregion

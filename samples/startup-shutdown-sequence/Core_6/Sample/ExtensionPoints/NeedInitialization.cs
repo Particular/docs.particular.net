@@ -7,5 +7,4 @@ public class NeedInitialization :
     {
         Logger.WriteLine("Inside INeedInitialization.Customize");
     }
-
 }

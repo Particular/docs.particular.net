@@ -22,7 +22,8 @@ public class SagaTests
             TotalAmount = 50
         };
 
-        await saga.Handle(regularOrder, context);
+        await saga.Handle(regularOrder, context)
+            .ConfigureAwait(false);
 
         var processMessage = (ProcessOrder)context.SentMessages[0].Message;
         Assert.AreEqual(50, processMessage.TotalAmount);
@@ -45,7 +46,8 @@ public class SagaTests
             TotalAmount = 1000
         };
 
-        await saga.Handle(discountOrder, context);
+        await saga.Handle(discountOrder, context)
+            .ConfigureAwait(false);
 
         var processMessage = (ProcessOrder)context.SentMessages[0].Message;
         Assert.AreEqual(900, processMessage.TotalAmount);

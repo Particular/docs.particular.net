@@ -7,5 +7,4 @@ public class WantToRunWhenConfigurationIsComplete :
     {
         Logger.WriteLine("Inside IWantToRunWhenConfigurationIsComplete.Run");
     }
-
 }

@@ -7,5 +7,4 @@ public class WantToRunBeforeConfiguration :
     {
         Logger.WriteLine("Inside IWantToRunBeforeConfiguration.Init");
     }
-
 }

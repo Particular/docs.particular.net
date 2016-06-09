@@ -15,5 +15,4 @@ public class MyFeatureStartupTask : FeatureStartupTask
         Logger.WriteLine("Inside FeatureStartupTask.OnStop");
         return Task.FromResult(0);
     }
-    
 }

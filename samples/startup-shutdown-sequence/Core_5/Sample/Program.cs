@@ -31,6 +31,7 @@ class Program
         }
         Logger.WriteLine("Finished");
         #endregion
+        Console.WriteLine($"Logged information to {Logger.OutputFilePath}");
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
     }

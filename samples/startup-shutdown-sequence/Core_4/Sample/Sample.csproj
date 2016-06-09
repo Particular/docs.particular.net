@@ -51,6 +51,7 @@
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProvideAuditConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

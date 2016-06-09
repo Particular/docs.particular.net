@@ -7,5 +7,4 @@ public class MyFeature : Feature
         Logger.WriteLine("Inside Feature.Setup");
         RegisterStartupTask<MyFeatureStartupTask>();
     }
-
 }

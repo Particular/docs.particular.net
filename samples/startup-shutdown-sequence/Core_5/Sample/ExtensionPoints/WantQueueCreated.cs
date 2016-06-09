@@ -10,8 +10,5 @@ public class WantQueueCreated :
         return false;
     }
 
-    public Address Address
-    {
-        get { return null; }
-    }
+    public Address Address => null;
 }

@@ -4,10 +4,7 @@ using NServiceBus.Unicast.Queuing;
 public class WantQueueCreated :
     IWantQueueCreated
 {
-    public Address Address
-    {
-        get { return null; }
-    }
+    public Address Address => null;
 
     public bool IsDisabled
     {

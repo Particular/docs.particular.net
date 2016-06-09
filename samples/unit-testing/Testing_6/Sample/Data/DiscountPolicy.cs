@@ -5,29 +5,27 @@ using NServiceBus;
 public class DiscountPolicy : Saga<DiscountPolicyData>,
     IAmStartedByMessages<SubmitOrder>
 {
-    public async Task Handle(SubmitOrder message, IMessageHandlerContext context)
+    public Task Handle(SubmitOrder message, IMessageHandlerContext context)
     {
         Data.CustomerId = message.CustomerId;
-        Data.TotalAmount  += message.TotalAmount;
+        Data.TotalAmount += message.TotalAmount;
 
         if (Data.TotalAmount >= 1000)
         {
-            await ProcessWithDiscount(message, context);
+            return ProcessWithDiscount(message, context);
         }
-        else
-        {
-            await ProcessOrder(message, context);
-        }
+        return ProcessOrder(message, context);
     }
 
     Task ProcessWithDiscount(SubmitOrder message, IMessageHandlerContext context)
     {
-        return context.Send(new ProcessOrder
+        var processOrder = new ProcessOrder
         {
             CustomerId = Data.CustomerId,
             OrderId = message.OrderId,
             TotalAmount = message.TotalAmount * (decimal)0.9
-        });
+        };
+        return context.Send(processOrder);
     }
 
     Task ProcessOrder(SubmitOrder message, IMessageHandlerContext context)

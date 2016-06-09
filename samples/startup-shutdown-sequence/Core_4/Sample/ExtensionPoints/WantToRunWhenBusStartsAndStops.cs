@@ -3,16 +3,13 @@
 public class WantToRunWhenBusStartsAndStops :
     IWantToRunWhenBusStartsAndStops
 {
-
-    void IWantToRunWhenBusStartsAndStops.Start()
+    public void Start()
     {
         Logger.WriteLine("Inside IWantToRunWhenBusStartsAndStops.Start");
     }
 
-
-    void IWantToRunWhenBusStartsAndStops.Stop()
+    public void Stop()
     {
         Logger.WriteLine("Inside IWantToRunWhenBusStartsAndStops.Stop");
     }
-
 }
