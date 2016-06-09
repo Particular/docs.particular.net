@@ -30,10 +30,10 @@
       <HintPath>..\..\..\..\..\packages\Jil.2.14.3\lib\net45\Jil.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0003\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0004\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Jil, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Jil.1.1.0-beta0002\lib\NET452\NServiceBus.Jil.dll</HintPath>
+    <Reference Include="NServiceBus.Jil, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Jil.2.0.0-beta0003\lib\NET452\NServiceBus.Jil.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sigil">
