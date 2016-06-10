@@ -12,8 +12,8 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.SenderSideScaleOut.Server2";
-        var endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.Server");
+        Console.Title = "Samples.CustomDistributionStrategy.Server2";
+        var endpointConfiguration = new EndpointConfiguration("Samples.CustomDistributionStrategy.Server");
         var discriminator = ConfigurationManager.AppSettings["InstanceId"];
         var scaleOut = endpointConfiguration.ScaleOut();
         scaleOut.InstanceDiscriminator(discriminator);

@@ -12,8 +12,8 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.SenderSideScaleOut.Server1";
-        var endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.Server");
+        Console.Title = "Samples.CustomDistributionStrategy.Server1";
+        var endpointConfiguration = new EndpointConfiguration("Samples.CustomDistributionStrategy.Server");
 
         #region Server-Set-InstanceId
 

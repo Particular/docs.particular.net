@@ -11,15 +11,15 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.SenderSideScaleOut.Client";
-        var endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.Client");
+        Console.Title = "Samples.CustomDistributionStrategy.Client";
+        var endpointConfiguration = new EndpointConfiguration("Samples.CustomDistributionStrategy.Client");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region Logical-Routing
 
         var routing = endpointConfiguration.UnicastRouting();
-        routing.RouteToEndpoint(typeof(DoSomething), "Samples.SenderSideScaleOut.Server");
+        routing.RouteToEndpoint(typeof(DoSomething), "Samples.CustomDistributionStrategy.Server");
         //Distribute all messages using weighted algorithm
         routing.Mapping.SetMessageDistributionStrategy(new WeightedDistributionStrategy(), t => true);
 

@@ -2,7 +2,7 @@
 <root>
   <!-- startcode Physical-Routes -->
   <endpoints>
-    <endpoint name="Samples.SenderSideScaleOut.Server">
+    <endpoint name="Samples.CustomDistributionStrategy.Server">
       <instance discriminator="instance1" weight="1" />
       <!-- Instance2 is twice as likely to get messages -->
       <instance discriminator="instance2" weight="2" />
