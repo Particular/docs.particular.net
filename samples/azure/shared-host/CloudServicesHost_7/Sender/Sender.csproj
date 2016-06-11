@@ -57,10 +57,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.7.0.0-beta0003\lib\net452\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.7.0.0-beta0004\lib\net452\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0003\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0004\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Hosting.Azure">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-beta0001\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
@@ -70,7 +70,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Persistence.AzureStorage">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.AzureStorage.1.0.0-beta0002\lib\net452\NServiceBus.Persistence.AzureStorage.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.AzureStorage.1.0.0-beta0003\lib\net452\NServiceBus.Persistence.AzureStorage.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

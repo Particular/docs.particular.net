@@ -15,7 +15,7 @@ class Program
     static async Task MainAsync()
     {
         Console.Title = "Samples.ASB.Polymorphic.Publisher";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ASB.Polymorphic.Publisher");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Polymorphic.Publisher");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         transport.UseTopology<EndpointOrientedTopology>();
         transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));

@@ -13,7 +13,7 @@ class Program
     static async Task MainAsync()
     {
         Console.Title = "Samples.Azure.ServiceBus.Endpoint2";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Endpoint2");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Endpoint2");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
@@ -22,7 +22,7 @@ class Program
         transport.UseTopology<ForwardingTopology>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-        IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration)
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         try
         {

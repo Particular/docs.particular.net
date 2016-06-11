@@ -11,7 +11,7 @@ class Program
         #region ConfigureLogging
 
         var loggerDefinition = LogManager.Use<ConsoleLoggerDefinition>();
-        BusConfiguration busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Logging.CustomFactory");
 
         #endregion
@@ -19,7 +19,7 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (var bus = Bus.Create(busConfiguration).Start())
         {
             var myMessage = new MyMessage();
             bus.SendLocal(myMessage);

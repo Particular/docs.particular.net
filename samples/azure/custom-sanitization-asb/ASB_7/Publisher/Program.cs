@@ -15,7 +15,7 @@ class Program
     static async Task MainAsync()
     {
         Console.Title = "Samples.ASB.Serialization.Publisher";
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration("Samples.ASB.Serialization.Publisher");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Serialization.Publisher");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
         transport.UseTopology<ForwardingTopology>();

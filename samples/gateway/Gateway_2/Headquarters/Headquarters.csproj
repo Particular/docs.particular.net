@@ -31,11 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\packages\NServiceBus.6.0.0-beta0003\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.6.0.0-beta0004\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Gateway, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\NServiceBus.Gateway.2.0.0-beta0001\lib\net452\NServiceBus.Gateway.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Gateway">
+      <HintPath>..\..\..\..\packages\NServiceBus.Gateway.2.0.0-beta0002\lib\net452\NServiceBus.Gateway.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
