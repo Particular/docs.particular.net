@@ -4,7 +4,6 @@ namespace Core6.Routing
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using NServiceBus;
     using NServiceBus.Routing;
     using NServiceBus.Settings;
@@ -122,7 +121,7 @@ namespace Core6.Routing
             #region Routing-CustomDistributionStrategy
 
             var routing = endpointConfiguration.UnicastRouting();
-            routing.Mapping.SetMessageDistributionStrategy(new CustomStrategy(), 
+            routing.Mapping.SetMessageDistributionStrategy(new CustomStrategy(),
 				messageType => messageType == typeof(AcceptOrder));
             #endregion
         }
@@ -187,7 +186,7 @@ namespace Core6.Routing
 
         class CustomStrategy : DistributionStrategy
         {
-            public override IEnumerable<UnicastRoutingTarget> SelectDestination(IEnumerable<UnicastRoutingTarget> allInstances)
+            public override IEnumerable<UnicastRoutingTarget> SelectDestination(IList<UnicastRoutingTarget> allInstances)
             {
                 throw new NotImplementedException();
             }
