@@ -45,7 +45,10 @@ class Program
             {
                 break;
             }
-            var command = new DoSomething { SequenceId = ++sequenceId };
+            var command = new DoSomething
+            {
+                SequenceId = ++sequenceId
+            };
             await endpointInstance.Send(command)
                 .ConfigureAwait(false);
             Console.WriteLine($"Message {command.SequenceId} Sent");
