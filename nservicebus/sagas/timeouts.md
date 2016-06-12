@@ -16,7 +16,7 @@ The `RequestTimeout<T>` method tells NServiceBus to send a message to the Timeou
 
 When the timeout timestamp is elapsed, the Timeout Manager sends a message back to the saga causing its Timeout method to be called with the same state message originally passed.
 
-This timeout message will always be send no matter if any message has been send after requesting a timeout.
+This timeout message will always be sent no matter if any message has been sent after requesting a timeout.
 
 NOTE: If the saga does not request a timeout then the corresponding timeout method will never be invoked.
 
