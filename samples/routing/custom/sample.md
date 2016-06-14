@@ -51,7 +51,11 @@ The automatic routing is based on the idea of endpoints exchanging information a
 
 snippet:Feature
 
-In short, it disables the default behavior of sending subscribe/unsubscribe messages. Instead of that, it wires the routing behavior for both sends and publishes to a single place where information about message types and associated endpoints is cached. This cache consists of three structures. The first maps message types to sets of endpoint which are known to have handlers for these message types. It is used in the logical routing phase.
+It disables the default behavior of sending subscribe/unsubscribe messages. Instead of that, it wires the routing behavior for both sends and publishes to a single place where information about message types and associated endpoints is cached. The following code is responsible for wiring up the custom routing information source.
+
+snippet:AddDynamic
+
+The routing cache consists of three structures. The first maps message types to sets of endpoint which are known to have handlers for these message types. It is used in the logical routing phase.
 
 snippet:FindEndpoint
 
@@ -60,3 +64,9 @@ The second structure maps endpoint names to sets of known endpoint instances. It
 snippet:FindInstance
 
 The third structure holds information about the known endpoint instances. This information is used to optimize the physical routing phase by detecting inactive instances.
+
+#### Publish/Subscribe
+
+In the unicast transports such as MSMQ the publish operations are a set of unicast send operations and is based on the subscription store. This sample overrides this by providing a custom publish routing behavior that delegates to the mentioned `FindEndpoint` and `FindInstance` methods via `AutomaticPublishRouter`:
+
+snippet:AutomaticPublishRouter 

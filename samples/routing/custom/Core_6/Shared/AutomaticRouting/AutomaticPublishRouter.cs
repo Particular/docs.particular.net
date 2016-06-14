@@ -6,10 +6,12 @@ using NServiceBus.Routing;
 using NServiceBus.Transports;
 using NServiceBus.Unicast.Messages;
 
+#region AutomaticPublishRouter
 class AutomaticPublishRouter : UnicastRouter
 {
-
-    public AutomaticPublishRouter(UnicastRoutingTable unicastRoutingTable, MessageMetadataRegistry messageMetadataRegistry, EndpointInstances endpointInstances, TransportAddresses physicalAddresses) 
+    public AutomaticPublishRouter(UnicastRoutingTable unicastRoutingTable, 
+        MessageMetadataRegistry messageMetadataRegistry, EndpointInstances endpointInstances, 
+        TransportAddresses physicalAddresses) 
         : base(messageMetadataRegistry, endpointInstances, physicalAddresses)
     {
         this.unicastRoutingTable = unicastRoutingTable;
@@ -22,3 +24,4 @@ class AutomaticPublishRouter : UnicastRouter
 
     UnicastRoutingTable unicastRoutingTable;
 }
+#endregion

@@ -34,8 +34,10 @@ class RoutingInfoSubscriber : FeatureStartupTask
         var routingTable = settings.Get<UnicastRoutingTable>();
         var endpointInstances = settings.Get<EndpointInstances>();
 
+        #region AddDynamic
         routingTable.AddDynamic((list, bag) => FindEndpoint(list));
         endpointInstances.AddDynamic(FindInstances);
+        #endregion
 
         sweepTimer = new Timer(state =>
         {
