@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -8,35 +9,44 @@ using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Logging;
 using NServiceBus.Routing;
+using NServiceBus.Routing.MessageDrivenSubscriptions;
 using NServiceBus.Settings;
 
 class RoutingInfoSubscriber : FeatureStartupTask
 {
     static readonly ILog Logger = LogManager.GetLogger<RoutingInfoSubscriber>();
 
-    ReadOnlySettings settings;
+    UnicastRoutingTable routingTable;
+    EndpointInstances endpointInstances;
+    readonly IReadOnlyCollection<Type> messageTypesHandledByThisEndpoint;
+    Publishers publishers;
     TimeSpan sweepPeriod;
     TimeSpan heartbeatTimeout;
     Dictionary<Type, HashSet<string>> endpointMap = new Dictionary<Type, HashSet<string>>();
     Dictionary<string, HashSet<EndpointInstance>> instanceMap = new Dictionary<string, HashSet<EndpointInstance>>();
     Dictionary<EndpointInstance, EndpointInstanceInfo> instanceInformation = new Dictionary<EndpointInstance, EndpointInstanceInfo>();
+    Dictionary<Type, string> publisherMap = new Dictionary<Type, string>(); 
     Timer sweepTimer;
+    IMessageSession messageSession;
 
-    public RoutingInfoSubscriber(ReadOnlySettings settings, TimeSpan sweepPeriod, TimeSpan heartbeatTimeout)
+    public RoutingInfoSubscriber(UnicastRoutingTable routingTable, EndpointInstances endpointInstances, IReadOnlyCollection<Type> messageTypesHandledByThisEndpoint, Publishers publishers, TimeSpan sweepPeriod, TimeSpan heartbeatTimeout)
     {
-        this.settings = settings;
+        this.routingTable = routingTable;
+        this.endpointInstances = endpointInstances;
+        this.messageTypesHandledByThisEndpoint = messageTypesHandledByThisEndpoint;
+        this.publishers = publishers;
         this.sweepPeriod = sweepPeriod;
         this.heartbeatTimeout = heartbeatTimeout;
     }
 
     protected override Task OnStart(IMessageSession context)
     {
-        var routingTable = settings.Get<UnicastRoutingTable>();
-        var endpointInstances = settings.Get<EndpointInstances>();
+        this.messageSession = context;
 
         #region AddDynamic
         routingTable.AddDynamic((list, bag) => FindEndpoint(list));
         endpointInstances.AddDynamic(FindInstances);
+        publishers.AddDynamic(FindPublisher);
         #endregion
 
         sweepTimer = new Timer(state =>
@@ -70,7 +80,7 @@ class RoutingInfoSubscriber : FeatureStartupTask
 
         Logger.Info($"Instance {instanceName} removed from routing tables.");
 
-        await UpdateCaches(instanceName, new Type[0]);
+        await UpdateCaches(instanceName, new Type[0], new Type[0]);
 
         instanceInformation.Remove(instanceName);
     }
@@ -80,8 +90,13 @@ class RoutingInfoSubscriber : FeatureStartupTask
         var deserializedData = JsonConvert.DeserializeObject<RoutingInfo>(e.Data);
         var instanceName = new EndpointInstance(deserializedData.EndpointName, deserializedData.Discriminator, deserializedData.InstanceProperties);
 
-        var types =
+        var handledTypes =
             deserializedData.HandledMessageTypes.Select(x => Type.GetType(x, false))
+                .Where(x => x != null)
+                .ToArray();
+
+        var publishedTypes =
+            deserializedData.PublishedMessageTypes.Select(x => Type.GetType(x, false))
                 .Where(x => x != null)
                 .ToArray();
 
@@ -103,20 +118,41 @@ class RoutingInfoSubscriber : FeatureStartupTask
             instanceInfo.Deactivate();
             Logger.Info($"Instance {instanceName} deactivated.");
         }
-        await UpdateCaches(instanceName, types);
+        await UpdateCaches(instanceName, handledTypes, publishedTypes);
     }
 
-    Task UpdateCaches(EndpointInstance instanceName, Type[] types)
+    async Task UpdateCaches(EndpointInstance instanceName, Type[] handledTypes, Type[] publishedTypes)
     {
         var newInstanceMap = BuildNewInstanceMap(instanceName);
-        var newEndpointMap = BuildNewEndpointMap(instanceName.Endpoint, types, endpointMap);
+        var newEndpointMap = BuildNewEndpointMap(instanceName.Endpoint, handledTypes, endpointMap);
+        var newPublisherMap = BuildNewPublisherMap(instanceName, publishedTypes, publisherMap);
         LogChangesToEndpointMap(endpointMap, newEndpointMap);
         LogChangesToInstanceMap(instanceMap, newInstanceMap);
+        var toSubscribe = LogChangesToPublisherMap(publisherMap, newPublisherMap).ToArray();
         instanceMap = newInstanceMap;
         endpointMap = newEndpointMap;
-        return Task.FromResult(0);
+        publisherMap = newPublisherMap;
+
+        foreach (var type in toSubscribe.Intersect(messageTypesHandledByThisEndpoint))
+        {
+            await messageSession.Subscribe(type).ConfigureAwait(false);
+        }
     }
 
+    static IEnumerable<Type> LogChangesToPublisherMap(Dictionary<Type, string> publisherMap, Dictionary<Type, string> newPublisherMap)
+    {
+        foreach (var addedType in newPublisherMap.Keys.Except(publisherMap.Keys))
+        {
+            Logger.Info($"Added {newPublisherMap[addedType]} as publisher of {addedType}.");
+            yield return addedType;
+        }
+
+        foreach (var removedType in publisherMap.Keys.Except(newPublisherMap.Keys))
+        {
+            Logger.Info($"Removed {publisherMap[removedType]} as publisher of {removedType}.");
+        }
+    }
+   
     static void LogChangesToInstanceMap(Dictionary<string, HashSet<EndpointInstance>> instanceMap, Dictionary<string, HashSet<EndpointInstance>> newInstanceMap)
     {
         foreach (var addedEndpoint in newInstanceMap.Keys.Except(instanceMap.Keys))
@@ -176,6 +212,31 @@ class RoutingInfoSubscriber : FeatureStartupTask
         return string.Join(", ", set.Select(o => $"[{o}]"));
     }
 
+    static Dictionary<Type, string> BuildNewPublisherMap(EndpointInstance endpointInstance, Type[] publishedTypes, Dictionary<Type, string> publisherMap)
+    {
+        var newPublisherMap = new Dictionary<Type, string>();
+        foreach (var pair in publisherMap)
+        {
+            if (pair.Value != endpointInstance.Endpoint)
+            {
+                newPublisherMap[pair.Key] = pair.Value;
+            }
+        }
+        foreach (var publishedType in publishedTypes)
+        {
+            if (newPublisherMap.ContainsKey(publishedType))
+            {
+                Logger.Warn($"More than one endpoint advertises publishing of {publishedType}: {newPublisherMap[publishedType]}, {endpointInstance.Endpoint}");
+            }
+            else
+            {
+                newPublisherMap[publishedType] = endpointInstance.Endpoint;
+                //Subscribe
+            }
+        }
+        return newPublisherMap;
+    }
+
     Dictionary<string, HashSet<EndpointInstance>> BuildNewInstanceMap(EndpointInstance instanceName)
     {
         var newInstanceMap = new Dictionary<string, HashSet<EndpointInstance>>();
@@ -215,6 +276,16 @@ class RoutingInfoSubscriber : FeatureStartupTask
         }
         return newEndpointMap;
     }
+
+    #region FindPublisher
+    PublisherAddress FindPublisher(Type eventType)
+    {
+        string publisherEndpoint;
+        return publisherMap.TryGetValue(eventType, out publisherEndpoint) 
+            ? PublisherAddress.CreateFromEndpointName(publisherEndpoint) 
+            : null;
+    }
+    #endregion
 
     #region FindEndpoint
     IEnumerable<IUnicastRoute> FindEndpoint(List<Type> enclosedMessageTypes)

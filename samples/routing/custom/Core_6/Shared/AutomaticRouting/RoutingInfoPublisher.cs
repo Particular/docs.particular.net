@@ -12,15 +12,17 @@ class RoutingInfoPublisher : FeatureStartupTask
 {
     RoutingInfoCommunicator dataBackplane;
     IReadOnlyCollection<Type> hanledMessageTypes;
+    IReadOnlyCollection<Type> publishedMessageTypes;
     ReadOnlySettings settings;
     TimeSpan heartbeatPeriod;
     RoutingInfo publication;
     Timer timer;
 
-    public RoutingInfoPublisher(RoutingInfoCommunicator dataBackplane, IReadOnlyCollection<Type> hanledMessageTypes, ReadOnlySettings settings, TimeSpan heartbeatPeriod)
+    public RoutingInfoPublisher(RoutingInfoCommunicator dataBackplane, IReadOnlyCollection<Type> hanledMessageTypes, IReadOnlyCollection<Type> publishedMessageTypes, ReadOnlySettings settings, TimeSpan heartbeatPeriod)
     {
         this.dataBackplane = dataBackplane;
         this.hanledMessageTypes = hanledMessageTypes;
+        this.publishedMessageTypes = publishedMessageTypes;
         this.settings = settings;
         this.heartbeatPeriod = heartbeatPeriod;
     }
@@ -33,6 +35,7 @@ class RoutingInfoPublisher : FeatureStartupTask
             Discriminator = settings.EndpointInstanceName().Discriminator,
             InstanceProperties = settings.EndpointInstanceName().Properties.ToDictionary(kvp => kvp.Key, kvp => kvp.Value),
             HandledMessageTypes = hanledMessageTypes.Select(m => m.AssemblyQualifiedName).ToArray(),
+            PublishedMessageTypes = publishedMessageTypes.Select(m => m.AssemblyQualifiedName).ToArray(),
             Active = true,
         };
 

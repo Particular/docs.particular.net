@@ -5,9 +5,11 @@ using NServiceBus.Persistence;
 
 public static class AutomaticRoutingConfigExtensions
 {
-    public static void EnableAutomaticRouting(this EndpointConfiguration endpointConfiguration, string connectionString)
+    public static AdvertisePublishingSettings EnableAutomaticRouting(this EndpointConfiguration endpointConfiguration, string connectionString)
     {
         endpointConfiguration.GetSettings().Set("NServiceBus.AutomaticRouting.ConnectionString", connectionString);
         endpointConfiguration.EnableFeature<AutomaticRoutingFeature>();
+
+        return new AdvertisePublishingSettings(endpointConfiguration.GetSettings());
     }
 }

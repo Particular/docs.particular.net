@@ -5,54 +5,58 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Routing;
+using NServiceBus.Routing.MessageDrivenSubscriptions;
 using NServiceBus.Transports;
 using NServiceBus.Unicast;
 using NServiceBus.Unicast.Messages;
 
 class AutomaticRoutingFeature : Feature
 {
+    public AutomaticRoutingFeature()
+    {
+        Defaults(s => s.SetDefault("NServiceBus.AutomaticRouting.PublishedTypes", new Type[0]));
+    }
+
     protected override void Setup(FeatureConfigurationContext context)
     {
         var conventions = context.Settings.Get<Conventions>();
         var localAddress = context.Settings.LocalAddress();
         var unicastRoutingTable = context.Settings.Get<UnicastRoutingTable>();
         var endpointInstances = context.Settings.Get<EndpointInstances>();
-        var transportAddresses = context.Settings.Get<TransportAddresses>();
+        var publishers = context.Settings.Get<Publishers>();
         var connectionString = context.Settings.Get<string>("NServiceBus.AutomaticRouting.ConnectionString");
-        var distributionPolicy = context.Settings.Get<DistributionPolicy>();
+        var messageTypesPublished = context.Settings.Get<Type[]>("NServiceBus.AutomaticRouting.PublishedTypes");
 
 #region Feature
-        //Processes the routing information from other endpoints
-        var subscriber = new RoutingInfoSubscriber(context.Settings, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(20));
-
+        
+        //Create the infrastructure
         var dataAccess = new SqlDataAccess(localAddress, connectionString);
-        var communicator = new RoutingInfoCommunicator(dataAccess, subscriber.OnChanged, subscriber.OnRemoved);
+        var communicator = new RoutingInfoCommunicator(dataAccess);
+        context.RegisterStartupTask(communicator);
 
         //Register the routing info publisher
         context.RegisterStartupTask(b =>
         {
             var messageTypesHandled = GetHandledMessages(b.Build<MessageHandlerRegistry>(), conventions);
-            return new RoutingInfoPublisher(communicator, messageTypesHandled, context.Settings, TimeSpan.FromSeconds(5));
+            return new RoutingInfoPublisher(communicator, messageTypesHandled, messageTypesPublished, context.Settings, 
+                TimeSpan.FromSeconds(5));
         });
 
-        //Tell NSB to start the subscriber when the endpoint starts.
-        context.RegisterStartupTask(subscriber);
-
-        //Tell NSB to start the communicator when the endpoint starts.
-        context.RegisterStartupTask(communicator);
-
-        //Replace the message-driven pub/sub with no-op implementations because pub/sub is handled automatically.
-        context.Pipeline.Replace("MessageDrivenSubscribeTerminator", b => new NoOpSubscribeTerminator());
-        context.Pipeline.Replace("MessageDrivenUnsubscribeTerminator", b => new NoOpUnsubscribeTerminator());
-
-        //Replace the publish router connector with one that uses the automatic routing
-        context.Pipeline.Replace("UnicastPublishRouterConnector", b =>
+        //Register the routing info subscriber
+        context.RegisterStartupTask(b =>
         {
-            var publishRouter = new AutomaticPublishRouter(unicastRoutingTable, b.Build<MessageMetadataRegistry>(), 
-                endpointInstances, transportAddresses);
-            return new UnicastPublishRouterConnector(publishRouter, distributionPolicy);
+            var messageTypesHandled = GetHandledMessages(b.Build<MessageHandlerRegistry>(), conventions);
+            var subscriber = new RoutingInfoSubscriber(unicastRoutingTable, endpointInstances, messageTypesHandled, 
+                publishers, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(20));
+            communicator.Changed += e => subscriber.OnChanged(e);
+            communicator.Removed += e => subscriber.OnRemoved(e);
+            return subscriber;
         });
-#endregion
+
+        context.Pipeline.Register(new VerifyAdvertisedBehavior(messageTypesPublished),
+            "Verifies if all published types has been advertised.");
+
+        #endregion
     }
 
     static List<Type> GetHandledMessages(MessageHandlerRegistry handlerRegistry, Conventions conventions)

@@ -11,17 +11,18 @@ class RoutingInfoCommunicator : FeatureStartupTask
 {
     Dictionary<string, Entry> cache = new Dictionary<string, Entry>();
     SqlDataAccess dataAccess;
-    Func<Entry, Task> onChanged;
-    Func<Entry, Task> onRemoved;
     Timer timer;
 
-    public RoutingInfoCommunicator(SqlDataAccess dataAccess, Func<Entry, Task> onChanged, Func<Entry, Task> onRemoved)
+    public RoutingInfoCommunicator(SqlDataAccess dataAccess)
     {
         this.dataAccess = dataAccess;
-        this.onChanged = onChanged;
-        this.onRemoved = onRemoved;
+        Changed += entry => Task.FromResult(0);
+        Removed += entry => Task.FromResult(0);
     }
 
+    public event Func<Entry, Task> Changed;
+    public event Func<Entry, Task> Removed;
+    
     protected override Task OnStart(IMessageSession messageSession)
     {
         timer = new Timer(state =>
@@ -48,12 +49,12 @@ class RoutingInfoCommunicator : FeatureStartupTask
         }
         foreach (var change in addedOrUpdated)
         {
-            await onChanged(change).ConfigureAwait(false);
+            await Changed(change).ConfigureAwait(false);
         }
         foreach (var entry in removed)
         {
             cache.Remove(entry.Publisher);
-            await onRemoved(entry).ConfigureAwait(false);
+            await Removed(entry).ConfigureAwait(false);
         }
     }
 

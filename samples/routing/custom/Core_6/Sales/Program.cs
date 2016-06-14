@@ -20,7 +20,11 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        endpointConfiguration.EnableAutomaticRouting(@"Data Source=.\SQLEXPRESS;Initial Catalog=AutomaticRouting;Integrated Security=True");
+        #region EnableAutomaticRouting
+        endpointConfiguration
+            .EnableAutomaticRouting(@"Data Source=.\SQLEXPRESS;Initial Catalog=AutomaticRouting;Integrated Security=True")
+            .AdvertisePublishing(typeof(OrderAccepted));
+        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
