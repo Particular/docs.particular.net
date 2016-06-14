@@ -21,6 +21,7 @@ class AutomaticRoutingFeature : Feature
         var connectionString = context.Settings.Get<string>("NServiceBus.AutomaticRouting.ConnectionString");
         var distributionPolicy = context.Settings.Get<DistributionPolicy>();
 
+#region Feature
         //Processes the routing information from other endpoints
         var subscriber = new RoutingInfoSubscriber(context.Settings, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(20));
 
@@ -51,6 +52,7 @@ class AutomaticRoutingFeature : Feature
                 endpointInstances, transportAddresses);
             return new UnicastPublishRouterConnector(publishRouter, distributionPolicy);
         });
+#endregion
     }
 
     static List<Type> GetHandledMessages(MessageHandlerRegistry handlerRegistry, Conventions conventions)

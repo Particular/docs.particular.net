@@ -34,7 +34,7 @@ class RoutingInfoSubscriber : FeatureStartupTask
         var routingTable = settings.Get<UnicastRoutingTable>();
         var endpointInstances = settings.Get<EndpointInstances>();
 
-        routingTable.AddDynamic((list, bag) => FindDestination(list));
+        routingTable.AddDynamic((list, bag) => FindEndpoint(list));
         endpointInstances.AddDynamic(FindInstances);
 
         sweepTimer = new Timer(state =>
@@ -214,7 +214,8 @@ class RoutingInfoSubscriber : FeatureStartupTask
         return newEndpointMap;
     }
 
-    IEnumerable<IUnicastRoute> FindDestination(List<Type> enclosedMessageTypes)
+    #region FindEndpoint
+    IEnumerable<IUnicastRoute> FindEndpoint(List<Type> enclosedMessageTypes)
     {
         foreach (var type in enclosedMessageTypes)
         {
@@ -228,7 +229,9 @@ class RoutingInfoSubscriber : FeatureStartupTask
             }
         }
     }
+    #endregion
 
+    #region FindInstance
     Task<IEnumerable<EndpointInstance>> FindInstances(string endpointName)
     {
         HashSet<EndpointInstance> instances;
@@ -244,4 +247,5 @@ class RoutingInfoSubscriber : FeatureStartupTask
         }
         return Task.FromResult(Enumerable.Empty<EndpointInstance>());
     }
+    #endregion
 }

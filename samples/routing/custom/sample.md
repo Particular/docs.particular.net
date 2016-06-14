@@ -1,64 +1,62 @@
 ---
-title: Full Duplex
-summary: Using full-duplex and request/response communication.
-reviewed: 2016-03-21
+title: Custom routing
+summary: Customizing NSertviceBus message routing
 component: Core
 tags:
-- Request Response
-- Messaging Patterns
-- Full Duplex
+- Routing
 redirects:
-- nservicebus/full-duplex-sample
 ---
 
 
-Run the solution. Two console applications start up, `Client` and `Server`.
+## Prerequisites
 
+ 1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`. 
+ 1. Create database called `AutomaticRouting`. 
+
+## Running the project
+
+ 1. Start all the projects by hitting F5.
+ 1. The text `Press <enter> to send a message` should be displayed in the Client's console window.
+ 1. Hit `<enter>` several times to send some messages.
+
+## Verifying that the sample works correctly
+
+ 1. The Sales endpoint displays information that an order was accepted.
+ 2. The Shipping endpoint displays information that an order was shipped.
+ 3. The Billing endpoint displays information that an order was billed.
 
 ## Code walk-through
 
+This sample contains four projects:
 
-### Messages
+ * Shared - A class library containing common routing code including the message definitions.
+ * Client - A console application responsible for sending the initial `PlaceOrder` message.
+ * Sales - A console application responsible for processing the `PlaceOrder` command and generating `OrderAccepted` event.
+ * Shipping - A console application responsible for processing the `OrderAccepted` message.
+ * Billing - Another console application responsible for processing the `OrderAccepted` message.
 
-Look at the messages the `Shared` project:
+### Client project
 
-snippet:RequestMessage
+The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. Apart from the standard NServiceBus configuration it enables the custom automatic routing:
 
-snippet:ResponseMessage
+snippet:EnableAutomaticRouting
 
-The two classes here implement the NServiceBus `IMessage` interface, indicating that they are messages. The only thing these classes have are properties, each with both get and set access. The `RequestDataMessage` is sent from the client to the server, and the `DataResponseMessage` replies from the server to the client.
+### Shared project
 
+The shared project contains definitions for messages and the custom routing logic. 
 
-### Client
+### Custom automatic routing
 
-The client console has a input loop that does the following
+The automatic routing is based on the idea of endpoints exchanging information about types of messages they handle. They do it via a table in SQL Server database (each endpoint instance own one row keyed by this endpoint's transport address). Following code configures the custom routing:
 
-snippet: ClientLoop
+snippet:Feature
 
-This code performs the following action every time the 'Enter' key is pressed:
+In short, it disables the default behavior of sending subscribe/unsubscribe messages. Instead of that, it wires the routing behavior for both sends and publishes to a single place where information about message types and associated endpoints is cached. This cache consists of three structures. The first maps message types to sets of endpoint which are known to have handlers for these message types. It is used in the logical routing phase.
 
- * A new Guid is created and then set in the outgoing headers of the bus under the "Test" key.
- * The bus sends a `RequestDataMessage `whose DataId property is set to the same `Guid`, and whose `String` property is set to an XML fragment.
- * A callback is registered and invoked when a response arrives to the request sent. In the callback, the values of several headers are written to the console.
+snippet:FindEndpoint
 
-### Server
+The second structure maps endpoint names to sets of known endpoint instances. It is used in the physical routing phase.
 
-When a `RequestDataMessage` arrives in the server queue, the bus dispatches it to the message handler found in the `RequestDataMessageHandler.cs` file in the `Server` project. The bus knows which classes to call, based on the interface they implement.
+snippet:FindInstance
 
-snippet: RequestDataMessageHandler
-
-At start up, the bus scans all assemblies and builds a dictionary indicating which classes handle which messages. So when a given message arrives in a queue, the bus knows which class to invoke.
-
-The `Handle` method of this class contains this:
-
-snippet: DataResponseReply
-
-Finally, the bus replies with the response message, sending it to the InputQueue specified in the `MsmqTransportConfig` section, in the app.config of the `Client` endpoint. The bus knows to send the responses to where the message is sent every time the bus sends a message from the queue.
-
-When configuring the routing in the bus, continue with the premise of regular request/response communication such that clients need to know where the server is, but servers do not need to know about clients.
-
-Look back at `ClientEndpoint.cs` to see that it gets the header information from the handler on the server.
-
-Open `DataResponseMessageHandler.cs` in the `Client` project and find a class whose signature looks similar to the message handler on the server:
-
-snippet: DataResponseMessageHandler
+The third structure holds information about the known endpoint instances. This information is used to optimize the physical routing phase by detecting inactive instances.
