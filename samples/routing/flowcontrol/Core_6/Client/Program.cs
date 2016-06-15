@@ -29,22 +29,19 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
+        #region Routing
         endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(PlaceOrder), "Samples.FlowControl.Server");
         var server = new EndpointName("Samples.FlowControl.Server");
         endpointConfiguration.UnicastRouting().Mapping.Physical.Add(server,
             new EndpointInstance(server, "1").AtMachine("SIMON-MAC"),
             new EndpointInstance(server, "2").AtMachine("SIMON-MAC"));
+        #endregion
 
-
+        #region FairDistributionClient
         endpointConfiguration.EnableFeature<FlowControl>();
         endpointConfiguration.UnicastRouting().Mapping.SetMessageDistributionStrategy(
-            new ControlledFlowDistributionStrategy(endpointConfiguration.GetSettings()), type => true);
-
-        var i1 = new EndpointInstance(new EndpointName("Samples.FlowControl.Server"), "1").AtMachine("SIMON-MAC");
-        var i2 = new EndpointInstance(new EndpointName("Samples.FlowControl.Server"), "1").AtMachine("SIMON-MAC");
-
-        Console.WriteLine(i1.GetHashCode());
-        Console.WriteLine(i2.GetHashCode());
+            new ToLeastBusyDistributionStrategy(endpointConfiguration.GetSettings()), type => true);
+        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

@@ -25,7 +25,9 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
 
+        #region FairDistributionServer
         endpointConfiguration.EnableFeature<FlowControl>();
+        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

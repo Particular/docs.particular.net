@@ -17,44 +17,47 @@ class FlowManager
         FlowData f;
         if (data.TryGetValue(transportAddress, out f))
         {
-            f.Acknowledge(endpoint, endpointInstanceHash, markerValue);
+            f.Acknowledge(endpointInstanceHash, markerValue);
         }
     }
 
+    #region GetLeastBusy
     public int? GetLeastBusyInstanceHash(string endpoint, IEnumerable<EndpointInstance> allInstances)
     {
-        var bestValue = long.MaxValue;
-        int? bestHash = null;
+        FlowData best = null;
 
         foreach (var hash in allInstances.Select(o => o.ToString().GetHashCode()))
         {
-            var f = data.Values.FirstOrDefault(o => o.InstanceHash == hash);
-            if (f == null) //We don't track this instance yet
+            var candidate = data.Values.FirstOrDefault(o => o.InstanceHash == hash);
+            if (candidate == null) //We don't track this instance yet so assume it has shortest queue.
             {
                 return hash;
             }
-            if (!bestHash.HasValue || f.MessagesInFlight < bestValue)
-            {
-                bestValue = f.MessagesInFlight;
-                bestHash = f.InstanceHash;
-            }
+            best = Compare(best, candidate);
         }
+        return best?.InstanceHash;
+    }
+    #endregion
 
-        return bestHash;
+    static FlowData Compare(FlowData best, FlowData candidate)
+    {
+        if (best == null || candidate.MessagesInFlight < best.MessagesInFlight)
+        {
+            best = candidate;
+        }
+        return best;
     }
 
     ConcurrentDictionary<string, FlowData> data = new ConcurrentDictionary<string, FlowData>();
 
     class FlowData
     {
-        string endpoint;
         int instanceHash;
         long lastAckedMarker;
         long lastGeneratedMarker;
 
         public int InstanceHash => instanceHash;
 
-        public string Endpoint => endpoint;
         public long MessagesInFlight => lastGeneratedMarker - lastAckedMarker;
 
         public long GenerateMarker()
@@ -62,9 +65,8 @@ class FlowManager
             return Interlocked.Increment(ref lastGeneratedMarker);
         }
 
-        public void Acknowledge(string endpoint, int instanceHash, long markerValue)
+        public void Acknowledge(int instanceHash, long markerValue)
         {
-            this.endpoint = endpoint;
             this.instanceHash = instanceHash;
             InterlockedExchangeIfGreaterThan(ref lastAckedMarker, markerValue);
         }

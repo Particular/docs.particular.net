@@ -5,11 +5,11 @@ using NServiceBus;
 using NServiceBus.Routing;
 using NServiceBus.Settings;
 
-public class ControlledFlowDistributionStrategy : DistributionStrategy
+public class ToLeastBusyDistributionStrategy : DistributionStrategy
 {
     ReadOnlySettings settings;
 
-    public ControlledFlowDistributionStrategy(ReadOnlySettings settings)
+    public ToLeastBusyDistributionStrategy(ReadOnlySettings settings)
     {
         this.settings = settings;
     }

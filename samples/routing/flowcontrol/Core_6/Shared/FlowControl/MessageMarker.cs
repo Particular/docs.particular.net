@@ -12,21 +12,24 @@ class MessageMarker : Behavior<IDispatchContext>
         this.sessionId = sessionId;
     }
 
+    #region MarkMessages
     public override Task Invoke(IDispatchContext context, Func<Task> next)
     {
         foreach (var operation in context.Operations)
         {
             var addressTag = operation.AddressTag as UnicastAddressTag;
-            if (addressTag != null)
+            if (addressTag == null)
             {
-                var marker = flowManager.GetNextMarker(addressTag.Destination);
-                operation.Message.Headers["NServiceBus.FlowControl.Marker"] = marker.ToString();
-                operation.Message.Headers["NServiceBus.FlowControl.ControlAddress"] = controlAddress;
-                operation.Message.Headers["NServiceBus.FlowControl.SessionId"] = sessionId;
+                continue;
             }
+            var marker = flowManager.GetNextMarker(addressTag.Destination);
+            operation.Message.Headers["NServiceBus.FlowControl.Marker"] = marker.ToString();
+            operation.Message.Headers["NServiceBus.FlowControl.ControlAddress"] = controlAddress;
+            operation.Message.Headers["NServiceBus.FlowControl.SessionId"] = sessionId;
         }
         return next();
     }
+    #endregion
 
     FlowManager flowManager;
     string controlAddress;

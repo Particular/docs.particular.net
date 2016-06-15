@@ -18,6 +18,7 @@ class MarkerProcessor : ForkConnector<ITransportReceiveContext, IRoutingContext>
         instanceString = endpointInstance.ToString();
     }
 
+    #region ProcessMarkers
     public override async Task Invoke(ITransportReceiveContext context, Func<Task> next, Func<IRoutingContext, Task> fork)
     {
         await next().ConfigureAwait(false);
@@ -32,20 +33,23 @@ class MarkerProcessor : ForkConnector<ITransportReceiveContext, IRoutingContext>
 
         var marker = long.Parse(markerString);
         long lastAcknowledged;
-        if (!acknowledgedMarkers.TryGetValue(controlAddress, out lastAcknowledged) || marker - lastAcknowledged > maxAckBatchSize) //ACK every N-th message
+        if (!acknowledgedMarkers.TryGetValue(controlAddress, out lastAcknowledged) || marker - lastAcknowledged > maxAckBatchSize) //ACK every N messages
         {
             var lastAcked = acknowledgedMarkers.AddOrUpdate(controlAddress, _ => marker, (_, v) => marker > v ? marker : v);
             await SendAcknowledgement(context, fork, lastAcked, controlAddress).ConfigureAwait(false);
         }
     }
+    #endregion
 
     async Task SendAcknowledgement(ITransportReceiveContext context, Func<IRoutingContext, Task> fork, long lastAcked, string controlAddress)
     {
-        var ackHeaders = new Dictionary<string, string>();
-        ackHeaders["NServiceBus.FlowControl.Marker"] = lastAcked.ToString();
-        ackHeaders["NServiceBus.FlowControl.Endpoint"] = endpointName;
-        ackHeaders["NServiceBus.FlowControl.Instance"] = instanceString;
-        ackHeaders["NServiceBus.FlowControl.ControlAddress"] = controlAddress;
+        var ackHeaders = new Dictionary<string, string>
+        {
+            ["NServiceBus.FlowControl.Marker"] = lastAcked.ToString(),
+            ["NServiceBus.FlowControl.Endpoint"] = endpointName,
+            ["NServiceBus.FlowControl.Instance"] = instanceString,
+            ["NServiceBus.FlowControl.ControlAddress"] = controlAddress
+        };
         var ackMessage = new OutgoingMessage(Guid.NewGuid().ToString(), ackHeaders, new byte[0]);
         var ackContext = this.CreateRoutingContext(ackMessage, controlAddress, context);
         await fork(ackContext).ConfigureAwait(false);

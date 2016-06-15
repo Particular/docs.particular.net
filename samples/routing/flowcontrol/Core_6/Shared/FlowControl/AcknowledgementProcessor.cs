@@ -10,6 +10,7 @@ class AcknowledgementProcessor : Behavior<IIncomingPhysicalMessageContext>
         this.currentSessionId = currentSessionId;
     }
 
+    #region ProcessACKs
     public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
     {
         string ackString;
@@ -17,11 +18,13 @@ class AcknowledgementProcessor : Behavior<IIncomingPhysicalMessageContext>
         string endpoint;
         string controlAddress;
         string sessionId;
-        if (!context.MessageHeaders.TryGetValue("NServiceBus.FlowControl.Marker", out ackString)
-            || !context.MessageHeaders.TryGetValue("NServiceBus.FlowControl.Endpoint", out endpoint)
-            || !context.MessageHeaders.TryGetValue("NServiceBus.FlowControl.Instance", out instanceString)
-            || !context.MessageHeaders.TryGetValue("NServiceBus.FlowControl.ControlAddress", out controlAddress)
-            || !context.MessageHeaders.TryGetValue("NServiceBus.FlowControl.SessionId", out sessionId))
+
+        var headers = context.MessageHeaders;
+        if (!headers.TryGetValue("NServiceBus.FlowControl.Marker", out ackString)
+            || !headers.TryGetValue("NServiceBus.FlowControl.Endpoint", out endpoint)
+            || !headers.TryGetValue("NServiceBus.FlowControl.Instance", out instanceString)
+            || !headers.TryGetValue("NServiceBus.FlowControl.ControlAddress", out controlAddress)
+            || !headers.TryGetValue("NServiceBus.FlowControl.SessionId", out sessionId))
         {
             await next().ConfigureAwait(false);
             return;
@@ -34,6 +37,7 @@ class AcknowledgementProcessor : Behavior<IIncomingPhysicalMessageContext>
         var ack = long.Parse(ackString);
         flowManager.Acknowledge(controlAddress, endpoint, instanceHash, ack);
     }
+    #endregion
 
     FlowManager flowManager;
     string currentSessionId;
