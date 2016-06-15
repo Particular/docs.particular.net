@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -10,7 +9,6 @@ using NServiceBus.Features;
 using NServiceBus.Logging;
 using NServiceBus.Routing;
 using NServiceBus.Routing.MessageDrivenSubscriptions;
-using NServiceBus.Settings;
 
 class RoutingInfoSubscriber : FeatureStartupTask
 {
@@ -124,7 +122,7 @@ class RoutingInfoSubscriber : FeatureStartupTask
     async Task UpdateCaches(EndpointInstance instanceName, Type[] handledTypes, Type[] publishedTypes)
     {
         var newInstanceMap = BuildNewInstanceMap(instanceName);
-        var newEndpointMap = BuildNewEndpointMap(instanceName.Endpoint, handledTypes, endpointMap);
+        var newEndpointMap = BuildNewEndpointMap(instanceName.Endpoint.ToString(), handledTypes, endpointMap);
         var newPublisherMap = BuildNewPublisherMap(instanceName, publishedTypes, publisherMap);
         LogChangesToEndpointMap(endpointMap, newEndpointMap);
         LogChangesToInstanceMap(instanceMap, newInstanceMap);
@@ -217,7 +215,7 @@ class RoutingInfoSubscriber : FeatureStartupTask
         var newPublisherMap = new Dictionary<Type, string>();
         foreach (var pair in publisherMap)
         {
-            if (pair.Value != endpointInstance.Endpoint)
+            if (pair.Value != endpointInstance.Endpoint.ToString())
             {
                 newPublisherMap[pair.Key] = pair.Value;
             }
@@ -230,7 +228,7 @@ class RoutingInfoSubscriber : FeatureStartupTask
             }
             else
             {
-                newPublisherMap[publishedType] = endpointInstance.Endpoint;
+                newPublisherMap[publishedType] = endpointInstance.Endpoint.ToString();
                 //Subscribe
             }
         }
@@ -246,10 +244,10 @@ class RoutingInfoSubscriber : FeatureStartupTask
             newInstanceMap[pair.Key] = new HashSet<EndpointInstance>(otherInstances);
         }
         HashSet<EndpointInstance> endpointEntry;
-        if (!newInstanceMap.TryGetValue(instanceName.Endpoint, out endpointEntry))
+        if (!newInstanceMap.TryGetValue(instanceName.Endpoint.ToString(), out endpointEntry))
         {
             endpointEntry = new HashSet<EndpointInstance>();
-            newInstanceMap[instanceName.Endpoint] = endpointEntry;
+            newInstanceMap[instanceName.Endpoint.ToString()] = endpointEntry;
         }
         endpointEntry.Add(instanceName);
         return newInstanceMap;
@@ -282,7 +280,7 @@ class RoutingInfoSubscriber : FeatureStartupTask
     {
         string publisherEndpoint;
         return publisherMap.TryGetValue(eventType, out publisherEndpoint) 
-            ? PublisherAddress.CreateFromEndpointName(publisherEndpoint) 
+            ? new PublisherAddress(new EndpointName(publisherEndpoint)) 
             : null;
     }
     #endregion
@@ -297,7 +295,7 @@ class RoutingInfoSubscriber : FeatureStartupTask
             {
                 foreach (var endpointName in destinations)
                 {
-                    yield return UnicastRoute.CreateFromEndpointName(endpointName);
+                    yield return new UnicastRoute(new EndpointName(endpointName));
                 }
             }
         }
@@ -305,10 +303,10 @@ class RoutingInfoSubscriber : FeatureStartupTask
     #endregion
 
     #region FindInstance
-    Task<IEnumerable<EndpointInstance>> FindInstances(string endpointName)
+    Task<IEnumerable<EndpointInstance>> FindInstances(EndpointName endpointName)
     {
         HashSet<EndpointInstance> instances;
-        if (instanceMap.TryGetValue(endpointName, out instances))
+        if (instanceMap.TryGetValue(endpointName.ToString(), out instances))
         {
             var activeInstances = instances.Where(i => instanceInformation[i].State == InstanceState.Active).ToArray();
             if (activeInstances.Any())

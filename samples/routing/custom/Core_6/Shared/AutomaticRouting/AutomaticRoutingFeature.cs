@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Routing;
 using NServiceBus.Routing.MessageDrivenSubscriptions;
-using NServiceBus.Transports;
 using NServiceBus.Unicast;
-using NServiceBus.Unicast.Messages;
 
 class AutomaticRoutingFeature : Feature
 {
@@ -53,7 +50,7 @@ class AutomaticRoutingFeature : Feature
             return subscriber;
         });
 
-        context.Pipeline.Register(new VerifyAdvertisedBehavior(messageTypesPublished),
+        context.Pipeline.Register("VerifyAdvertisedBehavior", new VerifyAdvertisedBehavior(messageTypesPublished),
             "Verifies if all published types has been advertised.");
 
         #endregion

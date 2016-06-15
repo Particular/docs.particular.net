@@ -31,7 +31,7 @@ class RoutingInfoPublisher : FeatureStartupTask
     {
         publication = new RoutingInfo
         {
-            EndpointName = settings.EndpointName(),
+            EndpointName = settings.EndpointName().ToString(),
             Discriminator = settings.EndpointInstanceName().Discriminator,
             InstanceProperties = settings.EndpointInstanceName().Properties.ToDictionary(kvp => kvp.Key, kvp => kvp.Value),
             HandledMessageTypes = hanledMessageTypes.Select(m => m.AssemblyQualifiedName).ToArray(),
