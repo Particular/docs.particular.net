@@ -17,7 +17,7 @@ class AutomaticRoutingFeature : Feature
     protected override void Setup(FeatureConfigurationContext context)
     {
         var conventions = context.Settings.Get<Conventions>();
-        var localAddress = context.Settings.LocalAddress();
+        var uniqueKey = context.Settings.InstanceSpecificQueue() ?? context.Settings.LocalAddress();
         var unicastRoutingTable = context.Settings.Get<UnicastRoutingTable>();
         var endpointInstances = context.Settings.Get<EndpointInstances>();
         var publishers = context.Settings.Get<Publishers>();
@@ -27,7 +27,7 @@ class AutomaticRoutingFeature : Feature
 #region Feature
         
         //Create the infrastructure
-        var dataAccess = new SqlDataAccess(localAddress, connectionString);
+        var dataAccess = new SqlDataAccess(uniqueKey, connectionString);
         var communicator = new RoutingInfoCommunicator(dataAccess);
         context.RegisterStartupTask(communicator);
 

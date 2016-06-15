@@ -20,11 +20,28 @@ redirects:
  1. Wait until all the endpoints exchange their routing information. Notice each endpoint logs the routing info as it discovers other endpoints.
  1. Hit `<enter>` several times to send some messages.
 
-## Verifying that the sample works correctly
+### Verifying that the sample works correctly
 
- 1. The Sales endpoint displays information that an order was accepted.
- 2. The Shipping endpoint displays information that an order was shipped.
- 3. The Billing endpoint displays information that an order was billed.
+ 1. The Sales.1 and Sales.2 consoles display information about accepted orders in round-robin fashion.
+ 2. The Shipping endpoint displays information that orders were shipped.
+ 3. The Billing endpoint displays information that orders were billed.
+
+### Detecting failure
+
+ 1. Close the Sales.2 console window.
+ 2. Hit `<enter>` several times to send more messages.
+ 3. Notice that only every second message gets processed by Sales.1. Client still does not know that Sales.2 is down.
+ 4. Wait until consoles show that Sales.2 heartbeat timed out.
+ 5. Hit `<enter>` several times to send more messages. 
+ 6. Notice that all orders are now routed to Sales.1 queue.
+
+### Recovery
+
+ 1. In VisualStudio right-click on `Sales2` project and select `Debug -> Start new instance`.
+ 2. Notice that all messages sent to Sales.2 while it was down are now processed.
+ 2. Wait until other endpoints detect Sales.2 again.
+ 3. Hit `<enter>` several times to send more messages.
+ 4. Notice that orders are again routed to both Sales instances in round-robin fashion.
 
 ## Code walk-through
 
@@ -47,6 +64,8 @@ The Sales project mimics the back-end system where orders are accepted. Apart fr
 snippet:EnableAutomaticRouting
 
 NOTE: In order to use this custom routing all published types need to be specified.
+
+Sales endpoint is scaled out via `Sales` and `Sales2` projects. In real-world scenario there would be a single project deployed to multiple virtual machines.  
 
 ### Shipping and Billing
 

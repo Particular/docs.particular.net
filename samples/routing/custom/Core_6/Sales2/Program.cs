@@ -15,9 +15,9 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.CustomRouting.Sales.1";
+        Console.Title = "Samples.CustomRouting.Sales.2";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Sales");
-        endpointConfiguration.ScaleOut().InstanceDiscriminator("1");
+        endpointConfiguration.ScaleOut().InstanceDiscriminator("2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<NHibernatePersistence>().ConnectionString(ConnectionString);
         endpointConfiguration.EnableInstallers();

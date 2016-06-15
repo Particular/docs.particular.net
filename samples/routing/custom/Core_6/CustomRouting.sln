@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipping", "Shipping\Shippi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billing", "Billing\Billing.csproj", "{EAAFF45C-6AD7-4AE5-AF3D-B676992F03B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales2", "Sales2\Sales2.csproj", "{2660DCAF-D2C1-4DB3-86A4-7ECB16AB203E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{EAAFF45C-6AD7-4AE5-AF3D-B676992F03B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAAFF45C-6AD7-4AE5-AF3D-B676992F03B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAAFF45C-6AD7-4AE5-AF3D-B676992F03B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2660DCAF-D2C1-4DB3-86A4-7ECB16AB203E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2660DCAF-D2C1-4DB3-86A4-7ECB16AB203E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2660DCAF-D2C1-4DB3-86A4-7ECB16AB203E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2660DCAF-D2C1-4DB3-86A4-7ECB16AB203E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
