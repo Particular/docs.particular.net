@@ -172,11 +172,11 @@ In this example the rule returns two instances in which case providing a discrim
 
 After the list of potential target instances has been computed, NServiceBus needs to figure out which instances should actually get the message. By default, NServiceBus sends any given message to a single instance of each endpoint meant to receive it. Selecting the actual instance is done using a round-robin algorithm.
 
-This default behavior can be modified by registering a custom distribution strategy for a given set of types:
+This default behavior can be modified by registering a custom distribution strategy for a given endpoint:
 
 snippet:Routing-CustomDistributionStrategy
 
-NOTE: There is a single instance of a distribution strategy per *registration*, and that instance is invoked concurrently on multiple threads, so any required state needs to be thread-safe (e.g. using `ConcurrentDictionary`). See [implement a custom distribution strategy sample](/samples/scaleout/distribution-strategy).
+NOTE: There is a single instance of a distribution strategy per endpoint, and that instance is invoked concurrently on multiple threads, so any required state needs to be thread-safe (e.g. using `ConcurrentDictionary`). See [implement a custom distribution strategy sample](/samples/scaleout/distribution-strategy).
 
 
 ### Address mapping layer
