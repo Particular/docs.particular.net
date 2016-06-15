@@ -30,6 +30,16 @@ void Main()
 				{
 					treatAsErrors.Value = "true";
 				}
+				
+				var langVersion = element.Element(xmlns + "LangVersion");
+				if (langVersion == null)
+				{
+					element.Add(new XElement(xmlns + "LangVersion", "6"));
+				}
+				else
+				{
+					langVersion.Value = "6";
+				}
 
 				var useVsHost = element.Element(xmlns + "UseVSHostingProcess");
 				if (useVsHost == null)
