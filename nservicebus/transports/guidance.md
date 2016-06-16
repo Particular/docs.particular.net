@@ -11,7 +11,7 @@ Please note that the SQL Server transport does not use or depend on SQL Server S
 
 ## How it works
 
-SQL Server provides a central place to store queues and messages but the message queuing implementation resides entirely within the endpoint process. SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than store-and-forward transport such as MSMQ.
+SQL Server provides a central place to store queues and messages but the message queuing implementation resides entirely within the endpoint process. SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than [store-and-forward](/nservicebus/architecture/principles#drilling-down-into-details-store-and-forward-messaging) transport such as MSMQ.
 
 ### Advantages of SQL Server Transport
 
@@ -23,14 +23,14 @@ SQL Server provides a central place to store queues and messages but the message
 ## Deployment considerations
 
 ### Introduction
-Any NServiceBus endpoint operates and manages different types of data, those are:
+Any process hosting NServiceBus operates and manages different types of data, those are:
  * Business data - data managed by NServiceBus user, usually via code executed from inside message handlers
- * Persistence data - data managed by infrastructure including: saga data, timeout manager state and message driven pub/sub information
+ * Persistence data - data managed by infrastructure including: saga data, timeout manager state and subscriptions state
  * Transport data - queues and messages managed by the transport
 
-SQL Server Transport manages transport data and puts no constraints on the type and configuration of storage technology used for persistence and business data. It can work with any of available persisters i.e. NHibernate and RavenDB, as well as any storage mechanisms used from inside message handlers.
+SQL Server Transport manages transport data and puts no constraints on the type and configuration of storage technology used for persistence and business data. It can work with any of available persisters i.e. [NHibernate](/nservicebus/nhibernate) or [RavenDB](/nservicebus/ravendb/), as well as any storage mechanisms used from inside message handlers.
 
-Building an NServiceBus system requires that each kind of data is persisted in some way. This section explains what are the important factors to consider when choosing persistence technology to use in combination with the SQL Server transport.
+Building a system using NServiceBus requires that each kind of data is persisted in some way. This section explains the important factors to consider when choosing persistence technology to use in combination with the SQL Server transport.
  
 NOTE: No matter what deployment options are chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside in a single SQL Server catalog**. Multi-instance/multi-catalog deployment topology is deprecated in version 3 of the SQL Server transport and will be removed in version 4.
 
