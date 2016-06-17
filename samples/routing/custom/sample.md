@@ -72,7 +72,7 @@ snippet:EnableAutomaticRouting
 
 NOTE: In order to use this custom routing all published types need to be specified.
 
-Sales endpoint is scaled out via `Sales` and `Sales2` projects. In real-world scenario there would be a single project deployed to multiple virtual machines.
+In real-world scenarios NServiceBus is scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines (e.g. `Sales` in this sample). For simplicity in this sample the scale-out is simulated by having two separate endpoints `Sales` and `Sales2`.
 
 
 ### Shipping and Billing
