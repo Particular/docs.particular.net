@@ -16,16 +16,17 @@ class AutomaticRoutingFeature : Feature
 
     protected override void Setup(FeatureConfigurationContext context)
     {
-        var conventions = context.Settings.Get<Conventions>();
-        var uniqueKey = context.Settings.InstanceSpecificQueue() ?? context.Settings.LocalAddress();
-        var unicastRoutingTable = context.Settings.Get<UnicastRoutingTable>();
-        var endpointInstances = context.Settings.Get<EndpointInstances>();
-        var publishers = context.Settings.Get<Publishers>();
-        var connectionString = context.Settings.Get<string>("NServiceBus.AutomaticRouting.ConnectionString");
-        var messageTypesPublished = context.Settings.Get<Type[]>("NServiceBus.AutomaticRouting.PublishedTypes");
+        var settings = context.Settings;
+        var conventions = settings.Get<Conventions>();
+        var uniqueKey = settings.InstanceSpecificQueue() ?? settings.LocalAddress();
+        var unicastRoutingTable = settings.Get<UnicastRoutingTable>();
+        var endpointInstances = settings.Get<EndpointInstances>();
+        var publishers = settings.Get<Publishers>();
+        var connectionString = settings.Get<string>("NServiceBus.AutomaticRouting.ConnectionString");
+        var messageTypesPublished = settings.Get<Type[]>("NServiceBus.AutomaticRouting.PublishedTypes");
 
 #region Feature
-        
+
         //Create the infrastructure
         var dataAccess = new SqlDataAccess(uniqueKey, connectionString);
         var communicator = new RoutingInfoCommunicator(dataAccess);
@@ -35,7 +36,7 @@ class AutomaticRoutingFeature : Feature
         context.RegisterStartupTask(b =>
         {
             var messageTypesHandled = GetHandledMessages(b.Build<MessageHandlerRegistry>(), conventions);
-            return new RoutingInfoPublisher(communicator, messageTypesHandled, messageTypesPublished, context.Settings, 
+            return new RoutingInfoPublisher(communicator, messageTypesHandled, messageTypesPublished, settings,
                 TimeSpan.FromSeconds(5));
         });
 
@@ -43,7 +44,7 @@ class AutomaticRoutingFeature : Feature
         context.RegisterStartupTask(b =>
         {
             var messageTypesHandled = GetHandledMessages(b.Build<MessageHandlerRegistry>(), conventions);
-            var subscriber = new RoutingInfoSubscriber(unicastRoutingTable, endpointInstances, messageTypesHandled, 
+            var subscriber = new RoutingInfoSubscriber(unicastRoutingTable, endpointInstances, messageTypesHandled,
                 publishers, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(20));
             communicator.Changed += e => subscriber.OnChanged(e);
             communicator.Removed += e => subscriber.OnRemoved(e);

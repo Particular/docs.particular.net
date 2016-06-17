@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -22,7 +21,7 @@ class RoutingInfoCommunicator : FeatureStartupTask
 
     public event Func<Entry, Task> Changed;
     public event Func<Entry, Task> Removed;
-    
+
     protected override Task OnStart(IMessageSession messageSession)
     {
         timer = new Timer(state =>
@@ -35,8 +34,10 @@ class RoutingInfoCommunicator : FeatureStartupTask
     async Task Refresh()
     {
         var addedOrUpdated = new List<Entry>();
-        var results = await dataAccess.Query().ConfigureAwait(false);
-        var removed = cache.Values.Where(x => results.All(r => r.Publisher != x.Publisher)).ToArray();
+        var results = await dataAccess.Query()
+            .ConfigureAwait(false);
+        var removed = cache.Values.Where(x => results.All(r => r.Publisher != x.Publisher))
+            .ToArray();
         foreach (var entry in results)
         {
             Entry oldEntry;
@@ -49,12 +50,14 @@ class RoutingInfoCommunicator : FeatureStartupTask
         }
         foreach (var change in addedOrUpdated)
         {
-            await Changed(change).ConfigureAwait(false);
+            await Changed(change)
+                .ConfigureAwait(false);
         }
         foreach (var entry in removed)
         {
             cache.Remove(entry.Publisher);
-            await Removed(entry).ConfigureAwait(false);
+            await Removed(entry)
+                .ConfigureAwait(false);
         }
     }
 
@@ -64,7 +67,7 @@ class RoutingInfoCommunicator : FeatureStartupTask
         {
             timer.Dispose(waitHandle);
             waitHandle.WaitOne();
-        }        
+        }
         return Task.FromResult(0);
     }
 

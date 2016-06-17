@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 
 class Program
 {
@@ -49,7 +48,8 @@ class Program
                     OrderId = orderId,
                     Value = random.Next(100)
                 };
-                await endpointInstance.Send(message).ConfigureAwait(false);
+                await endpointInstance.Send(message)
+                    .ConfigureAwait(false);
             }
         }
         finally

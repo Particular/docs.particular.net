@@ -11,7 +11,8 @@ redirects:
 ## Prerequisites
 
  1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`. 
- 1. Create database called `AutomaticRouting`. 
+ 1. Create database called `AutomaticRouting`.
+
 
 ## Running the project
 
@@ -20,28 +21,32 @@ redirects:
  1. Wait until all the endpoints exchange their routing information. Notice each endpoint logs the routing info as it discovers other endpoints.
  1. Hit `<enter>` several times to send some messages.
 
+
 ### Verifying that the sample works correctly
 
  1. The Sales.1 and Sales.2 consoles display information about accepted orders in round-robin fashion.
- 2. The Shipping endpoint displays information that orders were shipped.
- 3. The Billing endpoint displays information that orders were billed.
+ 1. The Shipping endpoint displays information that orders were shipped.
+ 1. The Billing endpoint displays information that orders were billed.
+
 
 ### Detecting failure
 
  1. Close the Sales.2 console window.
- 2. Hit `<enter>` several times to send more messages.
- 3. Notice that only every second message gets processed by Sales.1. Client still does not know that Sales.2 is down.
- 4. Wait until consoles show that Sales.2 heartbeat timed out.
- 5. Hit `<enter>` several times to send more messages. 
- 6. Notice that all orders are now routed to Sales.1 queue.
+ 1. Hit `<enter>` several times to send more messages.
+ 1. Notice that only every second message gets processed by Sales.1. Client still does not know that Sales.2 is down.
+ 1. Wait until consoles show that Sales.2 heartbeat timed out.
+ 1. Hit `<enter>` several times to send more messages. 
+ 1. Notice that all orders are now routed to Sales.1 queue.
+
 
 ### Recovery
 
- 1. In VisualStudio right-click on `Sales2` project and select `Debug -> Start new instance`.
- 2. Notice that all messages sent to Sales.2 while it was down are now processed.
- 2. Wait until other endpoints detect Sales.2 again.
- 3. Hit `<enter>` several times to send more messages.
- 4. Notice that orders are again routed to both Sales instances in round-robin fashion.
+ 1. In Visual Studio right-click on `Sales2` project and select `Debug -> Start new instance`.
+ 1. Notice that all messages sent to Sales.2 while it was down are now processed.
+ 1. Wait until other endpoints detect Sales.2 again.
+ 1. Hit `<enter>` several times to send more messages.
+ 1. Notice that orders are again routed to both Sales instances in round-robin fashion.
+
 
 ## Code walk-through
 
@@ -53,9 +58,11 @@ This sample contains four projects:
  * Shipping - A console application responsible for processing the `OrderAccepted` message.
  * Billing - Another console application responsible for processing the `OrderAccepted` message.
 
+
 ### Client
 
-The Client does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. 
+The Client does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end.
+
 
 ### Sales
 
@@ -65,15 +72,18 @@ snippet:EnableAutomaticRouting
 
 NOTE: In order to use this custom routing all published types need to be specified.
 
-Sales endpoint is scaled out via `Sales` and `Sales2` projects. In real-world scenario there would be a single project deployed to multiple virtual machines.  
+Sales endpoint is scaled out via `Sales` and `Sales2` projects. In real-world scenario there would be a single project deployed to multiple virtual machines.
+
 
 ### Shipping and Billing
 
 Shipping and Billing mimic other back-end systems.
 
+
 ### Shared project
 
 The shared project contains definitions for messages and the custom routing logic. 
+
 
 ### Custom automatic routing
 
@@ -99,4 +109,4 @@ The third structure maps an event type to its publisher. By definition there can
 
 snippet:FindPublisher
 
-The fourth auxiliary structure holds state information about the known endpoint instances. This information is used to optimize the physical routing phase by detecting inactive instances. 
+The fourth auxiliary structure holds state information about the known endpoint instances. This information is used to optimize the physical routing phase by detecting inactive instances.

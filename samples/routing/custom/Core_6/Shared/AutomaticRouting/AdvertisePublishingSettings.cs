@@ -10,6 +10,7 @@ public class AdvertisePublishingSettings : ExposeSettings
 
     public void AdvertisePublishing(params Type[] publishedTypes)
     {
-        this.GetSettings().Set("NServiceBus.AutomaticRouting.PublishedTypes", publishedTypes);
+        this.GetSettings()
+            .Set("NServiceBus.AutomaticRouting.PublishedTypes", publishedTypes);
     }
 }

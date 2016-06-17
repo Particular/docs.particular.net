@@ -6,6 +6,6 @@
         Data = data;
     }
 
-    public string Publisher { get; set; }
+    public string Publisher { get; }
     public string Data { get; }
 }

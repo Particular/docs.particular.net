@@ -23,7 +23,7 @@ class RoutingInfoSubscriber : FeatureStartupTask
     Dictionary<Type, HashSet<string>> endpointMap = new Dictionary<Type, HashSet<string>>();
     Dictionary<string, HashSet<EndpointInstance>> instanceMap = new Dictionary<string, HashSet<EndpointInstance>>();
     Dictionary<EndpointInstance, EndpointInstanceInfo> instanceInformation = new Dictionary<EndpointInstance, EndpointInstanceInfo>();
-    Dictionary<Type, string> publisherMap = new Dictionary<Type, string>(); 
+    Dictionary<Type, string> publisherMap = new Dictionary<Type, string>();
     Timer sweepTimer;
     IMessageSession messageSession;
 
@@ -150,7 +150,7 @@ class RoutingInfoSubscriber : FeatureStartupTask
             Logger.Info($"Removed {publisherMap[removedType]} as publisher of {removedType}.");
         }
     }
-   
+
     static void LogChangesToInstanceMap(Dictionary<string, HashSet<EndpointInstance>> instanceMap, Dictionary<string, HashSet<EndpointInstance>> newInstanceMap)
     {
         foreach (var addedEndpoint in newInstanceMap.Keys.Except(instanceMap.Keys))
@@ -279,8 +279,8 @@ class RoutingInfoSubscriber : FeatureStartupTask
     PublisherAddress FindPublisher(Type eventType)
     {
         string publisherEndpoint;
-        return publisherMap.TryGetValue(eventType, out publisherEndpoint) 
-            ? new PublisherAddress(new EndpointName(publisherEndpoint)) 
+        return publisherMap.TryGetValue(eventType, out publisherEndpoint)
+            ? new PublisherAddress(new EndpointName(publisherEndpoint))
             : null;
     }
     #endregion

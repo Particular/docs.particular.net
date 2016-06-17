@@ -18,7 +18,8 @@ class SqlDataAccess
     {
         using (var connection = new SqlConnection(connectionString))
         {
-            await connection.OpenAsync().ConfigureAwait(false);
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
             using (var transaction = connection.BeginTransaction())
             {
                 using (var command = new SqlCommand(@"
@@ -31,7 +32,8 @@ END
                 {
                     command.Parameters.AddWithValue("Publisher", publisher).DbType = DbType.AnsiString;
                     command.Parameters.AddWithValue("Value", data).DbType = DbType.String;
-                    await command.ExecuteNonQueryAsync().ConfigureAwait(false);
+                    await command.ExecuteNonQueryAsync()
+                        .ConfigureAwait(false);
                 }
                 transaction.Commit();
             }
@@ -42,7 +44,8 @@ END
     {
         using (var connection = new SqlConnection(connectionString))
         {
-            await connection.OpenAsync().ConfigureAwait(false);
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
             using (var transaction = connection.BeginTransaction())
             {
                 using (var command = new SqlCommand(@"
@@ -54,7 +57,8 @@ SELECT [Publisher], [Value] FROM [Data] WHERE [Publisher] <> @Publisher
                     var results = new List<Entry>();
                     using (var reader = await command.ExecuteReaderAsync().ConfigureAwait(false))
                     {
-                        while (await reader.ReadAsync().ConfigureAwait(false))
+                        while (await reader.ReadAsync()
+                            .ConfigureAwait(false))
                         {
                             results.Add(new Entry((string)reader[0], (string)reader[1]));
                         }

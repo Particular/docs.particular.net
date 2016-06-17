@@ -14,10 +14,10 @@ class VerifyAdvertisedBehavior : Behavior<IOutgoingPublishContext>
 
     public override Task Invoke(IOutgoingPublishContext context, Func<Task> next)
     {
-        if (!advertisedTypes.Contains(context.Message.MessageType))
+        if (advertisedTypes.Contains(context.Message.MessageType))
         {
-            throw new Exception($"Message type {context.Message.MessageType} is not advertised. To use automatic routing you need to specify all published types.");
+            return next();
         }
-        return next();
+        throw new Exception($"Message type {context.Message.MessageType} is not advertised. To use automatic routing you need to specify all published types.");
     }
 }

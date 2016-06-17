@@ -6,20 +6,22 @@ using NServiceBus.Settings;
 
 class Installer : INeedToInstallSomething
 {
-    internal const string CreateTableText = @"IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Data]') AND type in (N'U'))
-                  BEGIN
-                    EXEC sp_getapplock @Resource = 'dbo_Data_lock', @LockMode = 'Exclusive'
+    string CreateTableText =
+        @"
+IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Data]') AND type in (N'U'))
+BEGIN
+EXEC sp_getapplock @Resource = 'dbo_Data_lock', @LockMode = 'Exclusive'
 
-                    IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Data]') AND type in (N'U'))
-                    BEGIN
-                        CREATE TABLE [dbo].[Data](
-	                        [Publisher] [varchar](100) NOT NULL,
-	                        [Value] [nvarchar](max) NULL
-                        ) ON [PRIMARY];
-                    END
+IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Data]') AND type in (N'U'))
+BEGIN
+    CREATE TABLE [dbo].[Data](
+	    [Publisher] [varchar](100) NOT NULL,
+	    [Value] [nvarchar](max) NULL
+    ) ON [PRIMARY];
+END
 
-                    EXEC sp_releaseapplock @Resource = 'dbo_Data_lock'
-                  END";
+EXEC sp_releaseapplock @Resource = 'dbo_Data_lock'
+END";
 
     ReadOnlySettings settings;
 
@@ -38,7 +40,8 @@ class Installer : INeedToInstallSomething
 
         using (var connection = new SqlConnection(connectionString))
         {
-            await connection.OpenAsync().ConfigureAwait(false);
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
             using (var transaction = connection.BeginTransaction())
             {
                 using (var command = new SqlCommand(CreateTableText, connection, transaction)
@@ -46,7 +49,8 @@ class Installer : INeedToInstallSomething
                     CommandType = CommandType.Text
                 })
                 {
-                    await command.ExecuteNonQueryAsync().ConfigureAwait(false);
+                    await command.ExecuteNonQueryAsync()
+                        .ConfigureAwait(false);
                 }
                 transaction.Commit();
             }
