@@ -23,11 +23,9 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        #region EnableAutomaticRouting
         endpointConfiguration
             .EnableAutomaticRouting(ConnectionString)
             .AdvertisePublishing(typeof(OrderAccepted));
-        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

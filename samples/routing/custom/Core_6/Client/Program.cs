@@ -33,8 +33,6 @@ class Program
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 
-            #region ClientLoop
-
             while (true)
             {
                 var key = Console.ReadKey();
@@ -53,8 +51,6 @@ class Program
                 };
                 await endpointInstance.Send(message).ConfigureAwait(false);
             }
-
-            #endregion
         }
         finally
         {
