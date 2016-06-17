@@ -83,7 +83,7 @@ class RoutingInfoSubscriber : FeatureStartupTask
         instanceInformation.Remove(instanceName);
     }
 
-    public async Task OnChanged(Entry e)
+    public Task OnChanged(Entry e)
     {
         var deserializedData = JsonConvert.DeserializeObject<RoutingInfo>(e.Data);
         var instanceName = new EndpointInstance(deserializedData.EndpointName, deserializedData.Discriminator, deserializedData.InstanceProperties);
@@ -116,7 +116,7 @@ class RoutingInfoSubscriber : FeatureStartupTask
             instanceInfo.Deactivate();
             Logger.Info($"Instance {instanceName} deactivated.");
         }
-        await UpdateCaches(instanceName, handledTypes, publishedTypes).ConfigureAwait(false);
+        return UpdateCaches(instanceName, handledTypes, publishedTypes);
     }
 
     async Task UpdateCaches(EndpointInstance instanceName, Type[] handledTypes, Type[] publishedTypes)
