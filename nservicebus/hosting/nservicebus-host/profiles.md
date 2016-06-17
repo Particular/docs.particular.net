@@ -20,7 +20,7 @@ The NServiceBus Host provides facilities of profiles designed specifically to ea
 
 ## Configuration difficulties
 
-Starting out with NServiceBus development isn't always easy. There are many configuration options for levels of logging, technologies for storing subscribers, and types of saga storage (to name a few). Often, an appropriate combination of all these options is required, as long as they be changed later. Profiles give that flexibility.
+Starting out with NServiceBus development isn't always easy. There are many configuration options for levels of logging, technologies for storing subscribers, and types of saga storage (to name a few). Often, an appropriate combination of all these options is required, as long as they can be changed later. Profiles give that flexibility.
 
 NServiceBus comes with three profiles out of the box: Lite, Integration, and Production. Each profile configures a cohesive combination of technologies:
 
