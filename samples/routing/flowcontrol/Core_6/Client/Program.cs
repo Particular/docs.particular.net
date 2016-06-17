@@ -5,6 +5,7 @@ using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Logging;
 using NServiceBus.Routing;
+using NServiceBus.Support;
 
 class Program
 {
@@ -17,9 +18,6 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.FlowControl.Client";
-        LogManager.Use<DefaultFactory>()
-            .Level(LogLevel.Info);
-
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
 
@@ -31,10 +29,10 @@ class Program
 
         #region Routing
         endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(PlaceOrder), "Samples.FlowControl.Server");
-        var server = new EndpointName("Samples.FlowControl.Server");
-        endpointConfiguration.UnicastRouting().Mapping.Physical.Add(server,
-            new EndpointInstance(server, "1").AtMachine("SIMON-MAC"),
-            new EndpointInstance(server, "2").AtMachine("SIMON-MAC"));
+        const string server = "Samples.FlowControl.Server";
+        endpointConfiguration.UnicastRouting().Mapping.Physical.Add(
+            new EndpointInstance(server, "1").AtMachine(RuntimeEnvironment.MachineName),
+            new EndpointInstance(server, "2").AtMachine(RuntimeEnvironment.MachineName));
         #endregion
 
         #region FairDistributionClient

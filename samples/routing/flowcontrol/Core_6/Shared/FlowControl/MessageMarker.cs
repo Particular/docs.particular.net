@@ -15,6 +15,11 @@ class MessageMarker : Behavior<IDispatchContext>
     #region MarkMessages
     public override Task Invoke(IDispatchContext context, Func<Task> next)
     {
+        SkipMarking skipMarking;
+        if (context.Extensions.TryGet(out skipMarking))
+        {
+            return next();
+        }
         foreach (var operation in context.Operations)
         {
             var addressTag = operation.AddressTag as UnicastAddressTag;
@@ -24,12 +29,17 @@ class MessageMarker : Behavior<IDispatchContext>
             }
             var marker = flowManager.GetNextMarker(addressTag.Destination);
             operation.Message.Headers["NServiceBus.FlowControl.Marker"] = marker.ToString();
+            operation.Message.Headers["NServiceBus.FlowControl.Key"] = addressTag.Destination;
             operation.Message.Headers["NServiceBus.FlowControl.ControlAddress"] = controlAddress;
             operation.Message.Headers["NServiceBus.FlowControl.SessionId"] = sessionId;
         }
         return next();
     }
     #endregion
+
+    public class SkipMarking
+    {
+    }
 
     FlowManager flowManager;
     string controlAddress;

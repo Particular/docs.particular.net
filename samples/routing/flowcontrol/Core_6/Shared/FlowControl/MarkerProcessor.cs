@@ -23,10 +23,14 @@ class MarkerProcessor : ForkConnector<ITransportReceiveContext, IRoutingContext>
     {
         await next().ConfigureAwait(false);
 
+        string sessionId;
         string markerString;
         string controlAddress;
+        string key;
         if (!context.Message.Headers.TryGetValue("NServiceBus.FlowControl.Marker", out markerString) ||
-            !context.Message.Headers.TryGetValue("NServiceBus.FlowControl.ControlAddress", out controlAddress))
+            !context.Message.Headers.TryGetValue("NServiceBus.FlowControl.Key", out key) ||
+            !context.Message.Headers.TryGetValue("NServiceBus.FlowControl.ControlAddress", out controlAddress) ||
+            !context.Message.Headers.TryGetValue("NServiceBus.FlowControl.SessionId", out sessionId))
         {
             return;
         }
@@ -36,23 +40,25 @@ class MarkerProcessor : ForkConnector<ITransportReceiveContext, IRoutingContext>
         if (!acknowledgedMarkers.TryGetValue(controlAddress, out lastAcknowledged) || marker - lastAcknowledged > maxAckBatchSize) //ACK every N messages
         {
             var lastAcked = acknowledgedMarkers.AddOrUpdate(controlAddress, _ => marker, (_, v) => marker > v ? marker : v);
-            await SendAcknowledgement(context, fork, lastAcked, controlAddress).ConfigureAwait(false);
+            await SendAcknowledgement(context, fork, lastAcked, controlAddress, sessionId, key).ConfigureAwait(false);
         }
     }
     #endregion
 
-    async Task SendAcknowledgement(ITransportReceiveContext context, Func<IRoutingContext, Task> fork, long lastAcked, string controlAddress)
+    Task SendAcknowledgement(ITransportReceiveContext context, Func<IRoutingContext, Task> fork, long lastAcked, string controlAddress, string sessionId, string key)
     {
         var ackHeaders = new Dictionary<string, string>
         {
-            ["NServiceBus.FlowControl.Marker"] = lastAcked.ToString(),
+            ["NServiceBus.FlowControl.ACK"] = lastAcked.ToString(),
+            ["NServiceBus.FlowControl.Key"] = key,
             ["NServiceBus.FlowControl.Endpoint"] = endpointName,
             ["NServiceBus.FlowControl.Instance"] = instanceString,
-            ["NServiceBus.FlowControl.ControlAddress"] = controlAddress
+            ["NServiceBus.FlowControl.SessionId"] = sessionId
         };
         var ackMessage = new OutgoingMessage(Guid.NewGuid().ToString(), ackHeaders, new byte[0]);
         var ackContext = this.CreateRoutingContext(ackMessage, controlAddress, context);
-        await fork(ackContext).ConfigureAwait(false);
+        ackContext.Extensions.Set(new MessageMarker.SkipMarking());
+        return fork(ackContext);
     }
 
     int maxAckBatchSize;

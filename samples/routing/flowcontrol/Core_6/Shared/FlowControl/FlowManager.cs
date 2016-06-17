@@ -12,10 +12,10 @@ class FlowManager
         return f.GenerateMarker();
     }
 
-    public void Acknowledge(string transportAddress, string endpoint, int endpointInstanceHash, long markerValue)
+    public void Acknowledge(string key, string endpoint, int endpointInstanceHash, long markerValue)
     {
         FlowData f;
-        if (data.TryGetValue(transportAddress, out f))
+        if (data.TryGetValue(key, out f))
         {
             f.Acknowledge(endpointInstanceHash, markerValue);
         }

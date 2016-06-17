@@ -14,12 +14,14 @@ public class ToLeastBusyDistributionStrategy : DistributionStrategy
         this.settings = settings;
     }
 
-    public override IEnumerable<UnicastRoutingTarget> SelectDestination(IEnumerable<UnicastRoutingTarget> allInstances)
+    public override IEnumerable<UnicastRoutingTarget> SelectDestination(IList<UnicastRoutingTarget> allInstances)
     {
-        var instances = allInstances.ToArray(); //Replaced by IList in next beta of core
+        var hash = settings.Get<FlowManager>()
+            .GetLeastBusyInstanceHash(allInstances.First().Endpoint.ToString(), allInstances
+            .Where(i => i.Instance != null)
+            .Select(i => i.Instance));
 
-        var hash = settings.Get<FlowManager>().GetLeastBusyInstanceHash(instances.First().Endpoint.ToString(), instances.Where(i => i.Instance != null).Select(i => i.Instance));
-        var leastBusyInstance = instances.FirstOrDefault(i => i.Instance != null && i.Instance.ToString().GetHashCode() == hash);
-        yield return leastBusyInstance ?? instances.First();
+        var leastBusyInstance = allInstances.FirstOrDefault(i => i.Instance != null && i.Instance.ToString().GetHashCode() == hash);
+        yield return leastBusyInstance ?? allInstances.First();
     }
 }

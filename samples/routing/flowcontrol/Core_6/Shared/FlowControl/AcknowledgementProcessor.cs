@@ -11,34 +11,34 @@ class AcknowledgementProcessor : Behavior<IIncomingPhysicalMessageContext>
     }
 
     #region ProcessACKs
-    public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
+    public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
     {
         string ackString;
         string instanceString;
         string endpoint;
-        string controlAddress;
         string sessionId;
-
+        string key;
         var headers = context.MessageHeaders;
-        if (!headers.TryGetValue("NServiceBus.FlowControl.Marker", out ackString)
+        if (!headers.TryGetValue("NServiceBus.FlowControl.ACK", out ackString)
+            || !headers.TryGetValue("NServiceBus.FlowControl.Key", out key)
             || !headers.TryGetValue("NServiceBus.FlowControl.Endpoint", out endpoint)
             || !headers.TryGetValue("NServiceBus.FlowControl.Instance", out instanceString)
-            || !headers.TryGetValue("NServiceBus.FlowControl.ControlAddress", out controlAddress)
             || !headers.TryGetValue("NServiceBus.FlowControl.SessionId", out sessionId))
         {
-            await next().ConfigureAwait(false);
-            return;
+            return next();
         }
         if (sessionId != currentSessionId)
         {
-            return;
+            return Completed;
         }
         var instanceHash = instanceString.GetHashCode();
         var ack = long.Parse(ackString);
-        flowManager.Acknowledge(controlAddress, endpoint, instanceHash, ack);
+        flowManager.Acknowledge(key, endpoint, instanceHash, ack);
+        return Completed;
     }
     #endregion
 
     FlowManager flowManager;
     string currentSessionId;
+    static Task<int> Completed = Task.FromResult(0);
 }
