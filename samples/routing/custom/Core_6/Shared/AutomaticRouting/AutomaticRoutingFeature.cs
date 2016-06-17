@@ -46,8 +46,8 @@ class AutomaticRoutingFeature : Feature
             var messageTypesHandled = GetHandledMessages(b.Build<MessageHandlerRegistry>(), conventions);
             var subscriber = new RoutingInfoSubscriber(unicastRoutingTable, endpointInstances, messageTypesHandled,
                 publishers, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(20));
-            communicator.Changed += e => subscriber.OnChanged(e);
-            communicator.Removed += e => subscriber.OnRemoved(e);
+            communicator.Changed = subscriber.OnChanged;
+            communicator.Removed = subscriber.OnRemoved;
             return subscriber;
         });
 

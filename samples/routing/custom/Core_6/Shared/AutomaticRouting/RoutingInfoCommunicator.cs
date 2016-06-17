@@ -15,12 +15,10 @@ class RoutingInfoCommunicator : FeatureStartupTask
     public RoutingInfoCommunicator(SqlDataAccess dataAccess)
     {
         this.dataAccess = dataAccess;
-        Changed += entry => Task.FromResult(0);
-        Removed += entry => Task.FromResult(0);
     }
 
-    public event Func<Entry, Task> Changed;
-    public event Func<Entry, Task> Removed;
+    public Func<Entry, Task> Changed = entry => Task.FromResult(0);
+    public Func<Entry, Task> Removed = entry => Task.FromResult(0);
 
     protected override Task OnStart(IMessageSession messageSession)
     {
