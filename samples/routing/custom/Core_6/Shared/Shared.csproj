@@ -45,7 +45,7 @@
     <Compile Include="AutomaticRouting\AutomaticRoutingFeature.cs" />
     <Compile Include="AutomaticRouting\Installer.cs" />
     <Compile Include="AutomaticRouting\RoutingInfoCommunicator.cs" />
-    <Compile Include="AutomaticRouting\DataBackplaneConfigExtensions.cs" />
+    <Compile Include="AutomaticRouting\AutomaticRoutingConfigExtensions.cs" />
     <Compile Include="AutomaticRouting\EndpointInstanceInfo.cs" />
     <Compile Include="AutomaticRouting\Entry.cs" />
     <Compile Include="AutomaticRouting\RoutingInfo.cs" />

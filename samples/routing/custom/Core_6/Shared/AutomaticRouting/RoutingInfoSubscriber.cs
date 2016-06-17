@@ -78,7 +78,7 @@ class RoutingInfoSubscriber : FeatureStartupTask
 
         Logger.Info($"Instance {instanceName} removed from routing tables.");
 
-        await UpdateCaches(instanceName, new Type[0], new Type[0]);
+        await UpdateCaches(instanceName, new Type[0], new Type[0]).ConfigureAwait(false);
 
         instanceInformation.Remove(instanceName);
     }
@@ -116,7 +116,7 @@ class RoutingInfoSubscriber : FeatureStartupTask
             instanceInfo.Deactivate();
             Logger.Info($"Instance {instanceName} deactivated.");
         }
-        await UpdateCaches(instanceName, handledTypes, publishedTypes);
+        await UpdateCaches(instanceName, handledTypes, publishedTypes).ConfigureAwait(false);
     }
 
     async Task UpdateCaches(EndpointInstance instanceName, Type[] handledTypes, Type[] publishedTypes)

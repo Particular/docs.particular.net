@@ -58,10 +58,8 @@ class AutomaticRoutingFeature : Feature
 
     static List<Type> GetHandledMessages(MessageHandlerRegistry handlerRegistry, Conventions conventions)
     {
-        var messageTypesHandled = handlerRegistry.GetMessageTypes()//get all potential messages
+        return handlerRegistry.GetMessageTypes() //get all potential messages
             .Where(t => !conventions.IsInSystemConventionList(t)) //never auto-route system messages
             .ToList();
-
-        return messageTypesHandled;
     }
 }

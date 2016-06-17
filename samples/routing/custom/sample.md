@@ -1,6 +1,6 @@
 ---
 title: Custom routing
-summary: Customizing NSertviceBus message routing
+summary: Customizing NServiceBus message routing
 component: Core
 tags:
 - Routing

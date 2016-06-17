@@ -31,14 +31,14 @@ class Installer : INeedToInstallSomething
     public async Task Install(string identity)
     {
         string connectionString;
-        if (!settings.TryGet("NServiceBus.DataBackplane.ConnectionString", out connectionString))
+        if (!settings.TryGet("NServiceBus.AutomaticRouting.ConnectionString", out connectionString))
         {
             return;
         }
 
         using (var connection = new SqlConnection(connectionString))
         {
-            connection.Open();
+            await connection.OpenAsync().ConfigureAwait(false);
             using (var transaction = connection.BeginTransaction())
             {
                 using (var command = new SqlCommand(CreateTableText, connection, transaction)

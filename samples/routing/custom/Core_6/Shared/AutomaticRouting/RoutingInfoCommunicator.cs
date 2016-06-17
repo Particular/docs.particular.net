@@ -35,7 +35,7 @@ class RoutingInfoCommunicator : FeatureStartupTask
     async Task Refresh()
     {
         var addedOrUpdated = new List<Entry>();
-        var results = (await dataAccess.Query());
+        var results = await dataAccess.Query().ConfigureAwait(false);
         var removed = cache.Values.Where(x => results.All(r => r.Publisher != x.Publisher)).ToArray();
         foreach (var entry in results)
         {

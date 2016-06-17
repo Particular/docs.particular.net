@@ -15,9 +15,6 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.CustomRouting.Client";
-        LogManager.Use<DefaultFactory>()
-            .Level(LogLevel.Info);
-
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
 
