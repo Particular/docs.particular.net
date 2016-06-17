@@ -3,28 +3,27 @@ title: MSMQ Subscription Persistence
 summary: Using MSMQ as a subscription persistence
 ---
 
-WARNING: Storing subscriptions in MSMQ is not suitable for scenarios where scaling out the endpoint is required. The reason is that the subscription queue cannot be shared among multiple endpoints.
+WARNING: Storing subscriptions in MSMQ is not suitable when endpoints are scaled-out, becasue the subscription queue cannot be shared among multiple endpoints.
 
 To configure MSMQ as the subscription persistence:
 
 snippet:ConfiguringMsmqPersistence
 
-No configuration changes are required to enable this, NServiceBus automatically uses a queue called `{Name of the endpoint}.Subscriptions`. However to specify the queue used to store the subscriptions, add the following config section and subsequent config entry:
+By default NServiceBus uses a queue called `{Name of the endpoint}.Subscriptions`. In order to specify a different queue to store the subscriptions, add the following config section and subsequent config entry:
 
 snippet:MsmqSubscriptionAppConfig
 
 
-## Using MSMQ Subscription Persistence as the only persister
+## Timeouts persistenace
 
-`MsmqPersistence` only provides persistence for subscriptions. NServiceBus also requires a timeout persistence by default which used for Second Level Retries, Saga timeouts and deferred messages. If none of these features are used, it is possible to disable the timeouts which removes the need for a timeout persistence:
+`MsmqPersistence` provides persistence only for storing event subscriptions. By default NServiceBus also requires a timeout persistence, which is used by Second Level Retries, Saga timeouts and for deferring messages.
+
+If none of these features are used then timeouts can be disabled:
 
 snippet:DisablingTimeoutManagerForMsmqPersistence
 
+NOTE: If timeouts are disabled then features such as Second Level Retries or Saga timeotus can't be used.
 
-## Using MSMQ Subscription Persistence with other persisters
-
-To use features which require persistence (e.g. timeouts, Outbox, Sagas and more) together with MSMQ Subscription Persistence it is possible to configure a persistence option for each category:
+Another solutions is to use other available persistences for features different than event subscriptions:
 
 snippet:MsmqPersistenceWithOtherPersisters
-
-
