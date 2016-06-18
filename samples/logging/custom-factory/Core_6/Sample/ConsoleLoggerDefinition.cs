@@ -1,19 +1,18 @@
 ﻿#region definition
-
-using System;
 using NServiceBus.Logging;
 
 class ConsoleLoggerDefinition : LoggingFactoryDefinition
 {
-    Lazy<LogLevel> level;
+    LogLevel level = LogLevel.Info;
 
     public void Level(LogLevel level)
     {
-        this.level = new Lazy<LogLevel>(() => level);
+        this.level = level;
     }
+
     protected override ILoggerFactory GetLoggingFactory()
     {
-        return new ConsoleLoggerFactory(level.Value);
+        return new ConsoleLoggerFactory(level);
     }
 }
 #endregion
