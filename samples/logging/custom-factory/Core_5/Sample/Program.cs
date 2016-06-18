@@ -11,6 +11,11 @@ class Program
         #region ConfigureLogging
 
         var loggerDefinition = LogManager.Use<ConsoleLoggerDefinition>();
+
+        // optionally set the log level in code or read from app.config
+        loggerDefinition.Level(LogLevel.Info);
+
+        // logging configuration should occur prior to endpoint configuration
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Logging.CustomFactory");
 

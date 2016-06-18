@@ -15,8 +15,15 @@ class Program
     {
         Console.Title = "Samples.Logging.CustomFactory";
         #region ConfigureLogging
+
         var loggerDefinition = LogManager.Use<ConsoleLoggerDefinition>();
+
+        // optionally set the log level in code or read from app.config
+        loggerDefinition.Level(LogLevel.Info);
+
+        // logging configuration should occur prior to endpoint configuration
         var endpointConfiguration = new EndpointConfiguration("Samples.Logging.CustomFactory");
+
         #endregion
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();

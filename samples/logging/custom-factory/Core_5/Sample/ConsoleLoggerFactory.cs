@@ -4,9 +4,9 @@ using NServiceBus.Logging;
 
 class ConsoleLoggerFactory : ILoggerFactory
 {
-    LogLevel level = LogLevel.Info;
+    LogLevel level;
 
-    public void Level(LogLevel level)
+    public ConsoleLoggerFactory(LogLevel level)
     {
         this.level = level;
     }

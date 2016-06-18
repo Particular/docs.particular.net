@@ -12,7 +12,14 @@ related:
 
 Illustrates a custom implementation of a logging factory. For simplicity this sample writes all log message to the console.
 
-Note: The approach of creating a custom logging factory should not be required in the development of most business applications. This API is designed for routing NServiceBus log messages to a [third party logging libraries](/platform/extensions.md#logging). To gain more control over logging targets is is recommended to leverage one of these logging libraries.
+Note: The approach of creating a custom logging factory should not be required in the development of most business applications. This API is designed for routing NServiceBus log messages to a [third party logging libraries](/platform/extensions.md#logging). To gain more control over logging targets is is recommended to leverage one of these logging libraries. 
+
+It is also possible to see full implementations of logging factories by looking at the code for the other logging libraries.
+
+ * https://github.com/Particular/NServiceBus.NLog
+ * https://github.com/Particular/NServiceBus.Log4Net
+ * https://github.com/Particular/NServiceBus.CommonLogging
+ * https://github.com/SimonCropp/NServiceBus.Serilog
 
 
 ## Logging Definition
