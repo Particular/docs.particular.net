@@ -1,7 +1,7 @@
 ---
 title: Custom Logger Factory
 summary: Illustrates a custom implementation of a logging factory.
-reviewed: 2016-05-20
+reviewed: 2016-06-18
 component: Core
 tags:
  - Logging
@@ -11,6 +11,8 @@ related:
 
 
 Illustrates a custom implementation of a logging factory. For simplicity this sample writes all log message to the console.
+
+Note: The approach of creating a custom logging factory should not be required in the development of most business applications. This API is designed for routing NServiceBus log messages to a [third party logging libraries](/platform/extensions.md#logging). To gain more control over logging targets is is recommended to leverage one of these logging libraries.
 
 
 ## Logging Definition

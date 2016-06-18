@@ -4,11 +4,11 @@ using NServiceBus.Logging;
 
 class ConsoleLoggerFactory : ILoggerFactory
 {
-    Lazy<LogLevel> level = new Lazy<LogLevel>(() => LogLevel.Info);
+    LogLevel level = LogLevel.Info;
 
     public void Level(LogLevel level)
     {
-        this.level = new Lazy<LogLevel>(() => level);
+        this.level = level;
     }
 
     public ILog GetLogger(Type type)
@@ -18,7 +18,7 @@ class ConsoleLoggerFactory : ILoggerFactory
 
     public ILog GetLogger(string name)
     {
-        return new ConsoleLog(name, level.Value);
+        return new ConsoleLog(name, level);
     }
 }
 
