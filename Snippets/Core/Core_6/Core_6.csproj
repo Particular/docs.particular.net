@@ -103,6 +103,8 @@
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
+    <Compile Include="Errors\FirstLevel\FlrCodeFirstConfiguration.cs" />
+    <Compile Include="Errors\SecondLevel\SlrCodeFirstConfiguration.cs" />
     <Compile Include="Features\AdvancedSatelliteFeature.cs" />
     <Compile Include="Features\SatelliteFeature.cs" />
     <Compile Include="Injection\Injection.cs" />
@@ -302,6 +304,7 @@
     <Compile Include="Transports\Throughput\ConcurrencyConfiguration.cs" />
     <Compile Include="TransportTransactions.cs" />
     <Compile Include="UpgradeGuides\5to6\MsmqSubscriptionAuthorization.cs" />
+    <Compile Include="UpgradeGuides\5to6\Recoverability.cs" />
     <Compile Include="UpgradeGuides\5to6\Saga.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />

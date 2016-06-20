@@ -43,6 +43,11 @@ In Version 4 and above the configuration for this mechanism is implemented in th
 snippet:configureFlrViaXml
 
 
+### Configuring FLR through code
+
+snippet:FlrCodeFirstConfiguration
+
+
 ### Configuring FLR through IProvideConfiguration
 
 snippet:FlrProvideConfiguration
@@ -78,6 +83,11 @@ snippet:SecondLevelRetiesAppConfig
  * `Enabled`: Turns the feature on and off. Default: true.
  * `TimeIncrease`: A time span after which the time between retries increases. Default: 10 seconds (`00:00:10`).
  * `NumberOfRetries`: Number of times SLR kicks in. Default: 3.
+
+
+### Configuring SLR through code
+
+snippet:SlrCodeFirstConfiguration
 
 
 ### Configuration SLR through IProvideConfiguration
