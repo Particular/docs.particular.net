@@ -15,7 +15,6 @@ class Program
         Console.Title = "Samples.Store.Operations";
         var endpointConfiguration = new EndpointConfiguration("Store.Operations");
         endpointConfiguration.ApplyCommonConfiguration();
-        endpointConfiguration.SendFailedMessagesTo("error");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         try

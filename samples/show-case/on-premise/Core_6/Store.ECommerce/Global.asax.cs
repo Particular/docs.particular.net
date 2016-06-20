@@ -22,9 +22,7 @@ public class MvcApplication : HttpApplication
     {
         var endpointConfiguration = new EndpointConfiguration("Store.ECommerce");
         endpointConfiguration.PurgeOnStartup(true);
-
         endpointConfiguration.ApplyCommonConfiguration();
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         EndpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

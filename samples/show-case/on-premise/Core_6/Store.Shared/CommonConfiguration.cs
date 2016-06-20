@@ -12,6 +12,8 @@ public static class CommonConfiguration
             .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.StartsWith("Store") && t.Namespace.EndsWith("RequestResponse"))
             .DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"));
         endpointConfiguration.RijndaelEncryptionService();
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
+        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
     }
 }

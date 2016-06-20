@@ -15,7 +15,6 @@ class Program
         Console.Title = "Samples.Store.ContentManagement";
         var endpointConfiguration = new EndpointConfiguration("Store.ContentManagement");
         endpointConfiguration.ApplyCommonConfiguration();
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
