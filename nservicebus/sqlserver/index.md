@@ -1,6 +1,7 @@
 ---
 title: SQL Server Transport
 summary: High-level description of NServiceBus SQL Server Transport.
+reviewed: 2016-06-20
 tags:
 - SQL Server
 redirects:
