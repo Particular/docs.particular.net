@@ -1,6 +1,6 @@
 ---
 title: Azure Service Bus Transport Addressing Logic
-summary: Azure ServiceBus Transport Addressing Logic.
+summary: Azure Service Bus Transport Addressing Logic.
 tags:
  - Azure
  - Cloud
@@ -44,7 +44,7 @@ The validation aspect is represented by an implementation of `IValidationStrateg
 
 Out of the box there are 2 validation strategies:
 
- * `EntityNameValidationV6Rules`: allows letters, numbers, periods (`.`), hyphens (`-`), and underscores (-)
+ * `EntityNameValidationV6Rules`: allows letters, numbers, periods (`.`), hyphens (`-`), and underscores (-).
  * `EntityNameValidationRules` (default): allows letters, numbers, periods (`.`), hyphens (`-`), underscores (`-`) and slashes (`/`) for queues and topics, no slashes allowed for subscriptions and rules.
 
 The default implementation of this strategy can be replaced by using the configuration API:
