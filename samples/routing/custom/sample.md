@@ -8,11 +8,11 @@ redirects:
 ---
 
 The sample demonstrates how NServiceBus routing model can be extended to allow for configuration-free routing with MSMQ transport. It does so by making endpoint instances publish metadata information about themselves
- * what is my identify (logical endpoint name and physical address)
- * what messages can I handle
- * what event types do I publish
+ * identity: logical name and physical address of the endpoint
+ * handled messages
+ * published events
 
-The advantage of such approach is low development friction (no configuration to keep up to date for environment). The disadvantage is the added complexity and failure modes due to problems with the discovery mechanism. 
+The advantage of no configuration approach is low development friction and simpler maintanance. The disadvantage is that the configuration (or endpoint?) discovery mechanism implementation is more complex, especially with regards to failure handling mechanism. 
 
 ## Prerequisites
 
@@ -136,15 +136,15 @@ RI -up-> S2_S
 
 ![Automatic routing design](design.png)
 
-In order to define custom routing it's necessary to add logical addresses of endpoints to the routing table, specify all physical instances of the endpoints, and specify all event publishers, as show in the following snippet
+In order to define custom routing it's necessary to add logical addresses of endpoints to the routing table, specify all physical instances of the endpoints, and specify all event publishers, as shown in the following snippet
 
 snippet:AddDynamic
 
-The routing cache consists of four parts. The first one is used in the [endpoint mapping layer](http://docs.particular.net/nservicebus/messaging/routing#unicast-routing-endpoint-mapping-layer) and maps message types to sets of endpoint which are known (because they advertised this fact) to have handlers for these message types. 
+All necessary information is stored in a routing cache. The routing cache consists of four parts. The first one is used in the [endpoint mapping layer](/nservicebus/messaging/routing.md#unicast-routing-endpoint-mapping-layer) and maps message types to sets of endpoint which are known (because they advertised this fact) to have handlers for these message types. 
 
 snippet:FindEndpoint
 
-The second one is used in the [instance mapping layer](http://docs.particular.net/nservicebus/messaging/routing#unicast-routing-endpoint-instance-mapping-layer) and maps endpoint names to sets of known endpoint instances.
+The second one is used in the [instance mapping layer](/nservicebus/messaging/routing.md#unicast-routing-endpoint-instance-mapping-layer) and maps endpoint names to sets of known endpoint instances.
 
 snippet:FindInstance
 

@@ -4,9 +4,7 @@ using NServiceBus;
 using NServiceBus.Persistence;
 
 class Program
-{
-    const string ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=AutomaticRouting;Integrated Security=True";
-
+{    
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
@@ -19,14 +17,14 @@ class Program
         endpointConfiguration.ScaleOut().InstanceDiscriminator("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<NHibernatePersistence>()
-            .ConnectionString(ConnectionString);
+            .ConnectionString(AutomaticRoutingConst.ConnectionString);
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region EnableAutomaticRouting
 
         endpointConfiguration
-            .EnableAutomaticRouting(ConnectionString)
+            .EnableAutomaticRouting(AutomaticRoutingConst.ConnectionString)
             .AdvertisePublishing(typeof(OrderAccepted));
 
         #endregion

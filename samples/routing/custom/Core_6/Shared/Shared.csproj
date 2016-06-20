@@ -41,6 +41,7 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutomaticRoutingConst.cs" />
     <Compile Include="AutomaticRouting\AdvertisePublishingSettings.cs" />
     <Compile Include="AutomaticRouting\AutomaticRoutingFeature.cs" />
     <Compile Include="AutomaticRouting\Installer.cs" />
