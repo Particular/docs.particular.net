@@ -12,6 +12,8 @@ redirects:
 - samples/azure/polyorphic-events-asb
 ---
 
+## Prerequisites
+
 include: asb-connectionstring
 
 

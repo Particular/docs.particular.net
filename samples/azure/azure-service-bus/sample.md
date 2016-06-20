@@ -8,6 +8,9 @@ related:
 - nservicebus/azure-service-bus
 ---
 
+
+## Prerequisites
+
 include: asb-connectionstring
 
 
@@ -18,7 +21,7 @@ include: asb-transport
 
 This sample shows a simple two endpoint scenario.
 
-* `Endpoint1` sends a `Message1` message to `Endpoint1`
+* `Endpoint1` sends a `Message1` message to `Endpoint1`.
 * `Endpoint2` replies to `Endpoint1` with a `Message2`.
 
 
