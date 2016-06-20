@@ -38,7 +38,8 @@
         protected override Task Terminate(ISatelliteProcessingContext context)
         {
             // To raise a critical error
-            criticalError.Raise("Something bad happened - trigger critical error", new Exception("CriticalError occured!!"));
+            var exception = new Exception("CriticalError occurred");
+            criticalError.Raise("Something bad happened - trigger critical error", exception);
             return Task.FromResult(true);
         }
     }
