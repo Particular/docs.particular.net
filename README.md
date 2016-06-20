@@ -694,6 +694,25 @@ For diagrams, [LucidChart](https://www.lucidchart.com) can be used. LucidChart a
 
 Sequence diagram images are generated using the https://bramp.github.io/js-sequence-diagrams/ online service. Keep the source text used to generate sequence image in the document as an HTML comment to allow future modifications in case images need to be re-generated.
 
+### Flowchart diagrams
+
+Flowchar diagrams can be generated with [Code2Flow](http://code2flow.com/#) using a nice pseudocode syntax like this:
+
+```
+switch (Operation?) {
+  case Send:
+    Determine routing for `Send`;
+    break;
+  case Publish:
+    Determine routing for `Publish`;
+    break;
+  case Reply:
+    Determine routing for `Reply`;
+    break;
+}
+```
+
+For a more complex example, go to the [routing](http://docs.particular.net/nservicebus/messaging/routing) page.
 
 ## Some Useful Characters
 
