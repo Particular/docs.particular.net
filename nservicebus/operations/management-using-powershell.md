@@ -31,7 +31,7 @@ From Version 5.0 the module is compatible with .NET 2 so there is no longer a re
 
 ## Installation
 
-The installation file for the module can be **[downloaded here](https://github.com/particular/NServicebus.Powershell/releases/latest)**.
+The installation file for the module can be **[downloaded here](https://github.com/particular/NServiceBus.Powershell/releases/latest)**.
 
 
 ## Usage

@@ -12,9 +12,9 @@ MSMQ is the default transport used by NServiceBus.
 
 NServiceBus requires a specific MSMQ configuration to operate.
 
-The supported configuration is to only have the base MSMQ service installed with no optional features. To enable the supported configuration either use `NServiceBus Prerequisites` in the [Platform Installer](/platform/installer/) or use the `Install-NServiceBusMSMQ` cmdlet from the [NserviceBus Powershell Module](/nservicebus/operations/management-using-powershell.md).
+The supported configuration is to only have the base MSMQ service installed with no optional features. To enable the supported configuration either use `NServiceBus Prerequisites` in the [Platform Installer](/platform/installer/) or use the `Install-NServiceBusMSMQ` cmdlet from the [NServiceBus Powershell Module](/nservicebus/operations/management-using-powershell.md).
 
-Alternatively the MSMQ service can be manually installed by following these Operating System specific instructions:  
+Alternatively the MSMQ service can be manually installed by following these Operating System specific instructions:
 
 
 ### Windows 7
@@ -24,7 +24,7 @@ Then run the Windows Features Wizard by click on `Turn Windows Features On or Of
 
 The DISM command line equivalent is:
 
-`DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server` 
+`DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server`
 
 
 ### Windows 8.x and 10
@@ -33,7 +33,7 @@ From the Control Panel, choose Programs. Then run the Windows Features Wizard by
 
 The DISM command line equivalent is:
 
-`DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server ` 
+`DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server`
 
 
 ### Windows 2008 R2 and Windows 2012
@@ -42,7 +42,7 @@ From Server Manager's Add Roles and Features Wizard enable `Message Queue Server
 
 The DISM command line equivalent is:
 
-`DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server` 
+`DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server`
 
 
 ## MSMQ clustering

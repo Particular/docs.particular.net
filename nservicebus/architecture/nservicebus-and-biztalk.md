@@ -17,7 +17,7 @@ NServiceBus guides away from these dangerous anti-patterns while still providing
 
 In many cases it is necessary to integrate code with existing systems and legacy applications possibly running on different technologies and proprietary protocols. This is a classical Enterprise Application Integration (EAI) situation and is not what service buses are meant to address.
 
-In these cases, between the high-level business services NServicebus can be used, and within the relevant services, behind the service boundary, BizTalk can be used to perform the integration with existing systems and legacy applications. Here's how it looks:
+In these cases, between the high-level business services NServiceBus can be used, and within the relevant services, behind the service boundary, BizTalk can be used to perform the integration with existing systems and legacy applications. Here's how it looks:
 
 ![How NServiceBus and BizTalk fit together in an architecture](nservicebus-biztalk.png)
 

@@ -16,7 +16,7 @@ related:
 
 ## Namespace changes
 
-The primary namespace is `NServiceBus`. Advanced customization APIs have been moved to `NServiceBus.Transport.SqlServer`. A `using NServiceBus` directive should be sufficient to find all basic options. A `using NServicebus.Transport.SqlServer` is needed to access advanced configuration options.
+The primary namespace is `NServiceBus`. Advanced customization APIs have been moved to `NServiceBus.Transport.SqlServer`. A `using NServiceBus` directive should be sufficient to find all basic options. A `using NServiceBus.Transport.SqlServer` is needed to access advanced configuration options.
 
 ### Transactions
 

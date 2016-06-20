@@ -209,7 +209,7 @@ The component URL is the definitive source of documentation for a given componen
 
 ### Component NugetOrder
 
-Since components can be split over multiple different nugets, it is not possible to infer the order from the nuget version alone. So we need to have a lookup index and the NugetOrder allows us to sensibly sort component versions. For example, NServiceBus.Callbacks.1.0.0 should sort higher than the version of Callbacks that exists in NServicebus.5.0.0.
+Since components can be split over multiple different nugets, it is not possible to infer the order from the nuget version alone. So we need to have a lookup index and the NugetOrder allows us to sensibly sort component versions. For example, NServiceBus.Callbacks.1.0.0 should sort higher than the version of Callbacks that exists in NServiceBus.5.0.0.
 
 
 ## nugetAlias.txt

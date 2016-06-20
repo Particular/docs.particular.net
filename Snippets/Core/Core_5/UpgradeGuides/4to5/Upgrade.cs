@@ -237,7 +237,7 @@ namespace Core5.UpgradeGuides._4to5
         {
             #region 4to5DefineCriticalErrorAction
 
-            // Configuring how NServicebus handles critical errors
+            // Configuring how NServiceBus handles critical errors
             busConfiguration.DefineCriticalErrorAction((message, exception) =>
             {
                 var output = $"Critical exception: '{message}'";

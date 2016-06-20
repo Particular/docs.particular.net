@@ -12,7 +12,7 @@
         {
             #region DefineCriticalErrorActionForAzureHost
 
-            // Configuring how NServicebus handles critical errors
+            // Configuring how NServiceBus handles critical errors
             endpointConfiguration.DefineCriticalErrorAction(context =>
             {
                 string output = $"Critical exception: '{context.Error}'";

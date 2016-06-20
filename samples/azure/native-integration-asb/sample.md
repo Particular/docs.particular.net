@@ -4,25 +4,24 @@ summary: Consuming messages published by non NServiceBus endpoints.
 component: ASB
 reviewed: 2016-03-21
 related:
-- nservicebus/azure-service-bus
+ - nservicebus/azure-service-bus
 ---
 
 ## Prerequisites
 
 include: asb-connectionstring
 
-
 include: asb-transport
 
 
 ## Code walk-through
 
-This sample shows how to send a message from non-NServicebus code using the Azure Service Bus API and process it with an NServiceBus endpoint using the Azure Service Bus transport.
+This sample shows how to send a message from non-NServiceBus code using the Azure Service Bus API and process it with an NServiceBus endpoint using the Azure Service Bus transport.
 
 The sample contains two executable projects:
 
- * `NativeSender` - sends a native `BrokeredMessage` messages to a queue
- * `Receiver` - NServiceBus endpoint that processes messages sent by `NativeSender`
+ * `NativeSender` - sends a native `BrokeredMessage` messages to a queue.
+ * `Receiver` - NServiceBus endpoint that processes messages sent by `NativeSender`.
 
 
 ## Sending messages with native Azure Service Bus API

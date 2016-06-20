@@ -213,13 +213,13 @@
         {
             #region 4to5DefineCriticalErrorAction
 
-            // Configuring how NServicebus handles critical errors
+            // Configuring how NServiceBus handles critical errors
             var configure = Configure.With();
             configure.DefineCriticalErrorAction((message, exception) =>
             {
                 var output = $"Critical exception: '{message}'";
                 log.Error(output, exception);
-                // Perhaps end the process??
+                // Perhaps end the process?
             });
 
             #endregion
