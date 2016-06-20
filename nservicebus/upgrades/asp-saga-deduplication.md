@@ -47,7 +47,6 @@ Saga data stored in Azure will need to be patched using the `NServiceBus.AzureSt
 
  1. Download the de-duplication tool from [https://github.com/Particular/IssueDetection/releases/tag/nsb.asp.26](https://github.com/Particular/IssueDetection/releases/tag/nsb.asp.26) and put it on a computer that has internet access as well as the .NET Framework 4.5.2 installed.
  1. Add an Azure Storage connection string to the `NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe.config` file. For example:
-	
 	```xml
 	<configuration>
 		<connectionStrings>
@@ -56,7 +55,7 @@ Saga data stored in Azure will need to be patched using the `NServiceBus.AzureSt
 	</configuration>
 	```
  1. Copy endpoint dlls to the same folder as the de-duplication tool. These files will be scanned to find all implementations of `IContainSagaData` which will indicate the sagas that need to be verified in Azure Storage.
- 1. Run de-duplication utility (refer to the [Running the de-duplication utility](#running-the-de-duplication-utility) section for more details).
+ 1. Run de-duplication utility (refer to the [Running the de-duplication utility](#patch-steps-running-the-de-duplication-utility) section for more details).
  1. All class names returned by the de-duplication tool in the previous step will need to add the `[Unique]` attribute to one property. `IContainSagaData` classes without a property decorated by the `[Unique]` attribute will cause their sagas to throw exceptions post upgrade.
  1. Update NServiceBus.Azure dependency to version 6.2.4 or higher in all endpoints that use it and release the updated endpoints.
  1. Run de-duplication utility again (see below for details). This will fix problem saga data or list conflicts that were introduced to the data store while steps #5 and #6 were being performed.
@@ -101,7 +100,7 @@ data
         └───8ee2f4b2-eaf2-4d12-a87e-a5e000aaa815
 ```
 
-where the `0e36dc9a-eec0-455c-a4d3-b8b275711d15` and `8ee2f4b2-eaf2-4d12-a87e-a5e000aaa815` folders contain the JSON payload of each of the conflicting sagas. In addition to the saga properties the JSON payload contains a property, `"$Choose_this_saga"`, to indicate which of the conflicting sagas is to be used as the selected saga.
+Where the `0e36dc9a-eec0-455c-a4d3-b8b275711d15` and `8ee2f4b2-eaf2-4d12-a87e-a5e000aaa815` folders contain the JSON payload of each of the conflicting sagas. In addition to the saga properties the JSON payload contains a property, `"$Choose_this_saga"`, to indicate which of the conflicting sagas is to be used as the selected saga.
 
 ```json
 {
@@ -136,7 +135,7 @@ This saga selection will need to be performed on all sagas that are downloaded t
 
 Once all conflicting sagas have been resolved, run the following command: `NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe directory=<directory> operation=Upload`. This step will update the Azure Storage to contain the conflicted sagas that were marked `"$Choose_this_saga": true` in step #3.
 
- * All of the commandline parameters, with the exception of `operation=Upload`, should be exactly the same as they were in step #1.
+ * All of the commandline parameters, with the exception of `operation=Upload`, should be the same as they were in step #1.
 
 
 ## After the patch process
