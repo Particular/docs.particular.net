@@ -29,16 +29,15 @@ class AcknowledgementProcessor : Behavior<IIncomingPhysicalMessageContext>
         }
         if (sessionId != currentSessionId)
         {
-            return Completed;
+            return Task.FromResult(0);
         }
         var instanceHash = instanceString.GetHashCode();
         var ack = long.Parse(ackString);
         flowManager.Acknowledge(key, endpoint, instanceHash, ack);
-        return Completed;
+        return Task.FromResult(0);
     }
     #endregion
 
     FlowManager flowManager;
     string currentSessionId;
-    static Task<int> Completed = Task.FromResult(0);
 }

@@ -28,8 +28,8 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region Routing
-        endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(PlaceOrder), "Samples.FlowControl.Server");
         const string server = "Samples.FlowControl.Server";
+        endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(PlaceOrder), server);
         endpointConfiguration.UnicastRouting().Mapping.Physical.Add(
             new EndpointInstance(server, "1").AtMachine(RuntimeEnvironment.MachineName),
             new EndpointInstance(server, "2").AtMachine(RuntimeEnvironment.MachineName));

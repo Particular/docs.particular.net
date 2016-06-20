@@ -7,8 +7,6 @@ using NServiceBus.Routing;
 
 class Program
 {
-    const string ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=AutomaticRouting;Integrated Security=True";
-
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
@@ -24,6 +22,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
 
         #region FairDistributionServer
         endpointConfiguration.EnableFeature<FlowControl>();

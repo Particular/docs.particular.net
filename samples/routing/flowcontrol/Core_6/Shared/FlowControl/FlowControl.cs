@@ -20,8 +20,10 @@ public class FlowControl : Feature
         var instance = context.Settings.Get<TransportInfrastructure>().BindToLocalEndpoint(
             new EndpointInstance(context.Settings.EndpointName(), context.Settings.GetOrDefault<string>("EndpointInstanceDiscriminator")));
         
-        context.Pipeline.Register("FlowControl.MessageMarker", new MessageMarker(flowManager, controlAddress, sessionId), "Marks outgoing messages");
+        context.Pipeline.Register("FlowControl.MessageMarker", new MessageMarker(flowManager), "Marks outgoing messages");
         context.Pipeline.Register("FlowControl.AcknowledgementProcessor", new AcknowledgementProcessor(flowManager, sessionId), "Processes incoming acknowledgements.");
         context.Pipeline.Register("FlowControl.MarkerProcessor", new MarkerProcessor(instance, 1), "Processes markers and sends ACKs");
+        context.Pipeline.Register("FlowControl.SendMessageMarker", new SendMessageMarker(controlAddress, sessionId), "Marks point-to-point messages");
+        context.Pipeline.Register("FlowControl.PublishMessageMarker", new PublishMessageMarker(controlAddress, sessionId), "Marks published messages");
     }
 }

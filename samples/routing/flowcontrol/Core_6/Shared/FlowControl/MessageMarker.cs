@@ -5,23 +5,27 @@ using NServiceBus.Routing;
 
 class MessageMarker : Behavior<IDispatchContext>
 {
-    public MessageMarker(FlowManager flowManager, string controlAddress, string sessionId)
+    public MessageMarker(FlowManager flowManager)
     {
         this.flowManager = flowManager;
-        this.controlAddress = controlAddress;
-        this.sessionId = sessionId;
     }
 
     #region MarkMessages
     public override Task Invoke(IDispatchContext context, Func<Task> next)
     {
-        SkipMarking skipMarking;
-        if (context.Extensions.TryGet(out skipMarking))
-        {
-            return next();
-        }
         foreach (var operation in context.Operations)
         {
+            if (!operation.Message.Headers.ContainsKey("NServiceBus.FlowControl.ControlAddress") ||
+                !operation.Message.Headers.ContainsKey("NServiceBus.FlowControl.SessionId"))
+            {
+                continue;
+            }
+
+            if (operation.Message.Headers.ContainsKey("NServiceBus.FlowControl.Marker"))
+            {
+                continue;
+            }
+
             var addressTag = operation.AddressTag as UnicastAddressTag;
             if (addressTag == null)
             {
@@ -30,18 +34,10 @@ class MessageMarker : Behavior<IDispatchContext>
             var marker = flowManager.GetNextMarker(addressTag.Destination);
             operation.Message.Headers["NServiceBus.FlowControl.Marker"] = marker.ToString();
             operation.Message.Headers["NServiceBus.FlowControl.Key"] = addressTag.Destination;
-            operation.Message.Headers["NServiceBus.FlowControl.ControlAddress"] = controlAddress;
-            operation.Message.Headers["NServiceBus.FlowControl.SessionId"] = sessionId;
         }
         return next();
     }
     #endregion
 
-    public class SkipMarking
-    {
-    }
-
     FlowManager flowManager;
-    string controlAddress;
-    string sessionId;
 }

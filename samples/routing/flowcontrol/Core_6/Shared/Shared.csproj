@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="FlowControl\AcknowledgementProcessor.cs" />
     <Compile Include="FlowControl\FlowControl.cs" />
+    <Compile Include="FlowControl\PublishMessageMarker.cs" />
+    <Compile Include="FlowControl\SendMessageMarker.cs" />
     <Compile Include="FlowControl\ToLeastBusyDistributionStrategy.cs" />
     <Compile Include="FlowControl\FlowManager.cs" />
     <Compile Include="FlowControl\MarkerProcessor.cs" />

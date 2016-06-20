@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using NServiceBus;
 using NServiceBus.Routing;
 
 class FlowManager
@@ -22,11 +23,11 @@ class FlowManager
     }
 
     #region GetLeastBusy
-    public int? GetLeastBusyInstanceHash(string endpoint, IEnumerable<EndpointInstance> allInstances)
+    public int? GetLeastBusyInstanceHash(IEnumerable<UnicastRoutingTarget> allInstances)
     {
         FlowData best = null;
 
-        foreach (var hash in allInstances.Select(o => o.ToString().GetHashCode()))
+        foreach (var hash in allInstances.Where(t => t.Instance != null).Select(t => t.Instance.ToString().GetHashCode()))
         {
             var candidate = data.Values.FirstOrDefault(o => o.InstanceHash == hash);
             if (candidate == null) //We don't track this instance yet so assume it has shortest queue.

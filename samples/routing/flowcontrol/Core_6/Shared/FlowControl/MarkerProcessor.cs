@@ -36,11 +36,10 @@ class MarkerProcessor : ForkConnector<ITransportReceiveContext, IRoutingContext>
         }
 
         var marker = long.Parse(markerString);
-        long lastAcknowledged;
-        if (!acknowledgedMarkers.TryGetValue(controlAddress, out lastAcknowledged) || marker - lastAcknowledged > maxAckBatchSize) //ACK every N messages
+        var tracker = acknowledgedMarkers.AddOrUpdate(controlAddress, k => new MarkerTracker(sessionId, marker), (k, v) => v.OnNewMarker(sessionId, marker));
+        if (tracker.ShouldAcknowledge(maxAckBatchSize))
         {
-            var lastAcked = acknowledgedMarkers.AddOrUpdate(controlAddress, _ => marker, (_, v) => marker > v ? marker : v);
-            await SendAcknowledgement(context, fork, lastAcked, controlAddress, sessionId, key).ConfigureAwait(false);
+            await SendAcknowledgement(context, fork, tracker.Marker, controlAddress, sessionId, key).ConfigureAwait(false);
         }
     }
     #endregion
@@ -57,12 +56,45 @@ class MarkerProcessor : ForkConnector<ITransportReceiveContext, IRoutingContext>
         };
         var ackMessage = new OutgoingMessage(Guid.NewGuid().ToString(), ackHeaders, new byte[0]);
         var ackContext = this.CreateRoutingContext(ackMessage, controlAddress, context);
-        ackContext.Extensions.Set(new MessageMarker.SkipMarking());
         return fork(ackContext);
     }
 
     int maxAckBatchSize;
     string endpointName;
     string instanceString;
-    ConcurrentDictionary<string, long> acknowledgedMarkers = new ConcurrentDictionary<string, long>();
+    ConcurrentDictionary<string, MarkerTracker> acknowledgedMarkers = new ConcurrentDictionary<string, MarkerTracker>();
+
+    struct MarkerTracker
+    {
+        string sessionId;
+        long marker;
+        long previousMarker;
+
+        public MarkerTracker(string sessionId, long marker, long previousMarker = 0)
+        {
+            this.sessionId = sessionId;
+            this.marker = marker;
+            this.previousMarker = previousMarker;
+        }
+
+        public long Marker => marker;
+
+        public MarkerTracker OnNewMarker(string newSessionId, long newMarker)
+        {
+            if (newSessionId != sessionId)
+            {
+                return new MarkerTracker(newSessionId, newMarker);
+            }
+            if (newMarker <= marker)
+            {
+                return this;
+            }
+            return new MarkerTracker(sessionId, newMarker, marker);
+        }
+
+        public bool ShouldAcknowledge(long maxAckBatchSize)
+        {
+            return marker - previousMarker >= maxAckBatchSize;
+        }
+    }
 }
