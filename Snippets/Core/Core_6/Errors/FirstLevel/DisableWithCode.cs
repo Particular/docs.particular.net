@@ -1,4 +1,4 @@
-﻿namespace Core6.Errors.SecondLevel
+﻿namespace Core6.Errors.FirstLevel
 {
     using NServiceBus;
 
@@ -6,8 +6,8 @@
     {
         DisableWithCode(EndpointConfiguration endpointConfiguration)
         {
-            #region DisableSlrWithCode
-            endpointConfiguration.SecondLevelRetries().Disable();
+            #region DisableFlrWithCode
+            endpointConfiguration.DisableFirstLevelRetries();
 
             #endregion
         }
