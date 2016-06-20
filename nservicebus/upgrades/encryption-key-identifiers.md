@@ -12,14 +12,11 @@ related:
 
 This upgrade document explains what steps to take when upgrading NServiceBus endpoints to make use of the following hotfix releases:
 
-- [NServiceBus 3.3.17](https://github.com/Particular/NServiceBus/releases/tag/3.3.17)
-- [NServiceBus 4.7.8](https://github.com/Particular/NServiceBus/releases/tag/4.7.8)
-- [NServiceBus 5.0.7](https://github.com/Particular/NServiceBus/releases/tag/5.0.7)
-- [NServiceBus 5.1.5](https://github.com/Particular/NServiceBus/releases/tag/5.1.5)
-- [NServiceBus 5.2.9](https://github.com/Particular/NServiceBus/releases/tag/5.2.9)
-
-
-## Upgrade Steps
+ * [NServiceBus 3.3.17](https://github.com/Particular/NServiceBus/releases/tag/3.3.17)
+ * [NServiceBus 4.7.8](https://github.com/Particular/NServiceBus/releases/tag/4.7.8)
+ * [NServiceBus 5.0.7](https://github.com/Particular/NServiceBus/releases/tag/5.0.7)
+ * [NServiceBus 5.1.5](https://github.com/Particular/NServiceBus/releases/tag/5.1.5)
+ * [NServiceBus 5.2.9](https://github.com/Particular/NServiceBus/releases/tag/5.2.9)
 
 To deploy this fix throughout a system, first upgrade endpoints with the latest versions of NServiceBus, then update endpoint configurations. Optionally, also want to generate new encryption keys.
 
@@ -44,11 +41,10 @@ It is not required to upgrade all endpoints simultaneously. There has not been a
 
 Steps:
 
- * Stop the endpoint
- * Deploy the new version
+ * Stop the endpoint.
+ * Deploy the new version.
  * Edit the endpoint configuration, adding key identifiers to at least the current encryption key, if not the backup keys as well.
- * Start the endpoint
-
+ * Start the endpoint.
 
 NOTE: If only the new version is deployed without updating the configuration, then the endpoint will start but will not be able to encrypt messages or decrypt messages that have a key ID.
 
@@ -79,6 +75,7 @@ When recompiling an obsolete warning will occur. Change the current method to th
 NOTE: Keys need to be available in the expired keys list to be backwards compatible.
 
 **From**
+
 ```
 busConfiguration.RijndaelEncryptionService("do-not-use-this-encryption-key!!")
 ```
