@@ -1,6 +1,5 @@
 ---
 title: Azure Service Bus Transport
-summary: Using Azure Service Bus as transport
 tags:
 - Azure
 - Cloud

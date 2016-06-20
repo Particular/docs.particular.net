@@ -1,7 +1,6 @@
 ---
 title: Handler Ordering
 summary: Controlling the order in which Handlers are executed
-tags: []
 redirects:
 - nservicebus/how-do-i-specify-the-order-in-which-handlers-are-invoked
 - nservicebus/handler-ordering

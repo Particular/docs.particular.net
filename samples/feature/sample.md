@@ -1,6 +1,5 @@
 ---
-title: Custom Feature
-summary: Illustrates how to build a custom Feature.
+title: Building a Custom Feature
 reviewed: 2016-05-31
 component: Core
 tags:

@@ -1,7 +1,5 @@
 ---
 title: Transports
-summary: All information on the available Transports
-tags: []
 redirects:
  - nservicebus/nservicebus-and-websphere-sonic
 related:

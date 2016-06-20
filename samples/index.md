@@ -1,6 +1,5 @@
 ---
 title: Samples
-summary: All samples for the Particular Platform
 reviewed: 2016-03-21
 ---
 

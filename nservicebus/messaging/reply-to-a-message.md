@@ -1,7 +1,6 @@
 ---
 title: Replying to a Message
 summary: Answer a message using the Reply method on IMessageHandlerContext/IBus.
-tags: []
 redirects:
 - nservicebus/how-do-i-reply-to-a-message
 ---

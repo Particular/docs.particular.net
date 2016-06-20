@@ -1,6 +1,5 @@
 ---
 title: Publishing from Web Applications
-summary: Guidance on publishing events from a web application
 tags:
 - azure
 - cloud

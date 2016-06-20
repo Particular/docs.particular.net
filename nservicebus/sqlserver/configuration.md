@@ -1,11 +1,10 @@
 ---
 title: SQL Server Transport configuration
-summary: SQL Server Transport configuration.
 reviewed: 2016-03-24
 tags:
-- SQL Server
+ - SQL Server
 redirects:
-- nservicebus/sqlserver/concurrency
+ - nservicebus/sqlserver/concurrency
 ---
 
 

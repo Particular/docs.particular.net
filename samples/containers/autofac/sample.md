@@ -1,6 +1,5 @@
 ---
 title: Autofac Container Usage
-summary: Using the Autofac container in an endpoint.
 component: Autofac
 reviewed: 2016-03-21
 tags:

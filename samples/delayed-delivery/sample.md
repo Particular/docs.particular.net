@@ -1,6 +1,5 @@
 ---
 title: Delayed Delivery Sample
-summary: Delaying messages.
 reviewed: 2016-03-21
 component: Core
 tags:

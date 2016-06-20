@@ -1,6 +1,6 @@
 ---
 title: ServicePulse events
-summary: 'Introduction to ServicePulse monitoring events'
+summary: Introduction to ServicePulse monitoring events
 tags:
 - ServicePulse
 - Monitoring Events

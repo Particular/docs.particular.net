@@ -1,6 +1,6 @@
 ---
 title: Heartbeat Plugin
-summary: 'Use the Heartbeat plugin to monitor the health of the endpoints.'
+summary: Use the Heartbeat plugin to monitor the health of the endpoints
 tags:
 - ServiceControl
 - Heartbeat

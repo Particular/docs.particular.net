@@ -1,7 +1,6 @@
 ---
 title: Handling a Message
 summary: Write a class to handle messages in NServiceBus.
-tags: []
 redirects:
 - nservicebus/how-do-i-handle-a-message
 ---

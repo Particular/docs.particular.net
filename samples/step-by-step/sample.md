@@ -1,6 +1,5 @@
 ---
 title: Step by Step Guide
-summary: Get started with NServiceBus
 reviewed: 2016-03-21
 component: Core
 redirects:

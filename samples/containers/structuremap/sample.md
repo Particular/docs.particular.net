@@ -1,6 +1,5 @@
 ---
 title: StructureMap Container Usage
-summary: Using the StructureMap container in an endpoint.
 component: StructureMap
 reviewed: 2016-03-21
 tags:

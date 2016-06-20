@@ -1,6 +1,5 @@
 ---
 title: Particular Service Platform Overview
-summary: A short overview of Particular Platform.
 reviewed: 2016-03-17
 redirects:
  - nservicebus/preparing-your-machine-to-run-nservicebus

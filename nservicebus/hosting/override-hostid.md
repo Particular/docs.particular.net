@@ -1,7 +1,6 @@
 ---
 title: Override host identifier
 summary: How to override the endpoint host identifier
-tags: []
 redirects:
  - nservicebus/override-hostid
 ---

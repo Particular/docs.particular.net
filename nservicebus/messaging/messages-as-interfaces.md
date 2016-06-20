@@ -1,7 +1,6 @@
 ---
 title: Messages as Interfaces
-summary: ' NServiceBus allows supports the use interfaces as well as standard XSD and class serialization.'
-tags: []
+summary: 'NServiceBus allows supports the use interfaces as well as standard XSD and class serialization.'
 redirects:
 - nservicebus/messages-as-interfaces
 ---

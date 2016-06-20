@@ -1,6 +1,5 @@
 ---
 title: Azure Service Bus Transport Addressing Logic
-summary: Azure Service Bus Transport Addressing Logic.
 tags:
  - Azure
  - Cloud

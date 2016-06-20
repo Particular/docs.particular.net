@@ -1,6 +1,5 @@
 ---
 title: RabbitMQ Transport
-summary: RabbitMQ Transport
 related:
 - samples/rabbitmq/simple
 - samples/rabbitmq/native-integration

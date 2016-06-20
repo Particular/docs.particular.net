@@ -1,7 +1,6 @@
 ---
 title: 'DTCPIng WARNING: The CID Values for Both Test Machines Are the Same'
 summary: Check machine name is shorter than 15 characters.
-tags: []
 redirects:
  - nservicebus/dtcping-warning-the-cid-values-for-both-test-machines-are-the-same
 ---

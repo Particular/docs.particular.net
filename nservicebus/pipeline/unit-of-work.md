@@ -1,7 +1,6 @@
 ---
 title: Unit of Work
 summary: Implementing a unit of work in NServiceBus.
-tags: []
 redirects:
 - nservicebus/unit-of-work-in-nservicebus
 ---

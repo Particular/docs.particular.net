@@ -1,6 +1,5 @@
 ---
 title: Installing ServiceControl
-summary: Installation Options for ServiceControl
 tags:
 - ServiceControl
 - Installation

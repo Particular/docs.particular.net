@@ -1,6 +1,5 @@
 ---
 title: Deploying ServiceControl in a cluster
-summary: How to deploy ServiceControl in a Windows Cluster
 tags:
 - ServiceControl
 - Cluster

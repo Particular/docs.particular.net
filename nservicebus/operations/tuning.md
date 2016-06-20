@@ -1,7 +1,6 @@
 ---
 title: Tuning endpoint message processing
 summary: 'How to optimize message processing by limiting concurrency and/or throughput.'
-tags: []
 redirects:
 - nservicebus/how-to-reduce-throughput-of-an-endpoint
 - nservicebus/operations/reducing-throughput

@@ -1,6 +1,5 @@
 ---
 title: Azure Service Bus Transport Topologies
-summary: Azure Service Bus Topologies
 reviewed: 2016-04-19
 tags:
 - Azure

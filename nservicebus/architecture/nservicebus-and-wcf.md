@@ -1,7 +1,6 @@
 ---
 title: NServiceBus and WCF
 summary: "Publish/subscribe, fault-tolerance, long-running processes, interoperability"
-tags: []
 redirects:
  - nservicebus/nservicebus-and-wcf
 ---

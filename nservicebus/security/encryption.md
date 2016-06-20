@@ -1,6 +1,5 @@
 ---
 title: Encryption
-summary: Message Encryption
 tags:
 - Encryption
 redirects:

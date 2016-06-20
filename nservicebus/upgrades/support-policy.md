@@ -1,7 +1,6 @@
 ---
 title: Support Policy
 summary: Which versions are currently supported
-tags: []
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/release-policy

@@ -1,6 +1,5 @@
 ---
 title: Installing ServiceControl Silently
-summary: Silent Installation Options.
 reviewed: 2016-03-24
 tags:
 - ServiceControl

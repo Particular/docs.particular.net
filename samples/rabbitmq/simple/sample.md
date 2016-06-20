@@ -1,6 +1,5 @@
 ---
 title: Simple RabbitMQ usage
-summary: Shows basic RabbitMQ usage
 reviewed: 2016-03-21
 component: Rabbit
 tags:

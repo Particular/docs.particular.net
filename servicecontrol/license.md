@@ -1,6 +1,5 @@
 ---
 title: Install the license in ServiceControl
-summary: Install the Particular Platform license in ServiceControl.
 tags:
  - servicecontrol
  - license

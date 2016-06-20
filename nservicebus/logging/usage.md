@@ -1,6 +1,5 @@
 ---
 title: Writing a log entry
-summary: How to write to logging.
 reviewed: 2016-03-17
 tags:
 - Logging

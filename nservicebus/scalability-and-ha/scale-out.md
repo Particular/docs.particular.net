@@ -1,6 +1,5 @@
 ---
 title: Scaling out NServiceBus endpoints
-summary: How to scale out NServiceBus endpoints.
 reviewed: 2016-03-17
 tags:
 - Scale Out

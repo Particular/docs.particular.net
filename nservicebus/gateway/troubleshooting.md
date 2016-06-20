@@ -1,7 +1,5 @@
 ---
 title: Gateway Troubleshooting
-summary: Gateway Troubleshooting
-tags: []
 redirects:
  - nservicebus/gateway-trouble-shooting
 ---

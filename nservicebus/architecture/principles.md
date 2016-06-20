@@ -1,7 +1,6 @@
 ---
 title: Architectural Principles
 summary: NServiceBus helps write code that is robust in production environments, preventing data loss under failure conditions.
-tags: []
 redirects:
  - nservicebus/architectural-principles
 ---

@@ -1,6 +1,5 @@
 ---
 title: Azure Service Bus Transport
-summary: Using Azure Service Bus Transport.
 reviewed: 2016-03-21
 component: ASB
 tags:

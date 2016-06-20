@@ -1,7 +1,6 @@
 ---
 title: ServicePointManager and HTTP connections
 summary: When connecting to external resources via HTTP from an endpoint it is important to understand the role of the ServicePointManager class.
-tags: []
 redirects:
  - nservicebus/gateway-service-point-manager
 ---

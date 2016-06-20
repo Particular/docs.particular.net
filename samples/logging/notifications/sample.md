@@ -1,6 +1,5 @@
 ---
 title: Notifications
-summary: Using the notifications API.
 reviewed: 2016-03-24
 component: Core
 related:

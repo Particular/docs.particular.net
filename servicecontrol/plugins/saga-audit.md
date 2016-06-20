@@ -1,6 +1,6 @@
 ---
 title: SagaAudit Plugin
-summary: 'Helps visualize and debug Sagas with ServiceInsight.'
+summary: Helps visualize and debug Sagas with ServiceInsight
 tags:
 - ServiceControl
 ---

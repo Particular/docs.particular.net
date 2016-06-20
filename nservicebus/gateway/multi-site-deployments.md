@@ -1,7 +1,6 @@
 ---
 title: Gateway And Multi-Site Deployments
 summary: Explanation of how NServiceBus handles multi-site communication.
-tags: []
 redirects:
  - nservicebus/the-gateway-and-multi-site-distribution
 related:

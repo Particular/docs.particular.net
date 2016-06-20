@@ -1,6 +1,5 @@
 ---
 title: NHibernate Persistence Saga concurrency settings
-summary: How configure concurrency in NHibernate saga persistence
 tags:
  - NHibernate
  - Persistence

@@ -1,6 +1,5 @@
 ---
 title: Sending messages
-summary: Describes how to send messages
 redirects:
  - nservicebus/how-do-i-send-a-message
 related:

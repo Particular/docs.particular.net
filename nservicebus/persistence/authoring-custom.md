@@ -1,7 +1,6 @@
 ---
 title: Authoring a custom persistence
 summary: How to author a custom NServiceBus persistence in NServiceBus Version 5
-tags: []
 redirects:
  - nservicebus/authoring-custom-nservicebus-persistence
 ---

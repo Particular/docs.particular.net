@@ -1,8 +1,7 @@
 ---
 title: Optimizing ServiceControl for use in different environments
-summary: Optimizing ServiceControl for use in different environments
 tags:
-- ServiceControl
+ - ServiceControl
 reviewed: 2016-03-02
 ---
 

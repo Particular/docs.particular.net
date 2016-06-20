@@ -1,14 +1,13 @@
 ---
 title: DataBus Feature
-summary: DataBus feature
 tags:
-- DataBus
-- Attachments
+ - DataBus
+ - Attachments
 redirects:
-- nservicebus/databus
+ - nservicebus/databus
 related:
-- samples/databus
-- samples/azure/blob-storage-databus
+ - samples/databus
+ - samples/azure/blob-storage-databus
 ---
 
 ## The DataBus feature

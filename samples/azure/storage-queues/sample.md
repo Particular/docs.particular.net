@@ -1,6 +1,5 @@
 ---
 title: Azure Storage Queues Transport
-summary: Use Azure Storage Queues Transport
 reviewed: 2016-03-21
 component: ASQ
 related:

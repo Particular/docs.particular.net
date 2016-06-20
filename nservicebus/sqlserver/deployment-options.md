@@ -1,6 +1,5 @@
 ---
 title: SQL Server Transport deployment options
-summary: Describes available SQL Server transport deployment options
 reviewed: 2016-03-24
 tags:
 - SQL Server

@@ -1,7 +1,6 @@
 ---
 title: Overview
 summary: NServiceBus compared to WCF and BizTalk.
-tags: []
 redirects:
 - nservicebus/overview
 ---

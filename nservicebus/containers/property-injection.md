@@ -1,6 +1,5 @@
 ---
 title: Property injection
-summary: Configuring property injection.
 reviewed: 2016-03-24
 tags:
  - Dependency Injection

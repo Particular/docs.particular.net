@@ -1,6 +1,5 @@
 ---
 title: Spring Container Usage
-summary: Using the Spring container in an endpoint.
 component: Spring
 reviewed: 2016-03-21
 tags:

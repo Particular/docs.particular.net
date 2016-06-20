@@ -1,6 +1,5 @@
 ---
 title: Azure Service Bus Transport Native Integration
-summary: Integrating with native Azure Service Bus.
 tags:
 - Azure
 - Cloud

@@ -1,11 +1,10 @@
 ---
 title: Managing ServiceControl Instances via PowerShell
-summary: Managing ServiceControl Instances via PowerShell.
 reviewed: 2016-03-24
 tags:
-- ServiceControl
-- Installation
-- PowerShell
+ - ServiceControl
+ - Installation
+ - PowerShell
 ---
 
 
@@ -67,6 +66,7 @@ Get-Help Get-ServiceControlInstances
 ```bat
 New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -Transport MSMQ -ErrorQueue error1 -AuditQueue audit1
 ```
+
 There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or hostname.
 
 

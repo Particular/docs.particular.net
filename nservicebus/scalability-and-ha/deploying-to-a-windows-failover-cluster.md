@@ -1,6 +1,6 @@
 ---
 title: Deploying in a Windows Failover Cluster
-summary: This article describes the steps necessary to install NServiceBus Distributor endpoints in a windows failover cluster.
+summary: Steps necessary to install NServiceBus Distributor endpoints in a windows failover cluster.
 tags:
 - Failover
 - Msmq Cluster

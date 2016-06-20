@@ -1,6 +1,5 @@
 ---
 title: Encryption
-summary: Encrypting message data.
 reviewed: 2016-03-21
 component: Core
 tags:
