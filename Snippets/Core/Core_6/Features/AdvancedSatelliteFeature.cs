@@ -15,13 +15,17 @@
         }
 
         #region AdvancedSatelliteFeatureSetup
+
         protected override void Setup(FeatureConfigurationContext context)
         {
-            var satelliteMessagePipeline = context.AddSatellitePipeline("CustomSatellite", TransportTransactionMode.TransactionScope, PushRuntimeSettings.Default, "targetQueue");
+            var satellitePipeline = context.AddSatellitePipeline("CustomSatellite", TransportTransactionMode.TransactionScope, PushRuntimeSettings.Default, "targetQueue");
             // register the critical error
-            satelliteMessagePipeline.Register("Satellite Identifier", b => new MyAdvancedSatelliteBehavior(b.Build<CriticalError>()),
-                    "Description of what the advanced satellite does");
+            satellitePipeline.Register(
+                stepId: "Satellite Identifier",
+                factoryMethod: builder => new MyAdvancedSatelliteBehavior(builder.Build<CriticalError>()),
+                description: "Description of what satellite does");
         }
+
         #endregion
     }
 
