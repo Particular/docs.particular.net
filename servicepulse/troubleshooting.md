@@ -20,7 +20,7 @@ tags:
 * Restart the endpoint after copying the Endpoint Plugin files into the endpoint's Bin directory
 * Make sure that the endpoint references NServiceBus Version 4.0.0 or later
 * Make sure auditing is turned on for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl
-* Assembly scanning must include the relevant ServiceControl assemblies in the whitelist (includes) or must not exclude these in a blacklist (excludes).
+* [Assembly scanning](/nservicebus/hosting/assembly-scanning.md) must include the relevant ServiceControl assemblies in the whitelist (includes) or must not exclude these in a blacklist (excludes)
 
 
 ### ASP.NET applications heartbeat failure
