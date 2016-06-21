@@ -33,7 +33,7 @@ class AcknowledgementProcessor : Behavior<IIncomingPhysicalMessageContext>
         }
         var instanceHash = instanceString.GetHashCode();
         var ack = long.Parse(ackString);
-        flowManager.Acknowledge(key, endpoint, instanceHash, ack);
+        flowManager.Acknowledge(key, instanceHash, ack);
         return Task.FromResult(0);
     }
     #endregion

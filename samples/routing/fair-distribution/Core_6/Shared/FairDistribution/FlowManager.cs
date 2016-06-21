@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using NServiceBus;
-using NServiceBus.Routing;
 
 class FlowManager
 {
@@ -14,7 +13,7 @@ class FlowManager
         return f.GenerateMarker();
     }
 
-    public void Acknowledge(string key, string endpoint, int endpointInstanceHash, long markerValue)
+    public void Acknowledge(string key, int endpointInstanceHash, long markerValue)
     {
         FlowData f;
         if (data.TryGetValue(key, out f))

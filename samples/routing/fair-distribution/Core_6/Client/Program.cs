@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
-using NServiceBus.Logging;
 using NServiceBus.Routing;
 using NServiceBus.Support;
 
