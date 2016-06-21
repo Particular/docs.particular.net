@@ -88,4 +88,10 @@ public interface MyEvent : IEvent { }
 
  ## Designing Messages
 
- Messages represent data contract between the endpoints. When creating messages, one should follow the general guidelines for designing contracts, such as the messages should be as small as possible, they should be simple POCO objects, they should follow a Single Responsibility Principle, etc. Classes used for other purposes (e.g. domain objects, data access objects) should not be used as messages.
+ Messages represent data contract between the endpoints. When creating messages one should follow the following guidelines:
+
+ - the messages should be simple POCO objects,
+ - the messages should be as small as possible,
+ - the messages should satisfy a [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle).
+
+ Note that in order to satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle) classes used for other purposes (e.g. domain objects, data access objects) should not be used as messages.
