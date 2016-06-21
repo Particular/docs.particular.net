@@ -37,9 +37,9 @@ snippet:sqlserver-custom-connection-factory
 
 ### Accessing transport connection
 
-Accessing transport connection could be done in Version 2 by injecting `SqlServerStorageContext` into a handler. this way the handler could access the data residing in the same database as the queue tables within the same transaction as the message is received.
+Accessing transport connection can be done in Version 2 by injecting `SqlServerStorageContext` into a handler. This way the handler can access the data residing in the same database as the queue tables within the message receive transaction managed by the transport.
 
-In Version 3 this API has been removed. If you depended on it for your business logic, you need to make sure your endpoint uses ambient transaction mode
+In Version 3 this API has been removed. The same goal can be achieved in Version 3 by using ambient transaction mode.
 
 snippet:2to3-enable-ambient-transaction
 
