@@ -69,12 +69,12 @@ snippet:MarkMessages
 
 ### Acknowledging message delivery
 
-Every N messages the downstream endpoint instance sends back ACK message containing the biggest sequence number it processed so far. ACKs are sent separately to each upstream endpoint instance.
+Every N messages the downstream endpoint instance sends back an ACK message containing the biggest sequence number it processed so far. ACKs are sent separately to each upstream endpoint instance.
 
 snippet:ProcessMarkers 
 
 
-### Processing acknowledgements 
+### Processing acknowledgments
 
 When the ACK message is received, the upstream endpoint can calculate the number of messages that are currently in-flight between itself and the downstream endpoint.
 
