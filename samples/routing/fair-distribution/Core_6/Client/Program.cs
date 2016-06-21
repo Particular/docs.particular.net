@@ -17,18 +17,18 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.FlowControl.Client";
+        Console.Title = "Samples.FairDistribution.Client";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.FlowControl.Client");
+        var endpointConfiguration = new EndpointConfiguration("Samples.FairDistribution.Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region Routing
-        const string server = "Samples.FlowControl.Server";
+        const string server = "Samples.FairDistribution.Server";
         endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(PlaceOrder), server);
         endpointConfiguration.UnicastRouting().Mapping.Physical.Add(
             new EndpointInstance(server, "1").AtMachine(RuntimeEnvironment.MachineName),
@@ -36,9 +36,9 @@ class Program
         #endregion
 
         #region FairDistributionClient
-        endpointConfiguration.EnableFeature<FlowControl>();
+        endpointConfiguration.EnableFeature<FairDistribution>();
         endpointConfiguration.UnicastRouting().Mapping.SetMessageDistributionStrategy(
-            new ToLeastBusyDistributionStrategy(endpointConfiguration.GetSettings()), type => true);
+            new FairDistributionStrategy(endpointConfiguration.GetSettings()), type => true);
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

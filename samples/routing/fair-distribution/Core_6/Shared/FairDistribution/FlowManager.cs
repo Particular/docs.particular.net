@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -40,16 +41,21 @@ class FlowManager
     }
     #endregion
 
-    static FlowData Compare(FlowData best, FlowData candidate)
+    FlowData Compare(FlowData best, FlowData candidate)
     {
         if (best == null || candidate.MessagesInFlight < best.MessagesInFlight)
         {
-            best = candidate;
+            return candidate;
+        }
+        if (candidate.MessagesInFlight == best.MessagesInFlight)
+        {
+            return random.Next(2) == 0 ? best : candidate;
         }
         return best;
     }
 
     ConcurrentDictionary<string, FlowData> data = new ConcurrentDictionary<string, FlowData>();
+    Random random = new Random();
 
     class FlowData
     {

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
-using NServiceBus.Persistence;
-using NServiceBus.Routing;
 
 class Program
 {
@@ -14,8 +11,8 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.FlowControl.Server.1";
-        var endpointConfiguration = new EndpointConfiguration("Samples.FlowControl.Server");
+        Console.Title = "Samples.FairDistribution.Server.1";
+        var endpointConfiguration = new EndpointConfiguration("Samples.FairDistribution.Server");
         endpointConfiguration.ScaleOut().InstanceDiscriminator("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
@@ -25,7 +22,7 @@ class Program
         endpointConfiguration.AuditProcessedMessagesTo("audit");
 
         #region FairDistributionServer
-        endpointConfiguration.EnableFeature<FlowControl>();
+        endpointConfiguration.EnableFeature<FairDistribution>();
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

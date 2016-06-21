@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
-using NServiceBus.Persistence;
 
 class Program
 {
@@ -13,8 +11,8 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.FlowControl.Server.2";
-        var endpointConfiguration = new EndpointConfiguration("Samples.FlowControl.Server");
+        Console.Title = "Samples.FairDistribution.Server.2";
+        var endpointConfiguration = new EndpointConfiguration("Samples.FairDistribution.Server");
         endpointConfiguration.ScaleOut().InstanceDiscriminator("2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
@@ -23,7 +21,7 @@ class Program
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         endpointConfiguration.AuditProcessedMessagesTo("audit");
 
-        endpointConfiguration.EnableFeature<FlowControl>();
+        endpointConfiguration.EnableFeature<FairDistribution>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

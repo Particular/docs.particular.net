@@ -4,9 +4,9 @@ using NServiceBus.Features;
 using NServiceBus.Routing;
 using NServiceBus.Transports;
 
-public class FlowControl : Feature
+public class FairDistribution : Feature
 {
-    public FlowControl()
+    public FairDistribution()
     {
         Defaults(s => s.Set<FlowManager>(new FlowManager()));
     }
