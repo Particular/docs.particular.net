@@ -19,25 +19,31 @@ class MarkerProcessor : ForkConnector<ITransportReceiveContext, IRoutingContext>
     #region ProcessMarkers
     public override async Task Invoke(ITransportReceiveContext context, Func<Task> next, Func<IRoutingContext, Task> fork)
     {
-        await next().ConfigureAwait(false);
+        await next()
+            .ConfigureAwait(false);
 
         string sessionId;
         string markerString;
         string controlAddress;
         string key;
-        if (!context.Message.Headers.TryGetValue("NServiceBus.FlowControl.Marker", out markerString) ||
-            !context.Message.Headers.TryGetValue("NServiceBus.FlowControl.Key", out key) ||
-            !context.Message.Headers.TryGetValue("NServiceBus.FlowControl.ControlAddress", out controlAddress) ||
-            !context.Message.Headers.TryGetValue("NServiceBus.FlowControl.SessionId", out sessionId))
+        var headers = context.Message.Headers;
+        if (!headers.TryGetValue("NServiceBus.FlowControl.Marker", out markerString) ||
+            !headers.TryGetValue("NServiceBus.FlowControl.Key", out key) ||
+            !headers.TryGetValue("NServiceBus.FlowControl.ControlAddress", out controlAddress) ||
+            !headers.TryGetValue("NServiceBus.FlowControl.SessionId", out sessionId))
         {
             return;
         }
 
         var marker = long.Parse(markerString);
-        var tracker = acknowledgedMarkers.AddOrUpdate(controlAddress, k => new MarkerTracker(sessionId, marker), (k, v) => v.OnNewMarker(sessionId, marker));
+        var tracker = acknowledgedMarkers.AddOrUpdate(
+            key: controlAddress,
+            addValueFactory: k => new MarkerTracker(sessionId, marker),
+            updateValueFactory: (k, v) => v.OnNewMarker(sessionId, marker));
         if (tracker.ShouldAcknowledge(maxAckBatchSize))
         {
-            await SendAcknowledgement(context, fork, tracker.Marker, controlAddress, sessionId, key).ConfigureAwait(false);
+            await SendAcknowledgement(context, fork, tracker.Marker, controlAddress, sessionId, key)
+                .ConfigureAwait(false);
         }
     }
     #endregion

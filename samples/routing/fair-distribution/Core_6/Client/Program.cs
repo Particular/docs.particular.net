@@ -26,19 +26,9 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        #region Routing
-        const string server = "Samples.FairDistribution.Server";
-        endpointConfiguration.UnicastRouting().RouteToEndpoint(typeof(PlaceOrder), server);
-        endpointConfiguration.UnicastRouting().Mapping.Physical.Add(
-            new EndpointInstance(server, "1").AtMachine(RuntimeEnvironment.MachineName),
-            new EndpointInstance(server, "2").AtMachine(RuntimeEnvironment.MachineName));
-        #endregion
+        AddRouting(endpointConfiguration);
 
-        #region FairDistributionClient
-        endpointConfiguration.EnableFeature<FairDistribution>();
-        endpointConfiguration.UnicastRouting().Mapping.SetMessageDistributionStrategy(
-            new FairDistributionStrategy(endpointConfiguration.GetSettings()), type => true);
-        #endregion
+        AddFairDistributionClient(endpointConfiguration);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
@@ -72,5 +62,31 @@ class Program
             await endpointInstance.Stop()
                 .ConfigureAwait(false);
         }
+    }
+
+    static void AddFairDistributionClient(EndpointConfiguration endpointConfiguration)
+    {
+        #region FairDistributionClient
+
+        endpointConfiguration.EnableFeature<FairDistribution>();
+        var unicastRouting = endpointConfiguration.UnicastRouting();
+        unicastRouting.Mapping.SetMessageDistributionStrategy(
+            new FairDistributionStrategy(endpointConfiguration.GetSettings()), type => true);
+
+        #endregion
+    }
+
+    static void AddRouting(EndpointConfiguration endpointConfiguration)
+    {
+        #region Routing
+
+        const string server = "Samples.FairDistribution.Server";
+        var unicastRouting = endpointConfiguration.UnicastRouting();
+        unicastRouting.RouteToEndpoint(typeof(PlaceOrder), server);
+        unicastRouting.Mapping.Physical.Add(
+            new EndpointInstance(server, "1").AtMachine(RuntimeEnvironment.MachineName),
+            new EndpointInstance(server, "2").AtMachine(RuntimeEnvironment.MachineName));
+
+        #endregion
     }
 }

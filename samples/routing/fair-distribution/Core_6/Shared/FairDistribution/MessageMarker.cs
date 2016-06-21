@@ -15,13 +15,14 @@ class MessageMarker : Behavior<IDispatchContext>
     {
         foreach (var operation in context.Operations)
         {
-            if (!operation.Message.Headers.ContainsKey("NServiceBus.FlowControl.ControlAddress") ||
-                !operation.Message.Headers.ContainsKey("NServiceBus.FlowControl.SessionId"))
+            var headers = operation.Message.Headers;
+            if (!headers.ContainsKey("NServiceBus.FlowControl.ControlAddress") ||
+                !headers.ContainsKey("NServiceBus.FlowControl.SessionId"))
             {
                 continue;
             }
 
-            if (operation.Message.Headers.ContainsKey("NServiceBus.FlowControl.Marker"))
+            if (headers.ContainsKey("NServiceBus.FlowControl.Marker"))
             {
                 continue;
             }
@@ -32,8 +33,8 @@ class MessageMarker : Behavior<IDispatchContext>
                 continue;
             }
             var marker = flowManager.GetNextMarker(addressTag.Destination);
-            operation.Message.Headers["NServiceBus.FlowControl.Marker"] = marker.ToString();
-            operation.Message.Headers["NServiceBus.FlowControl.Key"] = addressTag.Destination;
+            headers["NServiceBus.FlowControl.Marker"] = marker.ToString();
+            headers["NServiceBus.FlowControl.Key"] = addressTag.Destination;
         }
         return next();
     }
