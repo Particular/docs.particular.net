@@ -10,7 +10,6 @@ using NServiceBus.Transports;
 
 class MarkerProcessor : ForkConnector<ITransportReceiveContext, IRoutingContext>
 {
-
     public MarkerProcessor(EndpointInstance endpointInstance, int maxAckBatchSize)
     {
         this.maxAckBatchSize = maxAckBatchSize;
