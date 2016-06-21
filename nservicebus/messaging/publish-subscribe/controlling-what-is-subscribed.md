@@ -47,7 +47,7 @@ Since Version 6 the ability to auto subscribe to plain messages was removed. Alt
 
 ### When a subscriber stops or uninstalls
 
-A Subscriber will not unsubscribe when it stops, it will remain registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started it will consume the messages from its queue. The subscriber will never loose an event.
+A Subscriber will not unsubscribe when it stops, it will remain registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started it will consume the messages from its queue. The subscriber will never lose an event.
 
 
 ## Disabling auto-subscription
