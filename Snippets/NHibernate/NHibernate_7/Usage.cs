@@ -23,6 +23,16 @@ class Usage
         #endregion
     }
 
+    void ConnectionString(EndpointConfiguration endpointConfiguration)
+    {
+        #region ConnectionStringAPI
+
+        endpointConfiguration.UsePersistence<NHibernatePersistence>()
+            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus");
+
+        #endregion
+    }
+
     void NHibernateSubscriptionCaching(EndpointConfiguration endpointConfiguration)
     {
         #region NHibernateSubscriptionCaching

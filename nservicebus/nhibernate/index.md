@@ -37,6 +37,17 @@ The next stage is to actually tell NServiceBus how to use NHibernate for persist
 snippet:ConfiguringNHibernate
 
 
+### Connection strings
+
+NHibernate persistence requires specifying a connection string.
+
+The connection string might be passed using code configuration:
+
+snippet:ConnectionStringAPI
+
+It's also possible to pass connection string in the `app.config` file, as described in the [Using configuration convention](/nservicebus/nhibernate/#customizing-the-configuration-using-configuration-convention) section.
+
+
 ## Customizing the configuration
 
 To customize the NHibernate `Configuration` object used to bootstrap the persistence mechanism, either provide a ready-made object via code or use convention-based XML configuration. The code-based approach overrides the configuration-based one when both are used.

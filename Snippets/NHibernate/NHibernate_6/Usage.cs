@@ -30,6 +30,16 @@ class Usage
         #endregion
     }
 
+    void ConnectionString(BusConfiguration busConfiguration)
+    {
+        #region ConnectionStringAPI
+        
+        busConfiguration.UsePersistence<NHibernatePersistence>()
+            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus");
+
+        #endregion
+    }
+
 
     void CustomCommonConfiguration(BusConfiguration busConfiguration)
     {
