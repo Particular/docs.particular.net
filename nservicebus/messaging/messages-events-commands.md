@@ -83,7 +83,7 @@ public interface MyEvent : IEvent { }
 
  ### Conventions
 
- Conventions are described in the dedicated [Conventions](nservicebus/messaging/conventions) article.
+ Conventions are described in the dedicated [Conventions](/nservicebus/messaging/conventions.md) article.
 
 
  ## Designing Messages
