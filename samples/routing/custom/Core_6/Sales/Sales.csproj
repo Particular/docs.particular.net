@@ -34,11 +34,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0003\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0004\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.NHibernate, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.NHibernate.7.0.0-beta0003\lib\net452\NServiceBus.NHibernate.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.NHibernate.7.0.0-beta0004\lib\net452\NServiceBus.NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
