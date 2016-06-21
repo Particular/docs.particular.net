@@ -14,7 +14,7 @@ tags:
 
  1. Start all the projects by hitting F5.
  1. The text `Press <enter> to send a message` should be displayed in the Client's console window. 
- 1. Hit `<enter>` several times to send some messages.
+ 1. Hold down `<enter>` for a few seconds to send many messages.
 
 
 ### Verifying that the sample works correctly
