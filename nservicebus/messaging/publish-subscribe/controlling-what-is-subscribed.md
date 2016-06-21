@@ -12,7 +12,7 @@ This happens each time the subscriber is restarted.
 
 Messages matching the following criteria will be auto subscribed at startup.
 
- 1. Defined as a event either using `IEvent` or by the `.DefiningEventsAs` convention.
+ 1. Defined as an event either using `IEvent` or by the `.DefiningEventsAs` convention.
  1. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given message
 
 
