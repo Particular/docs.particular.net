@@ -36,12 +36,12 @@ SQL Server provides a central place to store queues and messages but the message
 
  * No local store-and-forward mechanism, meaning that when SQL Server instance is down the endpoint cannot send nor receive messages
  * In centralized deployment maximum throughput applies for the whole system, not individual endpoints. If SQL Server on a given hardware can handle 2000 msg/s, each one of the 10 endpoints deployed on this machine can only receive 200 msg/s (on average)
- * When empty queue gets polled periodically (every 1 second) by the receiver to detect new messages. This can lead to processing delays for rarely used endpoints  
+ * Queue tables are polled periodically to check if receive operation should be performed. This may lead to delays in message delivery for endpoints that experience low rate of incoming messages.
 
 ## Deployment considerations 
 
 ### Introduction
-Any process hosting NServiceBus operates and manages different types of data, those are:
+Any process hosting NServiceBus operates and manages different types of data:
  * Business data - data managed by NServiceBus user, usually via code executed from inside message handlers
  * Persistence data - data managed by infrastructure including: saga data, timeout manager state and subscriptions state
  * Transport data - queues and messages managed by the transport
