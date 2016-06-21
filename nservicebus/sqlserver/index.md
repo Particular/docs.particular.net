@@ -50,7 +50,7 @@ SQL Server Transport manages transport data and puts no constraints on the type 
 
 Building a system using NServiceBus requires that each kind of data is persisted in some way. This section explains the important factors to consider when choosing persistence technology to use in combination with the SQL Server transport.
  
-NOTE: No matter what deployment options are chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside in a single SQL Server catalog**. Multi-instance/multi-catalog deployment topology although supported has been deprecated in version 3 of the SQL Server transport and will be removed in version 4.
+NOTE: No matter what deployment options are chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside in a single SQL Server catalog**. Multi-instance/multi-catalog deployment topology is still available but is deprecated in version 3 of the SQL Server transport and will be removed in version 4.
 
 ### Transactionality
 SQL Server Transport supports all [transaction modes](/nservicebus/transports/transactions.md). `TransactionScope` mode is particularly useful as it enables `exactly once` message processing with usage of distributed transactions. However, when transport, persistence and business data are all stored in a single SQL Server catalog it is possible to achieve `exactly-once` message delivery without need for distributed transactions. [SQL Server native integration sample](/samples/sqltransport/native-integration/) contains more information on such a setup.
@@ -60,9 +60,9 @@ NOTE: `Exactly once` message processing without distributed transactions can be 
 ### Security 
 Security considerations for SQL Server Transport should follow the principle of least privilege. Each endpoint should use a dedicated SQL Server principal with `SELECT` and `DELETE` permissions on its input queue tables and `INSERT` permission on input queue tables of endpoints it sends messages to. Each endpoint should also have permissions to insert rows to audit and error queue tables.
 
-Multi-schema configuration can be used to manage fine-grained access control to various database objects used by the endpoint, including its queue tables.
+[Multi-schema](/nservicebus/sqlserver/configuration.md#multiple-custom-schemas) configuration can be used to manage fine-grained access control to various database objects used by the endpoint, including its queue tables.
 
-### Monitoring
+### Service Control
 All deployment options for SQL Server Transport described in this section are supported by Service Control.
 
 ## Sample usage scenarios
