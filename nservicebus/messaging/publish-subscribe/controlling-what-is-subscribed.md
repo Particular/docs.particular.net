@@ -6,7 +6,7 @@ summary: When applying the publish-subscribe pattern there are several ways to c
 
 ## Automatic subscriptions
 
-The default mode for managing subscriptions is "auto subscribe". When a subscriber endpoint is started it determines to which events it needs to subscribe. It then sends sends subscription messages to the [owning endpoint](/nservicebus/messaging/message-owner.md) for those messages.
+The default mode for managing subscriptions is "auto subscribe". When a subscriber endpoint is started it determines to which events it needs to subscribe. It then sends subscription messages to the [owning endpoint](/nservicebus/messaging/message-owner.md) for those messages.
 
 This happens each time the subscriber is restarted.
 
