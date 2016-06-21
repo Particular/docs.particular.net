@@ -35,6 +35,15 @@ The custom connection factory method is now expected to be `async` and no parame
 
 snippet:sqlserver-custom-connection-factory
 
+### Accessing transport connection
+
+Accessing transport connection can be done in Version 2 by injecting `SqlServerStorageContext` into a handler. This way the handler can access the data residing in the same database as the queue tables within the message receive transaction managed by the transport.
+
+In Version 3 this API has been removed. The same goal can be achieved in Version 3 by using ambient transaction mode.
+
+snippet:2to3-enable-ambient-transaction
+
+The handler needs to open its own connection to access the data but, assuming both handler and the transport are configured to use the same connection string, there is no DTC escalation. SQL Server 2008 and later can detect that both connections target the same resource and merges the two transaction into a single lightweight transaction.
 
 ### Multi-schema support
  
