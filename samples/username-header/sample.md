@@ -1,14 +1,15 @@
 ---
 title: Appending username using headers
 summary: Using message headers to append the current username to every message.
-reviewed: 2016-03-21
+reviewed: 2016-06-22
 component: Core
 related:
 - nservicebus/pipeline/message-mutators
 - nservicebus/messaging/headers
+- samples/run-under-incoming-principal
 ---
 
-This sample show two approaches appending the current username to outgoing messages and then extracting that value during message handling.
+This sample shows appending the current username to outgoing messages and then extracting that value during message handling.
 
 
 ### Fake Principle
@@ -40,26 +41,3 @@ snippet: componentregistartion
 From within a Handler (or Saga) this value can be used as such.
 
 snippet: handler-using-custom-header
-
-
-## Manipulating the incoming Thread.CurrentPrincipal
-
-WARNING: This approach is only supported in Version 4 and below. For Version 5 and above use the above approach.
-
-This approach uses the "Principal Manipulation" API that exists in both Versions 3 and 4. 
-
-WARNING: It is important to note that, on the receiving end, this API actually uses a fake windows principle, that has the name from the header, and **not** the real authenticated principal of the user who sent the message.
-
-
-### Configure Principal Manipulation
-
-Principal Manipulation is configured on the receiving end as part of the bus startup.
-
-snippet: manipulate-principal
-
-
-### Consuming the Principal
-
-When a message is handled the `Thread.CurrentPrincipal` is replaced prior to and message handlers being executed. It can then be consumed as such.
-
-snippet: handler-using-manipulated-principal

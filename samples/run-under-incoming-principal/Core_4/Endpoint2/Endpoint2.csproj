@@ -39,7 +39,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HandlerUsingCustomHeader.cs" />
+    <Compile Include="HandlerUsingManipulatedPrincipal.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
