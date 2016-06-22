@@ -22,13 +22,17 @@ class Program
         const string endpointName = "Samples.DataDistribution.Client";
         var mainConfig = new EndpointConfiguration(endpointName);
         mainConfig.ExcludeTypes(AllTypes.Where(t => t.Namespace == "DataDistribution").ToArray());
+        #region FilterNamespace1
         var mainRouting = mainConfig.UseTransport<MsmqTransport>().UnicastRouting();
+        #endregion
         mainRouting.RouteToEndpoint(typeof(PlaceOrder), "Samples.DataDistribution.Server");
         mainRouting.AddPublisher("Samples.DataDistribution.Server", typeof(OrderAccepted));
         ApplyDefaults(mainConfig);
 
         var distributionConfig = new EndpointConfiguration(endpointName + "." + GetUniqueDataDistributionId());
+        #region FilterNamespace2
         distributionConfig.ExcludeTypes(AllTypes.Where(t => t.Namespace != "DataDistribution").ToArray());
+        #endregion
         var distributionRouting = distributionConfig.UseTransport<MsmqTransport>().UnicastRouting();
         distributionRouting.AddPublisher("Samples.DataDistribution.Server", typeof(OrderAccepted));
         ApplyDefaults(distributionConfig);

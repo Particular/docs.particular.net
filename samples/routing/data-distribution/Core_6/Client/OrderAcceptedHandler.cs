@@ -2,7 +2,6 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-#region OrderAcceptedHandler
 class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
 {
     static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
@@ -12,4 +11,3 @@ class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
         return Task.FromResult(0);
     }
 }
-#endregion
