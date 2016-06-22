@@ -9,11 +9,13 @@ tags:
 - DistributionStrategy
 ---
 
-The sample demonstrates how NServiceBus routing model can be extended with a custom distribution strategy. Distribution strategies replace the Distributor as a scale-out mechanism for MSMQ. The default built-in distribution strategy uses a simple round-robin approach. This sample shows a more sophisticated distribution strategy that keeps the queue length of all load-balanced instances equal allowing for effective usage of non-heterogeneous worker clusters.
+The sample demonstrates how NServiceBus routing model can be extended with a custom distribution strategy. Distribution strategies replace the Distributor feature as a scale-out mechanism for MSMQ. The default built-in distribution strategy uses a simple round-robin approach. This sample shows a more sophisticated distribution strategy that keeps the queue length of all load-balanced instances equal, allowing for effective usage of non-heterogeneous worker clusters.
+
 
 ## Prerequisites
 
-Make sure MSMQ is set up as described [here](/nservicebus/msmq/). 
+Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/) section. 
+
 
 ## Running the project
 
@@ -66,14 +68,14 @@ The shared project contains definitions for messages and the custom routing logi
 
 ### Marking messages
 
-All outgoing messages are marked with sequence numbers to keep track of how many message are in-flight in any given point in time. Separate sequences are maintained for each downstream queue. The number of in-flight messages is defined as a difference between last sequence number send and last sequence number acknowledged.
+All outgoing messages are marked with sequence numbers to keep track of how many message are in-flight at any given point in time. Separate sequences are maintained for each downstream queue. The number of in-flight messages is defined as the difference between the last sequence number sent and the last sequence number acknowledged.
 
 snippet:MarkMessages
 
 
 ### Acknowledging message delivery
 
-Every N messages the downstream endpoint instance sends back an ACK message containing the biggest sequence number it processed so far. ACKs are sent separately to each upstream endpoint instance.
+Every N messages the downstream endpoint instance sends back an acknowledgement (ACK) message containing the biggest sequence number it processed so far. The ACK messages are sent separately to each upstream endpoint instance.
 
 snippet:ProcessMarkers 
 
@@ -87,6 +89,6 @@ snippet:ProcessACKs
 
 ### Smart routing
 
-The calculated number of in-flight messages can be used to distribute messages in such a way that all instances of downstream scaled-out endpoint have similar number of messages in their input queues.
+The calculated number of in-flight messages can be used to distribute messages in such a way that all instances of downstream scaled-out endpoint have similar number of messages in their input queues. That way the load is appropriate for the capacity of the given instance, e.g. instances running on weaker machines process less messages. As a result no instance is getting overwhelmed and no instance is underutilized when work is available.
 
 snippet:GetLeastBusy
