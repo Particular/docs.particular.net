@@ -31,11 +31,18 @@ The Particular Service Platform source code, current and previous releases and t
 |:--- |:--- |:--- |
 |**SQL Server**|[Releases](https://github.com/Particular/NServiceBus.SqlServer/tags)| [Release Notes](https://github.com/Particular/NServiceBus.SqlServer/releases)
 |**RabbitMQ**|[Releases](https://github.com/Particular/NServiceBus.RabbitMQ/tags)| [Release Notes](https://github.com/Particular/NServiceBus.RabbitMQ/releases)
-|**Azure Queues and ServiceBus**|[Releases](https://github.com/Particular/NServiceBus.Azure/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Azure/releases)
+|**Azure Service Bus** | [Releases](https://github.com/Particular/NServiceBus.AzureServiceBus/tags)| [Release Notes](https://github.com/Particular/NServiceBus.AzureServiceBus/releases)
+|**Azure Storage Queues** | [Releases](https://github.com/Particular/NServiceBus.AzureStorageQueues/tags)| [Release Notes](https://github.com/Particular/NServiceBus.AzureStorageQueues/releases)
+|**[Old] Azure Queues and ServiceBus**|[Releases](https://github.com/Particular/NServiceBus.Azure/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Azure/releases)
+
+
+### NServiceBus Persistence
+
+|**RavenDB** | [Releases](https://github.com/Particular/NServiceBus.RavenDB/tags)| [Release Notes](https://github.com/Particular/NServiceBus.RavenDB/releases)
+|**NHibernate** | [Releases](https://github.com/Particular/NServiceBus.NHibernate/tags)| [Release Notes](https://github.com/Particular/NServiceBus.NHibernate/releases)
+|**Azure Storage** | [Releases](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/releases)
 
 
 ### ServiceControl Plugins
 
 * See [ServiceControl Endpoints Plugins](/servicecontrol/plugins/)
-
-
