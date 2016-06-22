@@ -1,10 +1,10 @@
 ---
 title: RavenDB Persistence
 tags:
-- RavenDB
-- Persistence
+ - RavenDB
+ - Persistence
 related:
-- samples/ravendb
+ - samples/ravendb
 redirects:
  - nservicebus/using-ravendb-in-nservicebus-connecting
  - nservicebus/ravendb/connecting
@@ -12,17 +12,44 @@ redirects:
 
 Uses the [RavenDB document database](http://ravendb.net/) for storage. 
 
-When using NServiceBus Versions 5 and above, the RavenDB-backed persistence is no longer ILMerged into the Core and is available as a separate [NuGet package](https://www.nuget.org/packages/NServiceBus.RavenDB), which allows NServiceBus and RavenDB to be upgraded independently. When using RavenDB persistence in NServiceBus endpoints Versions 4 and below, see the section titled [NServiceBus 3 and NServiceBus 4](/nservicebus/ravendb/#nservicebus-3-and-nservicebus-4) for more details. 
+When using NServiceBus Versions 5 and above, the RavenDB-backed persistence is no longer ILMerged into the Core and is available as a separate [NuGet package](https://www.nuget.org/packages/NServiceBus.RavenDB), which allows NServiceBus and RavenDB to be upgraded independently. When using RavenDB persistence in NServiceBus endpoints Versions 4 and below, see the section titled [NServiceBus 3 and NServiceBus 4](/nservicebus/ravendb/#nservicebus-3-and-nservicebus-4) for more details.
 
 
 ### Connection options for RavenDB
 
-The following sections outline various ways to connect to the RavenDB server, starting with the most basic.
+The following sections outline various ways to connect to the RavenDB server. Specifying an external shared store (providing a fully configured RavenDB `DocumentStore` instance) is preferred so that the [RavenDB DTC settings can be configured](manual-dtc-settings.md) for optimal data safety.
 
 
-#### Default
+#### External shared store for all persisters
 
-By default, a `DocumentStore` is created that connects to `http://localhost:8080` and uses the endpoint name as its database name. This default connection is used for all the persisters.
+The RavenDB `DocumentStore` instance can be provided directly to NServiceBus to use for all persisters. This enables sharing the same application database for NServiceBus data as well.
+
+snippet:ravendb-persistence-external-store
+
+
+#### External shared store at initialization
+
+To use an external `DocumentStore`, but defer its creation until NServiceBus initializes, a `Func<ReadOnlySettings, IDocumentStore>` can be provided which will allow the `DocumentStore` to be created with access to the `ReadOnlySettings`. This gives the ability to configure the document store based on conventions derived from endpoint data present in the settings object. For example, the `DocumentStore` instance can be configured to use the [Endpoint Name](/nservicebus/endpoints/specify-endpoint-name.md) as its database name by accessing `readOnlySettings.EndpointName()`.
+
+Versions: 4 and above.
+
+snippet:ravendb-persistence-create-store-by-func
+
+
+#### External store for a specific persister
+
+An externally created `DocumentStore` instance can be passed to NServiceBus for usage in a specific persister (e.g. timeouts) by using the following code:
+
+snippet:ravendb-persistence-specific-external-store
+
+
+#### External store at initialization for a specific persister
+
+A `DocumentStore` can be created when NServiceBus initializes, with access to endpoint settings found in `ReadOnlySettings`, for usage in a specific persister (e.g. timeouts) by using the following code:
+
+Versions: 4 and above.
+
+snippet:ravendb-persistence-specific-create-store-by-func
 
 
 #### Shared store for all persisters defined via connection string
@@ -41,22 +68,6 @@ Rather than specifying connection information in configuration, connection detai
 snippet:ravendb-persistence-external-connection-params
 
 
-#### External shared store for all persisters
-
-If NServiceBus needs to use the same `DocumentStore` instance used elsewhere in an application, this instance can be provided directly to NServiceBus to use for all persisters.
-
-snippet:ravendb-persistence-external-store
-
-
-#### External shared store at initialization
-
-To use an external `DocumentStore`, but defer its creation until NServiceBus initializes, a `Func<ReadOnlySettings, IDocumentStore>` can be provided which will allow the `DocumentStore` to be created with access to the `ReadOnlySettings`. This gives the ability to configure the document store based on conventions derived from endpoint data present in the settings object. For example, the `DocumentStore` instance can be configured to use the [Endpoint Name](/nservicebus/endpoints/specify-endpoint-name.md) as its database name by accessing `readOnlySettings.EndpointName()`.
-
-Versions: 4 and above.
-
-snippet:ravendb-persistence-create-store-by-func
-
-
 #### Store defined via a connection string for a specific persister
 
 One can configure a RavenDB connection string that is only applicable to a specific store:
@@ -64,20 +75,9 @@ One can configure a RavenDB connection string that is only applicable to a speci
 snippet:specific-document-store-via-connection-string
 
 
-#### External store for a specific persister
+#### Default
 
-An externally created `DocumentStore` instance can be passed to NServiceBus for usage in a specific persister (e.g. timeouts) by using the following code:
-
-snippet:ravendb-persistence-specific-external-store
-
-
-#### External store at initialization for a specific persister
-
-A `DocumentStore` can be created when NServiceBus initializes, with access to endpoint settings found in `ReadOnlySettings`, for usage in a specific persister (e.g. timeouts) by using the following code:
-
-Versions: 4 and above.
-
-snippet:ravendb-persistence-specific-create-store-by-func
+By default, a `DocumentStore` is created that connects to `http://localhost:8080` and uses the endpoint name as its database name. This default connection is used for all the persisters.
 
 
 ### Other configuration options
@@ -100,7 +100,7 @@ snippet:ravendb-persistence-shared-session-for-sagas-handler
 
 #### Saga correlation
 
-NOTE: As of Version 6 of NServiceBus, all correlated properties are unique by default so there is no longer a configuration setting. 
+NOTE: As of Version 6 of NServiceBus, all correlated properties are unique by default so there is no longer a configuration setting.
 
 One of the limitations of the RavenDB persistence is support for only one `[Unique]` property (a saga property which value is guaranteed to be unique across all sagas of this type). Because of that limitation advanced user can turn off the validation that ensures sagas are only being found by unique properties:
 
