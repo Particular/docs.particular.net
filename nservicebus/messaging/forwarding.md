@@ -9,7 +9,7 @@ redirects:
 
 Use this feature to forward successfully processed messages from an endpoint to a specified destination endpoint. Forwarding messages is particularly useful in complex upgrade scenarios, when the old version and new version of a particular endpoint are running side-by-side.
 
-Note that forwarding is a solution to a specific problem and generally should be used for a limited transition period. In case of long-term need to duplicate messages the [Publish-Subscribe](http://docs.particular.net/nservicebus/messaging/publish-subscribe/) pattern will be usually more appropriate.
+Note that forwarding is a solution to a specific problem and generally should be used for a limited transition period. In case of long-term need to duplicate messages the [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) pattern will be usually more appropriate.
 
 
 ## Auditing vs Fowarding
