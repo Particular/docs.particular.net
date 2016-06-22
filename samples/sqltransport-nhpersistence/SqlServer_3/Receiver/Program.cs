@@ -46,17 +46,17 @@ class Program
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.DefaultSchema("receiver");
         transport.UseSpecificSchema(e =>
+        {
+            if (e == "error" || e == "audit")
             {
-                if (e == "error" || e == "audit")
-                {
-                    return "dbo";
-                }
-                if (e == "Samples.SqlNHibernate.Sender")
-                {
-                    return "sender";
-                }
-                return null;
-            });
+                return "dbo";
+            }
+            if (e == "Samples.SqlNHibernate.Sender")
+            {
+                return "sender";
+            }
+            return null;
+        });
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(hibernateConfig);
@@ -65,15 +65,9 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

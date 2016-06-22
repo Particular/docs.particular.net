@@ -2,7 +2,7 @@
 using NServiceBus.Logging;
 using NServiceBus.Saga;
 
-public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>, 
+public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>,
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {

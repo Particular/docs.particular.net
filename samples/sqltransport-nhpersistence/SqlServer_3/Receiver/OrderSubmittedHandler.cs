@@ -6,7 +6,7 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 {
     static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
 
-    public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
+    public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         log.Info($"Order {message.OrderId} worth {message.Value} submitted");
 
@@ -27,8 +27,7 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
         {
             OrderId = message.OrderId,
         };
-        await context.Reply(orderAccepted)
-            .ConfigureAwait(false);
+        return context.Reply(orderAccepted);
 
         #endregion
     }
