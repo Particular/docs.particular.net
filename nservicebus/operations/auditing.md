@@ -17,6 +17,15 @@ The distributed nature of parallel, message-driven systems make them more diffic
 It is recommended to specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). This gives an overview of the entire system in one place and see how messages correlate. One can look at the audit queue as a central record of everything that is happening in the system. A central audit queue is also required by the Particular Service Platform and especially [ServiceControl](/servicecontrol), which consumes messages from these auditing queues. For more information, see [ServicePulse documentation](/servicepulse/).
 
 
+## Message headers
+
+The audited message is enriched with additional headers, which contain information related to processing the message:
+* Processing start and end times.
+* Processing host id and name.
+* Processing machine address.
+* Processing endpoint.
+
+
 ## Handling Audit messages
 
 Those audit messages can then be handled as needed: Save them in a database, do custom logging, etc. It is important not to leave the messages in the audit queue however, as most queueing technologies have upper-bound limits on their queue sizes and depth. By not processing these messages, the limits of the underlying queue technology may be reached.
@@ -90,8 +99,3 @@ If the machine level auditing is turned on, clear the value for the string value
 If running 64 bit, in addition to the above, also clear the value for `AuditQueue` under
 
     HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\ParticularSoftware\\ServiceBus
-
-
-## Message headers
-
-All headers, from the message being forwarded, will be included in the message sent to the audit queue. There are also some custom audit headers appended.
