@@ -39,11 +39,11 @@ redirects:
  1. Open SQL Server Management Studio and go to the `nservicebus` database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`).
  1. Verify that there are messages in the `dbo.audit` table and, if any message failed processing, messages in `dbo.error` table.
 
-NOTE: The handling code has built-in chaotic behavior. There is a 50% chance that a given message fails processing. This is to demonstrate how [error handling](/nservicebus/errors/automatic-retries.md) works. Since both First-Level Retries (FLR) and Second-Level Retires (SLR) are turned off, the message that couldn't be processed is immediately moved to the configured error queue.
+NOTE: The handling code has built-in chaotic behavior. There is a 50% chance that a given message fails processing. This is to demonstrate how [error handling](/nservicebus/errors/automatic-retries.md) works. Since both First-Level Retries (FLR) and Second-Level Retries (SLR) are turned off, the message that couldn't be processed is immediately moved to the configured error queue.
 
-The retires are disabled using the following settings:
+The retries are disabled using the following settings:
 
-snippet:RetiresConfigurationXml
+snippet:RetriesConfigurationXml
 
 snippet:RetriesConfiguration
 
