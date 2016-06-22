@@ -8,3 +8,21 @@ related:
 ---
 
 include: servicepulse
+
+
+## System status overview
+
+The Dashboard provides a visual overview of the current state of the monitored NServiceBus system.
+
+![Dashboard](images/dashboard-overview.png)
+
+
+## Endpoints health
+
+
+## Failed messages
+
+## Custom checks
+
+
+![Custom Checks](images/custom-checks.png)
