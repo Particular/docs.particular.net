@@ -9,6 +9,11 @@ tags:
 - DistributionStrategy
 ---
 
+The sample demonstrates how NServiceBus routing model can be extended with a custom distribution strategy. Distribution strategies replace the Distributor as a scale-out mechanism for MSMQ. The default built-in distribution strategy uses a simple round-robin approach. This sample shows a more sophisticated distribution strategy that keeps the queue length of all load-balanced instances equal allowing for effective usage of non-heterogeneous worker clusters.
+
+## Prerequisites
+
+Make sure MSMQ is set up as described [here](/nservicebus/msmq/). 
 
 ## Running the project
 
@@ -48,12 +53,11 @@ snippet:FairDistributionClient
 
 ### Server
 
-The Sales project mimics the back-end system where orders are accepted. Apart from the standard NServiceBus configuration it enables the flow control feature:
+The Server project mimics the back-end system where orders are accepted. Apart from the standard NServiceBus configuration it enables the flow control feature:
 
 snippet:FairDistributionServer
 
-Sales endpoint is scaled out via `Server` and `Server2` projects. In real-world scenario there would be a single project deployed to multiple virtual machines.
-
+In real-world scenarios NServiceBus is scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines (e.g. Server in this sample). For simplicity in this sample the scale-out is simulated by having two separate endpoints Server and Server2.
 
 ### Shared project
 
@@ -62,7 +66,7 @@ The shared project contains definitions for messages and the custom routing logi
 
 ### Marking messages
 
-All outgoing messages are marked with sequence numbers. Separate sequences are maintained for each downstream queue.
+All outgoing messages are marked with sequence numbers to keep track of how many message are in-flight in any given point in time. Separate sequences are maintained for each downstream queue. The number of in-flight messages is defined as a difference between last sequence number send and last sequence number acknowledged.
 
 snippet:MarkMessages
 
