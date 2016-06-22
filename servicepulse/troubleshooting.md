@@ -16,11 +16,11 @@ tags:
 
 ### ServicePulse reports that 0 endpoints are active, although Endpoint plugins were deployed
 
-* Make sure you follow the guidance in [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md)
-* Restart the endpoint after copying the Endpoint Plugin files into the endpoint's Bin directory
-* Make sure that the endpoint references NServiceBus Version 4.0.0 or later
-* Make sure auditing is turned on for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl
-* [Assembly scanning](/nservicebus/hosting/assembly-scanning.md) must include the relevant ServiceControl assemblies in the whitelist (includes) or must not exclude these in a blacklist (excludes)
+* Make sure you follow the guidance in [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md).
+* Restart the endpoint after copying the Endpoint Plugin files into the endpoint's Bin directory.
+* Make sure that the endpoint references NServiceBus Version 4.0.0 or later.
+* Make sure auditing is turned on for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl.
+* Make sure that the relevant ServiceControl assemblies are included in the whitelist or are not excluded in the blacklist. For more details refer to the [Assembly scanning](/nservicebus/hosting/assembly-scanning.md) article.
 
 
 ### ASP.NET applications heartbeat failure
