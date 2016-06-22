@@ -1,10 +1,10 @@
 ---
 title: RavenDB Persistence
 tags:
-- RavenDB
-- Persistence
+ - RavenDB
+ - Persistence
 related:
-- samples/ravendb
+ - samples/ravendb
 redirects:
  - nservicebus/using-ravendb-in-nservicebus-connecting
  - nservicebus/ravendb/connecting
@@ -12,7 +12,7 @@ redirects:
 
 Uses the [RavenDB document database](http://ravendb.net/) for storage. 
 
-When using NServiceBus Versions 5 and above, the RavenDB-backed persistence is no longer ILMerged into the Core and is available as a separate [NuGet package](https://www.nuget.org/packages/NServiceBus.RavenDB), which allows NServiceBus and RavenDB to be upgraded independently. When using RavenDB persistence in NServiceBus endpoints Versions 4 and below, see the section titled [NServiceBus 3 and NServiceBus 4](/nservicebus/ravendb/#nservicebus-3-and-nservicebus-4) for more details. 
+When using NServiceBus Versions 5 and above, the RavenDB-backed persistence is no longer ILMerged into the Core and is available as a separate [NuGet package](https://www.nuget.org/packages/NServiceBus.RavenDB), which allows NServiceBus and RavenDB to be upgraded independently. When using RavenDB persistence in NServiceBus endpoints Versions 4 and below, see the section titled [NServiceBus 3 and NServiceBus 4](/nservicebus/ravendb/#nservicebus-3-and-nservicebus-4) for more details.
 
 
 ### Connection options for RavenDB
@@ -100,7 +100,7 @@ snippet:ravendb-persistence-shared-session-for-sagas-handler
 
 #### Saga correlation
 
-NOTE: As of Version 6 of NServiceBus, all correlated properties are unique by default so there is no longer a configuration setting. 
+NOTE: As of Version 6 of NServiceBus, all correlated properties are unique by default so there is no longer a configuration setting.
 
 One of the limitations of the RavenDB persistence is support for only one `[Unique]` property (a saga property which value is guaranteed to be unique across all sagas of this type). Because of that limitation advanced user can turn off the validation that ensures sagas are only being found by unique properties:
 
