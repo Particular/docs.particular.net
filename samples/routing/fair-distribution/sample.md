@@ -61,6 +61,7 @@ snippet:FairDistributionServer
 
 In real-world scenarios NServiceBus is scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines (e.g. Server in this sample). For simplicity in this sample the scale-out is simulated by having two separate endpoints Server and Server2.
 
+
 ### Shared project
 
 The shared project contains definitions for messages and the custom routing logic.
