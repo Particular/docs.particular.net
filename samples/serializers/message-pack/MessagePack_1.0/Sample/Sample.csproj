@@ -31,7 +31,7 @@
       <HintPath>..\..\..\..\..\packages\MsgPack.Cli.0.6.8\lib\net45\MsgPack.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0003\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0004\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.MessagePack, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.MessagePack.1.0.0-beta0001\lib\NET452\NServiceBus.MessagePack.dll</HintPath>
