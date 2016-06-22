@@ -17,7 +17,7 @@ The SQL Server transport implements a message queueing mechanism on top of Micro
 
 ## How it works
 
-SQL Server provides a central place to store queues and messages but the message queuing implementation resides entirely within the endpoint process. The SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than [store-and-forward](/nservicebus/architecture/principles.md#drilling-down-into-details-store-and-forward-messaging) transport such as MSMQ.
+SQL Server transport uses SQL Server to store queues and messages. I doesn't use any queuing services provided by SQL Server - queuing logic is implemented within SQL Server transport and executed separately by each endpoint. The SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than [store-and-forward](/nservicebus/architecture/principles.md#drilling-down-into-details-store-and-forward-messaging) transport such as MSMQ.
 
 
 ## Advantages and Disadvantages of choosing SQL Server Transport
@@ -48,7 +48,7 @@ Any process hosting NServiceBus operates and manages different types of data:
 
 SQL Server Transport manages transport data and puts no constraints on the type and configuration of storage technology used for persistence and business data. It can work with any of available persisters i.e. [NHibernate](/nservicebus/nhibernate) or [RavenDB](/nservicebus/ravendb/), as well as any storage mechanisms used from inside message handlers.
 
-Building a system using NServiceBus requires that each kind of data is persisted in some way. This section explains the important factors to consider when choosing persistence technology to use in combination with the SQL Server transport.
+This section explains the important factors to consider when choosing technologies for managing business and persistence data to use in combination with the SQL Server transport.
  
 NOTE: No matter what deployment options are chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside in a single SQL Server catalog**. Multi-instance/multi-catalog deployment topology is still available but is deprecated in version 3 of the SQL Server transport and will be removed in version 4.
 
@@ -58,30 +58,30 @@ SQL Server Transport supports all [transaction modes](/nservicebus/transports/tr
 NOTE: `Exactly once` message processing without distributed transactions can be achieved with any transport using [Outbox](/nservicebus/outbox/). It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage.
 
 ### Security 
-Security considerations for SQL Server Transport should follow the principle of least privilege. Each endpoint should use a dedicated SQL Server principal with `SELECT` and `DELETE` permissions on its input queue tables and `INSERT` permission on input queue tables of endpoints it sends messages to. Each endpoint should also have permissions to insert rows to audit and error queue tables.
+Security considerations for SQL Server Transport should follow [the principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege). Each endpoint should use a dedicated SQL Server principal with `SELECT` and `DELETE` permissions on its input queue tables and `INSERT` permission on input queue tables of endpoints it sends messages to. Each endpoint should also have permissions to insert rows to audit and error queue tables.
 
 [Multi-schema](/nservicebus/sqlserver/configuration.md#multiple-custom-schemas) configuration can be used to manage fine-grained access control to various database objects used by the endpoint, including its queue tables.
 
 ### Service Control
 All deployment options for SQL Server Transport described in this section are supported by Service Control.
 
-## Sample usage scenarios
+## Sample deployment scenarios
 
-### Tiny
+### Background worker replacement
 
 The SQL Server transport is an ideal choice for extending an existing web application with asynchronous processing capabilities as an alternative for batch jobs that tend to quickly get out of sync with the main codebase. Assuming the application already uses SQL Server as a data store, this scenario does not require any additional infrastructure.
 
 The queue tables can be hosted in the same SQL Server catalog as business and persistence data. NServiceBus endpoint can be hosted in the ASP.NET worker process. In some cases there might be a need for a separate process for hosting the NServiceBus endpoint (due to security considerations or IIS worker process life-cycle management). Because system consists of a single logical service or bounded context, there is usually no need to create separate schema for the queues.
 
-### Small
+### Pilot project
 
 The SQL Server transport is a good choice for a pilot project to prove feasibility of NServiceBus in a given organization as well as for a small, well-defined green field application. It usually requires nothing more than a single shared SQL Server instance.
 
 The best option is to store the queues in the same catalog as the business data. Schemas can be used to make maintenance easier. 
 
-### Medium to large
+### Messaging framework for the enterprise
 
-For larger systems it usually makes more sense to have dedicated catalogs for each service or bounded context. NoSQL data stores can be used in some services, depending on data access requirements. The SQL catalogs might be hosted in a single instance of SQL Server or in separate instances depending on the IT policy.
+For larger systems it usually makes more sense to have dedicated catalogs for business and persistence data per service or bounded context. NoSQL data stores can be used in some services, depending on data access requirements. The SQL catalogs might be hosted in a single instance of SQL Server or in separate instances depending on the IT policy.
 
 The best option is to have a dedicated catalog for the queues. This approach allows to use different scaling up strategies for the queue catalog. It also allows to use a dedicated back up policy for the queues (because data in queues are much more ephemeral). 
 
