@@ -31,6 +31,15 @@ To limit the assemblies and types scanned by the test framework it is possible t
 snippet: TestInitializeAssemblies
 
 
+## Test structure
+
+The NServiceBus testing framework in all versions offers a fluent API for defining tests as shown in the snippets below.
+
+Note that tests written using fluent API follow a specific structure, that is they specify expectations before invoking the tested behavior. Violating this order might in some cases lead to subtle issues when executing tests. The recommended approach is to follow the order presented in code snippets.
+
+In NServiceBus Version 6 and above it's also possible to write tests without using fluent API, in the traditional `Arrange-Act-Assert (AAA)` fashion. For more details refer to the [Unit Testing NServiceBus 6](/samples/unit-testing/) sample.
+
+
 ## Testing the service layer
 
 The service layer in an NServiceBus application is made from message handlers. Each class typically handles one specific type of message. Testing these classes usually focuses on their externally visible behavior: the types of messages they send or reply with. This is as simple to test as could be expected:
