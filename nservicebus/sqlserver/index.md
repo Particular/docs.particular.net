@@ -1,7 +1,7 @@
 ---
 title: SQL Server Transport
 summary: High-level description of NServiceBus SQL Server Transport.
-reviewed: 2016-03-22
+reviewed: 2016-06-20
 tags:
 - SQL Server
 redirects:
@@ -17,7 +17,7 @@ The SQL Server transport implements a message queueing mechanism on top of Micro
 
 ## How it works
 
-The SQL Server transport is a hybrid queueing system which is neither store-and-forward (like MSMQ) nor a broker (like RabbitMQ). It treats the SQL Server as a storage infrastructure for the queues. The queueing logic itself is implemented and executed as part of the transport code running in an NServiceBus endpoint.
+SQL Server transport uses SQL Server to store queues and messages. It doesn't use any queuing services provided by SQL Server, the queuing logic is implemented within the NServiceBus SQL Server transport. The SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than [store-and-forward](/nservicebus/architecture/principles.md#drilling-down-into-details-store-and-forward-messaging) transport such as MSMQ.
 
 
 ## Advantages and Disadvantages of choosing SQL Server Transport
@@ -25,41 +25,76 @@ The SQL Server transport is a hybrid queueing system which is neither store-and-
 
 ### Advantages
 
- * No additional licensing and training costs, as majority of Microsoft stack organizations already have SQL Server installed and have knowledge required to run it
- * Great tooling (SSMS)
- * Maximum throughput for any given endpoint is on par with MSMQ
- * Queues support competing consumers (multiple instances of same endpoint feeding off of same queue) so scale-out doesn't require using [distributor](/nservicebus/scalability-and-ha/distributor/)
+ * No additional licensing and training costs, as majority of Microsoft stack organizations already have SQL Server installed and have knowledge required to run it.
+ * Great tooling (SSMS).
+ * Maximum throughput for any given endpoint is on par with MSMQ.
+ * Free to start (Express edition).
+ * Queues support competing consumers (multiple instances of same endpoint feeding off of same queue) so scale-out doesn't require using [distributor](/nservicebus/scalability-and-ha/distributor/).
 
 
 ### Disadvantages
 
- * No local store-and-forward mechanism, meaning that when SQL Server instance is down the endpoint cannot send nor receive messages
+ * No local store-and-forward mechanism, meaning that when SQL Server instance is down the endpoint cannot send nor receive messages.
  * In centralized deployment maximum throughput applies for the whole system, not individual endpoints. If SQL Server on a given hardware can handle 2000 msg/s, each one of the 10 endpoints deployed on this machine can only receive 200 msg/s (on average).
+ * Queue tables are polled periodically to check if receive operation should be performed. This may lead to delays in message delivery for endpoints that experience low rate of incoming messages.
 
 
-## Usage Scenarios
+## Deployment considerations 
+
+The typical process hosting NServiceBus operates and manages three different kinds of data:
+ * Transport data - queues and messages managed by the transport.
+ * Persistence data - required for correct operation of specific transport features, e.g. saga data, timeout manager state and subscriptions.
+ * Business data - application-specific data, independent of NServiceBus, usually managed via code executed from inside message handlers.
+
+SQL Server Transport manages transport data, but it puts no constraints on the type and configuration of storage technology used for persistence or business data. It can work with any of the available persisters i.e. [NHibernate](/nservicebus/nhibernate) or [RavenDB](/nservicebus/ravendb/) for storing NServiceBus data, as well as any storage mechanisms for storing business datra.
+
+This section explains the important factors to consider when choosing technologies for managing business and persistence data to use in combination with the SQL Server transport.
+ 
+NOTE: No matter what deployment options are chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside in a single SQL Server catalog**. Multi-instance/multi-catalog deployment topology is still available but is deprecated in version 3 of the SQL Server transport. It will be removed in version 4.
+
+### Transactionality
+SQL Server Transport supports all NServiceBus [transaction modes](/nservicebus/transports/transactions.md). `TransactionScope` mode is particularly useful as it enables `exactly once` message processing with usage of distributed transactions. However, when transport, persistence and business data are all stored in a single SQL Server catalog it is possible to achieve `exactly-once` message delivery without distributed transactions. For more details refer to the [SQL Server native integration](/samples/sqltransport/native-integration/) sample.
+
+NOTE: `Exactly once` message processing without distributed transactions can be achieved with any transport using [Outbox](/nservicebus/outbox/). It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage.
 
 
-### Messaging framework for the enterprise
+### Security 
 
-The SQL Server transport throughput is on par with the Microsoft Message Queueing (MSMQ) service. The actual value is dependent on the hardware and software configuration but is in the range few thousands messages per second per endpoint instance. If the enterprise has a solid high-performance SQL Server infrastructure, taking advantage of that infrastructure to implement messaging backbone is a natural choice when moving from isolated applications to connected services. In the enterprise scenario there are probably multiple systems and these systems have their own databases. SQL Server transport [deployment options](deployment-options.md) has been designed exactly for such scenarios. It can be used in two transaction modes
+Security considerations for SQL Server Transport should follow [the principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege). 
 
- * **DTC** The receive operation, all data access and all the send operations potentially targeting different databases are conducted in a single distributed transaction coordinated by the DTC. This mode requires DTC service to be configured properly (including the high availability configuration matching the one of the SQL Server). The downside is that if a destination database is brought down for maintenance, the transactions that try to send messages to it are going to fail and this might cause the domino effect in other systems.
- * [**Outbox**](/nservicebus/outbox/) The *exactly-once* delivery guarantee is provided by the outbox. No DTC service is required. Messages addressed to a database that is temporarily down will by retried by means of [Second-Level Retries](/nservicebus/errors/automatic-retries.md) so SLR timeout larger than maintenance windows should be configured. The downside is that all the systems need to have Outbox enabled which requires them to use NServiceBus 5.x or later.
+Each endpoint should use a dedicated SQL Server principal with `SELECT` and `DELETE` permissions on its input queue tables and `INSERT` permission on input queue tables of endpoints it sends messages to. Each endpoint should also have permissions to insert rows to audit and error queue tables.
+
+[Multi-schema](/nservicebus/sqlserver/configuration.md#multiple-custom-schemas) configuration can be used to manage fine-grained access control to various database objects used by the endpoint, including its queue tables.
+
+
+### Service Control
+
+All deployment options for SQL Server Transport described in this section are supported by Service Control.
+
+
+## Sample deployment scenarios
 
 
 ### Background worker replacement
 
-SQL Server transport works well for small web applications that require reliable background processing capabilities. Instead of firing a background thread or doing `async` processing the web application would send a message on the bus. The message would be picked up by the backend service, processed and the response returned. SQL Server transport will work out-of-the-box in that scenario without requiring DTC. 
+The SQL Server transport is an ideal choice for extending an existing web application with asynchronous processing capabilities as an alternative for batch jobs that tend to quickly get out of sync with the main codebase. Assuming the application already uses SQL Server as a data store, this scenario does not require any additional infrastructure.
 
-Using messaging in that scenario is more reliable than using additional threads. Even if the processing of the message fails, the message itself is not lost and it can be retired at a later time. 
+The queue tables can be hosted in the same SQL Server catalog as business and persistence data. NServiceBus endpoint can be hosted in the ASP.NET worker process. In some cases there might be a need for a separate process for hosting the NServiceBus endpoint (due to security considerations or IIS worker process life-cycle management). Because system consists of a single logical service or bounded context, there is usually no need to create separate schema for the queues.
 
 
 ### Pilot project
 
-The SQL Server transport is a good choice for a pilot project to prove feasibility of NServiceBus in a given organization. It does not require anything more than a database. Such a project would usually be small so it is not likely to use more than one physical database in which case no DTC is required.
+The SQL Server transport is a good choice for a pilot project to prove feasibility of NServiceBus in a given organization as well as for a small, well-defined green field application. It usually requires nothing more than a single shared SQL Server instance.
+
+The best option is to store the queues in the same catalog as the business data. Schemas can be used to make maintenance easier. 
 
 
-### Messaging framework for an application using SQL Azure
+### Messaging framework for the enterprise
 
-The SQL Azure's limitations include no support for distributed transactions and relatively small database size. This makes it an ideal candidate for a [multi-database mode](deployment-options.md) SQL Server transport with [Outbox](/nservicebus/outbox/). Each endpoint could have its own database that meets the size limit. Outbox would guarantee *exactly-once* processing of messages.
+For larger systems it usually makes more sense to have dedicated catalogs for business and persistence data per service or bounded context. NoSQL data stores can be used in some services, depending on data access requirements. The SQL catalogs might be hosted in a single instance of SQL Server or in separate instances depending on the IT policy.
+
+The best option is to have a dedicated catalog for the queues. This approach allows to use different scaling up strategies for the queue catalog. It also allows to use a dedicated backup policy for the queues (because data in queues are much more ephemeral). 
+
+Is such a case local transactions are not enough to ensure `exactly-once` message processing. When required, one option is to use Microsoft Distributed Transaction Coordinator and distributed transactions (NServiceBus with SQL Server transport is DTC-enabled by default). In this mode the message receive transaction and all data modifications that result from processing the message are part of one distributed transaction that spans two SQL catalogs (possibly stored on two different instances).
+
+Another options is to use the [Outbox](/nservicebus/outbox/) feature, that provides `exactly-once` processing semantics over an `at-least-once` message delivery infrastructure. In this mode each individual endpoint has to store bussiness data and persistence data in the same catalog. Outgoing messages are stored by persistece infrastructure in a dedicated table. Single local transaction handles outgoing message persistence together with business data modifications. After the local transaction commits successfully the messages are dispatched to the final destination.
