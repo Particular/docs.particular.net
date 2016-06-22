@@ -11,6 +11,7 @@ using NServiceBus.Routing;
 using NServiceBus.Transports;
 
 
+#region SendThroughLocalQueueBehavior
 class SendThroughLocalQueueRoutingToDispatchConnector : ForkConnector<IRoutingContext, IDispatchContext>
 {
     public SendThroughLocalQueueRoutingToDispatchConnector(string localAddress)
@@ -28,7 +29,7 @@ class SendThroughLocalQueueRoutingToDispatchConnector : ForkConnector<IRoutingCo
         {
             return next();
         }
-        TransportOperation[] operations = context.RoutingStrategies
+        var operations = context.RoutingStrategies
             .Select(s => RouteThroughLocalEndpointInstance(s, context))
             .ToArray();
         return fork(new DispatchContext(operations, context));
@@ -76,3 +77,4 @@ class SendThroughLocalQueueRoutingToDispatchConnector : ForkConnector<IRoutingCo
         public IEnumerable<TransportOperation> Operations => operations;
     }
 }
+#endregion

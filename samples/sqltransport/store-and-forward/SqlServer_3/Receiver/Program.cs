@@ -23,16 +23,16 @@ class Program
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.EnableLegacyMultiInstanceMode(async transportAddress =>
-            {
-                var connectionString = transportAddress.StartsWith("Samples.SqlServer.StoreAndForwardReceiver") || transportAddress == "error"
-                    ? ReceiverConnectionString
-                    : SenderConnectionString;
+        {
+            var connectionString = transportAddress.StartsWith("Samples.SqlServer.StoreAndForwardReceiver") || transportAddress == "error"
+                ? ReceiverConnectionString
+                : SenderConnectionString;
 
-                var connection = new SqlConnection(connectionString);
-                await connection.OpenAsync()
+            var connection = new SqlConnection(connectionString);
+            await connection.OpenAsync()
                 .ConfigureAwait(false);
-                return connection;
-            });
+            return connection;
+        });
 
 
         #endregion
@@ -42,19 +42,12 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press any key to exit");
-            Console.WriteLine("Waiting for Order messages from the Sender");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Press any key to exit");
+        Console.WriteLine("Waiting for Order messages from the Sender");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
-
 
     const string ReceiverConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=receiver;Integrated Security=True";
     const string SenderConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True";

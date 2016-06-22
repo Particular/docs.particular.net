@@ -4,6 +4,7 @@ using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 using NServiceBus.Unicast;
 
+#region SendThroughLocalQueueBehavior
 public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
 {
     Configure configure;
@@ -15,9 +16,8 @@ public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
 
     public void Invoke(OutgoingContext context, Action next)
     {
-        #region SendThroughLocalQueueBehavior
         // If processing an incoming message (in a handler), skip this behavior
-        if (context.IncomingMessage != null) 
+        if (context.IncomingMessage != null)
         {
             next();
             return;
@@ -49,7 +49,6 @@ public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
         }
         context.Set<DeliveryOptions>(new SendOptions(configure.LocalAddress));
         next();
-        #endregion
     }
 
     public class Registration : RegisterStep
@@ -62,3 +61,4 @@ public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
         }
     }
 }
+#endregion

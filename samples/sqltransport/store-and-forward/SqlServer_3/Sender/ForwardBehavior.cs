@@ -11,6 +11,7 @@ public class ForwardBehavior : ForkConnector<IIncomingPhysicalMessageContext, ID
 {
     public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next, Func<IDispatchContext, Task> fork)
     {
+        #region ForwardBehavior
         string destination;
         if (context.Message.Headers.TryGetValue("$.store-and-forward.destination", out destination))
         {
@@ -29,6 +30,7 @@ public class ForwardBehavior : ForkConnector<IIncomingPhysicalMessageContext, ID
             return fork(new DispatchContext(operation, context));
         }
         return next();
+        #endregion
     }
 
     class DispatchContext : ContextBag, IDispatchContext
