@@ -29,8 +29,7 @@ class Program
             $"{endpointName}-{instanceId}");
         #endregion
 
-        var unicastRouting = endpointConfiguration.UnicastRouting();
-        unicastRouting.AddPublisher("Samples.Scaleout.Sender", typeof(OrderPlaced));
+        transport.RegisterPublisherForType("Samples.Scaleout.Sender", typeof(OrderPlaced));
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
