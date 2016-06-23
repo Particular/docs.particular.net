@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Features;
 using NServiceBus.Logging;
 
 static class Program
@@ -19,7 +18,7 @@ static class Program
 
         #region DisableSLR
         var endpointConfiguration = new EndpointConfiguration("Samples.ErrorHandling.WithoutSLR");
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.SecondLevelRetries().Disable();
         #endregion
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

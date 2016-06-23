@@ -2,23 +2,23 @@
 title: Automatic Retries
 summary: The message which caused the exception during processing, is automatically retried for the configured number of times before being forwarded to the error queue.
 tags:
-- Second Level Retry
-- Error Handling
-- Exceptions
-- Retry
-reviewed: 2016-03-31
+ - Second Level Retry
+ - Error Handling
+ - Exceptions
+ - Retry
+reviewed: 2016-06-23
 redirects:
  - nservicebus/second-level-retries
 related:
-- samples/faulttolerance
+ - samples/faulttolerance
 ---
 
 Sometimes processing of a message fails. This could be due to a transient problem like a deadlock in the database, in which case retrying the message a few times should solve the issue. If the problem is more protracted, like a third party web service going down or a database being unavailable, solving the issue would take longer. It is therefore useful to wait longer before retrying the message again.
 
 NServiceBus offers two levels of retries:
 
-- First Level Retry(FLR) is for transient errors, where quick successive retries solve the problem.
-- Second Level Retry(SLR) is for errors that persist after FLR, where a small delay is needed between retries.
+ * First Level Retry(FLR) is for transient errors, where quick successive retries solve the problem.
+ * Second Level Retry(SLR) is for errors that persist after FLR, where a small delay is needed between retries.
 
 NOTE: When a message cannot be deserialized, it will bypass all retry mechanisms and the message will be moved directly to the error queue.
 
