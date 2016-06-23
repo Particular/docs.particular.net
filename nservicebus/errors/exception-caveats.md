@@ -29,4 +29,4 @@ NServiceBus can't handle [StackOverflowExceptions](https://msdn.microsoft.com/en
 
 ## OutOfMemoryException
 
-While [OutOfMemoryException](https://msdn.microsoft.com/en-us/library/system.outofmemoryexception.aspx) will be caught by NServiceBus and handled in the standard NServiceBus manner, there is no guarantee that there will be enough memory available to handle the exception appropriately.
+[OutOfMemoryException](https://msdn.microsoft.com/en-us/library/system.outofmemoryexception.aspx) will be handled in a similar manner as other exceptions. NServiceBus will retry the message according to the endpoint configuration. However, if there isn't sufficient memory, then the process might crash.
