@@ -20,7 +20,7 @@ class Program
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
         var topology = transport.UseTopology<EndpointOrientedTopology>();
-        transport.Sanitization().UseStrategy<EndpointOrientedTopologySanitization>();
+        transport.Sanitization().UseStrategy<ValidateAndHashIfNeeded>();
 
         #region RegisterPublisherNames
 
