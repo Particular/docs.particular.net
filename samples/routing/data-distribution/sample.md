@@ -7,7 +7,7 @@ tags:
 - Data distribution
 ---
 
-The sample demonstrates how NServiceBus [routing](/nservicebus/messaging/routing.md) can be used to implement data distribution scenarios. When using the built-in [Publish/Subscribe]((/nservicebus/messaging/publish-subscribe)) pattern in NServiceBus, event messages are delivered to a single instance of any subscribed endpoint. In this sample every event message is delivered to all instances of subscribed endpoints.
+The sample demonstrates how NServiceBus [routing](/nservicebus/messaging/routing.md) can be used to implement data distribution scenarios. When using the built-in [Publish/Subscribe](/nservicebus/messaging/publish-subscribe) pattern in NServiceBus, event messages are delivered to a single instance of any subscribed endpoint. In this sample every event message is delivered to all instances of subscribed endpoints.
 
 
 ## Prerequisites
