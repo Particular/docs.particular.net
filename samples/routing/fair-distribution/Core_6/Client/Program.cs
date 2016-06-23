@@ -69,9 +69,11 @@ class Program
         #region FairDistributionClient
 
         endpointConfiguration.EnableFeature<FairDistribution>();
-        var unicastRouting = endpointConfiguration.UnicastRouting();
-        unicastRouting.Mapping.SetMessageDistributionStrategy(
-            new FairDistributionStrategy(endpointConfiguration.GetSettings()), type => true);
+        var routing = endpointConfiguration.Routing();
+        var settings = endpointConfiguration.GetSettings();
+        routing.Mapping.SetMessageDistributionStrategy(
+            endpointName: "Samples.FairDistribution.Server",
+            distributionStrategy: new FairDistributionStrategy(settings));
 
         #endregion
     }
@@ -81,9 +83,9 @@ class Program
         #region Routing
 
         const string server = "Samples.FairDistribution.Server";
-        var unicastRouting = endpointConfiguration.UnicastRouting();
-        unicastRouting.RouteToEndpoint(typeof(PlaceOrder), server);
-        unicastRouting.Mapping.Physical.Add(
+        var routing = endpointConfiguration.Routing();
+        routing.RouteToEndpoint(typeof(PlaceOrder), server);
+        routing.Mapping.Physical.Add(
             new EndpointInstance(server, "1").AtMachine(RuntimeEnvironment.MachineName),
             new EndpointInstance(server, "2").AtMachine(RuntimeEnvironment.MachineName));
 

@@ -12,7 +12,7 @@ class MarkerProcessor : ForkConnector<ITransportReceiveContext, IRoutingContext>
     public MarkerProcessor(EndpointInstance endpointInstance, int maxAckBatchSize)
     {
         this.maxAckBatchSize = maxAckBatchSize;
-        endpointName = endpointInstance.Endpoint.ToString();
+        endpointName = endpointInstance.Endpoint;
         instanceString = endpointInstance.ToString();
     }
 
