@@ -42,7 +42,7 @@
       <HintPath>..\..\..\..\..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0004\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0005\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Autofac">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Autofac.6.0.0-beta0001\lib\net452\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>

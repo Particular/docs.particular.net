@@ -46,7 +46,7 @@ public class FileTransportInfrastructure : TransportInfrastructure
 
     public override string ToTransportAddress(LogicalAddress logicalAddress)
     {
-        return Path.Combine(logicalAddress.EndpointInstance.Endpoint.ToString(),
+        return Path.Combine(logicalAddress.EndpointInstance.Endpoint,
             logicalAddress.EndpointInstance.Discriminator ?? "",
             logicalAddress.Qualifier ?? "");
     }

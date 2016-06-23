@@ -8,6 +8,6 @@ Thread:1 Inside INeedToInstallSomething.Install
 Thread:1 Inside FeatureStartupTask.OnStart
 Thread:8 Endpoint is processing messages
 Thread:8 Calling IEndpointInstance.Stop
-Thread:6 Inside FeatureStartupTask.OnStop
-Thread:6 Finished
+Thread:5 Inside FeatureStartupTask.OnStop
+Thread:5 Finished
 endcode
