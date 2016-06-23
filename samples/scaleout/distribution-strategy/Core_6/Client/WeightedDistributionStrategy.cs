@@ -5,14 +5,14 @@ using NServiceBus;
 using NServiceBus.Routing;
 
 class WeightedDistributionStrategy : DistributionStrategy
-{    
+{
     public override IEnumerable<UnicastRoutingTarget> SelectDestination(IList<UnicastRoutingTarget> currentAllInstances)
     {
         if (currentAllInstances.Count == 0)
         {
             yield break;
         }
-        var endpointName = currentAllInstances[0].Endpoint.ToString();
+        var endpointName = currentAllInstances[0].Endpoint;
         var index = indexes.AddOrUpdate(endpointName, e => 0L, (e, i) => i + ShouldMoveToNextInstance(CurrentInstance(currentAllInstances, i)));
         yield return CurrentInstance(currentAllInstances, index);
     }

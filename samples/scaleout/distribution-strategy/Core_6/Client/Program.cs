@@ -18,10 +18,12 @@ class Program
 
         #region Logical-Routing
 
-        var routing = endpointConfiguration.UnicastRouting();
+        var routing = endpointConfiguration.Routing();
         routing.RouteToEndpoint(typeof(DoSomething), "Samples.CustomDistributionStrategy.Server");
         //Distribute all messages using weighted algorithm
-        routing.Mapping.SetMessageDistributionStrategy(new WeightedDistributionStrategy(), t => true);
+        routing.Mapping.SetMessageDistributionStrategy(
+            endpointName: "Samples.CustomDistributionStrategy.Server",
+            distributionStrategy: new WeightedDistributionStrategy());
 
         #endregion
 
