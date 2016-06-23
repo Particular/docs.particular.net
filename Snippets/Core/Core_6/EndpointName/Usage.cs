@@ -31,8 +31,8 @@
         {
             #region InputQueueOverrideRouting
 
-            var unicastRouting = endpointConfiguration.UnicastRouting();
-            unicastRouting.RouteToEndpoint(typeof(MyMessage), "MyEndpoint");
+            var routing = endpointConfiguration.Routing();
+            routing.RouteToEndpoint(typeof(MyMessage), "MyEndpoint");
             var transport = endpointConfiguration.UseTransport<MyTransport>();
             transport.AddAddressTranslationException(
                 new EndpointInstance("MyEndpoint"), "MyEndpoint.Messages");
