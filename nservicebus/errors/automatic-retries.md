@@ -106,7 +106,7 @@ snippet:SLRConfigurationSourceUsage
 
 snippet:DisableSlrWithCode
 
-
+TODO: update to updated slr retry policy API
 ### Custom Retry Policy
 
 You can apply custom retry logic based on headers or timing in code.
