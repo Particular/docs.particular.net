@@ -7,11 +7,13 @@ tags:
 - Data distribution
 ---
 
-The sample demonstrates how NServiceBus routing can be used to implement data distribution scenarios. Data distribution is about delivering a given piece of information (message) to all instances of the subscribed endpoint, as opposed to a single instance when using the Publish/Subscribe pattern built into NServiceBus. 
+The sample demonstrates how NServiceBus [routing](/nservicebus/messaging/routing.md) can be used to implement data distribution scenarios. When using the built-in [Publish/Subscribe]((/nservicebus/messaging/publish-subscribe)) pattern in NServiceBus, event messages are delivered to a single instance of any subscribed endpoint. In this sample every event message is delivered to all instances of subscribed endpoints.
+
 
 ## Prerequisites
 
-Make sure MSMQ is set up as described [here](/nservicebus/msmq/). 
+Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/) section. 
+
 
 ## Running the project
 
@@ -24,6 +26,7 @@ Make sure MSMQ is set up as described [here](/nservicebus/msmq/).
 
  1. Notice that for each order message sent from any client there is a single confirmation `Order ABCD accepted` displayed in either Client.1 or Client.2 window. The `OrderAccepted` event is always processed by a single instance of the Client endpoint.
  1. Notice that for each order message there is `Invalidating cache` message displayed in both client consoles (data is being distributed to all instances).
+
 
 ## Code walk-through
 
@@ -39,7 +42,7 @@ This sample contains four projects:
 
 The Client mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. The Client also holds a local in-memory order cache that needs to be invalidated when an order is accepted by the back-end.
 
-The client application consists of two NServiceBus endpoints. The main endpoint is a standard NServiceBus endpoint. It is used to send the `PlaceOrder` commands and process `OrderAccepted` events.
+The client application consists of two endpoints. The main endpoint is a standard NServiceBus endpoint. It is used to send the `PlaceOrder` commands and process `OrderAccepted` events.
 
 snippet:MainConfig
 
@@ -59,9 +62,11 @@ snippet:FilterNamespace2
 
 In real-world scenarios NServiceBus is scaled out by deploying multiple instances of same application binaries to multiple machines (e.g. Client in this sample). For simplicity in this sample the scale-out is simulated by having two separate applications, Client and Client2.
 
+
 ### Server
 
 The Server project mimics the back-end system where orders are accepted.
+
 
 ### Shared project
 

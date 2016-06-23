@@ -9,7 +9,7 @@ namespace DataDistribution
         static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
         public Task Handle(OrderAccepted message, IMessageHandlerContext context)
         {
-            log.Info($"Invalidating cache.");
+            log.Info("Invalidating cache.");
             return Task.FromResult(0);
         }
     }

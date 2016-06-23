@@ -2,11 +2,9 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 
 class Program
 {
-
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
@@ -23,7 +21,9 @@ class Program
 
         #region MainConfig
         var mainConfig = new EndpointConfiguration(endpointName);
+
         mainConfig.ExcludeTypes(AllTypes.Where(t => t.Namespace == "DataDistribution").ToArray());
+
         var mainRouting = mainConfig.UseTransport<MsmqTransport>().UnicastRouting();
         mainRouting.RouteToEndpoint(typeof(PlaceOrder), "Samples.DataDistribution.Server");
         mainRouting.AddPublisher("Samples.DataDistribution.Server", typeof(OrderAccepted));

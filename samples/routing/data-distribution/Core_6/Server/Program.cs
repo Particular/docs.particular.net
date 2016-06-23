@@ -5,7 +5,6 @@ using NServiceBus.Logging;
 
 class Program
 {
-
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
@@ -14,8 +13,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.DataDistribution.Server";
-        LogManager.Use<DefaultFactory>()
-            .Level(LogLevel.Info);
+
         var endpointConfiguration = new EndpointConfiguration("Samples.DataDistribution.Server");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

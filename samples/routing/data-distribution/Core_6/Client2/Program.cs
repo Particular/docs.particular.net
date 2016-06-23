@@ -2,11 +2,9 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 
 class Program
 {
-
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
