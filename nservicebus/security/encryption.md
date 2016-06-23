@@ -2,6 +2,7 @@
 title: Encryption
 tags:
 - Encryption
+- Security
 redirects:
 - nservicebus/encryption
 related:
