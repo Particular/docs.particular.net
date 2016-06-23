@@ -27,7 +27,7 @@ NOTE: ServiceControl supports the DTC only for the SQL Server transport. The `En
 ### Multiple connection strings
 The default SQL Server transport connection string used by ServiceControl must point at a SQL Server instance that stores `error`, `audit`, and ServiceControl queues. In order to support retry of failed messages, ServiceControl also has to be configured with connection strings for each individual endpoint:
 
-snippet:sc-multi-instance-connection-strings 
+snippet:sc-multi-instance-connection-strings
 
 
 ## Endpoint configuration

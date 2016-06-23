@@ -22,7 +22,7 @@
   <appSettings>
     <add key="ServiceControl/EnableDtc" value="True" />
   </appSettings>
-  <!--ęndcode-->
+  <!--endcode-->
   <!--startcode sc-multi-instance-connection-strings-->
   <connectionStrings>
     <add name="NServiceBus/Transport"
