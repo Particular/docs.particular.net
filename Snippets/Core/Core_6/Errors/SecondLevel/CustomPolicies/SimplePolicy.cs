@@ -2,7 +2,6 @@
 {
     using System;
     using NServiceBus;
-    using NServiceBus.Transports;
 
     class SimplePolicy
     {
@@ -17,12 +16,12 @@
         }
 
         #region SecondLevelRetriesCustomPolicyHandler
-        TimeSpan MyCustomRetryPolicy(IncomingMessage incomingMessage)
+        TimeSpan MyCustomRetryPolicy(SecondLevelRetryContext context)
         {
             // retry max 3 times
-            if (incomingMessage.NumberOfRetries() >= 3)
+            if (context.SecondLevelRetryAttempt >= 3)
             {
-                // sending back a TimeSpan.MinValue tells the 
+                // sending back a TimeSpan.MinValue tells the
                 // SecondLevelRetry not to retry this message
                 return TimeSpan.MinValue;
             }

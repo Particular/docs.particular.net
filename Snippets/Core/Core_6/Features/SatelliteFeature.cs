@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Features;
+    using NServiceBus.ObjectBuilder;
     using NServiceBus.Pipeline;
     using NServiceBus.Transports;
 
@@ -15,8 +16,19 @@
         }
         protected override void Setup(FeatureConfigurationContext context)
         {
-            var pipelineSettings = context.AddSatellitePipeline("CustomSatellite", TransportTransactionMode.TransactionScope, PushRuntimeSettings.Default, "targetQueue");
-            pipelineSettings.Register("Satellite Identifier", new MySatelliteBehavior(), "Description of what the satellite does");
+            context.AddSatelliteReceiver(
+                name: "MyCustomSatellite",
+                transportAddress: "targetQueue",
+                requiredTransportTransactionMode: TransportTransactionMode.TransactionScope,
+                runtimeSettings: PushRuntimeSettings.Default,
+                onMessage: OnMessage);
+        }
+
+        Task OnMessage(IBuilder builder, PushContext messageContext)
+        {
+            // Implement what this satellite needs to do once it receives a message
+            var messageId = messageContext.MessageId;
+            return Task.FromResult(true);
         }
     }
     #endregion

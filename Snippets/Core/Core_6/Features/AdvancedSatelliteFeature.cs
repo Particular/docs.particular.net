@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Features;
+    using NServiceBus.ObjectBuilder;
     using NServiceBus.Pipeline;
     using NServiceBus.Transports;
 
@@ -18,12 +19,23 @@
 
         protected override void Setup(FeatureConfigurationContext context)
         {
-            var satellitePipeline = context.AddSatellitePipeline("CustomSatellite", TransportTransactionMode.TransactionScope, PushRuntimeSettings.Default, "targetQueue");
-            // register the critical error
-            satellitePipeline.Register(
-                stepId: "Satellite Identifier",
-                factoryMethod: builder => new MyAdvancedSatelliteBehavior(builder.Build<CriticalError>()),
-                description: "Description of what satellite does");
+            context.AddSatelliteReceiver(
+                name: "CustomSatellite",
+                transportAddress: "targetQueue",
+                requiredTransportTransactionMode: TransportTransactionMode.TransactionScope,
+                runtimeSettings: PushRuntimeSettings.Default,
+                onMessage: OnMessage);
+        }
+
+        Task OnMessage(IBuilder builder, PushContext messageContext)
+        {
+            // To raise a critical error
+            var exception = new Exception("CriticalError occurred");
+
+            builder.Build<CriticalError>()
+                .Raise("Something bad happened - trigger critical error", exception);
+
+            return Task.FromResult(true);
         }
 
         #endregion

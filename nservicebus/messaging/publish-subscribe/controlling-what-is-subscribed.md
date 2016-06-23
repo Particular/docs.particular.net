@@ -22,7 +22,7 @@ If the selected transport doesn't natively supports publish-subscribe it is requ
 
 snippet:endpoint-mapping-appconfig
 
-Since Version 6 it is possible to also specify the publishers in code.
+Since Version 6 it is possible to also specify the publishers in code. The following API is only available for transports that do not have native support for publish-subscribe.
 
 snippet:PubSub-CodePublisherMapping
 
