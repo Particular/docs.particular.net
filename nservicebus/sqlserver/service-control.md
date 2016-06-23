@@ -10,7 +10,7 @@ tags:
 
 
 ## Overview
-Even though it is [recommended that all SQL Server transport queue tables are stored in a single SQL Server catalog](index.md#deployment-considerations), it is possible to use ServiceControl to monitor a multi-instance deployment of the SQL Server transport. A requirement for such a configuration is that all endpoints share `error` and `audit` queues and that these queues are stored in the same catalog as ServiceControl queues. Other queues used by individual endpoints may be stored in different SQL Server instances. The following diagram shows an example system configuration:
+Even though it is [recommended that all SQL Server transport queue tables are stored in a single SQL Server catalog](/#deployment-considerations), it is possible to use ServiceControl to monitor a multi-instance deployment of the SQL Server transport. A requirement for such a configuration is that all endpoints share `error` and `audit` queues and that these queues are stored in the same catalog as ServiceControl queues. Other queues used by individual endpoints may be stored in different SQL Server instances. The following diagram shows an example system configuration:
 
 ![](servicecontrol-multiinstance.png)  
 
