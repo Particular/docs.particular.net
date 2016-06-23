@@ -3,6 +3,7 @@ title: Generating secure random strong encryption keys
 summary: Describes options in generating secure random strong encryption keys
 tags:
 - Encryption
+- Security
 redirects:
 related:
 - nservicebus/security
