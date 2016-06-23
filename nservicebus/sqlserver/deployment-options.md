@@ -30,7 +30,6 @@ The transport will route messages to destination based on the configuration. If 
  * Has simple configuration and setup.
  * Doesn't require Distributed Transaction Coordinator (DTC).
  * The snapshot (backup) of the entire system state can be done by backing up a single database. It is especially useful if business data is also stored in the same database.
- * Can be monitored with ServiceControl.
 
 
 ### Multi-schema
@@ -39,7 +38,6 @@ The transport will route messages to destination based on the configuration. If 
  * Doesn't require DTC.
  * The snapshot (backup) of the entire system state is done by backing up a single database. It is especially useful if business data is also stored in the same database.
  * Enables security configuration on a schema level.
- * Can't be monitored with ServiceControl.
 
 
 ### Multi-instance
@@ -47,7 +45,6 @@ The transport will route messages to destination based on the configuration. If 
 WARNING: The *multi-instance* option won't be supported in Versions 4 and higher. Version 3 supports *multi-instance* mode only with DTC.
 
  * Requires DTC, or in case of Version 2 using Outbox and storing business data in the same database as Outbox data.
- * Can't be monitored with ServiceControl.
 
 
 ### Multi-instance with store-and-forward

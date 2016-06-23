@@ -18,4 +18,19 @@
     </MessageEndpointMappings>
   </UnicastBusConfig>
   <!--endcode-->
+  <!--startcode sc-enabledtc-config-->
+  <appSettings>
+    <add key="ServiceControl/EnableDtc" value="True" />
+  </appSettings>
+  <!--ęndcode-->
+  <!--startcode sc-multi-instance-connection-strings-->
+  <connectionStrings>
+    <add name="NServiceBus/Transport"
+         connectionString="Server=DbServerA;Database=ServiceControlDB;"/>
+    <add name="NServiceBus/Transport/Billing"
+         connectionString="Server=DbServerB;Database=BillingDB;"/>
+    <add name="NServiceBus/Transport/Sales"
+         connectionString="Server=DbServerC;Database=SalesDB;"/>
+  </connectionStrings>
+  <!--endcode-->
 </configuration>

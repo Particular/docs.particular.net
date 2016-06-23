@@ -4,11 +4,10 @@ using NServiceBus.Transport.SQLServer;
 
 class MultiDb
 {
+#pragma warning disable 0618
 
     void OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration)
     {
-#pragma warning disable 0618
-
         #region sqlserver-multidb-other-endpoint-connection-pull
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
@@ -22,7 +21,39 @@ class MultiDb
         });
 
         #endregion
+    }
+
+    void ServiceControlMultiInstanceEndpointConnectionStrings(EndpointConfiguration endpointConfiguration)
+    {
+        #region sc-multi-instance-endpoint-connection-strings
+
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.EnableLegacyMultiInstanceMode(async transportAddress =>
+        {
+            string connectionString = null;
+
+            if (transportAddress == "error" ||
+                transportAddress == "audit" ||
+                transportAddress.StartsWith("Particular.ServiceControl"))
+            {
+                connectionString = "Server=DbServerA;Database=ServiceControlDB;";
+            }
+            if (transportAddress == "Billing")
+            {
+                connectionString = "Server=DbServerB;Database=BillingDB;";
+            }
+            if (transportAddress == "Sales")
+            {
+                connectionString = "Server=DbServerC;Database=SalesDB;";
+            }
+
+            var connection = new SqlConnection(connectionString);
+            await connection.OpenAsync().ConfigureAwait(false);
+            return connection;
+        });
+
+        #endregion
+    }
 
 #pragma warning restore 0618
-    }
 }

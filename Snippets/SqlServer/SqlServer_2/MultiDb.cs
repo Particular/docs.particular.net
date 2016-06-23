@@ -45,4 +45,34 @@ class MultiDb
 
         #endregion
     }
+
+    void ServiceControlMultiInstanceEndpointConnectionStrings(BusConfiguration busConfiguration)
+    {
+        #region sc-multi-instance-endpoint-connection-strings [2.1,3.0)
+
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.UseSpecificConnectionInformation(transportAddress =>
+        {
+            if (transportAddress == "error" ||
+                transportAddress == "audit" ||
+                transportAddress.StartsWith("Particular.ServiceControl"))
+            {
+                return ConnectionInfo.Create()
+                    .UseConnectionString("Server=DbServerA;Database=ServiceControlDB;");
+            }
+            if (transportAddress == "Billing")
+            {
+                return ConnectionInfo.Create()
+                    .UseConnectionString("Server=DbServerB;Database=BillingDB;");
+            }
+            if (transportAddress == "Sales")
+            {
+                return ConnectionInfo.Create()
+                    .UseConnectionString("Server=DbServerC;Database=SalesDB;");
+            }
+            return null;
+        });
+
+        #endregion
+    }
 }
