@@ -15,15 +15,17 @@ class Program
         const string endpointName = "Samples.Scaleout.Worker";
         var endpointConfiguration = new EndpointConfiguration(endpointName);
         var instanceId = ConfigurationManager.AppSettings["InstanceId"];
-        endpointConfiguration.UseTransport<MsmqTransport>().AddAddressTranslationException(
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.AddAddressTranslationException(
             new EndpointInstance(endpointName).AtMachine(RuntimeEnvironment.MachineName),
-            endpointName + "-" + instanceId);        
+            $"{endpointName}-{instanceId}");
         var masterNodeAddress = ConfigurationManager.AppSettings["MasterNodeAddress"];
         var masterNodeControlAddress = ConfigurationManager.AppSettings["MasterNodeControlAddress"];
         endpointConfiguration.EnlistWithLegacyMSMQDistributor(masterNodeAddress, masterNodeControlAddress, 10);
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UnicastRouting().AddPublisher("Samples.Scaleout.Sender", typeof(OrderPlaced));
+        var unicastRouting = endpointConfiguration.UnicastRouting();
+        unicastRouting.AddPublisher("Samples.Scaleout.Sender", typeof(OrderPlaced));
         endpointConfiguration.EnableInstallers();
 
         Run(endpointConfiguration).GetAwaiter().GetResult();

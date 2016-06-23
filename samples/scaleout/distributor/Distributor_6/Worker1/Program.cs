@@ -15,7 +15,7 @@ class Program
 
         #region Workerstartup
         const string endpointName = "Samples.Scaleout.Worker";
-        var endpointConfiguration = new EndpointConfiguration(endpointName);        
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
         var masterNodeAddress = ConfigurationManager.AppSettings["MasterNodeAddress"];
         var masterNodeControlAddress = ConfigurationManager.AppSettings["MasterNodeControlAddress"];
         endpointConfiguration.EnlistWithLegacyMSMQDistributor(masterNodeAddress, masterNodeControlAddress, 10);
@@ -23,12 +23,14 @@ class Program
 
         #region AddressTranslationExecption
         var instanceId = ConfigurationManager.AppSettings["InstanceId"];
-        endpointConfiguration.UseTransport<MsmqTransport>().AddAddressTranslationException(
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.AddAddressTranslationException(
             new EndpointInstance(endpointName).AtMachine(RuntimeEnvironment.MachineName),
-            endpointName + "-" + instanceId);
+            $"{endpointName}-{instanceId}");
         #endregion
 
-        endpointConfiguration.UnicastRouting().AddPublisher("Samples.Scaleout.Sender", typeof(OrderPlaced));
+        var unicastRouting = endpointConfiguration.UnicastRouting();
+        unicastRouting.AddPublisher("Samples.Scaleout.Sender", typeof(OrderPlaced));
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
