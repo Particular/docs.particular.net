@@ -323,6 +323,7 @@
     <Compile Include="UpgradeGuides\5to6\DependentFeature.cs" />
     <Compile Include="UpgradeGuides\5to6\HandlerOrdering.cs" />
     <Compile Include="UpgradeGuides\5to6\Saga.cs" />
+    <Compile Include="UpgradeGuides\5to6\CustomRetryPolicy.cs" />
     <Compile Include="UpgradeGuides\5to6\StartupInterface.cs" />
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
