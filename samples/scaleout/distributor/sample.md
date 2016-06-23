@@ -1,15 +1,15 @@
 ---
 title: Scale Out with the Distributor
 summary: Scale out existing message processing by adding workers on different machines.
-reviewed: 2016-03-21
+reviewed: 2016-06-23
 component: Distributor
 tags:
-- Distributor
-- Scalability
+ - Distributor
+ - Scalability
 redirects:
-- nservicebus/scale-out-sample
+ - nservicebus/scale-out-sample
 related:
-- nservicebus/scalability-and-ha
+ - nservicebus/scalability-and-ha
 ---
 
 Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out existing message processing by adding more workers on different machines.
@@ -75,7 +75,7 @@ snippet: workerConfig
 
 The Node in the `MasterNodeConfig` points to the host name where the MasterNode is running. If running the Worker from the same machine as the Distributor, Node should equal `localhost`.
 
-NOTE: In Versions 6 and above `MasterNodeConfig` is obsolete and `endpointConfiguraiton.EnlistWithLegacyMSMQDistributor` should be used as in code above. 
+NOTE: In Versions 6 and above `MasterNodeConfig` is obsolete and `endpointConfiguraiton.EnlistWithLegacyMSMQDistributor` should be used as in code above.
 
 
 ## Running the code
@@ -106,7 +106,7 @@ Worker->Server: Ready for work
 
 ### Sender Output
 
-```
+```no-highlight
 Press 'Enter' to send a message.
 Press any other key to exit.
 
@@ -120,7 +120,7 @@ Received OrderPlaced. OrderId: 40585dff-3749-4db1-b21a-25694468f042. Worker: Wor
 
 ### Server Output
 
-```
+```no-highlight
 Press any key to exit
 2015-08-21 17:07:19.775 INFO  NServiceBus.Distributor.MSMQ.MsmqWorkerAvailabilityManager Worker at 'Sample.Scaleout.Worker2' has been registered with 1 capacity.
 2015-08-21 17:07:19.802 INFO  NServiceBus.Distributor.MSMQ.MsmqWorkerAvailabilityManager Worker at 'Sample.Scaleout.Worker1' has been registered with 1 capacity.
@@ -129,7 +129,7 @@ Press any key to exit
 
 ### Worker1 Output
 
-```
+```no-highlight
 2015-08-21 17:07:18.906 INFO  NServiceBus.Unicast.Transport.TransportReceiver Worker started, failures will be redirected to Sample.Scaleout.Server
 Press any key to exit
 Processing received order....
@@ -139,7 +139,7 @@ Sent Order placed event for orderId [40585dff-3749-4db1-b21a-25694468f042].
 
 ### Worker2 Output
 
-```
+```no-highlight
 2015-08-21 17:07:18.818 INFO  NServiceBus.Unicast.Transport.TransportReceiver Worker started, failures will be redirected to Sample.Scaleout.Server
 Press any key to exit
 Processing received order....
@@ -152,7 +152,7 @@ Sent Order placed event for orderId [1320cfdc-f5cc-42a7-9157-251756694069].
 This sample has two workers which are hard coded as projects for the sake of keeping the sample easy to use. This manifests in several ways
 
  1. Both `Worker1` and `Worker2` are different projects so that the solution automatically starts with two workers.
- 1. Both `Worker1` and `Worker2` have different endpoint names so they have distinct queue names when running in the development environment.
+ 1. Both `Worker1` and `Worker2` have different endpoint names (Versions 4 and 5) or configure an address translation exception (Version 6) so they have distinct queue names when running in the development environment.
  1. Both `Worker1` and `Worker2` have hard coded settings in the app.config
 
 In a real solution the following is more likely
@@ -179,10 +179,6 @@ snippet:WorkerNameToUseWhileTestingConfig
 
 #### Version 6
 
-The worker input queue is generated in the same way as for a non-scaled out endpoint -- based on the endpoint name and an optional instance ID.
+The worker input queue is generated in the same way as for a non-scaled out endpoint -- based on the endpoint name. If multiple workers are deployed to same machine, they share the input queue. Because in this sample two workers need to run to show the actual distribution, the input queue cannot be shared. In order to prevent it an address translation exception is used.
 
-snippet:Distributor-InstanceId
-
-snippet:Distributor-InstanceId-Settings
-
-When deploying multiple workers to a single machine ensure that each worker is assigned a unique instance ID.
+snippet:AddressTranslationExecption

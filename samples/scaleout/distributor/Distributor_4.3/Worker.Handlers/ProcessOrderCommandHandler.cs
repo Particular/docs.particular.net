@@ -25,7 +25,7 @@ public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
             WorkerName = Assembly.GetEntryAssembly().GetName().Name
         };
         bus.Reply(message);
-        log.InfoFormat("Sent Order placed event for orderId [{0}].", placeOrder.OrderId);
+        log.Info($"Sent Order placed event for orderId [{placeOrder.OrderId}].");
     }
 }
 

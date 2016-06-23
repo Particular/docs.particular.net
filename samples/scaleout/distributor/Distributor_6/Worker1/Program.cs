@@ -2,7 +2,9 @@
 using System.Configuration;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Routing;
 using NServiceBus.Routing.Legacy;
+using NServiceBus.Support;
 
 class Program
 {
@@ -10,14 +12,25 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.Scaleout.Worker1";
+
         #region Workerstartup
-        var endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
-        var discriminator = ConfigurationManager.AppSettings["InstanceId"];
-        endpointConfiguration.ScaleOut().InstanceDiscriminator(discriminator);
+        const string endpointName = "Samples.Scaleout.Worker";
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
         var masterNodeAddress = ConfigurationManager.AppSettings["MasterNodeAddress"];
         var masterNodeControlAddress = ConfigurationManager.AppSettings["MasterNodeControlAddress"];
         endpointConfiguration.EnlistWithLegacyMSMQDistributor(masterNodeAddress, masterNodeControlAddress, 10);
         #endregion
+
+        #region AddressTranslationExecption
+        var instanceId = ConfigurationManager.AppSettings["InstanceId"];
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.AddAddressTranslationException(
+            new EndpointInstance(endpointName).AtMachine(RuntimeEnvironment.MachineName),
+            $"{endpointName}-{instanceId}");
+        #endregion
+
+        var unicastRouting = endpointConfiguration.UnicastRouting();
+        unicastRouting.AddPublisher("Samples.Scaleout.Sender", typeof(OrderPlaced));
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
