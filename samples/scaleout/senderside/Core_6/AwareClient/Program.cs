@@ -18,7 +18,7 @@ class Program
 
         #region Logical-Routing
 
-        var routing = endpointConfiguration.UnicastRouting();
+        var routing = endpointConfiguration.Routing();
         routing.RouteToEndpoint(typeof(DoSomething), "Samples.SenderSideScaleOut.Server");
 
         #endregion

@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<root>
-  <!-- startcode Physical-Routes -->
-  <endpoints>
-    <endpoint name="Samples.SenderSideScaleOut.Server">
-      <!-- Scaled-out endpoint -->
-      <instance discriminator="instance1" />
-      <instance discriminator="instance2" />
-    </endpoint>
-  </endpoints>
-  <!-- endcode -->
-</root>
+<!-- startcode Physical-Routes -->
+<endpoints>
+  <endpoint name="Samples.SenderSideScaleOut.Server">
+    <!-- Scaled-out endpoint -->
+    <instance discriminator="instance1" />
+    <instance discriminator="instance2" />
+  </endpoint>
+</endpoints>
+<!-- endcode -->
