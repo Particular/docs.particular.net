@@ -6,7 +6,14 @@
     public class ExceptionPolicy
     {
 
+        ExceptionPolicy(BusConfiguration busConfiguration)
+        {
+            var retriesSettings = busConfiguration.SecondLevelRetries();
+            retriesSettings.CustomRetryPolicy(MyCustomRetryPolicy);
+        }
+
         #region SecondLevelRetriesCustomExceptionPolicyHandler
+
         TimeSpan MyCustomRetryPolicy(TransportMessage transportMessage)
         {
             if (transportMessage.ExceptionType() == typeof(MyBusinessException).FullName)
@@ -23,12 +30,10 @@
             return TimeSpan.FromSeconds(5);
         }
 
-
         #endregion
-
     }
 
-    internal class MyBusinessException
+    class MyBusinessException : Exception
     {
     }
 }

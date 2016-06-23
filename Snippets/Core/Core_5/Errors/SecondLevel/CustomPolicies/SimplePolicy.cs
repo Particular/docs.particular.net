@@ -16,6 +16,7 @@
         }
 
         #region SecondLevelRetriesCustomPolicyHandler
+
         TimeSpan MyCustomRetryPolicy(TransportMessage transportMessage)
         {
             // retry max 3 times
@@ -28,6 +29,7 @@
 
             return TimeSpan.FromSeconds(5);
         }
+
         #endregion
 
     }

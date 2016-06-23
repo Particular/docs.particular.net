@@ -8,9 +8,10 @@
         void ConfigureFlr(EndpointConfiguration endpointConfiguration)
         {
             #region SlrCodeFirstConfiguration
-            endpointConfiguration.SecondLevelRetries()
-                .NumberOfRetries(2)
-                .TimeIncrease(TimeSpan.FromMinutes(5));
+
+            var secondLevelRetries = endpointConfiguration.SecondLevelRetries();
+            secondLevelRetries.NumberOfRetries(2);
+            secondLevelRetries.TimeIncrease(TimeSpan.FromMinutes(5));
             #endregion
         }
     }

@@ -1,21 +1,26 @@
 ﻿namespace Core6.Errors.SecondLevel.CustomPolicies
 {
     using System;
-    using NServiceBus.Transports;
+    using NServiceBus;
 
     class ExceptionPolicy
     {
+        ExceptionPolicy(EndpointConfiguration endpointConfiguration)
+        {
+            var retriesSettings = endpointConfiguration.SecondLevelRetries();
+            retriesSettings.CustomRetryPolicy(MyCustomRetryPolicy);
+        }
 
         #region SecondLevelRetriesCustomExceptionPolicyHandler
-        TimeSpan MyCustomRetryPolicy(IncomingMessage incomingMessage)
+        TimeSpan MyCustomRetryPolicy(SecondLevelRetryContext context)
         {
-            if (incomingMessage.ExceptionType() == typeof(MyBusinessException).FullName)
+            if (context.Exception is MyBusinessException)
             {
                 // Do not retry for MyBusinessException
                 return TimeSpan.MinValue;
             }
 
-            if (incomingMessage.NumberOfRetries() >= 3)
+            if (context.SecondLevelRetryAttempt >= 3)
             {
                 return TimeSpan.MinValue;
             }
@@ -28,7 +33,7 @@
 
     }
 
-    internal class MyBusinessException
+    class MyBusinessException: Exception
     {
     }
 }

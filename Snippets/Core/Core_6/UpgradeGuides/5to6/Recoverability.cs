@@ -8,18 +8,24 @@
         void ConfigureRetries(EndpointConfiguration endpointConfiguration)
         {
             #region 5to6-RecoverabilityCodeFirstApi
-            endpointConfiguration.FirstLevelRetries().NumberOfRetries(3);
-            endpointConfiguration.SecondLevelRetries()
-                .NumberOfRetries(5)
-                .TimeIncrease(TimeSpan.FromSeconds(30));
+
+            var firstLevelRetries = endpointConfiguration.FirstLevelRetries();
+            firstLevelRetries.NumberOfRetries(3);
+            var secondLevelRetries = endpointConfiguration.SecondLevelRetries();
+            secondLevelRetries.NumberOfRetries(5);
+            secondLevelRetries.TimeIncrease(TimeSpan.FromSeconds(30));
             #endregion
         }
 
         void DisableRetries(EndpointConfiguration endpointConfiguration)
         {
             #region 5to6-RecoverabilityDisableRetries
-            endpointConfiguration.FirstLevelRetries().Disable();
-            endpointConfiguration.SecondLevelRetries().Disable();
+
+            var firstLevelRetries = endpointConfiguration.FirstLevelRetries();
+            firstLevelRetries.Disable();
+
+            var secondLevelRetries = endpointConfiguration.SecondLevelRetries();
+            secondLevelRetries.Disable();
             #endregion
         }
     }

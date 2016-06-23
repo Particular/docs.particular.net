@@ -7,7 +7,9 @@
         DisableWithCode(EndpointConfiguration endpointConfiguration)
         {
             #region DisableSlrWithCode
-            endpointConfiguration.SecondLevelRetries().Disable();
+
+            var secondLevelRetries = endpointConfiguration.SecondLevelRetries();
+            secondLevelRetries.Disable();
 
             #endregion
         }

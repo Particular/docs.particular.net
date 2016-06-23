@@ -7,7 +7,9 @@
         void ConfigureFlr(EndpointConfiguration endpointConfiguration)
         {
             #region FlrCodeFirstConfiguration
-            endpointConfiguration.FirstLevelRetries().NumberOfRetries(3);
+
+            var firstLevelRetries = endpointConfiguration.FirstLevelRetries();
+            firstLevelRetries.NumberOfRetries(3);
             #endregion
         }
     }
