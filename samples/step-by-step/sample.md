@@ -35,7 +35,7 @@ The complete sample code can be [downloaded here](http://docs.particular.net/sam
 
 ### MSMQ
 
-* Microsoft Message Queueing (MSMQ) must be properly installed and configured. The easiest way to do this is with the appropriate DISM command line below. Alternatively, it can be installed via the Windows GUI following our [MSMQ guide](/platform/installer/).
+* Microsoft Message Queueing (MSMQ) must be properly installed and configured. The easiest way to do this is with the appropriate DISM command line below. Alternatively, it can be installed via the Windows GUI following the [MSMQ guide](/platform/installer/).
 
 #### Enable MSMQ on Windows 7
 
