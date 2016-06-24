@@ -2,6 +2,7 @@
 title: ServiceControl and Multi-Instance Mode
 summary: ServiceControl and SQL Server transport multi-instance mode configuration guidance 
 reviewed: 2016-06-24
+hidden: true
 tags:
  - SQL Server
  - Transports
