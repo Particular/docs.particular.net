@@ -24,7 +24,7 @@ The NuGet package is available here https://www.nuget.org/packages/nservicebus.r
  * RabbitMQ provides native reliability and high-availability features.
  * Offers native Publish-Subcribe mechanism, therefore it doesn't require NServiceBus persistence for storing event subscriptions.
  * Wide range of supported clients allows for integrating the system with applications written in other languages using native RabbitMQ features.
- * Supports [Competing consumers](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html) pattern. Messages are received by instances in a round-robin fashion.
+ * Supports [Competing consumers](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html) pattern out of the box. Messages are received by instances in a round-robin fashion without additional configuration.
 
 
 ### Disadvantages
