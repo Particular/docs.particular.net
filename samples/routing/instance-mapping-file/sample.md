@@ -3,9 +3,8 @@ title: Mapping endpoint instances using a shared file
 summary: Mapping logical endpoints to physical instances using a shared file
 component: Core
 tags:
-- Routing
-- MSMQ
-redirects:
+ - Routing
+ - MSMQ
 ---
 
 The sample demonstrates to use a file to describe the mapping between logical endpoints and their physical instances. This is important for store-and-forward transports such as MSMQ because the physical topology can differ from the logical one.
@@ -13,7 +12,7 @@ The sample demonstrates to use a file to describe the mapping between logical en
 
 ## Prerequisites
 
- 1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`. 
+ 1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
  1. Create database called `AutomaticRouting`.
 
 
@@ -30,7 +29,7 @@ The sample demonstrates to use a file to describe the mapping between logical en
  1. The Sales.1 and Sales.2 consoles display information about accepted orders in round-robin fashion.
  1. The Shipping endpoint displays information that orders were shipped.
  1. The Billing endpoint displays information that orders were billed.
- 2. Notice that queues created by running the sample all have `-at-<machine>` suffix. This is the result of simulating a multi-machine system on a single machine.
+ 1. Notice that queues created by running the sample all have `-at-<machine>` suffix. This is the result of simulating a multi-machine system on a single machine.
 
 
 ## Code walk-through
@@ -65,7 +64,7 @@ Shipping and Billing mimic back-end systems subscribing to events published by S
 
 ### Shared project
 
-The shared project contains definitions for messages and the custom routing logic. 
+The shared project contains definitions for messages and the custom routing logic.
 
 
 ### Simulating multiple machines
@@ -74,8 +73,8 @@ All the endpoints enable multiple machine simulation in order to run this sample
 
 snippet:SimulateMultiMachine
 
-The simulation enables a custom address translation rule that overrides the default one
+The simulation enables a custom address translation rule that overrides the default one.
 
 snippet:AddressTranslationRule
 
-The overridden rule substitutes the local machine name in the address specification with the one defined in each applications `Program.cs` to ensure the queues that NServiceBus created when installing have proper simulated machine names. 
+The overridden rule substitutes the local machine name in the address specification with the one defined in each applications `Program.cs` to ensure the queues that NServiceBus created when installing have proper simulated machine names.
