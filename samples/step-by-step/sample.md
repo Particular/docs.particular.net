@@ -69,7 +69,7 @@ NOTE: Storing all message definitions in a single location is not a best practic
 
 ### Setting dependencies
 
-#### Reference the `Shared` project.
+#### Reference the Shared project.
 
 In the `Client`, `Server`, and `Subscriber` projects, add a reference to the `Shared` project.
 
