@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 using NServiceBus.Transports.SQLServer;
 
 class MultiDb
@@ -40,7 +41,7 @@ class MultiDb
                     .UseConnectionString("SomeOtherConnectionString")
                     .UseSchema("schema2");
             }
-            return null;
+            throw new Exception($"Connection string not found for transport address {x}");
         });
 
         #endregion
@@ -70,7 +71,7 @@ class MultiDb
                 return ConnectionInfo.Create()
                     .UseConnectionString("Server=DbServerC;Database=SalesDB;");
             }
-            return null;
+            throw new Exception($"Connection string not found for transport address {transportAddress}");
         });
 
         #endregion

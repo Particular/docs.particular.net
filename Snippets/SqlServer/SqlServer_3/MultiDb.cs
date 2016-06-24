@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using NServiceBus;
 using NServiceBus.Transport.SQLServer;
 
@@ -30,7 +31,7 @@ class MultiDb
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.EnableLegacyMultiInstanceMode(async transportAddress =>
         {
-            string connectionString = null;
+            string connectionString;
 
             if (transportAddress == "error" ||
                 transportAddress == "audit" ||
@@ -38,13 +39,17 @@ class MultiDb
             {
                 connectionString = "Server=DbServerA;Database=ServiceControlDB;";
             }
-            if (transportAddress == "Billing")
+            else if (transportAddress == "Billing")
             {
                 connectionString = "Server=DbServerB;Database=BillingDB;";
             }
-            if (transportAddress == "Sales")
+            else if (transportAddress == "Sales")
             {
                 connectionString = "Server=DbServerC;Database=SalesDB;";
+            }
+            else
+            {
+                throw new Exception($"Connection string not found for transport address {transportAddress}");
             }
 
             var connection = new SqlConnection(connectionString);

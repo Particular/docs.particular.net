@@ -11,7 +11,7 @@ tags:
 
 ## Overview
 
-Even though it is [recommended that all SQL Server transport queue tables are stored in a single SQL Server catalog](/#deployment-considerations), it is possible to use ServiceControl to monitor a multi-instance deployment of the SQL Server transport. A requirement for such a configuration is that all endpoints share `error` and `audit` queues and that these queues are stored in the same catalog as ServiceControl queues. Other queues used by individual endpoints may be stored in different SQL Server instances. The following diagram shows an example system configuration:
+Even though it is [recommended that all SQL Server transport queue tables are stored in a single SQL Server catalog](/#deployment-considerations), it is possible to use ServiceControl to monitor multi-catalog and multi-instance deployments of the SQL Server transport. A requirement for such configurations is that all endpoints share `error` and `audit` queues and that these queues are stored in the same catalog as ServiceControl queues. Other queues used by individual endpoints may be stored in different SQL Server catalogs and instances. The following diagram shows an example system configuration:
 
 ![](servicecontrol-multiinstance.png)  
 
@@ -21,7 +21,7 @@ Even though it is [recommended that all SQL Server transport queue tables are st
 
 ### Distributed transactions
 
-Multi-instance deployment of the SQL Server transport requires that the Distributed Transaction Coordinator (DTC) is used by all endpoints. This is also required by ServiceControl to support retry of failed messages. Default configuration of ServiceControl disables support for distributed transactions and it has to be turned of explicitly using `EnableDtc` configuration setting:
+Multi-instance deployment of the SQL Server transport requires that the Distributed Transaction Coordinator (DTC) is used by all endpoints. This is also required by ServiceControl to support retry of failed messages. Default configuration of ServiceControl disables support for distributed transactions and it has to be enabled explicitly using `EnableDtc` configuration setting:
 
 snippet:sc-enabledtc-config
 
