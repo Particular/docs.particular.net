@@ -6,6 +6,8 @@ redirects:
 - nservicebus/nservicebus-step-by-step-guide
 ---
 
+The completed sample code can be downloaded above but following this guide is strongly encouraged.
+
 ## Introduction
 
 This guide illustrates essential NServiceBus concepts by showing how to build a simple system that uses messaging to:
@@ -25,7 +27,6 @@ Completing these steps will serve as an introduction to many important NServiceB
 * [Publishing events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md)
 * [Logging](/nservicebus/logging/)
 
-The complete sample code can be [downloaded here](/samples/step-by-step/step-by-step.zip), but following this guide is strongly encouraged for a better learning experience.
 
 ## Prerequisites
 
