@@ -31,7 +31,10 @@ By default, queues are created with `Everyone` and `Anonymous Logon` permissions
 
 NOTE: From Version 6 if the above default permissions are set, a log message will be written during the transport startup, reminding that the queue is configured with default permissions. During development, if running with an attached debugger, this message will be logged as `INFO` level, otherwise `WARN`.
 
-See also [Administer Security for Message Queuing](https://technet.microsoft.com/en-us/library/cc738047.aspx).
+See also
+
+ * [Administer Security for Message Queuing in Windows Server 2003](https://technet.microsoft.com/en-us/library/cc738047.aspx).
+ * [Message Queuing Security Overview in Windows Server 2008](https://technet.microsoft.com/en-us/library/cc771268.aspx).
 
 
 ### MSMQ-specific
