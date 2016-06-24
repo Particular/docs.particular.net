@@ -25,7 +25,7 @@ Completing these steps will serve as an introduction to many important NServiceB
 * [Publishing events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md)
 * [Logging](/nservicebus/logging/)
 
-The complete sample code can be [downloaded here](http://docs.particular.net/samples/step-by-step/step-by-step.zip), but following this guide is strongly encouraged for a better learning experience.
+The complete sample code can be [downloaded here](/samples/step-by-step/step-by-step.zip), but following this guide is strongly encouraged for a better learning experience.
 
 ## Prerequisites
 
