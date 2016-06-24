@@ -14,7 +14,7 @@ ServiceControl stores its data in a RavenDB embedded instance. By default, the R
 ![](managementutil-maintenancemode.png)
 1. Launch RavenDB Studio  
 ![](managementutil-launchstudio.png)
-1. Stop Maintenance Mode once you done 
+1. Stop Maintenance Mode once work completed 
 
 
 WARNING: The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
