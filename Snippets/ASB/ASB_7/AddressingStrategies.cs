@@ -6,40 +6,6 @@ using NServiceBus.AzureServiceBus.Addressing;
 using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Settings;
 
-#region custom-validation-strategy
-
-public class MyValidationStrategy : IValidationStrategy
-{
-    ReadOnlySettings settings;
-
-    public MyValidationStrategy(ReadOnlySettings settings)
-    {
-        this.settings = settings;
-    }
-
-    public bool IsValid(string entityPath, EntityType entityType)
-    {
-        throw new NotImplementedException();
-    }
-}
-
-#endregion
-
-#region custom-validation-strategy-extension
-
-public static class AzureServiceBusValidationStrategyExtensions
-{
-    public static AzureServiceBusValidationSettings MySetting(this AzureServiceBusValidationSettings extensionPoint, string value)
-    {
-        var settings = extensionPoint.GetSettings();
-
-        settings.Set("SomeWellknownKey", value);
-
-        return extensionPoint;
-    }
-}
-
-#endregion
 
 #region custom-sanitization-strategy
 
