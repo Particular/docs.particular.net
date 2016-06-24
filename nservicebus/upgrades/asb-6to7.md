@@ -67,11 +67,9 @@ For more details on topologies refer to the [Azure Service Bus Transport Topolog
 
 ## Sanitization
 
-In Versions 6 and below sanitization was performed by default and the MD5 algorithm was used to truncate entity names. In Versions 7 and above, the sanitization has to be enabled explicitly. 
+In Versions 6 and below sanitization was performed by default and the MD5 algorithm was used to truncate entity names. In Versions 7 and above, the sanitization has to be enabled and configured explicitly. 
 
-In order to maintain backward compatibility, [use `EndpointOrientedTopologySanitization` strategy](/nservicebus/azure-service-bus/sanitization.md#version-7-and-above).
-
-snippet: asb-endpointorientedtopology-sanitization
+In order to maintain backward compatibility, [register a custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#backward-compatibility-with-versions-6-and-below).
 
 In version 6.4.0 `NamingConventions` class was introduced to customize sanitization. The class is obsoleted. Instead, implement a [custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#version-7-and-above).
 
