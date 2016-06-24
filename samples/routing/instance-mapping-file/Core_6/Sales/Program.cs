@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
-{    
+{
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using NServiceBus;
-using NServiceBus.Support;
 using NServiceBus.Transports;
 
 public static class MultipleMachineSimulation
@@ -22,14 +21,14 @@ public static class MultipleMachineSimulation
             var queue = new StringBuilder(x.EndpointInstance.Endpoint.ToString());
             if (x.EndpointInstance.Discriminator != null)
             {
-                queue.Append("-" + x.EndpointInstance.Discriminator);
+                queue.Append($"-{x.EndpointInstance.Discriminator}");
             }
             if (x.Qualifier != null)
             {
-                queue.Append("." + x.Qualifier);
+                queue.Append($".{x.Qualifier}");
             }
             //Use -at- instead of @ to place all queues on same machine
-            return queue + "-at-" + machine;
+            return $"{queue}-at-{machine}";
         });
         #endregion
     }
