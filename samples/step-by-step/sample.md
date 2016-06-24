@@ -25,17 +25,17 @@ Completing these steps will serve as an introduction to many important NServiceB
 * [Publishing events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md)
 * [Logging](/nservicebus/logging/)
 
-You can also [download the completed sample code](http://docs.particular.net/samples/step-by-step/step-by-step.zip), but we strongly encourage you to follow this guide for a better learning experience.
+The complete sample code can be [downloaded here](http://docs.particular.net/samples/step-by-step/step-by-step.zip), but following this guide is strongly encouraged for a better learning experience.
 
 ## Prerequisites
 
 ### .NET Framework Version 4.5.2
 
-You need to [download the .NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642) and install it on your machine.
+[Download the .NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642) and install it.
 
 ### MSMQ
 
-* Microsoft Message Queueing (MSMQ) must be properly installed and configured. The easiest way to do this is using DISM command line as specified below. If you prefer to do it via the Windows GUI, follow our [MSMQ guide](/platform/installer/).
+* Microsoft Message Queueing (MSMQ) must be properly installed and configured. The easiest way to do this is with the appropriate DISM command line below. Alternatively, it can be installed via the Windows GUI following our [MSMQ guide](/platform/installer/).
 
 #### Enable MSMQ on Windows 7
 
