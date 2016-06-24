@@ -35,17 +35,17 @@ The complete sample code can be [downloaded here](http://docs.particular.net/sam
 
 ### MSMQ
 
-* Microsoft Message Queueing (MSMQ) must be properly installed and configured. The easiest way to do this is with the appropriate DISM command line below. Alternatively, it can be installed via the Windows GUI following the [MSMQ guide](/platform/installer/).
+* Microsoft Message Queueing (MSMQ) must be properly installed and configured. The easiest way to do this is with the appropriate command below from the command line. Alternatively, it can be installed via the Windows GUI following the [MSMQ guide](/platform/installer/).
 
 #### Enable MSMQ on Windows 7
 
-Run the following command on the DISM command line:
+Run the following command on the command line:
 
 `DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server`
 
 #### Enable MSMQ on Windows 8.x and 10
 
-Run the following command on the DISM command line:
+Run the following command on the command line:
 
 `DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server`
 
@@ -73,7 +73,7 @@ NOTE: Storing all message definitions in a single location is not a best practic
 
 In the `Client`, `Server`, and `Subscriber` projects, add a reference to the `Shared` project.
 
-#### Reference the `NServiceBus` NuGet package
+#### Reference the NServiceBus NuGet package
 
 To install the `NServiceBus` NuGet package, copy-paste and run the following block in the package manager console:
 
