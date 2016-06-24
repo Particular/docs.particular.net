@@ -6,12 +6,9 @@ redirects:
 - nservicebus/nservicebus-step-by-step-guide
 ---
 
-This sample illustrates basic NServiceBus concepts in a step-by-step fashion. Alternatively, the completed sample code can be downloaded above.
+## Introduction
 
-
-## Concepts
-
-The goal of this step-by-step sample is to show how to build a simple system that uses messaging to:
+This guide illustrates essential NServiceBus concepts by showing how to build a simple system that uses messaging to:
 
  * Send a command from a client to a server
  * Receive that message and process it on the server
@@ -28,12 +25,29 @@ Completing these steps will serve as an introduction to many important NServiceB
 * [Publishing events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md)
 * [Logging](/nservicebus/logging/)
 
+You can also [download the completed sample code](http://docs.particular.net/samples/step-by-step/step-by-step.zip), but we strongly encourage you to follow this guide for a better learning experience.
 
 ## Prerequisites
 
-* [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642)
-* Microsoft Message Queueing (MSMQ) must be [properly installed and configured](/nservicebus/msmq/). The easiest way to do this is using the [Platform Installer](/platform/installer/) tool.
+### .NET Framework Version 4.5.2
 
+You need to [download the .NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642) and install it on your machine.
+
+### MSMQ
+
+* Microsoft Message Queueing (MSMQ) must be properly installed and configured. The easiest way to do this is using DISM command line as specified below. If you prefer to do it via the Windows GUI, follow our [MSMQ guide](/platform/installer/).
+
+#### Enable MSMQ on Windows 7
+
+Run the following command on the DISM command line:
+
+`DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server`
+
+#### Enable MSMQ on Windows 8.x and 10
+
+Run the following command on the DISM command line:
+
+`DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server`
 
 ## Project structure
 
@@ -55,11 +69,20 @@ NOTE: Storing all message definitions in a single location is not a best practic
 
 ### Setting dependencies
 
-First, set up the necessary dependencies:
+#### Reference the `Shared` project.
 
-* In the `Client`, `Server`, and `Subscriber` projects, add a reference to the `Shared` project.
-* In each project, add a reference to the `NServiceBus` NuGet package.
+In the `Client`, `Server`, and `Subscriber` projects, add a reference to the `Shared` project.
 
+#### Reference the `NServiceBus` NuGet package
+
+To install the `NServiceBus` NuGet package, copy-paste and run the following block in the package manager console:
+
+```
+Install-Package NServiceBus -Project Client
+Install-Package NServiceBus -Project Server
+Install-Package NServiceBus -Project Subscriber
+Install-Package NServiceBus -Project Shared
+```
 
 ## Defining messages
 
