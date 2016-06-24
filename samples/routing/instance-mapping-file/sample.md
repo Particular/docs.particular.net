@@ -8,7 +8,7 @@ tags:
 redirects:
 ---
 
-The sample demonstrates to use a file to describe the mapping between logical endpoints and their physical instances. This is important for store-and-forward transports such as MSMQ because the physical topology can differ from the logical one.
+The sample demonstrates how to use a file to describe the mapping between logical endpoints and their physical instances (deployments of given logical endpoint to a concrete VM).
 
 
 ## Prerequisites
