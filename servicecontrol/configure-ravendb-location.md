@@ -6,11 +6,10 @@ tags:
 - RavenDB Embedded
 ---
 
-Each ServiceControl service stores its data in a RavenDB embedded database. The location of the database is typically set in the configuration file by the `ServiceControl\DBPath` setting. See [Configuration Settings](creating-config-file.md)
+Each ServiceControl service stores its data in a RavenDB embedded database. The location of the database is set at install time.
 
-If the setting is not specified then ServiceControl will store the database under `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\` in a sub folder based on the current port and host name. So using the default settings an instance would use `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\localhost-33333` as the path for the database.
-
-If manually manipulating the configuration of ServiceControl this needs to be taken into account as a change in port and host name would cause ServiceControl to create a new database if the `ServiceControl\DBPath` is not set. The new ServiceControl Management Utility that ships with ServiceControl 1.7 sets the database location when creating or modifying the configuration to avoid this dynamic change.
+To see the current database location, open the ServiceControl Management Utility and the location is listed under the instance details.  
+![](managementutil-instance-datapath.png)
 
 
 ### Setting a Different Location for RavenDB Embedded Database
