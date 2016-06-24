@@ -30,41 +30,10 @@ In Versions 7 and above the configuration API allows to modify all behaviors and
 
 The following aspects are found in the addressing logic:
 
- * Validation: Determines how entity names and paths are validated.
  * Sanitization: Determines how invalid entity names are cleaned up.
  * Individualization: Determines how entity names are modified when used in different consumption modes.
  * NamespacePartitioning: Determines how entities are partitioned across namespaces.
  * Composition: Determines how entities are hierarchically composed inside a single namespace.
-
-
-### Validation
-
-The validation aspect is represented by an implementation of `IValidationStrategy`. 
-
-Out of the box there are 2 validation strategies:
-
- * `EntityNameValidationV6Rules`: allows letters, numbers, periods (`.`), hyphens (`-`), and underscores (-).
- * `EntityNameValidationRules` (default): allows letters, numbers, periods (`.`), hyphens (`-`), underscores (`-`) and slashes (`/`) for queues and topics, no slashes allowed for subscriptions and rules.
-
-The default implementation of this strategy can be replaced by using the configuration API:
-
-snippet:swap-validation-strategy
-
-
-#### Implementing a custom validation strategy
-
-Implementing a custom validation strategy requires a class that implements `IValidationStrategy`. This interface contains one method, called `IsValid`, which provides access to the entity path in case the entity is a queue or topic (or name if the entity is a subscription), and returns a boolean indicating if that name is invalids. The entity type is passed in as second parameter and can be used to differentiate between queues, topics and subscription.
-
-If the implementation of a validation strategy requires configuration settings, these settings can be accessed by letting NServiceBus inject the `ReadOnlySettings` into the constructor of the validation strategy.
-
-snippet:custom-validation-strategy
-
-
-#### Extending the configuration API for custom validation settings
-
-In order to allow configuration of the custom validation strategy it is advised to create an extension method at the `AzureServiceBusValidationSettings` extension point, returned by `.Validation()`, in the NServiceBus configuration API. This provides access to the settings, in which the value can be registered using a well known key.
-
-snippet:custom-validation-strategy-extension
 
 
 ### Sanitization
@@ -73,8 +42,8 @@ The sanitization aspect is represented by an implementation of `ISanitizationStr
 
 Out of the box there are 2 sanitization strategies:
 
- * `EndpointOrientedTopologySanitization`: removes invalid characters according to `EntityNameValidationV6Rules`, uses MD5 hashing to reduce the length of an entity name if the maximum length is exceeded.
- * `ThrowOnFailingSanitization` (default): throws an `EndpointValidationException` if the name is invalid.
+ * `ThrowOnFailingSanitization` (default): throws an exception if the name is invalid.
+ * `ValidateAndHashIfNeeded`: removes invalid characters and hashes to reduce the length of an entity name if the maximum length is exceeded. By default, sanitization and hashing do nothing and [need to be configured](/nservicebus/azure-service-bus/sanitization.md#automated-sanitization). 
 
 The default implementation of this strategy can be replaced by using the configuration API:
 
@@ -83,7 +52,7 @@ snippet:swap-sanitization-strategy
 
 #### Implementing a custom sanitization strategy
 
-Implementing a custom validation strategy requires a class that implements `ISanitizationStrategy`. This interface contains one method, called `Sanitize`, which provides access to the entity path in case the entity is a queue or topic (or name if the entity is a subscription), and returns a string that should contain a cleaned up version of the entity path passed in. The entity type is passed in as second parameter and can be used to differentiate between queues, topics and subscription. Note that the `Sanitize` method is only called if the active validation strategy's `IsValid` method returned false.
+Implementing a custom sanitization strategy requires a class that implements `ISanitizationStrategy`. This interface contains one method, called `Sanitize`, which provides access to the entity path in case the entity is a queue or topic (or name if the entity is a subscription or rule), and returns a string that should contain a cleaned up version of the entity path/name passed in. The entity type is passed in as second parameter and can be used to differentiate between queues, topics and subscription. 
 
 If the implementation of a sanitization strategy requires configuration settings, these settings can be accessed by letting NServiceBus inject the `ReadOnlySettings` into the constructor of the strategy.
 

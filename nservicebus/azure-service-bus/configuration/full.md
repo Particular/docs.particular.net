@@ -171,32 +171,25 @@ You can enable the latter using following configuration setting:
 One of the responsibilities of the transport is determining the names and physical location of the entities. It is achieved by turning logical endpoint names into physical addresses of the Azure Service Bus entities, which is called *Physical Addressing Logic*. The following configuration settings allow to redefine this aspect of the transport:
 
  * `UseNamespaceNamesInsteadOfConnectionStrings()`: Causes the transport to pass around namespace names instead of raw connection strings in brokered message body headers.
- * `Validation()`: Provides access to the settings that determine how entity names are validated.
- * `Sanitization()`: Provides access to the settings that determine how invalid entity names are cleaned up.
+ * `Sanitization()`: Provides access to the settings that determine how entity names are sanitized.
  * `Individualization()`: Provides access to the settings that determine how entity names are modified when used in different consumption modes.
  * `NamespacePartitioning()`: Provides access to the settings that determine how entities are partitioned across namespaces.
  * `Composition()`: Provides access to the settings that determine how entities are composed inside a single namespace.
 
  
-### Validation
+### Sanitization
 
-The validation settings determine how entity names are validated. They should correspond to the actual validation rules in the configured Azure Service Bus namespace. The rules implementations vary depending on the namespace type, and are changing over time (in some cases without notice and update of the [relevant MSDN documentation](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/)). The default settings align with the recently created Standard namespaces.
+Sanitization refers to the cleanup logic, that turns invalid entity names into valid ones. Sanitization  involves validation rules to determine if entity names are valid. The rules implementations vary depending on the namespace type, and are changing over time (in some cases without notice and update of the [relevant MSDN documentation](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/)). The default settings align with the recently created Standard namespaces.
 
  * `UseQueuePathMaximumLength(int)`: The maximum length of a queue path (path = name + namespace hierarchy), defaults to 260.
  * `UseTopicPathMaximumLength(int)`: The maximum length of a topic path (path = name + namespace hierarchy), defaults to 260.
  * `UseSubscriptionPathMaximumLength(int)`: The maximum length of a subscription path (path = name), defaults to 50.
- * `UseStrategy<T>()`: An implementation of `IValidationStrategy` that validates the entity path. Following implementations exist:
-	 * `EntityNameValidationV6Rules`: allows letters, numbers, periods (`.`), hyphens (`-`), and underscores (`-`)
-	 * `EntityNameValidationRules` (default): allows letters, numbers, periods (`.`), hyphens (`-`), underscores (`-`) and slashes (`/`) for queues and topics, no slashes allowed for subscriptions and rules.
-
-
-### Sanitization
-
-Sanitization refers to the cleanup logic, that turns invalid entity names into valid ones.
-
+ * `UseRulePathMaximumLength(int)`: The maximum length of a rule path (path = name), defaults to 50.
  * `UseStrategy<T>()`: An implementation of `ISanitizationStrategy` that handles invalid entity names. The following implementations exist:
-	 * `EndpointOrientedTopologySanitization`: removes invalid characters according to `EntityNameValidationV6Rules`, uses MD5 hashing to reduce the length of an entity name if the maximum length is exceeded.
-	 * `ThrowOnFailingSanitization`: throws an `EndpointValidationException` if the name is invalid.
+	 * `ThrowOnFailedValidation`: (default) throws an exception if the name is invalid.
+	 * `ValidateAndHashIfNeeded`: allows customization of sanitization without creating a new strategy.  
+
+`UseStrategy<T>()` can be used to customize the selected [sanitization](/nservicebus/azure-service-bus/sanitization.md) strategy or completely replace it. 
 
 
 ### Individualization

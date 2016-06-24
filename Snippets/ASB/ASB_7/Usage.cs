@@ -125,17 +125,6 @@ class Usage
         #endregion
     }
 
-    void SwappingValidationStrategy(EndpointConfiguration endpointConfiguration)
-    {
-        #region swap-validation-strategy
-
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var validationSettings = transport.Validation();
-        validationSettings.UseStrategy<MyValidationStrategy>();
-
-        #endregion
-    }
-
     void SwappingSanitizationStrategy(EndpointConfiguration endpointConfiguration)
     {
         #region swap-sanitization-strategy
