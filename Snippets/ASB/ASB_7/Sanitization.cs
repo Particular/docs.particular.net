@@ -81,7 +81,8 @@ public class CustomSanitizationWithSettings : ISanitizationStrategy
 
     public string Sanitize(string entityPathOrName, EntityType entityType)
     {
-        // implementation here
+        // implementation custom sanitization here
+        return entityPathOrName;
     }
 }
 
