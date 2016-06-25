@@ -29,7 +29,6 @@ When entity name does not follow the rules, an exception is raised by the broker
 | Rule         | Letters, numbers, periods (`.`), hyphens (`-`), and underscores (`_`). | 50  |
 
 
-???
 When sanitization strategy is specified, the validation settings can be overridden. The validation settings determine how entity names are validated. They should correspond to the actual validation rules in the configured Azure Service Bus namespace. The rules implementations vary depending on the namespace type, and are changing over time (in some cases without notice and update of the [relevant MSDN documentation](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/)). The default settings align with the recently created Standard namespaces.
 
 
@@ -52,7 +51,7 @@ In Version 6.4.x [Naming Conventions](/nservicebus/azure-service-bus/naming-conv
 
 ### Versions 7 and above
 
-By default, the transport uses `ThrowOnFailedValidation` sanitization strategy. This sanitization validates entity path/name and if it's valid, passes as-is to the broker. For an invalid entity path/name, an exception is thrown. Validation rules can be adjusted by providing custom validation rules per entity type. 
+By default, the transport uses the `ThrowOnFailedValidation` sanitization strategy. This strategy allows sanitization rules to be specified that remove invalid characters and hashing algorithm to shorten entity path/name that is exceeding maximum length. For an invalid entity path/name, an exception is thrown. Validation rules can be adjusted by providing custom validation rules per entity type. 
 
 snippet: asb-ThrowOnFailedValidation-sanitization-overrides
 
@@ -66,7 +65,7 @@ NOTE: `ValidateAndHashIfNeeded` is using validation rules to determine what need
 
 snippet: asb-ValidateAndHashIfNeeded-sanitization-overrides
 
-In cases an alternative sanitization strategy is required, a custom sanitization can be applied.
+In cases where an alternative sanitization is required, a custom sanitization can be applied.
 
 snippet: asb-custom-sanitization
 
@@ -74,7 +73,7 @@ Custom sanitization strategy definition:
 
 snippet: asb-custom-sanitization-strategy
 
-If the implementation of a sanitization strategy requires configuration settings, these settings can be accessed by letting NServiceBus inject the `ReadOnlySettings` into the constructor of the sanitization strategy.
+If the implementation of a sanitization strategy requires configuration settings, these settings can be accessed using [Dependency Injection](/nservicebus/containers/) to access an instance of `ReadOnlySettings`.
 
 snippet: custom-sanitization-strategy-with-settings
 

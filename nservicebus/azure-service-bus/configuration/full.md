@@ -179,7 +179,7 @@ One of the responsibilities of the transport is determining the names and physic
  
 ### Sanitization
 
-Sanitization refers to the cleanup logic, that turns invalid entity names into valid ones. Sanitization  involves validation rules to determine if entity names are valid. The rules implementations vary depending on the namespace type, and are changing over time (in some cases without notice and update of the [relevant MSDN documentation](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/)). The default settings align with the recently created Standard namespaces.
+Sanitization refers to the cleanup logic that converts invalid entity names into valid ones. "Validation rules" are the individual logic blocks used to determine if entity names are valid. The rules implementations vary depending on the namespace type, and are changing over time (in some cases without notice and update of the [relevant MSDN documentation](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/)). The default settings align with the recently created Standard namespaces.
 
  * `UseQueuePathMaximumLength(int)`: The maximum length of a queue path (path = name + namespace hierarchy), defaults to 260.
  * `UseTopicPathMaximumLength(int)`: The maximum length of a topic path (path = name + namespace hierarchy), defaults to 260.

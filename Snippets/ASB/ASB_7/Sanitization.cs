@@ -81,7 +81,7 @@ public class CustomSanitizationWithSettings : ISanitizationStrategy
 
     public string Sanitize(string entityPathOrName, EntityType entityType)
     {
-        throw new NotImplementedException();
+        // implementation here
     }
 }
 
