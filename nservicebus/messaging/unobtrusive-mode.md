@@ -24,7 +24,7 @@ This is not a big deal for commands because they are always used with in the bou
 
 There are a couple of ways this can be solved.
 
- * NServiceBus follows the [semver.org](http://semver.org/) semantics, only changing the assembly version when changes are not backwards compatible or introduce substantial new functionality or improvements. This mean that Version 3.0.1 and Version 3.0.X have the same assembly version (3.0.0), and file version of course changes for every release/build. This means that as long as NuGet updates are done with the -safe flag the service contracts will stay compatible.
+ * NServiceBus follows the [semver.org](http://semver.org/) semantics, only changing the assembly version when changes are not backward compatible or introduce substantial new functionality or improvements. This mean that Version 3.0.1 and Version 3.0.X have the same assembly version (3.0.0), and file version of course changes for every release/build. This means that as long as NuGet updates are done with the -safe flag the service contracts will stay compatible.
  * Support for running in "Unobtrusive" mode means no reference to any NServiceBus assemblies is required from message assemblies, thereby removing the problem altogether.
 
 

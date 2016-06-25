@@ -51,7 +51,7 @@ NOTE: If only the new version is deployed without updating the configuration, th
 
 ### Update endpoint configurations
 
-The following configuration examples demonstrate how to update existing endpoints while still using the same encryption key to not require all endpoints to be down at once and to allow keys to be backwards compatible.
+The following configuration examples demonstrate how to update existing endpoints while still using the same encryption key to not require all endpoints to be down at once and to allow keys to be backward compatible.
 
 
 #### XML Configuration
@@ -72,7 +72,7 @@ It is possible to choose to keep the current encryption key and will still be ab
 
 When recompiling an obsolete warning will occur. Change the current method to the new one that has new arguments that allow to pass a dictionary to lookup keys and an optional list of keys that will be used to decrypt messages that do not have a key ID header.
 
-NOTE: Keys need to be available in the expired keys list to be backwards compatible.
+NOTE: Keys need to be available in the expired keys list to be backward compatible.
 
 **From**
 
@@ -101,7 +101,7 @@ busConfiguration.RijndaelEncryptionService(
 
 Generate a new encryption key if using ASCII keys with a key length of 16 characters to overcome the 7-bit limit that weakens the encryption key.
 
-Switch to Base64 256 bits keys if possible, or to at least ASCII 24 character keys to be backwards compatible with pre v5.x.x endpoints and have stronger encryption.
+Switch to Base64 256 bits keys if possible, or to at least ASCII 24 character keys to be backward compatible with pre v5.x.x endpoints and have stronger encryption.
 
 NOTE: Base64 keys can only be configured for NServiceBus v5+ and are not compatible with earlier versions.
 
