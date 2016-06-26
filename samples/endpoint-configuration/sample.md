@@ -74,11 +74,7 @@ This sample uses the [MSMQ Transport](/nservicebus/msmq/).
 snippet:transport
 
 
-## Enable [Sagas](/nservicebus/sagas)
-
-NOTE: Only required in Versions 4 and below. In Versions 5 and above sagas are enable by default.
-
-snippet:sagas
+partial:sagas
 
 
 ## Select and configure [Persistence](/nservicebus/persistence)

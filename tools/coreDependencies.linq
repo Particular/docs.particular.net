@@ -7,6 +7,7 @@
 var location = Util.CurrentQuery.Location;
 //var location = @"C:\Code\docs.particular.net\tools";
 var nuGet = PackageRepositoryFactory.Default.CreateRepository("https://www.nuget.org/api/v2/");
+var myget = PackageRepositoryFactory.Default.CreateRepository("https://www.myget.org/F/particular/");
 var corePackageName = "NServiceBus";
 var minCoreVersion = new SemanticVersion(3, 3, 0, 0);
 var coreDependencies = Path.Combine(location, @"..\components\core-dependencies");
@@ -24,10 +25,12 @@ Parallel.ForEach(File.ReadAllLines(nugetAliasFile), line =>
     var packageName = line.Split(':').Last().Trim();
     if (packageName == corePackageName)
     {
-        return;
-    }
-    var packages = nuGet.FindPackagesById(packageName).Where(package => package.IsListed());
-    var targetPath = Path.Combine(coreDependencies, $"{packageName}.txt");
+		return;
+	}
+	var packages = new List<IPackage>();
+	packages.AddRange(nuGet.FindPackagesById(packageName).Where(package => package.IsListed()));
+	packages.AddRange(myget.FindPackagesById(packageName).Where(package => package.IsListed()));
+	var targetPath = Path.Combine(coreDependencies, $"{packageName}.txt");
     using (var writer = File.CreateText(targetPath))
     {
         var processed = new List<Version>();
