@@ -41,7 +41,6 @@ There have historically been regular changes to the physical addressing logic, f
 
  * [`NamespacePartitioning()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-namespace-partitioning)
  * [`Composition()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-composition)
- * [`Validation()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-validation)
  * [`Sanitization()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-sanitization)
  * [`Individualization()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-individiualization)
 

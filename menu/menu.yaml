@@ -162,6 +162,7 @@
         - Title: "Configuration"
           Url: "nservicebus/azure-service-bus/configuration"
           Articles:
+            - "nservicebus/azure-service-bus/configuration/full"
             - "nservicebus/azure-service-bus/retries"
             - "nservicebus/azure-service-bus/sanitization"
             - "nservicebus/azure-service-bus/addressing-logic"

@@ -25,7 +25,7 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
-        IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration)
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
         try
@@ -36,10 +36,10 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
-                Guid eventId = Guid.NewGuid();
+                var eventId = Guid.NewGuid();
 
                 switch (key.Key)
                 {

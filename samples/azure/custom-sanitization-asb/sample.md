@@ -50,7 +50,7 @@ snippet: SomeEvent
 
 #### Registering custom sanitization
 
-For the purpose of this sample, custom sanitization base on a SHA1 hashing algorithm will be used:
+For the purpose of this sample, custom sanitization based on a SHA1 hashing algorithm will be used:
 
 snippet: Sha1SanitiazationStrategy
 
