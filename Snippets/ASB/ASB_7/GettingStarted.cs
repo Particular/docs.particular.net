@@ -6,7 +6,7 @@ class GettingStarted
 {
     async Task GettingStartedUsage()
     {
-        #region AzureServiceBusTransportGettingStarted 7
+        #region AzureServiceBusTransportGettingStarted
 
         var endpointConfiguration = new EndpointConfiguration("myendpoint");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

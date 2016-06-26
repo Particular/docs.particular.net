@@ -51,11 +51,12 @@ In Version 6.4.x [Naming Conventions](/nservicebus/azure-service-bus/naming-conv
 
 ### Versions 7 and above
 
-By default, the transport uses the `ThrowOnFailedValidation` sanitization strategy. This strategy allows sanitization rules to be specified that remove invalid characters and hashing algorithm to shorten entity path/name that is exceeding maximum length. For an invalid entity path/name, an exception is thrown. Validation rules can be adjusted by providing custom validation rules per entity type. 
+By default, the transport uses the `ThrowOnFailedValidation` sanitization strategy. This strategy allows sanitization rules to be specified that remove invalid characters and hashing algorithm to shorten entity path/name that is exceeding maximum length. For an invalid entity path/name, an exception is thrown. Validation rules can be adjusted by providing custom validation rules per entity type.
 
 snippet: asb-ThrowOnFailedValidation-sanitization-overrides
 
 Where `ValidationResult` provides the following
+
  * Characters are valid or not
  * Length is valid or not
 
@@ -80,7 +81,7 @@ snippet: custom-sanitization-strategy-with-settings
 
 ### Backward compatibility with versions 6 and below
 
-To remain backward compatible with endpoints versions 6 and below, endpoints version 7 and above should be configured to perform sanitization based on version 6 and below rules. The following custom topology will ensure entities are sanitized in a backwards compatible manner. 
+To remain backward compatible with endpoints versions 6 and below, endpoints version 7 and above should be configured to perform sanitization based on version 6 and below rules. The following custom topology will ensure entities are sanitized in a backwards compatible manner.
 
 snippet: asb-backward-compatible-custom-sanitiaztion-strategy
 

@@ -80,11 +80,18 @@
     <Content Include="ConnectionString.config.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressingStrategies\IndividualizationExtensions.cs" />
+    <Compile Include="AddressingStrategies\Individualization.cs" />
+    <Compile Include="AddressingStrategies\Composition.cs" />
+    <Compile Include="AddressingStrategies\NamespacePartitioningExtension.cs" />
+    <Compile Include="AddressingStrategies\NamespacePartitioning.cs" />
+    <Compile Include="AddressingStrategies\SanitizationExtension.cs" />
+    <Compile Include="AddressingStrategies\Sanitization.cs" />
     <Compile Include="GettingStarted.cs" />
     <Compile Include="MultipleNamespaces.cs" />
     <Compile Include="Sanitization.cs" />
     <Compile Include="SecureCredentials.cs" />
-    <Compile Include="AddressingStrategies.cs" />
+    <Compile Include="AddressingStrategies\CompositionExtension.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

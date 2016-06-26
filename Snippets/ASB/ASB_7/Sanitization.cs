@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -8,36 +7,33 @@ using NServiceBus.AzureServiceBus;
 using NServiceBus.AzureServiceBus.Addressing;
 using NServiceBus.Settings;
 
-[SuppressMessage("ReSharper", "UnusedMember.Local")]
-public class Sanitization
+class Sanitization
 {
-    void ThrowOnFailedValidationOverrides(EndpointConfiguration endpointConfiguration)
+    void ThrowOnFailedValidationOverrides(TransportExtensions<AzureServiceBusTransport> transport)
     {
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-
         #region asb-ThrowOnFailedValidation-sanitization-overrides
 
-        transport.Sanitization().UseStrategy<ThrowOnFailedValidation>()
-            .QueuePathValidation(queuePath => new ValidationResult())
-            .TopicPathValidation(topicPath => new ValidationResult())
-            .SubscriptionNameValidation(subscriptionName => new ValidationResult())
-            .RuleNameValidation(ruleName => new ValidationResult());
+        var sanitization = transport.Sanitization();
+        var strategy = sanitization.UseStrategy<ThrowOnFailedValidation>();
+        strategy.QueuePathValidation(queuePath => new ValidationResult());
+        strategy.TopicPathValidation(topicPath => new ValidationResult());
+        strategy.SubscriptionNameValidation(subscriptionName => new ValidationResult());
+        strategy.RuleNameValidation(ruleName => new ValidationResult());
 
         #endregion
     }
 
-    void ValidateAndHashIfNeededOverrides(EndpointConfiguration endpointConfiguration)
+    void ValidateAndHashIfNeededOverrides(TransportExtensions<AzureServiceBusTransport> transport)
     {
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-
         #region asb-ValidateAndHashIfNeeded-sanitization-overrides
 
-        transport.Sanitization().UseStrategy<ValidateAndHashIfNeeded>()
-            .QueuePathSanitization(queuePath => "sanitized queuePath")
-            .TopicPathSanitization(topicPath => "sanitized topicPath")
-            .SubscriptionNameSanitization(subscriptionName => "sanitized subscriptionName")
-            .RuleNameSanitization(ruleName => "sanitized ruleName")
-            .Hash(pathOrName => "hashed pathOrName");
+        var sanitization = transport.Sanitization();
+        var strategy = sanitization.UseStrategy<ValidateAndHashIfNeeded>();
+        strategy.QueuePathSanitization(queuePath => "sanitized queuePath");
+        strategy.TopicPathSanitization(topicPath => "sanitized topicPath");
+        strategy.SubscriptionNameSanitization(subscriptionName => "sanitized subscriptionName");
+        strategy.RuleNameSanitization(ruleName => "sanitized ruleName");
+        strategy.Hash(pathOrName => "hashed pathOrName");
 
         #endregion
     }
@@ -48,8 +44,8 @@ public class Sanitization
         #region asb-custom-sanitization
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-
-        transport.Sanitization().UseStrategy<CustomSanitization>();
+        var sanitization = transport.Sanitization();
+        sanitization.UseStrategy<CustomSanitization>();
 
         #endregion
     }
@@ -125,12 +121,11 @@ class V6Sanitization : ISanitizationStrategy
     {
         public static string Build(string input)
         {
+            var inputBytes = Encoding.Default.GetBytes(input);
             //use MD5 hash to get a 16-byte hash of the string
             using (var provider = new MD5CryptoServiceProvider())
             {
-                var inputBytes = Encoding.Default.GetBytes(input);
                 var hashBytes = provider.ComputeHash(inputBytes);
-
                 return new Guid(hashBytes).ToString();
             }
         }
