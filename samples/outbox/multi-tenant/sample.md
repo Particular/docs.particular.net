@@ -22,7 +22,7 @@ related:
  1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
  1. The text `Press <enter> to send a message` should be displayed in the Sender's console window.
  1. Start the Receiver project (right-click on the project, select the `Debug > Start new instance` option).
- 1. The Sender should display subscription confirmation `Subscribe from Receiver on message type OrderSubmitted`. 
+ 1. The Sender should display subscription confirmation `Subscribe from Receiver on message type OrderSubmitted`.
  1. Press `A` or `B` on the Sender console to send a new message either to one of the tenants.
 
 
@@ -66,13 +66,11 @@ The above code makes sure that user, saga and outbox tables are created in the t
 
 #### Tenant database
 
-To allow for database isolation between the tenants the actual connection to the database need to be created based on the message being processed. This requires cooperation of three components:
+To allow for database isolation between the tenants the actual connection to the database need to be created based on the message being processed. This requires cooperation of several components:
 
  * Custom `ConnectionProvider` for NHibernate
  * A behavior that injects an incoming message and opens a new connection based on the tenant ID found in the headers of that message
- * A behavior that propagates the tenant ID information to outgoing messages
-
-snippet: propagatetenantidoutgoing
+partial: propagatetenantidoutgoing
 
 
 #### Connection provider
@@ -81,17 +79,15 @@ The custom connection provider has to be registered with NHibernate
 
 snippet:ConnectionProvider
 
-It also requires access to the NServiceBus context. That context object can be captured after the bus is created (but before it is started).
+partial:CapturePipelineExecutor
 
-snippet:CapturePipelineExecutor
-
-The connection provider looks at the current message processing context. If there is an existing connection to the tenant database, it creates a new one with the same connection string. Otherwise it defaults to creating a connection to the shared database. 
+The connection provider looks at the current message processing context. If there is an existing connection to the tenant database, it creates a new one with the same connection string. Otherwise it defaults to creating a connection to the shared database.
 
 snippet:GetConnectionFromContext
 
 NOTE: The connection provider is only used by `OutboxPersister`'s `TryGet` and `MarkAsDispatched` methods which execute in separate transaction from all the other storage operations.
 
-NOTE: The connection provider is a simple implementation that is not thread-safe. For this example, the Maximum Concurrency Level is set to 1 which makes it run in single thread mode.  
+NOTE: The connection provider is a simple implementation that is not thread-safe. For this example, the Maximum Concurrency Level is set to 1 which makes it run in single thread mode.
 
 #### Opening connection to tenant database
 

@@ -65,9 +65,8 @@ The `Client` is the initiate for the ordering process. The 'Client' defers sendi
 
 snippet:DeferOrder
 
-NOTE: In Versions 5 and below a message handler need to be present to handle the message and perform `bus.Send(...)` operation.
 
-snippet:PlaceDelayedOrderSenderHandler
+partial:HandleDefer
 
 
 ### The Server

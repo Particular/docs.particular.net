@@ -90,7 +90,7 @@ Go to the `Sender` console an press enter a few times. When this occurs the foll
  * `Worker` handles the message
  * `Worker` responds with a `OrderPlaced` to `Sender`
  * `Worker` again tells `Server` it is ready for work
- 
+
 <!-- 
 https://bramp.github.io/js-sequence-diagrams/
 Worker->Server: Ready for work
@@ -163,22 +163,4 @@ In a real solution the following is more likely
 
 ### Worker Input queue
 
-
-#### Version 5 and below
-
-Normally workers are deployed to different machines. When deployed to the same machine a GUID will be added to the end of the worker input queue name. This allows the distributor to properly route messages and prevents workers from competing on the same queue. Since, in this project, "different machines" are being faked by using different projects, the GUID behavior is overridden to prevent a proliferation of queue names.
-
-The only way to achieve this was the following address "hack"
-
-snippet:WorkerNameToUseWhileTestingCode
-
-There is a configuration setting that can be used
-
-snippet:WorkerNameToUseWhileTestingConfig
-
-
-#### Version 6
-
-The worker input queue is generated in the same way as for a non-scaled out endpoint -- based on the endpoint name. If multiple workers are deployed to same machine, they share the input queue. Because in this sample two workers need to run to show the actual distribution, the input queue cannot be shared. In order to prevent it an address translation exception is used.
-
-snippet:AddressTranslationExecption
+partial:testworkername

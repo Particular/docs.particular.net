@@ -43,9 +43,9 @@ NOTE: The handling code has built-in chaotic behavior. There is a 50% chance tha
 
 The retries are disabled using the following settings:
 
-snippet:RetriesConfigurationXml
+partial:RetriesConfigurationXml
 
-snippet:RetriesConfiguration
+partial:RetriesConfiguration
 
 
 ## Code walk-through
@@ -63,7 +63,7 @@ The Sender does not store any data. It mimics the front-end system where orders 
 
 Connection strings in version 2.x are passed using app.config. The version 3.x sample demonstrates how to specify them using code API.
 
-snippet:SenderConnectionStrings
+partial:SenderConnectionStrings
 
 snippet:SenderConfiguration
 

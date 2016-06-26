@@ -34,9 +34,7 @@ snippet:sending
 Headers can be manipulated by implementing any of the message mutation interfaces.
 
 
-### IMessageMutator
-
-snippet:message-mutator
+partial:mutator
 
 
 ### IMutateIncomingMessages
@@ -59,9 +57,6 @@ snippet:mutate-outgoing-messages
 snippet:mutate-outgoing-transport-messages
 
 
-### IMutateTransportMessages
-
-snippet:mutate-transport-messages
 
 
 ## Using the Pipeline
