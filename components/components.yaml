@@ -75,7 +75,7 @@
 
 - Key: CloudServicesHost
   Name: Azure Cloud Service Host
-  DocoUrl: nservicebus/azure/shared-hosting-in-azure-cloud-services
+  DocoUrl: nservicebus/hosting/cloud-services-host
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Host.AzureCloudService
   NugetOrder:
