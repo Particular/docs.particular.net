@@ -13,6 +13,21 @@ class Usage
         #endregion
     }
 
+    public void NamespaceRoutingSendOptions(BusConfiguration busConfiguration)
+    {
+        var startableBus = Bus.Create(busConfiguration);
+        var bus = startableBus.Start();
+
+        string destination;
+        #region namespace_routing_send_options_full_connectionstring
+
+        destination = "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]";
+        bus.Send(destination, new MyMessage());
+
+        #endregion
+
+    }
+
     #region AzureServiceBusQueueConfigSection
 
     public class AzureServiceBusQueueConfig : ConfigurationSection
@@ -32,4 +47,6 @@ class Usage
     }
 
     #endregion
+
+    public class MyMessage : ICommand { }
 }

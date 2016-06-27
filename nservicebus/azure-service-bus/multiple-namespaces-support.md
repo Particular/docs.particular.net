@@ -1,6 +1,6 @@
 ---
 title: Multiple namespace support
-summary: Configuring Azure Service Bus transport to support different partitioning strategies. 
+summary: Configuring Azure Service Bus transport to support different partitioning strategies and destination namespaces. 
 component: ASB
 tags:
 - Cloud
@@ -9,33 +9,34 @@ tags:
 reviewed: 2016-04-26
 ---
 
-Azure Service Bus transport enables various _namespace partitioning strategies_ to cover scenarios such as High Availability and multiple Data Center support, or to overcome [Azure services limits](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/).  
+## Multiple namespace support
 
-The namespace partitioning strategy can be configured using Azure Service Bus transport configuration API.
+Azure Service Bus transport allows to configure multiple Azure Service Bus namespaces, in order to:
+
+ * Enable various _namespace partitioning strategies_ to cover scenarios such as High Availability and multiple Data Center support, or to overcome [Azure services limits](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/).
+ * Enable _cross namespace routing_ to endpoints outside of the partition set.
+
+The namespace partitioning strategy can be configured using the `NamespacePartitioning()` configuration API section, where the cross namespace routing can be configured using the `NamespaceRouting()` API section.
 
 ## Single namespace partitioning
 
-The `SingleNamespacePartitioning` is the default namespace partitioning strategy, and is the easiest one to set up.
-
-The namespace connection string can be defined using `ConnectionString` extension method:
+By default the Azure Service Bus transport uses the `SingleNamespacePartitioning` strategy, when it is configured using the `ConnectionString` extension method:
 
 snippet: single_namespace_partitioning_strategy_with_default_connection_string
 
-or by providing a map between namespace name and namespace's connection string.  
+This is the functional equivalant of providing a namespace using the `AddNamespace` partitioning API with the default namespace name and namespace's connection string.  
 
 snippet: single_namespace_partitioning_strategy_with_add_namespace
 
-With this strategy, the transport uses only a single namespace to send and receive messages, so only one namespace can be configured. When more than one namespace is specified, then NServiceBus throws a `ConfigurationErrorsException` at startup.
-
+With this strategy, the transport uses only a single namespace to send and receive messages, so only one namespace can be configured for the purpose of partitioning. When more than one namespace is specified for partitioning, then NServiceBus throws a `ConfigurationErrorsException` at startup.
 
 ## Round robin namespace partitioning
 
-The `RoundRobinNamespacePartitioning` can be used to avoid throttling by the service. With this strategy, the transport uses multiple namespaces. Messages are sent to a single namespace and received from all namespaces. For sending operations, namespaces are used in a round-robin fashion.  
+The `RoundRobinNamespacePartitioning` can be used to avoid throttling by the service. With this strategy, the transport uses multiple namespaces for the communication between endpoints. Messages are sent to a single namespace and received from all namespaces. For sending operations, namespaces are choosen in a round-robin fashion.  
  
 snippet: round_robin_partitioning_strategy
   
 Multiple namespaces have to be configured when using `RoundRobinNamespacePartitioning` strategy. When only one namespace is specified, then NServiceBus throws a `ConfigurationErrorsException` at startup.
-
 
 ## Fail over namespace partitioning
 
@@ -44,3 +45,33 @@ The `FailOverNamespacePartitioning` can be used to provide High Availability. It
 snippet: fail_over_partitioning_strategy
   
 Exactly two namespaces have to be configured when using `FailOverNamespacePartitioning` strategy. When only one namespace is specified, then NServiceBus throws a `ConfigurationErrorsException` at startup.
+
+## Cross namespace routing
+
+NServiceBus allows to specify destination addresses using an `"endpoint@physicallocation"` in various places such as the `Send` API or the `MessageEndpointMappings`. In this notation the `physicallocation` section represents the location where the endpoint's infrastructure is hosted, such as a machine name or a servicebus namespace.
+
+Using this notation it is possible to route messages to any endpoint hosted in namespaces that do not belong to the current endpoint's partition set.
+
+snippet: namespace_routing_send_options_full_connectionstring
+
+As from version 7 of the Azure Service Bus transport it is also possible to name namespaces, and use those namespace names instead of the connectionstring value; in all of these places.
+
+snippet: namespace_routing_send_options_named
+
+But, this requires the namespace name and connectionstring to be registered using the `NamespaceRouting()` API.
+
+snippet: namespace_routing_registration
+
+### Default namespace name
+
+When using the `ConnectionString` method to configure a namespace, it will get a name as well. This name is represented by the `DefaultNamespaceName` configuration setting, which has a value of `default`.
+
+When doing cross namespace request reply communication between endpoints configured this way, in combination with the `UseNamespaceNamesInsteadOfConnectionStrings()` configuration method, then the reply address header will include a value of `"sourceendpoint@default"`. However the connectionstring that is mapped to this name is different for each endpoint in the communication and it will break the request reply pattern.
+
+In order to overcome this problem, it is possible to change the value of the `DefaultNamespaceName` configuration setting using the API:
+
+snippet: default_namespace_name
+
+or use `NamespacePartitioning().AddNamespace()` with a different name instead of the `ConnectionString()` method in the source endpoint.
+
+And ensure that the same name and connectionstring are registered in the replying endpoint using the `NamespaceRouting().AddNamespace()` method.
