@@ -2,7 +2,7 @@ namespace Gateway_1.Channels.ConfigurationSource
 {
     using NServiceBus;
 
-    class Usage 
+    class Usage
     {
         Usage(BusConfiguration busConfiguration)
         {

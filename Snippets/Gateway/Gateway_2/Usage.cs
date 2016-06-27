@@ -8,7 +8,7 @@ using NServiceBus.Gateway;
 
 class Usage
 {
-    Usage(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint)
+    void GatewayConfiguration(EndpointConfiguration endpointConfiguration)
     {
         #region GatewayConfiguration
 
@@ -16,31 +16,56 @@ class Usage
         endpointConfiguration.EnableFeature<Gateway>();
 
         #endregion
+    }
 
+    void GatewayDefaultRetryPolicyConfiguration(EndpointConfiguration endpointConfiguration)
+    {
         #region GatewayDefaultRetryPolicyConfiguration
 
-        endpointConfiguration.Gateway().Retries(5, TimeSpan.FromMinutes(1));
+        var gateway = endpointConfiguration.Gateway();
+        gateway.Retries(5, TimeSpan.FromMinutes(1));
 
         #endregion
+    }
 
+    void GatewayCustomRetryPolicyConfiguration(EndpointConfiguration endpointConfiguration)
+    {
         #region GatewayCustomRetryPolicyConfiguration
 
-        endpointConfiguration.Gateway().CustomRetryPolicy((message, exception, currentRetry) => { return currentRetry > 4 ? TimeSpan.MinValue : TimeSpan.FromSeconds(currentRetry*60); });
+        var gateway = endpointConfiguration.Gateway();
+        gateway.CustomRetryPolicy(
+            customRetryPolicy: (message, exception, currentRetry) =>
+            {
+                return currentRetry > 4 ? TimeSpan.MinValue : TimeSpan.FromSeconds(currentRetry*60);
+            });
 
         #endregion
+    }
 
+    void GatewayDisableRetriesConfiguration(EndpointConfiguration endpointConfiguration)
+    {
         #region GatewayDisableRetriesConfiguration
 
-        endpointConfiguration.Gateway().DisableRetries();
+        var gateway = endpointConfiguration.Gateway();
+        gateway.DisableRetries();
 
         #endregion
+    }
 
+    void GatewayChannelFactoriesConfiguration(EndpointConfiguration endpointConfiguration)
+    {
         #region GatewayChannelFactoriesConfiguration
 
-        endpointConfiguration.Gateway().ChannelFactories(channelType => { return new CustomChannelSender(); }, channelType => { return new CustomChannelReceiver(); });
+        var gateway = endpointConfiguration.Gateway();
+        gateway.ChannelFactories(
+            senderFactory: channelType => new CustomChannelSender(),
+            receiverFactory: channelType => new CustomChannelReceiver());
 
         #endregion
+    }
 
+    void SendToSites(IEndpointInstance endpoint)
+    {
         #region SendToSites
 
         endpoint.SendToSites(new[]

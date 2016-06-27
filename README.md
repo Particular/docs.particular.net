@@ -418,7 +418,6 @@ File extensions scanned for snippets include:
  * `.sql`
  * `.txt`
  * `.xml`
- * 
 
 ### Snippets are highlighted using highlightjs
 
@@ -430,7 +429,6 @@ File extensions scanned for snippets include:
 
  * https://highlightjs.org/static/demo/
  * https://github.com/isagalaev/highlight.js/tree/master/src/languages
-
 
 | language     | key            |
 |--------------|----------------|
