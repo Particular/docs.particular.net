@@ -6,12 +6,12 @@ redirects:
 - nservicebus/nservicebus-step-by-step-guide
 ---
 
-This sample illustrates basic NServiceBus concepts in a step-by-step fashion. Alternatively, the completed sample code can be downloaded above.
+WARNING: The completed sample code can be downloaded above but following this guide is strongly encouraged.
 
 
-## Concepts
+## Introduction
 
-The goal of this step-by-step sample is to show how to build a simple system that uses messaging to:
+This guide illustrates essential NServiceBus concepts by showing how to build a simple system that uses messaging to:
 
  * Send a command from a client to a server
  * Receive that message and process it on the server
@@ -20,31 +20,52 @@ The goal of this step-by-step sample is to show how to build a simple system tha
 
 Completing these steps will serve as an introduction to many important NServiceBus concepts:
 
-* Basic project setup
-* [Self-hosting NServiceBus](/nservicebus/hosting/) within a console application
-* [Defining commands and events](/nservicebus/messaging/messages-events-commands.md)
-* [Sending commands](/nservicebus/messaging/send-a-message.md)
-* [Handling messages](/nservicebus/handlers/)
-* [Publishing events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md)
-* [Logging](/nservicebus/logging/)
+ * Basic project setup
+ * [Self-hosting NServiceBus](/nservicebus/hosting/) within a console application
+ * [Defining commands and events](/nservicebus/messaging/messages-events-commands.md)
+ * [Sending commands](/nservicebus/messaging/send-a-message.md)
+ * [Handling messages](/nservicebus/handlers/)
+ * [Publishing events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md)
+ * [Logging](/nservicebus/logging/)
 
 
 ## Prerequisites
 
-* [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642)
-* Microsoft Message Queueing (MSMQ) must be [properly installed and configured](/nservicebus/msmq/). The easiest way to do this is using the [Platform Installer](/platform/installer/) tool.
+
+### .NET Framework Version 4.5.2
+
+[Download the .NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642) and install it.
+
+
+### MSMQ
+
+Microsoft Message Queueing (MSMQ) must be properly installed and configured. The easiest way to do this is with the appropriate command line below. Alternatively, it can be installed via the Windows Features tool. For more details on installing and configuring MSMQ see [MSMQ Transport](/nservicebus/msmq/).
+
+
+#### Enable MSMQ on Windows 7
+
+Run the following command on the command line:
+
+`DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server`
+
+
+#### Enable MSMQ on Windows 8.x and 10
+
+Run the following command on the command line:
+
+`DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server`
 
 
 ## Project structure
 
 The finished solution will contain four projects. Create a new Visual Studio solution containing the following:
 
-* A Console Application named `Client`
-* A Console Application named `Server`
-* A Console Application named `Subscriber` 
-* A Class Library named `Shared`
+ * A Console Application named `Client`
+ * A Console Application named `Server`
+ * A Console Application named `Subscriber`
+ * A Class Library named `Shared`
 
-Each of the console applications will be configured to be **messaging endpoints**, meaning they are able to send and receive NServiceBus messages. Commonly they will be referred to simply as **endpoints**.
+Each of the console applications will be configured to be **messaging endpoints**, meaning they are able to send and receive NServiceBus messages. Commonly they will be referred to simply as [endpoints](/nservicebus/endpoints/).
 
 The client endpoint's job will be to send `PlaceOrder` commands to the server. The server endpoint will process the `PlaceOrder` commands, and then publish an `OrderPlaced` event to any interested subscribers. The subscriber endpoint will subscribe to `OrderPlaced` events published from the server, and process those events when they arrive.
 
@@ -55,10 +76,19 @@ NOTE: Storing all message definitions in a single location is not a best practic
 
 ### Setting dependencies
 
-First, set up the necessary dependencies:
 
-* In the `Client`, `Server`, and `Subscriber` projects, add a reference to the `Shared` project.
-* In each project, add a reference to the `NServiceBus` NuGet package.
+#### Reference the Shared project.
+
+In the `Client`, `Server`, and `Subscriber` projects, add a reference to the `Shared` project.
+
+
+#### Reference the NServiceBus NuGet package
+
+To install the `NServiceBus` NuGet package, copy-paste and run the following command in the [Package Manager Console](https://docs.nuget.org/consume/package-manager-console):
+
+```ps
+Get-Project -All | Install-Package nservicebus
+```
 
 
 ## Defining messages
@@ -117,9 +147,9 @@ snippet:PlaceOrderHandler
 
 This class is the message handler that processes the `PlaceOrder` command being sent by the Client. A handler is where a message is processed; very often this will involve saving information from the message into a database, calling a web service, or some other business function. In this example, the message is logged, so the fact the message was received will be visible in the Console window. Next, the handler publishes a new `OrderPlaced` event.
 
-The handler class is automatically discovered by NServiceBus because it implements the `IHandleMessages<T>` interface. The [dependency injection system](/nservicebus/containers/) (which supports constructor or property injection) injects the `IBus` instance into the handler to access messaging operations. When a `PlaceOrder` command is received, NServiceBus will create a new instance of the `PlaceOrderHandler` class and invoke the `Handle(PlaceOrder message)` method. 
+The handler class is automatically discovered by NServiceBus because it implements the `IHandleMessages<T>` interface. The [dependency injection system](/nservicebus/containers/) (which supports constructor or property injection) injects the `IBus` instance into the handler to access messaging operations. When a `PlaceOrder` command is received, NServiceBus will create a new instance of the `PlaceOrderHandler` class and invoke the `Handle(PlaceOrder message)` method.
 
- The next step is to create a subscriber for this event.
+The next step is to create a subscriber for this event.
 
 NOTE: The solution could be executed at this stage and would run without exceptions. However, there are no subscribers to the `OrderPlaced` event, so the sample is not yet complete. In practice it's perfectly valid to have a publisher with no subscribers; a new subscriber can be added at a later date. In such a situation, no messages are exchanged on the transport level, meaning there's no actual communication between endpoints when the event is published.
 
