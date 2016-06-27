@@ -18,7 +18,7 @@ public class MyMessageHandler : IHandleMessages<MyMessage>
     public void Handle(MyMessage message)
     {
         var context = bus.CurrentMessageContext;
-        log.InfoFormat("ReplyToAddress: {0} MessageId:{1}", context.ReplyToAddress, context.Id);
+        log.Info($"ReplyToAddress: {context.ReplyToAddress} MessageId:{context.Id}");
 
         string numOfRetries;
         if (context.Headers.TryGetValue(Headers.Retries, out numOfRetries))
@@ -28,7 +28,7 @@ public class MyMessageHandler : IHandleMessages<MyMessage>
 
             if (numOfRetries != value)
             {
-                log.InfoFormat("This is second level retry number {0}", numOfRetries);
+                log.Info($"This is second level retry number {numOfRetries}");
                 Last.AddOrUpdate(message.Id, numOfRetries, (key, oldValue) => numOfRetries);
             }
         }

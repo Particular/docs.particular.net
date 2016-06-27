@@ -41,7 +41,7 @@ class Program
             };
             await endpointInstance.Send(startOrder)
                 .ConfigureAwait(false);
-            Console.WriteLine("StartOrder Message sent with OrderId  " + orderId);
+            Console.WriteLine($"StartOrder Message sent with OrderId {orderId}");
         }
 
         await endpointInstance.Stop()

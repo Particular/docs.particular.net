@@ -49,7 +49,7 @@ class SendThroughLocalQueueRoutingToDispatchConnector : ForkConnector<IRoutingCo
             }
             else
             {
-                throw new Exception("Unsupported type of address tag: " + originalTag.GetType().FullName);
+                throw new Exception($"Unsupported type of address tag: {originalTag.GetType().FullName}");
             }
         }
         else

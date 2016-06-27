@@ -53,7 +53,7 @@ class Program
         bus.Send("Samples.Callbacks.Receiver", message)
             .Register<Status>(status =>
             {
-                Console.WriteLine("Callback received with status:" + status);
+                Console.WriteLine($"Callback received with status:{status}");
             });
 
         #endregion
@@ -69,7 +69,7 @@ class Program
         bus.Send("Samples.Callbacks.Receiver", message)
             .Register<int>(response =>
             {
-                Console.WriteLine("Callback received with response:" + response);
+                Console.WriteLine($"Callback received with response:{response}");
             });
 
         #endregion
@@ -87,7 +87,7 @@ class Program
             {
                 var localResult = (CompletionResult) ar.AsyncState;
                 var response = (ObjectResponseMessage)localResult.Messages[0];
-                Console.WriteLine("Callback received with response property value:" + response.Property);
+                Console.WriteLine($"Callback received with response property value:{response.Property}");
             }, null);
 
         #endregion

@@ -9,7 +9,7 @@ public class MessageWithLargePayloadHandler : IHandleMessages<MessageWithLargePa
 
     public void Handle(MessageWithLargePayload message)
     {
-        log.InfoFormat("Message received. Description: '{0}'. Size of payload property: {1} Bytes", message.Description, message.LargePayload.Value.Length);
+        log.Info($"Message received. Description: '{message.Description}'. Size of payload property: {message.LargePayload.Value.Length} Bytes");
     }
 }
 

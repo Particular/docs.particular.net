@@ -31,7 +31,7 @@ public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloa
             Debugger.Break();
         }
 
-        log.InfoFormat("Download for Order # {0} has been provisioned, Publishing Download ready event", message.OrderNumber);
+        log.Info($"Download for Order # {message.OrderNumber} has been provisioned, Publishing Download ready event");
 
         bus.Publish<DownloadIsReady>(e =>
         {
@@ -45,6 +45,6 @@ public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloa
             }
         });
 
-        log.InfoFormat("Downloads for Order #{0} is ready, publishing it.", message.OrderNumber);
+        log.Info($"Downloads for Order #{message.OrderNumber} is ready, publishing it.");
     }
 }

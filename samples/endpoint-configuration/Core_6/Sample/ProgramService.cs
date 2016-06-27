@@ -13,7 +13,7 @@ using NServiceBus.Persistence;
 class ProgramService : ServiceBase
 {
     IEndpointInstance endpointInstance;
-    static ILog logger = LogManager.GetLogger("ProgramService");
+    static ILog log = LogManager.GetLogger("ProgramService");
 
     static void Main()
     {
@@ -109,7 +109,7 @@ class ProgramService : ServiceBase
         endpointConfiguration.DefineCriticalErrorAction(async context =>
         {
             // Log the critical error
-            logger.Fatal($"CRITICAL: {context.Error}", context.Exception);
+            log.Fatal($"CRITICAL: {context.Error}", context.Exception);
 
             await context.Stop()
                 .ConfigureAwait(false);

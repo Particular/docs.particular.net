@@ -8,6 +8,6 @@ public class SomethingHappenedHandler : IHandleMessages<ISomethingHappened>
 
     public void Handle(ISomethingHappened message)
     {
-        log.InfoFormat("Something happened with some data {0} and no more info", message.SomeData);
+        log.Info($"Something happened with some data {message.SomeData} and no more info");
     }
 }

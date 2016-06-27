@@ -99,7 +99,7 @@
 
         string GetMsmqMessageId()
         {
-            var path = @".\private$\" + errorQueueName;
+            var path = $@".\private$\{errorQueueName}";
             using (var errorQueue = new MessageQueue(path))
             {
                 return errorQueue.Peek().Id;

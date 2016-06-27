@@ -9,11 +9,11 @@
 
     public class GenericAsyncHandler : IHandleMessages<object>
     {
-        static ILog logger = LogManager.GetLogger<GenericAsyncHandler>();
+        static ILog log = LogManager.GetLogger<GenericAsyncHandler>();
 
         public Task Handle(object message, IMessageHandlerContext context)
         {
-            logger.Info($"Received a message of type {message.GetType().Name}.");
+            log.Info($"Received a message of type {message.GetType().Name}.");
             return SomeLibrary.SomeAsyncMethod(message);
         }
     }

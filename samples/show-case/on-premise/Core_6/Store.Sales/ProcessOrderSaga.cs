@@ -24,7 +24,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
         Data.ProductIds = message.ProductIds;
         Data.ClientId = message.ClientId;
 
-        log.Info("Starting cool down period for order #{Data.OrderNumber}.");
+        log.Info($"Starting cool down period for order #{Data.OrderNumber}.");
         return RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
     }
 
@@ -45,7 +45,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
 
         MarkAsComplete();
 
-        log.Info("Cooling down period for order #{Data.OrderNumber} has elapsed.");
+        log.Info($"Cooling down period for order #{Data.OrderNumber} has elapsed.");
     }
 
     public async Task Handle(CancelOrder message, IMessageHandlerContext context)
@@ -64,7 +64,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
             })
             .ConfigureAwait(false);
 
-        log.Info("Order #{message.OrderNumber} was cancelled.");
+        log.Info($"Order #{message.OrderNumber} was cancelled.");
     }
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderData> mapper)

@@ -51,7 +51,7 @@ static class Program
         };
         var response = await Send<EnumMessage, Status>(message)
             .ConfigureAwait(false);
-        Console.WriteLine("Response: " + response);
+        Console.WriteLine($"Response: {response}");
     }
 
     static async Task SendInt()
@@ -63,7 +63,7 @@ static class Program
 
         var response = await Send<IntMessage, int>(message)
             .ConfigureAwait(false);
-        Console.WriteLine("Response: " + response);
+        Console.WriteLine($"Response: {response}");
     }
 
     #region Send
@@ -76,7 +76,7 @@ static class Program
         };
         var response = await Send<ObjectMessage, ReplyMessage>(message)
             .ConfigureAwait(false);
-        Console.WriteLine("Response: " + response.Property);
+        Console.WriteLine($"Response: {response.Property}");
     }
 
     #endregion

@@ -54,19 +54,19 @@ public static class QueueCreation
             .ConfigureAwait(false);
 
         //callback queue
-        await CreateQueue(connection, schema, endpointName + "." + Environment.MachineName)
+        await CreateQueue(connection, schema, $"{endpointName}.{Environment.MachineName}")
             .ConfigureAwait(false);
 
         //retries queue
-        await CreateQueue(connection, schema, endpointName + ".Retries")
+        await CreateQueue(connection, schema, $"{endpointName}.Retries")
             .ConfigureAwait(false);
 
         //timeout queue
-        await CreateQueue(connection, schema, endpointName + ".Timeouts")
+        await CreateQueue(connection, schema, $"{endpointName}.Timeouts")
             .ConfigureAwait(false);
 
         //timeout dispatcher queue
-        await CreateQueue(connection, schema, endpointName + ".TimeoutsDispatcher")
+        await CreateQueue(connection, schema, $"{endpointName}.TimeoutsDispatcher")
             .ConfigureAwait(false);
     }
 

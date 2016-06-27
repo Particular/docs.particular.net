@@ -74,7 +74,7 @@ class Program
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
         var status = await endpointInstance.Request<Status>(message, sendOptions)
             .ConfigureAwait(false);
-        Console.WriteLine("Callback received with status:" + status);
+        Console.WriteLine($"Callback received with status:{status}");
 
         #endregion
     }
@@ -90,7 +90,7 @@ class Program
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
         var response = await endpointInstance.Request<int>(message, sendOptions)
             .ConfigureAwait(false);
-        Console.WriteLine("Callback received with response:" + response);
+        Console.WriteLine($"Callback received with response:{response}");
 
         #endregion
     }
@@ -106,7 +106,7 @@ class Program
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
         var response = await endpointInstance.Request<ObjectResponseMessage>(message, sendOptions)
             .ConfigureAwait(false);
-        Console.WriteLine("Callback received with response property value:" + response.Property);
+        Console.WriteLine($"Callback received with response property value:{response.Property}");
 
         #endregion
     }

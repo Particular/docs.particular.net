@@ -10,7 +10,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     IHandleMessages<PaymentTransactionCompleted>,
     IHandleMessages<CompleteOrder>
 {
-    static ILog logger = LogManager.GetLogger<OrderSaga>();
+    static ILog log = LogManager.GetLogger<OrderSaga>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
@@ -23,7 +23,7 @@ public class OrderSaga : Saga<OrderSagaData>,
         Data.OrderId = message.OrderId;
         Data.PaymentTransactionId = Guid.NewGuid().ToString();
 
-        logger.InfoFormat("Saga with OrderId {0} received StartOrder with OrderId {1}", Data.OrderId, message.OrderId);
+        log.Info($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
         var issuePaymentRequest = new IssuePaymentRequest
         {
             PaymentTransactionId = Data.PaymentTransactionId
@@ -33,7 +33,7 @@ public class OrderSaga : Saga<OrderSagaData>,
 
     public void Handle(PaymentTransactionCompleted message)
     {
-        logger.InfoFormat("Transaction with Id {0} completed for order id {1}", Data.PaymentTransactionId, Data.OrderId);
+        log.Info($"Transaction with Id {Data.PaymentTransactionId} completed for order id {Data.OrderId}");
         var completeOrder = new CompleteOrder
         {
             OrderId = Data.OrderId
@@ -43,7 +43,7 @@ public class OrderSaga : Saga<OrderSagaData>,
 
     public void Handle(CompleteOrder message)
     {
-        logger.InfoFormat("Saga with OrderId {0} received CompleteOrder with OrderId {1}", Data.OrderId, message.OrderId);
+        log.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
     }
 }

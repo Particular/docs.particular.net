@@ -16,7 +16,7 @@
                 {
                     var localResult = (CompletionResult)ar.AsyncState;
                     var response = (ResponseMessage)localResult.Messages[0];
-                    log.Info("Callback received with response:" + response.Property);
+                    log.Info($"Callback received with response:{response.Property}");
                 }, null);
 
             #endregion

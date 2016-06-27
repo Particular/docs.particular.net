@@ -7,7 +7,7 @@ using NServiceBus.Logging;
 #region CustomLogger
 public class CustomLogger
 {
-    static ILog logger = LogManager.GetLogger<CustomLogger>();
+    static ILog log = LogManager.GetLogger<CustomLogger>();
 
     public IDisposable StartTimer(string name)
     {
@@ -17,7 +17,7 @@ public class CustomLogger
     public void WriteSaga(IContainSagaData sagaData)
     {
         var serialized = JsonConvert.SerializeObject(sagaData, Formatting.Indented);
-        logger.Warn("Saga State: \r\n" + serialized);
+        log.Warn($"Saga State: \r\n{serialized}");
     }
 
     class Log : IDisposable
@@ -33,7 +33,7 @@ public class CustomLogger
 
         public void Dispose()
         {
-            logger.Warn($"{name} took {stopwatch.ElapsedMilliseconds}ms to process");
+            log.Warn($"{name} took {stopwatch.ElapsedMilliseconds}ms to process");
         }
     }
 }

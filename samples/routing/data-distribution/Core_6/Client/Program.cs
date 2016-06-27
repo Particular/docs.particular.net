@@ -32,7 +32,7 @@ class Program
         ApplyDefaults(mainConfig);
 
         #region DistributionConfig
-        var distributionConfig = new EndpointConfiguration(endpointName + "." + GetUniqueDataDistributionId());
+        var distributionConfig = new EndpointConfiguration($"{endpointName}.{GetUniqueDataDistributionId()}");
         distributionConfig.ExcludeTypes(AllTypes.Where(t => t.Namespace != "DataDistribution").ToArray());
         var distributionRouting = distributionConfig.UseTransport<MsmqTransport>().UnicastRouting();
         distributionRouting.AddPublisher("Samples.DataDistribution.Server", typeof(OrderAccepted));

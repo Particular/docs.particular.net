@@ -35,11 +35,11 @@ public class AzureHelper
         foreach (var blob in container.ListBlobs())
         {
             var name = blob.Uri.AbsolutePath.Split('/').Last();
-            Debug.WriteLine("  Blob:= " + name);
+            Debug.WriteLine($"  Blob:= {name}");
             var blockBlobReference = container.GetBlockBlobReference(name);
             var text = await blockBlobReference.DownloadTextAsync()
                 .ConfigureAwait(false);
-            Debug.WriteLine("    " + text);
+            Debug.WriteLine($"    {text}");
         }
         Debug.WriteLine("");
     }
@@ -57,12 +57,12 @@ public class AzureHelper
         Debug.WriteLine($"'{tableName}' table contents");
         foreach (var entity in entities)
         {
-            Debug.WriteLine(string.Format("  PartitionKey:= " + entity.PartitionKey));
-            Debug.WriteLine(string.Format("    RowKey:= " + entity.RowKey));
+            Debug.WriteLine($"  PartitionKey:= {entity.PartitionKey}");
+            Debug.WriteLine($"    RowKey:= {entity.RowKey}");
             if (decodeRowKey)
             {
                 var decodedRowKey = entity.RowKey.DecodeFromKey();
-                Debug.WriteLine("    DecodedRowKey:= " + decodedRowKey);
+                Debug.WriteLine($"    DecodedRowKey:= {decodedRowKey}");
             }
             foreach (KeyValuePair<string, EntityProperty> property in entity.Properties)
             {

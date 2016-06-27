@@ -9,7 +9,7 @@ public class RequestMessageHandler : IHandleMessages<Request>
 
     public Task Handle(Request message, IMessageHandlerContext context)
     {
-        log.Info("Request received with id:" + message.RequestId);
+        log.Info($"Request received with id:{message.RequestId}");
 
         context.Reply(new Response
                         {

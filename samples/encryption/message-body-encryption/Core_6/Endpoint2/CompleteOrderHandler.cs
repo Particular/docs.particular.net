@@ -8,7 +8,7 @@ public class CompleteOrderHandler : IHandleMessages<CompleteOrder>
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        log.Info("Received CompleteOrder with credit card number " + message.CreditCard);
+        log.Info($"Received CompleteOrder with credit card number {message.CreditCard}");
         return Task.FromResult(0);
     }
 

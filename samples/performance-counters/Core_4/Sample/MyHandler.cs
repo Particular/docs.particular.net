@@ -6,7 +6,7 @@ using NServiceBus.Logging;
 #region handler
 public class MyHandler : IHandleMessages<MyMessage>
 {
-    static ILog logger = LogManager.GetLogger(typeof(MyHandler));
+    static ILog log = LogManager.GetLogger(typeof(MyHandler));
 
     static Random random = new Random();
 
@@ -14,7 +14,7 @@ public class MyHandler : IHandleMessages<MyMessage>
     {
         var sleepTime = random.Next(1, 1000);
         Thread.Sleep(sleepTime);
-        logger.InfoFormat("Hello from MyHandler. Slept for {0}ms", sleepTime);
+        log.Info($"Hello from MyHandler. Slept for {sleepTime}ms");
     }
 }
 #endregion

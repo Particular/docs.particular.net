@@ -27,7 +27,7 @@ class Program
         mainRouting.AddPublisher("Samples.DataDistribution.Server", typeof(OrderAccepted));
         ApplyDefaults(mainConfig);
 
-        var distributionConfig = new EndpointConfiguration(endpointName + "." + GetUniqueDataDistributionId());
+        var distributionConfig = new EndpointConfiguration($"{endpointName}.{GetUniqueDataDistributionId()}");
         #region FilterNamespace2
         distributionConfig.ExcludeTypes(AllTypes.Where(t => t.Namespace != "DataDistribution").ToArray());
         #endregion

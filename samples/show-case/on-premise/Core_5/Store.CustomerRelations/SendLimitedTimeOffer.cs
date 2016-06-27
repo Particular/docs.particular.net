@@ -13,6 +13,6 @@ class SendLimitedTimeOffer : IHandleMessages<ClientBecamePreferred>
         {
             Debugger.Break();
         }
-        log.InfoFormat("Handler WhenCustomerIsPreferredSendLimitedTimeOffer invoked for CustomerId: {0}", message.ClientId);
+        log.Info($"Handler WhenCustomerIsPreferredSendLimitedTimeOffer invoked for CustomerId: {message.ClientId}");
     }
 }

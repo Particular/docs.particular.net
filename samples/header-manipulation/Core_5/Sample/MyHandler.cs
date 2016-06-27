@@ -7,7 +7,7 @@ using NServiceBus.Logging;
 public class MyHandler : IHandleMessages<MyMessage>
 {
     IBus bus;
-    static ILog logger = LogManager.GetLogger<MyHandler>();
+    static ILog log = LogManager.GetLogger<MyHandler>();
 
     public MyHandler(IBus bus)
     {
@@ -16,12 +16,12 @@ public class MyHandler : IHandleMessages<MyMessage>
 
     public void Handle(MyMessage message)
     {
-        logger.Info("Hello from MyHandler");
+        log.Info("Hello from MyHandler");
         foreach (var line in bus.CurrentMessageContext
             .Headers.OrderBy(x => x.Key)
             .Select(x => $"Key={x.Key}, Value={x.Value}"))
         {
-            logger.Info(line);
+            log.Info(line);
         }
     }
 }

@@ -4,7 +4,7 @@ using NServiceBus.Logging;
 public class Message1Handler : IHandleMessages<Message1>
 {
     IBus bus;
-    static ILog logger = LogManager.GetLogger<Message1Handler>();
+    static ILog log = LogManager.GetLogger<Message1Handler>();
 
     public Message1Handler(IBus bus)
     {
@@ -13,7 +13,7 @@ public class Message1Handler : IHandleMessages<Message1>
 
     public void Handle(Message1 message)
     {
-        logger.InfoFormat("Received Message1: {0}", message.Property);
+        log.Info($"Received Message1: {message.Property}");
         bus.Reply(new Message2
         {
             Property = "Hello from Endpoint2"

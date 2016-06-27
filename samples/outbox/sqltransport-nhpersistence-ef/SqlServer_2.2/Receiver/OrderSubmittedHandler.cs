@@ -17,7 +17,7 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
     public void Handle(OrderSubmitted message)
     {
-        log.InfoFormat("Order {0} worth {1} submitted", message.OrderId, message.Value);
+        log.Info($"Order {message.OrderId} worth {message.Value} submitted");
 
         #region StoreUserData
 

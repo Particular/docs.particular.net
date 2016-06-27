@@ -9,7 +9,7 @@ using ServiceControl.Plugin.CustomChecks;
 class ThirdPartyMonitor : CustomCheck
 {
     const string url = "http://localhost:57789";
-    static ILog logger = LogManager.GetLogger<ThirdPartyMonitor>();
+    static ILog log = LogManager.GetLogger<ThirdPartyMonitor>();
 
     public ThirdPartyMonitor()
         : base($"Monitor {url}", "Monitor 3rd Party ", TimeSpan.FromSeconds(10))
@@ -30,18 +30,18 @@ class ThirdPartyMonitor : CustomCheck
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    logger.Info($"Succeeded in contacting {url}");
+                    log.Info($"Succeeded in contacting {url}");
                     return CheckResult.Pass;
                 }
                 var error = $"Failed to contact '{url}'. HttpStatusCode: {response.StatusCode}";
-                logger.Info(error);
+                log.Info(error);
                 return CheckResult.Failed(error);
             }
         }
         catch (Exception exception)
         {
             var error = $"Failed to contact '{url}'. Error: {exception.Message}";
-            logger.Info(error);
+            log.Info(error);
             return CheckResult.Failed(error);
         }
     }

@@ -10,7 +10,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     IHandleTimeouts<CompleteOrder>
 {
     IBus bus;
-    static ILog logger = LogManager.GetLogger<OrderSaga>();
+    static ILog log = LogManager.GetLogger<OrderSaga>();
 
     public OrderSaga(IBus bus)
     {
@@ -28,8 +28,8 @@ public class OrderSaga : Saga<OrderSagaData>,
         Data.OrderId = message.OrderId;
         var orderDescription = $"The saga for order {message.OrderId}";
         Data.OrderDescription = orderDescription;
-        logger.Info($"Received StartOrder message {Data.OrderId}. Starting Saga");
-        logger.Info("Order will complete in 5 seconds");
+        log.Info($"Received StartOrder message {Data.OrderId}. Starting Saga");
+        log.Info("Order will complete in 5 seconds");
         var timeoutData = new CompleteOrder
         {
             OrderDescription = orderDescription
@@ -39,7 +39,7 @@ public class OrderSaga : Saga<OrderSagaData>,
 
     public void Timeout(CompleteOrder state)
     {
-        logger.Info($"Saga with OrderId {Data.OrderId} completed");
+        log.Info($"Saga with OrderId {Data.OrderId} completed");
         var orderCompleted = new OrderCompleted
         {
             OrderId = Data.OrderId

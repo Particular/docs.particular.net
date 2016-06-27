@@ -9,7 +9,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     IHandleMessages<CompleteOrder>,
     IHandleTimeouts<CancelOrder>
 {
-    static ILog logger = LogManager.GetLogger<OrderSaga>();
+    static ILog log = LogManager.GetLogger<OrderSaga>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
@@ -22,7 +22,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     public async Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
-        logger.Info($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
+        log.Info($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
         var completeOrder = new CompleteOrder
         {
             OrderId = Data.OrderId
@@ -35,14 +35,14 @@ public class OrderSaga : Saga<OrderSagaData>,
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        logger.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
+        log.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
         return Task.FromResult(0);
     }
 
     public Task Timeout(CancelOrder state, IMessageHandlerContext context)
     {
-        logger.Info($"Complete not received soon enough OrderId {Data.OrderId}");
+        log.Info($"Complete not received soon enough OrderId {Data.OrderId}");
         MarkAsComplete();
         return Task.FromResult(0);
     }

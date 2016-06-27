@@ -6,7 +6,7 @@ public class OrderSagaLoquacious : Saga<OrderSagaDataLoquacious>,
     IAmStartedByMessages<StartOrder>,
     IHandleMessages<CompleteOrder>
 {
-    static ILog logger = LogManager.GetLogger<OrderSagaLoquacious>();
+    static ILog log = LogManager.GetLogger<OrderSagaLoquacious>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaDataLoquacious> mapper)
     {
@@ -19,7 +19,7 @@ public class OrderSagaLoquacious : Saga<OrderSagaDataLoquacious>,
     public void Handle(StartOrder message)
     {
         Data.OrderId = message.OrderId;
-        logger.InfoFormat("OrderSagaLoquacious with OrderId {0} received StartOrder with OrderId {1} (Saga version: {2})", Data.OrderId, message.OrderId, Data.Version);
+        log.Info($"OrderSagaLoquacious with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId} (Saga version: {Data.Version})");
 
         if (Data.From == null)
         {
@@ -45,7 +45,7 @@ public class OrderSagaLoquacious : Saga<OrderSagaDataLoquacious>,
 
     public void Handle(CompleteOrder message)
     {
-        logger.InfoFormat("OrderSagaLoquacious with OrderId {0} received CompleteOrder with OrderId {1}", Data.OrderId, message.OrderId);
+        log.Info($"OrderSagaLoquacious with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
     }
 

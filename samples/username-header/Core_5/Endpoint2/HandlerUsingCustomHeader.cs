@@ -4,7 +4,7 @@ using NServiceBus.Logging;
 #region handler-using-custom-header
 public class HandlerUsingCustomHeader : IHandleMessages<MyMessage>
 {
-    static ILog logger = LogManager.GetLogger("HandlerUsingCustomHeader");
+    static ILog log = LogManager.GetLogger("HandlerUsingCustomHeader");
     IBus bus;
 
     public HandlerUsingCustomHeader(IBus bus)
@@ -15,7 +15,7 @@ public class HandlerUsingCustomHeader : IHandleMessages<MyMessage>
     public void Handle(MyMessage message)
     {
         var usernameFromCustomHeader = bus.CurrentMessageContext.Headers["UserName"];
-        logger.Info("Username extracted from custom message header: " + usernameFromCustomHeader);
+        log.Info($"Username extracted from custom message header: {usernameFromCustomHeader}");
     }
 }
 #endregion

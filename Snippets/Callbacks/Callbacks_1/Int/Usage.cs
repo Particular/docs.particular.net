@@ -14,7 +14,7 @@
             var message = new Message();
             var response = await endpoint.Request<int>(message, sendOptions)
                 .ConfigureAwait(false);
-            log.Info("Callback received with response:" + response);
+            log.Info($"Callback received with response:{response}");
 
             #endregion
         }

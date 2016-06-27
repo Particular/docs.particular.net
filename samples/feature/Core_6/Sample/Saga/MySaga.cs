@@ -7,7 +7,7 @@ public class MySaga : Saga<MySaga.SagaData>,
     IAmStartedByMessages<StartSagaMessage>,
     IHandleMessages<CompleteSagaMessage>
 {
-    static ILog logger = LogManager.GetLogger<MySaga>();
+    static ILog log = LogManager.GetLogger<MySaga>();
 
     public class SagaData : ContainSagaData
     {
@@ -25,7 +25,7 @@ public class MySaga : Saga<MySaga.SagaData>,
 
     public Task Handle(StartSagaMessage message, IMessageHandlerContext context)
     {
-        logger.Info("Received StartSagaMessage");
+        log.Info("Received StartSagaMessage");
         Data.TheId = message.TheId;
         Data.MessageSentTime = message.SentTime;
         var completeSagaMessage = new CompleteSagaMessage
@@ -37,7 +37,7 @@ public class MySaga : Saga<MySaga.SagaData>,
 
     public Task Handle(CompleteSagaMessage message, IMessageHandlerContext context)
     {
-        logger.Info("Received CompleteSagaMessage");
+        log.Info("Received CompleteSagaMessage");
         MarkAsComplete();
         return Task.FromResult(0);
     }

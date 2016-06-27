@@ -13,7 +13,7 @@ using NServiceBus.Logging;
 class ProgramService : ServiceBase
 {
     IBus bus;
-    static ILog logger = LogManager.GetLogger("ProgramService");
+    static ILog log = LogManager.GetLogger("ProgramService");
 
     static void Main()
     {
@@ -90,7 +90,7 @@ class ProgramService : ServiceBase
         Configure.Instance.DefineCriticalErrorAction((errorMessage, exception) =>
         {
             // Log the critical error
-            logger.Fatal($"CRITICAL: {errorMessage}", exception);
+            log.Fatal($"CRITICAL: {errorMessage}", exception);
 
             // Kill the process on a critical error
             var output = $"The following critical error was encountered by NServiceBus:\n{errorMessage}\nNServiceBus is shutting down.";

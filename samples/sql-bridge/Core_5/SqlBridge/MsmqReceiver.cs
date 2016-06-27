@@ -15,7 +15,7 @@ class MsmqReceiver : IAdvancedSatellite
     CriticalError criticalError;
     // Since this endpoint's transport is usingSqlServer, the IPublishMessages will be using the SqlTransport to publish messages
     IPublishMessages publisher;
-    static ILog logger = LogManager.GetLogger<MsmqReceiver>();
+    static ILog log = LogManager.GetLogger<MsmqReceiver>();
     public bool Disabled => false;
 
     public MsmqReceiver(Configure configure, CriticalError criticalError, IPublishMessages publisher)
@@ -56,7 +56,7 @@ class MsmqReceiver : IAdvancedSatellite
         {
             message.Headers["NServiceBus.MessageId"] = GuidBuilder.BuildDeterministicGuid(msmqId).ToString();
         }
-        logger.Info("Forwarding message to all the SQL subscribers via a Publish");
+        log.Info("Forwarding message to all the SQL subscribers via a Publish");
         publisher.Publish(message, new PublishOptions(eventTypes.First()));
         return true;
     }

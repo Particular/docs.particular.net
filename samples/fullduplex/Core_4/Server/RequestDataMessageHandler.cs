@@ -18,8 +18,8 @@ public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
 
     public void Handle(RequestDataMessage message)
     {
-        log.InfoFormat("Received request {0}.", message.DataId);
-        log.InfoFormat("String received: {0}.", message.String);
+        log.Info($"Received request {message.DataId}.");
+        log.Info($"String received: {message.String}.");
 
         #region DataResponseReply
 

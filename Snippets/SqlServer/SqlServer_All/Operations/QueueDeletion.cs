@@ -71,19 +71,19 @@ public static class QueueDeletion
             .ConfigureAwait(false);
 
         //callback queue
-        await DeleteQueue(connection, schema, endpointName + "." + Environment.MachineName)
+        await DeleteQueue(connection, schema, $"{endpointName}.{Environment.MachineName}")
             .ConfigureAwait(false);
 
         //retries queue
-        await DeleteQueue(connection, schema, endpointName + ".Retries")
+        await DeleteQueue(connection, schema, $"{endpointName}.Retries")
             .ConfigureAwait(false);
 
         //timeout queue
-        await DeleteQueue(connection, schema, endpointName + ".Timeouts")
+        await DeleteQueue(connection, schema, $"{endpointName}.Timeouts")
             .ConfigureAwait(false);
 
         //timeout dispatcher queue
-        await DeleteQueue(connection, schema, endpointName + ".TimeoutsDispatcher")
+        await DeleteQueue(connection, schema, $"{endpointName}.TimeoutsDispatcher")
             .ConfigureAwait(false);
     }
 

@@ -50,7 +50,7 @@ class Program
                 };
                 await endpointInstance.Publish(someEvent)
                     .ConfigureAwait(false);
-                Console.WriteLine("SomeEvent sent. EventId: " + eventId);
+                Console.WriteLine($"SomeEvent sent. EventId: {eventId}");
             }
         }
         finally

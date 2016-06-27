@@ -20,7 +20,7 @@
             var message = new Message();
             var response = await endpoint.Request<ResponseMessage>(message, sendOptions)
                 .ConfigureAwait(false);
-            log.Info("Callback received with response:" + response.Property);
+            log.Info($"Callback received with response:{response.Property}");
 
             #endregion
         }

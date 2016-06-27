@@ -24,12 +24,12 @@ namespace Core3.Host
 
         #region CustomHostErrorHandlingAction
 
-        static ILog logger = LogManager.GetLogger(typeof(CriticalErrors));
+        static ILog log = LogManager.GetLogger(typeof(CriticalErrors));
 
         void OnCriticalError()
         {
             //Write log entry in version 3 since this is not done by default.
-            logger.Fatal("CRITICAL Error");
+            log.Fatal("CRITICAL Error");
 
             // To leave the process active, dispose the bus.
             // Note that when the bus is disposed sending messages will throw with an ObjectDisposedException.

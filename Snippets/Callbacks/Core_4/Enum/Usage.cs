@@ -14,7 +14,7 @@
             bus.Send(message)
                 .Register<Status>(response =>
                 {
-                    log.Info("Callback received with response:" + response);
+                    log.Info($"Callback received with response:{response}");
                 });
 
             #endregion

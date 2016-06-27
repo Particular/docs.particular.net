@@ -13,6 +13,6 @@ public class MyHandler : IHandleMessages<MyMessage>
 
     public void Handle(MyMessage message)
     {
-        log.InfoFormat("Got `MyMessage` with id: {0}, property value: {1}", bus.CurrentMessageContext.Id, message.SomeProperty);
+        log.Info($"Got `MyMessage` with id: {bus.CurrentMessageContext.Id}, property value: {message.SomeProperty}");
     }
 }

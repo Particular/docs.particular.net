@@ -8,11 +8,11 @@
 
     public class GenericHandler : IHandleMessages<object>
     {
-        static ILog logger = LogManager.GetLogger<GenericHandler>();
+        static ILog log = LogManager.GetLogger<GenericHandler>();
 
         public void Handle(object message)
         {
-            logger.Info($"Received a message of type {message.GetType().Name}.");
+            log.Info($"Received a message of type {message.GetType().Name}.");
             SomeLibrary.SomeMethod(message);
         }
     }

@@ -8,6 +8,6 @@ public class ResponseHandler : IHandleMessages<Response>
 
     public void Handle(Response message)
     {
-        log.Info("Response received from server for request with id:" + message.ResponseId);
+        log.Info($"Response received from server for request with id:{message.ResponseId}" );
     }
 }

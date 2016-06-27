@@ -38,13 +38,13 @@
             CreateQueue(endpointName, account);
 
             //retries queue
-            CreateQueue(endpointName + ".retries", account);
+            CreateQueue($"{endpointName}.retries", account);
 
             //timeout queue
-            CreateQueue(endpointName + ".timeouts", account);
+            CreateQueue($"{endpointName}.timeouts", account);
 
             //timeout dispatcher queue
-            CreateQueue(endpointName + ".timeoutsdispatcher", account);
+            CreateQueue($"{endpointName}.timeoutsdispatcher", account);
         }
 
         public static void CreateQueue(string queueName, string account)

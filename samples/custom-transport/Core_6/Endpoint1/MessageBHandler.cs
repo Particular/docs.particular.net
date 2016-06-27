@@ -5,11 +5,11 @@ using NServiceBus.Logging;
 #region MessageBHandler
 public class MessageBHandler : IHandleMessages<MessageB>
 {
-    static ILog logger = LogManager.GetLogger<MessageBHandler>();
+    static ILog log = LogManager.GetLogger<MessageBHandler>();
 
     public Task Handle(MessageB message, IMessageHandlerContext context)
     {
-        logger.Info("MessageB Handled");
+        log.Info("MessageB Handled");
         return TaskEx.CompletedTask;
     }
 

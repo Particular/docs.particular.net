@@ -13,7 +13,7 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
     public void Handle(OrderSubmitted message)
     {
-        log.Info("Order {message.OrderId} worth {message.Value} submitted");
+        log.Info($"Order {message.OrderId} worth {message.Value} submitted");
         bus.Reply(new OrderAccepted
         {
             OrderId = message.OrderId,

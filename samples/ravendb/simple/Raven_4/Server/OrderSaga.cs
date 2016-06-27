@@ -9,7 +9,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
     IHandleTimeouts<CompleteOrder>
 {
-    static ILog logger = LogManager.GetLogger<OrderSaga>();
+    static ILog log = LogManager.GetLogger<OrderSaga>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
@@ -20,9 +20,9 @@ public class OrderSaga : Saga<OrderSagaData>,
     public async Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
-        var orderDescription = "The saga for order " + message.OrderId;
+        var orderDescription = $"The saga for order {message.OrderId}";
         Data.OrderDescription = orderDescription;
-        logger.Info($"Received StartOrder message {Data.OrderId}. Starting Saga");
+        log.Info($"Received StartOrder message {Data.OrderId}. Starting Saga");
 
         var shipOrder = new ShipOrder
         {
@@ -31,7 +31,7 @@ public class OrderSaga : Saga<OrderSagaData>,
         await context.SendLocal(shipOrder)
             .ConfigureAwait(false);
 
-        logger.Info("Order will complete in 5 seconds");
+        log.Info("Order will complete in 5 seconds");
         var timeoutData = new CompleteOrder
         {
             OrderDescription = orderDescription
@@ -43,7 +43,6 @@ public class OrderSaga : Saga<OrderSagaData>,
 
     public async Task Timeout(CompleteOrder state, IMessageHandlerContext context)
     {
-        logger.Info("Saga with OrderId {Data.OrderId} completed");
         var orderCompleted = new OrderCompleted
         {
             OrderId = Data.OrderId

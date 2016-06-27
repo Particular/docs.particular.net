@@ -4,10 +4,10 @@ using NServiceBus.Logging;
 
 public class DerivedEventHandler : IHandleMessages<DerivedEvent>
 {
-    static ILog logger = LogManager.GetLogger<DerivedEventHandler>();
+    static ILog log = LogManager.GetLogger<DerivedEventHandler>();
 
     public void Handle(DerivedEvent message)
     {
-        logger.InfoFormat("Received DerivedEvent. EventId: {0} Data: {1}", message.EventId, message.Data);
+        log.Info($"Received DerivedEvent. EventId: {message.EventId} Data: {message.Data}");
     }
 }

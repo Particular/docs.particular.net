@@ -9,7 +9,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     IHandleMessages<CompleteOrder>,
     IHandleTimeouts<CancelOrder>
 {
-    static ILog logger = LogManager.GetLogger(typeof(OrderSaga));
+    static ILog log = LogManager.GetLogger(typeof(OrderSaga));
 
     public override void ConfigureHowToFindSaga()
     {
@@ -22,7 +22,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     public void Handle(StartOrder message)
     {
         Data.OrderId = message.OrderId;
-        logger.Info($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
+        log.Info($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
         var completeOrder = new CompleteOrder
         {
             OrderId = Data.OrderId
@@ -33,13 +33,13 @@ public class OrderSaga : Saga<OrderSagaData>,
 
     public void Handle(CompleteOrder message)
     {
-        logger.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
+        log.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
     }
 
     public void Timeout(CancelOrder state)
     {
-        logger.Info($"Complete not received soon enough OrderId {Data.OrderId}");
+        log.Info($"Complete not received soon enough OrderId {Data.OrderId}");
         MarkAsComplete();
     }
 

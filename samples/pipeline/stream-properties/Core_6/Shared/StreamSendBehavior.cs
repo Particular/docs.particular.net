@@ -56,7 +56,7 @@ class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
 
             //Store the header so on the receiving endpoint the file name is known
             var headerKey = StreamStorageHelper.GetHeaderKey(message, property);
-            context.Headers["NServiceBus.PropertyStream." + headerKey] = fileKey;
+            context.Headers[$"NServiceBus.PropertyStream.{headerKey}"] = fileKey;
         }
 
         await next()

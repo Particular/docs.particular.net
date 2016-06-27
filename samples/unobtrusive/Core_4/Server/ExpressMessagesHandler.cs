@@ -8,6 +8,6 @@ public class ExpressMessagesHandler : IHandleMessages<RequestExpress>
 
     public void Handle(RequestExpress message)
     {
-        log.InfoFormat("Message [{0}] received, id: [{1}]", message.GetType(), message.RequestId);
+        log.Info($"Message [{message.GetType()}] received, id: [{message.RequestId}]");
     }
 }

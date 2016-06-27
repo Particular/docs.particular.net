@@ -9,7 +9,7 @@ public class AcknowledgedHandler : IHandleMessages<PriceUpdateAcknowledged>
 
     public void Handle(PriceUpdateAcknowledged message)
     {
-        log.Info("Price update received by: " + message.BranchOffice);
+        log.Info($"Price update received by: {message.BranchOffice}");
     }
 }
 

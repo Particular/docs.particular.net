@@ -65,7 +65,7 @@ public class CommandSender
         };
         bus.Send(largeMessage);
 
-        Console.WriteLine("Request sent id: " + requestId);
+        Console.WriteLine($"Request sent id: {requestId}");
     }
 
     static void Express(IBus bus)
@@ -78,7 +78,7 @@ public class CommandSender
         };
         bus.Send(requestExpress);
 
-        Console.WriteLine("Request sent id: " + requestId);
+        Console.WriteLine($"Request sent id: {requestId}");
     }
 
     static void SendRequest(IBus bus)
@@ -91,7 +91,7 @@ public class CommandSender
         };
         bus.Send(request);
 
-        Console.WriteLine("Request sent id: " + requestId);
+        Console.WriteLine($"Request sent id: {requestId}");
     }
 
     static void SendCommand(IBus bus)
@@ -105,7 +105,7 @@ public class CommandSender
         };
         bus.Send(myCommand);
 
-        Console.WriteLine("Command sent id: " + commandId);
+        Console.WriteLine($"Command sent id: {commandId}");
 
     }
 

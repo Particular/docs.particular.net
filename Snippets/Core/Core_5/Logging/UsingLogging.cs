@@ -6,11 +6,11 @@
 
     public class ClassUsingLogging
     {
-        static ILog logger = LogManager.GetLogger<ClassUsingLogging>();
+        static ILog log = LogManager.GetLogger<ClassUsingLogging>();
 
         public void SomeMethod()
         {
-            logger.Debug("Something interesting happened.");
+            log.Debug("Something interesting happened.");
         }
     }
 

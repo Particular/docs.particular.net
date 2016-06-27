@@ -14,7 +14,7 @@ class Dispatcher : IDispatchMessages
         {
             var basePath = BaseDirectoryBuilder.BuildBasePath(transportOperation.Destination);
             var nativeMessageId = Guid.NewGuid().ToString();
-            var bodyPath = Path.Combine(basePath, ".bodies", nativeMessageId) + ".xml";
+            var bodyPath = Path.Combine(basePath, ".bodies", $"{nativeMessageId}.xml");
 
             var dir = Path.GetDirectoryName(bodyPath);
             if (!Directory.Exists(dir))
@@ -31,7 +31,7 @@ class Dispatcher : IDispatchMessages
 
             DirectoryBasedTransaction transaction;
 
-            var messagePath = Path.Combine(basePath, nativeMessageId) + ".txt";
+            var messagePath = Path.Combine(basePath, $"{nativeMessageId}.txt");
 
             if (transportOperation.RequiredDispatchConsistency != DispatchConsistency.Isolated &&
                 context.TryGet(out transaction))

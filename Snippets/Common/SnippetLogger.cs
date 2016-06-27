@@ -11,7 +11,7 @@ namespace Common
         public SnippetLogger([CallerFilePath] string sourceFilePath = null, string suffix = "", string version = "")
         {
             var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(sourceFilePath);
-            outputFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), fileNameWithoutExtension + suffix + ".txt");
+            outputFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), $"{fileNameWithoutExtension}{suffix}.txt");
             File.Delete(outputFilePath);
             var key = fileNameWithoutExtension;
             var contents = string.Format(

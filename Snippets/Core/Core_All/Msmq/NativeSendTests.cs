@@ -38,7 +38,7 @@
                         Value = "Operations.Msmq.NativeSendTests+MessageToSend"
                     }
                 };
-                NativeSend.SendMessage(@".\private$\" + endpointName, @"{""Property"": ""Value"",}", headers);
+                NativeSend.SendMessage($@".\private$\{endpointName}", @"{""Property"": ""Value"",}", headers);
                 state.ResetEvent.WaitOne();
             }
         }

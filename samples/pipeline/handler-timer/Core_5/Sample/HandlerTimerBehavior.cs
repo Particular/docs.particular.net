@@ -7,7 +7,7 @@ using NServiceBus.Pipeline.Contexts;
 #region HandlerTimerBehavior
 class HandlerTimerBehavior : IBehavior<IncomingContext>
 {
-    static ILog logger = LogManager.GetLogger<HandlerTimerBehavior>();
+    static ILog log = LogManager.GetLogger<HandlerTimerBehavior>();
 
     public void Invoke(IncomingContext context, Action next)
     {
@@ -22,7 +22,7 @@ class HandlerTimerBehavior : IBehavior<IncomingContext>
             if (elapsedMilliseconds > 500)
             {
                 var handlerName = context.MessageHandler.Instance.GetType().Name;
-                logger.WarnFormat("{1} took {0}ms to process", elapsedMilliseconds, handlerName);
+                log.Warn($"{handlerName} took {elapsedMilliseconds}ms to process");
             }
         }
     }

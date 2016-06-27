@@ -15,7 +15,7 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;
     LogicalMessageFactory logicalMessageFactory;
-    static ILog logger = LogManager.GetLogger<DeserializeConnector>();
+    static ILog log = LogManager.GetLogger<DeserializeConnector>();
 
     public DeserializeConnector(
         SerializationMapper serializationMapper,
@@ -81,7 +81,7 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
 
             if (messageMetadata.Count == 0 && physicalMessage.GetMesssageIntent() != MessageIntentEnum.Publish)
             {
-                logger.Warn($"Could not determine message type from message header '{messageTypeIdentifier}'. MessageId: {physicalMessage.MessageId}");
+                log.Warn($"Could not determine message type from message header '{messageTypeIdentifier}'. MessageId: {physicalMessage.MessageId}");
             }
         }
 

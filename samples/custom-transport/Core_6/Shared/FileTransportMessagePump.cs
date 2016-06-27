@@ -14,7 +14,7 @@ using NServiceBus.Transports;
 #region MessagePump
 class FileTransportMessagePump : IPushMessages
 {
-    static ILog Logger = LogManager.GetLogger<FileTransportMessagePump>();
+    static ILog log = LogManager.GetLogger<FileTransportMessagePump>();
 
     public Task Init(Func<PushContext, Task> pipe, CriticalError criticalError, PushSettings settings)
     {
@@ -57,7 +57,7 @@ class FileTransportMessagePump : IPushMessages
 
         if (finishedTask.Equals(timeoutTask))
         {
-            Logger.Error("The message pump failed to stop with in the time allowed(30s)");
+            log.Error("The message pump failed to stop with in the time allowed(30s)");
         }
 
         concurrencyLimiter.Dispose();
@@ -78,7 +78,7 @@ class FileTransportMessagePump : IPushMessages
         }
         catch (Exception ex)
         {
-            Logger.Error("File Message pump failed", ex);
+            log.Error("File Message pump failed", ex);
         }
 
         if (!cancellationToken.IsCancellationRequested)

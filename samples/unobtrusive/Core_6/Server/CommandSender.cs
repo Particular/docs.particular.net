@@ -36,7 +36,7 @@ class CommandSender
             m.EventId = eventId;
         })
         .ConfigureAwait(false);
-        Console.WriteLine("Event published, id: " + eventId);
+        Console.WriteLine($"Event published, id: {eventId}");
     }
 
 }

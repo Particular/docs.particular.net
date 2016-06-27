@@ -16,19 +16,19 @@ public class Handler :
 
     public void Handle(EnumMessage message)
     {
-        log.InfoFormat("Received EnumMessage. Property:'{0}'", message.Property);
+        log.Info($"Received EnumMessage. Property:'{message.Property}'");
         bus.Return(Status.Ok);
     }
 
     public void Handle(IntMessage message)
     {
-        log.InfoFormat("Received IntMessage. Property:'{0}'", message.Property);
+        log.Info($"Received IntMessage. Property:'{message.Property}'");
         bus.Return(10);
     }
 
     public void Handle(ObjectMessage message)
     {
-        log.InfoFormat("Received ObjectMessage. Property:'{0}'", message.Property);
+        log.Info($"Received ObjectMessage. Property:'{message.Property}'");
         bus.Reply(new ReplyMessage
         {
             Property = $"Handler Received '{message.Property}'"

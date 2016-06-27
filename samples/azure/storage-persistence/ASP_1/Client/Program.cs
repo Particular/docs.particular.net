@@ -38,13 +38,12 @@ class Program
 
                 var orderId = Guid.NewGuid();
                 await endpointInstance.Send(new StartOrder
-                {
-                    OrderId = orderId
-                })
+                    {
+                        OrderId = orderId
+                    })
                     .ConfigureAwait(false);
-                Console.WriteLine("StartOrder Message sent with OrderId  " + orderId);
+                Console.WriteLine($"StartOrder Message sent with OrderId {orderId}");
             }
-
         }
         finally
         {

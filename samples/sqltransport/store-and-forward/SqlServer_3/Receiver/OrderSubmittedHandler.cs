@@ -8,7 +8,7 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
     public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        log.Info("Order {message.OrderId} worth {message.Value} submitted");
+        log.Info($"Order {message.OrderId} worth {message.Value} submitted");
         var orderAccepted = new OrderAccepted
         {
             OrderId = message.OrderId,

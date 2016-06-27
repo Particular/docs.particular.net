@@ -25,7 +25,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
         Data.ClientId = message.ClientId;
 
         RequestTimeout(TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
-        log.InfoFormat("Starting cool down period for order #{0}.", Data.OrderNumber);
+        log.Info($"Starting cool down period for order #{Data.OrderNumber}.");
     }
 
     public void Timeout(BuyersRemorseIsOver state)
@@ -44,7 +44,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
 
         MarkAsComplete();
 
-        log.InfoFormat("Cooling down period for order #{0} has elapsed.", Data.OrderNumber);
+        log.Info($"Cooling down period for order #{Data.OrderNumber} has elapsed.");
     }
 
     public void Handle(CancelOrder message)
@@ -62,7 +62,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
                 o.ClientId = message.ClientId;
             });
 
-        log.InfoFormat("Order #{0} was cancelled.", message.OrderNumber);
+        log.Info($"Order #{message.OrderNumber} was cancelled.");
     }
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderData> mapper)

@@ -7,8 +7,8 @@ public class EventMessageHandler : IHandleMessages<EventMessage>
 
     public void Handle(EventMessage message)
     {
-        log.InfoFormat("Subscriber 1 received EventMessage with Id {0}.", message.EventId);
-        log.InfoFormat("Message time: {0}.", message.Time);
-        log.InfoFormat("Message duration: {0}.", message.Duration);
+        log.Info($"Subscriber 1 received EventMessage with Id {message.EventId}.");
+        log.Info($"Message time: {message.Time}.");
+        log.Info($"Message duration: {message.Duration}.");
     }
 }

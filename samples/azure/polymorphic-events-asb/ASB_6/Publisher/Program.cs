@@ -39,7 +39,7 @@ class Program
                         {
                             e.EventId = eventId;
                         });
-                        Console.WriteLine("BaseEvent sent. EventId: " + eventId);
+                        Console.WriteLine($"BaseEvent sent. EventId: {eventId}");
                         break;
 
                     case ConsoleKey.D2:
@@ -48,7 +48,7 @@ class Program
                             e.EventId = eventId;
                             e.Data = "more data";
                         });
-                        Console.WriteLine("DerivedEvent sent. EventId: " + eventId);
+                        Console.WriteLine($"DerivedEvent sent. EventId: {eventId}");
                         break;
 
                     default:

@@ -5,13 +5,13 @@ using NServiceBus.Logging;
 
 public class Handler2 : IHandleMessages<HandlerMessage>
 {
-    static ILog logger = LogManager.GetLogger<Handler2>();
+    static ILog log = LogManager.GetLogger<Handler2>();
     static Random random = new Random();
 
     public Task Handle(HandlerMessage message, IMessageHandlerContext context)
     {
         var milliseconds = random.Next(100, 1000);
-        logger.Info($"HandlerMessage received going to Task.Delay({milliseconds}ms)");
+        log.Info($"HandlerMessage received going to Task.Delay({milliseconds}ms)");
         return Task.Delay(milliseconds);
     }
 }

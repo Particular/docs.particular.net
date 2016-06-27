@@ -9,10 +9,10 @@ public class MessageHandler :
 
     public void Handle(MessageWithJson message)
     {
-        log.InfoFormat("Received JSON message with property '{0}'", message.SomeProperty);
+        log.Info($"Received JSON message with property '{message.SomeProperty}'");
     }
     public void Handle(MessageWithXml message)
     {
-        log.InfoFormat("Received Xml message with property '{0}'", message.SomeProperty);
+        log.Info($"Received Xml message with property '{message.SomeProperty}'");
     }
 }

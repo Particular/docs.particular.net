@@ -7,11 +7,11 @@ using NServiceBus.MessageMutator;
 public class UsernameMutator :
     IMutateOutgoingTransportMessages
 {
-    static ILog logger = LogManager.GetLogger("Handler");
+    static ILog log = LogManager.GetLogger("Handler");
 
     public void MutateOutgoing(object[] messages, TransportMessage transportMessage)
     {
-        logger.Info("Adding Thread.CurrentPrincipal user to headers");
+        log.Info("Adding Thread.CurrentPrincipal user to headers");
         transportMessage.Headers["UserName"] = Thread.CurrentPrincipal.Identity.Name;
     }
 }

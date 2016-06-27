@@ -8,7 +8,7 @@ public class MySaga : Saga<MySaga.SagaData>,
     IHandleMessages<CompleteSagaMessage>
 {
     IBus bus;
-    static ILog logger = LogManager.GetLogger<MySaga>();
+    static ILog log = LogManager.GetLogger<MySaga>();
 
     public MySaga(IBus bus)
     {
@@ -31,7 +31,7 @@ public class MySaga : Saga<MySaga.SagaData>,
 
     public void Handle(StartSagaMessage message)
     {
-        logger.Info("Received StartSagaMessage");
+        log.Info("Received StartSagaMessage");
         Data.TheId = message.TheId;
         Data.MessageSentTime = message.SentTime;
         var completeSagaMessage = new CompleteSagaMessage
@@ -43,7 +43,7 @@ public class MySaga : Saga<MySaga.SagaData>,
 
     public void Handle(CompleteSagaMessage message)
     {
-        logger.Info("Received CompleteSagaMessage");
+        log.Info("Received CompleteSagaMessage");
         MarkAsComplete();
     }
 }

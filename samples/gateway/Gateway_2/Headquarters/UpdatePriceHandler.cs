@@ -14,7 +14,7 @@ public class UpdatePriceHandler : IHandleMessages<UpdatePrice>
         log.Info("Price update request received from the webclient, going to push it to RemoteSite");
         string[] siteKeys =
         {
-            "RemoteSite",
+            "RemoteSite"
         };
         var priceUpdated = new PriceUpdated
         {

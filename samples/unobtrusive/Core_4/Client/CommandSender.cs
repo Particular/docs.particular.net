@@ -65,7 +65,7 @@ public class CommandSender
             LargeDataBus = new byte[1024*1024*5]
         });
 
-        Console.WriteLine("Request sent id: " + requestId);
+        Console.WriteLine($"Request sent id: {requestId}");
     }
 
     static void Express(IBus bus)
@@ -77,7 +77,7 @@ public class CommandSender
             RequestId = requestId
         });
 
-        Console.WriteLine("Request sent id: " + requestId);
+        Console.WriteLine($"Request sent id: {requestId}");
     }
 
     static void SendRequest(IBus bus)
@@ -89,7 +89,7 @@ public class CommandSender
             RequestId = requestId
         });
 
-        Console.WriteLine("Request sent id: " + requestId);
+        Console.WriteLine($"Request sent id: {requestId}");
     }
 
     static void SendCommand(IBus bus)
@@ -103,7 +103,7 @@ public class CommandSender
         };
         bus.Send("Samples.Unobtrusive.Server", myCommand);
 
-        Console.WriteLine("Command sent id: " + commandId);
+        Console.WriteLine($"Command sent id: {commandId}");
 
     }
 

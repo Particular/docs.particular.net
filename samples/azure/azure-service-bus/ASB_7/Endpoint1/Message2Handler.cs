@@ -4,11 +4,11 @@ using NServiceBus.Logging;
 
 public class Message2Handler : IHandleMessages<Message2>
 {
-    static ILog logger = LogManager.GetLogger<Message2Handler>();
+    static ILog log = LogManager.GetLogger<Message2Handler>();
 
     public Task Handle(Message2 message, IMessageHandlerContext context)
     {
-        logger.Info($"Received Message2: {message.Property}");
+        log.Info($"Received Message2: {message.Property}");
         return Task.FromResult(0);
     }
 }

@@ -3,10 +3,10 @@ using NServiceBus.Logging;
 
 public class MyHandler : IHandleMessages<MyMessage>
 {
-    static ILog logger = LogManager.GetLogger<MyHandler>();
+    static ILog log = LogManager.GetLogger<MyHandler>();
 
     public void Handle(MyMessage message)
     {
-        logger.Info("Hello from MyHandler");
+        log.Info("Hello from MyHandler");
     }
 }

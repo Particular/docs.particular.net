@@ -3,10 +3,10 @@ using NServiceBus.Logging;
 
 public class Message2Handler : IHandleMessages<Message2>
 {
-    static ILog logger = LogManager.GetLogger<Message2Handler>();
+    static ILog log = LogManager.GetLogger<Message2Handler>();
     
     public void Handle(Message2 message)
     {
-        logger.InfoFormat("Received Message2: {0}", message.Property);
+        log.Info($"Received Message2: {message.Property}");
     }
 }

@@ -74,7 +74,7 @@ public class CommandSender
         await endpointInstance.Send(largeMessage)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Request sent id: " + requestId);
+        Console.WriteLine($"Request sent id: {requestId}");
     }
 
     static async Task Express(IEndpointInstance endpointInstance)
@@ -88,7 +88,7 @@ public class CommandSender
         await endpointInstance.Send(requestExpress)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Request sent id: " + requestId);
+        Console.WriteLine($"Request sent id: {requestId}");
     }
 
     static async Task SendRequest(IEndpointInstance endpointInstance)
@@ -102,7 +102,7 @@ public class CommandSender
         await endpointInstance.Send(request)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Request sent id: " + requestId);
+        Console.WriteLine($"Request sent id: {requestId}");
     }
 
     static async Task SendCommand(IEndpointInstance endpointInstance)
@@ -117,7 +117,7 @@ public class CommandSender
         await endpointInstance.Send(myCommand)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Command sent id: " + commandId);
+        Console.WriteLine($"Command sent id: {commandId}");
     }
 
 

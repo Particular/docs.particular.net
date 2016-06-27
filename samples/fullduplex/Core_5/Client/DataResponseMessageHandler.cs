@@ -12,6 +12,6 @@ class DataResponseMessageHandler : IHandleMessages<DataResponseMessage>
 
     public void Handle(DataResponseMessage message)
     {
-        log.InfoFormat("Response received with description: {0}", message.String);
+        log.Info($"Response received with description: {message.String}");
     }
 }

@@ -52,7 +52,7 @@ class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
 
             //Store the header so on the receiving endpoint the file name is known
             var headerKey = StreamStorageHelper.GetHeaderKey(message, property);
-            logicalMessage.Headers["NServiceBus.PropertyStream." + headerKey] = fileKey;
+            logicalMessage.Headers[$"NServiceBus.PropertyStream.{headerKey}"] = fileKey;
         }
 
         next();

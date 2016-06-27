@@ -28,17 +28,17 @@ namespace Core6.BusNotifications
 
         void LogEvent(FailedMessage failedMessage)
         {
-            log.Info("Mesage sent to error queue");
+            log.Info("Message sent to error queue");
         }
 
         void LogEvent(SecondLevelRetry secondLevelRetry)
         {
-            log.Info("Mesage sent to SLR. RetryAttempt:" + secondLevelRetry.RetryAttempt);
+            log.Info($"Message sent to SLR. RetryAttempt:{secondLevelRetry.RetryAttempt}");
         }
 
         void LogEvent(FirstLevelRetry firstLevelRetry)
         {
-            log.Info("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
+            log.Info($"Message sent to FLR. RetryAttempt:{firstLevelRetry.RetryAttempt}");
         }
 
         #endregion

@@ -44,7 +44,7 @@ public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
             else
             {
                 // Should never get here as is makes no sense to reply from outside of a handler
-                throw new Exception("Not supported delivery option: " + context.DeliveryOptions.GetType().Name);
+                throw new Exception($"Not supported delivery option: {context.DeliveryOptions.GetType().Name}");
             }
         }
         context.Set<DeliveryOptions>(new SendOptions(configure.LocalAddress));

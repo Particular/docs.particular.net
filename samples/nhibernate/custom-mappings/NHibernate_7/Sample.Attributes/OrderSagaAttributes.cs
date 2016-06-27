@@ -6,7 +6,7 @@ public class OrderSagaAttributes : Saga<OrderSagaDataAttributes>,
     IAmStartedByMessages<StartOrder>,
     IHandleMessages<CompleteOrder>
 {
-    static ILog logger = LogManager.GetLogger<OrderSagaAttributes>();
+    static ILog log = LogManager.GetLogger<OrderSagaAttributes>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaDataAttributes> mapper)
     {
@@ -19,7 +19,7 @@ public class OrderSagaAttributes : Saga<OrderSagaDataAttributes>,
     public Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
-        logger.Info($"OrderSagaAttributes with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId} (Saga version: {Data.Version})");
+        log.Info($"OrderSagaAttributes with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId} (Saga version: {Data.Version})");
 
         if (Data.From == null)
         {

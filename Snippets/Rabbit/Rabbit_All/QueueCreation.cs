@@ -41,16 +41,16 @@ public static class QueueCreation
         CreateQueue(uri, endpointName, durableMessages, createExchanges);
 
         //callback queue
-        CreateQueue(uri, endpointName + "." + Environment.MachineName, durableMessages, createExchanges);
+        CreateQueue(uri, $"{endpointName}.{Environment.MachineName}", durableMessages, createExchanges);
 
         //retries queue
-        CreateQueue(uri, endpointName + ".Retries", durableMessages, createExchanges);
+        CreateQueue(uri, $"{endpointName}.Retries", durableMessages, createExchanges);
 
         //timeout queue
-        CreateQueue(uri, endpointName + ".Timeouts", durableMessages, createExchanges);
+        CreateQueue(uri, $"{endpointName}.Timeouts", durableMessages, createExchanges);
 
         //timeout dispatcher queue
-        CreateQueue(uri, endpointName + ".TimeoutsDispatcher", durableMessages, createExchanges);
+        CreateQueue(uri, $"{endpointName}.TimeoutsDispatcher", durableMessages, createExchanges);
     }
 
     public static void CreateQueue(string uri, string queueName, bool durableMessages, bool createExchange)

@@ -6,10 +6,10 @@
 
     public class ClassUsingLogging
     {
-        static ILog logger = LogManager.GetLogger(typeof(ClassUsingLogging));
+        static ILog log = LogManager.GetLogger(typeof(ClassUsingLogging));
         public void SomeMethod()
         {
-            logger.Debug("Something interesting happened.");
+            log.Debug("Something interesting happened.");
         }
     }
 

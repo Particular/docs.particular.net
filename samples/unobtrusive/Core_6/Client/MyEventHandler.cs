@@ -9,7 +9,7 @@ public class MyEventHandler : IHandleMessages<IMyEvent>
 
     public Task Handle(IMyEvent message, IMessageHandlerContext context)
     {
-        log.Info("IMyEvent received from server with id:" + message.EventId);
+        log.Info($"IMyEvent received from server with id:{message.EventId}");
         return Task.FromResult(0);
     }
 

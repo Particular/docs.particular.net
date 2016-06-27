@@ -33,7 +33,7 @@ class CommandSender
         {
             m.EventId = eventId;
         });
-        Console.WriteLine("Event published, id: " + eventId);
+        Console.WriteLine($"Event published, id: {eventId}");
 
     }
 

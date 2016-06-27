@@ -49,16 +49,16 @@ public static class QueueDeletion
         DeleteQueue(uri, endpointName);
 
         //callback queue
-        DeleteQueue(uri, endpointName + "." + Environment.MachineName);
+        DeleteQueue(uri, $"{endpointName}.{Environment.MachineName}");
 
         //retries queue
-        DeleteQueue(uri, endpointName + ".Retries");
+        DeleteQueue(uri, $"{endpointName}.Retries");
 
         //timeout queue
-        DeleteQueue(uri, endpointName + ".Timeouts");
+        DeleteQueue(uri, $"{endpointName}.Timeouts");
 
         //timeout dispatcher queue
-        DeleteQueue(uri, endpointName + ".TimeoutsDispatcher");
+        DeleteQueue(uri, $"{endpointName}.TimeoutsDispatcher");
     }
 #endregion
 

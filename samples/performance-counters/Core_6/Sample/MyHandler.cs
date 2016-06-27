@@ -7,14 +7,14 @@ using NServiceBus.Logging;
 
 public class MyHandler : IHandleMessages<MyMessage>
 {
-    static ILog logger = LogManager.GetLogger<MyHandler>();
+    static ILog log = LogManager.GetLogger<MyHandler>();
 
     static Random random = new Random();
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         var sleepTime = random.Next(1, 1000);
-        logger.Info($"Hello from MyHandler. Slept for {sleepTime}ms");
+        log.Info($"Hello from MyHandler. Slept for {sleepTime}ms");
         return Task.Delay(sleepTime);
     }
 

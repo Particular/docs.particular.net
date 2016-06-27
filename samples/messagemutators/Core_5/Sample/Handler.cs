@@ -4,11 +4,11 @@ using NServiceBus.Logging;
 #region Handler
 public class Handler : IHandleMessages<CreateProductCommand>
 {
-    static ILog logger = LogManager.GetLogger<Handler>();
+    static ILog log = LogManager.GetLogger<Handler>();
 
     public void Handle(CreateProductCommand createProductCommand)
     {
-        logger.InfoFormat("Received a CreateProductCommand message: {0}", createProductCommand);
+        log.Info($"Received a CreateProductCommand message: {createProductCommand}");
     }
 }
 #endregion

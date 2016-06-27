@@ -9,7 +9,7 @@ public class MessageWithLargePayloadHandler : IHandleMessages<MessageWithLargePa
 
     public void Handle(MessageWithLargePayload message)
     {
-        log.Info("Message received, size of blob property: " + message.LargeBlob.Value.Length + " Bytes");
+        log.Info($"Message received, size of blob property: {message.LargeBlob.Value.Length} Bytes");
     }
 }
 

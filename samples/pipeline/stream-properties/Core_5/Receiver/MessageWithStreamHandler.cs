@@ -9,11 +9,11 @@ public class MessageWithStreamHandler : IHandleMessages<MessageWithStream>
 
     public void Handle(MessageWithStream message)
     {
-        log.Info("Message received, size of stream property: " + message.StreamProperty.Length + " Bytes");
+        log.Info($"Message received, size of stream property: {message.StreamProperty.Length} Bytes");
         using (var streamReader = new StreamReader(message.StreamProperty))
         {
             var streamContents = streamReader.ReadToEnd();
-            log.InfoFormat("Stream content: {0}...", streamContents.Substring(0, 20));
+            log.Info($"Stream content: {streamContents.Substring(0, 20)}...");
         }
     }
 }

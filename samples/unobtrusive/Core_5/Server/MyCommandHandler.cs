@@ -14,7 +14,7 @@ public class MyCommandHandler : IHandleMessages<MyCommand>
 
     public void Handle(MyCommand message)
     {
-        log.Info("Command received, id:" + message.CommandId);
-        log.Info("EncryptedString:" + message.EncryptedString);
+        log.Info($"Command received, id:{message.CommandId}");
+        log.Info($"EncryptedString:{message.EncryptedString}");
     }
 }

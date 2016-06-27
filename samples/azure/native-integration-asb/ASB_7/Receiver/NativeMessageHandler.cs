@@ -6,12 +6,12 @@ using NServiceBus.Logging;
 
 public class NativeMessageHandler : IHandleMessages<NativeMessage>
 {
-    ILog logger = LogManager.GetLogger<NativeMessageHandler>();
+    ILog log = LogManager.GetLogger<NativeMessageHandler>();
 
     public Task Handle(NativeMessage message, IMessageHandlerContext context)
     {
-        logger.Info($"Message content: {message.Content}");
-        logger.Info($"Received native message sent on {message.SendOnUtc} UTC");
+        log.Info($"Message content: {message.Content}");
+        log.Info($"Received native message sent on {message.SendOnUtc} UTC");
         return Task.FromResult(0);
     }
 }

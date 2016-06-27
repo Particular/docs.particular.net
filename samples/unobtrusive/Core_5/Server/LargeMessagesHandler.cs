@@ -10,11 +10,11 @@ public class LargeMessagesHandler : IHandleMessages<LargeMessage>
     {
         if (message.LargeDataBus == null)
         {
-            log.InfoFormat("Message [{0}] received, id:{1}", message.GetType(), message.RequestId);
+            log.Info($"Message [{message.GetType()}] received, id:{message.RequestId}");
         }
         else
         {
-            log.InfoFormat("Message [{0}] received, id:{1} and payload {2} bytes", message.GetType(), message.RequestId, message.LargeDataBus.Length);
+            log.Info($"Message [{message.GetType()}] received, id:{message.RequestId} and payload {message.LargeDataBus.Length} bytes");
         }
     }
 }

@@ -7,6 +7,6 @@ public class CompleteOrderHandler : IHandleMessages<CompleteOrder>
 
     public void Handle(CompleteOrder message)
     {
-        log.Info("Received CompleteOrder with credit card number " + message.CreditCard);
+        log.Info($"Received CompleteOrder with credit card number {message.CreditCard}");
     }
 }

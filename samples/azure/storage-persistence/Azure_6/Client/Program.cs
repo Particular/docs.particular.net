@@ -34,7 +34,7 @@ class Program
                     OrderId = orderId
                 };
                 bus.Send(startOrder);
-                Console.WriteLine("StartOrder Message sent with OrderId  " + orderId);
+                Console.WriteLine($"StartOrder Message sent with OrderId {orderId}");
             }
         }
     }

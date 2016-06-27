@@ -8,6 +8,6 @@ public class MyEventHandler : IHandleMessages<IMyEvent>
 
     public void Handle(IMyEvent message)
     {
-        log.Info("IMyEvent received from server with id:" + message.EventId);
+        log.Info($"IMyEvent received from server with id:{message.EventId}");
     }
 }

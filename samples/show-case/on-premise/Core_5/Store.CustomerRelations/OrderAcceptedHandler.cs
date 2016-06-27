@@ -21,7 +21,7 @@ class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
             Debugger.Break();
         }
 
-        log.InfoFormat("Customer: {0} is now a preferred customer publishing for other service concerns", message.ClientId);
+        log.Info($"Customer: {message.ClientId} is now a preferred customer publishing for other service concerns");
 
         // publish this event as an asynchronous event
         var clientBecamePreferred = new ClientBecamePreferred

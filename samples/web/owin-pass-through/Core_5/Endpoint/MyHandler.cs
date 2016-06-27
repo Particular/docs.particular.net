@@ -8,6 +8,6 @@ public class MyHandler : IHandleMessages<MyMessage>
 
     public void Handle(MyMessage message)
     {
-        log.InfoFormat("Received MyMessage. Property1:'{0}'. Property2:'{1}'", message.Property1, message.Property2);
+        log.Info($"Received MyMessage. Property1:'{message.Property1}'. Property2:'{message.Property2}'");
     }
 }
