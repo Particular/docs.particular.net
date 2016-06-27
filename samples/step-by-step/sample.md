@@ -8,6 +8,7 @@ redirects:
 
 WARNING: The completed sample code can be downloaded above but following this guide is strongly encouraged.
 
+
 ## Introduction
 
 This guide illustrates essential NServiceBus concepts by showing how to build a simple system that uses messaging to:
@@ -64,7 +65,7 @@ The finished solution will contain four projects. Create a new Visual Studio sol
  * A Console Application named `Subscriber`
  * A Class Library named `Shared`
 
-Each of the console applications will be configured to be **messaging endpoints**, meaning they are able to send and receive NServiceBus messages. Commonly they will be referred to simply as **endpoints**.
+Each of the console applications will be configured to be **messaging endpoints**, meaning they are able to send and receive NServiceBus messages. Commonly they will be referred to simply as [endpoints](/nservicebus/endpoints/).
 
 The client endpoint's job will be to send `PlaceOrder` commands to the server. The server endpoint will process the `PlaceOrder` commands, and then publish an `OrderPlaced` event to any interested subscribers. The subscriber endpoint will subscribe to `OrderPlaced` events published from the server, and process those events when they arrive.
 
