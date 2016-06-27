@@ -13,11 +13,8 @@ class Usage
         #endregion
     }
 
-    public void NamespaceRoutingSendOptions(BusConfiguration busConfiguration)
+    void NamespaceRoutingSendOptions(IBus bus)
     {
-        var startableBus = Bus.Create(busConfiguration);
-        var bus = startableBus.Start();
-
         string destination;
         #region namespace_routing_send_options_full_connectionstring
 
@@ -25,7 +22,6 @@ class Usage
         bus.Send(destination, new MyMessage());
 
         #endregion
-
     }
 
     #region AzureServiceBusQueueConfigSection

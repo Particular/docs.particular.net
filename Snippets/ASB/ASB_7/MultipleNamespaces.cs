@@ -51,7 +51,7 @@ class MultipleNamespaces
         #endregion
     }
 
-    public void NamespaceRoutingRegistration(EndpointConfiguration endpointConfiguration)
+    void NamespaceRoutingRegistration(EndpointConfiguration endpointConfiguration)
     {
         #region namespace_routing_registration
 
@@ -63,27 +63,25 @@ class MultipleNamespaces
         #endregion
     }
 
-    public void NamespaceRoutingSendOptions(EndpointConfiguration endpointConfiguration)
+    void NamespaceRoutingSendOptions(IEndpointInstance endpointInstance)
     {
-        var bus = Endpoint.Start(endpointConfiguration).Result;
-
         string destination;
         #region namespace_routing_send_options_full_connectionstring
 
         destination = "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]";
-        bus.Send(destination, new MyMessage());
+        endpointInstance.Send(destination, new MyMessage());
 
         #endregion
 
         #region namespace_routing_send_options_named
 
         destination = "sales@destination1";
-        bus.Send(destination, new MyMessage());
+        endpointInstance.Send(destination, new MyMessage());
 
         #endregion
     }
 
-    public void DefaultNamespaceName(EndpointConfiguration endpointConfiguration)
+    void DefaultNamespaceName(EndpointConfiguration endpointConfiguration)
     {
         #region default_namespace_name
 

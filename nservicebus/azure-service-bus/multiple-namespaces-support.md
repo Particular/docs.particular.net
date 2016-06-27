@@ -9,6 +9,7 @@ tags:
 reviewed: 2016-04-26
 ---
 
+
 ## Multiple namespace support
 
 Azure Service Bus transport allows to configure multiple Azure Service Bus namespaces, in order to:
@@ -18,25 +19,28 @@ Azure Service Bus transport allows to configure multiple Azure Service Bus names
 
 The namespace partitioning strategy can be configured using the `NamespacePartitioning()` configuration API section, where the cross namespace routing can be configured using the `NamespaceRouting()` API section.
 
+
 ## Single namespace partitioning
 
 By default the Azure Service Bus transport uses the `SingleNamespacePartitioning` strategy, when it is configured using the `ConnectionString` extension method:
 
 snippet: single_namespace_partitioning_strategy_with_default_connection_string
 
-This is the functional equivalant of providing a namespace using the `AddNamespace` partitioning API with the default namespace name and namespace's connection string.  
+This is the functional equivalent of providing a namespace using the `AddNamespace` partitioning API with the default namespace name and namespace's connection string.
 
 snippet: single_namespace_partitioning_strategy_with_add_namespace
 
 With this strategy, the transport uses only a single namespace to send and receive messages, so only one namespace can be configured for the purpose of partitioning. When more than one namespace is specified for partitioning, then NServiceBus throws a `ConfigurationErrorsException` at startup.
 
+
 ## Round robin namespace partitioning
 
-The `RoundRobinNamespacePartitioning` can be used to avoid throttling by the service. With this strategy, the transport uses multiple namespaces for the communication between endpoints. Messages are sent to a single namespace and received from all namespaces. For sending operations, namespaces are choosen in a round-robin fashion.  
+The `RoundRobinNamespacePartitioning` can be used to avoid throttling by the service. With this strategy, the transport uses multiple namespaces for the communication between endpoints. Messages are sent to a single namespace and received from all namespaces. For sending operations, namespaces are chosen in a round-robin fashion.
  
 snippet: round_robin_partitioning_strategy
   
 Multiple namespaces have to be configured when using `RoundRobinNamespacePartitioning` strategy. When only one namespace is specified, then NServiceBus throws a `ConfigurationErrorsException` at startup.
+
 
 ## Fail over namespace partitioning
 
@@ -45,6 +49,7 @@ The `FailOverNamespacePartitioning` can be used to provide High Availability. It
 snippet: fail_over_partitioning_strategy
   
 Exactly two namespaces have to be configured when using `FailOverNamespacePartitioning` strategy. When only one namespace is specified, then NServiceBus throws a `ConfigurationErrorsException` at startup.
+
 
 ## Cross namespace routing
 
@@ -61,6 +66,7 @@ snippet: namespace_routing_send_options_named
 But, this requires the namespace name and connectionstring to be registered using the `NamespaceRouting()` API.
 
 snippet: namespace_routing_registration
+
 
 ### Default namespace name
 
