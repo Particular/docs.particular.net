@@ -115,8 +115,7 @@ Import-ServiceControlLicense <License-File>
 ```
 
 It is also possible to apply a license to an individual instance rather than globally. This can be done by by creating a license file under the installation path of an instance and copying the `license.xml` to that directory.
-Adding a license this way is not supported via the ServiceControl Management Utility or the PowerShell module.
-
+Adding a license this way is deprecated and not supported via the ServiceControl Management Utility or the PowerShell module.
 
 ### Building an unattended install file
 
