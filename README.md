@@ -353,7 +353,36 @@ Avoid using screenshots in samples unless it adds significant value over what ca
  * Prone to an inconsistent feel as different people take screenshots at different sizes, different zoom levels and with different color schemes for the app in question
  * Add significantly to the page load time.
 
-The most common misuse of screenshots is when capturing console output. DO NOT DO THIS. Put the text inside a formatted code section instead.
+The most common misuse of screenshots is when capturing console output. **DO NOT DO THIS**. Put the text inside a formatted code section instead.
+
+
+## Markdown partials
+
+**Currently on implemented for samples.**
+
+Partials are version specific files that contain markdown.
+
+There are only rendered in the target page when the version filter matches the convention for a give file.
+
+Partial Convention: `filePrefix_key_nugetAlias_version.partial.md`
+
+The nuget alias in samples should match the prefix as defined by the samples solution directories.
+
+Partials are rendered in the target page by using the following syntax
+
+```
+partial: PARTIAL_KEY
+```
+
+So an example directory structure might be as follows
+
+<img src="partials.png" style='border:1px solid #000000' />
+
+And to include the `endpointname` partial can be pulled into `sample.md` by including.
+
+```
+partial: endpointname
+```
 
 
 ## Markdown includes
@@ -395,8 +424,24 @@ File extensions scanned for snippets include:
 
  * [Documentation](http://highlightjs.readthedocs.io/)
  * [Language List](http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases)
- * Use `no-highlight` for no language.
- * 
+
+
+### Inline Code
+
+ * https://highlightjs.org/static/demo/
+ * https://github.com/isagalaev/highlight.js/tree/master/src/languages
+
+
+| language     | key            |
+|--------------|----------------|
+| c#           | `cs`           |
+| xml          | `xml`          |
+| no format    | `no-highlight` |
+| command line | `dos`          |
+| powershell   | `ps`           |
+| json         | `json`         |
+| sql          | `sql`          |
+
 
 #### Using comments
 
@@ -784,22 +829,6 @@ Enforces the [Resharper](https://www.jetbrains.com/resharper/) settings to be co
 
 Sets the correct startup projects for every solution. This is persisted in an .suo file for each solution. Since .suo files are not committed to source control, if a re-clone is done this script will need to be re-run.
 
-
-# Inline Code
-
- * https://highlightjs.org/static/demo/
- * https://github.com/isagalaev/highlight.js/tree/master/src/languages
-
-
-| language     | key            |
-|--------------|----------------|
-| c#           | `cs`           |
-| xml          | `xml`          |
-| no format    | `no-highlight` |
-| command line | `dos`          |
-| powershell   | `ps`           |
-| json         | `json`         |
-| sql          | `sql`          |
 
 
 # Additional Resources
