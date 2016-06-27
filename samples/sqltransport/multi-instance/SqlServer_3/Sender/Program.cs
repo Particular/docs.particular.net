@@ -40,7 +40,8 @@ public class Program
                 {
                     return;
                 }
-                PlaceOrder(endpointInstance);
+                await PlaceOrder(endpointInstance)
+                .ConfigureAwait(false);
             }
         }
         finally
@@ -50,7 +51,7 @@ public class Program
         }
     }
 
-    static void PlaceOrder(IEndpointInstance endpoint)
+    static async Task PlaceOrder(IEndpointInstance endpoint)
     {
         #region SendMessage
 
@@ -58,8 +59,8 @@ public class Program
         {
             OrderId = Guid.NewGuid()
         };
-
-        endpoint.Send("Samples.SqlServer.MultiInstanceReceiver", order);
+        await endpoint.Send("Samples.SqlServer.MultiInstanceReceiver", order)
+            .ConfigureAwait(false);
 
         #endregion
 

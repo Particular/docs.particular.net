@@ -38,7 +38,6 @@ public class Program
                 {
                     OrderId = Guid.NewGuid()
                 };
-
                 bus.Send("Samples.SqlServer.MultiInstanceReceiver", order);
 
                 #endregion
