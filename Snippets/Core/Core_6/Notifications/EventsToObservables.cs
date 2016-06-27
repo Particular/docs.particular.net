@@ -14,7 +14,7 @@ namespace Core6.Notifications
         {
             #region ConvertEventToObservable
 
-            IObservable<EventPattern<FailedMessage>> failedMessages = Observable.FromEventPattern<EventHandler<FailedMessage>, FailedMessage>(
+            var failedMessages = Observable.FromEventPattern<EventHandler<FailedMessage>, FailedMessage>(
                 handler => notifications.Errors.MessageSentToErrorQueue += handler,
                 handler => notifications.Errors.MessageSentToErrorQueue -= handler);
 
