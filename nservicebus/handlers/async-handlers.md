@@ -16,6 +16,8 @@ There are basically two thread pools. The worker thread pool and the IO thread p
 Parallel / Compute-bound blocking work happens on the worker thread pool. Things like `Task.Run`, `Task.Factory.StartNew`, `Parallel.For` schedule tasks on the worker thread pool.
 On the other hand if we schedule Compute bound work the worker thread pool will start expanding its worker threads. Let's call this phase ramp up phase. Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
 
+Offloading compute-bound work to the worker thread pool is a top-level concern only. Use `Task.Run` or `Task.Factory.StartNew` is high up in your hierarchy as possible (i.ex. in the message handler). Avoid those operations deeper down in the call stack. Group compute-bound operations together as much as possible. Make them coarse-grained instead of fine-grained.
+
 ##### IO-thread pool
 IO-bound work is scheduled on the IO-thread pool. The IO-bound thread pool has a fixed number of worker threads (usually number of cores) which can work concurrently on thousands of IO-bound tasks. IO-bound work under Windows uses so called IO completion ports (IOCP) to get notifications when an IO-bound operation is completed. IOCP enable efficient offloading of IO-bound work from the user code to the kernel, driver and hardware without blocking the user code until the IO work is done. To achieve that the user code registeres notifications in form of a callback. The callback occors on an IO thread which is a pool thread managed by the IO system that is made available to the user code.
 
@@ -34,11 +36,19 @@ WARN: It is generally hard to give generic advice how you should structure your 
 
 ### Calling short running compute-bound code
 
+Short running compute-bound code (a few milliseconds) that is executed in the handler should be executed directly on the IO-thread that is executing the handler code.
+
 snippet: ShortComputeBoundMessageHandler
+
+Call the code directly and do not wrap it with a `Task.Run` or `Task.Factory.StartNew`.
 
 ### Calling long running compute-bound code
 
+Long running compute-bound code (more than hundred milliseconds) that is executed in a handler could be offloaded to the worker thread pool.
+
 snippet: LongComputeBoundHandler
+
+Wrap the compute-bound code in a `Task.Run` or `Task.Factory.StartNew` and `await` the result of the task.
 
 ### Return or await
 
