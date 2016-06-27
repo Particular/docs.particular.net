@@ -22,7 +22,7 @@ The ample also requests a 30min `CancelOrder` timeout that will mark the saga as
 
 The output to the console will be
 
-```
+```no-highlight
 2015-02-11 22:34:59.475 INFO  OrderSaga Saga with OrderId 123 received StartOrder with OrderId 123
 2015-02-11 22:34:59.526 INFO  OrderSaga Saga with OrderId 456 received StartOrder with OrderId 456
 2015-02-11 22:34:59.572 INFO  OrderSaga Saga with OrderId 123 received CompleteOrder with OrderId 123

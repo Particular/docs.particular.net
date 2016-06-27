@@ -58,7 +58,7 @@ The following configuration examples demonstrate how to update existing endpoint
 
 It is possible to choose to keep the current encryption key and will still be able to decrypt messages already in flight:
 
-```
+```xml
 <RijndaelEncryptionServiceConfig Key="do-not-use-this-encryption-key!!" KeyIdentifier="2015-10">
   <ExpiredKeys>
     <add Key="an-expired-encryption-key-here-!" />
@@ -76,7 +76,7 @@ NOTE: Keys need to be available in the expired keys list to be backward compatib
 
 **From**
 
-```
+```cs
 busConfiguration.RijndaelEncryptionService("do-not-use-this-encryption-key!!")
 ```
 
@@ -86,7 +86,7 @@ Send encrypted messages with the existing key.
 
 Does not require all endpoints to be stopped, updated, configured and started simultaneously.
 
-```
+```cs
 var key = Encoding.ASCII.GetBytes("do-not-use-this-encryption-key!!");
 
 busConfiguration.RijndaelEncryptionService(

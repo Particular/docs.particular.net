@@ -32,7 +32,7 @@ snippet:handler
 
 This will result in the following being compiled
 
-```csharp
+```cs
 namespace Sample
 {
 	public class MyHandler : IHandleMessages<MyMessage>

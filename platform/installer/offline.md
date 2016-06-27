@@ -33,7 +33,7 @@ The NServiceBus Prerequisites option in the Platform Install configures the syst
 
 These actions are available via [NServiceBus PowerShell Module](https://github.com/Particular/NServiceBus.PowerShell/releases/latest). This module is available as standalone installation. Once the module is installed, open a PowerShell prompt as a Administrator and issue the following commands:
 
-```bat
+```ps
 Import-Module NServiceBus.PowerShell
 Install-NServiceBusDTC
 Install-NServiceBusMSMQ

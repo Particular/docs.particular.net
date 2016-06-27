@@ -36,7 +36,7 @@ The logging behavior configured for the three built-in profiles is shown:
 
 When running under the production profile, the logs are written to 'logfile' in the same directory as the exe. The file grows to a maximum size of 1MB and then a new file is created. A maximum of 10 files is held and then the oldest file is erased. If no configuration exists, the logging threshold is Warn. Configure the logging threshold by including the following code in the application config file:
 
-```XML
+```xml
 <configSections>
 	<section name="Logging" type="NServiceBus.Config.Logging, NServiceBus.Core" />
 </configSections>

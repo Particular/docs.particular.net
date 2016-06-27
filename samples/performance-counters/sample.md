@@ -14,20 +14,20 @@ related:
 
 Use the [NServiceBus Powershell Commands](/nservicebus/operations/management-using-powershell.md) to install the performance counters.
 
-```
+```ps
 Import-Module NServiceBus.PowerShell
 Install-NServiceBusPerformanceCounters
 ```
 
 To list the installed counters use
 
-```
+```ps
 Get-Counter -ListSet NServiceBus | Select-Object -ExpandProperty Counter
 ```
 
 The following will result
 
-```
+```no-highlight
 \NServiceBus(*)\Critical Time
 \NServiceBus(*)\SLA violation countdown
 \NServiceBus(*)\# of msgs successfully processed / sec
@@ -95,7 +95,7 @@ NOTE: Only available in Version 4 and above
 
 To visualize both success and failures in the same view change the handler code to the following.
 
-```
+```cs
 int sleepTime = random.Next(1, 1000);
 Thread.Sleep(sleepTime);
 if (sleepTime%2 != 0)

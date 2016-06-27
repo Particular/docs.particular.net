@@ -37,7 +37,7 @@ Error and audit queues are usually shared among multiple endpoints.
 
 Following SQL DDL is used to create a table and its index for a queue:
 
-```SQL
+```sql
 CREATE TABLE [schema].[queuename](
 	[Id] [uniqueidentifier] NOT NULL,
 	[CorrelationId] [varchar](255) NULL,

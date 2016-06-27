@@ -11,7 +11,7 @@ If the endpoint is hosted in a process outside IIS, such as a Windows Service, b
 
 It is possible to change the default connection limit of a process via the static `DefaultConnectionLimit` property of the `ServicePointManager` class, as in the following sample:
 
-```csharp
+```cs
 ServicePointManager.DefaultConnectionLimit = 10;
 ```
 

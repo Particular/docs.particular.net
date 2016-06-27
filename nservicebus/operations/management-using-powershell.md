@@ -52,7 +52,7 @@ A list of available cmdlet can be found by issuing the following PowerShell comm
 
 Help for each cmdlet incorporated within the module and can be accessed via the standard [PowerShell Get-Help Command](https://technet.microsoft.com/en-us/library/ee176848.aspx). For example `Get-Help Set-NServiceBusLocalMachineSettings` returns the following information
 
-```
+```no-highlight
 NAME
     Set-NServiceBusLocalMachineSettings
 

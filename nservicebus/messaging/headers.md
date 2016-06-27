@@ -19,7 +19,7 @@ The headers in a message contain information that is used by the messaging infra
 
 For all timestamp message headers, the format is `yyyy-MM-dd HH:mm:ss:ffffff Z` where the time is UTC. The helper class `DateTimeExtensions` in NServiceBus supports converting from UTC to wire format and vice versa by using the `ToWireFormattedString()` and `ToUtcDateTime()` methods. 
 
-```
+```cs
 const string Format = "yyyy-MM-dd HH:mm:ss:ffffff Z";
 
 public static string ToWireFormattedString(DateTime dateTime)

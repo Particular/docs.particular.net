@@ -58,7 +58,7 @@ To change core settings such as assembly scanning, container, and serialization 
 `IWantCustomInitialization` on the endpoint configuration class (the same class that implements
 `IConfigureThisEndpoint`). Start the configuration expression with
 
-```C#
+```cs
 Configure.With()
 ```
 
@@ -112,7 +112,7 @@ To install the process as a Windows Service, include `/install` as an argument i
 
 To override this and specify additional details for installation:
 
-```
+```dos
 NServiceBus.Host.exe [/install [/serviceName]
 [/displayName]
 [/description]
@@ -129,9 +129,10 @@ NServiceBus.Host.exe [/install [/serviceName]
 [/sidebyside]
 [/instance:Instance Name ]
 ```
+
 To retrieve this list, run the following at the command line:
 
-```
+```dos
 NServiceBus.Host.exe /?
 ```
 
@@ -153,7 +154,7 @@ To specify under which account the service runs, pass in the username and passwo
 
 Here is an example of the `/install` command line:
 
-```
+```dos
 NServiceBus.Host.exe /install /serviceName:"MyPublisher"
 /displayName:"My Publisher Service"
 /description:"Service for publishing event messages"
@@ -166,19 +167,19 @@ NOTE: When installing the Host using a custom user account, as in the above samp
 
 To uninstall, call
 
-```
+```dos
 NServiceBus.Host.exe /uninstall
 ```
 
 If a service name or instance name is specified when installing a service, be sure to pass them in to the uninstall command as well:
 
-```
+```dos
 NServiceBus.Host.exe [/uninstall  [/serviceName] [/instance]]
 ```
 
 For example:
 
-```
+```dos
 NServiceBus.Host.exe /uninstall /serviceName:ServiceName /instance:InstanceName
 ```
 

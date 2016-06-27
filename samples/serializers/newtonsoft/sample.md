@@ -33,7 +33,7 @@ snippet:message
 
 ## The Output
 
-```
+```json
 ?{
   "OrderId": 9,
   "Date": "2015-09-15T10:23:44.9367871+10:00",

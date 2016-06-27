@@ -23,7 +23,7 @@ When adding a ServiceControl instance via the management utility, ServiceControl
 
 In the event that the service fails to start check if the configured port ( typically port 33333) is available. To do this open up a elevated command prompt and issue the following command:
 
-```bat
+```dos
 netstat -a -b
 ```
 
@@ -103,12 +103,12 @@ To workaround this create the required URLACL. This can be done using the Servic
 
 NOTE: Replace the `<hostname>` and `<port>` values in the sample commands below with the appropriate values from the ServiceControl configuration.
 
-```posh
+```ps
 urlacl-add -Url http://<hostname>:<port>/storage/ -Users Users
 ```
 
 If the `ExposeRavenDB` setting is removed or disabled in the configuration then the URLACL can be cleaned up using this command:
 
-```posh
+```ps
 urlacl-list | ? VirtualDirectory -eq storage | ? Port -eq <port> | urlacl-delete
 ``` 

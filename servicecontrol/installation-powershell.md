@@ -24,7 +24,7 @@ The ServiceControlMgmt module requires:
 
 The majority of the ServiceControlMgmt Powershell module cmdlets will only work if the PowerShell session is running under administrator privileges. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with the module automatically loaded. Alternatively the module can be loaded directly into an an existing PowerShell session by loading `ServiceControlMgmt.psd1` using the `Import-Module` cmdlet as show below:
 
-```Powershell
+```ps
 Import-Module "C:\Program Files (x86)\Particular Software\ServiceControl Management\ServiceControlMgmt.psd1"
 ```
 
@@ -56,14 +56,14 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 
 To following commands show some uses of some of the cmdlets provided in the module. All of the cmdlets have local help which can be accessed via the standard PowerShell help command
 
-```bat
+```ps
 Get-Help Get-ServiceControlInstances
 ```
 
 
 ### Adding an instance
 
-```bat
+```ps
 New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -Transport MSMQ -ErrorQueue error1 -AuditQueue audit1
 ```
 
@@ -76,13 +76,13 @@ The following commands show how to remove a ServiceControl instance(s). To List 
 
 Remove the instance that was created in the Add sample and delete the database and logs:
 
-```bat
+```ps
 Remove-ServiceControlInstance -Name Test.ServiceControl -RemoveDB -RemoveLogs
 ```
 
 Remove all ServiceControl instance created in the Add sample and delete the database and logs for each one:
 
-```
+```ps
 Get-ServiceControlInstances | Remove-ServiceControlInstance -RemoveDB -RemoveLogs
 ```
 
@@ -93,13 +93,13 @@ There are additional parameters available to set additional configuration option
 
 The following command will list the ServiceControl instances current installed and their version number.
 
-```bat
+```ps
 Get-ServiceControlInstances | Select Name, Version
 ```
 
 To upgrade and instance to the latest version of the binaries run.
 
-```bat
+```ps
 Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade>
 ```
 
@@ -110,9 +110,10 @@ Additional parameters for `Invoke-ServiceControlInstanceUpgrade` may be required
 
 Adding the license file to the registry can be done by running the following cmdlet. The license file is now machine wide and is available to be used by all instances of ServiceControl.
 
-```bat
+```ps
 Import-ServiceControlLicense <License-File>
 ```
+
 It is also possible to apply a license to an individual instance rather than globally. This can be done by by creating a license file under the installation path of an instance and copying the `license.xml` to that directory.
 Adding a license this way is not supported via the ServiceControl Management Utility or the PowerShell module.
 
@@ -123,7 +124,7 @@ Since ServiceControl 1.7 the installation executable has a MSI command line argu
 
 The MSI command line argument requires an XML file which detail the instance options. The file can be produced by running the following cmdlet or by manually creating the XML file.
 
-```bat
+```ps
 New-ServiceControlUnattendedFile -OutputFile c:\temp\unattended.xml -Name Test -InstallPath c:\servicecontrol\test\bin -DBPath c:\servicecontrol\test\db -LogPath c:\servicecontrol\test\logs -Port 33335 -ErrorQueue error-test -AuditQueue audit-test -ErrorLogQueue errorlog-test -AuditLogQueue auditlog-test -Transport MSMQ -ForwardAuditMessages $false -ForwardErrorMessages $false
 ```
 
@@ -156,7 +157,7 @@ NOTE: The settings contained in an unattended installation files are version spe
 
 There `New-ServiceControlInstanceFromUnattendedFile` cmdlet creates an instance from the unattended file. The service account details can optionally be provided. If no service account details are specified the `LocalSystem` account is used
 
-```bat
+```ps
 New-ServiceControlInstanceFromUnattendedFile -UnattendFile c:\temp\unattended.xml -ServiceAccount MyServiceAccount -ServiceAccountPassword MyPassword
 ```
 
@@ -172,12 +173,13 @@ The ServiceControl Management PowerShell offers some cmdlets to assist with trou
 
 Before adding an instance of ServiceControl test if the port to use is currently in use.
 
-```bat
+```ps
 Test-IfPortIsAvailable -Port 33333
 ```
 
 This example shows the available ports out of a range of ports
-```bat
+
+```ps
 33330..33339 | Test-IfPortIsAvailable | ? Available
 ```
 
@@ -191,18 +193,18 @@ For example `netsh.exe http show urlacl` will list all of the available. This ou
 
 For example the following command lists all of the UrlAcls assigned to any URI for port 33333
 
-```bat
+```ps
 Get-UrlAcls | ? Port -eq 33333
 ```
 
 In this example any UrlAcl on port 33335 is remove
 
-```bat
+```ps
 Get-UrlAcls | ? Port -eq 33335 | Remove-UrlAcl
 ```
 
 The following example shows how to add UrlAcl for a ServiceControl service that should only respond to a specific DNS name. This would require an update of the ServiceControl configuration file as well. Refer to [setting a custom host name and port number](setting-custom-hostname.md)
 
-```bat
+```ps
 Add-UrlAcl -Url http://servicecontrol.mycompany.com:33333/api/ -Users Users
 ```

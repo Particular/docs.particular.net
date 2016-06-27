@@ -32,7 +32,7 @@ Services in Microsoft Windows can be configured to depend on each other. Prior t
 
 Alternatively this can be done from PowerShell via the following command:
 
-```
+```ps
 (Get-Service MSMQ).DependentServices
 ```
 
@@ -85,12 +85,12 @@ NOTE: DISM command line options and feature names are all case sensitive.
 
 To list which MSMQ features are enabled execute:
 
-```
+```dos
 DISM /Online /Get-Features /Format:Table | FINDSTR "^MSMQ-"
 ```
 The output will be similar to this:
 
-```txt
+```no-highlight
 MSMQ-Container                                        | Enabled
 MSMQ-Server                                           | Enabled
 MSMQ-Triggers                                         | Disabled
@@ -103,7 +103,7 @@ WCF-MSMQ-Activation45                                 | Disabled
 
 To disable a feature execute the following:
 
-```
+```dos
 DISM /Online /Disable-Feature /FeatureName:<FeatureName>
 ```
 
@@ -116,7 +116,7 @@ Windows 8.x and Windows Server 2012 ship with a PowerShell module for managing i
 
 The following PowerShell script uses the DISM Module to remove any `MSMQ` features form the system.
 
-```
+```ps
 Import-Module DISM
 Get-WindowsOptionalFeature -Online |
  ? FeatureName -Match MSMQ |
@@ -124,5 +124,6 @@ Get-WindowsOptionalFeature -Online |
 	 Disable-WindowsOptionalFeature -Online -FeatureName $_.FeatureName -NoRestart
 }
 ```
+
 The script is suppressing restarts to stop a prompt being shown for each feature as it is removed.
 Once the script has completed the system should be restarted to finalize the changes.

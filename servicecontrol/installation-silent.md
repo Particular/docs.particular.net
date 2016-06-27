@@ -17,7 +17,7 @@ Note: This documentation covers silent installation instructions for ServiceCont
 
 The following command line will silently install the ServiceControl Management utility only.
 
-```bat
+```dos
 Particular.ServiceControl.1.7.0.exe /quiet
 ```
 
@@ -34,9 +34,10 @@ Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UNATTENDEDFILE=unatt
 
 For details on how to make the `unattendedfile.xml` file refer to ServiceControl Management [PowerShell](installation-powershell.md) documentation. The installed instance will use `localsystem` as the service account. To specify an alternative service account use the `SERVICEACCOUNT` and `PASSWORD` command line switches.
 
-```bat
+```dos
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml SERVICEACCOUNT=MyServiceAccount PASSWORD=MyPassword
 ```
+
 NOTE: The settings contained in an unattended installation files are version specific. The file contents will be validated when used and if a required setting is missing an error will be logged. To correct this regenerate the XML file using the `New-ServiceControlUnattendedFile` cmdlet.
 
 
@@ -46,20 +47,19 @@ If an existing service matching the name specified in the unattended XML file al
 
 In this example we've chosen to silently install the ServiceControl Management utility and attempt to upgrade all the installed instances of the ServiceControl service. Either `*` or `ALL` can be used to specify all instances should be upgraded.
 
-```bat
+```dos
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL
-
 ```
 
 In this example we've chosen to silently install the ServiceControl Management utility and attempt to upgrade just one instance called `TestServiceControl`.
 
-```bat
+```dos
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl
 ```
 
 To specify multiple instances use a comma separated list: 
 
-```bat
+```dos
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl,ProdServiceControl 
 ```
 
@@ -68,7 +68,7 @@ Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=Tes
 
 In this example we've chosen to silently install the ServiceControl Management Utility and import the license file.
 
-```bat
+```dos
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log LICENSEFILE=license.xml
 ```
 
@@ -81,7 +81,7 @@ When upgrading instances running on Version 1.11.1 and below the `FORWARDERRORME
 
 The Error Forwarding Queue queue exists to allow external tools to receive error messages. If there is no process reading messages from the Error Forwarding Queue this setting should be `FALSE`.
 
-```bat
+```dos
 Particular.ServiceControl.1.11.2.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL FORWARDERRORMESSAGES=FALSE
 ```
 
@@ -100,7 +100,7 @@ NOTE: If the current configuration already has values for `ServiceControl/AuditR
 If the configuration does not contain the `ServiceControl/AuditRetentionPeriod` or `ServiceControl/HoursToKeepMessagesBeforeExpiring`setting the value for the audit retention period should be included as a command line value. If the configuration does contains an entry for  `ServiceControl/HoursToKeepMessagesBeforeExpiring` then that value will be migrated to `ServiceControl/AuditRetentionPeriod` and no command line option is required.
 The valid range for this property is documented in [configuration settings](creating-config-file.md).  
 
-```bat
+```dos
 Particular.ServiceControl.1.13.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL AUDITRETENTION=30.0:0:0 
 ```
 
@@ -111,7 +111,7 @@ NOTE: This value has a large impact on database size. Monitor the size of the Se
 If the configuration does not contain the `ServiceControl/ErrorRetentionPeriod` then the command line option is required. 
 The valid range for this property is documented in [configuration settings](creating-config-file.md).
 
-```bat
+```dos
 Particular.ServiceControl.1.13.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL ERRORRETENTION=30.0:0:0 
 ```
 
@@ -127,7 +127,7 @@ The command line `UPGRADEINSTANCES` can be combined with `FORWARDERRORMESSAGES`,
 
 The following command can be used to uninstall ServiceControl Management Utility silently:
 
-```bat
+```dos
 wmic product where (name like '%servicecontrol%') call uninstall
 ```
 
@@ -152,7 +152,7 @@ Prior to using the script, modify the `$customSettings` hash table to set the op
 
 NOTE: The provided entries in the `$customSettings` hash table are to illustrate how to set the values and are not meant to be a recommendation on the values for these settings.
 
-```powershell
+```ps
 #Requires -Version 3
 #Requires -RunAsAdministrator
 

@@ -40,7 +40,7 @@ These following instructions cover installing the license file without using NSe
 * Change the current working directory to where the license.xml file is.
 * Run the following script
 
-```
+```ps
 $content = Get-Content license.xml | Out-String
 Set-ItemProperty -Path HKLM:\Software\ParticularSoftware -Name License -Force -Value $content
 ```
@@ -91,14 +91,14 @@ It is possible to specify the license in `app.config`:
 
 -   Use the key `NServiceBus/LicensePath` to specify the path where NServiceBus looks for the license. For example:
 
-```XML
+```xml
 <appSettings>
   <add key="NServiceBus/LicensePath" value="C:\NServiceBus\License\License.xml" />
 </appSettings>
 ```
 -   Use the key `NServiceBus/License` to transfer the actual HTML-encoded contents of the license. For example:
 
-```XML
+```xml
 <appSettings>
   <add key="NServiceBus/License" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;
 license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;2013-11-30T00:00:00.0000000

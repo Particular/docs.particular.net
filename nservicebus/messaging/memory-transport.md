@@ -22,15 +22,14 @@ In .NET 4.0, to define an event, use the event keyword in the signature of the e
 
 ### Define an event
 
-   
-```C#
+```cs
 public event EventHandler<ClientBecamePreferredEventArgs> RaiseClientBecamePreferredEvent;
 ```
 
 
 ### Define the event arguments
 
-```C#
+```cs
 public class ClientBecamePreferredArgs : EventArgs
 {
   public string Message {get;set;}
@@ -41,7 +40,7 @@ public class ClientBecamePreferredArgs : EventArgs
 
 ### Raise the event
 
-```C#
+```cs
 public void DoSomething()
 {
   // Write some code that does something useful here
@@ -69,7 +68,7 @@ For example:
 
 ### Event defined using the IEvent marker interface
 
-```C#
+```cs
 public class ClientBecamePreferred : IEvent
 {
   // message details go here.
@@ -79,7 +78,7 @@ public class ClientBecamePreferred : IEvent
 
 ### POCO Event
 
-```
+```cs
 public class ClientBecamePreferred
 {
   // message details go here.
@@ -93,7 +92,7 @@ Read how to tell NServiceBus to [use the POCOs as events](/nservicebus/messaging
 
 In-memory events are raised using a property of an `IBus` object call: `Bus.InMemory.Raise<T>`:
 
-```C#
+```cs
 class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
 {
   public IBus Bus { get; set; }
@@ -114,7 +113,7 @@ class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
 
 To subscribe to these events, implement a class that implements `IHandleMessages<T>`. The handlers are invoked when the event is raised:
 
-```C#
+```cs
 private class CustomerBecamePreferredHandler: IHandleMessages<ClientBecamePreferred>
 {
   void Handle(ClientBecamePreferred message)

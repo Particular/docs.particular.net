@@ -44,7 +44,7 @@ Add a new entry in the Subscriptions collection for the new queue specified in t
 
 Run this script to add the new entry:
 
-```
+```sql
 Use PersistenceForMsmqTransport
 Go
 

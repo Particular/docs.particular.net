@@ -51,7 +51,7 @@ Starting from IIS 7.5 and above the above steps can be combined into one by foll
  1. Install the Application Initialization Module as described here http://www.iis.net/learn/get-started/whats-new-in-iis-8/iis-80-application-initialization
  1. Add the following to the web.config under the `<system.webServer>` node
 
-```
+```xml
 <applicationInitialization doAppInitAfterRestart="true" >
 <add initializationPage="/" />
 </applicationInitialization>

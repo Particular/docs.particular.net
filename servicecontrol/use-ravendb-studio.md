@@ -14,20 +14,22 @@ There are two ways to enable direct access to RavenDB:
 
 * Open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file.md)) add the following setting:
 
-```
+```xml
 <add key="ServiceControl/ExposeRavenDB" value="true" />
 ```
 	
 * Edit the registry and add a new String Value called `ExposeRavenDB` to the ServiceControl key as shown below:
 
-```
+```no-highlight
 [HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceControl]
 "ExposeRavenDB"="true"
 ```
 
 After restarting the ServiceControl service, access the RavenDB studio locally at the following endpoint:
 
-    http://localhost:33333/storage
+```no-highlight
+http://localhost:33333/storage
+```
 
 NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access the hostname must be [set to a fully qualified domain name](setting-custom-hostname.md).
 

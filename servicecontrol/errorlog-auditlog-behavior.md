@@ -30,7 +30,7 @@ Note: If external integration is not required, it is highly recommend turning fo
 
 Changing the input queue names via the configuration file without considering the forwarding queues can cause issues. For example, in the configuration below `ServiceBus/ErrorQueue` has been set to `CustomErrorQueue`. This will cause ServiceControl to expect a queue named `CustomErrorQueue.log` to exist as well. If the corresponding forwarding queue does not exist then the ServiceControl service will not start.
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
     <appSettings>
@@ -42,7 +42,7 @@ Changing the input queue names via the configuration file without considering th
 
 To avoid this confusion it is recommended the names of the output queues be explicitly configured using the `ServiceBus/ErrorLogQueue` and `ServiceBus/AuditLogQueue` settings. The recommended way to change the input and forwarding queues names is to use the command line options as detailed below. In this example all four queue names are being explicitly set and if any of the queues do not exist they will be created.
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
     <appSettings>

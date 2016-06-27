@@ -44,7 +44,7 @@ snippet:copy-stream-properties-to-disk
 
 On disk (at the root of the solution for this sample) it will look like this
 
-```
+```no-highlight
 > Storage
   > 2015-03-06_15
      > 75ab3b84-8b37-4da7-bf07-b173f2f5570d

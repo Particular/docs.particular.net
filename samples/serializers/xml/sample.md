@@ -30,7 +30,7 @@ snippet:message
 
 ## The Output
 
-```
+```xml
 <?xml version="1.0" ?>
 <CreateOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.net/XmlSample">
 	<OrderId>9</OrderId>

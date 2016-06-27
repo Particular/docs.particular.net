@@ -89,11 +89,13 @@ If running with [NServiceBus.Host.exe](/nservicebus/hosting/), the following pro
 
 To start the endpoint as a Distributor install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) and then run the host from the command line, as follows:
 
-```cmd
+```dos
 NServiceBus.Host.exe NServiceBus.MSMQDistributor
+
 ```
 or if using a version of NServiceBus that is earlier than Version 4.3:
-```cmd
+
+```dos
 NServiceBus.Host.exe NServiceBus.Distributor
 ```
 
@@ -101,13 +103,13 @@ The NServiceBus.[MSMQ]Distributor profile instructs the NServiceBus framework to
 
 It is possible to use the NServiceBus.[MSMQ]Master to start a Distributor on the endpoint with a Worker on its endpoint. To start the endpoint as a Master install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) and then run the host from the command line, as follows:
 
-```cmd
+```dos
 NServiceBus.Host.exe NServiceBus.MSMQMaster
 ```
 
 or if using a version of NServiceBus that is earlier than Version 4.3:
 
-```cmd
+```dos
 NServiceBus.Host.exe NServiceBus.Master
 ```
 
@@ -130,19 +132,19 @@ Any NServiceBus endpoint can run as a Worker node. To activate it, create a hand
 
 If hosting the endpoint with NServiceBus.Host.exe, to run as a Worker, use this command line:
 
-```cmd
+```dos
 NServiceBus.Host.exe NServiceBus.MSMQWorker
 ```
 
 or if using a version of NServiceBus that is earlier than Version 4.3:
 
-```cmd
+```dos
 NServiceBus.Host.exe NServiceBus.Worker
 ```
 
 Configure the name of the master node server as shown in this `app.config` example. Note the `MasterNodeConfig` section:
 
-```XML
+```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <configSections>
@@ -189,7 +191,7 @@ The Distributor uses two queues for its runtime operation. The `DataInputQueue` 
 
 To use values other than the NServiceBus defaults override them, as shown in the `UnicastBusConfig` section below:
 
-```XML
+```xml
 <UnicastBusConfig DistributorControlAddress="EndpointName.Distributor.Control@MachineWhereDistributorRuns" DistributorDataAddress="EndpointName@MachineWhereDistributorRuns">
   <MessageEndpointMappings>
     <!-- regular entries -->

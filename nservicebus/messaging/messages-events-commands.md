@@ -70,7 +70,7 @@ The simplest way to define a message is to use marker interfaces.
  * `NServiceBus.ICommand` for defining a Command.
  * `NServiceBus.IEvent` for defining an Event.
 
-```C#
+```cs
 public class MyMessage : IMessage { }
 
 public class MyCommand : ICommand { }

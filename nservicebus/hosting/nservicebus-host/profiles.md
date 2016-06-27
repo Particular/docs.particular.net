@@ -33,7 +33,7 @@ NServiceBus comes with three profiles out of the box: Lite, Integration, and Pro
 
 To tell the host to run using a specific profile, pass the namespace-qualified type of the profile class to the NServiceBus host as a command-line parameter. Specify the Lite profile, as follows:
 
-```cmd
+```dos
 NServiceBus.Host.exe NServiceBus.Lite
 ```
 
@@ -50,7 +50,7 @@ snippet:defining_profile
 
 To tell the host to run the profile and the NServiceBus Lite profile together:
 
-```cmd
+```dos
 NServiceBus.Host.exe YourNamespace.YourProfile NServiceBus.Lite
 ```
 

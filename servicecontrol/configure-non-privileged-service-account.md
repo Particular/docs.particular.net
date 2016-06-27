@@ -64,13 +64,13 @@ To run the service this way the user account must have rights to log on interact
 
 For example
 
-```
+```dos
 runas /user:MyDomain\MyTestUser cmd.exe
 ```
 
 If the command returns the error below then the user account cannot be tested this way without adjusting the logon rights. Normally this only occurs if the computer is configured as a domain controller or the System Administrator has restricted logon access using group policies.
 
-```
+```no-highlight
 1385: Logon failure: the user has not been granted the requested logon type at this computer.
 ```
 
@@ -82,7 +82,7 @@ Once logon rights are granted proceed:
  1. Shut down the console session.
  1. Start the service.
 
-```
+```dos
 ServiceControl.exe --serviceName=Particular.ServiceControl
 ```
 

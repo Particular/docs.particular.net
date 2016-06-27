@@ -23,7 +23,7 @@ snippet:ConfigureRabbit
 
 Since the above connection string does not define a username NServiceBus will default to
 
-```
+```no-highlight
 username: guest
 password: guest
 ```

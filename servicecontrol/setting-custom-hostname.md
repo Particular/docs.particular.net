@@ -56,13 +56,13 @@ If the hostname settings has been modified manually change the URLACL settings t
 
 For example, the following command line (with the appropriate adjustments for the hostname and port number) adds the relevant URLACL setting: 
 
-```
+```dos
 netsh http add urlacl  url=http://*:33333/api/  user=everyone  listen=yes
 ```
 
 Listing the current URLACLs can be done using the following command:   
 
-```
+```dos
 netsh http show urlacl`
 ```
 
@@ -70,7 +70,7 @@ Ensure that there are no overlapping URLACLs as this can cause ServiceControl to
 
 In the following example the wildcarded URLACL is removed:
 
-```
+```dos
 netsh http delete urlacl  url=http://*:33333/api/`
 ```
 

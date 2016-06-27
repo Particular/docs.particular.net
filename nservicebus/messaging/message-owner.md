@@ -138,7 +138,7 @@ snippet:endpoint-mapping-configurationprovider
 
 You can also call the following, even though it is not recommended for application-level code:
 
-```C#
+```cs
 Bus.Send(string destination, object message);
 ```
 

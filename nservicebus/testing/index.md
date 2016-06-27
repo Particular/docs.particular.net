@@ -18,7 +18,7 @@ NServiceBus ships with a stand alone testing helper NuGet package that makes tes
 
 To install this package:
 
-```
+```ps
 Install-Package NServiceBus.Testing
 ```
 

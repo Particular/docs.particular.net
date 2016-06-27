@@ -101,7 +101,7 @@ Using this naming convention, all the queues of an endpoint end up grouped toget
 
 Install each distributor from the command line:
 
-```C#
+```cs
 NServiceBus.Host.exe
 /install
 /serviceName:EndpointName
@@ -146,7 +146,7 @@ With the distributors running in the cluster and the worker processes coming onl
 While in development, the endpoint configurations probably don't have any `@` symbols in them, in production change to point to the Data Bus queue on the cluster, i.e., for application MyApp and logical queue MyQueue, the worker config looks like this:
 
 
-```XML
+```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <configSections>

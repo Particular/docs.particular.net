@@ -17,7 +17,7 @@ Note: The expiration process only curates the data in the embedded RavenDB. Audi
 
 The following settings would change the expiration for faulted messages to be 10 days and for audit messages to be 5 days.
 
-```
+```xml
 <add key="ServiceControl/ErrorRetentionPeriod" value="10.00:00:00" />
 <add key="ServiceControl/AuditRetentionPeriod" value="5.00:00:00" />
 ```

@@ -785,6 +785,23 @@ Enforces the [Resharper](https://www.jetbrains.com/resharper/) settings to be co
 Sets the correct startup projects for every solution. This is persisted in an .suo file for each solution. Since .suo files are not committed to source control, if a re-clone is done this script will need to be re-run.
 
 
+# Inline Code
+
+ * https://highlightjs.org/static/demo/
+ * https://github.com/isagalaev/highlight.js/tree/master/src/languages
+
+
+| language     | key            |
+|--------------|----------------|
+| c#           | `cs`           |
+| xml          | `xml`          |
+| no format    | `no-highlight` |
+| command line | `dos`          |
+| powershell   | `ps`           |
+| json         | `json`         |
+| sql          | `sql`          |
+
+
 # Additional Resources
 
  * [GitHub Flow in the Browser](https://help.github.com/articles/github-flow-in-the-browser/)

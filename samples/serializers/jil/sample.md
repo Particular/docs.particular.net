@@ -31,7 +31,7 @@ snippet:message
 
 ## The Output
 
-```
+```json
 {
  "Date": "\/Date(1442274949826)\/",
  "CustomerId": 12,

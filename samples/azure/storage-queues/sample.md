@@ -73,7 +73,7 @@ Run only `Endpoint1` and send a message. Notice the contents of the message in t
 
 ### CloudQueueMessage contents
 
-```
+```json
 {
   "IdForCorrelation": null,
   "Id": "bb6ec79c-984f-4d51-8dd6-a50e010564a5",
@@ -104,7 +104,7 @@ Run only `Endpoint1` and send a message. Notice the contents of the message in t
 
 Note that above there is a encoded `Body` property. Decoding this message will produce the following.
 
-```
+```json
 {"Property":"Hello from Endpoint1"}
 
 ```

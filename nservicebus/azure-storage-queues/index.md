@@ -22,7 +22,7 @@ NOTE: As part of the Azure support for NServiceBus, one can choose between two t
 
 Reference `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` NuGet package.
 
-```
+```ps
 PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureStorageQueues
 ```
 

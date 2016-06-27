@@ -4,7 +4,7 @@ In NServiceBus Version 3 and higher, there was a NuGet package that provided hel
 
 For example, running the `Add-NServiceBusAuditConfig ProjectName` command would add the following section to the `app.config` file:
 
-```
+```xml
 <configuration>
   <configSections>
     <section name="AuditConfig" 

@@ -37,7 +37,7 @@ Members can be exclude via the [IgnoreDataMemberAttribute](https://msdn.microsof
 
 The attribute can be used as such
 
-```
+```cs
 public class Person
 {
     public string FamilyName { get; set; }
@@ -50,7 +50,7 @@ public class Person
 
 Then when this is serialized.
 
-```
+```cs
 Person person = new Person
 {
     GivenNames = "John",
@@ -61,7 +61,7 @@ Person person = new Person
 
 The result will be
 
-```
+```json
 {"FamilyName":"Smith","GivenNames":"John"}
 ```
 

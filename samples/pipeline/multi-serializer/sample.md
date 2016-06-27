@@ -95,7 +95,7 @@ Now have a look in msmq and there will be two messages in the
 
 **A xml message with the content**
 
-```
+```xml
 <?xml version="1.0"?>
 <MessageWithXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.net/">
 <SomeProperty>Some content in a Xml message</SomeProperty>
@@ -104,6 +104,6 @@ Now have a look in msmq and there will be two messages in the
 
 **And a Json message with the content**
 
-```
+```js
 {"SomeProperty":"Some content in a json message"}
 ```

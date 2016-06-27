@@ -18,7 +18,7 @@ There are multiple ways of generating a key. Most implementations rely on a *ran
 
 #### Base64
 
-```
+```ps
 [Reflection.Assembly]::LoadWithPartialName("System.Security")
 $rijndael = new-Object System.Security.Cryptography.RijndaelManaged
 $rijndael.GenerateKey()
@@ -28,7 +28,7 @@ $rijndael.Dispose()
 
 #### Hex
 
-```
+```ps
 [Reflection.Assembly]::LoadWithPartialName("System.Security")
 $rijndael = new-Object System.Security.Cryptography.RijndaelManaged
 $rijndael.GenerateKey()
@@ -43,7 +43,7 @@ The code snippets below can be run from Linqpad or by copy and pasting the code 
 
 #### Base64
 
-```
+```cs
 using (var e = System.Security.Cryptography.RijndaelManaged.Create())
 {
 	e.GenerateKey();
@@ -54,7 +54,7 @@ using (var e = System.Security.Cryptography.RijndaelManaged.Create())
 
 #### Hex
 
-```
+```cs
 using (var e = System.Security.Cryptography.RijndaelManaged.Create())
 {
 	e.GenerateKey();
@@ -72,7 +72,7 @@ OpenSSL is well known for its ability to generate certificates but it can also b
 
 Generates 32 random bytes (256bits) in a base64 encoded output:
 
-```
+```dos
 openssl rand -base64 32
 ```
 
@@ -81,7 +81,7 @@ openssl rand -base64 32
 
 Generates 32 random characters (256bits):
 
-```
+```dos
 openssl rand 32
 ```
 
@@ -98,7 +98,8 @@ Download the [CryptoKeyGenerator](https://github.com/ParticularLabs/CryptoKeyGen
 After running the tool it generates one key and outputs this key in multiple formats.
 
 Output
-```
+
+```no-highlight
 Strip 8th bit: True
 Strip control: True
 Key bit length: 256

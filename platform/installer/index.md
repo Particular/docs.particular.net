@@ -119,14 +119,16 @@ As mentioned above in some circumstances Click-Once can be problematic. The foll
 ### Click-once and Enhanced Security on Windows Server 2012 R2
 
 Error shown:
-```
+
+```no-highlight
 An error occurred trying to download 'https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application'.
 
 See the setup log file located at 'C:\Users\ADMINI~1\AppData\Local\Temp\VSD9C86.tmp\install.log' for more information.
 ```
 
 Log file content:
-```
+
+```no-highlight
 URLDownloadToCacheFile failed with HRESULT '-2146697208'
 Error: An error occurred trying to download 'https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application'.
 ```

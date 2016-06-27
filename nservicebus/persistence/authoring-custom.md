@@ -22,7 +22,7 @@ The first and maybe the most obvious piece of data persisted by NServiceBus is s
 
 A subscription storage is defined by the following interface:
 
-```csharp
+```cs
 /// <summary>
 /// Defines storage for subscriptions
 /// </summary>
@@ -136,7 +136,7 @@ The Outbox functionality, new in NServiceBus Version 5, is a feature providing r
 
 An Outbox persister is implementing the following interface:
 
-```csharp
+```cs
 /// <summary>
 /// Implemented by the persisters to provide outbox storage capabilities
 ///
@@ -169,7 +169,7 @@ Any of the persisters can be implemented based on the specific requirements. Non
 
 Once a persister has been written, tested and exposed via a Feature, all that is left to do is add a reference to the assembly containing it from the endpoints, and change the endpoint configuration accordingly to enable it. An example for such configuration would be:
 
-```csharp
+```cs
 var configure = new BusConfiguration();
 configure.UsePersistence<RavenDBPersistence>(); // Select which persistence to use
 configure.EnableFeature<Sagas>(); // Enable a feature or several of them

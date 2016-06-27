@@ -28,7 +28,7 @@ When creating the namespace at the Azure portal, choose Standard or Premium Mess
 
 In the solution reference `NServiceBus.Azure.Transports.WindowsAzureServiceBus` NuGet package.
 
-```
+```ps
 PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureServiceBus
 ```
 
