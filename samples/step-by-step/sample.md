@@ -38,7 +38,7 @@ Completing these steps will serve as an introduction to many important NServiceB
 
 ### MSMQ
 
-Microsoft Message Queueing (MSMQ) must be properly installed and configured. The easiest way to do this is with the appropriate command below from the command line. Alternatively, it can be installed via the Windows GUI following the [MSMQ guide](/platform/installer/).
+Microsoft Message Queueing (MSMQ) must be properly installed and configured. The easiest way to do this is with the appropriate command below from the command line. Alternatively, it can be installed via the Windows GUI following the [MSMQ guide](/nservicebus/msmq/).
 
 
 #### Enable MSMQ on Windows 7
