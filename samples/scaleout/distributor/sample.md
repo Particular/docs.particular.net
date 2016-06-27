@@ -75,8 +75,6 @@ snippet: workerConfig
 
 The Node in the `MasterNodeConfig` points to the host name where the MasterNode is running. If running the Worker from the same machine as the Distributor, Node should equal `localhost`.
 
-NOTE: In Versions 6 and above `MasterNodeConfig` is obsolete and `endpointConfiguraiton.EnlistWithLegacyMSMQDistributor` should be used as in code above.
-
 
 ## Running the code
 
@@ -152,7 +150,7 @@ Sent Order placed event for orderId [1320cfdc-f5cc-42a7-9157-251756694069].
 This sample has two workers which are hard coded as projects for the sake of keeping the sample easy to use. This manifests in several ways
 
  1. Both `Worker1` and `Worker2` are different projects so that the solution automatically starts with two workers.
- 1. Both `Worker1` and `Worker2` have different endpoint names (Versions 4 and 5) or configure an address translation exception (Version 6) so they have distinct queue names when running in the development environment.
+ 1. Both `Worker1` and `Worker2` have different endpoint names (Versions 4 and 5).
  1. Both `Worker1` and `Worker2` have hard coded settings in the app.config
 
 In a real solution the following is more likely

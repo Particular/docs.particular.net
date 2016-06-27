@@ -38,7 +38,7 @@ This sample contains the following projects:
  * Messages - A class library containing message definitions.
  * EndpointConnectionLookup - A class library containing common code for providing new `SqlConnection` for transport addresses used in the sample.
 
-NOTE: In Versions 2 and below it is required to pass connection string for the currently configured endpoint either using `ConnectionString()` method or in the `app.config` file.
+partial: passconnection
 
 
 ### Sender project
