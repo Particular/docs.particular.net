@@ -11,9 +11,9 @@ public class OrderSagaAttributes : Saga<OrderSagaDataAttributes>,
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaDataAttributes> mapper)
     {
         mapper.ConfigureMapping<StartOrder>(message => message.OrderId)
-                .ToSaga(sagaData => sagaData.OrderId);
+            .ToSaga(sagaData => sagaData.OrderId);
         mapper.ConfigureMapping<CompleteOrder>(message => message.OrderId)
-                .ToSaga(sagaData => sagaData.OrderId);
+            .ToSaga(sagaData => sagaData.OrderId);
     }
 
     public Task Handle(StartOrder message, IMessageHandlerContext context)
@@ -45,10 +45,9 @@ public class OrderSagaAttributes : Saga<OrderSagaDataAttributes>,
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        logger.Info($"OrderSagaAttributes with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
+        log.Info($"OrderSagaAttributes with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
         return Task.FromResult(0);
     }
-
 
 }

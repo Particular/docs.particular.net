@@ -45,7 +45,7 @@ public class OrderSagaFluent : Saga<OrderSagaDataFluent>,
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        logger.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
+        log.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
         return Task.FromResult(0);
     }
