@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -48,10 +47,10 @@ class FileTransportMessagePump : IPushMessages
         cancellationTokenSource.Cancel();
 
         var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
-        IEnumerable<Task> allTasks = runningReceiveTasks.Values.Concat(new[]
+        var allTasks = runningReceiveTasks.Values.Concat(new[]
         {
-                messagePumpTask
-            });
+            messagePumpTask
+        });
         var finishedTask = await Task.WhenAny(Task.WhenAll(allTasks), timeoutTask)
             .ConfigureAwait(false);
 
@@ -144,10 +143,10 @@ class FileTransportMessagePump : IPushMessages
     {
         try
         {
-            string[] message = File.ReadAllLines(transaction.FileToProcess);
+            var message = File.ReadAllLines(transaction.FileToProcess);
             var bodyPath = message.First();
             var json = string.Join("", message.Skip(1));
-            Dictionary<string, string> headers = HeaderSerializer.DeSerialize(json);
+            var headers = HeaderSerializer.DeSerialize(json);
 
             string ttbrString;
 
@@ -192,9 +191,7 @@ class FileTransportMessagePump : IPushMessages
     CancellationToken cancellationToken;
     CancellationTokenSource cancellationTokenSource;
     SemaphoreSlim concurrencyLimiter;
-
     Task messagePumpTask;
-
     string path;
     Func<PushContext, Task> pipeline;
     bool purgeOnStartup;

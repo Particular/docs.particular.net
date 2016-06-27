@@ -13,6 +13,5 @@ public class MessageAHandler : IHandleMessages<MessageA>
         log.Info("Replying with MessageB");
         return context.Reply(new MessageB());
     }
-
 }
 #endregion

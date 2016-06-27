@@ -2,7 +2,7 @@
 using System.IO;
 
 #region BaseDirectoryBuilder
-public static class BaseDirectoryBuilder 
+public static class BaseDirectoryBuilder
 {
     public static string BuildBasePath(string address)
     {

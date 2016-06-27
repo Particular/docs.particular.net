@@ -23,7 +23,7 @@ class Dispatcher : IDispatchMessages
             }
             File.WriteAllBytes(bodyPath, transportOperation.Message.Body);
 
-            List<string> messageContents = new List<string>
+            var messageContents = new List<string>
             {
                 bodyPath,
                 HeaderSerializer.Serialize(transportOperation.Message.Headers)

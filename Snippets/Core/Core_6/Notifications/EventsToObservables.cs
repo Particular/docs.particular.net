@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Core6.Notifications
+﻿namespace Core6.Notifications
 {
-    using System.Reactive;
+    using System;
     using System.Reactive.Linq;
     using NServiceBus;
     using NServiceBus.Faults;

@@ -14,9 +14,13 @@ class Program
     {
         Console.Title = "Samples.CustomTransport.Endpoint1";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomTransport.Endpoint1");
-#region UseDefinition
+
+        #region UseDefinition
+
         endpointConfiguration.UseTransport<FileTransport>();
-#endregion
+
+        #endregion
+
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -31,7 +35,9 @@ class Program
             var messageA = new MessageA();
             await endpointInstance.Send("Samples.CustomTransport.Endpoint2", messageA)
                 .ConfigureAwait(false);
+
             #endregion
+
             Console.WriteLine("MessageA sent. Press any key to exit");
             Console.ReadKey();
         }

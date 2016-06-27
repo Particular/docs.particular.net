@@ -41,7 +41,6 @@
             await RequestTimeout<ExecuteTask>(context, TimeSpan.FromMinutes(5))
                 .ConfigureAwait(false);
         }
-
     }
 
     // Associated saga data
