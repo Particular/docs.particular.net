@@ -86,10 +86,7 @@ In the `Client`, `Server`, and `Subscriber` projects, add a reference to the `Sh
 To install the `NServiceBus` NuGet package, copy-paste and run the following block in the package manager console:
 
 ```ps
-Install-Package NServiceBus -Project Client
-Install-Package NServiceBus -Project Server
-Install-Package NServiceBus -Project Subscriber
-Install-Package NServiceBus -Project Shared
+Get-Project -All | Install-Package nservicebus
 ```
 
 
