@@ -43,6 +43,7 @@ public class OrderSaga : Saga<OrderSagaData>,
 
     public async Task Timeout(CompleteOrder state, IMessageHandlerContext context)
     {
+        log.Info($"Saga with OrderId {Data.OrderId} completed");
         var orderCompleted = new OrderCompleted
         {
             OrderId = Data.OrderId
