@@ -6,6 +6,32 @@ tags:
 redirects:
 ---
 
+### Introduction
+
+#### Threadpools
+
+There are basically two thread pools. The worker thread pool and the IO thread pool.
+
+##### Worker thread pool
+Parallel / Compute-bound blocking work happens on the worker thread pool. Things like `Task.Run`, `Task.Factory.StartNew`, `Parallel.For` schedule tasks on the worker thread pool.
+On the other hand if we schedule Compute bound work the worker thread pool will start expanding its worker threads. Let's call this phase ramp up phase. Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
+
+##### IO-thread pool
+IO-bound work is scheduled on the IO-thread pool. The IO-bound thread pool has a fixed number of worker threads (usually number of cores) which can work concurrently on thousands of IO-bound tasks. IO-bound work under Windows uses so called IO completion ports (IOCP) to get notifications when an IO-bound operation is completed. IOCP enable efficient offloading of IO-bound work from the user code to the kernel, driver and hardware without blocking the user code until the IO work is done. To achieve that the user code registeres notifications in form of a callback. The callback occors on an IO thread which is a pool thread managed by the IO system that is made available to the user code.
+
+IO-bound work typically takes very long and compute-bound work is comparatively cheap. The IO system is optimized to keep the thread count low and schedule all callbacks, and therefore the execution of interleaved user code on that one thread. Due to those optimizations all works get serialized and there is minimal context switching as the OS scheduler owns the threads. In general asynchronous code can handle bursting traffic much better because of the "always-on" nature of the IOCP.
+
+##### Memory and allocations
+
+Asynchronous code tends to use much less memory because the amount of memory saved by freeing up a thread in the worker thread pool dwarfs the amount of memory used for all the compiler-generated async structures combined.
+
+##### Sync vs. async
+If we'd examine each request in isolation, asynchronous code would actually be sligthly slower than the synchronous version. There might be extra kernel transitions, task scheduling etc. involved. But the scalability more than makes up for it.
+
+From a server perspective if we compare asynchrony to synchrony by just looking at one method or one request at a time then synchrony might make more sense. But if you compare asynchrony to parallelism - looking at the server as a whole - then asynchrony generally wins. Every worker thread that can be freed up on a server is worth freeing up! It reduces the amount of memory needed, frees up the CPU for compute-bound work while saturating the IO system completely.
+
+WARN: It is generally hard to give generic advice how you should structure your asynchronous code. It is important to understand compute-bound vs. IO-bound like summarized above. Do not copy paste the snippets blindly without further analysis if they actually provide benefit for your scenarios. Don't assume. Measure it!
+
 ### Calling short running compute-bound code
 
 snippet: ShortComputeBoundMessageHandler
@@ -62,3 +88,7 @@ snippet: HandlerWhichIntegratesWithEvent
 #### Asynchronous programming model pattern
 
 snippet: HandlerWhichIntegratesWithAPM
+
+#### Asynchronous RPC calls
+
+snippet: HandlerWhichIntegratesWithRemoting
