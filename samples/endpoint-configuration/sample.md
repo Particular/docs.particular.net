@@ -48,7 +48,7 @@ snippet:logging
 
 And also define the endpoint name.
 
-WARNING: In Versions 6 and above [endpoint](/nservicebus/endpoints/) name is mandatory.
+partial: endpointname
 
 snippet:create-config
 
