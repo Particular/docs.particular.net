@@ -108,14 +108,7 @@ Additional parameters for `Invoke-ServiceControlInstanceUpgrade` may be required
 
 ### Licensing
 
-Adding the license file to the registry can be done by running the following cmdlet. The license file is now machine wide and is available to be used by all instances of ServiceControl.
-
-```bat
-Import-ServiceControlLicense <License-File>
-```
-It is also possible to apply a license to an individual instance rather than globally. This can be done by by creating a license file under the installation path of an instance and copying the `license.xml` to that directory.
-Adding a license this way is not supported via the ServiceControl Management Utility or the PowerShell module.
-
+Refer to [Licensing ServiceControl](license.md) 
 
 ### Building an unattended install file
 
