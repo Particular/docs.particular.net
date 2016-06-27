@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 #region ConnectionProvider
 public class ConnectionProvider
 {
-    const string ReceiverConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=ReceiverCatalog;Integrated Security=True";
-    const string SenderConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=SenderCatalog;Integrated Security=True";
+    string ReceiverConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=ReceiverCatalog;Integrated Security=True";
+    string SenderConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=SenderCatalog;Integrated Security=True";
 
     public static async Task<SqlConnection> GetConnection(string transportAddress)
     {
@@ -13,10 +13,8 @@ public class ConnectionProvider
                                                 ? SenderConnectionString
                                                 : ReceiverConnectionString;
         var connection = new SqlConnection(connectionString);
-
         await connection.OpenAsync()
             .ConfigureAwait(false);
-
         return connection;
     }
 }
