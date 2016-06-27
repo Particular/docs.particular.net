@@ -36,7 +36,11 @@ class Usage
         gateway.CustomRetryPolicy(
             customRetryPolicy: (message, exception, currentRetry) =>
             {
-                return currentRetry > 4 ? TimeSpan.MinValue : TimeSpan.FromSeconds(currentRetry*60);
+                if (currentRetry > 4)
+                {
+                    return TimeSpan.MinValue;
+                }
+                return TimeSpan.FromSeconds(currentRetry*60);
             });
 
         #endregion
