@@ -54,19 +54,31 @@ Wrap the compute-bound code in a `Task.Run` or `Task.Factory.StartNew` and `awai
 
 ### Return or await
 
-#### Returns the task
-
-snippet: HandlerReturnsATask
-
 #### Awaits the task
+
+For the majority of cases just mark the handler's Handle method with the `async` keyword and `await` all asynchronous calls inside the method.
 
 snippet: HandlerAwaitsTheTask
 
+#### Returns the task
+
+For high-troughput scenarios and if you have only one or two asynchronous exit points in the Handle method you can avoid the `async` keyword by returning the task instead of awaiting it. This will omit the state machine creation which drives the async code and reduce the number of allocations on the given code path.
+
+snippet: HandlerReturnsATask
+
+snippet: HandlerReturnsTwoTasks
+
 ### Usage of `ConfigureAwait`
+
+By default when you are awaiting a task a mechanism called context capturing is enabled. The current context is captured and restored for the continuation that is scheduled after the precedent task was completed.
 
 snippet: HandlerConfigureAwaitSpecified
 
+In the snippet above `SomeAsyncMethod` and `AnotherAsyncMethod` are simply awaited. So when entering `SomeAsyncMethod` the context is captured and restored before `AnotherAsyncMethod` is executed. The context capturing mechanism is almost never needed in code that is executed inside handlers or sagas. NServiceBus makes sure the context is not captured in the framework at all. So the following approach is preferred:
+
 snippet: HandlerConfigureAwaitNotSpecified
+
+Specify `ConfigureAwait(false)` on each awaited statement. Apply this principle to all your asynchronous code that is called from handlers and sagas.
 
 ### Concurrency
 
