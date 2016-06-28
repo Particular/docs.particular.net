@@ -21,7 +21,7 @@ public class SubmitOrderHandler : IHandleMessages<SubmitOrder>
             Debugger.Break();
         }
 
-        log.Info($"We have received an order #{message.OrderNumber} for [{string.Join(", ", message.ProductIds)}] products(s).");
+        log.Info($"Received an order #{message.OrderNumber} for [{string.Join(", ", message.ProductIds)}] products(s).");
 
         log.Info("The credit card values will be encrypted when looking at the messages in the queues");
         log.Info($"CreditCard Number is {message.EncryptedCreditCardNumber}");

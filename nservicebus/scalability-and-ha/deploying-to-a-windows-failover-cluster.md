@@ -107,7 +107,7 @@ NServiceBus.Host.exe
 /serviceName:EndpointName
 /displayName:Distributor.EndpointName
 /description:Distributor.EndpointName
-/userName:DOMAIN\us
+/userName:DOMAIN\usa
 /password:thepassword
 NServiceBus.Production NServiceBus.MSMQDistributor
 ```

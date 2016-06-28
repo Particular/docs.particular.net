@@ -42,7 +42,7 @@ Refer to Data Retention section of [Customizing ServiceControl Configuration](cr
 
 #### Alternate Audit and Error queues
 
-You can configure ServiceControl to forward any consumed messages into alternate queues, so that a copy of any message consumed by ServiceControl is available from these alternate queues.
+ServiceControl can be configured to forward any consumed messages into alternate queues, so that a copy of any message consumed by ServiceControl is available from these alternate queues.
 
 For more details, see [Forwarding Queues](errorlog-auditlog-behavior.md).
 

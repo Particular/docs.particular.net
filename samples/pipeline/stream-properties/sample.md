@@ -23,7 +23,7 @@ This provides an extension method to `Configure` to simplify passing in settings
 
 snippet: stream-storage-helper
 
-You then call this helper method at configuration time.
+The helper method can then be called at configuration time.
 
 snippet: configure-stream-storage
 

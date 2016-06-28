@@ -67,7 +67,7 @@ Run the solution so that the Performance Counter instances are registered.
 
 ## Send Messages
 
-You can now send any number of messages and watch the effect on the specific Performance Counters.
+Send any number of messages and watch the effect on the specific Performance Counters.
 
 The sending code is in `Program.cs` is set to send 10 messages at a time.
 

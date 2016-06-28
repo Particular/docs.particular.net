@@ -112,7 +112,7 @@ Endpoint mapping can be configured in several ways
 
 ### Using app.config
 
-You configure mapping in the app.config by adding `<UnicastBusConfig>` and `<MessageEndpointMappings>` nodes.
+Mappings are configured in the app.config by adding `<UnicastBusConfig>` and `<MessageEndpointMappings>` nodes.
 
 snippet:endpoint-mapping-appconfig
 
@@ -136,7 +136,7 @@ snippet:endpoint-mapping-configurationprovider
 
 ## Bypassing the owning endpoint
 
-You can also call the following, even though it is not recommended for application-level code:
+Messages can be sent directly to a destination addres, even though it is not recommended for application-level code:
 
 ```cs
 Bus.Send(string destination, object message);

@@ -123,7 +123,7 @@ NServiceBus polls the persister for timeouts by calling `GetNextChunk`, and prov
 
 In order to provide a custom timeout persister implementation:
 
- - In versions 4.x (starting from 4.4) and 5.x it is required to implement interfaces `IPersistTimeouts` and `IPersistTimeoutsV2`. The interface `IPersistTimeoutsV2` was introduced to prevent a potential message loss, while the `IPersistTimeouts` interface allows to maintain backwards compatibility (you can find more details in the following [issue description](https://github.com/Particular/NServiceBus/issues/2885)).
+ - In versions 4.x (starting from 4.4) and 5.x it is required to implement interfaces `IPersistTimeouts` and `IPersistTimeoutsV2`. The interface `IPersistTimeoutsV2` was introduced to prevent a potential message loss, while the `IPersistTimeouts` interface maintains backwards compatibility. More details can be found in the following [issue description](https://github.com/Particular/NServiceBus/issues/2885).
   - The reference in-memory implementation of timeouts persistence for NServiceBus v4.x can be seen [here](https://github.com/Particular/NServiceBus/blob/support-4.4/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersistence.cs).
   - The reference in-memory implementation of timeouts persistence for NServiceBus v5.x can be seen [here](https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersister.cs).
  - Starting from Version 6.0 it is required to implement interfaces `IPersistTimeouts` and `IQueryTimeouts`. The interface `IQueryTimeouts` has been extracted from `IPersistTimeouts` in order to explicitly separate responsibilities.
@@ -176,5 +176,4 @@ configure.EnableFeature<Sagas>(); // Enable a feature or several of them
 configure.UseSerialization<JsonSerializer>(); // Some more global configurations
 configure.EnableInstallers();
 ```
-
-You could write extension methods to add more configurations specific to the custom persistence (for example, to allow fine tuning of various aspects of it from the calling endpoint).
+Additional extension methods could be created to add more configurations specific to the custom persistence (for example, to allow fine tuning of various aspects of it from the calling endpoint).

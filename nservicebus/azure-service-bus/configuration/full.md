@@ -159,7 +159,7 @@ The Azure Service Bus transport can guarantee transactional behavior by combinin
  * Messages are received using `ReceiveMode.PeekLock` mode,
  * The transport explicitly sends messages via the receive queue.
  
-You can enable the latter using following configuration setting:
+Enable the latter using the following configuration setting:
 
  * `SendViaReceiveQueue(bool)`: Uses the receive queue to dispatch outgoing messages when possible. Defaults to `true`.
 

@@ -52,7 +52,7 @@ A Subscriber will not unsubscribe when it stops, it will remain registered at th
 
 ## Disabling auto-subscription
 
-You can also choose to **not** have the infrastructure automatically subscribe using the configuration API
+Automatic subscriptions by the infrastructure can be disabled using the configuration API:
 
 snippet:DisableAutoSubscribe
 
