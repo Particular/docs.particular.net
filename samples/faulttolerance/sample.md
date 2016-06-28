@@ -62,7 +62,7 @@ Note the commented out `throw new Exception`. Un-comment that line.
 
 Run the solution again, but this time use `Ctrl-F5` so that Visual Studio does not break each time the exception is thrown, sending a message from the 'Client' console.
 
-You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
+The endpoint should scroll through a bunch of warnings, ultimately putting out an error, and stopping, like this:
 
 **Server Output**
 

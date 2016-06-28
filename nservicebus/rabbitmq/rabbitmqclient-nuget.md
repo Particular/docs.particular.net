@@ -26,7 +26,7 @@ If NServiceBus.RabbitMQ targets a specific version of RabbitMQ.Client the result
 
 ### If NServiceBus.RabbitMQ targets a "current Major" version range of RabbitMQ.Client
 
-Our standard approach to targeting NuGet ranges is to target "any Minor in the current Major". If this approach is used with NServiceBus.RabbitMQ it means that consumers of NServiceBus.RabbitMQ can move between versions of RabbitMQ.Client as specified in that range. Unfortunately there is a chance that RabbitMQ.Client will ship a breaking change that affects the subset of API that NServiceBus.RabbitMQ uses. If this does occur the most likely outcome is one of the following exceptions on startup:
+Particular's standard approach to targeting NuGet ranges is to target "any Minor in the current Major". If this approach is used with NServiceBus.RabbitMQ it means that consumers of NServiceBus.RabbitMQ can move between versions of RabbitMQ.Client as specified in that range. Unfortunately there is a chance that RabbitMQ.Client will ship a breaking change that affects the subset of API that NServiceBus.RabbitMQ uses. If this does occur the most likely outcome is one of the following exceptions on startup:
 
  * [MissingMethodException](https://msdn.microsoft.com/en-us/library/system.missingmethodexception.aspx)
  * [MissingFieldException](https://msdn.microsoft.com/en-us/library/system.missingfieldexception.aspx)

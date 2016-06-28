@@ -112,7 +112,7 @@ Endpoint mapping can be configured in several ways
 
 ### Using app.config
 
-You configure mapping in the app.config by adding `<UnicastBusConfig>` and `<MessageEndpointMappings>` nodes.
+Mappings are configured in the app.config by adding `<UnicastBusConfig>` and `<MessageEndpointMappings>` nodes.
 
 snippet:endpoint-mapping-appconfig
 
