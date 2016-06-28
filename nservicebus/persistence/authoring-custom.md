@@ -176,5 +176,4 @@ configure.EnableFeature<Sagas>(); // Enable a feature or several of them
 configure.UseSerialization<JsonSerializer>(); // Some more global configurations
 configure.EnableInstallers();
 ```
-
-You could write extension methods to add more configurations specific to the custom persistence (for example, to allow fine tuning of various aspects of it from the calling endpoint).
+Additional extension methods could be created to add more configurations specific to the custom persistence (for example, to allow fine tuning of various aspects of it from the calling endpoint).

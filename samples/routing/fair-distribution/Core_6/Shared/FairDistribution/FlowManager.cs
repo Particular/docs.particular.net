@@ -30,7 +30,7 @@ class FlowManager
         foreach (var hash in allInstances.Where(t => t.Instance != null).Select(t => t.Instance.ToString().GetHashCode()))
         {
             var candidate = data.Values.FirstOrDefault(o => o.InstanceHash == hash);
-            if (candidate == null) //We don't track this instance yet so assume it has shortest queue.
+            if (candidate == null) // This instance is not yet tracked, so assume it has shortest queue.
             {
                 return hash;
             }

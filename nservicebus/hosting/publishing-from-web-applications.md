@@ -80,7 +80,7 @@ For storage-driven transports, it is inadvisable to have one of the web applicat
 
 In the diagram above, two web servers are load balanced behind a network load balancer. The applications on both web servers cooperate by referring to the same subscription storage database.
 
-We also create an additional **Subscription Manager Endpoint**, also talking to the same subscription storage. When a subscriber is interested in an event, the **subscription request** message is routed here, not to either of the web servers. When a web server needs to publish an event, it looks up the event type in the subscription storage database, and publishes the event to the subscriber.
+An additional **Subscription Manager Endpoint** exists off to the side, also talking to the same subscription storage. When a subscriber is interested in an event, the **subscription request** message is routed here, not to either of the web servers. When a web server needs to publish an event, it looks up the event type in the subscription storage database, and publishes the event to the subscriber.
 
 In this way, the web servers together with the subscription manager endpoint work in concert as one logical endpoint for publishing messages.
 
