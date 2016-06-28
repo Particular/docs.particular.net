@@ -48,7 +48,7 @@ Call the code directly and do not wrap it with a `Task.Run` or `Task.Factory.Sta
 
 Long running compute-bound code (more than hundred milliseconds) that is executed in a handler could be offloaded to the worker thread pool.
 
-snippet: LongComputeBoundHandler
+snippet: LongComputeBoundMessageHandler
 
 Wrap the compute-bound code in a `Task.Run` or `Task.Factory.StartNew` and `await` the result of the task.
 
