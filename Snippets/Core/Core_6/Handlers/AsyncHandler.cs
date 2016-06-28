@@ -48,6 +48,23 @@
     }
     #endregion
 
+    #region HandlerReturnsTwoTasks
+    public class HandlerReturnsTwoTasks : IHandleMessages<MyMessage>
+    {
+        bool someCondition = true;
+
+        public Task Handle(MyMessage message, IMessageHandlerContext context)
+        {
+            if (someCondition)
+            {
+                return Task.FromResult(0); // Task.CompletedTask
+            }
+
+            return SomeLibrary.SomeAsyncMethod(message);
+        }
+    }
+    #endregion
+
     #region HandlerAwaitsTheTask
     public class HandlerAwaitsTheTask : IHandleMessages<MyMessage>
     {

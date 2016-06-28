@@ -8,6 +8,8 @@ redirects:
 
 ### Introduction
 
+Message handlers and Sagas will be invoked from an IO thread pool thread. Typically message handlers and sagas issue IO bound work like sending or publishing messages, storing information into databases, callling webservices and more. In other cases message handlers are used to schedule compute-bound work. To be able to write efficient message handlers and sagas it is crucial to understand the difference between compute-bound and IO bound work and the thread pools involved.
+
 #### Threadpools
 
 There are basically two thread pools. The worker thread pool and the IO thread pool.
