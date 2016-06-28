@@ -10,7 +10,7 @@ reviewed: 2016-04-26
 ---
 
 
-## Multiple namespace support
+## Multiple namespaces support
 
 Azure Service Bus transport allows to configure multiple Azure Service Bus namespaces, in order to:
 
