@@ -86,7 +86,7 @@ snippet:BasicSendReplyToDestination
 
 ## Dispatching a message immediately
 
-While its usually best to let NServiceBus [handle exceptions for you](/nservicebus/errors), there are some scenarios where messages might need to be sent regardless of if the message handler succeeds or not. For example, sending a reply notifying that there was a problem with processing the message.
+While its usually best to let NServiceBus [handle all exceptions](/nservicebus/errors), there are some scenarios where messages might need to be sent regardless of if the message handler succeeds or not. For example, sending a reply notifying that there was a problem with processing the message.
 
 To request immediate dispatch use the following syntax:
 
