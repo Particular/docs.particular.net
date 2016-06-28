@@ -42,7 +42,7 @@ The samples rely on `.\SQLEXPRESS` and need the database `Samples.CustomNhMappin
 
 Using NHibernate mapping files is the native way to customize the mappings. The mapping files are xml files that are either embedded as a resource in the assembly or available on the file system.
 
-See [Your first NHibernate based application](http://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html) for more information.
+For more information, see: [how to create a simple NHibernate based application](http://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html).
 
 
 ### The Mapping
