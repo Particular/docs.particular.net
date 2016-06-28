@@ -106,16 +106,16 @@ Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade>
 The upgrade will stop the service if it is running.
 Additional parameters for `Invoke-ServiceControlInstanceUpgrade` may be required. The configuration file of the existing version is examined prior to deter,in e if all the required settings are present. If a configuration setting is missing  then the cmdlet will throw an error indicating the required additional parameter.
 
+
 ### Licensing
 
-Adding the license file to the registry can be done by running the following cmdlet. The license file is now machine wide and is available to be used by all instances of ServiceControl.
+Add the license file to the registry by running the following cmdlet. 
 
 ```ps
 Import-ServiceControlLicense <License-File>
 ```
 
-It is also possible to apply a license to an individual instance rather than globally. This can be done by by creating a license file under the installation path of an instance and copying the `license.xml` to that directory.
-Adding a license this way is not supported via the ServiceControl Management Utility or the PowerShell module.
+The license file is added to the `HKEY_LOCAL_MACHINE` registry hive so it available to all instances of ServiceControl installed on the machine.
 
 
 ### Building an unattended install file
