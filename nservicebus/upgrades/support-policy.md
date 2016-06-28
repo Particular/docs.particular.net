@@ -10,7 +10,7 @@ related:
 
 Supported versions include any major version released within the last 3 years. Within a supported major version, the latest minor version is supported, or any minor version released within the last year.
 
-If a version is not listed or has expired but support is required [contact us](http://particular.net/contactus). For more information on the relationship between releases and support see [the release policy](/nservicebus/upgrades/release-policy.md).
+If a version is not listed or has expired but support is required [contact Particular](http://particular.net/contactus). For more information on the relationship between releases and support see [the release policy](/nservicebus/upgrades/release-policy.md).
 
 
 ### NServiceBus 5.x
@@ -29,4 +29,4 @@ If a version is not listed or has expired but support is required [contact us](h
 
 ### NServiceBus 3.x
 
-As of 10 October 2015, Version 3 is no longer supported. If support is required for this version [contact us](http://particular.net/contactus).
+As of 10 October 2015, Version 3 is no longer supported. If support is required for this version [contact Particular](http://particular.net/contactus).

@@ -9,7 +9,7 @@ redirects:
 
 ### Visual Studio
 
-You can see all the queues on the local machine using Server Explorer in Visual Studio:
+The queues on the local machine can be listed using Server Explorer in Visual Studio:
 
 ![Server Explorer](server-explorer.png "Server Explorer")
 

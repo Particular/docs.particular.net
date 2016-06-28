@@ -22,8 +22,8 @@
         {
             #region 4to5MessageConventions
 
-            // NOTE: When you're self hosting, '.DefiningXXXAs()' has to be before '.UnicastBus()',
-            // otherwise you'll get: 'System.InvalidOperationException: "No destination specified for message(s): MessageTypeName"
+            // NOTE: When self hosting, '.DefiningXXXAs()' has to be before '.UnicastBus()',
+            // otherwise it will result in: 'System.InvalidOperationException: "No destination specified for message(s): MessageTypeName"
             configure.DefaultBuilder();
             configure.DefiningCommandsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"));
             configure.DefiningEventsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"));
