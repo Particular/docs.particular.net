@@ -79,7 +79,7 @@ Some of the dangers when using an `IMessageSession` interface inside a message h
 
 When using the `IBuilder` interface outside the infrastructure of NServiceBus it was possible to use a hack by casting the `IBus` interface to `UnicastBus` and then accessing the `Builder` property like this:
 
-    var builder = ((UnicastBus)bus).Builder
+snippet: 5to6AccessBuilder
 
 This is no longer supported. It is advised to, instead of using `IBuilder` directly, use dependency injection via the [container](/nservicebus/containers/) of choice.
 

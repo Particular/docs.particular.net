@@ -3,6 +3,7 @@
     using System;
     using System.Transactions;
     using NServiceBus;
+    using NServiceBus.Unicast;
     using NServiceBus.Unicast.Transport;
 
     class Upgrade
@@ -30,6 +31,15 @@
 
             var transactions = busConfiguration.Transactions();
             transactions.DoNotWrapHandlersExecutionInATransactionScope();
+
+            #endregion
+        }
+
+        void AccessBuilder(IBus bus)
+        {
+            #region 5to6AccessBuilder
+
+            var builder = ((UnicastBus) bus).Builder;
 
             #endregion
         }
