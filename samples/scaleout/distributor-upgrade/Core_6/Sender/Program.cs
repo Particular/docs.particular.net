@@ -11,8 +11,8 @@ internal class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.Conventions()
-            .DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof (IMessage)));
+        var conventions = busConfiguration.Conventions();
+        conventions.DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof (IMessage)));
 
         using (var bus = Bus.Create(busConfiguration).Start())
         {

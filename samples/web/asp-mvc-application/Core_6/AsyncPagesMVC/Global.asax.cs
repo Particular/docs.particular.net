@@ -45,8 +45,8 @@ public class MvcApplication : HttpApplication
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.WebApplication");
-        endpointConfiguration.ScaleOut()
-            .InstanceDiscriminator("1");
+        var scaleOut = endpointConfiguration.ScaleOut();
+        scaleOut.InstanceDiscriminator("1");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));

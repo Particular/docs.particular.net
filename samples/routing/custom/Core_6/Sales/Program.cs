@@ -4,7 +4,7 @@ using NServiceBus;
 using NServiceBus.Persistence;
 
 class Program
-{    
+{
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
@@ -14,18 +14,18 @@ class Program
     {
         Console.Title = "Samples.CustomRouting.Sales.1";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Sales");
-        endpointConfiguration.ScaleOut().InstanceDiscriminator("1");
+        var scaleOut = endpointConfiguration.ScaleOut();
+        scaleOut.InstanceDiscriminator("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<NHibernatePersistence>()
-            .ConnectionString(AutomaticRoutingConst.ConnectionString);
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.ConnectionString(AutomaticRoutingConst.ConnectionString);
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region EnableAutomaticRouting
 
-        endpointConfiguration
-            .EnableAutomaticRouting(AutomaticRoutingConst.ConnectionString)
-            .AdvertisePublishing(typeof(OrderAccepted));
+        var automaticRouting = endpointConfiguration.EnableAutomaticRouting(AutomaticRoutingConst.ConnectionString);
+        automaticRouting.AdvertisePublishing(typeof(OrderAccepted));
 
         #endregion
 

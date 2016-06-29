@@ -15,17 +15,16 @@ class Program
     {
         Console.Title = "Samples.CustomRouting.Sales.2";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Sales");
-        endpointConfiguration.ScaleOut()
-            .InstanceDiscriminator("2");
+        var scaleOut = endpointConfiguration.ScaleOut();
+        scaleOut.InstanceDiscriminator("2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<NHibernatePersistence>()
-            .ConnectionString(AutomaticRoutingConst.ConnectionString);
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.ConnectionString(AutomaticRoutingConst.ConnectionString);
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        endpointConfiguration
-            .EnableAutomaticRouting(AutomaticRoutingConst.ConnectionString)
-            .AdvertisePublishing(typeof(OrderAccepted));
+        var automaticRouting = endpointConfiguration.EnableAutomaticRouting(AutomaticRoutingConst.ConnectionString);
+        automaticRouting.AdvertisePublishing(typeof(OrderAccepted));
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

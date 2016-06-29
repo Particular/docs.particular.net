@@ -14,9 +14,9 @@ class Program
         #region ReceiverConfiguration
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        transport.UseSpecificConnectionInformation(
-                EndpointConnectionInfo.For("Samples.SqlServer.StoreAndForwardSender")
-                    .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True"));
+        var connectionInfo = EndpointConnectionInfo.For("Samples.SqlServer.StoreAndForwardSender")
+            .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True");
+        transport.UseSpecificConnectionInformation(connectionInfo);
 
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

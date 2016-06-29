@@ -13,8 +13,8 @@ internal class Program
         #region WorkerIdentity
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
-        endpointConfiguration.ScaleOut()
-            .InstanceDiscriminator(ConfigurationManager.AppSettings["InstanceId"]);
+        var scaleOut = endpointConfiguration.ScaleOut();
+        scaleOut.InstanceDiscriminator(ConfigurationManager.AppSettings["InstanceId"]);
 
         #endregion
 
@@ -31,8 +31,8 @@ internal class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.Conventions()
-            .DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof (IMessage)));
+        var conventions = endpointConfiguration.Conventions();
+        conventions.DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof (IMessage)));
 
         Run(endpointConfiguration).GetAwaiter().GetResult();
     }

@@ -13,7 +13,8 @@ class Program
     {
         Console.Title = "Samples.FairDistribution.Server.1";
         var endpointConfiguration = new EndpointConfiguration("Samples.FairDistribution.Server");
-        endpointConfiguration.ScaleOut().InstanceDiscriminator("1");
+        var scaleOut = endpointConfiguration.ScaleOut();
+        scaleOut.InstanceDiscriminator("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

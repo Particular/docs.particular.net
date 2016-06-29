@@ -16,7 +16,7 @@ public class HomeController : Controller
         var message = new EnumMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        Task<Status> statusTask = MvcApplication.EndpointInstance.Request<Status>(message, sendOptions);
+        var statusTask = MvcApplication.EndpointInstance.Request<Status>(message, sendOptions);
         return View("SendEnumMessage", await statusTask.ConfigureAwait(false));
     }
 
@@ -29,7 +29,7 @@ public class HomeController : Controller
         var message = new IntMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        Task<int> statusTask = MvcApplication.EndpointInstance.Request<int>(message, sendOptions);
+        var statusTask = MvcApplication.EndpointInstance.Request<int>(message, sendOptions);
         return View("SendIntMessage", await statusTask.ConfigureAwait(false));
     }
 
@@ -42,7 +42,8 @@ public class HomeController : Controller
         var message = new ObjectMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        Task<ObjectResponseMessage> responseTask = MvcApplication.EndpointInstance.Request<ObjectResponseMessage>(message, sendOptions);
+        var responseTask = MvcApplication.EndpointInstance
+            .Request<ObjectResponseMessage>(message, sendOptions);
         return View("SendObjectMessage", await responseTask.ConfigureAwait(false));
     }
 

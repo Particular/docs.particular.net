@@ -11,8 +11,8 @@ internal class Program
     static void Main()
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
-        endpointConfiguration.ScaleOut()
-            .InstanceDiscriminator(ConfigurationManager.AppSettings["InstanceId"]);
+        var scaleOut = endpointConfiguration.ScaleOut();
+        scaleOut.InstanceDiscriminator(ConfigurationManager.AppSettings["InstanceId"]);
         endpointConfiguration
             .EnlistWithLegacyMSMQDistributor(
             ConfigurationManager.AppSettings["DistributorAddress"],

@@ -13,8 +13,8 @@ class Program
     {
         Console.Title = "Samples.Mvc.Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.Server");
-        endpointConfiguration.ScaleOut()
-            .InstanceDiscriminator("1");
+        var scaleOut = endpointConfiguration.ScaleOut();
+        scaleOut.InstanceDiscriminator("1");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
