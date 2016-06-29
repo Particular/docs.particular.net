@@ -82,18 +82,19 @@ Specify `ConfigureAwait(false)` on each awaited statement. Apply this principle 
 
 ### Concurrency
 
-Task based APIs enable to better compose asynchronous code and making concious decisions whether to execute the asynchronous code sequentially or concurrent.
+Task based APIs enable to better compose asynchronous code and making conscious decisions whether to execute the asynchronous code sequentially or concurrent.
 
 #### Small amount of concurrent message operations
 
+By default all outgoing message operations on the message handler contexts are batched (READ DOCO HERE). In summary batched means they are collected in memory and sent out when the handler is completed. So the IO-bound work happens outside the execution scope of a handler (individual transports may apply optimizations). For a small amount of outgoing message operations it makes sense, in order to reduce complexity, to sequentially await all the outgoing operations like shown below.  
+
 snippet: BatchedDispatchHandler
 
-For immediate dispatch it might make sense
+Immediate dispatch (READ DOCO HERE) means outgoing message operations will be immediately dispatched to the transport of choice. For immediate dispatch operations it might make sense execute them concurrently like shown below.
 
 snippet: ImmediateDispatchHandler
 
 #### Large amount of concurrent message operations
-
 
 snippet: PacketsImmediateDispatchHandler
 
