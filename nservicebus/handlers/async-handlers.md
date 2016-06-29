@@ -96,9 +96,15 @@ snippet: ImmediateDispatchHandler
 
 #### Large amount of concurrent message operations
 
+Unbounded concurrency can be problematic. For large numbers of concurrent message operations it might make sense to package multiple outgoing operations together into batches. Therefore limiting the concurrency to the size of an individual batch (divide & conquer).
+
 snippet: PacketsImmediateDispatchHandler
 
+It is also possible to limit the concurrency by using `SemaphoreSlim` like shown below.
+
 snippet: ConcurrencyLimittingImmediateDispatchHandler
+
+In practice packaging operations together has shown to be more effective both in regards to memory allocations and performance. The snippet is shown nonetheless for completness reasons as well as because `SemaphoreSlim` is a useful concurrency primitive for various scenarios.
 
 ### Integration with non-tasked based APIs
 
