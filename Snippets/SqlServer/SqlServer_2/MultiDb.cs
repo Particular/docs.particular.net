@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 using NServiceBus.Transports.SQLServer;
 
 class MultiDb
@@ -40,7 +41,37 @@ class MultiDb
                     .UseConnectionString("SomeOtherConnectionString")
                     .UseSchema("schema2");
             }
-            return null;
+            throw new Exception($"Connection string not found for transport address {x}");
+        });
+
+        #endregion
+    }
+
+    void ServiceControlMultiInstanceEndpointConnectionStrings(BusConfiguration busConfiguration)
+    {
+        #region sc-multi-instance-endpoint-connection-strings [2.1,3.0)
+
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.UseSpecificConnectionInformation(transportAddress =>
+        {
+            if (transportAddress == "error" ||
+                transportAddress == "audit" ||
+                transportAddress.StartsWith("Particular.ServiceControl"))
+            {
+                return ConnectionInfo.Create()
+                    .UseConnectionString("Server=DbServerA;Database=ServiceControlDB;");
+            }
+            if (transportAddress == "Billing")
+            {
+                return ConnectionInfo.Create()
+                    .UseConnectionString("Server=DbServerB;Database=BillingDB;");
+            }
+            if (transportAddress == "Sales")
+            {
+                return ConnectionInfo.Create()
+                    .UseConnectionString("Server=DbServerC;Database=SalesDB;");
+            }
+            throw new Exception($"Connection string not found for transport address {transportAddress}");
         });
 
         #endregion
