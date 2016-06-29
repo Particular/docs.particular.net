@@ -1,6 +1,7 @@
 ---
 title: Support Policy
-summary: Which versions are currently supported
+summary: Versions that are currently supported
+reviewed: 2016-06-29
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/release-policy
@@ -15,18 +16,18 @@ If a version is not listed or has expired but support is required [contact Parti
 
 ### NServiceBus 5.x
 
-|  Version  | Released        | Support Expires |
-|:---------:|-----------------|:---------------:|
-|   5.2   | 2015-02-12      |   2017-09-29    |
+| Version | Major Released | Minor Released | Support Expires |
+|:-------:|----------------|----------------|:---------------:|
+|   5.x   | 2014-09-24     | 2015-02-12     |    2017-09-24   |
 
 
 ### NServiceBus 4.x
 
-|  Version  | Released        | Support Expires |
-|:---------:|-----------------|:---------------:|
-|   4.7   | 2014-10-07      |   2016-07-11    |
+| Version | Major Released | Minor Released | Support Expires |
+|:-------:|----------------|----------------|:---------------:|
+|   4.x   | 2013-07-11     | 2014-10-07     |    2016-07-11   |
 
 
 ### NServiceBus 3.x
 
-As of 10 October 2015, Version 3 is no longer supported. If support is required for this version [contact Particular](http://particular.net/contactus).
+As of 10 October 2015, Version 3 is no longer supported. If support is required [contact Particular](http://particular.net/contactus).
