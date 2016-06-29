@@ -29,7 +29,7 @@
             #region 5to6-endpoint-send-messages-outside-handlers
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
-            var messageSession = (IMessageSession)endpointInstance;
+            IMessageSession messageSession = endpointInstance;
             await messageSession.Send(new SomeMessage())
                 .ConfigureAwait(false);
             #endregion

@@ -39,11 +39,11 @@ snippet:5to6-bus-send-publish
 
 ## Sending messages outside message handlers
 
-A common use of `IBus` is to invoke bus operations outside of message handlers, such as sending a message from an ASP.NET request or from a client application. Instead of an `IBus` the `IMessageSession` offers all available messaging operations outside the message processing pipeline. For example:
+A common use of `IBus` is to invoke bus operations outside of the NServiceBus pipeline (e.g. in handlers, sagas and pipeline extensions), such as sending a message from an ASP.NET request or from a client application. Instead of an `IBus` the `IMessageSession` offers all available messaging operations outside the message processing pipeline. For example:
 
 snippet:5to6-endpoint-send-messages-outside-handlers
 
-In this example a message is being sent during startup of an Endpoint. Hence the `IMessageSession` is available via the `IEndpointInstance` class from `Endpoint.Start`.
+In this example a message is being sent during startup of an Endpoint. Hence the `IMessageSession` is available via the `IEndpointInstance` class from `Endpoint.Start`. Note that implicitly converting from `IEndpointInstance` to `IMessageSession` is optional but it is preferred as `IMessageSession` offers a more concise API for messaging interactions.
 
 For other scenarios (re. not at startup) that need access to `IMessageSession` there are two ways to achieve this
 
@@ -55,7 +55,7 @@ If the endpoint is hosted using NServiceBus.Host, use the [IWantToRunWhenEndpoin
 
 ## Dependency Injection
 
-In previous versions of NServiceBus the `IBus` interface was automatically registered in the IoC container. In Version 6, the new context aware interfaces, for example, the `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., will not be automatically registered in the [Container](/nservicebus/containers/).
+In previous versions of NServiceBus the `IBus` interface was automatically registered in the IOC container. In Version 6, the new context aware interfaces, for example, the `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., will not be automatically registered in the [Container](/nservicebus/containers/).
 
 In NServiceBus Versions 5 and below, when a custom component was registered in the container, the custom component had access to the `IBus` instance via dependency injection.
 
