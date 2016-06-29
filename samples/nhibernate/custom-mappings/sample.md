@@ -18,7 +18,7 @@ Custom mapping options:
  * Create a `*.hbm.xml` file for the saga data class
  * Use Fluent NHibernate (popular separate fluent api)
  * Use NHibernate.Mapping.Attributes
- * Loquacious Configuration (native fluent api)
+ * Loquacious Configuration (native fluent API)
 
 There are probably even other options, but these are the most frequently used.
 
@@ -100,9 +100,9 @@ The [NHibernate Loquacious api](http://nhibernate.info/doc/howto/mapping/a-fully
 
 To use it:
 
-1. Create a custom NHibernate configuration object.
-2. Use either the model mapping or convention mapping features.
-3. Pass it to the NServiceBus NHibernate configuration.
+ 1. Create a custom NHibernate configuration object.
+ 1. Use either the model mapping or convention mapping features.
+ 1. Pass it to the NServiceBus NHibernate configuration.
 
 
 Initialize NHibernate Loquacious configuration
