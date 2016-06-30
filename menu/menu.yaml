@@ -38,6 +38,7 @@
         - Title: "Azure Storage Persistence"
           Articles:
             - "nservicebus/upgrades/asp-saga-deduplication"
+            - "nservicebus/upgrades/asp-saga-pruning"
             - Title: "Upgrade from NServiceBus.Azure"
               Url: "nservicebus/upgrades/asp-6to1"
         - Title: "Azure Storage Queues Transport"
@@ -254,6 +255,7 @@
           Url: "nservicebus/azure-storage-persistence"
           Articles:
             - "nservicebus/upgrades/asp-saga-deduplication"
+            - "nservicebus/upgrades/asp-saga-pruning"
             - "nservicebus/azure-storage-persistence/configuration"
             - "nservicebus/azure/transactions"
             - "nservicebus/azure-storage-persistence/performance-tuning"
