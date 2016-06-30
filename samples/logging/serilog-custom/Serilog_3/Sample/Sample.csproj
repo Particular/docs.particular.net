@@ -27,18 +27,23 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Core">
+    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0005\lib\net452\NServiceBus.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Serilog, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Serilog.3.0.0.0-beta0001\lib\NET452\NServiceBus.Serilog.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Serilog.3.0.0.0-beta0002\Lib\NET452\NServiceBus.Serilog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Serilog">
-      <HintPath>..\..\..\..\..\packages\Serilog.1.5.14\lib\net45\Serilog.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\Serilog.2.0.0\lib\net45\Serilog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Serilog.FullNetFx">
-      <HintPath>..\..\..\..\..\packages\Serilog.1.5.14\lib\net45\Serilog.FullNetFx.dll</HintPath>
+    <Reference Include="Serilog.Sinks.Console">
+      <HintPath>..\..\..\..\..\packages\Serilog.Sinks.Console.2.0.0\lib\net45\Serilog.Sinks.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File">
+      <HintPath>..\..\..\..\..\packages\Serilog.Sinks.File.2.0.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,9 +54,7 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
