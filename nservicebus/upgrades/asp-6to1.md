@@ -1,7 +1,7 @@
 ---
 title: Migrate from NServiceBus Azure Version 6 to NServiceBus Azure Storage Persistence Version 1
 summary: Instructions on how to migrate from NServiceBus.Azure Storage Persistence Version 6 to NServiceBus.Persistence.AzureStorage Version 1.
-reviewed: 2016-05-12
+reviewed: 2016-06-23
 tags:
  - upgrade
  - migration
@@ -10,7 +10,7 @@ related:
 - nservicebus/upgrades/asp-saga-deduplication
 ---
 
-WARNING: Upgrades from NServiceBus.Azure v6.2.3 or lower will need to apply the [saga de-duplication patch](/nservicebus/upgrades/asp-saga-deduplication.md) before completing the remainder of these upgrade steps.
+WARNING: Upgrades from NServiceBus.Azure v6.2.3 or lower will need to apply the [saga de-duplication patch](/nservicebus/upgrades/asp-saga-deduplication.md) followed by applying the [saga index patch](/nservicebus/upgrades/asp-saga-pruning.md) before completing the remainder of these upgrade steps.
 
 
 ## Changing Nuget Packages and namespaces
