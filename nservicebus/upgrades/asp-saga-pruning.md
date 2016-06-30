@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Persistence upgrade Version 6.2.4 to 6.2.5
 summary: Instructions on how to patch Azure Storage Persistence when orphan saga index records appear.
-reviewed: 2016-06-23
+reviewed: 2016-06-30
 tags:
  - upgrade
 related:
@@ -34,12 +34,12 @@ All endpoints using NServiceBus.Azure will need to be upgraded to version 6.2.5 
 
 ### Patching data
 
-Saga data stored in Azure will need to be patched using the `IndexPruner` utility which can be downloaded from []()
+Saga data stored in Azure will need to be patched using the `IndexPruner` utility which can be downloaded from [https://github.com/Particular/IssueDetection/releases/tag/nsb.azure.284](https://github.com/Particular/IssueDetection/releases/tag/nsb.azure.284)
 
 
 ## Patch steps
 
- 1. Download the index pruning tool from []() and put it on a computer that has internet access as well as the .NET Framework 4.5.2 installed.
+ 1. Download the index pruning tool from [https://github.com/Particular/IssueDetection/releases/tag/nsb.azure.284](https://github.com/Particular/IssueDetection/releases/tag/nsb.azure.284) and put it on a computer that has internet access as well as the .NET Framework 4.5.2 installed.
  1. Optionally, add an Azure Storage connection string to the `IndexPruner.exe.config` file uses `name="sagas"`. If the connection string is not added to `IndexPruner.exe.config` it will have to be provided as a commandline parameter in step 4 below. Config file example:
 	```xml
 	<configuration>
