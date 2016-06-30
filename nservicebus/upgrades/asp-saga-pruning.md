@@ -49,5 +49,5 @@ Saga data stored in Azure will need to be patched using the `IndexPruner` utilit
 	</configuration>
 	```
  1. Copy all endpoint dlls to the same folder as the index pruning tool. These files will be scanned to find all implementations of `IContainSagaData` which will indicate the sagas that need to be pruned in Azure Storage.
- 1. Open a commandline and run the following command: `IndexPruner.exe`. If you did not put the Azure connection string in the `IndexPruner.exe.config` file in step 2 you will need to run the command as `IndexPruner.exe &ltconnectionstringvalue&gt`. While running, the tool will output details of the actions that it is taking.
+ 1. Open a commandline and run the following command: `IndexPruner.exe`. If the Azure connection string is not added to the `IndexPruner.exe.config` file in step 2, the command needed to run the Pruner will be `IndexPruner.exe &ltconnectionstringvalue&gt`. While running, the tool will output details of the actions that it is taking.
  1. Update NServiceBus.Azure dependency to version 6.2.5 or higher in all endpoints that use it and release the updated endpoints.
