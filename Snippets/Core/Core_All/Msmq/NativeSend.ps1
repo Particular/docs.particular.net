@@ -57,13 +57,13 @@ Function SendMessage {
     )
 
     $scope = New-Object System.Transactions.TransactionScope
+    $queue = New-Object System.Messaging.MessageQueue($QueuePath)
+    $message = New-Object System.Messaging.Message
+    
     try
     {
-        $queue = New-Object System.Messaging.MessageQueue($QueuePath)
-        $message = New-Object System.Messaging.Message
-        $msgBytes = [System.Text.Encoding]::UTF8.GetBytes($MessageBody)
-
         $msgStream = New-Object System.IO.MemoryStream
+        $msgBytes = [System.Text.Encoding]::UTF8.GetBytes($MessageBody)
         $msgStream.Write($msgBytes, 0, $msgBytes.Length)
         $message.BodyStream = $msgStream
         $message.Extension =  CreateHeaders $Headers
@@ -72,6 +72,8 @@ Function SendMessage {
     }
     finally {
         $scope.Dispose()
+        $message.Dispose()
+        $queue.Dispose()
     }
 }
 # endcode
