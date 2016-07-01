@@ -9,24 +9,30 @@
         void UnitOfWorkWrapHandlersInATransactionScope(EndpointConfiguration endpointConfiguration)
         {
             #region UnitOfWorkWrapHandlersInATransactionScope
-            endpointConfiguration.UnitOfWork()
-                .WrapHandlersInATransactionScope();
+
+            var unitOfWork = endpointConfiguration.UnitOfWork();
+            unitOfWork.WrapHandlersInATransactionScope();
+
             #endregion
         }
 
         void UnitOfWorkCustomTransactionIsolationLevel(EndpointConfiguration endpointConfiguration)
         {
             #region UnitOfWorkCustomTransactionIsolationLevel
-            endpointConfiguration.UnitOfWork()
-                .WrapHandlersInATransactionScope(isolationLevel: IsolationLevel.RepeatableRead);
+
+            var unitOfWork = endpointConfiguration.UnitOfWork();
+            unitOfWork.WrapHandlersInATransactionScope(isolationLevel: IsolationLevel.RepeatableRead);
+
             #endregion
         }
 
         void UnitOfWorkCustomTransactionTimeout(EndpointConfiguration endpointConfiguration)
         {
             #region UnitOfWorkCustomTransactionTimeout
-            endpointConfiguration.UnitOfWork()
-                .WrapHandlersInATransactionScope(timeout: TimeSpan.FromSeconds(30));
+
+            var unitOfWork = endpointConfiguration.UnitOfWork();
+            unitOfWork.WrapHandlersInATransactionScope(timeout: TimeSpan.FromSeconds(30));
+
             #endregion
         }
     }
