@@ -57,6 +57,8 @@
     <Compile Include="Msmq\QueueCreation.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Msmq\NativeSend.ps1" />
+    <None Include="Msmq\NativeSendUsage.ps1" />
     <None Include="Msmq\QueueDeletion.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
