@@ -65,9 +65,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="AzurePersistence.config.xml"/>
+    <None Include="AzurePersistence.config.xml" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
