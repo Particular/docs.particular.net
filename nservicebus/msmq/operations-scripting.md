@@ -24,11 +24,19 @@ A send involves the following actions:
 
 snippet:msmq-nativesend
 
+#### In Powershell
+
+snippet:msmq-nativesend-powershell
 
 ### Using the native send helper methods
 
+#### In C&#35;
+
 snippet:msmq-nativesend-usage
 
+#### In Powershell
+
+snippet:msmq-nativesend-powershell-usage
 
 ## Return message to source queue
 
