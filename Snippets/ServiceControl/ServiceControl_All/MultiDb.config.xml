@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <!--startcode sc-enabledtc-config [1.19,] -->
+  <appSettings>
+    <add key="ServiceControl/EnableDtc"
+         value="True" />
+  </appSettings>
+  <!--endcode-->
+</configuration>

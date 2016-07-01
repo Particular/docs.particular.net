@@ -18,11 +18,6 @@
     </MessageEndpointMappings>
   </UnicastBusConfig>
   <!--endcode-->
-  <!--startcode sc-enabledtc-config-->
-  <appSettings>
-    <add key="ServiceControl/EnableDtc" value="True" />
-  </appSettings>
-  <!--endcode-->
   <!--startcode sc-multi-instance-connection-strings-->
   <connectionStrings>
     <add name="NServiceBus/Transport"

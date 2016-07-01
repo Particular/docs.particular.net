@@ -224,6 +224,14 @@
   NugetOrder:
     - NServiceBus.Bootstrap.WindowsService
 
+- Key: ServiceControl
+  Name: ServiceControl
+  DocoUrl: servicecontrol
+  Category: Other
+  ProjectUrl: https://github.com/Particular/ServiceControl
+  NugetOrder:
+    - ServiceControl
+
 - Key: Spring
   Name: Spring Container
   DocoUrl: nservicebus/containers/spring

@@ -1,7 +1,7 @@
 ---
 title: ServiceControl and Multi-Instance Mode
 summary: ServiceControl and SQL Server transport multi-instance mode configuration guidance 
-reviewed: 2016-06-24
+reviewed: 2016-07-01
 hidden: true
 tags:
  - SQL Server
@@ -14,7 +14,7 @@ tags:
 
 Even though it is [recommended that all SQL Server transport queue tables are stored in a single SQL Server catalog](/nservicebus/sqlserver/#deployment-considerations), it is possible to use ServiceControl to monitor multi-catalog and multi-instance deployments of the SQL Server transport. A requirement for such configurations is that all endpoints share `error` and `audit` queues and that these queues are stored in the same catalog as ServiceControl queues. Other queues used by individual endpoints may be stored in different SQL Server catalogs and instances. The following diagram shows an example system configuration:
 
-![](servicecontrol-multiinstance.png)  
+![](servicecontrol-multiinstance.png)
 
 
 ## ServiceControl configuration
