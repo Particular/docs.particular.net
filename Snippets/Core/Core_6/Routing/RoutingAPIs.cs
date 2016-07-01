@@ -166,15 +166,35 @@ namespace Core6.Routing
             #endregion
         }
 
-        public void FileBasedRoutingAdvanced()
+        public void FileBasedRoutingAdvanced(EndpointConfiguration endpointConfiguration)
         {
-            var endpointConfiguration = new EndpointConfiguration("Endpoint");
-
             #region Routing-FileBased-ConfigAdvanced
 
             var routing = endpointConfiguration.Routing();
             routing.Mapping
                 .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
+
+            #endregion
+        }
+        public void FileBasedRoutingMaxLoadAttempts(EndpointConfiguration endpointConfiguration)
+        {
+            #region Routing-FileBased-MaxLoadAttempts
+
+            var routing = endpointConfiguration.Routing();
+            var fileRoutingTable = routing.Mapping
+                .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
+            fileRoutingTable.MaxLoadAttempts(15);
+
+            #endregion
+        }
+        public void FileBasedRoutingRefreshInterval(EndpointConfiguration endpointConfiguration)
+        {
+            #region Routing-FileBased-RefreshInterval
+
+            var routing = endpointConfiguration.Routing();
+            var fileRoutingTable = routing.Mapping
+                .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
+            fileRoutingTable.RefreshInterval(TimeSpan.FromSeconds(45));
 
             #endregion
         }
