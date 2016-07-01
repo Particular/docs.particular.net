@@ -81,7 +81,7 @@ snippet: custom-sanitization-strategy-with-settings
 
 ### Backward compatibility with versions 6 and below
 
-To remain backward compatible with endpoints versions 6 and below, endpoints version 7 and above should be configured to perform sanitization based on version 6 and below rules. The following custom topology will ensure entities are sanitized in a backwards compatible manner.
+To remain backward compatible with endpoints versions 6 and below, endpoints version 7 and above should be configured to perform sanitization based on version 6 and below rules. The following custom sanitization will ensure entities are sanitized in a backwards compatible manner.
 
 snippet: asb-backward-compatible-custom-sanitiaztion-strategy
 
