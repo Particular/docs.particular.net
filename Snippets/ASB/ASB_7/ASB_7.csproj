@@ -56,11 +56,7 @@
       <HintPath>..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-beta0007\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0004\lib\net452\NServiceBus.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0004\lib\net452\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0005\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Hosting.Azure">
       <HintPath>..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-beta0001\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
