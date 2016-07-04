@@ -49,7 +49,8 @@ When specifying an explicit service name when installing the NServiceBus host, t
 
 Specify a endpoint name when running the NServiceBus host: `/endpointName:"MyEndpoint"`.
 
-NOTE: Note Only use code OR commandline/installation parameters.
+NOTE: Only use code **OR** commandline/installation parameters.
+
 
 ## Input queue
 

@@ -23,7 +23,7 @@ Running inside a [Windows Service](https://msdn.microsoft.com/en-us/library/d56d
 
 snippet: windowsservicehosting
 
-NOTE: Note the use of `Environment.UserInteractive` to provide a dual console/service experience, i.e. this process can be executed from the command line or run as a Windows Service.
+NOTE: The use of `Environment.UserInteractive` to provide a dual console/service experience, i.e. this process can be executed from the command line or run as a Windows Service.
 
 
 ## Bootstrapping NuGet
@@ -35,7 +35,7 @@ There is a [Bootstrapping starter package](https://www.nuget.org/packages/NServi
 
 Create a new Console Application (**.NET 4.5.2 or higher**) and install the NuGet package. A minimal NServiceBus configuration will be setup along with a `ProgramService.cs` class that can be used as both a interactive console for development purposes and a windows service for production use.
 
-**Note that it will also delete the default `Program.cs` since it is superseded by `ProgramService.cs`**
+NOTE: This will also delete the default `Program.cs` since it is superseded by `ProgramService.cs`.
 
 
 ### Single use NuGet
