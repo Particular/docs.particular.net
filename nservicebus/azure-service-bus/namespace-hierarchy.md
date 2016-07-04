@@ -8,15 +8,13 @@ tags:
 - Transports 
 ---
 
-At the core of the Azure Service Bus service, there is a Service Registry which tracks the location of each queue, topic, relay or eventhub in the service. This Service Registry provides a DNS integrated hierarchical naming system, that has a root entry point (called a namespace) at a uri with the following scheme.
+At the core of the Azure Service Bus service, there is a Service Registry which tracks the location of each queue, topic, relay or eventhub in the service. This Service Registry provides a DNS integrated hierarchical naming system, that has a root entry point (called a namespace) at a URI with the following scheme.
 
 ```no-highlight
 https://{serviceNamespace}.servicebus.windows.net/{path}
 ```
 
-The {path} parameter can be specified at any depth, allowing the hierarchy to be extended with application specific sub trees. This is very usefull for large systems to group, manage and secure resources more efficiently.
-
-for example:
+The {path} parameter can be specified at any depth, allowing the hierarchy to be extended with application specific sub trees. This is very usefull for large systems to group, manage and secure resources more efficiently, for example:
 
 ```no-highlight
 https://mynamespace.servicebus.Windows.net/production/tenant1/sales
@@ -25,22 +23,24 @@ https://mynamespace.servicebus.Windows.net/acceptance/tenant1/sales
 https://mynamespace.servicebus.Windows.net/acceptance/tenant1/operations
 ```
 
-For more information about this feature refer to the [Azure Service Bus MSDN documentation on 'Addressing and Protocol'](https://msdn.microsoft.com/en-us/library/azure/hh780781.aspx)
+For more information about this feature refer to the [Addressing and Protocol](https://msdn.microsoft.com/en-us/library/azure/hh780781.aspx) article on MSDN.
+
 
 ## Positioning an endpoint in the hierarchy
 
-NServiceBus provides the capability to an endpoint to register it's Azure Service Bus transport resources inside a namespace hierarchy by replacing part of the addressing logic, the composition strategy. This strategy is responsible for composing the path to an entity in the namespace. Out of the box, the transport comes with 2 implementations, the `FlatComposition` and `HierarchyComposition` strategies. The first is the default and applies no composition logic, resulting in a flat namespace hierarchy. The second allows to specify a lambda expression that can calculate the path for each entity.
+NServiceBus provides to tan endpoint the capability to register its Azure Service Bus transport resources inside a namespace hierarchy by replacing part of the addressing logic - the composition strategy. The composition strategy is responsible for determining the path to an entity in the namespace. Out of the box, the transport comes with two implementations - `FlatComposition` and `HierarchyComposition` strategies. The `FlatComposition` strategy is the default and applies no composition logic, resulting in a flat namespace hierarchy. The `HierarchyComposition` strategy allows to specify a lambda expression that can calculate the path for each entity.
 
 Snippet: asb-hierarchy-composition
 
 Note that the path generator is a lambda function, so it will be invoked each time the transport wants to determine the location of a given entity. This function must return the path to the entity, without appending the entity name itself and without a trailing slash.
 
+
 ## Implementing a custom composition strategy
 
-If for performance or other reasons a lambda function invocation would not be ideal, it is also possible to create a custom composition strategy, by implementing `ICompositionStrategy`.
+It is also possible to provide a custom composition strategy by implementing `ICompositionStrategy`, which might be beneficial for example with regards to performance.
 
 Snippet: asb-custom-composition-strategy
 
-and register it in the API
+The implementation of the `ICompositionStrategy` needs to be registered:
 
 Snippet: asb-custom-composition-config
