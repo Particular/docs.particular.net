@@ -77,9 +77,9 @@
         }
     }
 
-    #region HandlerWhichIntegratesWithRemoting
+    #region HandlerWhichIntegratesWithRemotingWithAPM
 
-    public class HandlerWhichIntegratesWithRemoting : IHandleMessages<MyMessage>
+    public class HandlerWhichIntegratesWithRemotingWithAPM : IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -113,6 +113,23 @@
                 var call = (Tuple<Func<string>, AsyncClient>)rslt.AsyncState;
                 return call.Item2.Callback(rslt);
             }, Tuple.Create(remoteCall, this));
+        }
+    }
+
+    #endregion
+
+    #region HandlerWhichIntegratesWithRemotingWithTask
+
+    public class HandlerWhichIntegratesWithRemotingWithTask : IHandleMessages<MyMessage>
+    {
+        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        {
+            var result = await Task.Run(() =>
+            {
+                var remoteService = new RemoteService();
+                return remoteService.TimeConsumingRemoteCall();
+
+            });
         }
     }
 

@@ -110,12 +110,26 @@ In practice packaging operations together has proved to be more effective both i
 
 #### Events
 
+Sometimes it is necessary to integrate existing code which fires events into an asynchronous handler. Before async/await was introduced [`ManualResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.manualresetevent.aspx) or [`AutoResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.autoresetevent.aspx) were usually used to synchronize runtime code flow. Unfortunately these synchronization primitives are of blocking nature. For asynchronous one time event synchronization the [`TaskCompletionSource<TResult>`](https://msdn.microsoft.com/en-us/library/dd449174.aspx) comes in handy.
+
 snippet: HandlerWhichIntegratesWithEvent
 
+The above snippet shows how a task completion source can be used to asynchronously wait for an event to happen including cancellation support.
+
 #### Asynchronous programming model pattern
+
+For existing code which uses the [Asynchronous Programming Model (APM)](https://msdn.microsoft.com/en-us/library/ms228963.aspx) it is best to use [`Task.Factory.FromAsync`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.taskfactory.fromasync.asp) to wrap the `BeginOperationName` and `EndOperationName` methods with a task object.
 
 snippet: HandlerWhichIntegratesWithAPM
 
 #### Asynchronous RPC calls
 
-snippet: HandlerWhichIntegratesWithRemoting
+The Asynchronous Programming Model (APM) approach described above can be used to integration with remote procedure calls as shown in this snippet:
+
+snippet: HandlerWhichIntegratesWithRemotingWithAPM
+
+or use `Task.Run` directly in message handler:
+
+snippet: HandlerWhichIntegratesWithTask
+
+NOTE: `Task.Run` can have significantly less overhead than using a delegate with `BeginInvoke`/`EndInvoke`. By default, both APIs will use the worker thread pool as the underlying scheduling engine. Analyze and measure for the business scenarios involved.
