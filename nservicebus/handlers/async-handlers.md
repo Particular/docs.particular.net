@@ -16,7 +16,7 @@ There are two thread pools. The worker thread pool and the IO thread pool.
 
 ##### Worker thread pool
 Parallel / Compute-bound blocking work happens on the worker thread pool. Things like `Task.Run`, `Task.Factory.StartNew`, `Parallel.For` schedule tasks on the worker thread pool.
-On the other hand, if compute bound work is scheduled the worker thread pool will start expanding its worker threads (ramp up phase). Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
+On the other hand, if compute bound work is scheduled the worker thread pool will start expanding its worker threads (ramp-up phase). Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
 
 Offloading compute-bound work to the worker thread pool is a top-level concern only. Use `Task.Run` or `Task.Factory.StartNew` is high up in the hierarchy as possible (i.ex. in the message handler). Avoid those operations deeper down in the call stack. Group compute-bound operations together as much as possible. Make them coarse-grained instead of fine-grained.
 
@@ -110,7 +110,7 @@ In practice packaging operations together has proved to be more effective both i
 
 #### Events
 
-Sometimes it is necessary to integrate existing code which fires events into an asynchronous handler. Before async/await was introduced [`ManualResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.manualresetevent.aspx) or [`AutoResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.autoresetevent.aspx) were usually used to synchronize runtime code flow. Unfortunately these synchronization primitives are of blocking nature. For asynchronous one time event synchronization the [`TaskCompletionSource<TResult>`](https://msdn.microsoft.com/en-us/library/dd449174.aspx) comes in handy.
+Sometimes it is necessary to integrate existing code which fires events into an asynchronous handler. Before async/await was introduced [`ManualResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.manualresetevent.aspx) or [`AutoResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.autoresetevent.aspx) were usually used to synchronize runtime code flow. Unfortunately, these synchronization primitives are of blocking nature. For asynchronous one-time event synchronization the [`TaskCompletionSource<TResult>`](https://msdn.microsoft.com/en-us/library/dd449174.aspx) comes in handy.
 
 snippet: HandlerWhichIntegratesWithEvent
 
