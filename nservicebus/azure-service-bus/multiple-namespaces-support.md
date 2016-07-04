@@ -53,7 +53,7 @@ Exactly two namespaces have to be configured when using `FailOverNamespacePartit
 
 ## Cross namespace routing
 
-NServiceBus allows to specify destination addresses using an `"endpoint@physicallocation"` in various places such as the `Send` API or the `MessageEndpointMappings`. In this notation the `physicallocation` section represents the location where the endpoint's infrastructure is hosted, such as a machine name or a servicebus namespace.
+NServiceBus allows to specify destination addresses using an `"endpoint@physicallocation"` in various places such as the [Send](/nservicebus/messaging/send-a-message.md) and [Routing](/nservicebus/messaging/routing.md) API or the [MessageEndpointMappings](/nservicebus/messaging/message-owner.md). In this notation the `physicallocation` section represents the location where the endpoint's infrastructure is hosted, such as a machine name or a servicebus namespace.
 
 Using this notation it is possible to route messages to any endpoint hosted in namespaces that do not belong to the current endpoint's partition set.
 
