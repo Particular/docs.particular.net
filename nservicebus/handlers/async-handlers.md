@@ -130,6 +130,6 @@ snippet: HandlerWhichIntegratesWithRemotingWithAPM
 
 or use `Task.Run` directly in message handler:
 
-snippet: HandlerWhichIntegratesWithTask
+snippet: HandlerWhichIntegratesWithRemotingWithTask
 
 NOTE: `Task.Run` can have significantly less overhead than using a delegate with `BeginInvoke`/`EndInvoke`. By default, both APIs will use the worker thread pool as the underlying scheduling engine. Analyze and measure for the business scenarios involved.
