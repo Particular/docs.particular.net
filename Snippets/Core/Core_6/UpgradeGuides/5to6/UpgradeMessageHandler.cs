@@ -105,7 +105,7 @@
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            context.Send(new MyOtherMessage());
+            await context.Send(new MyOtherMessage()).ConfigureAwait(false);
             await context.Publish(new MyEvent()).ConfigureAwait(false);
         }
     }
