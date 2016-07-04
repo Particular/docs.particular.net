@@ -16,7 +16,7 @@ There are two thread pools. The worker thread pool and the IO thread pool.
 
 ##### Worker thread pool
 Parallel / Compute-bound blocking work happens on the worker thread pool. Things like `Task.Run`, `Task.Factory.StartNew`, `Parallel.For` schedule tasks on the worker thread pool.
-On the other hand, if we schedule Compute bound work the worker thread pool will start expanding its worker threads. Let's call this phase ramp up phase. Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
+On the other hand, if compute bound work is scheduled the worker thread pool will start expanding its worker threads (ramp up phase). Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
 
 Offloading compute-bound work to the worker thread pool is a top-level concern only. Use `Task.Run` or `Task.Factory.StartNew` is high up in the hierarchy as possible (i.ex. in the message handler). Avoid those operations deeper down in the call stack. Group compute-bound operations together as much as possible. Make them coarse-grained instead of fine-grained.
 
@@ -32,7 +32,7 @@ Asynchronous code tends to use much less memory because the amount of memory sav
 ##### Sync vs. async
 If we'd examine each request in isolation, an asynchronous code would be slightly slower than the synchronous version. There might be extra kernel transitions, task scheduling, etc. involved. But the scalability more than makes up for it.
 
-From a server perspective if we compare asynchrony to synchrony by just looking at one method or one request at a time then synchrony might make more sense. But if asynchrony is compared to parallelism - watching the server as a whole - asynchrony wins. Every worker thread that can be freed up on a server is worth freeing up! It reduces the amount of memory needed, frees up the CPU for compute-bound work while saturating the IO system completely.
+From a server perspective if asynchrony is compared to synchrony by just looking at one method or one request at a time, then synchrony might make more sense. But if asynchrony is compared to parallelism - watching the server as a whole - asynchrony wins. Every worker thread that can be freed up on a server is worth freeing up! It reduces the amount of memory needed, frees up the CPU for compute-bound work while saturating the IO system completely.
 
 WARN: It is hard to give generic advice how asynchronous code should be structured. It is important to understand compute-bound vs. IO-bound like summarized above. Avoid to copy paste the snippets blindly without further analysis if they provide benefit for the involved business scenarios. Don't assume. Measure it!
 
@@ -62,7 +62,7 @@ snippet: HandlerAwaitsTheTask
 
 #### Returns the task
 
-For high-throughput scenarios and if you have only one or two asynchronous exit points in the Handle method you can avoid the `async` keyword by returning the task instead of awaiting it. This will omit the state machine creation which drives the async code and reduce the number of allocations on the given code path.
+For high-throughput scenarios and if there are only one or two asynchronous exit points in the Handle method the `async` keyword can be avoided completely by returning the task instead of awaiting it. This will omit the state machine creation which drives the async code and reduce the number of allocations on the given code path.
 
 snippet: HandlerReturnsATask
 
