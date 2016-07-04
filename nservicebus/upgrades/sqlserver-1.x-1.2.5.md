@@ -1,0 +1,28 @@
+---
+title: SQL Server Transport Upgrade Version 1.x to 1.2.5
+summary: Instructions on how to patch SQL injection vulnerability in SQL Server Transport version 1.x
+reviewed: 2016-07-04
+tags:
+ - upgrade
+ - security
+ - SQL Server
+related:
+- security-advisories/sqlserver-sqlinjection
+---
+
+
+## Summary
+
+This document explains how to patch a system for [SQL injection vulnerability in the SQL Server Transport](https://github.com/Particular/NServiceBus.SqlServer/issues/272) using SQL Server Transport hotfix release 1.2.5.
+
+NOTE: Detailed information about the vulnerability, its impact, available mitigation steps and patching instructions can be found at [http://docs.particular.net/security-advisories/sqlserver-sqlinjection](http://docs.particular.net/security-advisories/sqlserver-sqlinjection).
+
+### Updating the NuGet package
+
+This vulnerability can be fixed by upgrading the NServiceBus SQL Server Transport package that is being used. The package can be updated by issuing the following command in the Package Manager Console within Visual Studio:
+
+```
+Update-Package NServiceBus.SqlServer -Version 1.2.5
+```
+
+After the package has been updated, all affected endpoints need to be rebuilt and redeployed.
