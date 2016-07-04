@@ -72,7 +72,7 @@ snippet: namespace_routing_registration
 
 When using the `ConnectionString` method to configure a namespace, it will get a name as well. This name is represented by the `DefaultNamespaceName` configuration setting, which has a value of `default`.
 
-When doing cross namespace request reply communication between endpoints configured this way, in combination with the `UseNamespaceNamesInsteadOfConnectionStrings()` configuration method, then the reply address header will include a value of `"sourceendpoint@default"`. However the connectionstring that is mapped to this name is different for each endpoint in the communication and it will break the request reply pattern.
+When doing cross namespace request reply communication between endpoints configured this way, in combination with the `UseNamespaceNamesInsteadOfConnectionStrings()` configuration method to [secure connection strings](securing-connection-strings.md), then the reply address header will include a value of `"sourceendpoint@default"`. However the connectionstring that is mapped to this name is different for each endpoint in the communication and it will break the request reply pattern.
 
 In order to overcome this problem, it is possible to change the value of the `DefaultNamespaceName` configuration setting using the API:
 
