@@ -13,7 +13,7 @@ redirects:
  - nservicebus/azure/shared-hosting-nservicebus-in-windows-azure-cloud-services
 ---
 
-If real scale is needed, as in tens, hundreds or even thousands of machines hosting each endpoint, than cloud services is the suitable deployment model. But very often, one only wants this scale when the project is eventually successfull, not when just starting out. To support this scenario, we've created the `Host` endpoint role for Azure Cloud Services.
+If real scale is needed, as in tens, hundreds or even thousands of machines hosting each endpoint, than cloud services is the suitable deployment model. But very often, one only wants this scale when the project is eventually successfull, not when just starting out. To support this scenario, the `Host` endpoint role for Azure Cloud Services has been created.
 
 This role allows to co-locate multiple endpoints on the same set of machines, while preserving the regular worker role programming model so that one can easily put each endpoint on it's own role again when required later.
 

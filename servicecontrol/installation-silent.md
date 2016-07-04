@@ -13,8 +13,6 @@ tags:
 Note: This documentation covers silent installation instructions for ServiceControl Version 1.7 or greater.
 
 
-#### Silent installation from the commandline
-
 The following command line will silently install the ServiceControl Management utility only.
 
 ```dos
@@ -45,13 +43,13 @@ NOTE: The settings contained in an unattended installation files are version spe
 
 If an existing service matching the name specified in the unattended XML file already exists the unattended install option is ignored. To update one or more instances of ServiceControl as part of the silent installation the command line switch `UPGRADEINSTANCES` command line argument can be used.
 
-In this example we've chosen to silently install the ServiceControl Management utility and attempt to upgrade all the installed instances of the ServiceControl service. Either `*` or `ALL` can be used to specify all instances should be upgraded.
+In this example the ServiceControl Management Utility is silently installed and attempt to upgrade all the installed instances of the ServiceControl service. Either `*` or `ALL` can be used to specify all instances should be upgraded.
 
 ```dos
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL
 ```
 
-In this example we've chosen to silently install the ServiceControl Management utility and attempt to upgrade just one instance called `TestServiceControl`.
+In this example the ServiceControl Management Utility is silently installed and attempt to upgrade just one instance called `TestServiceControl`.
 
 ```dos
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl
@@ -66,7 +64,7 @@ Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=Tes
 
 #### Add the license file as part of the Silent installation
 
-In this example we've chosen to silently install the ServiceControl Management Utility and import the license file.
+In this example the ServiceControl Management Utility is silently installed and import the license file.
 
 ```dos
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log LICENSEFILE=license.xml
@@ -97,19 +95,18 @@ NOTE: If the current configuration already has values for `ServiceControl/AuditR
 
 ##### AuditRetentionPeriod
 
-If the configuration does not contain the `ServiceControl/AuditRetentionPeriod` or `ServiceControl/HoursToKeepMessagesBeforeExpiring`setting the value for the audit retention period should be included as a command line value. If the configuration does contains an entry for  `ServiceControl/HoursToKeepMessagesBeforeExpiring` then that value will be migrated to `ServiceControl/AuditRetentionPeriod` and no command line option is required.
-The valid range for this property is documented in [configuration settings](creating-config-file.md).  
+If the configuration does not contain the `ServiceControl/AuditRetentionPeriod` or `ServiceControl/HoursToKeepMessagesBeforeExpiring`setting the value for the audit retention period should be included as a command line value. If the configuration does contains an entry for  `ServiceControl/HoursToKeepMessagesBeforeExpiring` then that value will be migrated to `ServiceControl/AuditRetentionPeriod` and no command line option is required. The valid range for this property is documented in [configuration settings](creating-config-file.md).
 
 ```dos
 Particular.ServiceControl.1.13.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL AUDITRETENTION=30.0:0:0 
 ```
 
 NOTE: This value has a large impact on database size. Monitor the size of the ServiceControl database is recommended to ensure that this value is adequate.
- 
+
+
 ##### ErrorRetentionPeriod
 
-If the configuration does not contain the `ServiceControl/ErrorRetentionPeriod` then the command line option is required. 
-The valid range for this property is documented in [configuration settings](creating-config-file.md).
+If the configuration does not contain the `ServiceControl/ErrorRetentionPeriod` then the command line option is required. The valid range for this property is documented in [configuration settings](creating-config-file.md).
 
 ```dos
 Particular.ServiceControl.1.13.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL ERRORRETENTION=30.0:0:0 
@@ -117,11 +114,13 @@ Particular.ServiceControl.1.13.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL 
 
 NOTE: This value has a large impact on database size. Monitor the size of the ServiceControl database is recommended to ensure that this value is adequate.
 
+
 #### Combining command line options
 
 It is valid to combine the `LICENSEFILE`, `UNATTENDEDFILE`,  `SERVICEACCOUNT` and `PASSWORD` options on the same command line. The `SERVICEACCOUNT` and `PASSWORD` only apply to a new instance, these values are not used on upgrades.
 
-The command line `UPGRADEINSTANCES` can be combined with `FORWARDERRORMESSAGES`, `AUDITRETENTIONPERIOD` and `ERRORRETENTIONPERIOD` 
+The command line `UPGRADEINSTANCES` can be combined with `FORWARDERRORMESSAGES`, `AUDITRETENTIONPERIOD` and `ERRORRETENTIONPERIOD`.
+
 
 #### Command line Uninstall
 

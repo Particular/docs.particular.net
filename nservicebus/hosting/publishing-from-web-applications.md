@@ -69,7 +69,7 @@ In order to make this work for storage-driven transports (MSMQ, SQL, Azure Stora
 
 > **Note about Azure Service Bus**: Prior to Version 6.0, the Azure Service Bus transport did not offer native publish/subscribe capability, and used storage-driven publishing instead.
 
-Although we're discussing web applications specifically, it's worth noting that this arrangement is hardly different from scaled-out service endpoints.
+Although this speaks specifically web applications, it's worth noting that the same applies to scaled-out service endpoints.
 
 
 ## Storage-driven Transport Topology

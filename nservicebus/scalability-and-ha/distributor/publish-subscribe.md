@@ -10,7 +10,7 @@ When using the Distributor in a full publish-subscribe deployment, a Distributor
 
 ## Example Topology
 
-Given one logical publisher P1, and two logical subscribers SA and SB. Each has a number of physical nodes (colored in blue) and some NServiceBus infrastructure (colored in orange). For now, we're going to assume that both SA and SB are already subscribed, each specifying the left port of its distributor as its public endpoint.
+Given one logical publisher P1, and two logical subscribers SA and SB. Each has a number of physical nodes (colored in blue) and some NServiceBus infrastructure (colored in orange). For now assume that both SA and SB are already subscribed, each specifying the left port of its distributor as its public endpoint.
 
 ![logical pub/sub and physical distribution 1](nservicebus-pubsub-1.png)
 
