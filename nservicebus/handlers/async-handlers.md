@@ -68,7 +68,7 @@ snippet: HandlerReturnsATask
 
 snippet: HandlerReturnsTwoTasks
 
-### Usage of `ConfigureAwait`
+### Usage of ConfigureAwait
 
 By default when a task is awaited a mechanism called context capturing is enabled. The current context is captured and restored for the continuation that is scheduled after the precedent task was completed.
 
