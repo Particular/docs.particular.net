@@ -55,6 +55,8 @@
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-beta0008\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
       <Private>True</Private>
+    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus">
+      <HintPath>..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-beta0008\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0005\lib\net452\NServiceBus.Core.dll</HintPath>
@@ -84,6 +86,7 @@
     <Compile Include="AddressingStrategies\NamespacePartitioning.cs" />
     <Compile Include="AddressingStrategies\SanitizationExtension.cs" />
     <Compile Include="AddressingStrategies\Sanitization.cs" />
+    <Compile Include="Composition.cs" />
     <Compile Include="GettingStarted.cs" />
     <Compile Include="MultipleNamespaces.cs" />
     <Compile Include="Sanitization.cs" />
