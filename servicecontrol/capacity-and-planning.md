@@ -28,7 +28,7 @@ ServiceControl is configured with a default expiration policy that deletes old m
 
 To limit the rate at which the database grows the body of an audit messages can be truncated if it exceeds a configurable threshold. 
 
-Refer to Data Retention section of [Customizing ServiceControl Configuration](creating-config-file.md) for details on these settings.
+Refer to [Automatic Expiration of ServiceControl Data](how-purge-expired-data.md) for details on these settings.
 
 
 **NOTE**
