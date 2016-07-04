@@ -30,7 +30,7 @@ IO-bound work typically takes very long, and compute-bound work is comparatively
 Asynchronous code tends to use much less memory because the amount of memory saved by freeing up a thread in the worker thread pool dwarfs the amount of memory used for all the compiler-generated async structures combined.
 
 ##### Sync vs. async
-If we'd examine each request in isolation, an asynchronous code would be slightly slower than the synchronous version. There might be extra kernel transitions, task scheduling, etc. involved. But the scalability more than makes up for it.
+If each request is examined in isolation, an asynchronous code would be slightly slower than the synchronous version. There might be extra kernel transitions, task scheduling, etc. involved. But the scalability more than makes up for it.
 
 From a server perspective if asynchrony is compared to synchrony by just looking at one method or one request at a time, then synchrony might make more sense. But if asynchrony is compared to parallelism - watching the server as a whole - asynchrony wins. Every worker thread that can be freed up on a server is worth freeing up! It reduces the amount of memory needed, frees up the CPU for compute-bound work while saturating the IO system completely.
 
