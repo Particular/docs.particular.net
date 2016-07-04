@@ -13,18 +13,6 @@ class SecureCredentials
         #endregion
     }
 
-    void MapLogicalNameToConnectionString(EndpointConfiguration endpointConfiguration)
-    {
-        #region map_logical_name_to_connection_string
-
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var namespacePartitioning = transport.NamespacePartitioning();
-        namespacePartitioning.UseStrategy<SingleNamespacePartitioning>();
-        namespacePartitioning.AddNamespace("namespaceName", "Endpoint=sb://namespace.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
-
-        #endregion
-    }
-
     void MapDefaultLogiclaNameToConnectionString(EndpointConfiguration endpointConfiguration)
     {
         #region map_default_logical_name_to_connection_string

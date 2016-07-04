@@ -10,7 +10,7 @@ class MultipleNamespaces
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var namespacePartitioning = transport.NamespacePartitioning();
         namespacePartitioning.UseStrategy<SingleNamespacePartitioning>();
-        namespacePartitioning.AddNamespace("namespace", "Endpoint=sb://namespace.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+        namespacePartitioning.AddNamespace("default", "Endpoint=sb://namespace.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
 
         #endregion
     }
@@ -50,4 +50,46 @@ class MultipleNamespaces
 
         #endregion
     }
+
+    void NamespaceRoutingRegistration(EndpointConfiguration endpointConfiguration)
+    {
+        #region namespace_routing_registration
+
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        var namespaceRouting = transport.NamespaceRouting();
+        namespaceRouting.AddNamespace("destination1", "Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+        namespaceRouting.AddNamespace("destination2", "Endpoint=sb://destination2.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+
+        #endregion
+    }
+
+    void NamespaceRoutingSendOptions(IEndpointInstance endpointInstance)
+    {
+        string destination;
+        #region namespace_routing_send_options_full_connectionstring
+
+        destination = "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]";
+        endpointInstance.Send(destination, new MyMessage());
+
+        #endregion
+
+        #region namespace_routing_send_options_named
+
+        destination = "sales@destination1";
+        endpointInstance.Send(destination, new MyMessage());
+
+        #endregion
+    }
+
+    void DefaultNamespaceName(EndpointConfiguration endpointConfiguration)
+    {
+        #region default_namespace_name
+
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.DefaultNamespaceName("myname");
+
+        #endregion
+    }
+
+    public class MyMessage : ICommand { }
 }
