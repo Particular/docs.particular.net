@@ -1,18 +1,18 @@
 ---
 title: Multiple namespace support
-summary: Configuring Azure Service Bus transport to support different partitioning strategies and destination namespaces. 
+summary: Configuring Azure Service Bus transport to support different partitioning strategies and destination namespaces
 component: ASB
+reviewed: 2016-07-05
 tags:
 - Cloud
 - Azure
-- Transports 
-reviewed: 2016-04-26
+- Transports
 ---
 
 
 ## Multiple namespaces support
 
-Azure Service Bus transport allows to configure multiple Azure Service Bus namespaces, in order to:
+Azure Service Bus transport supports configuring multiple Azure Service Bus namespaces, in order to:
 
  * Enable various _namespace partitioning strategies_ to cover scenarios such as High Availability and multiple Data Center support, or to overcome [Azure services limits](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/).
  * Enable _cross namespace routing_ to endpoints outside of the partition set.
@@ -30,16 +30,16 @@ This is the functional equivalent of providing a namespace using the `AddNamespa
 
 snippet: single_namespace_partitioning_strategy_with_add_namespace
 
-With this strategy, the transport uses only a single namespace to send and receive messages, so only one namespace can be configured for the purpose of partitioning. When more than one namespace is specified for partitioning, then NServiceBus throws a `ConfigurationErrorsException` at startup.
+With this strategy, the transport uses only a single namespace to send and receive messages, hence only one namespace can be configured for the purpose of partitioning. When more than one namespace is specified for partitioning, then a [ConfigurationErrorsException](https://msdn.microsoft.com/en-us/library/system.configuration.configurationerrorsexception.aspx) will be thrown at startup.
 
 
 ## Round robin namespace partitioning
 
 The `RoundRobinNamespacePartitioning` can be used to avoid throttling by the service. With this strategy, the transport uses multiple namespaces for the communication between endpoints. Messages are sent to a single namespace and received from all namespaces. For sending operations, namespaces are chosen in a round-robin fashion.
- 
+
 snippet: round_robin_partitioning_strategy
-  
-Multiple namespaces have to be configured when using `RoundRobinNamespacePartitioning` strategy. When only one namespace is specified, then NServiceBus throws a `ConfigurationErrorsException` at startup.
+
+Multiple namespaces have to be configured when using `RoundRobinNamespacePartitioning` strategy. When only one namespace is specified, then a [ConfigurationErrorsException](https://msdn.microsoft.com/en-us/library/system.configuration.configurationerrorsexception.aspx) will be thrown at startup.
 
 
 ## Fail over namespace partitioning
@@ -47,8 +47,8 @@ Multiple namespaces have to be configured when using `RoundRobinNamespacePartiti
 The `FailOverNamespacePartitioning` can be used to provide High Availability. It uses two different namespaces: a primary and a secondary. The transport uses the primary namespace by default, and switches to secondary one when the primary is not available.
 
 snippet: fail_over_partitioning_strategy
-  
-Exactly two namespaces have to be configured when using `FailOverNamespacePartitioning` strategy. When only one namespace is specified, then NServiceBus throws a `ConfigurationErrorsException` at startup.
+
+Exactly two namespaces have to be configured when using `FailOverNamespacePartitioning` strategy. When only one namespace is specified, then a [ConfigurationErrorsException](https://msdn.microsoft.com/en-us/library/system.configuration.configurationerrorsexception.aspx) will be thrown at startup.
 
 
 ## Cross namespace routing
@@ -59,11 +59,11 @@ Using this notation it is possible to route messages to any endpoint hosted in n
 
 snippet: namespace_routing_send_options_full_connectionstring
 
-As from version 7 of the Azure Service Bus transport it is also possible to name namespaces, and use those namespace names instead of the connectionstring value; in all of these places.
+Versions 7 and above of the Azure Service Bus transport it is also possible to name namespaces, and use those namespace names instead of the connectionstring value; in all of these places.
 
 snippet: namespace_routing_send_options_named
 
-But, this requires the namespace name and connectionstring to be registered using the `NamespaceRouting()` API.
+This requires the namespace name and connectionstring to be registered using the `NamespaceRouting()` API.
 
 snippet: namespace_routing_registration
 

@@ -1,5 +1,4 @@
 ﻿using NServiceBus;
-using NServiceBus.AzureServiceBus.Addressing;
 
 class SecureCredentials
 {

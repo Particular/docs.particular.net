@@ -30,17 +30,21 @@ For more information about this feature refer to the [Addressing and Protocol](h
 
 NServiceBus provides to tan endpoint the capability to register its Azure Service Bus transport resources inside a namespace hierarchy by replacing part of the addressing logic - the composition strategy. The composition strategy is responsible for determining the path to an entity in the namespace. Out of the box, the transport comes with two implementations - `FlatComposition` and `HierarchyComposition` strategies. The `FlatComposition` strategy is the default and applies no composition logic, resulting in a flat namespace hierarchy. The `HierarchyComposition` strategy allows to specify a lambda expression that can calculate the path for each entity.
 
-Snippet: asb-hierarchy-composition
+snippet: asb-hierarchy-composition
 
-Note that the path generator is a lambda function, so it will be invoked each time the transport wants to determine the location of a given entity. This function must return the path to the entity, without appending the entity name itself and without a trailing slash.
+Note that the path generator is a lambda function, so it will be invoked each time the transport wants to determine the location of a given entity. This function must mett the following rules:
+
+ * Return the path to the entity.
+ * **Does not** appending the entity name itself.
+ * **Does not** append a trailing slash (`/`).
 
 
 ## Implementing a custom composition strategy
 
 It is also possible to provide a custom composition strategy by implementing `ICompositionStrategy`, which might be beneficial for example with regards to performance.
 
-Snippet: asb-custom-composition-strategy
+snippet: asb-custom-composition-strategy
 
 The implementation of the `ICompositionStrategy` needs to be registered:
 
-Snippet: asb-custom-composition-config
+snippet: asb-custom-composition-config
