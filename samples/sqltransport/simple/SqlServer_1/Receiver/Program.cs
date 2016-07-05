@@ -8,6 +8,7 @@ class Program
     {
         Console.Title = "Samples.SqlServer.SimpleReceiver";
         Configure.Serialization.Json();
+        Configure.ScaleOut(s => s.UseSingleBrokerQueue());
         var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.SqlServer.SimpleReceiver");
@@ -16,7 +17,6 @@ class Program
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
-        configure.UseTransport<Msmq>();
         using (var startableBus = configure.UnicastBus().CreateBus())
         {
             var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
