@@ -7,7 +7,7 @@ tags:
  - security
  - SQL Server
 related:
-- security-advisories/sqlserver-sqlinjection
+ - security-advisories/sqlserver-sqlinjection
 ---
 
 
@@ -21,7 +21,7 @@ NOTE: Detailed information about the vulnerability, its impact, available mitiga
 
 This vulnerability can be fixed by upgrading the NServiceBus SQL Server Transport package that is being used. The package can be updated by issuing the following command in the Package Manager Console within Visual Studio:
 
-```
+```ps
 Update-Package NServiceBus.SqlServer -Version 2.2.4
 ```
 
@@ -31,8 +31,8 @@ After the package has been updated, all affected endpoints need to be rebuilt an
 
 This vulnerability can also be fixed by updating the SQL Server Transport DLL without the need to rebuild and redeploy an affected endpoint by following these steps:
 
-1. [Update the NuGet package](#updating-the-nuget-package)
-1. For each affected endpoint:
+ 1. [Update the NuGet package](#updating-the-nuget-package)
+ 1. For each affected endpoint:
   1. Stop the endpoint.
-  1. Copy the `NServiceBus.Transport.SqlServer.dll` file from the updated NuGet package to directory where binaries of the endpoint are stored. Make sure that updated version of the DLL overwrites the previous one.
+  1. Copy the `NServiceBus.Transport.SqlServer.dll` file from the updated NuGet package to directory where binaries of the endpoint are stored. Make sure that updated version of the .dll overwrites the previous one.
   1. Restart the endpoint.
