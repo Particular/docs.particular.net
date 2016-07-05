@@ -18,6 +18,12 @@ WARN: It is difficult to give generic advice how asynchronous code should be str
 
 There are two thread pools. The worker thread pool and the IO thread pool.
 
+Further reading: 
+
+ * [Thread Pools](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686760.aspx)
+ * [Thread Pooling](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686756.aspx)
+ * [IO Completion Ports](https://msdn.microsoft.com/en-us/library/windows/desktop/aa365198.aspx)
+
 
 #### Worker thread pool
 
