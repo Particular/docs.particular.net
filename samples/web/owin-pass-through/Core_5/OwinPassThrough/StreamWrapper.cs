@@ -38,25 +38,13 @@ class StreamWrapper : Stream
         throw new NotImplementedException();
     }
 
-    public override bool CanRead
-    {
-        get { return stream.CanRead; }
-    }
+    public override bool CanRead => stream.CanRead;
 
-    public override bool CanSeek
-    {
-        get { return false; }
-    }
+    public override bool CanSeek => false;
 
-    public override bool CanWrite
-    {
-        get { return stream.CanWrite; }
-    }
+    public override bool CanWrite => stream.CanWrite;
 
-    public override long Length
-    {
-        get { return length; }
-    }
+    public override long Length => length;
 
     public override long Position
     {
