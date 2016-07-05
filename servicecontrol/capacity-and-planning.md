@@ -1,8 +1,9 @@
 ---
 title: ServiceControl Capacity Planning
 summary: Details the ServiceControl capacity, throughput, and storage considerations to plan and support production environments
+reviewed: 2016-05-07
 tags:
-- ServiceControl
+ - ServiceControl
 ---
 
 ServiceControl is a monitoring tool for production environments. As with other production monitoring tools, plan for and maintain the deployment over time.
@@ -15,20 +16,20 @@ The primary job of ServiceControl is to collect information on system behavior i
 
 #### Location
 
-Each ServiceControl instance stores its data in a RavenDB embedded instance. The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. Configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
+Each ServiceControl instance stores its data in a [RavenDB embedded](http://ravendb.net/docs/search/3.0/csharp?searchTerm=RavenDB%20embedded) instance. The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. Configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
 
 
 #### Size
 
-The storage size that ServiceControl requires depends on the production load and is directly related to the quantity and size of messages that flow into the system.
+The storage size that ServiceControl requires depend on the production load and is directly related to the quantity and size of messages that flow into the system.
 
-Since ServiceControl is intended to be a recent-history storage to support ServicePulse and ServiceInsight monitoring and debugging activity. This is different from a long-term data archiving system, that is intended to provide extremely long term archiving and storage solutions (measured in years, subject to various business or regulatory requirements).
+Since ServiceControl is intended to be a "recent-history storage" to support ServicePulse and ServiceInsight monitoring and debugging activity. This is different from a long-term data archiving system, that is intended to provide extremely long term archiving and storage solutions (measured in years, subject to various business or regulatory requirements).
 
 ServiceControl is configured with a default expiration policy that deletes old messages after a predefined time. The expiration policy can be customized to decrease or increase the amount of time data is retained, which impacts the storage requirements of ServiceControl.
 
-To limit the rate at which the database grows the body of an audit messages can be truncated if it exceeds a configurable threshold. 
+To limit the rate at which the database grows, the body of an audit messages can be truncated if it exceeds a configurable threshold.
 
-Refer to [Automatic Expiration of ServiceControl Data](how-purge-expired-data.md) for details on these settings.
+See also [Automatic Expiration of ServiceControl Data](how-purge-expired-data.md).
 
 
 **NOTE**
@@ -42,9 +43,9 @@ Refer to [Automatic Expiration of ServiceControl Data](how-purge-expired-data.md
 
 #### Alternate Audit and Error queues
 
-ServiceControl can be configured to forward any consumed messages into alternate queues, so that a copy of any message consumed by ServiceControl is available from these alternate queues.
+ServiceControl can be configured to forward any consumed messages into alternate queues. A a copy of any message consumed by ServiceControl is available from these alternate queues.
 
-For more details, see [Forwarding Queues](errorlog-auditlog-behavior.md).
+See also [Forwarding Queues](errorlog-auditlog-behavior.md).
 
 
 #### Query the ServiceControl HTTP API
