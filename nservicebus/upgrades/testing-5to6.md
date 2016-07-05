@@ -1,5 +1,5 @@
 ---
-title: Upgrade NServiceBus.Testing Version 5 to 6
+title: NServiceBus.Testing Upgrade Version 5 to 6
 summary: Instructions on how to upgrade NServiceBus.Testing Version 5 to 6.
 reviewed: 2016-05-23
 tags:
