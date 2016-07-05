@@ -125,6 +125,7 @@
         - "nservicebus/sagas/saga-finding"
         - "nservicebus/sagas/saga-not-found"
         - "nservicebus/sagas/concurrency"
+        - "nservicebus/handlers/async-handlers"
         - "nservicebus/sagas/reply-replaytooriginator-differences"
         - "nservicebus/persistence"
     -

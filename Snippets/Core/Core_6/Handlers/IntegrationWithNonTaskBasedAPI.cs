@@ -12,21 +12,25 @@
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            var cs = new CancellationTokenSource();
-            cs.CancelAfter(TimeSpan.FromSeconds(10));
+            var cancellationToken = new CancellationTokenSource();
+            cancellationToken.CancelAfter(TimeSpan.FromSeconds(10));
 
             var taskCompletionSource = new TaskCompletionSource<object>();
 
-            using (cs.Token.Register(state =>
+            using (cancellationToken.Token.Register(state =>
             {
-                var tcs = (TaskCompletionSource<object>) state;
-                tcs.TrySetCanceled();
+                var completionSource = (TaskCompletionSource<object>) state;
+                completionSource.TrySetCanceled();
             }, taskCompletionSource))
             {
                 var dependency = new DependencyWhichRaisedEvent();
-                dependency.MyEvent += (sender, args) => { taskCompletionSource.TrySetResult(null); };
+                dependency.MyEvent += (sender, args) =>
+                {
+                    taskCompletionSource.TrySetResult(null);
+                };
 
-                await taskCompletionSource.Task.ConfigureAwait(false);
+                await taskCompletionSource.Task
+                    .ConfigureAwait(false);
             }
         }
     }
@@ -84,7 +88,6 @@
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var asyncClient = new AsyncClient();
-
             var result = await asyncClient.Run();
         }
     }
@@ -128,7 +131,6 @@
             {
                 var remoteService = new RemoteService();
                 return remoteService.TimeConsumingRemoteCall();
-
             });
         }
     }

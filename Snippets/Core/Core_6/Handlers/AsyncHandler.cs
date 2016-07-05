@@ -11,7 +11,6 @@
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             ComputeBoundComponent.BlocksForAFewMilliseconds();
-
             return Task.FromResult(0); // or Task.CompletedTask
         }
     }
@@ -80,8 +79,10 @@
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            await SomeLibrary.SomeAsyncMethod(message).ConfigureAwait(false);
-            await SomeLibrary.AnotherAsyncMethod(message).ConfigureAwait(false);
+            await SomeLibrary.SomeAsyncMethod(message)
+                .ConfigureAwait(false);
+            await SomeLibrary.AnotherAsyncMethod(message)
+                .ConfigureAwait(false);
         }
     }
     #endregion
@@ -104,7 +105,8 @@
         {
             for (var i = 0; i < 100; i++)
             {
-                await context.Send(new MyMessage()).ConfigureAwait(false);
+                await context.Send(new MyMessage())
+                    .ConfigureAwait(false);
             }
         }
     }
@@ -143,7 +145,8 @@
 
                     tasks[j] = context.Send(new MyMessage(), options);
                 }
-                await Task.WhenAll(tasks).ConfigureAwait(false);
+                await Task.WhenAll(tasks)
+                    .ConfigureAwait(false);
             }
         }
     }
@@ -159,11 +162,13 @@
             var tasks = new Task[10000];
             for (var i = 0; i < 10000; i++)
             {
-                await semaphore.WaitAsync().ConfigureAwait(false);
+                await semaphore.WaitAsync()
+                    .ConfigureAwait(false);
 
                 tasks[i] = Send(context, semaphore);
             }
-            await Task.WhenAll(tasks).ConfigureAwait(false);
+            await Task.WhenAll(tasks)
+                .ConfigureAwait(false);
         }
 
         static async Task Send(IMessageHandlerContext context, SemaphoreSlim semaphore)
@@ -172,7 +177,8 @@
             {
                 var options = new SendOptions();
                 options.RequireImmediateDispatch();
-                await context.Send(new MyMessage(), options).ConfigureAwait(false);
+                await context.Send(new MyMessage(), options)
+                    .ConfigureAwait(false);
             }
             finally
             {
