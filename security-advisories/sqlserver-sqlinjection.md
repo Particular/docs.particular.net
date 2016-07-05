@@ -15,7 +15,7 @@ This advisory discloses a security vulnerability that has been found in the [SQL
 
 This advisory affects all versions of the SQL Server Transport up to and including 3.0.0-beta0002.
 
-If there any questions or concerns regarding this advisory, send an email to [security@particular.net](mailto://security@particular.net).
+If there are any questions or concerns regarding this advisory, send an email to [security@particular.net](mailto://security@particular.net).
 
 
 ## SQL Server Transport injection vulnerability
