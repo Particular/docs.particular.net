@@ -9,7 +9,11 @@ class TokenProvider
         #region asb-register-token-provider
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.NamespaceManagers().TokenProvider(s => Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas"));
+        var namespaceManagers = transport.NamespaceManagers();
+        namespaceManagers.TokenProvider(s =>
+        {
+            return Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas");
+        });
 
         #endregion
     }
@@ -19,9 +23,13 @@ class TokenProvider
         #region asb-register-token-provider-namespace-manager-settings
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.NamespaceManagers().NamespaceManagerSettingsFactory(s => new NamespaceManagerSettings()
+        var namespaceManagers = transport.NamespaceManagers();
+        namespaceManagers.NamespaceManagerSettingsFactory(s =>
         {
-            TokenProvider = Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas")
+            return new NamespaceManagerSettings
+            {
+                TokenProvider = Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas")
+            };
         });
 
         #endregion
@@ -32,9 +40,13 @@ class TokenProvider
         #region asb-register-token-provider-messaging-factory-settings
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.MessagingFactories().MessagingFactorySettingsFactory(s => new MessagingFactorySettings()
+        var messagingFactories = transport.MessagingFactories();
+        messagingFactories.MessagingFactorySettingsFactory(s =>
         {
-            TokenProvider = Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas")
+            return new MessagingFactorySettings
+            {
+                TokenProvider = Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas")
+            };
         });
 
         #endregion
