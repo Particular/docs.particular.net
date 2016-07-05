@@ -30,7 +30,7 @@ This is the functional equivalent of providing a namespace using the `AddNamespa
 
 snippet: single_namespace_partitioning_strategy_with_add_namespace
 
-With this strategy, the transport uses only a single namespace to send and receive messages, hence only one namespace can be configured for the purpose of partitioning. When more than one namespace is specified for partitioning, then a [ConfigurationErrorsException](https://msdn.microsoft.com/en-us/library/system.configuration.configurationerrorsexception.aspx) will be thrown at startup.
+With this strategy, the transport uses only a single namespace to send and receive messages, hence only one namespace can be configured for the purpose of partitioning. When more than one namespace, or none, is specified for partitioning, then a [ConfigurationErrorsException](https://msdn.microsoft.com/en-us/library/system.configuration.configurationerrorsexception.aspx) will be thrown at startup.
 
 
 ## Round robin namespace partitioning
@@ -39,7 +39,7 @@ The `RoundRobinNamespacePartitioning` can be used to avoid throttling by the ser
 
 snippet: round_robin_partitioning_strategy
 
-Multiple namespaces have to be configured when using `RoundRobinNamespacePartitioning` strategy. When only one namespace is specified, then a [ConfigurationErrorsException](https://msdn.microsoft.com/en-us/library/system.configuration.configurationerrorsexception.aspx) will be thrown at startup.
+Multiple namespaces have to be configured when using `RoundRobinNamespacePartitioning` strategy. When less than two namespaces are specified, then a [ConfigurationErrorsException](https://msdn.microsoft.com/en-us/library/system.configuration.configurationerrorsexception.aspx) will be thrown at startup.
 
 
 ## Fail over namespace partitioning
@@ -48,7 +48,7 @@ The `FailOverNamespacePartitioning` can be used to provide High Availability. It
 
 snippet: fail_over_partitioning_strategy
 
-Exactly two namespaces have to be configured when using `FailOverNamespacePartitioning` strategy. When only one namespace is specified, then a [ConfigurationErrorsException](https://msdn.microsoft.com/en-us/library/system.configuration.configurationerrorsexception.aspx) will be thrown at startup.
+Exactly two namespaces have to be configured when using `FailOverNamespacePartitioning` strategy. When only one or more than two namespaces are specified, then a [ConfigurationErrorsException](https://msdn.microsoft.com/en-us/library/system.configuration.configurationerrorsexception.aspx) will be thrown at startup.
 
 
 ## Cross namespace routing
