@@ -15,7 +15,7 @@ This advisory discloses a security vulnerability that has been found in the NSer
 
 This advisory affects all versions of the NServiceBus SQL Server Transport up to and including 3.0.0-beta0002.
 
-If there any questions or concerns regarding this advisory, send an email to security@particular.net.
+If there any questions or concerns regarding this advisory, send an email to [security@particular.net](mailto://security@particular.net).
 
 
 ## NServiceBus SQL Server Transport injection vulnerability
@@ -82,4 +82,4 @@ Download the NuGet package using `Update-Package NServiceBus.SqlServer -Pre`, st
 
 ### Contact Info
 
-If there are any questions or concerns regarding this advisory contact security@particular.net.
+If there are any questions or concerns regarding this advisory contact [security@particular.net](mailto://security@particular.net).
