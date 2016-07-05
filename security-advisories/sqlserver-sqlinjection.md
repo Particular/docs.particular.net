@@ -8,9 +8,6 @@ tags:
  - Security
 ---
 
-
-## Particular Software Security Advisory 2016-07-05
-
 This advisory discloses a security vulnerability that has been found in the NServiceBus SQL Server Transport and fixed in a recently released version of that transport.
 
  * If using the NServiceBus SQL Server Transport then all endpoints should upgraded to the latest version of the package to fix this vulnerability.
