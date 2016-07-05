@@ -8,6 +8,10 @@ namespace Common
         {
             return Task.FromResult(0);
         }
+        public static Task AnotherAsyncMethod(params object[] data)
+        {
+            return Task.FromResult(0);
+        }
         public static void SomeMethod(params object[] data)
         {
             //no-op

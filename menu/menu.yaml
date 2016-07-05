@@ -122,6 +122,7 @@
       Url: "nservicebus/handlers"
       Articles:
         - "nservicebus/handlers/handler-ordering"
+        - "nservicebus/handlers/async-handlers"
     -
       Title: "Sagas"
       Url: "nservicebus/sagas"
@@ -130,6 +131,7 @@
         - "nservicebus/sagas/saga-finding"
         - "nservicebus/sagas/saga-not-found"
         - "nservicebus/sagas/concurrency"
+        - "nservicebus/handlers/async-handlers"
         - "nservicebus/sagas/reply-replaytooriginator-differences"
         - "nservicebus/persistence"
     -
