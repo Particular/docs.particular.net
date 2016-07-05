@@ -18,7 +18,7 @@ This advisory affects all versions of the SQL Server Transport up to and includi
 If there any questions or concerns regarding this advisory, send an email to [security@particular.net](mailto://security@particular.net).
 
 
-## NServiceBus SQL Server Transport injection vulnerability
+## SQL Server Transport injection vulnerability
 
 A vulnerability has been fixed in the SQL Server Transport that allows attackers to manipulate databases using malicious SQL statements.
 
