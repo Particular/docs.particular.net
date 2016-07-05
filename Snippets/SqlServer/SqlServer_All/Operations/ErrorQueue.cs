@@ -32,7 +32,7 @@ public static class ErrorQueue
         string retryQueueName,
         Guid messageId)
     {
-        using (var scope = new TransactionScope())
+        using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
         {
             var messageToRetry = await ReadAndDelete(errorQueueConnectionString, errorQueueName, messageId)
                 .ConfigureAwait(false);

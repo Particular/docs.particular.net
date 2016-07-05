@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Management.Automation;
@@ -47,7 +45,7 @@ public class NativeSendTests
 
             var headers = new Dictionary<string, string>
             {
-                {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
+                {"NServiceBus.EnclosedMessageTypes", "NativeSendTests+MessageToSend"}
             };
 
             await NativeSend.SendMessage(connectionString, endpointName, message, headers)
@@ -66,10 +64,10 @@ public class NativeSendTests
 
             var headers = new Dictionary<string, string>
             {
-                {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
+                {"NServiceBus.EnclosedMessageTypes", "NativeSendTests+MessageToSend"}
             };
 
-            var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"SqlServer\NativeSend.ps1");
+            var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"Operations\NativeSend.ps1");
             var script = File.ReadAllText(scriptPath);
 
             using (var powershell = PowerShell.Create())
@@ -82,7 +80,7 @@ public class NativeSendTests
                     .AddParameter(null, endpointName)
                     .AddParameter(null, message)
                     .AddParameter(null, headers);
-                Collection<PSObject> results = powershell.Invoke();
+                var results = powershell.Invoke();
             }
 
             state.ResetEvent.WaitOne();
@@ -97,7 +95,7 @@ public class NativeSendTests
         busConfiguration.UseSerialization<JsonSerializer>();
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connectionString);
-        Type[] sqlTypes = typeof(SqlServerTransport).Assembly.GetTypes();
+        var sqlTypes = typeof(SqlServerTransport).Assembly.GetTypes();
         busConfiguration.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>(sqlTypes));
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();

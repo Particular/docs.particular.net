@@ -17,8 +17,10 @@ public class ErrorQueueTests
 {
     static ErrorQueueTests()
     {
-        LogManager.Use<DefaultFactory>().Level(LogLevel.Error);
+        LogManager.Use<DefaultFactory>()
+            .Level(LogLevel.Error);
     }
+
     string endpointName = "ReturnToSourceQueueTests";
     static string errorQueueName = "ReturnToSourceQueueTestsError";
     static string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
@@ -52,11 +54,11 @@ public class ErrorQueueTests
             state.ShouldHandlerThrow = false;
 
             await ErrorQueue.ReturnMessageToSourceQueue(
-                errorQueueConnectionString: connectionString,
-                errorQueueName: errorQueueName,
-                retryConnectionString: connectionString,
-                retryQueueName: endpointName,
-                messageId: msmqMessageId)
+                    errorQueueConnectionString: connectionString,
+                    errorQueueName: errorQueueName,
+                    retryConnectionString: connectionString,
+                    retryQueueName: endpointName,
+                    messageId: msmqMessageId)
                 .ConfigureAwait(false);
 
             state.ResetEvent.WaitOne();
@@ -66,9 +68,9 @@ public class ErrorQueueTests
     IBus StartBus(State state)
     {
         var busConfiguration = new BusConfiguration();
-        busConfiguration.RegisterComponents(c=>c.ConfigureComponent(x => state,DependencyLifecycle.SingleInstance));
+        busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
         busConfiguration.EndpointName(endpointName);
-        Type[] sqlTransportTypes = typeof(SqlServerTransport)
+        var sqlTransportTypes = typeof(SqlServerTransport)
             .Assembly
             .GetTypes();
         busConfiguration.TypesToScan(TypeScanner.NestedTypes<ErrorQueueTests>(sqlTransportTypes));
@@ -86,7 +88,7 @@ public class ErrorQueueTests
         public bool ShouldHandlerThrow = true;
     }
 
-   async Task< Guid> GetMsmqMessageId()
+    async Task<Guid> GetMsmqMessageId()
     {
         var sql = $"SELECT Id FROM [{errorQueueName}]";
         using (var connection = new SqlConnection(connectionString))
@@ -153,6 +155,7 @@ public class ErrorQueueTests
             };
         }
     }
+
     class MessageToSend : IMessage
     {
     }

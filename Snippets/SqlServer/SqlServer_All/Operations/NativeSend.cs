@@ -14,13 +14,13 @@ public static class NativeSend
         #region sqlserver-nativesend-usage
 
         await SendMessage(
-            connectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
-            queue: "Samples.SqlServer.NativeIntegration",
-            messageBody: "{\"Property\":\"PropertyValue\"}",
-            headers: new Dictionary<string, string>
-            {
-                {"NServiceBus.EnclosedMessageTypes", "MessageTypeToSend"}
-            }
+                connectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
+                queue: "Samples.SqlServer.NativeIntegration",
+                messageBody: "{\"Property\":\"PropertyValue\"}",
+                headers: new Dictionary<string, string>
+                {
+                    {"NServiceBus.EnclosedMessageTypes", "MessageTypeToSend"}
+                }
             )
             .ConfigureAwait(false);
 
@@ -41,7 +41,7 @@ public static class NativeSend
                 @Recoverable,
                 @Headers,
                 @Body)";
-        using (var scope = new TransactionScope())
+        using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
         {
             using (var connection = new SqlConnection(connectionString))
             {
