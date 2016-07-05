@@ -13,9 +13,9 @@ NOTE: When ServiceControl is introduced into an existing environment the standar
 
 Plugins collect information from NServiceBus and are deployed together with each NServiceBus endpoint. These plugins are optional from the perspective of the NServiceBus framework itself (they are not required by the endpoint), but they are required in order to collect the information that enables ServiceControl (and its clients) to provide the relevant functionality for each plugin.
 
-ServiceControl provides the monitoring capability by analyzing the configured error and the audit queues. It can extract information like endpoint name, queue name and in case of error messages the exception stack trace, etc. This information is stored in a built-in internal database.
+ServiceControl provides the monitoring capability by analyzing the configured error and audit queues. It can extract information like endpoint name, queue name and, in case of error messages, the exception stack trace, etc. This information is stored in a built-in internal database.
 
-## Configuring endpoint to be monitored by ServiceControl
+## Configuring an endpoint to be monitored by ServiceControl
 
 To allow ServiceControl to monitor endpoints:
 
