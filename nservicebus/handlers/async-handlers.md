@@ -9,6 +9,8 @@ tags:
 
 ## Introduction
 
+WARN: It is difficult to give generic advice how asynchronous code should be structured. It is important to understand compute-bound vs. IO-bound as summarized above. Avoid copy-pasteing snippets without further analysis if they provide benefit for the involved business scenarios. Don't assume. Measure it!
+
 [Message handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/) will be invoked from an IO thread pool thread. Typically message handlers and sagas issue IO bound work like sending or publishing messages, storing information into databases, calling web services and more. In other cases, message handlers are used to schedule compute-bound work. To be able to write efficient message handlers and sagas it is crucial to understand the difference between compute-bound and IO bound work and the thread pools involved.
 
 
@@ -42,8 +44,6 @@ Asynchronous code tends to use much less memory because the amount of memory sav
 If each request is examined in isolation, an asynchronous code would be slightly slower than the synchronous version. There might be extra kernel transitions, task scheduling, etc. involved. But the scalability more than makes up for it.
 
 From a server perspective if asynchrony is compared to synchrony by just looking at one method or one request at a time, then synchrony might make more sense. But if asynchrony is compared to parallelism - watching the server as a whole - asynchrony wins. Every worker thread that can be freed up on a server is worth freeing up! It reduces the amount of memory needed, frees up the CPU for compute-bound work while saturating the IO system completely.
-
-WARN: It is difficult to give generic advice how asynchronous code should be structured. It is important to understand compute-bound vs. IO-bound as summarized above. Avoid copy-pasteing snippets without further analysis if they provide benefit for the involved business scenarios. Don't assume. Measure it!
 
 
 ## Calling short running compute-bound code
