@@ -177,6 +177,7 @@
             - "nservicebus/azure-service-bus/addressing-logic"
             - "nservicebus/azure-service-bus/securing-connection-strings"
             - "nservicebus/azure-service-bus/namespace-hierarchy"
+            - "nservicebus/azure-service-bus/token-provider"
         - Title: Routing
           Articles:
             - "nservicebus/azure-service-bus/publisher-names-configuration"
