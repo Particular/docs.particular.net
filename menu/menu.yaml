@@ -21,6 +21,9 @@
       Articles:
         - "nservicebus/upgrades/support-policy"
         - "nservicebus/upgrades/release-policy"
+        - Title: "Security Advisories"
+          Articles:
+            - "security-advisories/sqlserver-sqlinjection"
         - Title: "NServiceBus"
           Articles:
             - "nservicebus/upgrades/5to6"
@@ -65,6 +68,8 @@
         - Title: "SQL Server Transport"
           Articles:
             - "nservicebus/upgrades/sqlserver-2to3"
+            - "nservicebus/upgrades/sqlserver-2.x-2.2.4"
+            - "nservicebus/upgrades/sqlserver-1.x-1.2.5"
         - Title: "NServiceBus Testing"
           Articles:
             - "nservicebus/upgrades/testing-5to6"

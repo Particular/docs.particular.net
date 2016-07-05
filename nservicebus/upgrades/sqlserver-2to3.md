@@ -5,6 +5,7 @@ reviewed: 2016-03-24
 tags:
  - upgrade
  - migration
+ - SQL Server
 related:
 - nservicebus/sqlserver
 - nservicebus/upgrades/5to6
