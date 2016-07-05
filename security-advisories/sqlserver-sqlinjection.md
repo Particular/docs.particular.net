@@ -33,7 +33,7 @@ Attackers can use this vulnerability to force an endpoint to execute arbitrary S
 The exploitation of this vulnerability requires that all of the conditions below are met at the same time:
 
  1. An attacker must have the ability to send a malicious message to an endpoint OR an attacker must be able to modify a message that is in transit to an endpoint such that the `ReplyToAddress` header can be manipulated,
- 1. The receiving endpoint sends a message based on `ReplyToAddress` header - for example, by using the `Reply` method of `IBus`.
+ 1. The receiving endpoint sends a message based on `ReplyToAddress` header - for example, by using the `Reply` method of `IBus` or `IMessageHandlerContext`.
 
 
 ### Affected versions
