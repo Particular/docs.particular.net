@@ -8,12 +8,12 @@ tags:
  - Security
 ---
 
-This advisory discloses a security vulnerability that has been found in the NServiceBus SQL Server Transport and fixed in a recently released version of that transport.
+This advisory discloses a security vulnerability that has been found in the [SQL Server Transport](/nservicebus/sqlserver/) and fixed in a recently released version.
 
  * If using the NServiceBus SQL Server Transport then all endpoints should upgraded to the latest version of the package to fix this vulnerability.
- * No other NServiceBus Transports or Persisters are affected.
+ * No other Transports or Persisters are affected.
 
-This advisory affects all versions of the NServiceBus SQL Server Transport up to and including 3.0.0-beta0002.
+This advisory affects all versions of the SQL Server Transport up to and including 3.0.0-beta0002.
 
 If there any questions or concerns regarding this advisory, send an email to [security@particular.net](mailto://security@particular.net).
 
@@ -25,7 +25,7 @@ A vulnerability has been fixed in the SQL Server Transport that allows attackers
 
 ### Impact
 
-Attackers can use this vulnerability to force an NServiceBus endpoint to execute arbitrary SQL statements against the SQL Server database that stores its input queue.
+Attackers can use this vulnerability to force an endpoint to execute arbitrary SQL statements against the SQL Server database that stores its input queue.
 
 
 ### Exploitability
@@ -38,7 +38,7 @@ The exploitation of this vulnerability requires that all of the conditions below
 
 ### Affected versions
 
-All versions of the NServiceBus SQL Server Transport, up to and including 3.0.0-beta0002, are affected by this vulnerability. The issue is tracked in https://github.com/Particular/NServiceBus.SqlServer/issues/272.
+All versions of the SQL Server Transport, up to and including 3.0.0-beta0002, are affected by this vulnerability. The issue is tracked in https://github.com/Particular/NServiceBus.SqlServer/issues/272.
 
 
 ### Risk Mitigation
@@ -50,7 +50,7 @@ If its is not possible to immediately upgrade endpoints, that are using the SQL 
 
 ### Fix
 
-This vulnerability can be fixed by upgrading the NServiceBus SQL Server Transport package that is being used. Upgrades should be performed as follows:
+This vulnerability can be fixed by upgrading the SQL Server Transport package that is being used. Upgrades should be performed as follows:
 
 
 #### Version 1.x users should upgrade to Version 1.2.5 or higher.
