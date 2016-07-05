@@ -9,12 +9,12 @@ tags:
 
 ## Introduction
 
-WARN: It is difficult to give generic advice how asynchronous code should be structured. It is important to understand compute-bound vs. IO-bound as summarized above. Avoid copy-pasteing snippets without further analysis if they provide benefit for the involved business scenarios. Don't assume. Measure it!
+WARN: It is difficult to give generic advice how asynchronous code should be structured. It is important to understand compute-bound vs. IO-bound as summarized above. Avoid copy-pasting snippets without further analysis if they provide benefit for the involved business scenarios. Don't assume. Measure it!
 
-[Message handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/) will be invoked from an IO thread pool thread. Typically message handlers and sagas issue IO bound work like sending or publishing messages, storing information into databases, calling web services and more. In other cases, message handlers are used to schedule compute-bound work. To be able to write efficient message handlers and sagas it is crucial to understand the difference between compute-bound and IO bound work and the thread pools involved.
+[Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/) will be invoked from an IO thread pool thread. Typically message handlers and sagas issue IO bound work like sending or publishing messages, storing information into databases, calling web services and more. In other cases, message handlers are used to schedule compute-bound work. To be able to write efficient message handlers and sagas it is crucial to understand the difference between compute-bound and IO bound work and the thread pools involved.
 
 
-### Threadpools
+### Thread Pools
 
 There are two thread pools. The worker thread pool and the IO thread pool.
 
@@ -24,7 +24,12 @@ There are two thread pools. The worker thread pool and the IO thread pool.
 Parallel / Compute-bound blocking work happens on the worker thread pool. Things like [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx), [`Task.Factory.StartNew`](https://msdn.microsoft.com/en-au/library/dd321439.aspx), [`Parallel.For`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.parallel.for.aspx) schedule tasks on the worker thread pool.
 On the other hand, if compute bound work is scheduled the worker thread pool will start expanding its worker threads (ramp-up phase). Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
 
-Offloading compute-bound work to the worker thread pool is a top-level concern only. Use [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx) or [`Task.Factory.StartNew`](https://msdn.microsoft.com/en-au/library/dd321439.aspx) is as high up in the hierarchy as possible (eg. in the message handler). Avoid those operations deeper down in the call stack. Group compute-bound operations together as much as possible. Make them coarse-grained instead of fine-grained.
+**Compute bound recommendations:**
+
+ * Offloading compute-bound work to the worker thread pool is a top-level concern only. Use [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx) or [`Task.Factory.StartNew`](https://msdn.microsoft.com/en-au/library/dd321439.aspx) as high up in the call hierarchy as possible (e.g. in the `Handle` methods of either a [Handler](/nservicebus/handlers/) and [Saga](/nservicebus/sagas/).
+ * Avoid those operations deeper down in the call hierarchy.
+ * Group compute-bound operations together as much as possible.
+ * Make them coarse-grained instead of fine-grained.
 
 
 #### IO-thread pool
@@ -39,11 +44,11 @@ IO-bound work typically takes very long, and compute-bound work is comparatively
 Asynchronous code tends to use much less memory because the amount of memory saved by freeing up a thread in the worker thread pool dwarfs the amount of memory used for all the compiler-generated async structures combined.
 
 
-#### Sync vs. async
+#### Synchronous vs. Asynchronous
 
 If each request is examined in isolation, an asynchronous code would be slightly slower than the synchronous version. There might be extra kernel transitions, task scheduling, etc. involved. But the scalability more than makes up for it.
 
-From a server perspective if asynchrony is compared to synchrony by just looking at one method or one request at a time, then synchrony might make more sense. But if asynchrony is compared to parallelism - watching the server as a whole - asynchrony wins. Every worker thread that can be freed up on a server is worth freeing up! It reduces the amount of memory needed, frees up the CPU for compute-bound work while saturating the IO system completely.
+From a server perspective if asynchronous is compared to synchronous by just looking at one method or one request at a time, then synchronous might make more sense. But if asynchronous is compared to parallelism - watching the server as a whole - asynchronous wins. Every worker thread that can be freed up on a server is worth freeing up! It reduces the amount of memory needed, frees up the CPU for compute-bound work while saturating the IO system completely.
 
 
 ## Calling short running compute-bound code
