@@ -42,7 +42,9 @@
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            return SomeLibrary.SomeAsyncMethod(message);
+            var task = SomeLibrary.SomeAsyncMethod(message);
+            //return the Task
+            return task;
         }
     }
     #endregion
