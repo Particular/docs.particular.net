@@ -22,7 +22,6 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        Address.OverrideDefaultMachine("");
         using (var startableBus = configure.UnicastBus().CreateBus())
         {
             var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
