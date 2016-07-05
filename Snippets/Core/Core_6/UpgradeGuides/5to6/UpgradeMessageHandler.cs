@@ -6,6 +6,7 @@
     using Handlers;
 
     #region 5to6-messagehandler
+
     public class UpgradeMyAsynchronousHandler : IHandleMessages<MyMessage>
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
@@ -18,14 +19,17 @@
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            // when no asynchronous code is executed in a handler Task.FromResult(0) or Task.CompletedTask can be returned
+            // when no asynchronous code is executed in a handler 
+            // Task.FromResult(0) or Task.CompletedTask can be returned
             SomeLibrary.SomeMethod(message.Data);
             return Task.FromResult(0);
         }
     }
+
     #endregion
 
     #region 5to6-bus-send-publish
+
     public class SendAndPublishHandler : IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
@@ -36,10 +40,12 @@
                 .ConfigureAwait(false);
         }
     }
+
     #endregion
 
 
     #region 5to6-handler-migration-beginning
+
     public class MigrationBeginning : IHandleMessagesFromPreviousVersions<MyMessage>
     {
         public IBus Bus { get; set; }
@@ -50,9 +56,11 @@
             Bus.Publish(new MyEvent());
         }
     }
+
     #endregion
 
     #region 5to6-handler-migration-step1
+
     public class MigrationStep1 : IHandleMessages<MyMessage>
     {
         public IBus Bus { get; set; }
@@ -67,9 +75,11 @@
         {
         }
     }
+
     #endregion
 
     #region 5to6-handler-migration-step2
+
     public class MigrationStep2 : IHandleMessages<MyMessage>
     {
         public IBus context { get; set; }
@@ -84,10 +94,13 @@
         {
         }
     }
+
     #endregion
 
 #pragma warning disable 4014
+
     #region 5to6-handler-migration-step3
+
     public class MigrationStep3 : IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
@@ -97,18 +110,24 @@
             context.Publish(new MyEvent());
         }
     }
+
     #endregion
+
 #pragma warning restore 4014
 
     #region 5to6-handler-migration-step4
+
     public class MigrationStep4 : IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            await context.Send(new MyOtherMessage()).ConfigureAwait(false);
-            await context.Publish(new MyEvent()).ConfigureAwait(false);
+            await context.Send(new MyOtherMessage())
+                .ConfigureAwait(false);
+            await context.Publish(new MyEvent())
+                .ConfigureAwait(false);
         }
     }
+
     #endregion
 
     public interface IHandleMessagesFromPreviousVersions<in TMessage>
