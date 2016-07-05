@@ -38,8 +38,8 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.4.7.12\lib\net40\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Transports.SQLServer, Version=1.2.4.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.SqlServer.1.2.4\lib\net40\NServiceBus.Transports.SQLServer.dll</HintPath>
+    <Reference Include="NServiceBus.Transports.SQLServer, Version=1.2.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.SqlServer.1.2.5\lib\net40\NServiceBus.Transports.SQLServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
