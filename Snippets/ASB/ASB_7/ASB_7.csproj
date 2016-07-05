@@ -54,6 +54,8 @@
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-beta0008\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
+    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus">
+      <HintPath>..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.7.0.0-beta0009\lib\net452\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
@@ -90,6 +92,7 @@
     <Compile Include="Sanitization.cs" />
     <Compile Include="SecureCredentials.cs" />
     <Compile Include="AddressingStrategies\CompositionExtension.cs" />
+    <Compile Include="TokenProvider.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
