@@ -13,7 +13,12 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.ScaleOut().UseSingleBrokerQueue();
         var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+        }
+        transport.ConnectionString(connectionString);
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         using (var bus = Bus.Create(busConfiguration).Start())

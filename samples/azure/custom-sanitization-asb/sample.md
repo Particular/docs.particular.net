@@ -2,14 +2,13 @@
 title: Custom Sanitization with Azure Service Bus Transport
 summary: Sanitizing entity path/names with Azure Service Bus Transport.
 component: ASB
-reviewed: 2016-05-03
+reviewed: 2016-07-06
 related:
-- nservicebus/azure-service-bus
-- nservicebus/azure-service-bus/sanitization
-- nservicebus/azure-service-bus/topologies
-- nservicebus/messaging/publish-subscribe
-- samples/azure/azure-service-bus
-redirects:
+ - nservicebus/azure-service-bus
+ - nservicebus/azure-service-bus/sanitization
+ - nservicebus/azure-service-bus/topologies
+ - nservicebus/messaging/publish-subscribe
+ - samples/azure/azure-service-bus
 ---
 
 
@@ -42,7 +41,7 @@ snippet: SomeEvent
 
 `SomeEvent` full name is `Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events.SomeEvent`. That is 72 characters which exceed the maximum 50 characters limit for a rule name. An attempt to use such a long rule name will result in the following exception:
 
->Invalid Rule name 'Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events.SomeEvent' that cannot be used with Azure Service Bus. Rule name exceeds maximum allowed length or contains invalid characters. Check for invalid characters, shorten the name, or use 'Sanitization().UseStrategy<ISanitizationStrategy>()' configuration extension.`
+> Invalid Rule name 'Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events.SomeEvent' that cannot be used with Azure Service Bus. Rule name exceeds maximum allowed length or contains invalid characters. Check for invalid characters, shorten the name, or use 'Sanitization().UseStrategy<ISanitizationStrategy>()' configuration extension.`
 
 
 ### Creating custom sanitization

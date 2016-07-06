@@ -16,7 +16,12 @@ class Program
         Console.Title = "Samples.ASB.Serialization.Subscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Serialization.Subscriber");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+        }
+        transport.ConnectionString(connectionString);
         var topology = transport.UseTopology<ForwardingTopology>();
 
         #region CustomSanitization

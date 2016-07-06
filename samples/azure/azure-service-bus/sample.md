@@ -1,8 +1,7 @@
 ---
 title: Azure Service Bus Transport
-reviewed: 2016-03-21
+reviewed: 2016-07-06
 component: ASB
-tags:
 related:
 - nservicebus/azure-service-bus
 ---
@@ -20,8 +19,8 @@ include: asb-transport
 
 This sample shows a simple two endpoint scenario.
 
-* `Endpoint1` sends a `Message1` message to `Endpoint1`.
-* `Endpoint2` replies to `Endpoint1` with a `Message2`.
+ * `Endpoint1` sends a `Message1` message to `Endpoint1`.
+ * `Endpoint2` replies to `Endpoint1` with a `Message2`.
 
 
 ### Azure Service Bus configuration

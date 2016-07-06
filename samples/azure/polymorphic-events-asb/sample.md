@@ -4,13 +4,14 @@ summary: Handling polymorphic events with Azure Service Bus Transport.
 component: ASB
 reviewed: 2016-05-03
 related:
-- nservicebus/azure-service-bus
-- nservicebus/messaging/publish-subscribe
-- nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
-- samples/azure/azure-service-bus
+ - nservicebus/azure-service-bus
+ - nservicebus/messaging/publish-subscribe
+ - nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
+ - samples/azure/azure-service-bus
 redirects:
-- samples/azure/polyorphic-events-asb
+ - samples/azure/polyorphic-events-asb
 ---
+
 
 ## Prerequisites
 

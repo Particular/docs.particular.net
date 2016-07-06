@@ -34,7 +34,12 @@ class Program
 
         #endregion
 
-        topologySettings.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+        }
+        topologySettings.ConnectionString(connectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

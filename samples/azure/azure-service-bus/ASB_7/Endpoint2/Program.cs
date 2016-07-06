@@ -18,7 +18,12 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+        }
+        transport.ConnectionString(connectionString);
         transport.UseTopology<ForwardingTopology>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 

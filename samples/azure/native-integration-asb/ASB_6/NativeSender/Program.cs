@@ -9,6 +9,11 @@ class Program
     {
         Console.Title = "Samples.ASB.NativeIntegration.Sender";
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+        }
+
         var queueClient = QueueClient.CreateFromConnectionString(connectionString, "Samples.ASB.NativeIntegration");
 
         #region SerializedMessage
