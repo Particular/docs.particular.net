@@ -163,7 +163,7 @@ snippet: HandlerWhichIntegratesWithAPM
 
 ### Asynchronous RPC calls
 
-The APM approach described above can be used to integration with remote procedure calls as shown in this snippet:
+The APM approach described above can be used to integrate with remote procedure calls as shown in this snippet:
 
 snippet: HandlerWhichIntegratesWithRemotingWithAPM
 
