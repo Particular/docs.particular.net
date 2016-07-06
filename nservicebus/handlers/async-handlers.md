@@ -117,7 +117,7 @@ Task based APIs enable to better compose asynchronous code and making conscious 
 
 #### Batched
 
-By default, all outgoing message operations on the message handler contexts are [batched](/nservicebus/messaging/batched-dispatch.md). Batching means messages are collected in memory and sent out when the handler is completed. So the IO-bound work happens outside the execution scope of a handler (individual transports may apply optimizations). For a few outgoing message operations, it makes sense, to reduce complexity, to sequentially await all the outgoing operations as shown below.
+By default, all outgoing message operations on the message handler contexts are [batched](/nservicebus/messaging/batched-dispatch.md). Batching means messages are kept in memory and sent out when the handler is completed. So the IO-bound work happens outside the execution scope of a handler (individual transports may apply optimizations). For a few outgoing message operations, it makes sense, to reduce complexity, to sequentially await all the outgoing operations as shown below.
 
 snippet: BatchedDispatchHandler
 
