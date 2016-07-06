@@ -151,7 +151,7 @@ Sometimes it is necessary to integrate existing code which fires events into an 
 
 snippet: HandlerWhichIntegratesWithEvent
 
-The above snippet shows how a [`TaskCompletionSource<TResult>`](https://msdn.microsoft.com/en-us/library/dd449174.aspx) can be used to asynchronously wait for an event to happen including cancellation support.
+The above snippet shows how a [`TaskCompletionSource<TResult>`](https://msdn.microsoft.com/en-us/library/dd449174.aspx) can be used to asynchronously wait for an event to happen and optionally cancel it.
 
 
 ### Asynchronous programming model (APM) pattern
