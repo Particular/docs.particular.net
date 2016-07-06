@@ -18,7 +18,7 @@ This is consistent across all the transports, allowing round-robin sender-side d
 
 ## Version 5
 
-INFO: This is relevant to versions 5.2 and above.
+NOTE: This is relevant to versions 5.2 and above.
 
 Depending on the transport being used it can be beneficial to run with a unique input queue per endpoint instance when scaling out since this avoids being limited by the throughput of a single queue. In this case all instances should share the same storage (for sagas, timeouts etc). This is achieved by keeping endpoint name the same since NServiceBus by default uses the endpoint name to select the database.
 

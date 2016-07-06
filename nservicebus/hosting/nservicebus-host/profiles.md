@@ -111,7 +111,7 @@ snippet:configure_logging
 
 Here, the host passes the instance of the class that implements `IConfigureThisEndpoint` so it is not necessary to implement `IWantTheEndpointConfig`.
 
-INFO: While it is possible have one class configure logging for multiple profile types, it is not possible to have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
+NOTE: While it is possible have one class configure logging for multiple profile types, it is not possible to have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
 
 See the [logging documentation](/nservicebus/logging/) for more information.
 

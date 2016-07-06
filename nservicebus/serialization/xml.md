@@ -47,7 +47,7 @@ To avoid that, for interoperability reasons, instruct the serializer to not wrap
 
 snippet: ConfigureRawXmlSerialization
 
-INFO: The name of the property on the message must exactly match the name of the root node in the xml structure in order to be able to correctly deserialize the no longer wrapped content.
+NOTE: The name of the property on the message must exactly match the name of the root node in the xml structure in order to be able to correctly deserialize the no longer wrapped content.
 
 
 ## Caveats

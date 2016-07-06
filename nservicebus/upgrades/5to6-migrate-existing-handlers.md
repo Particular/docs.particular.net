@@ -20,7 +20,7 @@ snippet:5to6-handler-migration-step3
 
 Fix the compiler warnings by introducing the `await` statement followed by `ConfigureAwait(false)` to each asynchronous method call.
 
-INFO: Visual Studio 2015 and higher has the capability to automatically fix those warnings with the [`Ctrl+.`](https://msdn.microsoft.com/en-us/library/dn872466.aspx) (depending on the keybindings) shortcut. It is even possible to fix it in the whole solution if desired.
+NOTE: Visual Studio 2015 and higher has the capability to automatically fix those warnings with the [`Ctrl+.`](https://msdn.microsoft.com/en-us/library/dn872466.aspx) (depending on the keybindings) shortcut. It is even possible to fix it in the whole solution if desired.
 
 snippet:5to6-handler-migration-step4
 

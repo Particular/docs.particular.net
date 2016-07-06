@@ -64,7 +64,7 @@ NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the message t
 
 The message itself is defined as an `IMessage` under the `Shared` project.
 
-INFO: To specify a message ID different from the underlying transport message ID (`BrokeredMessage.MessageId`), set the `NServiceBus.MessageId` header on the native message with the desired message ID.
+NOTE: To specify a message ID different from the underlying transport message ID (`BrokeredMessage.MessageId`), set the `NServiceBus.MessageId` header on the native message with the desired message ID.
 
 snippet:NativeMessage
 
