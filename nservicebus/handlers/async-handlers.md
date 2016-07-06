@@ -147,7 +147,7 @@ In practice packaging operations together has proved to be more effective both i
 
 ### Events
 
-Sometimes it is necessary to integrate existing code which fires events into an asynchronous handler. Before async/await was introduced [`ManualResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.manualresetevent.aspx) or [`AutoResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.autoresetevent.aspx) were usually used to synchronize runtime code flow. Unfortunately, these synchronization primitives are of blocking nature. For asynchronous one-time event synchronization the [`TaskCompletionSource<TResult>`](https://msdn.microsoft.com/en-us/library/dd449174.aspx) can be used.
+Sometimes it is necessary to call apis from an asynchronous handler that use events as the trigger for completion. Before async/await was introduced [`ManualResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.manualresetevent.aspx) or [`AutoResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.autoresetevent.aspx) were usually used to synchronize runtime code flow. Unfortunately, these synchronization primitives are of blocking nature. For asynchronous one-time event synchronization the [`TaskCompletionSource<TResult>`](https://msdn.microsoft.com/en-us/library/dd449174.aspx) can be used.
 
 snippet: HandlerWhichIntegratesWithEvent
 
