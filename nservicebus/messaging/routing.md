@@ -139,18 +139,7 @@ The purpose of the endpoint instance mapping layer is to provide information abo
 
 #### Using config file
 
-Endpoint mapping should be done via a config file so it can be modified without the need for re-deploying the binaries. 
-
-snippet:Routing-FileBased-Config
-
-To read more see [file-based endpoint mapping](/nservicebus/messaging/file-based-routing.md).
-
-When using transports other than MSMQ the filed-based mapping can be configured using the following API:
-
-snippet:Routing-FileBased-ConfigAdvanced
-
-NOTE: If using a static type mapping to an address instead of an endpoint the advantages of file-based instance resolution will not be possible.
-
+When using MSMQ transport, endpoint instance mapping can be done using the [file based instance mapping](/nservicebus/msmq/file-based-routing.md).
 
 #### Static mapping
 
