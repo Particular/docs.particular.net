@@ -160,45 +160,26 @@ namespace Core6.Routing
             routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
             routing.RouteToEndpoint(typeof(SendOrder), "Shipping");
 
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            transport.DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
-
-            #endregion
-        }
-
-        public void FileBasedRoutingAdvanced(EndpointConfiguration endpointConfiguration)
-        {
-            #region Routing-FileBased-ConfigAdvanced
-
-            var routing = endpointConfiguration.Routing();
-            routing.Mapping
-                .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
-
-            #endregion
-        }
-        public void FileBasedRoutingMaxLoadAttempts(EndpointConfiguration endpointConfiguration)
-        {
-            #region Routing-FileBased-MaxLoadAttempts
-
-            var routing = endpointConfiguration.Routing();
-            var fileRoutingTable = routing.Mapping
-                .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
-            fileRoutingTable.MaxLoadAttempts(15);
-
             #endregion
         }
         public void FileBasedRoutingRefreshInterval(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-FileBased-RefreshInterval
 
+            endpointConfiguration.UseTransport<MsmqTransport>.Routing()
+              .InstanceMappingFile().RefreshInterval(TimeSpan.FromSeconds(45);
             var routing = endpointConfiguration.Routing();
-            var fileRoutingTable = routing.Mapping
-                .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
-            fileRoutingTable.RefreshInterval(TimeSpan.FromSeconds(45));
 
             #endregion
         }
+        public void FileBasedRoutingFilePath(EndpointConfiguration endpointConfiguration){
+          #region Routing-FileBased-FilePath
 
+          endpointConfiguration.UseTransport<MsmqTransport>.Routing()
+            .InstanceMappingFile().FilePath(@"C:\Routes.xml");
+
+          #endregion
+        }
         interface IUseCustomDistributionStrategy
         {
         }
