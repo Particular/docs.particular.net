@@ -98,11 +98,11 @@ snippet: HandlerReturnsTwoTasks
 
 By default when a task is awaited a mechanism called context capturing is enabled. The current context is captured and restored for the continuation that is scheduled after the precedent task was completed.
 
-snippet: HandlerConfigureAwaitSpecified
+snippet: HandlerConfigureAwaitNotSpecified
 
 In the snippet above `SomeAsyncMethod` and `AnotherAsyncMethod` are simply awaited. So when entering `SomeAsyncMethod` the context is captured and restored before `AnotherAsyncMethod` is executed. The context capturing mechanism is almost never needed in code that is executed inside handlers or sagas. NServiceBus makes sure the context is not captured in the framework at all. So the following approach is preferred:
 
-snippet: HandlerConfigureAwaitNotSpecified
+snippet: HandlerConfigureAwaitSpecified
 
 Specify [`ConfigureAwait(false)`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.configureawait.aspx) on each awaited statement. Apply this principle to all asynchronous code that is called from handlers and sagas.
 
@@ -147,7 +147,7 @@ In practice packaging operations together has proved to be more effective both i
 
 ### Events
 
-Sometimes it is necessary to integrate existing code which fires events into an asynchronous handler. Before async/await was introduced [`ManualResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.manualresetevent.aspx) or [`AutoResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.autoresetevent.aspx) were usually used to synchronize runtime code flow. Unfortunately, these synchronization primitives are of blocking nature. For asynchronous one-time event synchronization the [`TaskCompletionSource<TResult>`](https://msdn.microsoft.com/en-us/library/dd449174.aspx) can be used.
+Sometimes it is necessary to call APIs from an asynchronous handler that use events as the trigger for completion. Before async/await was introduced [`ManualResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.manualresetevent.aspx) or [`AutoResetEvent`](https://msdn.microsoft.com/en-us/library/system.threading.autoresetevent.aspx) were usually used to synchronize runtime code flow. Unfortunately, these synchronization primitives are of blocking nature. For asynchronous one-time event synchronization the [`TaskCompletionSource<TResult>`](https://msdn.microsoft.com/en-us/library/dd449174.aspx) can be used.
 
 snippet: HandlerWhichIntegratesWithEvent
 
