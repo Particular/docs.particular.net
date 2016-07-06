@@ -46,14 +46,18 @@ Microsoft Message Queueing (MSMQ) must be properly installed and configured. The
 
 Run the following command on the command line:
 
-`DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server`
+```dos
+DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server
+```
 
 
 #### Enable MSMQ on Windows 8.x and 10
 
 Run the following command on the command line:
 
-`DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server`
+```dos
+DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server
+```
 
 
 ## Project structure
