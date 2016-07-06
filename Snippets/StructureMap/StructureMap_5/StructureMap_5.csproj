@@ -33,13 +33,11 @@
       <HintPath>..\..\..\packages\NServiceBus.StructureMap.5.0.1\lib\net45\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="StructureMap, Version=3.1.7.350, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\structuremap.3.1.7.350\lib\net40\StructureMap.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\..\packages\structuremap.3.1.8.419\lib\net40\StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap.Net4, Version=3.1.7.350, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\structuremap.3.1.7.350\lib\net40\StructureMap.Net4.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="StructureMap.Net4">
+      <HintPath>..\..\..\packages\structuremap.3.1.8.419\lib\net40\StructureMap.Net4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
