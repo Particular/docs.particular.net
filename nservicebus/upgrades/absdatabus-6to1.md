@@ -10,13 +10,16 @@ related:
 
 Instructions on how to move from the NServiceBus.Azure package to the NServiceBus.DataBus.AzureBlobStorage package.
 
+
 ### AzureDataBusPersistence feature no longer used
 
-Instead of `.EnableFeature<AzureDataBusPersistence>()` use `.UseDataBus<AzureDataBus>()` instead.
+Instead of `.EnableFeature<AzureDataBusPersistence>()` use `.UseDataBus<AzureDataBus>()`.
+
 
 ### Custom configuration section no longer provided
 
-Configuration options are now only available via the code api. See [DataBus](/nservicebus/messaging/databus.md) documentation and the [Azure DataBus sample](/samples/azure/blob-storage-databus) for more details.
+Configuration options are now only available via the code API. See [DataBus](/nservicebus/messaging/databus.md) documentation and the [Azure DataBus sample](/samples/azure/blob-storage-databus) for more details.
+
 
 ### AzureDataBusDefaults no longer provided
 
