@@ -187,7 +187,6 @@
           Articles:
             - "nservicebus/azure-service-bus/batching"
             - "nservicebus/azure-service-bus/message-lock-renewal"
-            - "nservicebus/azure-service-bus/multiple-namespaces-support"
         - "nservicebus/azure-service-bus/faq"
         - "nservicebus/azure-service-bus/transaction-support"
         - "nservicebus/azure/transactions"
