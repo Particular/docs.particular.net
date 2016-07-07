@@ -14,14 +14,14 @@ related:
 
 This document explains how to upgrade and patch a system for [Azure Storage Persistence bug #74](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/issues/74) using NServiceBus.Azure hotfix release 6.2.5.
 
-WARNING: When upgrading to NServiceBus.Persistence.AzureStorage Version 1 and above, the following upgrade will need to be performed prior to beginning any other upgrade steps.
+WARNING: When upgrading to NServiceBus.Persistence.AzureStorage Version 1 or above, the following upgrade will need to be performed prior to beginning any other upgrade steps.
 
 WARNING: The [saga de-duplication patch](/nservicebus/upgrades/asp-saga-deduplication.md) process must have been completed at least once prior to proceeding with this update.
 
 
 ### How to know if a system may be affected
 
-This bug will affect any system that has ever used sagas and NServiceBus.Azure v6.2.4 or lower.
+This bug will affect any system that has ever used sagas and NServiceBus.Azure Versions 6.2.4 and above.
 
 
 ## Patch Requirements
@@ -31,7 +31,7 @@ To deploy this fix throughout a system, all endpoints will need to be upgraded a
 
 ### Upgrading endpoints
 
-All endpoints using NServiceBus.Azure will need to be upgraded to version 6.2.5 or higher.
+All endpoints using NServiceBus.Azure will need to be upgraded to Versions 6.2.5 or above.
 
 
 ### Patching data

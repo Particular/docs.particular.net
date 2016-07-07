@@ -51,7 +51,7 @@ For a detailed explanation about all ways to configure namespace mappings for na
 
 include: asb-credential-warning
 
-Internally the transport (V7) uses the namespace name to refer to namespaces. Even when using the `ConnectionString(string connectionString)` method on the configuration API directly, as shown below, it will cause the transport to add a mapping between a namespace name `default` and the provided connection string internally.
+Internally the transport (Version 7) uses the namespace name to refer to namespaces. Even when using the `ConnectionString(string connectionString)` method on the configuration API directly, as shown below, it will cause the transport to add a mapping between a namespace name `default` and the provided connection string internally.
 
 snippet: map_default_logical_name_to_connection_string
 

@@ -155,7 +155,7 @@ This sample has two workers which are hard coded as projects for the sake of kee
 
 In a real solution the following is more likely
 
- 1. Have one Worker in the project (or even have the `Server` double up as a worker)
+ 1. Have one Worker in the project (or even have the `Server` double up as a worker).
  1. In deployment the same `Worker` endpoint would be deployed to multiple machines and only differ by their app.config.
 
 

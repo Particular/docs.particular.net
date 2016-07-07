@@ -25,9 +25,9 @@ To deploy this fix throughout a system, first upgrade endpoints with the latest 
 
 All endpoints using encryption need to be upgraded to the latest patch release.
 
- * Version 3.x.x requires at least v3.3.17
- * Version 4.x.x requires at least v4.7.8
- * Version 5.x.x requires at least v5.0.7, v5.1.5 or v5.2.9
+ * Version 3.x.x requires at least Version 3.3.17
+ * Version 4.x.x requires at least Version 4.7.8
+ * Version 5.x.x requires at least Version 5.0.7, Version 5.1.5 or Version 5.2.9
 
 For example, if currently using NServiceBus 4.7.x, an update to the latest patch release 4.7.8 is required.
 
@@ -101,9 +101,9 @@ busConfiguration.RijndaelEncryptionService(
 
 Generate a new encryption key if using ASCII keys with a key length of 16 characters to overcome the 7-bit limit that weakens the encryption key.
 
-Switch to Base64 256 bits keys if possible, or to at least ASCII 24 character keys to be backward compatible with pre v5.x.x endpoints and have stronger encryption.
+Switch to Base64 256 bits keys if possible, or to at least ASCII 24 character keys to be backward compatible with pre Version 5.x.x endpoints and have stronger encryption.
 
-NOTE: Base64 keys can only be configured for NServiceBus v5+ and are not compatible with earlier versions.
+NOTE: Base64 keys can only be configured for NServiceBus Versions 5 and above and are not compatible with earlier versions.
 
 
 ## Locating possible corrupted data
