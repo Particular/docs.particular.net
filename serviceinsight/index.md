@@ -53,7 +53,7 @@ Select specific messages, the related properties window and flow diagram change 
 
 ## Endpoint Explorer
 
-The Endpoint Explorer indicates the connection to the ServiceControl instance providing data to ServiceInsight. The list enumerates the endpoints and the machine where they are deployed. 
+The Endpoint Explorer indicates the connection to the ServiceControl instance providing data to ServiceInsight. The list enumerates the endpoints and the machine where they are deployed.
 
 ![Endpoint Explorer](images/overview-endpointexplore-machinename.png)
 
@@ -78,7 +78,7 @@ Each message in NServiceBus contains extensive detail. As messages are selected 
 
 ## The Saga View
 
-Sagas play a critical role in NServiceBus systems. As coordinators of processes they are started by certain messages and interact with a variety of messages and services. To open a graphical view of Sagas, click a message in the flow diagram that is handled by a saga. 
+Sagas play a critical role in NServiceBus systems. As coordinators of processes they are started by certain messages and interact with a variety of messages and services. To open a graphical view of Sagas, click a message in the flow diagram that is handled by a saga.
 
 ![The Saga View](images/overview-sagaview.png)
 

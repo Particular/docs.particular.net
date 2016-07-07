@@ -133,7 +133,7 @@ Due to a [bug in SignalR](https://github.com/SignalR/SignalR/issues/3649) in Mic
 
 If ServiceControl is secured with an authentication module other that Windows Authentication  ServiceInsight will not be able to connect to the REST API exposed via IIS. ServiceInsight v1.4 or greater is required to use Windows authentication.
 
-Older versions of ServiceInsight can still be used locally, bypassing the security by connecting to the ServiceControl port directly using the `http://localhost:33333/api` URL. 
+Older versions of ServiceInsight can still be used locally, bypassing the security by connecting to the ServiceControl port directly using the `http://localhost:33333/api` URL.
 
 
 ## Upgrading ServicePulse hosted in IIS

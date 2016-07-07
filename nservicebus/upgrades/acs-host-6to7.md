@@ -23,14 +23,14 @@ snippet: AzureServiceBusTransportWithAzureHost
 
 ## AsA_Host role changes into IConfigureThisHost
 
-The specifiers `IConfigureThisEndpoint` and `AsA_Host` are now merged into `IConfigureThisHost`. 
+The specifiers `IConfigureThisEndpoint` and `AsA_Host` are now merged into `IConfigureThisHost`.
 
 snippet: AsAHost
 
 
 ### Removal of DynamicHostControllerConfig
 
-The `DynamicHostControllerConfig`configuration section has been removed, instead the `IConfigureThisHost.Customize` implementation requires to return an instance of `HostSettings` which contains all the configuration values. 
+The `DynamicHostControllerConfig`configuration section has been removed, instead the `IConfigureThisHost.Customize` implementation requires to return an instance of `HostSettings` which contains all the configuration values.
 
 `RoleEnvironment.GetConfigurationSettingValue` can be used to read any existing configuration setting from the `.cscfg` file.
 

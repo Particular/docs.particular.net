@@ -14,7 +14,7 @@ There are several ways to make sure that the NServiceBus endpoints pick up and u
 
 ## Using the Registry
 
-NOTE: Using the NServiceBus PowerShell cmdlet is the preferred and simplest method of adding the license file. 
+NOTE: Using the NServiceBus PowerShell cmdlet is the preferred and simplest method of adding the license file.
 
 Using the registry to store the license information is a way that all platform tools can access this information easily. This includes NServiceBus endpoints, ServiceControl, and ServiceInsight. (ServicePulse determines licensing status by querying the ServiceControl API.) Using the registry ensures that all the platform tools can access the license status without requiring additional complexity on every deployment.
 
@@ -47,7 +47,7 @@ Set-ItemProperty -Path HKLM:\Software\ParticularSoftware -Name License -Force -V
 
 If modifying the registry directly using Registry Editor or a PowerShell script to update the license for ServiceControl, it is necessary to restart the ServiceControl service, as it only checks for its license information once at startup.
 
-NOTE: For 64 bit operating systems repeat the process in both the Powershell prompt and the PowerShell(x86) console prompt.  This will ensure the license is imported into both the 32 bit and 64 bit registry keys. 
+NOTE: For 64 bit operating systems repeat the process in both the Powershell prompt and the PowerShell(x86) console prompt.  This will ensure the license is imported into both the 32 bit and 64 bit registry keys.
 
 
 ##### Using Registry Editor

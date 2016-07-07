@@ -32,7 +32,7 @@ If the `ViaEntityPath` is not empty, then messages will be added to the receive 
 
 #### Transport transaction - Receive Only
 
-The `ReceiveOnly` guarantee is based on the Azure Service Bus Peek-Lock mechanism. 
+The `ReceiveOnly` guarantee is based on the Azure Service Bus Peek-Lock mechanism.
 
 The message is not removed from the queue directly after receive, but it's hidden by default for 30 seconds. That prevents other instances from picking it up. If the receiver fails to process the message withing that timeframe or explicitly abandons the message, then the message will become visible again. Other instances will be able to pick it up.
 

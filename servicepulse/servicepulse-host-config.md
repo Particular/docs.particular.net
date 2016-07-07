@@ -5,7 +5,7 @@ tags:
 - ServicePulse
 ---
 
-To modify the port used by ServicePulse the commandline specified in the registry must be updated. 
+To modify the port used by ServicePulse the commandline specified in the registry must be updated.
 
 To change it:
 

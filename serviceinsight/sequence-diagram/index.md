@@ -10,7 +10,7 @@ tags:
 
 Each visualization diagram in ServiceInsight displays the currently selected message in a broader context to help with troubleshooting and debugging.
 
-The sequence diagram shows all of the messages in the same conversation. It also shows when these messages were sent and handled relative to each other. 
+The sequence diagram shows all of the messages in the same conversation. It also shows when these messages were sent and handled relative to each other.
 
 ![Sequence Diagram](sequence-diagram.png)
 
@@ -19,7 +19,7 @@ Use the sequence diagram when the timing of messages handling is important to un
 
 ## Which data is used to generate the diagram
 
-When a message is sent through NServiceBus, some headers are added automatically. All messages get the `NServiceBus.MessageId` header. This is a unqiue ID for the message. 
+When a message is sent through NServiceBus, some headers are added automatically. All messages get the `NServiceBus.MessageId` header. This is a unqiue ID for the message.
 
 If handling a message causes more messages to be sent or published then the `MessageId` of the message being handled is copied to the `NServiceBus.RelatedTo` header of the outgoing messages.
 
@@ -30,7 +30,7 @@ There are additional headers which are used to label endpoints, messages and mes
 
 ## What is on the diagram
 
-The sequence diagram shows the interaction of endpoints by visualizing sending and processing messages over time. 
+The sequence diagram shows the interaction of endpoints by visualizing sending and processing messages over time.
 
 
 ### Endpoints and lifelines
@@ -76,7 +76,7 @@ If the processing of a message fails, the processing box will be displayed in re
 
 ![Event](event.png)
 
-Events are represented in a similar fashion to other messages except that they have dashed lines and a different icon. 
+Events are represented in a similar fashion to other messages except that they have dashed lines and a different icon.
 
 NOTE: Each event that is published will appear on the diagram once for each subscriber. This looks like individual messages were sent to each subscriber by the sender regardless of whether Unicast or Multicast routing is used - [Learn more about Message Routing](/nservicebus/messaging/routing.md).
 

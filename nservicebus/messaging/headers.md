@@ -17,7 +17,7 @@ The headers in a message contain information that is used by the messaging infra
 
 ## Timestamp format
 
-For all timestamp message headers, the format is `yyyy-MM-dd HH:mm:ss:ffffff Z` where the time is UTC. The helper class `DateTimeExtensions` in NServiceBus supports converting from UTC to wire format and vice versa by using the `ToWireFormattedString()` and `ToUtcDateTime()` methods. 
+For all timestamp message headers, the format is `yyyy-MM-dd HH:mm:ss:ffffff Z` where the time is UTC. The helper class `DateTimeExtensions` in NServiceBus supports converting from UTC to wire format and vice versa by using the `ToWireFormattedString()` and `ToUtcDateTime()` methods.
 
 ```cs
 const string Format = "yyyy-MM-dd HH:mm:ss:ffffff Z";
@@ -43,7 +43,7 @@ The following headers include information for the receiving endpoint on the [mes
 
 ### NServiceBus.ContentType
 
-The type of serialization used for the message, for example `text/xml` or `text/json`. This header was added in Version 4.0. In some cases, it may be useful to use the `NServiceBus.Version` header to determine how to use the value in this header appropriately. 
+The type of serialization used for the message, for example `text/xml` or `text/json`. This header was added in Version 4.0. In some cases, it may be useful to use the `NServiceBus.Version` header to determine how to use the value in this header appropriately.
 
 
 ### NServiceBus.EnclosedMessageTypes

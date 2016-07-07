@@ -84,7 +84,7 @@ The following settings are available for changing the behavior of timeout persis
   * defaults to `TimeoutManagerDataTable`.
  * `TimeoutDataTableName`: Sets the name of the table where the timeouts themselves are stored.
   * defaults to `TimeoutDataTableName`.
- * `CatchUpInterval`: When a node hosting a timeout manager goes down, it needs to catch up with missed timeouts faster than it normally would (1 sec), this value  sets the catchup interval in seconds. 
+ * `CatchUpInterval`: When a node hosting a timeout manager goes down, it needs to catch up with missed timeouts faster than it normally would (1 sec), this value  sets the catchup interval in seconds.
   * defaults to 3600, meaning it will process one hour at a time.
  * `PartitionKeyScope`: The time range used as partition key value for all timeouts. For optimal performance this should be in line with the catchup interval. Data in the table defined by `TimeoutDataTableName` will need to be migrated when modifying `PartitionKeyScope`.
   * defaults to `yyyMMddHH`.

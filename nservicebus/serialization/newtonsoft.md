@@ -31,7 +31,7 @@ These restrictions do not apply to this serializer.
 
 ## Comparability with the core JSON serializer 
 
-The only incompatibility with the [core serializer](json.md) is that this serializer does not support the serialization of `XContainer` and `XDocument` properties. If  xml properties are required on messages strings should be used instead. 
+The only incompatibility with the [core serializer](json.md) is that this serializer does not support the serialization of `XContainer` and `XDocument` properties. If  xml properties are required on messages strings should be used instead.
 
 
 ## Usage

@@ -48,7 +48,7 @@ Once created `Start` is called on each instance in parallel. Each `Start` call i
 
 NOTE: The call to `IStartableBus.Start` may return before all instances of `IWantToRunWhenBusStartsAndStops.Start` are completed.
 
-When the endpoint is disposed, all instances of `IWantToRunWhenBusStartsAndStops` are stopped by calling their `Stop` method. Each call to `Stop` happens on parallel background threads but the call to `Dispose()` will block until they have all completed. 
+When the endpoint is disposed, all instances of `IWantToRunWhenBusStartsAndStops` are stopped by calling their `Stop` method. Each call to `Stop` happens on parallel background threads but the call to `Dispose()` will block until they have all completed.
 
 NOTE: `Stop` will wait for any outstanding instances of `Start` to complete. If an instance of `IWantToRunWhenBusStartsAndStops` needs to be long running then it must start it's own background thread. Failure to do so will prevent the endpoint from being disposed.
 

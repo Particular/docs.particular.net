@@ -26,7 +26,7 @@ The are several configuration options that must be set for express message to
 
 ### Non-transactional Endpoints 
 
-The endpoints must be configured to be non-transactional. 
+The endpoints must be configured to be non-transactional.
 
 snippet:non-transactional
 

@@ -19,8 +19,8 @@ The second is much simpler in theory but much harder in practice. In theory all 
 
 To access the data in an *exactly-once* way is to just lean on the Distributed Transaction Coordinator (DTC) to make sure all the data access, happening while handling the message, is atomic. This approach has two downsides:
 
- 1. The throughput when using DTC is much smaller than without it. 
- 1. Second, DTC is complex to configure, not mentioning making it Highly Available (HA) via a cluster. 
+ 1. The throughput when using DTC is much smaller than without it.
+ 1. Second, DTC is complex to configure, not mentioning making it Highly Available (HA) via a cluster.
  
 The upside is that or the application data use any data store that supports the DTC-coordinated transaction.
 

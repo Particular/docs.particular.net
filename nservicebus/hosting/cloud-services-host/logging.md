@@ -11,7 +11,7 @@ tags:
 
 ## Logging
 
-The NServiceBus [logging](/nservicebus/logging/) integrates with the Azure Diagnostics service through a simple trace logger. 
+The NServiceBus [logging](/nservicebus/logging/) integrates with the Azure Diagnostics service through a simple trace logger.
 
 Azure tooling for Visual Studio will setup the Azure Diagnostics Service and NServiceBus will integrate with it directly. Ensure that the following trace listener is added to the `app.config`, all NServiceBus logs will be forwarded to the diagnostics service. (Version may differ based on Azure tooling version)
 

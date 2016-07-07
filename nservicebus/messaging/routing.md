@@ -114,7 +114,7 @@ The most common way of specifying the type mapping is through static routes. Mos
 
 snippet:Routing-StaticRoutes-Endpoint
 
-When necessary (e.g. for integration with legacy systems) the static routing to a given transport-level address can be configured explicitly. However this should be avoided in most scenarios and the address resolution should be delegated to lower layers of routing. 
+When necessary (e.g. for integration with legacy systems) the static routing to a given transport-level address can be configured explicitly. However this should be avoided in most scenarios and the address resolution should be delegated to lower layers of routing.
 
 snippet:Routing-StaticRoutes-Address
 
@@ -139,7 +139,7 @@ The purpose of the endpoint instance mapping layer is to provide information abo
 
 #### Using config file
 
-Endpoint mapping should be done via a config file so it can be modified without the need for re-deploying the binaries. 
+Endpoint mapping should be done via a config file so it can be modified without the need for re-deploying the binaries.
 
 snippet:Routing-FileBased-Config
 

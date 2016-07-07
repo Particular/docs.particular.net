@@ -23,7 +23,7 @@ redirects:
 ## Running the project
 
  1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
- 1. Start the Receiver project. 
+ 1. Start the Receiver project.
  1. In the Sender's console is the text `Press <enter> to send a message` when the app is ready.
  1. Hit `<enter>`.
 
@@ -44,7 +44,7 @@ redirects:
 
 When SQL Server transport is used in the [*multi-instance* mode](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance), the messages are inserted directly into the remote destination database's table. If the receiving endpoint's database is down or inaccessible, e.g. because of network failures, the sending endpoint can't send messages to it. In such situations the exception is thrown from the `Send()` or the `Publish()` methods, resulting in a potential message loss.
 
-The message loss problem can be prevented by adding [store-and-forward functionality](/nservicebus/architecture/principles.md#drilling-down-into-details-store-and-forward-messaging) to the SQL Server transport, as explained in this sample. 
+The message loss problem can be prevented by adding [store-and-forward functionality](/nservicebus/architecture/principles.md#drilling-down-into-details-store-and-forward-messaging) to the SQL Server transport, as explained in this sample.
 
 NOTE: The [Outbox](/nservicebus/outbox/) would not help solve the issue presented in this example, because it is bypassed when sending messages from outside of a message handler, e.g. from ASP.NET MVC controller.
 
@@ -74,8 +74,8 @@ snippet:SendThroughLocalQueueBehavior
 
 The behavior ignores:
 
- * Messages sent from a handler, because the incoming message will be retried ensuring the outgoing messages are eventually delivered. 
- * Deferred messages, because their destination is the local timeout manager satellite. 
+ * Messages sent from a handler, because the incoming message will be retried ensuring the outgoing messages are eventually delivered.
+ * Deferred messages, because their destination is the local timeout manager satellite.
 
 The behavior captures the destination of the message in a header and overrides the original value so that the message is actually sent to the local endpoint (put at the end of the endpoint's incoming queue).
 

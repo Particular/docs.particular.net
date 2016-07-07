@@ -47,7 +47,7 @@ The PI requires Internet access to download individual packages. If non-windows 
 ![](save-credentials.png)
 
 This dialog offers to save credentials for future use.
-If the Save Credentials option is chosen the credentials will be encrypted and stored in the registry at `HKEY_CURRENT_USER\Software\Particular\PlatformInstaller\Credentials` for use in subsequent launches of the PI. 
+If the Save Credentials option is chosen the credentials will be encrypted and stored in the registry at `HKEY_CURRENT_USER\Software\Particular\PlatformInstaller\Credentials` for use in subsequent launches of the PI.
 
 
 ## Select items to install

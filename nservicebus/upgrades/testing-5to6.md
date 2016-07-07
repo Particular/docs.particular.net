@@ -56,7 +56,7 @@ snippet:ExpectSendToSiteV6
 
 ### Using When
 
-In NServiceBus Versions 6 and above, message handlers have an additional `IMessageHandlerContext` parameter.  This context parameter needs to be provided when defining the method to invoke. 
+In NServiceBus Versions 6 and above, message handlers have an additional `IMessageHandlerContext` parameter.  This context parameter needs to be provided when defining the method to invoke.
 
 snippet: 5to6-usingWhen
 

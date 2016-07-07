@@ -18,10 +18,10 @@ redirects:
 
 ## Prerequisites
 
- 1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`. 
+ 1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
  1. Create database called `nservicebus`.
- 1. In the database create schemas `sender` and `receiver`. 
- 1. The [Outbox](/nservicebus/outbox) feature is designed to provide *exactly once* delivery guarantees without the Distributed Transaction Coordinator (DTC) running. Disable the DTC service to avoid seeing warning messages in the console window. If the DTC service is not disabled, when the sample project is started it will display `DtcRunningWarning` message in the console window. 
+ 1. In the database create schemas `sender` and `receiver`.
+ 1. The [Outbox](/nservicebus/outbox) feature is designed to provide *exactly once* delivery guarantees without the Distributed Transaction Coordinator (DTC) running. Disable the DTC service to avoid seeing warning messages in the console window. If the DTC service is not disabled, when the sample project is started it will display `DtcRunningWarning` message in the console window.
 
 
 ## Running the project
@@ -30,7 +30,7 @@ redirects:
  1. The text `Press <enter> to send a message` should be displayed in the Sender's console window.
  1. Start the Receiver project (right-click on the project, select the `Debug > Start new instance` option).
  1. Hit `<enter>` to send a new message.
- 2. 
+ 2.
 
 ## Verifying that the sample works correctly
 

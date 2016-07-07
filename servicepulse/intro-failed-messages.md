@@ -38,12 +38,12 @@ The second tab will display all failed messages. The functionality is the same a
 ![Failed Messages Page](intro-failed-messages-failed-messages-page.png)
 
 
- * **Message Details:** For each failed message, displays the message type, exception description, endpoint name and location, and failure timestamp. 
+ * **Message Details:** For each failed message, displays the message type, exception description, endpoint name and location, and failure timestamp.
  * **StackTrace:** Displays the full .NET exception stacktrace.
  * **Headers:** Displays a complete set of message headers.
  * **Body:** Displays the serialized message body.
  * **Copy Message Id:** Copies the failed message unique ID to the clipboard.
- * **Open in ServiceInsight:** Launches [ServiceInsight](/serviceinsight/), focusing on the failed message for in-depth analysis of the failure causes. This only works if ServiceInsight is installed on the local machine. 
+ * **Open in ServiceInsight:** Launches [ServiceInsight](/serviceinsight/), focusing on the failed message for in-depth analysis of the failure causes. This only works if ServiceInsight is installed on the local machine.
 
 
 ### Failed Message Retry

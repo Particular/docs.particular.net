@@ -12,7 +12,7 @@ redirects:
 reviewed: 2016-04-20
 ---
 
-The Azure Platform and NServiceBus complement each other. Azure is a distributed, scalable and flexible platform. NServiceBus provides high level abstractions and features that make development in Azure easier. 
+The Azure Platform and NServiceBus complement each other. Azure is a distributed, scalable and flexible platform. NServiceBus provides high level abstractions and features that make development in Azure easier.
 
 There are a few things to keep in mind when developing for Azure. The most important one is the lack of (distributed) transactions.
 
@@ -21,9 +21,9 @@ There are a few things to keep in mind when developing for Azure. The most impor
 
 Transaction processing is designed to maintain systems integrity (typically a database or some modern filesystems and services), i.e. to always keep them in a consistent state. That is achieved by ensuring that interdependent operations are either all completed successfully or all canceled. This article focuses on Azure databases and storage services.
 
-In order to guarantee integrity the database engine must lock a certain number of records inside the transaction when updating values. Which records and how many of them are locked depends, among others, on the selected isolation level. 
+In order to guarantee integrity the database engine must lock a certain number of records inside the transaction when updating values. Which records and how many of them are locked depends, among others, on the selected isolation level.
 
-It is really important to understand, especially in the context of cloud services, that other transactions cannot work with locked records at the same time. In a cloud or self-service environment such locks become a trust issue, because external parties can use them to perform a denial of service attack (sometimes not even intentionally). 
+It is really important to understand, especially in the context of cloud services, that other transactions cannot work with locked records at the same time. In a cloud or self-service environment such locks become a trust issue, because external parties can use them to perform a denial of service attack (sometimes not even intentionally).
 
 This is the primary reason why many Azure hosted services do not support transactions at all or are very aggressive when it comes to the lock duration, for example:
 
@@ -104,7 +104,7 @@ Another important consideration is that regular transactions also have a *rollba
 
 ### Sagas and compensation logic
 
-Sagas in NServiceBus are essentially a stateful set of message handlers that can be used to track and orchestrate the transaction. The handlers communicate with each other, each of them performs a part of the transaction and then notifies whether it succeeded or failed. Depending on the partial results, the saga decides what needs to happen to the rest of the transaction; whether to continue the transaction or to roll it back. The latter is often referred to as *compensation*, as it tries to compensate the failure at a business logic level. 
+Sagas in NServiceBus are essentially a stateful set of message handlers that can be used to track and orchestrate the transaction. The handlers communicate with each other, each of them performs a part of the transaction and then notifies whether it succeeded or failed. Depending on the partial results, the saga decides what needs to happen to the rest of the transaction; whether to continue the transaction or to roll it back. The latter is often referred to as *compensation*, as it tries to compensate the failure at a business logic level.
 
 In essence, using sagas is implementing a Distributed Transaction Coordinator that operates on business logic level instead of using two-phase commit protocol.
 
@@ -124,9 +124,9 @@ In essence, using sagas is implementing a Distributed Transaction Coordinator th
 
 ### Routing slips and compensation logic
 
-Instead of using a central coordinator that orchestrates the work in a transaction, this approach uses a chain of independent handlers. It can be thought of as a linked list of message handlers that can send messages back and forward within the list. 
+Instead of using a central coordinator that orchestrates the work in a transaction, this approach uses a chain of independent handlers. It can be thought of as a linked list of message handlers that can send messages back and forward within the list.
 
-The first handler composes a *routing slip* that defines what needs to be done in the transaction, and passes it to the next handler in the chain. The next handler processes the message according to the information in the routing slip, and passes the message to the next one in the chain and so forth, until all handlers have been invoked and the transaction was completed. 
+The first handler composes a *routing slip* that defines what needs to be done in the transaction, and passes it to the next handler in the chain. The next handler processes the message according to the information in the routing slip, and passes the message to the next one in the chain and so forth, until all handlers have been invoked and the transaction was completed.
 
 If at any point in time a handler fails, it sends the message back in the chain to execute compensation logic. The slip is continuously sent back until it reaches the original handler again. At that point the transaction is rolled back.
 
@@ -168,14 +168,14 @@ The main advantage of this approach is its simplicity, however it also has downs
 
 ### Natural idempotency
 
-Many operations can be designed in a naturally idempotent way. `TurnOnTheLights` is by default an idempotent operation, because it will have the same effect no matter what was the previous state and how many times the operation was executed. `FlipTheLightSwitch` however is not naturally idempotent, because the results will vary depending on the initial state and the number of times it was executed. 
+Many operations can be designed in a naturally idempotent way. `TurnOnTheLights` is by default an idempotent operation, because it will have the same effect no matter what was the previous state and how many times the operation was executed. `FlipTheLightSwitch` however is not naturally idempotent, because the results will vary depending on the initial state and the number of times it was executed.
 
 Using natural idempotency is recommended whenever possible.
 
 
 ### Entities and messages with version information
 
-Idempotency can be also achieved by adding versioning information to the entities. Typically it is in the form of a timestamp or a version number. 
+Idempotency can be also achieved by adding versioning information to the entities. Typically it is in the form of a timestamp or a version number.
 
 The versioning information is included in each command that alters the state of the entity. This way when the command is received, the handler can compare the versioning information on both the entity and the message and decide whether this logic needs to be executed or not.
 
@@ -184,7 +184,7 @@ The downside of this approach is that the version of the entity can be change by
 
 ### Partner state machines
 
-Ultimately the only non-idempotent messages are sent when one entity issues a command to another. The good practice in messaging solutions is to have only `one master`, i.e. there should only be one logical endpoint sending a given command. As a consequence it is possible to organize the entity's state as a miniature state machine inside the entity. 
+Ultimately the only non-idempotent messages are sent when one entity issues a command to another. The good practice in messaging solutions is to have only `one master`, i.e. there should only be one logical endpoint sending a given command. As a consequence it is possible to organize the entity's state as a miniature state machine inside the entity.
 
 The state machine represents the progression of the relationship between endpoints that communicate with each other. That approach avoids versioning conflicts by allowing only for valid state transitions. As a result, it is possible to ensure each command is executed only once.
 

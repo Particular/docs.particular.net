@@ -43,7 +43,7 @@ The sanitization aspect is represented by an implementation of `ISanitizationStr
 Out of the box there are 2 sanitization strategies:
 
  * `ThrowOnFailingSanitization` (default): throws an exception if the name is invalid.
- * `ValidateAndHashIfNeeded`: removes invalid characters and hashes to reduce the length of an entity name if the maximum length is exceeded. By default, sanitization and hashing do nothing and [need to be configured](/nservicebus/azure-service-bus/sanitization.md#automated-sanitization). 
+ * `ValidateAndHashIfNeeded`: removes invalid characters and hashes to reduce the length of an entity name if the maximum length is exceeded. By default, sanitization and hashing do nothing and [need to be configured](/nservicebus/azure-service-bus/sanitization.md#automated-sanitization).
 
 The default implementation of this strategy can be replaced by using the configuration API:
 
@@ -52,7 +52,7 @@ snippet:swap-sanitization-strategy
 
 #### Implementing a custom sanitization strategy
 
-Implementing a custom sanitization strategy requires a class that implements `ISanitizationStrategy`. This interface contains one method, called `Sanitize`, which provides access to the entity path in case the entity is a queue or topic (or name if the entity is a subscription or rule), and returns a string that should contain a cleaned up version of the entity path/name passed in. The entity type is passed in as second parameter and can be used to differentiate between queues, topics and subscription. 
+Implementing a custom sanitization strategy requires a class that implements `ISanitizationStrategy`. This interface contains one method, called `Sanitize`, which provides access to the entity path in case the entity is a queue or topic (or name if the entity is a subscription or rule), and returns a string that should contain a cleaned up version of the entity path/name passed in. The entity type is passed in as second parameter and can be used to differentiate between queues, topics and subscription.
 
 If the implementation of a sanitization strategy requires configuration settings, these settings can be accessed by letting NServiceBus inject the `ReadOnlySettings` into the constructor of the strategy.
 
@@ -103,7 +103,7 @@ snippet:custom-individualization-strategy-extension
 
 ### Namespace Partitioning
 
-The namespace partitioning aspect is represented by an implementation of `INamespacePartitioningStrategy`. 
+The namespace partitioning aspect is represented by an implementation of `INamespacePartitioningStrategy`.
 
 Out of the box there are 3 namespace partitioning strategies:
 

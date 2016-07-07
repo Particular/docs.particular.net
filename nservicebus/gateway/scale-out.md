@@ -22,11 +22,11 @@ With [brokered transports](/nservicebus/scalability-and-ha/scale-out.md#versions
 
 Use an HTTP Load Balancer(LB) to avoid hard-coding individual endpoint instance gateway HTTP addresses in the gateway senders. Configure sending endpoints to send to the LB and let the LB forward the traffic to the HTTP address of the selected endpoint instance.
 
-Handle HA requirements by setting the LB to fail over to another endpoint instance if it detects endpoint failure. 
+Handle HA requirements by setting the LB to fail over to another endpoint instance if it detects endpoint failure.
 
 ![Gateway with version 6 scaleout](/nservicebus/gateway/scaleoutv6.png)
 
 
 ## Caveats
 
-[Callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md) through the gateway are not supported on scaled-out endpoints. 
+[Callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md) through the gateway are not supported on scaled-out endpoints.

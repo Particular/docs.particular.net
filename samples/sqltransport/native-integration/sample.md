@@ -70,7 +70,7 @@ snippet:SendFromTSQL
 
 ### Using triggers to emit messages
 
-Sometimes legacy systems are not allowed to be modified. It is in this scenario where triggers are useful. 
+Sometimes legacy systems are not allowed to be modified. It is in this scenario where triggers are useful.
 
 Create a fictive `Orders` table using
 

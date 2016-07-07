@@ -11,7 +11,7 @@ A variety of persistence technologies are supported out of the box by NServiceBu
 
 This guide explains the various tasks involved in writing a custom persistence. The in-memory persistence, which comes out of the box with NServiceBus, is used to showcase a simple real-world implementation and explain the various concepts and discuss potential pitfalls. The source code for the in-memory persistence implementation can be found [here](https://github.com/Particular/NServiceBus/tree/4.6.5/src/NServiceBus.Core/Persistence/InMemory).
 
-The data persisted by NServiceBus needs to survive endpoint restarts, so it doesn't lose timeouts or important Saga data for example. All persister implementations provided by NServiceBus are durable, with the exception of the in-memory one which is used purely for testing. 
+The data persisted by NServiceBus needs to survive endpoint restarts, so it doesn't lose timeouts or important Saga data for example. All persister implementations provided by NServiceBus are durable, with the exception of the in-memory one which is used purely for testing.
 
 It is important to note writing a new persistence for NServiceBus does require a good knowledge of the underlying persistence technology used. Being familiar with its guarantees of consistency and durability, and its querying abilities, is very important.
 

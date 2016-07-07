@@ -24,7 +24,7 @@ In Azure Service Bus Versions 6 and below the default value for `MaxDeliveryCoun
 
 ### Elastic Scale
 
-The `MaxDeliveryCount` setting becomes a property on the Azure Service Bus entity. It can't be easily modified after the entity has been created. At the same time the number of instances can be changed just by dragging a slider in the Azure administration portal. 
+The `MaxDeliveryCount` setting becomes a property on the Azure Service Bus entity. It can't be easily modified after the entity has been created. At the same time the number of instances can be changed just by dragging a slider in the Azure administration portal.
 
 This becomes a problem when the number of instances exceeds what was originally planned. The messages can be dead lettered when the total retry value exceeds the value configured in `MaxDeliveryCount`, which was adjusted for a smaller number of instances.
 

@@ -88,5 +88,5 @@ snippet:NativeMessageHandler
 ## Things to note
 
  * The use of the `AzureServiceBus.ConnectionString` environment variable mentioned above.
- * The use of `UseSingleBrokerQueue` prevents the Azure Service Bus transport individualizing queue names by appending the machine name. 
+ * The use of `UseSingleBrokerQueue` prevents the Azure Service Bus transport individualizing queue names by appending the machine name.
  * Execute `Receiver` first to create destination queue `NativeSender` will need to send native messages.

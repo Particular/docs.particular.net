@@ -90,7 +90,7 @@ snippet: asb-backward-compatible-custom-sanitiaztion-strategy
 
 When implementing custom sanitization, consider factors such as readability and discover-ability. Things to consider:
 
- * Truncated long entity names could conflict. 
+ * Truncated long entity names could conflict.
  * Hashed entity names could lead to difficult names to use during production troubleshooting or debugging.
  * Sanitized entity names stay in the system and cannot be replaced until no longer used.
 

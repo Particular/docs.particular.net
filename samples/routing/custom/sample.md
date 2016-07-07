@@ -12,12 +12,12 @@ The sample demonstrates how NServiceBus routing model can be extended to allow f
  * handled messages;
  * published events.
 
-The advantage of no configuration approach is low development friction and simpler maintanance. The disadvantage is that the implementation is more complex. 
+The advantage of no configuration approach is low development friction and simpler maintanance. The disadvantage is that the implementation is more complex.
 
 
 ## Prerequisites
 
- 1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`. 
+ 1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
  1. Create database called `AutomaticRouting`.
 
 
@@ -42,7 +42,7 @@ The advantage of no configuration approach is low development friction and simpl
  1. Hit `<enter>` several times to send more messages.
  1. Notice that only every second message gets processed by Sales.1. Client still does not know that Sales.2 is down.
  1. Wait until consoles show that Sales.2 heartbeat timed out.
- 1. Hit `<enter>` several times to send more messages. 
+ 1. Hit `<enter>` several times to send more messages.
  1. Notice that all orders are now routed to Sales.1 queue.
 
 
@@ -89,12 +89,12 @@ Shipping and Billing mimic back-end systems subscribing to events published by S
 
 ### Shared project
 
-The shared project contains definitions for messages and the custom routing logic. 
+The shared project contains definitions for messages and the custom routing logic.
 
 
 ### Custom automatic routing
 
-The automatic routing is based on the idea of endpoints exchanging information about types of messages they handle and types of messages they publish. In this sample they share the information using a table in SQL Server database. Each endpoint instance owns one row. However, other solutions can be used (e.g. using tool like [Consul](https://www.consul.io/)). 
+The automatic routing is based on the idea of endpoints exchanging information about types of messages they handle and types of messages they publish. In this sample they share the information using a table in SQL Server database. Each endpoint instance owns one row. However, other solutions can be used (e.g. using tool like [Consul](https://www.consul.io/)).
 
 All the routing components are wired up using the following code:
 
@@ -143,7 +143,7 @@ In order to define custom routing it's necessary to add logical addresses of end
 
 snippet:AddDynamic
 
-All necessary information is stored in a *routing cache*, which consists of four parts. The first one is used in the [endpoint mapping layer](/nservicebus/messaging/routing.md#unicast-routing-endpoint-mapping-layer) and maps message types to sets of endpoints which are known (because they advertised this fact) to have handlers for these message types. 
+All necessary information is stored in a *routing cache*, which consists of four parts. The first one is used in the [endpoint mapping layer](/nservicebus/messaging/routing.md#unicast-routing-endpoint-mapping-layer) and maps message types to sets of endpoints which are known (because they advertised this fact) to have handlers for these message types.
 
 snippet:FindEndpoint
 

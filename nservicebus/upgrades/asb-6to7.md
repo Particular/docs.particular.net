@@ -29,9 +29,9 @@ snippet:setting_asb_connection_string
 
 ### Setting Entity Property Values
 
-The other configuration properties found on `AzureServiceBusQueueConfig` were related to the configuration of Azure Service Bus entities used under the hood. Even though the name implied differently, these settings were not only applied to queues, but also to topics and subscriptions. 
+The other configuration properties found on `AzureServiceBusQueueConfig` were related to the configuration of Azure Service Bus entities used under the hood. Even though the name implied differently, these settings were not only applied to queues, but also to topics and subscriptions.
 
-In the new configuration API the settings for queues, topics and subscriptions can be configured individually using the `Queues()`, `Topics()` and `Subscriptions()` extension points. 
+In the new configuration API the settings for queues, topics and subscriptions can be configured individually using the `Queues()`, `Topics()` and `Subscriptions()` extension points.
 
 For example the lock duration on a queue can be configured using the `LockDuration` setting:
 
@@ -57,7 +57,7 @@ In Versions 7 and above the topology selection is mandatory:
 
 snippet:topology-selection-upgrade-guide
 
-The [`EndpointOrientedTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-endpoint-oriented-topology)  is backward compatible with the Azure Service Bus transport Version 6 and below. The [`ForwardingTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-forwarding-topology) is the recommended option for new projects. 
+The [`EndpointOrientedTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-endpoint-oriented-topology)  is backward compatible with the Azure Service Bus transport Version 6 and below. The [`ForwardingTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-forwarding-topology) is the recommended option for new projects.
 
 When selecting `EndpointOrientedTopology`, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers are subscribed to the correct publisher:
 
@@ -67,7 +67,7 @@ For more details on topologies refer to the [Azure Service Bus Transport Topolog
 
 ## Sanitization
 
-In Versions 6 and below sanitization was performed by default and the MD5 algorithm was used to truncate entity names. In Versions 7 and above, the sanitization has to be enabled and configured explicitly. 
+In Versions 6 and below sanitization was performed by default and the MD5 algorithm was used to truncate entity names. In Versions 7 and above, the sanitization has to be enabled and configured explicitly.
 
 In order to maintain backward compatibility, [register a custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#backward-compatibility-with-versions-6-and-below).
 

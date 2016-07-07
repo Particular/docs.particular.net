@@ -26,7 +26,7 @@ Defaults:
 
 #### PeekInterval
 
-The amount of time that the transport waits before polling the input queue, in milliseconds. 
+The amount of time that the transport waits before polling the input queue, in milliseconds.
 Defaults: 50 ms
 
 
@@ -39,7 +39,7 @@ Defaults: 1000 ms (i.e. 1 second)
 
 #### PurgeOnStartup
 
-Instructs the transport to remove any existing messages from the input queue on startup. 
+Instructs the transport to remove any existing messages from the input queue on startup.
 
 Defaults: `false`, i.e. messages are not removed when endpoint starts.
 
@@ -47,7 +47,7 @@ Versions: 6 and below
 
 #### MessageInvisibleTime
 
-The [visibilitytimeout mechanism](https://msdn.microsoft.com/en-us/library/azure/dd179474.aspx), supported by Azure Storage Queues, causes the message to become *invisible* after read for a specified period of time. If the processing unit fails to delete the message in the specified time, the message will reappear on the queue. Then another process can retry the message. 
+The [visibilitytimeout mechanism](https://msdn.microsoft.com/en-us/library/azure/dd179474.aspx), supported by Azure Storage Queues, causes the message to become *invisible* after read for a specified period of time. If the processing unit fails to delete the message in the specified time, the message will reappear on the queue. Then another process can retry the message.
 
 Defaults: 30000 ms (i.e. 30 seconds)
 

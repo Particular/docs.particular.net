@@ -44,7 +44,7 @@ snippet:publisher-loop
 
 ### Additional entry to the list of subscribers
 
-For all the events published by the `MsmqPublisher` add a corresponding new entry in the Subscriptions table so that the `NativeMsmqToSql` endpoint will start to receive these events. 
+For all the events published by the `MsmqPublisher` add a corresponding new entry in the Subscriptions table so that the `NativeMsmqToSql` endpoint will start to receive these events.
 
 Run the `AddSubscriber.sql` script contained in this project to add a new entry for the `SomethingHappened` event to the Subscriptions table:
 
@@ -93,7 +93,7 @@ snippet:sqlrelay-handler
 ## Summary
 
  1. Create a new transactional queue that the MSMQ publisher will be sending its events to in addition to its current subscribers.
- 1. For all the events published by the `MsmqPublisher` add a corresponding new entry in the Subscriptions table. 
+ 1. For all the events published by the `MsmqPublisher` add a corresponding new entry in the Subscriptions table.
  1. The NativeMsmqToSql app will read the messages that arrive at this new transactional queue and write the corresponding message information in the SQL table of the SqlRelay endpoint.
  1. The SqlRelay endpoint receives the message and publishes the event for downstream SQL subscribers.
 

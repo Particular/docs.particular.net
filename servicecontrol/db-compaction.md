@@ -20,7 +20,7 @@ ServiceControl's embedded RavenDB database can be compacted in one of two ways. 
  * Note down the "DATA PATH" for the service.
 	![](managementutil-instance-datapath.png)
 
-WARNING: For the `esentutl` command line utility to work properly, ServiceControl service needs to be shutdown properly without any errors. 
+WARNING: For the `esentutl` command line utility to work properly, ServiceControl service needs to be shutdown properly without any errors.
 
 
 ### Step 2: Backup ServiceControl instance
@@ -72,7 +72,7 @@ Initiating DEFRAGMENTATION mode...
 
 ## Using ServiceControl in Maintenance Mode
 
-Use the following approach if problems are encountered while running the `EsentUtl` utility. 
+Use the following approach if problems are encountered while running the `EsentUtl` utility.
 
 ServiceControl 1.4 introduced a database maintenance feature which allows ServiceControl to be run with all features except for RavenDB Studio disabled. While in this mode no messages are ingested from the queuing system.
 
@@ -137,7 +137,7 @@ NOTE: At this point it is advisable to take a backup copy of the existing databa
 
  * Wait for the operation to complete.
 
- * After the operation has completed wait for the stale index count in the footer to indicate there are no stale indexes. 
+ * After the operation has completed wait for the stale index count in the footer to indicate there are no stale indexes.
 
 ![](import-database-step4.png)
 

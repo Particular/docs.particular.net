@@ -14,7 +14,7 @@ This sample shows appending the current username to outgoing messages and then e
 
 ### Fake Principle
 
-For demonstration purposes, prior to sending a message, the `Thread.CurrentPrincipal` will be replaced with a new instance. Normally in production the `Thread.CurrentPrincipal` would be either the impersonated user from IIS or the current user sending a message. 
+For demonstration purposes, prior to sending a message, the `Thread.CurrentPrincipal` will be replaced with a new instance. Normally in production the `Thread.CurrentPrincipal` would be either the impersonated user from IIS or the current user sending a message.
 
 snippet: SendMessage
 

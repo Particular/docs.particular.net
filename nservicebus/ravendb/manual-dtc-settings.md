@@ -47,7 +47,7 @@ In order to provide transaction safety, the following must be observed:
 
 ## Configuration by convention
 
-It can be cumbersome to manage these settings for multiple endpoints, so it is preferable to create a convention that will calculate a unique ResourceManagerId, and then use this value to create a storage location for TransactionRecoveryStorage as well. 
+It can be cumbersome to manage these settings for multiple endpoints, so it is preferable to create a convention that will calculate a unique ResourceManagerId, and then use this value to create a storage location for TransactionRecoveryStorage as well.
 
 snippet:RavenDBDtcSettingsByConvention
 

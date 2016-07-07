@@ -1,6 +1,6 @@
 ---
 title: Namespace hierarchy support
-summary: Configuring Azure Service Bus transport to support namespace hierarchies. 
+summary: Configuring Azure Service Bus transport to support namespace hierarchies.
 component: ASB
 tags:
 - Cloud

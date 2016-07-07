@@ -54,7 +54,7 @@ When configuring heartbeat interval, make sure Service Control setting [`Heartbe
 
 ### TTL
 
-When the plugin sends heartbeat messages, the default TTL is fixed to four times the configured value of the Heartbeat interval. 
+When the plugin sends heartbeat messages, the default TTL is fixed to four times the configured value of the Heartbeat interval.
 
 TTL is now configurable, as of Version 1.1.0
 

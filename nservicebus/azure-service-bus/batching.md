@@ -63,7 +63,7 @@ The default value for `MessageSizePaddingPercentage` is 5%. The custom percentag
 | 180K  | 247,201 | 261,149 | 6% |
 
 
-`BrokeredMessageBodyType` set to `SupportedBrokeredMessageBodyTypes.Stream`. 
+`BrokeredMessageBodyType` set to `SupportedBrokeredMessageBodyTypes.Stream`.
 `MessageSizePaddingPercentage` set to 5%
 
 | Single message payload size   | Size reported by the broker  | Estimated (padded) size | Increase |

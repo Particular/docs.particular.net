@@ -109,7 +109,7 @@ Additional parameters for `Invoke-ServiceControlInstanceUpgrade` may be required
 
 ### Licensing
 
-Add the license file to the registry by running the following cmdlet. 
+Add the license file to the registry by running the following cmdlet.
 
 ```ps
 Import-ServiceControlLicense <License-File>

@@ -13,7 +13,7 @@ When using the default configuration, SQL Server Transport assumes that all tabl
 The supported deployment options are:
 
  * **default**: all queues are stored in a single catalog and a single schema.
- * **multi-schema**: queues are stored in a single catalog but in more than one schema. 
+ * **multi-schema**: queues are stored in a single catalog but in more than one schema.
  * **multi-instance**: queues are stored in multiple catalogs on more than one SQL Server instance.
  * **multi-catalog**: queues are stored in multiple catalogs but on a single SQL Server instance. This mode is indirectly supported by using *multi-instance* option, and requires using DTC. In this document both options are covered under *multi-instance* term.
 
@@ -51,7 +51,7 @@ WARNING: The *multi-instance* option won't be supported in Versions 4 and higher
 
 WARNING: This option will not be supported in Versions 4 and above.
 
-SQL Server transport does not support store-and-forward mechanism natively. Therefore, if the receiving endpoint's infrastructure e.g. DTC or SQL Server instance is unavailable especially in a *multi-instance* mode, messages to the endpoint can't be delivered. The sending endpoint and all the other endpoints that depend on it will also be unavailable. The problem can be addressed by using the [Outbox](/nservicebus/outbox/) feature. 
+SQL Server transport does not support store-and-forward mechanism natively. Therefore, if the receiving endpoint's infrastructure e.g. DTC or SQL Server instance is unavailable especially in a *multi-instance* mode, messages to the endpoint can't be delivered. The sending endpoint and all the other endpoints that depend on it will also be unavailable. The problem can be addressed by using the [Outbox](/nservicebus/outbox/) feature.
 
 The Outbox feature can be used to avoid escalating transactions to DTC, when each endpoint has a separate database for storing queues and business data on the same SQL Server instance. However, it's not possible to avoid distributed transactions when any of the queues are on a different SQL Server instance or catalog. That means that in order to avoid escalation, each endpoint should have their dedicated error and audit queues.
 

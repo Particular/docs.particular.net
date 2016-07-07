@@ -41,7 +41,7 @@ Install ServicePulse using the [Particular Service Platform Installer](/platform
 
 ## Configuring ServicePulse
 
-ServicePulse connects to and relies on ServiceControl as its data source. 
+ServicePulse connects to and relies on ServiceControl as its data source.
 For details on ServiceControl and ServicePulse configuration options, see:
 
 * [Configuring ServiceControl](/servicecontrol/creating-config-file.md)

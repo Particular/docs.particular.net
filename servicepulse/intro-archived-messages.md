@@ -26,5 +26,5 @@ Each message on screen contains information about when it's scheduled for deleti
 
 ![Retention Countdown](images/archive-schedule.png)
 
-The archived message may be unarchived by clicking the Unarchive button. It will be then displayed in the [Failed Message Groups and Failed Messages screen](intro-failed-messages.md), where it can be retried or archived again. 
+The archived message may be unarchived by clicking the Unarchive button. It will be then displayed in the [Failed Message Groups and Failed Messages screen](intro-failed-messages.md), where it can be retried or archived again.
 ![Unarchive Select](images/archive-unarchive-select.png)

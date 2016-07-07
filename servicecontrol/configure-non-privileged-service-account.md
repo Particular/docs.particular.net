@@ -42,7 +42,7 @@ The installer will set the permissions to allow any member of the local Windows 
 
 These methods confirm that the user account has sufficient rights:
 
- * Configure and start the service as the user and then check the log files. 
+ * Configure and start the service as the user and then check the log files.
  * Interactively run ServiceControl as the user.
 
 

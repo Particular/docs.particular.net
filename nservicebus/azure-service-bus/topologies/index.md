@@ -48,7 +48,7 @@ The `EndpointOrientedTopology` topology has several drawbacks:
 
 ### Forwarding Topology
 
-The `ForwardingTopology` is a topology introduced in Version 7, that was designed to take advantage of several native broker features offered by the Azure Service Bus. Unlike `EndpointOrientedTopology`, it doesn't work with a single topic per publisher. All publishers use a single topic bundle. 
+The `ForwardingTopology` is a topology introduced in Version 7, that was designed to take advantage of several native broker features offered by the Azure Service Bus. Unlike `EndpointOrientedTopology`, it doesn't work with a single topic per publisher. All publishers use a single topic bundle.
 
 Subscriptions are created under topic bundle with one subscription entity per subscribing endpoint. Each subscription contains multiple rules; there's one rule per event type that the subscribing endpoint is interested in. This enables a complete decoupling between publishers and subscribers. All messages received by subscription are forwarded to the input queue of the subscriber.
 

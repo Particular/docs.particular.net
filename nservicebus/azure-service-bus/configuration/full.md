@@ -66,7 +66,7 @@ The following settings are available to define how queues should be created:
  * `EnablePartitioning(bool)`: Enables partitioning, defaults to `false`. For more information on partitioning refer to the [Partitioned messaging entities](https://azure.microsoft.com/en-us/documentation/articles/service-bus-partitioning/) article on MSDN.
  * `EnableBatchedOperations(bool)`: Enables server side batched operations, defaults to `true`.
  * `RequiresDuplicateDetection(bool)`: Specifies whether the queue should perform native broker duplicate detection, defaults to `false`.
- * `DuplicateDetectionHistoryTimeWindow(TimeSpan)`: The time period in which native broker duplicate detection should occur. 
+ * `DuplicateDetectionHistoryTimeWindow(TimeSpan)`: The time period in which native broker duplicate detection should occur.
  * `SupportOrdering(bool)`: Best effort message ordering on the queue, defaults to `false`.
  * `DescriptionFactory(Func<string, ReadOnlySettings, QueueDescription>)`: A factory method that allows to create a `QueueDescription` object from the Azure Service Bus SDK. Use this factory method to override any (future) setting that is not supported by the Queues API.
 
@@ -76,7 +76,7 @@ The following settings are available to define how queues should be created:
 The following settings are available to define how topics should be created:
 
  * `MaxSizeInMegabytes(SizeInMegabytes)`: The size of the topic, in megabytes. Defaults to 1,024 MB.
- * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message, defaults to `TimeSpan.MaxValue`. 
+ * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message, defaults to `TimeSpan.MaxValue`.
  * `AutoDeleteOnIdle(TimeSpan)`: Automatically deletes the topic if it hasn't been used for the specified time period. By default the topic will not be automatically deleted.
  * `EnableBatchedOperations(bool)`: Enables server side batched operations, defaults to `true`.
  * `EnableExpress(bool)`: Enables express mode, defaults to `false`. For more information refer to  the [TopicDescription.EnableExpress Property](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.topicdescription.enableexpress.aspx) documentation on MSDN.
@@ -84,7 +84,7 @@ The following settings are available to define how topics should be created:
  * `EnableFilteringMessagesBeforePublishing(bool)`: Enables filtering messages before they are published, which validates that subscribers exist before a message is published. Defaults to `false`.
  * `EnablePartitioning(bool)`: Enables partitioning, defaults to `false`. For more information on partitioning refer to the [Partitioned messaging entities](https://azure.microsoft.com/en-us/documentation/articles/service-bus-partitioning/) article on MSDN.
  * `RequiresDuplicateDetection(bool)`: Specifies whether the topic should perform native broker duplicate detection, defaults to `false`.
- * `DuplicateDetectionHistoryTimeWindow(TimeSpan)`: The time period in which native broker duplicate detection should occur. 
+ * `DuplicateDetectionHistoryTimeWindow(TimeSpan)`: The time period in which native broker duplicate detection should occur.
  * `SupportOrdering(bool)`: Best effort message ordering on the topic, defaults to `false`.
  * `DescriptionFactory(Func<string, ReadOnlySettings, TopicDescription>)`: A factory method that allows to create a `TopicDescription` object from the Azure Service Bus SDK. Use this factory method to override any (future) setting that is not supported by the Topics API.
 
@@ -93,7 +93,7 @@ The following settings are available to define how topics should be created:
 
 The following settings are available to define how subscriptions should be created:
  
- * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message, defaults to `TimeSpan.MaxValue`. 
+ * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message, defaults to `TimeSpan.MaxValue`.
  * `EnableBatchedOperations(bool)`: Enables server side batched operations, defaults to `true`.
  * `EnableDeadLetteringOnFilterEvaluationExceptions(bool)`: Dead letters messages when a filter evaluation doesn't match, defaults to `false`.
  * `EnableDeadLetteringOnMessageExpiration(bool)`: Dead letters messages when they expire.
@@ -110,7 +110,7 @@ The following settings are available to define how subscriptions should be creat
 The following settings determine how NServiceBus will connect to Azure Service Bus:
  
  * `NumberOfClientsPerEntity(int)`: NServiceBus maintains a pool of receive and send clients for each entity. This setting determines how big that pool is. Defaults to 5.
- * `ConnectivityMode(ConnectivityMode)`: Determines how NServiceBus connects to Azure Service Bus, using TCP or HTTP. Defaults to TCP. 
+ * `ConnectivityMode(ConnectivityMode)`: Determines how NServiceBus connects to Azure Service Bus, using TCP or HTTP. Defaults to TCP.
  * `BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes)`: Controls how the body of a brokered message will be serialized, either as a byte array or as a stream. Defaults to byte array.
  * `MessagingFactories()`: Provides access to settings of the used native instances of the class `MessagingFactory`. These settings will automatically apply to all `MessageReceiver` and `MessageSender` instances created by the `MessagingFactory`.
  * `MessageReceivers()`: Provides access to the settings of the `MessageReceiver` instances.
@@ -119,7 +119,7 @@ The following settings determine how NServiceBus will connect to Azure Service B
 
 ### Messaging Factories
 
-Messaging factories are the heart of connectivity management in the Azure Service Bus SDK. Each messaging factory maintains a TCP connection with the broker and creates `MessageSender` and `MessageReceiver` instances for that connection. This implies that all senders and receivers created by the same factory use the same underlying TCP connection and inherit the settings configured at the messaging factory level. 
+Messaging factories are the heart of connectivity management in the Azure Service Bus SDK. Each messaging factory maintains a TCP connection with the broker and creates `MessageSender` and `MessageReceiver` instances for that connection. This implies that all senders and receivers created by the same factory use the same underlying TCP connection and inherit the settings configured at the messaging factory level.
 
 The following settings allow to control the messaging factories:
 
@@ -189,7 +189,7 @@ Sanitization refers to the cleanup logic that converts invalid entity names into
 	 * `ThrowOnFailedValidation`: (default) throws an exception if the name is invalid.
 	 * `ValidateAndHashIfNeeded`: allows customization of sanitization without creating a new strategy.  
 
-`UseStrategy<T>()` can be used to customize the selected [sanitization](/nservicebus/azure-service-bus/sanitization.md) strategy or completely replace it. 
+`UseStrategy<T>()` can be used to customize the selected [sanitization](/nservicebus/azure-service-bus/sanitization.md) strategy or completely replace it.
 
 
 ### Individualization

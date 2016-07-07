@@ -43,20 +43,20 @@ snippet:delayed-delivery-datetime
 
 ## Caveats
 
-In order to use message deferral the Timeout Manager feature must be enabled. When deferring a message, it is sent to the timeout manager requesting it to deliver the message at a later time. 
+In order to use message deferral the Timeout Manager feature must be enabled. When deferring a message, it is sent to the timeout manager requesting it to deliver the message at a later time.
 
 snippet:configure-timeout-manager
 
 NOTE: In Versions 4, 5 and 6 Timeout Manager is enabled by default.
 
-NOTE: The sending endpoint must be running when the timeout is reached in order for the message to be sent. If the endpoint is not running when the timeout is reached then the message will be sent when the endpoint is next started. 
+NOTE: The sending endpoint must be running when the timeout is reached in order for the message to be sent. If the endpoint is not running when the timeout is reached then the message will be sent when the endpoint is next started.
 
 NOTE: If specifying a negative timeout or a time that is in the past then the message will still be slightly delayed. The message will not be sent until the timeout manager has processed the request.
 
 
 ## Persistence
 
-Delayed messages are persisted (stored in a durable storage) in a location specified for `Timeouts`. The messages will be stored for the specified delay time. Sample persistence configuration for Timeouts can be seen below. 
+Delayed messages are persisted (stored in a durable storage) in a location specified for `Timeouts`. The messages will be stored for the specified delay time. Sample persistence configuration for Timeouts can be seen below.
 
 snippet:configure-persistence-timeout
 

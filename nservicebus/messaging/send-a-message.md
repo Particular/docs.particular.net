@@ -69,7 +69,7 @@ snippet:BasicSendToThisInstance
 
 ## Influencing the reply behavior
 
-The sender of the message can also control how the reply messages are received. When a receiving endpoint replies to a message, by default the reply message will be routed to any instance of the sending endpoint. 
+The sender of the message can also control how the reply messages are received. When a receiving endpoint replies to a message, by default the reply message will be routed to any instance of the sending endpoint.
 
 To explicitly control the reply message to be dispatched to a particular instance:
 

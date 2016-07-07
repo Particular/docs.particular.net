@@ -30,7 +30,7 @@ snippet: 5to6-messagecontext
 
 ## Sending messages inside message handlers
 
-Instances of `IBus` that were being injected into message handler classes by the IoC container can be safely deleted. 
+Instances of `IBus` that were being injected into message handler classes by the IoC container can be safely deleted.
 
 The message handler signature now includes an additional `IMessageHandlerContext` parameter, which provides the methods that used to be called from `IBus`. Use the `IMessageHandlerContext` to send and publish messages from within the message handler.
 
@@ -86,7 +86,7 @@ This is no longer supported. It is advised to, instead of using `IBuilder` direc
 
 ### Setting the host information
 
-Control over `HostInformation` was previously done using `UnicastBus.HostInformation`. This is now done using a [more explicit API to set the host identifier](/nservicebus/hosting/override-hostid.md#how-do-i-override-an-endpoint-host-identifier) using the endpoint configuration. 
+Control over `HostInformation` was previously done using `UnicastBus.HostInformation`. This is now done using a [more explicit API to set the host identifier](/nservicebus/hosting/override-hostid.md#how-do-i-override-an-endpoint-host-identifier) using the endpoint configuration.
 
 snippet: 5to6-Specifying-HostId-Using-Api
 

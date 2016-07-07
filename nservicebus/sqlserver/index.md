@@ -59,7 +59,7 @@ NOTE: `Exactly once` message processing without distributed transactions can be 
 
 ### Security 
 
-Security considerations for SQL Server Transport should follow [the principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege). 
+Security considerations for SQL Server Transport should follow [the principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
 
 Each endpoint should use a dedicated SQL Server principal with `SELECT` and `DELETE` permissions on its input queue tables and `INSERT` permission on input queue tables of endpoints it sends messages to. Each endpoint should also have permissions to insert rows to audit and error queue tables.
 
@@ -85,14 +85,14 @@ The queue tables can be hosted in the same SQL Server catalog as business and pe
 
 The SQL Server transport is a good choice for a pilot project to prove feasibility of NServiceBus in a given organization as well as for a small, well-defined green field application. It usually requires nothing more than a single shared SQL Server instance.
 
-The best option is to store the queues in the same catalog as the business data. Schemas can be used to make maintenance easier. 
+The best option is to store the queues in the same catalog as the business data. Schemas can be used to make maintenance easier.
 
 
 ### Messaging framework for the enterprise
 
 For larger systems it usually makes more sense to have dedicated catalogs for business and persistence data per service or bounded context. NoSQL data stores can be used in some services, depending on data access requirements. The SQL catalogs might be hosted in a single instance of SQL Server or in separate instances depending on the IT policy.
 
-The best option is to have a dedicated catalog for the queues. This approach allows to use different scaling up strategies for the queue catalog. It also allows to use a dedicated backup policy for the queues (because data in queues are much more ephemeral). 
+The best option is to have a dedicated catalog for the queues. This approach allows to use different scaling up strategies for the queue catalog. It also allows to use a dedicated backup policy for the queues (because data in queues are much more ephemeral).
 
 In such a case local transactions are not enough to ensure `exactly-once` message processing. When required, one option is to use Microsoft Distributed Transaction Coordinator and distributed transactions (NServiceBus with SQL Server transport is DTC-enabled by default). In this mode the message receive transaction and all data modifications that result from processing the message are part of one distributed transaction that spans two SQL catalogs (possibly stored on two different instances).
 

@@ -11,7 +11,7 @@ reviewed: 2016-04-20
 
 When messages are received using `PeekLock` mode, the receive operation becomes a two-stage operation. The first stage, the message is locked by the broker for a specific consumer for a fixed period known as `LockDuration`. When the consumer is done with the message, the message is marked as completed by the consumer, indicating to the broker that second stage is finished. Default lock duration for the Azure Service Bus transport is set to 30 seconds. Maximum lock duration allowed by the broker service is 5 minutes. `LockDuration` is a global setting that is applied to all entities.
 
-Occasionally, processing can take longer than the maximum allowed time for `LockDuration`. As a result of that, messages will re-appear on the queue and will be available to other consumers. Azure Service Bus transport version 7 and above supports automatic message lock renewal. 
+Occasionally, processing can take longer than the maximum allowed time for `LockDuration`. As a result of that, messages will re-appear on the queue and will be available to other consumers. Azure Service Bus transport version 7 and above supports automatic message lock renewal.
 
 
 ## How does message lock renewal work?

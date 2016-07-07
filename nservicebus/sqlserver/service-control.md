@@ -26,7 +26,7 @@ Multi-instance deployment of the SQL Server transport requires that the Distribu
 
 snippet:sc-enabledtc-config
 
-NOTE: ServiceControl supports the DTC only for the SQL Server transport. The `EnableDtc` switch has no effect on other transports. 
+NOTE: ServiceControl supports the DTC only for the SQL Server transport. The `EnableDtc` switch has no effect on other transports.
 
 
 ### Multiple connection strings

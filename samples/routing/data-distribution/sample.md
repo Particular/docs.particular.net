@@ -12,13 +12,13 @@ The sample demonstrates how NServiceBus [routing](/nservicebus/messaging/routing
 
 ## Prerequisites
 
-Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/) section. 
+Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/) section.
 
 
 ## Running the project
 
  1. Start all the projects by hitting F5.
- 1. The text `Press <enter> to send a message` should be displayed in the Client.1 and Client.2 console windows. 
+ 1. The text `Press <enter> to send a message` should be displayed in the Client.1 and Client.2 console windows.
  1. Press `<enter>` a couple of times in both Client windows.
 
 

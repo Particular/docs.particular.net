@@ -107,7 +107,7 @@ This setting will default to `Warn` if an invalid value is assigned.
 
 #### ServiceControl/ExpirationProcessTimerInSeconds
 
-The number of seconds to wait between checking for expired messages. 
+The number of seconds to wait between checking for expired messages.
 
 Type: int
 
@@ -125,7 +125,7 @@ Default: `65512`.
 
 #### ServiceControl/HoursToKeepMessagesBeforeExpiring
 
-This setting is only applicable in Version 1.11.1 and below. 
+This setting is only applicable in Version 1.11.1 and below.
 
 In higher versions this setting can now be set via `ServiceControl/AuditRetentionPeriod`.
 

@@ -13,7 +13,7 @@ In Versions 5 and below NServiceBus scale out capabilities are dependent on the 
 
 ### MSMQ
 
-Because of limitations of MSMQ related to remote receive, in order to scale out an MSMQ Version 5 (and below) endpoint have to use the [distributor](/nservicebus/scalability-and-ha/distributor/). The role of the distributor is to forward incoming messages to a number of workers in order to balance the load. The workers are "invisible" to the outside world because all the outgoing messages contain the distributor's (not the worker's) address in the `reply-to` header. 
+Because of limitations of MSMQ related to remote receive, in order to scale out an MSMQ Version 5 (and below) endpoint have to use the [distributor](/nservicebus/scalability-and-ha/distributor/). The role of the distributor is to forward incoming messages to a number of workers in order to balance the load. The workers are "invisible" to the outside world because all the outgoing messages contain the distributor's (not the worker's) address in the `reply-to` header.
 
 The main issue with distributor is the throughput limitation due to the fact that, for each message forwarded to worker, there were additional two messages exchanged between the worker and the distributor.
 
@@ -38,7 +38,7 @@ Version 6 of NServiceBus comes with a unified scalability model which is based o
 
 When instance ID is assigned, NServiceBus spins up an additional receiver for the queue which name is based on that ID, e.g. if the endpoint name is `Sales` and instance ID is `Green` that instance will try to receive from queues `Sales` and `Sales-Green` (actual queue names depend on the underlying transport).
 
-It is up to the sender to choose if it is going to treat the endpoint as a whole (and send its messages to `Sales` queue) or address individual instances (e.g. `Sales-Red`, `Sales-Green`, `Sales-Blue`). 
+It is up to the sender to choose if it is going to treat the endpoint as a whole (and send its messages to `Sales` queue) or address individual instances (e.g. `Sales-Red`, `Sales-Green`, `Sales-Blue`).
 
 In the first case the the scaling out happens by means of competing consumers. In the second case it is realized by sender using a round-robin algorithm to balance the load on receiver instances. Both scale out approaches are supported by all transports, but some transports are better suited for one or the other.
 

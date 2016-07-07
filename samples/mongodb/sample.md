@@ -82,7 +82,7 @@ The data in MongoDB is stored in three different collections.
  * The connected saga ID is stored in a `SagaId` property.
  * The serialized data for the message is stored in a `State` property.
  * The scheduled timestamp for the timeout is stored in a `Time` property.
- * Any headers associated with the timeout are stored in an array of key value pairs. 
+ * Any headers associated with the timeout are stored in an array of key value pairs.
 
 ![](timeouts.png)
 

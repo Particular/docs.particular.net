@@ -16,7 +16,7 @@ NServiceBus is an abstraction over ASB. It takes advantage of ASB's built-in fea
 
 Note: Publish/Subscribe and Timeouts (including message deferral) are supported natively by the ASB transport and do not require NServiceBus persistence.
 
- * The main advantage of ASB is that it offers a highly reliable and low latency remote messaging infrastructure. A single message can be up to 256 KB in size, and a queue can store many messages at once, up to 5 GB size in total. Furthermore, it is capable of emulating local transactions using its queue [peek-lock mechanism](https://msdn.microsoft.com/en-us/library/azure/hh780722.aspx). 
+ * The main advantage of ASB is that it offers a highly reliable and low latency remote messaging infrastructure. A single message can be up to 256 KB in size, and a queue can store many messages at once, up to 5 GB size in total. Furthermore, it is capable of emulating local transactions using its queue [peek-lock mechanism](https://msdn.microsoft.com/en-us/library/azure/hh780722.aspx).
  * The main disadvantage of ASB is its dependency on TCP (for low latency), which may require opening outbound ports on the firewall. Additionally, in some systems the price for the service may get high ($1 per million messages).
 
 NOTE: As part of the Azure support for NServiceBus, one can choose between two transports provided by the Azure platform: Azure Storage Queues and Azure Service Bus. Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits the application's needs, review the Azure article [Azure Queues and Azure Service Bus Queues - Compared and Contrasted](https://azure.microsoft.com/en-us/documentation/articles/service-bus-azure-and-service-bus-queues-compared-contrasted/).
@@ -24,7 +24,7 @@ NOTE: As part of the Azure support for NServiceBus, one can choose between two t
 
 ## Enabling the Transport
 
-When creating the namespace at the Azure portal, choose Standard or Premium Messaging Tier for Azure Service Bus. 
+When creating the namespace at the Azure portal, choose Standard or Premium Messaging Tier for Azure Service Bus.
 
 In the solution reference `NServiceBus.Azure.Transports.WindowsAzureServiceBus` NuGet package.
 

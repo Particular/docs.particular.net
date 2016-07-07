@@ -174,7 +174,7 @@ Create a new class in the Subscriber project named `OrderCreatedHandler` using t
 
 snippet:OrderCreatedHandler
 
-The handler only logs the fact that the message was received. In a real system, a subscriber to `OrderPlaced` could charge a credit card for the order, start to prepare the order for shipment, or even update information in a customer loyalty database to track when the customer is eligible for different purchase-driven incentives. 
+The handler only logs the fact that the message was received. In a real system, a subscriber to `OrderPlaced` could charge a credit card for the order, start to prepare the order for shipment, or even update information in a customer loyalty database to track when the customer is eligible for different purchase-driven incentives.
 
 In fact, all of those activities could be handled by different subscribers to the same event. The fact that these disparate tasks can be accomplished in completely separate message handlers instead of one monolithic process is one of the many strengths of the Publish/Subscribe messaging pattern. Each subscriber is focused on one task, and any failure in one doesn't affect the others.
 

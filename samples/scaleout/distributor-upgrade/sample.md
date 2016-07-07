@@ -26,7 +26,7 @@ This sample uses the same solution as the Version 5 [distributor sample](/sample
 
 ### Adding stand-alone distributor
 
-Versions 6 and above no longer support running an embedded distributor so a separate project has to be added to the solution. 
+Versions 6 and above no longer support running an embedded distributor so a separate project has to be added to the solution.
 
 This new project is going to reference `NServiceBus` Version 5.X because distributor does not have a Version 6 compatible release. It also needs to reference the `NServiceBus.Distributor.MSMQ` package.
 

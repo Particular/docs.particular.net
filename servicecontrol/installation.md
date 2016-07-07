@@ -44,13 +44,13 @@ The installation of the NServiceBus Performance counters is optional for Service
 
 #### Using the ServiceControl Management Utility to upgrade ServiceControl instances.
 
-The ServiceControl Management Utility provides a simple means of setting up one or more instances of the ServiceControl service. For production systems it is recommended to limit the number of instances per machine to one. 
+The ServiceControl Management Utility provides a simple means of setting up one or more instances of the ServiceControl service. For production systems it is recommended to limit the number of instances per machine to one.
 
 WARNING: The ability to add multiple instances is primarily intended to assist development and test environments.
 
 The ServiceControl Management Utility can be launched automatically at the end of the installation process to enable adding or upgrading ServiceControl instances.
 
-The Management Utility will display the instances of the ServiceControl service installed. If the version of the binaries used by an instance are older that those shipped with the ServiceControl Management Utility an upgrade link will be shown against the version label. 
+The Management Utility will display the instances of the ServiceControl service installed. If the version of the binaries used by an instance are older that those shipped with the ServiceControl Management Utility an upgrade link will be shown against the version label.
 
 ![](managementutil-upgradelink.png)
 
@@ -71,6 +71,6 @@ If this is a new installation of ServiceControl click on the `Add New Instance` 
 
 #### Service Name and Plugins
 
-When adding the first instance of the ServiceControl service the default service name is "Particular.ServiceControl". It is possible choose to change this name to a custom service name. In doing so this is also changing the queue name associated with this instance of ServiceControl. 
+When adding the first instance of the ServiceControl service the default service name is "Particular.ServiceControl". It is possible choose to change this name to a custom service name. In doing so this is also changing the queue name associated with this instance of ServiceControl.
 
 The endpoint plugins such as the heartbeat and custom check plugins assume that the ServiceControl queue name is the default. If a custom service name was used then see [ServiceControl plugins](/servicecontrol/plugins) for more details on how to configure the endpoint plugins to use the custom queue name. 

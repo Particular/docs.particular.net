@@ -25,7 +25,7 @@ The native transaction support has been split into two different levels: `Receiv
 
 snippet:2to3-enable-native-transaction
 
-As shown in the above snippet, transaction settings are now handled in the transport level configuration. 
+As shown in the above snippet, transaction settings are now handled in the transport level configuration.
 
 For more details and examples refer to [Transaction configuration API](/nservicebus/upgrades/5to6.md#transaction-configuration-api) and [Transaction support](/nservicebus/transports/transactions.md) pages.
 
@@ -48,7 +48,7 @@ The handler needs to open its own connection to access the data but, assuming bo
 
 ### Multi-schema support
  
-The configuration API for [multi-schema support](/nservicebus/sqlserver/deployment-options.md#multi-schema) has now changed. The `Queue Schema` parameter is no longer supported in the config file and the code configuration API. 
+The configuration API for [multi-schema support](/nservicebus/sqlserver/deployment-options.md#multi-schema) has now changed. The `Queue Schema` parameter is no longer supported in the config file and the code configuration API.
 
 The schema for the configured endpoint can be specified using `DefaultSchema` method:
 
