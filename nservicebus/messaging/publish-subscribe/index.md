@@ -62,8 +62,7 @@ The subscribe workflow for persistence based transports is as follows
  1. Subscribers request to a publisher the intent to subscribe to certain message types.
  1. Publisher stores both the subscriber names and the message types in the persistence.
 
-<!--
-https://bramp.github.io/js-sequence-diagrams/
+<!-- https://bramp.github.io/js-sequence-diagrams/
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
 Subscriber1->Publisher: Subscribe to Message1
@@ -85,8 +84,7 @@ The publish workflow for persistence based transports is as follows
  1. Publisher queries the storage for a list of subscribers.
  1. Publisher loops through the list and sends a copy of that message to each subscriber.
 
-<!--
-https://bramp.github.io/js-sequence-diagrams/
+<!-- https://bramp.github.io/js-sequence-diagrams/
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
 Note over Publisher: bus.Publish()\nMessage1 occurs
@@ -118,8 +116,7 @@ The subscribe workflow for native transports is as follows
 
 Note that in this case the publisher does not interact in the subscribe workflow.
 
-<!--
-https://bramp.github.io/js-sequence-diagrams/
+<!-- https://bramp.github.io/js-sequence-diagrams/
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
 Participant Broker As Broker
@@ -139,8 +136,7 @@ The publish workflow for native transports is as follows
  1. Publisher sends the message to the Broker.
  1. Broker sends a copy of that message to each subscriber.
 
-<!--
-https://bramp.github.io/js-sequence-diagrams/
+<!-- https://bramp.github.io/js-sequence-diagrams/
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
 Participant Transport As Transport
