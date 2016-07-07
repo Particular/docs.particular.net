@@ -11,8 +11,7 @@
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             ComputeBoundComponent.BlocksForAFewMilliseconds();
-            // or Task.CompletedTask
-            return Task.FromResult(0);
+            return Task.FromResult(0);  // or Task.CompletedTask
         }
     }
     #endregion
