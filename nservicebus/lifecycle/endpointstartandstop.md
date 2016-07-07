@@ -17,7 +17,7 @@ NOTE: The endpoint instance keeps an internal list of instances which need to be
 
 ## Versions 6 and above
 
-The `IWantToRunWhenBusStartsAndStops` interface is no longer available.  
+The `IWantToRunWhenBusStartsAndStops` interface is no longer available. 
 
 When self-hosting, there are several options for equivalent behavior:
 

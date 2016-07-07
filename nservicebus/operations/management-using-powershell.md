@@ -44,8 +44,8 @@ The installation adds the NServiceBus.PowerShell module location to the `PSModul
 
 As most of the cmdlets require elevated privileges the module should be used in a PowerShell session that has been `Run As Administrator`.
 
-## Help 
- 
+## Help
+
 A list of available cmdlet can be found by issuing the following PowerShell command
 
 	Get-Command -Module NServiceBus.PowerShell

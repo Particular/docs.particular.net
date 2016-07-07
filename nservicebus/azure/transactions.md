@@ -120,7 +120,7 @@ In essence, using sagas is implementing a Distributed Transaction Coordinator th
  * Considering and implementing all possible variations and error conditions in a transaction is a non-trivial amount of work.
  * Effective implementation requires a good understanding of the business requirements. The implementation details are driven by business decisions more than technical considerations, so it's recommended to collaborate closely with business experts when designing sagas.
  * Sagas are stateful therefore the operation cannot be atomic. This needs to be taken into consideration when sagas are used in combination with atomic operations that cannot be batched. Operations against a Store should never be executed directly inside the saga itself. Instead, they should be executed by another handler and queued in between, to cater for idempotency at all levels.
- 
+
 
 ### Routing slips and compensation logic
 

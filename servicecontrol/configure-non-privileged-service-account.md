@@ -57,7 +57,7 @@ These methods confirm that the user account has sufficient rights:
 #### Method 2: Running the service interactively as a non-privileged user
 
 To run the service this way the user account must have rights to log on interactively on the computer.
- 
+
  1. Log on to the computer with admin privileges.
  1. Substitute the appropriate domain and user name.
  1. Issue the following command, entering the password when prompted:

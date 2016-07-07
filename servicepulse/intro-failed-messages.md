@@ -3,7 +3,7 @@ title: Failed Message Monitoring in ServicePulse
 summary: Describes how ServicePulse detects and monitors failed messages, and allows retrying, or archiving failing messages
 tags:
 - ServicePulse
-reviewed: 2016-03-02 
+reviewed: 2016-03-02
 related:
 - serviceinsight/managing-errors-and-retries
 ---

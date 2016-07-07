@@ -110,7 +110,7 @@ Mapping a message type to the destination endpoint is the logical side of the ro
 
 #### Static routes
 
-The most common way of specifying the type mapping is through static routes. Most of the times the routing should specify the destination endpoint 
+The most common way of specifying the type mapping is through static routes. Most of the times the routing should specify the destination endpoint
 
 snippet:Routing-StaticRoutes-Endpoint
 

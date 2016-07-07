@@ -27,7 +27,7 @@ snippet: specific-profile
 This is a simple helper that takes in a threshold as a parameter and configures logging based on that parameter.
 
 snippet:LoggingHelper
- 
+
 
 ### Profile Handlers
 

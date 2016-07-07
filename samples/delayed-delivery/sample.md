@@ -23,7 +23,7 @@ The `Shared` project is the container for shared classes including message defin
 
 ### PlaceOrder Command
 
-Used to place an order, used in Defer Message Handling scenario 
+Used to place an order, used in Defer Message Handling scenario
 
 snippet:PlaceOrder
 

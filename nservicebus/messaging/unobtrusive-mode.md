@@ -2,7 +2,7 @@
 title: Unobtrusive Mode Messages
 summary: No reference any NServiceBus assemblies from message assemblies.
 reviewed: 2016-03-21
-tags: 
+tags:
 - Conventions
 related:
  - nservicebus/messaging/messages-events-commands

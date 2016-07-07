@@ -76,7 +76,7 @@ Note: All endpoints in the same system must use the same serializer for the mess
 The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it.
 
 Defaults: In Versions 7 and above the value is dynamically calculated based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
- 
+
 `Degree of parallelism = square root of MaxConcurrency (rounded)`
 
 |`MaxConcurrency` | `DegreeOfReceiveParallelism` |

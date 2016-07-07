@@ -22,7 +22,7 @@ Particular.ServiceControl.1.7.0.exe /quiet
 Instances of the ServiceControl service can be deleted, added or upgraded via the Utility.
 
 
-#### Silently Add ServiceControl during installation 
+#### Silently Add ServiceControl during installation
 
 The following command line will silently install the ServiceControl Management and a ServiceControl instance.
 
@@ -55,10 +55,10 @@ In this example the ServiceControl Management Utility is silently installed and 
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl
 ```
 
-To specify multiple instances use a comma separated list: 
+To specify multiple instances use a comma separated list:
 
 ```dos
-Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl,ProdServiceControl 
+Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl,ProdServiceControl
 ```
 
 
@@ -98,7 +98,7 @@ NOTE: If the current configuration already has values for `ServiceControl/AuditR
 If the configuration does not contain the `ServiceControl/AuditRetentionPeriod` or `ServiceControl/HoursToKeepMessagesBeforeExpiring`setting the value for the audit retention period should be included as a command line value. If the configuration does contains an entry for  `ServiceControl/HoursToKeepMessagesBeforeExpiring` then that value will be migrated to `ServiceControl/AuditRetentionPeriod` and no command line option is required. The valid range for this property is documented in [configuration settings](creating-config-file.md).
 
 ```dos
-Particular.ServiceControl.1.13.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL AUDITRETENTION=30.0:0:0 
+Particular.ServiceControl.1.13.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL AUDITRETENTION=30.0:0:0
 ```
 
 NOTE: This value has a large impact on database size. Monitor the size of the ServiceControl database is recommended to ensure that this value is adequate.
@@ -109,7 +109,7 @@ NOTE: This value has a large impact on database size. Monitor the size of the Se
 If the configuration does not contain the `ServiceControl/ErrorRetentionPeriod` then the command line option is required. The valid range for this property is documented in [configuration settings](creating-config-file.md).
 
 ```dos
-Particular.ServiceControl.1.13.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL ERRORRETENTION=30.0:0:0 
+Particular.ServiceControl.1.13.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL ERRORRETENTION=30.0:0:0
 ```
 
 NOTE: This value has a large impact on database size. Monitor the size of the ServiceControl database is recommended to ensure that this value is adequate.
@@ -159,7 +159,7 @@ Add-Type -AssemblyName System.Configuration
 Import-Module 'C:\Program Files (x86)\Particular Software\ServiceControl Management\ServiceControlMgmt.psd1'
 
 $customSettings = @{
-    'ServiceControl/HeartbeatGracePeriod'='00:01:30'  
+    'ServiceControl/HeartbeatGracePeriod'='00:01:30' 
 }
 
 foreach ($sc in Get-ServiceControlInstances)

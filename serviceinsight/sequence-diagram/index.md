@@ -1,7 +1,7 @@
 ---
 title: Sequence Diagram
 summary: ServiceInsight Sequence Diagram view
-tags: 
+tags:
 - ServiceInsight
 - Sequence Diagram
 ---
@@ -119,5 +119,5 @@ What | Representation in ServiceInsight | Representation in UML
  | Represented as a short uni-directional arrow that does not connect to another endpoint lifeline and a specific icon next to its text label. | Represented by an arrow that connects back to the sending object's lifeline. It is immediately followed by its handler, which usually overlaps the handler that sent the loopback message.
 **Handlers** |  | ![UML handler](uml-handler.png)
  | N/A - currently it's not possible to collect telemetry data to visualize message handlers. | Represented by rectangles directly attached to arrow lines.
-**Message Processing** | ![Message processing](processing.png) | 
+**Message Processing** | ![Message processing](processing.png) |
  | Displayed as labeled rectangles disjointed from the arrows of its parent messages. This representation was chosen to reflect not only the default asynchronous nature of any associated response messages, but especially because of the execution/processing of parent messages which may only occur after several other messages were sent. | N/A

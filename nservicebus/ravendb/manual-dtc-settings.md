@@ -1,7 +1,7 @@
 ---
 title: Setting RavenDB DTC settings manually
 summary: Guidance on how to change the RavenDB ResourceManagerID and TransactionRecoveryStorage.
-tags: 
+tags:
  - RavenDB
  - Persistence
 redirects:

@@ -16,7 +16,7 @@ include: serviceinsight
 The ServiceInsight user interface provides multiple views of a distributed system. Using information collected in ServiceControl, ServiceInsight enumerates the endpoints and provides detailed message and relationship data, with formatted views of XML, JSON, and binary messages.
 
 The flow diagram provides a detailed visual overview of the messages, collated by conversation. Using this view the flow in the system and which endpoints raised specific events and sent or handled messages can be seen. The Saga view illustrates the start of a saga, the timeouts, and interactions. The sequence diagram shows the order in which messages have been sent and handled by endpoints in the system.
- 
+
 As endpoints are selected, the other views within ServiceInsight respond and filter the information to show only messages pertaining to that endpoint.
 
 

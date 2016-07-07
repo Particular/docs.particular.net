@@ -87,7 +87,7 @@ SQL Server transport supports the following [Transport Transaction Modes](/nserv
 
  * Transaction scope (Distributed transaction)
  * Transport transaction - Sends atomic with Receive
- * Transport transaction - Receive Only 
+ * Transport transaction - Receive Only
  * Unreliable (Transactions Disabled)
 
 

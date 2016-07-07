@@ -25,7 +25,7 @@ snippet:mutator
 ## The message send
 
 snippet:message
-  
+ 
 
 ## The Output
 

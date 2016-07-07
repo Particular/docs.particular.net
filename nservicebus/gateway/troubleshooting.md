@@ -38,7 +38,7 @@ netsh http add urlacl url=YourUrl user="YourMachine\EndpointUsername"
 
 For example
 
-```dos 
+```dos
 netsh http delete urlacl http://localhost:25894/MyEndpoint/
 netsh http add urlacl url=http://localhost:25894/MyEndpoint/ user="Machine\MyEndpointServiceAccount"
 ```

@@ -11,7 +11,7 @@ related:
 This sample uses the BSON serializer in the core.
 
 WARNING: In Versions 6 and above the built in BSON serializer has been deprecated. The [Newtonsoft serializer](/nservicebus/serialization/newtonsoft.md) can be used as a replacement
- 
+
 
 ## Configuring to use BSON
 

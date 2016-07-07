@@ -90,7 +90,7 @@ Logging is another kind of behavior that can be changed from one profile to anot
 
 The logging behavior configured for the three built-in profiles is shown:
 
-| Profile     | Appender     | Threshold 
+| Profile     | Appender     | Threshold
 |-------------|--------------|-----
 | Lite        | Console      | Debug
 | Integration | Console      | Info
@@ -125,7 +125,7 @@ The following table summarizes the different persistence technologies being used
 NOTE: Before configuring persistence technology, to avoid overriding custom configurations, the profiles check if other types of storage are used.
 
 |-                                |In-Memory|RavenDB			   |NHibernate   |MSMQ                         |
-|:--------------------------------|:--------|:---------------------|:------------|:----------------------------|                                        
+|:--------------------------------|:--------|:---------------------|:------------|:----------------------------|                                       
 |  Timeout                        |Lite     |Integration/Production|-            |Keeps a queue for management |
 |  Subscription                   |Lite     |Integration/Production|-            |-                            |
 |  Saga                           |Lite     |Integration/Production|-            |-    				           |

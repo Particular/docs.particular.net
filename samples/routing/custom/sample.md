@@ -108,17 +108,17 @@ http://www.planttext.com/planttext
 
 package "Client" {
     component [Routng\nSubscriber] as C_S
-    Component [Routing\nPublisher] as C_P 
+    Component [Routing\nPublisher] as C_P
 }
 
 package "Sales.1" {
     component [Routng\nSubscriber] as S1_S
-    Component [Routing\nPublisher] as S1_P 
+    Component [Routing\nPublisher] as S1_P
 }
 
 package "Sales.2" {
     component [Routng\nSubscriber] as S2_S
-    Component [Routing\nPublisher] as S2_P 
+    Component [Routing\nPublisher] as S2_P
 }
 
 database "SQL Server\n" {

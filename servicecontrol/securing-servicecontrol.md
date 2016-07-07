@@ -19,7 +19,7 @@ The information gathered, stored, and exposed by ServiceControl contains all the
 It is critical to limit access to the ServiceControl instance, including accessing its data through its clients (ServiceInsight and ServicePulse), and accessing directly through the HTTP API.
 
 
-### Post-Installation: Secure and Limited Access by Default 
+### Post-Installation: Secure and Limited Access by Default
 
 When installing ServiceControl, the default installation will limit access from the local host only. Any attempt to access the service's HTTP API from outside the machines on which it is installed results in an `access denied` message.
 

@@ -86,7 +86,7 @@ Continually send more messages and the load on the endpoint increases. This will
 
 The SLA Violation Countdown is the number of seconds left until the SLA for the particular endpoint is breached. So effectively SLA Violation Countdown is an inverse counter. Continually send message and the Critical Time will increase while the SLA Violation Countdown decreased.
 
-![](./sla-countdown.png) 
+![](./sla-countdown.png)
 
 
 ### Other counters
@@ -107,4 +107,4 @@ logger.InfoFormat("Hello from MyHandler. Slept for {0}ms", sleepTime);
 
 Run the end point and send some messages and monitor the results of all those performance counters.
 
-![](./other-counters.png) 
+![](./other-counters.png)

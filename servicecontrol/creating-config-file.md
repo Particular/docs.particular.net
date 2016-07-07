@@ -280,7 +280,7 @@ Type: bool `true` or `false`
 Default: There is no default. This setting needs to be specified.
 
 This entry should be set to `false` if there is no external process reading messages from the `Error Forwarding Queue`.
- 
+
 See [Installation](installation.md) for details on how to set this at install time.
 
 

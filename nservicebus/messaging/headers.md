@@ -85,7 +85,7 @@ The `MessageId` that caused this message to be sent.
 
 Message intent can have one of the following values:
 
-|               |             | 
+|               |             |
 | ------------- |-------------|
 | Send |Regular point-to-point send. Note that messages sent to Error queue will also have a `Send` intent|
 | Publish |The message is an event that has been published and will be sent to all subscribers.|
@@ -254,7 +254,7 @@ The [host details](/nservicebus/hosting/override-hostid.md) of the endpoint wher
  * `$.diagnostics.hostdisplayname`
  * `$.diagnostics.hostid`
  * `$.diagnostics.originating.hostid`
- 
+
 
 ### NServiceBus.TimeSent
 

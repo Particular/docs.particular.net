@@ -50,7 +50,7 @@ NOTE: Subscriptions and Timeouts persistence configurations have no effect when 
 
 
 #### Saga Configuration
-  
+ 
 When using XML-based configuration, the following properties can be set through the `AzureSagaPersisterConfig` section:
 
  * `ConnectionString`: Sets the connectionstring for the storage account to be used for storing saga information.

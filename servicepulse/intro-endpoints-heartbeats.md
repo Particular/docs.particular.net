@@ -45,7 +45,7 @@ For more details on how heartbeats are sent by an endpoint, see [ServiceControl 
 
 Only monitored endpoints are expected by ServicePulse to send heartbeat messages periodically. Unmonitored endpoints (i.e., endpoints marked in the ServicePulse configuration page as "unmonitored") may be sending heartbeats (depending on their specific configuration and whether the relevant plugins were installed for that endpoint) but these heartbeats messages are ignored by ServiceControl and ServicePulse as long as the endpoint is marked as an unmonitored endpoint in the ServicePulse configuration page.
 
-![Sets of Endpoints: Monitored (active and inactive) vs. Unmonitored, ](images/endpoints-sets-monitored-active.png)    
+![Sets of Endpoints: Monitored (active and inactive) vs. Unmonitored, ](images/endpoints-sets-monitored-active.png)   
 
 
 ### Detecting New Endpoints

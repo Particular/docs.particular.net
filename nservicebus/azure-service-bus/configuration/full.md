@@ -13,10 +13,10 @@ redirects:
 ## Full Configuration API
 
 The full configuration API can be accessed from the `UseTransport<AzureServiceBusTransport>()` extension method and provides low level access to various aspects of the transport's behavior.
- 
+
 
 ## Configuring The Topology
- 
+
 A topology defines what the underlying layout of Azure Service Bus messaging entities looks like, specifically what entities are used and how they relate to each other. There are 2 built-in topologies: `EndpointOrientedTopology` and `ForwardingTopology`. For more information refer to the [Topologies](/nservicebus/azure-service-bus/topologies) article.
 
  * `UseTopology<T>()`: Specifies which topology should be used by the transport, instantiating it using the default constructor.
@@ -31,7 +31,7 @@ The [Forwarding Topology](/nservicebus/azure-service-bus/topologies/#version-7-a
  * `NumberOfEntitiesInBundle(int)`: The number of topics in the bundle, defaults to 2.
  * `BundlePrefix(string)`: The prefix used in the entity name to differentiate entities from the bundle from other entities.
 
- 
+
 ### Endpoint Oriented Topology
 
 The [Endpoint Oriented Topology](/nservicebus/azure-service-bus/topologies/#version-7-and-above-endpoint-oriented-topology) defines a queue and a topic per endpoint. It can be configured using the following settings:
@@ -42,7 +42,7 @@ The [Endpoint Oriented Topology](/nservicebus/azure-service-bus/topologies/#vers
 
 ## Controlling Entities
 
-The topology will create entities it needs, based on the following settings: 
+The topology will create entities it needs, based on the following settings:
 
  * `Queues()`: Settings for queues.
  * `Topics()`: Settings for topics.
@@ -72,7 +72,7 @@ The following settings are available to define how queues should be created:
 
 
 ### Topics
- 
+
 The following settings are available to define how topics should be created:
 
  * `MaxSizeInMegabytes(SizeInMegabytes)`: The size of the topic, in megabytes. Defaults to 1,024 MB.
@@ -92,7 +92,7 @@ The following settings are available to define how topics should be created:
 ### Subscriptions
 
 The following settings are available to define how subscriptions should be created:
- 
+
  * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message, defaults to `TimeSpan.MaxValue`.
  * `EnableBatchedOperations(bool)`: Enables server side batched operations, defaults to `true`.
  * `EnableDeadLetteringOnFilterEvaluationExceptions(bool)`: Dead letters messages when a filter evaluation doesn't match, defaults to `false`.
@@ -103,12 +103,12 @@ The following settings are available to define how subscriptions should be creat
  * `MaxDeliveryCount(int)`: Sets the maximum delivery count, defaults to 10.
  * `AutoDeleteOnIdle(TimeSpan)`: Automatically deletes the subscription if it hasn't been used for the specified time period. By default the subscription will not be automatically deleted.
  * `DescriptionFactory(Func<string, string, ReadOnlySettings, SubscriptionDescription>)`: A factory method that allows to create a `SubscriptionDescription` object from the Azure Service Bus SDK. Use this factory method to override any (future) setting that is not supported by the Subscription API.
- 
+
 
 ## Controlling Connectivity
 
 The following settings determine how NServiceBus will connect to Azure Service Bus:
- 
+
  * `NumberOfClientsPerEntity(int)`: NServiceBus maintains a pool of receive and send clients for each entity. This setting determines how big that pool is. Defaults to 5.
  * `ConnectivityMode(ConnectivityMode)`: Determines how NServiceBus connects to Azure Service Bus, using TCP or HTTP. Defaults to TCP.
  * `BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes)`: Controls how the body of a brokered message will be serialized, either as a byte array or as a stream. Defaults to byte array.
@@ -127,7 +127,7 @@ The following settings allow to control the messaging factories:
  * `RetryPolicy(RetryPolicy)`: Determines how entities should respond on transient connectivity failures. Defaults to `RetryPolicy.Default`, which is an exponential retry.
  * `BatchFlushInterval(TimeSpan)`: This setting controls the batching behavior for message senders. They will buffer send operations during this time frame and send all messages at once. Defaults to 0.5 seconds. Specify `TimeSpan.Zero` to turn batching off.
  * `MessagingFactorySettingsFactory(Func<string, MessagingFactorySettings>)`: This factory method allows to override creation of messaging factories.
- 
+
 
 ### Message Receivers
 
@@ -158,14 +158,14 @@ The Azure Service Bus transport can guarantee transactional behavior by combinin
  * The source and destination are in the same namespace,
  * Messages are received using `ReceiveMode.PeekLock` mode,
  * The transport explicitly sends messages via the receive queue.
- 
+
 Enable the latter using the following configuration setting:
 
  * `SendViaReceiveQueue(bool)`: Uses the receive queue to dispatch outgoing messages when possible. Defaults to `true`.
 
  To learn more about the supported transactional behaviors in the Azure Service Bus transport, refer to the [Transaction Support in Azure](/nservicebus/azure-service-bus/transaction-support.md) article.
 
-  
+ 
 ## Physical Addressing Logic
 
 One of the responsibilities of the transport is determining the names and physical location of the entities. It is achieved by turning logical endpoint names into physical addresses of the Azure Service Bus entities, which is called *Physical Addressing Logic*. The following configuration settings allow to redefine this aspect of the transport:
@@ -176,7 +176,7 @@ One of the responsibilities of the transport is determining the names and physic
  * `NamespacePartitioning()`: Provides access to the settings that determine how entities are partitioned across namespaces.
  * `Composition()`: Provides access to the settings that determine how entities are composed inside a single namespace.
 
- 
+
 ### Sanitization
 
 Sanitization refers to the cleanup logic that converts invalid entity names into valid ones. "Validation rules" are the individual logic blocks used to determine if entity names are valid. The rules implementations vary depending on the namespace type, and are changing over time (in some cases without notice and update of the [relevant MSDN documentation](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/)). The default settings align with the recently created Standard namespaces.
@@ -187,7 +187,7 @@ Sanitization refers to the cleanup logic that converts invalid entity names into
  * `UseRulePathMaximumLength(int)`: The maximum length of a rule path (path = name), defaults to 50.
  * `UseStrategy<T>()`: An implementation of `ISanitizationStrategy` that handles invalid entity names. The following implementations exist:
 	 * `ThrowOnFailedValidation`: (default) throws an exception if the name is invalid.
-	 * `ValidateAndHashIfNeeded`: allows customization of sanitization without creating a new strategy.  
+	 * `ValidateAndHashIfNeeded`: allows customization of sanitization without creating a new strategy.
 
 `UseStrategy<T>()` can be used to customize the selected [sanitization](/nservicebus/azure-service-bus/sanitization.md) strategy or completely replace it.
 
@@ -200,7 +200,7 @@ Individualization is the logic for modifying an entity name, to allow for differ
 	 * `CoreIndividualization` (default): Makes no modifications, and relies on the individualization logic as defined in the NServiceBus core framework.
 	 * `DiscriminatorBasedIndividualization`: modifies the name of the endpoint by appending a discriminator value to the end.
 
- 
+
 ### Namespace Partitioning
 
 The settings that determine how entities are partitioned across namespaces:

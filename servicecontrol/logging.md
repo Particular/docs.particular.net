@@ -41,7 +41,7 @@ When Save is clicked the the service with be restarted to apply the change.
 ### Log File Names and Retention
 
 
-#### Versions 1.9 and below 
+#### Versions 1.9 and below
 
 The current log file is named `logfile.txt`. The log is rolled based on date only. When the log is rolled the old log is named `log.<sequencenumber>.txt`. The sequence number starts at 0. Higher numbers indicate more recent log files.
 
@@ -60,10 +60,10 @@ NOTE: The change in log naming will result in logs produced prior to Version 1.1
 
 ### Logging Levels
 
-Instances of the ServiceControl service write logging information and failed message import stack traces to the file system.  
+Instances of the ServiceControl service write logging information and failed message import stack traces to the file system. 
 
 
-#### Versions 1.8.3 and below 
+#### Versions 1.8.3 and below
 
 The default logging level is `Info`.
 

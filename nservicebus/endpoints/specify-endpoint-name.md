@@ -21,7 +21,7 @@ Define a convention in the endpoint initialization code using this:
 snippet:EndpointNameCode
 
 
-## When using the NServiceBus.Host.exe 
+## When using the NServiceBus.Host.exe
 
 
 ### Namespace convention

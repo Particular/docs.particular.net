@@ -28,7 +28,7 @@ Services in Microsoft Windows can be configured to depend on each other. Prior t
 
  * Load the Windows Services MMC snapin `Services.msc`,
  * Right click on `Message Queuing` in the list of services
- * Check the `Dependencies` Tab in the window to see if any dependencies exist  
+ * Check the `Dependencies` Tab in the window to see if any dependencies exist 
 
 Alternatively this can be done from PowerShell via the following command:
 
@@ -75,7 +75,7 @@ Reboot to finalize the changes.
 Reboot to finalize the changes.
 
 
-### Removal using DISM.exe 
+### Removal using DISM.exe
 
 `DISM.exe` is the command line tool Microsoft provides for enabling and disabling Windows Features such as the MSMQ subsystem on Windows 7, 8 and Windows Server 2008 and 2012.
 

@@ -47,7 +47,7 @@ snippet:2to3-enable-ambient-transaction
 The handler needs to open its own connection to access the data but, assuming both handler and the transport are configured to use the same connection string, there is no DTC escalation. SQL Server 2008 and later can detect that both connections target the same resource and merges the two transaction into a single lightweight transaction.
 
 ### Multi-schema support
- 
+
 The configuration API for [multi-schema support](/nservicebus/sqlserver/deployment-options.md#multi-schema) has now changed. The `Queue Schema` parameter is no longer supported in the config file and the code configuration API.
 
 The schema for the configured endpoint can be specified using `DefaultSchema` method:
@@ -56,7 +56,7 @@ snippet:sqlserver-singledb-multischema
 
 or by defining a custom connection factory:
 
-snippet:sqlserver-singledb-multidb-pull 
+snippet:sqlserver-singledb-multidb-pull
 
 The custom connection factory is also used for specifying schemas for other endpoints that the configured endpoint communicates with.
 When using configuration file to specify schemas for other endpoints, their schemas should be placed in the `MessageEndpointMappings` section and follow `endpoint-name@schema-name` convention:

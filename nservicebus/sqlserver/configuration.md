@@ -113,8 +113,8 @@ snippet:sqlserver-multischema-config-pull
 
 snippet:sqlserver-non-standard-schema-messagemapping
 
-Notice that in Versions 3 and higher the table and schema names can be passed either using common convention with square brackets, or without them.  
-  
+Notice that in Versions 3 and higher the table and schema names can be passed either using common convention with square brackets, or without them. 
+ 
 
 ## Custom SQL Server transport connection factory
 

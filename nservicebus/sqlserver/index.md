@@ -38,7 +38,7 @@ SQL Server transport uses SQL Server to store queues and messages. It doesn't us
  * When using SQL Server transport, a database table serves as a queue for the messages for the endpoints. These tables are polled periodically to see if messages need to be processed by the endpoints. Although the polling interval is one second, this may still lead to delays in when a message is picked up for processing. For environments where low latency is a requirement, rather than using SQL as a queuing transport, consider using other transports that use queuing technologies like RabbitMQ, MSMQ, etc.
 
 
-## Deployment considerations 
+## Deployment considerations
 
 The typical process hosting NServiceBus operates and manages three different kinds of data:
  * Transport data - queues and messages managed by the transport.
@@ -48,7 +48,7 @@ The typical process hosting NServiceBus operates and manages three different kin
 SQL Server Transport manages transport data, but it puts no constraints on the type and configuration of storage technology used for persistence or business data. It can work with any of the available persisters i.e. [NHibernate](/nservicebus/nhibernate) or [RavenDB](/nservicebus/ravendb/) for storing NServiceBus data, as well as any storage mechanisms for storing business datra.
 
 This section explains the important factors to consider when choosing technologies for managing business and persistence data to use in combination with the SQL Server transport.
- 
+
 NOTE: No matter what deployment options are chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside in a single SQL Server catalog**. Multi-instance/multi-catalog deployment topology is still available but is deprecated in version 3 of the SQL Server transport. It will be removed in version 4.
 
 ### Transactionality
@@ -57,7 +57,7 @@ SQL Server Transport supports all NServiceBus [transaction modes](/nservicebus/t
 NOTE: `Exactly once` message processing without distributed transactions can be achieved with any transport using [Outbox](/nservicebus/outbox/). It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage.
 
 
-### Security 
+### Security
 
 Security considerations for SQL Server Transport should follow [the principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
 

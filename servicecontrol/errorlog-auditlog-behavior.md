@@ -17,7 +17,7 @@ ServiceControl can also forward these messages to two forwarding queues.
 This behavior can be toggled through the ServiceControl Management utility.
 
 
-### Error and Audit Forwarding Queues 
+### Error and Audit Forwarding Queues
 
 The forwarding queues retain a copy of the original messages ingested by ServiceControl.
 

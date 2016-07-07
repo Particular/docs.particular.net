@@ -55,7 +55,7 @@ This model is recommended as it provides all the benefits of durable messaging b
 
 In cases where only have access to HTTP for connection between sites, it is possible to enable the NServiceBus Gateway on each site so it transmits messages from a queue in one site to a queue in another site, including the hash of the messages to ensure that the message is transmitted correctly. The following diagram shows how it works:
 
-![Gateway Headquarter to Site A](gateway-headquarter-to-site-a.png) 
+![Gateway Headquarter to Site A](gateway-headquarter-to-site-a.png)
 
 The sending process in site A sends a message to the gateway's input queue. The gateway then initiates an HTTP connection to its configured target site. The gateway in site B accepts HTTP connections, takes the message transmitted, hashes it, and returns the hash to site A. If the hashes match, the gateway in site B transmits the message it receives to a configured queue. If the hashes don't match, the gateway in site A re-transmits.
 

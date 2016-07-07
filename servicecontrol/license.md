@@ -22,7 +22,7 @@ The ServiceControl Management utility has a license user interface which will im
 
 To import a license using PowerShell:
 
-* Start the ServiceControl PowerShell Management Console from the start menu 
+* Start the ServiceControl PowerShell Management Console from the start menu
 * Execute the following cmdlet with the path to the license file.
 
 ```ps

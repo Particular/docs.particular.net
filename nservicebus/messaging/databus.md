@@ -110,7 +110,7 @@ So for example this path can be used in a Handler for a message containing datab
 
 snippet:HandlerThatCleansUpDatabus
 
- 
+
 ## Configuring AzureDataBus
 
 The following extension methods are available for changing the behavior of `AzureDataBus` defaults:

@@ -8,7 +8,7 @@ reviewed: 2016-03-02
 
 ServiceControl provides many capabilities such as endpoint monitoring, advanced debugging, and failed message management. These capabilities can be extended by adding optional [plugins](/servicecontrol/plugins/) into the endpoints being monitored. Each capability and plugin provides valuable information, but they have certain resource and performance costs.
 
-Hardware, peak and average message throughput, and number of endpoints in the system all have a large impact on the performance of ServiceControl. These factors can vary greatly between environments. Capabilities and plugins that provide value in one environment may have a negative impact if included in another environment. For example, the [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin provides additional information to support a development environment where message load is low. In a production environment, where there are many more saga instances to audit, the increased overhead is magnified and can have a significant performance impact.  
+Hardware, peak and average message throughput, and number of endpoints in the system all have a large impact on the performance of ServiceControl. These factors can vary greatly between environments. Capabilities and plugins that provide value in one environment may have a negative impact if included in another environment. For example, the [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin provides additional information to support a development environment where message load is low. In a production environment, where there are many more saga instances to audit, the increased overhead is magnified and can have a significant performance impact. 
 
 Each capability and plugin needs to be considered for each environment to determine if the value that it provides in that environment outweighs the costs that it imposes.
 
@@ -60,7 +60,7 @@ Once this baseline has been established, follow these steps:
  * For each endpoint, turn on any required Custom Checks and re-run the performance tests to assess impact.
 
 When an infrastructure outage occurs in a production environment it's possible that every message processed every endpoint may end up in the error queue. It can take ServiceControl some time to ingest all of these messages. Once ingested, a bulk retry operation will consume additional network and disk I/O above the usual requirements. It is important to simulate these conditions as a part of performance testing to ensure that these times and resources are catered for in recovery plans.
- 
+
 
 ## Anti-Virus Checks
 

@@ -2,7 +2,7 @@
 title: Message Throughput Throttling
 reviewed: 2016-06-09
 component: Core
-tags: 
+tags:
 - Throttling
 related:
 - samples/throttling
@@ -20,14 +20,14 @@ The solution consists of two endpoints; Sender and Limited. The reason two multi
 The Sender is a normal endpoint that sends the `SearchGitHub` message and the handles the reply `SearchResponse` message.
 
 
-### Sending 
+### Sending
 
 The message sending occurs at startup.
 
 snippet: Sending
 
 
-### Search Response 
+### Search Response
 
 Handling the reply.
 

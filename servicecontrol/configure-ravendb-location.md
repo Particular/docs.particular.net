@@ -8,7 +8,7 @@ tags:
 
 Each ServiceControl service stores its data in a RavenDB embedded database. The location of the database is set at install time.
 
-To see the current database location, open the ServiceControl Management Utility and the location is listed under the instance details.  
+To see the current database location, open the ServiceControl Management Utility and the location is listed under the instance details. 
 ![](managementutil-instance-datapath.png)
 
 

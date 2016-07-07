@@ -34,7 +34,7 @@ For 64-bit operating systems the license is written to both the 32-bit and 64-bi
 These following instructions cover installing the license file without using NServiceBus PowerShell Module. These options give a bit more flexibility as they support storing the the license in `HKEY_CURRENT_USER`. If the licenses is stored in `HKEY_CURRENT_USER` it is only accessible to the current user.
 
 
-##### Using PowerShell Command Prompt 
+##### Using PowerShell Command Prompt
 
 * Open an administrative PowerShell prompt.
 * Change the current working directory to where the license.xml file is.

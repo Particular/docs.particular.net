@@ -18,7 +18,7 @@ The flow of this samples is as follows
  * User performs some action on a webpage that triggers some JavaScript
  * JavaScript posts the message body to a specific URL
  * OWIN intercepts that post and passes to the bus middleware
- * The middleware takes the HTTP request, optionally deserializes it, and places it on the queue 
+ * The middleware takes the HTTP request, optionally deserializes it, and places it on the queue
 
 
 ## What is [OWIN](http://owin.org/)
@@ -127,7 +127,7 @@ snippet:msmqheaderserializer
 
 ## Comparing the two approaches
 
-|| Bus Based | Native MSMQ                                                                                                                                                         
+|| Bus Based | Native MSMQ                                                                                                                                                        
 |-|-|-|
 | Code Complexity         | Simple.                                                                                                 | Slightly more complicated since knowledge of the transport is required.                                                                                           |
 | Performance             | Slightly slower and uses more memory since every message needs to be deserialized before being sent to the Bus. | Slightly faster and less memory since no deserialization or translation needs to occur.                                                                          |

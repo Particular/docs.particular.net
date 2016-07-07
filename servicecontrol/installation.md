@@ -58,7 +58,7 @@ To upgrade the service just click the upgrade link next to the Service name
 
 Clicking the upgrade link will
 
- * Prompt for any additional information that is required such as values for new mandatory settings introduced in the newer version 
+ * Prompt for any additional information that is required such as values for new mandatory settings introduced in the newer version
  * Stop the Service
  * Remove the old binaries for ServiceControl and the configured Transport
  * Run the new binaries to create any required queues

@@ -7,7 +7,7 @@ reviewed: 2016-03-11
 The followings are example codes and scripts to facilitate deployment and operations against the SQL Server Transport.
 
 
-## Native Send 
+## Native Send
 
 
 ### The native send helper methods

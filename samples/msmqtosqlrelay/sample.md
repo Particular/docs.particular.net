@@ -49,7 +49,7 @@ For all the events published by the `MsmqPublisher` add a corresponding new entr
 Run the `AddSubscriber.sql` script contained in this project to add a new entry for the `SomethingHappened` event to the Subscriptions table:
 
 snippet:AddSubscriber
- 
+
 
 ## NativeMsmqToSql
 
@@ -64,7 +64,7 @@ When messages arrive in the `MsmqToSqlRelay` queue, they are read using .NET Mes
 
 snippet:receive-from-msmq-using-native-messaging
 
-When a message arrives at the queue, the body and the header of the message is extracted and [using SQL Client API](/nservicebus/sqlserver/operations-scripting.md), the information is stored in the SQL table, `SqlRelay`.  
+When a message arrives at the queue, the body and the header of the message is extracted and [using SQL Client API](/nservicebus/sqlserver/operations-scripting.md), the information is stored in the SQL table, `SqlRelay`. 
 
 snippet:read-message-and-push-to-sql
 
@@ -77,7 +77,7 @@ snippet:CreateDatabaseForSqlPersistence
 
  * References the `Shared` message schema.
  * Messages to this endpoint are being written natively by the `NativeMsmqToSql` program. Since no SQL endpoint is publishing the events,  this endpoint is configured to have its auto subscription for events turned off.
- * Has a handler for the event that does a publish in the handler, so that downstream SQL subscribers can receive the event.   
+ * Has a handler for the event that does a publish in the handler, so that downstream SQL subscribers can receive the event.  
 
 
 ### The SqlRelay configuration

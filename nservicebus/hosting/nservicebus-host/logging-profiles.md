@@ -28,9 +28,9 @@ These profiles are only placeholders for logging customization. If no customizat
 
 The logging behavior configured for the three built-in profiles is shown:
 
-| Profile     | Appender     | Threshold 
+| Profile     | Appender     | Threshold
 |-------------|--------------|-----
-| Lite        | Console      | Info                        
+| Lite        | Console      | Info                       
 | Integration | Console      | Info
 | Production  | Rolling File | Info
 

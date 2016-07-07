@@ -58,7 +58,7 @@ The MSMQ routing file contains additional attribute `Machine` which is necessary
 snippet:Routing-FileBased-MSMQ
 
 
-### Broker transports 
+### Broker transports
 
 The routing file for a broker transport does not need the `Machine` attribute but may contain other attributed specific to the transport technology. It also does not need to include non-scaled-out endpoints because NServiceBus assumes there is a single default instance of each endpoint (unless otherwise specified).
 

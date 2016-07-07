@@ -34,8 +34,8 @@ It is recommended that to periodically check that the endpoint (and its host) ca
  * In a store & forward pattern (MSMQ): can an endpoint hosted on one machine connect to another machine, on which another endpoint is located ?
  * In a broker pattern: can the endpoint connect to the broker (e.g., SQL Server)?
  * If required by the endpoint, can the endpoint connect to the local intranet?
- * If required by the endpoint, can the endpoint connect to the internet? 
- * If required by the endpoint, can the endpoint connect with the required security settings, credentials, and VPN software? 
+ * If required by the endpoint, can the endpoint connect to the internet?
+ * If required by the endpoint, can the endpoint connect with the required security settings, credentials, and VPN software?
 
 
 #### Storage

@@ -1,6 +1,6 @@
 ---
 title: Aborting Pipeline execution
-summary: How to tell NServiceBus to abort processing any more handlers in the pipeline 
+summary: How to tell NServiceBus to abort processing any more handlers in the pipeline
 tags:
 - Pipeline
 - Security

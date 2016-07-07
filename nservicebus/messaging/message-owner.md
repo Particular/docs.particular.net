@@ -92,7 +92,7 @@ To register all message types defined in an assembly with a specific namespace:
  * `Assembly` = `YourMessagesAssemblyName`
  * `Namespace` = `YourMessageNamespace`
  * `Endpoint` = `queue@machinename`
- 
+
 To register a specific type in an assembly:
 
  * `Assembly` = `YourMessagesAssemblyName`

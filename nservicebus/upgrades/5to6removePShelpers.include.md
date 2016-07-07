@@ -1,4 +1,4 @@
-## Visual Studio PowerShell helpers removed  
+## Visual Studio PowerShell helpers removed 
 
 In NServiceBus Version 3 and higher, there was a NuGet package that provided helpers to generate XML configuration sections using the PowerShell console in Visual Studio.
 
@@ -7,7 +7,7 @@ For example, running the `Add-NServiceBusAuditConfig ProjectName` command would 
 ```xml
 <configuration>
   <configSections>
-    <section name="AuditConfig" 
+    <section name="AuditConfig"
              type="NServiceBus.Config.AuditConfig, NServiceBus.Core" />
   </configSections>
   <AuditConfig QueueName="audit" />

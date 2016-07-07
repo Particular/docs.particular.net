@@ -57,7 +57,7 @@ snippet: RemoteSiteGatewayConfig
 
 
 ### PriceUpdatedHandler
-    
+   
 snippet: PriceUpdatedHandler
 
 

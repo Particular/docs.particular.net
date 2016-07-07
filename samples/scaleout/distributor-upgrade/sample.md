@@ -33,7 +33,7 @@ This new project is going to reference `NServiceBus` Version 5.X because distrib
 
 ### Writing the distributor code
 
-Following code is required to set up the distributor 
+Following code is required to set up the distributor
 
 snippet:DistributorCode
 

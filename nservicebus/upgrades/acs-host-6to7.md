@@ -52,7 +52,7 @@ The infrastructure backing profiles has been removed from the host and therefore
 Any code in custom profile handlers should be moved into the `IConfigureThisEndpoint` or `IConfigureThisHost` configuration extension points.
 
 
-## IWantToRunWhenEndpointStartsAndStops 
+## IWantToRunWhenEndpointStartsAndStops
 
 An interface called `IWantToRunWhenEndpointStartsAndStops` has been added. This interface replaces the [`IWantToRunWhenBusStartsAndStops`](/nservicebus/lifecycle/endpointstartandstop.md) in the NServiceBus core.
 
