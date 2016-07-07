@@ -6,7 +6,6 @@ namespace Core5.Errors.SecondLevel.CustomPolicy
 
     static class ErrorsHeadersHelper
     {
-
         internal static int NumberOfRetries(this TransportMessage transportMessage)
         {
             string value;
@@ -21,7 +20,6 @@ namespace Core5.Errors.SecondLevel.CustomPolicy
         {
             return transportMessage.Headers["NServiceBus.ExceptionInfo.ExceptionType"];
         }
-
     }
 
     #endregion
