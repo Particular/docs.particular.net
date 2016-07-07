@@ -32,7 +32,7 @@ SLR has two configurable items TimeIncrease and NumberOfRetries.
 The message will be retried on *any* available worker. Message processing is not sticky to the worker.
 
 
-### NServiceBus v5.x
+### NServiceBus Versions 5.x
 
 The SLR policy *NumberOfRetries* setting its is applied on *both* the distributor and workers, and the *TimeIncrease* setting is applied on the distributor.
 
@@ -41,14 +41,14 @@ When an error occurs the SLR policy is invoked immediately by the fault manager.
 When the retry limit is reached the message is  forwarded immediately to the error queue or else forwarded to the **.retries** queue and scheduled for retry. If the SLR policy output is that it needs to be retried then the message is forwarded to the **.retries** queue.
 
 
-### NServiceBus v4.x
+### NServiceBus Versions 4.x
 
 The SLR policy is only applied on the distributor for both *NumberOfRetries* and *TimeIncrease* settings.
 
 The distributor has a **.retries** queue where a message is forwarded to in case of an error. Then the distributor processes this message, when the retry limit has been reached the message will be forwarded to the error queue or else scheduled for retry by the distributor.
 
 
-### NServiceBus v3.x
+### NServiceBus Versions 3.x
 
 The SLR policy is applied *only* on the workers for both *TimeIncrease* and *NumberOfRetries* settings. If a SLR configuration is available on the distributor then these settings are ignored.
 

@@ -50,11 +50,11 @@
     #region HandlerWhichIntegratesWithAPM
     public class HandlerWhichIntegratesWithAPM : IHandleMessages<MyMessage>
     {
-        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var dependency = new DependencyWhichUsesAPM();
 
-            var result = await Task.Factory.FromAsync((callback, state) =>
+            return Task.Factory.FromAsync((callback, state) =>
             {
                 var d = (DependencyWhichUsesAPM) state;
                 return d.BeginCall(callback, state);
@@ -62,8 +62,7 @@
             {
                 var d = (DependencyWhichUsesAPM) rslt.AsyncState;
                 return d.EndCall(rslt);
-            }, dependency)
-            .ConfigureAwait(false);
+            }, dependency);
         }
     }
     #endregion
@@ -85,10 +84,10 @@
 
     public class HandlerWhichIntegratesWithRemotingWithAPM : IHandleMessages<MyMessage>
     {
-        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var asyncClient = new AsyncClient();
-            var result = await asyncClient.Run();
+            return asyncClient.Run();
         }
     }
 
@@ -125,9 +124,9 @@
 
     public class HandlerWhichIntegratesWithRemotingWithTask : IHandleMessages<MyMessage>
     {
-        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            var result = await Task.Run(() =>
+            return Task.Run(() =>
             {
                 var remoteService = new RemoteService();
                 return remoteService.TimeConsumingRemoteCall();
