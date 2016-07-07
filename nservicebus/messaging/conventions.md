@@ -4,6 +4,7 @@ summary: Custom conventions for defining how certain things are detected.
 tags:
 - Unobtrusive
 - Conventions
+component: Core
 related:
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/unobtrusive-mode
