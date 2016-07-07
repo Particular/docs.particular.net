@@ -16,6 +16,7 @@ redirects:
 - samples/sqltransport-nhpersistence-outbox-ef
 ---
 
+
 ## Prerequisites
 
  1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
@@ -30,7 +31,7 @@ redirects:
  1. The text `Press <enter> to send a message` should be displayed in the Sender's console window.
  1. Start the Receiver project (right-click on the project, select the `Debug > Start new instance` option).
  1. Hit `<enter>` to send a new message.
- 2.
+
 
 ## Verifying that the sample works correctly
 
@@ -60,6 +61,7 @@ snippet:SenderConfiguration
 The Sender uses a configuration file to tell NServiceBus where the messages addressed to the Receiver should be sent:
 
 snippet:SenderConnectionStrings
+
 
 ### Receiver project
 
