@@ -110,6 +110,8 @@
     <Compile Include="Handlers\AsyncHandler.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="Handlers\IntegrationWithNonTaskBasedAPI.cs" />
+    <Compile Include="MessageIdentity\MessageIdFromMutator.cs" />
+    <Compile Include="MessageIdentity\MessageIdSendOptions.cs" />
     <Compile Include="Notifications\SubscribeToNotifications.cs" />
     <Compile Include="Notifications\EventsToObservables.cs" />
     <Compile Include="Container\Custom\ContainerCustom.cs" />
