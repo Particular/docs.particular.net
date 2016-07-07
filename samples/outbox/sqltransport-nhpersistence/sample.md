@@ -61,11 +61,7 @@ This sample contains three projects:
 
 The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport with NHibernate persistence and Outbox.
 
-Connection strings in version 2.x are passed using app.config. The version 3.x sample demonstrates how to specify them using code API.
-
 partial:SenderConnectionStrings
-
-snippet:SenderConfiguration
 
 
 ### Receiver project

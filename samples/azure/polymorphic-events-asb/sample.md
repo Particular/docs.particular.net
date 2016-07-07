@@ -1,6 +1,5 @@
 ---
 title: Polymorphic events with Azure Service Bus Transport
-summary: Handling polymorphic events with Azure Service Bus Transport.
 component: ASB
 reviewed: 2016-05-03
 related:
@@ -77,9 +76,9 @@ snippet:SubscriberOutput
 
 To address this in general and allow proper handling of polymorphic events, `Subscriber` has do the following:
 
-1. Disable automatic subscription.
-1. Subscribe explicitly to the base events only of polymorphic events.
-1. Subscribe explicitly to the non-polymorphic events it's interested in.
+ 1. Disable automatic subscription.
+ 1. Subscribe explicitly to the base events only of polymorphic events.
+ 1. Subscribe explicitly to the non-polymorphic events it's interested in.
 
 snippet:DisableAutoSubscripton
 
