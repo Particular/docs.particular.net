@@ -123,9 +123,9 @@ NServiceBus polls the persister for timeouts by calling `GetNextChunk`, and prov
 
 In order to provide a custom timeout persister implementation:
 
- - In versions 4.x (starting from 4.4) and 5.x it is required to implement interfaces `IPersistTimeouts` and `IPersistTimeoutsV2`. The interface `IPersistTimeoutsV2` was introduced to prevent a potential message loss, while the `IPersistTimeouts` interface maintains backwards compatibility. More details can be found in the following [issue description](https://github.com/Particular/NServiceBus/issues/2885).
-  - The reference in-memory implementation of timeouts persistence for NServiceBus v4.x can be seen [here](https://github.com/Particular/NServiceBus/blob/support-4.4/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersistence.cs).
-  - The reference in-memory implementation of timeouts persistence for NServiceBus v5.x can be seen [here](https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersister.cs).
+ - In Versions 4.x (starting from 4.4) and 5.x it is required to implement interfaces `IPersistTimeouts` and `IPersistTimeoutsV2`. The interface `IPersistTimeoutsV2` was introduced to prevent a potential message loss, while the `IPersistTimeouts` interface maintains backwards compatibility. More details can be found in the following [issue description](https://github.com/Particular/NServiceBus/issues/2885).
+  - The reference in-memory implementation of timeouts persistence for NServiceBus Version 4.x can be seen [here](https://github.com/Particular/NServiceBus/blob/support-4.4/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersistence.cs).
+  - The reference in-memory implementation of timeouts persistence for NServiceBus Version 5.x can be seen [here](https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersister.cs).
  - Starting from Version 6.0 it is required to implement interfaces `IPersistTimeouts` and `IQueryTimeouts`. The interface `IQueryTimeouts` has been extracted from `IPersistTimeouts` in order to explicitly separate responsibilities.
   - The reference in-memory implementation of timeouts persistence for Version 6.0 can be seen [here](https://github.com/Particular/NServiceBus/blob/develop/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersister.cs).
 
@@ -139,7 +139,6 @@ An Outbox persister is implementing the following interface:
 ```cs
 /// <summary>
 /// Implemented by the persisters to provide outbox storage capabilities
-///
 /// </summary>
 public interface IOutboxStorage
 {

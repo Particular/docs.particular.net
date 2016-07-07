@@ -19,7 +19,7 @@ To get the best use of the tooling ensure that the following information is incl
 
 In order for NServiceBus to deserialize a message coming from a third party system, the message needs to contain information to allow NServiceBus to map the message to a message type. Depending on the serializer used by the receiving endpoint that information might be either provided in the message body or in a NServiceBus specific header.
 
-Embedding type info in the message body is currently supported by the default XmlSerializer and also the Json.NET serializer. The [RabbitMQ](/samples/rabbitmq/native-integration/) and [SQL](/samples/sqltransport/native-integration/) integration samples demonstrates this.
+Embedding type info in the message body is currently supported by the default XmlSerializer and also the Json.NET serializer. The [RabbitMQ](/samples/rabbitmq/native-integration/) and [SQL](/samples/sqltransport/native-integration/) native integration samples demonstrates this.
 
 If using a different serializer or if to avoid embedding type info in message bodies include the following header in message:
 
@@ -32,12 +32,12 @@ If set NServiceBus will instruct the serializer to deserialize the payload into 
 
 ## Additional information
 
-For NServiceBus v4 and above adds better debugging experience in ServiceInsight by providing the following additional headers. This information is necessary for including the external message in the diagrams.
+For NServiceBus Version 4 and above adds better debugging experience in ServiceInsight by providing the following additional headers. This information is necessary for including the external message in the diagrams.
 
 Header key  | Value
 ------------- | -------------
-NServiceBus.ConversationId  | Valid Guid, useful to tie in the whole message flow to get an accurate view in ServiceInsight, for example in a message flow or sequence diagrams. If not provided, then the external message won't be included in the conversation it started. ConversationId will be generated though for all the following messages sent using NServiceBus.
+NServiceBus.ConversationId  | Valid GUID, useful to tie in the whole message flow to get an accurate view in ServiceInsight, for example in a message flow or sequence diagrams. If not provided, then the external message won't be included in the conversation it started. ConversationId will be generated though for all the following messages sent using NServiceBus.
 NServiceBus.OriginatingEndpoint  | Name of the third party endpoint sending the message, for e.g. BizTalk.ProcessOrder
 NServiceBus.OriginatingMachine  | Server where the third party endpoint is located, for e.g. BizTalkServer
 
-The concept of conversation was introduced in NServiceBus v4, so it's not possible to include ConversationId header if using an earlier version. As a consequence, ServiceInsight won't be able to produce flow and sequence diagrams. However, it will display all the other information (messages list, message headers, body, etc.).
+The concept of conversation was introduced in NServiceBus Version 4, so it's not possible to include ConversationId header if using an earlier version. As a consequence, ServiceInsight won't be able to produce flow and sequence diagrams. However, it will display all the other information (messages list, message headers, body, etc.).

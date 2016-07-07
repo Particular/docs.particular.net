@@ -8,7 +8,7 @@ redirects:
  - nservicebus/using-ravendb-uninstalling-v4
 ---
 
-As of October 15, 2014 the Platform Installer no longer installs RavenDB Version 2.0 in a folder called "NServiceBus.Persistence.v4" under `Program Files` as a prerequisite since NServiceBus Version 5 no longer uses it as the default persistence - [see this document](installation.md). If previously installed this and want to remove it will be necessary to be done manually.
+As of 2014-10-15, the Platform Installer no longer installs RavenDB Version 2.0 in a folder called "NServiceBus.Persistence.v4" under `Program Files` as a prerequisite since NServiceBus Version 5 no longer uses it as the default persistence - [see RavenDB installation](installation.md). If previously installed this and want to remove it will be necessary to be done manually.
 
 
 ## Manual Removal Instructions

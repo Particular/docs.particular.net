@@ -2,8 +2,8 @@
 title: 'RavenDB Persistence: Installing RavenDB'
 summary: Article outlines various ways of installing RavenDB in different versions of NServiceBus. As of Version 5 it is mostly obsolete due to the fact that RavenDB is no longer part of the core.
 tags:
-- Persistence
-- RavenDB
+ - Persistence
+ - RavenDB
 redirects:
  - nservicebus/using-ravendb-in-nservicebus-installing
 ---
@@ -21,15 +21,15 @@ To use the default storage, ensure a RavenDB server is running to which the endp
 
 **NServiceBus Versions 5.x:** RavenDB is no longer auto-installed.
 
-**NServiceBus Versions 4.x:** The /installinfrastructure has been deprecated in Version 4.0 and above on NServiceBus.Host, and NServiceBus now expects RavenDB instance to be pre-installed and accessible to it. Use the [powershell commandlets](/nservicebus/operations/management-using-powershell.md) to install RavenDB on the needed servers. When the endpoints starts up, if the host is configured for RavenDB persistence and if the configured RavenDB persistence could not be contacted, then warnings will be logged.
+**NServiceBus Versions 4.x:** The`/installinfrastructure` has been deprecated in Version 4.0 and above on NServiceBus.Host, and NServiceBus now expects RavenDB instance to be pre-installed and accessible to it. Use the [powershell commandlets](/nservicebus/operations/management-using-powershell.md) to install RavenDB on the needed servers. When the endpoints starts up, if the host is configured for RavenDB persistence and if the configured RavenDB persistence could not be contacted, then warnings will be logged.
 
 **NServiceBus Versions 3.x:** RavenDB is included with the NServiceBus binaries (not ilmerged). When using the `/installinfrastructure` switch on the NServiceBus.Host at install time, the infrastructure installer ensures that RavenDB is installed on the local machine. The install is only performed if the following is true:
 
--   RavenDB persistence is configured for the endpoint
--   A custom connection string is not specified by the user
--   The current endpoint has no master node specified
--   Port 8080 is available
--   RavenDB is not already installed
+ * RavenDB persistence is configured for the endpoint
+ * A custom connection string is not specified by the user
+ * The current endpoint has no master node specified
+ * Port 8080 is available
+ * RavenDB is not already installed
 
 When a master node is defined, NServiceBus understands that all data will be stored on that designated server  instead. This means that the RavenDB server runs on that remote machine and not the local machine where the install is executed.
 
@@ -38,20 +38,20 @@ See also [Administration of a RavenDB server](http://ravendb.net/docs/search/lat
 
 ## Upgrading RavenDB
 
-To upgrade an existing RavenDB installation refer to the [RavenDB website article describing the upgrade process](http://ravendb.net/docs/search/latest/csharp?searchTerm=server-administration%20upgrade).
+To upgrade an existing RavenDB installation refer to the [RavenDB upgrade process](http://ravendb.net/docs/search/latest/csharp?searchTerm=server-administration%20upgrade).
 
 It is highly recommended to backup all databases before upgrading.
 
 
 ## Which versions of RavenDB are compatible?
 
-For a more detailed overview over the compatibility to RavenDB see also the [version compatibility](/nservicebus/ravendb/version-compatibility.md) documentation.
+For a more detailed overview over the compatibility see [RavenDB version compatibility](/nservicebus/ravendb/version-compatibility.md).
 
 [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) greater or equal Version 3.0.0 requires RavenDB Version 3.0 build 3660 or higher build number for Version 3.0.
 
 [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) smaller than Version 3.0.0 requires RavenDB Version 2.5 build 2908 or higher build number for Version 2.5.
 
-NOTE: If RavenDB 2.0 is already installed from a previous NServiceBus Version 4.0 or prior version and want to run Version 2.5, it can be uninstalled by finding the `Raven.Server.exe` executable on the machine and running it from the command line with /uninstall. [Read this document](uninstalling-v4.md) for full removal instructions. Note that the Version 2.5 download will be unlicensed, so a copy of the license.xml file will need to be taken from the Version 2.0 installation folder to the Version 2.5 installation folder. Contact Particular Software and request a Version 2.5 license file, or use a custom license file.
+NOTE: If RavenDB 2.0 is already installed from a previous NServiceBus Version 4.0 or prior version and want to run Version 2.5, it can be uninstalled by finding the `Raven.Server.exe` executable on the machine and running it from the command line with `/uninstall`. See [Uninstalling RavenDB](uninstalling-v4.md) for full removal instructions. Note that the Version 2.5 download will be unlicensed, so a copy of the license.xml file will need to be taken from the Version 2.0 installation folder to the Version 2.5 installation folder. Contact Particular Software and request a Version 2.5 license file, or use a custom license file.
 
 NServiceBus Version 4.0 is tested and compatible with RavenDB Version 2261 and RavenDB Version 2.
 

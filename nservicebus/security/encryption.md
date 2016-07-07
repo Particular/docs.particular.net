@@ -59,7 +59,17 @@ NOTE: If a key ID is not set then no encrypted messages can be send but received
 
 > Error: Encrypted message has no 'NServiceBus.RijndaelKeyIdentifier' header. Possibility of data corruption. Upgrade endpoints that send messages with encrypted properties.
 
-NOTE: Key IDs are only supported since v3.3.16+, v4.7.8+, v5.0.7, 5.1.5, 5.2.9 and newer. All previous versions support decrypting messages that have encrypted fragments but no key ID header.
+{{NOTE:
+Key IDs are only supported in the following versions
+
+ * 3.3.16+
+ * 4.7.8+
+ * 5.0.7+
+ * 5.1.5+
+ * 5.2.9 and newer
+
+All previous versions support decrypting messages that have encrypted fragments but no key ID header.
+}}
 
 
 #### Key ID naming strategy
@@ -74,12 +84,12 @@ Good strategies
 
 Bad strategies
 
- * Full hash of key (md5, sha-1, etc.)
+ * Full hash of key (MD5, SHA-1, etc.)
 
 
 NOTE: Random named key IDs DO NOT improve security as the key ID is not encrypted.
 
-NOTE: Timestamping do not weaken encryption. Messages already contain a timestamp that can be used to search for messages within a certain time range.
+NOTE: Timestamping does not weaken encryption. Messages already contain a timestamp that can be used to search for messages within a certain time range.
 
 
 ### Using the same key with and without a key ID
@@ -87,13 +97,13 @@ NOTE: Timestamping do not weaken encryption. Messages already contain a timestam
 If the `KeyIdentifier` attribute is set then this key will be used to decrypt message with a matching key ID but it will also be used to try decrypting messages without a key ID.
 
 
-#### Key format (v5+)
+#### Key format (Versions 5 and above)
 
 The key format can be specified in either *Base64* or *ASCII* format.
 
-With ASCII its not possible to use the full 8bit range of a byte as its a 7bit encoding and even then some characters need to be escaped which is not done resulting in even less characters. Meaning per byte only about 100 values are used. When useing 16 byte / 128 bit keys this means only about 100^16 combinations are possible versus 256^16.
+With ASCII its not possible to use the full 8 bit range of a byte as its a 7 bit encoding and even then some characters need to be escaped which is not done resulting in even less characters. Meaning per byte only about 100 values are used. When using 16 byte / 128 bit keys this means only about 100^16 combinations are possible versus 256^16.
 
-NOTE: Use Base64 whenever possible, ASCII 7bit keys are meant for backwards compatibility.
+NOTE: Use Base64 whenever possible, ASCII 7 bit keys are meant for backwards compatibility.
 
 
 ### Defining the encryption key
@@ -107,9 +117,9 @@ Note: The key specified must be the same in the configuration of all processes t
 
 Description        | Calculation| Combinations
 -------------------|------------|-------
-ASCII 16 characters| 125^16     |  3.55e+33 (7bits minus control characters)
-ASCII 24 characters| 125^24     |  2.11e+50 (7bits minus control characters)
-ASCII 32 characters| 125^32     |  1.26e+67 (7bits minus control characters)
+ASCII 16 characters| 125^16     |  3.55e+33 (7 bits minus control characters)
+ASCII 24 characters| 125^24     |  2.11e+50 (7 bits minus control characters)
+ASCII 32 characters| 125^32     |  1.26e+67 (7 bits minus control characters)
 Base64 16 bytes:   | 256^16     |  3.40e+38
 Base64 24 bytes:   | 256^24     |  6.27e+57
 Base64 32 bytes:   | 256^32     |  1.16e+77
@@ -136,7 +146,7 @@ For more info on `IProvideConfiguration` see [Customizing NServiceBus Configurat
 
 #### Configuration API
 
-NOTE: Defining encryption keys via the configuration API is only supported in Version 5 and above.
+NOTE: Defining encryption keys via the configuration API is only supported in Versions 5 and above.
 
 snippet:EncryptionFromCode
 

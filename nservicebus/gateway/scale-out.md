@@ -24,7 +24,7 @@ Use an HTTP Load Balancer(LB) to avoid hard-coding individual endpoint instance 
 
 Handle HA requirements by setting the LB to fail over to another endpoint instance if it detects endpoint failure.
 
-![Gateway with version 6 scaleout](/nservicebus/gateway/scaleoutv6.png)
+![Gateway with Version 6 scaleout](/nservicebus/gateway/scaleoutv6.png)
 
 
 ## Caveats

@@ -21,7 +21,7 @@ WARNING: The [saga de-duplication patch](/nservicebus/upgrades/asp-saga-deduplic
 
 ### How to know if a system may be affected
 
-This bug will affect any system that has ever used sagas and NServiceBus.Azure v6.2.4 or lower.
+This bug will affect any system that has ever used sagas and NServiceBus.Azure Versions 6.2.4 or below.
 
 
 ## Patch Requirements
@@ -31,7 +31,7 @@ To deploy this fix throughout a system, all endpoints will need to be upgraded a
 
 ### Upgrading endpoints
 
-All endpoints using NServiceBus.Azure will need to be upgraded to version 6.2.5 or higher.
+All endpoints using NServiceBus.Azure will need to be upgraded to Version 6.2.5 or above.
 
 
 ### Patching data

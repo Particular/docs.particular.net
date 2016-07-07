@@ -190,7 +190,7 @@ To invoke the infrastructure installers, run the host with the `/installInfrastr
 
 When using the NServiceBus host, installers are invoked as shown:
 
-| Command Line Parameters          | Infrastructure (v3.0 Only) Installers | Regular Installers
+| Command Line Parameters          | Infrastructure (Version 3.0 Only) Installers | Regular Installers
 |----------------------------------|:-------------------------------------:|:------------------:
 | /install NServiceBus.Production  | &#10004;                              | &#10004;
 | NServiceBus.Production           | &#10006;                              | &#10006;
