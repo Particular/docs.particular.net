@@ -1,6 +1,7 @@
 ﻿namespace Core6
 {
     using System;
+    using System.Diagnostics;
     using System.Runtime.Remoting.Messaging;
     using System.Threading;
     using System.Threading.Tasks;
@@ -48,6 +49,7 @@
     }
 
     #region HandlerWhichIntegratesWithAPM
+
     public class HandlerWhichIntegratesWithAPM : IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
@@ -55,17 +57,21 @@
             var dependency = new DependencyWhichUsesAPM();
 
             var result = await Task.Factory.FromAsync((callback, state) =>
-            {
-                var d = (DependencyWhichUsesAPM) state;
-                return d.BeginCall(callback, state);
-            }, rslt =>
-            {
-                var d = (DependencyWhichUsesAPM) rslt.AsyncState;
-                return d.EndCall(rslt);
-            }, dependency)
-            .ConfigureAwait(false);
+                {
+                    var d = (DependencyWhichUsesAPM) state;
+                    return d.BeginCall(callback, state);
+                }, rslt =>
+                {
+                    var d = (DependencyWhichUsesAPM) rslt.AsyncState;
+                    return d.EndCall(rslt);
+                }, dependency)
+                .ConfigureAwait(false);
+
+            // Use the result in some way
+            Trace.WriteLine(result);
         }
     }
+
     #endregion
 
     public class DependencyWhichUsesAPM
@@ -88,7 +94,10 @@
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var asyncClient = new AsyncClient();
-            var result = await asyncClient.Run();
+            var result = await asyncClient.Run()
+                .ConfigureAwait(false);
+            // Use the result in some way
+            Trace.WriteLine(result);
         }
     }
 
@@ -128,10 +137,13 @@
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var result = await Task.Run(() =>
-            {
-                var remoteService = new RemoteService();
-                return remoteService.TimeConsumingRemoteCall();
-            });
+                {
+                    var remoteService = new RemoteService();
+                    return remoteService.TimeConsumingRemoteCall();
+                })
+                .ConfigureAwait(false);
+            // Use the result in some way
+            Trace.WriteLine(result);
         }
     }
 
