@@ -84,6 +84,8 @@ snippet:AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings2
 `DefaultAccountName(string name)` maps a name of an account used by this endpoint.
 `AccountRouting().AddAccount(string accountName, string connectionString)` adds a mapping for other accounts, enabling using `@` notation for destination addresses `queue_name@accountName`.
 
+NOTE: The examples above use different default accounts' names to enable a coherent addressing. Using the same name, like `default` for all main accounts is highly discouraged as it introduces ambiguity in resolving addresses like `queue@default`. For example, when an address is interpreted as a reply address, the name `default` will point to a different connection string.
+
 ## Scale Units
 
 Scaleout works to a certain extent, but it cannot be applied infinitely while expecting throughput to increase accordingly. Only so much throughput from a single resource or group of resources grouped together is possible.
