@@ -11,14 +11,12 @@
         {
             #region CancelCallback
 
-            var sendOptions = new SendOptions();
-            var cancellationToken = new CancellationTokenSource();
-            sendOptions.RegisterCancellationToken(cancellationToken.Token);
-            cancellationToken.CancelAfter(TimeSpan.FromSeconds(5));
+            var cancellationTokenSource = new CancellationTokenSource();
+            cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(5));
             var message = new Message();
             try
             {
-                var response = await endpoint.Request<int>(message, sendOptions)
+                var response = await endpoint.Request<int>(message, cancellationTokenSource.Token)
                     .ConfigureAwait(false);
             }
             catch (OperationCanceledException)
