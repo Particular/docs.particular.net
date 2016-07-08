@@ -18,10 +18,10 @@ The gateway supports the following features:
  * Automatic retries
  * De-duplication of messages
  * Transport level encryption with SSL
- * Support for data bus properties with large payloads
- * Listening to multiple channels of different types
- * Included in every endpoint
- * Easily extensible with other channels
+ * Data bus for large payloads * 
+ * HTTP/HTTPS channel implementation
+ * It is possible to create additional channel types
+ * Can listen to multiple channels of different types
 
 
 ## Logically different sites
@@ -96,16 +96,3 @@ To disable retries in the gateway use the `DisableRetries` setting:
 snippet: GatewayDisableRetriesConfiguration
 
 When retries are disabled, any messages that fail to be sent to another site will be immediately routed to the configured error queue.
-
-
-## Custom Channel Types
-
-The Gateway includes an HTTP/HTTPS channel implementation, but it is possible to create additional channel types by implementing the `IChannelSender` and `IChannelReceiver` interfaces.
-
-NServiceBus will pass message data (headers and payload) to the configured `IChannelSender` which is responsible for transmitting this information over the desired channel to a receiving Gateway.
-
-`IChannelReceiver` must accept transmissions from the incoming channel and provide the incoming data to NServiceBus through a `DataReceivedOnChannelArgs` instance that is passed to a provided `Func<DataReceivedOnChannelArgs, Task>`.
-
-`IChannelSender` and `IChannelReceiver` implementations are not automatically registered through assembly scanning. The custom channel types must be registered using a channel factory `Func` through the `ChannelFactories` setting:
-
-snippet: GatewayChannelFactoriesConfiguration
