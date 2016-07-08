@@ -45,11 +45,11 @@ class Usage
         #region AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings1
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.ConnectionString("default_connection_string");
+        transport.ConnectionString("account_A_connection_string");
         transport.UseAccountNamesInsteadOfConnectionStrings();
-        transport.DefaultAccountName("default");
+        transport.DefaultAccountName("account_A");
         transport.AccountRouting()
-            .AddAccount("another", "another_connection_string");
+            .AddAccount("account_B", "account_B_connection_string");
 
         #endregion
     }
@@ -59,11 +59,11 @@ class Usage
         #region AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings2
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.ConnectionString("another_connection_string");
+        transport.ConnectionString("account_B_connection_string");
         transport.UseAccountNamesInsteadOfConnectionStrings();
-        transport.DefaultAccountName("another");
+        transport.DefaultAccountName("account_B");
         transport.AccountRouting()
-            .AddAccount("default", "default_connection_string"); 
+            .AddAccount("account_A", "account_A_connection_string");
 
         #endregion
     }
