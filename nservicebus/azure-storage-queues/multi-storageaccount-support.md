@@ -63,7 +63,7 @@ Each endpoint uses its own Azure storage account, thereby increasing message thr
 
 ## Securing connection strings to storage accounts for Scale Out
 
-[Securing connection strings to storage accounts](/nservicebus/azure-storage-queues/configuration.md#securing-connection-strings-to-storage-accounts) has been introduced in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Version 7. When using a single account, securing connection string is limited to calling `.UseAccountNamesInsteadOfConnectionStrings()`. When Scaling Out is applied, securing connection strings requires using logical names of the accounts.
+When the message throughput is increased by using multiple storage accounts, its worth to consider using their names instead of raw connection strings. When applied, raw connection string values are replaced with registered names removing the possibility of leaking a connection string value. The concept of [securing connection strings to storage accounts](/nservicebus/azure-storage-queues/configuration.md#securing-connection-strings-to-storage-accounts) has been introduced in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Version 7. When using a single account, securing connection string is limited to calling `.UseAccountNamesInsteadOfConnectionStrings()`. When Scaling Out is applied, securing connection strings requires using logical names of the accounts.
 Consider the following example:
 
 - two endpoints using different accounts `account_A` and `account_B` for their input queues
