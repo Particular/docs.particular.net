@@ -1,4 +1,5 @@
 ﻿// ReSharper disable SuggestVarOrType_Elsewhere
+
 using System;
 using NServiceBus;
 
@@ -45,11 +46,10 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("default_connection_string");
-        transport.UseAccountNamesInsteadOfConnectionStrings(mapping =>
-            {
-                mapping.MapLocalAccount("default");
-                mapping.MapAccount("another","another_connection_string");
-            });
+        transport.UseAccountNamesInsteadOfConnectionStrings();
+        transport.DefaultAccountName("default");
+        transport.AccountRouting()
+            .AddAccount("another", "another_connection_string");
 
         #endregion
     }
@@ -60,11 +60,10 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("another_connection_string");
-        transport.UseAccountNamesInsteadOfConnectionStrings(mapping =>
-            {
-                mapping.MapLocalAccount("another");
-                mapping.MapAccount("default", "default_connection_string");
-            });
+        transport.UseAccountNamesInsteadOfConnectionStrings();
+        transport.DefaultAccountName("another");
+        transport.AccountRouting()
+            .AddAccount("default", "default_connection_string"); 
 
         #endregion
     }
