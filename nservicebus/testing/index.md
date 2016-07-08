@@ -2,7 +2,6 @@
 title: Testing NServiceBus
 summary: Develop service layers and long-running processes using test-driven development.
 reviewed: 2016-03-31
-component: Testing
 redirects:
  - nservicebus/unit-testing
  - nservicebus/testing/unit-testing
