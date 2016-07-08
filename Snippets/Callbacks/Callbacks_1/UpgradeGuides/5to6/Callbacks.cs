@@ -5,7 +5,7 @@
 
     class Callbacks
     {
-        async Task Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, SendOptions sendOptions)
+        async Task Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint)
         {
             #region 5to6-Callbacks-InstanceId
             endpointConfiguration.ScaleOut().InstanceDiscriminator("uniqueId");
@@ -14,7 +14,7 @@
             #region 5to6-Callbacks
 
             var message = new RequestMessage();
-            var response = await endpoint.Request<ResponseMessage>(message, sendOptions)
+            var response = await endpoint.Request<ResponseMessage>(message)
                 .ConfigureAwait(false);
 
             #endregion
