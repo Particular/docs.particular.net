@@ -1,6 +1,6 @@
 ---
 title: ServicePulse
-reviewed: 2016-03-17
+reviewed: 2016-08-07
 related:
 - servicecontrol/setting-custom-hostname
 - servicecontrol/plugins
@@ -23,9 +23,9 @@ The Dashboard provides a visual overview of the current state of the monitored N
 
 ServicePulse automatically detects what endpoints exist in the system by analyzing metadata from audited messages. All detected endpoints by default will be listed in the Endpoints tab, but they won't be automatically monitored. 
 
-In order to monitor endpoints health and activity it is necessary to [configure them for monitoring](/servicepulse/how-to-configure-endpoints-for-monitoring).
+In order to monitor endpoints health and activity it is necessary to [configure them for monitoring](/servicepulse/how-to-configure-endpoints-for-monitoring.md).
 
-For more information about monitoring endpoints health refer to the [Endpoints and Heartbeats in ServicePulse](/servicepulse/intro-endpoints-heartbeats) article.
+For more information about monitoring endpoints health refer to the [Endpoints and Heartbeats in ServicePulse](/servicepulse/intro-endpoints-heartbeats.md) article.
 
  
 ## Failed messages
@@ -34,7 +34,7 @@ ServicePulse informs about the failed messages by showing in the Dashboard event
 
 The Failed Messages tab allows to inspect failed messages in more detail and to react to failures (by manually retrying or archiving messages). The messages are grouped by the exception type and the exception message to simplify group actions.
 
-For more information about monitoring message failures refer to the [Failed Message Monitoring in ServicePulse](/servicepulse/intro-failed-messages) and [Archived Message Management in ServicePulse](/servicepulse/intro-archived-messages) articles.
+For more information about monitoring message failures refer to the [Failed Message Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md) and [Archived Message Management in ServicePulse](/servicepulse/intro-archived-messages.md) articles.
 
 
 ## Custom checks
