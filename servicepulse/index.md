@@ -43,4 +43,4 @@ Endpoints health monitoring ensures that the endpoint is functional, meaning it 
 
 ServicePulse allows for developing Custom and Period Checks that can verify any required condition using custom C# code. If the specified condition won't be satisfied, ServicePulse will raise alerts.
 
-For more information about custom checks refer to the [Custom Check Monitoring in ServicePulse](/servicepulse/intro-endpoints-custom-checks) article.
+For more information about custom checks refer to the [Custom Check Monitoring in ServicePulse](/servicepulse/intro-endpoints-custom-checks.md) article.
