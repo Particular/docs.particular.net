@@ -86,7 +86,6 @@ partial:fakeHandler
 
 snippet:ObjectCallbackResponse
 
-
 partial:cancellation
 
 
