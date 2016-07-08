@@ -5,6 +5,7 @@ redirects:
  - nservicebus/introduction-to-the-gateway
 related:
  - samples/gateway
+reviewed: 2016-08-07
 ---
 
 The purpose of the gateway is to provide durable fire-and-forget messaging with NServiceBus across physically separated sites. Note that "sites" in this context mean distinct physical locations run using IT infrastructure, not web sites. The gateway should be only used for [logically different sites](#logically-different-sites) and use explicit messages for cross-site communication. It provides automatic de-duplication and retries, however publish-subscribe pattern is not supported.
