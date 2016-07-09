@@ -48,8 +48,8 @@ class Usage
         transport.ConnectionString("account_A_connection_string");
         transport.UseAccountNamesInsteadOfConnectionStrings();
         transport.DefaultAccountName("account_A");
-        transport.AccountRouting()
-            .AddAccount("account_B", "account_B_connection_string");
+        var accountRouting = transport.AccountRouting();
+        accountRouting.AddAccount("account_B", "account_B_connection_string");
 
         #endregion
     }
@@ -62,8 +62,8 @@ class Usage
         transport.ConnectionString("account_B_connection_string");
         transport.UseAccountNamesInsteadOfConnectionStrings();
         transport.DefaultAccountName("account_B");
-        transport.AccountRouting()
-            .AddAccount("account_A", "account_A_connection_string");
+        var accountRouting = transport.AccountRouting();
+        accountRouting.AddAccount("account_A", "account_A_connection_string");
 
         #endregion
     }
