@@ -13,7 +13,9 @@ Various features of NServiceBus require persistence.
  * [Gateway Deduplication](/nservicebus/gateway/)
  * [Sagas](/nservicebus/sagas/)
  * [Subscriptions](/nservicebus/sagas/)
- * [Timeouts](/nservicebus/sagas/#timeouts) (including message deferral and SLR)
+ * [Timeouts](/nservicebus/sagas/timeouts.md)
+ * [Deferral](/nservicebus/messaging/delayed-delivery.md)
+ * [Second Level Retries](/nservicebus/errors/automatic-retries.md)
  * [Outbox](/nservicebus/outbox/)
 
 
