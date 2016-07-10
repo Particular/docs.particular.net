@@ -135,13 +135,7 @@ This feature can be enabled by specifying `.UseAccountNamesInsteadOfConnectionSt
 
 snippet:AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
 
-When multiple accounts are used, they can have their connection string mapped to names, enabling sends to `queue@name`:
-
-snippet:AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings1
-snippet:AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings2
-
-NOTE: This feature is available in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 7 and above.
-
+See also [Securing connection strings to storage accounts for Scale Out](/nservicebus/azure-storage-queues/multi-storageaccount-support.md#securing-connection-strings-to-storage-accounts-for-scale-out)
 
 ## Hashing algorithms
 

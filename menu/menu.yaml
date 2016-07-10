@@ -200,6 +200,7 @@
         - "nservicebus/azure/transactions"
         - "nservicebus/azure-storage-queues/configuration"
         - "nservicebus/azure-storage-queues/performance-tuning"
+        - "nservicebus/azure-storage-queues/multi-storageaccount-support"
     -
       Title: "SQL Server Transport"
       Url: "nservicebus/sqlserver"
