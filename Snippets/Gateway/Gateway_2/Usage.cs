@@ -56,18 +56,6 @@ class Usage
         #endregion
     }
 
-    void GatewayChannelFactoriesConfiguration(EndpointConfiguration endpointConfiguration)
-    {
-        #region GatewayChannelFactoriesConfiguration
-
-        var gateway = endpointConfiguration.Gateway();
-        gateway.ChannelFactories(
-            senderFactory: channelType => new CustomChannelSender(),
-            receiverFactory: channelType => new CustomChannelReceiver());
-
-        #endregion
-    }
-
     void SendToSites(IEndpointInstance endpoint)
     {
         #region SendToSites
