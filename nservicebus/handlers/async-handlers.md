@@ -59,16 +59,19 @@ From a server perspective if asynchronous is compared to synchronous by just loo
 
 ## Calling short running compute-bound code
 
-Short running compute-bound code (a few milliseconds) that is executed in the handler should be executed directly on the IO-thread that is executing the handler code.
+Short running compute-bound code that is executed in the handler should be executed directly on the IO-thread that is executing the handler code.
 
 snippet: ShortComputeBoundMessageHandler
 
 Call the code directly and **do not** wrap it with a [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx) or [`Task.Factory.StartNew`](https://msdn.microsoft.com/en-au/library/dd321439.aspx).
 
+For the majority of business scenarios this approach is just fine since many of the asynchronous base class library methods in the .NET Framework will schedule continuations on the worker thread pool the likelyhood that no IO-thread is blocked is high.
 
 ## Calling long-running compute-bound code
 
-Long running compute-bound code (more than a hundred milliseconds) that is executed in a handler could be offloaded to the worker thread pool.
+WARN: This approach should only be used after a thorough analysis of the runtime behavior and the code involved in the call hierarchy of a handler. Wrapping code inside the handler with Task.Run or Task.Factory.StartNew can seriously harm the throughput if applied incorrectly. It should be used only in special cases.
+
+Long running compute-bound code that is executed in a handler could be offloaded to the worker thread pool.
 
 snippet: LongComputeBoundMessageHandler
 
