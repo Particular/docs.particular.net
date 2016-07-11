@@ -6,7 +6,7 @@
 
     class Usage
     {
-        async Task Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, SendOptions sendOptions, ILog log)
+        async Task Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, ILog log)
         {
             #region Callbacks-InstanceId
 
@@ -18,7 +18,7 @@
             #region ObjectCallback
 
             var message = new Message();
-            var response = await endpoint.Request<ResponseMessage>(message, sendOptions)
+            var response = await endpoint.Request<ResponseMessage>(message)
                 .ConfigureAwait(false);
             log.Info($"Callback received with response:{response.Property}");
 
