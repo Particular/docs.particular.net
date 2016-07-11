@@ -25,7 +25,8 @@ ServicePulse automatically detects what endpoints exist in the system by analyzi
 
 In order to monitor endpoints health and activity it is necessary to [configure them for monitoring](/servicepulse/how-to-configure-endpoints-for-monitoring.md).
 
-See also: [Endpoints and Heartbeats in ServicePulse](/servicepulse/intro-endpoints-heartbeats.md).
+**Learn more:**
+- [Endpoints and Heartbeats in ServicePulse](/servicepulse/intro-endpoints-heartbeats.md).
 
 
 ## Failed messages
@@ -34,7 +35,9 @@ ServicePulse informs about the failed messages by showing in the Dashboard event
 
 The Failed Messages tab allows inspection of failed messages in more detail and to react to failures (by manually retrying or archiving messages). The messages are grouped by the exception type and the exception message to simplify group actions.
 
-For more information about monitoring message failures refer to the [Failed Message Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md) and [Archived Message Management in ServicePulse](/servicepulse/intro-archived-messages.md) articles.
+**Learn more:**
+- [Failed Message Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md)
+- [Archived Message Management in ServicePulse](/servicepulse/intro-archived-messages.md)
 
 
 ## Custom checks
@@ -43,4 +46,5 @@ Endpoints health monitoring ensures that the endpoint is functional, meaning it 
 
 ServicePulse allows for developing Custom and Period Checks that can verify any required condition using custom .net code. If the specified condition cannot satisfied, ServicePulse will raise alerts.
 
-See also: [Custom Check Monitoring in ServicePulse](/servicepulse/intro-endpoints-custom-checks.md).
+**Learn more:**
+- [Custom Check Monitoring in ServicePulse](/servicepulse/intro-endpoints-custom-checks.md).
