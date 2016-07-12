@@ -1,5 +1,5 @@
 ---
-title: Using the RunHandlersUnderIncomingPrincipal API
+title: Run Under Incoming Principal
 reviewed: 2016-06-22
 component: Core
 related:
