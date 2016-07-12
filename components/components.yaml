@@ -257,7 +257,7 @@
     - NServiceBus.StructureMap
 
 - Key: Testing
-  Name: 
+  Name: Testing
   DocoUrl: nservicebus/testing
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Testing
