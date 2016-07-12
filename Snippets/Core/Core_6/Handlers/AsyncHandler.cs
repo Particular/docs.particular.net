@@ -21,7 +21,9 @@
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            return Task.Run(() => ComputeBoundComponent.BlocksForALongTime());
+            var longRunning1 = Task.Run(() => ComputeBoundComponent.BlocksForALongTime());
+            var longRunning2 = Task.Run(() => ComputeBoundComponent.BlocksForALongTime());
+            return Task.WhenAll(longRunning1, longRunning2);
         }
     }
     #endregion
