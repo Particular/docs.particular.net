@@ -54,8 +54,8 @@ public static class ErrorQueue
     {
         var headerBytes = (byte[])getResult.BasicProperties.Headers["NServiceBus.FailedQ"];
         var header = Encoding.UTF8.GetString(headerBytes);
-        // in Version 5 and below the machine name will be included after the @
-        // in Version 6 and above it will only be the queue name
+        // In Versions 3.3.1 and below the machine name will be included after the @
+        // In Versions 3.3.2 and above it will only be the queue name
         queueName = header.Split('@').First();
     }
 
