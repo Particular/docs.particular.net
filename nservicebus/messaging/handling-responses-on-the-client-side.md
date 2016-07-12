@@ -79,9 +79,7 @@ snippet:CallbackResponseMessage
 
 snippet:ObjectCallback
 
-Note: In Version 3 if no handler exists for a received message then NServiceBus will throw an exception. As such for this scenario to operate a fake message handler is needed on the callback side.
-
-snippet:FakeObjectCallbackHandler
+partial:fakeHandler
 
 
 #### Response
@@ -89,13 +87,7 @@ snippet:FakeObjectCallbackHandler
 snippet:ObjectCallbackResponse
 
 
-## Cancellation
-
-This API was added in the externalized Callbacks feature.
-
-The asynchronous callback can be canceled by registering a `CancellationToken` provided by a `CancellationTokenSource`. The token needs to be registered on the `SendOptions` as shown below.
-
-snippet:CancelCallback
+partial:cancellation
 
 
 ## When to use callbacks
@@ -110,19 +102,4 @@ When using callbacks in a ASP.NET Web/MVC/Web API, the NServiceBus callbacks can
 ## Message routing
 
 
-### NServiceBus.Callbacks Version 1 and above
-
-Callbacks are routed using general routing mechanism based on endpoint instance IDs. In order to use callbacks, instance ID needs to be explicitly specified in the requester endpoint configuration
-
-snippet:Callbacks-InstanceId
-
-This approach makes it possible to deploy multiple callback-enabled instances of a given endpoint to the same machine.
-
-WARNING: This ID needs to be stable and it should never be hardcoded. An example approach might be reading it from the configuration file or from the environment (e.g. role ID in Azure).
-
-
-### NServiceBus Versions 5 and below
-
-Callbacks are routed to queues based on the machine's hostname. On [broker transports](/nservicebus/transports/#types-of-transports-broker-transports) additional queues are created for each endpoint/hostname combination e.g. `Sales.MachineA`, `Sales.MachineB`. Callbacks do not require any additional queue configuration from the user.
-
-WARNING: When more than one instance, of a given endpoint, is deployed to the same machine, the responses might be delivered to the incorrect instance and callback never fires.
+partial:rout

@@ -1,7 +1,6 @@
 ---
 title: Configuration
 summary: Configuring the endpoint when hosting in Azure Cloud Services
-component: CloudServicesHost
 tags:
 - Azure
 - Cloud
