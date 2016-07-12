@@ -28,7 +28,8 @@ Further reading:
 #### Worker thread pool
 
 Parallel / Compute-bound blocking work happens on the worker thread pool. Things like [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx), [`Task.Factory.StartNew`](https://msdn.microsoft.com/en-au/library/dd321439.aspx), [`Parallel.For`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.parallel.for.aspx) schedule tasks on the worker thread pool.
-On the other hand, if compute bound work is scheduled the worker thread pool will start expanding its worker threads (ramp-up phase). Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
+
+Alternatively, if compute bound work is scheduled the worker thread pool will start expanding its worker threads (ramp-up phase). Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
 
 **Compute bound recommendations:**
 
@@ -54,7 +55,7 @@ Asynchronous code tends to use much less memory because the amount of memory sav
 
 If each request is examined in isolation, an asynchronous code would be slightly slower than the synchronous version. There might be extra kernel transitions, task scheduling, etc. involved. But the scalability more than makes up for it.
 
-From a server perspective if asynchronous is compared to synchronous by just looking at one method or one request at a time, then synchronous might make more sense. But if asynchronous is compared to parallelism - watching the server as a whole - asynchronous wins. Every worker thread that can be freed up on a server is worth freeing up! It reduces the amount of memory needed, frees up the CPU for compute-bound work while saturating the IO system completely.
+From a server perspective if asynchronous is compared to synchronous by looking at one method or one request at a time, then synchronous might make more sense. But if asynchronous is compared to parallelism - watching the server as a whole - asynchronous wins. Every worker thread that can be freed up on a server is worth freeing up! It reduces the amount of memory needed, frees up the CPU for compute-bound work while saturating the IO system completely.
 
 
 ## Calling short running compute-bound code
@@ -65,11 +66,12 @@ snippet: ShortComputeBoundMessageHandler
 
 Call the code directly and **do not** wrap it with a [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx) or [`Task.Factory.StartNew`](https://msdn.microsoft.com/en-au/library/dd321439.aspx).
 
-For the majority of business scenarios this approach is just fine since many of the asynchronous base class library methods in the .NET Framework will schedule continuations on the worker thread pool the likelyhood that no IO-thread is blocked is high.
+For the majority of business scenarios this approach is acceptable since many of the asynchronous base class library methods in the .NET Framework will schedule continuations on the worker thread pool the likelihood that no IO-thread is blocked is high.
+
 
 ## Calling long-running compute-bound code
 
-WARN: This approach should only be used after a thorough analysis of the runtime behavior and the code involved in the call hierarchy of a handler. Wrapping code inside the handler with Task.Run or Task.Factory.StartNew can seriously harm the throughput if applied incorrectly. It should be used when multiple long-running compute-bound tasks need to be executed in parallel.
+WARN: This approach should only be used after a thorough analysis of the runtime behavior and the code involved in the call hierarchy of a handler. Wrapping code inside the handler with Task.Run or `Task.Factory.StartNew` can seriously harm the throughput if applied incorrectly. It should be used when multiple long-running compute-bound tasks need to be executed in parallel.
 
 Long running compute-bound code that is executed in a handler could be offloaded to the worker thread pool.
 
@@ -83,7 +85,7 @@ Wrap the compute-bound code in a [`Task.Run`](https://msdn.microsoft.com/en-us/l
 
 ### Awaits the task
 
-For the majority of cases just mark the handler's Handle method with the `async` keyword and `await` all asynchronous calls inside the method.
+For the majority of cases it is sufficient to mark the handler's Handle method with the `async` keyword and `await` all asynchronous calls inside the method.
 
 snippet: HandlerAwaitsTheTask
 
@@ -103,7 +105,7 @@ By default when a task is awaited a mechanism called context capturing is enable
 
 snippet: HandlerConfigureAwaitNotSpecified
 
-In the snippet above `SomeAsyncMethod` and `AnotherAsyncMethod` are simply awaited. So when entering `SomeAsyncMethod` the context is captured and restored before `AnotherAsyncMethod` is executed. The context capturing mechanism is almost never needed in code that is executed inside handlers or sagas. NServiceBus makes sure the context is not captured in the framework at all. So the following approach is preferred:
+In the snippet above `SomeAsyncMethod` and `AnotherAsyncMethod` are awaited. So when entering `SomeAsyncMethod` the context is captured and restored before `AnotherAsyncMethod` is executed. The context capturing mechanism is almost never needed in code that is executed inside handlers or sagas. NServiceBus makes sure the context is not captured in the framework at all. So the following approach is preferred:
 
 snippet: HandlerConfigureAwaitSpecified
 
@@ -120,7 +122,7 @@ Task based APIs enable to better compose asynchronous code and making conscious 
 
 #### Batched
 
-By default, all outgoing message operations on the message handler contexts are [batched](/nservicebus/messaging/batched-dispatch.md). Batching means messages are kept in memory and sent out when the handler is completed. So the IO-bound work happens outside the execution scope of a handler (individual transports may apply optimizations). For a few outgoing message operations, it makes sense, to reduce complexity, to sequentially await all the outgoing operations as shown below.
+By default, all outgoing message operations on the message handler contexts are [batched](/nservicebus/messaging/batched-dispatch.md). Batching means messages are kept in memory and sent out when the handler is completed. So the IO-bound work happens outside the execution scope of a handler (individual transports may apply optimizations). For a few outgoing message operations it makes sense, to reduce complexity, to sequentially await all the outgoing operations as shown below.
 
 snippet: BatchedDispatchHandler
 
