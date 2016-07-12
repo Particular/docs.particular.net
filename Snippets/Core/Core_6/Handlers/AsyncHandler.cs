@@ -10,7 +10,7 @@
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            ComputeBoundComponent.BlocksForAFewMilliseconds();
+            ComputeBoundComponent.BlocksForAShortTime();
             return Task.FromResult(0);  // or Task.CompletedTask
         }
     }
@@ -21,18 +21,20 @@
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            return Task.Run(() => ComputeBoundComponent.BlocksForMoreThanHundredMilliseconds());
+            var longRunning1 = Task.Run(() => ComputeBoundComponent.BlocksForALongTime());
+            var longRunning2 = Task.Run(() => ComputeBoundComponent.BlocksForALongTime());
+            return Task.WhenAll(longRunning1, longRunning2);
         }
     }
     #endregion
 
     public class ComputeBoundComponent
     {
-        public static void BlocksForAFewMilliseconds()
+        public static void BlocksForAShortTime()
         {
         }
 
-        public static void BlocksForMoreThanHundredMilliseconds()
+        public static void BlocksForALongTime()
         {
         }
     }
@@ -43,7 +45,7 @@
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var task = SomeLibrary.SomeAsyncMethod(message);
-            
+
             return task;
         }
     }
