@@ -41,13 +41,13 @@ The way to address them is go through the upgrade guide linked above.
 
 Azure Storage Persistence supports exactly the same set of types as [Azure Table Storage](https://msdn.microsoft.com/library/azure/dd179338.aspx). The supported types are following:
 
-1. `byte[]`
-2. `bool`
-3. `DateTime`
-4. `Guid`
-5. `int`
-6. `long`
-7. `double`
-8. `string`
+ 1. `byte[]`
+ 1. `bool`
+ 1. `DateTime`
+ 1. `Guid`
+ 1. `int`
+ 1. `long`
+ 1. `double`
+ 1. `string`
 
 When a saga containing a property of an unsupported type is persisted, an exception containing a following information is thrown: `The property type 'Your_property_name' is not supported in windows azure table storage`. If an object of a complex type is required to be stored, then it's a user responsibility to serialize/deserialize the value.
