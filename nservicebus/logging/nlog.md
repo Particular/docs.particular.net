@@ -11,7 +11,7 @@ related:
 
 Support for [NLog](http://nlog-project.org/) is available starting with NServiceBus Versions 5 and above.
 
-The [NServiceBus.NLog NuGet package](https://www.nuget.org/packages/NServiceBus.NLog/) facilitates logging in the endpoint using NLog.
+The [NServiceBus.NLog NuGet package](https://www.nuget.org/packages/NServiceBus.NLog/) facilitates logging of all NServiceBus entries in the endpoint using NLog.
 
 
 ## Usage
