@@ -50,4 +50,4 @@ Azure Storage Persistence supports exactly the same set of types as [Azure Table
  1. `double`
  1. `string`
 
-When a saga containing a property of an unsupported type is persisted, an exception containing a following information is thrown: `The property type 'Your_property_name' is not supported in windows azure table storage`. If an object of a complex type is required to be stored, then it's a user responsibility to serialize/deserialize the value.
+When a saga containing a property of an unsupported type is persisted, an exception containing a following information is thrown: `The property type 'the_property_name' is not supported in windows azure table storage`. If an object of a complex type is required to be stored, then it's a user responsibility to serialize/deserialize the value.
