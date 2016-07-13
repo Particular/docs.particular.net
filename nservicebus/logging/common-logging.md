@@ -1,6 +1,6 @@
 ---
-title: Routing to CommonLogging
-summary: Route all NServiceBus log entries to CommonLogging.
+title: CommonLogging
+summary: Logging all NServiceBus entries using CommonLogging.
 reviewed: 2016-03-17
 tags:
 - Common Logging
@@ -8,9 +8,9 @@ related:
 - samples/logging/commonlogging
 ---
 
-Support for routing log entries to CommonLogging is compatible with NServiceBus 5 and above.
+Support for using [CommonLogging](http://netcommon.sourceforge.net/) is available starting with NServiceBus Versions 5 and above.
 
-There is a [nuget](https://www.nuget.org/packages/NServiceBus.CommonLogging/) package available that allows for simple integration of NServiceBus and [CommonLogging](http://netcommon.sourceforge.net/).
+The [NServiceBus.CommonLogging NuGet package](https://www.nuget.org/packages/NServiceBus.CommonLogging/) facilitates logging of all NServiceBus entries in the endpoint using CommonLogging.
 
 
 ## Usage

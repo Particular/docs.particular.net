@@ -1,6 +1,6 @@
 ---
-title: Routing to NLog
-summary: Route all NServiceBus log entries to NLog.
+title: NLog
+summary: Logging using NLog.
 reviewed: 2016-03-17
 tags:
 - Logging
@@ -9,9 +9,9 @@ related:
 - samples/logging/nlog-custom
 ---
 
-Support for routing log entries to [NLog](http://nlog-project.org/) is compatible with NServiceBus 5 and above.
+Support for [NLog](http://nlog-project.org/) is available starting with NServiceBus Versions 5 and above.
 
-There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) package available that allows for simple integration of NServiceBus and NLog.
+The [NServiceBus.NLog NuGet package](https://www.nuget.org/packages/NServiceBus.NLog/) facilitates logging of all NServiceBus entries in the endpoint using NLog.
 
 
 ## Usage
@@ -21,7 +21,7 @@ snippet:NLogInCode
 
 ## Filtering
 
-If NServiceBus writes a significant amount of information to the log. To limit this information use the filtering features of the underlying logging framework.
+NServiceBus can write a significant amount of information to the log. To limit this information use the filtering features of the underlying logging framework.
 
 For example to limit log output to a specific namespace.
 
