@@ -36,3 +36,7 @@ To ensure that only one saga can be created for one correlation property value, 
 If a migration from 6.2.3 or earlier to a newer version was performed without applying [saga deduplication](/nservicebus/upgrades/asp-saga-deduplication.md), `DuplicatedSagaFoundException` can be observed because of duplicates violating a unique property of a saga. The exception message will include all the information to track down the error for example: `Sagas of type MySaaga with the following identifiers 'GUID1', 'GUID2' are considered duplicates because of the violation of the Unique property CorrelationId.`.
 
 The way to address them is go through the upgrade guide linked above.
+
+### Supported saga properties' types
+
+Azure Storage Persistence supports exactly the same set of types as [Azure Table Storage](https://msdn.microsoft.com/library/azure/dd179338.aspx). When a saga containing a property of an unsupported type is persisted, an exception containing a following information is thrown: `The property type 'the_property_name' is not supported in windows azure table storage`. If an object of a non-supported type is required to be stored, then it's a user responsibility to serialize/deserialize the value.
