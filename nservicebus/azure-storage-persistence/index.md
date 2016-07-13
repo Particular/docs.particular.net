@@ -39,4 +39,4 @@ The way to address them is go through the upgrade guide linked above.
 
 ### Supported saga properties' types
 
-Azure Storage Persistence supports exactly the same set of types as [Azure Table Storage](https://msdn.microsoft.com/library/azure/dd179338.aspx). When a saga containing a property of an unsupported type is persisted, an exception containing a following information is thrown: `The property type 'the_property_name' is not supported in windows azure table storage`. If an object of a complex type is required to be stored, then it's a user responsibility to serialize/deserialize the value.
+Azure Storage Persistence supports exactly the same set of types as [Azure Table Storage](https://msdn.microsoft.com/library/azure/dd179338.aspx). When a saga containing a property of an unsupported type is persisted, an exception containing a following information is thrown: `The property type 'the_property_name' is not supported in windows azure table storage`. If an object of a non-supported type is required to be stored, then it's a user responsibility to serialize/deserialize the value.
