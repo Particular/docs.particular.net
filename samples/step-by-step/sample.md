@@ -1,6 +1,6 @@
 ---
 title: Step by Step Guide
-reviewed: 2016-03-21
+reviewed: 2016-07-13
 component: Core
 redirects:
 - nservicebus/nservicebus-step-by-step-guide
@@ -40,15 +40,6 @@ Completing these steps will serve as an introduction to many important NServiceB
 ### MSMQ
 
 Microsoft Message Queueing (MSMQ) must be properly installed and configured. The easiest way to do this is with the appropriate command line below. Alternatively, it can be installed via the Windows Features tool. For more details on installing and configuring MSMQ see [MSMQ Transport](/nservicebus/msmq/).
-
-
-#### Enable MSMQ on Windows 7
-
-Run the following command on the command line:
-
-```dos
-DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server
-```
 
 
 #### Enable MSMQ on Windows 8.x and 10
