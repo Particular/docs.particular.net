@@ -156,7 +156,6 @@
         - "nservicebus/messaging/databus"
         - "nservicebus/pipeline/features"
         - "nservicebus/pipeline/customizing-error-handling"
-        - "nservicebus/pipeline/satellites"
     -
       Title: "Transports"
       Url: "nservicebus/transports"
