@@ -1,6 +1,5 @@
 ---
 title: RavenDB Persistence
-component: Raven
 tags:
  - RavenDB
  - Persistence
