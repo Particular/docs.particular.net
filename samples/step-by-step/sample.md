@@ -110,7 +110,7 @@ partial:errorqueue
 
 ## The Client
 
-Next, the Client application must be ready to send messages with NServiceBus. In the Client application, add the following code to the program's Main method. Don't worry about the missing `SendOrder` method, it will be added very soon.
+Next, the Client application must be ready to send messages with NServiceBus. In the Client application, add the following code to the Program class. Ignore the missing `SendOrder` method, it will be added below.
 
 snippet:ClientInit
 
@@ -127,7 +127,7 @@ The Client endpoint is now complete, and could now be executed. However, doing s
 
 Like the client, the Server application needs to be configured as an NServiceBus endpoint.
 
-In the Server application, add the following code to the program's Main method:
+In the Server application, add the following code to the Program class:
 
 snippet:ServerInit
 
@@ -150,7 +150,7 @@ NOTE: The solution could be executed at this stage and would run without excepti
 
 Like the client and the server, the Subscriber application also needs to be configured as an NServiceBus endpoint.
 
-In the Subscriber application, add the following code to the program's Main method:
+In the Subscriber application, add the following code to the Program class:
 
 snippet:SubscriberInit
 

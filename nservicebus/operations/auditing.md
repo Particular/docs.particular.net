@@ -28,7 +28,7 @@ The audited message is enriched with additional headers, which contain informati
 
 ## Handling Audit messages
 
-Those audit messages can then be handled as needed: Save them in a database, do custom logging, etc. It is important not to leave the messages in the audit queue however, as most queueing technologies have upper-bound limits on their queue sizes and depth. By not processing these messages, the limits of the underlying queue technology may be reached.
+Those audit messages can then be handled as needed: Save them in a database, do custom logging, etc. It is important not to leave the messages in the audit queue however, as most queuing technologies have upper-bound limits on their queue sizes and depth. By not processing these messages, the limits of the underlying queue technology may be reached.
 
 
 ## Audit configuration options

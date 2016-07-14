@@ -3,7 +3,7 @@ title: 'RabbitMQ Transport: RabbitMQ.Client NuGet usage'
 summary: Explains why the RabbitMQ.Client NuGet version range is inconsistent with most other NServiceBus extension NuGets.
 ---
 
-The NServiceBus.RabbitMQ library uses the [RabbitMQ.Client](https://www.nuget.org/packages/RabbitMQ.Client/) to communicate with the underlying queueing system. For more information see the [RabbitMQ Client API Guide](https://www.rabbitmq.com/dotnet-api-guide.html) and the [RabbitMQ Changelog](https://www.rabbitmq.com/changelog.html).
+The NServiceBus.RabbitMQ library uses the [RabbitMQ.Client](https://www.nuget.org/packages/RabbitMQ.Client/) to communicate with the underlying queuing system. For more information see the [RabbitMQ Client API Guide](https://www.rabbitmq.com/dotnet-api-guide.html) and the [RabbitMQ Changelog](https://www.rabbitmq.com/changelog.html).
 
 
 ## NuGet Version Range
