@@ -10,7 +10,7 @@ The `IBus` interface was one of the key interfaces when using previous versions 
 
 ## Reasons for deprecating IBus
 
-The `IBus` interface contained numerous methods and properties. However, not all of them are valid in all scenarios where an instance of `IBus` was exposed and this can lead to confusion. For example, the methods `Reply` and `ForwardCurrentMessageTo` are always available on the `IBus` interface, but it is only relevant to use it in the context of handling an incoming message. Using them in other scenarios will throw an exception.
+The `IBus` interface contained numerous methods and properties. However, not all of them are valid in all scenarios where an instance of `IBus` was exposed and this can lead to confusion. For example, the methods `Reply` and `ForwardCurrentMessageTo` are always available on the `IBus` interface, but they are only relevant to use it in the context of handling an incoming message. Using them in other scenarios will throw an exception.
 
 For users who are new to the NServiceBus API, the fact that `IBus` was available in message handlers using Dependency Injection wasn't obvious, especially when trying to send or publish messages from inside message handlers. Rather than using dependency injection, a `IMessageHandlerContext` parameter is now available in all the message handlers. This parameter will expose all of the appropriate actions to the message handler. Methods that aren't applicable will not be available making the API simpler.
 
