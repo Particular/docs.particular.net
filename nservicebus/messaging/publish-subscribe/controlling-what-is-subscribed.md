@@ -16,9 +16,14 @@ Messages matching the following criteria will be auto subscribed at startup.
  1. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given message
 
 
-### Routing configuration needed
+### Transports without native support for publish-subscribe
 
-If the selected transport doesn't natively supports publish-subscribe it is required to specify the address of the publisher for each event. This is done by [specifying a message owner in the message endpoint mappings](/nservicebus/messaging/message-owner.md). For example:
+In case of [transports without native support for publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based) it is necessary to satisfy additional conditions:
+
+ 1. The project needs to use persistence, as explained in [Persistence Based Publish Subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based) section.
+ 1. An address of the publisher needs to be specified for each event, as described below.
+
+The publisher's address is provided by [specifying a message owner in the message endpoint mappings](/nservicebus/messaging/message-owner.md). For example:
 
 snippet:endpoint-mapping-appconfig
 
