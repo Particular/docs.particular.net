@@ -14,7 +14,7 @@ related:
 
 Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out existing message processing by adding more workers on different machines.
 
-NOTE: The Distributor feature expects that workers will be deployed to multiple machines. In this sample all workers are on a single machine in order to keep it simple, but such approach should not be applied in production environment. See [Scaling out in a real environment](#scaling-out-in-a-real-environment) section for more information.
+NOTE: The Distributor feature expects that workers will be deployed to multiple machines. In this sample all workers are on a single machine in order to keep it simple, however such an approach should not be applied in a production environment. See [Scaling out in a real environment](#scaling-out-in-a-real-environment) section for more information.
  
 
 ## Code walk-through
