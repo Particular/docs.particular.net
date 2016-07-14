@@ -15,6 +15,8 @@ related:
 - nservicebus/pipeline
 ---
 
+## Introduction
+
 Headers can be read and manipulated at many extension points. This Sample shows a minimal usage of that manipulation at each of those points.
 
 
