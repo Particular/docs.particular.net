@@ -160,4 +160,6 @@ In a real solution the following is more likely
 
 ### Worker Input queue
 
+include: distributor-test-hack
+
 partial:testworkername
