@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using NServiceBus;
 using Shared;
 
@@ -7,37 +8,51 @@ class Program
     #region ClientInit
     static void Main()
     {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
         // This makes it easier to tell console windows apart
         Console.Title = "Samples.StepByStep.Client";
 
-        var busConfiguration = new BusConfiguration();
-
         // The endpoint name will be used to determine queue names and serves
         // as the address, or identity, of the endpoint
-        busConfiguration.EndpointName("Samples.StepByStep.Client");
+        var endpointConfiguration = new EndpointConfiguration(
+            endpointName: "Samples.StepByStep.Client");
+
+
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         // Use JSON to serialize and deserialize messages (which are just
         // plain classes) to and from message queues
-        busConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
 
         // Ask NServiceBus to automatically create message queues
-        busConfiguration.EnableInstallers();
+        endpointConfiguration.EnableInstallers();
 
         // Store information in memory for this example, rather than in
         // a database. In this sample, only subscription information is stored
-        busConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
         // Initialize the endpoint with the finished configuration
-        using (var bus = Bus.Create(busConfiguration).Start())
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
+        try
         {
-           SendOrder(bus);
+            await SendOrder(endpointInstance);
+        }
+        finally
+        {
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
     #endregion
 
 
     #region SendOrder
-    static void SendOrder(IBus bus)
+    static async Task SendOrder(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Press enter to send a message");
         Console.WriteLine("Press any key to exit");
@@ -58,7 +73,7 @@ class Program
                 Product = "New shoes",
                 Id = id
             };
-            bus.Send("Samples.StepByStep.Server", placeOrder);
+            await endpointInstance.Send("Samples.StepByStep.Server", placeOrder);
             Console.WriteLine($"Sent a new PlaceOrder message with id: {id:N}");
         }
     }

@@ -42,18 +42,20 @@ Completing these steps will serve as an introduction to many important NServiceB
 Microsoft Message Queueing (MSMQ) must be properly installed and configured. The easiest way to do this is with the appropriate command line below. Alternatively, it can be installed via the Windows Features tool. For more details on installing and configuring MSMQ see [MSMQ Transport](/nservicebus/msmq/).
 
 
-#### Enable MSMQ on Windows 8.x and 10
-
-Run the following command on the command line:
+To enable MSMQ on Windows 8.x or 10 run the following command on the command line:
 
 ```dos
 DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server
 ```
 
+For other windows versions see [MSMQ Transport / Configuration](/nservicebus/msmq/#nservicebus-configuration).
+
 
 ## Project structure
 
 The finished solution will contain four projects. Create a new Visual Studio solution containing the following:
+
+Note: Ensure .net 4.5.1 is selected as the target framework.
 
  * A Console Application named `Client`
  * A Console Application named `Server`
@@ -103,6 +105,9 @@ Next, define the `OrderPlaced` event by creating a class that implements `IEvent
 snippet:OrderPlaced
 
 
+partial:errorqueue
+
+
 ## The Client
 
 Next, the Client application must be ready to send messages with NServiceBus. In the Client application, add the following code to the program's Main method. Don't worry about the missing `SendOrder` method, it will be added very soon.
@@ -114,14 +119,6 @@ With a `PlaceOrder` command defined, and NServiceBus initialized, a loop can be 
 In the Client endpoint, add this code to the Program class:
 
 snippet:SendOrder
-
-In the Shared project, create a class named `ConfigErrorQueue`:
-
-snippet:ConfigErrorQueue
-
-Each endpoint needs to [specify an error queue](/nservicebus/errors/). This defines where messages are sent when they cannot be processed due to repetitive exceptions during message processing.
-
-NOTE: While it is possible to [configure the error queue in an App.config file](/nservicebus/errors/), the `IProvideConfiguration` interface can be used to [override app.config settings](/nservicebus/hosting/custom-configuration-providers.md), which allows sharing the same configuration across all endpoints.
 
 The Client endpoint is now complete, and could now be executed. However, doing so would throw an exception when trying to send the message. The Client is sending the `PlaceOrder` command to an endpoint named `Samples.StepByStep.Server`, which will not exist yet. A server endpoint must be created to handle that command.
 
@@ -142,7 +139,7 @@ snippet:PlaceOrderHandler
 
 This class is the message handler that processes the `PlaceOrder` command being sent by the Client. A handler is where a message is processed; very often this will involve saving information from the message into a database, calling a web service, or some other business function. In this example, the message is logged, so the fact the message was received will be visible in the Console window. Next, the handler publishes a new `OrderPlaced` event.
 
-The handler class is automatically discovered by NServiceBus because it implements the `IHandleMessages<T>` interface. The [dependency injection system](/nservicebus/containers/) (which supports constructor or property injection) injects the `IBus` instance into the handler to access messaging operations. When a `PlaceOrder` command is received, NServiceBus will create a new instance of the `PlaceOrderHandler` class and invoke the `Handle(PlaceOrder message)` method.
+The handler class is automatically discovered by NServiceBus because it implements the `IHandleMessages<T>` interface. The [dependency injection system](/nservicebus/containers/) (which supports constructor or property injection) injects the `IBus` instance into the handler to access messaging operations. When a `PlaceOrder` command is received, NServiceBus will create a new instance of the `PlaceOrderHandler` class and invoke the `Handle` method.
 
 The next step is to create a subscriber for this event.
 
@@ -220,6 +217,7 @@ Press any key to exit
 INFO  PlaceOrderHandler Order for Product:New shoes placed with id: 1c7f01eb-6de3-4506-9e56-a914f9486d9d
 INFO  PlaceOrderHandler Publishing: OrderPlaced for Order Id: 1c7f01eb-6de3-4506-9e56-a914f9486d9d
 ```
+
 
 ### Subscriber Output
 

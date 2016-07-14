@@ -1,21 +1,17 @@
 ﻿using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
-namespace Shared
+#region ConfigErrorQueue
+
+class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
 {
-
-    #region ConfigErrorQueue
-
-    class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
+    public MessageForwardingInCaseOfFaultConfig GetConfiguration()
     {
-        public MessageForwardingInCaseOfFaultConfig GetConfiguration()
+        return new MessageForwardingInCaseOfFaultConfig
         {
-            return new MessageForwardingInCaseOfFaultConfig
-            {
-                ErrorQueue = "error"
-            };
-        }
+            ErrorQueue = "error"
+        };
     }
-
-    #endregion
 }
+
+#endregion
