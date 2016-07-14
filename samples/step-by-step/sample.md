@@ -55,7 +55,7 @@ For other windows versions see [MSMQ Transport / Configuration](/nservicebus/msm
 
 The finished solution will contain four projects. Create a new Visual Studio solution containing the following:
 
-Note: Ensure .net 4.5.2 is selected as the target framework.
+Note: Ensure .net 4.5.2 is selected as the [target framework](https://msdn.microsoft.com/en-us/library/bb398202.aspx).
 
  * A Console Application named `Client`
  * A Console Application named `Server`
