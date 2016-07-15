@@ -185,26 +185,28 @@ namespace Core6.Routing
             #endregion
         }
 
-        public void FileBasedRoutingAdvanced(EndpointConfiguration endpointConfiguration)
-        {
-            #region Routing-FileBased-ConfigAdvanced
-
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            var routing = transport.Routing();
-            var routingTable = routing.InstanceMappingFile();
-            routingTable.FilePath(@"C:\Routes.xml");
-
-            #endregion
-        }
         public void FileBasedRoutingRefreshInterval(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-FileBased-RefreshInterval
+
 
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
             var routing = transport.Routing();
             var routingTable = routing.InstanceMappingFile();
             var fileRoutingTable = routingTable.FilePath(@"C:\Routes.xml");
             fileRoutingTable.RefreshInterval(TimeSpan.FromSeconds(45));
+
+            #endregion
+        }
+
+        public void InstanceMappingFilePath(EndpointConfiguration endpointConfiguration)
+        {
+            #region Routing-FileBased-FilePath
+
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            var routing = transport.Routing();
+            var routingTable = routing.InstanceMappingFile();
+            routingTable.FilePath(@"C:\Routes.xml");
 
             #endregion
         }

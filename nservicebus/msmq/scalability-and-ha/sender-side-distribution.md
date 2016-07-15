@@ -47,15 +47,63 @@ snippet:Routing-FileBased-MSMQ
 By default, a round-robin distribution strategy is used to distribute messages between the available endpoint instances.
 
 
-## Location of mapping file
+## Mapping file
 
-The routing file is a simple XML file that has to be located either on a local hard drive or a network drive. It is processed before the endpoint starts up and then re-processed in regular intervals so the changes in the document are reflected in the behavior of NServiceBus automatically. If the document is not present in its configured location when endpoint starts up, NServiceBus will refuse to run. If it is deleted when the endpoint is already running, it will continue to run normally (with the last successfully read routes).
+The routing file is a simple XML file that has to be located either on a local hard drive or a network drive. When using MSMQ as the transport, NServiceBus will automatically look for an `instance-mapping.xml` file in `AppDomain.BaseDirectoy`.
+
+The mapping file is processed before the endpoint starts up and then re-processed at regular intervals so the changes in the document are reflected in the behavior of NServiceBus automatically. If the document is not present in its configured location when endpoint starts up, NServiceBus will refuse to run. If it is deleted when the endpoint is already running, it will continue to run normally (with the last successfully read routes).
 
 There are many different options to consider when deploying routing configuration.
 
 * Many endpoints can be configured to use one centralized mapping file on a network drive accessible by all, creating a single file that describes how messages flow across an entire system. Any given endpoint will not care if the file contains information for endpoints it does not need.
 * The mapping file can be kept in a centralized location and replicated out to many servers on demand, allowing each endpoint to read the file from a location on the local disk.
 * Each endpoint can keep its own routing file containing only information for the endpoints it needs to know about, which can be deployed in the same directory as the endpoint binaries and only modified as part of a controlled deployment process.
+
+You can change the following default settings:
+ 
+ 
+### RefreshInterval
+
+Specifies the interval between route data refresh attempts.
+
+Default: 30 seconds
+
+snippet: Routing-FileBased-RefreshInterval
+
+
+### FilePath
+
+Specifies the path and file name of the instance mapping file. This can be a realtive or an absolute file path. Relative file paths are resolved from `AppDomain.BaseDirectoy`.
+
+Default: `instance-mapping.xml`
+
+snippet: Routing-FileBased-FilePath
+
+
+## The file
+
+The routing file is a simple XML file that has to be located either on local hard drive or a network drive. It is processed before the endpoint starts up and then re-processed in regular intervals so the changes in the document are reflected in the behavior of NServiceBus automatically (with slight delay caused by caching of routes). If the document is not present in its configured location when endpoint starts up, NServiceBus will not search again for the file during runtime. If it is deleted or corrupted while the endpoint is already running, NServiceBus will continue to run normally with last successfully read routes. 
+
+
+### Examples of routing files
+
+Following are examples of instance mapping configurations for the given sample routing:
+
+snippet:Routing-FileBased-Config
+
+
+#### Machine name
+
+The mapping file contains a `Machine` attribute which needs to be used when the receiving endpoint runs on a different machine. If no machine attribute is specified, MSMQ assumes the receiving endpoint is located on the same machine.
+
+snippet:Routing-FileBased-MSMQ
+
+
+#### Instance discriminator
+
+The instance discriminator attribute can be used if multiple uniquely addressable endpoints run on the same machine and messages should be sent to their unique input queue instead of the shared input queue.
+
+snippet:Routing-FileBased-Broker
 
 
 ## Decommissioning endpoint instances
