@@ -111,7 +111,7 @@ Failed dispatching external integration event
 An event will also be published and displayed in ServicePulse dashboard that contains the following text:
 
 ```no-highlight
-'EVENTTYPE' failed to be published to other integration points. Reason for failure: REASON".
+'EVENTTYPE' failed to be published to other integration points. Reason for failure: REASON.
 ```
 
 To avoid this situation it is important to properly decommission an endpoint that subscribes to ServiceControl events. To do this [disable auto-subscription](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription) and then [unsubscribe to all events](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#how-to-manually-subscribe-to-a-message).
