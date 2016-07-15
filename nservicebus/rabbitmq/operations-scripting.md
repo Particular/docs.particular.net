@@ -39,7 +39,7 @@ In this example, the value `MyNamespace.MyMessage` represents the .NET type of t
 
 ### The retry helper methods
 
-The following code shows an example of how to perform the following actions:
+This code shows an example of how to perform the following actions:
 
  * Read a message from the error queue.
  * Extract the failed queue from the headers.
