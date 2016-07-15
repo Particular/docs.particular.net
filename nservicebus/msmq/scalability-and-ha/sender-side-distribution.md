@@ -65,8 +65,8 @@ When using sender-side distribution, message senders have no knowledge of the st
 Therefore, when scaling down (removing a "target" endpoint instance from service), it is important to properly decommission the instance:
 
 1. Change the routing file to remove the target endpoint instance.
-2. Ensure that the updated routing information is distributed to all endpoint instances that might send a message to the target endpoint.
-3. Allow time (30 seconds by default) for all endpoints to reread the mapping file, and ensure no new messages are arriving in the target instance's queue.
-4. Allow the target endpoint instance to complete processing all messages in its queue.
-5. Disable the target endpoint instance.
-7. Check the input queue of the decommissioned instance for leftover messages and move them to other instances if necessary.
+1. Ensure that the updated routing information is distributed to all endpoint instances that might send a message to the target endpoint.
+1. Allow time (30 seconds by default) for all endpoints to reread the mapping file, and ensure no new messages are arriving in the target instance's queue.
+1. Allow the target endpoint instance to complete processing all messages in its queue.
+1. Disable the target endpoint instance.
+1. Check the input queue of the decommissioned instance for leftover messages and move them to other instances if necessary.
