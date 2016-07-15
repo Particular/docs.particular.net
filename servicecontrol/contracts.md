@@ -108,7 +108,7 @@ ServiceControl uses [Event Publishing](/nservicebus/messaging/publish-subscribe/
 Failed dispatching external integration event
 ```
 
-An event will also be published and displayed in ServicePulse dashboard that contains the following text:
+An event will also be published and displayed in ServicePulse dashboard with the following text:
 
 ```no-highlight
 'EVENTTYPE' failed to be published to other integration points. Reason for failure: REASON.
