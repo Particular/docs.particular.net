@@ -102,6 +102,16 @@ Similarly to the code above it is possible to subscribe to the event, handle it,
 
 ## Decommissioning alert subscribers
 
-ServiceControl uses [Event Publishing](/nservicebus/messaging/publish-subscribe/) to send alerts to all subscribers. If using a [persistence based transport](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based) then ServiceControl will keep an internal reference to each subscriber. If a subscriber for an alert cannot be contacted then ServiceControl will shut itself down after a few attempts.
+ServiceControl uses [Event Publishing](/nservicebus/messaging/publish-subscribe/) to send alerts to all subscribers. If using a [persistence based transport](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based) then ServiceControl will keep an internal reference to each subscriber. If a subscriber, for an alert, cannot be contacted ServiceControl will [log](logging.md) the following error:
 
-To prevent this situation it is important to properly decommission an endpoint that subscribes to ServiceControl events. To do this [disable auto-subscription](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription) and then [unsubscribe to all events](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#how-to-manually-subscribe-to-a-message).
+```no-highlight
+Failed dispatching external integration event
+```
+
+An event will also be published and displayed in ServicePulse dashboard that contains the following text:
+
+```no-highlight
+'EVENTTYPE' failed to be published to other integration points. Reason for failure: REASON".
+```
+
+To avoid this situation it is important to properly decommission an endpoint that subscribes to ServiceControl events. To do this [disable auto-subscription](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription) and then [unsubscribe to all events](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#how-to-manually-subscribe-to-a-message).
