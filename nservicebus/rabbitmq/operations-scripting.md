@@ -1,12 +1,12 @@
 ---
 title: 'RabbitMQ Transport: Scripting'
 summary: Example code and scripts to facilitate deployment and operational actions against RabbitMQ.
-reviewed: 2016-03-11
+reviewed: 2016-07-15
 ---
 
 Example code and scripts to facilitate deployment and operational actions against RabbitMQ.
 
-These samples use the [RabbitMQ.Client](https://www.nuget.org/packages/RabbitMQ.Client/) NuGet.
+These samples use the [RabbitMQ.Client NuGet Package](https://www.nuget.org/packages/RabbitMQ.Client/).
 
 Since RabbitMQ.Client is not [CLS Compliant](https://msdn.microsoft.com/en-us/library/system.clscompliantattribute.aspx) it is not possible to run this code within PowerShell.
 
@@ -76,7 +76,7 @@ snippet:rabbit-create-queues-shared-usage
 
 ## Create HA policy
 
-To configure HA policy, refer to [RabbitMQ official documentation](https://www.rabbitmq.com/ha.html)
+To configure HA policy, refer to the [RabbitMQ HA documentation](https://www.rabbitmq.com/ha.html).
 
 
 ## Delete queues
