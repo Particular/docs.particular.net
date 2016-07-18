@@ -6,6 +6,7 @@
     #region MessageId-Mutator
     public class MessageIdFromMessageMutator : IMutateOutgoingMessages
     {
+        IBus bus;
         public MessageIdFromMessageMutator(IBus bus)
         {
             this.bus = bus;
@@ -17,13 +18,11 @@
 
             return message;
         }
+        #endregion
 
         string GenerateIdForMessage(object message)
         {
             throw new System.NotImplementedException();
         }
-
-        IBus bus;
     }
-    #endregion
 }
