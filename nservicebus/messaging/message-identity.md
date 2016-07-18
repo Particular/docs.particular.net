@@ -13,11 +13,11 @@ Message identity can be explicitly specified, overriding the default identity pr
 
 WARN: It is important that the strategy used to generate message identities results in globally unique identifiers. If two messages ever have the same identity then some features will treat them as the same message. This will cause errors which are difficult to diagnose.
 
-Message identity can be set by manipulating the `NServiceBus.MessageId` header in an [Outgoing Message Mutator](/nservicebus/pipeline/message-mutators.md). 
+In Version 5 and below, message identity can be set by manipulating the `NServiceBus.MessageId` header in an [Outgoing Message Mutator](/nservicebus/pipeline/message-mutators.md). 
 
 snippet: MessageId-Mutator
 
-In Version 6 and above, message identity can also be set using the `SendOptions` class.
+Setting the `NServiceBus.MessageId` header from a message mutator is not supported in Version 6 and above. Specify message identity using the `SendOptions` class instead. 
 
 snippet: MessageId-SendOptions
 
