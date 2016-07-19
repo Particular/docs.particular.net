@@ -2,7 +2,8 @@
 {
     using NServiceBus;
 
-    public class MyResponse : IMessage
+    public class MyResponse :
+        IMessage
     {
     }
 }

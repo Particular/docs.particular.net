@@ -5,7 +5,8 @@
     using NServiceBus.Pipeline.Contexts;
 
     #region 5to6header-outgoing-behavior
-    public class OutgoingBehavior : IBehavior<OutgoingContext>
+    public class OutgoingBehavior :
+        IBehavior<OutgoingContext>
     {
         public void Invoke(OutgoingContext context, Action next)
         {

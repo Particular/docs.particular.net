@@ -3,7 +3,8 @@ using Microsoft.AspNet.SignalR;
 using NServiceBus;
 using Store.Messages.Events;
 
-public class OrderIsReadyHandler :  IHandleMessages<DownloadIsReady>
+public class OrderIsReadyHandler :
+    IHandleMessages<DownloadIsReady>
 {
     public void Handle(DownloadIsReady message)
     {

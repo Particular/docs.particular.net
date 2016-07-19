@@ -8,7 +8,8 @@
 
     #region ErrorHandlingBehavior
 
-    class CustomErrorHandlingBehavior : Behavior<ITransportReceiveContext>
+    class CustomErrorHandlingBehavior :
+        Behavior<ITransportReceiveContext>
     {
         public override Task Invoke(ITransportReceiveContext context, Func<Task> next)
         {
@@ -18,7 +19,8 @@
 
     #endregion
 
-    class CustomErrorHandlingBehaviorForDeserializationFailures : Behavior<ITransportReceiveContext>
+    class CustomErrorHandlingBehaviorForDeserializationFailures :
+        Behavior<ITransportReceiveContext>
     {
         ILog log = LogManager.GetLogger<CustomErrorHandlingBehaviorForDeserializationFailures>();
 
@@ -42,7 +44,8 @@
         }
     }
 
-    class CustomErrorHandlingBehaviorForAllFailures : Behavior<ITransportReceiveContext>
+    class CustomErrorHandlingBehaviorForAllFailures :
+        Behavior<ITransportReceiveContext>
     {
         ILog log = LogManager.GetLogger<CustomErrorHandlingBehaviorForAllFailures>();
 
@@ -66,7 +69,8 @@
         }
     }
 
-    class CustomErrorHandlingBehaviorRollbackOnFailures : Behavior<ITransportReceiveContext>
+    class CustomErrorHandlingBehaviorRollbackOnFailures :
+        Behavior<ITransportReceiveContext>
     {
         public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
         {
@@ -90,7 +94,8 @@
 
     #region RegisterCustomErrorHandlingBehavior
 
-    class NewMessageProcessingPipelineStep : RegisterStep
+    class NewMessageProcessingPipelineStep :
+        RegisterStep
     {
         public NewMessageProcessingPipelineStep()
             : base(

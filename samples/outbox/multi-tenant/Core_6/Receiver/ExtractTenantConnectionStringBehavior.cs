@@ -4,7 +4,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
-class ExtractTenantConnectionStringBehavior : Behavior<ITransportReceiveContext>
+class ExtractTenantConnectionStringBehavior :
+    Behavior<ITransportReceiveContext>
 {
     internal static AsyncLocal<string> ConnectionStringHolder = new AsyncLocal<string>();
 
@@ -37,7 +38,8 @@ class ExtractTenantConnectionStringBehavior : Behavior<ITransportReceiveContext>
         #endregion
     }
 
-    public class Registration : RegisterStep
+    public class Registration :
+        RegisterStep
     {
         public Registration()
             : base("ExtractTenantConnectionString", typeof(ExtractTenantConnectionStringBehavior), "Extracts tenant connection string based on tenant ID header.")

@@ -2,7 +2,8 @@
 
 #region AnotherMessageWithLargePayload
 
-public class AnotherMessageWithLargePayload : ICommand
+public class AnotherMessageWithLargePayload :
+    ICommand
 {
     public byte[] LargeBlob { get; set; }
 }

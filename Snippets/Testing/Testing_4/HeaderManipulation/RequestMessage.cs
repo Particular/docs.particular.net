@@ -2,7 +2,8 @@
 {
     using NServiceBus;
 
-    class RequestMessage : IMessage
+    class RequestMessage :
+        IMessage
     {
         public string String { get; set; }
     }

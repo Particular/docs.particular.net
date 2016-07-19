@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using NServiceBus;
 
-public class CreateProductCommand : ICommand
+public class CreateProductCommand :
+    ICommand
 {
     [Required]
     public string ProductId { get; set; }

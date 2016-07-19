@@ -2,7 +2,8 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class CompleteOrderHandler : IHandleMessages<CompleteOrder>
+public class CompleteOrderHandler :
+    IHandleMessages<CompleteOrder>
 {
     static ILog log = LogManager.GetLogger<CompleteOrderHandler>();
 

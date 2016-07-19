@@ -3,7 +3,8 @@ using NServiceBus.Saga;
 using NHibernate.Mapping.Attributes;
 
 [Class]
-public class OrderSagaDataAttributes : IContainSagaData
+public class OrderSagaDataAttributes :
+    IContainSagaData
 {
     [Id(Name = "Id")]
     public virtual Guid Id { get; set; }

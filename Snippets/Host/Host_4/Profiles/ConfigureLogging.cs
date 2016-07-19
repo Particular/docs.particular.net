@@ -1,7 +1,8 @@
 ﻿using NServiceBus;
 
 #region configure_logging
-class YourProfileLoggingHandler : IConfigureLoggingForProfile<YourProfile>
+class YourProfileLoggingHandler :
+    IConfigureLoggingForProfile<YourProfile>
 {
     public void Configure(IConfigureThisEndpoint specifier)
     {
@@ -10,6 +11,7 @@ class YourProfileLoggingHandler : IConfigureLoggingForProfile<YourProfile>
 }
 #endregion
 
-internal class YourProfile : IProfile
+internal class YourProfile :
+    IProfile
 {
 }

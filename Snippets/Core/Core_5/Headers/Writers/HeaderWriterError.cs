@@ -54,11 +54,13 @@
             }
         }
 
-        class MessageToSend : IMessage
+        class MessageToSend :
+            IMessage
         {
         }
 
-        class TransportConfigProvider : IProvideConfiguration<TransportConfig>
+        class TransportConfigProvider :
+            IProvideConfiguration<TransportConfig>
         {
             public TransportConfig GetConfiguration()
             {
@@ -69,7 +71,8 @@
             }
         }
 
-        class ConfigureSecondLevelRetries : IProvideConfiguration<SecondLevelRetriesConfig>
+        class ConfigureSecondLevelRetries :
+            IProvideConfiguration<SecondLevelRetriesConfig>
         {
             public SecondLevelRetriesConfig GetConfiguration()
             {
@@ -80,7 +83,8 @@
             }
         }
 
-        class MessageHandler : IHandleMessages<MessageToSend>
+        class MessageHandler :
+            IHandleMessages<MessageToSend>
         {
             public void Handle(MessageToSend message)
             {
@@ -88,7 +92,8 @@
             }
         }
 
-        class Mutator : IMutateIncomingTransportMessages
+        class Mutator :
+            IMutateIncomingTransportMessages
         {
             static bool hasCapturedMessage = false;
             public void MutateIncoming(TransportMessage transportMessage)
@@ -96,8 +101,12 @@
                 if (!hasCapturedMessage && transportMessage.IsMessageOfTye<MessageToSend>())
                 {
                     hasCapturedMessage = true;
-                    var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(transportMessage.Headers);
-                    SnippetLogger.Write(text: sendingText, suffix: "Sending", version: "5");
+                    var headers = transportMessage.Headers;
+                    var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(headers);
+                    SnippetLogger.Write(
+                        text: sendingText,
+                        suffix: "Sending",
+                        version: "5");
                 }
             }
         }

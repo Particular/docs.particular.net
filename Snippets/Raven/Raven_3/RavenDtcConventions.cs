@@ -10,7 +10,8 @@ using Raven.Client.Document.DTC;
 
 #region RavenDBDtcSettingsByConvention
 
-public class EndpointConfig : IConfigureThisEndpoint
+public class EndpointConfig :
+    IConfigureThisEndpoint
 {
     public void Customize(BusConfiguration configuration)
     {

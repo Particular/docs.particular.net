@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using NServiceBus;
 using NServiceBus.Routing;
 
-class WeightedDistributionStrategy : DistributionStrategy
+class WeightedDistributionStrategy :
+    DistributionStrategy
 {
     public override IEnumerable<UnicastRoutingTarget> SelectDestination(IList<UnicastRoutingTarget> currentAllInstances)
     {

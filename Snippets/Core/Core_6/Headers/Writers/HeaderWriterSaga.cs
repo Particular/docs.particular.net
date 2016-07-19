@@ -40,15 +40,18 @@
             CountdownEvent.Wait();
         }
 
-        class StartSaga1Message : IMessage
+        class StartSaga1Message :
+            IMessage
         {
         }
 
-        class SendFromSagaMessage : IMessage
+        class SendFromSagaMessage :
+            IMessage
         {
         }
 
-        class Saga1 : Saga<Saga1.SagaData>,
+        class Saga1 :
+            Saga<Saga1.SagaData>,
             IAmStartedByMessages<StartSaga1Message>,
             IHandleMessages<ReplyFromSagaMessage>,
             IHandleMessages<ReplyToOriginatorFromSagaMessage>
@@ -58,7 +61,8 @@
                 return context.SendLocal(new SendFromSagaMessage());
             }
 
-            public class SagaData : IContainSagaData
+            public class SagaData :
+                IContainSagaData
             {
                 public Guid Id { get; set; }
                 public string Originator { get; set; }
@@ -80,7 +84,8 @@
             }
         }
 
-        class Saga2 : Saga<Saga2.SagaData>,
+        class Saga2 :
+            Saga<Saga2.SagaData>,
             IAmStartedByMessages<SendFromSagaMessage>,
             IHandleTimeouts<TimeoutFromSaga>
         {
@@ -96,7 +101,8 @@
                     .ConfigureAwait(false);
             }
 
-            public class SagaData : IContainSagaData
+            public class SagaData :
+                IContainSagaData
             {
                 public Guid Id { get; set; }
                 public string Originator { get; set; }
@@ -114,14 +120,16 @@
             }
         }
 
-        class Mutator : IMutateIncomingTransportMessages
+        class Mutator :
+            IMutateIncomingTransportMessages
         {
 
             public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
+                var headers = context.Headers;
                 if (context.IsMessageOfTye<SendFromSagaMessage>())
                 {
-                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(context.Headers);
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(headers);
                     SnippetLogger.Write(
                         text: headerText,
                         suffix: "Sending",
@@ -131,7 +139,7 @@
                 }
                 if (context.IsMessageOfTye<ReplyFromSagaMessage>())
                 {
-                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(context.Headers);
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(headers);
                     SnippetLogger.Write(
                         text: headerText,
                         suffix: "Replying",
@@ -141,7 +149,7 @@
                 }
                 if (context.IsMessageOfTye<ReplyToOriginatorFromSagaMessage>())
                 {
-                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(context.Headers);
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(headers);
                     SnippetLogger.Write(
                         text: headerText,
                         suffix: "ReplyingToOriginator",
@@ -152,7 +160,7 @@
 
                 if (context.IsMessageOfTye<TimeoutFromSaga>())
                 {
-                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(context.Headers);
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(headers);
                     SnippetLogger.Write(
                         text: headerText,
                         suffix: "Timeout",
@@ -165,15 +173,18 @@
         }
 
 
-        class ReplyToOriginatorFromSagaMessage : IMessage
+        class ReplyToOriginatorFromSagaMessage :
+            IMessage
         {
         }
 
-        class ReplyFromSagaMessage : IMessage
+        class ReplyFromSagaMessage :
+            IMessage
         {
         }
 
-        class MessageToReply : IMessage
+        class MessageToReply :
+            IMessage
         {
         }
 

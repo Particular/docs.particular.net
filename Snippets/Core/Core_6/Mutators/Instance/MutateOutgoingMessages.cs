@@ -5,7 +5,8 @@
     using NServiceBus.MessageMutator;
 
     #region IMutateOutgoingMessages
-    public class MutateOutgoingMessages : IMutateOutgoingMessages
+    public class MutateOutgoingMessages :
+        IMutateOutgoingMessages
     {
         public Task MutateOutgoing(MutateOutgoingMessageContext context)
         {
@@ -27,7 +28,6 @@
             // the outgoing message
             // optionally replace the message instance by setting context.OutgoingMessage
             var outgoingMessage = context.OutgoingMessage;
-
 
             return Task.FromResult(0);
         }

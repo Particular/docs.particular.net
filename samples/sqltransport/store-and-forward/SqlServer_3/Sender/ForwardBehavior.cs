@@ -7,7 +7,8 @@ using NServiceBus.Pipeline;
 using NServiceBus.Routing;
 using NServiceBus.Transports;
 
-public class ForwardBehavior : ForkConnector<IIncomingPhysicalMessageContext, IDispatchContext>
+public class ForwardBehavior :
+    ForkConnector<IIncomingPhysicalMessageContext, IDispatchContext>
 {
     public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next, Func<IDispatchContext, Task> fork)
     {
@@ -33,7 +34,9 @@ public class ForwardBehavior : ForkConnector<IIncomingPhysicalMessageContext, ID
         #endregion
     }
 
-    class DispatchContext : ContextBag, IDispatchContext
+    class DispatchContext :
+        ContextBag,
+        IDispatchContext
     {
         TransportOperation operation;
         public ContextBag Extensions => this;

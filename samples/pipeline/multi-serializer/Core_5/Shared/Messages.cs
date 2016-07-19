@@ -5,13 +5,15 @@ using NServiceBus;
 
 [Serializable]
 [SerializeWithXml]
-public class MessageWithXml : IMessage
+public class MessageWithXml :
+    IMessage
 {
     public string SomeProperty { get; set; }
 }
 
 [SerializeWithJson]
-public class MessageWithJson : IMessage
+public class MessageWithJson :
+    IMessage
 {
     public string SomeProperty { get; set; }
 }

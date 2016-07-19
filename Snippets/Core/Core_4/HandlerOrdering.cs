@@ -15,7 +15,8 @@
         }
 
         #region HandlerOrderingWithFirst
-        public class MySpecifyingFirst : ISpecifyMessageHandlerOrdering
+        public class MySpecifyingFirst :
+            ISpecifyMessageHandlerOrdering
         {
             public void SpecifyOrder(Order order)
             {
@@ -25,7 +26,8 @@
         #endregion
 
         #region HandlerOrderingWithMultiple
-        public class MySpecifyingOrder : ISpecifyMessageHandlerOrdering
+        public class MySpecifyingOrder :
+            ISpecifyMessageHandlerOrdering
         {
             public void SpecifyOrder(Order order)
             {

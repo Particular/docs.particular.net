@@ -6,7 +6,8 @@ namespace Core3.Routing.EndpointMapping.ConfigurationSource
 
     #region endpoint-mapping-configurationsource
 
-    public class ConfigurationSource : IConfigurationSource
+    public class ConfigurationSource :
+        IConfigurationSource
     {
         public T GetConfiguration<T>() where T : class, new()
         {
@@ -24,12 +25,12 @@ namespace Core3.Routing.EndpointMapping.ConfigurationSource
                     };
                 }
                 //append mapping to config
-                config.MessageEndpointMappings.Add(
-                    new MessageEndpointMapping
-                    {
-                        AssemblyName = "assembly",
-                        Endpoint = "queue@machinename"
-                    });
+                var endpointMapping = new MessageEndpointMapping
+                {
+                    AssemblyName = "assembly",
+                    Endpoint = "queue@machinename"
+                };
+                config.MessageEndpointMappings.Add(endpointMapping);
                 return config as T;
             }
 

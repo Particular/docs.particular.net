@@ -4,7 +4,8 @@ using NServiceBus;
 
 namespace XmlSample
 {
-    public class CreateOrder : IMessage
+    public class CreateOrder :
+        IMessage
     {
         public int OrderId { get; set; }
         public DateTime Date { get; set; }

@@ -1,7 +1,8 @@
 ﻿#region definition
 using NServiceBus.Logging;
 
-class ConsoleLoggerDefinition : LoggingFactoryDefinition
+class ConsoleLoggerDefinition :
+    LoggingFactoryDefinition
 {
     LogLevel level = LogLevel.Info;
 

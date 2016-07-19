@@ -3,7 +3,8 @@ using NServiceBus;
 
 class AccessingSession
 {
-    public class OrderMessage : IMessage
+    public class OrderMessage :
+        IMessage
     {
     }
 
@@ -13,7 +14,8 @@ class AccessingSession
 
     #region NHibernateAccessingSessionUpgrade6To7
 
-    public class OrderHandler : IHandleMessages<OrderMessage>
+    public class OrderHandler :
+        IHandleMessages<OrderMessage>
     {
         public Task Handle(OrderMessage message, IMessageHandlerContext context)
         {

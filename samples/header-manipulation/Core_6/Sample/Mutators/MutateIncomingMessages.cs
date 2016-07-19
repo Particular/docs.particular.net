@@ -2,7 +2,8 @@
 using NServiceBus.MessageMutator;
 
 #region mutate-incoming-messages
-public class MutateIncomingMessages : IMutateIncomingMessages
+public class MutateIncomingMessages :
+    IMutateIncomingMessages
 {
     public Task MutateIncoming(MutateIncomingMessageContext context)
     {

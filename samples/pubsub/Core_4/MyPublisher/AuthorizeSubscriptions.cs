@@ -2,7 +2,8 @@
 using NServiceBus;
 
 #region SubscriptionAuthorizer
-class AuthorizeSubscriptions : IAuthorizeSubscriptions
+class AuthorizeSubscriptions :
+    IAuthorizeSubscriptions
 {
 
     public bool AuthorizeSubscribe(string messageType, string clientEndpoint, IDictionary<string, string> headers)

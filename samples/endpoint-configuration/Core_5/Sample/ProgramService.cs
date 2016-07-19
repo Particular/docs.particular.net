@@ -10,7 +10,8 @@ using NServiceBus.Log4Net;
 using NServiceBus.Logging;
 using NServiceBus.Persistence;
 
-class ProgramService : ServiceBase
+class ProgramService :
+    ServiceBase
 {
     IBus bus;
     static ILog log = LogManager.GetLogger("ProgramService");

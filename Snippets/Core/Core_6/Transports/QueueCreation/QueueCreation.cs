@@ -10,7 +10,8 @@
 
     #region RegisteringTheQueueCreator
 
-    class MyTransport : TransportDefinition
+    class MyTransport :
+        TransportDefinition
     {
 
         protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
@@ -18,7 +19,8 @@
             return new MyTransportInfrastructure();
         }
 
-        class MyTransportInfrastructure : TransportInfrastructure
+        class MyTransportInfrastructure :
+            TransportInfrastructure
         {
             public override TransportReceiveInfrastructure ConfigureReceiveInfrastructure()
             {

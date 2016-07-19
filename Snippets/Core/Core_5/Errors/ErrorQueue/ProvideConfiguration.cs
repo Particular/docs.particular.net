@@ -5,7 +5,8 @@
 
     #region ErrorQueueConfigurationProvider
 
-    class ProvideConfiguration : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
+    class ProvideConfiguration :
+        IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
     {
         public MessageForwardingInCaseOfFaultConfig GetConfiguration()
         {

@@ -4,7 +4,8 @@ using NServiceBus;
 
 using NServiceBus.Installation.Environments;
 
-public class Global : HttpApplication
+public class Global :
+    HttpApplication
 {
     public static IBus Bus;
 

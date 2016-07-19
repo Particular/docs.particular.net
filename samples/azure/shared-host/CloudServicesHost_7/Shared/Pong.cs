@@ -2,7 +2,8 @@
 
 #region AzureMultiHost_PongMessage
 
-public class Pong : IMessage
+public class Pong :
+    IMessage
 {
 }
 

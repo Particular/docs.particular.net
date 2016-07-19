@@ -4,7 +4,8 @@
     using NServiceBus.MessageMutator;
 
     #region IMutateOutgoingTransportMessages
-    public class MutateOutgoingTransportMessages : IMutateOutgoingTransportMessages
+    public class MutateOutgoingTransportMessages :
+        IMutateOutgoingTransportMessages
     {
         public void MutateOutgoing(object[] messages, TransportMessage transportMessage)
         {

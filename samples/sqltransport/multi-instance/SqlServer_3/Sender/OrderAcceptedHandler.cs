@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
 
-public class OrderAcceptedHandler : IHandleMessages<ClientOrderAccepted>
+public class OrderAcceptedHandler :
+    IHandleMessages<ClientOrderAccepted>
 {
     public Task Handle(ClientOrderAccepted message, IMessageHandlerContext context)
     {

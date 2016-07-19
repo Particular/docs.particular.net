@@ -1,7 +1,8 @@
 ﻿using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
-class ConfigEndpointMappings : IProvideConfiguration<UnicastBusConfig>
+class ConfigEndpointMappings :
+    IProvideConfiguration<UnicastBusConfig>
 {
 	public UnicastBusConfig GetConfiguration()
 	{

@@ -1,5 +1,6 @@
 using NServiceBus;
 
-public class CancelOrder : IMessage
+public class CancelOrder :
+    IMessage
 {
 }

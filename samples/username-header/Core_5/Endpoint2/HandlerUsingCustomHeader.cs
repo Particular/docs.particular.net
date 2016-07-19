@@ -2,7 +2,8 @@
 using NServiceBus.Logging;
 
 #region handler-using-custom-header
-public class HandlerUsingCustomHeader : IHandleMessages<MyMessage>
+public class HandlerUsingCustomHeader :
+    IHandleMessages<MyMessage>
 {
     static ILog log = LogManager.GetLogger("HandlerUsingCustomHeader");
     IBus bus;

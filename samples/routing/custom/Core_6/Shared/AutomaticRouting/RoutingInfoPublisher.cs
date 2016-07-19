@@ -8,7 +8,8 @@ using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Settings;
 
-class RoutingInfoPublisher : FeatureStartupTask
+class RoutingInfoPublisher :
+    FeatureStartupTask
 {
     RoutingInfoCommunicator dataBackplane;
     IReadOnlyCollection<Type> hanledMessageTypes;

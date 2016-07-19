@@ -2,7 +2,8 @@
 using NServiceBus.Config.ConfigurationSource;
 
 #region audit
-class ConfigAuditQueue : IProvideConfiguration<AuditConfig>
+class ConfigAuditQueue :
+    IProvideConfiguration<AuditConfig>
 {
     public AuditConfig GetConfiguration()
     {

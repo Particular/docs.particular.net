@@ -2,7 +2,8 @@
 
 #region AzureMultiHost_PingHandler
 
-public class PingHandler : IHandleMessages<Ping>
+public class PingHandler :
+    IHandleMessages<Ping>
 {
     IBus bus;
 

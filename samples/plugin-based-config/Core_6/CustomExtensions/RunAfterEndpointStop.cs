@@ -1,7 +1,8 @@
 using System.Threading.Tasks;
 using NServiceBus.Logging;
 
-public class RunAfterEndpointStop : IRunAfterEndpointStop
+public class RunAfterEndpointStop :
+    IRunAfterEndpointStop
 {
     static ILog log = LogManager.GetLogger<RunAfterEndpointStop>();
 

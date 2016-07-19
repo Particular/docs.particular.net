@@ -5,7 +5,8 @@
 
     #region header-outgoing-mutator
 
-    public class MutateOutgoingTransportMessages : IMutateOutgoingTransportMessages
+    public class MutateOutgoingTransportMessages :
+        IMutateOutgoingTransportMessages
     {
         public async Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
         {

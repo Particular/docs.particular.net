@@ -1,7 +1,8 @@
 ﻿using System;
 using NServiceBus;
 
-public class OrderSagaDataXml : ContainSagaData
+public class OrderSagaDataXml :
+    ContainSagaData
 {
     public virtual string OrderId { get; set; }
     public virtual int Version { get; set; }

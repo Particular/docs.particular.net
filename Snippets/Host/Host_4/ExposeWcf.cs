@@ -2,11 +2,13 @@
 
 #region ExposeWCFService
 
-public class CancelOrderService : WcfService<CancelOrder, ErrorCodes>
+public class CancelOrderService :
+    WcfService<CancelOrder, ErrorCodes>
 {
 }
 
-public class CancelOrderHandler : IHandleMessages<CancelOrder>
+public class CancelOrderHandler :
+    IHandleMessages<CancelOrder>
 {
     IBus bus;
 
@@ -30,7 +32,8 @@ public enum ErrorCodes
     Fail
 }
 
-public class CancelOrder : ICommand
+public class CancelOrder :
+    ICommand
 {
     public int OrderId { get; set; }
 }

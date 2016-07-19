@@ -2,7 +2,8 @@ using System;
 using System.ServiceProcess;
 using NServiceBus;
 
-class ProgramService : ServiceBase
+class ProgramService :
+    ServiceBase
 {
     IBus bus;
 

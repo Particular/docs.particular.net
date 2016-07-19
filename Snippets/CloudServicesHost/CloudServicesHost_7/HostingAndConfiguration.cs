@@ -5,7 +5,8 @@ using NServiceBus;
 
 #region HostingInWorkerRole
 
-public class WorkerRole : RoleEntryPoint
+public class WorkerRole :
+    RoleEntryPoint
 {
     NServiceBusRoleEntrypoint roleEntrypoint = new NServiceBusRoleEntrypoint();
 
@@ -26,7 +27,9 @@ public class WorkerRole : RoleEntryPoint
 
 #region AzureServiceBusTransportWithAzureHost
 
-public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
+public class EndpointConfig :
+    IConfigureThisEndpoint,
+    AsA_Worker
 {
     public void Customize(EndpointConfiguration endpointConfiguration)
     {
@@ -40,7 +43,8 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
 
 #region HostingInWebRole
 
-public class MvcApplication : HttpApplication
+public class MvcApplication :
+    HttpApplication
 {
     protected void Application_Start()
     {
@@ -63,7 +67,8 @@ public class MvcApplication : HttpApplication
 
 #region AsAHost
 
-public class EndpointHostConfig : IConfigureThisHost
+public class EndpointHostConfig :
+    IConfigureThisHost
 {
     public HostingSettings Configure()
     {

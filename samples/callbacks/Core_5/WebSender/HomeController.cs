@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 
-public class HomeController : Controller
+public class HomeController :
+    Controller
 {
     public ActionResult Index()
     {

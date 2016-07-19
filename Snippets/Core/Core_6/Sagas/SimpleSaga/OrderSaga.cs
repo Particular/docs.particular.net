@@ -6,17 +6,18 @@ namespace Core6.Sagas.SimpleSaga
 
     #region simple-saga
 
-    public class OrderSaga : Saga<OrderSagaData>,
-                            IAmStartedByMessages<StartOrder>,
-                            IHandleMessages<CompleteOrder>
+    public class OrderSaga :
+        Saga<OrderSagaData>,
+        IAmStartedByMessages<StartOrder>,
+        IHandleMessages<CompleteOrder>
     {
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
         {
             mapper.ConfigureMapping<StartOrder>(message => message.OrderId)
-                    .ToSaga(sagaData => sagaData.OrderId);
+                .ToSaga(sagaData => sagaData.OrderId);
 
             mapper.ConfigureMapping<CompleteOrder>(message => message.OrderId)
-                    .ToSaga(sagaData => sagaData.OrderId);
+                .ToSaga(sagaData => sagaData.OrderId);
         }
 
         public async Task Handle(StartOrder message, IMessageHandlerContext context)

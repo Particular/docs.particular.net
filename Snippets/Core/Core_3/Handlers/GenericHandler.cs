@@ -5,7 +5,8 @@
     using NServiceBus;
 
     #region GenericMessageHandler
-    public class GenericHandler : IHandleMessages<object>
+    public class GenericHandler :
+        IHandleMessages<object>
     {
         static ILog log = LogManager.GetLogger(typeof(GenericHandler));
 

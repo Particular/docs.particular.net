@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using NServiceBus.MessageMutator;
 
 #region Mutator
-public class MessageEncryptor : IMutateIncomingTransportMessages, IMutateOutgoingTransportMessages
+public class MessageEncryptor :
+    IMutateIncomingTransportMessages,
+    IMutateOutgoingTransportMessages
 {
 
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)

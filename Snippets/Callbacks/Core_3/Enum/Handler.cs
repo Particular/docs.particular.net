@@ -4,7 +4,8 @@ namespace Core3.Enum
 
     #region EnumCallbackResponse
 
-    public class Handler : IHandleMessages<Message>
+    public class Handler :
+        IHandleMessages<Message>
     {
         IBus bus;
 

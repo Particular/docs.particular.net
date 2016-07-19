@@ -5,7 +5,8 @@ using NServiceBus.Config.ConfigurationSource;
 
 namespace Core4.Sites
 {
-    class ProvideConfiguration : IProvideConfiguration<GatewayConfig>
+    class ProvideConfiguration :
+        IProvideConfiguration<GatewayConfig>
     {
         public GatewayConfig GetConfiguration()
         {

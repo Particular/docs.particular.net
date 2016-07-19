@@ -10,7 +10,8 @@ using NServiceBus.Logging;
 using NServiceBus.Routing;
 using NServiceBus.Routing.MessageDrivenSubscriptions;
 
-class RoutingInfoSubscriber : FeatureStartupTask
+class RoutingInfoSubscriber :
+    FeatureStartupTask
 {
     static ILog log = LogManager.GetLogger<RoutingInfoSubscriber>();
 

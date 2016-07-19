@@ -2,7 +2,8 @@
 using NServiceBus;
 using NServiceBus.Logging;
 #region handler-using-manipulated-principal
-public class HandlerUsingManipulatedPrincipal : IHandleMessages<MyMessage>
+public class HandlerUsingManipulatedPrincipal :
+    IHandleMessages<MyMessage>
 {
     static ILog log = LogManager.GetLogger("HandlerUsingManipulatedPrincipal");
 

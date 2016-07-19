@@ -4,7 +4,8 @@ using NServiceBus.AzureServiceBus.Addressing;
 
 #region Sha1SanitiazationStrategy
 
-class Sha1Sanitization : ISanitizationStrategy
+class Sha1Sanitization :
+    ISanitizationStrategy
 {
     public string Sanitize(string entityPathOrName, EntityType entityType)
     {

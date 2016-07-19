@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
 
 public static class ErrorQueue
 {
@@ -28,7 +26,7 @@ public static class ErrorQueue
     {
         using (var channel = connection.CreateModel())
         {
-            BasicGetResult getResult = null;
+            BasicGetResult getResult;
 
             do
             {

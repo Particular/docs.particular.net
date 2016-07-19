@@ -12,8 +12,8 @@ using Raven.Client.Document.DTC;
 #region RavenDBDtcSettingsByConvention
 // No specific configuration of EndpointConfiguration is necessary. The class implementing INeedInitialization
 // will be detected at endpoint startup and the Customize method will automatically be called.
-
-class RavenDtcConventions : INeedInitialization
+class RavenDtcConventions :
+    INeedInitialization
 {
     public void Customize(EndpointConfiguration configuration)
     {

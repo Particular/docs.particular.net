@@ -3,7 +3,8 @@ using NServiceBus;
 using Raven.Client;
 
 #region 3to4-acccessingravenfromhandler
-public class HandlerWithRavenSession : IHandleMessages<MyMessage>
+public class HandlerWithRavenSession :
+    IHandleMessages<MyMessage>
 {
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {

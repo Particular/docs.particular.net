@@ -7,7 +7,8 @@ using Raven.Client.UniqueConstraints;
 
 #region CustomSagaFinderWithUniqueConstraintRavenDB
 
-class StartOrderSagaFinder : IFindSagas<OrderSagaData>.Using<StartOrder>
+class StartOrderSagaFinder :
+    IFindSagas<OrderSagaData>.Using<StartOrder>
 {
     public Task<OrderSagaData> FindBy(StartOrder message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
     {

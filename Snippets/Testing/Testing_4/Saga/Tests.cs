@@ -27,7 +27,8 @@
         #endregion
     }
 
-    public class MySaga : NServiceBus.Saga.Saga<MySagaData>,
+    public class MySaga :
+        NServiceBus.Saga.Saga<MySagaData>,
         IAmStartedByMessages<StartsSaga>,
         IHandleTimeouts<StartsSaga>
     {
@@ -36,7 +37,7 @@
             ReplyToOriginator(new MyResponse());
             Bus.Publish(new MyEvent());
             Bus.Send(new MyCommand());
-            RequestTimeout(TimeSpan.FromDays(7), message); 
+            RequestTimeout(TimeSpan.FromDays(7), message);
         }
 
         public void Timeout(StartsSaga state)

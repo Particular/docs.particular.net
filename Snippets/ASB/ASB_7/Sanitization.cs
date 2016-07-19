@@ -53,7 +53,8 @@ class Sanitization
 
 #region asb-custom-sanitization-strategy
 
-class CustomSanitization : ISanitizationStrategy
+class CustomSanitization :
+    ISanitizationStrategy
 {
     public string Sanitize(string entityPathOrName, EntityType entityType)
     {
@@ -66,7 +67,8 @@ class CustomSanitization : ISanitizationStrategy
 
 #region custom-sanitization-strategy-with-settings
 
-public class CustomSanitizationWithSettings : ISanitizationStrategy
+public class CustomSanitizationWithSettings :
+    ISanitizationStrategy
 {
     ReadOnlySettings settings;
 
@@ -86,7 +88,8 @@ public class CustomSanitizationWithSettings : ISanitizationStrategy
 
 #region asb-backward-compatible-custom-sanitiaztion-strategy
 
-class V6Sanitization : ISanitizationStrategy
+class V6Sanitization :
+    ISanitizationStrategy
 {
     public string Sanitize(string entityPathOrName, EntityType entityType)
     {

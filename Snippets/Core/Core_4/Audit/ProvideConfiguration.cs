@@ -6,7 +6,8 @@
 
     #region AuditProvideConfiguration
 
-    class ProvideConfiguration : IProvideConfiguration<AuditConfig>
+    class ProvideConfiguration :
+        IProvideConfiguration<AuditConfig>
     {
         public AuditConfig GetConfiguration()
         {

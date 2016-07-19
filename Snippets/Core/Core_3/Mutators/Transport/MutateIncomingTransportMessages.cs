@@ -4,7 +4,8 @@
     using NServiceBus.Unicast.Transport;
 
     #region IMutateIncomingTransportMessages
-    public class MutateIncomingTransportMessages : IMutateIncomingTransportMessages
+    public class MutateIncomingTransportMessages :
+        IMutateIncomingTransportMessages
     {
         public void MutateIncoming(TransportMessage transportMessage)
         {

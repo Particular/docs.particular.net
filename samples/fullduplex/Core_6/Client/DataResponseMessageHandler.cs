@@ -3,7 +3,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 #region DataResponseMessageHandler
-class DataResponseMessageHandler : IHandleMessages<DataResponseMessage>
+class DataResponseMessageHandler :
+    IHandleMessages<DataResponseMessage>
 #endregion
 {
     static ILog log = LogManager.GetLogger<DataResponseMessageHandler>();

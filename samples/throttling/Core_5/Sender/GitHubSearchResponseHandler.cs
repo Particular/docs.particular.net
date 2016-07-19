@@ -2,7 +2,8 @@
 using NServiceBus.Logging;
 
 #region GitHubSearchResponseHandler
-public class GitHubSearchResponseHandler : IHandleMessages<SearchResponse>
+public class GitHubSearchResponseHandler :
+    IHandleMessages<SearchResponse>
 {
     static ILog log = LogManager.GetLogger<GitHubSearchResponseHandler>();
 

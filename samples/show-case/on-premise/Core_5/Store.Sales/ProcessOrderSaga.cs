@@ -6,10 +6,11 @@ using NServiceBus.Saga;
 using Store.Messages.Commands;
 using Store.Messages.Events;
 
-public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
-                                IAmStartedByMessages<SubmitOrder>,
-                                IHandleMessages<CancelOrder>,
-                                IHandleTimeouts<ProcessOrderSaga.BuyersRemorseIsOver>
+public class ProcessOrderSaga :
+    Saga<ProcessOrderSaga.OrderData>,
+    IAmStartedByMessages<SubmitOrder>,
+    IHandleMessages<CancelOrder>,
+    IHandleTimeouts<ProcessOrderSaga.BuyersRemorseIsOver>
 {
     static ILog log = LogManager.GetLogger<ProcessOrderSaga>();
 
@@ -36,11 +37,11 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
         }
 
         Bus.Publish<OrderAccepted>(e =>
-            {
-                e.OrderNumber = Data.OrderNumber;
-                e.ProductIds = Data.ProductIds;
-                e.ClientId = Data.ClientId;
-            });
+        {
+            e.OrderNumber = Data.OrderNumber;
+            e.ProductIds = Data.ProductIds;
+            e.ClientId = Data.ClientId;
+        });
 
         MarkAsComplete();
 
@@ -51,16 +52,16 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
     {
         if (DebugFlagMutator.Debug)
         {
-                Debugger.Break();
+            Debugger.Break();
         }
 
         MarkAsComplete();
 
         Bus.Publish<OrderCancelled>(o =>
-            {
-                o.OrderNumber = message.OrderNumber;
-                o.ClientId = message.ClientId;
-            });
+        {
+            o.OrderNumber = message.OrderNumber;
+            o.ClientId = message.ClientId;
+        });
 
         log.Info($"Order #{message.OrderNumber} was cancelled.");
     }
@@ -73,10 +74,12 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
             .ToSaga(sagaData => sagaData.OrderNumber);
     }
 
-    public class OrderData : ContainSagaData
+    public class OrderData :
+        ContainSagaData
     {
         [Unique]
         public int OrderNumber { get; set; }
+
         public string[] ProductIds { get; set; }
         public string ClientId { get; set; }
     }

@@ -6,7 +6,9 @@
 
     #region MessageBodyEncryptor
 
-    public class MessageEncryptor : IMutateIncomingTransportMessages, IMutateOutgoingTransportMessages
+    public class MessageEncryptor :
+        IMutateIncomingTransportMessages,
+        IMutateOutgoingTransportMessages
     {
         public Task MutateIncoming(MutateIncomingTransportMessageContext context)
         {

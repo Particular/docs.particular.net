@@ -2,7 +2,8 @@
 using NServiceBus.Saga;
 using Raven.Client.UniqueConstraints;
 
-class CompleteOrderSagaFinder : IFindSagas<OrderSagaData>.Using<CompleteOrder>
+class CompleteOrderSagaFinder :
+    IFindSagas<OrderSagaData>.Using<CompleteOrder>
 {
     ISessionProvider sessionProvider;
 

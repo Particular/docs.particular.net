@@ -11,7 +11,8 @@ using NServiceBus.Logging;
 using NServiceBus.Transports;
 
 #region MessagePump
-class FileTransportMessagePump : IPushMessages
+class FileTransportMessagePump :
+    IPushMessages
 {
     static ILog log = LogManager.GetLogger<FileTransportMessagePump>();
 

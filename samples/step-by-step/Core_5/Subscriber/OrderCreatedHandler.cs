@@ -3,7 +3,8 @@ using NServiceBus.Logging;
 using Shared;
 
 #region OrderCreatedHandler
-public class OrderCreatedHandler : IHandleMessages<OrderPlaced>
+public class OrderCreatedHandler :
+    IHandleMessages<OrderPlaced>
 {
     static ILog log = LogManager.GetLogger<OrderCreatedHandler>();
 

@@ -3,7 +3,8 @@ using NServiceBus.Logging;
 
 #region EnumMessageHandler
 
-public class EnumMessageHandler : IHandleMessages<EnumMessage>
+public class EnumMessageHandler :
+    IHandleMessages<EnumMessage>
 {
     static ILog log = LogManager.GetLogger<EnumMessageHandler>();
     IBus bus;

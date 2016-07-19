@@ -3,7 +3,8 @@
 
     #region DerivedEvent
 
-    public class DerivedEvent : BaseEvent
+    public class DerivedEvent :
+        BaseEvent
     {
         public string Data { get; set; }
     }

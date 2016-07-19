@@ -6,7 +6,8 @@ using NServiceBus.MessageMutator;
 using NServiceBus.Unicast.Messages;
 
 #region TransportMessageCompressionMutator
-public class TransportMessageCompressionMutator : IMutateTransportMessages
+public class TransportMessageCompressionMutator :
+    IMutateTransportMessages
 {
     static ILog log = LogManager.GetLogger("TransportMessageCompressionMutator");
 
@@ -21,7 +22,7 @@ public class TransportMessageCompressionMutator : IMutateTransportMessages
         {
             mStream.CopyTo(tinyStream);
         }
-        // copy the compressed buffer only after the GZipStream is disposed, 
+        // copy the compressed buffer only after the GZipStream is disposed,
         // otherwise, not all the compressed message will be copied.
         transportMessage.Body = outStream.ToArray();
         transportMessage.Headers["IWasCompressed"] = "true";

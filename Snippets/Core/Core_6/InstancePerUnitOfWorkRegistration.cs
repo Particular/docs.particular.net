@@ -20,7 +20,8 @@
 
     #region UnitOfWorkImplementation
 
-    public class MyUnitOfWork : IManageUnitsOfWork
+    public class MyUnitOfWork :
+        IManageUnitsOfWork
     {
         public Task Begin()
         {

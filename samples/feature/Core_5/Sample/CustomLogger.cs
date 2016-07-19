@@ -20,7 +20,8 @@ public class CustomLogger
         log.Warn($"Saga State: \r\n{serialized}");
     }
 
-    class Log : IDisposable
+    class Log :
+        IDisposable
     {
         string name;
         Stopwatch stopwatch;

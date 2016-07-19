@@ -1,7 +1,8 @@
 using System;
 using NServiceBus;
 
-public interface IMyEvent : IEvent
+public interface IMyEvent :
+    IEvent
 {
     Guid EventId { get; set; }
     DateTime? Time { get; set; }

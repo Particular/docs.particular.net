@@ -91,7 +91,8 @@ class Usage
         #endregion
     }
 
-    class MyRoutingTopology : IRoutingTopology
+    class MyRoutingTopology :
+        IRoutingTopology
     {
         public void SetupSubscription(IModel channel, Type type, string subscriberName)
         {

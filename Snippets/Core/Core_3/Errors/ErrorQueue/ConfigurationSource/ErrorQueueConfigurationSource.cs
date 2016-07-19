@@ -6,7 +6,8 @@
 
     #region ErrorQueueConfigurationSource
 
-    public class ConfigurationSource : IConfigurationSource
+    public class ConfigurationSource :
+        IConfigurationSource
     {
         public T GetConfiguration<T>() where T : class, new()
         {

@@ -3,7 +3,8 @@ using NServiceBus;
 
 #region RunWhenStartsAndStops
 
-public class MessageSender : IWantToRunWhenEndpointStartsAndStops
+public class MessageSender :
+    IWantToRunWhenEndpointStartsAndStops
 {
     public Task Start(IMessageSession session)
     {

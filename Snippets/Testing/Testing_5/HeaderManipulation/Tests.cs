@@ -22,7 +22,8 @@
         }
     }
 
-    class MyMessageHandler : IHandleMessages<RequestMessage>
+    class MyMessageHandler :
+        IHandleMessages<RequestMessage>
     {
         public IBus Bus { get; set; }
 

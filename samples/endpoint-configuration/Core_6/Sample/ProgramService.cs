@@ -10,7 +10,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Persistence;
 
-class ProgramService : ServiceBase
+class ProgramService :
+    ServiceBase
 {
     IEndpointInstance endpointInstance;
     static ILog log = LogManager.GetLogger("ProgramService");

@@ -5,7 +5,8 @@ using System.Linq;
 using NServiceBus.Transports;
 
 #region DirectoryBasedTransaction
-class DirectoryBasedTransaction : TransportTransaction
+class DirectoryBasedTransaction :
+    TransportTransaction
 {
     public DirectoryBasedTransaction(string basePath)
     {

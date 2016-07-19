@@ -2,7 +2,8 @@
 using NServiceBus;
 
 #region SampleSaga
-public class DiscountPolicy : Saga<DiscountPolicyData>,
+public class DiscountPolicy :
+    Saga<DiscountPolicyData>,
     IAmStartedByMessages<SubmitOrder>
 {
     public Task Handle(SubmitOrder message, IMessageHandlerContext context)

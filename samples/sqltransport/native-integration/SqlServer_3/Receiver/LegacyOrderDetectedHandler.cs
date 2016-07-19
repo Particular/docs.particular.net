@@ -2,7 +2,8 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class LegacyOrderDetectedHandler : IHandleMessages<LegacyOrderDetected>
+public class LegacyOrderDetectedHandler :
+    IHandleMessages<LegacyOrderDetected>
 {
     static ILog log = LogManager.GetLogger<LegacyOrderDetectedHandler>();
 

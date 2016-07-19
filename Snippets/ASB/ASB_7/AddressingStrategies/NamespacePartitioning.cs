@@ -6,7 +6,8 @@ using NServiceBus.Settings;
 
 #region custom-namespace-partitioning-strategy
 
-public class MyNamespacePartitioningStrategy : INamespacePartitioningStrategy
+public class MyNamespacePartitioningStrategy :
+    INamespacePartitioningStrategy
 {
     ReadOnlySettings settings;
 

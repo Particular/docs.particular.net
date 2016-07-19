@@ -3,7 +3,7 @@ using NServiceBus.Saga;
 
 #region sagadata
 
-public class OrderSagaData : 
+public class OrderSagaData :
     IContainSagaData
 {
     public Guid Id { get; set; }

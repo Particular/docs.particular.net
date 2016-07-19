@@ -20,7 +20,8 @@
 
         #region CustomConfigSource
 
-        public class MyCustomConfigurationSource : IConfigurationSource
+        public class MyCustomConfigurationSource :
+            IConfigurationSource
         {
             public T GetConfiguration<T>() where T : class, new()
             {
@@ -41,7 +42,8 @@
 
         #region CustomConfigProvider
 
-        class CustomRijndaelEncryptionServiceConfigProvider : IProvideConfiguration<RijndaelEncryptionServiceConfig>
+        class CustomRijndaelEncryptionServiceConfigProvider :
+            IProvideConfiguration<RijndaelEncryptionServiceConfig>
         {
             public RijndaelEncryptionServiceConfig GetConfiguration()
             {

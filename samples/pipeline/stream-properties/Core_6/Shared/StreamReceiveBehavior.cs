@@ -6,7 +6,8 @@ using NServiceBus.Pipeline;
 
 #region ReceiveBehaviorDefinition
 
-class StreamReceiveBehavior : Behavior<IIncomingLogicalMessageContext>
+class StreamReceiveBehavior :
+    Behavior<IIncomingLogicalMessageContext>
 {
     string location;
 

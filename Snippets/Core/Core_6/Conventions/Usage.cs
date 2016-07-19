@@ -9,14 +9,38 @@ namespace Core6.Conventions
         {
             #region MessageConventions
             var conventionsBuilder = endpointConfiguration.Conventions();
-            conventionsBuilder.DefiningCommandsAs(t => t.Namespace == "MyNamespace.Messages.Commands");
-            conventionsBuilder.DefiningEventsAs(t => t.Namespace == "MyNamespace.Messages.Events");
-            conventionsBuilder.DefiningMessagesAs(t => t.Namespace == "MyNamespace.Messages");
-            conventionsBuilder.DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"));
-            conventionsBuilder.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
-            conventionsBuilder.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
+            conventionsBuilder.DefiningCommandsAs(t =>
+            {
+                return t.Namespace == "MyNamespace.Messages.Commands";
+            });
+            conventionsBuilder.DefiningEventsAs(t =>
+            {
+                return t.Namespace == "MyNamespace.Messages.Events";
+            });
+            conventionsBuilder.DefiningMessagesAs(t =>
+            {
+                return t.Namespace == "MyNamespace.Messages";
+            });
+            conventionsBuilder.DefiningEncryptedPropertiesAs(p =>
+            {
+                return p.Name.StartsWith("Encrypted");
+            });
+            conventionsBuilder.DefiningDataBusPropertiesAs(p =>
+            {
+                return p.Name.EndsWith("DataBus");
+            });
+            conventionsBuilder.DefiningExpressMessagesAs(t =>
+            {
+                return t.Name.EndsWith("Express");
+            });
             conventionsBuilder.DefiningTimeToBeReceivedAs(t =>
-                t.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
+            {
+                if (t.Name.EndsWith("Expires"))
+                {
+                    return TimeSpan.FromSeconds(30);
+                }
+                return TimeSpan.MaxValue;
+            });
 
             #endregion
         }

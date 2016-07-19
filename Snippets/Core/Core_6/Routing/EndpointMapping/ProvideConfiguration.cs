@@ -10,7 +10,7 @@
     {
         public UnicastBusConfig GetConfiguration()
         {
-            //read from existing config 
+            //read from existing config
             var config = (UnicastBusConfig) ConfigurationManager
                 .GetSection(typeof(UnicastBusConfig).Name);
             if (config == null)
@@ -22,12 +22,12 @@
                 };
             }
             //append mapping to config
-            config.MessageEndpointMappings.Add(
-                new MessageEndpointMapping
-                {
-                    AssemblyName = "assembly",
-                    Endpoint = "queue@machinename"
-                });
+            var endpointMapping = new MessageEndpointMapping
+            {
+                AssemblyName = "assembly",
+                Endpoint = "queue@machinename"
+            };
+            config.MessageEndpointMappings.Add(endpointMapping);
             return config;
         }
     }

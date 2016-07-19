@@ -3,7 +3,8 @@ using NServiceBus;
 
 #region AzureMultiHost_SendPingCommand
 
-public class SendPing : IWantToRunWhenEndpointStartsAndStops
+public class SendPing :
+    IWantToRunWhenEndpointStartsAndStops
 {
     public Task Start(IMessageSession session)
     {

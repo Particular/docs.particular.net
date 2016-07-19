@@ -6,7 +6,8 @@ using NServiceBus.Pipeline.Contexts;
 #pragma warning disable 618
 
 #region HandlerTimerBehavior
-class HandlerTimerBehavior : IBehavior<HandlerInvocationContext>
+class HandlerTimerBehavior :
+    IBehavior<HandlerInvocationContext>
 {
     static ILog log = LogManager.GetLogger(typeof(HandlerTimerBehavior));
 

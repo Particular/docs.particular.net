@@ -4,7 +4,8 @@ using NServiceBus;
 using System.Diagnostics;
 using Store.Messages.Commands;
 
-public class OrdersHub : Hub
+public class OrdersHub :
+    Hub
 {
     static int orderNumber;
 

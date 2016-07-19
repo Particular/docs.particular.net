@@ -6,14 +6,16 @@
 
     #region NewPipelineStep 4.5
 
-    class NewStepInPipeline : PipelineOverride
+    class NewStepInPipeline :
+        PipelineOverride
     {
         public override void Override(BehaviorList<HandlerInvocationContext> behaviorList)
         {
             behaviorList.InsertAfter<InvokeHandlersBehavior, SampleBehavior>();
         }
 
-        //Classes inheriting from PipelineOverride are registered by convention. No need to explicitly register.
+        // Classes inheriting from PipelineOverride are registered by convention.
+        // No need to explicitly register.
     }
 
     #endregion

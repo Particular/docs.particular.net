@@ -40,7 +40,8 @@
             #endregion
         }
 
-        class MyTransport : TransportDefinition
+        class MyTransport :
+            TransportDefinition
         {
             protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
             {

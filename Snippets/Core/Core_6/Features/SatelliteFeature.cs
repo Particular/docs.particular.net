@@ -8,7 +8,8 @@
     using NServiceBus.Transports;
 
     #region SimpleSatelliteFeature
-    public class MySatelliteFeature : Feature
+    public class MySatelliteFeature :
+        Feature
     {
         public MySatelliteFeature()
         {
@@ -34,7 +35,8 @@
     #endregion
 
     #region SatelliteBehavior
-    class MySatelliteBehavior : PipelineTerminator<ISatelliteProcessingContext>
+    class MySatelliteBehavior :
+        PipelineTerminator<ISatelliteProcessingContext>
     {
         protected override Task Terminate(ISatelliteProcessingContext context)
         {

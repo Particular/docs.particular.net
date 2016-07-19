@@ -6,7 +6,8 @@ using NServiceBus.Pipeline;
 using Octokit;
 
 #region ThrottlingBehavior
-public class ThrottlingBehavior : Behavior<IInvokeHandlerContext>
+public class ThrottlingBehavior :
+    Behavior<IInvokeHandlerContext>
 {
     static ILog log = LogManager.GetLogger<ThrottlingBehavior>();
     static DateTime? nextRateLimitReset;

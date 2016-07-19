@@ -3,7 +3,8 @@ using NServiceBus.Logging;
 
 #region NativeMessageHandler
 
-public class NativeMessageHandler : IHandleMessages<NativeMessage>
+public class NativeMessageHandler :
+    IHandleMessages<NativeMessage>
 {
     ILog log = LogManager.GetLogger<NativeMessageHandler>();
 

@@ -2,7 +2,8 @@
 using NServiceBus.Logging;
 
 #region CustomCustomizeConfiguration
-public class CustomizeConfiguration : ICustomizeConfiguration
+public class CustomizeConfiguration :
+    ICustomizeConfiguration
 {
     static ILog log = LogManager.GetLogger<CustomizeConfiguration>();
 

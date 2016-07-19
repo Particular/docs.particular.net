@@ -5,7 +5,8 @@ using NServiceBus.Pipeline.Contexts;
 using NServiceBus.Unicast;
 
 #region SendThroughLocalQueueBehavior
-public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
+public class SendThroughLocalQueueBehavior :
+    IBehavior<OutgoingContext>
 {
     Configure configure;
 
@@ -51,7 +52,8 @@ public class SendThroughLocalQueueBehavior : IBehavior<OutgoingContext>
         next();
     }
 
-    public class Registration : RegisterStep
+    public class Registration :
+        RegisterStep
     {
         public Registration()
             : base("SendThroughLocalQueue", typeof(SendThroughLocalQueueBehavior), "Put the outgoing message into this endpoint's input queue")

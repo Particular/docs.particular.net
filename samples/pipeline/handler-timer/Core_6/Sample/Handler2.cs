@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class Handler2 : IHandleMessages<Message>
+public class Handler2 :
+    IHandleMessages<Message>
 {
     static ILog log = LogManager.GetLogger<Handler2>();
     static Random random = new Random();

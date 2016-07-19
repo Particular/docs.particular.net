@@ -19,7 +19,8 @@
 
     #region UnitOfWorkImplementation
 
-    public class MyUnitOfWork : IManageUnitsOfWork
+    public class MyUnitOfWork :
+        IManageUnitsOfWork
     {
         public void Begin()
         {

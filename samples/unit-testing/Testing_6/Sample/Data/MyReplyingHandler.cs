@@ -2,7 +2,8 @@
 using NServiceBus;
 
 #region SimpleHandler
-public class MyReplyingHandler : IHandleMessages<MyRequest>
+public class MyReplyingHandler :
+    IHandleMessages<MyRequest>
 {
     public Task Handle(MyRequest message, IMessageHandlerContext context)
     {

@@ -5,7 +5,8 @@
     using NServiceBus.Saga;
 
     #region header-incoming-saga
-    public class ReadSaga : Saga<ReadSagaData>,
+    public class ReadSaga :
+        Saga<ReadSagaData>,
         IHandleMessages<MyMessage>
     {
         public void Handle(MyMessage message)
@@ -17,7 +18,8 @@
     }
 
     #endregion
-    public class ReadSagaData : IContainSagaData
+    public class ReadSagaData :
+        IContainSagaData
     {
         public Guid Id { get; set; }
         public string Originator { get; set; }

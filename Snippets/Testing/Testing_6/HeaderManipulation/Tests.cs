@@ -22,7 +22,8 @@
         }
     }
 
-    class MyMessageHandler : IHandleMessages<RequestMessage>
+    class MyMessageHandler :
+        IHandleMessages<RequestMessage>
     {
         public Task Handle(RequestMessage message, IMessageHandlerContext context)
         {

@@ -4,7 +4,8 @@ using System.ServiceModel;
 using NServiceBus;
 
 #region WcfMapper 
-public class WcfMapper : IDisposable
+public class WcfMapper :
+    IDisposable
 {
     IBus bus;
     string server;

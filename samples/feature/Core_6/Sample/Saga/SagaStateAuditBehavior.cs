@@ -4,7 +4,8 @@ using NServiceBus.Pipeline;
 using NServiceBus.Sagas;
 
 #region SagaStateAuditBehavior
-class SagaStateAuditBehavior : Behavior<IInvokeHandlerContext>
+class SagaStateAuditBehavior :
+    Behavior<IInvokeHandlerContext>
 {
     CustomLogger logger;
 

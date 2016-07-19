@@ -5,7 +5,8 @@
 
     #region LoggingThresholdFromIProvideConfiguration
 
-    public class ProvideConfiguration : IProvideConfiguration<Logging>
+    public class ProvideConfiguration :
+        IProvideConfiguration<Logging>
     {
         public Logging GetConfiguration()
         {

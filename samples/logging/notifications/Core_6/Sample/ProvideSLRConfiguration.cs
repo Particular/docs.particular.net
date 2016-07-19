@@ -3,7 +3,8 @@ using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
 #region customSLR
-class ProvideSLRConfiguration : IProvideConfiguration<SecondLevelRetriesConfig>
+class ProvideSLRConfiguration :
+    IProvideConfiguration<SecondLevelRetriesConfig>
 {
     public SecondLevelRetriesConfig GetConfiguration()
     {

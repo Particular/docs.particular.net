@@ -5,10 +5,11 @@ using System.Web.Routing;
 using NServiceBus;
 using NServiceBus.Installation.Environments;
 
-public class MvcApplication : HttpApplication
+public class MvcApplication :
+    HttpApplication
 {
     public static IBus Bus;
-    
+
     protected void Application_Start()
     {
         StartBus();

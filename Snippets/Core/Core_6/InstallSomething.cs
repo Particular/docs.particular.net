@@ -5,7 +5,8 @@
 
     #region InstallSomething
 
-    public class MyInstaller : INeedToInstallSomething
+    public class MyInstaller :
+        INeedToInstallSomething
     {
         public Task Install(string identity)
         {

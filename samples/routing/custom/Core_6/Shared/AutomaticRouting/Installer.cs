@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 using NServiceBus.Installation;
 using NServiceBus.Settings;
 
-class Installer : INeedToInstallSomething
+class Installer :
+    INeedToInstallSomething
 {
     string CreateTableText =
         @"

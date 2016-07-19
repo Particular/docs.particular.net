@@ -3,7 +3,8 @@ using System.Data;
 using System.Data.Common;
 using System.Data.Entity.ModelConfiguration;
 
-public class ReceiverDataContext : DbContext
+public class ReceiverDataContext :
+    DbContext
 {
     #region EntityFramework
     public ReceiverDataContext()

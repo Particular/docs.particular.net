@@ -5,7 +5,8 @@
 
     #region header-outgoing-saga
 
-    public class WriteSaga : Saga<WriteSagaData>,
+    public class WriteSaga :
+        Saga<WriteSagaData>,
         IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
@@ -34,7 +35,8 @@
 
 
 
-    public class WriteSagaData : ContainSagaData
+    public class WriteSagaData :
+        ContainSagaData
     {
     }
 

@@ -4,7 +4,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 #region message-with-stream-handler
-public class MessageWithStreamHandler : IHandleMessages<MessageWithStream>
+public class MessageWithStreamHandler :
+    IHandleMessages<MessageWithStream>
 {
     static ILog log = LogManager.GetLogger<MessageWithStreamHandler>();
 

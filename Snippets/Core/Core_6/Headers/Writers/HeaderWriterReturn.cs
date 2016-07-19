@@ -40,11 +40,13 @@
             ManualResetEvent.WaitOne();
         }
 
-        class MessageToSend : IMessage
+        class MessageToSend :
+            IMessage
         {
         }
 
-        class MessageHandler : IHandleMessages<MessageToSend>
+        class MessageHandler :
+            IHandleMessages<MessageToSend>
         {
             public Task Handle(MessageToSend message, IMessageHandlerContext context)
             {
@@ -52,14 +54,16 @@
             }
         }
 
-        class Mutator : IMutateIncomingTransportMessages
+        class Mutator :
+            IMutateIncomingTransportMessages
         {
 
             public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
+                var headers = context.Headers;
                 if (context.IsMessageOfTye<MessageToSend>())
                 {
-                    var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(context.Headers);
+                    var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(headers);
                     SnippetLogger.Write(
                         text: sendingText,
                         suffix: "Sending",
@@ -67,7 +71,7 @@
                 }
                 else
                 {
-                    var returnText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(context.Headers);
+                    var returnText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(headers);
                     SnippetLogger.Write(
                         text: returnText,
                         suffix: "Returning",

@@ -4,7 +4,8 @@ namespace Core5.UpgradeGuides._4to5
     using NServiceBus;
     using NServiceBus.ObjectBuilder;
     #region 4to5businstance
-    public class BusInstance : IWantToRunWhenBusStartsAndStops
+    public class BusInstance :
+        IWantToRunWhenBusStartsAndStops
     {
         public BusInstance(IBus bus, IBuilder builder)
         {

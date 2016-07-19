@@ -17,19 +17,21 @@ namespace Core6
 
         #region MessageWithXDocument
 
-        public class MessageWithXDocument : IMessage
+        public class MessageWithXDocument :
+            IMessage
         {
             // name and casing must match the rootnode
-            public XDocument nutrition { get; set; } 
+            public XDocument nutrition { get; set; }
         }
         #endregion
 
         #region MessageWithXElement
 
-        public class MessageWithXElement : IMessage
+        public class MessageWithXElement :
+            IMessage
         {
             // name and casing must match the rootnode
-            public XElement nutrition { get; set; } 
+            public XElement nutrition { get; set; }
         }
         #endregion
     }

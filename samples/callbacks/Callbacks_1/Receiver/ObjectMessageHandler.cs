@@ -4,7 +4,8 @@ using NServiceBus.Logging;
 
 #region ObjectMessageHandler
 
-public class ObjectMessageHandler : IHandleMessages<ObjectMessage>
+public class ObjectMessageHandler :
+    IHandleMessages<ObjectMessage>
 {
     static ILog log = LogManager.GetLogger<ObjectMessageHandler>();
 

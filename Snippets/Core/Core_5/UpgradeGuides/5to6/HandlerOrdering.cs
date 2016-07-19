@@ -14,7 +14,8 @@
         }
 
         #region 5to6HandlerOrderingWithFirst
-        public class MySpecifyingFirst : ISpecifyMessageHandlerOrdering
+        public class MySpecifyingFirst :
+            ISpecifyMessageHandlerOrdering
         {
             public void SpecifyOrder(Order order)
             {

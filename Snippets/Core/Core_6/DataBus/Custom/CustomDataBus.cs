@@ -7,7 +7,8 @@
 
     #region CustomDataBus
 
-    class CustomDataBus : IDataBus
+    class CustomDataBus :
+        IDataBus
     {
         public Task<Stream> Get(string key)
         {

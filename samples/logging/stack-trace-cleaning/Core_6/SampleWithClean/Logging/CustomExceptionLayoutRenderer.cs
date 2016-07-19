@@ -5,7 +5,8 @@ using AsyncFriendlyStackTrace;
 using NLog.Config;
 using NLog.LayoutRenderers;
 [ThreadAgnostic]
-public class CustomExceptionLayoutRenderer : ExceptionLayoutRenderer
+public class CustomExceptionLayoutRenderer :
+    ExceptionLayoutRenderer
 {
     protected override void AppendToString(StringBuilder stringBuilder, Exception exception)
     {

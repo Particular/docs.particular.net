@@ -2,7 +2,8 @@ using System.Threading.Tasks;
 using NServiceBus.MessageMutator;
 
 #region mutate-outgoing-messages
-public class MutateOutgoingMessages : IMutateOutgoingMessages
+public class MutateOutgoingMessages :
+    IMutateOutgoingMessages
 {
     public Task MutateOutgoing(MutateOutgoingMessageContext context)
     {

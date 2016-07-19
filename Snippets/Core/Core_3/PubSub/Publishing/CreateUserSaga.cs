@@ -3,8 +3,11 @@ namespace Core3.PubSub
     using System;
     using NServiceBus;
     using NServiceBus.Saga;
-#region publishFromSaga
-    public class CreateUserSaga : Saga<CreateUserSaga.SagaData>,
+
+    #region publishFromSaga
+
+    public class CreateUserSaga :
+        Saga<CreateUserSaga.SagaData>,
         IHandleMessages<CreateUserCommand>
     {
         IBus bus;
@@ -21,8 +24,11 @@ namespace Core3.PubSub
                 e.Name = message.Name;
             });
         }
-#endregion
-        public class SagaData : IContainSagaData
+
+        #endregion
+
+        public class SagaData :
+            IContainSagaData
         {
             public Guid Id { get; set; }
             public string Originator { get; set; }

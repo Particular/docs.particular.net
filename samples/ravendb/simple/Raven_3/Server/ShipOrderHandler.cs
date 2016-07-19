@@ -4,7 +4,8 @@ using NServiceBus.RavenDB.Persistence;
 
 #region handler
 
-public class ShipOrderHandler : IHandleMessages<ShipOrder>
+public class ShipOrderHandler :
+    IHandleMessages<ShipOrder>
 {
     ISessionProvider sessionProvider;
 

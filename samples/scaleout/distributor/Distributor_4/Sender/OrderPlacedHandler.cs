@@ -3,7 +3,8 @@ using NServiceBus.Logging;
 
 #region sender-event-handler
 
-public class OrderPlacedHandler : IHandleMessages<OrderPlaced>
+public class OrderPlacedHandler :
+    IHandleMessages<OrderPlaced>
 {
     static ILog log = LogManager.GetLogger(typeof(OrderPlacedHandler));
 

@@ -3,7 +3,8 @@
     using NServiceBus;
     using NServiceBus.Satellites;
 
-    public class SimpleSatellite : ISatellite
+    public class SimpleSatellite :
+        ISatellite
     {
         #region SimpleSatelliteHandleMessages
         public bool Handle(TransportMessage message)

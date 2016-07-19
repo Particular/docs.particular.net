@@ -7,7 +7,8 @@ namespace Core6.Pipeline
     using NServiceBus.Transports;
 
     #region CustomForkConnector
-    public class CustomForkConnector : ForkConnector<IIncomingPhysicalMessageContext, IAuditContext>
+    public class CustomForkConnector :
+        ForkConnector<IIncomingPhysicalMessageContext, IAuditContext>
     {
         public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next, Func<IAuditContext, Task> fork)
         {

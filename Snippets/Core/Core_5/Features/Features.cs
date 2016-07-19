@@ -2,17 +2,22 @@
 
 namespace Core5.Extending
 {
+
     #region MinimalFeature
-    public class MinimalFeature : Feature
+
+    public class MinimalFeature :
+        Feature
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
 
         }
     }
+
     #endregion
 
-    class ComponentBFeature : Feature
+    class ComponentBFeature :
+        Feature
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
@@ -20,7 +25,9 @@ namespace Core5.Extending
     }
 
     #region DependentFeature
-    public class ComponentAFeature : Feature
+
+    public class ComponentAFeature :
+        Feature
     {
         public ComponentAFeature()
         {
@@ -32,6 +39,7 @@ namespace Core5.Extending
             DependsOn("ComponentC");
             DependsOnAtLeastOne("ComponentD", "ComponentE");
         }
+
         #endregion
 
         protected override void Setup(FeatureConfigurationContext context)
@@ -40,7 +48,9 @@ namespace Core5.Extending
     }
 
     #region FeatureEnabledByDefault
-    public class FeatureEnabledByDefault : Feature
+
+    public class FeatureEnabledByDefault :
+        Feature
     {
         public FeatureEnabledByDefault()
         {
@@ -51,10 +61,13 @@ namespace Core5.Extending
         {
         }
     }
+
     #endregion
 
     #region FeatureWithDefaults
-    public class FeatureWithDefaults : Feature
+
+    public class FeatureWithDefaults :
+        Feature
     {
         public FeatureWithDefaults()
         {
@@ -69,14 +82,18 @@ namespace Core5.Extending
         {
         }
     }
+
     #endregion
 
-    public class EnablingOtherFeatures : Feature
+    public class EnablingOtherFeatures :
+        Feature
     {
         public EnablingOtherFeatures()
         {
             #region EnablingOtherFeatures
+
             Defaults(s => s.EnableFeatureByDefault<OtherFeature>());
+
             #endregion
         }
 
@@ -84,7 +101,8 @@ namespace Core5.Extending
         {
         }
 
-        class OtherFeature : Feature
+        class OtherFeature :
+            Feature
         {
             protected override void Setup(FeatureConfigurationContext context)
             {
@@ -93,13 +111,22 @@ namespace Core5.Extending
         }
     }
 
-    class FeatureWithPrerequisites : Feature
+    class FeatureWithPrerequisites :
+        Feature
     {
         #region FeatureWithPrerequisites
+
         public FeatureWithPrerequisites()
         {
-            Prerequisite(c => c.Settings.HasExplicitValue("SomeKey"),"The key SomeKey was not present.");
+            Prerequisite(
+                condition: c =>
+                {
+                    var settings = c.Settings;
+                    return settings.HasExplicitValue("SomeKey");
+                },
+                description: "The key SomeKey was not present.");
         }
+
         #endregion
 
         protected override void Setup(FeatureConfigurationContext context)

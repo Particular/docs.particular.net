@@ -2,7 +2,8 @@
 using NServiceBus.Logging;
 
 #region CommandMessageHandler
-public class CommandMessageHandler : IHandleMessages<Command>
+public class CommandMessageHandler :
+    IHandleMessages<Command>
 {
     static ILog log = LogManager.GetLogger<CommandMessageHandler>();
     IBus bus;

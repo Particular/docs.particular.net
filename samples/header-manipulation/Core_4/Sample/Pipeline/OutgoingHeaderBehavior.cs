@@ -6,7 +6,8 @@ using NServiceBus.Pipeline.Contexts;
 #pragma warning disable 618
 
 #region outgoing-header-behavior
-public class OutgoingHeaderBehavior : IBehavior<SendPhysicalMessageContext>
+public class OutgoingHeaderBehavior :
+    IBehavior<SendPhysicalMessageContext>
 {
     IBus bus;
 

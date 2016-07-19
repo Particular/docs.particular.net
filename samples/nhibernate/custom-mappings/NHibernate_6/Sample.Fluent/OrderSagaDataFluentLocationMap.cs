@@ -1,6 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
 
-public class OrderSagaDataFluentLocationMap : ClassMap<OrderSagaDataFluent.Location>
+public class OrderSagaDataFluentLocationMap :
+    ClassMap<OrderSagaDataFluent.Location>
 {
     public OrderSagaDataFluentLocationMap()
     {

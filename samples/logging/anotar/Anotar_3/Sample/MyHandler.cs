@@ -5,7 +5,8 @@ using NServiceBus;
 
 namespace Sample
 {
-    public class MyHandler : IHandleMessages<MyMessage>
+    public class MyHandler :
+    IHandleMessages<MyMessage>
     {
         public void Handle(MyMessage message)
         {

@@ -3,7 +3,8 @@ using Messages;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class RequestMessageHandler : IHandleMessages<Request>
+public class RequestMessageHandler :
+    IHandleMessages<Request>
 {
     static ILog log = LogManager.GetLogger<RequestMessageHandler>();
 

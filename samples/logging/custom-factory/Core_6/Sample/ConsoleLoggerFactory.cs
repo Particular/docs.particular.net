@@ -2,7 +2,8 @@
 using NServiceBus.Logging;
 #region factory
 
-class ConsoleLoggerFactory : ILoggerFactory
+class ConsoleLoggerFactory :
+    ILoggerFactory
 {
     LogLevel level;
 

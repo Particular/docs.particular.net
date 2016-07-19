@@ -4,7 +4,8 @@ using NServiceBus.Settings;
 
 #region custom-individualization-strategy
 
-public class MyIndividualizationStrategy : IIndividualizationStrategy
+public class MyIndividualizationStrategy :
+    IIndividualizationStrategy
 {
     ReadOnlySettings settings;
 

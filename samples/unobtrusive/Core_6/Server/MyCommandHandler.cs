@@ -3,7 +3,8 @@ using Commands;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class MyCommandHandler : IHandleMessages<MyCommand>
+public class MyCommandHandler :
+    IHandleMessages<MyCommand>
 {
     static ILog log = LogManager.GetLogger<MyCommandHandler>();
 

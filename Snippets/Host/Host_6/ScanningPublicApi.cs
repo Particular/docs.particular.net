@@ -5,7 +5,8 @@ class ScanningPublicApi
 
     #region ScanningConfigurationInNSBHost
 
-    public class EndpointConfig : IConfigureThisEndpoint
+    public class EndpointConfig :
+        IConfigureThisEndpoint
     {
         public void Customize(BusConfiguration busConfiguration)
         {

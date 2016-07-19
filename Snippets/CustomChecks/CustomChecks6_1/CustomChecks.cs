@@ -5,7 +5,8 @@ using ServiceControl.Plugin.CustomChecks;
 class CustomChecks
 {
     #region CustomCheck6
-    public class MyCustomCheck : CustomCheck
+    public class MyCustomCheck :
+        CustomCheck
     {
         public MyCustomCheck()
             : base("SomeId-StartUp", "SomeCategory")
@@ -26,7 +27,8 @@ class CustomChecks
     #endregion
 
     #region PeriodicCheck6
-    public class MyPeriodicCheck : CustomCheck
+    public class MyPeriodicCheck :
+        CustomCheck
     {
         public MyPeriodicCheck()
             : base("SomeId-Periodic", "SomeCategory", TimeSpan.FromSeconds(5))

@@ -1,7 +1,8 @@
 using System;
 using System.Web.UI;
 
-public partial class Default : Page
+public partial class Default :
+    Page
 {
     protected void Button1_Click(object sender, EventArgs e)
     {

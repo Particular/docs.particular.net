@@ -2,7 +2,8 @@
 using NServiceBus.Pipeline;
 
 #region pipeline-config
-public class HeaderFeature : Feature
+public class HeaderFeature :
+    Feature
 {
     internal HeaderFeature()
     {
@@ -16,7 +17,8 @@ public class HeaderFeature : Feature
     }
 }
 
-public class IncomingHeaderRegistration : RegisterStep
+public class IncomingHeaderRegistration :
+    RegisterStep
 {
     public IncomingHeaderRegistration()
         : base(
@@ -29,7 +31,8 @@ public class IncomingHeaderRegistration : RegisterStep
     }
 }
 
-public class OutgoingHeaderRegistration : RegisterStep
+public class OutgoingHeaderRegistration :
+    RegisterStep
 {
     public OutgoingHeaderRegistration()
         : base(

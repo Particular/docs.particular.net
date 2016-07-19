@@ -25,7 +25,8 @@ class OverrideLoggingViaProfile
             throw new System.NotImplementedException();
         }
     }
-    class YourProfile : IProfile
+    class YourProfile :
+        IProfile
     {
     }
 }

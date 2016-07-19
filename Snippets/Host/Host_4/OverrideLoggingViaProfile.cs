@@ -16,7 +16,8 @@ class OverrideLoggingViaProfile
 
     #endregion
 
-    class YourProfile : IProfile
+    class YourProfile :
+        IProfile
     {
     }
 }

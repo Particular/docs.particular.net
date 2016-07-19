@@ -2,7 +2,8 @@
 using NServiceBus;
 
 #region Controller
-public class DefaultController : Controller
+public class DefaultController :
+    Controller
 {
     IBus bus;
 

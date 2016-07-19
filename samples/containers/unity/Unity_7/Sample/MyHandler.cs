@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 #region InjectingDependency
-public class MyHandler : IHandleMessages<MyMessage>
+public class MyHandler :
+    IHandleMessages<MyMessage>
 {
     MyService myService;
 

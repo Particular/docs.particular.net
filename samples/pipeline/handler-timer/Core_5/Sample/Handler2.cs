@@ -3,7 +3,8 @@ using System.Threading;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class Handler2 : IHandleMessages<Message>
+public class Handler2 :
+    IHandleMessages<Message>
 {
     static ILog log = LogManager.GetLogger<Handler2>();
 

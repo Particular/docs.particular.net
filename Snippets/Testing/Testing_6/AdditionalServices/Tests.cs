@@ -21,7 +21,8 @@
         }
     }
 
-    class WithDependencyInjectionHandler : IHandleMessages<MyMessage>
+    class WithDependencyInjectionHandler :
+        IHandleMessages<MyMessage>
     {
         MyService myService;
 

@@ -4,7 +4,8 @@
     using NServiceBus.Saga;
 
     #region header-incoming-saga
-    public class ReadSaga : Saga<ReadSagaData>,
+    public class ReadSaga :
+        Saga<ReadSagaData>,
         IHandleMessages<MyMessage>
     {
         public void Handle(MyMessage message)
@@ -20,7 +21,8 @@
         }
     }
 
-    public class ReadSagaData : ContainSagaData
+    public class ReadSagaData :
+        ContainSagaData
     {
     }
 

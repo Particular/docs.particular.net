@@ -33,7 +33,8 @@
         #endregion
     }
 
-    class MyBusinessException : Exception
+    class MyBusinessException :
+        Exception
     {
     }
 }

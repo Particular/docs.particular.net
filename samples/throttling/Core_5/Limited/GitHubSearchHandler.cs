@@ -2,7 +2,8 @@
 using NServiceBus.Logging;
 using Octokit;
 #region SearchHandler
-public class GitHubSearchHandler : IHandleMessages<SearchGitHub>
+public class GitHubSearchHandler :
+    IHandleMessages<SearchGitHub>
 {
     IBus bus;
     static ILog log = LogManager.GetLogger<GitHubSearchHandler>();

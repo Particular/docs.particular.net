@@ -6,7 +6,8 @@
 
     #region SharingBehaviorData
 
-    public class ParentBehavior : IBehavior<IncomingContext>
+    public class ParentBehavior :
+        IBehavior<IncomingContext>
     {
         public void Invoke(IncomingContext context, Action next)
         {
@@ -17,7 +18,8 @@
         }
     }
 
-    public class ChildBehavior : IBehavior<IncomingContext>
+    public class ChildBehavior :
+        IBehavior<IncomingContext>
     {
         public void Invoke(IncomingContext context, Action next)
         {

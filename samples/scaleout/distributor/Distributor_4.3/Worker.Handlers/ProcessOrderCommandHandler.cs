@@ -4,7 +4,8 @@ using NServiceBus.Logging;
 
 #region WorkerHandler
 
-public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
+public class ProcessOrderCommandHandler :
+    IHandleMessages<PlaceOrder>
 {
     static ILog log = LogManager.GetLogger(typeof(ProcessOrderCommandHandler));
     IBus bus;

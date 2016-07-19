@@ -84,7 +84,8 @@ class Usage
     #region NewtonsoftAttributes
 
     [JsonObject(MemberSerialization.OptIn)]
-    public class CreatePersonMessage : IMessage
+    public class CreatePersonMessage :
+        IMessage
     {
         // "John Smith"
         [JsonProperty]

@@ -3,7 +3,8 @@
     using NServiceBus;
 
     #region MessageWithEncryptedProperty
-    public class MyMessage : IMessage
+    public class MyMessage :
+        IMessage
     {
         public WireEncryptedString MyEncryptedProperty { get; set; }
     }

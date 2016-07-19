@@ -6,7 +6,8 @@ namespace Core6.PubSub.Publishing
 
     #region publishFromSaga
 
-    public class CreateUserSaga : Saga<CreateUserSaga.SagaData>,
+    public class CreateUserSaga :
+        Saga<CreateUserSaga.SagaData>,
         IHandleMessages<CreateUserCommand>
     {
         public Task Handle(CreateUserCommand message, IMessageHandlerContext context)
@@ -19,7 +20,8 @@ namespace Core6.PubSub.Publishing
 
         #endregion
 
-        public class SagaData : IContainSagaData
+        public class SagaData :
+            IContainSagaData
         {
             public Guid Id { get; set; }
             public string Originator { get; set; }

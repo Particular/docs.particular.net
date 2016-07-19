@@ -5,7 +5,8 @@
 
     #region EncryptionFromIProvideConfiguration
 
-    public class ProvideConfiguration : IProvideConfiguration<RijndaelEncryptionServiceConfig>
+    public class ProvideConfiguration :
+        IProvideConfiguration<RijndaelEncryptionServiceConfig>
     {
         public RijndaelEncryptionServiceConfig GetConfiguration()
         {

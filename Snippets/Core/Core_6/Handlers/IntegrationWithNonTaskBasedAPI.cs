@@ -9,7 +9,8 @@
     using NServiceBus;
 
     #region HandlerWhichIntegratesWithEvent
-    public class HandlerWhichIntegratesWithEvent : IHandleMessages<MyMessage>
+    public class HandlerWhichIntegratesWithEvent :
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -50,7 +51,8 @@
 
     #region HandlerWhichIntegratesWithAPM
 
-    public class HandlerWhichIntegratesWithAPM : IHandleMessages<MyMessage>
+    public class HandlerWhichIntegratesWithAPM :
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -89,7 +91,8 @@
 
     #region HandlerWhichIntegratesWithRemotingWithAPM
 
-    public class HandlerWhichIntegratesWithRemotingWithAPM : IHandleMessages<MyMessage>
+    public class HandlerWhichIntegratesWithRemotingWithAPM :
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -101,7 +104,8 @@
         }
     }
 
-    public class AsyncClient : MarshalByRefObject
+    public class AsyncClient :
+        MarshalByRefObject
     {
         [OneWay]
         public string Callback(IAsyncResult ar)
@@ -132,7 +136,8 @@
 
     #region HandlerWhichIntegratesWithRemotingWithTask
 
-    public class HandlerWhichIntegratesWithRemotingWithTask : IHandleMessages<MyMessage>
+    public class HandlerWhichIntegratesWithRemotingWithTask :
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -149,7 +154,8 @@
 
     #endregion
 
-    public class RemoteService : MarshalByRefObject
+    public class RemoteService :
+        MarshalByRefObject
     {
         public string TimeConsumingRemoteCall()
         {

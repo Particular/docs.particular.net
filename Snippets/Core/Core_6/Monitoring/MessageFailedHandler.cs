@@ -6,7 +6,8 @@
     using ServiceControl.Contracts;
 
     #region MessageFailedHandler
-    class MessageFailedHandler : IHandleMessages<MessageFailed>
+    class MessageFailedHandler :
+        IHandleMessages<MessageFailed>
     {
         public async Task Handle(MessageFailed message, IMessageHandlerContext context)
         {
@@ -14,7 +15,9 @@
             var exceptionMessage = message.FailureDetails.Exception.Message;
             string serviceInsightUri = $"si://localhost:33333/api?Search={failedMessageId}";
 
-            string chatMessage = $"Message with id: {failedMessageId} failed with reason: '{exceptionMessage}'. Open in ServiceInsight: {serviceInsightUri}";
+            string chatMessage = $@"Message with id: {failedMessageId} failed.
+Reason: '{exceptionMessage}'.
+Open in ServiceInsight: {serviceInsightUri}";
 
             using (var client = new ChatClient())
             {
@@ -25,7 +28,8 @@
     }
     #endregion
 
-    class ChatClient : IDisposable
+    class ChatClient :
+        IDisposable
     {
         public void Dispose()
         {

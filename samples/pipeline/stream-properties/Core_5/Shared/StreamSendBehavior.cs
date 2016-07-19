@@ -4,7 +4,8 @@ using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
 #region SendBehaviorDefinition
-class StreamSendBehavior : IBehavior<OutgoingContext>
+class StreamSendBehavior :
+    IBehavior<OutgoingContext>
 {
     TimeSpan MaxMessageTimeToLive = TimeSpan.FromDays(14);
     string location;

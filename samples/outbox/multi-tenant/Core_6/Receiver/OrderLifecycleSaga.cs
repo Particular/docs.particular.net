@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>,
+public class OrderLifecycleSaga :
+    Saga<OrderLifecycleSagaData>,
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {

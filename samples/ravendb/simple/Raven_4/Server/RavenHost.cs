@@ -3,7 +3,8 @@ using System.Diagnostics;
 using Raven.Client.Embedded;
 
 #region ravenhost
-class RavenHost : IDisposable
+class RavenHost :
+    IDisposable
 {
 
     public RavenHost()

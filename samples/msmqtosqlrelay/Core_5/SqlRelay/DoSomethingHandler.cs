@@ -3,7 +3,8 @@ using NServiceBus.Logging;
 using Shared;
 
 #region sqlrelay-handler
-class SomethingHappenedHandler : IHandleMessages<SomethingHappened>
+class SomethingHappenedHandler :
+    IHandleMessages<SomethingHappened>
 {
     static ILog log = LogManager.GetLogger<SomethingHappenedHandler>();
     IBus bus;

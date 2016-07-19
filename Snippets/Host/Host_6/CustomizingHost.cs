@@ -2,7 +2,8 @@
 
 #region customize_nsb_host
 
-class CustomizingHost : IConfigureThisEndpoint
+class CustomizingHost :
+    IConfigureThisEndpoint
 {
     public void Customize(BusConfiguration busConfiguration)
     {

@@ -6,7 +6,8 @@ using NServiceBus.Extensibility;
 using NServiceBus.Transports;
 
 #region Dispatcher
-class Dispatcher : IDispatchMessages
+class Dispatcher :
+    IDispatchMessages
 {
     public Task Dispatch(TransportOperations outgoingMessages, ContextBag context)
     {

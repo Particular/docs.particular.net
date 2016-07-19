@@ -3,7 +3,8 @@ namespace Core3.Sagas.Reply
     using System;
     using NServiceBus.Saga;
 
-    public class MySagaData : IContainSagaData
+    public class MySagaData :
+        IContainSagaData
     {
         public Guid Id { get; set; }
         public string Originator { get; set; }

@@ -5,7 +5,8 @@ namespace Core6.Enum
 
     #region EnumCallbackResponse
 
-    public class Handler : IHandleMessages<Message>
+    public class Handler :
+        IHandleMessages<Message>
     {
         public Task Handle(Message message, IMessageHandlerContext context)
         {

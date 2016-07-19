@@ -4,7 +4,8 @@ using System.Runtime.CompilerServices;
 
 namespace Common
 {
-    public class SnippetLogger : IDisposable
+    public class SnippetLogger :
+        IDisposable
     {
         string outputFilePath;
 

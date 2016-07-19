@@ -4,7 +4,8 @@ using NServiceBus.Logging;
 
 #region MessageWithLargePayloadHandler
 
-public class MessageWithLargePayloadHandler : IHandleMessages<MessageWithLargePayload>
+public class MessageWithLargePayloadHandler :
+    IHandleMessages<MessageWithLargePayload>
 {
     static ILog log = LogManager.GetLogger<MessageWithLargePayloadHandler>();
 

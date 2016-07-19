@@ -59,7 +59,8 @@ public class NativeSendTests
         return Endpoint.Start(endpointConfiguration);
     }
 
-    class MessageHandler : IHandleMessages<MessageToSend>
+    class MessageHandler :
+        IHandleMessages<MessageToSend>
     {
         public Task Handle(MessageToSend message, IMessageHandlerContext context)
         {
@@ -69,12 +70,14 @@ public class NativeSendTests
         }
     }
 
-    class MessageToSend : IMessage
+    class MessageToSend :
+        IMessage
     {
         public string Property { get; set; }
     }
 
-    class ConfigTransport : IProvideConfiguration<TransportConfig>
+    class ConfigTransport :
+        IProvideConfiguration<TransportConfig>
     {
         public TransportConfig GetConfiguration()
         {

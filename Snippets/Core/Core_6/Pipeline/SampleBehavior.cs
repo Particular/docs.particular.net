@@ -6,7 +6,8 @@
 
     #region SamplePipelineBehavior
 
-    public class SampleBehavior : Behavior<IIncomingLogicalMessageContext>
+    public class SampleBehavior :
+        Behavior<IIncomingLogicalMessageContext>
     {
         public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
         {

@@ -4,7 +4,8 @@
     using NServiceBus.Transports;
 
     #region queuebindings
-    public class FeatureThatRequiresAQueue : Feature
+    public class FeatureThatRequiresAQueue :
+        Feature
     {
         protected override void Setup(FeatureConfigurationContext context)
         {

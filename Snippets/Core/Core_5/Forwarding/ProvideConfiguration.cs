@@ -3,7 +3,8 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
     #region ProvideConfigurationForMessageForwarding
-    class ProvideConfigurationForMessageForwarding : IProvideConfiguration<UnicastBusConfig>
+    class ProvideConfigurationForMessageForwarding :
+        IProvideConfiguration<UnicastBusConfig>
     {
         public UnicastBusConfig GetConfiguration()
         {

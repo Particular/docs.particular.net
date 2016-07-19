@@ -4,7 +4,8 @@
 
     #region lifecycle-EndpointStartAndStopCore
 
-    class RunWhenTheEndpointStartsAndStops : IWantToRunWhenBusStartsAndStops
+    class RunWhenTheEndpointStartsAndStops :
+        IWantToRunWhenBusStartsAndStops
     {
         public void Start()
         {

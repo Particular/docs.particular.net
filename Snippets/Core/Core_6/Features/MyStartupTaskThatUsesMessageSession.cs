@@ -8,7 +8,9 @@
 
     #region MyStartupTaskThatUsesMessageSession
 
-    class MyStartupTaskThatUsesMessageSession : FeatureStartupTask, IDisposable
+    class MyStartupTaskThatUsesMessageSession :
+        FeatureStartupTask,
+        IDisposable
     {
         ManualResetEventSlim resetEvent = new ManualResetEventSlim();
 
@@ -34,7 +36,7 @@
 
     #endregion
 
-    internal class MyEvent
+    class MyEvent
     {
     }
 }

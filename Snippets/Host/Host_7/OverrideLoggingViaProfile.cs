@@ -17,11 +17,13 @@ public class OverrideLoggingViaProfile
 
     #endregion
 
-    class YourProfile : IProfile
+    class YourProfile :
+        IProfile
     {
     }
 
-    class Log4NetFactory : LoggingFactoryDefinition
+    class Log4NetFactory :
+        LoggingFactoryDefinition
     {
         protected override ILoggerFactory GetLoggingFactory()
         {

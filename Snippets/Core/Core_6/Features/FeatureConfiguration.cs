@@ -8,7 +8,8 @@ namespace Core6.Features
     using NServiceBus.Features;
     using NServiceBus.Pipeline;
 
-    class SecondLevelRetries : Feature
+    class SecondLevelRetries :
+        Feature
     {
 
 #region FeatureSetup
@@ -47,7 +48,8 @@ namespace Core6.Features
 
         class SecondLevelRetriesBehavior
         {
-            public class Registration : RegisterStep
+            public class Registration :
+                RegisterStep
             {
                 public Registration()
                     : base(string.Empty, typeof(object), null)
@@ -63,7 +65,8 @@ namespace Core6.Features
             }
         }
 
-        class DelayedDeliveryFeature : Feature
+        class DelayedDeliveryFeature :
+            Feature
         {
             protected override void Setup(FeatureConfigurationContext context)
             {

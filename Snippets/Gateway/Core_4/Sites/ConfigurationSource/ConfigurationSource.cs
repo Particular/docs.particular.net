@@ -6,7 +6,8 @@ using NServiceBus.Config.ConfigurationSource;
 
 namespace Core4.Sites.ConfigurationSource
 {
-    public class ConfigurationSource : IConfigurationSource
+    public class ConfigurationSource :
+        IConfigurationSource
     {
         public T GetConfiguration<T>() where T : class, new()
         {

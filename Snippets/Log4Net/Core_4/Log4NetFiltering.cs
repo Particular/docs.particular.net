@@ -9,7 +9,8 @@ public class Log4NetFiltering
 {
     #region Log4NetFilter
 
-    public class NServiceBusLogFilter : FilterSkeleton
+    public class NServiceBusLogFilter :
+        FilterSkeleton
     {
         public override FilterDecision Decide(LoggingEvent loggingEvent)
         {

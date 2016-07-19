@@ -1,7 +1,8 @@
 ﻿using System;
 using NServiceBus;
 
-public class OrderLifecycleSagaData : IContainSagaData
+public class OrderLifecycleSagaData :
+    IContainSagaData
 {
     public virtual string OrderId { get; set; }
     public virtual Guid Id { get; set; }

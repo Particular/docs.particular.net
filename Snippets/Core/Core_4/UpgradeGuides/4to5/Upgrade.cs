@@ -13,8 +13,10 @@
         void RemovePrincipalHack(Configure configure)
         {
             #region 4to5RemovePrincipalHack
+
             var unicastBus = configure.UnicastBus();
             unicastBus.RunHandlersUnderIncomingPrincipal(true);
+
             #endregion
         }
 
@@ -23,15 +25,41 @@
             #region 4to5MessageConventions
 
             // NOTE: When self hosting, '.DefiningXXXAs()' has to be before '.UnicastBus()',
-            // otherwise it will result in: 'System.InvalidOperationException: "No destination specified for message(s): MessageTypeName"
+            // otherwise it will result in:
+            // 'InvalidOperationException: "No destination specified for message(s): MessageTypeName"
             configure.DefaultBuilder();
-            configure.DefiningCommandsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"));
-            configure.DefiningEventsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"));
-            configure.DefiningMessagesAs(t => t.Namespace == "Messages");
-            configure.DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"));
-            configure.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
-            configure.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
-            configure.DefiningTimeToBeReceivedAs(t => t.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
+            configure.DefiningCommandsAs(t =>
+            {
+                return t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands");
+            });
+            configure.DefiningEventsAs(t =>
+            {
+                return t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events");
+            });
+            configure.DefiningMessagesAs(t =>
+            {
+                return t.Namespace == "Messages";
+            });
+            configure.DefiningEncryptedPropertiesAs(p =>
+            {
+                return p.Name.StartsWith("Encrypted");
+            });
+            configure.DefiningDataBusPropertiesAs(p =>
+            {
+                return p.Name.EndsWith("DataBus");
+            });
+            configure.DefiningExpressMessagesAs(t =>
+            {
+                return t.Name.EndsWith("Express");
+            });
+            configure.DefiningTimeToBeReceivedAs(t =>
+            {
+                if (t.Name.EndsWith("Expires"))
+                {
+                    return TimeSpan.FromSeconds(30);
+                }
+                return TimeSpan.MaxValue;
+            });
 
             #endregion
         }
@@ -43,7 +71,10 @@
             var configure = Configure.With(AllAssemblies.Except("NotThis.dll"));
             configure.DefaultBuilder();
             configure.DefineEndpointName("MyEndpointName");
-            configure.DefiningEventsAs(type => type.Name.EndsWith("Event"));
+            configure.DefiningEventsAs(type =>
+            {
+                return type.Name.EndsWith("Event");
+            });
 
             #endregion
         }
@@ -51,6 +82,7 @@
         void UseTransport(Configure configure)
         {
             #region 4to5UseTransport
+
             //Choose one of the following
 
             configure.UseTransport<Msmq>();
@@ -65,18 +97,24 @@
 
             #endregion
         }
-        class AzureStorageQueue : TransportDefinition
-        {
-        }
-        class AzureServiceBus : TransportDefinition
+
+        class AzureStorageQueue :
+            TransportDefinition
         {
         }
 
-        class RabbitMQ : TransportDefinition
+        class AzureServiceBus :
+            TransportDefinition
         {
         }
 
-        class SqlServer:TransportDefinition
+        class RabbitMQ :
+            TransportDefinition
+        {
+        }
+
+        class SqlServer :
+            TransportDefinition
         {
         }
 
@@ -146,6 +184,7 @@
         {
 
             var configure = Configure.With();
+
             #region 4to5ConfigurePersistence
 
             // Configure to use InMemory
@@ -177,7 +216,8 @@
 
         #region 4to5BusExtensionMethodForHandler
 
-        public class MyHandler : IHandleMessages<MyMessage>
+        public class MyHandler :
+            IHandleMessages<MyMessage>
         {
             public void Handle(MyMessage message)
             {
@@ -269,6 +309,7 @@
         public void License()
         {
             var configure = Configure.With();
+
             #region 4to5License
 
             configure.LicensePath("PathToLicense");
@@ -327,6 +368,7 @@
         public void EndpointName()
         {
             var configure = Configure.With();
+
             #region 4to5EndpointName
 
             // To customize the endpoint name via code using the DefineEndpointName method,
@@ -339,6 +381,7 @@
         public void SendOnly()
         {
             var configure = Configure.With();
+
             #region 4to5SendOnly
 
             configure.DefaultBuilder();

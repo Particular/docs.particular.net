@@ -2,7 +2,8 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
+class OrderAcceptedHandler :
+    IHandleMessages<OrderAccepted>
 {
     static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
     public Task Handle(OrderAccepted message, IMessageHandlerContext context)

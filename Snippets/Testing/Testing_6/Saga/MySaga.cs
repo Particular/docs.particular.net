@@ -4,7 +4,8 @@ namespace Testing_6.Saga
     using System.Threading.Tasks;
     using NServiceBus;
 
-    public class MySaga : Saga<MySagaData>,
+    public class MySaga :
+        Saga<MySagaData>,
         IAmStartedByMessages<StartsSaga>,
         IHandleTimeouts<StartsSaga>
     {

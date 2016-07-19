@@ -2,7 +2,8 @@
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
-internal class PropagateTenantIdBehavior : IBehavior<OutgoingContext>
+internal class PropagateTenantIdBehavior :
+    IBehavior<OutgoingContext>
 {
     public void Invoke(OutgoingContext context, Action next)
     {
@@ -20,7 +21,8 @@ internal class PropagateTenantIdBehavior : IBehavior<OutgoingContext>
         #endregion
     }
 
-    public class Registration : RegisterStep
+    public class Registration :
+        RegisterStep
     {
         public Registration()
             : base("PropagateTenantId", typeof(PropagateTenantIdBehavior), "Sets the tenant header on outgoing messages.")

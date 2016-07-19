@@ -4,7 +4,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 #region thesaga
-public class OrderSaga : Saga<OrderSagaData>,
+public class OrderSaga :
+    Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
     IHandleMessages<CompleteOrder>,
     IHandleTimeouts<CancelOrder>

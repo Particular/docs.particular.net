@@ -3,7 +3,8 @@
     using NServiceBus;
 
     #region publishFromHandler
-    public class CreateUserHandler : IHandleMessages<CreateUserCommand>
+    public class CreateUserHandler :
+        IHandleMessages<CreateUserCommand>
     {
         IBus bus;
 

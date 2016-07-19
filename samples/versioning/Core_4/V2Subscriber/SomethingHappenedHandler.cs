@@ -2,7 +2,8 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class SomethingHappenedHandler : IHandleMessages<ISomethingHappened>
+public class SomethingHappenedHandler :
+    IHandleMessages<ISomethingHappened>
 {
     static ILog log = LogManager.GetLogger(typeof(SomethingHappenedHandler));
 

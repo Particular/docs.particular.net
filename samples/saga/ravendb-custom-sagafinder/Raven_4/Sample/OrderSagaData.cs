@@ -3,7 +3,8 @@ using Raven.Client.UniqueConstraints;
 
 #region OrderSagaDataRavenDB
 
-public class OrderSagaData : ContainSagaData
+public class OrderSagaData :
+    ContainSagaData
 {
     [UniqueConstraint(CaseInsensitive = true)]
     public string OrderId { get; set; }

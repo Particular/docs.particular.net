@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.WindowsAzure.Storage.Table;
 
-class LogEntry : TableEntity
+class LogEntry :
+    TableEntity
 {
     public LogEntry(string endpoint, string message)
     {

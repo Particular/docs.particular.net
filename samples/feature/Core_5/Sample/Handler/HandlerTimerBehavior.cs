@@ -4,7 +4,8 @@ using NServiceBus.Pipeline.Contexts;
 
 #region HandlerTimerBehavior
 
-class HandlerTimerBehavior : IBehavior<IncomingContext>
+class HandlerTimerBehavior :
+    IBehavior<IncomingContext>
 {
     CustomLogger logger;
 

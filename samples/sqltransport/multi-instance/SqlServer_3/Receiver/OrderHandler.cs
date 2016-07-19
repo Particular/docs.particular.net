@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
 
-public class OrderHandler : IHandleMessages<ClientOrder>
+public class OrderHandler :
+    IHandleMessages<ClientOrder>
 {
     #region Reply
 

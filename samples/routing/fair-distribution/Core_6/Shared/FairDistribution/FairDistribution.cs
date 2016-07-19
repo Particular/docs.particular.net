@@ -4,7 +4,8 @@ using NServiceBus.Features;
 using NServiceBus.Routing;
 using NServiceBus.Transports;
 
-public class FairDistribution : Feature
+public class FairDistribution :
+    Feature
 {
     public FairDistribution()
     {

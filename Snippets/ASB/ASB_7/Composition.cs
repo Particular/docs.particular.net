@@ -28,7 +28,8 @@ class Composition
 
 #region asb-custom-composition-strategy
 
-class CustomComposition : ICompositionStrategy
+class CustomComposition :
+    ICompositionStrategy
 {
     public string GetEntityPath(string entityname, EntityType entityType)
     {

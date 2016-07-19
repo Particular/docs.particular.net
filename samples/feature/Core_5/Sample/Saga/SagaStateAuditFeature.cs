@@ -3,7 +3,8 @@ using NServiceBus.Pipeline;
 
 #region SagaStateAuditFeature
 
-public class SagaStateAuditFeature : Feature
+public class SagaStateAuditFeature :
+    Feature
 {
     internal SagaStateAuditFeature()
     {
@@ -17,7 +18,8 @@ public class SagaStateAuditFeature : Feature
         context.Pipeline.Register<Registration>();
     }
 
-    class Registration : RegisterStep
+    class Registration :
+        RegisterStep
     {
         public Registration()
             : base("SagaStateAudit", typeof(SagaStateAuditBehavior), "Logs Saga State")

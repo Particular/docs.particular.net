@@ -4,7 +4,8 @@
 
     #region lifecycle-iwanttorunbeforeconfigurationisfinalized
 
-    class RunBeforeConfigurationIsFinalized : IWantToRunBeforeConfigurationIsFinalized
+    class RunBeforeConfigurationIsFinalized :
+        IWantToRunBeforeConfigurationIsFinalized
     {
         public void Run()
         {

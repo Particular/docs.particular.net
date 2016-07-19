@@ -2,7 +2,8 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class RunBeforeEndpointStop : IRunBeforeEndpointStop
+public class RunBeforeEndpointStop :
+    IRunBeforeEndpointStop
 {
     static ILog log = LogManager.GetLogger<RunBeforeEndpointStop>();
 

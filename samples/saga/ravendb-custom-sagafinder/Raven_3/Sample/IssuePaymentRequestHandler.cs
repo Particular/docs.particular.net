@@ -1,6 +1,7 @@
 ﻿using NServiceBus;
 
-class IssuePaymentRequestHandler : IHandleMessages<IssuePaymentRequest>
+class IssuePaymentRequestHandler :
+    IHandleMessages<IssuePaymentRequest>
 {
     IBus bus;
 

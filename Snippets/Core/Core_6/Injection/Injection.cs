@@ -22,7 +22,8 @@
 
         #region PropertyInjectionWithHandler
 
-        public class EmailHandler : IHandleMessages<EmailMessage>
+        public class EmailHandler :
+            IHandleMessages<EmailMessage>
         {
             public string SmtpAddress { get; set; }
             public int SmtpPort { get; set; }

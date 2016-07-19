@@ -1,7 +1,8 @@
 ﻿using NServiceBus;
 using NServiceBus.Logging;
 
-public class Handler : IHandleMessages<MessageWithSecretData>
+public class Handler :
+    IHandleMessages<MessageWithSecretData>
 {
     static ILog log = LogManager.GetLogger(typeof(Handler));
 

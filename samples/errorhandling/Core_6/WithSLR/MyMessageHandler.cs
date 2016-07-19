@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class MyMessageHandler : IHandleMessages<MyMessage>
+public class MyMessageHandler :
+    IHandleMessages<MyMessage>
 {
     static ILog log = LogManager.GetLogger<MyMessageHandler>();
     static ConcurrentDictionary<Guid, string> Last = new ConcurrentDictionary<Guid, string>();

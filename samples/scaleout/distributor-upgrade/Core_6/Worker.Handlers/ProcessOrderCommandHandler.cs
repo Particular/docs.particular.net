@@ -3,7 +3,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using NServiceBus.Logging;
 
-public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
+public class ProcessOrderCommandHandler :
+    IHandleMessages<PlaceOrder>
 {
     static ILog log = LogManager.GetLogger<ProcessOrderCommandHandler>();
 

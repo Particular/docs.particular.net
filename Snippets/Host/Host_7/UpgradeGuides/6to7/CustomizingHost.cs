@@ -2,7 +2,8 @@
 
 #region 6to7customize_nsb_host
 
-class CustomizingHostUpgrade : IConfigureThisEndpoint
+class CustomizingHostUpgrade :
+    IConfigureThisEndpoint
 {
     public void Customize(EndpointConfiguration endpointConfiguration)
     {

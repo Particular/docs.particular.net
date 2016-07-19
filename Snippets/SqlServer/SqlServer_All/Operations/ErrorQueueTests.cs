@@ -115,7 +115,8 @@ public class ErrorQueueTests
         }
     }
 
-    class MessageHandler : IHandleMessages<MessageToSend>
+    class MessageHandler :
+        IHandleMessages<MessageToSend>
     {
         State state;
 
@@ -134,7 +135,8 @@ public class ErrorQueueTests
         }
     }
 
-    class ConfigTransport : IProvideConfiguration<TransportConfig>
+    class ConfigTransport :
+        IProvideConfiguration<TransportConfig>
     {
         public TransportConfig GetConfiguration()
         {
@@ -145,7 +147,8 @@ public class ErrorQueueTests
         }
     }
 
-    class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
+    class ConfigErrorQueue :
+        IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
     {
         public MessageForwardingInCaseOfFaultConfig GetConfiguration()
         {
@@ -156,7 +159,8 @@ public class ErrorQueueTests
         }
     }
 
-    class MessageToSend : IMessage
+    class MessageToSend :
+        IMessage
     {
     }
 

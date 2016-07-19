@@ -3,7 +3,8 @@ using Microsoft.AspNet.SignalR;
 using NServiceBus;
 using Store.Messages.Events;
 
-public class OrderCancelledHandler : IHandleMessages<OrderCancelled>
+public class OrderCancelledHandler :
+    IHandleMessages<OrderCancelled>
 {
     public Task Handle(OrderCancelled message, IMessageHandlerContext context)
     {

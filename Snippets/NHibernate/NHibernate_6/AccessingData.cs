@@ -5,7 +5,8 @@ using NServiceBus.Persistence.NHibernate;
 
 class AccessingData
 {
-    class OrderMessage : IMessage
+    class OrderMessage :
+        IMessage
     {
     }
 
@@ -17,7 +18,8 @@ class AccessingData
     {
         #region NHibernateAccessingDataViaContext
 
-        public class OrderHandler : IHandleMessages<OrderMessage>
+        public class OrderHandler :
+            IHandleMessages<OrderMessage>
         {
             NHibernateStorageContext dataContext;
 
@@ -49,7 +51,8 @@ class AccessingData
 
         #region NHibernateAccessingDataDirectly
 
-        public class OrderHandler : IHandleMessages<OrderMessage>
+        public class OrderHandler :
+            IHandleMessages<OrderMessage>
         {
             ISession session;
 

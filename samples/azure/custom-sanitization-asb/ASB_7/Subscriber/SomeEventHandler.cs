@@ -3,7 +3,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 using Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events;
 
-public class SomeEventHandler : IHandleMessages<SomeEvent>
+public class SomeEventHandler :
+    IHandleMessages<SomeEvent>
 {
     static ILog log = LogManager.GetLogger<SomeEventHandler>();
 

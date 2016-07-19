@@ -2,7 +2,8 @@
 using NServiceBus.MessageMutator;
 
 #region message-mutator
-public class MessageMutator : IMessageMutator
+public class MessageMutator :
+    IMessageMutator
 {
     IBus bus;
 

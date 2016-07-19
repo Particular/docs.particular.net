@@ -38,7 +38,8 @@ namespace Core3.DataBus.CleanupStrategy
 
     #endregion
 
-    public class RemoveDatabusAttachment : ICommand
+    public class RemoveDatabusAttachment :
+        ICommand
     {
         public string FilePath { get; set; }
     }

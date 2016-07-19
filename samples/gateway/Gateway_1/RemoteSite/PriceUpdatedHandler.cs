@@ -3,7 +3,8 @@ using NServiceBus.Logging;
 using Shared;
 
 #region PriceUpdatedHandler
-public class PriceUpdatedHandler : IHandleMessages<PriceUpdated>
+public class PriceUpdatedHandler :
+    IHandleMessages<PriceUpdated>
 {
     static ILog log = LogManager.GetLogger(typeof(PriceUpdatedHandler));
     IBus bus;

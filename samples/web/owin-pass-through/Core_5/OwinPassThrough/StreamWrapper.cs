@@ -2,7 +2,8 @@
 using System.IO;
 
 
-class StreamWrapper : Stream
+class StreamWrapper :
+    Stream
 {
     Stream stream;
     int length;

@@ -3,7 +3,8 @@ using NServiceBus;
 
 class AccessingData
 {
-    public class OrderMessage : IMessage
+    public class OrderMessage :
+        IMessage
     {
     }
 
@@ -13,7 +14,8 @@ class AccessingData
 
     #region NHibernateAccessingDataViaContext
 
-    public class OrderHandler : IHandleMessages<OrderMessage>
+    public class OrderHandler :
+        IHandleMessages<OrderMessage>
     {
         public Task Handle(OrderMessage message, IMessageHandlerContext context)
         {

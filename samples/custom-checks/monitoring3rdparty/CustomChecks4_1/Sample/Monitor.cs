@@ -5,7 +5,8 @@ using ServiceControl.Plugin.CustomChecks;
 
 #region thecustomcheck
 
-class ThirdPartyMonitor : PeriodicCheck
+class ThirdPartyMonitor :
+    PeriodicCheck
 {
     const string url = "http://localhost:57789";
     static ILog log = LogManager.GetLogger(typeof(ThirdPartyMonitor));

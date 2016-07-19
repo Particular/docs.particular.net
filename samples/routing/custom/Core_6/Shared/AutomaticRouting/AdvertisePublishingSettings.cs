@@ -2,7 +2,8 @@
 using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Settings;
 
-public class AdvertisePublishingSettings : ExposeSettings
+public class AdvertisePublishingSettings :
+    ExposeSettings
 {
     public AdvertisePublishingSettings(SettingsHolder settings) : base(settings)
     {

@@ -23,12 +23,12 @@
                 };
             }
             //append mapping to config
-            config.MessageEndpointMappings.Add(
-                new MessageEndpointMapping
-                {
-                    AssemblyName = "assembly",
-                    Endpoint = "queue@machinename"
-                });
+            var endpointMapping = new MessageEndpointMapping
+            {
+                AssemblyName = "assembly",
+                Endpoint = "queue@machinename"
+            };
+            config.MessageEndpointMappings.Add(endpointMapping);
             return config;
         }
     }

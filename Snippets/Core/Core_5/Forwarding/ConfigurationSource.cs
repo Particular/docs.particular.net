@@ -4,7 +4,8 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
     #region ConfigurationSourceForMessageForwarding
-    public class ConfigurationSource : IConfigurationSource
+    public class ConfigurationSource :
+        IConfigurationSource
     {
         public T GetConfiguration<T>() where T : class, new()
         {

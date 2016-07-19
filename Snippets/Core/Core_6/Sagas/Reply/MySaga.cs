@@ -5,7 +5,8 @@
 
     #region saga-with-reply
 
-    public class MySaga : Saga<MySagaData>,
+    public class MySaga :
+        Saga<MySagaData>,
         IAmStartedByMessages<StartMessage>
     {
 

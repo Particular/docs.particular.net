@@ -5,7 +5,8 @@ using NServiceBus.Logging;
 using Store.Messages.Events;
 using Store.Messages.RequestResponse;
 
-public class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
+public class OrderAcceptedHandler :
+    IHandleMessages<OrderAccepted>
 {
     static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
 

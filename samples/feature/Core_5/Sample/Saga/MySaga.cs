@@ -3,7 +3,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Saga;
 
-public class MySaga : Saga<MySaga.SagaData>,
+public class MySaga :
+    Saga<MySaga.SagaData>,
     IAmStartedByMessages<StartSagaMessage>,
     IHandleMessages<CompleteSagaMessage>
 {
@@ -15,7 +16,8 @@ public class MySaga : Saga<MySaga.SagaData>,
         this.bus = bus;
     }
 
-    public class SagaData : ContainSagaData
+    public class SagaData :
+        ContainSagaData
     {
         public Guid TheId { get; set; }
         public DateTimeOffset MessageSentTime { get; set; }

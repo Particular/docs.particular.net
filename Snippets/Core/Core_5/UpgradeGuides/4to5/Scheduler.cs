@@ -6,7 +6,8 @@
     public class Scheduler
     {
         #region 4to5Scheduler
-        public class ScheduleMyTasks : IWantToRunWhenBusStartsAndStops
+        public class ScheduleMyTasks :
+            IWantToRunWhenBusStartsAndStops
         {
             IBus bus;
             Schedule schedule;
@@ -40,7 +41,8 @@
         }
 
         #endregion
-        public class MyMessage : IMessage
+        public class MyMessage :
+            IMessage
         {
         }
     }

@@ -5,7 +5,8 @@
 
     #region CreatingMessageHandler
 
-    public class MyHandler : IHandleMessages<MyMessage>
+    public class MyHandler :
+        IHandleMessages<MyMessage>
     {
         public void Handle(MyMessage message)
         {
@@ -18,7 +19,8 @@
 
     #region EmptyHandler
 
-    public class MyMessageHandler : IHandleMessages<MyMessage>
+    public class MyMessageHandler :
+        IHandleMessages<MyMessage>
     {
         public void Handle(MyMessage message)
         {

@@ -1,7 +1,8 @@
 ﻿using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
-class ConfigAuditQueue : IProvideConfiguration<AuditConfig>
+class ConfigAuditQueue :
+    IProvideConfiguration<AuditConfig>
 {
     public AuditConfig GetConfiguration()
     {

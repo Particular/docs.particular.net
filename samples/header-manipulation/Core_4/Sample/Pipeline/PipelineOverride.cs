@@ -4,7 +4,8 @@ using NServiceBus.Pipeline.Contexts;
 
 #pragma warning disable 618
 #region pipeline-config
-public class PipelineOverride : IPipelineOverride
+public class PipelineOverride :
+    IPipelineOverride
 {
     public void Override(BehaviorList<ReceivePhysicalMessageContext> behaviorList)
     {

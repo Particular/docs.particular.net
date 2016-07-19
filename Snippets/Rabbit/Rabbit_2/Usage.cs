@@ -113,7 +113,8 @@ class Usage
         #endregion
     }
 
-    class MyRoutingTopology : IRoutingTopology
+    class MyRoutingTopology :
+        IRoutingTopology
     {
         public void SetupSubscription(IModel channel, Type type, string subscriberName)
         {
@@ -135,7 +136,8 @@ class Usage
         {
         }
     }
-    class MyConnectionManager : IManageRabbitMqConnections
+    class MyConnectionManager :
+        IManageRabbitMqConnections
     {
         public IConnection GetPublishConnection()
         {

@@ -6,10 +6,11 @@ using NServiceBus.Logging;
 using Store.Messages.Commands;
 using Store.Messages.Events;
 
-public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
-                                IAmStartedByMessages<SubmitOrder>,
-                                IHandleMessages<CancelOrder>,
-                                IHandleTimeouts<ProcessOrderSaga.BuyersRemorseIsOver>
+public class ProcessOrderSaga :
+    Saga<ProcessOrderSaga.OrderData>,
+    IAmStartedByMessages<SubmitOrder>,
+    IHandleMessages<CancelOrder>,
+    IHandleTimeouts<ProcessOrderSaga.BuyersRemorseIsOver>
 {
     static ILog log = LogManager.GetLogger<ProcessOrderSaga>();
 
@@ -52,7 +53,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
     {
         if (DebugFlagMutator.Debug)
         {
-                Debugger.Break();
+            Debugger.Break();
         }
 
         MarkAsComplete();
@@ -75,7 +76,8 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
             .ToSaga(sagaData => sagaData.OrderNumber);
     }
 
-    public class OrderData : ContainSagaData
+    public class OrderData :
+        ContainSagaData
     {
         public int OrderNumber { get; set; }
         public string[] ProductIds { get; set; }
@@ -85,5 +87,5 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
     public class BuyersRemorseIsOver
     {
     }
-    
+
 }

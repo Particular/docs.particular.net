@@ -5,7 +5,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 #region Handler
-public class MyMessageHandler : IHandleMessages<MyMessage>
+public class MyMessageHandler :
+    IHandleMessages<MyMessage>
 {
     static ILog log = LogManager.GetLogger<MyMessageHandler>();
     static ConcurrentDictionary<Guid, string> Last = new ConcurrentDictionary<Guid, string>();

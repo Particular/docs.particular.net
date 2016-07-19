@@ -5,7 +5,8 @@ using NServiceBus.Pipeline.Contexts;
 
 #region outgoing-header-behavior
 
-class OutgoingHeaderBehavior : IBehavior<OutgoingContext>
+class OutgoingHeaderBehavior :
+    IBehavior<OutgoingContext>
 {
     IBus bus;
 

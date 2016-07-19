@@ -4,7 +4,8 @@
     using System.Threading;
     using NServiceBus.Features;
 
-    class MyFeature : Feature
+    class MyFeature :
+        Feature
     {
 
 #region FeatureStartupTaskRegistration
@@ -21,7 +22,9 @@
     }
 
 #region FeatureStartupTaskDefinition
-    class MyStartupTask : FeatureStartupTask, IDisposable
+    class MyStartupTask :
+        FeatureStartupTask,
+        IDisposable
     {
         ManualResetEventSlim resetEvent = new ManualResetEventSlim();
 

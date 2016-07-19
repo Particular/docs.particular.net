@@ -5,9 +5,10 @@ namespace Core5.Container.Custom
     using NServiceBus;
     using NServiceBus.ObjectBuilder.Common;
 
-    public class MyObjectBuilder : IContainer
+    public class MyObjectBuilder :
+        IContainer
     {
-        // endcode 
+        // endcode
 
         public void Dispose()
         {

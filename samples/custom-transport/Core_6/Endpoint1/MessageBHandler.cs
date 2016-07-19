@@ -3,7 +3,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 #region MessageBHandler
-public class MessageBHandler : IHandleMessages<MessageB>
+public class MessageBHandler :
+    IHandleMessages<MessageB>
 {
     static ILog log = LogManager.GetLogger<MessageBHandler>();
 

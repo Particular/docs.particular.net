@@ -3,7 +3,8 @@ using System.Configuration;
 using System.Data;
 using NHibernate.Connection;
 
-class MultiTenantConnectionProvider : DriverConnectionProvider
+class MultiTenantConnectionProvider :
+    DriverConnectionProvider
 {
 
     public override IDbConnection GetConnection()

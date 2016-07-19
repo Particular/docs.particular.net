@@ -4,7 +4,8 @@ using NServiceBus;
 using NServiceBus.Routing;
 using NServiceBus.Settings;
 
-public class FairDistributionStrategy : DistributionStrategy
+public class FairDistributionStrategy :
+    DistributionStrategy
 {
     ReadOnlySettings settings;
 

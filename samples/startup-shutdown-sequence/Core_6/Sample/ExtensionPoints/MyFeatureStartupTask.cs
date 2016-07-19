@@ -2,7 +2,8 @@
 using NServiceBus;
 using NServiceBus.Features;
 
-public class MyFeatureStartupTask : FeatureStartupTask
+public class MyFeatureStartupTask :
+    FeatureStartupTask
 {
     protected override Task OnStart(IMessageSession session)
     {

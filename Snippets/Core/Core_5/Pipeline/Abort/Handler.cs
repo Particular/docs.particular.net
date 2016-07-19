@@ -4,7 +4,8 @@
 
     #region AbortHandler
 
-    class Handler : IHandleMessages<MyMessage>
+    class Handler :
+        IHandleMessages<MyMessage>
     {
         IBus bus;
 

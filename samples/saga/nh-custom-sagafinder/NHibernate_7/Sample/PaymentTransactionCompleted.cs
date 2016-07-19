@@ -1,6 +1,7 @@
 ﻿using NServiceBus;
 
-public interface PaymentTransactionCompleted : IEvent
+public interface PaymentTransactionCompleted :
+    IEvent
 {
 	string PaymentTransactionId { get; set; }
 }

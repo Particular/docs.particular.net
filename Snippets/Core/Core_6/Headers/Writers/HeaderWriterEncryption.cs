@@ -47,13 +47,15 @@
             ManualResetEvent.WaitOne();
         }
 
-        class MessageToSend : IMessage
+        class MessageToSend :
+            IMessage
         {
             public string EncryptedProperty1 { get; set; }
             public string EncryptedProperty2 { get; set; }
         }
 
-        class MessageHandler : IHandleMessages<MessageToSend>
+        class MessageHandler :
+            IHandleMessages<MessageToSend>
         {
             public Task Handle(MessageToSend message, IMessageHandlerContext context)
             {
@@ -61,7 +63,8 @@
             }
         }
 
-        class Mutator : IMutateIncomingTransportMessages
+        class Mutator :
+            IMutateIncomingTransportMessages
         {
             public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {

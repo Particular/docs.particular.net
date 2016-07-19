@@ -5,7 +5,8 @@
     using NServiceBus.MessageMutator;
 
     #region IMutateOutgoingTransportMessages
-    public class MutateOutgoingTransportMessages : IMutateOutgoingTransportMessages
+    public class MutateOutgoingTransportMessages :
+        IMutateOutgoingTransportMessages
     {
         public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
         {
@@ -23,17 +24,17 @@
 
             // the outgoing message
             var outgoingMessage = context.OutgoingMessage;
-            
+
             // the bytes containing the serialized outgoing messages.
             var bytes = context.OutgoingBody;
 
-            // optionally replace the Body. 
+            // optionally replace the Body.
             // this can be done using any information from the context
             context.OutgoingBody = ServiceThatChangesBody.Mutate(context.OutgoingMessage);
 
 
             // the outgoing headers
-            IDictionary<string, string> headers = context.OutgoingHeaders;
+            var headers = context.OutgoingHeaders;
 
             // optional manipulate headers
 

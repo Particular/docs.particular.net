@@ -4,7 +4,8 @@
 
     #region lifecycle-ineedinitialization
 
-    class NeedsInitialization : INeedInitialization
+    class NeedsInitialization :
+        INeedInitialization
     {
         public void Init()
         {

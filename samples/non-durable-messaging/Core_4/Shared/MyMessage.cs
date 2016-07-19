@@ -2,7 +2,8 @@
 
 #region message-definition
 [Express]
-public class MyMessage : IMessage
+public class MyMessage :
+    IMessage
 {
 }
 #endregion

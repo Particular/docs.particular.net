@@ -2,7 +2,8 @@
 {
     using NServiceBus;
 
-    public class ReplyingHandler : IHandleMessages<RequestDataMessage>
+    public class ReplyingHandler :
+        IHandleMessages<RequestDataMessage>
     {
         IBus bus;
 
@@ -33,7 +34,8 @@
 
     }
 
-    public class RequestDataMessage : ICommand
+    public class RequestDataMessage :
+        ICommand
     {
         public string DataId { get; set; }
         public string String { get; set; }

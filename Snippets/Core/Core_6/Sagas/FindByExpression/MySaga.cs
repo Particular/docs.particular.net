@@ -4,7 +4,8 @@ namespace Core6.Sagas.FindByExpression
 {
     using System.Threading.Tasks;
 
-    public class MySaga : Saga<MySagaData>,
+    public class MySaga :
+        Saga<MySagaData>,
         IAmStartedByMessages<Message1>,
         IHandleMessages<Message2>
     {

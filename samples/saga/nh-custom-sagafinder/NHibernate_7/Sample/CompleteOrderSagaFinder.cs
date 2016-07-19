@@ -4,7 +4,8 @@ using NServiceBus.Extensibility;
 using NServiceBus.Persistence;
 using NServiceBus.Sagas;
 
-class CompleteOrderSagaFinder : IFindSagas<OrderSagaData>.Using<CompleteOrder>
+class CompleteOrderSagaFinder :
+    IFindSagas<OrderSagaData>.Using<CompleteOrder>
 {
     public Task<OrderSagaData> FindBy(CompleteOrder message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
     {

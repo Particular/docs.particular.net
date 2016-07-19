@@ -5,7 +5,8 @@ using System;
 
 #region TheSagaRavenDB
 
-public class OrderSaga : Saga<OrderSagaData>,
+public class OrderSaga :
+    Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
     IHandleMessages<PaymentTransactionCompleted>,
     IHandleMessages<CompleteOrder>

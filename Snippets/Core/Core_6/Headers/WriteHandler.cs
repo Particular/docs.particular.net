@@ -5,7 +5,8 @@
 
     #region header-outgoing-handler
 
-    public class WriteHandler : IHandleMessages<MyMessage>
+    public class WriteHandler :
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {

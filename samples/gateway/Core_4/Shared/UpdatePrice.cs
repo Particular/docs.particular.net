@@ -3,7 +3,8 @@ using NServiceBus;
 
 namespace Shared
 {
-    public class UpdatePrice : IMessage
+    public class UpdatePrice :
+        IMessage
     {
         public int ProductId { get; set; }
         public double NewPrice { get; set; }

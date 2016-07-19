@@ -1,7 +1,8 @@
 ﻿using NServiceBus.Logging;
 using NServiceBus.Saga;
 
-internal class SagaNotFoundHandler : IHandleSagaNotFound
+internal class SagaNotFoundHandler :
+    IHandleSagaNotFound
 {
     static ILog log = LogManager.GetLogger<SagaNotFoundHandler>();
 

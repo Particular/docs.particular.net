@@ -3,7 +3,8 @@ using Microsoft.WindowsAzure.ServiceRuntime;
 using NServiceBus.Hosting.Azure;
 
 
-public class WorkerRole : RoleEntryPoint
+public class WorkerRole :
+    RoleEntryPoint
 {
     NServiceBusRoleEntrypoint nsb = new NServiceBusRoleEntrypoint();
 

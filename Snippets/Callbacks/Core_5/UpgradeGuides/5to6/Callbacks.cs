@@ -20,11 +20,13 @@
             #endregion
         }
 
-        class RequestMessage : IMessage
+        class RequestMessage :
+            IMessage
         {
         }
 
-        class ResponseMessage : IMessage
+        class ResponseMessage :
+            IMessage
         {
         }
     }

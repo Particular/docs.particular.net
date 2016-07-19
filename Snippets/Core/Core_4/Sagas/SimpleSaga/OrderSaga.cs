@@ -5,9 +5,10 @@
 
     #region simple-saga
 
-    public class OrderSaga : Saga<OrderSagaData>,
-                            IAmStartedByMessages<StartOrder>,
-                            IHandleMessages<CompleteOrder>
+    public class OrderSaga :
+        Saga<OrderSagaData>,
+        IAmStartedByMessages<StartOrder>,
+        IHandleMessages<CompleteOrder>
     {
         public override void ConfigureHowToFindSaga()
         {

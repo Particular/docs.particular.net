@@ -1,6 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
 
-public class OrderSagaDataFluentMap : ClassMap<OrderSagaDataFluent>
+public class OrderSagaDataFluentMap :
+    ClassMap<OrderSagaDataFluent>
 {
     public OrderSagaDataFluentMap()
     {

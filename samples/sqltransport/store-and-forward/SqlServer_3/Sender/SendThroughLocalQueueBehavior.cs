@@ -12,7 +12,8 @@ using NServiceBus.Transports;
 
 
 #region SendThroughLocalQueueBehavior
-class SendThroughLocalQueueRoutingToDispatchConnector : ForkConnector<IRoutingContext, IDispatchContext>
+class SendThroughLocalQueueRoutingToDispatchConnector :
+    ForkConnector<IRoutingContext, IDispatchContext>
 {
     public SendThroughLocalQueueRoutingToDispatchConnector(string localAddress)
     {
@@ -62,7 +63,9 @@ class SendThroughLocalQueueRoutingToDispatchConnector : ForkConnector<IRoutingCo
 
     string localAddress;
 
-    class DispatchContext : ContextBag, IDispatchContext
+    class DispatchContext :
+        ContextBag,
+        IDispatchContext
     {
         TransportOperation[] operations;
         public ContextBag Extensions => this;

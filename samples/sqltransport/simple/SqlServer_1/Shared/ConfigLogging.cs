@@ -1,7 +1,8 @@
 using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
-class ConfigLogging : IProvideConfiguration<Logging>
+class ConfigLogging :
+    IProvideConfiguration<Logging>
 {
     public Logging GetConfiguration()
     {

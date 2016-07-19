@@ -3,7 +3,8 @@ using NServiceBus.Saga;
 
 #region CustomSagaFinderNHibernate
 
-class StartOrderSagaFinder : IFindSagas<OrderSagaData>.Using<StartOrder>
+class StartOrderSagaFinder :
+    IFindSagas<OrderSagaData>.Using<StartOrder>
 {
     NHibernateStorageContext storageContext;
 

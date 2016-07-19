@@ -39,18 +39,21 @@
             }
         }
 
-        class MessageToSend : IMessage
+        class MessageToSend :
+            IMessage
         {
         }
 
-        class MessageHandler : IHandleMessages<MessageToSend>
+        class MessageHandler :
+            IHandleMessages<MessageToSend>
         {
             public void Handle(MessageToSend message)
             {
             }
         }
 
-        class Mutator : IMutateIncomingTransportMessages
+        class Mutator :
+            IMutateIncomingTransportMessages
         {
             public void MutateIncoming(TransportMessage transportMessage)
             {

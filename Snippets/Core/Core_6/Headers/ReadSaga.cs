@@ -5,7 +5,8 @@
     using NServiceBus;
 
     #region header-incoming-saga
-    public class ReadSaga : Saga<ReadSagaData>,
+    public class ReadSaga :
+        Saga<ReadSagaData>,
         IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
@@ -20,7 +21,8 @@
         }
     }
 
-    public class ReadSagaData : ContainSagaData
+    public class ReadSagaData :
+        ContainSagaData
     {
     }
 }

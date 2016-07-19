@@ -3,7 +3,8 @@ using NServiceBus;
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
-public class ForwardBehavior : IBehavior<IncomingContext>
+public class ForwardBehavior :
+    IBehavior<IncomingContext>
 {
     IBus bus;
 
@@ -37,7 +38,8 @@ public class ForwardBehavior : IBehavior<IncomingContext>
         #endregion
     }
 
-    public class Registration : RegisterStep
+    public class Registration :
+        RegisterStep
     {
         public Registration()
             : base("Forward", typeof(ForwardBehavior), "Forwards the message to the destination.")

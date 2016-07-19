@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 #region ValidationMessageMutator
-public class ValidationMessageMutator : IMutateIncomingMessages, IMutateOutgoingMessages
+public class ValidationMessageMutator :
+    IMutateIncomingMessages,
+    IMutateOutgoingMessages
 {
     static ILog log = LogManager.GetLogger("ValidationMessageMutator");
 

@@ -47,11 +47,13 @@
                 .ConfigureAwait(false);
         }
 
-        class MessageToPublish : IEvent
+        class MessageToPublish :
+            IEvent
         {
         }
 
-        class MessageHandler : IHandleMessages<MessageToPublish>
+        class MessageHandler :
+            IHandleMessages<MessageToPublish>
         {
             public Task Handle(MessageToPublish message, IMessageHandlerContext context)
             {
@@ -59,21 +61,24 @@
             }
         }
 
-        class ConfigUnicastBus : IProvideConfiguration<UnicastBusConfig>
+        class ConfigUnicastBus :
+            IProvideConfiguration<UnicastBusConfig>
         {
             public UnicastBusConfig GetConfiguration()
             {
                 var unicastBusConfig = new UnicastBusConfig();
-                unicastBusConfig.MessageEndpointMappings.Add(new MessageEndpointMapping
+                var endpointMapping = new MessageEndpointMapping
                 {
                     AssemblyName = GetType().Assembly.GetName().Name,
                     Endpoint = EndpointName
-                });
+                };
+                unicastBusConfig.MessageEndpointMappings.Add(endpointMapping);
                 return unicastBusConfig;
             }
         }
 
-        class Mutator : IMutateIncomingTransportMessages
+        class Mutator :
+            IMutateIncomingTransportMessages
         {
             public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {

@@ -2,7 +2,8 @@ using NServiceBus;
 using NServiceBus.MessageMutator;
 
 #region mutate-outgoing-messages
-public class MutateOutgoingMessages : IMutateOutgoingMessages
+public class MutateOutgoingMessages :
+    IMutateOutgoingMessages
 {
     IBus bus;
 

@@ -7,7 +7,8 @@ using NServiceBus.Routing;
 using NServiceBus.Routing.MessageDrivenSubscriptions;
 using NServiceBus.Unicast;
 
-class AutomaticRoutingFeature : Feature
+class AutomaticRoutingFeature :
+    Feature
 {
     public AutomaticRoutingFeature()
     {

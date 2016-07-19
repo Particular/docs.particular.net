@@ -203,7 +203,8 @@ namespace Core6.Routing
         {
         }
 
-        class CustomStrategy : DistributionStrategy
+        class CustomStrategy :
+            DistributionStrategy
         {
             public override IEnumerable<UnicastRoutingTarget> SelectDestination(IList<UnicastRoutingTarget> allInstances)
             {
@@ -233,7 +234,8 @@ namespace Core6.Routing
         {
         }
 
-        class MyTransport : TransportDefinition
+        class MyTransport :
+            TransportDefinition
         {
             protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
             {

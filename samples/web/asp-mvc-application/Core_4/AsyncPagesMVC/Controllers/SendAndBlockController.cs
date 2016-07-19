@@ -2,7 +2,8 @@
 using System.Web.Mvc;
 using NServiceBus;
 
-public class SendAndBlockController : Controller
+public class SendAndBlockController :
+    Controller
 {
     IBus bus;
 

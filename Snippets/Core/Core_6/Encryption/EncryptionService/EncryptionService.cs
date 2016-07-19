@@ -3,7 +3,8 @@ namespace Core6.Encryption.EncryptionService
     using NServiceBus;
     using NServiceBus.Pipeline;
 
-    public class EncryptionService : IEncryptionService
+    public class EncryptionService :
+        IEncryptionService
     {
 
         public EncryptedValue Encrypt(string value, IOutgoingLogicalMessageContext context)

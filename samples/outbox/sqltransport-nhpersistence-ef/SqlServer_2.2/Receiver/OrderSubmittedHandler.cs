@@ -3,7 +3,8 @@ using System.Data.Common;
 using NServiceBus.Logging;
 using NServiceBus.Persistence.NHibernate;
 
-public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
+public class OrderSubmittedHandler :
+    IHandleMessages<OrderSubmitted>
 {
     static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
     IBus bus;

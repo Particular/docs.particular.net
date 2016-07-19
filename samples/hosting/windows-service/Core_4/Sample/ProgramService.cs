@@ -4,7 +4,8 @@ using NServiceBus.Features;
 using NServiceBus.Installation.Environments;
 using System.ServiceProcess;
 
-class ProgramService : ServiceBase
+class ProgramService :
+    ServiceBase
 {
     IBus bus;
 

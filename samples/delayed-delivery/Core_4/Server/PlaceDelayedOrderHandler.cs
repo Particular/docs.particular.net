@@ -3,7 +3,8 @@ using NServiceBus.Logging;
 
 #region PlaceDelayedOrderHandler
 
-public class PlaceDelayedOrderHandler : IHandleMessages<PlaceDelayedOrder>
+public class PlaceDelayedOrderHandler :
+    IHandleMessages<PlaceDelayedOrder>
 {
     static ILog log = LogManager.GetLogger(typeof(PlaceDelayedOrderHandler));
 

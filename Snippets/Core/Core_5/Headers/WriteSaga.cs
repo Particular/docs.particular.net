@@ -21,7 +21,8 @@
         }
     }
 
-    public class WriteSagaData : ContainSagaData
+    public class WriteSagaData :
+        ContainSagaData
     {
     }
 

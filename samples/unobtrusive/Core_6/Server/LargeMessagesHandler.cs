@@ -5,7 +5,8 @@ namespace Server
     using NServiceBus;
     using NServiceBus.Logging;
 
-    public class LargeMessagesHandler : IHandleMessages<LargeMessage>
+    public class LargeMessagesHandler :
+        IHandleMessages<LargeMessage>
     {
         static ILog log = LogManager.GetLogger<LargeMessagesHandler>();
 

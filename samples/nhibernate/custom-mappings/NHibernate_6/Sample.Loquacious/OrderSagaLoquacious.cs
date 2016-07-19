@@ -2,7 +2,8 @@
 using NServiceBus.Logging;
 using NServiceBus.Saga;
 
-public class OrderSagaLoquacious : Saga<OrderSagaDataLoquacious>,
+public class OrderSagaLoquacious :
+    Saga<OrderSagaDataLoquacious>,
     IAmStartedByMessages<StartOrder>,
     IHandleMessages<CompleteOrder>
 {

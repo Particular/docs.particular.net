@@ -21,7 +21,8 @@
 
         #region CustomSerializer
 
-        class MyCustomSerializerDefinition : SerializationDefinition
+        class MyCustomSerializerDefinition :
+            SerializationDefinition
         {
             public override Func<IMessageMapper, IMessageSerializer> Configure(ReadOnlySettings settings)
             {
@@ -29,7 +30,8 @@
             }
         }
 
-        class MyCustomSerializer : IMessageSerializer
+        class MyCustomSerializer :
+            IMessageSerializer
         {
             public void Serialize(object message, Stream stream)
             {

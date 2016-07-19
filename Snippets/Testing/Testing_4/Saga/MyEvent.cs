@@ -2,7 +2,8 @@
 {
     using NServiceBus;
 
-    class MyEvent : IEvent
+    class MyEvent :
+        IEvent
     {
     }
 }

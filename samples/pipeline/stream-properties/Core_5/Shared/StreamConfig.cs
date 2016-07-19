@@ -3,7 +3,8 @@ using NServiceBus.Pipeline;
 
 #region pipeline-config
 
-public class StreamFeature : Feature
+public class StreamFeature :
+    Feature
 {
     internal StreamFeature()
     {
@@ -17,7 +18,8 @@ public class StreamFeature : Feature
     }
 }
 
-public class StreamReceiveRegistration : RegisterStep
+public class StreamReceiveRegistration :
+    RegisterStep
 {
     public StreamReceiveRegistration()
         : base("StreamReceive", typeof(StreamReceiveBehavior), "Copies the shared data back to the logical messages")
@@ -27,7 +29,8 @@ public class StreamReceiveRegistration : RegisterStep
     }
 }
 
-public class StreamSendRegistration : RegisterStep
+public class StreamSendRegistration :
+    RegisterStep
 {
     public StreamSendRegistration()
         : base("StreamSend", typeof(StreamSendBehavior), "Saves the payload into the shared location")

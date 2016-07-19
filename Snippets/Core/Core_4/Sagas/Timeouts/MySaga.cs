@@ -6,7 +6,8 @@
 
     #region saga-with-timeout
 
-    public class MySaga : Saga<MySagaData>,
+    public class MySaga :
+        Saga<MySagaData>,
         IAmStartedByMessages<Message1>,
         IHandleMessages<Message2>,
         IHandleTimeouts<MyCustomTimeout>

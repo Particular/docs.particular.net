@@ -18,14 +18,17 @@ class OverrideLoggingViaProfile
 
     #endregion
 
-    class Log4NetFactory:LoggingFactoryDefinition
+    class Log4NetFactory :
+        LoggingFactoryDefinition
     {
         protected override ILoggerFactory GetLoggingFactory()
         {
             throw new System.NotImplementedException();
         }
     }
-    class YourProfile : IProfile
+
+    class YourProfile :
+        IProfile
     {
     }
 }

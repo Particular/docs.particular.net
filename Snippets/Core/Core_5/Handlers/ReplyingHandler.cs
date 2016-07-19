@@ -2,7 +2,8 @@
 {
     using NServiceBus;
 
-    public class ReplyingHandler : IHandleMessages<RequestDataMessage>
+    public class ReplyingHandler :
+        IHandleMessages<RequestDataMessage>
     {
         IBus bus;
 
@@ -24,7 +25,7 @@
 
             //Underneath the covers, Reply sends a new message to the return address on the message being handled.
             bus.Reply(response);
-            
+
             //Reply is equivalent to the following code:
             bus.Send(bus.CurrentMessageContext.ReplyToAddress, bus.CurrentMessageContext.Id, response);
         }
@@ -33,7 +34,8 @@
 
     }
 
-    public class RequestDataMessage : ICommand
+    public class RequestDataMessage :
+        ICommand
     {
         public string DataId { get; set; }
         public string String { get; set; }

@@ -6,7 +6,8 @@
 
     #region SamplePipelineBehavior
 
-    public class SampleBehavior : IBehavior<IncomingContext>
+    public class SampleBehavior :
+        IBehavior<IncomingContext>
     {
         public void Invoke(IncomingContext context, Action next)
         {

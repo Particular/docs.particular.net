@@ -3,7 +3,8 @@
 namespace Core6.Extending
 {
     #region MinimalFeature
-    public class MinimalFeature : Feature
+    public class MinimalFeature :
+        Feature
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
@@ -12,7 +13,8 @@ namespace Core6.Extending
     }
     #endregion
 
-    public class ComponentBFeature : Feature
+    public class ComponentBFeature :
+        Feature
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
@@ -20,7 +22,8 @@ namespace Core6.Extending
     }
 
     #region DependentFeature
-    public class ComponentAFeature : Feature
+    public class ComponentAFeature :
+        Feature
     {
         public ComponentAFeature()
         {
@@ -40,7 +43,8 @@ namespace Core6.Extending
     }
 
     #region FeatureEnabledByDefault
-    public class FeatureEnabledByDefault : Feature
+    public class FeatureEnabledByDefault :
+        Feature
     {
         public FeatureEnabledByDefault()
         {
@@ -54,7 +58,8 @@ namespace Core6.Extending
     #endregion
 
     #region FeatureWithDefaults
-    public class FeatureWithDefaults : Feature
+    public class FeatureWithDefaults :
+        Feature
     {
         public FeatureWithDefaults()
         {
@@ -71,7 +76,8 @@ namespace Core6.Extending
     }
     #endregion
 
-    public class EnablingOtherFeatures : Feature
+    public class EnablingOtherFeatures :
+        Feature
     {
         public EnablingOtherFeatures()
         {
@@ -84,7 +90,8 @@ namespace Core6.Extending
         {
         }
 
-        class OtherFeature : Feature
+        class OtherFeature :
+            Feature
         {
             protected override void Setup(FeatureConfigurationContext context)
             {
@@ -93,13 +100,20 @@ namespace Core6.Extending
         }
     }
 
-    public class FeatureWithPrerequisites : Feature
+    public class FeatureWithPrerequisites :
+        Feature
     {
         #region FeatureWithPrerequisites
 
         public FeatureWithPrerequisites()
         {
-            Prerequisite(c => c.Settings.HasExplicitValue("SomeKey"), "The key SomeKey was not present.");
+            Prerequisite(
+                condition: c =>
+                {
+                    var settings = c.Settings;
+                    return settings.HasExplicitValue("SomeKey");
+                },
+                description: "The key SomeKey was not present.");
         }
 
         #endregion

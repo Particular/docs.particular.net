@@ -2,7 +2,8 @@
 
 #region AzureMultiHost_SendPingCommand
 
-public class SendPing : IWantToRunWhenBusStartsAndStops
+public class SendPing :
+    IWantToRunWhenBusStartsAndStops
 {
     IBus bus;
 

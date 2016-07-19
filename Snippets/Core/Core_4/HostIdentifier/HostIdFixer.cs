@@ -11,14 +11,18 @@
 
     #region HostIdFixer
 
-    public class HostIdFixer : IWantToRunWhenConfigurationIsComplete
+    public class HostIdFixer :
+        IWantToRunWhenConfigurationIsComplete
     {
 
         public HostIdFixer(UnicastBus bus)
         {
             var hostId = CreateGuid(Environment.MachineName, Configure.EndpointName);
             var identifier = Assembly.GetExecutingAssembly().Location;
-            bus.HostInformation = new HostInformation(hostId, Environment.MachineName, identifier);
+            bus.HostInformation = new HostInformation(
+                hostId: hostId,
+                displayName: Environment.MachineName,
+                displayInstanceIdentifier: identifier);
         }
 
         static Guid CreateGuid(params string[] data)

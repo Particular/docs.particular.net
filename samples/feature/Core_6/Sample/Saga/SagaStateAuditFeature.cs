@@ -2,7 +2,8 @@
 
 #region SagaStateAuditFeature
 
-public class SagaStateAuditFeature : Feature
+public class SagaStateAuditFeature :
+    Feature
 {
     internal SagaStateAuditFeature()
     {

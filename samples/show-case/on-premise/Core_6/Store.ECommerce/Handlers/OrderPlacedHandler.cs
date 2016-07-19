@@ -3,7 +3,8 @@ using Microsoft.AspNet.SignalR;
 using NServiceBus;
 using Store.Messages.Events;
 
-public class OrderPlacedHandler : IHandleMessages<OrderPlaced>
+public class OrderPlacedHandler :
+    IHandleMessages<OrderPlaced>
 {
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {

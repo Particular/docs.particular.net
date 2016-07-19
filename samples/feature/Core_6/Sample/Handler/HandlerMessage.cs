@@ -1,5 +1,6 @@
 using NServiceBus;
 
-public class HandlerMessage : ICommand
+public class HandlerMessage :
+    ICommand
 {
 }

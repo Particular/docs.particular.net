@@ -5,7 +5,8 @@
 
     #region InstallSomething
 
-    public class MyInstaller : INeedToInstallSomething
+    public class MyInstaller :
+        INeedToInstallSomething
     {
         public void Install(string identity, Configure config)
         {

@@ -6,7 +6,8 @@ namespace Events
 
     #region BaseEvent
 
-    public class BaseEvent : IEvent
+    public class BaseEvent :
+        IEvent
     {
         public Guid EventId { get; set; }
     }

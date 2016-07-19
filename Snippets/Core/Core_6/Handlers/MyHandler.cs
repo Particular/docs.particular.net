@@ -6,7 +6,8 @@
 
     #region CreatingMessageHandler
 
-    public class MyAsyncHandler : IHandleMessages<MyMessage>
+    public class MyAsyncHandler :
+        IHandleMessages<MyMessage>
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -19,7 +20,8 @@
 
     #region EmptyHandler
 
-    public class MyMessageHandler : IHandleMessages<MyMessage>
+    public class MyMessageHandler :
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {

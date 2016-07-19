@@ -3,7 +3,8 @@
     using System;
     using NServiceBus;
 
-    public class MySagaData : IContainSagaData
+    public class MySagaData :
+        IContainSagaData
     {
         public Guid Id { get; set; }
         public string Originator { get; set; }

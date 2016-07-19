@@ -4,7 +4,8 @@ using NServiceBus.Logging;
 
 #region RequestDataMessageHandler
 
-public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
+public class RequestDataMessageHandler :
+    IHandleMessages<RequestDataMessage>
 #endregion
 {
     static ILog log = LogManager.GetLogger<RequestDataMessageHandler>();

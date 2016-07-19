@@ -5,7 +5,8 @@ using NServiceBus.Logging;
 using Store.Messages.Commands;
 using Store.Messages.Events;
 
-public class SubmitOrderHandler : IHandleMessages<SubmitOrder>
+public class SubmitOrderHandler :
+    IHandleMessages<SubmitOrder>
 {
     static ILog log = LogManager.GetLogger<SubmitOrderHandler>();
 

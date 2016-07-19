@@ -2,7 +2,8 @@
 using NServiceBus;
 using Store.Messages.Events;
 
-public class OrderPlacedHandler : IHandleMessages<OrderPlaced>
+public class OrderPlacedHandler :
+    IHandleMessages<OrderPlaced>
 {
     public void Handle(OrderPlaced message)
     {

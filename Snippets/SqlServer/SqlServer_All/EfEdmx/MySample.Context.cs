@@ -13,7 +13,8 @@ namespace SqlServer_All.EfEdmx
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MySampleContainer : DbContext
+    public partial class MySampleContainer :
+        DbContext
     {
         public MySampleContainer()
             : base("name=MySampleContainer")

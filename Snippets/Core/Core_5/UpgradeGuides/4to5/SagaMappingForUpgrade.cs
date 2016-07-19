@@ -7,7 +7,8 @@
     public class SagaMappingForUpgrade
     {
         #region 4to5ConfigureHowToFindSagaForUpgrade
-        public class MySaga : Saga<MySagaData>,
+        public class MySaga :
+            Saga<MySagaData>,
             IAmStartedByMessages<Message1>,
             IHandleMessages<Message2>
         {
@@ -36,7 +37,8 @@
             public Guid SomeID { get; set; }
         }
 
-        public class MySagaData : IContainSagaData
+        public class MySagaData :
+            IContainSagaData
         {
             public Guid Id { get; set; }
             public string Originator { get; set; }

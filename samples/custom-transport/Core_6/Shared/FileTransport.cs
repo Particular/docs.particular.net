@@ -10,7 +10,8 @@ using NServiceBus.Settings;
 using NServiceBus.Transports;
 
 #region TransportDefinition
-public class FileTransport : TransportDefinition
+public class FileTransport :
+    TransportDefinition
 {
     public override bool RequiresConnectionString => false;
 
@@ -22,7 +23,8 @@ public class FileTransport : TransportDefinition
     public override string ExampleConnectionStringForErrorMessage { get; } = "";
 }
 
-public class FileTransportInfrastructure : TransportInfrastructure
+public class FileTransportInfrastructure :
+    TransportInfrastructure
 {
     public override TransportReceiveInfrastructure ConfigureReceiveInfrastructure()
     {

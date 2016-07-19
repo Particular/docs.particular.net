@@ -5,7 +5,8 @@
 
     #region 5to6-MsmqSubscriptionAuthorizer
 
-    class MsmqAuthorizeSubscriptions : IAuthorizeSubscriptions
+    class MsmqAuthorizeSubscriptions :
+        IAuthorizeSubscriptions
     {
         public bool AuthorizeSubscribe(string messageType, string clientEndpoint, IDictionary<string, string> headers)
         {

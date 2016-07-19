@@ -3,7 +3,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 #region Server-Handler
-public class DoSomethingHandler : IHandleMessages<DoSomething>
+public class DoSomethingHandler :
+    IHandleMessages<DoSomething>
 {
     static ILog log = LogManager.GetLogger<DoSomethingHandler>();
 

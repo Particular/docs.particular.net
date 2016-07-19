@@ -106,7 +106,8 @@
             }
         }
 
-        class MessageHandler : IHandleMessages<MessageToSend>
+        class MessageHandler :
+            IHandleMessages<MessageToSend>
         {
             State state;
 
@@ -125,7 +126,8 @@
             }
         }
 
-        class ConfigTransport : IProvideConfiguration<TransportConfig>
+        class ConfigTransport :
+            IProvideConfiguration<TransportConfig>
         {
             public TransportConfig GetConfiguration()
             {
@@ -136,7 +138,8 @@
             }
         }
 
-        class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
+        class ConfigErrorQueue :
+            IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
         {
             public MessageForwardingInCaseOfFaultConfig GetConfiguration()
             {
@@ -146,7 +149,8 @@
                 };
             }
         }
-        class MessageToSend : IMessage
+        class MessageToSend :
+            IMessage
         {
         }
 

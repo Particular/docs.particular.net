@@ -5,7 +5,8 @@
     using NServiceBus.Faults;
 
     #region CustomFaultManager
-    public class CustomFaultManager : IManageMessageFailures
+    public class CustomFaultManager :
+        IManageMessageFailures
     {
         public void SerializationFailedForMessage(TransportMessage message, Exception e)
         {
@@ -24,7 +25,8 @@
     }
     #endregion
 
-    class RegisterFaultManager : INeedInitialization
+    class RegisterFaultManager :
+        INeedInitialization
     {
         public void Customize(BusConfiguration configuration)
         {

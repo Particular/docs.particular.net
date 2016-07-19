@@ -6,7 +6,8 @@ namespace Core6.Pipeline.Abort
 
     #region AbortHandler
 
-    class Handler : IHandleMessages<MyMessage>
+    class Handler :
+        IHandleMessages<MyMessage>
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {

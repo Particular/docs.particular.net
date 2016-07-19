@@ -3,7 +3,8 @@ using Events;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class BaseEventHandler : IHandleMessages<BaseEvent>
+public class BaseEventHandler :
+    IHandleMessages<BaseEvent>
 {
     static ILog log = LogManager.GetLogger<BaseEventHandler>();
 

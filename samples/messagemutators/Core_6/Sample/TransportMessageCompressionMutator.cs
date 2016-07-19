@@ -5,7 +5,9 @@ using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 
 #region TransportMessageCompressionMutator
-public class TransportMessageCompressionMutator : IMutateIncomingTransportMessages, IMutateOutgoingTransportMessages
+public class TransportMessageCompressionMutator :
+    IMutateIncomingTransportMessages,
+    IMutateOutgoingTransportMessages
 {
     static ILog log = LogManager.GetLogger("TransportMessageCompressionMutator");
 

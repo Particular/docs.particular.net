@@ -91,5 +91,6 @@ class MultipleNamespaces
         #endregion
     }
 
-    public class MyMessage : ICommand { }
+    public class MyMessage :
+        ICommand { }
 }

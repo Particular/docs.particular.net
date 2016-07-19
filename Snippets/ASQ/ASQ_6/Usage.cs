@@ -14,7 +14,8 @@ class Usage
 
     #region AzureStorageQueueTransportWithAzureHost
 
-    public class EndpointConfig : IConfigureThisEndpoint
+    public class EndpointConfig :
+        IConfigureThisEndpoint
     {
         public void Customize(BusConfiguration busConfiguration)
         {

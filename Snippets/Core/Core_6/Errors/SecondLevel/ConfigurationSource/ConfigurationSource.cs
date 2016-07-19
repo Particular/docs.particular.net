@@ -6,7 +6,8 @@
     using NServiceBus.Config.ConfigurationSource;
 
     #region SlrConfigurationSource
-    public class ConfigurationSource : IConfigurationSource
+    public class ConfigurationSource :
+        IConfigurationSource
     {
         public T GetConfiguration<T>() where T : class, new()
         {

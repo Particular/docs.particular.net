@@ -3,7 +3,8 @@ using NServiceBus.Config.ConfigurationSource;
 
 #region ConfigErrorQueue
 
-class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
+class ConfigErrorQueue :
+    IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
 {
     public MessageForwardingInCaseOfFaultConfig GetConfiguration()
     {

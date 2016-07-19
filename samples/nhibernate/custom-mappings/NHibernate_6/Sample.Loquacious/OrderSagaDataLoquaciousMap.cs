@@ -2,7 +2,8 @@
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 
-public class OrderSagaDataLoquaciousMap : ClassMapping<OrderSagaDataLoquacious>
+public class OrderSagaDataLoquaciousMap :
+    ClassMapping<OrderSagaDataLoquacious>
 {
     public OrderSagaDataLoquaciousMap()
     {
@@ -39,7 +40,8 @@ public class OrderSagaDataLoquaciousMap : ClassMapping<OrderSagaDataLoquacious>
     }
 }
 
-public class OrderSagaDataLoquaciousLocationMap : ClassMapping<OrderSagaDataLoquacious.Location>
+public class OrderSagaDataLoquaciousLocationMap :
+    ClassMapping<OrderSagaDataLoquacious.Location>
 {
     public OrderSagaDataLoquaciousLocationMap()
     {

@@ -4,7 +4,8 @@ using NServiceBus.Pipeline;
 
 #region outgoing-header-behavior
 
-class OutgoingHeaderBehavior : Behavior<IOutgoingPhysicalMessageContext>
+class OutgoingHeaderBehavior :
+    Behavior<IOutgoingPhysicalMessageContext>
 {
     public override Task Invoke(IOutgoingPhysicalMessageContext context, Func<Task> next)
     {

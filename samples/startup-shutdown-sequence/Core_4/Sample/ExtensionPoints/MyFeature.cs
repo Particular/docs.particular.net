@@ -1,6 +1,7 @@
 ﻿using NServiceBus.Features;
 
-public class MyFeature : Feature
+public class MyFeature :
+    Feature
 {
     public override void Initialize()
     {

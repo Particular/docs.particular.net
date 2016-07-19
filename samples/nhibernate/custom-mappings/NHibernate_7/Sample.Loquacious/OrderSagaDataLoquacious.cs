@@ -1,7 +1,8 @@
 ﻿using System;
 using NServiceBus;
 
-public class OrderSagaDataLoquacious : IContainSagaData
+public class OrderSagaDataLoquacious :
+    IContainSagaData
 {
     public virtual Guid Id { get; set; }
     public virtual string OriginalMessageId { get; set; }

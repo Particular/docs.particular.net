@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
-class AcknowledgementProcessor : Behavior<IIncomingPhysicalMessageContext>
+class AcknowledgementProcessor :
+    Behavior<IIncomingPhysicalMessageContext>
 {
     public AcknowledgementProcessor(FlowManager flowManager, string currentSessionId)
     {

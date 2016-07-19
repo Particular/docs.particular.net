@@ -5,7 +5,8 @@
     using NServiceBus.Transports;
 
     #region ConcurrentCustomQueueCreator
-    class ConcurrentQueueCreator : ICreateQueues
+    class ConcurrentQueueCreator :
+        ICreateQueues
     {
         public Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
         {

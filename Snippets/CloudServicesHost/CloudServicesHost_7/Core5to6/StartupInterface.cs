@@ -3,7 +3,8 @@ using NServiceBus;
 
 #region 5to6-EndpointStartAndStopCloudHost
 // Use this in NServiceBus.Host or NServiceBus.Host.AzureCloudService
-public class Bootstrapper : IWantToRunWhenEndpointStartsAndStops
+public class Bootstrapper :
+    IWantToRunWhenEndpointStartsAndStops
 {
     public Task Start(IMessageSession session)
     {

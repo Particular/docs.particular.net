@@ -3,7 +3,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 #region sqlsubscriber-handler
-class SomethingHappenedHandler : IHandleMessages<SomethingHappened>
+class SomethingHappenedHandler :
+    IHandleMessages<SomethingHappened>
 {
     static ILog log = LogManager.GetLogger<SomethingHappenedHandler>();
 

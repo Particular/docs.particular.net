@@ -5,7 +5,8 @@
 
     #region GatewayChannelsConfigurationProvider
 
-    class ProvideConfiguration : IProvideConfiguration<GatewayConfig>
+    class ProvideConfiguration :
+        IProvideConfiguration<GatewayConfig>
     {
         public GatewayConfig GetConfiguration()
         {

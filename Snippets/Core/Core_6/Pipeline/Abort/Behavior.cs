@@ -7,7 +7,8 @@ namespace Core6.Pipeline.Abort
 
     #region AbortPipelineWithBehavior
 
-    public class Behavior : Behavior<IIncomingLogicalMessageContext>
+    public class Behavior :
+        Behavior<IIncomingLogicalMessageContext>
     {
         public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
         {

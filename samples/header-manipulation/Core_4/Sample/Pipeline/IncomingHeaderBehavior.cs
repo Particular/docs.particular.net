@@ -6,7 +6,8 @@ using NServiceBus.Pipeline.Contexts;
 
 #region incoming-header-behavior
 
-public class IncomingHeaderBehavior : IBehavior<ReceivePhysicalMessageContext>
+public class IncomingHeaderBehavior :
+    IBehavior<ReceivePhysicalMessageContext>
 {
     public void Invoke(ReceivePhysicalMessageContext context, Action next)
     {

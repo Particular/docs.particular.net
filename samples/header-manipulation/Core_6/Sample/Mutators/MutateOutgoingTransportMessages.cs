@@ -3,7 +3,8 @@ using NServiceBus.MessageMutator;
 
 #region mutate-outgoing-transport-messages
 
-public class MutateOutgoingTransportMessages : IMutateOutgoingTransportMessages
+public class MutateOutgoingTransportMessages :
+    IMutateOutgoingTransportMessages
 {
     public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {

@@ -2,7 +2,8 @@ using log4net.Core;
 using NServiceBus;
 
 #region ProductionHandler
-class ProductionLoggingHandler : IConfigureLoggingForProfile<Production>
+class ProductionLoggingHandler :
+    IConfigureLoggingForProfile<Production>
 {
     public void Configure(IConfigureThisEndpoint specifier)
     {

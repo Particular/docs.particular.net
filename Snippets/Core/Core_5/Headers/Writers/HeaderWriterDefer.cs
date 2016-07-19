@@ -41,31 +41,36 @@
             }
         }
 
-        class MessageToSend : IMessage
+        class MessageToSend :
+            IMessage
         {
         }
 
-        class MessageHandler : IHandleMessages<MessageToSend>
+        class MessageHandler :
+            IHandleMessages<MessageToSend>
         {
             public void Handle(MessageToSend message)
             {
             }
         }
 
-        class ConfigUnicastBus : IProvideConfiguration<UnicastBusConfig>
+        class ConfigUnicastBus :
+            IProvideConfiguration<UnicastBusConfig>
         {
             public UnicastBusConfig GetConfiguration()
             {
                 var unicastBusConfig = new UnicastBusConfig();
-                unicastBusConfig.MessageEndpointMappings.Add(new MessageEndpointMapping
+                var endpointMapping = new MessageEndpointMapping
                 {
                     AssemblyName = GetType().Assembly.GetName().Name,
                     Endpoint = $"{EndpointName}@{Environment.MachineName}"
-                });
+                };
+                unicastBusConfig.MessageEndpointMappings.Add(endpointMapping);
                 return unicastBusConfig;
             }
         }
-        class Mutator : IMutateIncomingTransportMessages
+        class Mutator :
+            IMutateIncomingTransportMessages
         {
             public void MutateIncoming(TransportMessage transportMessage)
             {

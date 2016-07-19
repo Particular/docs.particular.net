@@ -2,7 +2,8 @@
 using NServiceBus.Hosting.Profiles;
 
 #region dependent_profile
-class MyProfileHandler : IHandleProfile<MyProfile>
+class MyProfileHandler :
+    IHandleProfile<MyProfile>
 {
     public void ProfileActivated(BusConfiguration busConfiguration)
     {
@@ -11,6 +12,7 @@ class MyProfileHandler : IHandleProfile<MyProfile>
 }
 #endregion
 
-internal class MyProfile : IProfile
+internal class MyProfile :
+    IProfile
 {
 }

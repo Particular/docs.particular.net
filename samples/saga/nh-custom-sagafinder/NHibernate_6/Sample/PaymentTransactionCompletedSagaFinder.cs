@@ -1,7 +1,8 @@
 ﻿using NServiceBus.Persistence.NHibernate;
 using NServiceBus.Saga;
 
-class PaymentTransactionCompletedSagaFinder : IFindSagas<OrderSagaData>.Using<PaymentTransactionCompleted>
+class PaymentTransactionCompletedSagaFinder :
+    IFindSagas<OrderSagaData>.Using<PaymentTransactionCompleted>
 {
     NHibernateStorageContext storageContext;
 

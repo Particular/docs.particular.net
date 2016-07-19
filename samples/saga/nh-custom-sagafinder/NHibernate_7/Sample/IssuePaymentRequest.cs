@@ -1,6 +1,7 @@
 ﻿using NServiceBus;
 
-class IssuePaymentRequest : IMessage
+class IssuePaymentRequest :
+    IMessage
 {
 	public string PaymentTransactionId { get; set; }
 }

@@ -19,7 +19,8 @@
 
         #region CustomSerializer
 
-        class MyCustomSerializer : IMessageSerializer
+        class MyCustomSerializer :
+            IMessageSerializer
         {
             public void Serialize(object message, Stream stream)
             {

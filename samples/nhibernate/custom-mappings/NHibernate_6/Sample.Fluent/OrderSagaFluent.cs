@@ -2,7 +2,8 @@
 using NServiceBus.Logging;
 using NServiceBus.Saga;
 
-public class OrderSagaFluent : Saga<OrderSagaDataFluent>,
+public class OrderSagaFluent :
+    Saga<OrderSagaDataFluent>,
     IAmStartedByMessages<StartOrder>,
     IHandleMessages<CompleteOrder>
 {

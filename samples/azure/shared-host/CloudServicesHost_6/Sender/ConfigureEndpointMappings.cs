@@ -2,7 +2,8 @@
 using NServiceBus.Config.ConfigurationSource;
 
 #region AzureMultiHost_MessageMapping
-public class ConfigureMessageEndpointMappings : IProvideConfiguration<UnicastBusConfig>
+public class ConfigureMessageEndpointMappings :
+    IProvideConfiguration<UnicastBusConfig>
 {
     public UnicastBusConfig GetConfiguration()
     {

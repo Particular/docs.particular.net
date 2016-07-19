@@ -2,7 +2,8 @@
 using NServiceBus.Pipeline;
 
 #region pipeline-config
-public class ReplaceStackTraceFeature : Feature
+public class ReplaceStackTraceFeature :
+    Feature
 {
     ReplaceStackTraceFeature()
     {
@@ -14,7 +15,8 @@ public class ReplaceStackTraceFeature : Feature
         context.Pipeline.Register<Registration>();
     }
 
-    class Registration : RegisterStep
+    class Registration :
+        RegisterStep
     {
         public Registration()
             : base("ReplaceStackTrace", typeof(ReplaceStackTraceBehavior), "Replace StackTrace")

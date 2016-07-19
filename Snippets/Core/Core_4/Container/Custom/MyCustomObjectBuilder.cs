@@ -5,7 +5,8 @@ namespace Core4.Container.Custom
     using NServiceBus;
     using NServiceBus.ObjectBuilder.Common;
 
-    public class MyCustomObjectBuilder : IContainer
+    public class MyCustomObjectBuilder :
+        IContainer
     {
         public void Dispose()
         {

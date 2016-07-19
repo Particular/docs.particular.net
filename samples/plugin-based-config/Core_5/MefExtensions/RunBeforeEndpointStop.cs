@@ -3,7 +3,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 [Export(typeof(IRunBeforeEndpointStop))]
-public class RunBeforeEndpointStop : IRunBeforeEndpointStop
+public class RunBeforeEndpointStop :
+    IRunBeforeEndpointStop
 {
     static ILog log = LogManager.GetLogger<RunBeforeEndpointStop>();
 

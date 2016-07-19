@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
 #region Behavior
-class ReplaceStackTraceBehavior : Behavior<IFaultContext>
+class ReplaceStackTraceBehavior :
+    Behavior<IFaultContext>
 {
     public override Task Invoke(IFaultContext context, Func<Task> next)
     {

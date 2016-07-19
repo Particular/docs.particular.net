@@ -43,11 +43,13 @@
             ManualResetEvent.WaitOne();
         }
 
-        class MessageToSend : IMessage
+        class MessageToSend :
+            IMessage
         {
         }
 
-        class TransportConfigProvider : IProvideConfiguration<TransportConfig>
+        class TransportConfigProvider :
+            IProvideConfiguration<TransportConfig>
         {
             public TransportConfig GetConfiguration()
             {
@@ -58,7 +60,8 @@
             }
         }
 
-        class ConfigureSecondLevelRetries : IProvideConfiguration<SecondLevelRetriesConfig>
+        class ConfigureSecondLevelRetries :
+            IProvideConfiguration<SecondLevelRetriesConfig>
         {
             public SecondLevelRetriesConfig GetConfiguration()
             {
@@ -71,7 +74,8 @@
             }
         }
 
-        class MessageHandler : IHandleMessages<MessageToSend>
+        class MessageHandler :
+            IHandleMessages<MessageToSend>
         {
 
             public Task Handle(MessageToSend message, IMessageHandlerContext context)
@@ -80,17 +84,22 @@
             }
         }
 
-        class Mutator : IMutateIncomingTransportMessages
+        class Mutator :
+            IMutateIncomingTransportMessages
         {
             public Mutator(Notifications busNotifications)
             {
                 var errorsNotifications = busNotifications.Errors;
                 errorsNotifications.MessageSentToErrorQueue += (sender, retry) =>
                 {
-                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(retry.Headers);
+                    var headers = retry.Headers;
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(headers);
                     headerText = BehaviorCleaner.CleanStackTrace(headerText);
                     headerText = StackTraceCleaner.CleanStackTrace(headerText);
-                    SnippetLogger.Write(text: headerText, suffix: "Error", version: "6");
+                    SnippetLogger.Write(
+                        text: headerText,
+                        suffix: "Error",
+                        version: "6");
                     ManualResetEvent.Set();
                 };
             }
@@ -102,7 +111,8 @@
                 if (!hasCapturedMessage && context.IsMessageOfTye<MessageToSend>())
                 {
                     hasCapturedMessage = true;
-                    var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(context.Headers);
+                    var headers = context.Headers;
+                    var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(headers);
                     SnippetLogger.Write(
                         text: sendingText,
                         suffix: "Sending",

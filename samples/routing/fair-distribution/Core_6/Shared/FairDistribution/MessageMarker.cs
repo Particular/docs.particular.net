@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 using NServiceBus.Routing;
 
-class MessageMarker : Behavior<IDispatchContext>
+class MessageMarker :
+    Behavior<IDispatchContext>
 {
     public MessageMarker(FlowManager flowManager)
     {

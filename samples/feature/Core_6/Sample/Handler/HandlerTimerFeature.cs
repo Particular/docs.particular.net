@@ -2,7 +2,8 @@
 
 #region HandlerTimerFeature
 
-public class HandlerTimerFeature : Feature
+public class HandlerTimerFeature :
+    Feature
 {
     internal HandlerTimerFeature()
     {

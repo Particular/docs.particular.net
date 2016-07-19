@@ -2,7 +2,8 @@ using System;
 using NServiceBus.Logging;
 
 #region log
-class ConsoleLog : ILog
+class ConsoleLog :
+    ILog
 {
     string name;
     public bool IsDebugEnabled { get; }

@@ -6,7 +6,8 @@
     using NServiceBus.Satellites;
     using NServiceBus.Unicast.Transport;
 
-    class AdvancedSatellite : IAdvancedSatellite
+    class AdvancedSatellite :
+        IAdvancedSatellite
     {
         public bool Handle(TransportMessage message)
         {
@@ -39,7 +40,8 @@
 
         #endregion
 
-        class SatelliteImportFailuresHandler : IManageMessageFailures
+        class SatelliteImportFailuresHandler :
+            IManageMessageFailures
         {
             public void SerializationFailedForMessage(TransportMessage message, Exception e)
             {

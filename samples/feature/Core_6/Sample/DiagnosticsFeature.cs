@@ -3,7 +3,8 @@ using NServiceBus.Features;
 
 #region DiagnosticsFeature
 
-public class DiagnosticsFeature : Feature
+public class DiagnosticsFeature :
+    Feature
 {
     internal DiagnosticsFeature()
     {

@@ -7,7 +7,8 @@ using NServiceBus.Pipeline.Contexts;
 using Octokit;
 
 #region ThrottlingBehavior
-public class ThrottlingBehavior : IBehavior<IncomingContext>
+public class ThrottlingBehavior :
+    IBehavior<IncomingContext>
 {
     IBus bus;
     static ILog log = LogManager.GetLogger<ThrottlingBehavior>();

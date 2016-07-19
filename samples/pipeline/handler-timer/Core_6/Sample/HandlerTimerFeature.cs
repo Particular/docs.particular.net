@@ -3,7 +3,8 @@ using NServiceBus.Pipeline;
 
 #region pipeline-config
 
-public class HandlerTimerFeature : Feature
+public class HandlerTimerFeature :
+    Feature
 {
     internal HandlerTimerFeature()
     {
@@ -15,7 +16,8 @@ public class HandlerTimerFeature : Feature
         context.Pipeline.Register<Registration>();
     }
 
-    public class Registration : RegisterStep
+    public class Registration :
+        RegisterStep
     {
         public Registration()
             : base("HandlerTimer", typeof(HandlerTimerBehavior), "Logs a warning if a handler take more than a specified time")

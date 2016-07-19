@@ -3,7 +3,8 @@
     using NServiceBus;
     using NServiceBus.Saga;
 
-    public class MySaga : Saga<MySagaData>,
+    public class MySaga :
+        Saga<MySagaData>,
         IAmStartedByMessages<Message1>,
         IHandleMessages<Message2>
     {

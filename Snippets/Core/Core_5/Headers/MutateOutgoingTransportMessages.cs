@@ -5,7 +5,8 @@
     using NServiceBus.Unicast.Messages;
 
     #region header-outgoing-mutator
-    public class MutateOutgoingTransportMessages : IMutateOutgoingTransportMessages
+    public class MutateOutgoingTransportMessages :
+        IMutateOutgoingTransportMessages
     {
         public void MutateOutgoing(LogicalMessage logicalMessage, TransportMessage transportMessage)
         {

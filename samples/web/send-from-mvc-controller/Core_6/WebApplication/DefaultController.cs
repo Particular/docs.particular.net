@@ -3,7 +3,8 @@ using System.Web.Mvc;
 using NServiceBus;
 
 #region Controller
-public class DefaultController : Controller
+public class DefaultController :
+    Controller
 {
     IEndpointInstance endpoint;
 

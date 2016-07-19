@@ -7,7 +7,8 @@ using NServiceBus.Pipeline;
 using NServiceBus.Routing;
 using NServiceBus.Transports;
 
-class MarkerProcessor : ForkConnector<ITransportReceiveContext, IRoutingContext>
+class MarkerProcessor :
+    ForkConnector<ITransportReceiveContext, IRoutingContext>
 {
     public MarkerProcessor(EndpointInstance endpointInstance, int maxAckBatchSize)
     {

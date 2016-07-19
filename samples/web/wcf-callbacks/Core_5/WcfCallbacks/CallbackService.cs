@@ -7,7 +7,8 @@ using NServiceBus;
 [ServiceBehavior(
     InstanceContextMode = InstanceContextMode.Single,
     Name = "CallbackService")]
-class CallbackService<TRequest, TResponse> : ICallbackService<TRequest, TResponse>
+class CallbackService<TRequest, TResponse> :
+    ICallbackService<TRequest, TResponse>
 {
     IBus bus;
 

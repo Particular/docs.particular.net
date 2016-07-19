@@ -3,7 +3,9 @@ using NServiceBus;
 
 #region AzureSharedHosting_HostConfiguration
 
-public class EndpointConfig : IConfigureThisEndpoint, IConfigureThisHost
+public class EndpointConfig :
+    IConfigureThisEndpoint,
+    IConfigureThisHost
 {
     public void Customize(EndpointConfiguration configuration)
     {

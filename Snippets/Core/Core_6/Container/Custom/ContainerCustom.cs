@@ -16,7 +16,8 @@
         }
 
         // Create a class that implements 'ContainerDefinition' and returns the 'IContainer' implementation.
-        public class MyContainer : ContainerDefinition
+        public class MyContainer :
+            ContainerDefinition
         {
             public override IContainer CreateContainer(ReadOnlySettings settings)
             {

@@ -3,7 +3,8 @@
     using NServiceBus.MessageMutator;
 
     #region IMutateIncomingMessages
-    public class MutateIncomingMessages : IMutateIncomingMessages
+    public class MutateIncomingMessages :
+        IMutateIncomingMessages
     {
         public object MutateIncoming(object message)
         {

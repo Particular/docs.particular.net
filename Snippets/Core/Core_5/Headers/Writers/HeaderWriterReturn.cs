@@ -38,11 +38,13 @@
             }
         }
 
-        class MessageToSend : IMessage
+        class MessageToSend :
+            IMessage
         {
         }
 
-        class MessageHandler : IHandleMessages<MessageToSend>
+        class MessageHandler :
+            IHandleMessages<MessageToSend>
         {
             IBus bus;
 
@@ -57,22 +59,29 @@
             }
         }
 
-        class Mutator : IMutateIncomingTransportMessages
+        class Mutator :
+            IMutateIncomingTransportMessages
         {
             public void MutateIncoming(TransportMessage transportMessage)
             {
+                var headers = transportMessage.Headers;
                 if (transportMessage.IsMessageOfTye<MessageToSend>())
                 {
-                    var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(transportMessage.Headers);
-                    SnippetLogger.Write(text: sendingText, suffix: "Sending", version: "5");
+                    var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(headers);
+                    SnippetLogger.Write(
+                        text: sendingText,
+                        suffix: "Sending",
+                        version: "5");
                 }
                 else
                 {
-                    var returnText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(transportMessage.Headers);
-                    SnippetLogger.Write(text: returnText, suffix: "Returning", version: "5");
+                    var returnText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(headers);
+                    SnippetLogger.Write(
+                        text: returnText,
+                        suffix: "Returning",
+                        version: "5");
                     ManualResetEvent.Set();
                 }
-
             }
 
         }

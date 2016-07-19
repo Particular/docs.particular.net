@@ -2,7 +2,8 @@
 using Messages;
 using NServiceBus;
 
-public class OrderHandler : IHandleMessages<ClientOrder>
+public class OrderHandler :
+    IHandleMessages<ClientOrder>
 {
     IBus bus;
 

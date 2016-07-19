@@ -4,7 +4,8 @@ using Shared;
 
 #region PlaceOrderHandler
 
-public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
+public class PlaceOrderHandler :
+    IHandleMessages<PlaceOrder>
 {
     static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
     IBus bus;

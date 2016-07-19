@@ -1,7 +1,8 @@
 ﻿using NServiceBus.Persistence.NHibernate;
 using NServiceBus.Saga;
 
-class CompleteOrderSagaFinder : IFindSagas<OrderSagaData>.Using<CompleteOrder>
+class CompleteOrderSagaFinder :
+    IFindSagas<OrderSagaData>.Using<CompleteOrder>
 {
     NHibernateStorageContext storageContext;
 

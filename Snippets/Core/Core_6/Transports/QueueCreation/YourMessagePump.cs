@@ -5,7 +5,8 @@
     using NServiceBus;
     using NServiceBus.Transports;
 
-    class YourMessagePump : IPushMessages
+    class YourMessagePump :
+        IPushMessages
     {
         public Task Init(Func<PushContext, Task> pipe, CriticalError criticalError, PushSettings settings)
         {

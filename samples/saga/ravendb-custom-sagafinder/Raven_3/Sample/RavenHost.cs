@@ -5,7 +5,8 @@ using Raven.Client.UniqueConstraints;
 
 #region ravenhost
 
-class RavenHost : IDisposable
+class RavenHost :
+    IDisposable
 {
 
     public RavenHost()

@@ -2,7 +2,8 @@
 using NServiceBus;
 using NServiceBus.SagaPersisters.NHibernate;
 
-public class OrderSagaData : IContainSagaData
+public class OrderSagaData :
+    IContainSagaData
 {
     public virtual Guid Id { get; set; }
     public virtual string OriginalMessageId { get; set; }

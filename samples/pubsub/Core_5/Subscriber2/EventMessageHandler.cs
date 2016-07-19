@@ -1,7 +1,8 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class EventMessageHandler : IHandleMessages<IMyEvent>
+public class EventMessageHandler :
+    IHandleMessages<IMyEvent>
 {
     static ILog log = LogManager.GetLogger<EventMessageHandler>();
 

@@ -4,7 +4,8 @@
     using NServiceBus.Transports;
 
     #region RegisteringTheQueueCreator
-    class RegisterQueueCreator : INeedInitialization
+    class RegisterQueueCreator :
+        INeedInitialization
     {
         public void Customize(BusConfiguration busConfiguration)
         {
@@ -13,7 +14,8 @@
     }
     #endregion
 
-    class YourQueueCreator : ICreateQueues
+    class YourQueueCreator :
+        ICreateQueues
     {
         public void CreateQueueIfNecessary(Address address, string account)
         {
@@ -21,7 +23,8 @@
     }
 
     #region SequentialCustomQueueCreator
-    class SequentialQueueCreator : ICreateQueues
+    class SequentialQueueCreator :
+        ICreateQueues
     {
         public void CreateQueueIfNecessary(Address address, string account)
         {

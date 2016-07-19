@@ -15,7 +15,8 @@
             #endregion
         }
 
-        public class PersistenceToUseGoesHere : PersistenceDefinition
+        public class PersistenceToUseGoesHere :
+            PersistenceDefinition
         {
         }
     }

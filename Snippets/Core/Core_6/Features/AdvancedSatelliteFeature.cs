@@ -8,7 +8,8 @@
     using NServiceBus.Pipeline;
     using NServiceBus.Transports;
 
-    public class MyAdvancedSatelliteFeature : Feature
+    public class MyAdvancedSatelliteFeature :
+        Feature
     {
         public MyAdvancedSatelliteFeature()
         {
@@ -42,7 +43,8 @@
     }
 
     #region AdvancedSatelliteBehavior
-    class MyAdvancedSatelliteBehavior : PipelineTerminator<ISatelliteProcessingContext>
+    class MyAdvancedSatelliteBehavior :
+        PipelineTerminator<ISatelliteProcessingContext>
     {
         CriticalError criticalError;
 

@@ -4,7 +4,8 @@ namespace Core5.Int
 
     #region IntCallbackResponse
 
-    public class Handler : IHandleMessages<Message>
+    public class Handler :
+        IHandleMessages<Message>
     {
         IBus bus;
 

@@ -2,7 +2,8 @@ using System.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using NServiceBus;
 
-public class WorkerRole : RoleEntryPoint
+public class WorkerRole :
+    RoleEntryPoint
 {
     NServiceBusRoleEntrypoint nsb = new NServiceBusRoleEntrypoint();
 

@@ -6,7 +6,8 @@
 
     #region SharingBehaviorData
 
-    public class ParentBehavior : Behavior<IIncomingPhysicalMessageContext>
+    public class ParentBehavior :
+        Behavior<IIncomingPhysicalMessageContext>
     {
         public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
         {
@@ -16,7 +17,8 @@
         }
     }
 
-    public class ChildBehavior : Behavior<IIncomingLogicalMessageContext>
+    public class ChildBehavior :
+        Behavior<IIncomingLogicalMessageContext>
     {
         public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
         {

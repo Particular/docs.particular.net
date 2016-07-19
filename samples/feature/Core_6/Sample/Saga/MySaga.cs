@@ -3,13 +3,15 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class MySaga : Saga<MySaga.SagaData>,
+public class MySaga :
+    Saga<MySaga.SagaData>,
     IAmStartedByMessages<StartSagaMessage>,
     IHandleMessages<CompleteSagaMessage>
 {
     static ILog log = LogManager.GetLogger<MySaga>();
 
-    public class SagaData : ContainSagaData
+    public class SagaData :
+        ContainSagaData
     {
         public Guid TheId { get; set; }
         public DateTimeOffset MessageSentTime { get; set; }

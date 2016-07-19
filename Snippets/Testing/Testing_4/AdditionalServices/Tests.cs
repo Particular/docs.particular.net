@@ -20,7 +20,8 @@
         }
     }
 
-    class WithDependencyInjectionHandler : IHandleMessages<MyMessage>
+    class WithDependencyInjectionHandler :
+        IHandleMessages<MyMessage>
     {
         MyService myService;
 
@@ -52,7 +53,8 @@
         }
     }
 
-    class WithConstructorInjectedBusHandler : IHandleMessages<MyMessage>
+    class WithConstructorInjectedBusHandler :
+        IHandleMessages<MyMessage>
     {
         IBus bus;
 

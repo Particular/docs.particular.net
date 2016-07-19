@@ -7,7 +7,8 @@ namespace Core6.Pipeline
 
     #region SkipSerialization
 
-    class SkipSerializationForInts : Behavior<IOutgoingLogicalMessageContext>
+    class SkipSerializationForInts :
+        Behavior<IOutgoingLogicalMessageContext>
     {
         public override Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
         {
@@ -21,7 +22,8 @@ namespace Core6.Pipeline
             return next();
         }
 
-        public class Registration : RegisterStep
+        public class Registration :
+            RegisterStep
         {
             public Registration()
                 : base(

@@ -15,7 +15,8 @@ class Usage
 
     #region PersistenceWithAzureHost
 
-    public class EndpointConfig : IConfigureThisEndpoint
+    public class EndpointConfig :
+        IConfigureThisEndpoint
     {
         public void Customize(BusConfiguration busConfiguration)
         {

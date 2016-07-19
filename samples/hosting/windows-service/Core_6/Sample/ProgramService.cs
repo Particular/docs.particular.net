@@ -3,7 +3,8 @@ using System.ServiceProcess;
 using System.Threading.Tasks;
 using NServiceBus;
 
-class ProgramService : ServiceBase
+class ProgramService :
+    ServiceBase
 {
     IEndpointInstance endpointInstance;
 

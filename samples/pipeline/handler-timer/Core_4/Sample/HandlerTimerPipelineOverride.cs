@@ -4,7 +4,8 @@ using NServiceBus.Unicast.Behaviors;
 
 #pragma warning disable 618
 #region pipeline-config
-public class HandlerTimerPipelineOverride : IPipelineOverride
+public class HandlerTimerPipelineOverride :
+    IPipelineOverride
 {
     public void Override(BehaviorList<HandlerInvocationContext> behaviorList)
     {

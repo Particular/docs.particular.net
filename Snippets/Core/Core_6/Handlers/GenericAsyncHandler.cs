@@ -7,7 +7,8 @@
 
     #region GenericMessageHandler
 
-    public class GenericAsyncHandler : IHandleMessages<object>
+    public class GenericAsyncHandler :
+        IHandleMessages<object>
     {
         static ILog log = LogManager.GetLogger<GenericAsyncHandler>();
 

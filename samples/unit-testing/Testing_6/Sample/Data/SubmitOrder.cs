@@ -1,7 +1,8 @@
 ﻿using System;
 using NServiceBus;
 
-public class SubmitOrder : IMessage
+public class SubmitOrder :
+    IMessage
 {
     public Guid CustomerId { get; set; }
     public Guid OrderId { get; set; }

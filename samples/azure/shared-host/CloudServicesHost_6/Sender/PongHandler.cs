@@ -2,7 +2,8 @@
 
 #region AzureMultiHost_PongHandler
 
-public class PongHandler : IHandleMessages<Pong>
+public class PongHandler :
+    IHandleMessages<Pong>
 {
     public void Handle(Pong message)
     {

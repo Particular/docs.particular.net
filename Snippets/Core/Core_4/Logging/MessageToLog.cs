@@ -5,7 +5,8 @@
 
     #region MessageWithToStringLogged
 
-    public class MessageToLog : IMessage
+    public class MessageToLog :
+        IMessage
     {
         public Guid EventId { get; set; }
         public DateTime? Time { get; set; }

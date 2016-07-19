@@ -40,11 +40,13 @@
             ManualResetEvent.WaitOne();
         }
 
-        class MessageToSend : IMessage
+        class MessageToSend :
+            IMessage
         {
         }
 
-        class MessageHandler : IHandleMessages<MessageToSend>
+        class MessageHandler :
+            IHandleMessages<MessageToSend>
         {
             public Task Handle(MessageToSend message, IMessageHandlerContext context)
             {
@@ -53,18 +55,21 @@
             }
         }
 
-        class MessageToReply : IMessage
+        class MessageToReply :
+            IMessage
         {
         }
 
-        class Mutator : IMutateIncomingTransportMessages
+        class Mutator :
+            IMutateIncomingTransportMessages
         {
 
             public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
+                var headers = context.Headers;
                 if (context.IsMessageOfTye<MessageToReply>())
                 {
-                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(context.Headers);
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(headers);
                     SnippetLogger.Write(
                         text: headerText,
                         suffix: "Replying",
@@ -73,7 +78,7 @@
                 }
                 if (context.IsMessageOfTye<MessageToSend>())
                 {
-                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(context.Headers);
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(headers);
                     SnippetLogger.Write(
                         text: headerText,
                         suffix: "Sending",

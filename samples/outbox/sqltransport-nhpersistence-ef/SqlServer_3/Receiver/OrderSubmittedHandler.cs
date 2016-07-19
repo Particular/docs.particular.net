@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 using NHibernate;
 using NServiceBus.Logging;
 
-public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
+public class OrderSubmittedHandler :
+    IHandleMessages<OrderSubmitted>
 {
     static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
 

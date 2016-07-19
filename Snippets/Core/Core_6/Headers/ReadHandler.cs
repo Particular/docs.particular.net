@@ -1,15 +1,15 @@
 ﻿namespace Core6.Headers
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using NServiceBus;
 
     #region header-incoming-handler
-    public class ReadHandler : IHandleMessages<MyMessage>
+    public class ReadHandler :
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            IReadOnlyDictionary<string, string> headers = context.MessageHeaders;
+            var headers = context.MessageHeaders;
             var nsbVersion = headers[Headers.NServiceBusVersion];
             var customHeader = headers["MyCustomHeader"];
         }

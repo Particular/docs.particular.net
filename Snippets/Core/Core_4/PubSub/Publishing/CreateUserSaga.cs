@@ -5,7 +5,8 @@ namespace Core4.PubSub.Publishing
     using NServiceBus.Saga;
 
     #region publishFromSaga
-    public class CreateUserSaga : Saga<CreateUserSaga.SagaData>,
+    public class CreateUserSaga :
+        Saga<CreateUserSaga.SagaData>,
         IHandleMessages<CreateUserCommand>
     {
         IBus bus;
@@ -23,7 +24,8 @@ namespace Core4.PubSub.Publishing
             });
         }
 #endregion
-        public class SagaData : IContainSagaData
+        public class SagaData :
+            IContainSagaData
         {
             public Guid Id { get; set; }
             public string Originator { get; set; }

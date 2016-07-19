@@ -1,7 +1,8 @@
 ﻿using NServiceBus;
 using NServiceBus.Logging;
 
-public class PlaceDelayedOrderSenderHandler : IHandleMessages<PlaceDelayedOrder>
+public class PlaceDelayedOrderSenderHandler :
+    IHandleMessages<PlaceDelayedOrder>
 {
     static ILog log = LogManager.GetLogger(typeof(PlaceDelayedOrderSenderHandler));
     IBus bus;

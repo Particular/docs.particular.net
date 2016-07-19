@@ -1,6 +1,7 @@
 using NServiceBus;
 
-public class Startup : IWantToRunWhenBusStartsAndStops
+public class Startup :
+    IWantToRunWhenBusStartsAndStops
 {
     IBus bus;
 

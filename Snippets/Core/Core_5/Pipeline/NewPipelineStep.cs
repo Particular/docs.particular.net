@@ -5,7 +5,8 @@
 
     #region NewPipelineStep
 
-    class NewPipelineStep : RegisterStep
+    class NewPipelineStep :
+        RegisterStep
     {
         public NewPipelineStep()
             : base(
@@ -22,7 +23,8 @@
 
     #region AddPipelineStep
 
-    class NewPipelineStepRegistration : INeedInitialization
+    class NewPipelineStepRegistration :
+        INeedInitialization
     {
         public void Customize(BusConfiguration busConfiguration)
         {
@@ -36,7 +38,8 @@
 
     #region ReplacePipelineStep
 
-    public class ReplaceExistingStep : INeedInitialization
+    public class ReplaceExistingStep :
+        INeedInitialization
     {
         public void Customize(BusConfiguration busConfiguration)
         {

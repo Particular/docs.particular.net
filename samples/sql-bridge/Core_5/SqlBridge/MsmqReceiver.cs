@@ -9,7 +9,8 @@ using NServiceBus.Unicast;
 
 #region satellite
 // Implements an advanced satellite. Allows to receive messages on a different transport.
-class MsmqReceiver : IAdvancedSatellite
+class MsmqReceiver :
+    IAdvancedSatellite
 {
     Configure configure;
     CriticalError criticalError;

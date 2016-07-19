@@ -6,7 +6,8 @@
 
     #region header-outgoing-saga
 
-    public class WriteSaga : Saga<WriteSagaData>,
+    public class WriteSaga :
+        Saga<WriteSagaData>,
         IHandleMessages<MyMessage>
     {
         public void Handle(MyMessage message)
@@ -18,7 +19,8 @@
     }
     #endregion
 
-    public class WriteSagaData : IContainSagaData
+    public class WriteSagaData :
+        IContainSagaData
     {
         public Guid Id { get; set; }
         public string Originator { get; set; }

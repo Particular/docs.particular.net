@@ -4,7 +4,8 @@
 
     #region lifecycle-iwanttorunwhenconfigurationiscomplete
 
-    class RunWhenConfigurationIsComplete : IWantToRunWhenConfigurationIsComplete
+    class RunWhenConfigurationIsComplete :
+        IWantToRunWhenConfigurationIsComplete
     {
         public void Run()
         {

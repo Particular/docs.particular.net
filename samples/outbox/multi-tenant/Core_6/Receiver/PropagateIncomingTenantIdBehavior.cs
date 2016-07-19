@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
-internal class PropagateIncomingTenantIdBehavior : Behavior<IIncomingLogicalMessageContext>
+internal class PropagateIncomingTenantIdBehavior :
+    Behavior<IIncomingLogicalMessageContext>
 {
     public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
     {
@@ -18,7 +19,8 @@ internal class PropagateIncomingTenantIdBehavior : Behavior<IIncomingLogicalMess
         #endregion
     }
 
-    public class Registration : RegisterStep
+    public class Registration :
+        RegisterStep
     {
         public Registration()
             : base("PropagateIncomingTenantId", typeof(PropagateIncomingTenantIdBehavior), "Sets the tenant header on outgoing messages's context bag.")

@@ -1,7 +1,8 @@
 using System.Threading.Tasks;
 using NServiceBus;
 
-public class Startup : IWantToRunWhenEndpointStartsAndStops
+public class Startup :
+    IWantToRunWhenEndpointStartsAndStops
 {
     public Task Start(IMessageSession session)
     {

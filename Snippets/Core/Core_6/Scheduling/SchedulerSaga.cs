@@ -6,9 +6,12 @@
 
     #region ScheduleTaskSaga
 
-    class MySaga : Saga<MySagaData>,
-       IAmStartedByMessages<StartSaga>, // Saga is started by a message at endpoint startup
-       IHandleTimeouts<ExecuteTask> // task that gets executed when the scheduled time is up.
+    class MySaga :
+        Saga<MySagaData>,
+        // Saga is started by a message at endpoint startup
+        IAmStartedByMessages<StartSaga>,
+        // task that gets executed when the scheduled time is up.
+        IHandleTimeouts<ExecuteTask>
     {
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
@@ -44,14 +47,16 @@
     }
 
     // Associated saga data
-    public class MySagaData : ContainSagaData
+    public class MySagaData :
+        ContainSagaData
     {
         public string TaskName { get; set; }
         public bool IsTaskAlreadyScheduled { get; set; }
     }
 
     // Message that starts the saga
-    public class StartSaga : ICommand
+    public class StartSaga :
+        ICommand
     {
         public string TaskName { get; set; }
     }
@@ -61,6 +66,6 @@
     {
     }
 
-#endregion
+    #endregion
 
 }

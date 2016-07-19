@@ -15,7 +15,8 @@ namespace Core5.HostIdentifier
 
     #region HostIdFixer
 
-    public class HostIdFixer : IWantToRunWhenConfigurationIsComplete
+    public class HostIdFixer :
+        IWantToRunWhenConfigurationIsComplete
     {
 
         public HostIdFixer(UnicastBus bus, ReadOnlySettings settings)
@@ -26,7 +27,10 @@ namespace Core5.HostIdentifier
             {
                 {"Location", location}
             };
-            bus.HostInformation = new HostInformation(hostId, Environment.MachineName, properties);
+            bus.HostInformation = new HostInformation(
+                hostId: hostId,
+                displayName: Environment.MachineName,
+                properties: properties);
         }
 
         static Guid CreateGuid(params string[] data)

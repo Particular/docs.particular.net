@@ -4,7 +4,8 @@ using NServiceBus.Logging;
 using Shared;
 
 #region AcknowledgedHandler
-public class AcknowledgedHandler : IHandleMessages<PriceUpdateAcknowledged>
+public class AcknowledgedHandler :
+    IHandleMessages<PriceUpdateAcknowledged>
 {
     static ILog log = LogManager.GetLogger<AcknowledgedHandler>();
 

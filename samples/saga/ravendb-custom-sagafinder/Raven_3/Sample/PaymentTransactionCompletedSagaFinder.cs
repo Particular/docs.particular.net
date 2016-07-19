@@ -3,7 +3,8 @@ using NServiceBus.Saga;
 using Raven.Client.UniqueConstraints;
 
 
-class PaymentTransactionCompletedSagaFinder : IFindSagas<OrderSagaData>.Using<PaymentTransactionCompleted>
+class PaymentTransactionCompletedSagaFinder :
+    IFindSagas<OrderSagaData>.Using<PaymentTransactionCompleted>
 {
     ISessionProvider sessionProvider;
 

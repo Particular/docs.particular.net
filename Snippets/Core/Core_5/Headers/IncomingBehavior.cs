@@ -7,7 +7,8 @@
 
     #region header-incoming-behavior
 
-    public class IncomingBehavior : IBehavior<IncomingContext>
+    public class IncomingBehavior :
+        IBehavior<IncomingContext>
     {
         public void Invoke(IncomingContext context, Action next)
         {

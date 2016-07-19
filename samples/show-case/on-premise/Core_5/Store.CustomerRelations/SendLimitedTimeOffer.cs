@@ -3,7 +3,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 using Store.Messages.Events;
 
-class SendLimitedTimeOffer : IHandleMessages<ClientBecamePreferred>
+class SendLimitedTimeOffer :
+    IHandleMessages<ClientBecamePreferred>
 {
     static ILog log = LogManager.GetLogger<SendLimitedTimeOffer>();
 

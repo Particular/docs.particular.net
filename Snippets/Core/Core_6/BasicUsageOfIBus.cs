@@ -17,7 +17,8 @@
 
         #region SendFromHandler
 
-        public class MyMessageHandler : IHandleMessages<MyMessage>
+        public class MyMessageHandler :
+            IHandleMessages<MyMessage>
         {
             public Task Handle(MyMessage message, IMessageHandlerContext context)
             {

@@ -7,7 +7,8 @@ using Autofac.Integration.Mvc;
 using NServiceBus;
 using NServiceBus.Installation.Environments;
 
-public class MvcApplication : HttpApplication
+public class MvcApplication :
+    HttpApplication
 {
     IBus bus;
 

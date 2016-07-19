@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using NServiceBus;
 
-public class SendAsyncController : AsyncController
+public class SendAsyncController :
+    AsyncController
 {
     IEndpointInstance endpoint;
 

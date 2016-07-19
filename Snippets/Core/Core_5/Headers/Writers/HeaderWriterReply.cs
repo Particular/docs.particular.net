@@ -38,11 +38,13 @@
             }
         }
 
-        class MessageToSend : IMessage
+        class MessageToSend :
+            IMessage
         {
         }
 
-        class MessageHandler : IHandleMessages<MessageToSend>
+        class MessageHandler :
+            IHandleMessages<MessageToSend>
         {
             IBus bus;
 
@@ -58,24 +60,33 @@
             }
         }
 
-        class MessageToReply : IMessage
+        class MessageToReply :
+            IMessage
         {
         }
 
-        class Mutator : IMutateIncomingTransportMessages
+        class Mutator :
+            IMutateIncomingTransportMessages
         {
             public void MutateIncoming(TransportMessage transportMessage)
             {
+                var headers = transportMessage.Headers;
                 if (transportMessage.IsMessageOfTye<MessageToReply>())
                 {
-                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Replying", version: "5");
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(headers);
+                    SnippetLogger.Write(
+                        text: headerText,
+                        suffix: "Replying",
+                        version: "5");
                     ManualResetEvent.Set();
                 }
                 if (transportMessage.IsMessageOfTye<MessageToSend>())
                 {
-                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Sending", version: "5");
+                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(headers);
+                    SnippetLogger.Write(
+                        text: headerText,
+                        suffix: "Sending",
+                        version: "5");
                 }
             }
         }

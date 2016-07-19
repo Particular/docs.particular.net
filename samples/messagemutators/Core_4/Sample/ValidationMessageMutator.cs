@@ -5,7 +5,8 @@ using System.Text;
 using log4net;
 using NServiceBus.MessageMutator;
 #region ValidationMessageMutator
-public class ValidationMessageMutator : IMessageMutator
+public class ValidationMessageMutator :
+    IMessageMutator
 {
     static ILog log = LogManager.GetLogger("ValidationMessageMutator");
 

@@ -47,7 +47,8 @@ class Configure
 
     #region ravendb-persistence-shared-session-for-sagas-handler
 
-    public class MyMessageHandler : IHandleMessages<MyMessage>
+    public class MyMessageHandler :
+        IHandleMessages<MyMessage>
     {
         ISessionProvider sessionProvider;
 

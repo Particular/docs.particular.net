@@ -5,7 +5,8 @@ using NServiceBus.Settings;
 
 #region custom-sanitization-strategy
 
-public class MySanitizationStrategy : ISanitizationStrategy
+public class MySanitizationStrategy :
+    ISanitizationStrategy
 {
     ReadOnlySettings settings;
 

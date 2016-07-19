@@ -6,7 +6,8 @@
 
     #region SamplePipelineBehavior 4.5
 
-    public class SampleBehavior : IBehavior<HandlerInvocationContext>
+    public class SampleBehavior :
+        IBehavior<HandlerInvocationContext>
     {
         public void Invoke(HandlerInvocationContext context, Action next)
         {

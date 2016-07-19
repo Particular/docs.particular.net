@@ -5,7 +5,8 @@
 
     #region FlrProvideConfiguration
 
-    class ProvideConfiguration : IProvideConfiguration<TransportConfig>
+    class ProvideConfiguration :
+        IProvideConfiguration<TransportConfig>
     {
         public TransportConfig GetConfiguration()
         {

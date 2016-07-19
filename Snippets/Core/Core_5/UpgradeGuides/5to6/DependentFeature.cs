@@ -4,7 +4,8 @@
 
     #region 5to6-DependentFeature
 
-    public class DependentFeature : Feature
+    public class DependentFeature :
+        Feature
     {
         public DependentFeature()
         {

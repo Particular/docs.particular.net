@@ -18,7 +18,8 @@ namespace Core5
 
         #region MessageWithXDocument
 
-        public class MessageWithXDocument : IMessage
+        public class MessageWithXDocument :
+            IMessage
         {
             // name and casing must match the rootnode
             public XDocument nutrition { get; set; }
@@ -27,7 +28,8 @@ namespace Core5
 
         #region MessageWithXElement
 
-        public class MessageWithXElement : IMessage
+        public class MessageWithXElement :
+            IMessage
         {
             // name and casing must match the rootnode
             public XElement nutrition { get; set; }

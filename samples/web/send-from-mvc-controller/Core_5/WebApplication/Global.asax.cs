@@ -5,7 +5,8 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using NServiceBus;
 
-public class MvcApplication : HttpApplication
+public class MvcApplication :
+    HttpApplication
 {
     ISendOnlyBus bus;
 

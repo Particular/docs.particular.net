@@ -7,7 +7,8 @@
     using NServiceBus.Routing;
 
     #region CustomStageConnector
-    public class CustomStageConnector : StageConnector<IOutgoingLogicalMessageContext, IOutgoingPhysicalMessageContext>
+    public class CustomStageConnector :
+        StageConnector<IOutgoingLogicalMessageContext, IOutgoingPhysicalMessageContext>
     {
         public override Task Invoke(IOutgoingLogicalMessageContext context, Func<IOutgoingPhysicalMessageContext, Task> stage)
         {

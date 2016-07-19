@@ -3,7 +3,8 @@
     using NServiceBus;
 
     #region header-incoming-handler
-    public class ReadHandler : IHandleMessages<MyMessage>
+    public class ReadHandler :
+        IHandleMessages<MyMessage>
     {
         IBus bus;
 

@@ -5,7 +5,8 @@ using NServiceBus.DeliveryConstraints;
 using NServiceBus.Performance.TimeToBeReceived;
 using NServiceBus.Pipeline;
 #region SendBehaviorDefinition
-class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
+class StreamSendBehavior :
+    Behavior<IOutgoingLogicalMessageContext>
 {
     TimeSpan MaxMessageTimeToLive = TimeSpan.FromDays(14);
     string location;

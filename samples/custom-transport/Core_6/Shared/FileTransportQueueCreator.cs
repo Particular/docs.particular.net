@@ -4,7 +4,8 @@ using NServiceBus.Transports;
 
 #region QueueCreation
 
-class FileTransportQueueCreator : ICreateQueues
+class FileTransportQueueCreator :
+    ICreateQueues
 {
     public Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
     {

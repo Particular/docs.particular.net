@@ -20,7 +20,8 @@
 
     #region CustomConfigSource
 
-    public class MyCustomConfigurationSource : IConfigurationSource
+    public class MyCustomConfigurationSource :
+        IConfigurationSource
     {
         public T GetConfiguration<T>() where T : class, new()
         {

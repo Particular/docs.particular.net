@@ -6,7 +6,8 @@
 
     #region saga-not-found
 
-    public class SagaNotFoundHandler : IHandleSagaNotFound
+    public class SagaNotFoundHandler :
+        IHandleSagaNotFound
     {
         public Task Handle(object message, IMessageProcessingContext context)
         {

@@ -1,11 +1,13 @@
 ﻿using NServiceBus;
 
-public class AuditThisMessage : IMessage
+public class AuditThisMessage :
+    IMessage
 {
     public string Content { get; set; }
 }
 
-public class DoNotAuditThisMessage : IMessage
+public class DoNotAuditThisMessage :
+    IMessage
 {
     public string Content { get; set; }
 }

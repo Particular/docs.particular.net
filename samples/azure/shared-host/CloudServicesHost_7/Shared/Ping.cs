@@ -2,7 +2,8 @@
 
 #region AzureMultiHost_PingMessage
 
-public class Ping : ICommand
+public class Ping :
+    ICommand
 {
 }
 

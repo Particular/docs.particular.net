@@ -5,9 +5,10 @@
 
     #region 3to4ConfigureHowToFindSaga
 
-    public class OrderSaga : Saga<OrderSagaData>,
-                            IAmStartedByMessages<StartOrder>,
-                            IHandleMessages<CompleteOrder>
+    public class OrderSaga :
+        Saga<OrderSagaData>,
+        IAmStartedByMessages<StartOrder>,
+        IHandleMessages<CompleteOrder>
     {
         public override void ConfigureHowToFindSaga()
         {
@@ -16,7 +17,8 @@
                 message => message.OrderId);
         }
 
-    #endregion
+        #endregion
+
         public void Handle(StartOrder message)
         {
             Data.OrderId = message.OrderId;
@@ -28,6 +30,5 @@
             MarkAsComplete();
         }
     }
-
 
 }

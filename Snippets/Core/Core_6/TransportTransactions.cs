@@ -81,7 +81,8 @@
         }
     }
 
-    public class MyTransport : TransportDefinition
+    public class MyTransport :
+        TransportDefinition
     {
         protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
         {
@@ -91,7 +92,7 @@
         public override string ExampleConnectionStringForErrorMessage { get; }
     }
 
-    internal static class MyTransportConfigurationExtensions
+    static class MyTransportConfigurationExtensions
     {
         public static void TransactionScopeOptions(this TransportExtensions<MyTransport> transportExtensions, TimeSpan? timeout = null, IsolationLevel? isolationLevel = null)
         {

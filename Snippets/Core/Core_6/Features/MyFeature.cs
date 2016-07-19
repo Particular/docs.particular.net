@@ -6,7 +6,8 @@
     using NServiceBus;
     using NServiceBus.Features;
 
-    class MyFeature : Feature
+    class MyFeature :
+        Feature
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
@@ -21,7 +22,9 @@
     }
 
 #region FeatureStartupTaskDefinition
-    class MyStartupTask : FeatureStartupTask, IDisposable
+    class MyStartupTask :
+        FeatureStartupTask,
+        IDisposable
     {
         ManualResetEventSlim resetEvent = new ManualResetEventSlim();
 

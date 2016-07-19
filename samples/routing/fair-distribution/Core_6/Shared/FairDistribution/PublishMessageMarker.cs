@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
-class PublishMessageMarker : Behavior<IOutgoingPublishContext>
+class PublishMessageMarker :
+    Behavior<IOutgoingPublishContext>
 {
     public PublishMessageMarker(string controlAddress, string sessionId)
     {

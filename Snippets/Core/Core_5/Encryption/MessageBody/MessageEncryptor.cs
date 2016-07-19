@@ -7,7 +7,8 @@
 
     #region MessageBodyEncryptor
 
-    public class MessageEncryptor : IMutateTransportMessages
+    public class MessageEncryptor :
+        IMutateTransportMessages
     {
         public void MutateIncoming(TransportMessage transportMessage)
         {

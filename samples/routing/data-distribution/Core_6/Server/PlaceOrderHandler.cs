@@ -2,7 +2,8 @@ using NServiceBus;
 using System.Threading.Tasks;
 using NServiceBus.Logging;
 
-public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
+public class PlaceOrderHandler :
+    IHandleMessages<PlaceOrder>
 {
     static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
 

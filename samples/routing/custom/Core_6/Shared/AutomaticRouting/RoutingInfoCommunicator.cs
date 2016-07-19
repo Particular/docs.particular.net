@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
 
-class RoutingInfoCommunicator : FeatureStartupTask
+class RoutingInfoCommunicator :
+    FeatureStartupTask
 {
     Dictionary<string, Entry> cache = new Dictionary<string, Entry>();
     SqlDataAccess dataAccess;

@@ -4,7 +4,8 @@
     using NServiceBus;
     using Handlers;
 
-    public class MessageContext : IHandleMessages<MyMessage>
+    public class MessageContext :
+        IHandleMessages<MyMessage>
     {
         #region 5to6-messagecontext
 

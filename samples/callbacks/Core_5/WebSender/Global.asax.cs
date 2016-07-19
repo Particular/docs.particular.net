@@ -3,7 +3,8 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using NServiceBus;
 
-public class MvcApplication : HttpApplication
+public class MvcApplication :
+    HttpApplication
 {
     public static IBus Bus;
 

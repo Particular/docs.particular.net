@@ -5,7 +5,7 @@ using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 
 #region mutator
-public class MessageBodyWriter : 
+public class MessageBodyWriter :
     IMutateIncomingTransportMessages
 {
     static ILog log = LogManager.GetLogger<MessageBodyWriter>();

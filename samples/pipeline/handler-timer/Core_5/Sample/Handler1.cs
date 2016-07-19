@@ -4,7 +4,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 #region handler
-public class Handler1 : IHandleMessages<Message>
+public class Handler1 :
+    IHandleMessages<Message>
 {
     static ILog log = LogManager.GetLogger<Handler1>();
     static Random random = new Random();

@@ -3,7 +3,8 @@ using NServiceBus.SagaPersisters.NHibernate;
 
 #region NHibernateConcurrencyLockMode
 [LockMode(LockModes.Read)]
-public class SagaDataWithLockMode : ContainSagaData
+public class SagaDataWithLockMode :
+    ContainSagaData
     #endregion
 
 {

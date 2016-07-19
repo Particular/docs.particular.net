@@ -1,4 +1,5 @@
 ﻿using NServiceBus;
-public class MessageA : IMessage
+public class MessageA :
+    IMessage
 {
 }

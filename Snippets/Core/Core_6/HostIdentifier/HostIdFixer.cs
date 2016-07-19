@@ -10,12 +10,14 @@
             #region HostIdFixer
 
             endpointConfiguration.UniquelyIdentifyRunningInstance()
-                .UsingNames("endpointName", Environment.MachineName);
+                .UsingNames(
+                    instanceName: "endpointName",
+                    hostName: Environment.MachineName);
             // or
             var hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
             endpointConfiguration.UniquelyIdentifyRunningInstance()
                 .UsingCustomIdentifier(hostId);
-            
+
             #endregion
         }
 
@@ -25,4 +27,3 @@
         }
     }
 }
-    

@@ -7,7 +7,11 @@
     using NServiceBus.Transports;
 
     #region CustomStageForkConnector
-    public class CustomStageForkConnector : StageForkConnector<ITransportReceiveContext, IIncomingPhysicalMessageContext, IBatchDispatchContext>
+
+    public class CustomStageForkConnector :
+        StageForkConnector<ITransportReceiveContext,
+            IIncomingPhysicalMessageContext,
+            IBatchDispatchContext>
     {
         public override async Task Invoke(ITransportReceiveContext context, Func<IIncomingPhysicalMessageContext, Task> stage, Func<IBatchDispatchContext, Task> fork)
         {
@@ -18,7 +22,9 @@
             await stage(physicalMessageContext)
                 .ConfigureAwait(false);
 
-            TransportOperation[] operations = { };
+            TransportOperation[] operations =
+            {
+            };
             var batchDispatchContext = this.CreateBatchDispatchContext(operations, physicalMessageContext);
 
             // Fork into new pipeline
@@ -26,5 +32,6 @@
                 .ConfigureAwait(false);
         }
     }
+
     #endregion
 }

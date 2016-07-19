@@ -19,7 +19,8 @@
                 .OnMessage(new MyMessage());
         }
 
-        class MyHandler : IHandleMessages<MyMessage>
+        class MyHandler :
+            IHandleMessages<MyMessage>
         {
             public Task Handle(MyMessage message, IMessageHandlerContext context)
             {
@@ -31,11 +32,13 @@
         }
         #endregion
 
-        class MyMessage : ICommand
+        class MyMessage :
+            ICommand
         {
         }
 
-        class GatewayMessage : ICommand
+        class GatewayMessage :
+            ICommand
         {
         }
     }

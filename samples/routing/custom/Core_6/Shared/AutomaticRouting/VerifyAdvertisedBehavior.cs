@@ -3,7 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
-class VerifyAdvertisedBehavior : Behavior<IOutgoingPublishContext>
+class VerifyAdvertisedBehavior :
+    Behavior<IOutgoingPublishContext>
 {
     Type[] advertisedTypes;
 

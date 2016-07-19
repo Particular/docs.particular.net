@@ -2,7 +2,8 @@
 using NServiceBus.Logging;
 
 #region CustomSendMessageAfterEndpointStart
-public class SendMessageAfterEndpointStart : IRunAfterEndpointStart
+public class SendMessageAfterEndpointStart :
+    IRunAfterEndpointStart
 {
     static ILog log = LogManager.GetLogger<SendMessageAfterEndpointStart>();
     public void Run(IBus bus)

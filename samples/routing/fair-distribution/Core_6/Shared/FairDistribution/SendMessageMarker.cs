@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
-class SendMessageMarker : Behavior<IOutgoingSendContext>
+class SendMessageMarker :
+    Behavior<IOutgoingSendContext>
 {
     public SendMessageMarker(string controlAddress, string sessionId)
     {

@@ -6,7 +6,8 @@ namespace Core4.Pipeline.Abort
     using NServiceBus.Pipeline.Contexts;
 
     #region AbortPipelineWithBehavior
-    public class Behavior : IBehavior<HandlerInvocationContext>
+    public class Behavior :
+        IBehavior<HandlerInvocationContext>
     {
         public void Invoke(HandlerInvocationContext context, Action next)
         {
@@ -19,7 +20,7 @@ namespace Core4.Pipeline.Abort
 
         bool ShouldPipelineContinue(HandlerInvocationContext context)
         {
-            // the custom logic to determine if the pipeline should continue 
+            // the custom logic to determine if the pipeline should continue
             return true;
         }
     }

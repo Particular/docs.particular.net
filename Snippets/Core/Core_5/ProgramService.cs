@@ -6,7 +6,8 @@ namespace Core5
 
     #region windowsservicehosting
 
-    class ProgramService : ServiceBase
+    class ProgramService :
+        ServiceBase
     {
         IBus bus;
 

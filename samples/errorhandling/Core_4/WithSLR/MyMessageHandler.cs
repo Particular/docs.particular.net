@@ -3,7 +3,8 @@ using System.Collections.Concurrent;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class MyMessageHandler : IHandleMessages<MyMessage>
+public class MyMessageHandler :
+    IHandleMessages<MyMessage>
 {
     static ILog log = LogManager.GetLogger(typeof(MyMessageHandler));
     IBus bus;

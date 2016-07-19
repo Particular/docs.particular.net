@@ -7,7 +7,7 @@
     {
         Injection(EndpointConfiguration endpointConfiguration)
         {
-            #region 5to6-ExplicitProperties 
+            #region 5to6-ExplicitProperties
 
             endpointConfiguration.RegisterComponents(c =>
                 c.ConfigureComponent(builder => new MyHandler
@@ -19,8 +19,9 @@
             #endregion
         }
 
-   
-        public class MyHandler : IHandleMessages<EmailMessage>
+
+        public class MyHandler :
+            IHandleMessages<EmailMessage>
         {
             public string MyStringProperty { get; set; }
             public int MyIntProperty { get; set; }
@@ -30,10 +31,10 @@
                 return null;
             }
         }
+
         public class EmailMessage
         {
         }
     }
 
-  
 }

@@ -2,7 +2,8 @@
 using NServiceBus.Hosting.Profiles;
 // ReSharper disable RedundantNameQualifier
 #region profile_behavior
-class LiteEmailBehavior : IHandleProfile<NServiceBus.Lite>
+class LiteEmailBehavior :
+    IHandleProfile<NServiceBus.Lite>
 {
     public void ProfileActivated(BusConfiguration busConfiguration)
     {
@@ -14,7 +15,8 @@ class LiteEmailBehavior : IHandleProfile<NServiceBus.Lite>
     }
 }
 
-class IntegrationEmailBehavior : IHandleProfile<NServiceBus.Integration>
+class IntegrationEmailBehavior :
+    IHandleProfile<NServiceBus.Integration>
 {
     public void ProfileActivated(BusConfiguration busConfiguration)
     {
@@ -26,7 +28,8 @@ class IntegrationEmailBehavior : IHandleProfile<NServiceBus.Integration>
     }
 }
 
-class ProductionEmailBehavior : IHandleProfile<NServiceBus.Production>
+class ProductionEmailBehavior :
+    IHandleProfile<NServiceBus.Production>
 {
     public void ProfileActivated(BusConfiguration busConfiguration)
     {

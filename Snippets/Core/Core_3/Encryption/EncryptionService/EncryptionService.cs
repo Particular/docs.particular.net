@@ -3,7 +3,8 @@
     using NServiceBus;
     using NServiceBus.Encryption;
 
-    public class EncryptionService : IEncryptionService
+    public class EncryptionService :
+        IEncryptionService
     {
         public EncryptedValue Encrypt(string value)
         {

@@ -4,7 +4,8 @@ using Raven.Client.UniqueConstraints;
 
 #region CustomSagaFinderWithUniqueConstraintRavenDB
 
-class StartOrderSagaFinder : IFindSagas<OrderSagaData>.Using<StartOrder>
+class StartOrderSagaFinder :
+    IFindSagas<OrderSagaData>.Using<StartOrder>
 {
     ISessionProvider sessionProvider;
 

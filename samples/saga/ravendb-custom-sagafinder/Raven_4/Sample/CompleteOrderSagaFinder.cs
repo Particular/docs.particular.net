@@ -5,7 +5,8 @@ using NServiceBus.Persistence;
 using NServiceBus.Sagas;
 using Raven.Client.UniqueConstraints;
 
-class CompleteOrderSagaFinder : IFindSagas<OrderSagaData>.Using<CompleteOrder>
+class CompleteOrderSagaFinder :
+    IFindSagas<OrderSagaData>.Using<CompleteOrder>
 {
     public Task<OrderSagaData> FindBy(CompleteOrder message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
     {

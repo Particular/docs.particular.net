@@ -5,7 +5,8 @@
     using NServiceBus.Pipeline;
 
     #region 5to6header-outgoing-behavior
-    public class OutgoingBehavior : Behavior<IOutgoingLogicalMessageContext>
+    public class OutgoingBehavior :
+        Behavior<IOutgoingLogicalMessageContext>
     {
         public override Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
         {

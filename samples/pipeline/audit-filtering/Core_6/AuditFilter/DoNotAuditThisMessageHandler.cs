@@ -2,7 +2,8 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class DoNotAuditThisMessageHandler : IHandleMessages<DoNotAuditThisMessage>
+public class DoNotAuditThisMessageHandler :
+    IHandleMessages<DoNotAuditThisMessage>
 {
     static ILog log = LogManager.GetLogger<DoNotAuditThisMessageHandler>();
 

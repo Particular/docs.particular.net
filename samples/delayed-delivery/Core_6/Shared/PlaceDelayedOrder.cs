@@ -2,7 +2,8 @@
 using System;
 using NServiceBus;
 #region PlaceDelayedOrder
-public class PlaceDelayedOrder : ICommand
+public class PlaceDelayedOrder :
+    ICommand
 {
     public Guid Id { get; set; }
 

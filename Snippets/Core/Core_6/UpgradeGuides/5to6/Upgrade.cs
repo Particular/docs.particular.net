@@ -13,7 +13,8 @@
     {
         #region 5to6ReAddWinIdNameHeader
 
-        public class WinIdNameMutator : IMutateOutgoingTransportMessages
+        public class WinIdNameMutator :
+            IMutateOutgoingTransportMessages
         {
             public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
             {

@@ -5,7 +5,8 @@ using NServiceBus.Settings;
 
 #region custom-composition-strategy
 
-public class MyCompositionStrategy : ICompositionStrategy
+public class MyCompositionStrategy :
+    ICompositionStrategy
 {
     ReadOnlySettings settings;
 

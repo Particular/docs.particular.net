@@ -69,7 +69,8 @@ class Usage
         #endregion
     }
 
-    class CustomChannelReceiver : IChannelReceiver
+    class CustomChannelReceiver :
+        IChannelReceiver
     {
         public void Start(string address, int maxConcurrency, Func<DataReceivedOnChannelArgs, Task> dataReceivedOnChannel)
         {
@@ -82,7 +83,8 @@ class Usage
         }
     }
 
-    class CustomChannelSender : IChannelSender
+    class CustomChannelSender :
+        IChannelSender
     {
         public Task Send(string remoteAddress, IDictionary<string, string> headers, Stream data)
         {

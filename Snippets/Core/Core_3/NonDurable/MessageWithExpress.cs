@@ -5,7 +5,8 @@
     #region ExpressMessageAttribute
 
     [Express]
-    public class MessageWithExpress : IMessage
+    public class MessageWithExpress :
+        IMessage
     {
     }
 

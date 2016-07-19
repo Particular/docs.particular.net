@@ -4,7 +4,8 @@
     using NServiceBus.Transports;
 
     #region SequentialCustomQueueCreator
-    class SequentialQueueCreator : ICreateQueues
+    class SequentialQueueCreator :
+        ICreateQueues
     {
         public async Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
         {

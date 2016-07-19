@@ -5,7 +5,8 @@ using System.Data.SqlClient;
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
-class MultiTenantOpenSqlConnectionBehavior : IBehavior<IncomingContext>
+class MultiTenantOpenSqlConnectionBehavior :
+    IBehavior<IncomingContext>
 {
 
     public void Invoke(IncomingContext context, Action next)

@@ -5,7 +5,8 @@ using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
 #region HandlerTimerBehavior
-class HandlerTimerBehavior : IBehavior<IncomingContext>
+class HandlerTimerBehavior :
+    IBehavior<IncomingContext>
 {
     static ILog log = LogManager.GetLogger<HandlerTimerBehavior>();
 

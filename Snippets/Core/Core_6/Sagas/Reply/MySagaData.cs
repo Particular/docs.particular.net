@@ -2,7 +2,8 @@ namespace Core6.Sagas.Reply
 {
     using NServiceBus;
 
-    public class MySagaData : ContainSagaData
+    public class MySagaData :
+        ContainSagaData
     {
         public string SomeID { get; set; }
 

@@ -4,8 +4,11 @@ using NServiceBus.Unicast.Queuing;
 
 namespace Core5.Transports
 {
+
     #region queuebindings
-    public class QueueRegistration : IWantQueueCreated
+
+    public class QueueRegistration :
+        IWantQueueCreated
     {
         public QueueRegistration(Address queueAddress)
         {
@@ -20,12 +23,20 @@ namespace Core5.Transports
         }
     }
 
-    public class FeatureThatRequiresAQueue : Feature
+    public class FeatureThatRequiresAQueue :
+        Feature
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
-            context.Container.ConfigureComponent(() => new QueueRegistration(Address.Parse("someQueue")), DependencyLifecycle.InstancePerCall);
+            var container = context.Container;
+            container.ConfigureComponent(
+                componentFactory: () =>
+                {
+                    return new QueueRegistration(Address.Parse("someQueue"));
+                },
+                dependencyLifecycle: DependencyLifecycle.InstancePerCall);
         }
     }
+
     #endregion
 }

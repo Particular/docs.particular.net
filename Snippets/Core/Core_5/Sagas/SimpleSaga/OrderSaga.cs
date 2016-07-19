@@ -5,17 +5,18 @@
 
     #region simple-saga
 
-    public class OrderSaga : Saga<OrderSagaData>,
-                            IAmStartedByMessages<StartOrder>,
-                            IHandleMessages<CompleteOrder>
+    public class OrderSaga :
+        Saga<OrderSagaData>,
+        IAmStartedByMessages<StartOrder>,
+        IHandleMessages<CompleteOrder>
     {
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
         {
             mapper.ConfigureMapping<StartOrder>(message => message.OrderId)
-                    .ToSaga(sagaData => sagaData.OrderId);
+                .ToSaga(sagaData => sagaData.OrderId);
 
             mapper.ConfigureMapping<CompleteOrder>(message => message.OrderId)
-                    .ToSaga(sagaData => sagaData.OrderId);
+                .ToSaga(sagaData => sagaData.OrderId);
         }
 
         public void Handle(StartOrder message)

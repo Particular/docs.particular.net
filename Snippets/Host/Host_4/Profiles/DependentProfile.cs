@@ -2,7 +2,9 @@
 using NServiceBus.Hosting.Profiles;
 
 #region dependent_profile
-class MyProfileHandler : IHandleProfile<MyProfile>, IWantTheEndpointConfig
+class MyProfileHandler :
+    IHandleProfile<MyProfile>,
+    IWantTheEndpointConfig
 {
     public void ProfileActivated()
     {
@@ -24,6 +26,7 @@ internal class AnInterfaceICareAbout
 {
 }
 
-internal class MyProfile : IProfile
+internal class MyProfile :
+    IProfile
 {
 }

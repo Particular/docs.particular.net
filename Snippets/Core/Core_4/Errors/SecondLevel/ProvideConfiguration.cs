@@ -6,7 +6,8 @@
 
     #region SlrProvideConfiguration
 
-    class ProvideConfiguration : IProvideConfiguration<SecondLevelRetriesConfig>
+    class ProvideConfiguration :
+        IProvideConfiguration<SecondLevelRetriesConfig>
     {
         public SecondLevelRetriesConfig GetConfiguration()
         {

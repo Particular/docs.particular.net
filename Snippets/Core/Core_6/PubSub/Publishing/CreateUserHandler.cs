@@ -4,7 +4,8 @@
     using NServiceBus;
 
     #region publishFromHandler
-    public class CreateUserHandler : IHandleMessages<CreateUserCommand>
+    public class CreateUserHandler :
+        IHandleMessages<CreateUserCommand>
     {
         public Task Handle(CreateUserCommand message, IMessageHandlerContext context)
         {

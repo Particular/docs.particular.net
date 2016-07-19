@@ -6,7 +6,8 @@
     using NServiceBus;
 
     #region ShortComputeBoundMessageHandler
-    public class ShortComputeBoundHandler : IHandleMessages<MyMessage>
+    public class ShortComputeBoundHandler :
+        IHandleMessages<MyMessage>
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -17,7 +18,8 @@
     #endregion
 
     #region LongComputeBoundMessageHandler
-    public class LongComputeBoundHandler : IHandleMessages<MyMessage>
+    public class LongComputeBoundHandler :
+        IHandleMessages<MyMessage>
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -40,7 +42,8 @@
     }
 
     #region HandlerReturnsATask
-    public class HandlerReturnsATask : IHandleMessages<MyMessage>
+    public class HandlerReturnsATask :
+        IHandleMessages<MyMessage>
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -52,7 +55,8 @@
     #endregion
 
     #region HandlerReturnsTwoTasks
-    public class HandlerReturnsTwoTasks : IHandleMessages<MyMessage>
+    public class HandlerReturnsTwoTasks :
+        IHandleMessages<MyMessage>
     {
         bool someCondition = true;
 
@@ -69,7 +73,8 @@
     #endregion
 
     #region HandlerAwaitsTheTask
-    public class HandlerAwaitsTheTask : IHandleMessages<MyMessage>
+    public class HandlerAwaitsTheTask :
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -79,7 +84,8 @@
     #endregion
 
     #region HandlerConfigureAwaitSpecified
-    public class HandlerConfigureAwaitSpecified : IHandleMessages<MyMessage>
+    public class HandlerConfigureAwaitSpecified :
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -92,7 +98,8 @@
     #endregion
 
     #region HandlerConfigureAwaitNotSpecified
-    public class HandlerConfigureAwaitNotSpecified : IHandleMessages<MyMessage>
+    public class HandlerConfigureAwaitNotSpecified :
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -103,7 +110,8 @@
     #endregion
 
     #region BatchedDispatchHandler
-    public class BatchedDispatchHandler : IHandleMessages<MyMessage>
+    public class BatchedDispatchHandler :
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -117,7 +125,8 @@
     #endregion
 
     #region ImmediateDispatchHandler
-    public class ImmediateDispatchHandler : IHandleMessages<MyMessage>
+    public class ImmediateDispatchHandler :
+        IHandleMessages<MyMessage>
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -135,7 +144,8 @@
     #endregion
 
     #region PacketsImmediateDispatchHandler
-    public class PacketsImmediateDispatchHandler : IHandleMessages<MyMessage>
+    public class PacketsImmediateDispatchHandler :
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -157,7 +167,8 @@
     #endregion
 
     #region ConcurrencyLimittingImmediateDispatchHandler
-    public class LimitConcurrencyImmediateDispatchHandler : IHandleMessages<MyMessage>
+    public class LimitConcurrencyImmediateDispatchHandler :
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {

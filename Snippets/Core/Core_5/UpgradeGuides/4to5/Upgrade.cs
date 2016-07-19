@@ -14,7 +14,8 @@ namespace Core5.UpgradeGuides._4to5
     {
         #region 4to5RemovePrincipalHack
 
-        public class PrincipalMutator : IMutateIncomingTransportMessages
+        public class PrincipalMutator :
+            IMutateIncomingTransportMessages
         {
             public void MutateIncoming(TransportMessage message)
             {
@@ -107,16 +108,20 @@ namespace Core5.UpgradeGuides._4to5
             #endregion
         }
 
-        class AzureStorageQueueTransport : TransportDefinition
+        class AzureStorageQueueTransport :
+            TransportDefinition
         {
         }
-        class AzureServiceBusTransport : TransportDefinition
+        class AzureServiceBusTransport :
+            TransportDefinition
         {
         }
-        class RabbitMQTransport : TransportDefinition
+        class RabbitMQTransport :
+            TransportDefinition
         {
         }
-        class SqlServerTransport:TransportDefinition
+        class SqlServerTransport:
+            TransportDefinition
         {
         }
 
@@ -231,7 +236,8 @@ namespace Core5.UpgradeGuides._4to5
 
         #region 4to5BusExtensionMethodForHandler
 
-        public class MyHandler : IHandleMessages<MyMessage>
+        public class MyHandler :
+            IHandleMessages<MyMessage>
         {
             IBus bus;
 

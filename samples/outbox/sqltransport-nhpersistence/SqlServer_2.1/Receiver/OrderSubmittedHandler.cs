@@ -3,7 +3,8 @@ using NServiceBus;
 using NHibernate;
 using NServiceBus.Logging;
 
-public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
+public class OrderSubmittedHandler :
+    IHandleMessages<OrderSubmitted>
 {
     IBus bus;
     ISession session;

@@ -6,7 +6,8 @@
 
     #region 5to6-messagehandler
 
-    public class UpgradeMessageHandler : IHandleMessages<MyMessage>
+    public class UpgradeMessageHandler :
+        IHandleMessages<MyMessage>
     {
         public void Handle(MyMessage message)
         {

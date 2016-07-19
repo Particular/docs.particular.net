@@ -16,7 +16,8 @@
 
         #region SendFromHandler
 
-        public class MyMessageHandler : IHandleMessages<MyMessage>
+        public class MyMessageHandler :
+            IHandleMessages<MyMessage>
         {
             IBus bus;
 

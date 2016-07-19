@@ -4,7 +4,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 using Store.Messages.RequestResponse;
 
-public class ProvisionDownloadHandler : IHandleMessages<ProvisionDownloadRequest>
+public class ProvisionDownloadHandler :
+    IHandleMessages<ProvisionDownloadRequest>
 {
     static ILog log = LogManager.GetLogger<ProvisionDownloadHandler>();
 

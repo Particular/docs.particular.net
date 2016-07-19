@@ -1,7 +1,8 @@
 ﻿using log4net;
 using NServiceBus;
 
-public class MyHandler : IHandleMessages<MyMessage>
+public class MyHandler :
+    IHandleMessages<MyMessage>
 {
     static ILog log = LogManager.GetLogger(typeof(MyHandler));
 

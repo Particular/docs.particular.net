@@ -5,7 +5,8 @@
 
     #region saga-not-found
 
-    public class SagaNotFoundHandler : IHandleSagaNotFound
+    public class SagaNotFoundHandler :
+        IHandleSagaNotFound
     {
         IBus bus;
 
