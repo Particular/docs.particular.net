@@ -11,22 +11,20 @@ class MyProfileHandler :
         if (Config is AnInterfaceICareAbout)
         {
             // set something in the container
+            return;
         }
-        else
-        {
-            // set something else in the container
-        }
+        // set something else in the container
     }
 
     public IConfigureThisEndpoint Config { get; set; }
 }
 #endregion
 
-internal class AnInterfaceICareAbout
+class AnInterfaceICareAbout
 {
 }
 
-internal class MyProfile :
+class MyProfile :
     IProfile
 {
 }

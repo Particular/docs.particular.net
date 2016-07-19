@@ -3,7 +3,7 @@ using NServiceBus;
 
 namespace Distributor
 {
-    internal class Program
+    class Program
     {
         static void Main()
         {

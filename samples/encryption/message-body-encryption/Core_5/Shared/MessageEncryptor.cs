@@ -4,7 +4,8 @@ using NServiceBus.MessageMutator;
 using NServiceBus.Unicast.Messages;
 
 #region Mutator
-public class MessageEncryptor :IMutateTransportMessages
+public class MessageEncryptor :
+    IMutateTransportMessages
 {
     public void MutateIncoming(TransportMessage transportMessage)
     {

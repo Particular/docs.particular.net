@@ -3,7 +3,7 @@ using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Sagas;
 
-internal class SagaNotFoundHandler :
+class SagaNotFoundHandler :
     IHandleSagaNotFound
 {
     static ILog log = LogManager.GetLogger<SagaNotFoundHandler>();

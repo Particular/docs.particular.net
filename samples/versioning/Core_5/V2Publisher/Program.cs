@@ -37,6 +37,6 @@ class Program
                 Console.WriteLine("Published event.");
             }
         }
-     
+
     }
 }

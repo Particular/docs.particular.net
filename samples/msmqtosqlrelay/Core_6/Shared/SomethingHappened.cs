@@ -3,7 +3,8 @@
     using NServiceBus;
 
     #region event
-    public class SomethingHappened :IEvent
+    public class SomethingHappened :
+        IEvent
     {
     }
     #endregion

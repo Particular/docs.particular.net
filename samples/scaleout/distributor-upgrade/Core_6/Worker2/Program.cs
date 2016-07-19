@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Routing.Legacy;
 
-internal class Program
+class Program
 {
 
     static void Main()

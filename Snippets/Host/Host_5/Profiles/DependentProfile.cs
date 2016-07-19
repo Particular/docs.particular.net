@@ -16,7 +16,7 @@ class MyProfileHandler :
 }
 #endregion
 
-internal class MyProfile :
+class MyProfile :
     IProfile
 {
 }

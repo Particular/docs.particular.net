@@ -1,7 +1,8 @@
 ﻿using System;
 using NServiceBus;
 
-public class ShipOrder:IMessage
+public class ShipOrder :
+    IMessage
 {
     public Guid OrderId { get; set; }
 }

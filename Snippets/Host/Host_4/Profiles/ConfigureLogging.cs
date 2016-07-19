@@ -11,7 +11,7 @@ class YourProfileLoggingHandler :
 }
 #endregion
 
-internal class YourProfile :
+class YourProfile :
     IProfile
 {
 }

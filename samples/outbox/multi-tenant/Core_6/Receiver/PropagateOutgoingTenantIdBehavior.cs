@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
-internal class PropagateOutgoingTenantIdBehavior :
+class PropagateOutgoingTenantIdBehavior :
     Behavior<IOutgoingLogicalMessageContext>
 {
     public override Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)

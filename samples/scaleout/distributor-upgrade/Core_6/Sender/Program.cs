@@ -2,7 +2,7 @@
 using System.Linq;
 using NServiceBus;
 
-internal class Program
+class Program
 {
     static void Main()
     {
