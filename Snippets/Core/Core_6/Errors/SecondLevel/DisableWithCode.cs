@@ -8,8 +8,8 @@
         {
             #region DisableSlrWithCode
 
-            var secondLevelRetries = endpointConfiguration.SecondLevelRetries();
-            secondLevelRetries.Disable();
+            var recoverabilitySettings = endpointConfiguration.Recoverability();
+            recoverabilitySettings.Delayed(delayed => delayed.NumberOfRetries(0));
 
             #endregion
         }

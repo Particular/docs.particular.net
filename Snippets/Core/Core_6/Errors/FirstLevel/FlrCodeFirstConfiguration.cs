@@ -8,8 +8,8 @@
         {
             #region FlrCodeFirstConfiguration
 
-            var firstLevelRetries = endpointConfiguration.FirstLevelRetries();
-            firstLevelRetries.NumberOfRetries(3);
+            var recoverabilitySettings = endpointConfiguration.Recoverability();
+            recoverabilitySettings.Immediate(immedate => immedate.NumberOfRetries(3));
             #endregion
         }
     }

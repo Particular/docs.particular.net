@@ -5,7 +5,7 @@
     using NServiceBus.Features;
     using NServiceBus.ObjectBuilder;
     using NServiceBus.Pipeline;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     #region SimpleSatelliteFeature
     public class MySatelliteFeature :
@@ -22,10 +22,11 @@
                 transportAddress: "targetQueue",
                 requiredTransportTransactionMode: TransportTransactionMode.TransactionScope,
                 runtimeSettings: PushRuntimeSettings.Default,
+                recoverabilityPolicy: (config, errorContext) => {  return RecoverabilityAction.MoveToError(); },
                 onMessage: OnMessage);
         }
 
-        Task OnMessage(IBuilder builder, PushContext messageContext)
+        Task OnMessage(IBuilder builder, MessageContext messageContext)
         {
             // Implement what this satellite needs to do once it receives a message
             var messageId = messageContext.MessageId;

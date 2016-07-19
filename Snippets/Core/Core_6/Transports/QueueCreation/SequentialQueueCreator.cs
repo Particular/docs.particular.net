@@ -1,7 +1,7 @@
 ﻿namespace Core6.Transports.QueueCreation
 {
     using System.Threading.Tasks;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     #region SequentialCustomQueueCreator
     class SequentialQueueCreator :

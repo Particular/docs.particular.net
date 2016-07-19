@@ -4,27 +4,29 @@
     using NServiceBus;
     using NServiceBus.Transport;
 
-    class SimplePolicy
+    class ExceptionPolicyOverridingSlrPart
     {
-        SimplePolicy(EndpointConfiguration endpointConfiguration)
+        ExceptionPolicyOverridingSlrPart(EndpointConfiguration endpointConfiguration)
         {
-            #region SecondLevelRetriesCustomPolicy
             var recoverabilitySettings = endpointConfiguration.Recoverability();
-            recoverabilitySettings.CustomPolicy(MyCustomRetryPolicy);
-            #endregion
-
-            #region SecondLevelRetriesCustomPolicyHandlerConfig 6
+            #region SecondLevelRetriesCustomExceptionPolicyHandlerConfig 6
             recoverabilitySettings.Delayed(delayed => delayed.NumberOfRetries(3));
             #endregion
+            recoverabilitySettings.CustomPolicy(MyCustomRetryPolicy);
         }
 
-        #region SecondLevelRetriesCustomPolicyHandler
+        #region SecondLevelRetriesCustomExceptionPolicyHandler
         RecoverabilityAction MyCustomRetryPolicy(RecoverabilityConfig config, ErrorContext context)
         {
             var action = DefaultRecoverabilityPolicy.Invoke(config, context);
+
             var delayedRetryAction = action as DelayedRetry;
             if (delayedRetryAction != null)
             {
+                if (context.Exception is MyBusinessException)
+                {
+                    return RecoverabilityAction.MoveToError();
+                }
                 // Override default delivery delay.
                 return RecoverabilityAction.DelayedRetry(TimeSpan.FromSeconds(5));
             }
@@ -32,6 +34,9 @@
             return action;
         }
         #endregion
+    }
 
+    class MyBusinessException: Exception
+    {
     }
 }

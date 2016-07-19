@@ -3,12 +3,12 @@
     using System;
     using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     class YourMessagePump :
         IPushMessages
     {
-        public Task Init(Func<PushContext, Task> pipe, CriticalError criticalError, PushSettings settings)
+        public Task Init(Func<MessageContext, Task> onMessage, Func<ErrorContext, Task<ErrorHandleResult>> onError, CriticalError criticalError, PushSettings settings)
         {
             throw new NotImplementedException();
         }

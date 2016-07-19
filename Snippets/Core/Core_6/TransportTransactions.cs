@@ -4,7 +4,7 @@
     using System.Transactions;
     using NServiceBus;
     using NServiceBus.Settings;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     class TransportTransactions
     {
@@ -84,7 +84,7 @@
     public class MyTransport :
         TransportDefinition
     {
-        protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+        public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
         {
             throw new NotImplementedException();
         }

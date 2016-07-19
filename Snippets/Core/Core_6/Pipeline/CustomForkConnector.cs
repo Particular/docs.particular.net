@@ -4,7 +4,7 @@ namespace Core6.Pipeline
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Pipeline;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     #region CustomForkConnector
     public class CustomForkConnector :

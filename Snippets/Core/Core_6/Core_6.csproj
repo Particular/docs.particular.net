@@ -43,7 +43,7 @@
       <HintPath>..\..\..\packages\NServiceBus.Callbacks.1.0.0-beta0001\lib\net452\NServiceBus.Callbacks.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0005\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.6.0.0-recoverabilityov0006\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
@@ -106,6 +106,7 @@
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="Errors\FirstLevel\FlrCodeFirstConfiguration.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\CustomExceptionPolicy.cs" />
     <Compile Include="Errors\SecondLevel\SlrCodeFirstConfiguration.cs" />
     <Compile Include="Features\AdvancedSatelliteFeature.cs" />
     <Compile Include="Features\SatelliteFeature.cs" />
@@ -151,7 +152,7 @@
     <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
     <Compile Include="Errors\SecondLevel\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\SecondLevel\ConfigurationSource\Usage.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicyOverridingSlrPart.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />

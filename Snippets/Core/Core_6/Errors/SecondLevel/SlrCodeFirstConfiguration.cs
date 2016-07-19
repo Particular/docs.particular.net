@@ -9,9 +9,8 @@
         {
             #region SlrCodeFirstConfiguration
 
-            var secondLevelRetries = endpointConfiguration.SecondLevelRetries();
-            secondLevelRetries.NumberOfRetries(2);
-            secondLevelRetries.TimeIncrease(TimeSpan.FromMinutes(5));
+            var recoverabilitySettings = endpointConfiguration.Recoverability();
+            recoverabilitySettings.Delayed(delayed => delayed.NumberOfRetries(2).TimeIncrease(TimeSpan.FromMinutes(5)));
             #endregion
         }
     }

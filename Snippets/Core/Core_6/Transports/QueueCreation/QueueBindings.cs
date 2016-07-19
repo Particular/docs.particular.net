@@ -1,7 +1,7 @@
 ﻿namespace Core6.Transports.QueueCreation
 {
     using NServiceBus.Features;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     #region queuebindings
     public class FeatureThatRequiresAQueue :

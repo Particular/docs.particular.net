@@ -6,7 +6,7 @@
     using NServiceBus.Features;
     using NServiceBus.ObjectBuilder;
     using NServiceBus.Pipeline;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     public class MyAdvancedSatelliteFeature :
         Feature
@@ -25,10 +25,11 @@
                 transportAddress: "targetQueue",
                 requiredTransportTransactionMode: TransportTransactionMode.TransactionScope,
                 runtimeSettings: PushRuntimeSettings.Default,
+                recoverabilityPolicy: (config, errorContext) => { return RecoverabilityAction.MoveToError(); },
                 onMessage: OnMessage);
         }
 
-        Task OnMessage(IBuilder builder, PushContext messageContext)
+        Task OnMessage(IBuilder builder, MessageContext messageContext)
         {
             // To raise a critical error
             var exception = new Exception("CriticalError occurred");
