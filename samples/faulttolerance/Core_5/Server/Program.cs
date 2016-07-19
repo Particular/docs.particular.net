@@ -13,8 +13,9 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        // To disable second level retries(SLR), uncomment the following line. SLR is enabled by default.
-        // busConfiguration.DisableFeature<SecondLevelRetries>();
+        #region diableSlr
+        //busConfiguration.DisableFeature<NServiceBus.Features.SecondLevelRetries>();
+        #endregion
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");

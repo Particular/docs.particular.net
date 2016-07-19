@@ -19,8 +19,9 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        // To disable second level retries(SLR), uncomment the following line. SLR is enabled by default.
-        // endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        #region diableSlr
+        //endpointConfiguration.SecondLevelRetries().Disable();
+        #endregion
 
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

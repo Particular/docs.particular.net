@@ -58,7 +58,7 @@ So, make the handling of messages in the 'Server' endpoint fail. Open `MyHandler
 
 snippet:MyHandler
 
-Note the commented out `throw new Exception`. Un-comment that line.
+Note the commented out `throw new Exception`. uncomment that line.
 
 Run the solution again, but this time use `Ctrl-F5` so that Visual Studio does not break each time the exception is thrown, sending a message from the 'Client' console.
 
@@ -85,6 +85,10 @@ Leave the endpoint running a while longer, see that it tries processing the mess
 
 In the above case, since SLR is automatically turned on by default.
 
-To turn off SLR, uncomment the code `busConfiguration.DisableFeature<SecondLevelRetries>();` and re-run the sample and notice the behavior. After successive retries the message is sent to the error queue right away.
+Turn off Second Level Retries (SLR) by uncommenting the below line in the Server Program.cs:
+
+snippet: diableSlr
+
+Re-run the sample and notice the behavior. After successive retries the message is sent to the error queue right away.
 
 Make sure that the exception code is removed to resume processing of messages.
