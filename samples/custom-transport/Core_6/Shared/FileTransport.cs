@@ -28,12 +28,17 @@ public class FileTransportInfrastructure :
 {
     public override TransportReceiveInfrastructure ConfigureReceiveInfrastructure()
     {
-        return new TransportReceiveInfrastructure(() => new FileTransportMessagePump(), () => new FileTransportQueueCreator(), () => Task.FromResult(StartupCheckResult.Success));
+        return new TransportReceiveInfrastructure(
+            messagePumpFactory: () => new FileTransportMessagePump(),
+            queueCreatorFactory: () => new FileTransportQueueCreator(),
+            preStartupCheck: () => Task.FromResult(StartupCheckResult.Success));
     }
 
     public override TransportSendInfrastructure ConfigureSendInfrastructure()
     {
-        return new TransportSendInfrastructure(() => new Dispatcher(), () => Task.FromResult(StartupCheckResult.Success));
+        return new TransportSendInfrastructure(
+            dispatcherFactory: () => new Dispatcher(),
+            preStartupCheck: () => Task.FromResult(StartupCheckResult.Success));
     }
 
     public override TransportSubscriptionInfrastructure ConfigureSubscriptionInfrastructure()
@@ -48,18 +53,38 @@ public class FileTransportInfrastructure :
 
     public override string ToTransportAddress(LogicalAddress logicalAddress)
     {
-        return Path.Combine(logicalAddress.EndpointInstance.Endpoint,
-            logicalAddress.EndpointInstance.Discriminator ?? "",
-            logicalAddress.Qualifier ?? "");
+        var endpointInstance = logicalAddress.EndpointInstance;
+        var discriminator = endpointInstance.Discriminator ?? "";
+        var qualifier = logicalAddress.Qualifier ?? "";
+        return Path.Combine(endpointInstance.Endpoint, discriminator, qualifier);
     }
 
     public override IEnumerable<Type> DeliveryConstraints
     {
-        get { yield return typeof(DiscardIfNotReceivedBefore);}
+        get
+        {
+            yield return typeof(DiscardIfNotReceivedBefore);
+        }
     }
 
-    public override TransportTransactionMode TransactionMode => TransportTransactionMode.SendsAtomicWithReceive;
+    public override TransportTransactionMode TransactionMode
+    {
+        get
+        {
+            return TransportTransactionMode.SendsAtomicWithReceive;
+        }
+    }
 
-    public override OutboundRoutingPolicy OutboundRoutingPolicy => new OutboundRoutingPolicy(OutboundRoutingType.Unicast, OutboundRoutingType.Unicast, OutboundRoutingType.Unicast);
+    public override OutboundRoutingPolicy OutboundRoutingPolicy
+    {
+        get
+        {
+            return new OutboundRoutingPolicy(
+                sends: OutboundRoutingType.Unicast,
+                publishes: OutboundRoutingType.Unicast,
+                replies: OutboundRoutingType.Unicast);
+        }
+    }
 }
+
 #endregion

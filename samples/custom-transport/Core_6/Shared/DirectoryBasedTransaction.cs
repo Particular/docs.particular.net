@@ -29,7 +29,9 @@ class DirectoryBasedTransaction :
     public void Commit()
     {
         var dispatchFile = Path.Combine(transactionDir, "dispatch.txt");
-        File.WriteAllLines(dispatchFile, outgoingFiles.Select(file => $"{file.TxPath}=>{file.TargetPath}").ToArray());
+        var contents = outgoingFiles.Select(file => $"{file.TxPath}=>{file.TargetPath}")
+            .ToArray();
+        File.WriteAllLines(dispatchFile, contents);
 
         Directory.Move(transactionDir, commitDir);
         committed = true;
@@ -71,9 +73,7 @@ class DirectoryBasedTransaction :
 
     string basePath;
     string commitDir;
-
     bool committed;
-
     List<OutgoingFile> outgoingFiles = new List<OutgoingFile>();
     string transactionDir;
 

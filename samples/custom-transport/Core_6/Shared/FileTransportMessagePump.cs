@@ -11,6 +11,7 @@ using NServiceBus.Logging;
 using NServiceBus.Transports;
 
 #region MessagePump
+
 class FileTransportMessagePump :
     IPushMessages
 {
@@ -39,7 +40,11 @@ class FileTransportMessagePump :
         }
 
         messagePumpTask = Task.Factory
-            .StartNew(ProcessMessages, CancellationToken.None, TaskCreationOptions.LongRunning, TaskScheduler.Default)
+            .StartNew(
+                function: ProcessMessages,
+                cancellationToken: CancellationToken.None,
+                creationOptions: TaskCreationOptions.LongRunning,
+                scheduler: TaskScheduler.Default)
             .Unwrap();
     }
 
@@ -47,7 +52,7 @@ class FileTransportMessagePump :
     {
         cancellationTokenSource.Cancel();
 
-        var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
+        var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30), cancellationTokenSource.Token);
         var allTasks = runningReceiveTasks.Values.Concat(new[]
         {
             messagePumpTask
@@ -112,7 +117,7 @@ class FileTransportMessagePump :
                     try
                     {
                         await ProcessFile(transaction, nativeMessageId)
-                        .ConfigureAwait(false);
+                            .ConfigureAwait(false);
                         transaction.Complete();
                     }
                     finally
@@ -122,10 +127,11 @@ class FileTransportMessagePump :
                 }, cancellationToken);
 
                 task.ContinueWith(t =>
-                {
-                    Task toBeRemoved;
-                    runningReceiveTasks.TryRemove(t, out toBeRemoved);
-                }, TaskContinuationOptions.ExecuteSynchronously)
+                        {
+                            Task toBeRemoved;
+                            runningReceiveTasks.TryRemove(t, out toBeRemoved);
+                        },
+                        TaskContinuationOptions.ExecuteSynchronously)
                     .Ignore();
 
                 runningReceiveTasks.AddOrUpdate(task, task, (k, v) => task)
@@ -170,7 +176,13 @@ class FileTransportMessagePump :
                 var context = new ContextBag();
                 context.Set(transaction);
 
-                var pushContext = new PushContext(messageId, headers, bodyStream, transaction, tokenSource, context);
+                var pushContext = new PushContext(
+                    messageId: messageId,
+                    headers: headers,
+                    bodyStream: bodyStream,
+                    transportTransaction: transaction,
+                    receiveCancellationTokenSource: tokenSource,
+                    context: context);
                 await pipeline(pushContext)
                     .ConfigureAwait(false);
             }
@@ -198,4 +210,5 @@ class FileTransportMessagePump :
     bool purgeOnStartup;
     ConcurrentDictionary<Task, Task> runningReceiveTasks;
 }
+
 #endregion

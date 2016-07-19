@@ -11,9 +11,9 @@ class Dispatcher :
 {
     public Task Dispatch(TransportOperations outgoingMessages, ContextBag context)
     {
-        foreach (var transportOperation in outgoingMessages.UnicastTransportOperations)
+        foreach (var operation in outgoingMessages.UnicastTransportOperations)
         {
-            var basePath = BaseDirectoryBuilder.BuildBasePath(transportOperation.Destination);
+            var basePath = BaseDirectoryBuilder.BuildBasePath(operation.Destination);
             var nativeMessageId = Guid.NewGuid().ToString();
             var bodyPath = Path.Combine(basePath, ".bodies", $"{nativeMessageId}.xml");
 
@@ -22,19 +22,19 @@ class Dispatcher :
             {
                 Directory.CreateDirectory(dir);
             }
-            File.WriteAllBytes(bodyPath, transportOperation.Message.Body);
+            File.WriteAllBytes(bodyPath, operation.Message.Body);
 
             var messageContents = new List<string>
             {
                 bodyPath,
-                HeaderSerializer.Serialize(transportOperation.Message.Headers)
+                HeaderSerializer.Serialize(operation.Message.Headers)
             };
 
             DirectoryBasedTransaction transaction;
 
             var messagePath = Path.Combine(basePath, $"{nativeMessageId}.txt");
 
-            if (transportOperation.RequiredDispatchConsistency != DispatchConsistency.Isolated &&
+            if (operation.RequiredDispatchConsistency != DispatchConsistency.Isolated &&
                 context.TryGet(out transaction))
             {
                 transaction.Enlist(messagePath, messageContents);
