@@ -19,7 +19,11 @@ class Usage
         var builder = new ContainerBuilder();
         builder.RegisterInstance(new MyService());
         var container = builder.Build();
-        busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+        busConfiguration.UseContainer<AutofacBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingLifetimeScope(container);
+            });
 
         #endregion
     }

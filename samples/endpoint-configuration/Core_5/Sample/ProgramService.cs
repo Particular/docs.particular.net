@@ -66,7 +66,10 @@ class ProgramService :
         //configure custom services
         //builder.RegisterInstance(new MyService());
         var container = builder.Build();
-        busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+        busConfiguration.UseContainer<AutofacBuilder>(customizations =>
+        {
+            customizations.ExistingLifetimeScope(container);
+        });
         #endregion
 
         #region serialization

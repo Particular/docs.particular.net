@@ -16,9 +16,17 @@ class Usage
     void Existing(BusConfiguration busConfiguration)
     {
         #region CastleWindsor_Existing
+
         var container = new WindsorContainer();
-        container.Register(Component.For<MyService>().Instance(new MyService()));
-        busConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
+        var registration = Component.For<MyService>()
+            .Instance(new MyService());
+        container.Register(registration);
+        busConfiguration.UseContainer<WindsorBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingContainer(container);
+            });
+
         #endregion
     }
 

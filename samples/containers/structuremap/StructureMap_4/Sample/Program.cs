@@ -15,7 +15,12 @@ class Program
         var configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.StructureMap");
-        var container = new Container(x => x.For<MyService>().Use(new MyService()));
+        var container = new Container(
+            action: expression =>
+            {
+                expression.For<MyService>()
+                    .Use(new MyService());
+            });
         configure.StructureMapBuilder(container);
 
         #endregion

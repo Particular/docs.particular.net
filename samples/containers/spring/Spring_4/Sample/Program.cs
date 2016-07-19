@@ -14,7 +14,8 @@ class Program
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Spring");
         var applicationContext = new GenericApplicationContext();
-        applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
+        applicationContext.ObjectFactory
+            .RegisterSingleton("MyService", new MyService());
         configure.SpringFrameworkBuilder(applicationContext);
         #endregion
         configure.InMemorySagaPersister();

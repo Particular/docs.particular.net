@@ -17,7 +17,8 @@ class Usage
         #region Ninject_Existing
 
         var kernel = new StandardKernel();
-        kernel.Bind<MyService>().ToConstant(new MyService());
+        kernel.Bind<MyService>()
+            .ToConstant(new MyService());
         configure.NinjectBuilder(kernel);
 
         #endregion

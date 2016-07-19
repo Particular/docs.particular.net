@@ -7,14 +7,22 @@ static class Program
     static void Main()
     {
         Console.Title = "Samples.Unity";
+
         #region ContainerConfiguration
+
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Unity");
 
         var container = new UnityContainer();
         container.RegisterInstance(new MyService());
-        busConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
+        busConfiguration.UseContainer<UnityBuilder>(
+            customizations: customizations =>
+            {
+                customizations.UseExistingContainer(container);
+            });
+
         #endregion
+
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();

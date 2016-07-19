@@ -20,9 +20,15 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Castle");
 
         var container = new WindsorContainer();
-        container.Register(Component.For<MyService>().Instance(new MyService()));
+        var registration = Component.For<MyService>()
+            .Instance(new MyService());
+        container.Register(registration);
 
-        endpointConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
+        endpointConfiguration.UseContainer<WindsorBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingContainer(container);
+            });
 
         #endregion
 

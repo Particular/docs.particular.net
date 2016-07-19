@@ -8,14 +8,23 @@ static class Program
     static void Main()
     {
         Console.Title = "Samples.Castle";
+
         #region ContainerConfiguration
+
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Castle");
 
         var container = new WindsorContainer();
-        container.Register(Component.For<MyService>().Instance(new MyService()));
+        var registration = Component.For<MyService>()
+            .Instance(new MyService());
+        container.Register(registration);
 
-        busConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
+        busConfiguration.UseContainer<WindsorBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingContainer(container);
+            });
+
         #endregion
 
         busConfiguration.UseSerialization<JsonSerializer>();

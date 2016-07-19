@@ -18,7 +18,9 @@ class Usage
         #region CastleWindsor_Existing
 
         var container = new WindsorContainer();
-        container.Register(Component.For<MyService>().Instance(new MyService()));
+        var registration = Component.For<MyService>()
+            .Instance(new MyService());
+        container.Register(registration);
         configure.CastleWindsorBuilder(container);
         #endregion
     }

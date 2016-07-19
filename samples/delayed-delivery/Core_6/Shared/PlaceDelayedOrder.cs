@@ -6,7 +6,6 @@ public class PlaceDelayedOrder :
     ICommand
 {
     public Guid Id { get; set; }
-
     public string Product { get; set; }
 }
 

@@ -16,7 +16,8 @@ class Program
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Ninject");
         var kernel = new StandardKernel();
-        kernel.Bind<MyService>().ToConstant(new MyService());
+        kernel.Bind<MyService>()
+            .ToConstant(new MyService());
         configure.NinjectBuilder(kernel);
 
         #endregion

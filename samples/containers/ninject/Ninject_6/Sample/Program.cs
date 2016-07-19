@@ -13,14 +13,23 @@ public class Program
     static async Task Start()
     {
         Console.Title = "Samples.Ninject";
+
         #region ContainerConfiguration
+
         var endpointConfiguration = new EndpointConfiguration("Samples.Ninject");
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         var kernel = new StandardKernel();
-        kernel.Bind<MyService>().ToConstant(new MyService());
-        endpointConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
+        kernel.Bind<MyService>()
+            .ToConstant(new MyService());
+        endpointConfiguration.UseContainer<NinjectBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingKernel(kernel);
+            });
+
         #endregion
+
+        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
@@ -38,7 +47,7 @@ public class Program
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
-        finally 
+        finally
         {
             await endpointInstance.Stop()
                 .ConfigureAwait(false);

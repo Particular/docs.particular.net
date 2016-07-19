@@ -15,7 +15,9 @@ class Program
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Castle");
         var container = new WindsorContainer();
-        container.Register(Component.For<MyService>().Instance(new MyService()));
+        var registration = Component.For<MyService>()
+            .Instance(new MyService());
+        container.Register(registration);
         configure.CastleWindsorBuilder(container);
         #endregion
         configure.InMemorySagaPersister();

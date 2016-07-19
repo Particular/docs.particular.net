@@ -16,9 +16,17 @@ class Usage
     void Existing(EndpointConfiguration endpointConfiguration)
     {
         #region CastleWindsor_Existing
+
         var container = new WindsorContainer();
-        container.Register(Component.For<MyService>().Instance(new MyService()));
-        endpointConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
+        var registration = Component.For<MyService>()
+            .Instance(new MyService());
+        container.Register(registration);
+        endpointConfiguration.UseContainer<WindsorBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingContainer(container);
+            });
+
         #endregion
     }
 

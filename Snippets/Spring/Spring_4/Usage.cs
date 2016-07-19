@@ -17,7 +17,8 @@ class Usage
         #region Spring_Existing
 
         var applicationContext = new GenericApplicationContext();
-        applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
+        applicationContext.ObjectFactory
+            .RegisterSingleton("MyService", new MyService());
         configure.SpringFrameworkBuilder(applicationContext);
         #endregion
     }

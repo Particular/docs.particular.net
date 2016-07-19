@@ -13,11 +13,24 @@ static class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.StructureMap";
+
         #region ContainerConfiguration
+
         var endpointConfiguration = new EndpointConfiguration("Samples.StructureMap");
-        var container = new Container(x => x.For<MyService>().Use(new MyService()));
-        endpointConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
+        var container = new Container(
+            action: expression =>
+            {
+                expression.For<MyService>()
+                    .Use(new MyService());
+            });
+        endpointConfiguration.UseContainer<StructureMapBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingContainer(container);
+            });
+
         #endregion
+
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

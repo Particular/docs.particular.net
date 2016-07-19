@@ -7,13 +7,26 @@ static class Program
     static void Main()
     {
         Console.Title = "Samples.StructureMap";
+
         #region ContainerConfiguration
+
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.StructureMap");
 
-        var container = new Container(x => x.For<MyService>().Use(new MyService()));
-        busConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
+        var container = new Container(
+            action: expression =>
+            {
+                expression.For<MyService>()
+                    .Use(new MyService());
+            });
+        busConfiguration.UseContainer<StructureMapBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingContainer(container);
+            });
+
         #endregion
+
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();

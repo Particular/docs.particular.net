@@ -18,7 +18,11 @@ class Usage
 
         var container = new UnityContainer();
         container.RegisterInstance(new MyService());
-        busConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
+        busConfiguration.UseContainer<UnityBuilder>(
+            customizations: customizations =>
+            {
+                customizations.UseExistingContainer(container);
+            });
 
         #endregion
     }

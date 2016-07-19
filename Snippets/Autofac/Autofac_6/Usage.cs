@@ -19,7 +19,11 @@ class Usage
         var builder = new ContainerBuilder();
         builder.RegisterInstance(new MyService());
         var container = builder.Build();
-        endpointConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+        endpointConfiguration.UseContainer<AutofacBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingLifetimeScope(container);
+            });
 
         #endregion
     }

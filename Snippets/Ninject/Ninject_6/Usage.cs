@@ -18,8 +18,13 @@ class Usage
         #region Ninject_Existing
 
         var kernel = new StandardKernel();
-        kernel.Bind<MyService>().ToConstant(new MyService());
-        endpointConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
+        kernel.Bind<MyService>()
+            .ToConstant(new MyService());
+        endpointConfiguration.UseContainer<NinjectBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingKernel(kernel);
+            });
 
         #endregion
     }
@@ -30,7 +35,9 @@ class Usage
 
         var kernel = new StandardKernel();
 
-        kernel.Bind<MyService>().ToSelf().InUnitOfWorkScope();
+        kernel.Bind<MyService>()
+            .ToSelf()
+            .InUnitOfWorkScope();
 
         #endregion
     }

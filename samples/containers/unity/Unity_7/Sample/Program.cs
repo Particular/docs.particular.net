@@ -13,12 +13,20 @@ static class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Unity";
+
         #region ContainerConfiguration
+
         var endpointConfiguration = new EndpointConfiguration("Samples.Unity");
         var container = new UnityContainer();
         container.RegisterInstance(new MyService());
-        endpointConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
+        endpointConfiguration.UseContainer<UnityBuilder>(
+            customizations: customizations =>
+            {
+                customizations.UseExistingContainer(container);
+            });
+
         #endregion
+
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

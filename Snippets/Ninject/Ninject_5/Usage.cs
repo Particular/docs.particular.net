@@ -17,8 +17,13 @@ class Usage
         #region Ninject_Existing
 
         var kernel = new StandardKernel();
-        kernel.Bind<MyService>().ToConstant(new MyService());
-        busConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
+        kernel.Bind<MyService>()
+            .ToConstant(new MyService());
+        busConfiguration.UseContainer<NinjectBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingKernel(kernel);
+            });
 
         #endregion
     }
