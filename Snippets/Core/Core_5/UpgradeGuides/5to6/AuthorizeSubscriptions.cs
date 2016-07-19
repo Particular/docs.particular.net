@@ -7,7 +7,6 @@
 
     class MsmqAuthorizeSubscriptions : IAuthorizeSubscriptions
     {
-
         public bool AuthorizeSubscribe(string messageType, string clientEndpoint, IDictionary<string, string> headers)
         {
             var lowerEndpointName = clientEndpoint.ToLowerInvariant();

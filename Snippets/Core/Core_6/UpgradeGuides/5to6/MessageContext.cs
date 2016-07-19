@@ -1,6 +1,5 @@
 ﻿namespace Core6.UpgradeGuides._5to6
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using NServiceBus;
     using Handlers;
@@ -13,7 +12,7 @@
         {
             var messageId = context.MessageId;
             var replyToAddress = context.ReplyToAddress;
-            IReadOnlyDictionary<string, string> headers = context.MessageHeaders;
+            var headers = context.MessageHeaders;
         }
 
         #endregion

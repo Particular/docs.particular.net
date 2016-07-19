@@ -8,7 +8,10 @@
     class NewPipelineStep : RegisterStep
     {
         public NewPipelineStep()
-            : base("NewPipelineStep", typeof(SampleBehavior), "Logs a warning when processing takes too long")
+            : base(
+                stepId: "NewPipelineStep",
+                behavior: typeof(SampleBehavior),
+                description: "Logs a warning when processing takes too long")
         {
             // Optional: Specify where it needs to be invoked in the pipeline, for example InsertBefore or InsertAfter
             InsertBefore(WellKnownStep.InvokeHandlers);
@@ -24,7 +27,8 @@
         public void Customize(BusConfiguration busConfiguration)
         {
             // Register the new step in the pipeline
-            busConfiguration.Pipeline.Register<NewPipelineStep>();
+            var pipeline = busConfiguration.Pipeline;
+            pipeline.Register<NewPipelineStep>();
         }
     }
 
@@ -36,7 +40,11 @@
     {
         public void Customize(BusConfiguration busConfiguration)
         {
-            busConfiguration.Pipeline.Replace("Id of the step to replace", typeof(SampleBehavior), "Description");
+            var pipeline = busConfiguration.Pipeline;
+            pipeline.Replace(
+                stepId: "Id of the step to replace",
+                newBehavior: typeof(SampleBehavior),
+                description: "Description");
         }
     }
 

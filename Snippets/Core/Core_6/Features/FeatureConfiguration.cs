@@ -14,12 +14,17 @@ namespace Core6.Features
 #region FeatureSetup
         protected override void Setup(FeatureConfigurationContext context)
         {
-            var retriesConfig = context.Settings.GetConfigSection<SecondLevelRetriesConfig>();
+            var settings = context.Settings;
+            var retriesConfig = settings.GetConfigSection<SecondLevelRetriesConfig>();
 
-            var retryPolicy = new SecondLevelRetryPolicy(retriesConfig.NumberOfRetries, retriesConfig.TimeIncrease);
-            context.Container.RegisterSingleton(typeof(SecondLevelRetryPolicy), retryPolicy);
+            var retryPolicy = new SecondLevelRetryPolicy(
+                numberOfRetries: retriesConfig.NumberOfRetries,
+                timeIncrease: retriesConfig.TimeIncrease);
+            var container = context.Container;
+            container.RegisterSingleton(typeof(SecondLevelRetryPolicy), retryPolicy);
 
-            context.Pipeline.Register<SecondLevelRetriesBehavior.Registration>();
+            var pipeline = context.Pipeline;
+            pipeline.Register<SecondLevelRetriesBehavior.Registration>();
         }
 #endregion
 

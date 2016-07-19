@@ -20,25 +20,25 @@ namespace Core6.BusNotifications
 
         void Subscribe(Notifications notifications)
         {
-            var errorsNotifications = notifications.Errors;
-            errorsNotifications.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => LogEvent(retry);
-            errorsNotifications.MessageHasFailedAFirstLevelRetryAttempt += (sender, retry) => LogEvent(retry);
-            errorsNotifications.MessageSentToErrorQueue += (sender, retry) => LogEvent(retry);
+            var errors = notifications.Errors;
+            errors.MessageHasBeenSentToSecondLevelRetries += LogEvent;
+            errors.MessageHasFailedAFirstLevelRetryAttempt += LogEvent;
+            errors.MessageSentToErrorQueue += LogEvent;
         }
 
-        void LogEvent(FailedMessage failedMessage)
+        void LogEvent(object sender, FailedMessage failedMessage)
         {
             log.Info("Message sent to error queue");
         }
 
-        void LogEvent(SecondLevelRetry secondLevelRetry)
+        void LogEvent(object sender, SecondLevelRetry retry)
         {
-            log.Info($"Message sent to SLR. RetryAttempt:{secondLevelRetry.RetryAttempt}");
+            log.Info($"Message sent to SLR. RetryAttempt:{retry.RetryAttempt}");
         }
 
-        void LogEvent(FirstLevelRetry firstLevelRetry)
+        void LogEvent(object sender, FirstLevelRetry retry)
         {
-            log.Info($"Message sent to FLR. RetryAttempt:{firstLevelRetry.RetryAttempt}");
+            log.Info($"Message sent to FLR. RetryAttempt:{retry.RetryAttempt}");
         }
 
         #endregion

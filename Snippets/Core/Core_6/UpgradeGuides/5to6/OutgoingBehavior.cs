@@ -9,7 +9,8 @@
     {
         public override Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
         {
-            context.Headers["MyCustomHeader"] = "My custom value";
+            var headers = context.Headers;
+            headers["MyCustomHeader"] = "My custom value";
             return next();
         }
     }

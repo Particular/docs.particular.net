@@ -12,11 +12,12 @@
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
             transport.SubscriptionAuthorizer(context =>
                 {
-                    var subscriptionMessageType = context.MessageHeaders[Headers.SubscriptionMessageType];
-                    var messageIntent = context.MessageHeaders[Headers.MessageIntent];
+                    var headers = context.MessageHeaders;
+                    var subscriptionMessageType = headers[Headers.SubscriptionMessageType];
+                    var messageIntent = headers[Headers.MessageIntent];
                     var messageIntentEnum = (MessageIntentEnum)Enum.Parse(typeof(MessageIntentEnum), messageIntent, true);
                     //messageIntentEnum will be either MessageIntentEnum.Unsubscribe or MessageIntentEnum.Subscribe
-                    var endpointName = context.MessageHeaders[Headers.SubscriberEndpoint]
+                    var endpointName = headers[Headers.SubscriberEndpoint]
                         .ToLowerInvariant();
                     // true to allow false to decline
                     return true;

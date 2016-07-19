@@ -12,7 +12,8 @@ namespace Core6.UpgradeGuides._5to6
         {
             #region SetDeliveryConstraintDiscardIfNotReceivedBefore
             var timeToBeReceived = TimeSpan.FromSeconds(25);
-            context.Extensions.AddDeliveryConstraint(new DiscardIfNotReceivedBefore(timeToBeReceived));
+            var deliveryConstraint = new DiscardIfNotReceivedBefore(timeToBeReceived);
+            context.Extensions.AddDeliveryConstraint(deliveryConstraint);
             #endregion
 
             #region ReadDeliveryConstraintDiscardIfNotReceivedBefore

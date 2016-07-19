@@ -18,7 +18,8 @@ namespace Core5.UpgradeGuides._4to5
         {
             public void MutateIncoming(TransportMessage message)
             {
-                var windowsIdentityName = message.Headers[Headers.WindowsIdentityName];
+                var headers = message.Headers;
+                var windowsIdentityName = headers[Headers.WindowsIdentityName];
                 var identity = new GenericIdentity(windowsIdentityName);
                 var principal = new GenericPrincipal(identity, new string[0]);
                 Thread.CurrentPrincipal = principal;
@@ -31,14 +32,44 @@ namespace Core5.UpgradeGuides._4to5
         {
             #region 4to5MessageConventions
 
-            var conventionsBuilder = busConfiguration.Conventions();
-            conventionsBuilder.DefiningCommandsAs(t => t.Namespace != null && t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"));
-            conventionsBuilder.DefiningEventsAs(t => t.Namespace != null && t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"));
-            conventionsBuilder.DefiningMessagesAs(t => t.Namespace != null && t.Namespace == "Messages");
-            conventionsBuilder.DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"));
-            conventionsBuilder.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
-            conventionsBuilder.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
-            conventionsBuilder.DefiningTimeToBeReceivedAs(t => t.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
+            var conventions = busConfiguration.Conventions();
+            conventions.DefiningCommandsAs(t =>
+            {
+                return t.Namespace != null &&
+                       t.Namespace == "MyNamespace" &&
+                       t.Namespace.EndsWith("Commands");
+            });
+            conventions.DefiningEventsAs(t =>
+            {
+                return t.Namespace != null &&
+                       t.Namespace == "MyNamespace" &&
+                       t.Namespace.EndsWith("Events");
+            });
+            conventions.DefiningMessagesAs(t =>
+            {
+                return t.Namespace != null &&
+                       t.Namespace == "Messages";
+            });
+            conventions.DefiningEncryptedPropertiesAs(p =>
+            {
+                return p.Name.StartsWith("Encrypted");
+            });
+            conventions.DefiningDataBusPropertiesAs(p =>
+            {
+                return p.Name.EndsWith("DataBus");
+            });
+            conventions.DefiningExpressMessagesAs(t =>
+            {
+                return t.Name.EndsWith("Express");
+            });
+            conventions.DefiningTimeToBeReceivedAs(t =>
+            {
+                if (t.Name.EndsWith("Expires"))
+                {
+                    return TimeSpan.FromSeconds(30);
+                }
+                return TimeSpan.MaxValue;
+            });
 
             #endregion
         }
@@ -48,7 +79,11 @@ namespace Core5.UpgradeGuides._4to5
             #region 4to5CustomConfigOverrides
 
             busConfiguration.AssembliesToScan(AllAssemblies.Except("NotThis.dll"));
-            busConfiguration.Conventions().DefiningEventsAs(type => type.Name.EndsWith("Event"));
+            var conventions = busConfiguration.Conventions();
+            conventions.DefiningEventsAs(type =>
+            {
+                return type.Name.EndsWith("Event");
+            });
             busConfiguration.EndpointName("MyEndpointName");
 
             #endregion

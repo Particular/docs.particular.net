@@ -49,14 +49,14 @@
             log.Info("Message sent to error queue");
         }
 
-        void LogEvent(SecondLevelRetry secondLevelRetry)
+        void LogEvent(SecondLevelRetry retry)
         {
-            log.Info($"Message sent to SLR. RetryAttempt:{secondLevelRetry.RetryAttempt}");
+            log.Info($"Message sent to SLR. RetryAttempt:{retry.RetryAttempt}");
         }
 
-        void LogEvent(FirstLevelRetry firstLevelRetry)
+        void LogEvent(FirstLevelRetry retry)
         {
-            log.Info($"Message sent to FLR. RetryAttempt:{firstLevelRetry.RetryAttempt}");
+            log.Info($"Message sent to FLR. RetryAttempt:{retry.RetryAttempt}");
         }
 
         public void Stop()

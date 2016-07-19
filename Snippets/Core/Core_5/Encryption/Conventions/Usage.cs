@@ -7,8 +7,13 @@
         Usage(BusConfiguration busConfiguration)
         {
             #region DefiningEncryptedPropertiesAs
-            var conventionsBuilder = busConfiguration.Conventions();
-            conventionsBuilder.DefiningEncryptedPropertiesAs(info => info.Name.EndsWith("EncryptedProperty"));
+
+            var conventions = busConfiguration.Conventions();
+            conventions.DefiningEncryptedPropertiesAs(info =>
+            {
+                return info.Name.EndsWith("EncryptedProperty");
+            });
+
             #endregion
         }
     }

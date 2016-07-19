@@ -6,6 +6,7 @@ namespace Core6.Pipeline
     using NServiceBus.Pipeline;
 
     #region SkipSerialization
+
     class SkipSerializationForInts : Behavior<IOutgoingLogicalMessageContext>
     {
         public override Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
@@ -13,7 +14,8 @@ namespace Core6.Pipeline
             var outgoingLogicalMessage = context.Message;
             if (outgoingLogicalMessage.MessageType == typeof(int))
             {
-                context.Headers["MyCustomHeader"] = outgoingLogicalMessage.Instance.ToString();
+                var headers = context.Headers;
+                headers["MyCustomHeader"] = outgoingLogicalMessage.Instance.ToString();
                 context.SkipSerialization();
             }
             return next();
@@ -22,10 +24,14 @@ namespace Core6.Pipeline
         public class Registration : RegisterStep
         {
             public Registration()
-                : base("SkipSerializationForInts", typeof(SkipSerializationForInts), "Skips serialization for integers")
+                : base(
+                    stepId: "SkipSerializationForInts",
+                    behavior: typeof(SkipSerializationForInts),
+                    description: "Skips serialization for integers")
             {
             }
         }
     }
+
     #endregion
 }

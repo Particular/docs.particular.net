@@ -8,7 +8,10 @@
     class NewPipelineStep : RegisterStep
     {
         public NewPipelineStep()
-            : base("NewPipelineStep", typeof(SampleBehavior), "Logs a warning when processing takes too long")
+            : base(
+                stepId: "NewPipelineStep",
+                behavior: typeof(SampleBehavior),
+                description: "Logs a warning when processing takes too long")
         {
         }
     }
@@ -22,7 +25,8 @@
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
             // Register the new step in the pipeline
-            endpointConfiguration.Pipeline.Register<NewPipelineStep>();
+            var pipeline = endpointConfiguration.Pipeline;
+            pipeline.Register<NewPipelineStep>();
         }
     }
 
@@ -34,7 +38,11 @@
     {
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
-            endpointConfiguration.Pipeline.Replace("Id of the step to replace", typeof(SampleBehavior), "Description");
+            var pipeline = endpointConfiguration.Pipeline;
+            pipeline.Replace(
+                stepId: "Id of the step to replace",
+                newBehavior: typeof(SampleBehavior),
+                description: "Description");
         }
     }
 

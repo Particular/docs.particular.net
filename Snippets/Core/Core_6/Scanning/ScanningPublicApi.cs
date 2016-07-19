@@ -45,7 +45,9 @@
         {
             #region 5to6ScanningUpgrade
 
-            endpointConfiguration.ExcludeAssemblies("BadAssembly1.dll", "BadAssembly2.dll");
+            endpointConfiguration.ExcludeAssemblies(
+                "BadAssembly1.dll",
+                "BadAssembly2.dll");
 
             #endregion
         }

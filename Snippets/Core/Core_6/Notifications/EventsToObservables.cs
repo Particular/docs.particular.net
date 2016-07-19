@@ -12,9 +12,10 @@
         {
             #region ConvertEventToObservable
 
+            var errorsNotifications = notifications.Errors;
             var failedMessages = Observable.FromEventPattern<EventHandler<FailedMessage>, FailedMessage>(
-                handler => notifications.Errors.MessageSentToErrorQueue += handler,
-                handler => notifications.Errors.MessageSentToErrorQueue -= handler);
+                handler => errorsNotifications.MessageSentToErrorQueue += handler,
+                handler => errorsNotifications.MessageSentToErrorQueue -= handler);
 
             var subscription = failedMessages
                 .Subscribe(x =>

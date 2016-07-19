@@ -17,7 +17,8 @@
         {
             public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
             {
-                context.OutgoingHeaders["WinIdName"] = Thread.CurrentPrincipal.Identity.Name;
+                var currentIdentity = Thread.CurrentPrincipal.Identity;
+                context.OutgoingHeaders["WinIdName"] = currentIdentity.Name;
                 return Task.FromResult(0);
             }
         }
@@ -69,7 +70,8 @@
         {
             #region 5to6SuppressDistributedTransactions
 
-            var suppressDistributedTransactions = readOnlySettings.GetRequiredTransactionModeForReceives() != TransportTransactionMode.TransactionScope;
+            var transactionModeForReceives = readOnlySettings.GetRequiredTransactionModeForReceives();
+            var suppressDistributedTransactions = transactionModeForReceives != TransportTransactionMode.TransactionScope;
 
             #endregion
         }
@@ -78,7 +80,8 @@
         {
             #region 5to6IsTransactional
 
-            var isTransactional = readOnlySettings.GetRequiredTransactionModeForReceives() != TransportTransactionMode.None;
+            var transactionModeForReceives = readOnlySettings.GetRequiredTransactionModeForReceives();
+            var isTransactional = transactionModeForReceives != TransportTransactionMode.None;
 
             #endregion
         }
@@ -89,7 +92,9 @@
 
             var transport = endpointConfiguration.UseTransport<MyTransport>();
             transport.Transactions(TransportTransactionMode.TransactionScope);
-            transport.TransactionScopeOptions(isolationLevel: IsolationLevel.RepeatableRead, timeout: TimeSpan.FromSeconds(30));
+            transport.TransactionScopeOptions(
+                isolationLevel: IsolationLevel.RepeatableRead,
+                timeout: TimeSpan.FromSeconds(30));
 
             #endregion
         }
@@ -103,7 +108,7 @@
 
             #endregion
         }
-        
+
         async Task DelayedDelivery(IMessageHandlerContext handlerContext, object message)
         {
             #region 5to6delayed-delivery

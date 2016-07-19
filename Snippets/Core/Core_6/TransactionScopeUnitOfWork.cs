@@ -21,7 +21,8 @@
             #region UnitOfWorkCustomTransactionIsolationLevel
 
             var unitOfWork = endpointConfiguration.UnitOfWork();
-            unitOfWork.WrapHandlersInATransactionScope(isolationLevel: IsolationLevel.RepeatableRead);
+            unitOfWork.WrapHandlersInATransactionScope(
+                isolationLevel: IsolationLevel.RepeatableRead);
 
             #endregion
         }
@@ -31,7 +32,8 @@
             #region UnitOfWorkCustomTransactionTimeout
 
             var unitOfWork = endpointConfiguration.UnitOfWork();
-            unitOfWork.WrapHandlersInATransactionScope(timeout: TimeSpan.FromSeconds(30));
+            unitOfWork.WrapHandlersInATransactionScope(
+                timeout: TimeSpan.FromSeconds(30));
 
             #endregion
         }

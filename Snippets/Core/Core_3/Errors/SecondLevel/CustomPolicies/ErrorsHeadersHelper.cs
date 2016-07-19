@@ -10,7 +10,8 @@ namespace Core3.Errors.SecondLevel.CustomPolicies
         internal static int NumberOfRetries(this TransportMessage transportMessage)
         {
             string value;
-            if (transportMessage.Headers.TryGetValue(Headers.Retries, out value))
+            var headers = transportMessage.Headers;
+            if (headers.TryGetValue(Headers.Retries, out value))
             {
                 return int.Parse(value);
             }
@@ -19,7 +20,8 @@ namespace Core3.Errors.SecondLevel.CustomPolicies
 
         internal static string ExceptionType(this TransportMessage transportMessage)
         {
-            return transportMessage.Headers["NServiceBus.ExceptionInfo.ExceptionType"];
+            var headers = transportMessage.Headers;
+            return headers["NServiceBus.ExceptionInfo.ExceptionType"];
         }
     }
 
