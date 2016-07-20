@@ -11,7 +11,7 @@
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            IReadOnlyDictionary<string, string> headers = context.MessageHeaders;
+            var headers = context.MessageHeaders;
             var nsbVersion = headers[Headers.NServiceBusVersion];
             var customHeader = headers["MyCustomHeader"];
         }

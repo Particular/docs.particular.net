@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ class ReplaceStackTraceBehavior :
 {
     public override Task Invoke(IFaultContext context, Func<Task> next)
     {
-        Dictionary<string, string> headers = context.Message.Headers;
+        var headers = context.Message.Headers;
         var stackTraceKey = "NServiceBus.ExceptionInfo.StackTrace";
         var stackTrace = headers[stackTraceKey];
 

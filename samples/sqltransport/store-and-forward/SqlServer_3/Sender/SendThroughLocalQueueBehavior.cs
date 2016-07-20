@@ -12,6 +12,7 @@ using NServiceBus.Transports;
 
 
 #region SendThroughLocalQueueBehavior
+
 class SendThroughLocalQueueRoutingToDispatchConnector :
     ForkConnector<IRoutingContext, IDispatchContext>
 {
@@ -38,7 +39,8 @@ class SendThroughLocalQueueRoutingToDispatchConnector :
 
     TransportOperation RouteThroughLocalEndpointInstance(RoutingStrategy routingStrategy, IRoutingContext context)
     {
-        var headers = new Dictionary<string, string>(context.Message.Headers);
+        var outgoingMessage = context.Message;
+        var headers = new Dictionary<string, string>(outgoingMessage.Headers);
         var originalTag = routingStrategy.Apply(headers);
         var unicastTag = originalTag as UnicastAddressTag;
         if (unicastTag == null)
@@ -57,8 +59,12 @@ class SendThroughLocalQueueRoutingToDispatchConnector :
         {
             headers["$.store-and-forward.destination"] = unicastTag.Destination;
         }
-        var message = new OutgoingMessage(context.Message.MessageId, headers, context.Message.Body);
-        return new TransportOperation(message, new UnicastAddressTag(localAddress), DispatchConsistency.Default, context.Extensions.GetDeliveryConstraints());
+        var message = new OutgoingMessage(outgoingMessage.MessageId, headers, outgoingMessage.Body);
+        return new TransportOperation(
+            message: message,
+            addressTag: new UnicastAddressTag(localAddress),
+            requiredDispatchConsistency: DispatchConsistency.Default,
+            deliveryConstraints: context.Extensions.GetDeliveryConstraints());
     }
 
     string localAddress;
@@ -80,4 +86,5 @@ class SendThroughLocalQueueRoutingToDispatchConnector :
         public IEnumerable<TransportOperation> Operations => operations;
     }
 }
+
 #endregion

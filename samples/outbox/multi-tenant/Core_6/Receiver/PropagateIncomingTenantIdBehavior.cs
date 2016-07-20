@@ -23,7 +23,10 @@ class PropagateIncomingTenantIdBehavior :
         RegisterStep
     {
         public Registration()
-            : base("PropagateIncomingTenantId", typeof(PropagateIncomingTenantIdBehavior), "Sets the tenant header on outgoing messages's context bag.")
+            : base(
+                stepId: "PropagateIncomingTenantId",
+                behavior: typeof(PropagateIncomingTenantIdBehavior),
+                description: "Sets the tenant header on outgoing messages's context bag.")
         {
         }
     }

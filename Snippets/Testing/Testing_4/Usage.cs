@@ -8,7 +8,7 @@ class Usage
     {
         #region TestInitializeAssemblies
 
-        List<Assembly> assembliesToScan = new List<Assembly>
+        var assembliesToScan = new List<Assembly>
         {
             typeof(HandlerToTest).Assembly,
             Assembly.LoadFrom("NServiceBus.Testing.dll")

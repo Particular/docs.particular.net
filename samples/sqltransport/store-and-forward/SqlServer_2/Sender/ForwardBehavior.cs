@@ -19,15 +19,17 @@ public class ForwardBehavior :
 
         string eventType;
         string destination;
-        if (context.IncomingLogicalMessage.Headers.TryGetValue("$.store-and-forward.destination", out destination))
+        var logicalMessage = context.IncomingLogicalMessage;
+        var headers = logicalMessage.Headers;
+        if (headers.TryGetValue("$.store-and-forward.destination", out destination))
         {
             // Ultimate destination is in the header - send there (via the outbox) and skip the processing.
-            bus.Send(destination, context.IncomingLogicalMessage.Instance);
+            bus.Send(destination, logicalMessage.Instance);
         }
-        else if (context.IncomingLogicalMessage.Headers.TryGetValue("$.store-and-forward.eventtype", out eventType))
+        else if (headers.TryGetValue("$.store-and-forward.eventtype", out eventType))
         {
             // The event that to be re-published - publish it and skip the processing.
-            bus.Publish(context.IncomingLogicalMessage.Instance);
+            bus.Publish(logicalMessage.Instance);
         }
         else
         {

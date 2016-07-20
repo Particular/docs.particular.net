@@ -20,7 +20,10 @@ public class HandlerTimerFeature :
         RegisterStep
     {
         public Registration()
-            : base("HandlerTimer", typeof(HandlerTimerBehavior), "Logs a warning if a handler take more than a specified time")
+            : base(
+                stepId: "HandlerTimer",
+                behavior: typeof(HandlerTimerBehavior),
+                description: "Logs a warning if a handler take more than a specified time")
         {
         }
     }

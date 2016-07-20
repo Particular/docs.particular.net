@@ -26,14 +26,16 @@ class Program
             Layout = layout
         };
         config.AddTarget("console", consoleTarget);
-        config.LoggingRules.Add(new LoggingRule("*", LogLevel.Info, consoleTarget));
+        var consoleRule = new LoggingRule("*", LogLevel.Info, consoleTarget);
+        config.LoggingRules.Add(consoleRule);
         var fileTarget = new FileTarget
         {
             FileName = "log.txt",
             Layout = layout
         };
         config.AddTarget("file", fileTarget);
-        config.LoggingRules.Add(new LoggingRule("*", LogLevel.Info, fileTarget));
+        var fileRule = new LoggingRule("*", LogLevel.Info, fileTarget);
+        config.LoggingRules.Add(fileRule);
 
         LogManager.Configuration = config;
 

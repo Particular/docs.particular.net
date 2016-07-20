@@ -42,7 +42,10 @@ class ExtractTenantConnectionStringBehavior :
         RegisterStep
     {
         public Registration()
-            : base("ExtractTenantConnectionString", typeof(ExtractTenantConnectionStringBehavior), "Extracts tenant connection string based on tenant ID header.")
+            : base(
+                stepId: "ExtractTenantConnectionString",
+                behavior: typeof(ExtractTenantConnectionStringBehavior),
+                description: "Extracts tenant connection string based on tenant ID header.")
         {
         }
     }

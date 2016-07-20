@@ -1,7 +1,8 @@
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 
-class OrderMap : ClassMapping<Order>
+class OrderMap :
+    ClassMapping<Order>
 {
     public OrderMap()
     {

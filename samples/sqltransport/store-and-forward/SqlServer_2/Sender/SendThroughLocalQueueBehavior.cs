@@ -5,6 +5,7 @@ using NServiceBus.Pipeline.Contexts;
 using NServiceBus.Unicast;
 
 #region SendThroughLocalQueueBehavior
+
 public class SendThroughLocalQueueBehavior :
     IBehavior<OutgoingContext>
 {
@@ -24,28 +25,31 @@ public class SendThroughLocalQueueBehavior :
             return;
         }
 
-        var sendOptions = context.DeliveryOptions as SendOptions;
+        var deliveryOptions = context.DeliveryOptions;
+        var sendOptions = deliveryOptions as SendOptions;
         var outgoingHeaders = context.OutgoingLogicalMessage.Headers;
         if (sendOptions != null)
         {
             outgoingHeaders["$.store-and-forward.destination"] =
                 sendOptions.Destination.ToString();
             sendOptions.Destination = configure.LocalAddress;
-            // Could as well store other properties of the SendOptions to handle things like delayed delivery
+            // Could as well store other properties of the SendOptions
+            // to handle things like delayed delivery
         }
         else
         {
-            var publishOptions = context.DeliveryOptions as PublishOptions;
+            var publishOptions = deliveryOptions as PublishOptions;
             if (publishOptions != null)
             {
-                // Technically it is not necessary to store the actual type, just a marker that this is a Publish operation
+                // Technically it is not necessary to store the actual type,
+                // just a marker that this is a Publish operation
                 outgoingHeaders["$.store-and-forward.eventtype"] =
                     publishOptions.EventType.AssemblyQualifiedName;
             }
             else
             {
                 // Should never get here as is makes no sense to reply from outside of a handler
-                throw new Exception($"Not supported delivery option: {context.DeliveryOptions.GetType().Name}");
+                throw new Exception($"Not supported delivery option: {deliveryOptions.GetType().Name}");
             }
         }
         context.Set<DeliveryOptions>(new SendOptions(configure.LocalAddress));
@@ -56,11 +60,15 @@ public class SendThroughLocalQueueBehavior :
         RegisterStep
     {
         public Registration()
-            : base("SendThroughLocalQueue", typeof(SendThroughLocalQueueBehavior), "Put the outgoing message into this endpoint's input queue")
+            : base(
+                stepId: "SendThroughLocalQueue",
+                behavior: typeof(SendThroughLocalQueueBehavior),
+                description: "Put the outgoing message into this endpoint's input queue")
         {
             InsertBefore(WellKnownStep.MutateOutgoingMessages);
             InsertAfter(WellKnownStep.EnforceBestPractices);
         }
     }
 }
+
 #endregion

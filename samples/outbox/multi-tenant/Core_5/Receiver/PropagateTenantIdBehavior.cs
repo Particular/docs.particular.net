@@ -25,7 +25,10 @@ class PropagateTenantIdBehavior :
         RegisterStep
     {
         public Registration()
-            : base("PropagateTenantId", typeof(PropagateTenantIdBehavior), "Sets the tenant header on outgoing messages.")
+            : base(
+                stepId: "PropagateTenantId",
+                behavior: typeof(PropagateTenantIdBehavior),
+                description: "Sets the tenant header on outgoing messages.")
         {
             InsertBefore(WellKnownStep.SerializeMessage);
         }

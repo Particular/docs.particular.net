@@ -14,20 +14,23 @@ public class ForwardBehavior :
     {
         #region ForwardBehavior
         string destination;
-        if (context.Message.Headers.TryGetValue("$.store-and-forward.destination", out destination))
+        var message = context.Message;
+        var headers = message.Headers;
+        var body = message.Body;
+        if (headers.TryGetValue("$.store-and-forward.destination", out destination))
         {
             var operation = new TransportOperation(
-                new OutgoingMessage(context.MessageId, context.Message.Headers, context.Message.Body),
-                new UnicastAddressTag(destination));
+                message: new OutgoingMessage(context.MessageId, headers, body),
+                addressTag: new UnicastAddressTag(destination));
             return fork(new DispatchContext(operation, context));
 
         }
-        if (context.Message.Headers.TryGetValue("$.store-and-forward.eventtype", out destination))
+        if (headers.TryGetValue("$.store-and-forward.eventtype", out destination))
         {
             var messageType = Type.GetType(destination, true);
             var operation = new TransportOperation(
-                new OutgoingMessage(context.MessageId, context.Message.Headers, context.Message.Body),
-                new MulticastAddressTag(messageType));
+                message: new OutgoingMessage(context.MessageId, headers, body),
+                addressTag: new MulticastAddressTag(messageType));
             return fork(new DispatchContext(operation, context));
         }
         return next();
@@ -50,7 +53,10 @@ public class ForwardBehavior :
 
         public IEnumerable<TransportOperation> Operations
         {
-            get { yield return operation; }
+            get
+            {
+                yield return operation;
+            }
         }
     }
 }

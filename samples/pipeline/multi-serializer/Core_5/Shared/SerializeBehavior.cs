@@ -30,7 +30,7 @@ class SerializeBehavior : IBehavior<OutgoingContext>
             var messageSerializer = serializationMapper.GetSerializer(messageType);
             transportMessage.Body = Serialize(messageSerializer, messageInstance);
 
-            Dictionary<string, string> transportHeaders = transportMessage.Headers;
+            var transportHeaders = transportMessage.Headers;
             transportHeaders[Headers.ContentType] = messageSerializer.ContentType;
             transportHeaders[Headers.EnclosedMessageTypes] = SerializeEnclosedMessageTypes(logicalMessage);
 

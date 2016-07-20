@@ -7,7 +7,12 @@ class Unobtrusive
     {
         #region SetupConventionsForUnitTests
 
-        Test.Initialize(config => config.Conventions().DefiningMessagesAs(MyMessageTypeConvention));
+        Test.Initialize(
+            customisations: config =>
+            {
+                var conventions = config.Conventions();
+                conventions.DefiningMessagesAs(MyMessageTypeConvention);
+            });
 
         #endregion
     }

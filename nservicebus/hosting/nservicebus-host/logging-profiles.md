@@ -38,7 +38,8 @@ When running under the production profile, the logs are written to 'logfile' in 
 
 ```xml
 <configSections>
-	<section name="Logging" type="NServiceBus.Config.Logging, NServiceBus.Core" />
+	<section name="Logging"
+	         type="NServiceBus.Config.Logging, NServiceBus.Core" />
 </configSections>
 <Logging Threshold="ERROR" />
 ```

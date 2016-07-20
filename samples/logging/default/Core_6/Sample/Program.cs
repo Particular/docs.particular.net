@@ -15,7 +15,8 @@ class Program
         Console.Title = "Samples.Logging.Default";
         #region ConfigureLogging
         var endpointConfiguration = new EndpointConfiguration("Samples.Logging.Default");
-        //Note that no config is required in version 5 and higher since logging is enabled by default
+        // No config is required in version 5 and
+        // higher since logging is enabled by default
         #endregion
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();

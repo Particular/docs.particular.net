@@ -74,4 +74,3 @@ class Program3rdParty
         response.StatusDescription = text;
     }
 }
-

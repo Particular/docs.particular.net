@@ -13,7 +13,10 @@ class ThirdPartyMonitor :
     static ILog log = LogManager.GetLogger<ThirdPartyMonitor>();
 
     public ThirdPartyMonitor()
-        : base($"Monitor {url}", "Monitor 3rd Party ", TimeSpan.FromSeconds(10))
+        : base(
+            id: $"Monitor {url}",
+            category: "Monitor 3rd Party ",
+            repeatAfter: TimeSpan.FromSeconds(10))
     {
     }
 

@@ -2,6 +2,7 @@
 using NServiceBus.Pipeline;
 
 #region pipeline-config
+
 public class ReplaceStackTraceFeature :
     Feature
 {
@@ -19,7 +20,10 @@ public class ReplaceStackTraceFeature :
         RegisterStep
     {
         public Registration()
-            : base("ReplaceStackTrace", typeof(ReplaceStackTraceBehavior), "Replace StackTrace")
+            : base(
+                stepId: "ReplaceStackTrace",
+                behavior: typeof(ReplaceStackTraceBehavior),
+                description: "Replace StackTrace")
         {
             InsertAfter("AddExceptionHeaders");
         }
