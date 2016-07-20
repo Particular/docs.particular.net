@@ -37,7 +37,8 @@ class Program
         transport.DefaultSchema("sender");
         transport.UseSpecificSchema(queueName =>
         {
-            if (queueName.Equals("error", StringComparison.OrdinalIgnoreCase) || queueName.Equals("audit", StringComparison.OrdinalIgnoreCase))
+            if (queueName.Equals("error", StringComparison.OrdinalIgnoreCase) ||
+                queueName.Equals("audit", StringComparison.OrdinalIgnoreCase))
             {
                 return "dbo";
             }
@@ -45,7 +46,6 @@ class Program
         });
 
         endpointConfiguration.UsePersistence<NHibernatePersistence>();
-
         endpointConfiguration.EnableOutbox();
 
         #endregion

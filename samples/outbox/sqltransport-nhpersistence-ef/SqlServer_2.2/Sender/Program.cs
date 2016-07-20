@@ -14,11 +14,12 @@ class Program
         var random = new Random();
 
         var hibernateConfig = new Configuration();
-        hibernateConfig.DataBaseIntegration(x =>
-        {
-            x.ConnectionStringName = "NServiceBus/Persistence";
-            x.Dialect<MsSql2012Dialect>();
-        });
+        hibernateConfig.DataBaseIntegration(
+            dataBaseIntegration: configurationProperties =>
+            {
+                configurationProperties.ConnectionStringName = "NServiceBus/Persistence";
+                configurationProperties.Dialect<MsSql2012Dialect>();
+            });
 
         hibernateConfig.SetProperty("default_schema", "sender");
 
@@ -29,8 +30,9 @@ class Program
         #region SenderConfiguration
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        transport.UseSpecificConnectionInformation(
-            EndpointConnectionInfo.For("Samples.SQLNHibernateOutboxEF.Receiver").UseSchema("receiver"));
+        var connectionInfo = EndpointConnectionInfo.For("Samples.SQLNHibernateOutboxEF.Receiver")
+            .UseSchema("receiver");
+        transport.UseSpecificConnectionInformation(connectionInfo);
         transport.DefaultSchema("sender");
 
         busConfiguration.UsePersistence<NHibernatePersistence>();

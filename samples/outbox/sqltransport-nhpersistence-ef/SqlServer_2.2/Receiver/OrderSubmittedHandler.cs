@@ -22,9 +22,11 @@ public class OrderSubmittedHandler :
 
         #region StoreUserData
 
-        using (var receiverDataContext = new ReceiverDataContext(storageContext.Connection))
+        var dbConnection = storageContext.Connection;
+        using (var receiverDataContext = new ReceiverDataContext(dbConnection))
         {
-            receiverDataContext.Database.UseTransaction((DbTransaction) storageContext.DatabaseTransaction);
+            var dbTransaction = (DbTransaction) storageContext.DatabaseTransaction;
+            receiverDataContext.Database.UseTransaction(dbTransaction);
             var order = new Order
             {
                 OrderId = message.OrderId,

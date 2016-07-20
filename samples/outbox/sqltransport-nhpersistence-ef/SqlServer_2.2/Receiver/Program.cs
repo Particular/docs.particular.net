@@ -16,11 +16,12 @@ class Program
         }
 
         var hibernateConfig = new Configuration();
-        hibernateConfig.DataBaseIntegration(x =>
-        {
-            x.ConnectionStringName = "NServiceBus/Persistence";
-            x.Dialect<MsSql2012Dialect>();
-        });
+        hibernateConfig.DataBaseIntegration(
+            dataBaseIntegration: configurationProperties =>
+            {
+                configurationProperties.ConnectionStringName = "NServiceBus/Persistence";
+                configurationProperties.Dialect<MsSql2012Dialect>();
+            });
 
         hibernateConfig.SetProperty("default_schema", "receiver");
 
@@ -31,8 +32,9 @@ class Program
         #region ReceiverConfiguration
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        transport.UseSpecificConnectionInformation(
-            EndpointConnectionInfo.For("Samples.SQLNHibernateOutboxEF.Sender").UseSchema("sender"));
+        var connectionInfo = EndpointConnectionInfo.For("Samples.SQLNHibernateOutboxEF.Sender")
+            .UseSchema("sender");
+        transport.UseSpecificConnectionInformation(connectionInfo);
         transport.DefaultSchema("receiver");
 
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();

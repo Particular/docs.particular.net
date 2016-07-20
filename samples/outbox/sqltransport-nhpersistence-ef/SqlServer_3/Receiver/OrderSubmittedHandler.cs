@@ -17,7 +17,8 @@ public class OrderSubmittedHandler :
 
         var storageContext = context.SynchronizedStorageSession.Session();
 
-        using (var receiverDataContext = new ReceiverDataContext(storageContext.Connection))
+        var dbConnection = storageContext.Connection;
+        using (var receiverDataContext = new ReceiverDataContext(dbConnection))
         {
             var dbTransaction = ExtractTransactionFromSession(storageContext);
 
@@ -48,12 +49,10 @@ public class OrderSubmittedHandler :
 
     static DbTransaction ExtractTransactionFromSession(ISession storageContext)
     {
-        DbTransaction dbTransaction;
         using (var helper = storageContext.Connection.CreateCommand())
         {
             storageContext.Transaction.Enlist(helper);
-            dbTransaction = (DbTransaction) helper.Transaction;
+            return (DbTransaction) helper.Transaction;
         }
-        return dbTransaction;
     }
 }

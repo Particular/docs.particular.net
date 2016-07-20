@@ -1,7 +1,6 @@
 using System.Data.Entity;
 using System.Data;
 using System.Data.Common;
-using System.Data.Entity.ModelConfiguration;
 
 public class ReceiverDataContext :
     DbContext
@@ -23,7 +22,7 @@ public class ReceiverDataContext :
     {
         base.OnModelCreating(modelBuilder);
 
-        EntityTypeConfiguration<Order> orders = modelBuilder.Entity<Order>();
+        var orders = modelBuilder.Entity<Order>();
         orders.ToTable("Orders");
         orders.HasKey(x => x.OrderId);
         orders.Property(x => x.Value);

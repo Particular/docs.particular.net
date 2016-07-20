@@ -19,17 +19,29 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-#region addFilterBehaviors
+        #region addFilterBehaviors
+
         endpointConfiguration.AuditProcessedMessagesTo("Samples.AuditFilter.Audit");
 
         var pipeline = endpointConfiguration.Pipeline;
-        pipeline.Register("AuditFilter.Filter", typeof(AuditFilterBehavior), "prevents marked messages from being forwarded to the audit queue");
-        pipeline.Register("AuditFilter.Rules", typeof(AuditRulesBehavior), "checks whether a message should be forwarded to the audit queue");
-        pipeline.Register("AuditFilter.Context", typeof(AuditFilterContextBehavior), "adds a shared state for the rules and filter behaviors");
+        pipeline.Register(
+            stepId: "AuditFilter.Filter",
+            behavior: typeof(AuditFilterBehavior),
+            description: "prevents marked messages from being forwarded to the audit queue");
+        pipeline.Register(
+            stepId: "AuditFilter.Rules",
+            behavior: typeof(AuditRulesBehavior),
+            description: "checks whether a message should be forwarded to the audit queue");
+        pipeline.Register(
+            stepId: "AuditFilter.Context",
+            behavior: typeof(AuditFilterContextBehavior),
+            description: "adds a shared state for the rules and filter behaviors");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-#endregion
+
+        #endregion
+
         try
         {
             var auditThisMessage = new AuditThisMessage
