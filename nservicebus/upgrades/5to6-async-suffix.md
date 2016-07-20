@@ -1,14 +1,114 @@
 ---
 title: Async Suffix
-summary: Describes reasons behind not adding the async suffix to all the methods
+summary: Reasoning for no Async suffix to Task based APIs
+related: 
+ - nservicebus/upgrades/5to6
 ---
 
-Starting with NServiceBus Version 6, the public API is fully Async, which includes the `Bus` methods, the message pipeline, message mutators etc. NServiceBus Version 6 has been written to utilize the .NET Async API. All of the operations such as `Send`, `Publish`, `Reply` are 100% async and awaitable. Although the typical Microsoft convention is to name all methods that return a `Task` with an `async` suffix, it is not relevant for the following reasons:
+## No Async Suffix for NServiceBus APIs
 
-* In the Microsoft API, there is a mix of synchronous and asynchronous methods, and it becomes necessary to differentiate the two. Therefore adding the `async` suffix becomes a necessity. However, in NServiceBus all of the operations are fully async, and there are no synchronous counterparts. 
+Starting with NServiceBus Version 6, all APIs that contain potentially IO blocking code are [Async](https://msdn.microsoft.com/en-us/library/mt674882.aspx). Some examples include:
 
-* Every operation that participates in the sending a message or receiving a message interacts with IO-bound resources like persisters and returns a Task. Adding the `async` postfix to all these operations becomes redundant.
- 
-* [Changing the operations to be async](/nservicebus/upgrades/5to6-migrate-existing-handlers.md) in itself is a major breaking change which touches every API in NServiceBus. Changing all the method names to add the `async` suffix adds more work when trying to migrate to Version 6, for example, all the renames that would result in changing `Send` to `SendAsync`, `SendLocal` to `SendLocalAsync`, etc. 
+ * Endpoint messaging methods such as [Send and Publish](/nservicebus/upgrades/5to6.md#message-handlers-bus-send-and-receive)
+ * [Sagas and Message Handlers](/nservicebus/upgrades/5to6.md#message-handlers)
+ * [Message pipeline extension points](/nservicebus/upgrades/5to6.md#pipeline-customization).
+ * [Endpoint Start and Stop](/nservicebus/upgrades/5to6.md#endpoint-start-and-stop).
+ * [Message mutators](/nservicebus/upgrades/5to6.md#pipeline-customization-message-mutators).
 
-* NServiceBus API is not alone in taking this approach. Several other popular OSS libraries like Octokit are also doing this.
+Note than none of these APIs have the *Async* suffix as recommended by the Microsoft convention: 
+
+> The name of an async method, by convention, ends with an *Async* suffix.
+
+[Asynchronous Programming with async and await](https://msdn.microsoft.com/en-us/library/mt674882.aspx).
+
+The decisions not to adopt an *Async* suffix is intentional and has been made for several reasons
+
+
+### No requirement for conflicting overloads
+
+The *Async* suffix convention was adopted by necessity in .NET CLR since async APIs were added in a non-breaking version. Since .NET cannot have overloads that differ only by response type, the new async APIs needed to have a different name, hence the *Async* was used.
+
+In comparison async is added to NServiceBus in Version 6, and as this is a major (breaking API) version there is requirement to maintain both the sync and async versions. 
+
+
+### The noise caused in API usage
+
+There is already non-trivial verbosity that is added to a codebase when async is adopted. For example `.ConfigureAwait()` additions, `async` and `await` keywords, and `Task<T>` return values.
+
+
+### No other NServiceBus API follow Hungarian notation
+
+No other NServiceBus API follow [Hungarian notation](https://en.wikipedia.org/wiki/Hungarian_notation). For example: 
+
+ * Methods are not suffixed with the name of the type they return.
+ * Classes are not suffixed with "Instance" or "Static".
+ * Members are not suffixed [Access modifier names](https://msdn.microsoft.com/en-au/library/ms173121.aspx) such as "Protected" or "Public".
+
+All these things can be inferred by the IDE and the compiler and appropriate IntelliSense and compiler messages are provided to the developer.
+
+So in deciding on the adoption of the *Async* suffix it was necessary to choose between consistency with certain external .NET APIs or naming consistence within NServiceBus.
+
+See also: [Hungarian notation Disadvantages](https://en.wikipedia.org/wiki/Hungarian_notation#Disadvantages)
+
+
+### Async APIs should be identifiable in code
+
+One of the arguments for the *Async* suffix is that all async should be clearly identifiable in code so as to prevent miss-use of that API. However the Compiler is very efficient at identifying incorrect async member usage and providing appropriate feedback to the developer. Some possible miss-uses are listed below with the associated compiler information.
+
+Given an async API being used:
+
+snippet: ServiceWithAsync
+
+
+#### Missing await
+
+When a void method calls an async method but neglects to await that method.
+
+snippet: VoidMethodMissingAwait
+
+Results in [Compiler Warning CS4014](https://msdn.microsoft.com/en-us/library/hh873131.aspx)
+
+
+#### Missing return task
+
+When a Task method calls an async method but neglects to await that method.
+
+snippet: TaskMethodMissingAwait
+
+Results in [Compiler Error CS0161](https://msdn.microsoft.com/en-us/library/87cz4k9t.aspx)
+
+
+#### Async method with missing await
+
+When a async Task method calls an async method but neglects to await that method.
+
+snippet: AsyncMethodMissingAwait
+
+Results in [Compiler Warning CS4014](https://msdn.microsoft.com/en-us/library/hh873131.aspx)
+
+
+#### Missing a single await
+
+When a async Task method awaits one async method but neglects to await another.
+
+snippet: AsyncMethodMissingOneAwait
+
+Results in [Compiler Warning CS4014](https://msdn.microsoft.com/en-us/library/hh873131.aspx)
+
+
+#### Treat Warnings as errors
+
+Note that in several of the above examples are warnings and not errors. As such it is necessary to either [Treat all Warnings as Errors](https://msdn.microsoft.com/en-us/library/kb4wyys2.aspx#Anchor_3) or nominate specific warnings to be treated as errors via [Errors and Warnings](https://msdn.microsoft.com/en-us/library/kb4wyys2.aspx#Anchor_2).
+
+
+### Async not necessary when reading code
+
+The above examples show how it is difficult to incorrectly use async APIs appropriate. As such async API usage is clearly identifiable in code by the associated `await`, `.ConfigureAwait()` usage that is required.
+
+
+## Other libraries with no Async suffix.
+
+Other libraries are also taking the same approach. For example:
+
+ * [Octokit - The GitHub .net API](https://github.com/octokit/octokit.net)
+ * [MassTransit](http://masstransit-project.com/)
