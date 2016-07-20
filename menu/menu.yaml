@@ -142,10 +142,11 @@
       Title: "Recoverability"
       Url: "nservicebus/recoverability"
       Articles:
-        - "nservicebus/recoverability/configure-error-queue
+        - "nservicebus/recoverability/configure-error-queue"
+        - "nservicebus/recoverability/configure-immediate-retries"
+        - "nservicebus/recoverability/configure-delayed-retries"
         - "nservicebus/recoverability/critical-exception-for-timeout-outages"
         - "nservicebus/recoverability/exception-caveats"
-        - "nservicebus/recoverability/automatic-retries"
         - "nservicebus/recoverability/subscribing-to-error-notifications"
     -
       Title: "Pipeline"
