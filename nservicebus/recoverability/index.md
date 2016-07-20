@@ -23,7 +23,7 @@ NServiceBus has a built-in error handling capability called Recoverability. Reco
 
 An oversimplified mental model for Recoverability could be thought of a try / catch block surrounding the message handling infrastructure wrapped in a while loop like the following pseudo-code
 
-```
+```cs
 Exception exception = null;
 do
 {
