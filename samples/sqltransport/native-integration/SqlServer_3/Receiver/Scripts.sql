@@ -1,7 +1,7 @@
 
 -- startcode SendFromTSQL
 -- TSql that can be pasted into Sql Server Query analyzer to send straight from the DB
-INSERT INTO [Samples.SqlServer.NativeIntegration] ([Id],[Recoverable],[Headers],[Body]) 
+INSERT INTO [Samples.SqlServer.NativeIntegration] ([Id],[Recoverable],[Headers],[Body])
 VALUES	(CONVERT(UNIQUEIDENTIFIER, HASHBYTES('MD5','MyUniqueId')),
 		'true',
 		'',
@@ -20,14 +20,14 @@ GO
 
 -- startcode CreateTrigger
 -- Create a trigger to push a message out for each new order
-CREATE TRIGGER [dbo].[OrderAcceptedTrigger] 
+CREATE TRIGGER [dbo].[OrderAcceptedTrigger]
 	ON  [dbo].[Orders]
 	AFTER INSERT
-AS 
+AS
 BEGIN
 	SET NOCOUNT ON;
 
-	INSERT INTO [Samples.SqlServer.NativeIntegration] ([Id],[Recoverable],[Headers],[Body]) 
+	INSERT INTO [Samples.SqlServer.NativeIntegration] ([Id],[Recoverable],[Headers],[Body])
 	SELECT CONVERT(UNIQUEIDENTIFIER, HASHBYTES('MD5',CONVERT(VARCHAR(255),i.Id))) as Id,
 	'true' as Recoverable,
 	'' as Headers,
@@ -36,7 +36,3 @@ BEGIN
 END
 GO
 -- endcode
-
-
-
-

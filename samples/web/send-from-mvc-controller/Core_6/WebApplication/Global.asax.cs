@@ -25,7 +25,11 @@ public class MvcApplication :
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MvcInjection.WebApplication");
         // instruct NServiceBus to use a custom AutoFac configuration
-        endpointConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+        endpointConfiguration.UseContainer<AutofacBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingLifetimeScope(container);
+            });
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
@@ -61,6 +65,6 @@ public class MvcApplication :
                 action = "Index",
                 id = UrlParameter.Optional
             }
-            );
+        );
     }
 }

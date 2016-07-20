@@ -26,7 +26,7 @@ class AutomaticRoutingFeature :
         var connectionString = settings.Get<string>("NServiceBus.AutomaticRouting.ConnectionString");
         var messageTypesPublished = settings.Get<Type[]>("NServiceBus.AutomaticRouting.PublishedTypes");
 
-#region Feature
+        #region Feature
 
         //Create the infrastructure
         var dataAccess = new SqlDataAccess(uniqueKey, connectionString);
@@ -34,34 +34,49 @@ class AutomaticRoutingFeature :
         context.RegisterStartupTask(communicator);
 
         //Register the routing info publisher
-        context.RegisterStartupTask(b =>
+        context.RegisterStartupTask(builder =>
         {
-            var messageTypesHandled = GetHandledMessages(b.Build<MessageHandlerRegistry>(), conventions);
-            return new RoutingInfoPublisher(communicator, messageTypesHandled, messageTypesPublished, settings,
-                TimeSpan.FromSeconds(5));
+            var handlerRegistry = builder.Build<MessageHandlerRegistry>();
+            var messageTypesHandled = GetHandledMessages(handlerRegistry, conventions);
+            return new RoutingInfoPublisher(
+                dataBackplane: communicator,
+                hanledMessageTypes: messageTypesHandled,
+                publishedMessageTypes: messageTypesPublished,
+                settings: settings,
+                heartbeatPeriod: TimeSpan.FromSeconds(5));
         });
 
         //Register the routing info subscriber
-        context.RegisterStartupTask(b =>
+        context.RegisterStartupTask(builder =>
         {
-            var messageTypesHandled = GetHandledMessages(b.Build<MessageHandlerRegistry>(), conventions);
-            var subscriber = new RoutingInfoSubscriber(unicastRoutingTable, endpointInstances, messageTypesHandled,
-                publishers, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(20));
+            var handlerRegistry = builder.Build<MessageHandlerRegistry>();
+            var messageTypesHandled = GetHandledMessages(handlerRegistry, conventions);
+            var subscriber = new RoutingInfoSubscriber(
+                routingTable: unicastRoutingTable,
+                endpointInstances: endpointInstances,
+                messageTypesHandledByThisEndpoint: messageTypesHandled,
+                publishers: publishers,
+                sweepPeriod: TimeSpan.FromSeconds(5),
+                heartbeatTimeout: TimeSpan.FromSeconds(20));
             communicator.Changed = subscriber.OnChanged;
             communicator.Removed = subscriber.OnRemoved;
             return subscriber;
         });
 
-        context.Pipeline.Register("VerifyAdvertisedBehavior", new VerifyAdvertisedBehavior(messageTypesPublished),
-            "Verifies if all published types has been advertised.");
+        context.Pipeline.Register(
+            stepId: "VerifyAdvertisedBehavior",
+            behavior: new VerifyAdvertisedBehavior(messageTypesPublished),
+            description: "Verifies if all published types has been advertised.");
 
         #endregion
     }
 
     static List<Type> GetHandledMessages(MessageHandlerRegistry handlerRegistry, Conventions conventions)
     {
-        return handlerRegistry.GetMessageTypes() //get all potential messages
-            .Where(t => !conventions.IsInSystemConventionList(t)) //never auto-route system messages
+        //get all potential messages
+        return handlerRegistry.GetMessageTypes()
+            //never auto-route system messages
+            .Where(t => !conventions.IsInSystemConventionList(t))
             .ToList();
     }
 }

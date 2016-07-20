@@ -28,10 +28,17 @@ class Program
         transport.EnableLegacyMultiInstanceMode(ConnectionProvider.GetConnecton);
 
         var pipeline = endpointConfiguration.Pipeline;
-        pipeline.Register("Forward", new ForwardBehavior(), "Forwards messages to destinations.");
+        pipeline.Register(
+            stepId: "Forward",
+            behavior: new ForwardBehavior(),
+            description: "Forwards messages to destinations.");
         pipeline.Register("Store",
-            b => new SendThroughLocalQueueRoutingToDispatchConnector(b.Build<ReadOnlySettings>().LocalAddress()),
-            "Send messages through local endpoint.");
+            factoryMethod: builder =>
+            {
+                var localAddress = builder.Build<ReadOnlySettings>().LocalAddress();
+                return new SendThroughLocalQueueRoutingToDispatchConnector(localAddress);
+            },
+            description: "Send messages through local endpoint.");
 
         #endregion
 
@@ -66,5 +73,4 @@ class Program
                 .ConfigureAwait(false);
         }
     }
-
 }

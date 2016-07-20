@@ -284,9 +284,11 @@ class RoutingInfoSubscriber :
     PublisherAddress FindPublisher(Type eventType)
     {
         string publisherEndpoint;
-        return publisherMap.TryGetValue(eventType, out publisherEndpoint)
-            ? new PublisherAddress(new EndpointName(publisherEndpoint))
-            : null;
+        if (!publisherMap.TryGetValue(eventType, out publisherEndpoint))
+        {
+            return null;
+        }
+        return new PublisherAddress(new EndpointName(publisherEndpoint));
     }
     #endregion
 
@@ -296,12 +298,14 @@ class RoutingInfoSubscriber :
         foreach (var type in enclosedMessageTypes)
         {
             HashSet<string> destinations;
-            if (endpointMap.TryGetValue(type, out destinations))
+            if (!endpointMap.TryGetValue(type, out destinations))
             {
-                foreach (var endpointName in destinations)
-                {
-                    yield return new UnicastRoute(new EndpointName(endpointName));
-                }
+                continue;
+            }
+            foreach (var destination in destinations)
+            {
+                var endpointName = new EndpointName(destination);
+                yield return new UnicastRoute(endpointName);
             }
         }
     }
@@ -320,7 +324,8 @@ class RoutingInfoSubscriber :
         {
             return Enumerable.Empty<EndpointInstance>();
         }
-        var activeInstances = instances.Where(i => instanceInformation[i].State == InstanceState.Active).ToArray();
+        var activeInstances = instances.Where(i => instanceInformation[i].State == InstanceState.Active)
+            .ToArray();
         if (activeInstances.Any())
         {
             return activeInstances;

@@ -14,7 +14,8 @@ public class HandlerTimerFeature :
 
     protected override void Setup(FeatureConfigurationContext context)
     {
-        context.Pipeline.Register<Registration>();
+        var pipeline = context.Pipeline;
+        pipeline.Register<Registration>();
     }
 
     class Registration :

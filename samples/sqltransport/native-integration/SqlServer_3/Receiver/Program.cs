@@ -77,10 +77,11 @@ class Program
             {
                 command.CommandType = CommandType.Text;
 
-                command.Parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
-                command.Parameters.Add("Headers", SqlDbType.VarChar).Value = "";
-                command.Parameters.Add("Body", SqlDbType.VarBinary).Value = Encoding.UTF8.GetBytes(message);
-                command.Parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
+                var parameters = command.Parameters;
+                parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
+                parameters.Add("Headers", SqlDbType.VarChar).Value = "";
+                parameters.Add("Body", SqlDbType.VarBinary).Value = Encoding.UTF8.GetBytes(message);
+                parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
 
                 await command.ExecuteNonQueryAsync()
                     .ConfigureAwait(false);

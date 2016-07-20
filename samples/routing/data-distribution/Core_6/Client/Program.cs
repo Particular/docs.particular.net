@@ -19,26 +19,9 @@ class Program
 
         const string endpointName = "Samples.DataDistribution.Client";
 
-        #region MainConfig
-        var mainConfig = new EndpointConfiguration(endpointName);
+        var mainConfig = MainConfig(endpointName);
 
-        mainConfig.ExcludeTypes(AllTypes.Where(t => t.Namespace == "DataDistribution").ToArray());
-
-        var mainRouting = mainConfig.UseTransport<MsmqTransport>().UnicastRouting();
-        mainRouting.RouteToEndpoint(typeof(PlaceOrder), "Samples.DataDistribution.Server");
-        mainRouting.AddPublisher("Samples.DataDistribution.Server", typeof(OrderAccepted));
-        #endregion
-
-        ApplyDefaults(mainConfig);
-
-        #region DistributionConfig
-        var distributionConfig = new EndpointConfiguration($"{endpointName}.{GetUniqueDataDistributionId()}");
-        distributionConfig.ExcludeTypes(AllTypes.Where(t => t.Namespace != "DataDistribution").ToArray());
-        var distributionRouting = distributionConfig.UseTransport<MsmqTransport>().UnicastRouting();
-        distributionRouting.AddPublisher("Samples.DataDistribution.Server", typeof(OrderAccepted));
-        #endregion
-
-        ApplyDefaults(distributionConfig);
+        var distributionConfig = DistributionConfig(endpointName);
 
         var mainEndpoint = await Endpoint.Start(mainConfig)
             .ConfigureAwait(false);
@@ -77,14 +60,61 @@ class Program
         }
     }
 
+    static EndpointConfiguration DistributionConfig(string endpointName)
+    {
+        #region DistributionConfig
+
+        var distributionEndpointName = $"{endpointName}.{GetUniqueDataDistributionId()}";
+        var distributionConfig = new EndpointConfiguration(distributionEndpointName);
+        var typesToExclude = AllTypes
+            .Where(t => t.Namespace != "DataDistribution")
+            .ToArray();
+        distributionConfig.ExcludeTypes(typesToExclude);
+        var transport = distributionConfig.UseTransport<MsmqTransport>();
+        var distributionRouting = transport.UnicastRouting();
+        distributionRouting.AddPublisher(
+            publisherEndpoint: "Samples.DataDistribution.Server",
+            eventType: typeof(OrderAccepted));
+
+        #endregion
+
+        ApplyDefaults(distributionConfig);
+        return distributionConfig;
+    }
+
+    static EndpointConfiguration MainConfig(string endpointName)
+    {
+        #region MainConfig
+
+        var mainConfig = new EndpointConfiguration(endpointName);
+
+        var typesToExclude = AllTypes
+            .Where(t => t.Namespace == "DataDistribution")
+            .ToArray();
+        mainConfig.ExcludeTypes(typesToExclude);
+        var transport = mainConfig.UseTransport<MsmqTransport>();
+        var mainRouting = transport.UnicastRouting();
+        mainRouting.RouteToEndpoint(
+            messageType: typeof(PlaceOrder),
+            destination: "Samples.DataDistribution.Server");
+        mainRouting.AddPublisher(
+            publisherEndpoint: "Samples.DataDistribution.Server",
+            eventType: typeof(OrderAccepted));
+
+        #endregion
+
+        ApplyDefaults(mainConfig);
+        return mainConfig;
+    }
+
     static Type[] AllTypes => typeof(Program).Assembly.GetTypes();
 
-    static void ApplyDefaults(EndpointConfiguration mainConfiguration)
+    static void ApplyDefaults(EndpointConfiguration endpointConfiguration)
     {
-        mainConfiguration.UseSerialization<JsonSerializer>();
-        mainConfiguration.UsePersistence<InMemoryPersistence>();
-        mainConfiguration.EnableInstallers();
-        mainConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
     }
 
     static string GetUniqueDataDistributionId()

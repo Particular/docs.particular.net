@@ -16,8 +16,9 @@ class Program
 
         busConfiguration.UseTransport<SqlServerTransport>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.Pipeline.Register<ForwardBehavior.Registration>();
-        busConfiguration.Pipeline.Register<SendThroughLocalQueueBehavior.Registration>();
+        var pipeline = busConfiguration.Pipeline;
+        pipeline.Register<ForwardBehavior.Registration>();
+        pipeline.Register<SendThroughLocalQueueBehavior.Registration>();
 
         #endregion
 

@@ -30,8 +30,9 @@ BEGIN
 END
 ", connection, transaction))
                 {
-                    command.Parameters.AddWithValue("Publisher", publisher).DbType = DbType.AnsiString;
-                    command.Parameters.AddWithValue("Value", data).DbType = DbType.String;
+                    var parameters = command.Parameters;
+                    parameters.AddWithValue("Publisher", publisher).DbType = DbType.AnsiString;
+                    parameters.AddWithValue("Value", data).DbType = DbType.String;
                     await command.ExecuteNonQueryAsync()
                         .ConfigureAwait(false);
                 }
@@ -55,7 +56,8 @@ SELECT [Publisher], [Value] FROM [Data] WHERE [Publisher] <> @Publisher
                     command.Parameters.AddWithValue("Publisher", publisher).DbType = DbType.AnsiString;
 
                     var results = new List<Entry>();
-                    using (var reader = await command.ExecuteReaderAsync().ConfigureAwait(false))
+                    using (var reader = await command.ExecuteReaderAsync()
+                        .ConfigureAwait(false))
                     {
                         while (await reader.ReadAsync()
                             .ConfigureAwait(false))

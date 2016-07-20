@@ -44,12 +44,13 @@ public class ForwardBehavior :
         RegisterStep
     {
         public Registration()
-            : base("Forward", typeof(ForwardBehavior), "Forwards the message to the destination.")
+            : base(
+                stepId: "Forward",
+                behavior: typeof(ForwardBehavior),
+                description: "Forwards the message to the destination.")
         {
             InsertBefore(WellKnownStep.LoadHandlers);
             InsertAfter(WellKnownStep.MutateIncomingMessages);
         }
     }
-
-
 }

@@ -12,8 +12,9 @@ public class HeaderFeature :
 
     protected override void Setup(FeatureConfigurationContext context)
     {
-        context.Pipeline.Register<IncomingHeaderRegistration>();
-        context.Pipeline.Register<OutgoingHeaderRegistration>();
+        var pipeline = context.Pipeline;
+        pipeline.Register<IncomingHeaderRegistration>();
+        pipeline.Register<OutgoingHeaderRegistration>();
     }
 }
 

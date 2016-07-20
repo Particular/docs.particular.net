@@ -49,7 +49,11 @@ public class MvcApplication :
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Mvc.WebApplication");
         busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+        busConfiguration.UseContainer<AutofacBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingLifetimeScope(container);
+            });
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 

@@ -50,7 +50,11 @@ public class MvcApplication :
         scaleOut.InstanceDiscriminator("1");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+        endpointConfiguration.UseContainer<AutofacBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingLifetimeScope(container);
+            });
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
 
