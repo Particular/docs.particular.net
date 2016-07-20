@@ -2,7 +2,8 @@
 using Shared;
 using NServiceBus;
 
-// Bootstrapper that facilitates testing by publishing an event every time Enter is pressed
+// Bootstrapper that facilitates testing by publishing
+// an event every time Enter is pressed
 public class PublishEvent :
     IWantToRunWhenBusStartsAndStops
 {

@@ -16,7 +16,10 @@ public class MutateOutgoingMessages :
         var incomingContext = bus.CurrentMessageContext;
         var incomingMessageId = incomingContext?.Headers["NServiceBus.MessageId"];
 
-        bus.SetMessageHeader(message, "MutateOutgoingMessages", "ValueMutateOutgoingMessages");
+        bus.SetMessageHeader(
+            msg: message,
+            key: "MutateOutgoingMessages",
+            value: "ValueMutateOutgoingMessages");
         return message;
     }
 }

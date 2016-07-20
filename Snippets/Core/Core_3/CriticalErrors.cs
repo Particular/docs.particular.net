@@ -32,12 +32,12 @@ namespace Core3.Host
             log.Fatal("CRITICAL Error");
 
             // To leave the process active, dispose the bus.
-            // Note that when the bus is disposed sending messages will throw with an ObjectDisposedException.
+            // When the bus is disposed sending messages will throw an ObjectDisposedException.
             ((IDisposable)bus).Dispose();
 
             // To kill the process, raise a fail fast error as shown below.
-            //string failMessage = string.Format("Critical error shutting down:'{0}'.", errorMessage);
-            //Environment.FailFast("Fatal bus exception");
+            // var failMessage = "Critical error shutting.";
+            // Environment.FailFast(failMessage);
         }
 
         #endregion
@@ -62,8 +62,8 @@ namespace Core3.Host
             //https://github.com/Particular/NServiceBus/blob/support-3.3/src/hosting/NServiceBus.Hosting.Windows/WindowsHost.cs
 
             #region DefaultHostCriticalErrorAction
-
-            Thread.Sleep(10000); // so that user can see on their screen the problem
+            // so that user can see on their screen the problem
+            Thread.Sleep(10000);
             Process.GetCurrentProcess().Kill();
 
             #endregion

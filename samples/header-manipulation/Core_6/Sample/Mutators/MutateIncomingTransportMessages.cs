@@ -7,8 +7,8 @@ public class MutateIncomingTransportMessages :
 {
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
-        context.Headers
-            .Add("MutateIncomingTransportMessages", "ValueMutateIncomingTransportMessages");
+        var headers = context.Headers;
+        headers.Add("MutateIncomingTransportMessages", "ValueMutateIncomingTransportMessages");
         return Task.FromResult(0);
     }
 }

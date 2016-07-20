@@ -9,7 +9,8 @@ class OutgoingHeaderBehavior :
 {
     public override Task Invoke(IOutgoingPhysicalMessageContext context, Func<Task> next)
     {
-        context.Headers["OutgoingHeaderBehavior"] = "ValueOutgoingHeaderBehavior";
+        var headers = context.Headers;
+        headers["OutgoingHeaderBehavior"] = "ValueOutgoingHeaderBehavior";
         return next();
     }
 }

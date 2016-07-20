@@ -16,8 +16,8 @@ public class PriceUpdatedHandler :
 
     public void Handle(PriceUpdated message)
     {
-        var messageHeader = bus.GetMessageHeader(message, Headers.OriginatingSite);
-        log.Info($"Price update for product: {message.ProductId} received. Going to reply over channel: {messageHeader}");
+        var header = bus.GetMessageHeader(message, Headers.OriginatingSite);
+        log.Info($"Price update for product: {message.ProductId} received. Going to reply over channel: {header}");
 
         var updateAcknowledged = new PriceUpdateAcknowledged
         {

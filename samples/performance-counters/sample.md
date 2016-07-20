@@ -1,7 +1,7 @@
 ---
 title: Performance Counter Usage
 summary: Using the built in Performance Counters.
-reviewed: 2016-03-21
+reviewed: 2016-07-20
 component: Core
 tags:
 - Performance Counters
@@ -102,7 +102,7 @@ if (sleepTime%2 != 0)
 {
     throw new Exception();
 }
-logger.InfoFormat("Hello from MyHandler. Slept for {0}ms", sleepTime);
+log.Info($"Hello from MyHandler. Slept for {sleepTime}ms");
 ```
 
 Run the end point and send some messages and monitor the results of all those performance counters.

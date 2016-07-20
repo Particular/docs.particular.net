@@ -13,7 +13,8 @@ public class MyHandler :
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         log.Info("Hello from MyHandler");
-        foreach (var line in context.MessageHeaders.OrderBy(x => x.Key)
+        var headers = context.MessageHeaders;
+        foreach (var line in headers.OrderBy(x => x.Key)
             .Select(x => $"Key={x.Key}, Value={x.Value}"))
         {
             log.Info(line);

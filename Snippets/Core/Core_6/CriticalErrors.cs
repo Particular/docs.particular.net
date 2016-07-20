@@ -26,9 +26,10 @@ namespace Core6
             // To leave the process active, stop the endpoint.
             return context.Stop();
 
-            // To kill the process, await the above, then raise a fail fast error as shown below.
-            //string failMessage = string.Format("Critical error shutting down:'{0}'.", context.Error);
-            //Environment.FailFast(failMessage, context.Exception);
+            // To kill the process, await the above,
+            // then raise a fail fast error as shown below.
+            // var failMessage = $"Critical error shutting down:'{context.Error}'.";
+            // Environment.FailFast(failMessage, context.Exception);
         }
 
         #endregion
@@ -38,7 +39,8 @@ namespace Core6
         {
             #region DefaultCriticalErrorActionLogging
 
-            LogManager.GetLogger("NServiceBus").Fatal(errorMessage, exception);
+            var logger = LogManager.GetLogger("NServiceBus");
+            logger.Fatal(errorMessage, exception);
 
             #endregion
         }
@@ -76,7 +78,7 @@ namespace Core6
         {
             #region InvokeCriticalError
 
-            // 'criticalError' is an instance of the NServiceBus.CriticalError class
+            // 'criticalError' is an instance of NServiceBus.CriticalError
             // This instance can be resolved from the container.
             criticalError.Raise(errorMessage, exception);
 

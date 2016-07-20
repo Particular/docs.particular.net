@@ -72,10 +72,9 @@ public static class QueueCreation
 
     public static async Task CreateQueue(SqlConnection connection, string schema, string queueName)
     {
-        var createQueueScript =
-            @"IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{0}].[{1}]') AND type in (N'U'))
+        var sql = $@"IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{schema}].[{queueName}]') AND type in (N'U'))
                 BEGIN
-                CREATE TABLE [{0}].[{1}](
+                CREATE TABLE [{schema}].[{queueName}](
 	                [Id] [uniqueidentifier] NOT NULL,
 	                [CorrelationId] [varchar](255),
 	                [ReplyToAddress] [varchar](255),
@@ -85,13 +84,11 @@ public static class QueueCreation
 	                [Body] [varbinary](max),
 	                [RowVersion] [bigint] IDENTITY(1,1) NOT NULL
                 ) ON [PRIMARY];
-                CREATE CLUSTERED INDEX [Index_RowVersion] ON [{0}].[{1}]
+                CREATE CLUSTERED INDEX [Index_RowVersion] ON [{schema}].[{queueName}]
                 (
 	                [RowVersion] ASC
                 ) ON [PRIMARY]
                 END";
-
-        var sql = string.Format(createQueueScript, schema, queueName);
         using (var command = new SqlCommand(sql, connection))
         {
             await command.ExecuteNonQueryAsync()

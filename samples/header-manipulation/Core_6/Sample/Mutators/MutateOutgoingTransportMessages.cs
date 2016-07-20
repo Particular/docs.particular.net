@@ -8,7 +8,8 @@ public class MutateOutgoingTransportMessages :
 {
     public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {
-        context.OutgoingHeaders["MutateOutgoingTransportMessages"] = "ValueMutateOutgoingTransportMessages";
+        var headers = context.OutgoingHeaders;
+        headers["MutateOutgoingTransportMessages"] = "ValueMutateOutgoingTransportMessages";
         return Task.FromResult(0);
     }
 }

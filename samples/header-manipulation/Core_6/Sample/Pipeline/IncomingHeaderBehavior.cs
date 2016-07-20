@@ -8,9 +8,8 @@ class IncomingHeaderBehavior :
 {
     public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
     {
-        context.Message
-            .Headers
-            .Add("IncomingHeaderBehavior", "ValueIncomingHeaderBehavior");
+        var headers = context.Message.Headers;
+        headers.Add("IncomingHeaderBehavior", "ValueIncomingHeaderBehavior");
         return next();
     }
 }

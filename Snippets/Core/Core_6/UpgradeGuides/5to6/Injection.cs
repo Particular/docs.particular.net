@@ -10,11 +10,16 @@
             #region 5to6-ExplicitProperties
 
             endpointConfiguration.RegisterComponents(c =>
-                c.ConfigureComponent(builder => new MyHandler
-                {
-                    MyIntProperty = 25,
-                    MyStringProperty = "Some string"
-                }, DependencyLifecycle.InstancePerUnitOfWork));
+                c.ConfigureComponent(
+                    componentFactory: builder =>
+                    {
+                        return new MyHandler
+                        {
+                            MyIntProperty = 25,
+                            MyStringProperty = "Some string"
+                        };
+                    },
+                    dependencyLifecycle: DependencyLifecycle.InstancePerUnitOfWork));
 
             #endregion
         }

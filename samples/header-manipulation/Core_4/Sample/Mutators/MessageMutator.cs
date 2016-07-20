@@ -16,15 +16,17 @@ public class MessageMutator :
         var incomingContext = bus.CurrentMessageContext;
         var incomingMessageId = incomingContext?.Headers["NServiceBus.MessageId"];
 
-        bus.SetMessageHeader(message, "MessageMutater_Outgoing", "ValueMessageMutater_Outgoing");
+        bus.SetMessageHeader(
+            msg: message,
+            key: "MessageMutater_Outgoing",
+            value: "ValueMessageMutater_Outgoing");
         return message;
     }
 
     public object MutateIncoming(object message)
     {
-        bus.CurrentMessageContext
-            .Headers
-            .Add("MessageMutator_Incoming", "ValueMessageMutator_Incoming");
+        var headers = bus.CurrentMessageContext.Headers;
+        headers.Add("MessageMutator_Incoming", "ValueMessageMutator_Incoming");
         return message;
     }
 }

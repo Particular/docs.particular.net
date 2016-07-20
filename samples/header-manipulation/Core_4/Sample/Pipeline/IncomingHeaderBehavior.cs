@@ -11,9 +11,8 @@ public class IncomingHeaderBehavior :
 {
     public void Invoke(ReceivePhysicalMessageContext context, Action next)
     {
-        context.PhysicalMessage
-            .Headers
-            .Add("IncomingHeaderBehavior", "ValueIncomingHeaderBehavior");
+        var headers = context.PhysicalMessage.Headers;
+        headers.Add("IncomingHeaderBehavior", "ValueIncomingHeaderBehavior");
         next();
     }
 }

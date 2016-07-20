@@ -14,7 +14,11 @@ public class SagaStateAuditFeature :
 
     protected override void Setup(FeatureConfigurationContext context)
     {
-        context.Pipeline.Register("SagaStateAudit", typeof(SagaStateAuditBehavior), "Logs Saga State");
+        var pipeline = context.Pipeline;
+        pipeline.Register(
+            stepId: "SagaStateAudit",
+            behavior: typeof(SagaStateAuditBehavior),
+            description: "Logs Saga State");
     }
 }
 

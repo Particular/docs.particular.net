@@ -18,8 +18,8 @@ public class MyHandler :
     public void Handle(MyMessage message)
     {
         log.Info("Hello from MyHandler");
-        foreach (var line in bus.CurrentMessageContext
-            .Headers.OrderBy(x => x.Key)
+        var headers = bus.CurrentMessageContext.Headers;
+        foreach (var line in headers.OrderBy(x => x.Key)
             .Select(x => $"Key={x.Key}, Value={x.Value}"))
         {
             log.Info(line);

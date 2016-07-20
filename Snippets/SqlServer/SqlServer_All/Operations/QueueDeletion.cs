@@ -53,10 +53,9 @@ public static class QueueDeletion
 
     public static async Task DeleteQueue(SqlConnection connection, string schema, string queueName)
     {
-        var sql = @"
-                IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{0}].[{1}]') AND type in (N'U'))
-                DROP TABLE [{0}].[{1}]";
-        var deleteScript = string.Format(sql, schema, queueName);
+        var deleteScript = $@"
+                IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{schema}].[{queueName}]') AND type in (N'U'))
+                DROP TABLE [{schema}].[{queueName}]";
         using (var command = new SqlCommand(deleteScript, connection))
         {
             await command.ExecuteNonQueryAsync()

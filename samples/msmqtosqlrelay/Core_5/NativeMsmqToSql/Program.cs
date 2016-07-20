@@ -9,13 +9,16 @@ using System.Messaging;
 using System.Transactions;
 using System.Xml;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 class Program
 {
     static void Main()
     {
         Console.Title = "Samples.MsmqToSqlRelay.NativeMsmqToSql";
+
         #region receive-from-msmq-using-native-messaging
+
         // The address of the queue that will be receiving messages from other MSMQ publishers
         var queuePath = @".\private$\MsmqToSqlRelay";
 
@@ -29,6 +32,7 @@ class Program
 
         // Begin the asynchronous receive operation.
         addressOfMsmqBridge.BeginReceive();
+
         #endregion
 
         Console.WriteLine($"Watching MSMQ: {queuePath} for messages. Received messages will be sent to the SqlRelay");
@@ -45,7 +49,7 @@ class Program
         using (var scope = new TransactionScope(TransactionScopeOption.Required))
         {
             // Connect to the queue.
-            var messageQueue = (MessageQueue)sender;
+            var messageQueue = (MessageQueue) sender;
 
             // End the asynchronous receive operation.
             var message = messageQueue.EndReceive(receiveCompletedEventArgs.AsyncResult);
@@ -53,22 +57,28 @@ class Program
             //Validate the message
             if (message != null)
             {
-                Console.WriteLine("Received a message in MSMQ -- Processing ...");
+                Console.WriteLine("Received a message in MSMQ - Processing");
+
                 #region read-message-and-push-to-sql
-                byte[] messageBody = ConvertStreamToByteArray(message.BodyStream);
+
+                var messageBody = ConvertStreamToByteArray(message.BodyStream);
 
                 // Serialize to dictionary
-                Dictionary<string, string> headers = ExtractHeaders(Encoding.UTF8.GetString(message.Extension).TrimEnd('\0'));
+                var headerString = Encoding.UTF8.GetString(message.Extension)
+                    .TrimEnd('\0');
+                var headers = ExtractHeaders(headerString);
 
-                // If this queue is going to be receiving messages from endpoints older than v4.0, then
-                // set the header["NServiceBus.MessageId"] to be a deterministic guid based on the Id
-                // as Sql transport expects a Guid for the MessageId and not an Id in the MSMQ format.
+                // If this queue is going to be receiving messages from endpoints
+                // older than v4.0, then set the header["NServiceBus.MessageId"]
+                // to be a deterministic guid based on the Id as Sql transport
+                // expects a Guid for the MessageId and not an Id in the MSMQ format.
 
-                // Have the necessary raw information from queue - Therefore write it to Sql.
+                // Have the necessary raw information from queue
+                // Therefore write it to Sql.
                 Console.WriteLine("Forwarding message to SQLRelay endpoint");
                 SendMessageToSql(sqlConnectionStr, sqlRelayEndpointName, messageBody, headers);
-                #endregion
 
+                #endregion
             }
             // Restart the asynchronous receive operation.
             messageQueue.BeginReceive();
@@ -81,20 +91,21 @@ class Program
 
     static Dictionary<string, string> ExtractHeaders(string headerString)
     {
-        // Deserialize the XML stream from the Extension property on the MSMQ to a dictionary of key-value pairs
+        // Deserialize the XML stream from the Extension property on the MSMQ
+        // to a dictionary of key-value pairs
         var headerSerializer = new XmlSerializer(typeof(List<HeaderInfo>));
-        object headers;
-        using (var stream = new StringReader(headerString))
-        using (var reader = XmlReader.Create(stream, new XmlReaderSettings
+        var readerSettings = new XmlReaderSettings
         {
             CheckCharacters = false
-        }))
+        };
+        using (var stream = new StringReader(headerString))
+        using (var reader = XmlReader.Create(stream, readerSettings))
         {
-            headers = headerSerializer.Deserialize(reader);
+            var headers = (List<HeaderInfo>) headerSerializer.Deserialize(reader);
+            return headers
+                .Where(pair => pair.Key != null)
+                .ToDictionary(pair => pair.Key, pair => pair.Value);
         }
-
-        return ((List<HeaderInfo>)headers).Where(pair => pair.Key != null).ToDictionary(pair => pair.Key, pair => pair.Value);
-
     }
 
     static void SendMessageToSql(string connectionString, string queue, byte[] messageBody, Dictionary<string, string> headers)
@@ -120,7 +131,7 @@ class Program
                 var parameters = command.Parameters;
                 command.CommandType = CommandType.Text;
                 parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
-                var serializeHeaders = Newtonsoft.Json.JsonConvert.SerializeObject(headers);
+                var serializeHeaders = JsonConvert.SerializeObject(headers);
                 parameters.Add("Headers", SqlDbType.VarChar).Value = serializeHeaders;
                 parameters.Add("Body", SqlDbType.VarBinary).Value = messageBody;
                 parameters.Add("Recoverable", SqlDbType.Bit).Value = true;

@@ -25,12 +25,12 @@ namespace Core4
         void OnCriticalError(string errorMessage, Exception exception)
         {
             // To leave the process active, dispose the bus.
-            // Note that when the bus is disposed sending messages will throw with an ObjectDisposedException.
+            // When the bus is disposed sending messages will throw an ObjectDisposedException.
             bus.Dispose();
 
             // To kill the process, raise a fail fast error as shown below.
-            //string failMessage = string.Format("Critical error shutting down:'{0}'.", errorMessage);
-            //Environment.FailFast(failMessage, exception);
+            // var failMessage = $"Critical error shutting down:'{errorMessage}'.";
+            // Environment.FailFast(failMessage, exception);
         }
 
         #endregion
@@ -40,8 +40,8 @@ namespace Core4
         {
             #region DefaultCriticalErrorActionLogging
 
-            LogManager.GetLogger("NServiceBus")
-                .Fatal(errorMessage, exception);
+            var logger = LogManager.GetLogger("NServiceBus");
+            logger.Fatal(errorMessage, exception);
 
             #endregion
         }

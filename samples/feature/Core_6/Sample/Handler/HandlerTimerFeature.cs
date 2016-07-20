@@ -13,7 +13,11 @@ public class HandlerTimerFeature :
 
     protected override void Setup(FeatureConfigurationContext context)
     {
-        context.Pipeline.Register("HandlerTimer", typeof(HandlerTimerBehavior), "Logs handler time");
+        var pipeline = context.Pipeline;
+        pipeline.Register(
+            stepId: "HandlerTimer",
+            behavior: typeof(HandlerTimerBehavior),
+            description: "Logs handler time");
     }
 }
 

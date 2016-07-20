@@ -13,7 +13,8 @@ public class DiagnosticsFeature :
 
     protected override void Setup(FeatureConfigurationContext context)
     {
-        context.Container.ConfigureComponent<CustomLogger>(DependencyLifecycle.SingleInstance);
+        var container = context.Container;
+        container.ConfigureComponent<CustomLogger>(DependencyLifecycle.SingleInstance);
     }
 }
 

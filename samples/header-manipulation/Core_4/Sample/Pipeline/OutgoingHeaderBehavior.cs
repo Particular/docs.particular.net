@@ -21,9 +21,8 @@ public class OutgoingHeaderBehavior :
         var incomingContext = bus.CurrentMessageContext;
         var incomingMessageId = incomingContext?.Headers["NServiceBus.MessageId"];
 
-        context.MessageToSend
-            .Headers
-            .Add("OutgoingHeaderBehavior", "ValueOutgoingHeaderBehavior");
+        var headers = context.MessageToSend.Headers;
+        headers.Add("OutgoingHeaderBehavior", "ValueOutgoingHeaderBehavior");
         next();
     }
 }

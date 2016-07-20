@@ -11,7 +11,7 @@ Function CreateQueuesForEndpoint
         [Parameter(Mandatory=$true)]
         [string] $account
     )
-	
+
 
     #main queue
     CreateQueue $endpointName $account
@@ -34,7 +34,7 @@ Function CreateQueue
         [Parameter(Mandatory=$true)]
         [string] $account
     )
-	
+
     $queuePath = '{0}\private$\{1}'-f [System.Environment]::MachineName, $queueName
 	if ([System.Messaging.MessageQueue]::Exists($queuePath))
     {

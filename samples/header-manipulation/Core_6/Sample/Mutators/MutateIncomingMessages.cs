@@ -2,15 +2,16 @@
 using NServiceBus.MessageMutator;
 
 #region mutate-incoming-messages
+
 public class MutateIncomingMessages :
     IMutateIncomingMessages
 {
     public Task MutateIncoming(MutateIncomingMessageContext context)
     {
-        context
-            .Headers
-            .Add("MutateIncomingMessages", "ValueMutateIncomingMessages");
+        var headers = context.Headers;
+        headers.Add("MutateIncomingMessages", "ValueMutateIncomingMessages");
         return Task.FromResult(0);
     }
 }
+
 #endregion

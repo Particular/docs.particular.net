@@ -9,14 +9,14 @@ public class MutateTransportMessages :
 {
     public void MutateIncoming(TransportMessage transportMessage)
     {
-        transportMessage.Headers
-            .Add("MutateTransportMessages_Incoming", "ValueMutateTransportMessages_Incoming");
+        var headers = transportMessage.Headers;
+        headers.Add("MutateTransportMessages_Incoming", "ValueMutateTransportMessages_Incoming");
     }
 
     public void MutateOutgoing(LogicalMessage logicalMessage, TransportMessage transportMessage)
     {
-        transportMessage.Headers
-            .Add("MutateTransportMessages_Outgoing", "ValueMutateTransportMessages_Outgoing");
+        var headers = transportMessage.Headers;
+        headers.Add("MutateTransportMessages_Outgoing", "ValueMutateTransportMessages_Outgoing");
     }
 }
 

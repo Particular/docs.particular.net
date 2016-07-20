@@ -22,7 +22,10 @@ public class SagaStateAuditFeature :
         RegisterStep
     {
         public Registration()
-            : base("SagaStateAudit", typeof(SagaStateAuditBehavior), "Logs Saga State")
+            : base(
+                stepId: "SagaStateAudit",
+                behavior: typeof(SagaStateAuditBehavior),
+                description: "Logs Saga State")
         {
             InsertBefore(WellKnownStep.InvokeSaga);
         }
