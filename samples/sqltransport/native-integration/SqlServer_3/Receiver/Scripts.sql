@@ -13,7 +13,7 @@ VALUES	(CONVERT(UNIQUEIDENTIFIER, HASHBYTES('MD5','MyUniqueId')),
 CREATE TABLE [dbo].[Orders](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[OrderValue] [money] NOT NULL
-) ON [PRIMARY]
+)
 GO
 -- endcode
 
