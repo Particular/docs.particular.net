@@ -75,10 +75,11 @@ namespace Core4
 
             if (Environment.UserInteractive)
             {
-                Thread.Sleep(10000); // so that user can see on their screen the problem
+                // so that user can see on their screen the problem
+                Thread.Sleep(10000);
             }
 
-            var fatalMessage = $"The following critical error was encountered by NServiceBus:\n{errorMessage}\nNServiceBus is shutting down.";
+            var fatalMessage = $"NServiceBus critical error:\n{errorMessage}\nShutting down.";
             Environment.FailFast(fatalMessage, exception);
 
             #endregion

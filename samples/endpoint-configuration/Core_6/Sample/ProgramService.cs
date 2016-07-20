@@ -121,7 +121,7 @@ class ProgramService :
                     .ConfigureAwait(false);
 
                 // Kill the process on a critical error
-                string output = $"The following critical error was encountered by NServiceBus:\n{context.Error}\nNServiceBus is shutting down.";
+                string output = $"NServiceBus critical error:\n{context.Error}\nShutting down.";
                 Environment.FailFast(output, context.Exception);
             });
 

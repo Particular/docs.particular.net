@@ -19,10 +19,11 @@
                 log.Error(output, context.Exception);
                 if (Environment.UserInteractive)
                 {
-                    Thread.Sleep(10000); // so that user can see on their screen the problem
+                    // so that user can see on their screen the problem
+                    Thread.Sleep(10000);
                 }
 
-                string fatalMessage = $"The following critical error was encountered by NServiceBus:\n{context.Error}\nNServiceBus is shutting down.";
+                string fatalMessage = $"NServiceBus critical error:\n{context.Error}\nShutting down.";
                 Environment.FailFast(fatalMessage, context.Exception);
                 return Task.FromResult(0);
             });

@@ -110,7 +110,7 @@ class ProgramService :
                 log.Fatal($"CRITICAL: {errorMessage}", exception);
 
                 // Kill the process on a critical error
-                var output = $"The following critical error was encountered by NServiceBus:\n{errorMessage}\nNServiceBus is shutting down.";
+                var output = $"NServiceBus critical error:\n{errorMessage}\nShutting down.";
                 Environment.FailFast(output, exception);
             });
 
