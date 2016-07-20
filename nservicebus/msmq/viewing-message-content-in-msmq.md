@@ -46,6 +46,15 @@ http://www.cogin.com/mq/
 ![](queue-explorer.png 'width=400')
 
 
+### Mqueue Viewer
+
+Fast and free tool to manage your MSMQ messages and queues.
+
+http://www.mqueue.net/
+
+Mqueue Viewer - is a fast and simple tool to manage MSMQ queues, view, edit, add, delete messages. Works with multiple machines/servers. Most importantly - it's completely free!
+
+
 ### Service Bus MQ Manager
 
 A free application to view and manage MSMQ messages.
