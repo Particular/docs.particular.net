@@ -102,40 +102,8 @@ class FileTransportMessagePump :
             foreach (var filePath in Directory.EnumerateFiles(path, "*.*"))
             {
                 filesFound = true;
-
-                var nativeMessageId = Path.GetFileNameWithoutExtension(filePath);
-
-                var transaction = new DirectoryBasedTransaction(path);
-
-                transaction.BeginTransaction(filePath);
-
-                await concurrencyLimiter.WaitAsync(cancellationToken)
+                await ProcessFile(filePath)
                     .ConfigureAwait(false);
-
-                var task = Task.Run(async () =>
-                {
-                    try
-                    {
-                        await ProcessFile(transaction, nativeMessageId)
-                            .ConfigureAwait(false);
-                        transaction.Complete();
-                    }
-                    finally
-                    {
-                        concurrencyLimiter.Release();
-                    }
-                }, cancellationToken);
-
-                task.ContinueWith(t =>
-                        {
-                            Task toBeRemoved;
-                            runningReceiveTasks.TryRemove(t, out toBeRemoved);
-                        },
-                        TaskContinuationOptions.ExecuteSynchronously)
-                    .Ignore();
-
-                runningReceiveTasks.AddOrUpdate(task, task, (k, v) => task)
-                    .Ignore();
             }
 
             if (!filesFound)
@@ -146,7 +114,44 @@ class FileTransportMessagePump :
         }
     }
 
-    async Task ProcessFile(DirectoryBasedTransaction transaction, string messageId)
+    async Task ProcessFile(string filePath)
+    {
+        var nativeMessageId = Path.GetFileNameWithoutExtension(filePath);
+
+        var transaction = new DirectoryBasedTransaction(path);
+
+        transaction.BeginTransaction(filePath);
+
+        await concurrencyLimiter.WaitAsync(cancellationToken)
+            .ConfigureAwait(false);
+
+        var task = Task.Run(async () =>
+        {
+            try
+            {
+                await ProcessFileWithTransaction(transaction, nativeMessageId)
+                    .ConfigureAwait(false);
+                transaction.Complete();
+            }
+            finally
+            {
+                concurrencyLimiter.Release();
+            }
+        }, cancellationToken);
+
+        task.ContinueWith(t =>
+                {
+                    Task toBeRemoved;
+                    runningReceiveTasks.TryRemove(t, out toBeRemoved);
+                },
+                TaskContinuationOptions.ExecuteSynchronously)
+            .Ignore();
+
+        runningReceiveTasks.AddOrUpdate(task, task, (k, v) => task)
+            .Ignore();
+    }
+
+    async Task ProcessFileWithTransaction(DirectoryBasedTransaction transaction, string messageId)
     {
         try
         {

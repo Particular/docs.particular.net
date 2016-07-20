@@ -75,10 +75,11 @@ class ProgramService :
         //configure custom services
         //builder.RegisterInstance(new MyService());
         var container = builder.Build();
-        endpointConfiguration.UseContainer<AutofacBuilder>(customizations =>
-        {
-            customizations.ExistingLifetimeScope(container);
-        });
+        endpointConfiguration.UseContainer<AutofacBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingLifetimeScope(container);
+            });
 
         #endregion
 
@@ -110,18 +111,19 @@ class ProgramService :
 
         #region critical-errors
 
-        endpointConfiguration.DefineCriticalErrorAction(async context =>
-        {
-            // Log the critical error
-            log.Fatal($"CRITICAL: {context.Error}", context.Exception);
+        endpointConfiguration.DefineCriticalErrorAction(
+            onCriticalError: async context =>
+            {
+                // Log the critical error
+                log.Fatal($"CRITICAL: {context.Error}", context.Exception);
 
-            await context.Stop()
-                .ConfigureAwait(false);
+                await context.Stop()
+                    .ConfigureAwait(false);
 
-            // Kill the process on a critical error
-            string output = $"The following critical error was encountered by NServiceBus:\n{context.Error}\nNServiceBus is shutting down.";
-            Environment.FailFast(output, context.Exception);
-        });
+                // Kill the process on a critical error
+                string output = $"The following critical error was encountered by NServiceBus:\n{context.Error}\nNServiceBus is shutting down.";
+                Environment.FailFast(output, context.Exception);
+            });
 
         #endregion
 

@@ -39,6 +39,7 @@ class ProgramService :
     protected override void OnStart(string[] args)
     {
         #region logging
+
         var layout = new PatternLayout
         {
             ConversionPattern = "%d %-5p %c - %m%n"
@@ -54,53 +55,70 @@ class ProgramService :
         BasicConfigurator.Configure(appender);
 
         LogManager.Use<Log4NetFactory>();
+
         #endregion
 
         #region create-config
+
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.FirstEndpoint");
+
         #endregion
 
         #region container
+
         var builder = new ContainerBuilder();
         //configure custom services
         //builder.RegisterInstance(new MyService());
         var container = builder.Build();
-        busConfiguration.UseContainer<AutofacBuilder>(customizations =>
-        {
-            customizations.ExistingLifetimeScope(container);
-        });
+        busConfiguration.UseContainer<AutofacBuilder>(
+            customizations: customizations =>
+            {
+                customizations.ExistingLifetimeScope(container);
+            });
+
         #endregion
 
         #region serialization
+
         busConfiguration.UseSerialization<JsonSerializer>();
+
         #endregion
 
         #region transport
+
         busConfiguration.UseTransport<MsmqTransport>();
+
         #endregion
 
         #region persistence
+
         busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
         busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
         busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
+
         #endregion
 
         #region critical-errors
-        busConfiguration.DefineCriticalErrorAction((errorMessage, exception) =>
-        {
-            // Log the critical error
-            log.Fatal($"CRITICAL: {errorMessage}", exception);
 
-            // Kill the process on a critical error
-            var output = $"The following critical error was encountered by NServiceBus:\n{errorMessage}\nNServiceBus is shutting down.";
-            Environment.FailFast(output, exception);
-        });
+        busConfiguration.DefineCriticalErrorAction(
+            onCriticalError: (errorMessage, exception) =>
+            {
+                // Log the critical error
+                log.Fatal($"CRITICAL: {errorMessage}", exception);
+
+                // Kill the process on a critical error
+                var output = $"The following critical error was encountered by NServiceBus:\n{errorMessage}\nNServiceBus is shutting down.";
+                Environment.FailFast(output, exception);
+            });
+
         #endregion
 
         #region start-bus
+
         busConfiguration.EnableInstallers();
         bus = Bus.Create(busConfiguration).Start();
+
         #endregion
 
 
