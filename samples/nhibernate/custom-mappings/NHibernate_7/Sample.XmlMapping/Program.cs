@@ -58,7 +58,7 @@ class Program
     static void AddMappingsFromFilesystem(Configuration nhConfiguration)
     {
         var folder = Directory.GetCurrentDirectory();
-        string[] hmbFiles = Directory.GetFiles(folder, "*.hbm.xml", SearchOption.TopDirectoryOnly);
+        var hmbFiles = Directory.GetFiles(folder, "*.hbm.xml", SearchOption.TopDirectoryOnly);
 
         foreach (var file in hmbFiles)
         {
