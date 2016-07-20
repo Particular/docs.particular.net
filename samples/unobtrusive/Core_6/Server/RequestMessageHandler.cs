@@ -12,10 +12,11 @@ public class RequestMessageHandler :
     {
         log.Info($"Request received with id:{message.RequestId}");
 
-        context.Reply(new Response
-                        {
-                            ResponseId = message.RequestId
-                        });
+        var response = new Response
+        {
+            ResponseId = message.RequestId
+        };
+        context.Reply(response);
         return Task.FromResult(0);
     }
 }

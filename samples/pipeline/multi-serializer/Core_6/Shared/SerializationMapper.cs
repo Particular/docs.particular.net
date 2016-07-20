@@ -13,10 +13,12 @@ public class SerializationMapper
 
     public SerializationMapper(IMessageMapper mapper, ReadOnlySettings settings)
     {
-        xmlSerializer = new XmlSerializer().Configure(settings)(mapper);
-        jsonSerializer = new JsonSerializer().Configure(settings)(mapper);
+        xmlSerializer = new XmlSerializer()
+            .Configure(settings)(mapper);
+        jsonSerializer = new JsonSerializer()
+            .Configure(settings)(mapper);
     }
-    
+
     public IMessageSerializer GetSerializer(Dictionary<string, string> headers)
     {
         string contentType;

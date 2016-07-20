@@ -14,8 +14,8 @@ class Program
         Console.Title = "Samples.AzureBlobStorageDataBus.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UseDataBus<AzureDataBus>()
-            .ConnectionString("UseDevelopmentStorage=true");
+        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>();
+        dataBus.ConnectionString("UseDevelopmentStorage=true");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

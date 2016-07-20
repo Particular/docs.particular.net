@@ -10,8 +10,8 @@ class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.AzureBlobStorageDataBus.Receiver");
         busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UseDataBus<AzureDataBus>()
-            .ConnectionString("UseDevelopmentStorage=true");
+        var dataBus = busConfiguration.UseDataBus<AzureDataBus>();
+        dataBus.ConnectionString("UseDevelopmentStorage=true");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         using (var bus = Bus.Create(busConfiguration).Start())

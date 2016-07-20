@@ -18,7 +18,9 @@
 
             busConfiguration.UsePersistence<InMemoryPersistence>()
                 .For(Storage.GatewayDeduplication);
+
             #endregion
+
 #pragma warning restore 618
         }
 
@@ -48,8 +50,12 @@
                 .For(Storage.GatewayDeduplication);
 
             busConfiguration.UsePersistence<RavenDBPersistence>()
-                .For(Storage.Sagas, Storage.Subscriptions, Storage.Timeouts);
+                .For(Storage.Sagas,
+                    Storage.Subscriptions,
+                    Storage.Timeouts);
+
             #endregion
+
 #pragma warning restore 618
 
         }
@@ -65,6 +71,7 @@
             busConfiguration.UsePersistence<RavenDBPersistence, StorageType.Sagas>();
             busConfiguration.UsePersistence<RavenDBPersistence, StorageType.Subscriptions>();
             busConfiguration.UsePersistence<RavenDBPersistence, StorageType.Timeouts>();
+
             #endregion
         }
 
@@ -82,7 +89,9 @@
 
             // This one will override the above settings!
             busConfiguration.UsePersistence<RavenDBPersistence>();
+
             #endregion
+
 #pragma warning restore 618
         }
 
@@ -96,6 +105,7 @@
 
             // This one will override the above settings!
             busConfiguration.UsePersistence<RavenDBPersistence>();
+
             #endregion
         }
     }

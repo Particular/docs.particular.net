@@ -17,8 +17,8 @@ class RavenDtcConventions :
 {
     public void Customize(EndpointConfiguration configuration)
     {
-        configuration.UsePersistence<RavenDBPersistence>()
-            .SetDefaultDocumentStore(CreateDocumentStore);
+        var persistence = configuration.UsePersistence<RavenDBPersistence>();
+        persistence.SetDefaultDocumentStore(CreateDocumentStore);
     }
 
     IDocumentStore CreateDocumentStore(ReadOnlySettings settings)

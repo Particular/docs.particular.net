@@ -16,9 +16,9 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Unobtrusive.Client");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseDataBus<FileShareDataBus>()
-            .BasePath(@"..\..\..\DataBusShare\");
-        byte[] encryptionKey = Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
+        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
+        dataBus.BasePath(@"..\..\..\DataBusShare\");
+        var encryptionKey = Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
         endpointConfiguration.RijndaelEncryptionService("2015-10", encryptionKey);
         endpointConfiguration.SendFailedMessagesTo("error");
 

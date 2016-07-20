@@ -14,7 +14,7 @@ public class CommandSender
         Console.WriteLine("Press 'D' to send a large message that is marked to be sent using Data Bus");
         Console.WriteLine("Press 'X' to send a message that is marked with expiration time.");
         Console.WriteLine("Press any key to exit");
-        
+
         while (true)
         {
             var key = Console.ReadKey();
@@ -47,10 +47,11 @@ public class CommandSender
     // Shut down server before sending this message, after 30 seconds, the message will be moved to Transactional dead-letter messages queue.
     static void Expiration(IBus bus)
     {
-        bus.Send(new MessageThatExpires
-                 {
-                     RequestId = new Guid()
-                 });
+        var messageThatExpires = new MessageThatExpires
+        {
+            RequestId = new Guid()
+        };
+        bus.Send(messageThatExpires);
         Console.WriteLine("message with expiration was sent");
     }
 

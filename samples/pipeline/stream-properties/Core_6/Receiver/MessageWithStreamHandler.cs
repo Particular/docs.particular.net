@@ -11,8 +11,9 @@ public class MessageWithStreamHandler :
 
     public async Task Handle(MessageWithStream message, IMessageHandlerContext context)
     {
-        log.Info($"Message received, size of stream property: {message.StreamProperty.Length} Bytes");
-        using (var streamReader = new StreamReader(message.StreamProperty))
+        var streamProperty = message.StreamProperty;
+        log.Info($"Message received, size of stream property: {streamProperty.Length} Bytes");
+        using (var streamReader = new StreamReader(streamProperty))
         {
             var streamContents = await streamReader.ReadToEndAsync()
                 .ConfigureAwait(false);

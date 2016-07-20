@@ -13,10 +13,11 @@ public class MultiSerializerFeature : Feature
 
     protected override void Setup(FeatureConfigurationContext context)
     {
-        context.Pipeline.Replace(WellKnownStep.DeserializeMessages, typeof(DeserializeBehavior));
-        context.Pipeline.Replace(WellKnownStep.SerializeMessage, typeof(SerializeBehavior));
-
-        context.Container.ConfigureComponent<SerializationMapper>(DependencyLifecycle.SingleInstance);
+        var pipeline = context.Pipeline;
+        pipeline.Replace(WellKnownStep.DeserializeMessages, typeof(DeserializeBehavior));
+        pipeline.Replace(WellKnownStep.SerializeMessage, typeof(SerializeBehavior));
+        var container = context.Container;
+        container.ConfigureComponent<SerializationMapper>(DependencyLifecycle.SingleInstance);
     }
 }
 

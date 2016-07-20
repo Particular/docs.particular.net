@@ -17,9 +17,10 @@ public class RequestMessageHandler :
     {
         log.Info($"Request received with id:{message.RequestId}");
 
-        bus.Reply(new Response
-                        {
-                            ResponseId = message.RequestId
-                        });
+        var response = new Response
+        {
+            ResponseId = message.RequestId
+        };
+        bus.Reply(response);
     }
 }

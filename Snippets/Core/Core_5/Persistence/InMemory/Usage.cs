@@ -11,18 +11,17 @@
 
             #region ConfiguringInMemory 5.0
 
-            busConfiguration.UsePersistence<InMemoryPersistence>()
-                .For(
-                    Storage.Sagas,
-                    Storage.Subscriptions,
-                    Storage.Timeouts,
-                    Storage.Outbox,
-                    Storage.GatewayDeduplication);
+            var persistence = busConfiguration.UsePersistence<InMemoryPersistence>();
+            persistence.For(
+                Storage.Sagas,
+                Storage.Subscriptions,
+                Storage.Timeouts,
+                Storage.Outbox,
+                Storage.GatewayDeduplication);
 
             #endregion
 
 #pragma warning restore 618
-
         }
 
         void Version_5_2(BusConfiguration busConfiguration)

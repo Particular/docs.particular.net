@@ -1,6 +1,5 @@
 ﻿namespace Core6.Headers
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using NServiceBus;
 

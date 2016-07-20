@@ -8,8 +8,8 @@
         {
             #region FileShareDataBus
 
-            busConfiguration.UseDataBus<FileShareDataBus>()
-                .BasePath(databusPath);
+            var dataBus = busConfiguration.UseDataBus<FileShareDataBus>();
+            dataBus.BasePath(databusPath);
 
             #endregion
         }

@@ -12,10 +12,8 @@ public class LargeMessagesHandler :
         if (message.LargeDataBus == null)
         {
             log.Info($"Message [{message.GetType()}] received, id:{message.RequestId}");
+            return;
         }
-        else
-        {
-            log.Info($"Message [{message.GetType()}] received, id:{message.RequestId} and payload {message.LargeDataBus.Length} bytes");
-        }
+        log.Info($"Message [{message.GetType()}] received, id:{message.RequestId} and payload {message.LargeDataBus.Length} bytes");
     }
 }

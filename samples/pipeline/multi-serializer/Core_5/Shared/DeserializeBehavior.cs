@@ -9,18 +9,19 @@ using NServiceBus.Pipeline.Contexts;
 using NServiceBus.Unicast.Messages;
 
 #region deserialize-behavior
+
 class DeserializeBehavior : IBehavior<IncomingContext>
 {
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;
-    LogicalMessageFactory logicalMessageFactory;
+    LogicalMessageFactory messageFactory;
     static ILog log = LogManager.GetLogger<DeserializeBehavior>();
 
-    public DeserializeBehavior(SerializationMapper serializationMapper, MessageMetadataRegistry messageMetadataRegistry, LogicalMessageFactory logicalMessageFactory)
+    public DeserializeBehavior(SerializationMapper serializationMapper, MessageMetadataRegistry messageMetadataRegistry, LogicalMessageFactory messageFactory)
     {
         this.serializationMapper = serializationMapper;
         this.messageMetadataRegistry = messageMetadataRegistry;
-        this.logicalMessageFactory = logicalMessageFactory;
+        this.messageFactory = messageFactory;
     }
 
     public void Invoke(IncomingContext context, Action next)
@@ -57,12 +58,13 @@ class DeserializeBehavior : IBehavior<IncomingContext>
         {
             return Deserialize(physicalMessage, new List<MessageMetadata>());
         }
-        List<MessageMetadata> messageMetadata = GetMessageMetadata(typeIdentifier)
+        var messageMetadata = GetMessageMetadata(typeIdentifier)
             .ToList();
-        if (messageMetadata.Count == 0 && physicalMessage.MessageIntent != MessageIntentEnum.Publish)
+        if (messageMetadata.Count != 0 || physicalMessage.MessageIntent == MessageIntentEnum.Publish)
         {
-            log.Warn($"Could not determine message type from message header '{typeIdentifier}'. MessageId: {physicalMessage.Id}");
+            return Deserialize(physicalMessage, messageMetadata);
         }
+        log.Warn($"Could not determine message type from message header '{typeIdentifier}'. MessageId: {physicalMessage.Id}");
         return Deserialize(physicalMessage, messageMetadata);
     }
 
@@ -77,14 +79,16 @@ class DeserializeBehavior : IBehavior<IncomingContext>
     List<LogicalMessage> Deserialize(TransportMessage physicalMessage, List<MessageMetadata> messageMetadata)
     {
         var messageSerializer = serializationMapper.GetSerializer(physicalMessage.Headers);
-        List<Type> messageTypesToDeserialize = messageMetadata.Select(x => x.MessageType).ToList();
+        var typesToDeserialize = messageMetadata.Select(x => x.MessageType)
+            .ToList();
         using (var stream = new MemoryStream(physicalMessage.Body))
         {
-            return messageSerializer.Deserialize(stream, messageTypesToDeserialize)
-                .Select(x => logicalMessageFactory.Create(x.GetType(), x, physicalMessage.Headers))
+            return messageSerializer.Deserialize(stream, typesToDeserialize)
+                .Select(x => messageFactory.Create(x.GetType(), x, physicalMessage.Headers))
                 .ToList();
         }
     }
 
 }
+
 #endregion

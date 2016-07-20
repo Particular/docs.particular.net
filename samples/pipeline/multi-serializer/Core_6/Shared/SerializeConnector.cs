@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,13 +8,14 @@ using NServiceBus.Serialization;
 using NServiceBus.Unicast.Messages;
 
 #region serialize-behavior
+
 class SerializeConnector : StageConnector<IOutgoingLogicalMessageContext, IOutgoingPhysicalMessageContext>
 {
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;
 
     public SerializeConnector(
-        SerializationMapper serializationMapper, 
+        SerializationMapper serializationMapper,
         MessageMetadataRegistry messageMetadataRegistry)
     {
         this.serializationMapper = serializationMapper;
@@ -26,19 +26,26 @@ class SerializeConnector : StageConnector<IOutgoingLogicalMessageContext, IOutgo
     {
         if (context.ShouldSkipSerialization())
         {
-            var emptyPhysicalMessageContext = this.CreateOutgoingPhysicalMessageContext(new byte[0], context.RoutingStrategies, context);
-            await stage(emptyPhysicalMessageContext)
+            var emptyMessageContext = this.CreateOutgoingPhysicalMessageContext(
+                messageBody: new byte[0],
+                routingStrategies: context.RoutingStrategies,
+                sourceContext: context);
+            await stage(emptyMessageContext)
                 .ConfigureAwait(false);
             return;
         }
 
         var messageType = context.Message.MessageType;
         var messageSerializer = serializationMapper.GetSerializer(messageType);
-        context.Headers[Headers.ContentType] = messageSerializer.ContentType;
-        context.Headers[Headers.EnclosedMessageTypes] = SerializeEnclosedMessageTypes(messageType);
+        var headers = context.Headers;
+        headers[Headers.ContentType] = messageSerializer.ContentType;
+        headers[Headers.EnclosedMessageTypes] = SerializeEnclosedMessageTypes(messageType);
 
-        byte[] array = Serialize(messageSerializer, context);
-        var physicalMessageContext = this.CreateOutgoingPhysicalMessageContext(array, context.RoutingStrategies, context);
+        var array = Serialize(messageSerializer, context);
+        var physicalMessageContext = this.CreateOutgoingPhysicalMessageContext(
+            messageBody: array,
+            routingStrategies: context.RoutingStrategies,
+            sourceContext: context);
         await stage(physicalMessageContext)
             .ConfigureAwait(false);
     }
@@ -55,8 +62,9 @@ class SerializeConnector : StageConnector<IOutgoingLogicalMessageContext, IOutgo
     string SerializeEnclosedMessageTypes(Type messageType)
     {
         var metadata = messageMetadataRegistry.GetMessageMetadata(messageType);
-        IEnumerable<Type> distinctTypes = metadata.MessageHierarchy.Distinct();
+        var distinctTypes = metadata.MessageHierarchy.Distinct();
         return string.Join(";", distinctTypes.Select(t => t.AssemblyQualifiedName));
     }
 }
+
 #endregion

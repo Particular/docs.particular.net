@@ -17,8 +17,8 @@ class Program
 
         #region ConfiguringDataBusLocation
 
-        endpointConfiguration.UseDataBus<AzureDataBus>()
-            .ConnectionString("UseDevelopmentStorage=true");
+        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>();
+        dataBus.ConnectionString("UseDevelopmentStorage=true");
 
         #endregion
 

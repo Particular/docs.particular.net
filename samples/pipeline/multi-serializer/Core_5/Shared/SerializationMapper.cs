@@ -17,7 +17,7 @@ public class SerializationMapper
     {
         jsonSerializer = new JsonMessageSerializer(mapper);
         xmlSerializer = new XmlMessageSerializer(mapper, conventions);
-        List<Type> messageTypes = configure.TypesToScan.Where(conventions.IsMessageType).ToList();
+        var messageTypes = configure.TypesToScan.Where(conventions.IsMessageType).ToList();
         xmlSerializer.Initialize(messageTypes);
     }
 

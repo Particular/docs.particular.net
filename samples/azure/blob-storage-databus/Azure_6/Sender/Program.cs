@@ -13,8 +13,8 @@ class Program
 
         #region ConfiguringDataBusLocation
 
-        busConfiguration.UseDataBus<AzureDataBus>()
-            .ConnectionString("UseDevelopmentStorage=true");
+        var dataBus = busConfiguration.UseDataBus<AzureDataBus>();
+        dataBus.ConnectionString("UseDevelopmentStorage=true");
 
         #endregion
 

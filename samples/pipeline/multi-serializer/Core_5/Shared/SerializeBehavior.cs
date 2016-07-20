@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using NServiceBus;
@@ -26,17 +25,17 @@ class SerializeBehavior : IBehavior<OutgoingContext>
             var logicalMessage = context.OutgoingLogicalMessage;
             var messageInstance = logicalMessage.Instance;
             var messageType = messageInstance.GetType();
-            
+
             var messageSerializer = serializationMapper.GetSerializer(messageType);
             transportMessage.Body = Serialize(messageSerializer, messageInstance);
 
-            var transportHeaders = transportMessage.Headers;
-            transportHeaders[Headers.ContentType] = messageSerializer.ContentType;
-            transportHeaders[Headers.EnclosedMessageTypes] = SerializeEnclosedMessageTypes(logicalMessage);
+            var headers = transportMessage.Headers;
+            headers[Headers.ContentType] = messageSerializer.ContentType;
+            headers[Headers.EnclosedMessageTypes] = SerializeEnclosedMessageTypes(logicalMessage);
 
-            foreach (KeyValuePair<string, string> headerEntry in logicalMessage.Headers)
+            foreach (var headerEntry in logicalMessage.Headers)
             {
-                transportHeaders[headerEntry.Key] = headerEntry.Value;
+                headers[headerEntry.Key] = headerEntry.Value;
             }
         }
 
@@ -54,8 +53,7 @@ class SerializeBehavior : IBehavior<OutgoingContext>
 
     string SerializeEnclosedMessageTypes(LogicalMessage message)
     {
-        IEnumerable<Type> distinctTypes = message.Metadata.MessageHierarchy.Distinct();
-
+        var distinctTypes = message.Metadata.MessageHierarchy.Distinct();
         return string.Join(";", distinctTypes.Select(t => t.AssemblyQualifiedName));
     }
 

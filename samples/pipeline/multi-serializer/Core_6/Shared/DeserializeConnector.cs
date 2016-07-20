@@ -10,6 +10,7 @@ using NServiceBus.Transports;
 using NServiceBus.Unicast.Messages;
 
 #region deserialize-behavior
+
 class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIncomingLogicalMessageContext>
 {
     SerializationMapper serializationMapper;
@@ -31,7 +32,7 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
     {
         var incomingMessage = context.Message;
 
-        List<LogicalMessage> messages = ExtractWithExceptionHandling(incomingMessage);
+        var messages = ExtractWithExceptionHandling(incomingMessage);
 
         foreach (var message in messages)
         {
@@ -61,16 +62,15 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
         }
 
         string messageTypeIdentifier;
-        List<MessageMetadata> messageMetadata = new List<MessageMetadata>();
+        var messageMetadata = new List<MessageMetadata>();
 
-        if (physicalMessage.Headers.TryGetValue(Headers.EnclosedMessageTypes, out messageTypeIdentifier))
+        var headers = physicalMessage.Headers;
+        if (headers.TryGetValue(Headers.EnclosedMessageTypes, out messageTypeIdentifier))
         {
             foreach (var messageTypeString in messageTypeIdentifier.Split(';'))
             {
                 var typeString = messageTypeString;
-
                 var metadata = messageMetadataRegistry.GetMessageMetadata(typeString);
-
                 if (metadata == null)
                 {
                     continue;
@@ -79,7 +79,9 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
                 messageMetadata.Add(metadata);
             }
 
-            if (messageMetadata.Count == 0 && physicalMessage.GetMesssageIntent() != MessageIntentEnum.Publish)
+            if (
+                messageMetadata.Count == 0 &&
+                physicalMessage.GetMesssageIntent() != MessageIntentEnum.Publish)
             {
                 log.Warn($"Could not determine message type from message header '{messageTypeIdentifier}'. MessageId: {physicalMessage.MessageId}");
             }
@@ -87,15 +89,16 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
 
         using (var stream = new MemoryStream(physicalMessage.Body))
         {
-            var messageSerializer = serializationMapper.GetSerializer(physicalMessage.Headers);
-            List<Type> messageTypes = messageMetadata.Select(metadata => metadata.MessageType).ToList();
-            return messageSerializer.Deserialize(stream, messageTypes)
+            var messageSerializer = serializationMapper.GetSerializer(headers);
+            var typesToDeserialize = messageMetadata
+                .Select(metadata => metadata.MessageType)
+                .ToList();
+            return messageSerializer.Deserialize(stream, typesToDeserialize)
                 .Select(x => logicalMessageFactory.Create(x.GetType(), x))
                 .ToList();
 
         }
     }
-
 }
 
 #endregion

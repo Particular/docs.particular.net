@@ -15,7 +15,8 @@ public class MultiSerializerFeature : Feature
         var pipeline = context.Pipeline;
         pipeline.Replace("NServiceBus.DeserializeLogicalMessagesConnector", typeof(DeserializeConnector));
         pipeline.Replace("NServiceBus.SerializeMessageConnector", typeof(SerializeConnector));
-        context.Container.ConfigureComponent<SerializationMapper>(DependencyLifecycle.SingleInstance);
+        var container = context.Container;
+        container.ConfigureComponent<SerializationMapper>(DependencyLifecycle.SingleInstance);
     }
 }
 
