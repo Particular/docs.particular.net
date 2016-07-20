@@ -41,15 +41,16 @@ Saga data stored in Azure will need to be patched using the `IndexPruner` utilit
 
 ## Patch steps
 
- 1. Download the index pruning tool from [https://github.com/Particular/IssueDetection/releases/tag/nsb.azure.284](https://github.com/Particular/IssueDetection/releases/tag/nsb.azure.284) to a computer that has the .NET Framework 4.5.2 installed and also has internet access .
+ 1. Download the index pruning tool from [https://github.com/Particular/IssueDetection/releases/tag/nsb.azure.284](https://github.com/Particular/IssueDetection/releases/tag/nsb.azure.284) to a computer that has the .NET Framework 4.5.2 installed and also has internet access.
  1. The `IndexPruner` utility requires an Azure Storage connection string. The connection string can be added to the `IndexPruner.exe.config` file with the `name="sagas"` value or provided as a commandline parameters (shown in step 4).
-	```xml
-	<configuration>
-		<connectionStrings>
-			<add name="sagas" connectionStrings="--anAzureStorageConnectionString--"/>
-		</connectionStrings>
-	</configuration>
-	```
+  ```xml
+  <configuration>
+      <connectionStrings>
+          <add name="sagas"
+               connectionStrings="--anAzureStorageConnectionString--"/>
+      </connectionStrings>
+  </configuration>
+  ```
  1. Copy the endpoint dll along with the assemblies that contain saga type definitions to the same folder as the index pruning tool. If multiple endpoints require this patch, it is ok to add the assemblies for all the endpoints to the tool. This saves time from having to run the tool for each endpoint. These assemblies will be scanned to find all implementations of `IContainSagaData` which will indicate the sagas that need to be pruned in Azure Storage.
  1. Open a commandline and run the following command: `IndexPruner.exe`. If the Azure connection string was not added to the `IndexPruner.exe.config` file in step 2, the command needed to run the `IndexPruner` will be `IndexPruner.exe &ltconnectionstringvalue&gt`. While running, the `IndexPruner` will output details of the actions that it is taking to the command window.
  1. Update NServiceBus.Azure dependency to version 6.2.5 or higher in all endpoints that use it and release the updated endpoints.

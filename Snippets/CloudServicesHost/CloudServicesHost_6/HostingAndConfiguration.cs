@@ -35,8 +35,8 @@ public class EndpointConfig :
 {
     public void Customize(BusConfiguration builder)
     {
-        builder.UseTransport<AzureServiceBusTransport>()
-               .ConnectionString("Endpoint=sb://{namespace}.servicebus.windows.net/;SharedAccessKeyName={keyname};SharedAccessKey={keyvalue}");
+        var transport = builder.UseTransport<AzureServiceBusTransport>();
+        transport.ConnectionString("Endpoint=sb://{namespace}.servicebus.windows.net/;SharedAccessKeyName={keyname};SharedAccessKey={keyvalue}");
         builder.UsePersistence<AzureStoragePersistence>();
     }
 }

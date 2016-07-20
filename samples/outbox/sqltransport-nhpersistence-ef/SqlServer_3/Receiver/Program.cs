@@ -38,7 +38,8 @@ class Program
         transport.DefaultSchema("receiver");
         transport.UseSpecificSchema(queueName =>
         {
-            if (queueName.Equals("error", StringComparison.OrdinalIgnoreCase) || queueName.Equals("audit", StringComparison.OrdinalIgnoreCase))
+            if (queueName.Equals("error", StringComparison.OrdinalIgnoreCase) ||
+                queueName.Equals("audit", StringComparison.OrdinalIgnoreCase))
             {
                 return "dbo";
             }

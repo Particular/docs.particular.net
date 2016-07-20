@@ -93,7 +93,8 @@ It is possible to specify the license in `app.config`:
 
 ```xml
 <appSettings>
-  <add key="NServiceBus/LicensePath" value="C:\NServiceBus\License\License.xml" />
+  <add key="NServiceBus/LicensePath"
+       value="C:\NServiceBus\License\License.xml" />
 </appSettings>
 ```
 -   Use the key `NServiceBus/License` to transfer the actual HTML-encoded contents of the license. For example:

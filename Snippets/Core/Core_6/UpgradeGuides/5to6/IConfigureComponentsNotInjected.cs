@@ -10,7 +10,11 @@
             FeatureConfigurationContext context = null;
 
             #region 5to6-IConfigureComponentsNotInjected
-            context.Container.ConfigureComponent(b => new MyDependency(context.Container), DependencyLifecycle.InstancePerCall);
+
+            var container = context.Container;
+            container.ConfigureComponent(
+                componentFactory: builder => new MyDependency(container),
+                dependencyLifecycle: DependencyLifecycle.InstancePerCall);
             #endregion
         }
 

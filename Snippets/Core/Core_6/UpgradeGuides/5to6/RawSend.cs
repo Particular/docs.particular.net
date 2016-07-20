@@ -23,8 +23,12 @@ namespace Core6.UpgradeGuides._5to6
                 new NonDurableDelivery()
             };
             var address = new UnicastAddressTag("Destination");
-            var transportOperation = new TransportOperation(outgoingMessage, address, DispatchConsistency.Default, constraints);
-            var operations = new TransportOperations(transportOperation);
+            var operation = new TransportOperation(
+                message: outgoingMessage,
+                addressTag: address,
+                requiredDispatchConsistency: DispatchConsistency.Default,
+                deliveryConstraints: constraints);
+            var operations = new TransportOperations(operation);
             await dispatcher.Dispatch(operations, new ContextBag())
                 .ConfigureAwait(false);
 

@@ -161,7 +161,6 @@
                         suffix: "Timeout",
                         version: "5");
                     CountdownEvent.Signal();
-                    return;
                 }
             }
         }
