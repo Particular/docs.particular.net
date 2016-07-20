@@ -1,18 +1,47 @@
 ---
-title: Error handling
+title: Recoverability
 summary: Don't try to handle exceptions in the message handlers. Let NServiceBus do it for you.
 tags:
 - Exceptions
 - Error Handling
 - Retry
+- Recoverability
 reviewed: 2016-03-31
 redirects:
  - nservicebus/how-do-i-handle-exceptions
+ - nservicebus/errors
 related:
 - nservicebus/operations/transactions-message-processing
 ---
 
-NServiceBus has a built-in exception catching and handling logic, which encompasses all calls to the user code. When an exception bubbles through to the NServiceBus infrastructure, it rolls back the transaction on the transactional endpoint. The message is then returned to the queue, and any messages that the user code tried to send or publish won't be sent out.
+NServiceBus has a built-in error handling capability called Recoverability. Recoverability enables to recover automatically or in exceptional scenarios manually from message failures. Recoverability wraps the message handling logic, including the user code with various layers of retrying logic. NServiceBus differentiates three types of retrying behaviors:
+
+* Immediate Retry (previously known as First-Level-Retries)
+* Delayed Retry (previously known as Second-Level-Retries)
+* Faults
+
+An oversimplified mental model for Recoverability could be though of a gigantic try / catch block surrounding the message handling infrastructure wrapped in a while loop like the following pseudo-code
+
+```
+Exception exception = null;
+do
+{
+  try
+  {
+    messageHandling.Invoke();
+    exception = null;
+  } catch (Exception ex) {
+    exception = ex;
+  }
+} while(exception != null)
+```
+
+Of course the reality is much more complex. Depending on the transports capabilities, the transactionality of the endpoint and the users customizations always tries to recover from message failures or at least makes sure messages that failed multiple times get moved to the configured error queue. For Recoverability to be able to work at is full capacity the following requirements should be met:
+
+* Immediate Retry needs a transactional transport with at least [ReceiveOnly](/nservicebus/transports/transactions) transport transaction mode.
+* Delayed Retry needs a transactional transport with at least [ReceiveOnly](/nservicebus/transports/transactions) transport transaction mode and the transport needs to support [delayed delivery](/nservicebus/messaging/delayed-delivery) natively or the timeout manager needs to be enabled.
+
+When an exception bubbles through to the NServiceBus infrastructure, it rolls back the transaction on the transactional endpoint. The message is then returned to the queue, and any messages that the user code tried to send or publish won't be sent out.
 
 
 ## Configure the error queue

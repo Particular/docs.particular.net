@@ -139,13 +139,14 @@
         - "nservicebus/sagas/reply-replaytooriginator-differences"
         - "nservicebus/persistence"
     -
-      Title: "Error Handling"
-      Url: "nservicebus/errors"
+      Title: "Recoverability"
+      Url: "nservicebus/recoverability"
       Articles:
-        - "nservicebus/errors/critical-exception-for-timeout-outages"
-        - "nservicebus/errors/exception-caveats"
-        - "nservicebus/errors/automatic-retries"
-        - "nservicebus/errors/subscribing-to-error-notifications"
+        - "nservicebus/recoverability/configure-error-queue
+        - "nservicebus/recoverability/critical-exception-for-timeout-outages"
+        - "nservicebus/recoverability/exception-caveats"
+        - "nservicebus/recoverability/automatic-retries"
+        - "nservicebus/recoverability/subscribing-to-error-notifications"
     -
       Title: "Pipeline"
       Url: "nservicebus/pipeline"
