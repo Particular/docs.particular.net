@@ -8,7 +8,7 @@
         {
             #region EncryptionFromIEncryptionService
 
-            //where EncryptionService implements IEncryptionService 
+            // where EncryptionService implements IEncryptionService 
             busConfiguration.RegisterEncryptionService(b => new EncryptionService());
 
             #endregion

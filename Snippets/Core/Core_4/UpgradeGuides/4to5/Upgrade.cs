@@ -83,7 +83,7 @@
         {
             #region 4to5UseTransport
 
-            //Choose one of the following
+            // Choose one of the following
 
             configure.UseTransport<Msmq>();
 
@@ -299,7 +299,7 @@
         {
             #region 4to5EncryptionFromIEncryptionService
 
-            //where EncryptionService implements IEncryptionService
+            // where EncryptionService implements IEncryptionService
             var configure = Configure.With();
             configure.Configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
 
@@ -313,7 +313,7 @@
             #region 4to5License
 
             configure.LicensePath("PathToLicense");
-            //or
+            // or
             configure.License("YourCustomLicenseText");
 
             #endregion
@@ -323,7 +323,7 @@
         {
             #region 4to5TransactionConfig
 
-            //Enable
+            // Enable
             Configure.Transactions.Enable();
 
             // Disable
@@ -385,7 +385,7 @@
             #region 4to5SendOnly
 
             configure.DefaultBuilder();
-            //Other config
+            // Other config
             configure.UnicastBus();
             var bus = configure.SendOnly();
 

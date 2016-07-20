@@ -18,7 +18,7 @@ class EntityConnectionCreation
 
         using (var mySampleContainer = new MySampleContainer(entityConn))
         {
-            //use the DbContext as required
+            // use the DbContext as required
         }
 
         #endregion

@@ -46,7 +46,7 @@ public class Runner
                     }
                     catch
                     {
-                        //so the console keeps on running   
+                        // so the console keeps on running   
                     }
                     break;
                 default:

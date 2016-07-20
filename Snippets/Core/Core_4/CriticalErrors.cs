@@ -48,7 +48,7 @@ namespace Core4
 
         void DefaultAction(Configure configure)
         {
-            //https://github.com/Particular/NServiceBus/blob/support-4.0/src/NServiceBus.Core/ConfigureCriticalErrorAction.cs
+            // https://github.com/Particular/NServiceBus/blob/support-4.0/src/NServiceBus.Core/ConfigureCriticalErrorAction.cs
             #region DefaultCriticalErrorAction
 
             if (!Configure.BuilderIsConfigured())
@@ -69,7 +69,7 @@ namespace Core4
 
         void DefaultHostAction(string errorMessage, Exception exception)
         {
-            //https://github.com/Particular/NServiceBus/blob/support-4.7/src/NServiceBus.Hosting.Windows/WindowsHost.cs
+            // https://github.com/Particular/NServiceBus/blob/support-4.7/src/NServiceBus.Hosting.Windows/WindowsHost.cs
 
             #region DefaultHostCriticalErrorAction
 

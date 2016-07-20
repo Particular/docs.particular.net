@@ -44,16 +44,16 @@
 
         public static void DeleteQueuesForEndpoint(string endpointName)
         {
-            //main queue
+            // main queue
             DeleteQueue(endpointName);
 
-            //retries queue
+            // retries queue
             DeleteQueue($"{endpointName}.retries");
 
-            //timeout queue
+            // timeout queue
             DeleteQueue($"{endpointName}.timeouts");
 
-            //timeout dispatcher queue
+            // timeout dispatcher queue
             DeleteQueue($"{endpointName}.timeoutsdispatcher");
         }
 

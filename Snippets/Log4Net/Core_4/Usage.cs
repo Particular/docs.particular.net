@@ -20,9 +20,8 @@ class Usage
             Layout = layout
         };
         // Note that no ActivateOptions is required since NSB 4 does this internally
-        // Note that no ActivateOptions is required since NSB 4 does this internally
 
-        //Pass the appender to NServiceBus
+        // Pass the appender to NServiceBus
         SetLoggingLibrary.Log4Net(null, consoleAppender);
 
         #endregion

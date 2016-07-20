@@ -19,7 +19,7 @@ public class OrderAcceptedHandler :
 
         log.Info($"Order # {message.OrderNumber} has been accepted, Let's provision the download -- Sending ProvisionDownloadRequest to the Store.Operations endpoint");
 
-        //send out a request (a event will be published when the response comes back)
+        // send out a request (a event will be published when the response comes back)
         var request = new ProvisionDownloadRequest
         {
             ClientId = message.ClientId,

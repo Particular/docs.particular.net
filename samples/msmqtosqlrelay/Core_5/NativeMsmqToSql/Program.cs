@@ -22,7 +22,7 @@ class Program
         // The address of the queue that will be receiving messages from other MSMQ publishers
         var queuePath = @".\private$\MsmqToSqlRelay";
 
-        //Create message queue object
+        // Create message queue object
         var addressOfMsmqBridge = new MessageQueue(queuePath, QueueAccessMode.SendAndReceive);
         // for the sample's sake. Might need to fine tune the exact filters required.
         addressOfMsmqBridge.MessageReadPropertyFilter.SetAll();
@@ -54,7 +54,7 @@ class Program
             // End the asynchronous receive operation.
             var message = messageQueue.EndReceive(receiveCompletedEventArgs.AsyncResult);
 
-            //Validate the message
+            // Validate the message
             if (message != null)
             {
                 Console.WriteLine("Received a message in MSMQ - Processing");
@@ -83,7 +83,7 @@ class Program
             // Restart the asynchronous receive operation.
             messageQueue.BeginReceive();
 
-            //Commit transaction
+            // Commit transaction
             scope.Complete();
 
         }

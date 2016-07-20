@@ -68,8 +68,8 @@ class ProgramService :
         #region container
 
         var builder = new ContainerBuilder();
-        //configure custom services
-        //builder.RegisterInstance(new MyService());
+        // configure custom services
+        // builder.RegisterInstance(new MyService());
         var container = builder.Build();
         busConfiguration.UseContainer<AutofacBuilder>(
             customizations: customizations =>

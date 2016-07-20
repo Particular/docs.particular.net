@@ -45,19 +45,19 @@ public static class QueueDeletion
 
     public static void DeleteQueuesForEndpoint(string uri, string endpointName)
     {
-        //main queue
+        // main queue
         DeleteQueue(uri, endpointName);
 
-        //callback queue
+        // callback queue
         DeleteQueue(uri, $"{endpointName}.{Environment.MachineName}");
 
-        //retries queue
+        // retries queue
         DeleteQueue(uri, $"{endpointName}.Retries");
 
-        //timeout queue
+        // timeout queue
         DeleteQueue(uri, $"{endpointName}.Timeouts");
 
-        //timeout dispatcher queue
+        // timeout dispatcher queue
         DeleteQueue(uri, $"{endpointName}.TimeoutsDispatcher");
     }
 #endregion

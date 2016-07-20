@@ -10,7 +10,7 @@ class Program
         Configure.Serialization.Json();
         #region ConfigureLogging
         var configure = Configure.With();
-        //Configures a ConsoleAppender with a threshold of Debug
+        // Configures a ConsoleAppender with a threshold of Debug
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Logging.Default");
         #endregion

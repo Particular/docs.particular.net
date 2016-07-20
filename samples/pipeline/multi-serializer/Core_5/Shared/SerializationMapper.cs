@@ -26,7 +26,7 @@ public class SerializationMapper
         string contentType;
         if (!headers.TryGetValue(Headers.ContentType, out contentType))
         {
-            //default to Json
+            // default to Json
             return jsonSerializer;
         }
         if (contentType == jsonSerializer.ContentType)
@@ -54,7 +54,7 @@ public class SerializationMapper
         {
             return xmlSerializer;
         }
-        //default to json
+        // default to json
         return jsonSerializer;
     }
 }

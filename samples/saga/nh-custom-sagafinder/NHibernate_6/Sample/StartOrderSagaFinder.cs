@@ -16,8 +16,8 @@ class StartOrderSagaFinder :
     public OrderSagaData FindBy(StartOrder message)
     {
         var session = storageContext.Session;
-        //if the instance is null a new saga will be automatically created if
-        //the Saga handles the message as IAmStartedByMessages<StartOrder>; otherwise an exception is raised.
+        // if the instance is null a new saga will be automatically created if
+        // the Saga handles the message as IAmStartedByMessages<StartOrder>; otherwise an exception is raised.
         return session.QueryOver<OrderSagaData>()
             .Where(d => d.OrderId == message.OrderId)
             .SingleOrDefault();

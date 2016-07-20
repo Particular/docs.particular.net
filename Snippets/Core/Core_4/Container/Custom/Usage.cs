@@ -9,7 +9,7 @@
         {
             #region CustomContainers
 
-            //Create a class that implements 'IContainer'
+            // Create a class that implements 'IContainer'
             configure.UsingContainer<MyCustomObjectBuilder>();
 
             #endregion

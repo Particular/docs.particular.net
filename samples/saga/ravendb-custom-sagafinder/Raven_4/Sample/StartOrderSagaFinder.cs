@@ -13,8 +13,8 @@ class StartOrderSagaFinder :
     public Task<OrderSagaData> FindBy(StartOrder message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
     {
         var session = storageSession.RavenSession();
-        //if the instance is null a new saga will be automatically created if
-        //the Saga handles the message as IAmStartedByMessages<StartOrder>; otherwise an exception is raised.
+        // if the instance is null a new saga will be automatically created if
+        // the Saga handles the message as IAmStartedByMessages<StartOrder>; otherwise an exception is raised.
         return session.LoadByUniqueConstraintAsync<OrderSagaData>(d => d.OrderId, message.OrderId);
     }
 }

@@ -18,11 +18,9 @@ class WeightedDistributionStrategy :
         yield return CurrentInstance(currentAllInstances, index);
     }
 
-    /// <summary>
-    /// There is 1/weight chance of returning 1 (which means move to next instance). Otherwise we continue sending to the current instance.
-    /// </summary>
-    /// <param name="currentInstance">Current instance.</param>
-    /// <returns>1 if should move to next instance. 0 if should continue sending to the current one.</returns>
+    // There is 1/weight chance of returning 1 (which means move to next instance).
+    // Otherwise we continue sending to the current instance.
+    // returns 1 if should move to next instance. 0 if should continue sending to the current one.
     #region Should-Rotate
     long ShouldMoveToNextInstance(UnicastRoutingTarget currentInstance)
     {
@@ -32,10 +30,9 @@ class WeightedDistributionStrategy :
     }
     #endregion
 
-    /// <summary>
-    /// Returns the weight of the instance based on XML config. Defaults to 1 if value is not provided.
-    /// </summary>
-    /// <param name="target">Endpoint instance.</param>
+    
+    // Returns the weight of the instance based on XML config.
+    // Defaults to 1 if value is not provided.
     static int GetWeight(UnicastRoutingTarget target)
     {
         string weight;

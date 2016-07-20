@@ -7,17 +7,13 @@ class Usage
     {
         #region ConfiguringDistributor
 
-        // --------------------------------------
         // Running the Distributor and a Worker
         configure.AsMSMQMasterNode();
-        //or
+        // or
         configure.RunMSMQDistributor();
-        // --------------------------------------
 
-        // --------------------------------------
         // Running the Distributor only
         configure.RunMSMQDistributor(false);
-        // --------------------------------------
 
         #endregion
 

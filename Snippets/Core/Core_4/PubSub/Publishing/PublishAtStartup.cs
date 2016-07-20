@@ -10,7 +10,7 @@
             #region publishAtStartup
 
             var configure = Configure.With();
-            //Other config
+            // Other config
             using (var startableBus = configure.UnicastBus().CreateBus())
             {
                 var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());

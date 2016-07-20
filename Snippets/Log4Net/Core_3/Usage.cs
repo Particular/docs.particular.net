@@ -21,7 +21,7 @@ class Usage
         };
         // Note that no ActivateOptions is required since NSB 3 does this internally
 
-        //Pass the appender to NServiceBus
+        // Pass the appender to NServiceBus
         SetLoggingLibrary.Log4Net(null, consoleAppender);
 
         #endregion

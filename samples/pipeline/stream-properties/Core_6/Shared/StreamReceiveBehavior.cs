@@ -29,7 +29,7 @@ class StreamReceiveBehavior :
         {
             var headerKey = StreamStorageHelper.GetHeaderKey(message, property);
             string dataBusKey;
-            //only attempt to process properties that have an associated header
+            // only attempt to process properties that have an associated header
             var key = $"NServiceBus.PropertyStream.{headerKey}";
             if (!context.Headers.TryGetValue(key, out dataBusKey))
             {
@@ -38,7 +38,7 @@ class StreamReceiveBehavior :
 
             var filePath = Path.Combine(location, dataBusKey);
 
-            // If the file doesnt exist then something has gone wrong with the file share. 
+            // If the file doesn't exist then something has gone wrong with the file share. 
             // Perhaps he file has been manually deleted.
             // For safety send the message to the error queue
             if (!File.Exists(filePath))

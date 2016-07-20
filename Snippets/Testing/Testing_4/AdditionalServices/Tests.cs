@@ -16,7 +16,7 @@
 
             var mockService = new MyService();
             Test.Handler(bus => new WithDependencyInjectionHandler(mockService));
-            //Rest of test
+            // Rest of test
         }
     }
 
@@ -49,7 +49,7 @@
 
             var mockService = new MyService();
             Test.Handler(bus => new WithConstructorInjectedBusHandler(bus));
-            //Rest of test
+            // Rest of test
         }
     }
 

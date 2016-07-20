@@ -70,7 +70,7 @@ class Program
         #region multi-hosting-assembly-scan
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.Instance1");
-        //Exclude Instance2.dll and, by inference, include all other assemblies
+        // Exclude Instance2.dll and, by inference, include all other assemblies
         endpointConfiguration.ExcludeAssemblies("Instance2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();

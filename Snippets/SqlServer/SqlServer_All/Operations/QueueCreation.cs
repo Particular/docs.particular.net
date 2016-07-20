@@ -49,23 +49,23 @@ public static class QueueCreation
 
     public static async Task CreateQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
     {
-        //main queue
+        // main queue
         await CreateQueue(connection, schema, endpointName)
             .ConfigureAwait(false);
 
-        //callback queue
+        // callback queue
         await CreateQueue(connection, schema, $"{endpointName}.{Environment.MachineName}")
             .ConfigureAwait(false);
 
-        //retries queue
+        // retries queue
         await CreateQueue(connection, schema, $"{endpointName}.Retries")
             .ConfigureAwait(false);
 
-        //timeout queue
+        // timeout queue
         await CreateQueue(connection, schema, $"{endpointName}.Timeouts")
             .ConfigureAwait(false);
 
-        //timeout dispatcher queue
+        // timeout dispatcher queue
         await CreateQueue(connection, schema, $"{endpointName}.TimeoutsDispatcher")
             .ConfigureAwait(false);
     }

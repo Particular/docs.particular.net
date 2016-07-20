@@ -18,7 +18,7 @@ class Program
 #pragma warning restore 618
 
         #region WorkerNameToUseWhileTestingCode
-        //called after EnlistWithDistributor
+        // called after EnlistWithDistributor
         Address.InitializeLocalAddress("Samples.Scaleout.Worker2");
         #endregion
         configure.InMemorySagaPersister();

@@ -10,9 +10,7 @@ public class LegacyOrderDetectedHandler :
     public Task Handle(LegacyOrderDetected message, IMessageHandlerContext context)
     {
         log.Info($"Legacy order with id {message.OrderId} detected");
-
-        //Get the order details from the database and publish an event
-
+        // Get the order details from the database and publish an event
         return Task.FromResult(0);
     }
 

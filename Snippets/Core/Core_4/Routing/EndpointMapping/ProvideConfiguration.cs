@@ -11,18 +11,18 @@
     {
         public UnicastBusConfig GetConfiguration()
         {
-            //read from existing config
+            // read from existing config
             var config = (UnicastBusConfig) ConfigurationManager
                 .GetSection(typeof(UnicastBusConfig).Name);
             if (config == null)
             {
-                //create new config if it doesn't exist
+                // create new config if it doesn't exist
                 config = new UnicastBusConfig
                 {
                     MessageEndpointMappings = new MessageEndpointMappingCollection()
                 };
             }
-            //append mapping to config
+            // append mapping to config
             var endpointMapping = new MessageEndpointMapping
             {
                 AssemblyName = "assembly",

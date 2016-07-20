@@ -36,7 +36,7 @@
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
             using (var bus = Bus.Create(busConfiguration).Start())
             {
-                //give time for the subscription to happen
+                // give time for the subscription to happen
                 Thread.Sleep(3000);
                 bus.Publish(new MessageToPublish());
                 ManualResetEvent.WaitOne();

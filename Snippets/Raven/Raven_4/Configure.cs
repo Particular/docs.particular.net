@@ -98,7 +98,7 @@ class Configure
 
     void SpecificDocumentStoreViaConnectionString()
     {
-        //See the config file
+        // See the config file
     }
 
     void ExternalDocumentStore(EndpointConfiguration endpointConfiguration)
@@ -142,7 +142,7 @@ class Configure
 
     void SharedDocumentStoreViaConnectionString()
     {
-        //See the config file
+        // See the config file
     }
 
     void ManualDtcSettingExample()

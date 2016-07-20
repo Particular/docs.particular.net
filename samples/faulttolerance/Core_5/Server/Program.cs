@@ -14,7 +14,7 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         #region diableSlr
-        //busConfiguration.DisableFeature<NServiceBus.Features.SecondLevelRetries>();
+        // busConfiguration.DisableFeature<NServiceBus.Features.SecondLevelRetries>();
         #endregion
         using (var bus = Bus.Create(busConfiguration).Start())
         {

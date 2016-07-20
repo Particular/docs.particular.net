@@ -49,7 +49,7 @@ namespace Core5
 
         void DefaultAction(Configure configure)
         {
-            //https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Core/CriticalError/CriticalError.cs
+            // https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Core/CriticalError/CriticalError.cs
 
             #region DefaultCriticalErrorAction
 
@@ -68,7 +68,7 @@ namespace Core5
 
         void DefaultHostAction(string errorMessage, Exception exception)
         {
-            //https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Hosting.Windows/GenericHost.cs
+            // https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Hosting.Windows/GenericHost.cs
 
             #region DefaultHostCriticalErrorAction
 

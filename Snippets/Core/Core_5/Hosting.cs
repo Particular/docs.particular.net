@@ -19,7 +19,7 @@
         {
             #region Hosting-Startup
             var busConfiguration = new BusConfiguration();
-            //Apply configuration
+            // Apply configuration
             var startableBus = Bus.Create(busConfiguration);
             var bus = startableBus.Start();
             #endregion

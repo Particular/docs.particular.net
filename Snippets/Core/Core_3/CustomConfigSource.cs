@@ -12,7 +12,7 @@
             #region RegisterCustomConfigSource
 
             var configure = Configure.With();
-            //this call needs to happen right after With()
+            // this call needs to happen right after With()
             configure.CustomConfigurationSource(new MyCustomConfigurationSource());
 
             #endregion

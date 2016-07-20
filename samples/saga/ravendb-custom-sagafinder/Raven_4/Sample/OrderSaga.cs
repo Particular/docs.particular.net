@@ -15,7 +15,7 @@ public class OrderSaga :
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
-        //NOP
+        // NOP
     }
 
     public Task Handle(StartOrder message, IMessageHandlerContext context)

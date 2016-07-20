@@ -8,7 +8,7 @@
         public async Task Publish(EndpointConfiguration endpointConfiguration)
         {
             #region publishAtStartup
-            //Other config
+            // Other config
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
             await endpointInstance.Publish(new MyEvent())

@@ -10,7 +10,7 @@
     {
         public void Handle(MyMessage message)
         {
-            //do something with the message data
+            // do something with the message data
             SomeLibrary.SomeMethod(message.Data);
         }
     }

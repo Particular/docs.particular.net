@@ -37,7 +37,7 @@
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
-            //give time for the subscription to happen
+            // give time for the subscription to happen
             await Task.Delay(3000)
                 .ConfigureAwait(false);
             await endpointInstance.Publish(new MessageToPublish())

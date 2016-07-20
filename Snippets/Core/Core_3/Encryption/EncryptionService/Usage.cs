@@ -9,7 +9,7 @@ namespace Core3.Encryption.EncryptionService
         {
             #region EncryptionFromIEncryptionService
 
-            //where EncryptionService implements IEncryptionService
+            // where EncryptionService implements IEncryptionService
             configure.Configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
 
             #endregion

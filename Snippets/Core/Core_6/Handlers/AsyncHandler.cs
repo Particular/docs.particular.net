@@ -64,7 +64,8 @@
         {
             if (someCondition)
             {
-                return Task.FromResult(0); // Task.CompletedTask
+                // Task.CompletedTask
+                return Task.FromResult(0);
             }
 
             return SomeLibrary.SomeAsyncMethod(message);

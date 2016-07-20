@@ -7,7 +7,7 @@
         Usage(EndpointConfiguration endpointConfiguration)
         {
             #region EncryptionFromIEncryptionService
-            //where EncryptionService implements IEncryptionService 
+            // where EncryptionService implements IEncryptionService 
             endpointConfiguration.RegisterEncryptionService(() => new EncryptionService());
 
             #endregion

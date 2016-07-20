@@ -40,7 +40,7 @@ class DirectoryBasedTransaction :
 
     public void Rollback()
     {
-        //rollback by moving the file back to the main dir
+        // rollback by moving the file back to the main dir
         File.Move(FileToProcess, Path.Combine(basePath, Path.GetFileName(FileToProcess)));
         Directory.Delete(transactionDir, true);
     }

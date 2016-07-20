@@ -20,7 +20,7 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region diableSlr
-        //endpointConfiguration.SecondLevelRetries().Disable();
+        // endpointConfiguration.SecondLevelRetries().Disable();
         #endregion
 
 

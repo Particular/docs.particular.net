@@ -27,7 +27,7 @@ class Program
             .ConfigureAwait(false);
         try
         {
-            //simulate some activity
+            // simulate some activity
             await Task.Delay(500)
                 .ConfigureAwait(false);
 

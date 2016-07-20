@@ -25,7 +25,7 @@ class Program
         #endregion
 
         #region UseConfig
-        //Pass the appenders to NServiceBus
+        // Pass the appenders to NServiceBus
         SetLoggingLibrary.Log4Net(null, appender);
 
         // Then continue with the bus configuration

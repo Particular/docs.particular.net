@@ -14,7 +14,7 @@ namespace Common
         }
         public static void SomeMethod(params object[] data)
         {
-            //no-op
+            // no-op
         }
     }
 }

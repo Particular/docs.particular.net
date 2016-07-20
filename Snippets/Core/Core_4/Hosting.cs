@@ -22,7 +22,7 @@
             #region Hosting-Startup
 
             var configure = Configure.With();
-            //Apply configuration
+            // Apply configuration
             var configUnicastBus = configure.UnicastBus();
             var startableBus = configUnicastBus.CreateBus();
             var bus = startableBus.Start();

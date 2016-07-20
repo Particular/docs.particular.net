@@ -10,7 +10,7 @@ class Program
     {
         Console.Title = "Samples.Serialization.Xml";
         #region config
-        //this is optional since Xml is the default serializer
+        // this is optional since Xml is the default serializer
         Configure.Serialization.Xml();
         var configure = Configure.With();
         configure.Log4Net();

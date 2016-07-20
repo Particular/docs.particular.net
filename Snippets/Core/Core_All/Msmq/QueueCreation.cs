@@ -34,16 +34,16 @@
 
         public static void CreateQueuesForEndpoint(string endpointName, string account)
         {
-            //main queue
+            // main queue
             CreateQueue(endpointName, account);
 
-            //retries queue
+            // retries queue
             CreateQueue($"{endpointName}.retries", account);
 
-            //timeout queue
+            // timeout queue
             CreateQueue($"{endpointName}.timeouts", account);
 
-            //timeout dispatcher queue
+            // timeout dispatcher queue
             CreateQueue($"{endpointName}.timeoutsdispatcher", account);
         }
 

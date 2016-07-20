@@ -165,7 +165,7 @@ class FileTransportMessagePump :
             if (headers.TryGetValue(Headers.TimeToBeReceived, out ttbrString))
             {
                 var ttbr = TimeSpan.Parse(ttbrString);
-                //file.move preserves create time
+                // file.move preserves create time
                 var sentTime = File.GetCreationTimeUtc(transaction.FileToProcess);
 
                 if (sentTime + ttbr < DateTime.UtcNow)

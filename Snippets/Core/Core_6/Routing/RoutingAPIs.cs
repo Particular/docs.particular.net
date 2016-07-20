@@ -60,11 +60,11 @@ namespace Core6.Routing
             routing.Mapping.Logical
                 .AddDynamic((types, contextBag) => new[]
                 {
-                    //Use endpoint name
+                    // Use endpoint name
                     UnicastRoute.CreateFromEndpointName("Sales"),
-                    //Use endpoint instance name
+                    // Use endpoint instance name
                     UnicastRoute.CreateFromEndpointInstance(new EndpointInstance("Sales", "1")),
-                    //Use transport address (e.g. MSMQ)
+                    // Use transport address (e.g. MSMQ)
                     UnicastRoute.CreateFromEndpointName("Sales-2@MachineA")
                 });
 

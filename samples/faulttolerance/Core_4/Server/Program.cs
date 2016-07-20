@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         #region diableSlr
-        //Configure.Features.Disable<NServiceBus.Features.SecondLevelRetries>();
+        // Configure.Features.Disable<NServiceBus.Features.SecondLevelRetries>();
         #endregion
 
         Console.Title = "Samples.FaultTolerance.Server";

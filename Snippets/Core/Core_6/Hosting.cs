@@ -23,13 +23,13 @@
         {
             #region Hosting-Startup
             var endpointConfiguration = new EndpointConfiguration("EndpointName");
-            //Apply configuration
+            // Apply configuration
             var startableEndpoint = await Endpoint.Create(endpointConfiguration)
                 .ConfigureAwait(false);
             var endpointInstance = await startableEndpoint.Start()
                 .ConfigureAwait(false);
 
-            //Shortcut
+            // Shortcut
             var endpointInstance2 = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
             #endregion

@@ -43,8 +43,8 @@ class Dispatcher :
             {
                 var tempFile = Path.GetTempFileName();
 
-                //write to temp file first so an atomic move can be done
-                //this avoids the file being locked when the receiver tries to process it
+                // write to temp file first so an atomic move can be done
+                // this avoids the file being locked when the receiver tries to process it
                 File.WriteAllLines(tempFile, messageContents);
                 File.Move(tempFile, messagePath);
             }

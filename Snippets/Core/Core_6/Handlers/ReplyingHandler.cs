@@ -10,14 +10,14 @@
 
         public Task Handle(RequestDataMessage message, IMessageHandlerContext context)
         {
-            //Create a response message:
+            // Create a response message:
             var response = new DataResponseMessage
             {
                 DataId = message.DataId,
                 String = message.String
             };
 
-            //Underneath the covers, Reply sends a new message to the return address on the message being handled.
+            // Reply sends a new message to the return address on the message being handled.
             return context.Reply(response);
         }
 

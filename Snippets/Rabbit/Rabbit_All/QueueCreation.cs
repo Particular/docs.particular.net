@@ -37,19 +37,19 @@ public static class QueueCreation
 
     public static void CreateQueuesForEndpoint(string uri, string endpointName, bool durableMessages, bool createExchanges)
     {
-        //main queue
+        // main queue
         CreateQueue(uri, endpointName, durableMessages, createExchanges);
 
-        //callback queue
+        // callback queue
         CreateQueue(uri, $"{endpointName}.{Environment.MachineName}", durableMessages, createExchanges);
 
-        //retries queue
+        // retries queue
         CreateQueue(uri, $"{endpointName}.Retries", durableMessages, createExchanges);
 
-        //timeout queue
+        // timeout queue
         CreateQueue(uri, $"{endpointName}.Timeouts", durableMessages, createExchanges);
 
-        //timeout dispatcher queue
+        // timeout dispatcher queue
         CreateQueue(uri, $"{endpointName}.TimeoutsDispatcher", durableMessages, createExchanges);
     }
 

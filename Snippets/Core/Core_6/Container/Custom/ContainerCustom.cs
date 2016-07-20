@@ -11,7 +11,7 @@
 
         public void CustomContainerExtensionUsage(EndpointConfiguration endpointConfiguration)
         {
-            //Register the container in the configuration with '.UseContainer<T>()'
+            // Register the container in the configuration with '.UseContainer<T>()'
             endpointConfiguration.UseContainer<MyContainer>();
         }
 
@@ -21,7 +21,7 @@
         {
             public override IContainer CreateContainer(ReadOnlySettings settings)
             {
-                //Create a class that implements 'IContainer'
+                // Create a class that implements 'IContainer'
                 return new MyObjectBuilder();
             }
         }

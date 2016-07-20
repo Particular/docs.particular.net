@@ -10,7 +10,7 @@
 
             Configure.Serialization.Json();
             configure.DefiningEventsAs(t => typeof(IEvent).IsAssignableFrom(t) ||
-                                       //include ServiceControl events
+                                       // include ServiceControl events
                                        t.Namespace != null &&
                                        t.Namespace.StartsWith("ServiceControl.Contracts"));
 

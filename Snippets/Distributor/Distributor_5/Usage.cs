@@ -7,17 +7,13 @@ class Usage
     void ConfiguringDistributor(BusConfiguration busConfiguration)
     {
         #region ConfiguringDistributor
-        // --------------------------------------
         // Running the Distributor and a Worker
         busConfiguration.AsMSMQMasterNode();
-        //or
+        // or
         busConfiguration.RunMSMQDistributor();
-        // --------------------------------------
 
-        // --------------------------------------
         // Running the Distributor only
         busConfiguration.RunMSMQDistributor(false);
-        // --------------------------------------
 
         #endregion
     }

@@ -44,7 +44,7 @@ class Program
         var busConfiguration = new BusConfiguration();
 
         busConfiguration.EndpointName("Samples.MultiHosting.Instance1");
-        //only include Instance1.dll and dependent assemblies
+        // only include Instance1.dll and dependent assemblies
         busConfiguration.AssembliesToScan(AllAssemblies.Matching("Instance1.").And("Shared"));
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();

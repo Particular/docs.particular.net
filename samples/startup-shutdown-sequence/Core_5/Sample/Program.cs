@@ -23,7 +23,7 @@ class Program
             Logger.WriteLine("Calling IStartableBus.Create");
             bus.Start();
 
-            //simulate some activity
+            // simulate some activity
             Thread.Sleep(500);
 
             Logger.WriteLine("Bus is processing messages");

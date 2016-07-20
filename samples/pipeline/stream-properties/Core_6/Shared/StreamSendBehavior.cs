@@ -33,7 +33,7 @@ class StreamSendBehavior :
         {
             var sourceStream = (Stream)property.GetValue(message, null);
 
-            //Ignore null stream properties
+            // Ignore null stream properties
             if (sourceStream == null)
             {
                 continue;
@@ -49,13 +49,13 @@ class StreamSendBehavior :
                     .ConfigureAwait(false);
             }
 
-            //Reset the property to null so no other serializer attempts to use the property
+            // Reset the property to null so no other serializer attempts to use the property
             property.SetValue(message, null);
 
-            //Dispose of the stream
+            // Dispose of the stream
             sourceStream.Dispose();
 
-            //Store the header so on the receiving endpoint the file name is known
+            // Store the header so on the receiving endpoint the file name is known
             var headerKey = StreamStorageHelper.GetHeaderKey(message, property);
             context.Headers[$"NServiceBus.PropertyStream.{headerKey}"] = fileKey;
         }

@@ -21,7 +21,7 @@
         {
             public override IContainer CreateContainer(ReadOnlySettings settings)
             {
-                //Create a class that implements 'IContainer'
+                // Create a class that implements 'IContainer'
                 return new MyObjectBuilder();
             }
         }

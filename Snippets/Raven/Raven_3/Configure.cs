@@ -84,7 +84,7 @@ class Configure
 
     public void SpecificDocumentStoreViaConnectionString()
     {
-        //See the config file
+        // See the config file
     }
 
     void ExternalDocumentStore(BusConfiguration busConfiguration)
@@ -115,7 +115,7 @@ class Configure
 
     public void SharedDocumentStoreViaConnectionString()
     {
-        //See the config file
+        // See the config file
     }
 
     void ManualDtcSettingExample()

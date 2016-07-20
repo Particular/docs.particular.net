@@ -9,7 +9,7 @@
             #region License
 
             busConfiguration.LicensePath("PathToLicense");
-            //or
+            // or
             busConfiguration.License("YourCustomLicenseText");
 
             #endregion

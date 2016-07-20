@@ -10,10 +10,10 @@ class Usage
     {
         #region ConfiguringNHibernate
 
-        //Use NHibernate for all persistence concerns
+        // Use NHibernate for all persistence concerns
         busConfiguration.UsePersistence<NHibernatePersistence>();
 
-        //or select specific concerns
+        // or select specific concerns
         busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Sagas>();
         busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
         busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();

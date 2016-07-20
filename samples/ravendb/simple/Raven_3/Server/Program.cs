@@ -23,7 +23,8 @@ class Program
             documentStore.Initialize();
 
             var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
-            persistence.DoNotSetupDatabasePermissions(); //Only required to simplify the sample setup
+            // Only required to simplify the sample setup
+            persistence.DoNotSetupDatabasePermissions();
             persistence.SetDefaultDocumentStore(documentStore);
 
             #endregion

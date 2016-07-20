@@ -9,8 +9,8 @@
             #region Installers
 
             busConfiguration.EnableInstallers();
-
-            Bus.Create(busConfiguration);//this will run the installers
+            // this will run the installers
+            Bus.Create(busConfiguration);
 
             #endregion
         }

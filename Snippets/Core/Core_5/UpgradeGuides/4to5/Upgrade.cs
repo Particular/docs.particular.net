@@ -93,7 +93,7 @@ namespace Core5.UpgradeGuides._4to5
         void UseTransport(BusConfiguration busConfiguration)
         {
             #region 4to5UseTransport
-            //Choose one of the following
+            // Choose one of the following
 
             busConfiguration.UseTransport<MsmqTransport>();
 
@@ -138,12 +138,12 @@ namespace Core5.UpgradeGuides._4to5
 
             #region 4to5ReflectionInterfaceMessageCreation
 
-            //This type would be derived from some other runtime information
+            // This type would be derived from some other runtime information
             var messageType = typeof(MyInterfaceMessage);
 
             var instance = messageCreator.CreateInstance(messageType);
 
-            //use reflection to set properties on the constructed instance
+            // use reflection to set properties on the constructed instance
 
             Bus.Publish(instance);
 
@@ -196,8 +196,8 @@ namespace Core5.UpgradeGuides._4to5
             #region 4to5Installers
 
             busConfiguration.EnableInstallers();
-
-            Bus.Create(busConfiguration); //this will run the installers
+            // this will run the installers
+            Bus.Create(busConfiguration);
 
             #endregion
         }
@@ -322,7 +322,7 @@ namespace Core5.UpgradeGuides._4to5
             #region 4to5License
 
             busConfiguration.LicensePath("PathToLicense");
-            //or
+            // or
             busConfiguration.License("YourCustomLicenseText");
 
             #endregion
@@ -332,7 +332,7 @@ namespace Core5.UpgradeGuides._4to5
         {
             #region 4to5TransactionConfig
 
-            //Enable
+            // Enable
             busConfiguration.Transactions().Enable();
 
             // Disable
@@ -367,7 +367,7 @@ namespace Core5.UpgradeGuides._4to5
             #region 4to5PerformanceMonitoring
 
             busConfiguration.EnableSLAPerformanceCounter();
-            //or
+            // or
             busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
 
             #endregion

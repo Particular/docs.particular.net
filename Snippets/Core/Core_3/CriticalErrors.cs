@@ -28,7 +28,7 @@ namespace Core3.Host
 
         void OnCriticalError()
         {
-            //Write log entry in version 3 since this is not done by default.
+            // Write log entry in version 3 since this is not done by default.
             log.Fatal("CRITICAL Error");
 
             // To leave the process active, dispose the bus.
@@ -45,8 +45,7 @@ namespace Core3.Host
 
         void DefaultAction()
         {
-
-            //https://github.com/Particular/NServiceBus/blob/support-3.3/src/faults/NServiceBus.Faults/Configuration/ConfigureCriticalErrorAction.cs
+            // https://github.com/Particular/NServiceBus/blob/support-3.3/src/faults/NServiceBus.Faults/Configuration/ConfigureCriticalErrorAction.cs
 
             #region DefaultCriticalErrorAction
 
@@ -58,8 +57,7 @@ namespace Core3.Host
 
         void DefaultHostAction()
         {
-
-            //https://github.com/Particular/NServiceBus/blob/support-3.3/src/hosting/NServiceBus.Hosting.Windows/WindowsHost.cs
+            // https://github.com/Particular/NServiceBus/blob/support-3.3/src/hosting/NServiceBus.Hosting.Windows/WindowsHost.cs
 
             #region DefaultHostCriticalErrorAction
             // so that user can see on their screen the problem
@@ -72,7 +70,6 @@ namespace Core3.Host
 
         void InvokeCriticalError()
         {
-
             #region InvokeCriticalError
 
             Configure.Instance.OnCriticalError();

@@ -28,12 +28,12 @@ class AutomaticRoutingFeature :
 
         #region Feature
 
-        //Create the infrastructure
+        // Create the infrastructure
         var dataAccess = new SqlDataAccess(uniqueKey, connectionString);
         var communicator = new RoutingInfoCommunicator(dataAccess);
         context.RegisterStartupTask(communicator);
 
-        //Register the routing info publisher
+        // Register the routing info publisher
         context.RegisterStartupTask(builder =>
         {
             var handlerRegistry = builder.Build<MessageHandlerRegistry>();
@@ -46,7 +46,7 @@ class AutomaticRoutingFeature :
                 heartbeatPeriod: TimeSpan.FromSeconds(5));
         });
 
-        //Register the routing info subscriber
+        // Register the routing info subscriber
         context.RegisterStartupTask(builder =>
         {
             var handlerRegistry = builder.Build<MessageHandlerRegistry>();
@@ -73,9 +73,9 @@ class AutomaticRoutingFeature :
 
     static List<Type> GetHandledMessages(MessageHandlerRegistry handlerRegistry, Conventions conventions)
     {
-        //get all potential messages
+        // get all potential messages
         return handlerRegistry.GetMessageTypes()
-            //never auto-route system messages
+            // never auto-route system messages
             .Where(t => !conventions.IsInSystemConventionList(t))
             .ToList();
     }

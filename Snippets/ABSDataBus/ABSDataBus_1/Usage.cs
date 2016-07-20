@@ -19,7 +19,8 @@ class Usage
         var blockSize = 10;
         var timeToLiveInSeconds = 1;
         var maxNumberOfRetryAttempts = 3;
-        var numberOfIoThreads = 3; // number of parallel operations that may proceed.
+        // number of parallel operations that may proceed.
+        var numberOfIoThreads = 3;
         // number of blocks that may be simultaneously uploaded when uploading a blob that is greater than the value specified by the
         var backOffIntervalBetweenRetriesInSecs = 1000;
 

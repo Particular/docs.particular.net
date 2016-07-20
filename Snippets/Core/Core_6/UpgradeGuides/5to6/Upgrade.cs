@@ -116,7 +116,7 @@
 
             var sendOptions = new SendOptions();
             sendOptions.DelayDeliveryWith(TimeSpan.FromMinutes(30));
-            //OR
+            // OR
             sendOptions.DoNotDeliverBefore(new DateTime(2016, 12, 25));
 
             await handlerContext.Send(message, sendOptions)

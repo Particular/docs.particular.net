@@ -17,7 +17,7 @@
         {
             var mockService = new MyService();
             var handler = Test.Handler(new WithDependencyInjectionHandler(mockService));
-            //Rest of test
+            // Rest of test
         }
     }
 

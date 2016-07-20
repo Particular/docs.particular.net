@@ -11,7 +11,7 @@
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            //do something with the message data
+            // do something with the message data
             return SomeLibrary.SomeAsyncMethod(message.Data);
         }
     }

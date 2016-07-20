@@ -65,23 +65,23 @@ public static class QueueDeletion
 
     public static async Task DeleteQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
     {
-        //main queue
+        // main queue
         await DeleteQueue(connection, schema, endpointName)
             .ConfigureAwait(false);
 
-        //callback queue
+        // callback queue
         await DeleteQueue(connection, schema, $"{endpointName}.{Environment.MachineName}")
             .ConfigureAwait(false);
 
-        //retries queue
+        // retries queue
         await DeleteQueue(connection, schema, $"{endpointName}.Retries")
             .ConfigureAwait(false);
 
-        //timeout queue
+        // timeout queue
         await DeleteQueue(connection, schema, $"{endpointName}.Timeouts")
             .ConfigureAwait(false);
 
-        //timeout dispatcher queue
+        // timeout dispatcher queue
         await DeleteQueue(connection, schema, $"{endpointName}.TimeoutsDispatcher")
             .ConfigureAwait(false);
     }
