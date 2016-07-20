@@ -10,8 +10,9 @@ public class HandlerUsingCustomHeader :
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        var usernameFromCustomHeader = context.MessageHeaders["UserName"];
-        log.Info($"Username extracted from custom message header: {usernameFromCustomHeader}");
+        var headers = context.MessageHeaders;
+        var usernameFromHeader = headers["UserName"];
+        log.Info($"Username extracted from header: {usernameFromHeader}");
         return Task.FromResult(0);
     }
 

@@ -2,13 +2,11 @@
 USE [master]
 GO
 
-/****** Object:  Database [PersistenceForMsmqTransport]    Script Date: 2/9/2016 10:20:43 AM ******/
 CREATE DATABASE [PersistenceForMsmqTransport]
 GO
 
 USE [PersistenceForMsmqTransport]
 GO
-
 
 CREATE TABLE [dbo].[Subscription](
 	[SubscriberEndpoint] [varchar](450) NOT NULL,
@@ -21,7 +19,6 @@ CREATE TABLE [dbo].[Subscription](
 		[MessageType] ASC
 	)
 )
-
 
 CREATE TABLE [dbo].[TimeoutEntity](
 	[Id] [uniqueidentifier] NOT NULL,

@@ -53,7 +53,7 @@ public class AzureHelper
         var storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
         var tableClient = storageAccount.CreateCloudTableClient();
         var table = tableClient.GetTableReference(tableName);
-        List<DynamicTableEntity> entities = table.ExecuteQuery(new TableQuery()).ToList();
+        var entities = table.ExecuteQuery(new TableQuery()).ToList();
         Debug.WriteLine($"'{tableName}' table contents");
         foreach (var entity in entities)
         {
@@ -64,9 +64,10 @@ public class AzureHelper
                 var decodedRowKey = entity.RowKey.DecodeFromKey();
                 Debug.WriteLine($"    DecodedRowKey:= {decodedRowKey}");
             }
-            foreach (KeyValuePair<string, EntityProperty> property in entity.Properties)
+            foreach (var property in entity.Properties)
             {
-                var propertyAsObject = property.Value.PropertyAsObject.ToString().Truncate(50);
+                var propertyAsObject = property.Value.PropertyAsObject
+                    .ToString().Truncate(50);
                 Debug.WriteLine($"    {property.Key}:= {propertyAsObject}");
             }
         }

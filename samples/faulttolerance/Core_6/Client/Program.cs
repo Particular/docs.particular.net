@@ -41,7 +41,7 @@ class Program
                 await endpointInstance.Send("Samples.FaultTolerance.Server", myMessage)
                     .ConfigureAwait(false);
 
-                Console.WriteLine($"Sent a new message with id: {id.ToString("N")}");
+                Console.WriteLine($"Sent a message with id: {id.ToString("N")}");
             }
         }
         finally

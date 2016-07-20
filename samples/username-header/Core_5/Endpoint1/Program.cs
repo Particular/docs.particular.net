@@ -21,7 +21,9 @@ class Program
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             #region SendMessage
-            Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("FakeUser"), new string[0]);
+
+            var identity = new GenericIdentity("FakeUser");
+            Thread.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
             bus.Send("Samples.UsernameHeader.Endpoint2", new MyMessage());
             #endregion
             Console.WriteLine("Message sent. Press any key to exit");

@@ -66,7 +66,8 @@ public class AzureHelper
             }
             foreach (var property in entity.Properties)
             {
-                var propertyAsObject = property.Value.PropertyAsObject.ToString().Truncate(50);
+                var propertyAsObject = property.Value.PropertyAsObject
+                    .ToString().Truncate(50);
                 Debug.WriteLine($"    {property.Key}:= {propertyAsObject}");
             }
         }

@@ -14,8 +14,9 @@ public class HandlerUsingCustomHeader :
 
     public void Handle(MyMessage message)
     {
-        var usernameFromCustomHeader = bus.CurrentMessageContext.Headers["UserName"];
-        log.Info($"Username extracted from custom message header: {usernameFromCustomHeader}");
+        var headers = bus.CurrentMessageContext.Headers;
+        var usernameFromHeader = headers["UserName"];
+        log.Info($"Username extracted from header: {usernameFromHeader}");
     }
 }
 #endregion

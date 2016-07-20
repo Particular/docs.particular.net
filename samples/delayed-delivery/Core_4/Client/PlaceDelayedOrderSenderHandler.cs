@@ -16,7 +16,7 @@ public class PlaceDelayedOrderSenderHandler :
     public void Handle(PlaceDelayedOrder message)
     {
         bus.Send("Samples.DelayedDelivery.Server", message);
-        log.Info($"[Defer Message Delivery] Sent a new PlaceDelayedOrder message with id: {message.Id.ToString("N")}");
+        log.Info($"[Defer Message Delivery] Sent a PlaceDelayedOrder message with id: {message.Id.ToString("N")}");
     }
     #endregion
 }

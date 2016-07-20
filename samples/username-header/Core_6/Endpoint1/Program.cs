@@ -31,7 +31,9 @@ class Program
         try
         {
             #region SendMessage
-            Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("FakeUser"), new string[0]);
+
+            var identity = new GenericIdentity("FakeUser");
+            Thread.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
             await endpointInstance.Send("Samples.UsernameHeader.Endpoint2", new MyMessage())
                 .ConfigureAwait(false);
             #endregion

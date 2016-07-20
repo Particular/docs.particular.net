@@ -59,7 +59,7 @@ class Program
                 Id = id
             };
             bus.Send("Samples.StepByStep.Server", placeOrder);
-            Console.WriteLine($"Sent a new PlaceOrder message with id: {id:N}");
+            Console.WriteLine($"Sent a PlaceOrder message with id: {id:N}");
         }
     }
     #endregion

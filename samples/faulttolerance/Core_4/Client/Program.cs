@@ -38,7 +38,7 @@ class Program
                 };
                 bus.Send("Samples.FaultTolerance.Server", myMessage);
 
-                Console.WriteLine($"Sent a new message with id: {id.ToString("N")}");
+                Console.WriteLine($"Sent a message with id: {id.ToString("N")}");
             }
         }
     }

@@ -32,7 +32,7 @@ class Program
                     Id = id
                 });
 
-                Console.WriteLine($"Sent a new message with id: {id.ToString("N")}");
+                Console.WriteLine($"Sent a message with id: {id.ToString("N")}");
             }
         }
     }

@@ -45,7 +45,7 @@ class Program
                         Id = id
                     };
                     bus.Send("Samples.DelayedDelivery.Server", placeOrder);
-                    Console.WriteLine($"[Defer Message Handling] Sent a new PlaceOrder message with id: {id.ToString("N")}");
+                    Console.WriteLine($"[Defer Message Handling] Sent a PlaceOrder message with id: {id.ToString("N")}");
                     #endregion
                     continue;
                 case ConsoleKey.D2:
@@ -56,7 +56,7 @@ class Program
                         Id = id
                     };
                     bus.Defer(TimeSpan.FromSeconds(5), placeDelayedOrder);
-                    Console.WriteLine($"[Defer Message Delivery] Deferred a new PlaceDelayedOrder message with id: {id.ToString("N")}");
+                    Console.WriteLine($"[Defer Message Delivery] Deferred a PlaceDelayedOrder message with id: {id.ToString("N")}");
                     #endregion
                     continue;
                 case ConsoleKey.Enter:

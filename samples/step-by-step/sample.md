@@ -198,7 +198,7 @@ Press any key to exit
 Hit enter to send a message, or any other key to exit.
 
 ```no-highlight
-Sent a new PlaceOrder message with id: 5e906f84397e4205ae486f0aa79935e2
+Sent a PlaceOrder message with id: 5e906f84397e4205ae486f0aa79935e2
 ```
 
 

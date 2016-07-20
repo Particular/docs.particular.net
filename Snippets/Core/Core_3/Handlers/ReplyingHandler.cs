@@ -23,7 +23,7 @@
                 String = message.String
             };
 
-            //Underneath the covers, Reply sends a new message to the return address on the message being handled.
+            //Underneath the covers, Reply sends a message to the return address on the message being handled.
             bus.Reply(response);
 
             //Reply is equivalent to the following code:

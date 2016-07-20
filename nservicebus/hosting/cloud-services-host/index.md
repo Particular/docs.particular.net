@@ -29,7 +29,7 @@ Reference the assembly that contains the Azure role entry point integration. The
 
 NOTE: When self-hosting everything can be configured using code API and extension methods available in the NServiceBus Azure related packages. In such a case it's not required to reference the hosting package in the project. Self-hosting is described later in this article.
 
-To integrate the NServiceBus generic host into the worker role entry point, create a new instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override.
+To integrate the NServiceBus generic host into the worker role entry point, create an instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override.
 
 snippet:HostingInWorkerRole
 

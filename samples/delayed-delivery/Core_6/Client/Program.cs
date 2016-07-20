@@ -56,7 +56,7 @@ class Program
                     };
                     await endpointInstance.Send("Samples.DelayedDelivery.Server", placeOrder)
                         .ConfigureAwait(false);
-                    Console.WriteLine($"[Defer Message Handling] Sent a new PlaceOrder message with id: {id.ToString("N")}");
+                    Console.WriteLine($"[Defer Message Handling] Sent a PlaceOrder message with id: {id.ToString("N")}");
                     #endregion
                     continue;
                 case ConsoleKey.D2:
@@ -72,7 +72,7 @@ class Program
                     options.DelayDeliveryWith(TimeSpan.FromSeconds(5));
                     await endpointInstance.Send(placeDelayedOrder, options)
                         .ConfigureAwait(false);
-                    Console.WriteLine($"[Defer Message Delivery] Deferred a new PlaceDelayedOrder message with id: {id.ToString("N")}");
+                    Console.WriteLine($"[Defer Message Delivery] Deferred a PlaceDelayedOrder message with id: {id.ToString("N")}");
                     #endregion
                     continue;
                 case ConsoleKey.Enter:

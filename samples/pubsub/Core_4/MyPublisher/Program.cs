@@ -36,14 +36,16 @@ class Program
             Console.WriteLine();
 
             var eventId = Guid.NewGuid();
+            var time = DateTime.Now.Second > 30 ? (DateTime?)DateTime.Now : null;
+            var duration = TimeSpan.FromSeconds(99999D);
             switch (key.Key)
             {
                 case ConsoleKey.D1:
                     bus.Publish<IMyEvent>(m =>
                     {
                         m.EventId = eventId;
-                        m.Time = DateTime.Now.Second > 30 ? (DateTime?)DateTime.Now : null;
-                        m.Duration = TimeSpan.FromSeconds(99999D);
+                        m.Time = time;
+                        m.Duration = duration;
                     });
                     Console.WriteLine($"Published IMyEvent with Id {eventId}.");
                     continue;
@@ -51,8 +53,8 @@ class Program
                     var eventMessage = new EventMessage
                     {
                         EventId = eventId,
-                        Time = DateTime.Now.Second > 30 ? (DateTime?)DateTime.Now : null,
-                        Duration = TimeSpan.FromSeconds(99999D)
+                        Time = time,
+                        Duration = duration
                     };
                     bus.Publish(eventMessage);
                     Console.WriteLine($"Published EventMessage with Id {eventId}.");
@@ -61,8 +63,8 @@ class Program
                     var anotherEventMessage = new AnotherEventMessage
                     {
                         EventId = eventId,
-                        Time = DateTime.Now.Second > 30 ? (DateTime?)DateTime.Now : null,
-                        Duration = TimeSpan.FromSeconds(99999D)
+                        Time = time,
+                        Duration = duration
                     };
                     bus.Publish(anotherEventMessage);
                     Console.WriteLine($"Published AnotherEventMessage with Id {eventId}.");

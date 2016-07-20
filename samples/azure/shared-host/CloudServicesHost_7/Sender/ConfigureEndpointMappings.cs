@@ -17,7 +17,6 @@ public class ConfigureMessageEndpointMappings :
                     Messages = "Ping, Shared"
                 }
             }
-
         };
     }
 }

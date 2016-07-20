@@ -16,10 +16,11 @@ public class ObjectMessageHandler :
     public void Handle(ObjectMessage message)
     {
         log.Info("Message received, Returning");
-        bus.Reply(new ObjectResponseMessage
+        var response = new ObjectResponseMessage
         {
             Property = "PropertyValue"
-        });
+        };
+        bus.Reply(response);
     }
 }
 
