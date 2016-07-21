@@ -1,4 +1,4 @@
-﻿namespace Core6
+﻿namespace Core6.Serialization
 {
     using System;
     using System.Collections.Generic;
@@ -14,7 +14,8 @@
         {
             #region RegisterCustomSerializer
 
-            endpointConfiguration.UseSerialization<MyCustomSerializerDefinition>();
+            // register serializer additionally configuring settings
+            endpointConfiguration.UseSerialization<MyCustomSerializerDefinition>().Settings("settingsValue");
 
             #endregion
         }
@@ -26,13 +27,19 @@
         {
             public override Func<IMessageMapper, IMessageSerializer> Configure(ReadOnlySettings settings)
             {
-                return mapper => new MyCustomSerializer();
+                return mapper => new MyCustomSerializer(settings.GetOrDefault<string>("MyCustomSerializer.Settings"));
             }
         }
 
         class MyCustomSerializer :
             IMessageSerializer
         {
+            public MyCustomSerializer(string settingsValue)
+            {
+                // Add code initializing serializer on the basis of settingsValue
+                throw new NotImplementedException();
+            }
+
             public void Serialize(object message, Stream stream)
             {
                 // Add code to serialize message

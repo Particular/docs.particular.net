@@ -98,7 +98,6 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="AdditionalDeserializers.cs" />
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
@@ -198,7 +197,9 @@
     <Compile Include="Sagas\FindSagas\NHibernateSagaFinder.cs" />
     <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
     <Compile Include="ScaleOut\IndividualizeQueues.cs" />
+    <Compile Include="Serialization\AdditionalDeserializers.cs" />
     <Compile Include="Serialization\JsonSerializerUsage.cs" />
+    <Compile Include="Serialization\RegisterCustomSerializer.cs" />
     <Compile Include="Serialization\XmlSerializerUsage.cs" />
     <Compile Include="TransactionScopeUnitOfWork.cs" />
     <Compile Include="Transports\Mqmq\SubscriptionAuthorization.cs" />
@@ -269,7 +270,6 @@
     <Compile Include="PubSub\WithConvention\MessageToPublish.cs" />
     <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
     <Compile Include="PubSub\WithConvention\Usage.cs" />
-    <Compile Include="RegisterCustomSerializer.cs" />
     <Compile Include="Routing\BasicOperations.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
