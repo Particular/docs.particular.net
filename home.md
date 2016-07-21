@@ -198,7 +198,7 @@ span.blue {
   <div class="row">
     <div class="col-md-6">
       <a href="https://www.packtpub.com/application-development/learning-nservicebus-second-edition">
-        <img src="/home/book.svg">
+        <img src="/home/book.svg" width="33" height="36">
         <h3>Learning NServiceBus - Second Edition</h3>
       </a>
       <p>Building reliable and scalable software with NServiceBus.</p>
