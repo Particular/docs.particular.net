@@ -1,9 +1,11 @@
 ---
 title: Async Suffix
 summary: Reasoning for no Async suffix to Task based APIs
-related: 
+reviewed: 2016-07-21
+related:
  - nservicebus/upgrades/5to6
 ---
+
 
 ## No Async Suffix for NServiceBus APIs
 
@@ -21,14 +23,14 @@ Note than none of these APIs have the *Async* suffix as recommended by the Micro
 
 [Asynchronous Programming with async and await](https://msdn.microsoft.com/en-us/library/mt674882.aspx).
 
-The decisions not to adopt an *Async* suffix is intentional and has been made for several reasons
+The decisions not to adopt an *Async* suffix is intentional and has been made for several reasons:
 
 
 ### No requirement for conflicting overloads
 
 The *Async* suffix convention was adopted by necessity in .NET CLR since async APIs were added in a non-breaking version. Since .NET cannot have overloads that differ only by response type, the new async APIs needed to have a different name, hence the *Async* was used.
 
-In comparison async is added to NServiceBus in Version 6, and as this is a major (breaking API) version there is requirement to maintain both the sync and async versions. 
+In comparison async is added to NServiceBus in Version 6, and as this is a major (breaking API) version there is requirement to maintain both the sync and async versions.
 
 
 ### The noise caused in API usage
