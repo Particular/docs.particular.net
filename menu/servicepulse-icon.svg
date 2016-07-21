@@ -1,46 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 264 264" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
-    <g transform="matrix(1,0,0,1,4,4)">
-        <g id="SP" transform="matrix(4.01254,0,0,4.01254,-550.52,-417.705)">
-            <g>
-                <rect x="137.2" y="104.1" width="63.8" height="63.8" style="fill:rgb(32,91,93);"/>
-                <g>
-                    <rect x="143.7" y="104.1" width="1" height="63.8" style="fill:rgb(64,147,147);"/>
-                    <rect x="150.8" y="104.1" width="1" height="63.8" style="fill:rgb(64,147,147);"/>
-                    <rect x="165.1" y="104.1" width="1" height="63.8" style="fill:rgb(64,147,147);"/>
-                    <rect x="172.1" y="104.1" width="1" height="63.8" style="fill:rgb(64,147,147);"/>
-                    <rect x="179.2" y="104.1" width="1" height="63.8" style="fill:rgb(64,147,147);"/>
-                    <rect x="186.2" y="104.1" width="1" height="63.8" style="fill:rgb(64,147,147);"/>
-                    <rect x="193.3" y="104.1" width="1" height="63.8" style="fill:rgb(64,147,147);"/>
-                    <g transform="matrix(1.00157,0,0,1,-0.215385,0)">
-                        <rect x="137.2" y="110.7" width="63.7" height="1.001" style="fill:rgb(64,147,147);"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+<svg stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" xml:space="preserve" height="100%" width="100%" version="1.1" stroke-miterlimit="1.4142" clip-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 264 264">
+    <g transform="translate(4 4)">
+        <g id="SP" transform="matrix(4.0125 0 0 4.0125 -550.52 -417.7)">
+                <rect height="63.8" width="63.8" y="104.1" x="137.2" fill="#205b5d"/>
+                    <rect height="63.8" width="1" y="104.1" x="143.7" fill="#409393"/>
+                    <rect height="63.8" width="1" y="104.1" x="150.8" fill="#409393"/>
+                    <rect height="63.8" width="1" y="104.1" x="165.1" fill="#409393"/>
+                    <rect height="63.8" width="1" y="104.1" x="172.1" fill="#409393"/>
+                    <rect height="63.8" width="1" y="104.1" x="179.2" fill="#409393"/>
+                    <rect height="63.8" width="1" y="104.1" x="186.2" fill="#409393"/>
+                    <rect height="63.8" width="1" y="104.1" x="193.3" fill="#409393"/>
+                    <g transform="matrix(1.0016 0 0 1 -.21538 0)">
+                        <rect height="1.001" width="63.7" y="110.7" x="137.2" fill="#409393"/>
                     </g>
-                    <g transform="matrix(1.00157,0,0,1,-0.215385,0)">
-                        <rect x="137.2" y="117.8" width="63.7" height="1.001" style="fill:rgb(64,147,147);"/>
+                    <g transform="matrix(1.0016 0 0 1 -.21538 0)">
+                        <rect height="1.001" width="63.7" y="117.8" x="137.2" fill="#409393"/>
                     </g>
-                    <g transform="matrix(1.00157,0,0,1,-0.215385,0)">
-                        <rect x="137.2" y="132.1" width="63.7" height="1.001" style="fill:rgb(64,147,147);"/>
+                    <g transform="matrix(1.0016 0 0 1 -.21538 0)">
+                        <rect height="1.001" width="63.7" y="132.1" x="137.2" fill="#409393"/>
                     </g>
-                    <g transform="matrix(1.00157,0,0,1,-0.215385,0)">
-                        <rect x="137.2" y="139.1" width="63.7" height="1.001" style="fill:rgb(64,147,147);"/>
+                    <g transform="matrix(1.0016 0 0 1 -.21538 0)">
+                        <rect height="1.001" width="63.7" y="139.1" x="137.2" fill="#409393"/>
                     </g>
-                    <g transform="matrix(1.00157,0,0,1,-0.215385,0)">
-                        <rect x="137.2" y="146.1" width="63.7" height="1.001" style="fill:rgb(64,147,147);"/>
+                    <g transform="matrix(1.0016 0 0 1 -.21538 0)">
+                        <rect height="1.001" width="63.7" y="146.1" x="137.2" fill="#409393"/>
                     </g>
-                    <g transform="matrix(1.00157,0,0,1,-0.215385,0)">
-                        <rect x="137.2" y="153.2" width="63.7" height="1.001" style="fill:rgb(64,147,147);"/>
+                    <g transform="matrix(1.0016 0 0 1 -.21538 0)">
+                        <rect height="1.001" width="63.7" y="153.2" x="137.2" fill="#409393"/>
                     </g>
-                    <g transform="matrix(1.00157,0,0,1,-0.215385,0)">
-                        <rect x="137.2" y="160.3" width="63.7" height="1.001" style="fill:rgb(64,147,147);"/>
+                    <g transform="matrix(1.0016 0 0 1 -.21538 0)">
+                        <rect height="1.001" width="63.7" y="160.3" x="137.2" fill="#409393"/>
                     </g>
+                <g transform="matrix(1.0016 0 0 1 -.21538 0)">
+                    <rect height="1.001" width="63.7" y="124.9" x="137.2" fill="#409393"/>
                 </g>
-                <g transform="matrix(1.00157,0,0,1,-0.215385,0)">
-                    <rect x="137.2" y="124.9" width="63.7" height="1.001" style="fill:rgb(64,147,147);"/>
-                </g>
-                <rect x="157.9" y="104.1" width="1" height="63.8" style="fill:rgb(64,147,147);"/>
-            </g>
-            <path d="M141,137.1L148.2,137.1L150.8,130.3L156.9,145.9L160,139L164.6,139L168.6,113.6L173.7,154.6L177.6,136L178.7,138.4L183.6,138.4L185.6,129.4L188.7,137L198.2,137" style="fill:none;stroke-width:3.48px;stroke:white;"/>
+                <rect height="63.8" width="1" y="104.1" x="157.9" fill="#409393"/>
+            <path stroke-width="3.48px" d="m141 137.1h7.2l2.6-6.8 6.1 15.6 3.1-6.9h4.6l4-25.4 5.1 41 3.9-18.6 1.1 2.4h4.9l2-9 3.1 7.6h9.5" stroke="#fff" fill="none"/>
         </g>
     </g>
 </svg>

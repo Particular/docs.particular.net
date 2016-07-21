@@ -1,26 +1,26 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
-    <g id="NSB" transform="matrix(4.01254,0,0,4.01254,-550.119,-417.705)">
-        <rect x="137.1" y="104.1" width="63.8" height="63.8" style="fill:rgb(0,114,156);"/>
-        <path d="M147.8,157.2L162,128.9L176.1,143L190.3,114.7" style="fill:none;stroke-width:3.99px;stroke:white;"/>
-        <g>
-            <rect x="144.2" y="111.2" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="158.4" y="111.2" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="172.6" y="111.2" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="158.4" y="125.3" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="172.6" y="125.3" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="186.7" y="111.2" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="186.7" y="125.3" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="144.2" y="125.3" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="144.2" y="139.5" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="158.4" y="139.5" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="186.7" y="139.5" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="144.2" y="153.6" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="158.4" y="153.6" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="172.6" y="153.6" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="172.6" y="139.5" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
-            <rect x="186.7" y="153.6" width="7.1" height="7.1" style="fill:rgb(0,163,196);"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+<svg stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" xml:space="preserve" height="100%" width="100%" version="1.1" stroke-miterlimit="1.4142" clip-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 256 256">
+    <g id="NSB" transform="matrix(4.0125 0 0 4.0125 -550.12 -417.7)">
+        <rect height="63.8" width="63.8" y="104.1" x="137.1" fill="#00729c"/>
+        <path stroke-width="3.99px" d="m147.8 157.2l14.2-28.3 14.1 14.1 14.2-28.3" stroke="#fff" fill="none"/>
+        <g fill="#00a3c4">
+            <rect height="7.1" width="7.1" y="111.2" x="144.2"/>
+            <rect height="7.1" width="7.1" y="111.2" x="158.4"/>
+            <rect height="7.1" width="7.1" y="111.2" x="172.6"/>
+            <rect height="7.1" width="7.1" y="125.3" x="158.4"/>
+            <rect height="7.1" width="7.1" y="125.3" x="172.6"/>
+            <rect height="7.1" width="7.1" y="111.2" x="186.7"/>
+            <rect height="7.1" width="7.1" y="125.3" x="186.7"/>
+            <rect height="7.1" width="7.1" y="125.3" x="144.2"/>
+            <rect height="7.1" width="7.1" y="139.5" x="144.2"/>
+            <rect height="7.1" width="7.1" y="139.5" x="158.4"/>
+            <rect height="7.1" width="7.1" y="139.5" x="186.7"/>
+            <rect height="7.1" width="7.1" y="153.6" x="144.2"/>
+            <rect height="7.1" width="7.1" y="153.6" x="158.4"/>
+            <rect height="7.1" width="7.1" y="153.6" x="172.6"/>
+            <rect height="7.1" width="7.1" y="139.5" x="172.6"/>
+            <rect height="7.1" width="7.1" y="153.6" x="186.7"/>
         </g>
     </g>
 </svg>
