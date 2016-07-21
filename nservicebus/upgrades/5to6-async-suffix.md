@@ -23,7 +23,7 @@ Note that none of these APIs have the *Async* suffix as recommended by the Micro
 
 *Reference Article: [Asynchronous Programming with async and await](https://msdn.microsoft.com/en-us/library/mt674882.aspx).*
 
-The decisions not to adopt the **Async** suffix in NServiceBus API is intentional for several reasons:
+The decision not to adopt the **Async** suffix in NServiceBus API is intentional for several reasons:
 
 
 ### No requirement for conflicting overloads
