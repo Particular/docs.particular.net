@@ -173,8 +173,8 @@ namespace Core5.UpgradeGuides._4to5
 
             var busConfiguration = new BusConfiguration();
 
-            busConfiguration.UsePersistence<RavenDBPersistence>()
-                .SetDefaultDocumentStore(documentStore);
+            var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
+            persistence.SetDefaultDocumentStore(documentStore);
 
             #endregion
         }

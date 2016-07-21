@@ -53,14 +53,15 @@ namespace Core5
 
             #region DefaultCriticalErrorAction
 
-            var components = configure.Builder.Build<IConfigureComponents>();
+            var builder = configure.Builder;
+            var components = builder.Build<IConfigureComponents>();
             if (!components.HasComponent<IBus>())
             {
                 return;
             }
 
-            configure.Builder.Build<IStartableBus>()
-                .Dispose();
+            var startableBus = builder.Build<IStartableBus>();
+            startableBus.Dispose();
 
             #endregion
 

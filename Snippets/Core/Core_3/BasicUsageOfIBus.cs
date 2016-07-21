@@ -42,7 +42,11 @@
         {
             #region BasicSendInterface
 
-            bus.Send<IMyMessage>(m => m.MyProperty = "Hello world");
+            bus.Send<IMyMessage>(
+                messageConstructor: message =>
+                {
+                    message.MyProperty = "Hello world";
+                });
 
             #endregion
         }
@@ -51,7 +55,8 @@
         {
             #region BasicSendSetDestination
 
-            bus.Send(Address.Parse("MyDestination"), new MyMessage());
+            var destination = Address.Parse("MyDestination");
+            bus.Send(destination, new MyMessage());
 
             #endregion
         }

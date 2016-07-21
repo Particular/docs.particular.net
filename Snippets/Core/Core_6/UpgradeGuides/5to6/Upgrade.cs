@@ -104,8 +104,8 @@
         {
             #region 5to6WrapHandlersExecutionInATransactionScope
 
-            endpointConfiguration.UnitOfWork()
-                .WrapHandlersInATransactionScope();
+            var unitOfWork = endpointConfiguration.UnitOfWork();
+            unitOfWork.WrapHandlersInATransactionScope();
 
             #endregion
         }

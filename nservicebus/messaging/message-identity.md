@@ -20,6 +20,6 @@ In Version 5 and below, message identity can be set by manipulating the `NServic
 
 snippet: MessageId-Mutator
 
-WARNING: Setting the `NServiceBus.MessageId` header from a message mutator is not supported in Version 6 and above. Specify message identity using the `SendOptions` class instead.
+WARNING: Setting the `NServiceBus.MessageId` header from a message mutator is not supported in Version 6 and above. Specify message identity using the `SendOptions` class.
 
 snippet: MessageId-SendOptions

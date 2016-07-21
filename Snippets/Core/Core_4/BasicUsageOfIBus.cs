@@ -7,11 +7,13 @@
         void Send()
         {
             #region BasicSend
+
             var configUnicastBus = Configure.With().UnicastBus();
             var bus = configUnicastBus.CreateBus().Start();
 
             var myMessage = new MyMessage();
             bus.Send(myMessage);
+
             #endregion
         }
 
@@ -33,27 +35,39 @@
                 bus.Send(otherMessage);
             }
         }
+
         #endregion
 
         void SendInterface(IBus bus)
         {
             #region BasicSendInterface
-            bus.Send<IMyMessage>(m => m.MyProperty = "Hello world");
+
+            bus.Send<IMyMessage>(
+                messageConstructor: message =>
+                {
+                    message.MyProperty = "Hello world";
+                });
+
             #endregion
         }
 
         void SetDestination(IBus bus)
         {
             #region BasicSendSetDestination
-            bus.Send(Address.Parse("MyDestination"), new MyMessage());
+
+            var destination = Address.Parse("MyDestination");
+            bus.Send(destination, new MyMessage());
+
             #endregion
         }
 
         void ThisEndpoint(IBus bus)
         {
             #region BasicSendToAnyInstance
+
             var myMessage = new MyMessage();
             bus.SendLocal(myMessage);
+
             #endregion
         }
 

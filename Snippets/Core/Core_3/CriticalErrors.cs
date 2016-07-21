@@ -49,8 +49,8 @@ namespace Core3.Host
 
             #region DefaultCriticalErrorAction
 
-            Configure.Instance.Builder.Build<ITransport>()
-                .ChangeNumberOfWorkerThreads(0);
+            var transport = Configure.Instance.Builder.Build<ITransport>();
+            transport.ChangeNumberOfWorkerThreads(0);
 
             #endregion
         }

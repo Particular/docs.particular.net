@@ -41,7 +41,11 @@
         {
             #region BasicSendInterface
 
-            bus.Send<IMyMessage>(m => m.MyProperty = "Hello world");
+            bus.Send<IMyMessage>(
+                messageConstructor: message =>
+                {
+                    message.MyProperty = "Hello world";
+                });
 
             #endregion
         }

@@ -61,8 +61,8 @@ namespace Core4
                 return;
             }
 
-            configure.Builder.Build<IStartableBus>()
-                .Shutdown();
+            var startableBus = configure.Builder.Build<IStartableBus>();
+            startableBus.Shutdown();
 
             #endregion
         }
