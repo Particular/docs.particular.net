@@ -146,26 +146,23 @@ span.blue {
 <div class="col-md-12 block middle">
   <div class="ic">
     <a href="/samples/step-by-step/">
-      <img src="/home/getting-started.svg" height="72" width="72">
-      <br> Getting Started
+      <img src="/home/getting-started.svg" height="72" width="72"><br>Getting Started
     </a>
   </div>
   <div class="ic">
     <a href="http://particular.net/videos-and-presentations">
       <img src="/home/videos.svg" height="72" width="72">
-      <br> Intro Videos
+      <br>Intro Videos
     </a>
   </div>
   <div class="ic">
     <a href="https://groups.google.com/forum/#!forum/particularsoftware">
-      <img src="/home/discussion.svg" height="72" width="72"/><br/>
-      Discussion group
+      <img src="/home/discussion.svg" height="72" width="72"/><br/>Discussion group
     </a>
   </div>
   <div class="ic">
     <a href="/samples/" class="rarr">
-      <img src="/home/samples.svg" height="72" width="72"/><br/>
-      Samples
+      <img src="/home/samples.svg" height="72" width="72"/><br/>Samples
     </a>
   </div>
 </div>
