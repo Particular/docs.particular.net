@@ -78,7 +78,3 @@ The following retry policy extends the previous policy with a custom handling lo
 snippet:SecondLevelRetriesCustomExceptionPolicyHandlerConfig
 
 snippet:SecondLevelRetriesCustomExceptionPolicyHandler
-
-With the new recoverability override starting from Version 6 and above it is possible to take full control over the recoverability behavior. For example the above custom SLR policy will always to first level retries even for business exceptions. That doesn't have to be like that. It is possible to disable first level retries entirely for business exceptions like shown below:
-
-snippet:CustomExceptionPolicyHandler
