@@ -43,7 +43,7 @@ http://www.cogin.com/mq/
 
 > QueueExplorer can do much more than with built-in management console - copy, move or delete messages, save and load, stress test, view and edit full message bodies (with special support for .Net serialized objects), and much more. And it works with remote queues too!
 
-![](queue-explorer.png 'width=400')
+![](queue-explorer.png 'width=500')
 
 
 ### Mqueue Viewer
@@ -54,7 +54,7 @@ http://www.mqueue.net/
 
 > Mqueue Viewer - is a fast and simple tool to manage MSMQ queues, view, edit, add, delete messages. Works with multiple machines/servers. Most importantly - it's completely free!
 
-![](mqueue.png 'width=400')
+![](mqueue.png 'width=500')
 
 
 ### Service Bus MQ Manager
