@@ -265,8 +265,8 @@ span.blue {
     <h4>Gather all the data and monitor multiple endpoints from a single location</h4>
     <p></p>
     <ul>
+      <li><a href="/servicecontrol/servicecontrol-in-practice.md">Optimizing for use in different environments</a></li>
       <li><a href="/servicecontrol/installation.md">Installing ServiceControl</a></li>
-      <li><a href="/servicecontrol/plugins/">Endpoint Plugins</a></li>
     </ul>
     <a href="/servicecontrol/"><h3>All ServiceControl articles</h3></a><br/>
     <div style="clear: both"></div>
