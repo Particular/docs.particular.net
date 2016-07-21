@@ -3,11 +3,12 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    class MessageIdSendOptions 
+    class MessageIdSendOptions
     {
         async Task SetMessageId(string messageId, IMessageHandlerContext handlerContext)
         {
             #region MessageId-SendOptions
+
             var options = new SendOptions();
             options.SetMessageId(messageId);
 
@@ -20,6 +21,5 @@
 
     class SomeMessage
     {
-        
     }
 }

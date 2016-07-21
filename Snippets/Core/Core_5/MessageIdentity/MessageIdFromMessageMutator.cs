@@ -4,9 +4,11 @@
     using NServiceBus.MessageMutator;
 
     #region MessageId-Mutator
+
     public class MessageIdFromMessageMutator : IMutateOutgoingMessages
     {
         IBus bus;
+
         public MessageIdFromMessageMutator(IBus bus)
         {
             this.bus = bus;
@@ -14,10 +16,13 @@
 
         public object MutateOutgoing(object message)
         {
-            bus.SetMessageHeader(message, "NServiceBus.MessageId", GenerateIdForMessage(message));
-
+            bus.SetMessageHeader(
+                msg: message,
+                key: "NServiceBus.MessageId",
+                value: GenerateIdForMessage(message));
             return message;
         }
+
         #endregion
 
         string GenerateIdForMessage(object message)

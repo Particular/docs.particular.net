@@ -14,8 +14,10 @@
 
         public object MutateOutgoing(object message)
         {
-            bus.SetMessageHeader(message, "NServiceBus.MessageId", GenerateIdForMessage(message));
-
+            bus.SetMessageHeader(
+                msg: message,
+                key: "NServiceBus.MessageId",
+                value: GenerateIdForMessage(message));
             return message;
         }
         #endregion
