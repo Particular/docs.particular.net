@@ -28,7 +28,7 @@ NOTE: The same Serializer must be used by the sending endpoint to serialize mess
 
 ### Specifying additional deserializers
 
-To support sending and receiving messages between endpoints using different serializers, additional deserialization capability may be specified. Starting from NServiceBus Version 6 it's possible to register additional deserializers to process incoming messages.
+To support sending and receiving messages between endpoints using different serializers, additional deserialization capability may be specified. Starting from NServiceBus Version 6 it's possible to register additional deserializers to process incoming messages. Additionally, if a deserializer requires custom settings, they can be provided during its registration.
 
 snippet:AdditionalDeserializers
 
