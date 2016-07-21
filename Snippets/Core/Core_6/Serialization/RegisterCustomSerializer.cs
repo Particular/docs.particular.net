@@ -37,7 +37,6 @@
             public MyCustomSerializer(string settingsValue)
             {
                 // Add code initializing serializer on the basis of settingsValue
-                throw new NotImplementedException();
             }
 
             public void Serialize(object message, Stream stream)
