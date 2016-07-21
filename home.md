@@ -172,9 +172,9 @@ span.blue {
 </div>
 <div class="row">
 <div class="col-md-12 block black">
-  <span class="blue"><a href="https://github.com/Particular/NServiceBus/releases"><img src="/home/release-notes.svg" height="16" width="14"> Release notes</a></span>
+  <span class="blue"><a href="https://github.com/Particular/NServiceBus/releases"><img src="/home/release-notes.svg" height="16"> Release notes</a></span>
   <span class="blue">
-<a href="http://particular.net/downloads"><img src="/home/download.svg" height="16" width="14"> Downloads</a>
+<a href="http://particular.net/downloads"><img src="/home/download.svg" height="16"> Downloads</a>
 </span>
 </div>
 </div>
@@ -290,17 +290,17 @@ span.blue {
 <div class="row">
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.svg" height="16" width="14"/>Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.svg" height="16"/>Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceControl/releases"><img src="/home/release-notes.svg" height="16" width="14"/>Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceControl/releases"><img src="/home/release-notes.svg" height="16"/>Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn last">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><img src="/home/release-notes.svg" height="16" width="14"/>Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><img src="/home/release-notes.svg" height="16"/>Release notes</a></span>
   </div>
 </div>
 </div>
