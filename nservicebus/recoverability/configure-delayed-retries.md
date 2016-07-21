@@ -13,6 +13,8 @@ related:
  - samples/faulttolerance
 ---
 
+NOTE: Starting from NServiceBus Version 6 Delayed Retries Policy (formerly known as Second Level Retries Policy) has been deprecated in favour of the new custom recoverability policy which allows much more control over the Recoverability behavior. This documentation shows snippets how previous Delayed Retries Policies can be implemented with the new Recoverability Policy. For a comprehensive overview the Recoverability Policy refer to [Recoverability Policy](/nservicebus/recoverability/custom-recoverability-policy.md).
+
 ### Configuring Delayed Retries using app.config
 
 To configure SLR, enable its configuration section:
@@ -49,20 +51,9 @@ snippet:DisableSlrWithCode
 
 Custom retry logic can be configured based on headers or timing in code.
 
-
 #### Applying a custom policy
 
 snippet:SecondLevelRetriesCustomPolicy
-
-
-#### Error Headers Helper
-
-In Versions 5 and below access to the retry contextual information is available via the raw transport message and headers.
-
-A Custom Policy has access to the raw message including both the [retries handling headers](/nservicebus/messaging/headers.md#retries-handling-headers) and the [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers). Any of these headers can be used to control the retries for a message. In the following examples the helper class will provide access to a subset of the headers.
-
-snippet:ErrorsHeadersHelper
-
 
 #### Simple Policy
 
@@ -72,6 +63,13 @@ snippet:SecondLevelRetriesCustomPolicyHandlerConfig
 
 snippet:SecondLevelRetriesCustomPolicyHandler
 
+##### Error Headers Helper
+
+The snippets above use Error Header Helpers to acquire the number of retries. In Versions 5 and below access to the retry contextual information is available via the raw transport message and headers.
+
+A Custom Policy has access to the raw message including both the [retries handling headers](/nservicebus/messaging/headers.md#retries-handling-headers) and the [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers). Any of these headers can be used to control the retries for a message. In the following examples the helper class will provide access to a subset of the headers.
+
+snippet:ErrorsHeadersHelper
 
 #### Exception based Policy
 

@@ -73,6 +73,12 @@ When messages failed during the immediate retries and delayed retries mechanism 
 
 Fault handling doesn't require to roll back the transport transaction. A copy of the currently handled message is sent to the configured error queue and the current transaction will be marked as successfully processed. Therefore fault handling works with all supported [transport transaction modes](/nservicebus/transports/transactions.md).
 
+## Recoverability Policy
+
+NServiceBus Version 5 and lower allowed to take full control over the delayed retries part of Recoverability only by providing a [custom delayed retries policy](/nservicebus/recoverability/configure-delayed-retries.md).
+
+Starting from Version 6 it is possible to take full control over the whole Recoverability process. For more information refer to [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md). 
+
 ## Total number of possible retries
 
 The total number of possible retries can be calculated with the following formula
