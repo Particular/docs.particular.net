@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g id="SI" transform="matrix(4.01254,-4.28327e-30,-4.28173e-30,4.01254,-550.119,-417.705)">
+        <rect x="137.1" y="104.1" width="63.8" height="63.8" style="fill:rgb(88,93,128);"/>
+        <g>
+            <rect x="144.2" y="111.2" width="7.1" height="7.1" style="fill:rgb(135,140,170);"/>
+            <rect x="158.4" y="111.2" width="7.1" height="7.1" style="fill:rgb(135,140,170);"/>
+            <rect x="172.6" y="111.2" width="7.1" height="7.1" style="fill:rgb(135,140,170);"/>
+            <rect x="186.7" y="111.2" width="7.1" height="7.1" style="fill:rgb(135,140,170);"/>
+            <rect x="144.2" y="125.3" width="7.1" height="7.1" style="fill:rgb(135,140,170);"/>
+            <rect x="158.4" y="125.3" width="5.5" height="7.1" style="fill:rgb(135,140,170);"/>
+            <rect x="188" y="125.3" width="5.8" height="7.1" style="fill:rgb(135,140,170);"/>
+            <rect x="144.2" y="139.5" width="7.1" height="7.1" style="fill:rgb(135,140,170);"/>
+            <rect x="158.4" y="139.5" width="7.1" height="7.1" style="fill:rgb(135,140,170);"/>
+            <rect x="172.6" y="142" width="7.1" height="4.6" style="fill:rgb(135,140,170);"/>
+            <rect x="186.7" y="139.5" width="7.1" height="7.1" style="fill:rgb(135,140,170);"/>
+            <rect x="144.2" y="153.6" width="7.1" height="7.1" style="fill:rgb(135,140,170);"/>
+            <rect x="158.4" y="153.6" width="7.1" height="7.1" style="fill:rgb(135,140,170);"/>
+            <rect x="172.6" y="153.6" width="7.1" height="7.1" style="fill:rgb(135,140,170);"/>
+            <rect x="186.7" y="153.6" width="7.1" height="7.1" style="fill:rgb(135,140,170);"/>
+        </g>
+        <g>
+            <path d="M176.1,128.8L149.7,155.2" style="fill:rgb(156,51,93);fill-rule:nonzero;stroke-width:4.98px;stroke:white;"/>
+            <circle cx="176.1" cy="128.9" r="12" style="fill:rgb(135,140,170);stroke-width:3.48px;stroke-linecap:butt;stroke:white;"/>
+        </g>
+        <rect x="172.6" y="125.3" width="7.1" height="7.1" style="fill:rgb(88,93,128);"/>
+    </g>
+</svg>
