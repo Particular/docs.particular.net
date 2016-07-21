@@ -92,6 +92,7 @@
     <Compile Include="Handlers\ReplyingHandler.cs" />
     <Compile Include="Headers\ReadSaga.cs" />
     <Compile Include="Headers\WriteSaga.cs" />
+    <Compile Include="MessageIdentity\MessageIdFromMessageMutator.cs" />
     <Compile Include="ProgramService.cs">
       <SubType>Component</SubType>
     </Compile>
