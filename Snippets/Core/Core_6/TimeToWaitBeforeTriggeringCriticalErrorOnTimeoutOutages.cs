@@ -9,7 +9,8 @@
         {
             #region TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
 
-            endpointConfiguration.TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages(TimeSpan.FromMinutes(5));
+            endpointConfiguration.TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages(
+                timeToWait: TimeSpan.FromMinutes(5));
 
             #endregion
         }

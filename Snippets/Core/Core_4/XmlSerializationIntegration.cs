@@ -9,7 +9,12 @@ namespace Core4
         {
             #region ConfigureRawXmlSerialization
 
-            Configure.Serialization.Xml(c => c.DontWrapRawXml()).DontWrapSingleMessages();
+            var serialization = Configure.Serialization.Xml(
+                customSettings: settings =>
+                {
+                    settings.DontWrapRawXml();
+                });
+            serialization.DontWrapSingleMessages();
 
             #endregion
         }
@@ -22,6 +27,7 @@ namespace Core4
             // name and casing must match the rootnode
             public XDocument nutrition { get; set; }
         }
+
         #endregion
 
         #region MessageWithXElement
@@ -30,8 +36,9 @@ namespace Core4
             IMessage
         {
             // name and casing must match the rootnode
-            public XElement nutrition { get; set; } 
+            public XElement nutrition { get; set; }
         }
+
         #endregion
     }
 }

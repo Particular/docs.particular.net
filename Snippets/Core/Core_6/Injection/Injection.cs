@@ -10,12 +10,20 @@
         {
             #region ConfigurePropertyInjectionForHandler
 
-            endpointConfiguration.RegisterComponents(c =>
-                c.ConfigureComponent(builder => new EmailHandler
+            endpointConfiguration.RegisterComponents(
+                registration: components =>
                 {
-                    SmtpPort = 25,
-                    SmtpAddress = "10.0.1.233"
-                }, DependencyLifecycle.InstancePerUnitOfWork));
+                    components.ConfigureComponent(
+                        builder =>
+                        {
+                            return new EmailHandler
+                            {
+                                SmtpPort = 25,
+                                SmtpAddress = "10.0.1.233"
+                            };
+                        },
+                        dependencyLifecycle: DependencyLifecycle.InstancePerUnitOfWork);
+                });
 
             #endregion
         }
@@ -32,7 +40,6 @@
             {
                 var client = new SmtpClient(SmtpAddress, SmtpPort);
                 // ...
-
                 return Task.FromResult(0);
             }
         }

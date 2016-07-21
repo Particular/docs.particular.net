@@ -9,8 +9,9 @@ namespace Core6
         void RawXml(EndpointConfiguration endpointConfiguration)
         {
             #region ConfigureRawXmlSerialization
-            endpointConfiguration.UseSerialization<XmlSerializer>()
-                .DontWrapRawXml();
+
+            var serialization = endpointConfiguration.UseSerialization<XmlSerializer>();
+            serialization.DontWrapRawXml();
             #endregion
         }
 

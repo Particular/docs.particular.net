@@ -11,8 +11,8 @@ namespace Core5
             #region ConfigureRawXmlSerialization
 
             var serialization = busConfiguration.UseSerialization<XmlSerializer>();
-            serialization
-                .DontWrapRawXml();
+            serialization.DontWrapRawXml();
+
             #endregion
         }
 
@@ -24,6 +24,7 @@ namespace Core5
             // name and casing must match the rootnode
             public XDocument nutrition { get; set; }
         }
+
         #endregion
 
         #region MessageWithXElement
@@ -34,6 +35,7 @@ namespace Core5
             // name and casing must match the rootnode
             public XElement nutrition { get; set; }
         }
+
         #endregion
     }
 }

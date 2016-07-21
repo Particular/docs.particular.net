@@ -9,8 +9,10 @@
         void RenamePrincipalHack(Configure configure)
         {
             #region 3to4RenamePrincipalHack
+
             var unicastBus = configure.UnicastBus();
             unicastBus.RunHandlersUnderIncomingPrincipal(true);
+
             #endregion
         }
 
@@ -19,7 +21,7 @@
             #region 3to4RevertToSerializable
 
             Configure.Transactions.Advanced(settings =>
-                settings.IsolationLevel(IsolationLevel.Serializable));
+                    settings.IsolationLevel(IsolationLevel.Serializable));
 
             #endregion
         }
@@ -47,7 +49,10 @@
             #region 3to4SetMessageHeader
 
             var myMessage = new MyMessage();
-            bus.SetMessageHeader(myMessage, "SendingMessage", "ValueSendingMessage");
+            bus.SetMessageHeader(
+                msg: myMessage,
+                key: "SendingMessage",
+                value: "ValueSendingMessage");
             bus.SendLocal(myMessage);
 
             #endregion

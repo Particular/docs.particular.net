@@ -12,11 +12,15 @@
         public void Handle(MyMessage message)
         {
             var someOtherMessage = new SomeOtherMessage();
-            Bus.SetMessageHeader(someOtherMessage, "MyCustomHeader", "My custom value");
+            Bus.SetMessageHeader(
+                msg: someOtherMessage,
+                key: "MyCustomHeader",
+                value: "My custom value");
             Bus.Send(someOtherMessage);
         }
 
         #endregion
+
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<WriteSagaData> mapper)
         {
         }
@@ -26,6 +30,4 @@
         ContainSagaData
     {
     }
-
-
 }

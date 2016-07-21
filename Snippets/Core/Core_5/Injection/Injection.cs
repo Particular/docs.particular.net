@@ -9,11 +9,13 @@
         {
             #region ConfigurePropertyInjectionForHandler
 
-            busConfiguration.RegisterComponents(c =>
-                c.ConfigureComponent<EmailHandler>(DependencyLifecycle.InstancePerUnitOfWork)
-                    .ConfigureProperty(x => x.SmtpAddress, "10.0.1.233")
-                    .ConfigureProperty(x => x.SmtpPort, 25)
-                );
+            busConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    var component = components.ConfigureComponent<EmailHandler>(DependencyLifecycle.InstancePerUnitOfWork);
+                    component.ConfigureProperty(handler => handler.SmtpAddress, "10.0.1.233");
+                    component.ConfigureProperty(handler => handler.SmtpPort, 25);
+                });
 
             #endregion
 
