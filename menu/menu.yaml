@@ -30,7 +30,7 @@
             - "nservicebus/upgrades/5to6-moving-away-from-ibus"
             - "nservicebus/upgrades/5to6-migrate-existing-handlers"
             - "nservicebus/upgrades/5to6-async-suffix"
-            - "samples/scaleout/distributor-upgrade/"
+            - "samples/scaleout/distributor-upgrade"
             - "nservicebus/upgrades/4to5"
             - "nservicebus/upgrades/3to4"
             - "nservicebus/upgrades/encryption-key-identifiers"
