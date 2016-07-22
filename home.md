@@ -151,8 +151,7 @@ span.blue {
   </div>
   <div class="ic">
     <a href="http://particular.net/videos-and-presentations">
-      <img src="/home/videos.svg" height="72" width="72">
-      <br>Intro Videos
+      <img src="/home/videos.svg" height="72" width="72"><br>Intro Videos
     </a>
   </div>
   <div class="ic">
