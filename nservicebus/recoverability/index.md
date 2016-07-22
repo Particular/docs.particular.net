@@ -21,23 +21,45 @@ NServiceBus has a built-in error handling capability called Recoverability. Reco
 * Immediate Retries (previously known as First-Level-Retries)
 * Delayed Retries (previously known as Second-Level-Retries)
 
-An oversimplified mental model for Recoverability could be thought of a try / catch block surrounding the message handling infrastructure wrapped in a while loop like the following pseudo-code
+An oversimplified mental model for Recoverability could be thought of a try / catch block surrounding the message handling infrastructure wrapped in a for loop like the following pseudo-code
 
 ```cs
-Exception exception = null;
-do
-{
-  try
-  {
-    messageHandling.Invoke();
-    exception = null;
-  } catch (Exception ex) {
-    exception = ex;
+static void DelayedRetries() {
+  Exception exception = null;
+  for(var i = 0; i < MaxNumberOfRetries; i++) {
+    try
+    {
+      ImmediateRetries();
+      exception = null;
+      break;
+    } catch (Exception ex) {
+      exception = ex;
+    }
   }
-} while(exception != null)
+
+  if(exception != null)
+    MoveToError();
+}
+
+static void ImmediateRetries() {
+  Exception exception = null;
+  for(var i = 0; i < MaxNumberOfRetries; i++) {
+    try
+    {
+      messageHandling.Invoke();
+      exception = null;
+      break;
+    } catch (Exception ex) {
+      exception = ex;
+    }
+  }
+
+  if(exception != null)
+    throw exception;
+}
 ```
 
-The reality is much more complex. Depending on the transports capabilities, the transactionality of the endpoint and the users customizations always tries to recover from message failures. In example when an exception bubbles through to the NServiceBus infrastructure, it rolls back the transaction on a transactional endpoint. The message is then returned to the queue, and any messages that the user code tried to send or publish won't be sent out. The very least that Recoverability will ensure is that messages which failed multiple times get moved to the configured error queue. The part of Recoverability which is responsible to move failed messages to the error queue is called fault handling.
+The reality is much more complex. Depending on the transports capabilities, the transactionality of the endpoint and the users customizations Recoverability  tries to recover from message failures. In example when an exception bubbles through to the NServiceBus infrastructure, it rolls back the transaction on a transactional endpoint. The message is then returned to the queue, and any messages that the user code tried to send or publish won't be sent out. The very least that Recoverability will ensure is that messages which failed multiple times get moved to the configured error queue. The part of Recoverability which is responsible to move failed messages to the error queue is called fault handling.
 
 NOTE: When a message cannot be deserialized, it will bypass all retry mechanisms and the message will be moved directly to the error queue.
 
@@ -77,7 +99,7 @@ Fault handling doesn't require to roll back the transport transaction. A copy of
 
 NServiceBus Version 5 and lower allowed to take full control over the delayed retries part of Recoverability only by providing a [custom delayed retries policy](/nservicebus/recoverability/configure-delayed-retries.md).
 
-Starting from Version 6 it is possible to take full control over the whole Recoverability process. For more information refer to [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md). 
+Starting from Version 6 it is possible to take full control over the whole Recoverability process. For more information refer to [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md).
 
 ## Total number of possible retries
 
