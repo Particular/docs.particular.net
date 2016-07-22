@@ -12,6 +12,10 @@ related:
  - samples/faulttolerance
 ---
 
+NOTE: In order to get full control over Immediate Retries it is possible to override the default Recoverability Policy. For a comprehensive overview the Recoverability Policy refer to [Recoverability Policy](/nservicebus/recoverability/custom-recoverability-policy.md).
+
+WARN: Immediate Retries cannot be used when transport transactions are disabled. For more information about transport transactions, refer to [transport transaction](/nservicebus/transports/transactions.md).
+
 ### Configuring FLR using app.config
 
 In Version 3 this configuration was available via `MsmqTransportConfig`.

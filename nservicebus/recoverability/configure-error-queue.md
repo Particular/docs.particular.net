@@ -1,6 +1,6 @@
 ---
 title: Configure the error queue
-summary: Messages that failed a certain number of times will be forwarded to the error queue. This page shows how to configure the error queue.
+summary: Messages that failed a certain number of times will be forwarded to the error queue. This page shows how to configure the error queue address.
 tags:
  - Error Handling
  - Exceptions
