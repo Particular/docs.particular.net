@@ -55,7 +55,7 @@ So in deciding on the adoption of the *Async* suffix it was necessary to choose 
 
 ### Async APIs should be identifiable in code
 
-One of the arguments for the *Async* suffix is that all async methods should be clearly identifiable in code so as to prevent misuse of that API. However, the Compiler is very efficient at identifying incorrect async keyword usage and providing appropriate feedback to the developer. Some possible misuses are listed below with the associated compiler information.
+One of the arguments for the *Async* suffix is that all async methods should be clearly identifiable in code so as to prevent misuse of that API. However, the compiler is very efficient at identifying incorrect async keyword usage and providing appropriate feedback to the developer. Some possible misuses are listed below with the associated compiler information.
 
 Given an async API being used:
 
