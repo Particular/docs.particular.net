@@ -34,12 +34,26 @@ As outlined in the [Recoverability introduction](/nservicebus/recoverability/) I
 * Time of increase for individual Delayed Retries
 * Configured error queue address
 
+The information provided on the configuration is static and will not change between subsequent executions of the policy.
+
 In cases when Immediate and/or Delayed Retry capabilities are not available MaxNumberOfRetries exposed to recoverability policy will be set to 0 (zero).
 
 ## Error Context
 
+`ErrorContext` contains all required information to take into account about the currently failing message. It provides the following information:
 
+* Exception which cause the message to fail
+* Transport transaction on which the message failed
+* Number of failed immediate processing attempts
+* Number of delayed deliveries performed
+* Message which failed
+
+## Implement a custom policy
+
+### Partial customization
 
 With the new recoverability override starting from Version 6 and above it is possible to take full control over the recoverability behavior. For example the above custom SLR policy will always to first level retries even for business exceptions. That doesn't have to be like that. It is possible to disable first level retries entirely for business exceptions like shown below:
 
 snippet:CustomExceptionPolicyHandler
+
+### Full customization
