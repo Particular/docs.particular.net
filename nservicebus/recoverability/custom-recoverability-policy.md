@@ -25,6 +25,18 @@ delay = DelayedRetry.TimeIncrease * (DelayedDeliveriesPerformed + 1)
 
 As outlined in the [Recoverability introduction](/nservicebus/recoverability/) Immediate and Delayed Retries can only be performed under certain conditions. If a custom Recoverability Policy returns a recoverability action which cannot be fulfilled by the infrastructure, the decision will be overriden with the `MoveToError` recoverability action with the default error queue. This behavior is for safety reasons and cannot be overriden.
 
+## Recoverability Configuration
+
+`RecoverabilityConfig` contains all required information to take into account when a recoverability policy is implemented. It provides the following information:
+
+* Maximum number of retries for Immediate Retries
+* Maximum number of retries for Delayed Retries
+* Time of increase for individual Delayed Retries
+* Configured error queue address
+
+In cases when Immediate and/or Delayed Retry capabilities are not available MaxNumberOfRetries exposed to recoverability policy will be set to 0 (zero).
+
+## Error Context
 
 
 
