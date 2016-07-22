@@ -14,6 +14,8 @@ The `IBus` interface contained numerous methods and properties. However, not all
 
 For users who are new to the NServiceBus API, the fact that `IBus` was available in message handlers using Dependency Injection wasn't obvious, especially when trying to send or publish messages from inside message handlers. Rather than using dependency injection, a `IMessageHandlerContext` parameter is now available in all the message handlers. This parameter will expose all of the appropriate actions to the message handler. Methods that aren't applicable will not be available making the API simpler.
 
+All of the previous `Bus` methods now available via the `IMessageHandlerContext` parameter in the message handlers and the methods in the `IMessageSession` interface available when the endpoint is started are fully async. However, the original method names are retained rather than adding the [async suffix](/nservicebus/upgrades/5to6-async-suffix.md) to make the upgrade easier.
+
 
 ## Migrating away from IBus
 

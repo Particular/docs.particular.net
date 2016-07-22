@@ -99,6 +99,8 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="AdditionalDeserializers.cs" />
+    <None Include="AsyncSuffix\MissingAwait.cs" />
+    <Compile Include="AsyncSuffix\ServiceWithAsync.cs" />
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
