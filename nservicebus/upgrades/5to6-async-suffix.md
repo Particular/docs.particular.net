@@ -21,7 +21,7 @@ None of the above mentioned APIs have the *Async* suffix as recommended by the M
 
 > The name of an async method, by convention, ends with an *Async* suffix.
 
-*Reference Article: [Asynchronous Programming with async and await](https://msdn.microsoft.com/en-us/library/mt674882.aspx).*
+Reference Article: [Asynchronous Programming with async and await](https://msdn.microsoft.com/en-us/library/mt674882.aspx).
 
 The decision not to adopt the *Async* suffix in NServiceBus API is intentional for several reasons:
 
