@@ -16,7 +16,7 @@ For users who are new to the NServiceBus API, the fact that `IBus` was available
 
 All of the previous `Bus` methods now available via the `IMessageHandlerContext` parameter in the message handlers and the methods in the `IMessageSession` interface available when the endpoint is started are fully async. However, the original method names are retained rather than adding the [async suffix](/nservicebus/upgrades/5to6-async-suffix.md) to make the upgrade easier.
 
- 
+
 ## Migrating away from IBus
 
 Some scenarios involving `IBus` include: endpoint creation, sending messages during endpoint startup, sending messages from within message handlers, using the injected `IBus` in custom components also registered in the container.

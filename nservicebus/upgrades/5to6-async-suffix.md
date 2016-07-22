@@ -9,7 +9,7 @@ related:
 
 ## No Async Suffix for NServiceBus APIs
 
-Starting with NServiceBus Version 6, all APIs that contain potentially IO blocking code are [Async](https://msdn.microsoft.com/en-us/library/mt674882.aspx). Some examples include:
+Starting with NServiceBus Version 6, all APIs that contain potentially IO bound code are [Async](https://msdn.microsoft.com/en-us/library/mt674882.aspx). Some examples include:
 
  * Endpoint messaging methods such as [Send and Publish](/nservicebus/upgrades/5to6.md#message-handlers-bus-send-and-receive)
  * [Sagas and Message Handlers](/nservicebus/upgrades/5to6.md#message-handlers)
@@ -17,20 +17,20 @@ Starting with NServiceBus Version 6, all APIs that contain potentially IO blocki
  * [Endpoint Start and Stop](/nservicebus/upgrades/5to6.md#endpoint-start-and-stop).
  * [Message mutators](/nservicebus/upgrades/5to6.md#pipeline-customization-message-mutators).
 
-Note that none of these APIs have the *Async* suffix as recommended by the Microsoft convention, which states: 
+None of the above mentioned APIs have the *Async* suffix as recommended by the Microsoft convention, which states: 
 
 > The name of an async method, by convention, ends with an *Async* suffix.
 
 *Reference Article: [Asynchronous Programming with async and await](https://msdn.microsoft.com/en-us/library/mt674882.aspx).*
 
-The decision not to adopt the **Async** suffix in NServiceBus API is intentional for several reasons:
+The decision not to adopt the *Async* suffix in NServiceBus API is intentional for several reasons:
 
 
 ### No requirement for conflicting overloads
 
-The *Async* suffix convention was adopted by necessity in .NET CLR since async APIs were added in a non-breaking version. Since .NET cannot have overloads that differ only by response type, the new async APIs needed to have a different name, hence the *Async* suffix was used.
+The *Async* suffix convention was adopted by necessity in .NET CLR since async APIs were added in a non-breaking version. Since C# cannot have overloads that differ only by response type, the new async APIs needed to have a different name, hence the *Async* suffix was used.
 
-In comparison async is added to NServiceBus in Version 6, and as this is a major (breaking API) version there is requirement to maintain both the sync and async versions.
+Adding async to NServiceBus Version 6 in itself is a breaking change. In comparison to the .NET CLR APIs, NServiceBus has no requirement to support both sync and async versions of the API. Therefore the need to add the async suffix does not apply.
 
 
 ### The noise caused in API usage
