@@ -50,7 +50,7 @@ All these things can be inferred by the IDE and the compiler, and appropriate In
 
 So in deciding on the adoption of the *Async* suffix it was necessary to choose between consistency with certain external .NET APIs or naming consistency within NServiceBus.
 
-*Related Read: [Hungarian notation Disadvantages](https://en.wikipedia.org/wiki/Hungarian_notation#Disadvantages).*
+Related Read: [Hungarian notation Disadvantages](https://en.wikipedia.org/wiki/Hungarian_notation#Disadvantages).
 
 
 ### Async APIs should be identifiable in code
