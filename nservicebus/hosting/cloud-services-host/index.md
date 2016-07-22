@@ -25,7 +25,7 @@ If real scale is required (e.g. in tens, hundreds or even thousands of machines 
 
 ## Cloud Services - Worker Roles
 
-Reference the assembly that contains the Azure role entry point integration. The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Hosting.Azure` package to the project.
+Reference the assembly that contains the Azure role entry point integration. ('Microsoft.WindowsAzure.SDK' nuget package) The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Hosting.Azure` package to the project.
 
 NOTE: When self-hosting everything can be configured using code API and extension methods available in the NServiceBus Azure related packages. In such a case it's not required to reference the hosting package in the project. Self-hosting is described later in this article.
 
