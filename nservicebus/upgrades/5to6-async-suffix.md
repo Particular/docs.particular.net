@@ -40,7 +40,7 @@ There is already non-trivial verbosity that is added to a codebase when async is
 
 ### NServiceBus APIs do not follow Hungarian notation
 
-No other NServiceBus API follow [Hungarian notation](https://en.wikipedia.org/wiki/Hungarian_notation). For example: 
+No other NServiceBus APIs follow [Hungarian notation](https://en.wikipedia.org/wiki/Hungarian_notation). For example: 
 
  * Methods are not suffixed with the name of the type they return.
  * Classes are not suffixed with "Instance" or "Static".
