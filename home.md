@@ -136,7 +136,7 @@ span.blue {
 </style>
 <div class="row">
 <div class="col-md-12 block top">
-  <a href="/nservicebus/"><img src="/home/nservicebus.svg"  width="208" height="47"></a>
+  <a href="/nservicebus/"><img src="/home/nservicebus_v1.svg"  width="208" height="47"></a>
   <div class="small button">
     <a class="blue" href="/nservicebus/">Documentation topics</a>
   </div>
@@ -146,17 +146,17 @@ span.blue {
 <div class="col-md-12 block middle">
   <div class="ic">
     <a href="/samples/step-by-step/">
-      <img src="/home/getting-started.svg" height="72" width="72"><br>Getting Started
+      <img src="/home/getting-started_v1.svg" height="72" width="72"><br>Getting Started
     </a>
   </div>
   <div class="ic">
     <a href="http://particular.net/videos-and-presentations">
-      <img src="/home/videos.svg" height="72" width="72"><br>Intro Videos
+      <img src="/home/videos_v1.svg" height="72" width="72"><br>Intro Videos
     </a>
   </div>
   <div class="ic">
     <a href="https://groups.google.com/forum/#!forum/particularsoftware">
-      <img src="/home/discussion.svg" height="72" width="72"/><br/>Discussion group
+      <img src="/home/discussion_v1.svg" height="72" width="72"/><br/>Discussion group
     </a>
   </div>
   <div class="ic">
@@ -168,9 +168,9 @@ span.blue {
 </div>
 <div class="row">
 <div class="col-md-12 block black">
-  <span class="blue"><a href="https://github.com/Particular/NServiceBus/releases"><img src="/home/release-notes.svg" height="16"> Release notes</a></span>
+  <span class="blue"><a href="https://github.com/Particular/NServiceBus/releases"><img src="/home/release-notes_v1.svg" height="16"> Release notes</a></span>
   <span class="blue">
-<a href="http://particular.net/downloads"><img src="/home/download.svg" height="16"> Downloads</a>
+<a href="http://particular.net/downloads"><img src="/home/download_v1.svg" height="16"> Downloads</a>
 </span>
 </div>
 </div>
@@ -179,14 +179,14 @@ span.blue {
   <div class="row">
     <div class="col-md-6">
       <a href="/platform/">
-        <img src="/home/platform.svg" width="36" height="36"/>
+        <img src="/home/platform_v1.svg" width="36" height="36"/>
         <h3>Particular Service Platform Overview</h3>
       </a>
       <p>A short and high level overview of the Platform</p>
     </div>
     <div class="col-md-6">
       <a href="https://www.pluralsight.com/courses/microservices-nservicebus-scaling-applications">
-        <img src="/home/pluralsight.svg" width="36" height="36">
+        <img src="/home/pluralsight_v1.svg" width="36" height="36">
         <h3>Pluralsight: Scaling Applications with<br> Microservices and NServiceBus</h3>
       </a>
     </div>
@@ -194,14 +194,14 @@ span.blue {
   <div class="row">
     <div class="col-md-6">
       <a href="https://www.packtpub.com/application-development/learning-nservicebus-second-edition">
-        <img src="/home/book.svg" width="36" height="36">
+        <img src="/home/book_v1.svg" width="36" height="36">
         <h3>Learning NServiceBus - Second Edition</h3>
       </a>
       <p>Building reliable and scalable software with NServiceBus.</p>
     </div>
     <div class="col-md-6">
       <a href="http://stackoverflow.com/questions/tagged/nservicebus">
-        <img src="/home/stackoverflow.svg" width="36" height="36">
+        <img src="/home/stackoverflow_v1.svg" width="36" height="36">
         <h3>StackOverflow</h3>
       </a>
       <p>All questions and answers tagged 'NServiceBus'</p>
@@ -210,7 +210,7 @@ span.blue {
   <div class="row">
     <div class="col-md-6">
       <a href="/platform/extensions.md">
-        <img src="/home/extensions.svg" width="36" height="36">
+        <img src="/home/extensions_v1.svg" width="36" height="36">
         <h3>Extensions and integrations</h3>
       </a>
       <p>Extensions developed by both the community and Particular</p>
@@ -224,7 +224,7 @@ span.blue {
 <div class="productcolumn header">
   <div class="block top">
     <a href="/serviceinsight/">
-      <img src="/home/serviceinsight.svg" width="219" height="47"/>
+      <img src="/home/serviceinsight_v1.svg" width="219" height="47"/>
     </a>
     <div style="clear: both"></div>
   </div>
@@ -232,7 +232,7 @@ span.blue {
 <div class="productcolumn header">
   <div class="block top">
     <a href="/servicecontrol/">
-      <img src="/home/servicecontrol.svg" width="219" height="47"/>
+      <img src="/home/servicecontrol_v1.svg" width="219" height="47"/>
     </a>
     <div style="clear: both"></div>
   </div>
@@ -240,7 +240,7 @@ span.blue {
 <div class="productcolumn header last">
   <div class="block top">
     <a href="/servicepulse/">
-      <img src="/home/servicepulse.svg" width="219" height="47"/>
+      <img src="/home/servicepulse_v1.svg" width="219" height="47"/>
     </a>
     <div style="clear: both"></div>
   </div>
@@ -286,17 +286,17 @@ span.blue {
 <div class="row">
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.svg" height="16"/>Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes_v1.svg" height="16"/>Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceControl/releases"><img src="/home/release-notes.svg" height="16"/>Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceControl/releases"><img src="/home/release-notes_v1.svg" height="16"/>Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn last">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><img src="/home/release-notes.svg" height="16"/>Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><img src="/home/release-notes_v1.svg" height="16"/>Release notes</a></span>
   </div>
 </div>
 </div>
