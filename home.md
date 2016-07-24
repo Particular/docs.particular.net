@@ -168,9 +168,9 @@ span.blue {
 </div>
 <div class="row">
 <div class="col-md-12 block black">
-  <span class="blue"><a href="https://github.com/Particular/NServiceBus/releases"><span class="glyphicon glyphicon-calendar" style="color:#00a3c4"></span>Release notes</a></span>
+  <span class="blue"><a href="https://github.com/Particular/NServiceBus/releases"><span class="glyphicon glyphicon-calendar" style="color:#00a3c4"></span> Release notes</a></span>
   <span class="blue">
-<a href="http://particular.net/downloads"><span class="glyphicon glyphicon-download" style="color:#00a3c4"></span>Downloads</a>
+<a href="http://particular.net/downloads"><span class="glyphicon glyphicon-download" style="color:#00a3c4"></span> Downloads</a>
 </span>
 </div>
 </div>
@@ -286,17 +286,17 @@ span.blue {
 <div class="row">
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><span class="glyphicon glyphicon-calendar" style="color:#00a3c4"></span>Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><span class="glyphicon glyphicon-calendar" style="color:#00a3c4"></span> Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceControl/releases"><span class="glyphicon glyphicon-calendar" style="color:#00a3c4"></span>Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceControl/releases"><span class="glyphicon glyphicon-calendar" style="color:#00a3c4"></span> Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn last">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><span class="glyphicon glyphicon-calendar" style="color:#00a3c4"></span>Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><span class="glyphicon glyphicon-calendar" style="color:#00a3c4"></span> Release notes</a></span>
   </div>
 </div>
 </div>
