@@ -19,10 +19,10 @@ The Particular Service Platform source code, current and previous releases and t
 
 | | | |
 |:--- |:--- |:--- |
-| <img src="/menu/nservicebus-logo.png"> | [Releases](https://github.com/Particular/NServiceBus/tags) | [Release Notes](https://github.com/Particular/NServiceBus/releases)|
-| <img src="/menu/serviceinsight-logo.png"> | [Releases](https://github.com/Particular/ServiceInsight/tags)|[Release Notes](https://github.com/Particular/ServiceInsight/releases)|
-| <img src="/menu/servicepulse-logo.png"> | [Releases](https://github.com/Particular/ServicePulse/tags)|[Release Notes](https://github.com/Particular/ServicePulse/releases)|
-| <img src="/menu/servicecontrol-logo.png"> | [Releases](https://github.com/Particular/ServiceControl/tags)|[Release Notes](https://github.com/Particular/ServiceControl/releases)|
+| **NServiceBus** | [Releases](https://github.com/Particular/NServiceBus/tags) | [Release Notes](https://github.com/Particular/NServiceBus/releases)|
+| **ServiceInsight** | [Releases](https://github.com/Particular/ServiceInsight/tags)|[Release Notes](https://github.com/Particular/ServiceInsight/releases)|
+| **ServicePulse** | [Releases](https://github.com/Particular/ServicePulse/tags)|[Release Notes](https://github.com/Particular/ServicePulse/releases)|
+| **ServiceControl** | [Releases](https://github.com/Particular/ServiceControl/tags)|[Release Notes](https://github.com/Particular/ServiceControl/releases)|
 
 
 ### NServiceBus Transports
@@ -38,6 +38,9 @@ The Particular Service Platform source code, current and previous releases and t
 
 ### NServiceBus Persistence
 
+
+| | | |
+|:--- |:--- |:--- |
 |**RavenDB** | [Releases](https://github.com/Particular/NServiceBus.RavenDB/tags)| [Release Notes](https://github.com/Particular/NServiceBus.RavenDB/releases)
 |**NHibernate** | [Releases](https://github.com/Particular/NServiceBus.NHibernate/tags)| [Release Notes](https://github.com/Particular/NServiceBus.NHibernate/releases)
 |**Azure Storage** | [Releases](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/releases)
