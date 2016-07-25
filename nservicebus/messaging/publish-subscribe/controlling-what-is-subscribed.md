@@ -13,18 +13,8 @@ This happens each time the subscriber is restarted.
 Messages matching the following criteria will be auto subscribed at startup.
 
  1. Defined as an event either using `IEvent` or by the `.DefiningEventsAs` convention.
- 1. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given message
-
-
-### Routing configuration needed
-
-If the selected transport doesn't natively supports publish-subscribe it is required to specify the address of the publisher for each event. This is done by [specifying a message owner in the message endpoint mappings](/nservicebus/messaging/message-owner.md). For example:
-
-snippet:endpoint-mapping-appconfig
-
-Since Version 6 it is possible to also specify the publishers in code. The following API is only available for transports that do not have native support for publish-subscribe.
-
-snippet:PubSub-CodePublisherMapping
+ 1. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given message.
+ 1. Transports that don't support publish-subscribe pattern natively additionally need to use [persistence](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based).
 
 
 ### Exclude sagas from auto subscribe

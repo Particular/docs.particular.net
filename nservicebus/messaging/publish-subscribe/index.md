@@ -71,6 +71,14 @@ Subscriber2->Publisher: Subscribe to Message1
 Publisher->Persistence: Store "Subscriber2\nwants Message1"
 -->
 
+The publisher's address is provided by [specifying a message owner in the message endpoint mappings](/nservicebus/messaging/message-owner.md). For example:
+
+snippet:endpoint-mapping-appconfig
+
+In Versions 6 and above it is possible to also specify the publishers in code. The following API is only available for transports that do not have native support for publish-subscribe.
+
+snippet:PubSub-CodePublisherMapping
+
 NOTE: In Versions 5 and below the *subscribe* message contains only the transport address of the subscriber. In Versions 6 and above the message contains also the information about the logical endpoint which is requesting the subscription. This information allows Version 6 and above endpoints to publish events to scaled out MSMQ endpoints without the need for a distributor in the middle. Unfortunately since Version 5 and below endpoints are not aware of this information, they require a distributor to be placed in front of a scaled out endpoint in order to maintain the correct semantics of event messages (being delivered to a single instance of an endpoint).
 
 ![](mechanics-persistence-subscribe.svg)
