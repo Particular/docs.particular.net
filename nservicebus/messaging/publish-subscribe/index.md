@@ -75,7 +75,7 @@ The publisher's address is provided by [specifying a message owner in the messag
 
 snippet:endpoint-mapping-appconfig
 
-Since Version 6 it is possible to also specify the publishers in code. The following API is only available for transports that do not have native support for publish-subscribe.
+In Versions 6 and above it is possible to also specify the publishers in code. The following API is only available for transports that do not have native support for publish-subscribe.
 
 snippet:PubSub-CodePublisherMapping
 
