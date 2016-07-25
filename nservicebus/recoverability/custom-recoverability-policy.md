@@ -70,6 +70,10 @@ If more control over Recoverability is desired the Recoverability delegate can b
 
 ### Full customization
 
+Fully customizing the Recoverability Policy basically means not to call `DefaultRecoverabilityPolicy`. It is still possible to use the recoverability high level APIs like shown below:
+
 snippet:FullyCustomizedPolicyRecoverabilityConfiguration
+
+The configuration will be passed into the custom policy. Below is a policy which moves all exceptions of type `MyBusinessException` to a custom error queue, does Delayed Retries with a constant time increae of five seconds for `MyOtherBusinessException` and for all other cases moves messages to the configured standard error queue.
 
 snippet:FullyCustomizedPolicy
