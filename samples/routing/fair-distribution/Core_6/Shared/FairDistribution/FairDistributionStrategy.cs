@@ -16,9 +16,21 @@ public class FairDistributionStrategy :
 
     public override IEnumerable<UnicastRoutingTarget> SelectDestination(IList<UnicastRoutingTarget> allInstances)
     {
-        var hash = settings.Get<FlowManager>().GetLeastBusyInstanceHash(allInstances);
+        var hash = settings.Get<FlowManager>()
+            .GetLeastBusyInstanceHash(allInstances);
 
-        var leastBusyInstance = allInstances.FirstOrDefault(i => i.Instance != null && i.Instance.ToString().GetHashCode() == hash);
-        yield return leastBusyInstance ?? allInstances.First();
+        var leastBusyInstance = allInstances.FirstOrDefault(i =>
+        {
+            return i.Instance != null &&
+                   i.Instance.ToString().GetHashCode() == hash;
+        });
+        if (leastBusyInstance == null)
+        {
+            yield return allInstances.First();
+        }
+        else
+        {
+            yield return leastBusyInstance;
+        }
     }
 }

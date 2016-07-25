@@ -31,7 +31,11 @@
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            endpointConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall);
+                });
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);

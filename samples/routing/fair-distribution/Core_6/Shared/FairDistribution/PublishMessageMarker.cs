@@ -13,8 +13,9 @@ class PublishMessageMarker :
 
     public override Task Invoke(IOutgoingPublishContext context, Func<Task> next)
     {
-        context.Headers["NServiceBus.FlowControl.ControlAddress"] = controlAddress;
-        context.Headers["NServiceBus.FlowControl.SessionId"] = sessionId;
+        var headers = context.Headers;
+        headers["NServiceBus.FlowControl.ControlAddress"] = controlAddress;
+        headers["NServiceBus.FlowControl.SessionId"] = sessionId;
         return next();
     }
 

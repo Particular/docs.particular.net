@@ -7,10 +7,12 @@
         Usage(Configure configure)
         {
             #region DefiningEventsAs
-            configure.DefiningEventsAs(t => 
-            t.Namespace != null &&
-            t.Namespace.StartsWith("Domain") && 
-            t.Name.EndsWith("Event"));
+            configure.DefiningEventsAs(type =>
+            {
+                return type.Namespace != null &&
+                       type.Namespace.StartsWith("Domain") &&
+                       type.Name.EndsWith("Event");
+            });
             #endregion
         }
 

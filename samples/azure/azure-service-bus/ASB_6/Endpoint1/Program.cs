@@ -11,7 +11,8 @@ class Program
 
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Azure.ServiceBus.Endpoint1");
-        busConfiguration.ScaleOut().UseSingleBrokerQueue();
+        var scaleOut = busConfiguration.ScaleOut();
+        scaleOut.UseSingleBrokerQueue();
         var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))

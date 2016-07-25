@@ -7,7 +7,11 @@
         Usage(EndpointConfiguration endpointConfiguration)
         {
             #region UsingMessageBodyEncryptor
-            endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<MessageEncryptor>(DependencyLifecycle.InstancePerCall));
+            endpointConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent<MessageEncryptor>(DependencyLifecycle.InstancePerCall);
+                });
 
             #endregion
         }

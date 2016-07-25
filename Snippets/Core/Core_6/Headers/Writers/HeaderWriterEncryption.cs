@@ -28,13 +28,18 @@
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.RijndaelEncryptionService("2015-10", Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
-            endpointConfiguration.Conventions().DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));
+            var conventions = endpointConfiguration.Conventions();
+            conventions.DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            endpointConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall);
+                });
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
             var messageToSend = new MessageToSend

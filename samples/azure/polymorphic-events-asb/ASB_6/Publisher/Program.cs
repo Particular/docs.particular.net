@@ -11,7 +11,8 @@ class Program
         Console.Title = "Samples.ASB.Polymorphic.Publisher";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.ASB.Polymorphic.Publisher");
-        busConfiguration.ScaleOut().UseSingleBrokerQueue();
+        var scaleOut = busConfiguration.ScaleOut();
+        scaleOut.UseSingleBrokerQueue();
         var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))

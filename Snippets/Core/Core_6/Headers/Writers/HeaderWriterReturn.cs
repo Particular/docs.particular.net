@@ -28,11 +28,16 @@
             var callbackTypes = typeof(RequestResponseExtensions).Assembly.GetTypes();
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterReturn>(callbackTypes);
             endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.ScaleOut().InstanceDiscriminator("A");
+            var scaleOut = endpointConfiguration.ScaleOut();
+            scaleOut.InstanceDiscriminator("A");
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            endpointConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall);
+                });
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
             await endpointInstance.SendLocal(new MessageToSend())

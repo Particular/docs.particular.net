@@ -12,7 +12,8 @@ public class DebugFlagMutator :
 
     public void MutateIncoming(TransportMessage transportMessage)
     {
-        var debugFlag = transportMessage.Headers.ContainsKey("Debug") ? transportMessage.Headers["Debug"] : "false";
+        var headers = transportMessage.Headers;
+        var debugFlag = headers.ContainsKey("Debug") ? headers["Debug"] : "false";
         if (debugFlag != null && debugFlag.Equals("true", StringComparison.OrdinalIgnoreCase))
         {
             debug.Value = true;
@@ -33,6 +34,10 @@ public class DebugFlagMutator :
 
     public void Customize(BusConfiguration busConfiguration)
     {
-        busConfiguration.RegisterComponents(c => c.ConfigureComponent<DebugFlagMutator>(DependencyLifecycle.InstancePerCall));
+        busConfiguration.RegisterComponents(
+            registration: components =>
+            {
+                components.ConfigureComponent<DebugFlagMutator>(DependencyLifecycle.InstancePerCall);
+            });
     }
 }

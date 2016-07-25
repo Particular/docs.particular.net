@@ -7,11 +7,13 @@ namespace Core6.PubSub.WithConvention
         Usage(EndpointConfiguration endpointConfiguration)
         {
             #region DefiningEventsAs
-            var conventionsBuilder = endpointConfiguration.Conventions();
-            conventionsBuilder.DefiningEventsAs(t =>
-                t.Namespace != null &&
-                t.Namespace.StartsWith("Domain") &&
-                t.Name.EndsWith("Event"));
+            var conventions = endpointConfiguration.Conventions();
+            conventions.DefiningEventsAs(type =>
+            {
+                return type.Namespace != null &&
+                       type.Namespace.StartsWith("Domain") &&
+                       type.Name.EndsWith("Event");
+            });
 
             #endregion
         }

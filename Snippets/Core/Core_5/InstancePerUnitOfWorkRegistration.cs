@@ -10,7 +10,11 @@
         {
             #region InstancePerUnitOfWorkRegistration
 
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent<MyUnitOfWork>(DependencyLifecycle.InstancePerCall));
+            busConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent<MyUnitOfWork>(DependencyLifecycle.InstancePerCall);
+                });
 
             #endregion
         }

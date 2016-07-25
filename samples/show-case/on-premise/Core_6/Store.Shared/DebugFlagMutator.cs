@@ -15,13 +15,18 @@ public class DebugFlagMutator :
 
     public void Customize(EndpointConfiguration endpointConfiguration)
     {
-        endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<DebugFlagMutator>(DependencyLifecycle.InstancePerCall));
+        endpointConfiguration.RegisterComponents(
+            registration: components =>
+            {
+                components.ConfigureComponent<DebugFlagMutator>(DependencyLifecycle.InstancePerCall);
+            });
     }
 
 
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
-        var debugFlag = context.Headers.ContainsKey("Debug") ? context.Headers["Debug"] : "false";
+        var headers = context.Headers;
+        var debugFlag = headers.ContainsKey("Debug") ? headers["Debug"] : "false";
         if (debugFlag != null && debugFlag.Equals("true", StringComparison.OrdinalIgnoreCase))
         {
             debug.Value = true;
@@ -35,7 +40,7 @@ public class DebugFlagMutator :
 
     public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {
-        context.OutgoingHeaders["Debug"]= Debug.ToString();
+        context.OutgoingHeaders["Debug"] = Debug.ToString();
         return Task.FromResult(0);
     }
 }

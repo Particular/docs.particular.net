@@ -6,11 +6,29 @@ public static class CommonConfiguration
     {
         endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.Conventions()
-            .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("Store") && t.Namespace.EndsWith("Commands"))
-            .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("Store") && t.Namespace.EndsWith("Events"))
-            .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.StartsWith("Store") && t.Namespace.EndsWith("RequestResponse"))
-            .DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"));
+        var conventions = endpointConfiguration.Conventions();
+        conventions.DefiningCommandsAs(type =>
+        {
+            return type.Namespace != null &&
+                   type.Namespace.StartsWith("Store") &&
+                   type.Namespace.EndsWith("Commands");
+        });
+        conventions.DefiningEventsAs(type =>
+        {
+            return type.Namespace != null &&
+                   type.Namespace.StartsWith("Store") &&
+                   type.Namespace.EndsWith("Events");
+        });
+        conventions.DefiningMessagesAs(type =>
+        {
+            return type.Namespace != null &&
+                   type.Namespace.StartsWith("Store") &&
+                   type.Namespace.EndsWith("RequestResponse");
+        });
+        conventions.DefiningEncryptedPropertiesAs(property =>
+        {
+            return property.Name.StartsWith("Encrypted");
+        });
         endpointConfiguration.RijndaelEncryptionService();
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.SendFailedMessagesTo("error");

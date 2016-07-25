@@ -12,7 +12,10 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         var conventions = busConfiguration.Conventions();
-        conventions.DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof (IMessage)));
+        conventions.DefiningMessagesAs(type =>
+        {
+            return type.GetInterfaces().Contains(typeof(IMessage));
+        });
 
         using (var bus = Bus.Create(busConfiguration).Start())
         {

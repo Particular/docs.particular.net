@@ -28,12 +28,17 @@
             var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName(endpointName);
             busConfiguration.RijndaelEncryptionService("key1", Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
-            busConfiguration.Conventions().DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));
+            var conventions = busConfiguration.Conventions();
+            conventions.DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>(typeof(ConfigErrorQueue));
             busConfiguration.TypesToScan(typesToScan);
             busConfiguration.EnableInstallers();
             busConfiguration.UsePersistence<InMemoryPersistence>();
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            busConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall);
+                });
             using (var bus = Bus.Create(busConfiguration).Start())
             {
                 var messageToSend = new MessageToSend

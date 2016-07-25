@@ -8,7 +8,8 @@
         async Task Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, SendOptions sendOptions)
         {
             #region 5to6-Callbacks-InstanceId
-            endpointConfiguration.ScaleOut().InstanceDiscriminator("uniqueId");
+            var scaleOut = endpointConfiguration.ScaleOut();
+            scaleOut.InstanceDiscriminator("uniqueId");
             #endregion
 
             #region 5to6-Callbacks

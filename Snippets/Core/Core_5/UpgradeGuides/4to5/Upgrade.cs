@@ -34,38 +34,38 @@ namespace Core5.UpgradeGuides._4to5
             #region 4to5MessageConventions
 
             var conventions = busConfiguration.Conventions();
-            conventions.DefiningCommandsAs(t =>
+            conventions.DefiningCommandsAs(type =>
             {
-                return t.Namespace != null &&
-                       t.Namespace == "MyNamespace" &&
-                       t.Namespace.EndsWith("Commands");
+                return type.Namespace != null &&
+                       type.Namespace == "MyNamespace" &&
+                       type.Namespace.EndsWith("Commands");
             });
-            conventions.DefiningEventsAs(t =>
+            conventions.DefiningEventsAs(type =>
             {
-                return t.Namespace != null &&
-                       t.Namespace == "MyNamespace" &&
-                       t.Namespace.EndsWith("Events");
+                return type.Namespace != null &&
+                       type.Namespace == "MyNamespace" &&
+                       type.Namespace.EndsWith("Events");
             });
-            conventions.DefiningMessagesAs(t =>
+            conventions.DefiningMessagesAs(type =>
             {
-                return t.Namespace != null &&
-                       t.Namespace == "Messages";
+                return type.Namespace != null &&
+                       type.Namespace == "Messages";
             });
-            conventions.DefiningEncryptedPropertiesAs(p =>
+            conventions.DefiningEncryptedPropertiesAs(property =>
             {
-                return p.Name.StartsWith("Encrypted");
+                return property.Name.StartsWith("Encrypted");
             });
-            conventions.DefiningDataBusPropertiesAs(p =>
+            conventions.DefiningDataBusPropertiesAs(property =>
             {
-                return p.Name.EndsWith("DataBus");
+                return property.Name.EndsWith("DataBus");
             });
-            conventions.DefiningExpressMessagesAs(t =>
+            conventions.DefiningExpressMessagesAs(type =>
             {
-                return t.Name.EndsWith("Express");
+                return type.Name.EndsWith("Express");
             });
-            conventions.DefiningTimeToBeReceivedAs(t =>
+            conventions.DefiningTimeToBeReceivedAs(type =>
             {
-                if (t.Name.EndsWith("Expires"))
+                if (type.Name.EndsWith("Expires"))
                 {
                     return TimeSpan.FromSeconds(30);
                 }

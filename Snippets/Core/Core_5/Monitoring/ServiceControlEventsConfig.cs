@@ -9,11 +9,14 @@
             #region ServiceControlEventsConfig
 
             busConfiguration.UseSerialization<JsonSerializer>();
-            busConfiguration.Conventions()
-                .DefiningEventsAs(t => typeof(IEvent).IsAssignableFrom(t) ||
-                                       // include ServiceControl events
-                                       t.Namespace != null &&
-                                       t.Namespace.StartsWith("ServiceControl.Contracts"));
+            var conventions = busConfiguration.Conventions();
+            conventions.DefiningEventsAs(type =>
+            {
+                return typeof(IEvent).IsAssignableFrom(type) ||
+                       // include ServiceControl events
+                       type.Namespace != null &&
+                       type.Namespace.StartsWith("ServiceControl.Contracts");
+            });
 
             #endregion
         }

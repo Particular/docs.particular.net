@@ -23,11 +23,14 @@ class FlowManager
     }
 
     #region GetLeastBusy
+
     public int? GetLeastBusyInstanceHash(IEnumerable<UnicastRoutingTarget> allInstances)
     {
         FlowData best = null;
 
-        foreach (var hash in allInstances.Where(t => t.Instance != null).Select(t => t.Instance.ToString().GetHashCode()))
+        foreach (var hash in allInstances
+            .Where(t => t.Instance != null)
+            .Select(t => t.Instance.ToString().GetHashCode()))
         {
             var candidate = data.Values.FirstOrDefault(o => o.InstanceHash == hash);
             if (candidate == null) // This instance is not yet tracked, so assume it has shortest queue.
@@ -38,6 +41,7 @@ class FlowManager
         }
         return best?.InstanceHash;
     }
+
     #endregion
 
     FlowData Compare(FlowData best, FlowData candidate)
@@ -87,8 +91,7 @@ class FlowManager
                 {
                     return;
                 }
-            }
-            while (Interlocked.CompareExchange(ref location, newValue, initialValue) != initialValue);
+            } while (Interlocked.CompareExchange(ref location, newValue, initialValue) != initialValue);
         }
     }
 }

@@ -33,7 +33,11 @@
             busConfiguration.TypesToScan(typesToScan);
             busConfiguration.EnableInstallers();
             busConfiguration.UsePersistence<InMemoryPersistence>();
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            busConfiguration.RegisterComponents(
+                registration: c =>
+                {
+                    c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall);
+                });
             using (var bus = Bus.Create(busConfiguration).Start())
             {
                 // give time for the subscription to happen

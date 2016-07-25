@@ -18,14 +18,32 @@ public class FairDistribution :
         var flowManager = context.Settings.Get<FlowManager>();
         var controlAddress = context.Settings.InstanceSpecificQueue() ?? context.Settings.LocalAddress();
 
-        var instance = context.Settings.Get<TransportInfrastructure>().BindToLocalEndpoint(
-            new EndpointInstance(context.Settings.EndpointName(), context.Settings.GetOrDefault<string>("EndpointInstanceDiscriminator")));
+        var transportInfrastructure = context.Settings.Get<TransportInfrastructure>();
+        var instance = transportInfrastructure.BindToLocalEndpoint(
+            new EndpointInstance(
+                endpoint: context.Settings.EndpointName(),
+                discriminator: context.Settings.GetOrDefault<string>("EndpointInstanceDiscriminator")));
 
         var pipeline = context.Pipeline;
-        pipeline.Register("FlowControl.MessageMarker", new MessageMarker(flowManager), "Marks outgoing messages");
-        pipeline.Register("FlowControl.AcknowledgementProcessor", new AcknowledgementProcessor(flowManager, sessionId), "Processes incoming acknowledgements.");
-        pipeline.Register("FlowControl.MarkerProcessor", new MarkerProcessor(instance, 1), "Processes markers and sends ACKs");
-        pipeline.Register("FlowControl.SendMessageMarker", new SendMessageMarker(controlAddress, sessionId), "Marks point-to-point messages");
-        pipeline.Register("FlowControl.PublishMessageMarker", new PublishMessageMarker(controlAddress, sessionId), "Marks published messages");
+        pipeline.Register(
+            stepId: "FlowControl.MessageMarker",
+            behavior: new MessageMarker(flowManager),
+            description: "Marks outgoing messages");
+        pipeline.Register(
+            stepId: "FlowControl.AcknowledgementProcessor",
+            behavior: new AcknowledgementProcessor(flowManager, sessionId),
+            description: "Processes incoming acknowledgements.");
+        pipeline.Register(
+            stepId: "FlowControl.MarkerProcessor",
+            behavior: new MarkerProcessor(instance, 1),
+            description: "Processes markers and sends ACKs");
+        pipeline.Register(
+            stepId: "FlowControl.SendMessageMarker",
+            behavior: new SendMessageMarker(controlAddress, sessionId),
+            description: "Marks point-to-point messages");
+        pipeline.Register(
+            stepId: "FlowControl.PublishMessageMarker",
+            behavior: new PublishMessageMarker(controlAddress, sessionId),
+            description: "Marks published messages");
     }
 }

@@ -12,18 +12,21 @@ class Program
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
         var scaleOut = endpointConfiguration.ScaleOut();
-        scaleOut.InstanceDiscriminator(ConfigurationManager.AppSettings["InstanceId"]);
-        endpointConfiguration
-            .EnlistWithLegacyMSMQDistributor(
-            ConfigurationManager.AppSettings["DistributorAddress"],
-            ConfigurationManager.AppSettings["DistributorControlAddress"],
-            10);
+        scaleOut.InstanceDiscriminator(
+            discriminator: ConfigurationManager.AppSettings["InstanceId"]);
+        endpointConfiguration.EnlistWithLegacyMSMQDistributor(
+            masterNodeAddress: ConfigurationManager.AppSettings["DistributorAddress"],
+            masterNodeControlAddress: ConfigurationManager.AppSettings["DistributorControlAddress"],
+            capacity: 10);
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.Conventions()
-            .DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof(IMessage)));
+        var conventions = endpointConfiguration.Conventions();
+        conventions.DefiningMessagesAs(type =>
+        {
+            return type.GetInterfaces().Contains(typeof(IMessage));
+        });
 
         Run(endpointConfiguration).GetAwaiter().GetResult();
     }

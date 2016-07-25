@@ -32,9 +32,17 @@
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>(typeof(ConfigErrorQueue));
             busConfiguration.TypesToScan(typesToScan);
             busConfiguration.EnableInstallers();
-            busConfiguration.Conventions().DefiningDataBusPropertiesAs(x => x.Name.StartsWith("LargeProperty"));
+            var conventions = busConfiguration.Conventions();
+            conventions.DefiningDataBusPropertiesAs(property =>
+            {
+                return property.Name.StartsWith("LargeProperty");
+            });
             busConfiguration.UsePersistence<InMemoryPersistence>();
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            busConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall);
+                });
             using (var bus = Bus.Create(busConfiguration).Start())
             {
                 var messageToSend = new MessageToSend

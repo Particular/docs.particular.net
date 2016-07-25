@@ -4,7 +4,11 @@ public static class BusConfigExtensions
 {
     public static void RegisterMessageEncryptor(this BusConfiguration busConfiguration)
     {
-        busConfiguration.RegisterComponents(c => c.ConfigureComponent<MessageEncryptor>(DependencyLifecycle.InstancePerCall));
+        busConfiguration.RegisterComponents(
+            registration: components =>
+            {
+                components.ConfigureComponent<MessageEncryptor>(DependencyLifecycle.InstancePerCall);
+            });
     }
 }
 #endregion

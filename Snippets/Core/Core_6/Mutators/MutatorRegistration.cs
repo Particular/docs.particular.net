@@ -7,7 +7,11 @@
         MutatorRegistration(EndpointConfiguration endpointConfiguration)
         {
             #region MutatorRegistration
-            endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<MyMutator>(DependencyLifecycle.InstancePerCall));
+            endpointConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent<MyMutator>(DependencyLifecycle.InstancePerCall);
+                });
             #endregion
         }
 

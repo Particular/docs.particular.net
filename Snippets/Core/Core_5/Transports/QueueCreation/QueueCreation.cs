@@ -9,7 +9,11 @@
     {
         public void Customize(BusConfiguration busConfiguration)
         {
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent<YourQueueCreator>(DependencyLifecycle.InstancePerCall));
+            busConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent<YourQueueCreator>(DependencyLifecycle.InstancePerCall);
+                });
         }
     }
     #endregion

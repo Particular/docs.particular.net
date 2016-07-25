@@ -8,34 +8,34 @@ namespace Core6.Conventions
         Usage(EndpointConfiguration endpointConfiguration)
         {
             #region MessageConventions
-            var conventionsBuilder = endpointConfiguration.Conventions();
-            conventionsBuilder.DefiningCommandsAs(t =>
+            var conventions = endpointConfiguration.Conventions();
+            conventions.DefiningCommandsAs(type =>
             {
-                return t.Namespace == "MyNamespace.Messages.Commands";
+                return type.Namespace == "MyNamespace.Messages.Commands";
             });
-            conventionsBuilder.DefiningEventsAs(t =>
+            conventions.DefiningEventsAs(type =>
             {
-                return t.Namespace == "MyNamespace.Messages.Events";
+                return type.Namespace == "MyNamespace.Messages.Events";
             });
-            conventionsBuilder.DefiningMessagesAs(t =>
+            conventions.DefiningMessagesAs(type =>
             {
-                return t.Namespace == "MyNamespace.Messages";
+                return type.Namespace == "MyNamespace.Messages";
             });
-            conventionsBuilder.DefiningEncryptedPropertiesAs(p =>
+            conventions.DefiningEncryptedPropertiesAs(property =>
             {
-                return p.Name.StartsWith("Encrypted");
+                return property.Name.StartsWith("Encrypted");
             });
-            conventionsBuilder.DefiningDataBusPropertiesAs(p =>
+            conventions.DefiningDataBusPropertiesAs(property =>
             {
-                return p.Name.EndsWith("DataBus");
+                return property.Name.EndsWith("DataBus");
             });
-            conventionsBuilder.DefiningExpressMessagesAs(t =>
+            conventions.DefiningExpressMessagesAs(type =>
             {
-                return t.Name.EndsWith("Express");
+                return type.Name.EndsWith("Express");
             });
-            conventionsBuilder.DefiningTimeToBeReceivedAs(t =>
+            conventions.DefiningTimeToBeReceivedAs(type =>
             {
-                if (t.Name.EndsWith("Expires"))
+                if (type.Name.EndsWith("Expires"))
                 {
                     return TimeSpan.FromSeconds(30);
                 }

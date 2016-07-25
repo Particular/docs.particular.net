@@ -11,7 +11,8 @@ class Program
         busConfiguration.EndpointName("Samples.Azure.ServiceBus.Endpoint2");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
-        busConfiguration.ScaleOut().UseSingleBrokerQueue();
+        var scaleOut = busConfiguration.ScaleOut();
+        scaleOut.UseSingleBrokerQueue();
         var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))

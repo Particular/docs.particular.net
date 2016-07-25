@@ -10,33 +10,33 @@ namespace Core5.Conventions
             #region MessageConventions
 
             var conventions = busConfiguration.Conventions();
-            conventions.DefiningCommandsAs(t =>
+            conventions.DefiningCommandsAs(type =>
             {
-                return t.Namespace == "MyNamespace.Messages.Commands";
+                return type.Namespace == "MyNamespace.Messages.Commands";
             });
-            conventions.DefiningEventsAs(t =>
+            conventions.DefiningEventsAs(type =>
             {
-                return t.Namespace == "MyNamespace.Messages.Events";
+                return type.Namespace == "MyNamespace.Messages.Events";
             });
-            conventions.DefiningMessagesAs(t =>
+            conventions.DefiningMessagesAs(type =>
             {
-                return t.Namespace == "MyNamespace.Messages";
+                return type.Namespace == "MyNamespace.Messages";
             });
-            conventions.DefiningEncryptedPropertiesAs(p =>
+            conventions.DefiningEncryptedPropertiesAs(property =>
             {
-                return p.Name.StartsWith("Encrypted");
+                return property.Name.StartsWith("Encrypted");
             });
-            conventions.DefiningDataBusPropertiesAs(p =>
+            conventions.DefiningDataBusPropertiesAs(property =>
             {
-                return p.Name.EndsWith("DataBus");
+                return property.Name.EndsWith("DataBus");
             });
-            conventions.DefiningExpressMessagesAs(t =>
+            conventions.DefiningExpressMessagesAs(type =>
             {
-                return t.Name.EndsWith("Express");
+                return type.Name.EndsWith("Express");
             });
-            conventions.DefiningTimeToBeReceivedAs(t =>
+            conventions.DefiningTimeToBeReceivedAs(type =>
             {
-                if (t.Name.EndsWith("Expires"))
+                if (type.Name.EndsWith("Expires"))
                 {
                     return TimeSpan.FromSeconds(30);
                 }

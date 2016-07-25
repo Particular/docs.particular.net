@@ -8,35 +8,35 @@ public static class ConventionExtensions
     public static void ApplyCustomConventions(this Configure configure)
     {
         configure.FileShareDataBus(@"..\..\..\DataBusShare\");
-        configure.DefiningCommandsAs(t =>
+        configure.DefiningCommandsAs(type =>
         {
-            return t.Namespace != null &&
-                   t.Namespace.EndsWith("Commands");
+            return type.Namespace != null &&
+                   type.Namespace.EndsWith("Commands");
         });
-        configure.DefiningEventsAs(t =>
+        configure.DefiningEventsAs(type =>
         {
-            return t.Namespace != null &&
-                   t.Namespace.EndsWith("Events");
+            return type.Namespace != null &&
+                   type.Namespace.EndsWith("Events");
         });
-        configure.DefiningMessagesAs(t =>
+        configure.DefiningMessagesAs(type =>
         {
-            return t.Namespace == "Messages";
+            return type.Namespace == "Messages";
         });
-        configure.DefiningEncryptedPropertiesAs(p =>
+        configure.DefiningEncryptedPropertiesAs(property =>
         {
-            return p.Name.StartsWith("Encrypted");
+            return property.Name.StartsWith("Encrypted");
         });
-        configure.DefiningDataBusPropertiesAs(p =>
+        configure.DefiningDataBusPropertiesAs(property =>
         {
-            return p.Name.EndsWith("DataBus");
+            return property.Name.EndsWith("DataBus");
         });
-        configure.DefiningExpressMessagesAs(t =>
+        configure.DefiningExpressMessagesAs(type =>
         {
-            return t.Name.EndsWith("Express");
+            return type.Name.EndsWith("Express");
         });
-        configure.DefiningTimeToBeReceivedAs(t =>
+        configure.DefiningTimeToBeReceivedAs(type =>
         {
-            if (t.Name.EndsWith("Expires"))
+            if (type.Name.EndsWith("Expires"))
             {
                 return TimeSpan.FromSeconds(30);
             }

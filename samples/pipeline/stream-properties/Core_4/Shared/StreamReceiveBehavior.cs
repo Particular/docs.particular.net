@@ -18,7 +18,10 @@ class StreamReceiveBehavior : IBehavior<ReceiveLogicalMessageContext>
     {
 #endregion
         #region write-stream-properties-back
-        var message = context.LogicalMessage.Instance;
+
+        var logicalMessage = context.LogicalMessage;
+        var headers = logicalMessage.Headers;
+        var message = logicalMessage.Instance;
         var streamsToCleanUp = new List<FileStream>();
         foreach (var property in StreamStorageHelper.GetStreamProperties(message))
         {
@@ -26,7 +29,7 @@ class StreamReceiveBehavior : IBehavior<ReceiveLogicalMessageContext>
             string dataBusKey;
             // only attempt to process properties that have an associated header
             var key = $"NServiceBus.PropertyStream.{headerKey}";
-            if (!context.LogicalMessage.Headers.TryGetValue(key, out dataBusKey))
+            if (!headers.TryGetValue(key, out dataBusKey))
             {
                 continue;
             }
@@ -34,7 +37,7 @@ class StreamReceiveBehavior : IBehavior<ReceiveLogicalMessageContext>
             var filePath = Path.Combine(location, dataBusKey);
 
             // If the file doesn't exist then something has gone wrong with the file share.
-            // Perhaps he file has been manually deleted.
+            // Perhaps the file has been manually deleted.
             // For safety send the message to the error queue
             if (!File.Exists(filePath))
             {

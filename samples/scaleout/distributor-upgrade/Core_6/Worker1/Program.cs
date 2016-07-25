@@ -14,7 +14,8 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
         var scaleOut = endpointConfiguration.ScaleOut();
-        scaleOut.InstanceDiscriminator(ConfigurationManager.AppSettings["InstanceId"]);
+        scaleOut.InstanceDiscriminator(
+            discriminator: ConfigurationManager.AppSettings["InstanceId"]);
 
         #endregion
 
@@ -32,7 +33,10 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         var conventions = endpointConfiguration.Conventions();
-        conventions.DefiningMessagesAs(t => t.GetInterfaces().Contains(typeof (IMessage)));
+        conventions.DefiningMessagesAs(type =>
+        {
+            return type.GetInterfaces().Contains(typeof(IMessage));
+        });
 
         Run(endpointConfiguration).GetAwaiter().GetResult();
     }

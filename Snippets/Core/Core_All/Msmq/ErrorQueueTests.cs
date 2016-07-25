@@ -21,6 +21,7 @@
         {
             LogManager.Use<DefaultFactory>().Level(LogLevel.Error);
         }
+
         string endpointName = "ReturnToSourceQueueTests";
         static string errorQueueName = "ReturnToSourceQueueTestsError";
 
@@ -82,7 +83,11 @@
         IBus StartBus(State state)
         {
             var busConfiguration = new BusConfiguration();
-            busConfiguration.RegisterComponents(c=>c.ConfigureComponent(x => state,DependencyLifecycle.SingleInstance));
+            busConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance);
+                });
             busConfiguration.EndpointName(endpointName);
             busConfiguration.TypesToScan(TypeScanner.NestedTypes<ErrorQueueTests>());
             busConfiguration.EnableInstallers();
@@ -149,6 +154,7 @@
                 };
             }
         }
+
         class MessageToSend :
             IMessage
         {

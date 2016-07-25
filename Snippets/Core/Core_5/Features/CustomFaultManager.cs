@@ -31,7 +31,11 @@
         public void Customize(BusConfiguration configuration)
         {
             #region RegisterFaultManager
-            configuration.RegisterComponents(c => c.ConfigureComponent<CustomFaultManager>(DependencyLifecycle.InstancePerCall));
+            configuration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent<CustomFaultManager>(DependencyLifecycle.InstancePerCall);
+                });
             #endregion
         }
     }

@@ -8,7 +8,10 @@
         {
             #region DefineMessageWithLargePayloadUsingConvention
 
-            configuration.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
+            configuration.DefiningDataBusPropertiesAs(property =>
+            {
+                return property.Name.EndsWith("DataBus");
+            });
 
             #endregion
 

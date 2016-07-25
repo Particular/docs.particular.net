@@ -46,7 +46,11 @@
         IBus StartBus(State state)
         {
             var busConfiguration = new BusConfiguration();
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance));
+            busConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance);
+                });
             busConfiguration.EndpointName(endpointName);
             busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>());

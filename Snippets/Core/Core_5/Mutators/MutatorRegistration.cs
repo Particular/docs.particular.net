@@ -7,7 +7,11 @@
         MutatorRegistration(BusConfiguration busConfiguration)
         {
             #region MutatorRegistration
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent<MyMutator>(DependencyLifecycle.InstancePerCall));
+            busConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent<MyMutator>(DependencyLifecycle.InstancePerCall);
+                });
             #endregion
         }
 
