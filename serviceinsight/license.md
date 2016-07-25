@@ -11,15 +11,15 @@ related:
 - nservicebus/licensing/license-management
 ---
 
-When you want to register ServiceInsight, before or after the trial period is over, you cna do so by clicking on "Help" \> "Register" menu item. If you run ServiceInsight after the trial period is expired, you will display the following dialog:
+To register ServiceInsight, before or after the trial period is over, click on "Help" \> "Register" menu item. Running ServiceInsight after the trial period is expired, the following dialog will be displayed:
 
 ![trial period expiration](images/trial-period-expiration.png)
 
-You can load the license by clicking the "Browse..." button and selecting the license file sent to you by us. The dialog box will then display the following confirmation message:
+The license can be loaded by clicking the "Browse..." button and selecting the license file. The dialog box will then display the following confirmation message:
 
 ![trial period licensed](images/trial-period-licensed.png)
 
-Note that your license file might allow you run multiple products (NServiceBus Core, ServiceInsight and ServicePulse), therefore you can load your license from other products such as ServiceControl Management Utility as well but the end result will be the same.
+Note that the license file might allow running multiple products (NServiceBus Core, ServiceInsight and ServicePulse), therefore the license file can be loaded from other products such as ServiceControl Management Utility as well but the end result will be the same.
 
 ### Verifying a license is applied
 
