@@ -19,7 +19,7 @@ The default Recoverability Policy is implemented in `DefaultRecoverabilityPolicy
 2. If the `ImmediateProcessingFailures` are less or equal to the configured `MaxNumberOfRetries` for Immediate Retries, the `ImmediateRetry` recoverability action is returned
 3. When Immediate Retries are exceeded the Delayed Retries configuration are considered. If the `DelayedDeliveriesPerformed` are less or equal the configured `MaxNumberOfRetries` and the message hasn't reached the maximum time allowed for retries (24 hours), the `DelayedRetry` recoverability action is returned. The delay is calculated according to the following formula:
 delay = DelayedRetry.TimeIncrease * (DelayedDeliveriesPerformed + 1)
-4. If ImmediateRetries and DelayedRetries are exceeded, the `MoveToError`r recoverability action is returned with the default error queue.
+4. If ImmediateRetries and DelayedRetries are exceeded, the `MoveToError` recoverability action is returned with the default error queue.
 
 ## Fallback
 
@@ -52,8 +52,24 @@ In cases when Immediate and/or Delayed Retry capabilities are not available MaxN
 
 ### Partial customization
 
-With the new recoverability override starting from Version 6 and above it is possible to take full control over the recoverability behavior. For example the above custom SLR policy will always to first level retries even for business exceptions. That doesn't have to be like that. It is possible to disable first level retries entirely for business exceptions like shown below:
+Sometimes only a partial customization of the default Recoverability Policy is desired. In order to achieve partial customization the `DefaultRecoverabilityPolicy` needs to be called in the customized Recoverability Policy delegate.
+
+In the following example the default Recoverability Policy is tweaked to do three Immediate Retries and three Delayed Retries with a time increase of two seconds. The configuration looks like the following:
+
+snippet:PartiallyCustomizedPolicyRecoverabilityConfiguration
+
+If when certain exceptions like `MyBusinessException` happen messages that triggered such an exception should be moved to error queue. And if for exceptions like `MyOtherBusinessException` the default Delayed Retries time increase should be always five seconds but for all other cases the Default Recoverability Policy should be applied then the code can look like the following:
+
+snippet:PartiallyCustomizedPolicy
+
+If the Default Recoverability Policy just needs to be tweaked for `MyBusinessException` then a policy might look like:
 
 snippet:CustomExceptionPolicyHandler
 
+If more control over Recoverability is desired the Recoverability delegate can be overriden completely.
+
 ### Full customization
+
+snippet:FullyCustomizedPolicyRecoverabilityConfiguration
+
+snippet:FullyCustomizedPolicy

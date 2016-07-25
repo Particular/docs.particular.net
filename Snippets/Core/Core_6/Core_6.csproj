@@ -107,6 +107,8 @@
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="Errors\FirstLevel\FlrCodeFirstConfiguration.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\CustomExceptionPolicy.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\FullyCustomizedPolicy.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\PartiallyCustomizedPolicy.cs" />
     <Compile Include="Errors\SecondLevel\SlrCodeFirstConfiguration.cs" />
     <Compile Include="Features\AdvancedSatelliteFeature.cs" />
     <Compile Include="Features\SatelliteFeature.cs" />

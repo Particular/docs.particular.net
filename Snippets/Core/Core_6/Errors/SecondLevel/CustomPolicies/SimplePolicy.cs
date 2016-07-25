@@ -13,7 +13,7 @@
             recoverabilitySettings.CustomPolicy(MyCustomRetryPolicy);
             #endregion
 
-            #region SecondLevelRetriesCustomPolicyHandlerConfig 6
+            #region SecondLevelRetriesCustomPolicyHandlerConfig
             recoverabilitySettings.Delayed(delayed => delayed.NumberOfRetries(3));
             #endregion
         }
@@ -32,6 +32,5 @@
             return action;
         }
         #endregion
-
     }
 }
