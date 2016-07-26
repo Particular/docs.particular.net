@@ -5,7 +5,6 @@ reviewed: 2016-03-31
 component: Testing
 tags:
 - Testing
-- NUnit
 redirects:
 related:
 - nservicebus/testing
