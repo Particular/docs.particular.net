@@ -3,7 +3,6 @@ title: Azure Service Bus Transport Native Integration
 tags:
 - Azure
 - Cloud
-- Configuration
 ---
 
 
