@@ -123,7 +123,7 @@ The [default logging](/nservicebus/logging/) included in NServiceBus does not su
 
 See also: [NLog Layout-Renderers](https://github.com/nlog/nlog/wiki/Layout-Renderers).
 
-This sample leverages the existing [Exception Layout Renderer]( https://github.com/nlog/nlog/wiki/Exception-Layout-Renderer) and override how exceptions are converted to strings.
+This sample leverages the existing [Exception Layout Renderer](https://github.com/nlog/nlog/wiki/Exception-Layout-Renderer) and override how exceptions are converted to strings.
 
 This samples also uses the [AsyncFriendlyStackTrace Project](https://github.com/aelij/AsyncFriendlyStackTrace) so simplify the conversion logic. However other approaches, such as string manipulation, could also be used.
 
@@ -169,16 +169,16 @@ With the above optimizations the following text (14 lines and ~2300 characters)i
 ```no-highlight
 System.Exception: Foo
    at Handler.Handle(Message message, IMessageHandlerContext context) in C:\Code\docs.particular.net\samples\logging\stack-trace-cleaning\Core_6\SampleWithClean\Handler.cs:line 10
-   at NServiceBus.InvokeHandlerTerminator.&lt;Terminate&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\InvokeHandlerTerminator.cs:line 19
-   at NServiceBus.LoadHandlersConnector.&lt;Invoke&gt;d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\LoadHandlersConnector.cs:line 41
-   at NServiceBus.MutateIncomingMessageBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\MutateInstanceMessage\MutateIncomingMessageBehavior.cs:line 28
-   at NServiceBus.DeserializeLogicalMessagesConnector.&lt;Invoke&gt;d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\DeserializeLogicalMessagesConnector.cs:line 30
-   at NServiceBus.SubscriptionReceiverBehavior.&lt;Invoke&gt;d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Routing\MessageDrivenSubscriptions\SubscriptionReceiverBehavior.cs:line 30
-   at NServiceBus.MutateIncomingTransportMessageBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\MutateTransportMessage\MutateIncomingTransportMessageBehavior.cs:line 27
-   at NServiceBus.UnitOfWorkBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 26
-   at NServiceBus.UnitOfWorkBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 48
-   at NServiceBus.ProcessingStatisticsBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Performance\Statistics\ProcessingStatisticsBehavior.cs:line 25
-   at NServiceBus.ReceivePerformanceDiagnosticsBehavior.&lt;Invoke&gt;d__2.MoveNext() in C:\Build\src\NServiceBus.Core\Performance\Statistics\ReceivePerformanceDiagnosticsBehavior.cs:line 40
-   at NServiceBus.TransportReceiveToPhysicalMessageProcessingConnector.&lt;Invoke&gt;d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\TransportReceiveToPhysicalMessageProcessingConnector.cs:line 38
-   at NServiceBus.MoveFaultsToErrorQueueBehavior.&lt;Invoke&gt;d__3.MoveNext() in C:\Build\src\NServiceBus.Core\Recoverability\Faults\MoveFaultsToErrorQueueBehavior.cs:line 38
+   at NServiceBus.InvokeHandlerTerminator.<Terminate>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\InvokeHandlerTerminator.cs:line 19
+   at NServiceBus.LoadHandlersConnector.<Invoke>d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\LoadHandlersConnector.cs:line 41
+   at NServiceBus.MutateIncomingMessageBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\MutateInstanceMessage\MutateIncomingMessageBehavior.cs:line 28
+   at NServiceBus.DeserializeLogicalMessagesConnector.<Invoke>d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\DeserializeLogicalMessagesConnector.cs:line 30
+   at NServiceBus.SubscriptionReceiverBehavior.<Invoke>d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Routing\MessageDrivenSubscriptions\SubscriptionReceiverBehavior.cs:line 30
+   at NServiceBus.MutateIncomingTransportMessageBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\MutateTransportMessage\MutateIncomingTransportMessageBehavior.cs:line 27
+   at NServiceBus.UnitOfWorkBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 26
+   at NServiceBus.UnitOfWorkBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 48
+   at NServiceBus.ProcessingStatisticsBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Performance\Statistics\ProcessingStatisticsBehavior.cs:line 25
+   at NServiceBus.ReceivePerformanceDiagnosticsBehavior.<Invoke>d__2.MoveNext() in C:\Build\src\NServiceBus.Core\Performance\Statistics\ReceivePerformanceDiagnosticsBehavior.cs:line 40
+   at NServiceBus.TransportReceiveToPhysicalMessageProcessingConnector.<Invoke>d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\TransportReceiveToPhysicalMessageProcessingConnector.cs:line 38
+   at NServiceBus.MoveFaultsToErrorQueueBehavior.<Invoke>d__3.MoveNext() in C:\Build\src\NServiceBus.Core\Recoverability\Faults\MoveFaultsToErrorQueueBehavior.cs:line 38
 ```
