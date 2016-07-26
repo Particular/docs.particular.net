@@ -5,7 +5,6 @@ reviewed: 2016-03-17
 tags:
 - Endpoint Name
 - Conventions
-- Input queue
 redirects:
 - nservicebus/how-to-specify-your-input-queue-name
 - nservicebus/messaging/specify-input-queue-name
