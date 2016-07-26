@@ -5,7 +5,6 @@ reviewed: 2016-03-21
 component: Log4Net
 tags:
 - Logging
-- Log4Net
 related:
 - nservicebus/logging
 ---
