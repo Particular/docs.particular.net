@@ -4,7 +4,6 @@ summary: List of all Azure Service Bus Transport configuration settings
 tags:
 - Azure
 - Cloud
-- Configuration
 redirects:
 - nservicebus/azure-service-bus/configuration/configuration
 ---
