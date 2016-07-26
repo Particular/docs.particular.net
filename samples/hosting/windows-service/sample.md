@@ -6,7 +6,6 @@ component: Core
 tags:
 - Hosting
 - Windows Service
-- Sample
 related:
 - nservicebus/hosting
 ---
