@@ -26,6 +26,9 @@ Reference Article: [Asynchronous Programming with async and await](https://msdn.
 The decision not to adopt the *Async* suffix in NServiceBus API is intentional for several reasons:
 
 
+## Reason for No Async Suffix
+
+
 ### No requirement for conflicting overloads
 
 The *Async* suffix convention was adopted by necessity in .NET CLR since async APIs were added in a non-breaking version. Since C# cannot have overloads that differ only by response type, the new async APIs needed to have a different name, hence the *Async* suffix was used.
@@ -99,34 +102,6 @@ snippet: TaskCasesNotDetectedByTheCompiler
 In these scenarios there are two possible solutions, writing a [Roslyn analyzer](https://msdn.microsoft.com/en-us/library/mt162308.aspx) or writing a unit test using [Mono Cecil](https://github.com/jbevain/cecil) (shown below).
 
 
-#### Verify correct Task usage using a unit test
-
-This scenario uses [Mono Cecil](https://github.com/jbevain/cecil) to interrogate the IL of an assembly to verify correct usage of Task based method calls.
-
-
-##### Missing Task Usage Detector
-
-Helper that detects and fails for incorrect `Task` usage.
-
-snippet: MissingTaskUsageDetector
-
-
-##### Using the detector in a unit test
-
-snippet: MissingTaskUsageDetectorUsage
-
-
-##### IgnoreTaskExtensions
-
-In some cases it may be desirable to ignore the returned `Task` value. In this case an extension method can be used to explicitly accept that the `Task` return value should be ignored.
-
-snippet: IgnoreTaskExtensions
-
-Using `IgnoreTask` extension method.
-
-snippet: ExplictlyIgnoreTask
-
-
 ### Async not necessary when reading code
 
 The above examples show how difficult it is to incorrectly use async APIs. As such async API usage is clearly identifiable in code by the associated `await`, `.ConfigureAwait()` usage that is required.
@@ -138,3 +113,31 @@ Other libraries are also taking the same approach. For example:
 
  * [Octokit - The GitHub .net API](https://github.com/octokit/octokit.net)
  * [MassTransit](http://masstransit-project.com/)
+
+
+## Verify correct Task usage using a unit test
+
+This scenario uses [Mono Cecil](https://github.com/jbevain/cecil) to interrogate the IL of an assembly to verify correct usage of Task based method calls.
+
+
+### Missing Task Usage Detector
+
+Helper that detects and fails for incorrect `Task` usage.
+
+snippet: MissingTaskUsageDetector
+
+
+### Using the detector in a unit test
+
+snippet: MissingTaskUsageDetectorUsage
+
+
+### IgnoreTaskExtensions
+
+In some cases it may be desirable to ignore the returned `Task` value. In this case an extension method can be used to explicitly accept that the `Task` return value should be ignored.
+
+snippet: IgnoreTaskExtensions
+
+Using `IgnoreTask` extension method.
+
+snippet: ExplictlyIgnoreTask
