@@ -5,7 +5,6 @@ reviewed: 2016-03-17
 tags:
 - Dependency Injection
 - IOC
-- Castle Windsor
 ---
 
 
