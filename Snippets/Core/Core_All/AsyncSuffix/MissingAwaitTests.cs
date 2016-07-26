@@ -1,10 +1,13 @@
 ﻿using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
 class MissingAwaitTests
 {
+#pragma warning disable 649
+    string pathToAssembly;
+#pragma warning restore 649
+
     #region TaskCasesNotDetectedByTheCompiler
 
     public static Task MissingTaskUsage1()
@@ -33,9 +36,7 @@ class MissingAwaitTests
     [Test]
     public void TestForMissingTaskUsage()
     {
-        var executingAssembly = Assembly.GetExecutingAssembly();
-        var assemblyPath = executingAssembly.CodeBase.Substring(8);
-        MissingTaskUsageDetector.CheckForMissingTaskUsage(assemblyPath);
+        MissingTaskUsageDetector.CheckForMissingTaskUsage(pathToAssembly);
     }
 
     #endregion
