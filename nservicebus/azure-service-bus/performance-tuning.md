@@ -3,7 +3,6 @@ title: Azure Service Bus Transport Performance Tuning
 tags:
 - Azure
 - Cloud
-- Configuration
 ---
 
 
