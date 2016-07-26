@@ -4,7 +4,6 @@ summary: Configuring NServiceBus to use StructureMap as a container.
 reviewed: 2016-03-17
 tags:
 - Dependency Injection
-- IOC
 ---
 
 
