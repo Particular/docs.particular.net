@@ -4,7 +4,6 @@ summary: Configuring Azure Service Bus as transport
 tags:
 - Azure
 - Cloud
-- Configuration
 ---
 
 ## AzureServiceBusQueueConfig (Version 6 and below)
