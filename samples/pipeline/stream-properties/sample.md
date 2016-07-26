@@ -5,7 +5,6 @@ reviewed: 2016-03-21
 component: Core
 tags:
 - Pipeline
-- Stream
 - Large messages
 related:
 - nservicebus/pipeline
