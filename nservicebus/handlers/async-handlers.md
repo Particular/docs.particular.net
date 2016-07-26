@@ -2,8 +2,6 @@
 title: Asynchronous Handlers
 summary: Shows how to deal with synchronous and asynchronous code inside asynchronous handlers
 reviewed: 2016-07-05
-tags:
- - Async
 ---
 
 
