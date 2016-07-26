@@ -2,8 +2,6 @@
 title: Log4Net
 summary: Logging using Log4Net.
 reviewed: 2016-03-17
-tags:
-- log4net
 related:
 - samples/logging/log4net-custom
 ---
