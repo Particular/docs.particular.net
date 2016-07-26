@@ -164,7 +164,7 @@ System.Exception: Foo
 
 ### Error Queue with optimizations
 
-With the above optimizations the following text (14 lines and ~2300 characters)is written to the error queue.
+With the above optimizations the following text (14 lines and ~2300 characters) is written to the error queue.
 
 ```no-highlight
 System.Exception: Foo
