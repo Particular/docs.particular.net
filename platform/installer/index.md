@@ -78,6 +78,7 @@ This installation runs the appropriate [Deployment Image Servicing and Managemen
 This installation configures [Microsoft Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx) for usage by NServiceBus. The configuration sets the following registry values in `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSDTC\Security`:
 
  * Enable Network DTC Access. `NetworkDtcAccess` is set to `1`.
+ * Allow Outbound transactions:
   * `NetworkDtcAccessOutbound` is set to `1`
   * `NetworkDtcAccessTransactions` is set to `1`
   * `XaTransactions` is set to `1`
