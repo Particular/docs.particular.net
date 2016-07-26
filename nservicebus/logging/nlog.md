@@ -4,7 +4,6 @@ summary: Logging using NLog.
 reviewed: 2016-03-17
 tags:
 - Logging
-- nlog
 related:
 - samples/logging/nlog-custom
 ---
