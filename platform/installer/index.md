@@ -13,7 +13,7 @@ The Platform Installer (PI) is recommended for use on development machines only.
 
 This is primarily because:
 
-* PI requires Internet access which may not be available in a production environment.
+* The PI requires Internet access which may not be available in a production environment.
 * The PI `setup.exe` will fail on Windows servers were `IE Enhanced Security Configuration` is enabled
 
 [Download the PI](http://particular.net/start-platform-download).
