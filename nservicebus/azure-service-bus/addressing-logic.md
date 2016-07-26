@@ -3,7 +3,6 @@ title: Azure Service Bus Transport Addressing Logic
 tags:
  - Azure
  - Cloud
- - Configuration
 ---
 
 
