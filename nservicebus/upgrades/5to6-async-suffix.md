@@ -46,7 +46,7 @@ No other NServiceBus APIs follow [Hungarian notation](https://en.wikipedia.org/w
  * Classes are not suffixed with "Instance" or "Static".
  * Members are not suffixed [Access modifier names](https://msdn.microsoft.com/en-au/library/ms173121.aspx) such as "Protected" or "Public".
 
-All these things can be inferred by the IDE and the compiler, and appropriate IntelliSense and compiler messages are provided to the developer.
+All these things can be inferred by the [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (e.g. Visual Studio) and the compiler, and appropriate IntelliSense and compiler messages are provided to the developer.
 
 So in deciding on the adoption of the *Async* suffix it was necessary to choose between consistency with certain external .NET APIs or naming consistency within NServiceBus.
 
@@ -56,19 +56,6 @@ Related Read: [Hungarian notation Disadvantages](https://en.wikipedia.org/wiki/H
 ### Async APIs should be identifiable in code
 
 One of the arguments for the *Async* suffix is that all async methods should be clearly identifiable in code so as to prevent misuse of that API. However, the compiler is very efficient at identifying incorrect async keyword usage and providing appropriate feedback to the developer. Some possible misuses are listed below with the associated compiler information.
-
-Given an async API being used:
-
-snippet: ServiceWithAsync
-
-
-#### Missing await
-
-When a void method calls an async method but neglects to await that method.
-
-snippet: VoidMethodMissingAwait
-
-Results in [Compiler Warning CS4014](https://msdn.microsoft.com/en-us/library/hh873131.aspx)
 
 
 #### Missing return task
@@ -98,9 +85,46 @@ snippet: AsyncMethodMissingOneAwait
 Results in [Compiler Warning CS4014](https://msdn.microsoft.com/en-us/library/hh873131.aspx)
 
 
+#### Cases not detected by the compiler
+
+There are some cases that are not detected by the compiler. For example:
+
+snippet: TaskCasesNotDetectedByTheCompiler
+
+In these scenarios there are two possible solutions, writing a [Roslyn analyzer](https://msdn.microsoft.com/en-us/library/mt162308.aspx) or writing a unit test using [Mono Cecil](https://github.com/jbevain/cecil) (shown below).
+
+
 #### Treat Warnings as Errors
 
 Note that in several of the above examples are warnings and not errors. As such it is necessary to either [Treat all Warnings as Errors](https://msdn.microsoft.com/en-us/library/kb4wyys2.aspx#Anchor_3) or nominate specific warnings to be treated as errors via [Errors and Warnings](https://msdn.microsoft.com/en-us/library/kb4wyys2.aspx#Anchor_2).
+
+
+#### Verify correct Task usage using a unit test
+
+This scenario uses [Mono Cecil](https://github.com/jbevain/cecil) to interrogate the IL of an assembly to verify correct usage of Task based method calls.
+
+
+##### Missing Task Usage Detector
+
+Helper that detects and fails for incorrect `Task` usage.
+
+snippet: MissingTaskUsageDetector
+
+
+##### Using the detector in a unit test
+
+snippet: MissingTaskUsageDetectorUsage
+
+
+##### IgnoreTaskExtensions
+
+In some cases it may be desirable to ignore the returned `Task` value. In this case an extension method can be used to explicitly accept that the `Task` return value should be ignored.
+
+snippet: IgnoreTaskExtensions
+
+Using `IgnoreTask` extension method.
+
+snippet: ExplictlyIgnoreTask
 
 
 ### Async not necessary when reading code
