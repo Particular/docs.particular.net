@@ -3,7 +3,6 @@ title: Property injection
 reviewed: 2016-03-24
 tags:
  - Dependency Injection
- - IOC
 redirects:
  - nservicebus/property-injection-in-handlers
 ---
