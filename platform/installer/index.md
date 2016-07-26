@@ -11,18 +11,17 @@ tags:
 
 The Platform Installer (PI) is recommended for use on development machines only.
 
-This is primarily because
+This is primarily because:
 
- * PI does not provide a choice of transport (Microsoft Message Queue is assumed).
- * PI requires Internet access which may not be available in a production environment.
- * The PI `setup.exe` will fail on Windows servers were `IE Enhanced Security Configuration` is enabled
+* PI requires Internet access which may not be available in a production environment.
+* The PI `setup.exe` will fail on Windows servers were `IE Enhanced Security Configuration` is enabled
 
 [Download the PI](http://particular.net/start-platform-download).
 
 For testing and production environments it is recommended to:
 
- * Use the [NServiceBus Powershell Module](/nservicebus/operations/management-using-powershell.md) to install the prerequisite components required.
- * Download and run the individual installers from the [download](http://particular.net/downloads) page rather than install via the PI.
+* Use the [NServiceBus Powershell Module](/nservicebus/operations/management-using-powershell.md) to install the prerequisite components required.
+* Download and run the individual installers from the [download](http://particular.net/downloads) page rather than install via the PI.
 
 
 ## What to expect
@@ -52,23 +51,39 @@ If the Save Credentials option is chosen the credentials will be encrypted and s
 
 ## Select items to install
 
-The PI will prompt for which items to install. Individual components can be selected how for installation or upgrade. If the latest version of a product is installed that item will be disabled as there is no installation or upgrade action required. Similarly if the PI cannot communicate with the version information feed it will also disable product selection.
+The PI will prompt for which items to install. Individual components can be selected how for installation or upgrade. If the latest version of a product is installed that item will cd as there is no installation or upgrade action required. Similarly if the PI cannot communicate with the version information feed it will also disable product selection.
 
 ![](select-items.png)
 
 
-#### NServiceBus
+#### NServiceBus Performance Counters
 
-This installs the NServiceBus prerequisites and configures the machine to be compatible for usage by NServiceBus.
-This step does the following:
+This installation adds the performance counters category "NServiceBus"  with the following counters:
 
- * Configures Microsoft Distributed Transaction Coordinator for usage by NServiceBus.
- * Adds the NServiceBus Performance Counters.
- * Installs and configures Microsoft Message Queue (MSMQ) service.
+* `Critical Time` - this counter provides the age of the oldest message in the queue.
+* `SLA violation countdown` - this counter indicates the number of seconds until the SLA for this endpoint is breached.
+* `# of msgs successfully processed / sec` - The current number of messages processed successfully by the transport per second.
+* `# of msgs pulled from the input queue /sec` - The current number of messages pulled from the input queue by the transport per second..
+* `# of msgs failures / sec` - The current number of failed processed messages by the transport per second.
 
-There is no harm in running these on multiple times. Each run will check the state of Microsoft Message Queue service, the Distributed Transaction Coordinator service and the Performance Counters and adjust settings or start services as required. In some case the prerequisites may prompt for a restart to complete a change.
+This installation is optional.
 
-Note: The NServiceBus prerequisites do not have a version number and do not toggle to a disabled state after installation.
+
+#### Configure Microsoft Message Queuing
+
+This installation runs the appropriate DISM.exe command line to install the required Windows Features for MSMQ.  The installation will also check to ensure that any unsupported MSMQ Windows Features are not installed.  This installation is only required if MSMQ is going to be used as the message transport.  The other supported message transports are detailed in the [Transports](/nservicebus/transports/) documentation.
+
+
+#### Configure MSDTC for NServiceBus
+
+This installation configures Microsoft Distributed Transaction Coordinator for usage by NServiceBus. The configuration sets the following registry values in `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSDTC\Security`:
+
+* `NetworkDtcAccess` is set to `1`
+* `NetworkDtcAccessOutbound` is set to `1`
+* `NetworkDtcAccessTransactions` is set to `1`
+* `XaTransactions` is set to `1`
+
+ This install is optional.
 
 
 #### ServiceInsight
@@ -101,7 +116,7 @@ The PI logs activity in `%appdata%\PlatformInstaller`. The current log file will
 
 ### MSI Logs
 
-The command line options used for the MSI installations ensure that a detailed log file is produced for each installation. These files are also co-located with the cached installers in `%temp%\Temp\Particular\PlatformInstaller`.
+The command line options used for the MSI installations ensure that a detailed log file is produced for each installation. These files are also co-located with the PT logs  installers in `%appdata%\PlatformInstaller`.
 
 An installation or upgrade of a product will overwrite any existing MSI log for that product.
 
@@ -112,8 +127,8 @@ MSI provide detailed error information via error codes. This MSDN article detail
 
 As mentioned above in some circumstances Click-Once can be problematic. The following links provide some useful tips on troubleshooting issues with Click-Once.
 
- * [Click-Once Deployment](https://msdn.microsoft.com/en-us/library/t71a733d.aspx)
- * [Troubleshooting Click-Once Deployments](https://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
+* [Click-Once Deployment](https://msdn.microsoft.com/en-us/library/t71a733d.aspx)
+* [Troubleshooting Click-Once Deployments](https://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
 
 
 ### Click-once and Enhanced Security on Windows Server 2012 R2
@@ -134,10 +149,3 @@ Error: An error occurred trying to download 'https://s3.amazonaws.com/particular
 ```
 
 Resolve this by (temporarily) disabling IE Enhanced Security.
-
-
-## Chocolatey
-
-Early versions of the PI relied on [Chocolatey](https://chocolatey.org) to deploy and update products.
-
-The current PI no longer has this dependency. If Chocolatey was installed solely to accommodate the PI then it can be [safely removed](https://github.com/chocolatey/choco/wiki/Uninstallation).
