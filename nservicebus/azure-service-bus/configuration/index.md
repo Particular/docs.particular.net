@@ -3,7 +3,6 @@ title: Azure Service Bus Transport Configuration
 tags:
 - Azure
 - Cloud
-- Configuration
 ---
 
 ## Getting Started
