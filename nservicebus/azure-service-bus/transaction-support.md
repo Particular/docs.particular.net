@@ -4,7 +4,6 @@ reviewed: 2016-04-20
 tags:
 - Azure
 - Cloud
-- Configuration
 - Transactions
 ---
 
