@@ -117,7 +117,7 @@ Other libraries are also taking the same approach. For example:
 
 ## Verify correct Task usage using a unit test
 
-This scenario uses [Mono Cecil](https://github.com/jbevain/cecil) to interrogate the IL of an assembly to verify correct usage of Task based method calls.
+This scenario uses [Mono Cecil](https://github.com/jbevain/cecil) to interrogate the IL of an assembly to verify correct usage of Task based method calls. In this case the test verifies that there is at least one usage of the `Task` instance returns from a method.
 
 
 ### Missing Task Usage Detector
