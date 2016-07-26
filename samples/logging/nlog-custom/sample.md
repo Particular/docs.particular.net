@@ -5,7 +5,6 @@ reviewed: 2016-03-21
 component: NLog
 tags:
 - Logging
-- NLog
 related:
 - nservicebus/logging
 ---
