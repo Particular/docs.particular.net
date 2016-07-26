@@ -2,8 +2,6 @@
 title: CommonLogging
 summary: Logging all NServiceBus entries using CommonLogging.
 reviewed: 2016-03-17
-tags:
-- Common Logging
 related:
 - samples/logging/commonlogging
 ---
