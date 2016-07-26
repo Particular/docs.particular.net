@@ -51,7 +51,7 @@ If the Save Credentials option is chosen the credentials will be encrypted and s
 
 ## Select items to install
 
-The PI will prompt for which items to install. Individual components can be selected how for installation or upgrade. If the latest version of a product is installed that item will cd as there is no installation or upgrade action required. Similarly if the PI cannot communicate with the version information feed it will also disable product selection.
+The PI will prompt for which items to install. Individual components can be selected how for installation or upgrade. If the latest version of a product is installed that item no checkbox will be displayed   as there is no installation or upgrade action required. Similarly if the PI cannot communicate with the version information feed it will also disable product selection.
 
 ![](select-items.png)
 
@@ -116,7 +116,7 @@ The PI logs activity in `%appdata%\PlatformInstaller`. The current log file will
 
 ### MSI Logs
 
-The command line options used for the MSI installations ensure that a detailed log file is produced for each installation. These files are also co-located with the PT logs  installers in `%appdata%\PlatformInstaller`.
+The command line options used for the MSI installations ensure that a detailed log file is produced for each installation. These files are co-located with the PI logs in `%appdata%\PlatformInstaller`.
 
 An installation or upgrade of a product will overwrite any existing MSI log for that product.
 
