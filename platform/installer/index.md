@@ -20,7 +20,7 @@ This is primarily because:
 
 For testing and production environments it is recommended to:
 
-* Use the [NServiceBus Powershell Module](/nservicebus/operations/management-using-powershell.md) to install the prerequisite components required.
+* Use the [NServiceBus Powershell Module](/nservicebus/operations/management-using-powershell.md) to install any prerequisite components required.
 * Download and run the individual installers from the [download](http://particular.net/downloads) page rather than install via the PI.
 
 
