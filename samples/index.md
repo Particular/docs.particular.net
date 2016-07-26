@@ -3,8 +3,9 @@ title: Samples
 reviewed: 2016-03-21
 ---
 
-[Skip to the list of samples](#related-samples)
+For a guided introduction to essential NServiceBus concepts start with the [step by step sample](/samples/step-by-step/)
 
+[Skip to the list of samples](#related-samples)
 
 The samples are designed to be highlighting how various features of NServiceBus work and how the extension points plug into other libraries and tooling.
 
