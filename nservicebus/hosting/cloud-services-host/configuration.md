@@ -4,7 +4,6 @@ summary: Configuring the endpoint when hosting in Azure Cloud Services
 tags:
 - Azure
 - Cloud
-- Configuration
 ---
 
 
