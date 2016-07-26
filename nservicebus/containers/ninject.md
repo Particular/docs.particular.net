@@ -4,8 +4,6 @@ summary: Configure NServiceBus to use Ninject as a container.
 reviewed: 2016-03-17
 tags:
 - Dependency Injection
-- IOC
-- Ninject
 related:
 - nservicebus/containers/child-containers
 ---
