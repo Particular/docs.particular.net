@@ -4,8 +4,7 @@ summary: Writing unit tests for NServiceBus 6 systems.
 reviewed: 2016-03-31
 component: Testing
 tags:
-- Unit Testing
-- Arrange-Act-Assert
+- Testing
 - NUnit
 redirects:
 related:
