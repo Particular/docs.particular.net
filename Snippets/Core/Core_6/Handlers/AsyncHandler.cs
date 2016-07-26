@@ -118,7 +118,8 @@
         {
             for (var i = 0; i < 100; i++)
             {
-                await context.Send(new MyMessage())
+                var myMessage = new MyMessage();
+                await context.Send(myMessage)
                     .ConfigureAwait(false);
             }
         }
@@ -137,7 +138,8 @@
                 var options = new SendOptions();
                 options.RequireImmediateDispatch();
 
-                tasks[i] = context.Send(new MyMessage(), options);
+                var myMessage = new MyMessage();
+                tasks[i] = context.Send(myMessage, options);
             }
             return Task.WhenAll(tasks);
         }
@@ -157,8 +159,8 @@
                 {
                     var options = new SendOptions();
                     options.RequireImmediateDispatch();
-
-                    tasks[j] = context.Send(new MyMessage(), options);
+                    var myMessage = new MyMessage();
+                    tasks[j] = context.Send(myMessage, options);
                 }
                 await Task.WhenAll(tasks)
                     .ConfigureAwait(false);
@@ -193,7 +195,8 @@
             {
                 var options = new SendOptions();
                 options.RequireImmediateDispatch();
-                await context.Send(new MyMessage(), options)
+                var message = new MyMessage();
+                await context.Send(message, options)
                     .ConfigureAwait(false);
             }
             finally

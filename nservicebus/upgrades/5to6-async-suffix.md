@@ -85,6 +85,11 @@ snippet: AsyncMethodMissingOneAwait
 Results in [Compiler Warning CS4014](https://msdn.microsoft.com/en-us/library/hh873131.aspx)
 
 
+#### Treat Warnings as Errors
+
+Note that in several of the above examples are warnings and not errors. As such it is necessary to either [Treat all Warnings as Errors](https://msdn.microsoft.com/en-us/library/kb4wyys2.aspx#Anchor_3) or nominate specific warnings to be treated as errors via [Errors and Warnings](https://msdn.microsoft.com/en-us/library/kb4wyys2.aspx#Anchor_2).
+
+
 #### Cases not detected by the compiler
 
 There are some cases that are not detected by the compiler. For example:
@@ -92,11 +97,6 @@ There are some cases that are not detected by the compiler. For example:
 snippet: TaskCasesNotDetectedByTheCompiler
 
 In these scenarios there are two possible solutions, writing a [Roslyn analyzer](https://msdn.microsoft.com/en-us/library/mt162308.aspx) or writing a unit test using [Mono Cecil](https://github.com/jbevain/cecil) (shown below).
-
-
-#### Treat Warnings as Errors
-
-Note that in several of the above examples are warnings and not errors. As such it is necessary to either [Treat all Warnings as Errors](https://msdn.microsoft.com/en-us/library/kb4wyys2.aspx#Anchor_3) or nominate specific warnings to be treated as errors via [Errors and Warnings](https://msdn.microsoft.com/en-us/library/kb4wyys2.aspx#Anchor_2).
 
 
 #### Verify correct Task usage using a unit test

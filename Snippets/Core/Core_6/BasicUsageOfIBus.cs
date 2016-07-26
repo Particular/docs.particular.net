@@ -11,7 +11,8 @@
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
-            await endpointInstance.Send(new MyMessage())
+            var message = new MyMessage();
+            await endpointInstance.Send(message)
                 .ConfigureAwait(false);
 
             #endregion
@@ -24,7 +25,8 @@
         {
             public Task Handle(MyMessage message, IMessageHandlerContext context)
             {
-                return context.Send(new OtherMessage());
+                var otherMessage = new OtherMessage();
+                return context.Send(otherMessage);
             }
         }
 
@@ -65,7 +67,8 @@
 
             var options = new SendOptions();
             options.RouteToSpecificInstance("MyInstance");
-            await endpoint.Send(new MyMessage(), options)
+            var message = new MyMessage();
+            await endpoint.Send(message, options)
                 .ConfigureAwait(false);
 
             #endregion
@@ -92,7 +95,8 @@
 
             var options = new SendOptions();
             options.RouteToThisInstance();
-            await endpoint.Send(new MyMessage(), options)
+            var message = new MyMessage();
+            await endpoint.Send(message, options)
                 .ConfigureAwait(false);
 
             #endregion
@@ -104,7 +108,8 @@
 
             var options = new SendOptions();
             options.RouteReplyToThisInstance();
-            await endpoint.Send(new MyMessage(), options)
+            var message = new MyMessage();
+            await endpoint.Send(message, options)
                 .ConfigureAwait(false);
 
             #endregion
@@ -116,7 +121,8 @@
 
             var options = new SendOptions();
             options.RouteReplyToAnyInstance();
-            await endpoint.Send(new MyMessage(), options)
+            var message = new MyMessage();
+            await endpoint.Send(message, options)
                 .ConfigureAwait(false);
 
             #endregion
@@ -128,7 +134,8 @@
 
             var options = new SendOptions();
             options.RouteReplyTo("MyDestination");
-            await endpoint.Send(new MyMessage(), options)
+            var message = new MyMessage();
+            await endpoint.Send(message, options)
                 .ConfigureAwait(false);
 
             #endregion

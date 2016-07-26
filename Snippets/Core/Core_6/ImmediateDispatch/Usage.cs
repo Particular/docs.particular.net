@@ -11,7 +11,8 @@
             #region RequestImmediateDispatch
             var options = new SendOptions();
             options.RequireImmediateDispatch();
-            await context.Send(new MyMessage(), options)
+            var message = new MyMessage();
+            await context.Send(message, options)
                 .ConfigureAwait(false);
             #endregion
         }
@@ -21,7 +22,8 @@
             #region RequestImmediateDispatchUsingScope
             using (new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
             {
-                await context.SendLocal(new MyMessage())
+                var message = new MyMessage();
+                await context.SendLocal(message)
                     .ConfigureAwait(false);
             }
             #endregion
