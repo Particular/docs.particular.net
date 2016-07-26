@@ -4,7 +4,6 @@ summary: Naming Conventions for Azure Service Bus, Versions 6 and below.
 tags:
  - Azure
  - Cloud
- - Configuration
 ---
 
 
