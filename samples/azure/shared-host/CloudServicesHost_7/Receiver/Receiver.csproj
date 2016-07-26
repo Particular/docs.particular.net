@@ -69,9 +69,8 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.HostProcess.7.0.0-beta0003\lib\net452\NServiceBus.Hosting.Azure.HostProcess.exe</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Persistence.AzureStorage, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.AzureStorage.1.0.0-beta0004\lib\net452\NServiceBus.Persistence.AzureStorage.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Persistence.AzureStorage">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.AzureStorage.1.0.0-beta0005\lib\net452\NServiceBus.Persistence.AzureStorage.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
