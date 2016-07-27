@@ -1,10 +1,3 @@
----
-title: Batched message dispatch
-summary: Describes how NServiceBus collects outgoing operations when processing message in order to dispatch them more efficiently.
-reviewed: 2016-04-27
----
-
-
 Since batched dispatch isn't available for Versions 5 and below it is necessary to pay more attention to the ordering of outgoing operations when using transports other than MSMQ and SQLServer since they lack support for cross queue transactions. For those transports messages will be dispatched immediately to the transport as soon as the call to `.Send` or `.Publish` completes. This means that there is a risk of "ghost" message being emitted if all database operations are not performed prior to bus operations. One example would to do a `.Publish<OrderPlaced>()` event before calling `DB.Store(new Order())` since that would cause the `OrderPlaced` event to sent even if the order could not be stored in the database.
 
 To avoid ghost messages there are the following options:

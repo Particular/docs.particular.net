@@ -6,4 +6,4 @@ reviewed: 2016-04-27
 ---
 
 
-partial: content
+partial:content
