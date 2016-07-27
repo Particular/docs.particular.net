@@ -31,7 +31,7 @@ snippet:EndpointNameByNamespace
 
 ### Defined in code
 
-Set the endpoint name using the `DefineEndpointName` extension method on the endpoint configuration.
+Set the endpoint name using the `DefineEndpointName(name)` extension method on the endpoint configuration.
 
 snippet:EndpointNameInCode
 
@@ -59,7 +59,7 @@ NOTE: Only use code **OR** commandline/installation parameters.
 
 ### Defined in code
 
-Set the endpoint name using the `DefineEndpointName` extension method on the endpoint configuration.
+Set the endpoint name using the `DefineEndpointName(name)` extension method on the endpoint configuration.
 
 snippet:EndpointNameInCodeForAzureHost
 
