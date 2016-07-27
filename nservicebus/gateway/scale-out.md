@@ -11,14 +11,14 @@ Due to specifics of the protocol used, the gateway is designed to run on at most
 
 ### MSMQ scaled-out with the distributor
 
-When scaling out MSMQ through the [distributor](/nservicebus/msmq/scalability-and-ha/distributor), the node running the distributor is the natural candidate to host the gateway. Running the distributor as [a clustered service on a Windows Failover Cluster](/nservicebus/msmq/scalability-and-ha/deploying-to-a-windows-failover-cluster.md) provides High Availability (HA). No special action needs to be taken, other than configuring senders to send gateway HTTP traffic to the node running the distributor instead of directly to the workers.
+When scaling out MSMQ through the [distributor](/nservicebus/msmq/distributor), the node running the distributor is the natural candidate to host the gateway. Running the distributor as [a clustered service on a Windows Failover Cluster](/nservicebus/msmq/distributor/deploying-to-a-windows-failover-cluster.md) provides High Availability (HA). No special action needs to be taken, other than configuring senders to send gateway HTTP traffic to the node running the distributor instead of directly to the workers.
 
 ![Gateway with distributor](/nservicebus/gateway/scaleoutdistributor.png)
 
 
 ### Brokered transports - RabbitMQ, SQL Server, Azure and MSMQ scaled-out with new unified scalability model in version 6
 
-With [brokered transports](/nservicebus/scalability-and-ha/scale-out.md#versions-5-and-below-sql-server-and-rabbitmq) or the [new unified scalability model](/nservicebus/scalability-and-ha/scale-out.md#versions-6-and-above) in version 6, all instances are equal. All can host the gateway, but one of them needs to be explicitly selected as the receiver of the incoming HTTP gateway traffic. Any endpoints sending to the gateway of that endpoint must be configured to use the HTTP address of the selected endpoint instance.
+With brokered transports or the new unified scalability model in version 6, all instances are equal. All can host the gateway, but one of them needs to be explicitly selected as the receiver of the incoming HTTP gateway traffic. Any endpoints sending to the gateway of that endpoint must be configured to use the HTTP address of the selected endpoint instance.
 
 Use an HTTP Load Balancer(LB) to avoid hard-coding individual endpoint instance gateway HTTP addresses in the gateway senders. Configure sending endpoints to send to the LB and let the LB forward the traffic to the HTTP address of the selected endpoint instance.
 

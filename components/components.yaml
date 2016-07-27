@@ -102,7 +102,7 @@
 
 - Key: Distributor
   Name: Distributor
-  DocoUrl: nservicebus/msmq/scalability-and-ha/distributor
+  DocoUrl: nservicebus/msmq/distributor
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Distributor.Msmq
   NugetOrder:
