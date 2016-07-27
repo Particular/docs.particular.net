@@ -1,9 +1,10 @@
 ---
 title: Scaling out NServiceBus endpoints with MSMQ transport
 reviewed: 2016-07-27
+component: Core
 redirects:
  - nservicebus/scalability-and-ha/scale-out
- - nservicebus/scalability-and-ha
+ - nservicebus/scalability-and-ha/
 tags:
 - Scale Out
 - Routing
