@@ -25,7 +25,7 @@
             {
                 if (context.Exception is MyBusinessException)
                 {
-                    return RecoverabilityAction.MoveToError();
+                    return RecoverabilityAction.MoveToError(config.Failed.ErrorQueue);
                 }
                 // Override default delivery delay.
                 return RecoverabilityAction.DelayedRetry(TimeSpan.FromSeconds(5));

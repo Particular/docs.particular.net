@@ -5,60 +5,60 @@ namespace Core6.Routing
     using System;
     using System.Collections.Generic;
     using NServiceBus;
+    using NServiceBus.Features;
     using NServiceBus.Routing;
     using NServiceBus.Settings;
     using NServiceBus.Transport;
 
     class RoutingAPIs
     {
-        void StaticRoutesEndpoint(EndpointConfiguration endpointConfiguration)
+        void StaticRoutesEndpoint(TransportExtensions transportExtensions)
         {
             #region Routing-StaticRoutes-Endpoint
 
-            var routing = endpointConfiguration.Routing();
+            var routing = transportExtensions.Routing();
             routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
 
             #endregion
         }
 
-        void StaticRoutesEndpointMsmq(EndpointConfiguration endpointConfiguration)
+        void StaticRoutesEndpointMsmq(TransportExtensions transportExtensions)
         {
             #region Routing-StaticRoutes-Endpoint-Msmq
 
-            var routing = endpointConfiguration.Routing();
+            var routing = transportExtensions.Routing();
             routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
 
             #endregion
         }
 
-        void StaticRoutesEndpointBroker(EndpointConfiguration endpointConfiguration)
+        void StaticRoutesEndpointBroker(TransportExtensions transportExtensions)
         {
             #region Routing-StaticRoutes-Endpoint-Broker
 
-            var routing = endpointConfiguration.Routing();
+            var routing = transportExtensions.Routing();
             routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
 
             #endregion
         }
 
-        void StaticRoutesAddress(EndpointConfiguration endpointConfiguration)
+        void StaticRoutesAddress(TransportExtensions transportExtensions)
         {
             #region Routing-StaticRoutes-Address
 
-            var routing = endpointConfiguration.Routing();
-            routing.Mapping.Logical
-                .RouteToAddress(typeof(AcceptOrder), "Sales@SomeMachine");
+            var routing = transportExtensions.Routing();
+            routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
 
             #endregion
         }
 
-        void DynamicRoutes(EndpointConfiguration endpointConfiguration)
-        {
-            #region Routing-DynamicRoutes
+        #region Routing-DynamicRoutes
 
-            var routing = endpointConfiguration.Routing();
-            routing.Mapping.Logical
-                .AddDynamic((types, contextBag) => new[]
+        class DynamicRouting : Feature
+        {
+            protected override void Setup(FeatureConfigurationContext context)
+            {
+                context.RoutingTable().AddDynamic((types, contextBag) => new[]
                 {
                     // Use endpoint name
                     UnicastRoute.CreateFromEndpointName("Sales"),
@@ -67,61 +67,74 @@ namespace Core6.Routing
                     // Use transport address (e.g. MSMQ)
                     UnicastRoute.CreateFromEndpointName("Sales-2@MachineA")
                 });
-
-            #endregion
+            }
         }
 
-        void CustomRoutingStore(EndpointConfiguration endpointConfiguration)
-        {
-            #region Routing-CustomRoutingStore
+        #endregion
 
-            var routing = endpointConfiguration.Routing();
-            routing.Mapping.Logical.AddDynamic((t, c) =>
+        #region Routing-CustomRoutingStore
+
+        class CustomRoutingStore : Feature
+        {
+            protected override void Setup(FeatureConfigurationContext context)
+            {
+                context.RoutingTable().AddDynamic((t, c) =>
                 LoadFromCache(t) ?? LoadFromDatabaseAndPutToCache(t));
-
-            #endregion
+            }
         }
-        void StaticEndpointMapping(EndpointConfiguration endpointConfiguration)
-        {
-            #region Routing-StaticEndpointMapping
 
-            var sales = "Sales";
-            var routing = endpointConfiguration.Routing();
-            routing.Mapping.Physical
-                .Add(
+        #endregion
+
+        static IEnumerable<IUnicastRoute> LoadFromDatabaseAndPutToCache(Type[] type)
+        {
+            throw new NotImplementedException();
+        }
+
+        static IEnumerable<IUnicastRoute> LoadFromCache(Type[] type)
+        {
+            throw new NotImplementedException();
+        }
+
+        #region Routing-StaticEndpointMapping
+        class StaticEndpointMapping : Feature
+        {
+            protected override void Setup(FeatureConfigurationContext context)
+            {
+                var sales = "Sales";
+
+                context.EndpointInstances().Add(
                     new EndpointInstance(sales, "1"),
                     new EndpointInstance(sales, "2"));
-
-            #endregion
+            }
         }
+        #endregion
 
-        void DynamicEndpointMapping(EndpointConfiguration endpointConfiguration)
+        #region Routing-DynamicEndpointMapping
+        class DynamicEndpointMapping : Feature
         {
-            #region Routing-DynamicEndpointMapping
-
-            var routing = endpointConfiguration.Routing();
-            routing.Mapping.Physical.AddDynamic(async e =>
+            protected override void Setup(FeatureConfigurationContext context)
             {
-                if (e.ToString().StartsWith("Sales"))
+                context.EndpointInstances().AddDynamic(async e =>
                 {
-                    return new[]
+                    if (e.ToString().StartsWith("Sales"))
                     {
+                        return new[]
+                        {
                         new EndpointInstance(e, "1").SetProperty("SomeProp", "SomeValue"),
                         new EndpointInstance(e, "2").AtMachine("B")
                     };
-                }
-                return null;
-            });
-
-            #endregion
+                    }
+                    return null;
+                });
+            }
         }
+        #endregion
 
         void CustomDistributionStrategy(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-CustomDistributionStrategy
-
-            var routing = endpointConfiguration.Routing();
-            routing.Mapping.SetMessageDistributionStrategy("Sales", new CustomStrategy());
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+            routing.SetMessageDistributionStrategy("Sales", new CustomStrategy());
             #endregion
         }
 
@@ -156,12 +169,10 @@ namespace Core6.Routing
         {
             #region Routing-FileBased-Config
 
-            var routing = endpointConfiguration.Routing();
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+            routing.InstanceMappingFile().FilePath(@"C:\Routes.xml");
             routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
             routing.RouteToEndpoint(typeof(SendOrder), "Shipping");
-
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            transport.DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
 
             #endregion
         }
@@ -170,20 +181,8 @@ namespace Core6.Routing
         {
             #region Routing-FileBased-ConfigAdvanced
 
-            var routing = endpointConfiguration.Routing();
-            routing.Mapping
-                .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
-
-            #endregion
-        }
-        public void FileBasedRoutingMaxLoadAttempts(EndpointConfiguration endpointConfiguration)
-        {
-            #region Routing-FileBased-MaxLoadAttempts
-
-            var routing = endpointConfiguration.Routing();
-            var fileRoutingTable = routing.Mapping
-                .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
-            fileRoutingTable.MaxLoadAttempts(15);
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+            routing.InstanceMappingFile().FilePath(@"C:\Routes.xml");
 
             #endregion
         }
@@ -191,9 +190,8 @@ namespace Core6.Routing
         {
             #region Routing-FileBased-RefreshInterval
 
-            var routing = endpointConfiguration.Routing();
-            var fileRoutingTable = routing.Mapping
-                .DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+            var fileRoutingTable = routing.InstanceMappingFile().FilePath(@"C:\Routes.xml");
             fileRoutingTable.RefreshInterval(TimeSpan.FromSeconds(45));
 
             #endregion
@@ -210,16 +208,6 @@ namespace Core6.Routing
             {
                 throw new NotImplementedException();
             }
-        }
-
-        IEnumerable<IUnicastRoute> LoadFromDatabaseAndPutToCache(List<Type> type)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<IUnicastRoute> LoadFromCache(List<Type> type)
-        {
-            throw new NotImplementedException();
         }
 
         class AcceptOrder

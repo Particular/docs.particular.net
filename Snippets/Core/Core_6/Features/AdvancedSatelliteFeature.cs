@@ -25,7 +25,7 @@
                 transportAddress: "targetQueue",
                 requiredTransportTransactionMode: TransportTransactionMode.TransactionScope,
                 runtimeSettings: PushRuntimeSettings.Default,
-                recoverabilityPolicy: (config, errorContext) => { return RecoverabilityAction.MoveToError(); },
+                recoverabilityPolicy: (config, errorContext) => { return RecoverabilityAction.MoveToError(config.Failed.ErrorQueue); },
                 onMessage: OnMessage);
         }
 

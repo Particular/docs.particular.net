@@ -11,9 +11,9 @@
         {
             #region PubSub-CodePublisherMapping
 
-            var transport = endpointConfiguration.UseTransport<UnicastTransport>();
-            transport.RegisterPublisherForType("Sales", typeof(MyEvent));
-            transport.RegisterPublisherForAssembly("Sales", typeof(OtherEvent).Assembly);
+            var routing = endpointConfiguration.UseTransport<UnicastTransport>().Routing();
+            routing.RegisterPublisher(typeof(MyEvent), "Sales");
+            routing.RegisterPublisher(typeof(OtherEvent).Assembly, "Sales");
 
             #endregion
         }

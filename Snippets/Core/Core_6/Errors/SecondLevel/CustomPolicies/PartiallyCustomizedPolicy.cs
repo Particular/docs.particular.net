@@ -23,7 +23,7 @@
             // i.ex. MyBusinessException should always go to error
             if (context.Exception is MyBusinessException)
             {
-                return RecoverabilityAction.MoveToError();
+                return RecoverabilityAction.MoveToError(config.Failed.ErrorQueue);
             }
 
             // invocation of default recoverability policy

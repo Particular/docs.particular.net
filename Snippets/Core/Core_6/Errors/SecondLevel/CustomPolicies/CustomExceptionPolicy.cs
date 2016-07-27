@@ -17,7 +17,7 @@ namespace Core6.Errors.SecondLevel.CustomPolicies
         {
             if (context.Exception is MyBusinessException)
             {
-                return RecoverabilityAction.MoveToError();
+                return RecoverabilityAction.MoveToError(config.Failed.ErrorQueue);
             }
 
             return DefaultRecoverabilityPolicy.Invoke(config, context);
