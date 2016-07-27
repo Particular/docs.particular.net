@@ -78,7 +78,7 @@ Automatically removing these attachments can cause problems in many situations. 
  * Functional requirements might dictate the message to be available for a longer duration.
  * If the outbox feature in NServiceBus is enabled, the message will be removed from the incoming queue, but it might not have been processed yet.
  * If the DataBus feature is used in combination with multiple subscribers, the subscribers cannot determine who should remove the file.
- * If a messages fails it will be forwarded to the [error queue](/nservicebus/errors/). This message can then be retried some period after that failure. The databus files need to exist fot that message to be re-processed correctly.
+ * If a messages fails it will be forwarded to the [error queue](/nservicebus/errors/). This message can then be retried some period after that failure. The databus files need to exist for that message to be re-processed correctly.
 
 
 ### AzureDataBus Implementation
@@ -117,11 +117,11 @@ The following extension methods are available for changing the behavior of `Azur
 
 snippet:AzureDataBusSetup
 
- * `ConnectionString()`: the connection string to the storage account for storing DataBus properties, defaults to `UseDevelopmentStorage=true`
- * `Container()`: container name, defaults to '`databus`'
- * `BasePath()`: the blobs base path under the container, defaults to empty string
- * `DefaultTTL`: time in seconds to keep blob in storage before it is removed, defaults to `Int64.MaxValue` seconds
- * `MaxRetries`: number of upload/download retries, defaults to 5 retries
- * `NumberOfIOThreads`: number of blocks that will be simultaneously uploaded, defaults to 5 threads
- * `BackOffInterval`: the back-off time between retries, defaults to 30 seconds
- * `BlockSize`: the size of a single block for upload when the number of IO threads is more than 1, defaults to 4MB
+ * `ConnectionString()`: The connection string to the storage account for storing DataBus properties, defaults to `UseDevelopmentStorage=true`.
+ * `Container()`: Container name, defaults to '`databus`'.
+ * `BasePath()`: The blobs base path under the container, defaults to empty string.
+ * `DefaultTTL`: Time in seconds to keep blob in storage before it is removed, defaults to `Int64.MaxValue` seconds.
+ * `MaxRetries`: Number of upload/download retries, defaults to 5 retries.
+ * `NumberOfIOThreads`: Number of blocks that will be simultaneously uploaded, defaults to 5 threads.
+ * `BackOffInterval`: The back-off time between retries, defaults to 30 seconds.
+ * `BlockSize`: The size of a single block for upload when the number of IO threads is more than 1, defaults to 4MB.
