@@ -8,6 +8,7 @@ tags:
 - Retry
 redirects:
 - nservicebus/errors/distributor-errorhandling
+- nservicebus/scalability-and-ha/distributor/error-handling
 related:
 - samples/scaleout
 - nservicebus/scalability-and-ha/distributor

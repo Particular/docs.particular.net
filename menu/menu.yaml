@@ -194,6 +194,7 @@
         - "nservicebus/azure-service-bus/transaction-support"
         - "nservicebus/azure/transactions"
         - "nservicebus/azure-service-bus/native-integration"
+        - "nservicebus/azure-service-bus/scale-out"
     -
       Title: "Azure Storage Queues Transport"
       Url: "nservicebus/azure-storage-queues"
@@ -204,6 +205,7 @@
         - "nservicebus/azure-storage-queues/configuration"
         - "nservicebus/azure-storage-queues/performance-tuning"
         - "nservicebus/azure-storage-queues/multi-storageaccount-support"
+        - "nservicebus/azure-storage-queues/scale-out"
     -
       Title: "SQL Server Transport"
       Url: "nservicebus/sqlserver"
@@ -212,6 +214,7 @@
         - "nservicebus/sqlserver/design"
         - "nservicebus/sqlserver/deployment-options"
         - "nservicebus/sqlserver/operations-scripting"
+        - "nservicebus/sqlserver/scale-out"
     -
       Title: "MSMQ Transport"
       Url: "nservicebus/msmq"
@@ -225,6 +228,16 @@
         - "nservicebus/msmq/uninstalling-msmq"
         - "nservicebus/msmq/subscription-persistence"
         - "nservicebus/msmq/full-qualified-domain-name"
+        - "nservicebus/msmq/scale-out"
+        - Title: "Scaling out with Distributor"
+          Url: "nservicebus/msmq/scalability-and-ha/distributor"
+          Articles:
+            - "nservicebus/msmq/scalability-and-ha/distributor/when-worker-goes-down"
+            - "nservicebus/msmq/scalability-and-ha/distributor/disconnect-workers"
+            - "nservicebus/msmq/scalability-and-ha/distributor/publish-subscribe"
+            - "nservicebus/msmq/scalability-and-ha/distributor/upgrading-the-distributor"
+            - "nservicebus/msmq/scalability-and-ha/distributor/error-handling"
+            - "nservicebus/msmq/scalability-and-ha/distributor/deploying-to-a-windows-failover-cluster"
     -
       Title: "RabbitMQ Transport"
       Url: "nservicebus/rabbitmq"
@@ -234,6 +247,7 @@
         - "nservicebus/rabbitmq/configuration-api"
         - "nservicebus/rabbitmq/cluster"
         - "nservicebus/rabbitmq/operations-scripting"
+        - "nservicebus/rabbitmq/scale-out"
     -
       Title: "Serialization"
       Url: "nservicebus/serialization"
@@ -351,21 +365,6 @@
         - "nservicebus/operations/running-on-windows"
         - "nservicebus/operations/transactions-message-processing"
         - "nservicebus/operations/warning-for-cid-values"
-    -
-      Title: "Scalability and HA"
-      Url: "nservicebus/scalability-and-ha"
-      Articles:
-        - "nservicebus/scalability-and-ha/scale-out"
-        - "nservicebus/scalability-and-ha/deploying-to-a-windows-failover-cluster"
-        - "nservicebus/scalability-and-ha/individualizing-queues-when-scaling-out"
-        - Title: "Distributor"
-          Url: "nservicebus/scalability-and-ha/distributor"
-          Articles:
-            - "nservicebus/scalability-and-ha/distributor/when-worker-goes-down"
-            - "nservicebus/scalability-and-ha/distributor/disconnect-workers"
-            - "nservicebus/scalability-and-ha/distributor/publish-subscribe"
-            - "nservicebus/scalability-and-ha/distributor/upgrading-the-distributor"
-            - "nservicebus/scalability-and-ha/distributor/error-handling"
 -
   Name: "ServiceInsight"
   Topics:
