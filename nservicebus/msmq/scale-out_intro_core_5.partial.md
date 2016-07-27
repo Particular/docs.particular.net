@@ -1,5 +1,5 @@
 
-In NServiceBus Version 5 and below it is necessary to use the [distributor](/nservicebus/scalability-and-ha/distributor/) in order to scale out an endpoint using the MSMQ transport. That is caused by limitations imposed by MSMQ on remote receives.
+In NServiceBus Version 5 and below it is necessary to use the [distributor](/nservicebus/msmq/scalability-and-ha/distributor/) in order to scale out an endpoint using the MSMQ transport. That is caused by limitations imposed by MSMQ on remote receives.
 
 The role of the distributor is to forward incoming messages to a number of workers in order to balance the load. The workers are "invisible" to the outside world because all the outgoing messages contain the distributor's (not the worker's) address in the `reply-to` header.
 

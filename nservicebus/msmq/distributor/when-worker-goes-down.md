@@ -8,7 +8,7 @@ redirects:
  - nservicebus/scalability-and-ha/distributor/when-worker-goes-down
 ---
 
-As shown in "[How does the distributor work](/nservicebus/scalability-and-ha/distributor/#how-does-it-work-)", a worker checks in for work with the distributor by sending a register message to it. From that moment the worker will start receiving messages from the distributor.
+As shown in "[How does the distributor work](/nservicebus/msmq/scalability-and-ha/distributor/#how-does-it-work-)", a worker checks in for work with the distributor by sending a register message to it. From that moment the worker will start receiving messages from the distributor.
 
 If a worker goes down, messages can get stuck in the distributor or the worker.
 
