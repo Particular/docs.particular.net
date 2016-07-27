@@ -6,6 +6,7 @@ tags:
 - Distributor
 redirects:
  - nservicebus/load-balancing-with-the-distributor
+ - nservicebus/scalability-and-ha/distributor
 ---
 
 The NServiceBus Distributor is similar in behavior to standard [load balancers](https://en.wikipedia.org/wiki/Load_balancing_%28computing%29). It is the key to transparently scaling out message processing over many machines.

@@ -3,6 +3,8 @@ title: Distributor and Publish-Subscribe
 summary: How the Distributor behaves in a publish-subscribe scenario
 related:
  - nservicebus/messaging/publish-subscribe
+redirects:
+ - nservicebus/scalability-and-ha/distributor/publish-subscribe
 ---
 
 When using the Distributor in a full publish-subscribe deployment, a Distributor within each subscriber balancing the load of events being published.

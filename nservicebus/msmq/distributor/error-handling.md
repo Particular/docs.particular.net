@@ -8,9 +8,10 @@ tags:
 - Retry
 redirects:
 - nservicebus/errors/distributor-errorhandling
+- nservicebus/scalability-and-ha/distributor/error-handling
 related:
 - samples/scaleout
-- nservicebus/scalability-and-ha/distributor
+- nservicebus/msmq/distributor
 ---
 
 NServiceBus provides error handling and has [First Level Retries (FLR)](/nservicebus/errors/automatic-retries.md#first-level-retries) and [Secondary Level Retries (SLR)](/nservicebus/errors/automatic-retries.md#second-level-retries).

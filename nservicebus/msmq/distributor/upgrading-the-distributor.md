@@ -4,6 +4,8 @@ summary: The Distributor and Workers need to be upgraded together or in a specif
 tags:
 - Scalability
 - Distributor
+redirects:
+ - nservicebus/scalability-and-ha/distributor/upgrading-the-distributor
 ---
 
 Upgrading to a newer version of NServiceBus when using the Distributor should be done in one of two ways to avoid incompatibility between Distributor and Workers.

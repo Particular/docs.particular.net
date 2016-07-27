@@ -6,6 +6,7 @@ tags:
 - Distributor
 redirects:
  - nservicebus/disconnect-workers-from-running-distributor
+ - nservicebus/scalability-and-ha/distributor/disconnect-workers
 ---
 
 NServiceBus Distributor starts sending messages to a Worker once it is aware of it. A Worker registers itself with a Distributor by sending a message containing a `SessionID` that identifies the current running Worker and the number of messages it can handle concurrently.
