@@ -2,8 +2,6 @@
 title: Scaling out NServiceBus endpoints with Azure Storage Queues transport
 reviewed: 2016-07-27
 component: ASQ
-redirects:
- - nservicebus/scalability-and-ha/individualizing-queues-when-scaling-out
 tags:
 - Scale Out
 - Routing
