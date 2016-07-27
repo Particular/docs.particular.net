@@ -1,6 +1,7 @@
 ---
 title: Writing a log entry
 reviewed: 2016-03-17
+component: Core
 tags:
 - Logging
 redirects:

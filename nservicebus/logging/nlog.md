@@ -2,6 +2,7 @@
 title: NLog
 summary: Logging using NLog.
 reviewed: 2016-03-17
+component: NLog
 tags:
 - Logging
 related:

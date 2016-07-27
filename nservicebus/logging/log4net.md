@@ -2,6 +2,7 @@
 title: Log4Net
 summary: Logging using Log4Net.
 reviewed: 2016-03-17
+component: Log4Net
 related:
 - samples/logging/log4net-custom
 ---
