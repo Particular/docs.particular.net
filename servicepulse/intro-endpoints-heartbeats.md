@@ -18,7 +18,7 @@ An NServiceBus endpoint can be set for monitoring by ServicePulse or can remain 
 
 It is recommended that all endpoints are configured for monitoring by ServicePulse. Once configured, the endpoint appears in the ServicePulse Configuration page.
 
-![ServicePulse Configuration page](images/sp-configuration-page.png)
+![ServicePulse Configuration page](images/sp-configuration-page.png 'width=500')
 
 In the ServicePulse Configuration page it is possible to specify which endpoints are monitored with ServicePulse by checking (or unchecking) the checkbox next to the endpoint's entry.
 
@@ -45,7 +45,7 @@ For more details on how heartbeats are sent by an endpoint, see [ServiceControl 
 
 Only monitored endpoints are expected by ServicePulse to send heartbeat messages periodically. Unmonitored endpoints (i.e., endpoints marked in the ServicePulse configuration page as "unmonitored") may be sending heartbeats (depending on their specific configuration and whether the relevant plugins were installed for that endpoint) but these heartbeats messages are ignored by ServiceControl and ServicePulse as long as the endpoint is marked as an unmonitored endpoint in the ServicePulse configuration page.
 
-![Sets of Endpoints: Monitored (active and inactive) vs. Unmonitored, ](images/endpoints-sets-monitored-active.png)   
+![Sets of Endpoints: Monitored (active and inactive) vs. Unmonitored](images/endpoints-sets-monitored-active.png 'width=500')
 
 
 ### Detecting New Endpoints
@@ -64,11 +64,11 @@ Configuring the newly added endpoints for monitoring by ServicePulse leads to th
  * The heartbeat messages are received and processed by ServiceControl and ServicePulse.
  * The ServicePulse dashboard indicator is updated with the heartbeat data, the endpoints indicator is updated, and appropriate events are displayed.
 
-![Received heartbeats from new endpoints](images/received-heartbeats-from-new-endpoints.png)
+![Received heartbeats from new endpoints](images/received-heartbeats-from-new-endpoints.png 'width=500')
 
 To display the list of monitored endpoints, click the Endpoints indicator in the dashboard (or the "Endpoints Overview" link in the side navigation menu). The list of monitored endpoints is separated into two columns:
 
  * Active Endpoints (heartbeats were received as expected)
  * Inactive Endpoints (heartbeats were not received)
 
-![Endpoints Overview](images/endpoints-overview.png)
+![Endpoints Overview](images/endpoints-overview.png 'width=500')
