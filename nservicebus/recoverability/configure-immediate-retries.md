@@ -16,7 +16,7 @@ NOTE: In order to get full control over Immediate Retries it is possible to over
 
 WARN: Immediate Retries cannot be used when transport transactions are disabled. For more information about transport transactions, refer to [transport transaction](/nservicebus/transports/transactions.md).
 
-### Configuring FLR using app.config
+### Configuring Immediate Retries using app.config
 
 In Version 3 this configuration was available via `MsmqTransportConfig`.
 
@@ -25,17 +25,19 @@ In Version 4 and above the configuration for this mechanism is implemented in th
 snippet:configureFlrViaXml
 
 
-### Configuring FLR through code
+### Configuring Immediate Retries through code
+
+Starting from Version 6 it is possible to provide Immediate Retries configuration via code API. 
 
 snippet:FlrCodeFirstConfiguration
 
 
-### Configuring FLR through IProvideConfiguration
+### Configuring Immediate Retries through IProvideConfiguration
 
 snippet:FlrProvideConfiguration
 
 
-### Configuring FLR through ConfigurationSource
+### Configuring Immediate Retries through ConfigurationSource
 
 snippet:FLRConfigurationSource
 

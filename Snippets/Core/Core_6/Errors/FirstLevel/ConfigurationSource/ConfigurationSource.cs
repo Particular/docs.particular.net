@@ -10,7 +10,7 @@
     {
         public T GetConfiguration<T>() where T : class, new()
         {
-            // To Provide FLR Config
+            // To Provide Immediate Retries Config
             if (typeof(T) == typeof(TransportConfig))
             {
                 var flrConfig = new TransportConfig
