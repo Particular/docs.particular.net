@@ -26,7 +26,7 @@ An oversimplified mental model for Recoverability could be thought of a try / ca
 ```cs
 static void DelayedRetries() {
   Exception exception = null;
-  for(var i = 0; i < MaxNumberOfRetries; i++) {
+  for(var i = 0; i <= MaxNumberOfRetries; i++) {
     try
     {
       ImmediateRetries();
@@ -43,7 +43,7 @@ static void DelayedRetries() {
 
 static void ImmediateRetries() {
   Exception exception = null;
-  for(var i = 0; i < MaxNumberOfRetries; i++) {
+  for(var i = 0; i <= MaxNumberOfRetries; i++) {
     try
     {
       messageHandling.Invoke();
@@ -59,25 +59,25 @@ static void ImmediateRetries() {
 }
 ```
 
-The reality is much more complex. Depending on the transports capabilities, the transactionality of the endpoint and the users customizations Recoverability  tries to recover from message failures. In example when an exception bubbles through to the NServiceBus infrastructure, it rolls back the transaction on a transactional endpoint. The message is then returned to the queue, and any messages that the user code tried to send or publish won't be sent out. The very least that Recoverability will ensure is that messages which failed multiple times get moved to the configured error queue. The part of Recoverability which is responsible to move failed messages to the error queue is called fault handling.
+The reality is much more complex. Depending on the transports capabilities, the transactionality mode of the endpoint and user customizations Recoverability tries to recover from message failures. For example on a transactional endpoint it will roll back receive transaction when an exception bubbles through to the NServiceBus infrastructure. The message is then returned to the input queue, and any messages that the user code tried to send or publish won't be sent out. The very least that Recoverability will ensure is that messages which failed multiple times get moved to the configured error queue. The part of Recoverability which is responsible to move failed messages to the error queue is called fault handling.
 
-NOTE: When a message cannot be deserialized, it will bypass all retry mechanisms and the message will be moved directly to the error queue.
+NOTE: When a message cannot be deserialized all retry mechanisms will be bypassed and the message will be moved directly to the error queue.
 
 ## Immediate Retries
 
-NServiceBus automatically and immediately retries the message when an exception is thrown during message processing for up to five times by default. This value can be configured through `app.config` or via code. For more information about how to configure immediate retries, refer to [configure immediate retries](/nservicebus/recoverability/configure-immediate-retries.md).
+NServiceBus by default performs up to five immediate retries if the message processing results in exception being thrown. This value can be configured through `app.config` or via code. For more information about how to configure immediate retries, refer to [immediate retries configuration](/nservicebus/recoverability/configure-immediate-retries.md).
 
-Note: The configured value describes the minimum number of times a message will be retried. Especially in environments with competing consumers on the same queue, there is an increased chance of retrying a failing message more times across the endpoints.
+Note: The configured value describes the minimum number of times a message will be retried if its processing consistently fails. Especially in environments with competing consumers on the same queue, there is an increased chance of retrying a failing message more times across the endpoints.
 
 ### Transport transaction requirements
 
-The Immediate Retry mechanism is implemented by making the message available for consumption again at the top of the queue, so that the endpoint can process it again immediately. Immediate Retries cannot be used when transport transactions are disabled. For more information about transport transactions, refer to [transport transaction](/nservicebus/transports/transactions.md).
+The Immediate Retry mechanism is implemented by making the message available for consumption again at the top of the queue, so that the endpoint can process it again without any delay. Immediate Retries cannot be used when transport transactions are disabled. For more information about transport transactions, refer to [transport transaction](/nservicebus/transports/transactions.md).
 
 ## Delayed Retries
 
-Delayed Retries introduces another level of retry mechanism for messages that fail processing. Delayed Retries picks up the message and defers its delivery, by default first for 10 seconds, then 20, and lastly for 30 seconds, then returns it to the original worker queue.
+Delayed Retries introduces another level of retry mechanism for messages that fail processing. Delayed Retries schedules message delivery to the endpoint's input queue with increasing delay, by default first wiht 10 seconds delay, then 20, and lastly with 30 seconds delay.
 
-For example, if there is a call to an web service in the handler, but the service goes down for five seconds just at that time. Without Delayed Retries, the message is retried instantly and sent to the error queue. With Delayed Retries, the message is instantly retried, deferred for 10 seconds, and then retried again. This way, when the Web Service is available the message is processed just fine.
+Delayed Retries might be useful when dealing with unreliable third-party resources - for example, if there is a call to a Web Service in the handler, but the service goes down for a couple of seconds once in a while. Without Delayed Retries, the message is retried instantly and sent to the error queue. With Delayed Retries, the message is instantly retried, deferred for 10 seconds, and then retried again. This way, when the Web Service is available the message is processed just fine.
 
 For more information about how to configure delayed retries, refer to [configure delayed retries](/nservicebus/recoverability/configure-delayed-retries.md).
 
@@ -97,7 +97,7 @@ Fault handling doesn't require to roll back the transport transaction. A copy of
 
 ## Recoverability Policy
 
-NServiceBus Version 5 and lower allowed to take full control over the delayed retries part of Recoverability only by providing a [custom delayed retries policy](/nservicebus/recoverability/configure-delayed-retries.md).
+NServiceBus Version 5 and lower allowed to take full control over only the delayed retries part of Recoverability. That was possible by providing a [custom delayed retries policy](/nservicebus/recoverability/configure-delayed-retries.md).
 
 Starting from Version 6 it is possible to take full control over the whole Recoverability process. For more information refer to [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md).
 
@@ -105,26 +105,26 @@ Starting from Version 6 it is possible to take full control over the whole Recov
 
 The total number of possible retries can be calculated with the following formula
 
-    Total Attempts = (ImmediateRetries:MaxRetries) * (DelayedRetries:NumberOfRetries + 1)
+    Total Attempts = (ImmediateRetries:NumberOfRetries + 1) * (DelayedRetries:NumberOfRetries + 1)
 
 So for example given a variety of FLR and SLR here are the resultant possible attempts.
 
-| ImmediateRetries:MaxRetries | DelayedRetries:NumberOfRetries | Total possible attempts |
+| ImmediateRetries:NumberOfRetries | DelayedRetries:NumberOfRetries | Total possible attempts |
 |-----------------------------|--------------------------------|-------------------------|
-| 1                           | 1                              | 2                       |
-| 1                           | 2                              | 3                       |
-| 1                           | 3                              | 4                       |
-| 2                           | 1                              | 4                       |
-| 3                           | 1                              | 6                       |
-| 2                           | 2                              | 6                       |
+| 1                           | 1                              | 4                       |
+| 1                           | 2                              | 6                       |
+| 1                           | 3                              | 8                       |
+| 2                           | 1                              | 6                       |
+| 3                           | 1                              | 8                       |
+| 2                           | 2                              | 9                       |
 
-NOTE: In Versions 6 and higher, the configuration of the Immediate Retries mechanism will have no effect on how many times a deferred message is dispatched when an exception is thrown. Delayed Retries will retry the message for the number of times specified in its configuration.
+NOTE: In Version 5 and lower initial message processing attempt was counted as an immediate delivery. As a result the formula for total attempts was: Total Attempts = MAX(1, (ImmediateRetries:NumberOfRetries)) * (DelayedRetries:NumberOfRetries + 1). 
 
 ## Retry Logging
 
 Given the following configuration:
 
- * Immediate Retries `MaxRetries`: 3
+ * Immediate Retries `NumberOfRetries`: 3
  * Delayed Retries `NumberOfRetries`: 2
 
 and a Handler that both throws an exception and logs the current count of attempts, the output in the log will be:
