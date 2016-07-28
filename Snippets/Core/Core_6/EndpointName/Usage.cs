@@ -4,7 +4,7 @@
     using NServiceBus;
     using NServiceBus.Routing;
     using NServiceBus.Settings;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     class Usage
     {
@@ -31,9 +31,9 @@
         {
             #region InputQueueOverrideRouting
 
-            var routing = endpointConfiguration.Routing();
-            routing.RouteToEndpoint(typeof(MyMessage), "MyEndpoint");
             var transport = endpointConfiguration.UseTransport<MyTransport>();
+            var routing = transport.Routing();
+            routing.RouteToEndpoint(typeof(MyMessage), "MyEndpoint");
             transport.AddAddressTranslationException(
                 new EndpointInstance("MyEndpoint"), "MyEndpoint.Messages");
 
@@ -43,7 +43,7 @@
         class MyTransport :
             TransportDefinition
         {
-            protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+            public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
             {
                 throw new NotImplementedException();
             }

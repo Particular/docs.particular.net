@@ -2,14 +2,13 @@
 {
     using NServiceBus;
 
-    public class FlrCodeFirstConfiguration
+    public class ImmediateRetriesCodeFirstConfiguration
     {
         void ConfigureFlr(EndpointConfiguration endpointConfiguration)
         {
             #region FlrCodeFirstConfiguration
-
-            var firstLevelRetries = endpointConfiguration.FirstLevelRetries();
-            firstLevelRetries.NumberOfRetries(3);
+            var recoverabilitySettings = endpointConfiguration.Recoverability();
+            recoverabilitySettings.Immediate(immediate => immediate.NumberOfRetries(3));
             #endregion
         }
     }

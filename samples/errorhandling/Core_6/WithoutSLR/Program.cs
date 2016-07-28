@@ -14,11 +14,11 @@ static class Program
     {
         Console.Title = "Samples.ErrorHandling.WithoutSLR";
         LogManager.Use<DefaultFactory>()
-            .Level(LogLevel.Warn);
+            .Level(LogLevel.Info);
 
         #region DisableSLR
         var endpointConfiguration = new EndpointConfiguration("Samples.ErrorHandling.WithoutSLR");
-        endpointConfiguration.SecondLevelRetries().Disable();
+        endpointConfiguration.Recoverability().Delayed(delayed => delayed.NumberOfRetries(0));
         #endregion
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

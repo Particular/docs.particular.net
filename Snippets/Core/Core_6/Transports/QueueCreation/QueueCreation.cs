@@ -6,7 +6,7 @@
     using NServiceBus;
     using NServiceBus.Routing;
     using NServiceBus.Settings;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     #region RegisteringTheQueueCreator
 
@@ -14,7 +14,7 @@
         TransportDefinition
     {
 
-        protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+        public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
         {
             return new MyTransportInfrastructure();
         }

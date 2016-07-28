@@ -14,7 +14,7 @@ static class Program
     {
         Console.Title = "Samples.ErrorHandling.WithSLR";
         LogManager.Use<DefaultFactory>()
-            .Level(LogLevel.Warn);
+            .Level(LogLevel.Info);
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ErrorHandling.WithSLR");
         endpointConfiguration.UseSerialization<JsonSerializer>();

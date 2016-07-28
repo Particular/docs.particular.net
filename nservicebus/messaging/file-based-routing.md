@@ -21,15 +21,6 @@ snippet:Routing-FileBased-Config
 The type mapping is still specified in code via `RouteToEndpoint` calls. This is different from Version 5 approach where all the routing information was present inside the config file. In Version 6 only the mapping between endpoints and their instances is in the file. This separation supports responsibility division between developers and operations people as described in [Message routing](/nservicebus/messaging/routing.md) e.g. preventing accidental change of message-to-endpoint mappings.
 
 
-### MaxLoadAttempts
-
-Specifies the maximum number of attempts, to load contents of a file, before logging an error.
-
-Default: 10
-
-snippet: Routing-FileBased-MaxLoadAttempts
-
-
 ### RefreshInterval
 
 Specifies the interval between route data refresh attempts.

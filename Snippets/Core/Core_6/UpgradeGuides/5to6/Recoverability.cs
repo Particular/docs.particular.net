@@ -9,11 +9,9 @@
         {
             #region 5to6-RecoverabilityCodeFirstApi
 
-            var firstLevelRetries = endpointConfiguration.FirstLevelRetries();
-            firstLevelRetries.NumberOfRetries(3);
-            var secondLevelRetries = endpointConfiguration.SecondLevelRetries();
-            secondLevelRetries.NumberOfRetries(5);
-            secondLevelRetries.TimeIncrease(TimeSpan.FromSeconds(30));
+            var recoverabilitySettings = endpointConfiguration.Recoverability();
+            recoverabilitySettings.Immediate(immediate => immediate.NumberOfRetries(3));
+            recoverabilitySettings.Delayed(delayed=> delayed.NumberOfRetries(5).TimeIncrease(TimeSpan.FromSeconds(30)));
             #endregion
         }
 
@@ -21,11 +19,9 @@
         {
             #region 5to6-RecoverabilityDisableRetries
 
-            var firstLevelRetries = endpointConfiguration.FirstLevelRetries();
-            firstLevelRetries.Disable();
-
-            var secondLevelRetries = endpointConfiguration.SecondLevelRetries();
-            secondLevelRetries.Disable();
+            var recoverabilitySettings = endpointConfiguration.Recoverability();
+            recoverabilitySettings.Immediate(immediate => immediate.NumberOfRetries(0));
+            recoverabilitySettings.Delayed(delayed => delayed.NumberOfRetries(0));
             #endregion
         }
     }

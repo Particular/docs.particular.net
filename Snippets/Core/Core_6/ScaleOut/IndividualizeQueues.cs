@@ -8,8 +8,7 @@
         {
             #region UniqueQueuePerEndpointInstanceDiscriminator
 
-            var scaleOut = endpointConfiguration.ScaleOut();
-            scaleOut.InstanceDiscriminator("MyInstanceID");
+            endpointConfiguration.MakeInstanceUniquelyAddressable("MyInstanceID");
 
             #endregion
         }

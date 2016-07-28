@@ -3,7 +3,7 @@
     using NServiceBus;
     using NServiceBus.Routing;
     using NServiceBus.Settings;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     class PublisherMapping
     {
@@ -11,9 +11,9 @@
         {
             #region PubSub-CodePublisherMapping
 
-            var transport = endpointConfiguration.UseTransport<UnicastTransport>();
-            transport.RegisterPublisherForType("Sales", typeof(MyEvent));
-            transport.RegisterPublisherForAssembly("Sales", typeof(OtherEvent).Assembly);
+            var routing = endpointConfiguration.UseTransport<UnicastTransport>().Routing();
+            routing.RegisterPublisher(typeof(MyEvent), "Sales");
+            routing.RegisterPublisher(typeof(OtherEvent).Assembly, "Sales");
 
             #endregion
         }
@@ -22,7 +22,7 @@
             TransportDefinition,
             IMessageDrivenSubscriptionTransport
         {
-            protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+            public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
             {
                 throw new System.NotImplementedException();
             }

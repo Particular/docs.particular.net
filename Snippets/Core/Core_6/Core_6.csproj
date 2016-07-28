@@ -42,9 +42,8 @@
     <Reference Include="NServiceBus.Callbacks">
       <HintPath>..\..\..\packages\NServiceBus.Callbacks.1.0.0-beta0001\lib\net452\NServiceBus.Callbacks.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0005\lib\net452\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0006\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\..\..\packages\NServiceBus.NHibernate.7.0.0-beta0004\lib\net452\NServiceBus.NHibernate.dll</HintPath>
@@ -103,8 +102,12 @@
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
-    <Compile Include="Errors\FirstLevel\FlrCodeFirstConfiguration.cs" />
-    <Compile Include="Errors\SecondLevel\SlrCodeFirstConfiguration.cs" />
+    <Compile Include="Errors\ErrorHandling\ErrorHeadersCustomization.cs" />
+    <Compile Include="Errors\ImmediateRetries\ImmediateRetriesCodeFirstConfiguration.cs" />
+    <Compile Include="Errors\DelayedRetries\CustomPolicies\CustomExceptionPolicy.cs" />
+    <Compile Include="Errors\DelayedRetries\CustomPolicies\FullyCustomizedPolicy.cs" />
+    <Compile Include="Errors\DelayedRetries\CustomPolicies\PartiallyCustomizedPolicy.cs" />
+    <Compile Include="Errors\DelayedRetries\DelayedRetriesCodeFirstConfiguration.cs" />
     <Compile Include="Features\AdvancedSatelliteFeature.cs" />
     <Compile Include="Features\SatelliteFeature.cs" />
     <Compile Include="Handlers\AsyncHandler.cs" />
@@ -143,19 +146,19 @@
     <Compile Include="Encryption\Usage.cs" />
     <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
     <Compile Include="EndpointName\Usage.cs" />
-    <Compile Include="Errors\ErrorQueue\Usage.cs" />
-    <Compile Include="Errors\FirstLevel\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />
-    <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
-    <Compile Include="Errors\SecondLevel\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Errors\SecondLevel\ConfigurationSource\Usage.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
-    <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
-    <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />
-    <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
-    <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
+    <Compile Include="Errors\ErrorHandling\Usage.cs" />
+    <Compile Include="Errors\ImmediateRetries\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\ImmediateRetries\ConfigurationSource\Usage.cs" />
+    <Compile Include="Errors\ImmediateRetries\ProvideConfiguration.cs" />
+    <Compile Include="Errors\DelayedRetries\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\DelayedRetries\ConfigurationSource\Usage.cs" />
+    <Compile Include="Errors\DelayedRetries\CustomPolicies\ExceptionPolicyOverridingSlrPart.cs" />
+    <Compile Include="Errors\DelayedRetries\CustomPolicies\SimplePolicy.cs" />
+    <Compile Include="Errors\DelayedRetries\DisableWithCode.cs" />
+    <Compile Include="Errors\DelayedRetries\ProvideConfiguration.cs" />
+    <Compile Include="Errors\ErrorHandling\ProvideConfiguration.cs" />
+    <Compile Include="Errors\ErrorHandling\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\ErrorHandling\ConfigurationSource\Usage.cs" />
     <Compile Include="Features\Features.cs" />
     <Compile Include="Features\MyStartupTaskThatUsesMessageSession.cs" />
     <Compile Include="Forwarding\Usage.cs" />
@@ -326,10 +329,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Routing\EndpointMapping.config.xml" />
-    <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
-    <Content Include="Errors\FirstLevel\flr.config.xml" />
+    <Content Include="Errors\ErrorHandling\ErrorQueue.config.xml" />
+    <Content Include="Errors\ImmediateRetries\immediateRetries.config.xml" />
     <Content Include="Errors\retriesLogging.txt" />
-    <Content Include="Errors\SecondLevel\SecondLevelReties.config.xml">
+    <Content Include="Errors\DelayedRetries\DelayedReties.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Headers\Writers\HeaderWriterDataBusConvention.txt" />
