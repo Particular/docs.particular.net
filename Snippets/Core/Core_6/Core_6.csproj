@@ -104,11 +104,11 @@
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
-    <Compile Include="Errors\FirstLevel\FlrCodeFirstConfiguration.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicies\CustomExceptionPolicy.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicies\FullyCustomizedPolicy.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicies\PartiallyCustomizedPolicy.cs" />
-    <Compile Include="Errors\SecondLevel\SlrCodeFirstConfiguration.cs" />
+    <Compile Include="Errors\ImmediateRetries\ImmediateRetriesCodeFirstConfiguration.cs" />
+    <Compile Include="Errors\DelayedRetries\CustomPolicies\CustomExceptionPolicy.cs" />
+    <Compile Include="Errors\DelayedRetries\CustomPolicies\FullyCustomizedPolicy.cs" />
+    <Compile Include="Errors\DelayedRetries\CustomPolicies\PartiallyCustomizedPolicy.cs" />
+    <Compile Include="Errors\DelayedRetries\DelayedRetriesCodeFirstConfiguration.cs" />
     <Compile Include="Features\AdvancedSatelliteFeature.cs" />
     <Compile Include="Features\SatelliteFeature.cs" />
     <Compile Include="Handlers\AsyncHandler.cs" />
@@ -148,15 +148,15 @@
     <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="Errors\ErrorQueue\Usage.cs" />
-    <Compile Include="Errors\FirstLevel\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />
-    <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
-    <Compile Include="Errors\SecondLevel\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Errors\SecondLevel\ConfigurationSource\Usage.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicyOverridingSlrPart.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
-    <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
-    <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />
+    <Compile Include="Errors\ImmediateRetries\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\ImmediateRetries\ConfigurationSource\Usage.cs" />
+    <Compile Include="Errors\ImmediateRetries\ProvideConfiguration.cs" />
+    <Compile Include="Errors\DelayedRetries\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\DelayedRetries\ConfigurationSource\Usage.cs" />
+    <Compile Include="Errors\DelayedRetries\CustomPolicies\ExceptionPolicyOverridingSlrPart.cs" />
+    <Compile Include="Errors\DelayedRetries\CustomPolicies\SimplePolicy.cs" />
+    <Compile Include="Errors\DelayedRetries\DisableWithCode.cs" />
+    <Compile Include="Errors\DelayedRetries\ProvideConfiguration.cs" />
     <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
@@ -331,9 +331,9 @@
     </Content>
     <Content Include="Routing\EndpointMapping.config.xml" />
     <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
-    <Content Include="Errors\FirstLevel\flr.config.xml" />
+    <Content Include="Errors\ImmediateRetries\immediateRetries.config.xml" />
     <Content Include="Errors\retriesLogging.txt" />
-    <Content Include="Errors\SecondLevel\SecondLevelReties.config.xml">
+    <Content Include="Errors\DelayedRetries\DelayedReties.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Headers\Writers\HeaderWriterDataBusConvention.txt" />

@@ -13,12 +13,12 @@
             // To Provide Immediate Retries Config
             if (typeof(T) == typeof(TransportConfig))
             {
-                var flrConfig = new TransportConfig
+                var immediateRetriesConfig = new TransportConfig
                 {
                     MaxRetries = 2
                 };
 
-                return flrConfig as T;
+                return immediateRetriesConfig as T;
             }
 
             // To in app.config for other sections not defined in this method, otherwise return null.

@@ -2,7 +2,7 @@
 {
     using NServiceBus;
 
-    public class FlrCodeFirstConfiguration
+    public class ImmediateRetriesCodeFirstConfiguration
     {
         void ConfigureFlr(EndpointConfiguration endpointConfiguration)
         {

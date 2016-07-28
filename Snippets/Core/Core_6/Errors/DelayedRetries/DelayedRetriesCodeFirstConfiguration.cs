@@ -3,7 +3,7 @@
     using System;
     using NServiceBus;
 
-    public class SlrCodeFirstConfiguration
+    public class DelayedRetriesCodeFirstConfiguration
     {
         void ConfigureFlr(EndpointConfiguration endpointConfiguration)
         {
