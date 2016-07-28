@@ -2,6 +2,7 @@
 title: Windows Service Hosting
 summary: How to host NServiceBus in a Windows Service
 reviewed: 2016-03-16
+component: Core
 tags:
 - Hosting
 - Windows Service
