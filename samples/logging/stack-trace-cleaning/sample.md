@@ -16,7 +16,7 @@ related:
 
 ## Introduction
 
-This sample leverages the logging and pipeline APIs to remove some of the noise from exception information written to both the error queue and the and the log output. This is especially useful when dealing with async stack traces.
+This sample leverages the logging and recoverability APIs to remove some of the noise from exception information written to both the error queue and the and the log output. This is especially useful when dealing with async stack traces.
 
 
 ## Solution Layout
@@ -93,23 +93,23 @@ System.Exception: Foo
 
 ## Manipulate Error Queue Header
 
-NServiceBus has no explicit API to control what is written to the exceptions headers when messages are forwarded to the [error queue](/nservicebus/errors). Instead this sample leverages the [pipeline](/nservicebus/pipeline) to manipulate the headers after they are added but before the error message is sent.
+NServiceBus has no explicit API to control what is written to the exceptions headers when messages are forwarded to the [error queue](/nservicebus/errors). Instead this sample leverages the [error message header customizations](/nservicebus/recoverability/configure-error-handling) to manipulate the headers after they are added but before the error message is sent.
 
 
-### The Behavior
+### The Stack Trace Cleaner
 
-The behavior uses some simple string manipulation to remove much of the noise from the exception information. It reads the information from the current header, and then overwrites that header with the result.
+The cleaner uses some simple string manipulation to remove much of the noise from the exception information. It reads the information from the current header, and then overwrites that header with the result.
 
-snippet: Behavior
+snippet: StackTraceCleaner
 
 WARNING: To keep the sample simple no effort has been made to localize this. So for example `End of stack trace from...` may be different in other locals.
 
 
-### Configuring the Pipeline
+### Configuring the Error Header Customizations
 
-The above behavior is registered in the pipeline via a feature. It is registered after the `FaultHostInformation` behavior.
+The above cleaner is passed to Recoverability extension point.
 
-snippet: pipeline-config
+snippet: customization-config
 
 
 ## Manipulate Logging Output

@@ -1,16 +1,12 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Threading.Tasks;
-using NServiceBus.Pipeline;
 
-#region Behavior
-class ReplaceStackTraceBehavior :
-    Behavior<IFaultContext>
+#region StackTraceCleaner
+class StackTraceCleaner
 {
-    public override Task Invoke(IFaultContext context, Func<Task> next)
+    public static void CleanUp(Dictionary<string, string> headers)
     {
-        var headers = context.Message.Headers;
         var stackTraceKey = "NServiceBus.ExceptionInfo.StackTrace";
         var stackTrace = headers[stackTraceKey];
 
@@ -35,7 +31,6 @@ class ReplaceStackTraceBehavior :
             }
         }
         headers[stackTraceKey] = builder.ToString();
-        return next();
     }
 }
 

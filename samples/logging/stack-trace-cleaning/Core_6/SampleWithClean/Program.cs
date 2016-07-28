@@ -4,7 +4,6 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 using NServiceBus;
-using NServiceBus.Features;
 
 class Program
 {
@@ -52,9 +51,12 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         #region disable-retries
-        endpointConfiguration.DisableFeature<FirstLevelRetries>();
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.Recoverability().Immediate(immediate => immediate.NumberOfRetries(0));
+        endpointConfiguration.Recoverability().Delayed(delayed => delayed.NumberOfRetries(0));
         endpointConfiguration.SendFailedMessagesTo("error");
+        #endregion
+        #region customization-config
+        endpointConfiguration.Recoverability().Failed(failed => failed.HeaderCustomization(StackTraceCleaner.CleanUp));
         #endregion
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

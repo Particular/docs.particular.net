@@ -51,6 +51,7 @@ NOTE: In NServiceBus Version 3.x the `ErrorQueue` settings can be set both via t
 For more details on `MsmqTransportConfig` refer to the [MSMQ transport](/nservicebus/msmq/transportconfig.md) article.
 
 ## Error message header customizations
+
 Before message is moved to the error queue it is possilbe inspect and modify its headers including [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers). 
 
 The following snippet shows how to configure header customizations and perform header value modification. 

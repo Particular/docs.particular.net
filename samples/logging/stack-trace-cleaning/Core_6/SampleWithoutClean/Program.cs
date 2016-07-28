@@ -44,8 +44,8 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.DisableFeature<FirstLevelRetries>();
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.Recoverability().Immediate(immediate => immediate.NumberOfRetries(0));
+        endpointConfiguration.Recoverability().Delayed(delayed => delayed.NumberOfRetries(0));
         endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
