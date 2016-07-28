@@ -42,9 +42,9 @@ class MissingAwaitTests
     #endregion
 
 
-    #region ExplictlyIgnoreTask
+    #region ExplicitlyIgnoreTask
 
-    public static void ExplictlyIgnoreTask()
+    public static void ExplicitlyIgnoreTask()
     {
         var writer = new StreamReader("stub");
         // Note the returned instance is ignored

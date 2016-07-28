@@ -148,4 +148,4 @@ snippet: IgnoreTaskExtensions
 
 Using `IgnoreTask` extension method.
 
-snippet: ExplictlyIgnoreTask
+snippet: ExplicitlyIgnoreTask

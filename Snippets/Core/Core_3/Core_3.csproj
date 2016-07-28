@@ -83,6 +83,8 @@
     <Compile Include="DataBus\CleanupStrategy\Usage.cs" />
     <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
+    <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
+    <Compile Include="Encryption\MessageBody\Usage.cs" />
     <Compile Include="EndpointStartAndStop.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
