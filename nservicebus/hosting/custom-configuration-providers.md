@@ -2,6 +2,7 @@
 title: Overriding app.config settings
 summary: NServiceBus uses the process config file as its default source of configuration.
 reviewed: 2016-03-16
+component: Core
 redirects:
  - nservicebus/customizing-nservicebus-configuration
 ---
