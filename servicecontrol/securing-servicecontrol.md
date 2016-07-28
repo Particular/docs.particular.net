@@ -1,5 +1,5 @@
 ---
-title: Securing Access to ServiceControl
+title: 'ServiceControl: Securing Access'
 summary: Describes how security is addressed and implemented in ServiceControl V1.x, and how to limit access to ServiceControl data (including implications for ServiceControl clients such as ServiceInsight and ServicePulse)
 tags:
 - ServiceControl
