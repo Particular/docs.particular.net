@@ -8,12 +8,6 @@ public class MvcApplication :
 {
     public static IBus Bus;
 
-    public override void Dispose()
-    {
-        Bus?.Dispose();
-        base.Dispose();
-    }
-
     protected void Application_Start()
     {
         var busConfiguration = new BusConfiguration();
@@ -29,4 +23,8 @@ public class MvcApplication :
         RouteConfig.RegisterRoutes(RouteTable.Routes);
     }
 
+    protected void Application_End()
+    {
+        Bus?.Dispose();
+    }
 }
