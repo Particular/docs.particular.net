@@ -1,6 +1,7 @@
 ---
 title: StructureMap
 summary: Configuring NServiceBus to use StructureMap as a container.
+component: StructureMap
 reviewed: 2016-03-17
 tags:
 - Dependency Injection
