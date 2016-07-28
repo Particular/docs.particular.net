@@ -1,6 +1,7 @@
 ---
 title: Before Configuration Finalized
 summary: An interface that allows hooking into the configuration sequence of NServiceBus.
+component: Core
 reviewed: 2016-03-17
 tags:
  - life-cycle
