@@ -107,16 +107,16 @@ The total number of possible retries can be calculated with the following formul
 
     Total Attempts = (ImmediateRetries:NumberOfRetries + 1) * (DelayedRetries:NumberOfRetries + 1)
 
-So for example given a variety of FLR and SLR here are the resultant possible attempts.
+So for example given a variety of Immediate and Delayed here are the resultant possible attempts.
 
 | ImmediateRetries:NumberOfRetries | DelayedRetries:NumberOfRetries | Total possible attempts |
-|-----------------------------|--------------------------------|-------------------------|
-| 1                           | 1                              | 4                       |
-| 1                           | 2                              | 6                       |
-| 1                           | 3                              | 8                       |
-| 2                           | 1                              | 6                       |
-| 3                           | 1                              | 8                       |
-| 2                           | 2                              | 9                       |
+|----------------------------------|--------------------------------|-------------------------|
+| 1                                | 1                              | 4                       |
+| 1                                | 2                              | 6                       |
+| 1                                | 3                              | 8                       |
+| 2                                | 1                              | 6                       |
+| 3                                | 1                              | 8                       |
+| 2                                | 2                              | 9                       |
 
 NOTE: In Version 5 and lower initial message processing attempt was counted as an immediate delivery. As a result the formula for total attempts was: Total Attempts = MAX(1, (ImmediateRetries:NumberOfRetries)) * (DelayedRetries:NumberOfRetries + 1). 
 
