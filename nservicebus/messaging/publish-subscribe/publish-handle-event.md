@@ -1,6 +1,7 @@
 ---
 title: Publish and Handle an Event
 summary: How to define a message as an event and publish that message.
+component: Core
 tags:
 - Publish Subscribe
 related:
