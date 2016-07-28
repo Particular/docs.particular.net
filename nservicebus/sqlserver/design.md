@@ -73,7 +73,7 @@ The tables are created by [installers](/nservicebus/operations/installers.md) wh
 
 ### Creating table structure in Production
 
-The scripts above to generate the queues does not have a queue name, and this might cause confusions if you hand them over directly to the DBAs. The scripts could be generated off your Development or Staging environment directly and then executed on Production environment by DBAs to replicate the structure. To generate this DDL script, right-click the database and from "Tasks" menu choose "Generate Scripts..." and generate the scripts.
+The scripts above to generate the queues does not have a queue name, and this might cause confusion when handed over to the DBAs. The scripts could be generated off the Development or Staging environment and then directly executed on Production environment by DBAs to replicate the table structure there. To generate this DDL script, right-click the database and from "Tasks" menu choose "Generate Scripts..." and generate the scripts for relevant tables.
 
 ![](generating-ddl.png)
 
