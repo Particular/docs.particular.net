@@ -1,5 +1,5 @@
 ---
-title: Endpoints and Heartbeats in ServicePulse
+title: 'ServicePulse: Endpoints and Heartbeats'
 summary: Describes how ServicePulse monitors endpoints activity and availability using heartbeat messages
 tags:
 - ServicePulse
