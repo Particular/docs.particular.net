@@ -1,5 +1,5 @@
 ---
-title: Setting RavenDB DTC settings manually
+title: Manually configuring RavenDB DTC
 summary: Guidance on how to change the RavenDB ResourceManagerID and TransactionRecoveryStorage.
 tags:
  - RavenDB
