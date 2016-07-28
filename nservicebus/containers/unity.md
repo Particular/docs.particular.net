@@ -1,6 +1,7 @@
 ---
 title: Unity
 summary: Configuring NServiceBus to use Unity as a container.
+component: Unity
 reviewed: 2016-03-17
 tags:
 - Dependency Injection
