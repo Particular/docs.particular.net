@@ -1,6 +1,7 @@
 ---
 title: Initialization
 summary: An interface that supports hooking into the very beginning of the bus creation sequence of NServiceBus.
+component: Core
 reviewed: 2016-03-17
 tags:
  - life-cycle
