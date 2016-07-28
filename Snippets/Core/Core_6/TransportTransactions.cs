@@ -64,7 +64,8 @@
 
             var transport = endpointConfiguration.UseTransport<MyTransport>();
             transport.Transactions(TransportTransactionMode.TransactionScope);
-            transport.TransactionScopeOptions(isolationLevel: IsolationLevel.RepeatableRead);
+            transport.TransactionScopeOptions(
+                isolationLevel: IsolationLevel.RepeatableRead);
 
             #endregion
         }
@@ -75,7 +76,8 @@
 
             var transport = endpointConfiguration.UseTransport<MyTransport>();
             transport.Transactions(TransportTransactionMode.TransactionScope);
-            transport.TransactionScopeOptions(timeout: TimeSpan.FromSeconds(30));
+            transport.TransactionScopeOptions(
+                timeout: TimeSpan.FromSeconds(30));
 
             #endregion
         }

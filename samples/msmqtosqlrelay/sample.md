@@ -12,7 +12,7 @@ related:
 
 ## SQL Relay (Transport Integration)
 
-This sample shows how to receive events published by an endpoint whose transport is different from that of the subscriber.  In this particular example, events published from an MSMQ endpoint will be relayed to an SQL endpoint for downstream SQL subscribers.
+This sample shows how to receive events published by an endpoint whose transport is different from that of the subscriber. In this particular example, events published from an MSMQ endpoint will be relayed to an SQL endpoint for downstream SQL subscribers.
 
 The solution comprises of these four projects.
 
@@ -77,7 +77,7 @@ snippet:CreateDatabaseForSqlPersistence
 
  * References the `Shared` message schema.
  * Messages to this endpoint are being written natively by the `NativeMsmqToSql` program. Since no SQL endpoint is publishing the events,  this endpoint is configured to have its auto subscription for events turned off.
- * Has a handler for the event that does a publish in the handler, so that downstream SQL subscribers can receive the event.  
+ * Has a handler for the event that does a publish in the handler, so that downstream SQL subscribers can receive the event.
 
 
 ### The SqlRelay configuration

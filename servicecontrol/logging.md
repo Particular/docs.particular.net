@@ -16,10 +16,21 @@ The default logging location is `%LOCALAPPDATA%\Particular\ServiceControl\logs`.
 
 The `%LOCALAPPDATA%` defines a user-specific location on disk, so the logging location will be different when the service is configured as a user account. So for example
 
- * For `LocalSystem` it will evaluate to `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs`
- * For a user account it will be `%PROFILEPATH%\AppData\Local\Particular\ServiceControl\logs`
+#### For LocalSystem:
 
-Note: Browsing to  `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs` can be problematic as the default NTFS permissions on the `systemprofile` do not allow access. These permissions may need to be modified to gain access to the logs.
+
+```no-highlight
+%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs
+```
+
+Note: Browsing to this location can be problematic as the default NTFS permissions on the `systemprofile` do not allow access. These permissions may need to be modified to gain access to the logs.
+
+#### For a user account:
+
+```no-highlight
+%PROFILEPATH%\AppData\Local\Particular\ServiceControl\logs
+```
+
 
 NOTE: If multiple Service Control instances are configured on the same machine ensure that the log locations for each instance are unique
 
@@ -52,9 +63,9 @@ ServiceControl will retain 14 log files. Older logs are deleted automatically.
 
 The current ServiceControl log file is named `logfile.<date>.txt`. The current RavenDB embedded log file is named `ravenlog.<date>.txt`. The date is written in the `yyyy-MM-dd` format.
 
-The logs are rolled based on date and size, any log exceeding 30MB will trigger the log to roll. If the log is rolled because of a date change the old log is named `<logname>.<date>.txt` where date is in the format `yyyyMMdd` and log name is either `ravenlog` or `logfile`. If the log is rolled based on size a sequence number is added e.g `<logname>.<date>.<sequence>.txt`. The sequence number starts at 0.  Higher numbers indicate more recent log files. ServiceControl will retain 14 log files. Older logs are deleted automatically.
+The logs are rolled based on date and size, any log exceeding 30MB will trigger the log to roll. If the log is rolled because of a date change the old log is named `<logname>.<date>.txt` where date is in the format `yyyyMMdd` and log name is either `ravenlog` or `logfile`. If the log is rolled based on size a sequence number is added e.g `<logname>.<date>.<sequence>.txt`. The sequence number starts at 0. Higher numbers indicate more recent log files. ServiceControl will retain 14 log files. Older logs are deleted automatically.
 
-NOTE: The change in log naming will result in logs produced prior to Version 1.10 being ignored by the log cleanup process.  These old logs can safely be removed manually.
+NOTE: The change in log naming will result in logs produced prior to Version 1.10 being ignored by the log cleanup process. These old logs can safely be removed manually.
 
 
 
@@ -101,4 +112,3 @@ Log Level Options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 ### Critical Exception Logging
 
 If ServiceControl experiences a critical exception when running as a Windows Service the exception information will be logged to the Windows EventLog. If ServiceControl is running interactively, the error is shown on the console and not logged. Typically ServiceControl is only run interactively to conduct database maintenance. See [Compacting the ServiceControl RavenDB database](db-compaction.md).
-

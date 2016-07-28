@@ -9,42 +9,80 @@
         void Unreliable()
         {
             #region TransactionsDisable
-            Configure.Transactions.Disable();
+
+            var transactions = Configure.Transactions;
+            transactions.Disable();
+
             #endregion
         }
 
         void TransportTransactionReceiveOnly()
         {
             #region TransportTransactionReceiveOnly
-            Configure.Transactions.Advanced(x => x.DisableDistributedTransactions());
+
+            Configure.Transactions.Advanced(
+                action: advancedSettings =>
+                {
+                    advancedSettings.DisableDistributedTransactions();
+                });
+
             #endregion
         }
 
         void TransportTransactionAtomicSendsWithReceive()
         {
             #region TransportTransactionAtomicSendsWithReceive
-            Configure.Transactions.Advanced(x => x.DisableDistributedTransactions());
+
+            var transactions = Configure.Transactions;
+            transactions.Advanced(
+                action: advancedSettings =>
+                {
+                    advancedSettings.DisableDistributedTransactions();
+                });
+
             #endregion
         }
 
         void TransportTransactionScope()
         {
             #region TransportTransactionScope
-            Configure.Transactions.Enable().Advanced(x => x.EnableDistributedTransactions());
+
+            var transactions = Configure.Transactions;
+            transactions.Enable();
+            transactions.Advanced(
+                action: advancedSettings =>
+                {
+                    advancedSettings.EnableDistributedTransactions();
+                });
+
             #endregion
         }
 
         void CustomTransactionTimeout()
         {
             #region CustomTransactionTimeout
-            Configure.Transactions.Advanced(x => x.DefaultTimeout(TimeSpan.FromSeconds(30)));
+
+            var transactions = Configure.Transactions;
+            transactions.Advanced(
+                action: advancedSettings =>
+                {
+                    advancedSettings.DefaultTimeout(TimeSpan.FromSeconds(30));
+                });
+
             #endregion
         }
 
         void CustomTransactionIsolationLevel()
         {
             #region CustomTransactionIsolationLevel
-            Configure.Transactions.Advanced(x => x.IsolationLevel(IsolationLevel.RepeatableRead));
+
+            var transactions = Configure.Transactions;
+            transactions.Advanced(
+                action: advancedSettings =>
+                {
+                    advancedSettings.IsolationLevel(IsolationLevel.RepeatableRead);
+                });
+
             #endregion
         }
     }

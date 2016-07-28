@@ -85,7 +85,7 @@ Particular.ServiceControl.1.11.2.exe /quiet /LV* install.log UPGRADEINSTANCES=AL
 
 #### Specifying AuditRetentionPeriod and ErrorRetentionPeriod during Upgrade
 
-Version 1.13 introduced two new mandatory application configuration settings to control the expiry of database content.  These setting can be set by using two new MSI switches when upgrading.  Both of these value should be expressed as `TimeSpan` values
+Version 1.13 introduced two new mandatory application configuration settings to control the expiry of database content. These setting can be set by using two new MSI switches when upgrading. Both of these value should be expressed as `TimeSpan` values
 
 e.g 20.0:0:0 is 20 days
 
