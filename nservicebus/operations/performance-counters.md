@@ -119,7 +119,11 @@ When [running installers](installers.md) the service account will be automatical
 
 ## Corrupted Counters
 
-Sometimes an NServiceBus endpoint hangs or fails during startup while initializing the performance counters at the following location `NServiceBus.Unicast.Transport.Monitoring.ReceivedPerformanceDiagnostics.SetupCounter`.
+Sometimes an NServiceBus endpoint hangs or fails during startup while initializing the performance counters at the following location:
+
+```no-highlight
+NServiceBus.Unicast.Transport.Monitoring.ReceivedPerformanceDiagnostics.SetupCounter
+```
 
 This can happen when the performance counter libraries get corrupted.
 
