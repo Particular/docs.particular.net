@@ -1,6 +1,7 @@
 ---
 title: Scheduling
 summary: Schedule a task or an action/lambda, to be executed repeatedly at a given interval.
+component: Core
 tags:
 - Scheduler
 redirects:
