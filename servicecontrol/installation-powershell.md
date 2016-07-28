@@ -1,5 +1,5 @@
 ---
-title: Managing ServiceControl Instances via PowerShell
+title: 'ServiceControl: Managing Instances via PowerShell'
 reviewed: 2016-03-24
 tags:
  - ServiceControl
@@ -190,7 +190,7 @@ The standard mechanism for viewing and manipulating these ports in via the [nets
 
 For example `netsh.exe http show urlacl` will list all of the available. This output is detailed but not very friendly to query. The ServiceControl Management PowerShell provides simplified PowerShell equivalents for listing, add and removing UrlAcls and makes the output easier to query.
 
-For example the following command lists all of the UrlAcls assigned to any URI for port 33333
+For example the following command lists all of the UrlAcls assigned to any URI for port 33333.
 
 ```ps
 Get-UrlAcls | ? Port -eq 33333
