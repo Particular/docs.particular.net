@@ -1,6 +1,7 @@
 ---
 title: Autofac
 summary: Configure NServiceBus to use Autofac as a container.
+component: Autofac
 reviewed: 2016-03-17
 tags:
 - Dependency Injection
