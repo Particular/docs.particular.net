@@ -101,7 +101,7 @@ Once ServiceControl is running in this mode the following procedure can be used 
 
  * Click Ok
 
-![](export-database-step2.png)
+![](export-database-step2.png 'width=500')
 
  * Select the directory to store the exported data file.
 

@@ -54,7 +54,7 @@ When an endpoint is configured for auditing (see [Auditing with NServiceBus](/ns
 
 This allows ServicePulse to detect that endpoint as a new endpoint, and add it to its endpoint list. By default, all detected endpoints are marked for monitoring by ServicePulse, so ServicePulse can send an alert when such newly added endpoints are detected.
 
-![Detected New Endpoints](images/detect-new-endpoints.png)
+![Detected New Endpoints](images/detect-new-endpoints.png 'width=500')
 
 The newly detected endpoint can be either configured for monitoring (see [How to configure endpoints for monitoring by ServicePulse](/servicepulse/how-to-configure-endpoints-for-monitoring.md)) or marked as unmonitored endpoints (in the ServicePulse Configuration page).
 
