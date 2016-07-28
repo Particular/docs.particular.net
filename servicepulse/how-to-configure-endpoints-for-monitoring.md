@@ -15,7 +15,7 @@ related:
  1. Custom checks (defined and developed per application needs)
  1. And more (see [An Introduction to ServicePulse for NServiceBus](http://particular.net/blog/an-introduction-to-servicepulse-for-nservicebus) for additional upcoming monitoring features)
 
-![ServicePulse dashboard](dashboard.png)
+![ServicePulse dashboard](dashboard.png 'width=500')
 
 **Prerequisites for ServicePulse monitoring of endpoints:**
 

@@ -11,9 +11,9 @@ ServiceControl stores its data in a RavenDB embedded instance. By default, the R
 1. Open Advanced Options
 ![](managementutil-advancedoptions.png)
 1. Start Maintenance Mode
-![](managementutil-maintenancemode.png)
+![](managementutil-maintenancemode.png 'width=500')
 1. Launch RavenDB Studio
-![](managementutil-launchstudio.png)
+![](managementutil-launchstudio.png 'width=500')
 1. Stop Maintenance Mode once work completed
 
 

@@ -12,7 +12,7 @@ MSMQ is the default transport used by NServiceBus.
 
 NServiceBus requires a specific MSMQ configuration to operate.
 
-The supported configuration is to only have the base MSMQ service installed with no optional features. To enable the supported configuration either use `NServiceBus Prerequisites` in the [Platform Installer](/platform/installer/) or use the `Install-NServiceBusMSMQ` cmdlet from the [NServiceBus Powershell Module](/nservicebus/operations/management-using-powershell.md).
+The supported configuration is to only have the base MSMQ service installed with no optional features. To enable the supported configuration either use `NServiceBus Prerequisites` in the [Platform Installer](/platform/installer/) or use the `Install-NServiceBusMSMQ` cmdlet from the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md).
 
 Alternatively the MSMQ service can be manually installed by following these Operating System specific instructions:
 

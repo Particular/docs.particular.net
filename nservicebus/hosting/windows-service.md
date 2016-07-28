@@ -1,7 +1,7 @@
 ---
 title: Windows Service Hosting
 summary: How to host NServiceBus in a Windows Service
-reviewed: 2016-03-16
+reviewed: 2016-07-28
 component: Core
 tags:
 - Hosting
@@ -60,8 +60,10 @@ WARNING: Choose a durable persistence before deploying to production.
 
 When self-hosting a Windows service the startup code is in full control of installation. Windows supports these features though the use of the [Service Control tool](https://technet.microsoft.com/en-us/library/cc754599.aspx). For example a basic install and uninstall commands would be:
 
-    sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
-    sc.exe delete SalesEndpoint
+```dos
+sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+sc.exe delete SalesEndpoint
+```
 
 For completeness here are some other common usages of the Service Control tool:
 
@@ -70,56 +72,70 @@ For completeness here are some other common usages of the Service Control tool:
 
 The Windows Service Name can be configured, at creation time, as follows:
 
-    sc.exe create [ServiceName] binpath= [BinaryPathName]
-    sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+```dos
+sc.exe create [ServiceName] binpath= [BinaryPathName]
+sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+```
 
 
 ### Display Name
 
 Display name can be configured, at creation time, using the `displayname` argument:
 
-    sc.exe create [ServiceName] displayname= [Description] binpath= [BinaryPathName]
-    sc.exe create SalesEndpoint displayname= "Sales Endpoint" binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+```dos
+sc.exe create [ServiceName] displayname= [Description] binpath= [BinaryPathName]
+sc.exe create SalesEndpoint displayname= "Sales Endpoint" binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+```
 
 
 ### Description
 
 Description can be changed, after the service has been created, using the [sc description](https://technet.microsoft.com/en-us/library/cc742069.aspx) command.
 
-    sc.exe description [ServiceName] [Description]
-    sc.exe description SalesEndpoint "Service for hosting the Sales Endpoint"
+```dos
+sc.exe description [ServiceName] [Description]
+sc.exe description SalesEndpoint "Service for hosting the Sales Endpoint"
+```
 
 
 ### Service Dependencies
 
 Service dependencies can be configured after the service has been created using the [sc config](https://technet.microsoft.com/en-us/library/cc990290.aspx) command.
 
-    sc.exe config [ServiceName] depend= <Dependencies(separated by / (forward slash))>
-    sc.exe config SalesEndpoint depend= MSMQ/MSDTC/RavenDB
+```dos
+sc.exe config [ServiceName] depend= <Dependencies(separated by / (forward slash))>
+sc.exe config SalesEndpoint depend= MSMQ/MSDTC/RavenDB
+```
 
 
 ### Username and Password
 
 Username and password can be configured, at creation time, using the `obj` and `password` parameters.
 
-    sc.exe create [ServiceName] obj= [AccountName] password= [Password] binpath= [BinaryPathName]
-    sc.exe create SalesEndpoint obj= MyDomain\SalesUser password= 9t6X7gkz binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+```dos
+sc.exe create [ServiceName] obj= [AccountName] password= [Password] binpath= [BinaryPathName]
+sc.exe create SalesEndpoint obj= MyDomain\SalesUser password= 9t6X7gkz binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+```
 
 
 ### Start Mode
 
 The Windows Service start mode can be configured, at creation time, using the `start` parameter.
 
-    sc.exe create [ServiceName] start= {auto | demand | disabled} binpath= [BinaryPathName]
-    sc.exe create SalesEndpoint start= demand binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+```dos
+sc.exe create [ServiceName] start= {auto | demand | disabled} binpath= [BinaryPathName]
+sc.exe create SalesEndpoint start= demand binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+```
 
 
 ### Uninstall
 
 A service can be uninstalled using the [sc delete](https://technet.microsoft.com/en-us/library/cc742045.aspx) command.
 
-    sc.exe delete [ServiceName]
-    sc.exe delete SalesEndpoint
+```dos
+sc.exe delete [ServiceName]
+sc.exe delete SalesEndpoint
+```
 
 
 ## Compared to NServiceBus Host

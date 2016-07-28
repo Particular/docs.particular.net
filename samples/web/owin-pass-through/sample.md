@@ -127,12 +127,12 @@ snippet:msmqheaderserializer
 
 ## Comparing the two approaches
 
-|| Bus Based | Native MSMQ                                                                                                                                                        
+|| Bus Based | Native MSMQ
 |-|-|-|
-| Code Complexity         | Simple.                                                                                                 | Slightly more complicated since knowledge of the transport is required.                                                                                           |
-| Performance             | Slightly slower and uses more memory since every message needs to be deserialized before being sent to the Bus. | Slightly faster and less memory since no deserialization or translation needs to occur.                                                                          |
-| Transport compatibility | Works with any NServiceBus transport.                                                                  | Requires some native code for each transport.                                                                                                                    |
-| Serialization errors    | Errors in deserialization will result in the request failing and an error being returned to the client. | Errors in deserialization will occur when the bus attempts to process the message and hence will leverage the built in error handling functionality of NServiceBus. |
+| Code Complexity | Simple. | Slightly more complicated since knowledge of the transport is required. |
+| Performance | Slightly slower and uses more memory since every message needs to be deserialized before being sent to the Bus. | Slightly faster and less memory since no deserialization or translation needs to occur. |
+| Transport compatibility | Works with any NServiceBus transport. | Requires some native code for each transport. |
+| Serialization errors | Errors in deserialization will result in the request failing and an error being returned to the client. | Errors in deserialization will occur when the bus attempts to process the message and hence will leverage the built in error handling functionality of NServiceBus. |
 
 
 ## JavaScript HTTP Post

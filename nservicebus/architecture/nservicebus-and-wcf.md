@@ -30,6 +30,8 @@ Transactions are automatically handled on a per-message basis and inherently spa
 
 It is possible expose the NServiceBus endpoints as WCF services with as little as one line of code and the standard WCF configuration. All that is required it to write an empty class that inherits from NServiceBus.WcfService, specifying the types of the request and the response, and NServiceBus does the rest, as follows:
 
-    public class MyService : NServiceBus.WcfService { }
+```cs
+public class MyService : NServiceBus.WcfService { }
+```
 
 NServiceBus provides access to the features of WCF, such as interoperability, without giving up the reliability and scalability of messaging.

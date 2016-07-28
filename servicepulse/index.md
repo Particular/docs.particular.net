@@ -16,7 +16,7 @@ ServicePulse uses information provided by ServiceControl. In order to use Servic
 
 The Dashboard provides a visual overview of the current state of the monitored NServiceBus system. It informs about the latest Events in the system, such as detecting a new endpoint or a message processing failure.
 
-![Dashboard](images/dashboard-overview.png)
+![Dashboard](images/dashboard-overview.png 'width=500')
 
 
 ## Endpoints health

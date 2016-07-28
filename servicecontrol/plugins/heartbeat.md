@@ -64,9 +64,11 @@ snippet: heartbeatsTtlConfig
 
 Note: To enable the change the endpoint needs to be restarted.
 
+
 ## Expired heartbeat messages forwarded to Dead letter queue
 
 Heartbeat messages have a time to be received (TTBR) set based on the TTL value. If ServiceControl does not consume the heartbeat messages before the TTBR expires then transports that support a dead letter queue (DLQ) will move these messages to the DLQ. This can happen when ServiceControl is stopped or very busy. The dead letter queue needs to be monitored and cleaned up.
+
 
 ### MSMQ
 

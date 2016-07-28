@@ -12,7 +12,7 @@ related:
 
 ## Install Counters
 
-Use the [NServiceBus Powershell Commands](/nservicebus/operations/management-using-powershell.md) to install the performance counters.
+Use the [NServiceBus PowerShell Commands](/nservicebus/operations/management-using-powershell.md) to install the performance counters.
 
 ```ps
 Import-Module NServiceBus.PowerShell

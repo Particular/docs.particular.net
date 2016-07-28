@@ -1,5 +1,5 @@
 ---
-title: Configuring a Non-Privileged Service Account
+title: Configuring a Non-Privileged Account
 summary: Using low privilege account for ServiceControl
 tags:
 - ServiceControl

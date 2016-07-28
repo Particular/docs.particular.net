@@ -56,7 +56,7 @@ It is recommended that to periodically check that the endpoint (and its host) ca
 
 The custom check indicator in the ServicePulse dashboard indicates when one or more custom checks fails. The number of failed custom checks is presented on the upper right of the indicator, and a descriptive event is displayed in the Recent Events list.
 
-![Custom Checks](images/custom-checks.png)
+![Custom Checks](images/custom-checks.png 'width=500')
 
 For example, in the image above, the number 4 indicates that there are four failing custom checks. These custom checks may be all located on the same endpoint or on four separate endpoints. Use the Custom Checks details page to drill down into the details of the failures and their location.
 
@@ -65,7 +65,7 @@ For example, in the image above, the number 4 indicates that there are four fail
 
 For a detailed display of the currently failed and failing custom checks per endpoint, click the custom checks indicator in the ServicePulse dashboard, or the related link in the navigation bar.
 
-![Custom Checks Details page](images/custom-checks-details.png)
+![Custom Checks Details page](images/custom-checks-details.png 'width=500')
 
 Note there are four failing custom checks located on two endpoints (two failures per endpoint).
 

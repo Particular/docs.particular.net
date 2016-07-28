@@ -16,11 +16,11 @@ tags:
 
 ### ServicePulse reports that 0 endpoints are active, although Endpoint plugins were deployed
 
-* Follow the guidance in [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md).
-* Restart the endpoint after copying the Endpoint Plugin files into the endpoint's Bin directory.
-* Ensure the endpoint references NServiceBus Version 4.0.0 or later.
-* Ensure [auditing](/nservicebus/operations/auditing.md) is enabled for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl.
-* Ensure the relevant ServiceControl assemblies are included in the whitelist or are not excluded in the blacklist. For more details refer to [Assembly scanning](/nservicebus/hosting/assembly-scanning.md).
+ * Follow the guidance in [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md).
+ * Restart the endpoint after copying the Endpoint Plugin files into the endpoint's Bin directory.
+ * Ensure the endpoint references NServiceBus Version 4.0.0 or later.
+ * Ensure [auditing](/nservicebus/operations/auditing.md) is enabled for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl.
+ * Ensure the relevant ServiceControl assemblies are included in the whitelist or are not excluded in the blacklist. For more details refer to [Assembly scanning](/nservicebus/hosting/assembly-scanning.md).
 
 
 ### ASP.NET applications heartbeat failure
@@ -73,7 +73,7 @@ To workaround this issue see [Override host identifier](/nservicebus/hosting/ove
 
 ### After enabling Heartbeat plugins for Version 3 endpoints, ServicePulse reports that endpoints are inactive
 
-Messages that were forwarded to the audit queue by NSB Version 3.x version of the endpoints did not have the `HostId` header available which uniquely identifies the endpoint. Adding the heartbeat plugin for Version 3 endpoints automatically enriches the headers with this `HostId` information using a [message mutator](/nservicebus/pipeline/message-mutators.md). Since the original message that was processed from the audit/error queue did not have this identifier, it is hard to correlate the messages received via the heartbeat that these belong to the same endpoint. Therefore there appears to be a discrepancy in the Endpoints Indicator.
+Messages that were forwarded to the audit queue by NServiceBus Version 3.x version of the endpoints did not have the `HostId` header available which uniquely identifies the endpoint. Adding the heartbeat plugin for Version 3 endpoints automatically enriches the headers with this `HostId` information using a [message mutator](/nservicebus/pipeline/message-mutators.md). Since the original message that was processed from the audit/error queue did not have this identifier, it is hard to correlate the messages received via the heartbeat that these belong to the same endpoint. Therefore there appears to be a discrepancy in the Endpoints Indicator.
 
 To workaround this issue in order to monitor Version 3 endpoints:
 

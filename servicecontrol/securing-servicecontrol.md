@@ -67,6 +67,7 @@ For a more fine-grained limitation on message body visibility of specific proper
 
 An example of how to set encryption per specific message property can be viewed in the [Encryption Sample](/samples/encryption/basic-encryption/).
 
+
 ### Accessing the Embedded RavenDB Database
 
 ServiceControl uses an embedded RavenDB database to store its data. This database is managed internally by ServiceControl and it is not intended for direct access or usage. By default, the database is located on the same machine as the ServiceControl instance is installed. A different location (local or network path) for the database files can be selected.

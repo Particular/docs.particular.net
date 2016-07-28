@@ -25,7 +25,7 @@ snippet:sqlserver-nativesend
 In this example, the value `MyNamespace.MyMessage` represents the .NET type of the message. See the [headers documentation](/nservicebus/messaging/headers.md) for more information on the `EnclosedMessageTypes` header.
 
 
-#### In Powershell;
+#### In PowerShell;
 
 snippet:sqlserver-powershell-nativesend
 

@@ -51,7 +51,7 @@ The ServiceControl Management Utility can be launched automatically at the end o
 
 The Management Utility will display the instances of the ServiceControl service installed. If the version of the binaries used by an instance are older that those shipped with the ServiceControl Management Utility an upgrade link will be shown against the version label.
 
-![](managementutil-upgradelink.png)
+![](managementutil-upgradelink.png 'width=500')
 
 To upgrade the service just click the upgrade link next to the Service name
 

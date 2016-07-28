@@ -16,7 +16,7 @@ The following options outline how to add a license to ServiceControl.
 
 The ServiceControl Management utility has a license user interface which will import the designated license file into the registry. The license file is added to the `HKEY_LOCAL_MACHINE` registry hive so it is available to all instances of ServiceControl regardless of the service account used.
 
-![](managementutil-addlicense.png)
+![](managementutil-addlicense.png 'width=500')
 
 
 ### ServiceControl PowerShell

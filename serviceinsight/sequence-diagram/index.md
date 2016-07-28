@@ -12,14 +12,14 @@ Each visualization diagram in ServiceInsight displays the currently selected mes
 
 The sequence diagram shows all of the messages in the same conversation. It also shows when these messages were sent and handled relative to each other.
 
-![Sequence Diagram](sequence-diagram.png)
+![Sequence Diagram](sequence-diagram.png 'width=500')
 
 Use the sequence diagram when the timing of messages handling is important to understand.
 
 
 ## Which data is used to generate the diagram
 
-When a message is sent through NServiceBus, some headers are added automatically. All messages get the `NServiceBus.MessageId` header. This is a unqiue ID for the message.
+When a message is sent through NServiceBus, some headers are added automatically. All messages get the `NServiceBus.MessageId` header. This is a unique ID for the message.
 
 If handling a message causes more messages to be sent or published then the `MessageId` of the message being handled is copied to the `NServiceBus.RelatedTo` header of the outgoing messages.
 
@@ -51,7 +51,7 @@ NOTE: Not every sequence diagram will have the start of conversation marker. Thi
 
 ### Messages
 
-![Send message](send.png)
+![Send message](send.png 'width=500')
 
 When an endpoint sends a message, a solid arrow is drawn from the lifeline of the sending endpoint to the lifeline of the processing endpoint. The label of each message indicates its type. The arrow always points from the sending endpoint to the receiving endpoint.
 
@@ -74,7 +74,7 @@ If the processing of a message fails, the processing box will be displayed in re
 
 ### Events
 
-![Event](event.png)
+![Event](event.png 'width=500')
 
 Events are represented in a similar fashion to other messages except that they have dashed lines and a different icon.
 

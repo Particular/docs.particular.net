@@ -13,7 +13,7 @@ related:
 There are multiple ways of generating a key. Most implementations rely on a *random* object. All examples mentioned here use a secure cryptographic randomizer.
 
 
-### Powershell
+### PowerShell
 
 
 #### Base64

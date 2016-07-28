@@ -16,21 +16,21 @@ The views in ServiceInsight show information about message processing failure wi
 
 The status of an errant message is illustrated in the message window.
 
-![An Error in the Message Window](images/overview-messagewindowerror.png)
+![An Error in the Message Window](images/overview-messagewindowerror.png 'width=500')
 
 
 ## The Flow Diagram
 
 The flow diagram highlights errors in red and provides details with access to the stack trace.
 
-![Error in the flow diagram](images/overview-flowdiagramwitherror.png)
+![Error in the flow diagram](images/overview-flowdiagramwitherror.png 'width=500')
 
 
 ## The Sequence Diagram
 
 The sequence diagram highlights handlers with errors in red.
 
-![Error in the sequence diagram](images/overview-sequence-diagram-witherror.png)
+![Error in the sequence diagram](images/overview-sequence-diagram-witherror.png 'width=500')
 
 
 ## Retrying a failed message

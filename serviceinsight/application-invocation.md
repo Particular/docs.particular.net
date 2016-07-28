@@ -8,18 +8,20 @@ When the NServiceBus suite of tools was built, carefully considered the integrat
 
 If the support team uses ServicePulse to monitor distributed system for errors. When they encounter an error message, they might want a developer to investigate it further. They can see why from the exception information provided by ServiceInsight by clicking the "Open in ServiceInsight" link and bringing up the particular message that failed.
 
-![ServicePulse Error Messages](images/007-servicepulse-error-messages.png)
+![ServicePulse Error Messages](images/007-servicepulse-error-messages.png 'width=500')
 
 The benefits of this feature can be leveraged without installing ServicePulse.
 
 Click the link in ServicePulse, it opens a link in the browser, like this:
 
-    si://localhost:33333/api?search=487b5055-11bb-4a70-a4fd-a2c00125aa43
+```no-highlight
+si://localhost:33333/api?search=487b5055-11bb-4a70-a4fd-a2c00125aa43
+```
 
 This is the URI to which ServiceInsight listens. It launches ServiceInsight to do the following:
 
- - Automatically connect to localhost on port 33333
- - Perform a search on a specific Message ID
+ * Automatically connect to localhost on port 33333
+ * Perform a search on a specific Message ID
 
 This means that a specific message that was in the error queue will be displayed as soon ServiceInsight opens, allowing the cause to be seen.
 

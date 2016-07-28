@@ -22,7 +22,7 @@ Using the registry to store the license information is a way that all platform t
 ### NServiceBus Version 4.5 and above
 
 
-#### Using the NServiceBus Powershell Cmdlet
+#### Using the NServiceBus PowerShell Cmdlet
 
 The standalone NServiceBus PowerShell Version 5.0 includes a commandlet for importing the Platform License into the `HKEY_LOCAL_MACHINE` registry. See [Managing Using PowerShell](/nservicebus/operations/management-using-powershell.md) for more details and installation instructions for the PowerShell Module.
 
@@ -47,7 +47,7 @@ Set-ItemProperty -Path HKLM:\Software\ParticularSoftware -Name License -Force -V
 
 If modifying the registry directly using Registry Editor or a PowerShell script to update the license for ServiceControl, it is necessary to restart the ServiceControl service, as it only checks for its license information once at startup.
 
-NOTE: For 64 bit operating systems repeat the process in both the Powershell prompt and the PowerShell(x86) console prompt. This will ensure the license is imported into both the 32 bit and 64 bit registry keys.
+NOTE: For 64 bit operating systems repeat the process in both the PowerShell prompt and the PowerShell(x86) console prompt. This will ensure the license is imported into both the 32 bit and 64 bit registry keys.
 
 
 ##### Using Registry Editor

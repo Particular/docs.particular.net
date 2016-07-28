@@ -25,4 +25,4 @@ Note that the license file might allow running multiple products (NServiceBus Co
 
 Once the license file is loaded, ServiceInsight will then display licensing information on its status bar (bottom right hand side) upon launch:
 
-![license verified](images/license-verified.png)
+![license verified](images/license-verified.png 'width=500')

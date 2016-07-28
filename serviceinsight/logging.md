@@ -13,10 +13,10 @@ To keep the number of logs minimal and relevant, the Log Window relates mostly t
 a
 Note that all the HTTP communications with ServiceControl are logged; the request being sent, the parameters, and the request/response headers. Also if a request to ServiceControl fails, in is shown in red in the Logs window.
 
-![Log Window](images/008-log-window.png)
+![Log Window](images/008-log-window.png 'width=500')
 
 If access to more detailed log entries is required, the complete log entries can be found at the following location and file format, stored on the machine:
 
-```
+```no-highlight
 %LocalAppData%/Particular/ServiceInsight/log-{date}.txt
 ```

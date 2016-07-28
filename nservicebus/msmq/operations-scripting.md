@@ -24,7 +24,7 @@ A send involves the following actions:
 
 snippet:msmq-nativesend
 
-#### In Powershell
+#### In PowerShell
 
 snippet:msmq-nativesend-powershell
 
@@ -34,7 +34,7 @@ snippet:msmq-nativesend-powershell
 
 snippet:msmq-nativesend-usage
 
-#### In Powershell
+#### In PowerShell
 
 snippet:msmq-nativesend-powershell-usage
 
@@ -55,7 +55,7 @@ A retry involves the following actions:
 snippet:msmq-return-to-source-queue
 
 
-#### In Powershell
+#### In PowerShell
 
 snippet:msmq-return-to-source-queue-powershell
 
@@ -94,7 +94,7 @@ NOTE: Write access is granted to both `Everyone` and `Anonymous`. The reason for
 snippet:msmq-create-queues
 
 
-#### In Powershell
+#### In PowerShell
 
 snippet:msmq-create-queues-powershell
 
@@ -121,7 +121,7 @@ snippet:msmq-create-queues-shared-usage
 snippet:msmq-delete-queues
 
 
-#### In Powershell
+#### In PowerShell
 
 snippet:msmq-delete-queues-powershell
 

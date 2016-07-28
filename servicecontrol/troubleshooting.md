@@ -102,7 +102,7 @@ The `ExposeRavenDB` setting enables the embedded RavenDB Management Studio to be
 When this setting is used in combination with a low privilege service account it can cause the service fail on startup.
 This is because a URLACL is required and the service account does not have rights to create it.
 
-To workaround this create the required URLACL. This can be done using the ServiceControl Management Powershell module. 
+To workaround this create the required URLACL. This can be done using the ServiceControl Management PowerShell module. 
 
 NOTE: Replace the `<hostname>` and `<port>` values in the sample commands below with the appropriate values from the ServiceControl configuration.
 

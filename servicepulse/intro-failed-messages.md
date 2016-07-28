@@ -14,14 +14,14 @@ If the FLR and SLR processing attempts also fail, the endpoint forwards the fail
 
 ServicePulse (via ServiceControl) monitors the central error queue and displays the current status and details of failed messages as an indicator in the ServicePulse dashboard.
 
-![Failed Messages indicator](images/indicators-failed-message.png)
+![Failed Messages indicator](images/indicators-failed-message.png 'width=500')
 
 
 ### Failed Messages Page
 
 To see a detailed display of the failed messages, click the Failed Messages indicator (or the "Failed Messages" link in the navigation bar). This page is split into two tabs.
 
-![Failed Message Groups Page](intro-failed-messages-failed-groups-page.png)
+![Failed Message Groups Page](intro-failed-messages-failed-groups-page.png 'width=500')
 
 The first tab shows error groups. A group is a set of failed messages where the same **Exception Type** has been thrown from the same method. Each group has:
 
@@ -35,7 +35,7 @@ Click the title of a group or the View Messages link to open a list of all of th
 
 The second tab will display all failed messages. The functionality is the same as viewing the messages in a group.
 
-![Failed Messages Page](intro-failed-messages-failed-messages-page.png)
+![Failed Messages Page](intro-failed-messages-failed-messages-page.png 'width=500')
 
 
  * **Message Details:** For each failed message, displays the message type, exception description, endpoint name and location, and failure timestamp.
@@ -56,7 +56,7 @@ A message that is sent for retry is marked as such, and is not displayed in the 
 
 If a message fails repeated retry attempts, an indication is added, including the number of times it has failed.
 
-![Repeated failure indication](images/failed-messages-repeated-failure.png)
+![Repeated failure indication](images/failed-messages-repeated-failure.png 'width=500')
 
 NOTE: The number of retry attempts for a message can be significant if the handler for that message is not [idempotent](/nservicebus/concept-overview.md#idempotence). Any processing attempt that invokes logic that does not participate in the NServiceBus transactional processing will not be rolled back on processing failure.
 
