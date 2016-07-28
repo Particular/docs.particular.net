@@ -1,5 +1,5 @@
 ---
-title: Individualizing queue names when Scaling-Out
+title: Individualizing queue names
 summary: Enabling individualizing queue names when Scaling-Out endpoints
 tags:
 - Scale Out
