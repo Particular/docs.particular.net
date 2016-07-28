@@ -13,7 +13,7 @@ Due to specifics of the protocol used, the gateway is designed to run on at most
 
 When scaling out MSMQ through the [distributor](/nservicebus/scalability-and-ha/distributor), the node running the distributor is the natural candidate to host the gateway. Running the distributor as [a clustered service on a Windows Failover Cluster](/nservicebus/scalability-and-ha/deploying-to-a-windows-failover-cluster.md) provides High Availability (HA). No special action needs to be taken, other than configuring senders to send gateway HTTP traffic to the node running the distributor instead of directly to the workers.
 
-![Gateway with distributor](/nservicebus/gateway/scaleoutdistributor.png)
+![Gateway with distributor](/nservicebus/gateway/scaleoutdistributor.png 'width=600')
 
 
 ### Brokered transports - RabbitMQ, SQL Server, Azure and MSMQ scaled-out with new unified scalability model in version 6
