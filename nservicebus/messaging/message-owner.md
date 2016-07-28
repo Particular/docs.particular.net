@@ -1,6 +1,7 @@
 ---
 title: Specifying a message owner
 summary: Configure the owning endpoint for message types.
+component: Core
 tags:
 - Message Mapping
 - Message destination
