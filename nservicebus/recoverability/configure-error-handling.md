@@ -1,5 +1,5 @@
 ---
-title: Configure the error queue
+title: Configure the error handling
 summary: Messages that failed a certain number of times will be forwarded to the error queue. This page shows how to configure the error queue address.
 tags:
  - Error Handling
@@ -8,17 +8,18 @@ tags:
  - Recoverability
  - Faults
 redirects:
+- nservicebus/configure-error-queue
 related:
  - samples/faulttolerance
 ---
 
-## Configure the error queue
+## Configure the error queue address
 
 When a message fails NServiceBus [automatically retries](/nservicebus/errors/automatic-retries.md) the message. On repeated failure NServiceBus forwards that message to a designated error queue.
 
 WARNING: When running with [transport transactions disabled](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled) NServiceBus will perform a best-effort error message forwarding, i.e. if moving to the error queue fails, the message will be lost.
 
-WARNING: When running with [transport transactions disabled](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled). Both FLR and SLR will be silently disabled when transactions are turned off.
+WARNING: When running with [transport transactions disabled](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled). Both FLR and SLR will be automatically disabled when transactions are turned off.
 
 Error queue can be configured in several ways.
 
@@ -49,6 +50,12 @@ NOTE: In NServiceBus Version 3.x the `ErrorQueue` settings can be set both via t
 
 For more details on `MsmqTransportConfig` refer to the [MSMQ transport](/nservicebus/msmq/transportconfig.md) article.
 
+## Error message header customizations
+Before message is moved to the error queue it is possilbe inspect and modify its headers including [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers). 
+
+The following snippet shows how to configure header customizations and perform header value modification. 
+
+snippet:ErrorHeadersCustomizations
 
 ## Error queue monitoring
 

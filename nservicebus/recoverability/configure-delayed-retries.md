@@ -63,14 +63,6 @@ snippet:SecondLevelRetriesCustomPolicyHandlerConfig
 
 snippet:SecondLevelRetriesCustomPolicyHandler
 
-##### Error Headers Helper
-
-The snippets above use Error Header Helpers to acquire the number of retries. In Versions 5 and below access to the retry contextual information is available via the raw transport message and headers.
-
-A Custom Policy has access to the raw message including both the [retries handling headers](/nservicebus/messaging/headers.md#retries-handling-headers) and the [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers). Any of these headers can be used to control the retries for a message. In the following examples the helper class will provide access to a subset of the headers.
-
-snippet:ErrorsHeadersHelper
-
 #### Exception based Policy
 
 The following retry policy extends the previous policy with a custom handling logic for a specific exception.
