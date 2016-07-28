@@ -1,5 +1,5 @@
 ---
-title: Customize RavenDB Embedded Location
+title: RavenDB Embedded Location
 summary: Increase space for monitored data by configuring ServiceControl to save data in a different location other than the default.
 tags:
 - ServiceControl
