@@ -11,8 +11,8 @@ ServiceControl consumes messages from the audit and error queues and stores thes
 
 ServiceControl can also forward these messages to two forwarding queues.
 
-* Error messages are optionally forwarded to the Error forwarding queue.
-* Audit messages are optionally forwarded to the Audit forwarding queue.
+ * Error messages are optionally forwarded to the Error forwarding queue.
+ * Audit messages are optionally forwarded to the Audit forwarding queue.
 
 This behavior can be toggled through the ServiceControl Management utility.
 

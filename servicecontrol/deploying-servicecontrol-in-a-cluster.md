@@ -13,14 +13,14 @@ The following procedure is a high level guide on how to deploy ServiceControl on
 
 ## Basic Setup
 
-* Set up a Failover (active/passive) Windows cluster:
-	* [Creating a Cluster in Windows Server 2008](https://blogs.msdn.microsoft.com/clustering/2008/01/18/creating-a-cluster-in-windows-server-2008/)
-	* [Creating a Cluster in Windows Server 2012R2](https://technet.microsoft.com/en-us/library/dn505754.aspx)
-* Install ServiceControl on each node adding it as a "Generic service" using the cluster manager. This means that ServiceControl will fail over automatically with the cluster.
-* Set up a MSMQ Cluster Group. Cluster group is a group of resources that have a unique DNS name and can be addressed externally like a computer.
-* Add the ServiceControl generic clustered service to the MSMQ cluster group:
-	* Make it depend on MSMQ and MSMQ network name;
-	* Check "use network name as computer name" in the service configuration;
+ * Set up a Failover (active/passive) Windows cluster:
+  * [Creating a Cluster in Windows Server 2008](https://blogs.msdn.microsoft.com/clustering/2008/01/18/creating-a-cluster-in-windows-server-2008/)
+  * [Creating a Cluster in Windows Server 2012R2](https://technet.microsoft.com/en-us/library/dn505754.aspx)
+ * Install ServiceControl on each node adding it as a "Generic service" using the cluster manager. This means that ServiceControl will fail over automatically with the cluster.
+ * Set up a MSMQ Cluster Group. Cluster group is a group of resources that have a unique DNS name and can be addressed externally like a computer.
+ * Add the ServiceControl generic clustered service to the MSMQ cluster group:
+  * Make it depend on MSMQ and MSMQ network name;
+  * Check "use network name as computer name" in the service configuration;
 
 Once set up ServiceControl queues will be available on the cluster. The server name will be the MSMQ network name, not to be confused with the cluster name.
 

@@ -33,6 +33,7 @@
     <Content Include="MultiDb.config.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="customSettingsToConfig.ps1" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

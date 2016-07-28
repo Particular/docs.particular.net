@@ -21,7 +21,7 @@ There are various reasons that can cause the ServiceControl windows service fail
 
 When adding a ServiceControl instance via the management utility, ServiceControl PowerShell Module or a silent install via an unattended XML configuration the port number is checked to ensure it is available. This is not foolproof though as another application or service that uses the same port may not be running at the time the service is added.
 
-In the event that the service fails to start check if the configured port ( typically port 33333) is available. To do this open up a elevated command prompt and issue the following command:
+In the event that the service fails to start check if the configured port (typically port 33333) is available. To do this open up a elevated command prompt and issue the following command:
 
 ```dos
 netstat -a -b
@@ -53,7 +53,7 @@ Note: To examine the configured URLACLs use either the ServiceControl Management
 
 ### Service fails to start: EsentInstanceUnavailableException
 
-If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-maleware real-time and scheduled scan.
+If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-malware real-time and scheduled scan.
 
 
 ### Service fails to start: EsentDatabaseDirtyShutdownException
@@ -77,7 +77,10 @@ The version store for this instance (0) has reached its maximum size of 511Mb. I
 
 Increase the size of the version store by adding a new app setting to the ServiceControl configuration file:
 
-`<add key="Raven/Esent/MaxVerPages" value="1024" />`
+```
+<add key="Raven/Esent/MaxVerPages"
+     value="1024" />
+```
 
 The value is the size of the version store in MB.
 

@@ -1,6 +1,5 @@
 ---
-title: ServiceControl Logging
-summary: Where and what ServiceControl logs and how to change the location
+title: 'ServiceControl: Logging'
 tags:
 - ServiceControl
 - Logging
@@ -16,14 +15,15 @@ The default logging location is `%LOCALAPPDATA%\Particular\ServiceControl\logs`.
 
 The `%LOCALAPPDATA%` defines a user-specific location on disk, so the logging location will be different when the service is configured as a user account. So for example
 
-#### For LocalSystem:
 
+#### For LocalSystem:
 
 ```no-highlight
 %WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs
 ```
 
 Note: Browsing to this location can be problematic as the default NTFS permissions on the `systemprofile` do not allow access. These permissions may need to be modified to gain access to the logs.
+
 
 #### For a user account:
 

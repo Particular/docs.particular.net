@@ -1,5 +1,5 @@
 ---
-title: Installing ServiceControl Silently
+title: 'ServiceControl: Installing Silently'
 reviewed: 2016-03-24
 tags:
 - ServiceControl
@@ -87,7 +87,7 @@ Particular.ServiceControl.1.11.2.exe /quiet /LV* install.log UPGRADEINSTANCES=AL
 
 Version 1.13 introduced two new mandatory application configuration settings to control the expiry of database content. These setting can be set by using two new MSI switches when upgrading. Both of these value should be expressed as `TimeSpan` values
 
-e.g 20.0:0:0 is 20 days
+e.g `20.0:0:0` is 20 days
 
 NOTE: If the current configuration already has values for `ServiceControl/AuditRetentionPeriod` or `ServiceControl/ErrorRetentionPeriod` the command line values will  overwrite the configuration
 
@@ -150,28 +150,4 @@ Prior to using the script, modify the `$customSettings` hash table to set the op
 
 NOTE: The provided entries in the `$customSettings` hash table are to illustrate how to set the values and are not meant to be a recommendation on the values for these settings.
 
-```ps
-#Requires -Version 3
-#Requires -RunAsAdministrator
-
-Add-Type -AssemblyName System.Configuration
-Import-Module 'C:\Program Files (x86)\Particular Software\ServiceControl Management\ServiceControlMgmt.psd1'
-
-$customSettings = @{
-    'ServiceControl/HeartbeatGracePeriod'='00:01:30' 
-}
-
-foreach ($sc in Get-ServiceControlInstances)
-{
-	$exe = Join-Path $sc.InstallPath -ChildPath 'servicecontrol.exe'
-	$configManager = [System.Configuration.ConfigurationManager]::OpenExeConfiguration($exe)
-	$appSettings = $configManager.AppSettings.Settings
-	foreach ($key in $customSettings.Keys)
-	{
-		$appSettings.Remove($key)
-		$appSettings.Add((New-Object System.Configuration.KeyValueConfigurationElement($key, $customSettings[$key])))
-	}
-	$configManager.Save()
-	Restart-Service $sc.Name
-}
-```
+snippet: customSettingsToConfig

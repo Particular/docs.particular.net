@@ -14,21 +14,20 @@ The ServiceControl installation file consists of an embedded MSI bootstrapper EX
 
 The ServiceControl Installation has the following prerequisites:
 
-1. The Microsoft .Net 4.5 Runtime
+ 1. [Microsoft .Net 4.5 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=30653)
 
 If ServiceControl is installed via the Particular Software Platform Installer then the installation and configuration of these prerequisites are managed bu the installer.
 
 
 ### Transport Support
 
-From ServiceControl 1.7 the transport DLLs are managed by the installation and do not need to be downloaded from NuGet.
-ServiceControl can be configured to use one of the NServiceBus supported transports listed below using the ServiceControl Management Utility:
+From ServiceControl 1.7 the transport DLLs are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the NServiceBus supported transports listed below using the ServiceControl Management Utility:
 
-* Microsoft Message Queuing (MSMQ)
-* Azure Storage Queues
-* Azure Service Bus
-* SQL Server
-* RabbitMQ
+ * Microsoft Message Queuing (MSMQ)
+ * Azure Storage Queues
+ * Azure Service Bus
+ * SQL Server
+ * RabbitMQ
 
 Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#msmq). When using the Particular Platform Installer the MSMQ service is added automatically as part of the `NServiceBus Pre-Requisites` option.
 
@@ -58,11 +57,12 @@ To upgrade the service just click the upgrade link next to the Service name
 
 Clicking the upgrade link will
 
- * Prompt for any additional information that is required such as values for new mandatory settings introduced in the newer version
- * Stop the Service
- * Remove the old binaries for ServiceControl and the configured Transport
- * Run the new binaries to create any required queues
- * Start the Service
+ * Prompt for any additional information that is required such as values for new mandatory settings introduced in the newer version.
+ * Stop the Service.
+ * Remove the old binaries for ServiceControl and the configured Transport.
+ * Run the new binaries to create any required queues.
+ * Start the Service.
+
 
 #### Using the ServiceControl Management Utility to add ServiceControl instances.
 
@@ -73,4 +73,4 @@ If this is a new installation of ServiceControl click on the `Add New Instance` 
 
 When adding the first instance of the ServiceControl service the default service name is "Particular.ServiceControl". It is possible choose to change this name to a custom service name. In doing so this is also changing the queue name associated with this instance of ServiceControl.
 
-The endpoint plugins such as the heartbeat and custom check plugins assume that the ServiceControl queue name is the default. If a custom service name was used then see [ServiceControl plugins](/servicecontrol/plugins) for more details on how to configure the endpoint plugins to use the custom queue name. 
+The endpoint plugins such as the heartbeat and custom check plugins assume that the ServiceControl queue name is the default. If a custom service name was used then see [ServiceControl plugins](/servicecontrol/plugins) for more details on how to configure the endpoint plugins to use the custom queue name.

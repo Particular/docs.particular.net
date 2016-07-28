@@ -18,7 +18,7 @@ ServiceControl's embedded RavenDB database can be compacted in one of two ways. 
  * Open the ServiceControl Management utility.
  * Stop the Service from the actions icons.
  * Note down the "DATA PATH" for the service.
-	![](managementutil-instance-datapath.png)
+  ![](managementutil-instance-datapath.png 'width=500')
 
 WARNING: For the `esentutl` command line utility to work properly, ServiceControl service needs to be shutdown properly without any errors.
 
@@ -48,6 +48,7 @@ Performing soft recovery...
 
 Operation completed successfully in 0.78 seconds.
 ```
+
  * Now run **`esentutl /d Data`** and wait for it to finish. Here is the result of running it:
 
 ```no-highlight
@@ -96,7 +97,7 @@ Once ServiceControl is running in this mode the following procedure can be used 
  * Open a browser and navigate to `http://localhost:{selected port}/storage`
  * Export the existing ServiceControl database.
 
-![](export-database-step1.png)
+![](export-database-step1.png 'width=500')
 
  * Click Ok
 
@@ -104,7 +105,7 @@ Once ServiceControl is running in this mode the following procedure can be used 
 
  * Select the directory to store the exported data file.
 
-![](export-database-step3.png)
+![](export-database-step3.png 'width=500')
 
  * Wait for the export operation to complete.
 
@@ -125,27 +126,27 @@ NOTE: At this point it is advisable to take a backup copy of the existing databa
 
  * Go to the RavenDB studio `http://localhost:{selected port}/storage` and perform Import steps.
  * Select the `Tasks` tab and select all the checkboxs
-![](import-database-step1.png)
+![](import-database-step1.png 'width=500')
 
  * Click OK to proceed.
 
-![](import-database-step2.png)
+![](import-database-step2.png 'width=500')
 
  * Select the file where the exported data was stored.
 
-![](import-database-step3.png)
+![](import-database-step3.png 'width=500')
 
  * Wait for the operation to complete.
 
  * After the operation has completed wait for the stale index count in the footer to indicate there are no stale indexes.
 
-![](import-database-step4.png)
+![](import-database-step4.png 'width=500')
 
  * Stop ServiceControl (press `<enter>` in the console).
 
 NOTE: If an `System.OutOfMemoryException` occurs during import work around this error by reducing the batch size in advanced settings.
 
-![](import-database-note.png)
+![](import-database-note.png 'width=500')
 
 
 ### Step 5: Restart ServiceControl
