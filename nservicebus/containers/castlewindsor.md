@@ -1,6 +1,7 @@
 ---
 title: Castle Windsor
 summary: Configure NServiceBus to use Castle Windsor as a container.
+component: Castle
 reviewed: 2016-03-17
 tags:
 - Dependency Injection
