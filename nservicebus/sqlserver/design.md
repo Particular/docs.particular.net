@@ -71,6 +71,11 @@ In Version 2 the columns are directly mapped to the properties of `NServiceBus.T
 
 The tables are created by [installers](/nservicebus/operations/installers.md) when the application is started for the first time. It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
 
+### Creating table structure in Production
+
+The scripts above to generate the queues does not have a queue name, and this might cause confusions if you hand them over directly to the DBAs. The scripts could be generated off your Development or Staging environment directly and then executed on Production environment by DBAs to replicate the structure. To generate this DDL script, right-click the database and from "Tasks" menu choose "Generate Scripts..." and generate the scripts.
+
+![](generating-ddl.png)
 
 ### Indexes
 
