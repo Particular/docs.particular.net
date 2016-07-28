@@ -7,7 +7,7 @@ tags:
 - Distributor
 - Scalability
 related:
-- nservicebus/scalability-and-ha
+- nservicebus/msmq/distributor
 - samples/scaleout/senderside
 ---
 
