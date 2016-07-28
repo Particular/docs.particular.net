@@ -1,6 +1,7 @@
 ---
 title: Saga Timeouts
 summary: Call back into a saga after a defined period of time.
+component: Core
 tags:
 - Saga
 related:
