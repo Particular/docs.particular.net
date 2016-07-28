@@ -65,7 +65,7 @@ NOTE: The number of retry attempts for a message can be significant if the handl
 
 Failed messages that cannot be processed successfully (or should not be retried due to various application-specific reasons) can be archived.
 
-![Failed Message Archive](images/failed-messages-archive.png width='500')
+![Failed Message Archive](images/failed-messages-archive.png 'width=500')
 
 Archiving in ServicePulse means that the failed messages are marked as "Archived". Its data is still available, but it is no longer displayed in the Failed Messages list in ServicePulse and is not counted by the Failed Messages indicator in the ServicePulse dashboard. It also will not appear in any failed message groups.
 
