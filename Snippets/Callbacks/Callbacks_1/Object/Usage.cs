@@ -10,8 +10,7 @@
         {
             #region Callbacks-InstanceId
 
-            endpointConfiguration.ScaleOut()
-                .InstanceDiscriminator("uniqueId");
+            endpointConfiguration.MakeInstanceUniquelyAddressable("uniqueId");
 
             #endregion
 
