@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using NServiceBus.Transports.Msmq;
+using NServiceBus.Transport.Msmq;
 
 #region MsmqHeaderSerializer
 static class MsmqHeaderSerializer
