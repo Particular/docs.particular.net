@@ -6,7 +6,7 @@
     using NServiceBus;
     using NServiceBus.Routing;
     using NServiceBus.Settings;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     #region RegisteringTheQueueCreator
 

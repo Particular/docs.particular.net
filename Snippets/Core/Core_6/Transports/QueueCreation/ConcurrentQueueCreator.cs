@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     #region ConcurrentCustomQueueCreator
     class ConcurrentQueueCreator :

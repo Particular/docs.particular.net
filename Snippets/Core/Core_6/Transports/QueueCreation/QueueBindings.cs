@@ -1,7 +1,7 @@
 ﻿namespace Core6.Transports.QueueCreation
 {
     using NServiceBus.Features;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     #region queuebindings
     public class FeatureThatRequiresAQueue :
@@ -9,8 +9,9 @@
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
-            context.Settings.Get<QueueBindings>().BindSending("sendingAddress");
-            context.Settings.Get<QueueBindings>().BindReceiving("receivingAddress");
+            var queueBindings = context.Settings.Get<QueueBindings>();
+            queueBindings.BindSending("sendingAddress");
+            queueBindings.BindReceiving("receivingAddress");
         }
     }
     #endregion

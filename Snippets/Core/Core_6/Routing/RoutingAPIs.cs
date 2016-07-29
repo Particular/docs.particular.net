@@ -7,7 +7,7 @@ namespace Core6.Routing
     using NServiceBus;
     using NServiceBus.Routing;
     using NServiceBus.Settings;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     class RoutingAPIs
     {
@@ -15,7 +15,8 @@ namespace Core6.Routing
         {
             #region Routing-StaticRoutes-Endpoint
 
-            var routing = endpointConfiguration.Routing();
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            var routing = transport.Routing();
             routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
 
             #endregion
@@ -25,7 +26,8 @@ namespace Core6.Routing
         {
             #region Routing-StaticRoutes-Endpoint-Msmq
 
-            var routing = endpointConfiguration.Routing();
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            var routing = transport.Routing();
             routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
 
             #endregion
@@ -35,7 +37,8 @@ namespace Core6.Routing
         {
             #region Routing-StaticRoutes-Endpoint-Broker
 
-            var routing = endpointConfiguration.Routing();
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            var routing = transport.Routing();
             routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
 
             #endregion
@@ -237,7 +240,7 @@ namespace Core6.Routing
         class MyTransport :
             TransportDefinition
         {
-            protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+            public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
             {
                 throw new NotImplementedException();
             }

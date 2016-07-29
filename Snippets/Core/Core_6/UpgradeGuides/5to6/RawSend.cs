@@ -6,7 +6,7 @@ namespace Core6.UpgradeGuides._5to6
     using NServiceBus;
     using NServiceBus.Extensibility;
     using NServiceBus.Routing;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     class RawSend
     {

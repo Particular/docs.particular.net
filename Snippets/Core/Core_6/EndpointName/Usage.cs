@@ -4,7 +4,7 @@
     using NServiceBus;
     using NServiceBus.Routing;
     using NServiceBus.Settings;
-    using NServiceBus.Transports;
+    using NServiceBus.Transport;
 
     class Usage
     {
@@ -43,7 +43,7 @@
         class MyTransport :
             TransportDefinition
         {
-            protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+            public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
             {
                 throw new NotImplementedException();
             }

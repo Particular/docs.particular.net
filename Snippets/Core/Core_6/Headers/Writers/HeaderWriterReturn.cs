@@ -28,8 +28,7 @@
             var callbackTypes = typeof(RequestResponseExtensions).Assembly.GetTypes();
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterReturn>(callbackTypes);
             endpointConfiguration.SetTypesToScan(typesToScan);
-            var scaleOut = endpointConfiguration.ScaleOut();
-            scaleOut.InstanceDiscriminator("A");
+            endpointConfiguration.MakeInstanceUniquelyAddressable("A");
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
