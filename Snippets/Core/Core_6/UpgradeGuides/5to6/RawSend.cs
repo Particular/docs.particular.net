@@ -30,7 +30,7 @@ namespace Core6.UpgradeGuides._5to6
                 requiredDispatchConsistency: DispatchConsistency.Default,
                 deliveryConstraints: constraints);
             var operations = new TransportOperations(operation);
-            await dispatcher.Dispatch(operations, new ContextBag())
+            await dispatcher.Dispatch(operations, new TransportTransaction(), new ContextBag())
                 .ConfigureAwait(false);
 
             #endregion
