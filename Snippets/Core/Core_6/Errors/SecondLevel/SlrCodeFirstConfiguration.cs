@@ -3,15 +3,20 @@
     using System;
     using NServiceBus;
 
-    public class SlrCodeFirstConfiguration
+    public class DelayedRetriesCodeFirstConfiguration
     {
         void ConfigureFlr(EndpointConfiguration endpointConfiguration)
         {
             #region SlrCodeFirstConfiguration
 
-            var secondLevelRetries = endpointConfiguration.SecondLevelRetries();
-            secondLevelRetries.NumberOfRetries(2);
-            secondLevelRetries.TimeIncrease(TimeSpan.FromMinutes(5));
+            var recoverabilitySettings = endpointConfiguration.Recoverability();
+            recoverabilitySettings.Delayed(
+                delayed =>
+                {
+                    var numberOfRetries = delayed.NumberOfRetries(2);
+                    numberOfRetries.TimeIncrease(TimeSpan.FromMinutes(5));
+                });
+
             #endregion
         }
     }

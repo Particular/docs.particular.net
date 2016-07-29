@@ -5,6 +5,7 @@
     using NServiceBus.Features;
     using NServiceBus.ObjectBuilder;
     using NServiceBus.Pipeline;
+    using NServiceBus.Transport;
     using NServiceBus.Transports;
 
     #region SimpleSatelliteFeature
@@ -25,10 +26,10 @@
                 onMessage: OnMessage);
         }
 
-        Task OnMessage(IBuilder builder, PushContext messageContext)
+        Task OnMessage(IBuilder builder, MessageContext context)
         {
             // Implement what this satellite needs to do once it receives a message
-            var messageId = messageContext.MessageId;
+            var messageId = context.MessageId;
             return Task.FromResult(true);
         }
     }

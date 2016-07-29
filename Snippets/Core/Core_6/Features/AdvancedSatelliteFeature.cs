@@ -6,6 +6,7 @@
     using NServiceBus.Features;
     using NServiceBus.ObjectBuilder;
     using NServiceBus.Pipeline;
+    using NServiceBus.Transport;
     using NServiceBus.Transports;
 
     public class MyAdvancedSatelliteFeature :
@@ -28,7 +29,7 @@
                 onMessage: OnMessage);
         }
 
-        Task OnMessage(IBuilder builder, PushContext messageContext)
+        Task OnMessage(IBuilder builder, MessageContext context)
         {
             // To raise a critical error
             var exception = new Exception("CriticalError occurred");
