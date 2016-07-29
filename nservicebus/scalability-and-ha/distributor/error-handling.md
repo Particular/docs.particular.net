@@ -13,17 +13,17 @@ related:
 - nservicebus/scalability-and-ha/distributor
 ---
 
-NServiceBus provides error handling and has [First Level Retries (FLR)](/nservicebus/errors/automatic-retries.md#first-level-retries) and [Secondary Level Retries (SLR)](/nservicebus/errors/automatic-retries.md#second-level-retries).
+NServiceBus provides error handling and has [immediate retries](/nservicebus/recoverability/#immediate-retries) and [delayed retries](/nservicebus/recoverability/#delayed-retries).
 
 When using the distributor the behavior of retries and the related message flow is different between major versions.
 
 
-## First Level Retries (FLR)
+## Immediate Retries
 
 FLR are always performed on the worker.
 
 
-## Second Level Retries (SLR)
+## Delayed Retries
 
 The behavior of SLR is different between major versions.
 

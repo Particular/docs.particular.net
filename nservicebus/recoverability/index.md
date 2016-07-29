@@ -15,6 +15,7 @@ redirects:
 related:
 - nservicebus/operations/transactions-message-processing
 ---
+
 Sometimes processing of a message fails. This could be due to a transient problem like a deadlock in the database, in which case retrying the message a few times should solve the issue. If the problem is more protracted, like a third party web service going down or a database being unavailable, solving the issue would take longer. It is therefore useful to wait longer before retrying the message again.
 
 NServiceBus has a built-in error handling capability called Recoverability. Recoverability enables to recover automatically or in exceptional scenarios manually from message failures. Recoverability wraps the message handling logic, including the user code with various layers of retrying logic. NServiceBus differentiates two types of retrying behaviors:
@@ -113,7 +114,9 @@ Starting from Version 6 it is possible to take full control over the whole Recov
 
 The total number of possible retries can be calculated with the following formula
 
-    Total Attempts = (ImmediateRetries:NumberOfRetries + 1) * (DelayedRetries:NumberOfRetries + 1)
+```no-highlight
+Total Attempts = (ImmediateRetries:NumberOfRetries + 1) * (DelayedRetries:NumberOfRetries + 1)
+```
 
 So for example given a variety of Immediate and Delayed here are the resultant possible attempts.
 
@@ -126,7 +129,11 @@ So for example given a variety of Immediate and Delayed here are the resultant p
 | 3                                | 1                              | 8                       |
 | 2                                | 2                              | 9                       |
 
-NOTE: In Version 5 and lower initial message processing attempt was counted as an immediate delivery. As a result the formula for total attempts was: Total Attempts = MAX(1, (ImmediateRetries:NumberOfRetries)) * (DelayedRetries:NumberOfRetries + 1). 
+NOTE: In Version 5 and lower initial message processing attempt was counted as an immediate delivery. As a result the formula for total attempts was: 
+
+```no-highlight
+Total Attempts = MAX(1, (ImmediateRetries:NumberOfRetries)) * (DelayedRetries:NumberOfRetries + 1)
+```
 
 ## Retry Logging
 

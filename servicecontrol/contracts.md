@@ -46,7 +46,7 @@ snippet:ServiceControlEventsXmlConfig
  * Customize the endpoint configuration to use `JsonSerializer` as the message published by ServiceControl uses Json serialization.
  * Also customize the endpoint configuration such that the following conventions are used, as the `MessageFailed` event that is published by ServiceControl does not derive from `IEvent`.
 
-NOTE: It's important that integration endpoints doesn't use the same `error` and `audit` queue as business endpoints since this might risk failures in the integration endpoint to cause an infinite feedback loop. Using the same `audit` queue will cause the integration messages to be included in search results in ServiceInsight. This will confuse users searching for given failure since both the failure and the failure notification will be shown to them. See also [adjust error queue settings](/nservicebus/errors/) and [audit queue settings](/nservicebus/operations/auditing.md).
+NOTE: It's important that integration endpoints doesn't use the same `error` and `audit` queue as business endpoints since this might risk failures in the integration endpoint to cause an infinite feedback loop. Using the same `audit` queue will cause the integration messages to be included in search results in ServiceInsight. This will confuse users searching for given failure since both the failure and the failure notification will be shown to them. See also [recoverability](/nservicebus/recoverability/) and [audit queue settings](/nservicebus/operations/auditing.md).
 
 The code sample to do both customizations is as shown below:
 

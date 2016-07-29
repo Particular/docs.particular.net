@@ -80,7 +80,7 @@ This mode has the same consistency guarantees as the *Receive Only* mode, but ad
 
 ### Transport transaction - Receive Only
 
-In this mode the receive operation is wrapped in a transport's native transaction. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is finished successfully. See also [errors](/nservicebus/errors) for more details on retries.
+In this mode the receive operation is wrapped in a transport's native transaction. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is finished successfully. See also [recoverability](/nservicebus/recoverability/) for more details on retries.
 
 Use the following code to use this mode:
 

@@ -6,7 +6,7 @@ component: Core
 redirects:
 - nservicebus/nservicebus-step-by-step-guide-fault-tolerance-code-first
 related:
-- nservicebus/errors
+- nservicebus/recoverability
 - samples/errorhandling
 ---
 

@@ -11,7 +11,7 @@ redirects:
 related:
 - servicecontrol
 - servicepulse
-- nservicebus/errors
+- nservicebus/recoverability
 - nservicebus/operations/auditing
 - nservicebus/operations/management-using-powershell
 - samples/performance-counters

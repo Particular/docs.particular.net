@@ -24,4 +24,4 @@ There are several ways to customize this pipeline with varying levels of complex
 
  * [DataBus](/nservicebus/messaging/databus.md)
  * [Encryption](/nservicebus/security/encryption.md)
- * [Second Level Retries](/nservicebus/errors/automatic-retries.md)
+ * [Recoverability](/nservicebus/recoverability/)

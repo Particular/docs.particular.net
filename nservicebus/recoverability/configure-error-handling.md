@@ -51,6 +51,7 @@ NOTE: In NServiceBus Version 3.x the `ErrorQueue` settings can be set both via t
 
 For more details on `MsmqTransportConfig` refer to the [MSMQ transport](/nservicebus/msmq/transportconfig.md) article.
 
+
 ## Error message header customizations
 
 Before message is moved to the error queue it is possilbe inspect and modify its headers including [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers). 
@@ -64,7 +65,7 @@ snippet:ErrorHeadersCustomizations
 
 Administrators should monitor the error queue, in order to detect when problems occur. The message in the error queue contains information regarding its source queue and machine. Having that information an administrator can investigate the specific node and solve the problem, e.g. bring up a database that went down.
 
-Monitoring and handling of failed messages with [ServicePulse](/servicepulse) provides access to full exception details (including stack-trace). [ServiceInsight](/serviceinsight) additionally enables advanced debugging with a full message context. Both of them provide a `retry` functionality to send the message back to the endpoint for re-processing. For more details, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md).
+Monitoring and handling of failed messages with [ServicePulse](/servicepulse/) provides access to full exception details (including stack-trace). [ServiceInsight](/serviceinsight/) additionally enables advanced debugging with a full message context. Both of them provide a `retry` functionality to send the message back to the endpoint for re-processing. For more details, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md).
 
 If either ServicePulse or ServiceInsight is not available in the environment, the `retry` operation can be performed using the native management tools of the selected transport:
 

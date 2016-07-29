@@ -10,8 +10,6 @@ related:
  - samples/azure/blob-storage-databus
 ---
 
-## The DataBus feature
-
 Messages are intended to be small. Some scenarios require sending large binary data along with a message. For this purpose, NServiceBus has a DataBus feature to overcome the message size limitations imposed by underlying transport.
 
 
@@ -78,7 +76,7 @@ Automatically removing these attachments can cause problems in many situations. 
  * Functional requirements might dictate the message to be available for a longer duration.
  * If the outbox feature in NServiceBus is enabled, the message will be removed from the incoming queue, but it might not have been processed yet.
  * If the DataBus feature is used in combination with multiple subscribers, the subscribers cannot determine who should remove the file.
- * If a messages fails it will be forwarded to the [error queue](/nservicebus/errors/). This message can then be retried some period after that failure. The databus files need to exist for that message to be re-processed correctly.
+ * If a messages fails it will be handled by [recoverability](/nservicebus/recoverability/). This message can then be retried some period after that failure. The databus files need to exist for that message to be re-processed correctly.
 
 
 ### AzureDataBus Implementation

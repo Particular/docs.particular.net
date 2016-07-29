@@ -45,14 +45,14 @@ snippet: RollbackMessage
 
 ### Registering the Behavior
 
-In the example below, the new behavior `CustomErrorHandlingBehavior` is registered to be part of the message handling pipeline. This new behavior is registered such that it will be invoked after NServiceBus has invoked the [built-in retry mechanism](/nservicebus/errors/automatic-retries.md). This includes Second-Level Retries if they are enabled.
+In the example below, the new behavior `CustomErrorHandlingBehavior` is registered to be part of the message handling pipeline. This new behavior is registered such that it will be invoked after NServiceBus has invoked the [recoverability mechanism](/nservicebus/recoverability/). This includes Second-Level Retries if they are enabled.
 
 snippet: RegisterCustomErrorHandlingBehavior
 
 
 ## Versions 5 and Below
 
-In NServiceBus Versions 5 and below, `IManageMessageFailures` are extension points to customizing actions when messages continue to fail after the [First Level Retries](/nservicebus/errors/automatic-retries.md) have been attempted.
+In NServiceBus Versions 5 and below, `IManageMessageFailures` are extension points to customizing actions when messages continue to fail after the [immediate retries](/nservicebus/recoverability/#immediate-retries) have been attempted.
 
 WARNING: When enabling this extension, second-level retries will not be invoked. Versions 6 and above offer better control of customization through the message pipeline.
 

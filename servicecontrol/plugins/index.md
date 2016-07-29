@@ -15,13 +15,14 @@ Plugins collect information from NServiceBus and are deployed together with each
 
 ServiceControl provides the monitoring capability by analyzing the configured error and audit queues. It can extract information like endpoint name, queue name and, in case of error messages, the exception stack trace, etc. This information is stored in a built-in internal database.
 
+
 ## Configuring an endpoint to be monitored by ServiceControl
 
 To allow ServiceControl to monitor endpoints:
 
-1. ServiceControl should be [installed](/servicecontrol/installation.md) and at least one instance should be configured using the same transport as that of the endpoints that are being monitored.
-2. For every endpoint that is being monitored by ServiceControl, [configure the endpoint for auditing](/nservicebus/operations/auditing.md#configuring-auditing). Make sure that the audit queue is the same as the audit queue that ServiceControl is configured with.
-3. For every endpoint that is being monitored by ServiceControl, [configure the error queue](/nservicebus/errors/#configure-the-error-queue). Make sure that the error queue is the same as the error queue that ServiceControl is configured with.
+ 1. ServiceControl should be [installed](/servicecontrol/installation.md) and at least one instance should be configured using the same transport as that of the endpoints that are being monitored.
+ 1. For every endpoint that is being monitored by ServiceControl, [configure the endpoint for auditing](/nservicebus/operations/auditing.md#configuring-auditing). Make sure that the audit queue is the same as the audit queue that ServiceControl is configured with.
+ 1. For every endpoint that is being monitored by ServiceControl, [configure recoverability](/nservicebus/recoverability/). Make sure that the error queue is the same as the error queue that ServiceControl is configured with.
 
 
 ## Installing and Deploying Plugins
@@ -29,7 +30,7 @@ To allow ServiceControl to monitor endpoints:
 The ServiceControl plugins are deployed with the endpoints they are monitoring. It is possible add a plugin to an endpoint during development, testing, or production:
 
  * During development, add the relevant plugin NuGet package to the endpoint's project in Visual Studio using the NuGet.
- * When in production, add the plugin DLLs to the BIN directory of the endpoint, and restart the endpoint process for the changes to take effect and the plugin to be loaded.
+ * When in production, add the plugin dlls to the BIN directory of the endpoint, and restart the endpoint process for the changes to take effect and the plugin to be loaded.
 
 **Related articles**
 
@@ -39,6 +40,7 @@ The ServiceControl plugins are deployed with the endpoints they are monitoring. 
   - [Heartbeat Plugin](heartbeat.md) - Enables endpoint health monitoring. It sends heartbeat messages at a regular interval from the endpoint to ServiceControl to help determine whether the endpoint is active. This information is shown in ServicePulse.
   - [Saga Plugin](saga-audit.md) - Enables the Saga visualization capabilities useful for debugging during development. The Saga message behavior and the saga state changes as the Saga is being processed are sent to ServiceControl. This information is shows in ServiceInsight. This plugin is only for development purposes and should not be used in production.
   - [Custom Check Plugin](custom-checks.md) - Enables custom monitoring abilities for endpoints by allowing the developer to define a set of conditions that needs to be checked. This plugin will report the results of these custom checks to ServiceControl.
+
 
 ## Connecting to ServiceControl
 

@@ -21,7 +21,7 @@ This samples walks through the most common choices required when creating a firs
 This sample uses a dual runnable console and Windows Service for hosting. More details on this approach can be seen in [Windows Service Hosting](/nservicebus/hosting/windows-service.md), there is also [a more detailed sample](/samples/hosting/windows-service/) of this approach. See also [Hosting choice](/nservicebus/hosting).
 
 
-## Configure an [Error](/nservicebus/errors) queue
+## Configure an [Recoverability](/nservicebus/recoverability/)
 
 When a message fails processing it will be forwarded here.
 
