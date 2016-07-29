@@ -4,7 +4,6 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 using NServiceBus;
-using NServiceBus.Features;
 
 class Program
 {
@@ -57,7 +56,9 @@ class Program
 
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Failed(failed => failed.HeaderCustomization(StackTraceCleaner.CleanUp));
-                #endregion
+
+        #endregion
+
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         try
