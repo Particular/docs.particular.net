@@ -152,7 +152,6 @@
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStartAndStop.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Features\FeatureConfiguration.cs" />
     <Compile Include="Features\MyFeature.cs" />
