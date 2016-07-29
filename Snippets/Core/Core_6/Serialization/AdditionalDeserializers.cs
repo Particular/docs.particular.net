@@ -10,7 +10,8 @@
             // configures XML serialization as default
             endpointConfiguration.UseSerialization<XmlSerializer>();
             // configures additional deserialization
-            endpointConfiguration.AddDeserializer<JsonSerializer>().Settings("serializerSetting");
+            var jsonSerialization = endpointConfiguration.AddDeserializer<JsonSerializer>();
+            jsonSerialization.Settings("serializerSetting");
             #endregion
         }
     }

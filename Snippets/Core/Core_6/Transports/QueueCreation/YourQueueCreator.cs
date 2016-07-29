@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using NServiceBus.Transport;
-    using NServiceBus.Transports;
 
     class YourQueueCreator :
         ICreateQueues

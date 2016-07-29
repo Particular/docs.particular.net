@@ -14,11 +14,6 @@
         TransportDefinition
     {
 
-        protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
-        {
-            return new MyTransportInfrastructure();
-        }
-
         class MyTransportInfrastructure :
             TransportInfrastructure
         {
@@ -57,6 +52,11 @@
             public override OutboundRoutingPolicy OutboundRoutingPolicy { get; }
         }
 
+
+        public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+        {
+            throw new NotImplementedException();
+        }
 
         public override string ExampleConnectionStringForErrorMessage { get; }
     }
