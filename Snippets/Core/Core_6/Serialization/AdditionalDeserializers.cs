@@ -1,4 +1,4 @@
-﻿namespace Core6
+﻿namespace Core6.Serialization
 {
     using NServiceBus;
 
@@ -10,7 +10,7 @@
             // configures XML serialization as default
             endpointConfiguration.UseSerialization<XmlSerializer>();
             // configures additional deserialization
-            endpointConfiguration.AddDeserializer<JsonSerializer>();
+            endpointConfiguration.AddDeserializer<JsonSerializer>().Settings("serializerSetting");
             #endregion
         }
     }
