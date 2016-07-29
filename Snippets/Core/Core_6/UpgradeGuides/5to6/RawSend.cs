@@ -4,6 +4,7 @@ namespace Core6.UpgradeGuides._5to6
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using NServiceBus;
+    using NServiceBus.DeliveryConstraints;
     using NServiceBus.Extensibility;
     using NServiceBus.Routing;
     using NServiceBus.Transport;
@@ -18,7 +19,7 @@ namespace Core6.UpgradeGuides._5to6
             var outgoingMessage = new OutgoingMessage("MessageId", headers, new byte[]
             {
             });
-            NonDurableDelivery[] constraints =
+            var constraints = new List<DeliveryConstraint>
             {
                 new NonDurableDelivery()
             };

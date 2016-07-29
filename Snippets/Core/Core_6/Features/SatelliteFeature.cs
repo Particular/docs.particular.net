@@ -6,7 +6,6 @@
     using NServiceBus.ObjectBuilder;
     using NServiceBus.Pipeline;
     using NServiceBus.Transport;
-    using NServiceBus.Transports;
 
     #region SimpleSatelliteFeature
     public class MySatelliteFeature :
@@ -23,6 +22,10 @@
                 transportAddress: "targetQueue",
                 requiredTransportTransactionMode: TransportTransactionMode.TransactionScope,
                 runtimeSettings: PushRuntimeSettings.Default,
+                recoverabilityPolicy: (config, errorContext) =>
+                {
+                    return RecoverabilityAction.MoveToError(config.Failed.ErrorQueue);
+                },
                 onMessage: OnMessage);
         }
 

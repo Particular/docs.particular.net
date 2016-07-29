@@ -2,6 +2,7 @@
 {
     using System;
     using NServiceBus;
+    using NServiceBus.Transport;
 
     static class SimplePolicy
     {
@@ -11,8 +12,9 @@
 
             #region 5to6-SecondLevelRetriesCustomPolicy
 
-            var retriesSettings = endpointConfiguration.SecondLevelRetries();
-            retriesSettings.CustomRetryPolicy(MyCustomRetryPolicy);
+            var recoverabilitySettings = endpointConfiguration.Recoverability();
+            recoverabilitySettings.Delayed(delayed => delayed.NumberOfRetries(3)); // desired number of retries
+            recoverabilitySettings.CustomPolicy(MyCustomRetryPolicy);
 
             #endregion
         }
@@ -20,17 +22,25 @@
 
         #region 5to6-SecondLevelRetriesCustomPolicyHandler
 
-        static TimeSpan MyCustomRetryPolicy(SecondLevelRetryContext context)
+        static RecoverabilityAction MyCustomRetryPolicy(RecoverabilityConfig config, ErrorContext context)
         {
-            var numberOfRetries = context.SecondLevelRetryAttempt;
+            var numberOfRetries = context.DelayedDeliveriesPerformed;
             var exceptionInstance = context.Exception;
 
-            // perform some logic and decide when to retry
-            return TimeSpan.FromSeconds(5);
+            // call the default recoverability of default behavior is desired
+            var action = DefaultRecoverabilityPolicy.Invoke(config, context);
+
+            var delayedRetryAction = action as DelayedRetry;
+            if (delayedRetryAction != null)
+            {
+                // perform some logic and decide when to do delayed retries
+                return RecoverabilityAction.DelayedRetry(TimeSpan.FromSeconds(5));
+            }
+
+            return action;
         }
 
         #endregion
     }
 
 }
-

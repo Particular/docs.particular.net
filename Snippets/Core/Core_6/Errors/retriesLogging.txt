@@ -1,33 +1,39 @@
 startcode RetryLogging 6
 
-Handler - Attempt 1
-Info. TransportReceiver. Exception included. Text: Failed to process message.
+Handler - attempt 1
+Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
 
-Handler - Attempt 2
-Info. TransportReceiver. Exception included. Text: Failed to process message.
+Handler - attempt 2
+Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
 
-Handler - Attempt 3
-Info. TransportReceiver. Exception included. Text: Failed to process message.
-Warn. FaultManager. Exception omitted. Text: Message with 'messageId' id has failed FLR and will be handed over to SLR for retry attempt 1.
+Handler - attempt 3
+Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
 
-Handler - Attempt 4
-Info. TransportReceiver. Exception included. Text: Failed to process message.
+Handler - attempt 4
+Warn  NServiceBus.RecoverabilityExecutor Second Level Retry will reschedule message 'messageId' after a delay of 00:00:10 because of an exception:
 
-Handler - Attempt 5
-Info. TransportReceiver. Exception included. Text: Failed to process message.
+Handler - attempt 5
+Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
 
-Handler - Attempt 6
-Info. TransportReceiver. Exception included. Failed to process message.
-Warn. FaultManager. Exception omitted. Text: Message with 'messageId' id has failed FLR and will be handed over to SLR for retry attempt 2.
+Handler - attempt 6
+Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
 
-Handler - Attempt 7
-Info. TransportReceiver. Exception included. Text: Failed to process message.
+Handler - attempt 7
+Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
 
-Handler - Attempt 8
-Info. TransportReceiver. Exception included. Text: Failed to process message.
+Handler - attempt 8
+Warn  NServiceBus.RecoverabilityExecutor Second Level Retry will reschedule message 'messageId' after a delay of 00:00:20 because of an exception:
 
-Handler - Attempt 9
-Info. TransportReceiver. Exception included. Text: Failed to process message.
-Error. FaultManager. Exception omitted. Text: SLR has failed to resolve the issue with message messageId and will be forwarded to the error queue at error@machine.
+Handler - attempt 9
+Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
+
+Handler - attempt 10
+Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
+
+Handler - attempt 11
+Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
+
+Handler - attempt 12
+Error NServiceBus.RecoverabilityExecutor Moving message 'messageId' to the error queue 'error' because processing failed due to an exception:
 
 endcode

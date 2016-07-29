@@ -4,6 +4,8 @@ summary: Certain types of exceptions cannot be handled nativity by NServiceBus.
 tags:
 - Exceptions
 - Error Handling
+redirects:
+ - nservicebus/errors/exception-caveats
 ---
 
 Certain types of exceptions are special in their behavior and may require custom handling.

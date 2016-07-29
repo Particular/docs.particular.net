@@ -9,14 +9,13 @@
         {
             #region SlrCodeFirstConfiguration
 
-            var recoverabilitySettings = endpointConfiguration.Recoverability();
-            recoverabilitySettings.Delayed(
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.Delayed(
                 delayed =>
                 {
-                    var numberOfRetries = delayed.NumberOfRetries(2);
-                    numberOfRetries.TimeIncrease(TimeSpan.FromMinutes(5));
+                    var retries = delayed.NumberOfRetries(2);
+                    retries.TimeIncrease(TimeSpan.FromMinutes(5));
                 });
-
             #endregion
         }
     }
