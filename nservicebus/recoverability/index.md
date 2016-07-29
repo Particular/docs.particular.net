@@ -88,6 +88,7 @@ For more information about how to configure delayed retries, refer to [configure
 
 NOTE: Retrying messages for extended periods of time would hide failures from operators, thus preventing them from taking manual action to honor their Service Level Agreements. To avoid this, NServiceBus will make sure that no message is retried for more than 24 hours before being sent the error queue.
 
+
 ### Transport transaction requirements
 
 The Delayed Retries mechanism is implemented by rolling back the [transport transaction](/nservicebus/transports/transactions.md) and scheduling the message for [delayed-delivery](/nservicebus/messaging/delayed-delivery.md). Aborting the receive operation when transactions are turned off would result in a message loss. Therefore Delayed Retries cannot be used when transport transactions are disabled and delayed-delivery is not supported.
