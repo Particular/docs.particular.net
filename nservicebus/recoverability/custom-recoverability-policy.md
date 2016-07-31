@@ -6,7 +6,6 @@ tags:
  - Exceptions
  - Retry
  - Recoverability
-redirects:
 related:
  - samples/faulttolerance
 ---
@@ -15,40 +14,47 @@ related:
 
 The default Recoverability Policy is implemented in `DefaultRecoverabilityPolicy` and publicly exposed for use cases when the default recoverability behavior needs to be reused as part of a custom recoverability policy. The default policy takes into account the settings provided for Immediate Retries, Delayed Retries and the configured error queue. The default policy works like the following:
 
-1. When an exception of type `MessageDeserializedException` was raised, the `MoveToError` recoverability action is returned with the default error queue.
-2. If the `ImmediateProcessingFailures` is less or equal to the configured `MaxNumberOfRetries` for Immediate Retries, the `ImmediateRetry` recoverability action is returned.
-3. When Immediate Retries are exceeded the Delayed Retries configuration is considered. If the `DelayedDeliveriesPerformed` is less or equal than `MaxNumberOfRetries` and the message hasn't reached the maximum time allowed for retries (24 hours), the `DelayedRetry` recoverability action is returned. The delay is calculated according to the following formula:
-delay = DelayedRetry.TimeIncrease * (DelayedDeliveriesPerformed + 1)
-4. If `MaxNumberOfRetries` for both ImmediateRetries and DelayedRetries is exceeded, the `MoveToError` recoverability action is returned with the default error queue.
+ 1. When an exception of type `MessageDeserializedException` was raised, the `MoveToError` recoverability action is returned with the default error queue.
+ 1. If the `ImmediateProcessingFailures` is less or equal to the configured `MaxNumberOfRetries` for Immediate Retries, the `ImmediateRetry` recoverability action is returned.
+ 1. When Immediate Retries are exceeded the Delayed Retries configuration is considered. If the `DelayedDeliveriesPerformed` is less or equal than `MaxNumberOfRetries` and the message hasn't reached the maximum time allowed for retries (24 hours), the `DelayedRetry` recoverability action is returned. The delay is calculated according to the following formula:
+
+ `delay = DelayedRetry.TimeIncrease * (DelayedDeliveriesPerformed + 1)`
+
+ 1. If `MaxNumberOfRetries` for both ImmediateRetries and DelayedRetries is exceeded, the `MoveToError` recoverability action is returned with the default error queue.
+
 
 ## Fallback
 
-As outlined in the [Recoverability introduction](/nservicebus/recoverability/) Immediate and Delayed Retries can only be performed under certain conditions. If a custom Recoverability Policy returns a recoverability action which cannot be fulfilled by the infrastructure, the decision will be overriden with the `MoveToError` recoverability action with the default error queue. This behavior is for safety reasons and cannot be overriden.
+As outlined in the [Recoverability introduction](/nservicebus/recoverability/) Immediate and Delayed Retries can only be performed under certain conditions. If a custom Recoverability Policy returns a recoverability action which cannot be fulfilled by the infrastructure, the decision will be overridden with the `MoveToError` recoverability action with the default error queue. This behavior is for safety reasons and cannot be overridden.
+
 
 ## Recoverability Configuration
 
 `RecoverabilityConfig` contains all required information to take into account when a recoverability policy is implemented. It provides the following information that has been provided via configuration:
 
-* Maximum number of retries for Immediate Retries
-* Maximum number of retries for Delayed Retries
-* Time of increase for individual Delayed Retries
-* Configured error queue address
+ * Maximum number of retries for Immediate Retries
+ * Maximum number of retries for Delayed Retries
+ * Time of increase for individual Delayed Retries
+ * Configured error queue address
 
 The information provided on the configuration is static and will not change between subsequent executions of the policy.
 
 NOTE: In cases when Immediate and/or Delayed Retry capabilities have been turned off and/or are not available, MaxNumberOfRetries exposed to recoverability policy will be set to 0 (zero).
 
+
 ## Error Context
 
 `ErrorContext` contains all required information to take into account regarding the currently failing message. It provides the following information:
 
-* Exception which caused the message to fail
-* Transport transaction on which the message failed
-* Number of failed immediate processing attempts
-* Number of delayed deliveries performed
-* Message which failed
+ * Exception which caused the message to fail
+ * Transport transaction on which the message failed
+ * Number of failed immediate processing attempts
+ * Number of delayed deliveries performed
+ * Message which failed
+
 
 ## Implement a custom policy
+
 
 ### Partial customization
 
@@ -66,7 +72,7 @@ If the Default Recoverability Policy just needs to be tweaked for `MyBusinessExc
 
 snippet:CustomExceptionPolicyHandler
 
-If more control over Recoverability is desired the Recoverability delegate can be overriden completely.
+If more control over Recoverability is desired the Recoverability delegate can be overridden completely.
 
 ### Full customization
 
