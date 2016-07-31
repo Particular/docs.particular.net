@@ -9,7 +9,7 @@ tags:
 - Exceptions
 - Retry
 related:
-- nservicebus/errors
+- nservicebus/recoverability
 ---
 
 Run the sample **without debugging**.

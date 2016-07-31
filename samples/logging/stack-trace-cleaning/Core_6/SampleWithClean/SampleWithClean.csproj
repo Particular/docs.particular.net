@@ -39,8 +39,9 @@
     <Reference Include="NLog">
       <HintPath>..\..\..\..\..\packages\NLog.4.3.6\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0004\lib\net452\NServiceBus.Core.dll</HintPath>
+    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0006\lib\net452\NServiceBus.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.NLog.2.0.0-beta0001\lib\net452\NServiceBus.NLog.dll</HintPath>
@@ -50,12 +51,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ErrorQueueHeader\ReplaceStackTraceFeature.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="Logging\CustomExceptionLayoutRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Message.cs" />
-    <Compile Include="ErrorQueueHeader\ReplaceStackTraceBehavior.cs" />
+    <Compile Include="ErrorQueueHeader\StackTraceCleaner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

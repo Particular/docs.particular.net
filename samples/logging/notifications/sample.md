@@ -3,9 +3,7 @@ title: Notifications
 reviewed: 2016-03-24
 component: Core
 related:
-- nservicebus/errors/subscribing-to-error-notifications
-- nservicebus/errors/automatic-retries
-- nservicebus/errors
+- nservicebus/recoverability
 ---
 
 ## Code walk-through

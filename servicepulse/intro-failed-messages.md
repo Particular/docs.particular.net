@@ -8,7 +8,7 @@ related:
 - serviceinsight/managing-errors-and-retries
 ---
 
-When an NServiceBus endpoint fails to process a message, it performs a set of configurable attempts to recover from this failure. These attempts are referred to as First Level Retries (FLR) and Second Level Retries (SLR) and in many cases allow the endpoint to overcome intermittent communication failures. For more details see [Second Level Retries](/nservicebus/errors/automatic-retries.md).
+When an NServiceBus endpoint fails to process a message, it performs a set of configurable attempts to recover from this failure. These attempts are referred to as "immediate retries" and "delayed retries" and in many cases allow the endpoint to overcome intermittent communication failures. For more details see [recoverability](/nservicebus/recoverability/).
 
 If the FLR and SLR processing attempts also fail, the endpoint forwards the failed message to the central error queue defined for all endpoints in the system. (See [Auditing with NServiceBus](/nservicebus/operations/auditing.md).)
 
@@ -36,7 +36,6 @@ Click the title of a group or the View Messages link to open a list of all of th
 The second tab will display all failed messages. The functionality is the same as viewing the messages in a group.
 
 ![Failed Messages Page](intro-failed-messages-failed-messages-page.png 'width=500')
-
 
  * **Message Details:** For each failed message, displays the message type, exception description, endpoint name and location, and failure timestamp.
  * **StackTrace:** Displays the full .NET exception stacktrace.

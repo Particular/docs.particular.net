@@ -6,7 +6,7 @@ redirects:
 - nservicebus/transactions-message-processing
 related:
 - nservicebus/outbox
-- nservicebus/errors
+- nservicebus/recoverability
 ---
 
 As a part of the NServiceBus "Fault-Tolerant by Default" design, the infrastructure manages transactions automatically so it is not required to remember the configuration of all threading and state management elements.
@@ -26,8 +26,7 @@ See also [Override the System.Transactions default timeout of 10 minutes](https:
 
 ## Distributed Transaction Coordinator
 
-In Windows, there is an OS-level service called the DTC that manages transactions needing to span multiple resources, like queues and databases. This service isn't always configured correctly and may require troubleshooting. Download a tool called
-[DTCPing](https://www.microsoft.com/en-us/download/details.aspx?id=2868) to help discover if one machine can access a remote machine over the DTC. The tool looks like this.
+In Windows, there is an OS-level service called the DTC that manages transactions needing to span multiple resources, like queues and databases. This service isn't always configured correctly and may require troubleshooting. Download a tool called [DTCPing](https://www.microsoft.com/en-us/download/details.aspx?id=2868) to help discover if one machine can access a remote machine over the DTC. The tool looks like this.
 
 ![this is what the initial DTCPing window to look like.](dtcping.png "this is what the initial DTCPing window to look like.")
 
@@ -66,12 +65,12 @@ Messages are processed in NServiceBus as follows:
  1. If the thread is able to get it, NServiceBus tries to deserialize the message. If this fails, the message moves to the configured error queue and the transaction commits.
  1. After a successful deserialization, NServiceBus invokes all infrastructure, message mutators and handlers. An exception in this step causes the transaction to roll back and the message to return to the input queue.
     * This happens the "MaxRetries" [configurable](/nservicebus/msmq/transportconfig.md#maxretries) number of times.
-    * After that, the message passes to the [Second Level Retries (SLR).](/nservicebus/errors/automatic-retries.md)
+    * After that, the message passes to the [delayed retries](/nservicebus/recoverability/#delayed-retries).
     * If after SLR the error still occurs, the message will be moved to the configured error queue.
 
 In this manner, even under all kinds of failure conditions like the application server restarting in the middle of a message or a database deadlock, messages are not lost.
 
-The automatic retry mechanism is usually able to recover from most temporary problems. When that isn't possible, the message is passed to the [SLR](/nservicebus/errors/automatic-retries.md) to decide what to do next.
+The automatic retry mechanism is usually able to recover from most temporary problems. When that isn't possible, the message is passed to the [delayed retries](/nservicebus/recoverability/#delayed-retries) to decide what to do next.
 
 
 ## Resolving more permanent errors
@@ -83,7 +82,5 @@ In situations where more permanent errors affect systems, despite their diversit
  * The system was upgraded accidentally, breaking backwards compatibility.
 
 In all of the above, administrative action is needed, from things as simple as bringing up a database or web service again, to more complex actions like reverting to the previous version of the system.
-
-SLRs also aids in the [resolution of more permanent errors](/nservicebus/errors/automatic-retries.md).
 
 There is nothing necessarily wrong with the message itself. It might contain valuable information that shouldn't get lost under these conditions. After the administrator finishes resolving the issue, they should return the message to the queue it came from.

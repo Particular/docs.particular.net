@@ -8,8 +8,8 @@
         {
             #region DisableSlrWithCode
 
-            var recoverabilitySettings = endpointConfiguration.Recoverability();
-            recoverabilitySettings.Delayed(
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.Delayed(
                 delayed =>
                 {
                     delayed.NumberOfRetries(0);

@@ -5,7 +5,7 @@ It is important to understand that the data is still collected even if ServiceCo
 To enable [ServiceControl](/servicecontrol) to gather this information, configure the solution appropriately:
 
  * [enable auditing](/nservicebus/operations/auditing.md) to collect data on individual messages;
- * configure the [error queue](/nservicebus/errors) to store information on messages failures;
+ * configure [recoverability](/nservicebus/recoverability) to store information on messages failures;
  * [install plugins on the endpoints](/servicecontrol/plugins/) to monitor their health and sagas and use custom checks.
 
 By default ServiceControl stores information for 30 days, but it can be [customized](/servicecontrol/creating-config-file.md).

@@ -5,6 +5,7 @@ reviewed: 2016-03-30
 redirects:
  - nservicebus/subscribing-to-push-based-error-notifications
  - nservicebus/errors/subscribing-to-push-based-error-notifications
+ - nservicebus/errors/subscribing-to-error-notifications
 related:
  - samples/logging/notifications
 ---

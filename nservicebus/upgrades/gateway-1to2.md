@@ -31,4 +31,4 @@ In Versions 2 and above the gateway has its own retry mechanism. It will retry f
 
 In Versions 2 and above the gateway does not provide any error notifications. When an error occurs during sending of a message to other sites, the message will be retried and possibly moved to the error queue. The user will not be notified about these events.
 
-Note that in Version 1, when the user [subscribes to error notifications](/nservicebus/errors/subscribing-to-error-notifications.md) they receive notification in the situation described above.
+Note that in Version 1, when the user [subscribes to error notifications](/nservicebus/recoverability/subscribing-to-error-notifications.md) they receive notification in the situation described above.

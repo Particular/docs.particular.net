@@ -4,7 +4,6 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 using NServiceBus;
-using NServiceBus.Features;
 
 class Program
 {
@@ -51,11 +50,15 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
-        #region disable-retries
-        endpointConfiguration.DisableFeature<FirstLevelRetries>();
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        DisableRetries(endpointConfiguration);
+
+        #region customization-config
+
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Failed(failed => failed.HeaderCustomization(StackTraceCleaner.CleanUp));
+
         #endregion
+
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         try
@@ -68,6 +71,20 @@ class Program
             await endpointInstance.Stop()
                 .ConfigureAwait(false);
         }
+    }
+
+    static void DisableRetries(EndpointConfiguration endpointConfiguration)
+    {
+        #region disable-retries
+
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Immediate(
+            customizations: immediate => { immediate.NumberOfRetries(0); });
+        recoverability.Delayed(
+            customizations: delayed => { delayed.NumberOfRetries(0); });
+        endpointConfiguration.SendFailedMessagesTo("error");
+
+        #endregion
     }
 
     static async Task Run(IEndpointInstance endpointInstance)

@@ -78,14 +78,9 @@ A Saga can be thought of as a long running Handler that handles multiple Message
 A Timeout is a message a Saga sends to its future self to indicate the fact that some action needs to be performed. A timeout can contain state which provides the context for that action.
 
 
-### [Retries](/nservicebus/errors/automatic-retries.md)
+### [Recoverability](/nservicebus/recoverability/)
 
-NServiceBus has retry logic which surrounds all calls to user code. This allows failing business code to be retried in a sensible way in order to resolve any interim problems (such as a database server restart).
-
-
-### [Error Queue](/nservicebus/errors/)
-
-Messages that fail all retries are send to a error queue for triage for either a retry or discarding.
+NServiceBus has retry logic which surrounds all calls to user code. This allows failing business code to be retried in a sensible way in order to resolve any interim problems (such as a database server restart). Messages that fail all retries are send to a error queue for triage for either a retry or discarding.
 
 
 ### [Pipeline](/nservicebus/pipeline/)

@@ -7,7 +7,7 @@ summary: How are individual messages identified?
 
 Each message that is dispatched from an [Endpoint](/nservicebus/endpoints/) has a unique identity. NServiceBus generates and stores this value as a [header](/nservicebus/messaging/headers.md) on the message named `NServiceBus.MessageId`. If the selected transport supports message identity, and there is value in using the NServiceBus MessageId, this value can be optionally used as the transport level message identity as well.
 
-Many features take advantage of message identity. For example, the [Outbox](/nservicebus/outbox) uses message identity to deduplicate messages and [First Level Retries](/nservicebus/errors/automatic-retries.md) uses message identity to keep track of how many times the endpoint has tried to process a message.
+Many features take advantage of message identity. For example, the [Outbox](/nservicebus/outbox) uses message identity to deduplicate messages and [recoverability](/nservicebus/recoverability/) uses message identity to keep track of how many times the endpoint has tried to process a message.
 
 
 ## Specifying message identity

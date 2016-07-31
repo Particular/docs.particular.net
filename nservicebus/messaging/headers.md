@@ -314,7 +314,7 @@ snippet: HeaderWriterAuditAudit
 
 ## Retries handling headers
 
-Headers used facilitate [Retries](/nservicebus/errors/automatic-retries.md).
+Headers used to facilitate [Retries](/nservicebus/recoverability/).
 
 
 ### NServiceBus.FailedQ
@@ -334,12 +334,12 @@ The number of second-level retries that has been performed for a message.
 
 ### NServiceBus.Retries.Timestamp
 
-A timestamp used by [Second Level Retries](/nservicebus/errors/automatic-retries.md) to determine if the maximum time for retrying has been reached.
+A timestamp used by [Delayed Retries](/nservicebus/recoverability/#delayed-retries) to determine if the maximum time for retrying has been reached.
 
 
 ## Error forwarding headers
 
-When a message is sent to the [Error](/nservicebus/errors/) queue, it will have the following extra headers added to the existing headers. If retries occurred, then those messages will be included with the exception of `NServiceBus.Retries`, which is removed.
+When a message handled by [recoverability](/nservicebus/recoverability/), it will have the following extra headers added to the existing headers. If retries occurred, then those messages will be included with the exception of `NServiceBus.Retries`, which is removed.
 
 
 ### NServiceBus.ExceptionInfo.ExceptionType

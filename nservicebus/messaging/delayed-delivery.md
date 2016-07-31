@@ -43,11 +43,18 @@ snippet:delayed-delivery-datetime
 
 ## Caveats
 
-In order to use message deferral the Timeout Manager feature must be enabled. When deferring a message, it is sent to the timeout manager requesting it to deliver the message at a later time.
+Delayed delivery of messages is only supported when the following requirements are met:
+
+* The Timeout Manager feature is enabled or
+* The transport supports delayed delivery natively
+* The transport supports transactions
+* The endpoint is not a send-only endpoint.
+
+When deferring a message, it is sent to the timeout manager requesting it to deliver the message at a later time or deferred by using the transports native capability to defer messages.
 
 snippet:configure-timeout-manager
 
-NOTE: In Versions 4, 5 and 6 Timeout Manager is enabled by default.
+NOTE: In Versions 4, 5 and 6 Timeout Manager is enabled by default. In Version 6 the timeout manager disables itself automatically when the endpoint is a send-only endpoint or the transport supports delayed delivery natively.
 
 NOTE: The sending endpoint must be running when the timeout is reached in order for the message to be sent. If the endpoint is not running when the timeout is reached then the message will be sent when the endpoint is next started.
 

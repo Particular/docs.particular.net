@@ -8,7 +8,7 @@ tags:
 - Logging
 ---
 
-For many scenarios NServiceBus has built-in [error and exception management](/nservicebus/errors/), for example [message retrying](/nservicebus/errors/automatic-retries.md), however certain scenarios are not possible to handle in a graceful way. The reason for this is that NServiceBus does not have enough context to make a sensible decision on how to proceed after these error have occurred. Some of these **Critical Errors** include:
+For many scenarios NServiceBus has built-in [recoverability](/nservicebus/recoverability/), however certain scenarios are not possible to handle in a graceful way. The reason for this is that NServiceBus does not have enough context to make a sensible decision on how to proceed after these error have occurred. Some of these **Critical Errors** include:
 
  * An Exception occurs when NServiceBus is attempting to move a message to the Error Queue.
  * There are repeated failures in reading information from a required storage.

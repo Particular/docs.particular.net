@@ -17,9 +17,17 @@ static class Program
             .Level(LogLevel.Warn);
 
         #region DisableSLR
+
         var endpointConfiguration = new EndpointConfiguration("Samples.ErrorHandling.WithoutSLR");
-        endpointConfiguration.SecondLevelRetries().Disable();
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Delayed(
+            customizations: delayed =>
+            {
+                delayed.NumberOfRetries(0);
+            });
+
         #endregion
+
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
