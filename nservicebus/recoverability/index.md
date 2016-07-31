@@ -80,7 +80,7 @@ The Immediate Retry mechanism is implemented by making the message available for
 
 ## Delayed Retries
 
-Delayed Retries introduces another level of retry mechanism for messages that fail processing. Delayed Retries schedules message delivery to the endpoint's input queue with increasing delay, by default first wiht 10 seconds delay, then 20, and lastly with 30 seconds delay.
+Delayed Retries introduces another level of retry mechanism for messages that fail processing. Delayed Retries schedules message delivery to the endpoint's input queue with increasing delay, by default first with 10 seconds delay, then 20, and lastly with 30 seconds delay.
 
 Delayed Retries might be useful when dealing with unreliable third-party resources - for example, if there is a call to a Web Service in the handler, but the service goes down for a couple of seconds once in a while. Without Delayed Retries, the message is retried instantly and sent to the error queue. With Delayed Retries, the message is instantly retried, deferred for 10 seconds, and then retried again. This way, when the Web Service is available the message is processed just fine.
 

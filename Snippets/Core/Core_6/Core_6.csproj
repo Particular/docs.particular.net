@@ -121,6 +121,7 @@
     <Compile Include="Errors\ImmediateRetries\ConfigurationSource\Usage.cs" />
     <Compile Include="Errors\ImmediateRetries\ImmediateRetriesCodeFirstConfiguration.cs" />
     <Compile Include="Errors\ImmediateRetries\ProvideConfiguration.cs" />
+    <Compile Include="Features\SatelliteRecoverability.cs" />
     <Compile Include="Features\AdvancedSatelliteFeature.cs" />
     <Compile Include="Features\SatelliteFeature.cs" />
     <Compile Include="Handlers\AsyncHandler.cs" />

@@ -5,7 +5,6 @@
     using NServiceBus;
     using NServiceBus.Features;
     using NServiceBus.ObjectBuilder;
-    using NServiceBus.Pipeline;
     using NServiceBus.Transport;
 
     public class MyAdvancedSatelliteFeature :
@@ -37,8 +36,8 @@
             // To raise a critical error
             var exception = new Exception("CriticalError occurred");
 
-            builder.Build<CriticalError>()
-                .Raise("Something bad happened - trigger critical error", exception);
+            var criticalError = builder.Build<CriticalError>();
+            criticalError.Raise("Something bad happened - trigger critical error", exception);
 
             return Task.FromResult(true);
         }
@@ -46,24 +45,4 @@
         #endregion
     }
 
-    #region AdvancedSatelliteBehavior
-    class MyAdvancedSatelliteBehavior :
-        PipelineTerminator<ISatelliteProcessingContext>
-    {
-        CriticalError criticalError;
-
-        public MyAdvancedSatelliteBehavior(CriticalError criticalError)
-        {
-            this.criticalError = criticalError;
-        }
-
-        protected override Task Terminate(ISatelliteProcessingContext context)
-        {
-            // To raise a critical error
-            var exception = new Exception("CriticalError occurred");
-            criticalError.Raise("Something bad happened - trigger critical error", exception);
-            return Task.FromResult(true);
-        }
-    }
-    #endregion
 }

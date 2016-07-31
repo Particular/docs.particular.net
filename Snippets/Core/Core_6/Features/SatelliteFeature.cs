@@ -4,7 +4,6 @@
     using NServiceBus;
     using NServiceBus.Features;
     using NServiceBus.ObjectBuilder;
-    using NServiceBus.Pipeline;
     using NServiceBus.Transport;
 
     #region SimpleSatelliteFeature
@@ -38,16 +37,4 @@
     }
     #endregion
 
-    #region SatelliteBehavior
-    class MySatelliteBehavior :
-        PipelineTerminator<ISatelliteProcessingContext>
-    {
-        protected override Task Terminate(ISatelliteProcessingContext context)
-        {
-            // Implement what this satellite needs to do once it receives a message
-            var incomingMessage = context.Message;
-            return Task.FromResult(true);
-        }
-    }
-    #endregion
 }
