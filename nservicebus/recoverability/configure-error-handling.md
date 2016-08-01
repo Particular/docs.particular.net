@@ -1,5 +1,5 @@
 ---
-title: Configure the error handling
+title: Configure error handling
 summary: Messages that failed a certain number of times will be forwarded to the error queue. This page shows how to configure the error queue address.
 tags:
  - Error Handling
