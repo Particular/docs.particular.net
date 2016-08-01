@@ -1,5 +1,5 @@
 ---
-title: Implement a custom Recoverability Policy
+title: Custom Recoverability Policy
 summary: Shows how to take full control over Recoverability by implementing a Recoverability Policy
 tags:
  - Error Handling
