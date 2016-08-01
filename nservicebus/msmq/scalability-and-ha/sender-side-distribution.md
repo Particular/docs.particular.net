@@ -59,7 +59,7 @@ There are many different options to consider when deploying routing configuratio
 * The mapping file can be kept in a centralized location and replicated out to many servers on demand, allowing each endpoint to read the file from a location on the local disk.
 * Each endpoint can keep its own instance mapping file containing only information for the endpoints it needs to know about, which can be deployed in the same directory as the endpoint binaries and only modified as part of a controlled deployment process.
 
-You can change the following default settings:
+The following default settings can be adjusted:
  
  
 ### RefreshInterval
