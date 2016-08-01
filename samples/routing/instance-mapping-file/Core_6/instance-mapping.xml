@@ -1,0 +1,19 @@
+<!--startcode instanceMapping-->
+<endpoints>
+  <endpoint name="Samples.CustomRouting.Sales">
+    <!-- Scaled-out endpoint -->
+    <instance Machine="Sales1"/>
+    <instance Machine="Sales2"/>
+  </endpoint>
+  <endpoint name="Samples.CustomRouting.Client">
+    <instance Machine="FrontEnd"/>
+  </endpoint>
+  <!--Multiple endpoints hosted on same machine-->
+  <endpoint name="Samples.CustomRouting.Billing">
+    <instance Machine="BackEnd"/>
+  </endpoint>
+  <endpoint name="Samples.CustomRouting.Shipping">
+    <instance Machine="BackEnd"/>
+  </endpoint>
+</endpoints>
+<!--endcode-->
