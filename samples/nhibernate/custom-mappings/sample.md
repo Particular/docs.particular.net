@@ -1,5 +1,5 @@
 ---
-title: NHibernate Custom mapping with hbm.xml, attributes or fluent API
+title: NHibernate Custom mapping
 summary: Create a custom mapping to change how NHibernate creates the database schema using different techniques.
 reviewed: 2016-03-21
 component: NHibernate
