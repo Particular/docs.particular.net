@@ -1,19 +1,20 @@
-﻿namespace Core5.Forwarding
+﻿namespace Core4.Recoverability.Immediate.ConfigurationSource
 {
     using System.Configuration;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
-    #region ConfigurationSourceForMessageForwarding
+
+    #region FlrConfigurationSource
     public class ConfigurationSource :
         IConfigurationSource
     {
         public T GetConfiguration<T>() where T : class, new()
         {
-            if (typeof(T) == typeof(UnicastBusConfig))
+            if (typeof(T) == typeof(TransportConfig))
             {
-                var config = new UnicastBusConfig
+                var config = new TransportConfig
                 {
-                    ForwardReceivedMessagesTo = "destinationQueue@machine"
+                    MaxRetries = 2
                 };
 
                 return config as T;

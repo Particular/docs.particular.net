@@ -1,19 +1,23 @@
-﻿namespace Core5.Forwarding
+﻿namespace Core5.Recoverability.Delayed.ConfigurationSource
 {
+    using System;
     using System.Configuration;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
-    #region ConfigurationSourceForMessageForwarding
+
+    #region SlrConfigurationSource
     public class ConfigurationSource :
         IConfigurationSource
     {
         public T GetConfiguration<T>() where T : class, new()
         {
-            if (typeof(T) == typeof(UnicastBusConfig))
+            if (typeof(T) == typeof(SecondLevelRetriesConfig))
             {
-                var config = new UnicastBusConfig
+                var config = new SecondLevelRetriesConfig
                 {
-                    ForwardReceivedMessagesTo = "destinationQueue@machine"
+                    Enabled = true,
+                    NumberOfRetries = 2,
+                    TimeIncrease = TimeSpan.FromSeconds(10)
                 };
 
                 return config as T;

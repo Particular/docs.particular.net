@@ -12,9 +12,14 @@
 
             #region 5to6-SecondLevelRetriesCustomPolicy
 
-            var recoverabilitySettings = endpointConfiguration.Recoverability();
-            recoverabilitySettings.Delayed(delayed => delayed.NumberOfRetries(3)); // desired number of retries
-            recoverabilitySettings.CustomPolicy(MyCustomRetryPolicy);
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.Delayed(
+                customizations: delayed =>
+                {
+                    // desired number of retries
+                    delayed.NumberOfRetries(3);
+                });
+            recoverability.CustomPolicy(MyCustomRetryPolicy);
 
             #endregion
         }

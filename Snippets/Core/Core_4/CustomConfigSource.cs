@@ -28,10 +28,11 @@
                 // the part being overridden
                 if (typeof(T) == typeof(RijndaelEncryptionServiceConfig))
                 {
-                    return new RijndaelEncryptionServiceConfig
+                    var config = new RijndaelEncryptionServiceConfig
                     {
                         Key = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"
-                    } as T;
+                    };
+                    return config as T;
                 }
                 // leaving the rest of the configuration as is:
                 return ConfigurationManager.GetSection(typeof(T).Name) as T;

@@ -9,13 +9,13 @@
         {
             #region 5to6-RecoverabilityCodeFirstApi
 
-            var recoverabilitySettings = endpointConfiguration.Recoverability();
-            recoverabilitySettings.Immediate(
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.Immediate(
                 customizations: immediate =>
                 {
                     immediate.NumberOfRetries(3);
                 });
-            recoverabilitySettings.Delayed(
+            recoverability.Delayed(
                 customizations: delayed =>
                 {
                     var numberOfRetries = delayed.NumberOfRetries(5);
@@ -29,13 +29,13 @@
         {
             #region 5to6-RecoverabilityDisableRetries
 
-            var recoverabilitySettings = endpointConfiguration.Recoverability();
-            recoverabilitySettings.Immediate(
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.Immediate(
                 customizations: immediate =>
                 {
                     immediate.NumberOfRetries(0);
                 });
-            recoverabilitySettings.Delayed(
+            recoverability.Delayed(
                 customizations: delayed =>
                 {
                     delayed.NumberOfRetries(0);

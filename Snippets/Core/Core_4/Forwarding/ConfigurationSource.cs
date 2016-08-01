@@ -10,15 +10,14 @@
     {
         public T GetConfiguration<T>() where T : class, new()
         {
-            // To Provide UnicastBusConfig
             if (typeof(T) == typeof(UnicastBusConfig))
             {
-                var forwardingConfig = new UnicastBusConfig
+                var config = new UnicastBusConfig
                 {
                     ForwardReceivedMessagesTo = "destinationQueue@machine"
                 };
 
-                return forwardingConfig as T;
+                return config as T;
             }
 
             // To in app.config for other sections not defined in this method, otherwise return null.

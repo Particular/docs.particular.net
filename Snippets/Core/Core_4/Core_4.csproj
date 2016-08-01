@@ -63,7 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Errors\retriesLogging.txt" />
+    <Content Include="Recoverability\retriesLogging.txt" />
     <Content Include="Forwarding\ForwardingConfig.xml" />
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
@@ -80,8 +80,8 @@
     <Content Include="EndpointMapping\EndpointMapping.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
-    <Content Include="Errors\FirstLevel\flr.config.xml">
+    <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
+    <Content Include="Recoverability\Immediate\flr.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Monitoring\app.config.xml">
@@ -107,7 +107,7 @@
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
     <Compile Include="Encryption\MessageBody\Usage.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
+    <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicy.cs" />
     <Compile Include="Forwarding\ConfigurationSource.cs" />
     <Compile Include="Forwarding\ConfigurationSourceUsage.cs" />
     <Compile Include="Forwarding\ProvideConfiguration.cs" />
@@ -137,7 +137,7 @@
     <Compile Include="PubSub\Publishing\UserCreatedEvent.cs" />
     <Compile Include="PubSub\WithConvention\MessageToPublish.cs" />
     <Compile Include="PubSub\WithConvention\Usage.cs" />
-    <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
+    <Compile Include="Recoverability\Delayed\Usage.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
     <Compile Include="Lifecycle\IWantToRunWhenConfigurationIsComplete.cs" />
@@ -158,11 +158,11 @@
     <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
     <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
-    <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
-    <Compile Include="Errors\FirstLevel\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />
-    <Compile Include="Errors\SecondLevel\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Errors\SecondLevel\ConfigurationSource\Usage.cs" />
+    <Compile Include="Recoverability\ErrorQueue\ConfigurationSource\Usage.cs" />
+    <Compile Include="Recoverability\Immediate\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Recoverability\Immediate\ConfigurationSource\Usage.cs" />
+    <Compile Include="Recoverability\Delayed\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Recoverability\Delayed\ConfigurationSource\Usage.cs" />
     <Compile Include="Headers\IncomingBehavior.cs" />
     <Compile Include="Headers\OutgoingBehavior.cs" />
     <Compile Include="Headers\MutateIncomingTransportMessages.cs" />
@@ -179,10 +179,10 @@
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="Routing\EndpointMapping\ProvideConfiguration.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
-    <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
-    <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />
-    <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Recoverability\ErrorQueue\ProvideConfiguration.cs" />
+    <Compile Include="Recoverability\Immediate\ProvideConfiguration.cs" />
+    <Compile Include="Recoverability\Delayed\ProvideConfiguration.cs" />
+    <Compile Include="Recoverability\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Headers\SomeOtherMessage.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="CriticalErrors.cs" />
@@ -241,7 +241,7 @@
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
+    <Compile Include="Recoverability\Delayed\CustomPolicies\SimplePolicy.cs" />
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
@@ -255,7 +255,7 @@
     <Compile Include="Installers.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Errors\SecondLevel\SecondLevelReties.config.xml">
+    <Content Include="Recoverability\Delayed\SecondLevelReties.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">

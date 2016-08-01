@@ -1,19 +1,20 @@
-﻿namespace Core5.Forwarding
+﻿namespace Core6.Recoverability.ErrorHandling.ConfigurationSource
 {
     using System.Configuration;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
-    #region ConfigurationSourceForMessageForwarding
+
+    #region ErrorQueueConfigurationSource
     public class ConfigurationSource :
         IConfigurationSource
     {
         public T GetConfiguration<T>() where T : class, new()
         {
-            if (typeof(T) == typeof(UnicastBusConfig))
+            if (typeof(T) == typeof(MessageForwardingInCaseOfFaultConfig))
             {
-                var config = new UnicastBusConfig
+                var config = new MessageForwardingInCaseOfFaultConfig
                 {
-                    ForwardReceivedMessagesTo = "destinationQueue@machine"
+                    ErrorQueue = "error"
                 };
 
                 return config as T;

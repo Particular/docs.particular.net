@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EndpointName\EndpointMapping.config.xml" />
-    <Content Include="Errors\retriesLogging.txt" />
+    <Content Include="Recoverability\retriesLogging.txt" />
     <Content Include="Forwarding\ForwardingConfig.xml" />
     <Content Include="Headers\Writers\HeaderWriterDataBusConvention.txt" />
     <Content Include="Headers\Writers\HeaderWriterDataBusProperty.txt" />
@@ -95,7 +95,7 @@
     <Content Include="Outbox\EnablingInConfig.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Errors\SecondLevel\SecondLevelReties.config.xml">
+    <Content Include="Recoverability\Delayed\SecondLevelReties.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="UpgradeGuides\5to6\null.xml" />
@@ -103,8 +103,8 @@
     <Content Include="XmlElementPayload.xml" />
     <None Include="app.config" />
     <Content Include="EndpointMapping\EndpointMapping.config.xml" />
-    <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
-    <Content Include="Errors\FirstLevel\flr.config.xml" />
+    <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
+    <Content Include="Recoverability\Immediate\flr.config.xml" />
     <Content Include="Monitoring\ServiceControlEvents.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -151,8 +151,8 @@
     <Compile Include="UpgradeGuides\5to6\DelayedDelivery.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStartAndStop.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
-    <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
+    <Compile Include="Recoverability\Delayed\CustomPolicies\SimplePolicy.cs" />
+    <Compile Include="Recoverability\Delayed\Usage.cs" />
     <Compile Include="Features\FeatureConfiguration.cs" />
     <Compile Include="Features\MyFeature.cs" />
     <Compile Include="Handlers\GenericHandler.cs" />
@@ -204,15 +204,15 @@
     <Compile Include="Encryption\Configuration\FromCode.cs" />
     <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
     <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
-    <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
-    <Compile Include="Errors\FirstLevel\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />
-    <Compile Include="Errors\SecondLevel\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Errors\SecondLevel\ConfigurationSource\Usage.cs" />
-    <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />
-    <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
-    <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
-    <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Recoverability\ErrorQueue\ConfigurationSource\Usage.cs" />
+    <Compile Include="Recoverability\Immediate\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Recoverability\Immediate\ConfigurationSource\Usage.cs" />
+    <Compile Include="Recoverability\Delayed\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Recoverability\Delayed\ConfigurationSource\Usage.cs" />
+    <Compile Include="Recoverability\Delayed\ProvideConfiguration.cs" />
+    <Compile Include="Recoverability\ErrorQueue\ProvideConfiguration.cs" />
+    <Compile Include="Recoverability\Immediate\ProvideConfiguration.cs" />
+    <Compile Include="Recoverability\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Headers\MyMessage.cs" />
     <Compile Include="Headers\ReadHandler.cs" />
     <Compile Include="Headers\MutateOutgoingTransportMessages.cs" />
@@ -313,7 +313,7 @@
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Hosting.cs" />
     <Compile Include="Serialization\XmlSerializerUsage.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
+    <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicy.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transports\Throughput\Usage.cs" />
