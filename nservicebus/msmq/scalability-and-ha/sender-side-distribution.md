@@ -80,13 +80,6 @@ Default: `instance-mapping.xml`
 snippet: Routing-FileBased-FilePath
 
 
-### Examples of instance mapping files
-
-Following are examples of instance mapping configurations for the given sample routing:
-
-snippet:Routing-FileBased-Config
-
-
 #### Machine name
 
 The mapping file contains a `Machine` attribute which needs to be used when the receiving endpoint runs on a different machine. If no machine attribute is specified, MSMQ assumes the receiving endpoint is located on the same machine.
