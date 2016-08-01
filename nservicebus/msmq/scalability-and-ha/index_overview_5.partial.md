@@ -1,4 +1,4 @@
 
 Because of limitations of MSMQ related to remote receive, in order to scale out an MSMQ Version 5 (and below) endpoint have to use the [distributor](/nservicebus/scalability-and-ha/distributor/). The role of the distributor is to forward incoming messages to a number of workers in order to balance the load. The workers are "invisible" to the outside world because all the outgoing messages contain the distributor's (not the worker's) address in the `reply-to` header.
 
-The main issue with distributor is the throughput limitation due to the fact that, for each message forwarded to worker, there were additional two messages exchanged between the worker and the distributor.
+The main issue with distributor is the throughput limitation due to the fact that, for each message forwarded to worker, there are additional two messages exchanged between the worker and the distributor.

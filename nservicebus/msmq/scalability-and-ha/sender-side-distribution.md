@@ -47,11 +47,11 @@ snippet:Routing-FileBased-MSMQ
 By default, a round-robin distribution strategy is used to distribute messages between the available endpoint instances.
 
 
-## Mapping file
+## Instance mapping file
 
 The routing file is a simple XML file that has to be located either on a local hard drive or a network drive. When using MSMQ as the transport, NServiceBus will automatically look for an `instance-mapping.xml` file in `AppDomain.BaseDirectoy`.
 
-The mapping file is processed before the endpoint starts up and then re-processed at regular intervals so the changes in the document are reflected in the behavior of NServiceBus automatically. If the document is not present in its configured location when endpoint starts up, NServiceBus will refuse to run. If it is deleted when the endpoint is already running, it will continue to run normally (with the last successfully read routes).
+The mapping file is processed before the endpoint starts up and then re-processed at regular intervals so the changes in the document are reflected in the behavior of NServiceBus automatically. If the document is not present in its configured location when endpoint starts up, NServiceBus will not search again for the file at runtime. If it is deleted when the endpoint is already running, it will continue to run normally with the last successfully read routes.
 
 There are many different options to consider when deploying routing configuration.
 
@@ -80,12 +80,7 @@ Default: `instance-mapping.xml`
 snippet: Routing-FileBased-FilePath
 
 
-## The file
-
-The routing file is a simple XML file that has to be located either on local hard drive or a network drive. It is processed before the endpoint starts up and then re-processed in regular intervals so the changes in the document are reflected in the behavior of NServiceBus automatically (with slight delay caused by caching of routes). If the document is not present in its configured location when endpoint starts up, NServiceBus will not search again for the file during runtime. If it is deleted or corrupted while the endpoint is already running, NServiceBus will continue to run normally with last successfully read routes. 
-
-
-### Examples of routing files
+### Examples of instance mapping files
 
 Following are examples of instance mapping configurations for the given sample routing:
 
@@ -112,9 +107,9 @@ When using sender-side distribution, message senders have no knowledge of the st
 
 Therefore, when scaling down (removing a "target" endpoint instance from service), it is important to properly decommission the instance:
 
-1. Change the routing file to remove the target endpoint instance.
-1. Ensure that the updated routing information is distributed to all endpoint instances that might send a message to the target endpoint.
-1. Allow time (30 seconds by default) for all endpoints to reread the mapping file, and ensure no new messages are arriving in the target instance's queue.
+1. Change the instance mapping file to remove the target endpoint instance.
+1. Ensure that the updated instance mapping information is distributed to all endpoint instances that might send a message to the target endpoint.
+1. Allow time (30 seconds by default) for all endpoints to reread the instance mapping file, and ensure no new messages are arriving in the target instance's queue.
 1. Allow the target endpoint instance to complete processing all messages in its queue.
 1. Disable the target endpoint instance.
 1. Check the input queue of the decommissioned instance for leftover messages and move them to other instances if necessary.

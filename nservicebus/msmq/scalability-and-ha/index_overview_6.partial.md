@@ -1,5 +1,5 @@
 
-Because MSMQ does not allow performant remote receives in most cases scaling out requires sender-side round-robin distribution. When using MSMQ different instances are usually deployed to different (virtual) machines. The following routing file (see [scaling out with sender-side distribution](sender-side-distribution.md)) shows scaling out of the `Sales` endpoint. System administrators are able to spin-up new instances of the endpoint should the load increase and the only requirement is adding an entry to the routing file. No changes in the source code are required.
+Because MSMQ does not allow performant remote receives in most cases scaling out requires sender-side round-robin distribution. When using MSMQ different instances are usually deployed to different (virtual) machines. The following instance mapping file (see [scaling out with sender-side distribution](sender-side-distribution.md)) shows scaling out of the `Sales` endpoint. System administrators are able to spin-up new instances of the endpoint should the load increase and the only requirement is adding an entry to the instance mapping file. No changes in the source code are required.
 
 snippet:Routing-FileBased-MSMQ
 
