@@ -1,5 +1,6 @@
 ﻿namespace Core6.UpgradeGuides._5to6
 {
+    using System.Configuration;
     using System.Threading.Tasks;
     using NServiceBus;
 
@@ -8,7 +9,7 @@
         async Task Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, SendOptions sendOptions)
         {
             #region 5to6-Callbacks-InstanceId
-            endpointConfiguration.MakeInstanceUniquelyAddressable("uniqueId");
+            endpointConfiguration.MakeInstanceUniquelyAddressable(ConfigurationManager.AppSettings["InstanceId"]);
             #endregion
 
             #region 5to6-Callbacks
