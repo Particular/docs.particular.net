@@ -25,10 +25,12 @@ class Program
 
         #region FileInstanceMapping
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-        transport.DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"..\..\..\instance-mapping.xml");
+        var routing = transport.Routing();
+        var routingTable = routing.InstanceMappingFile();
+        routingTable.FilePath(@"..\..\..\instance-mapping.xml");
         #endregion
 
-        endpointConfiguration.Routing().RouteToEndpoint(typeof(PlaceOrder), "Samples.CustomRouting.Sales");
+        routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.CustomRouting.Sales");
 
         #region SimulateMultiMachine
         transport.SimulateMultipleMachines("FrontEnd");

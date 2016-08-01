@@ -1,6 +1,7 @@
 ---
 title: Mapping endpoint instances using a shared file
 summary: Mapping logical endpoints to physical instances using a shared file
+reviewed: 2016-09-01
 component: Core
 tags:
  - Routing
@@ -18,7 +19,7 @@ The sample demonstrates how to use a file to describe the mapping between logica
 
 ## Running the project
 
- 1. Start all the projects by hitting F5.
+ 1. Start the solution
  1. The text `Press <enter> to send a message` should be displayed in the Client's console window.
  1. Wait until all the endpoints exchange their routing information. Notice each endpoint logs the routing info as it discovers other endpoints.
  1. Hit `<enter>` several times to send some messages.
@@ -41,6 +42,13 @@ This sample contains four projects:
  * Sales - A console application responsible for processing the `PlaceOrder` command and generating `OrderAccepted` event.
  * Shipping - A console application responsible for processing the `OrderAccepted` message.
  * Billing - Another console application responsible for processing the `OrderAccepted` message.
+
+
+### Instance Mapping File
+
+Shared between all endpoints.
+
+snippet: instanceMapping
 
 
 ### Client

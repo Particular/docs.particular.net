@@ -19,7 +19,9 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-        transport.DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"..\..\..\instance-mapping.xml");
+        var routing = transport.Routing();
+        var routingTable = routing.InstanceMappingFile();
+        routingTable.FilePath(@"..\..\..\instance-mapping.xml");
         transport.SimulateMultipleMachines("Sales1");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

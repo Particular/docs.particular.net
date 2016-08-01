@@ -20,8 +20,10 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-        transport.DistributeMessagesUsingFileBasedEndpointInstanceMapping(@"..\..\..\instance-mapping.xml");
-        transport.RegisterPublisherForType("Samples.CustomRouting.Sales", typeof(OrderAccepted));
+        var routing = transport.Routing();
+        var routingTable = routing.InstanceMappingFile();
+        routingTable.FilePath(@"..\..\..\instance-mapping.xml");
+        routing.RegisterPublisher(typeof(OrderAccepted), "Samples.CustomRouting.Sales");
         transport.SimulateMultipleMachines("BackEnd");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

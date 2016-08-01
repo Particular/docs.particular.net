@@ -1,3 +1,4 @@
+<!--startcode instanceMapping-->
 <endpoints>
   <endpoint name="Samples.CustomRouting.Sales">
     <!-- Scaled-out endpoint -->
@@ -15,3 +16,4 @@
     <instance Machine="BackEnd"/>
   </endpoint>
 </endpoints>
+<!--endcode-->

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using NServiceBus;
-using NServiceBus.Transports;
+using NServiceBus.Transport;
 
 public static class MultipleMachineSimulation
 {
