@@ -171,9 +171,9 @@ namespace Core6.Routing
             throw new NotImplementedException();
         }
 
-        void FileBasedRouting(EndpointConfiguration endpointConfiguration)
+        void InstanceMappingFileConfig(EndpointConfiguration endpointConfiguration)
         {
-            #region Routing-FileBased-Config
+            #region InstanceMappingFile-Config
 
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
             var routing = transport.Routing();
@@ -185,9 +185,9 @@ namespace Core6.Routing
             #endregion
         }
 
-        public void FileBasedRoutingRefreshInterval(EndpointConfiguration endpointConfiguration)
+        public void InstanceMappingFileRefreshInterval(EndpointConfiguration endpointConfiguration)
         {
-            #region Routing-FileBased-RefreshInterval
+            #region InstanceMappingFile-RefreshInterval
 
 
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
@@ -201,7 +201,7 @@ namespace Core6.Routing
 
         public void InstanceMappingFilePath(EndpointConfiguration endpointConfiguration)
         {
-            #region Routing-FileBased-FilePath
+            #region InstanceMappingFile-FilePath
 
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
             var routing = transport.Routing();

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <root>
-  <!-- startcode Routing-FileBased-MSMQ -->
+  <!-- startcode InstanceMappingFile-MSMQ -->
   <endpoints>
     <endpoint name="Sales">
       <!-- Scaled-out endpoint -->
