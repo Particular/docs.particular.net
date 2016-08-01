@@ -1,0 +1,2 @@
+NOTE: In NServiceBus Versions 6 and above First Level Retries (FLR) and Second Level Retries (SLR) have been renamed to [Delayed Retries](/nservicebus/recoverability/#delayed-retries) and
+[Immediate Retries](/nservicebus/recoverability/#immediate-retries) respectively. See [Upgrading to Recoverability](/nservicebus/upgrades/5to6.md#automatic-retries).

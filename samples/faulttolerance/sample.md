@@ -1,7 +1,7 @@
 ---
 title: Fault Tolerance
 summary: Messaging approaches to help with failure scenarios.
-reviewed: 2016-03-21
+reviewed: 2016-08-02
 component: Core
 redirects:
 - nservicebus/nservicebus-step-by-step-guide-fault-tolerance-code-first
@@ -9,6 +9,9 @@ related:
 - nservicebus/recoverability
 - samples/errorhandling
 ---
+
+include: recoverability-rename
+
 
 ## Durable Messaging
 
@@ -83,11 +86,11 @@ While the endpoint can now continue processing other incoming messages (which wi
 
 Leave the endpoint running a while longer, see that it tries processing the message again. After three retries, the retries stop and the message ends up in the error queue (in the default configuration this should be after roughly one minute).
 
-In the above case, since SLR is automatically turned on by default.
+In the above case, since Delayed Retries is enabled by default.
 
-Turn off Second Level Retries (SLR) by uncommenting the below line in the Server Program.cs:
+Turn off Delayed Retries by uncommenting the below line in the Server Program.cs:
 
-snippet: diableSlr
+snippet: disable
 
 Re-run the sample and notice the behavior. After successive retries the message is sent to the error queue right away.
 

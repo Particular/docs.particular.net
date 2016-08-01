@@ -6,7 +6,7 @@ class Program
 {
     static void Main()
     {
-        #region diableSlr
+        #region disable
         // Configure.Features.Disable<NServiceBus.Features.SecondLevelRetries>();
         #endregion
 

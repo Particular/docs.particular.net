@@ -19,8 +19,12 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        #region diableSlr
-        // endpointConfiguration.SecondLevelRetries().Disable();
+        #region disable
+        //var recoverability = endpointConfiguration.Recoverability();
+        //recoverability.Delayed(settings =>
+        //{
+        //    settings.NumberOfRetries(0);
+        //});
         #endregion
 
 
