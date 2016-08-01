@@ -1,25 +1,20 @@
 ﻿using System;
 using NServiceBus;
-using NServiceBus.Features;
 using NServiceBus.Logging;
 
 static class Program
 {
     static void Main()
     {
-        Console.Title = "Samples.ErrorHandling.WithoutSLR";
+        Console.Title = "Samples.ErrorHandling.WithDelayedRetries";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Warn);
 
-        #region DisableSLR
         var busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.ErrorHandling.WithoutSLR");
-        busConfiguration.DisableFeature<SecondLevelRetries>();
-        #endregion
+        busConfiguration.EndpointName("Samples.ErrorHandling.WithDelayedRetries");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press enter to send a message that will throw an exception.");

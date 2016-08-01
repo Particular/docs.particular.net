@@ -6,11 +6,11 @@ class Program
 {
     static void Main()
     {
-        Console.Title = "Samples.ErrorHandling.WithSLR";
+        Console.Title = "Samples.ErrorHandling.WithDelayedRetries";
         Configure.Serialization.Json();
         var configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Samples.ErrorHandling.WithSLR");
+        configure.DefineEndpointName("Samples.ErrorHandling.WithDelayedRetries");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();

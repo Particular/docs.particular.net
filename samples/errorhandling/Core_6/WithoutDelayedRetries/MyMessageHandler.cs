@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -7,34 +8,28 @@ using NServiceBus.Logging;
 public class MyMessageHandler :
     IHandleMessages<MyMessage>
 {
-    static ILog log = LogManager.GetLogger(typeof(MyMessageHandler));
-    IBus bus;
+    static ILog log = LogManager.GetLogger<MyMessageHandler>();
     static ConcurrentDictionary<Guid, string> Last = new ConcurrentDictionary<Guid, string>();
 
-    public MyMessageHandler(IBus bus)
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        this.bus = bus;
-    }
-
-    public void Handle(MyMessage message)
-    {
-        var context = bus.CurrentMessageContext;
-        log.Info($"ReplyToAddress: {context.ReplyToAddress} MessageId:{context.Id}");
+        log.Info($"ReplyToAddress: {context.ReplyToAddress} MessageId:{context.MessageId}");
 
         string numOfRetries;
-        if (context.Headers.TryGetValue(Headers.Retries, out numOfRetries))
+        if (context.MessageHeaders.TryGetValue(Headers.Retries, out numOfRetries))
         {
             string value;
             Last.TryGetValue(message.Id, out value);
 
             if (numOfRetries != value)
             {
-                log.Info($"This is second level retry number {numOfRetries}");
+                log.Info($"This is retry number {numOfRetries}");
                 Last.AddOrUpdate(message.Id, numOfRetries, (key, oldValue) => numOfRetries);
             }
         }
 
         throw new Exception("An exception occurred in the handler.");
     }
+
 }
 #endregion

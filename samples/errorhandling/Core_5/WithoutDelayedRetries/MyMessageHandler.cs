@@ -3,10 +3,11 @@ using System.Collections.Concurrent;
 using NServiceBus;
 using NServiceBus.Logging;
 
+#region Handler
 public class MyMessageHandler :
     IHandleMessages<MyMessage>
 {
-    static ILog log = LogManager.GetLogger(typeof(MyMessageHandler));
+    static ILog log = LogManager.GetLogger<MyMessageHandler>();
     IBus bus;
     static ConcurrentDictionary<Guid, string> Last = new ConcurrentDictionary<Guid, string>();
 
@@ -28,7 +29,7 @@ public class MyMessageHandler :
 
             if (numOfRetries != value)
             {
-                log.Info($"This is second level retry number {numOfRetries}");
+                log.Info($"This retry number {numOfRetries}");
                 Last.AddOrUpdate(message.Id, numOfRetries, (key, oldValue) => numOfRetries);
             }
         }
@@ -36,3 +37,4 @@ public class MyMessageHandler :
         throw new Exception("An exception occurred in the handler.");
     }
 }
+#endregion

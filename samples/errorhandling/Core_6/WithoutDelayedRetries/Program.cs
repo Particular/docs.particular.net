@@ -12,11 +12,22 @@ static class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.ErrorHandling.WithSLR";
+        Console.Title = "Samples.ErrorHandling.WithoutDelayedRetries";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Warn);
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.ErrorHandling.WithSLR");
+        #region Disable
+
+        var endpointConfiguration = new EndpointConfiguration("Samples.ErrorHandling.WithoutDelayedRetries");
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Delayed(
+            customizations: delayed =>
+            {
+                delayed.NumberOfRetries(0);
+            });
+
+        #endregion
+
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

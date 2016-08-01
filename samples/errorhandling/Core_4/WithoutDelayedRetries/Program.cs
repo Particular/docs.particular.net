@@ -6,14 +6,14 @@ class Program
 {
     static void Main()
     {
-        Console.Title = "Samples.ErrorHandling.WithoutSLR";
-        #region DisableSLR
+        Console.Title = "Samples.ErrorHandling.WithoutDelayedRetries";
+        #region Disable
         Configure.Features.Disable<NServiceBus.Features.SecondLevelRetries>();
         #endregion
         Configure.Serialization.Json();
         var configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Samples.ErrorHandling.WithoutSLR");
+        configure.DefineEndpointName("Samples.ErrorHandling.WithoutDelayedRetries");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
