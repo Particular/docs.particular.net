@@ -20,23 +20,23 @@ When using the distributor the behavior of retries and the related message flow 
 
 ## Immediate Retries
 
-FLR are always performed on the worker.
+Immediate Retries are always performed on the worker.
 
 
 ## Delayed Retries
 
-The behavior of SLR is different between major versions.
+The behavior of Delayed Retries is different between major versions.
 
-SLR has two configurable items TimeIncrease and NumberOfRetries.
+Delayed Retries has two configurable items TimeIncrease and NumberOfRetries.
 
 The message will be retried on *any* available worker. Message processing is not sticky to the worker.
 
 
 ### NServiceBus Versions 5.x
 
-The SLR policy *NumberOfRetries* setting its is applied on *both* the distributor and workers, and the *TimeIncrease* setting is applied on the distributor.
+The Delayed Retries policy *NumberOfRetries* setting its is applied on *both* the distributor and workers, and the *TimeIncrease* setting is applied on the distributor.
 
-When an error occurs the SLR policy is invoked immediately by the fault manager. The message will not be forwarded to the retries queue which is was the previous behavior.
+When an error occurs the Delayed Retries policy is invoked immediately by the fault manager. The message will not be forwarded to the retries queue which is was the previous behavior.
 
 When the retry limit is reached the message is  forwarded immediately to the error queue or else forwarded to the **.retries** queue and scheduled for retry. If the SLR policy output is that it needs to be retried then the message is forwarded to the **.retries** queue.
 

@@ -66,7 +66,7 @@ Messages are processed in NServiceBus as follows:
  1. After a successful deserialization, NServiceBus invokes all infrastructure, message mutators and handlers. An exception in this step causes the transaction to roll back and the message to return to the input queue.
     * This happens the "MaxRetries" [configurable](/nservicebus/msmq/transportconfig.md#maxretries) number of times.
     * After that, the message passes to the [delayed retries](/nservicebus/recoverability/#delayed-retries).
-    * If after SLR the error still occurs, the message will be moved to the configured error queue.
+    * If after delayed retries the error still occurs, the message will be moved to the configured error queue.
 
 In this manner, even under all kinds of failure conditions like the application server restarting in the middle of a message or a database deadlock, messages are not lost.
 

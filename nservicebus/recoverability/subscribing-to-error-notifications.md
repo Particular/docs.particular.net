@@ -18,7 +18,7 @@ Error notifications are available for several events.
 
 This API was added in Version 5.1.
 
-The following example shows how to be notified every time a message is sent to FLR, SLR or the error queue. While this code writes to the console any other action could be taken, for example sending an email or writing to a monitoring system.
+The following example shows how to be notified every time a message is handled by [recoverability](/nservicebus/recoverability/). While this code writes to the console any other action could be taken, for example sending an email or writing to a monitoring system.
 
 snippet: SubscribeToErrorsNotifications
 

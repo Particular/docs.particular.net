@@ -19,7 +19,7 @@ When a message fails NServiceBus [automatically retries](/nservicebus/recoverabi
 
 WARNING: When running with [transport transactions disabled](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled) NServiceBus will perform a best-effort error message forwarding, i.e. if moving to the error queue fails, the message will be lost.
 
-WARNING: When running with [transport transactions disabled](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled). Both FLR and SLR will be automatically disabled when transactions are turned off.
+WARNING: When running with [transport transactions disabled](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled). Both [immediate retries](/nservicebus/recoverability/#immediate-retries) and [delayed retries](/nservicebus/recoverability/#delayed-retries) will be automatically disabled when transactions are turned off.
 
 Error queue can be configured in several ways.
 
