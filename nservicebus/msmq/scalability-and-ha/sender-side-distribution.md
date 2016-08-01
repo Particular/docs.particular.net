@@ -12,7 +12,7 @@ related:
 - nservicebus/messaging/routing
 ---
 
-NServiceBus endpoints using the MSMQ transport are unable to use the competing consumers pattern to scale out by adding additional worker instances. Sender-side distribution is a method of scaling out an NServiceBus endpoint using the MSMQ transport, without relying on a centralized [distributor](distributor/) assigning messages to available workers.
+NServiceBus endpoints using the MSMQ transport are unable to use the competing consumers pattern to scale out by adding additional worker instances. Sender-side distribution is a method of scaling out an NServiceBus endpoint using the MSMQ transport, without relying on a centralized [distributor](/nservicebus/scalability-and-ha/distributor/) assigning messages to available workers.
 
 NOTE: Sender-side distribution is available in NServiceBus Versions 6 and above.
 

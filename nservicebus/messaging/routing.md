@@ -139,7 +139,7 @@ The purpose of the endpoint instance mapping layer is to provide information abo
 
 #### Using config file
 
-When using MSMQ transport, endpoint instance mapping can be done using the [file based instance mapping](/nservicebus/msmq/scalability-and-ha/file-based-routing.md).
+When using MSMQ transport, endpoint instance mapping can be done using the [file based instance mapping](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md).
 
 
 #### Static mapping
