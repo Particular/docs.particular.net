@@ -68,7 +68,7 @@ Specifies the interval between route data refresh attempts.
 
 Default: 30 seconds
 
-snippet: Routing-FileBased-RefreshInterval
+snippet: InstanceMappingFile-RefreshInterval
 
 
 ### FilePath

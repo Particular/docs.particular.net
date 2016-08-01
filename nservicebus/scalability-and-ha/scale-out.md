@@ -47,7 +47,7 @@ In the first case the the scaling out happens by means of competing consumers. I
 
 Because MSMQ does not allow performant remote receives in most cases scaling out requires sender-side round-robin distribution. When using MSMQ different instances are usually deployed to different (virtual) machines. The following instance mapping file (see [scaling out with sender-side distribution](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md)) shows scaling out of the `Sales` endpoint. System administrators are able to spin-up new instances of the endpoint should the load increase and the only requirement is adding an entry to the instance mapping file. No changes in the source code are required.
 
-snippet:Routing-FileBased-MSMQ
+snippet:InstanceMappingFile-MSMQ
 
 The corresponding logical routing is
 
@@ -67,8 +67,6 @@ New instances can be deployed by `xcopy`-ing the binaries to another machine or 
 
 When there is a need to go past the throughput of a single infrastructure queue or to address each instance separately, instance IDs can be specified for each deployment of the endpoint. In this case, in addition to the shared `Sales` queue, there will be two instance-specific queues used by the `Sales` endpoint.
 
-Some upstream endpoints might decide to still treat `Sales` as a single *thing* and depend on the logical routing only. These endpoints will continue to send their messages to the `Sales` queue. Others might include routing file:
-
-snippet:Routing-FileBased-Broker
+Some upstream endpoints might decide to still treat `Sales` as a single *thing* and depend on the logical routing only. These endpoints will continue to send their messages to the `Sales` queue. Others might use instance mapping files.
 
 In that case the sender will use round-robin distribution when sending commands (exactly like in case of MSMQ). It will, however, publish events to the shared queue (`Sales`).
