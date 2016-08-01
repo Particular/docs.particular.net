@@ -87,13 +87,6 @@ The mapping file contains a `Machine` attribute which needs to be used when the 
 snippet:Routing-FileBased-MSMQ
 
 
-#### Instance discriminator
-
-The instance discriminator attribute can be used if multiple uniquely addressable endpoints run on the same machine and messages should be sent to their unique input queue instead of the shared input queue.
-
-snippet:Routing-FileBased-Broker
-
-
 ## Decommissioning endpoint instances
 
 When using sender-side distribution, message senders have no knowledge of the status of any of the worker instances. They simply send messages to one of the configured instances in a round-robin fashion, whether that instance is still running or not.
