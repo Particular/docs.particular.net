@@ -124,9 +124,7 @@ snippet:FeatureStartupTaskRegistration
 
 The task will only be created and called if the feature is enabled. The `FeatureStartupTask`s are activated and started in random order.
 
-Note: In Version 5 `FeatureStartupTask` are executed synchronously. Avoid long running operations which will delay the bus startup time.
-
-Note: In Versions 6 and above `FeatureStartupTask` run asynchronously the calling thread which initialized the endpoint.
+Note: Avoid long running operations which will delay the bus startup time.
 
 
 ### Accessing the Endpoint Instance
