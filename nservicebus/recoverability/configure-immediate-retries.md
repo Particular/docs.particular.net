@@ -6,7 +6,7 @@ tags:
  - Exceptions
  - Retry
  - Recoverability
- - First Level Retries
+ - Immediate Retries
 redirects:
 related:
  - samples/faulttolerance
