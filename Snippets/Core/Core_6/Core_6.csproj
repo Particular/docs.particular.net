@@ -105,8 +105,9 @@
     <Compile Include="Recoverability\Delayed\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Recoverability\Delayed\ConfigurationSource\Usage.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\CustomExceptionPolicy.cs" />
-    <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicyOverridingSlrPart.cs" />
+    <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicyOverridingDelayedRetriesPart.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\FullyCustomizedPolicy.cs" />
+    <Compile Include="Recoverability\Delayed\CustomPolicies\MyBusinessException.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\PartiallyCustomizedPolicy.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\SimplePolicy.cs" />
     <Compile Include="Recoverability\Delayed\Usage.cs" />

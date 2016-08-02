@@ -2,8 +2,8 @@ using System;
 using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
-#region customSLR
-class ProvideSLRConfiguration :
+#region customDelayedRetries
+class ProvideDelayedRetriesConfiguration :
     IProvideConfiguration<SecondLevelRetriesConfig>
 {
     public SecondLevelRetriesConfig GetConfiguration()

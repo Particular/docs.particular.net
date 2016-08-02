@@ -50,7 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProvideSLRConfiguration.cs" />
+    <Compile Include="ProvideDelayedRetriesConfiguration.cs" />
     <Compile Include="SubscribeToNotifications.cs" />
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="MyHandler.cs" />

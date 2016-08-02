@@ -31,7 +31,7 @@ namespace Core5.Features
         void EndpointConfiguration(BusConfiguration busConfiguration)
         {
 #region EnableDisableFeatures
-            // enable delayed delivery feature since SLR relies on it
+            // enable delayed delivery feature since Delayed Retries relies on it
             busConfiguration.EnableFeature<DelayedDeliveryFeature>();
 
             // this is not required if the feature uses EnableByDefault()

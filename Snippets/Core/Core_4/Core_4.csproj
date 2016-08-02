@@ -255,7 +255,7 @@
     <Compile Include="Installers.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Recoverability\Delayed\SecondLevelReties.config.xml">
+    <Content Include="Recoverability\Delayed\DelayedRetries.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">

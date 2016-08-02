@@ -33,12 +33,12 @@ namespace Core6.BusNotifications
 
         void LogEvent(object sender, SecondLevelRetry retry)
         {
-            log.Info($"Message sent to SLR. RetryAttempt:{retry.RetryAttempt}");
+            log.Info($"Message sent to Delayed Retries. RetryAttempt:{retry.RetryAttempt}");
         }
 
         void LogEvent(object sender, FirstLevelRetry retry)
         {
-            log.Info($"Message sent to FLR. RetryAttempt:{retry.RetryAttempt}");
+            log.Info($"Message sent to Immediate Retries. RetryAttempt:{retry.RetryAttempt}");
         }
 
         #endregion

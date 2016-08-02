@@ -305,10 +305,3 @@ Operations support for RabbitMQ applications including support for NServiceBus. 
 #### <img src="community-project.png" title="A Community run project"> [SignalR](https://github.com/roycornelissen/SignalR.NServiceBus)
 
 Backplane for [SignalR](http://signalr.net/)
-
-
-#### <img src="community-project.png" title="A Community run project"> [NServiceBus.SLR](https://github.com/KenBerg75/NServiceBus.SLR)
-
-https://www.nuget.org/packages/NServiceBus.SLR
-
-A plugin to NServiceBus that allows configuration of Second Level Retries based on the Exception Type.

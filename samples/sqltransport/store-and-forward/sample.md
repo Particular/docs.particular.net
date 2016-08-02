@@ -90,7 +90,7 @@ snippet:ForwardBehavior
 
 If the message contains the headers used by the send-side behavior, it is forwarded to the ultimate destination instead of being processed locally. This is the first time the remote database of the Receiver endpoint is contacted. Should it be down, the retry mechanism kicks in and ensures the message is eventually delivered to the destination. In this example the retry mechanism is configured to retry every 10 seconds for up to 100 times.
 
-snippet:SlrConfig
+snippet:DelayedRetriesConfig
 
 NOTE: When both sender's and receiver's databases cannot be accessed in a distributed transaction, the `ForwardBehavior` has to include a `TransactionScope` that suppresses the ambient transaction before forwarding the message.
 

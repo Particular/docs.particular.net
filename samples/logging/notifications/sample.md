@@ -23,11 +23,11 @@ All errors below Fatal are suppressed to reduce the noise related to raising mul
 snippet: logging
 
 
-### SLR Time increase
+### Delayed Retry Time increase
 
 The time to increase changed to 1 second so the wait for all retries to occur is reduced.
 
-snippet: customSLR
+snippet: customDelayedRetries
 
 
 ## Plugging to the API

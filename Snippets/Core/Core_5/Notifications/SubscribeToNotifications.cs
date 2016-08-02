@@ -51,12 +51,12 @@
 
         void LogEvent(SecondLevelRetry retry)
         {
-            log.Info($"Message sent to SLR. RetryAttempt:{retry.RetryAttempt}");
+            log.Info($"Message sent to Delayed Reties. RetryAttempt:{retry.RetryAttempt}");
         }
 
         void LogEvent(FirstLevelRetry retry)
         {
-            log.Info($"Message sent to FLR. RetryAttempt:{retry.RetryAttempt}");
+            log.Info($"Message sent to Immediate Retries. RetryAttempt:{retry.RetryAttempt}");
         }
 
         public void Stop()

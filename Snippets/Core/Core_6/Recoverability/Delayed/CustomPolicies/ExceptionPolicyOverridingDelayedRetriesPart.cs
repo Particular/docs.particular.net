@@ -4,9 +4,9 @@
     using NServiceBus;
     using NServiceBus.Transport;
 
-    class ExceptionPolicyOverridingSlrPart
+    class ExceptionPolicyOverridingDelayedRetriesPart
     {
-        ExceptionPolicyOverridingSlrPart(EndpointConfiguration endpointConfiguration)
+        ExceptionPolicyOverridingDelayedRetriesPart(EndpointConfiguration endpointConfiguration)
         {
 
             #region DelayedRetriesCustomExceptionPolicyHandlerConfig 6
@@ -44,9 +44,6 @@
         }
 
         #endregion
-    }
 
-    class MyBusinessException : Exception
-    {
     }
 }

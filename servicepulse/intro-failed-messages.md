@@ -47,7 +47,7 @@ The second tab will display all failed messages. The functionality is the same a
 
 ### Failed Message Retry
 
-After addressing the root cause of the message's processing failure, resend the failed message for reprocessing by the endpoint(s). This is referred to as a "retry" (or a manual retry, in contrast to the automated and configurable FLRs and SLRs).
+After addressing the root cause of the message's processing failure, resend the failed message for reprocessing by the endpoint(s). This is referred to as a "retry" (or a manual retry, in contrast to the automated and configurable [Recoverability](/nservicebus/recoverability/)).
 
 To retry a failed message, select the failed message(s) in the failed messages list and click the "Retry Selected" button (or click "Retry Group").
 

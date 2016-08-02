@@ -61,7 +61,7 @@ class MsmqReceiver :
         // return just a guid for the messageId. So, check to see if the Id is
         // a valid Guid and if not, only then create a valid Guid. This check
         // is important as it affects the retries if the message is rolled back.
-        // If the Ids are different, then the FLR/SLR won't know its the same message.
+        // If the Ids are different, then the recoverability won't know its the same message.
         Guid newGuid;
         if (!Guid.TryParse(msmqId, out newGuid))
         {
