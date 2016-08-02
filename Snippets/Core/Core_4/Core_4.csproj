@@ -81,7 +81,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
-    <Content Include="Recoverability\Immediate\flr.config.xml">
+    <Content Include="Recoverability\Immediate\config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Monitoring\app.config.xml">

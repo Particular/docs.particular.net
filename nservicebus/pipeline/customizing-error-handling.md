@@ -52,7 +52,7 @@ snippet: RegisterCustomErrorHandlingBehavior
 
 ## Versions 5 and Below
 
-In NServiceBus Versions 5 and below, `IManageMessageFailures` are extension points to customizing actions when messages continue to fail after the [immediate retries](/nservicebus/recoverability/#immediate-retries) have been attempted.
+In NServiceBus Versions 5 and below, `IManageMessageFailures` are extension points to customizing actions when messages continue to fail after the [Immediate Retries](/nservicebus/recoverability/#immediate-retries) have been attempted.
 
 WARNING: When enabling this extension, second-level retries will not be invoked. Versions 6 and above offer better control of customization through the message pipeline.
 

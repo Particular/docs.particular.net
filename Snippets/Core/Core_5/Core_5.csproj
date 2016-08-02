@@ -95,7 +95,7 @@
     <Content Include="Outbox\EnablingInConfig.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Recoverability\Delayed\SecondLevelReties.config.xml">
+    <Content Include="Recoverability\Delayed\config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="UpgradeGuides\5to6\null.xml" />
@@ -104,7 +104,7 @@
     <None Include="app.config" />
     <Content Include="EndpointMapping\EndpointMapping.config.xml" />
     <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
-    <Content Include="Recoverability\Immediate\flr.config.xml" />
+    <Content Include="Recoverability\Immediate\config.xml" />
     <Content Include="Monitoring\ServiceControlEvents.config.xml">
       <SubType>Designer</SubType>
     </Content>

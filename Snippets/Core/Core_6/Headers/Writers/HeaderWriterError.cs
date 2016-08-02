@@ -64,7 +64,7 @@
             }
         }
 
-        class ConfigureSecondLevelRetries :
+        class ConfigureDelayedRetries :
             IProvideConfiguration<SecondLevelRetriesConfig>
         {
             public SecondLevelRetriesConfig GetConfiguration()

@@ -13,7 +13,7 @@ related:
 - nservicebus/scalability-and-ha/distributor
 ---
 
-NServiceBus provides error handling and has [immediate retries](/nservicebus/recoverability/#immediate-retries) and [delayed retries](/nservicebus/recoverability/#delayed-retries).
+NServiceBus provides error handling and has [Immediate Retries](/nservicebus/recoverability/#immediate-retries) and [Delayed Retries](/nservicebus/recoverability/#delayed-retries).
 
 When using the distributor the behavior of retries and the related message flow is different between major versions.
 

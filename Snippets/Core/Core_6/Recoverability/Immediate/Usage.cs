@@ -4,7 +4,7 @@
 
     public class Usage
     {
-        void ConfigureFlr(EndpointConfiguration endpointConfiguration)
+        void Configure(EndpointConfiguration endpointConfiguration)
         {
             #region ImmediateRetriesConfiguration
 

@@ -26,7 +26,7 @@ In Version 3 this configuration was available via `MsmqTransportConfig`.
 
 In Version 4 and above the configuration for this mechanism is implemented in the `TransportConfig` section.
 
-snippet:configureFlrViaXml
+snippet:configureImmediateRetriesViaXml
 
 
 ### Through code

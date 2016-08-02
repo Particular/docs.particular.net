@@ -324,12 +324,12 @@ The queue at which the message processing failed.
 
 ### NServiceBus.FLRetries
 
-The number of [immediate retries](/nservicebus/recoverability/#immediate-retries) that has been performed for a message. 
+The number of [Immediate Retries](/nservicebus/recoverability/#immediate-retries) that has been performed for a message. 
 
 
 ### NServiceBus.Retries
 
-The number of [delayed retries](/nservicebus/recoverability/#delayed-retries) that has been performed for a message.
+The number of [Delayed Retries](/nservicebus/recoverability/#delayed-retries) that has been performed for a message.
 
 
 ### NServiceBus.Retries.Timestamp

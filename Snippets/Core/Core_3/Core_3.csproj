@@ -55,7 +55,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
-    <Content Include="Recoverability\Immediate\flr.config.xml" />
+    <Content Include="Recoverability\Immediate\config.xml" />
     <Content Include="Recoverability\retriesLogging.txt" />
     <Content Include="Monitoring\ServiceControlEvents.config.xml" />
     <Content Include="Persistence\Msmq\msmq.config.xml">
@@ -204,7 +204,7 @@
     <Compile Include="UpgradeGuides\3to4\Upgrade.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Recoverability\Delayed\slr.config.xml">
+    <Content Include="Recoverability\Delayed\config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">
