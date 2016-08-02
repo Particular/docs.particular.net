@@ -17,8 +17,7 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        var scaleOut = endpointConfiguration.ScaleOut();
-        scaleOut.InstanceDiscriminator("1");
+        endpointConfiguration.MakeInstanceUniquelyAddressable("1");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

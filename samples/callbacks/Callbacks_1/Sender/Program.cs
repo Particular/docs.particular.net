@@ -15,8 +15,7 @@ class Program
         Console.Title = "Samples.Callbacks.Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        var scaleOut = endpointConfiguration.ScaleOut();
-        scaleOut.InstanceDiscriminator("1");
+        endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
