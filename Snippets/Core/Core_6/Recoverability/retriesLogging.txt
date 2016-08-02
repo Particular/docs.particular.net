@@ -1,37 +1,37 @@
 startcode RetryLogging 6
 
 Handler - attempt 1
-Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
+Info  NServiceBus.RecoverabilityExecutor Immediate Retries is going to retry message 'messageId' because of an exception:
 
 Handler - attempt 2
-Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
+Info  NServiceBus.RecoverabilityExecutor Immediate Retries is going to retry message 'messageId' because of an exception:
 
 Handler - attempt 3
-Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
+Info  NServiceBus.RecoverabilityExecutor Immediate Retries is going to retry message 'messageId' because of an exception:
 
 Handler - attempt 4
-Warn  NServiceBus.RecoverabilityExecutor Second Level Retry will reschedule message 'messageId' after a delay of 00:00:10 because of an exception:
+Warn  NServiceBus.RecoverabilityExecutor Delayed Retries will reschedule message 'messageId' after a delay of 00:00:10 because of an exception:
 
 Handler - attempt 5
-Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
+Info  NServiceBus.RecoverabilityExecutor Immediate Retries is going to retry message 'messageId' because of an exception:
 
 Handler - attempt 6
-Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
+Info  NServiceBus.RecoverabilityExecutor Immediate Retries is going to retry message 'messageId' because of an exception:
 
 Handler - attempt 7
-Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
+Info  NServiceBus.RecoverabilityExecutor Immediate Retries is going to retry message 'messageId' because of an exception:
 
 Handler - attempt 8
-Warn  NServiceBus.RecoverabilityExecutor Second Level Retry will reschedule message 'messageId' after a delay of 00:00:20 because of an exception:
+Warn  NServiceBus.RecoverabilityExecutor Delayed Retries will reschedule message 'messageId' after a delay of 00:00:20 because of an exception:
 
 Handler - attempt 9
-Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
+Info  NServiceBus.RecoverabilityExecutor Immediate Retries is going to retry message 'messageId' because of an exception:
 
 Handler - attempt 10
-Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
+Info  NServiceBus.RecoverabilityExecutor Immediate Retries is going to retry message 'messageId' because of an exception:
 
 Handler - attempt 11
-Info  NServiceBus.RecoverabilityExecutor First Level Retry is going to retry message 'messageId' because of an exception:
+Info  NServiceBus.RecoverabilityExecutor Immediate Retries is going to retry message 'messageId' because of an exception:
 
 Handler - attempt 12
 Error NServiceBus.RecoverabilityExecutor Moving message 'messageId' to the error queue 'error' because processing failed due to an exception:

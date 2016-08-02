@@ -33,16 +33,16 @@ snippet:configureFlrViaXml
 
 Starting from Version 6 it is possible to provide Immediate Retries configuration via code API. 
 
-snippet:FlrCodeFirstConfiguration
+snippet:ImmediateRetriesConfiguration
 
 
 ### Through IProvideConfiguration
 
-snippet:FlrProvideConfiguration
+snippet:ImmediateRetriesProvideConfiguration
 
 
 ### Through ConfigurationSource
 
-snippet:FLRConfigurationSource
+snippet:ImmediateRetriesConfigurationSource
 
-snippet:FLRConfigurationSourceUsage
+snippet:ImmediateRetriesConfigurationSourceUsage

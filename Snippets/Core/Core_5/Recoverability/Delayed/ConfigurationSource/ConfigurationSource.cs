@@ -5,7 +5,7 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
-    #region SlrConfigurationSource
+    #region DelayedRetriesConfigurationSource
     public class ConfigurationSource :
         IConfigurationSource
     {

@@ -7,7 +7,7 @@
     {
         void DisableWithCode(EndpointConfiguration endpointConfiguration)
         {
-            #region DisableSlrWithCode
+            #region DisableDelayedRetries
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Delayed(
@@ -20,7 +20,7 @@
         }
         void Configure(EndpointConfiguration endpointConfiguration)
         {
-            #region SlrCodeFirstConfiguration
+            #region DelayedRetriesConfiguration
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Delayed(

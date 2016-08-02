@@ -6,7 +6,7 @@ tags:
  - Exceptions
  - Retry
  - Recoverability
- - Second Level Retries
+ - Delayed Retries
 redirects:
  - nservicebus/second-level-retries
 related:
@@ -25,7 +25,7 @@ WARN: Delayed Retries cannot be used when transport transactions are disabled or
 
 To configure Delayed Retries, enable its configuration section:
 
-snippet:SecondLevelRetiesAppConfig
+snippet:DelayedRetriesAppConfig
 
  * `Enabled`: Turns the feature on and off. Default: true.
  * `TimeIncrease`: A time span after which the time between retries increases. Default: 10 seconds (`00:00:10`).
@@ -34,24 +34,24 @@ snippet:SecondLevelRetiesAppConfig
 
 ### Through code
 
-snippet:SlrCodeFirstConfiguration
+snippet:DelayedRetriesConfiguration
 
 
 ### Through IProvideConfiguration
 
-snippet:SlrProvideConfiguration
+snippet:DelayedRetriesProvideConfiguration
 
 
 ### Through ConfigurationSource
 
-snippet:SlrConfigurationSource
+snippet:DelayedRetriesConfigurationSource
 
-snippet:SLRConfigurationSourceUsage
+snippet:DelayedRetriesConfigurationSourceUsage
 
 
 ## Disabling Delayed Retries through code
 
-snippet:DisableSlrWithCode
+snippet:DisableDelayedRetries
 
 
 ## Custom Retry Policy
@@ -61,22 +61,22 @@ Custom retry logic can be configured based on headers or timing in code.
 
 ### Applying a custom policy
 
-snippet:SecondLevelRetriesCustomPolicy
+snippet:DelayedRetriesCustomPolicy
 
 
 ### Simple Policy
 
 The following retry policy that will retry a message 3 times with a 5 second interval.
 
-snippet:SecondLevelRetriesCustomPolicyHandlerConfig
+snippet:DelayedRetriesCustomPolicyHandlerConfig
 
-snippet:SecondLevelRetriesCustomPolicyHandler
+snippet:DelayedRetriesCustomPolicyHandler
 
 
 ### Exception based Policy
 
 The following retry policy extends the previous policy with a custom handling logic for a specific exception.
 
-snippet:SecondLevelRetriesCustomExceptionPolicyHandlerConfig
+snippet:DelayedRetriesCustomExceptionPolicyHandlerConfig
 
-snippet:SecondLevelRetriesCustomExceptionPolicyHandler
+snippet:DelayedRetriesCustomExceptionPolicyHandler

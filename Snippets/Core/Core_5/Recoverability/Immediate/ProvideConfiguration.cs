@@ -3,7 +3,7 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
-    #region FlrProvideConfiguration
+    #region ImmediateRetriesProvideConfiguration
 
     class ProvideConfiguration :
         IProvideConfiguration<TransportConfig>

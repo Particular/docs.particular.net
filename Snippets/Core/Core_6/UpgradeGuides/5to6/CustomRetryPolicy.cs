@@ -10,7 +10,7 @@
         {
             EndpointConfiguration endpointConfiguration = null;
 
-            #region 5to6-SecondLevelRetriesCustomPolicy
+            #region 5to6-DelayedRetriesCustomPolicy
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Delayed(
@@ -25,7 +25,7 @@
         }
 
 
-        #region 5to6-SecondLevelRetriesCustomPolicyHandler
+        #region 5to6-DelayedRetriesCustomPolicyHandler
 
         static RecoverabilityAction MyCustomRetryPolicy(RecoverabilityConfig config, ErrorContext context)
         {

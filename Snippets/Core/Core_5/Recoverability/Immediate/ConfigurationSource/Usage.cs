@@ -6,7 +6,7 @@
     {
         Usage(BusConfiguration busConfiguration)
         {
-            #region FLRConfigurationSourceUsage
+            #region ImmediateRetriesConfigurationSourceUsage
             busConfiguration.CustomConfigurationSource(new ConfigurationSource());
             #endregion
         }

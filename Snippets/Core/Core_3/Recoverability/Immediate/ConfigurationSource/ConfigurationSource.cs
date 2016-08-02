@@ -4,7 +4,7 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
-    #region FlrConfigurationSource
+    #region ImmediateRetriesConfigurationSource
     public class ConfigurationSource :
         IConfigurationSource
     {

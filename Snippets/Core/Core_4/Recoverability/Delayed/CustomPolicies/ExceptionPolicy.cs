@@ -11,7 +11,7 @@
             Configure.Features.SecondLevelRetries(s => s.CustomRetryPolicy(MyCustomRetryPolicy));
         }
 
-        #region SecondLevelRetriesCustomExceptionPolicyHandler
+        #region DelayedRetriesCustomExceptionPolicyHandler
 
         TimeSpan MyCustomRetryPolicy(TransportMessage transportMessage)
         {

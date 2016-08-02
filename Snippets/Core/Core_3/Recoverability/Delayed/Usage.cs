@@ -6,7 +6,7 @@
     {
         void DisableWithCode(Configure configure)
         {
-            #region DisableSlrWithCode
+            #region DisableDelayedRetries
 
             configure.DisableSecondLevelRetries();
 

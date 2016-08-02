@@ -6,7 +6,7 @@ namespace Core5.Recoverability.Delayed.ConfigurationSource
     {
         Usage(BusConfiguration busConfiguration)
         {
-            #region SLRConfigurationSourceUsage
+            #region DelayedRetriesConfigurationSourceUsage
             busConfiguration.CustomConfigurationSource(new ConfigurationSource());
             #endregion
         }

@@ -6,7 +6,7 @@ namespace Core6.Recoverability.Delayed.ConfigurationSource
     {
         Usage(EndpointConfiguration endpointConfiguration)
         {
-            #region SLRConfigurationSourceUsage
+            #region DelayedRetriesConfigurationSourceUsage
             endpointConfiguration.CustomConfigurationSource(new ConfigurationSource());
             #endregion
         }

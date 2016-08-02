@@ -9,7 +9,7 @@
         {
             BusConfiguration busConfiguration = null;
 
-            #region 5to6-SecondLevelRetriesCustomPolicy
+            #region 5to6-DelayedRetriesCustomPolicy
 
             var retriesSettings = busConfiguration.SecondLevelRetries();
             retriesSettings.CustomRetryPolicy(MyCustomRetryPolicy);
@@ -17,7 +17,7 @@
             #endregion
         }
 
-        #region 5to6-SecondLevelRetriesCustomPolicyHandler
+        #region 5to6-DelayedRetriesCustomPolicyHandler
 
         static TimeSpan MyCustomRetryPolicy(TransportMessage transportMessage)
         {

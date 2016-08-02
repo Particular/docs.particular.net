@@ -7,7 +7,7 @@
     {
         SimplePolicy(BusConfiguration busConfiguration)
         {
-            #region SecondLevelRetriesCustomPolicy
+            #region DelayedRetriesCustomPolicy
 
             var retriesSettings = busConfiguration.SecondLevelRetries();
             retriesSettings.CustomRetryPolicy(MyCustomRetryPolicy);
@@ -15,7 +15,7 @@
             #endregion
         }
 
-        #region SecondLevelRetriesCustomPolicyHandler
+        #region DelayedRetriesCustomPolicyHandler
 
         TimeSpan MyCustomRetryPolicy(TransportMessage transportMessage)
         {

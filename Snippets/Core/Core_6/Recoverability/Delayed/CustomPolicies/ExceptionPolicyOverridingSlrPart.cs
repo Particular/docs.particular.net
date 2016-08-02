@@ -9,7 +9,7 @@
         ExceptionPolicyOverridingSlrPart(EndpointConfiguration endpointConfiguration)
         {
 
-            #region SecondLevelRetriesCustomExceptionPolicyHandlerConfig 6
+            #region DelayedRetriesCustomExceptionPolicyHandlerConfig 6
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Delayed(
@@ -23,7 +23,7 @@
             recoverability.CustomPolicy(MyCustomRetryPolicy);
         }
 
-        #region SecondLevelRetriesCustomExceptionPolicyHandler
+        #region DelayedRetriesCustomExceptionPolicyHandler
 
         RecoverabilityAction MyCustomRetryPolicy(RecoverabilityConfig config, ErrorContext context)
         {

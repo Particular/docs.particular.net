@@ -7,7 +7,7 @@
     {
         void DisableWithCode(BusConfiguration busConfiguration)
         {
-            #region DisableSlrWithCode
+            #region DisableDelayedRetries
 
             busConfiguration.DisableFeature<SecondLevelRetries>();
 

@@ -4,7 +4,7 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
-    #region SlrProvideConfiguration
+    #region DelayedRetriesProvideConfiguration
 
     class ProvideConfiguration :
         IProvideConfiguration<SecondLevelRetriesConfig>

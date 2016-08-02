@@ -8,14 +8,14 @@
     {
         SimplePolicy(EndpointConfiguration endpointConfiguration)
         {
-            #region SecondLevelRetriesCustomPolicy
+            #region DelayedRetriesCustomPolicy
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.CustomPolicy(MyCustomRetryPolicy);
 
             #endregion
 
-            #region SecondLevelRetriesCustomPolicyHandlerConfig
+            #region DelayedRetriesCustomPolicyHandlerConfig
 
             recoverability.Delayed(
                 delayed =>
@@ -26,7 +26,7 @@
             #endregion
         }
 
-        #region SecondLevelRetriesCustomPolicyHandler
+        #region DelayedRetriesCustomPolicyHandler
 
         RecoverabilityAction MyCustomRetryPolicy(RecoverabilityConfig config, ErrorContext context)
         {

@@ -6,7 +6,7 @@
     {
         Usage(EndpointConfiguration endpointConfiguration)
         {
-            #region FLRConfigurationSourceUsage
+            #region ImmediateRetriesConfigurationSourceUsage
             endpointConfiguration.CustomConfigurationSource(new ConfigurationSource());
             #endregion
         }

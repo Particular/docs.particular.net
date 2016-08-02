@@ -6,7 +6,7 @@
     {
         void DisableWithCode()
         {
-            #region DisableSlrWithCode
+            #region DisableDelayedRetries
             Configure.Features
                 .Disable<NServiceBus.Features.SecondLevelRetries>();
             #endregion

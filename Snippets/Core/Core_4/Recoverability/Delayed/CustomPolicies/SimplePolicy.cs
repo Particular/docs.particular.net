@@ -7,14 +7,14 @@
     {
         SimplePolicy()
         {
-            #region SecondLevelRetriesCustomPolicy
+            #region DelayedRetriesCustomPolicy
 
             Configure.Features.SecondLevelRetries(s => s.CustomRetryPolicy(MyCustomRetryPolicy));
 
             #endregion
         }
 
-        #region SecondLevelRetriesCustomPolicyHandler
+        #region DelayedRetriesCustomPolicyHandler
 
         TimeSpan MyCustomRetryPolicy(TransportMessage transportMessage)
         {

@@ -6,7 +6,7 @@
     {
         void ConfigureFlr(EndpointConfiguration endpointConfiguration)
         {
-            #region FlrCodeFirstConfiguration
+            #region ImmediateRetriesConfiguration
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Immediate(
