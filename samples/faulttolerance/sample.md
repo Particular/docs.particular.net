@@ -79,7 +79,7 @@ at NServiceBus.Unicast.Transport.TransportReceiver.TryProcess(TransportMessage m
 at NServiceBus.Transports.Msmq.MsmqDequeueStrategy.Action() in
 \NServiceBus.Core\Transports\Msmq\MsmqDequeueStrategy.cs:line 266
 2015-04-24 10:59:57.752 WARN  NServiceBus.Faults.Forwarder.FaultManager Message
-with '15f99a26-fc38-4ce4-9bc1-a48400b5184c' ID has failed FLR and will be handed over to SLR for retry attempt 3.
+with '15f99a26-fc38-4ce4-9bc1-a48400b5184c' ID has failed Immediate Retries and will be handed over to Delayed Retries for retry attempt 3.
 ```
 
 While the endpoint can now continue processing other incoming messages (which will also fail in this case as the exception is thrown for all cases), the failed message has been diverted and is being held in one of the NServiceBus internal databases.

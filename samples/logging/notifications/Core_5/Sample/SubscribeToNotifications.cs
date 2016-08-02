@@ -48,12 +48,12 @@ public class SubscribeToNotifications :
 
     void Log(SecondLevelRetry secondLevelRetry)
     {
-        log.Fatal($"Message sent to SLR. RetryAttempt:{secondLevelRetry.RetryAttempt}");
+        log.Fatal($"Message sent to Delayed Retries. RetryAttempt:{secondLevelRetry.RetryAttempt}");
     }
 
     void Log(FirstLevelRetry firstLevelRetry)
     {
-        log.Fatal($"Message sent to FLR. RetryAttempt:{firstLevelRetry.RetryAttempt}");
+        log.Fatal($"Message sent to Immediate Reties. RetryAttempt:{firstLevelRetry.RetryAttempt}");
     }
 
     public void Stop()
