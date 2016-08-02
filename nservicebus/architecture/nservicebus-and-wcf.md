@@ -1,7 +1,7 @@
 ---
 title: NServiceBus and WCF
 summary: "Publish/subscribe, fault-tolerance, long-running processes, interoperability"
-component: NServiceBus.Host
+component: Host
 redirects:
  - nservicebus/nservicebus-and-wcf
 ---
