@@ -9,6 +9,7 @@ redirects:
 - nservicebus/no-dtc
 related:
 - samples/outbox
+- nservicebus/nhibernate/outbox
 ---
 
 Using Outbox allows for running endpoints with similar reliability to DTC while not actually using DTC.
@@ -59,35 +60,8 @@ The endpoints using DTC might communicate with endpoints using Outbox only if ei
 - If endpoints using Outbox send messages to endpoints using DTC, then the handlers processing those messages are [idempotent](https://en.wikipedia.org/wiki/Idempotence).
 
 
-## Using Outbox with NHibernate persistence
+## Persistence
 
+The Outbox feature requires persistence in order to store the messages and enable deduplication.
 
-### What extra tables does NHibernate Outbox persistence create
-
-To keep track of duplicate messages, the NHibernate implementation of Outbox requires the creation of `OutboxRecord` table.
-
-
-### How long are the deduplication records kept
-
-The NHibernate implementation by default keeps deduplication records for 7 days and runs the purge every 1 minute.
-
-These default settings can be changed by specifying new defaults in the config file using [TimeStamp strings](https://msdn.microsoft.com/en-us/library/ee372286.aspx):
-
-snippet:OutboxNHibernateTimeToKeep
-
-
-## Using Outbox with RavenDB persistence
-
-
-### What extra documents does RavenDB outbox persistence create
-
-To keep track of duplicate messages, the RavenDB implementation of Outbox creates a special collection of documents called `OutboxRecord`.
-
-
-### How long are the deduplication records kept
-
-The RavenDB implementation by default keeps deduplication records for 7 days and runs the purge every 1 minute.
-
-These default settings can be changed by specifying new defaults in the settings dictionary:
-
-snippet:OutboxRavendBTimeToKeep
+Refer to the dedicated pages for [NHibernate](/nservicebus/nhibernate/outbox.md) or [RavenDB](/nservicebus/ravendb/outbox.md) persistence.
