@@ -1,6 +1,5 @@
 ---
 title: Using Outbox with RavenDB persistence
-summary: Using Outbox with RavenDB persistence
 component: Raven
 tags:
  - RavenDB
