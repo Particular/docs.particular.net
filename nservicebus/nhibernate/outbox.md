@@ -1,6 +1,5 @@
 ---
 title: Using Outbox with NHibernate persistence
-component: NHibernate
 tags:
  - NHibernate
  - Outbox
