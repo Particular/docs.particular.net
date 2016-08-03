@@ -2,7 +2,6 @@
 title: Outbox
 summary: Reliable messaging without distributed transactions
 reviewed: 2016-08-03
-component: Core
 tags:
 - MSDTC
 redirects:
