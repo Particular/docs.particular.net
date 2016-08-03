@@ -144,28 +144,6 @@ namespace Core6.Routing
             #endregion
         }
 
-        void SpecialCaseTransportAddress(EndpointConfiguration endpointConfiguration)
-        {
-            #region Routing-SpecialCaseTransportAddress
-
-            var endpointInstance = new EndpointInstance("Sales", "1");
-            var transport = endpointConfiguration.UseTransport<MyTransport>();
-            transport.AddAddressTranslationException(endpointInstance, "Sales-One@MachineA");
-
-            #endregion
-        }
-
-        // ReSharper disable once ConvertClosureToMethodGroup
-        void TransportAddressRules(EndpointConfiguration endpointConfiguration)
-        {
-            #region Routing-TransportAddressRule
-
-            var transport = endpointConfiguration.UseTransport<MyTransport>();
-            transport.AddAddressTranslationRule(i => CustomTranslationRule(i));
-
-            #endregion
-        }
-
         string CustomTranslationRule(LogicalAddress endpointInstanceName)
         {
             throw new NotImplementedException();
