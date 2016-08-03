@@ -29,4 +29,4 @@ Transactions are automatically handled on a per-message basis and inherently spa
 
 ## Interoperability
 
-snippet:interop
+partial:interop
