@@ -187,7 +187,7 @@
           Articles:
             - "nservicebus/azure-service-bus/publisher-names-configuration"
             - "nservicebus/azure-service-bus/multiple-namespaces-support"
-			- "nservicebus/azure/data-distribution"
+            - "nservicebus/azure/data-distribution"
         - Title: Performance Tuning
           Url: "nservicebus/azure-service-bus/performance-tuning"
           Articles:
@@ -207,7 +207,7 @@
         - "nservicebus/azure-storage-queues/configuration"
         - "nservicebus/azure-storage-queues/performance-tuning"
         - "nservicebus/azure-storage-queues/multi-storageaccount-support"
-		- "nservicebus/azure/data-distribution"
+        - "nservicebus/azure/data-distribution"
     -
       Title: "SQL Server Transport"
       Url: "nservicebus/sqlserver"
