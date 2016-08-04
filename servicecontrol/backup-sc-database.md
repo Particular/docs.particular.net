@@ -32,3 +32,5 @@ ServiceControl utilizes an embedded RavenDB for data storage. To backup or resto
 Care should be taken when planning to move ServiceControl from one server to another. Moving databases between servers can be problematic. The embedded RavenDB does not support moving from a new versions of Windows back to older versions of Windows. See this [link](http://stackoverflow.com/questions/25625910/getting-error-while-restoring-backup-file-in-raven-db) for more details.
 
 The ServiceControl database should not be restored to older copies of the ServiceControl service. This is not supported as both the database structure and the version on RavenDB may change between versions. These changes aren't necessarily backward compatible.
+
+When restoring a ServiceControl database the name of the ServiceControl Windows Service must be the same on the target machine as it was on the source machine.
