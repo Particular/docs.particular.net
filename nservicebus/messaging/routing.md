@@ -11,7 +11,7 @@ tags:
 - reply
 related:
 - nservicebus/messaging/message-owner
-- nservicebus/messaging/file-based-routing
+- nservicebus/msmq/scalability-and-ha/sender-side-distribution
 ---
 
 One of the core features of NServiceBus is routing of messages. The only thing required is to perform a Send, Publish or Reply and the actual message destination is calculated by the framework. Flexible message routing is a feature added in Version 6. In previous versions NServiceBus used fixed [message ownership mappings](/nservicebus/messaging/message-owner.md) that allowed only to map the message type (or all types in an assembly or a namespace) to physical addresses (queue names). The flexible routing in Version 6 splits this mapping up into a series of individually configurable steps. NServiceBus 6 still understands the old configuration in form of message-endpoint mappings for backwards compatibility.
@@ -59,7 +59,7 @@ switch (Routing type?)
 
 Endpoint is a logical concept that relates to a program that uses NServiceBus to communicate with other similar programs. Each endpoint has a name e.g. `Sales` or `OrderProcessing`.
 
-During deployment each endpoint might be materialized in form of one or many instances. Each instance is an identical copy of binaries resulting from building the endpoint program code base. Usually each endpoint instance is placed in separate directory or separate machine. Each instance has its unique identity that consists of the name of the endpoint (e.g. `Sales`) and a discriminator. The discriminator can be provided either by the hosting infrastructure (e.g. Azure role ID) or by the user himself. In addition to these, an endpoint instance identity can include transport-specific information (e.g. machine name in MSMQ or schema name in SQL Server). The discriminator can be absent.
+During deployment each endpoint might be materialized in form of one or many instances. Each instance is an identical copy of binaries resulting from building the endpoint program code base. Usually each endpoint instance is placed on a separate machine in order to scale out message processing.
 
 
 ## Send, Publish and Reply
@@ -105,7 +105,7 @@ Each layer is the responsibility of people in a different organizational role an
 
 ### Endpoint mapping layer
 
-Mapping a message type to the destination endpoint is the logical side of the routing. It tells NServiceBus to which endpoint a given type of command should be send or, when it comes to events, which endpoint is responsible for publishing it. The latter is only required for transports that do not support publishing natively.
+Mapping a message type to the destination endpoint is the logical side of the routing. It tells NServiceBus to which endpoint a given type of command should be sent or, when it comes to events, which endpoint is responsible for publishing it.
 
 
 #### Static routes
@@ -121,7 +121,7 @@ snippet:Routing-StaticRoutes-Address
 
 #### Dynamic routes
 
-Dynamic routes are meant to provide a convenient extensibility point that can be used both by users and NServiceBus add-ons. To add a dynamic route pass a function that takes a `Type` and a `ContextBag` containing the context of current message processing and returns a collection of destinations.
+Dynamic routes are meant to provide a convenient extensibility point that can be used by NServiceBus add-ons. To add a dynamic route pass a function that takes a `Type` and a `ContextBag` containing the context of current message processing and returns a collection of destinations.
 
 snippet:Routing-DynamicRoutes
 
@@ -139,17 +139,7 @@ The purpose of the endpoint instance mapping layer is to provide information abo
 
 #### Using config file
 
-Endpoint mapping should be done via a config file so it can be modified without the need for re-deploying the binaries.
-
-snippet:Routing-FileBased-Config
-
-To read more see [file-based endpoint mapping](/nservicebus/messaging/file-based-routing.md).
-
-When using transports other than MSMQ the filed-based mapping can be configured using the following API:
-
-snippet:Routing-FileBased-ConfigAdvanced
-
-NOTE: If using a static type mapping to an address instead of an endpoint the advantages of file-based instance resolution will not be possible.
+When using MSMQ transport, endpoint instance mapping can be done using the [file based instance mapping](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md).
 
 
 #### Static mapping
@@ -161,7 +151,7 @@ snippet:Routing-StaticEndpointMapping
 
 #### Dynamic mapping
 
-Dynamic mapping is meant to provide a convenient extension point for both users and NServiceBus add-ons. To add a dynamic mapping rule pass a function that takes an endpoint name and returns a collection of endpoint instance names.
+Dynamic mapping is meant to provide a convenient extension for NServiceBus add-ons. To add a dynamic mapping rule pass a function that takes an endpoint name and returns a collection of endpoint instance names.
 
 snippet:Routing-DynamicEndpointMapping
 
@@ -181,20 +171,4 @@ NOTE: There is a single instance of a distribution strategy per endpoint, and th
 
 ### Address mapping layer
 
-Mapping of the endpoint instance to a transport address is a responsibility of the transport infrastructure. Usually it does not require intervention from the user as the selected transport automatically registers its translation rule. The only times where user is required to configure the instance mapping is when the default translation violates some naming rules implied by the transport infrastructure (e.g. the generated transport address is too long for a queue name in MSMQ).
-
-
-#### Special cases
-
-Sometimes there is a need to override the address translation for the single endpoint instance e.g. because the auto-generated address violates a constraint imposed by the transport. Such special case mappings have precedence over other mappings. In order to register an exception use following API:
-
-snippet:Routing-SpecialCaseTransportAddress
-
-
-#### Rules
-
-User-provided rules override the transport defaults. In order to register a rule use following API:
-
-snippet:Routing-TransportAddressRule
-
-A rule is a function that takes the instance name as the input and return a transport address or null if it does not provide translation for that particular instance name. All rules registered via this API have equal importance. It is expected that the user is responsible for providing a set of mutually exclusive rules so that for each endpoint instance name there is only one not-null translation result. In case there is more than one, an exception is raised.
+Mapping of the endpoint instance to a transport address is a responsibility of the transport infrastructure.

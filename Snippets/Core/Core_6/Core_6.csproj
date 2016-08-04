@@ -197,6 +197,7 @@
     <Compile Include="Pipeline\CustomForkConnector.cs" />
     <Compile Include="Pipeline\CustomStageConnector.cs" />
     <Compile Include="Pipeline\CustomStageForkConnector.cs" />
+    <Compile Include="Routing\InstanceMapping.cs" />
     <Compile Include="Routing\RoutingAPIs.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Sagas\FindSagas\NHibernateSagaFinder.cs" />
@@ -354,7 +355,7 @@
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Routing\RoutingFile.xml" />
+    <Content Include="Routing\InstanceMappingFile.xml" />
     <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
     <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
@@ -363,9 +364,6 @@
     <Content Include="XmlElementPayload.xml" />
     <None Include="app.config" />
     <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Routing\RoutingFile.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
