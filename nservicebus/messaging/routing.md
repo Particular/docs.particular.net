@@ -59,7 +59,7 @@ switch (Routing type?)
 
 Endpoint is a logical concept that relates to a program that uses NServiceBus to communicate with other similar programs. Each endpoint has a name e.g. `Sales` or `OrderProcessing`.
 
-During deployment each endpoint might be materialized in form of one or many instances. Each instance is an identical copy of binaries resulting from building the endpoint program code base. Usually each endpoint instance is placed in separate directory or separate machine.
+During deployment each endpoint might be materialized in form of one or many instances. Each instance is an identical copy of binaries resulting from building the endpoint program code base. Usually each endpoint instance is placed on a separate machine in order to scale out message processing.
 
 
 ## Send, Publish and Reply
@@ -105,7 +105,7 @@ Each layer is the responsibility of people in a different organizational role an
 
 ### Endpoint mapping layer
 
-Mapping a message type to the destination endpoint is the logical side of the routing. It tells NServiceBus to which endpoint a given type of command should be send or, when it comes to events, which endpoint is responsible for publishing it.
+Mapping a message type to the destination endpoint is the logical side of the routing. It tells NServiceBus to which endpoint a given type of command should be sent or, when it comes to events, which endpoint is responsible for publishing it.
 
 
 #### Static routes

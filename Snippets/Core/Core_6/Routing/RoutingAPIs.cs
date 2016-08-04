@@ -7,24 +7,12 @@ namespace Core6.Routing
     using NServiceBus;
     using NServiceBus.Features;
     using NServiceBus.Routing;
-    using NServiceBus.Settings;
-    using NServiceBus.Transport;
 
     class RoutingAPIs
     {
         void StaticRoutesEndpoint(TransportExtensions transportExtensions)
         {
             #region Routing-StaticRoutes-Endpoint
-
-            var routing = transportExtensions.Routing();
-            routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
-
-            #endregion
-        }
-
-        void StaticRoutesEndpointMsmq(TransportExtensions transportExtensions)
-        {
-            #region Routing-StaticRoutes-Endpoint-Msmq
 
             var routing = transportExtensions.Routing();
             routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
@@ -141,16 +129,21 @@ namespace Core6.Routing
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
             var routing = transport.Routing();
             routing.SetMessageDistributionStrategy("Sales", new CustomStrategy());
+
             #endregion
         }
 
-        string CustomTranslationRule(LogicalAddress endpointInstanceName)
+        void MapMessagesToLogicalEndpoints(EndpointConfiguration endpointConfiguration)
         {
-            throw new NotImplementedException();
-        }
+            #region Routing-MapMessagesToLogicalEndpoints
 
-        interface IUseCustomDistributionStrategy
-        {
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            var routing = transport.Routing();
+
+            routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            routing.RouteToEndpoint(typeof(SendOrder), "Shipping");
+
+            #endregion
         }
 
         class CustomStrategy :
@@ -168,21 +161,6 @@ namespace Core6.Routing
 
         class SendOrder
         {
-        }
-
-        class OrderAccepted
-        {
-        }
-
-        class MyTransport :
-            TransportDefinition
-        {
-            public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
-            {
-                throw new NotImplementedException();
-            }
-
-            public override string ExampleConnectionStringForErrorMessage { get; }
         }
     }
 }

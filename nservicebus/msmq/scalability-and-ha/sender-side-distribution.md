@@ -29,7 +29,7 @@ Using sender-side distribution requires two parts. The first part maps message t
 
 To map message types to logical endpoints, use the following config:
 
-snippet:InstanceMappingFile-Config
+snippet:Routing-MapMessagesToLogicalEndpoints
 
 This creates mappings specifying that the `AcceptOrder` command is handled by the **Sales** endpoint, while the `SendOrder` command is handled by the **Shipping** endpoint.
 

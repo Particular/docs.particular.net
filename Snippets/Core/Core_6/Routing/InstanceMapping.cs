@@ -5,30 +5,18 @@ namespace Core6.Routing
 
     class InstanceMapping
     {
-        void InstanceMappingFileConfig(EndpointConfiguration endpointConfiguration)
-        {
-            #region InstanceMappingFile-Config
-
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            var routing = transport.Routing();
-            var routingTable = routing.InstanceMappingFile();
-            routingTable.FilePath(@"C:\Routes.xml");
-            routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
-            routing.RouteToEndpoint(typeof(SendOrder), "Shipping");
-
-            #endregion
-        }
-
         public void InstanceMappingFileRefreshInterval(EndpointConfiguration endpointConfiguration)
         {
             #region InstanceMappingFile-RefreshInterval
 
+            var instanceMappingFile = endpointConfiguration
+                                             .UseTransport<MsmqTransport>()
+                                             .Routing()
+                                             .InstanceMappingFile();
 
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            var routing = transport.Routing();
-            var routingTable = routing.InstanceMappingFile();
-            var fileRoutingTable = routingTable.FilePath(@"C:\Routes.xml");
-            fileRoutingTable.RefreshInterval(TimeSpan.FromSeconds(45));
+            var instanceMappingFileSettings = instanceMappingFile.FilePath(@"C:\instance-mapping.xml");
+
+            instanceMappingFileSettings.RefreshInterval(TimeSpan.FromSeconds(45));
 
             #endregion
         }
@@ -37,20 +25,14 @@ namespace Core6.Routing
         {
             #region InstanceMappingFile-FilePath
 
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            var routing = transport.Routing();
-            var routingTable = routing.InstanceMappingFile();
-            routingTable.FilePath(@"C:\Routes.xml");
+            var instanceMappingFile = endpointConfiguration
+                                            .UseTransport<MsmqTransport>()
+                                            .Routing()
+                                            .InstanceMappingFile();
+
+            instanceMappingFile.FilePath(@"C:\instance-mapping.xml");
 
             #endregion
-        }
-
-        class AcceptOrder
-        {
-        }
-
-        class SendOrder
-        {
         }
     }
 }
