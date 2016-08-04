@@ -200,7 +200,6 @@
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Sagas\FindSagas\NHibernateSagaFinder.cs" />
     <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
-    <Compile Include="ScaleOut\IndividualizeQueues.cs" />
     <Compile Include="Serialization\AdditionalDeserializers.cs" />
     <Compile Include="Serialization\JsonSerializerUsage.cs" />
     <Compile Include="Serialization\RegisterCustomSerializer.cs" />
