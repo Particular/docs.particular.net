@@ -1,90 +1,66 @@
 ---
 title: Outbox
-summary: How to configure NServiceBus to provide reliable messaging without using MSDTC or when MSDTC is not available
+summary: Reliable messaging without distributed transactions
+reviewed: 2016-08-03
 tags:
 - MSDTC
 redirects:
- - nservicebus/no-dtc
+- nservicebus/no-dtc
 related:
- - samples/outbox
+- samples/outbox
+- nservicebus/nhibernate/outbox
 ---
 
-NServiceBus Version 5 adds the option of running endpoints with similar reliability to DTC while not actually using DTC.
-
-
-## Enabling the outbox
-
-In order to enable the Outbox for RabbitMQ transport:
-
-snippet: OutboxEnablineInCode
-
-In order to enable the Outbox for SQL Server and MSMQ transports, the following is required:
-
-snippet: OutboxEnablingInAppConfig
-
-NOTE: The double opt-in configuration for transports supporting DTC was introduced to make sure that Outbox is not used in combination with DTC accidentally. The Outbox can be used with DTC only if **all endpoints are [idempotent](https://en.wikipedia.org/wiki/Idempotence)**. Otherwise, problems could arise from double-processing messages sent more than once (because of at-least-once guarantee).
+Using Outbox allows for running endpoints with similar reliability to DTC while not actually using DTC.
 
 
 ## How it works
 
-These feature has been implemented using both the [Outbox pattern](http://gistlabs.com/2014/05/the-outbox/) and the [Deduplication pattern](https://en.wikipedia.org/wiki/Data_deduplication#In-line_deduplication).
+The Outbox feature has been implemented using the [Outbox](http://gistlabs.com/2014/05/the-outbox/) and the [Deduplication](https://en.wikipedia.org/wiki/Data_deduplication#In-line_deduplication) patterns.
 
-When a message is dequeued it is checked for previous processing attempts. If the message has already been processed and all downstream messages are marked as dispatched, the current message is ignored (considered a duplicate). If the downstream messages are not marked as dispatched (they may or may not have been sent), they are re-sent and marked as dispatched. Otherwise (if the message has not yet been processed) the regular handler logic is invoked storing all outgoing message in a durable storage in the same transaction as the users own database changes. Finally, all outgoing downstream messages are sent and marked as dispatched.
+Every time a message is processed, the copy of that message is stored in the persistent _Outbox storage_. Whenever a new message is received, the framework verifies if that message has been processed already by checking if it's present in the Outbox storage. 
 
-Here is a diagram illustrating how it works:
+If the message is not found in the Outbox storage, then it is processed in a regular way 
+as shown in the following diagram:
 
 ![No DTC Diagram](outbox.png)
 
+Processing a new incoming message consists of the following steps:
 
-## Caveats
+- The handlers processing that message are invoked.
+- The _downstream messages_ (messages sent during processing the message, e.g. from inside the handlers) are stored in a durable storage and business data is saved. Both operations are executed within a single transaction.
+- The downstream messages are sent and marked as dispatched.
 
- * Both the business data and deduplication data need to share the same database.
- * The Outbox is bypassed when a message is sent outside of an NServiceBus message handler. This is because there is no mechanism for repeated dispatching of the Outbox messages other than the standard retry logic, which won't be triggered in this case.
+If the message is found in the Outbox storage, then it is treated as a duplicate and not processed again. However, even though the message has been processed and business data has been saved, it might happen that the framework failed to send downstream messages. In case the downstream messages are not marked as dispatched, they will be dispatched again. 
 
-
-## Using Outbox with NHibernate persistence
-
-
-### SQL Server Transport
-
-SQL Server transport in combination with NHibernate persistence can support *exactly-once* message delivery in two ways:
-
- * by sharing the database connection, which is enlisted in TransactionScope;
- * by using Outbox.
-
-If Outbox is enabled the messages are stored in the same physical store as saga and user data. The messages are dispatched only after the processing is finished. When NHibernate persistence detects that Outbox is enabled and used together with SQLServer transport, then it automatically stops reusing the transport connection and transaction. All the data access is done within the Outbox ambient transaction.
-
-From the perspective of a particular endpoint this is *exactly-once* processing because of the deduplication that happens on the incoming queue. From a global point of view this is *at-least-once* since on the wire messages can get duplicated.
-
-The latter is discussed in depth in the [Outbox - SQL Transport and NHibernate](/samples/sqltransport-nhpersistence) sample.
+Note: On the wire level the Outbox guarantees `at-least-once` message delivery, meaning that the downstream messages can be sent and processed multiple times. On the handler level, however, the Outbox guarantees `exactly-once` message processing, same as working with distributed transactions. This higher guarantee level is due to the deduplication that happens on the receiving side.
 
 
-### What extra tables does NHibernate Outbox persistence create
+## Important design considerations
 
-To keep track of duplicate messages, the NHibernate implementation of Outbox requires the creation of `OutboxRecord` table.
-
-
-### How long are the deduplication records kept
-
-The NHibernate implementation by default keeps deduplication records for 7 days and runs the purge every 1 minute.
-
-These default settings can be changed by specifying new defaults in the config file using [TimeStamp strings](https://msdn.microsoft.com/en-us/library/ee372286.aspx):
-
-snippet:OutboxNHibernateTimeToKeep
+ * The business data and deduplication data need to be stored in the same database.
+ * The Outbox feature works only for messages sent from NServiceBus message handlers.
 
 
-## Using Outbox with RavenDB persistence
+## Enabling the Outbox
+
+In order to enable the Outbox for transports that don't support distributed transactions, e.g. RabbitMQ transport, use the following code API:
+
+snippet: OutboxEnablineInCode
+
+In order to enable the Outbox for transports that support distributed transactions, e.g. MSMQ or SQL Server transport, it is additionally required to add the following `app.config` setting:
+
+snippet: OutboxEnablingInAppConfig
+
+Warning: The double opt-in configuration for transports supporting DTC is ensuring that Outbox is not accidentally used in combination with DTC. If endpoints using Outbox send messages to endpoints using DTC, then messages might get duplicated. As a result, the same messages might be processed multiple times. 
+
+The endpoints using DTC might communicate with endpoints using Outbox only if either of the following conditions are satisfied:
+- The endpoints using Outbox don't send messages to endpoints using DTC. However, endpoints using DTC can send messages to endpoints using Outbox.
+- If endpoints using Outbox send messages to endpoints using DTC, then the handlers processing those messages are [idempotent](https://en.wikipedia.org/wiki/Idempotence).
 
 
-### What extra documents does RavenDB outbox persistence create
+## Persistence
 
-To keep track of duplicate messages, the RavenDB implementation of Outbox creates a special collection of documents called `OutboxRecord`.
+The Outbox feature requires persistence in order to store the messages and enable deduplication.
 
-
-### How long are the deduplication records kept
-
-The RavenDB implementation by default keeps deduplication records for 7 days and runs the purge every 1 minute.
-
-These default settings can be changed by specifying new defaults in the settings dictionary:
-
-snippet:OutboxRavendBTimeToKeep
+Refer to the dedicated pages for [NHibernate](/nservicebus/nhibernate/outbox.md) or [RavenDB](/nservicebus/ravendb/outbox.md) persistence.

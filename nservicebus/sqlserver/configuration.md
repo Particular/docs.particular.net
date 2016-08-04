@@ -125,17 +125,7 @@ That can be done by passing the transport a custom factory method which will pro
 snippet:sqlserver-custom-connection-factory
 
 
-## SQL Server Transport, the Outbox and user data: disabling the DTC
-
-In an environment where DTC is disabled and [Outbox](/nservicebus/outbox/) is enabled, it is important to prevent a local transaction from escalating to a distributed one.
-
-The following conditions need to be met:
-
- * the business specific data and the `Outbox` storage must be in the same database instance;
- * the user code accessing business related data must use the same `connection string` as the `Outbox` storage.
-
-
-### Entity Framework caveats
+## Entity Framework caveats
 
 In order to avoid escalating transaction to DTC when using Entity Framework, the database connection has to be shared. However, sharing the connection string can be problematic when dealing with entities based on the [Entity Framework ADO.Net Data Model (EDMX)](https://msdn.microsoft.com/library/cc716685.aspx).
 
