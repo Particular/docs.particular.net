@@ -33,7 +33,7 @@ Processing a new incoming message consists of the following steps:
 
 If the message is found in the Outbox storage, then it is treated as a duplicate and not processed again. However, even though the message has been processed and business data has been saved, it might happen that the framework failed to send downstream messages. In case the downstream messages are not marked as dispatched, they will be dispatched again. 
 
-Note: The Outbox guarantees `at-least-once` message delivery, meaning that the downstream messages can be sent and processed multiple times.
+Note: On the wire level the Outbox guarantees `at-least-once` message delivery, meaning that the downstream messages can be sent and processed multiple times. On the handler level, however, the Outbox guarantees `exactly-once` message processing, same as working with distributed transactions. This higher guarantee level is due to the deduplication that happens on the receiving side.
 
 
 ## Important design considerations
