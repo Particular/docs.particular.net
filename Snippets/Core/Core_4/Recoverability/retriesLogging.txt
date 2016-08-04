@@ -1,4 +1,4 @@
-startcode RetryLogging 4
+startcode RetryLogging
 
 Handler - Attempt 1
 Info. TransportReceiver. Exception included. Text: Failed to process message.

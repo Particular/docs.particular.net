@@ -1,4 +1,4 @@
-startcode RetryLogging 6
+startcode RetryLogging
 
 Handler - attempt 1
 Info  NServiceBus.RecoverabilityExecutor Immediate Retries is going to retry message 'messageId' because of an exception:

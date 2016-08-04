@@ -1,4 +1,4 @@
-startcode RetryLogging 3
+startcode RetryLogging
 
 Handler - Attempt 1
 Warn. UnicastBus. Exception included. Text: MyMessageHandler failed handling message.
