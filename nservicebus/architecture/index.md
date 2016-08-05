@@ -1,48 +1,49 @@
 ---
-title: Overview
-summary: NServiceBus compared to WCF and BizTalk.
+title: Bus versus broker architecture
+summary: Using NServiceBus for communication between services in SOA and DDD projects. Bus versus broker architectural styles.
+reviewed: 2016-08-05
 redirects:
 - nservicebus/overview
 ---
 
-Designed for collaboration between business-oriented services, NServiceBus is not a replacement for RPC technologies such as WCF.
+NServiceBus is designed for communication between business-oriented services in SOA and DDD projects. It is not a replacement for RPC technologies such as WCF. Successful systems use a mix of approaches and technologies for communication, not just NServiceBus.
 
-Successful SOA and DDD projects use a mix of approaches and technologies not just NServiceBus for communications.
+It takes some time to get used to the new approach, but the code written using NServiceBus is simple, more concise and easy to unit test. The systems using NServiceBus are reliable and scalable.
+
 
 This article discusses the similarities and differences between NServiceBus and its Microsoft counterparts.
 
 
-## Closer to WCF than to BizTalk
+## Bus versus broker architectural styles 
+
+A "service bus" is often illustrated as a central box, through which all communication goes. Despite the common understanding, that's actually a description of the **_broker architectural style_**. 
+
+A good example is BizTalk:
 
 ![BizTalk](biztalk.jpg)
 
-When people hear the term "service bus", they picture a central box through which all communication goes, like BizTalk. That's actually a description of the broker architectural style, not the bus architectural style. A bus isn't necessarily a physical entity. In this respect, NServiceBus is more similar to WCF than it is to BizTalk.
 
-There is no physical WCF one can point to in the network topology. WCF is part of the infrastructure that is run in-process with a given application's code. NServiceBus is the same.
+A **_bus_** in the context of the **_bus architectural style_**, isn't necessarily a physical entity. There's no physical _bus_ one can point to in the network topology. The _bus_ is part of the infrastructure that is run in-process with a given application's code. It's like a peer-to-peer mesh that runs alongside code.
 
-Just like it is possible write a host process and activate WCF explicitly within it, the same can be done with NServiceBus. The bus in NServiceBus is something virtual - a collection of framework objects running in the various application processes. Think of it as a peer-to-peer mesh that runs alongside code, as illustrated in the following diagram:
+A good example is WCF:
 
 ![deployment topology](deployment-topology.jpg)
 
-
-## What's the difference?
-
-The principles that make NServiceBus robust are decades old. Proven to hold up through countless technological shifts, the queued messaging on which NServiceBus is based is more than just an implementation choice, it's a primary architectural concept. There's no such thing as a blocking call in NServiceBus.
-
-As a general purpose communications technology, WCF does not enforce the queued messaging paradigm. NServiceBus does, and the architectural implications are profound.
-
-When developing systems according to the traditional RPC techniques that WCF supports, it simple and straightforward to get something working. That's when the problems start. Scalability and fault-tolerance are inherently hindered by RPC principles. At this point, it is close to impossible to solve these problems and even throwing more hardware at it has little effect. While WCF doesn't force developers down this path, it doesn't prevent them from doing so either. NServiceBus directs away from these problems right from the beginning.
+NServiceBus is similar to WCF more than BizTalk. Just like it is possible write a host process and activate WCF explicitly within it, the same can be done with NServiceBus. 
 
 
-## Scalability with one-way messaging
+## Messaging versus RPC
 
-In this presentation, Udi Dahan explains the relationship between reliability, availability, and scalability and why architects should first focus on reliability. After all, a highly available and scalable service that produces unreliable results isn't very valuable. Throughout the presentation, the value of queued messaging is underlined and the way it handles various failure scenarios is discussed.
+NServiceBus enforces queued messaging, which has profound architectural implications. The principles and patterns underlying queued messaging are decades old and battle-tested through countless technological shifts.
 
-Although the recording missed the first 5-10 minutes, the core message has not been lost.
+It's very simple and straightforward to build an application and get it working using traditional RPC techniques that WCF supports. However, scalability and fault-tolerance are inherently hindered. When using blocking calls it's close to impossible to solve these problems, and even throwing more hardware at it has little effect. WCF doesn't force developers down this path, but it also doesn't prevent them.
+
+NServiceBus directs away from these problems right from the beginning. There's no such thing as a blocking call when one uses one-way messaging. Common, transient errors can be resolved automatically, it's also very easy to recover from failures that require some manual intervention. Above all, even when something goes wrong, no data gets lost. 
+
+In order to learn more about the relationship between messaging and reliable, scalable, highly-available systems, watch Udi Dahan's presentation:
 
 <iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/6222577" webkitallowfullscreen width="400"></iframe>
 
+Refer to the [Architectural Principles](/nservicebus/architecture/principles.md) article to learn more about SOA and how NServiceBus aligns with SOA.
 
-## Adoption and climbing the learning curve
-
-While it does take some getting used to, code written using NServiceBus is quite a bit simpler and shorter than before, not to mention much easier to unit test. See [Case Studies](http://particular.net/casestudies) to see NServiceBus successes stories.
+See [Case Studies](http://particular.net/casestudies) to learn how NServiceBus is used and read the successes stories.
