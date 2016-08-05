@@ -9,19 +9,11 @@ related:
 - nservicebus/recoverability
 ---
 
-As a part of the NServiceBus "Fault-Tolerant by Default" design, the infrastructure manages transactions automatically so it is not required to remember the configuration of all threading and state management elements.
+NServiceBus offers four levels of consistency guarantees with regards to message processing. Levels availability depends on the selected transport. The default consistency level is TransactionScope (Distributed Transaction), but a different level can be specified using code configuration API. 
 
+See the [Transports Transactions](/nservicebus/transports/transactions.md) article to learn more about NServiceBus consistency guarantees.
 
-## Clients and servers
-
-Ideally, server code processes messages transactionally, but it often isn't required for clients, particularly desktop applications. This is one of the differences between the `AsA_Client` and `AsA_Server` settings of the [generic host](/nservicebus/hosting/nservicebus-host/) in NServiceBus.
-
-
-## Specifying transactions in code
-
-If not using the generic host, it is possible to specify whether the current endpoint should process messages transactionally by setting the `.IsTransactional(true)` after `.MsmqTransport()` (in Version 3) or `.UseTransport<Msmq>()` (in Version 4).
-
-See also [Override the System.Transactions default timeout of 10 minutes](https://blogs.msdn.microsoft.com/ajit/2008/06/18/override-the-system-transactions-default-timeout-of-10-minutes-in-the-code/).
+By default, the transaction timeout limit is set to 10 minutes. See the [Override the System.Transactions default timeout of 10 minutes](https://blogs.msdn.microsoft.com/ajit/2008/06/18/override-the-system-transactions-default-timeout-of-10-minutes-in-the-code/) article to learn how to adjust that value.
 
 
 ## Distributed Transaction Coordinator
