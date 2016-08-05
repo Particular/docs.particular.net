@@ -1,7 +1,7 @@
 ---
 title: Transactions and Message Processing
 summary: Fault-Tolerant by Default infrastructure saves remembering the configuration of threading and state management elements.
-reviewed: 2016-03-17
+reviewed: 2016-08-05
 redirects:
 - nservicebus/transactions-message-processing
 related:
@@ -18,11 +18,35 @@ By default, the transaction timeout limit is set to 10 minutes. See the [Overrid
 
 ## Distributed Transaction Coordinator
 
-In Windows, there is an OS-level service called the DTC that manages transactions needing to span multiple resources, like queues and databases. This service isn't always configured correctly and may require troubleshooting. Download a tool called [DTCPing](https://www.microsoft.com/en-us/download/details.aspx?id=2868) to help discover if one machine can access a remote machine over the DTC. The tool looks like this.
+In Windows, the Distributed Transaction Coordinator (DTC) is an OS-level service which manages transactions that span across multiple resources, e.g. queues and databases.
+
+The easiest way to configure DTC for NServiceBus is to run the [PlatformInstaller](http://docs.particular.net/platform/installer/) for NServiceBus, or to use the dedicated [Powershell commandlets](/nservicebus/operations/management-using-powershell).
+
+
+## Message processing loop
+
+Messages are processed in NServiceBus in the following steps:
+
+ 1. The queue is peeked to see if there's a message.
+ 1. If there's a message then transaction is started.
+ 1. The queue is contacted again to receive a message. This is because multiple threads may have peeked the same message. The queue makes sure only one thread actually gets a given message.
+ 1. If the thread is able to get it, NServiceBus tries to deserialize the message. If it fails, the message moves to the configured error queue and the transaction commits.
+ 1. After a successful deserialization, NServiceBus invokes all infrastructure, message mutators and handlers. An exception in this step causes the transaction to roll back and the message to return to the input queue. The message will be re-sent for a configured number of times, if all attempts fail then it'll be moved to the error queue.
+
+Refer to the [Message Handling Pipeline](/nservicebus/pipeline/) article to learn more about message processing.
+
+Refer to the [Recoverability](/nservicebus/recoverability/) and the [ServicePulse: Failed Message Monitoring](/servicepulse/intro-failed-messages.md) articles to learn more about error handling, automatic and manual retries, as well as processing failures monitoring.
+
+
+## Troubleshooting Distributed Transaction Coordinator
+
+The [DTCPing](https://www.microsoft.com/en-us/download/details.aspx?id=2868) tool is very useful for verifying that DTC service is configured correctly, as well as for troubleshooting:
 
 ![this is what the initial DTCPing window to look like.](dtcping.png "this is what the initial DTCPing window to look like.")
 
-If an error referring to the RPC Endpoint Mapper occurs, at the command prompt, run `dcomcnfg`. Note the Component Services screen below.
+It can be used to verify if one machine can access a remote machine over the DTC, simply enter the name of the remote server in the "Remote Server Name" and click the "Ping" button. 
+
+If an error referring to the RPC Endpoint Mapper occurs, run `dcomcnfg` command in the command prompt. That will open the Component Services screen:
 
 ![this is the component services and dtc configuration](dtc-dcomcnfg-1.png "this is the component services and dtc configuration")
 
@@ -30,49 +54,18 @@ Open some ports by right clicking "My Computer" and going to the "Default Protoc
 
 ![](dtc-dcomcnfg-2.png)
 
-If the list of Port Ranges is empty, click the "Add..." button and enter "5000-6000" in the dialog box. the screen should look like the image above. It is possible make do with less than 1000 open ports, but it depends on the number of machines to connect to each other over the DTC.
+If the list of Port Ranges is empty, click the "Add..." button and enter "5000-6000" in the dialog box, as shown above. It is also possible have less than 1000 open ports, the optimal number depends on the number of machines connecting to each other over the DTC.
 
-After clicking OK and returning to the Component Services screen, navigate to the "Local DTC" node under the Distributed Transaction Coordinator folder, right click, and select "Properties". In the dialog that opens, select the Security tab, as shown:
+After clicking OK and returning to the Component Services screen, navigate to the "Local DTC" node under the Distributed Transaction Coordinator folder, right click, and select "Properties". In the dialog that opens, select the Security tab:
 
 ![dtc security settings](dtc-dcomcnfg-3.png "dtc security settings")
 
-Ensure that the properties are the same as those above and restart the computer.
+Ensure that the properties are the same as shown in the screenshot above and restart the computer.
 
-If DTCPing isn't working, check that the needed ports are open in the firewall. Consider removing the DTC exceptions in the firewall and add them again to make sure.
+If DTCPing isn't working, check that the needed ports are open in the firewall.
 
-If DTCPing gives a message about finding the name but not reaching it, do a simple ping by running "ping computername" in the command prompt. If the machine cannot be reached by ping, it could be a DNS problem that may require a network administrator's help.
+If DTCPing shows a message about finding the name but not being able to reach it, perform a simple ping by running `ping computername` in the command prompt. If the machine cannot be reached by ping, it could be a DNS problem that may require a network administrator's help.
 
 Make sure to perform all the steps not just on the servers that connect to the database, but also on the database servers as well.
 
-Finally, check the TCP ports in use on the servers, making sure that each has a different port configured as the communication is bi-directional. At this point, it should be possible to run transactional NServiceBus endpoints.
-
-
-## Message processing loop
-
-Messages are processed in NServiceBus as follows:
-
- 1. The queue is peeked to see if there's a message.
- 1. If so, a distributed transaction is started.
- 1. The queue is contacted again to receive a message. This is because multiple threads may have peeked the same message. The queue makes sure only one thread actually gets a given message.
- 1. If the thread is able to get it, NServiceBus tries to deserialize the message. If this fails, the message moves to the configured error queue and the transaction commits.
- 1. After a successful deserialization, NServiceBus invokes all infrastructure, message mutators and handlers. An exception in this step causes the transaction to roll back and the message to return to the input queue.
-    * This happens the "MaxRetries" [configurable](/nservicebus/msmq/transportconfig.md#maxretries) number of times.
-    * After that, the message passes to the [Delayed Retries](/nservicebus/recoverability/#delayed-retries).
-    * If after delayed retries the error still occurs, the message will be moved to the configured error queue.
-
-In this manner, even under all kinds of failure conditions like the application server restarting in the middle of a message or a database deadlock, messages are not lost.
-
-The automatic retry mechanism is usually able to recover from most temporary problems. When that isn't possible, the message is passed to the [Delayed Retries](/nservicebus/recoverability/#delayed-retries) to decide what to do next.
-
-
-## Resolving more permanent errors
-
-In situations where more permanent errors affect systems, despite their diversity, the NServiceBus solution is the same. For example:
-
- * The database is down.
- * An external or internal web service is down.
- * The system was upgraded accidentally, breaking backwards compatibility.
-
-In all of the above, administrative action is needed, from things as simple as bringing up a database or web service again, to more complex actions like reverting to the previous version of the system.
-
-There is nothing necessarily wrong with the message itself. It might contain valuable information that shouldn't get lost under these conditions. After the administrator finishes resolving the issue, they should return the message to the queue it came from.
+Finally, make sure that each server uses a different TCP port, because communication is bi-directional.
