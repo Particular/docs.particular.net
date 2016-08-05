@@ -5,6 +5,7 @@ tags:
 - Unobtrusive
 - Conventions
 component: Core
+reviewed: 2016-07-07
 related:
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/unobtrusive-mode
