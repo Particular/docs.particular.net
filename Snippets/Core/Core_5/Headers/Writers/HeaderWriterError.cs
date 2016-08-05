@@ -99,7 +99,7 @@
         class Mutator :
             IMutateIncomingTransportMessages
         {
-            static bool hasCapturedMessage = false;
+            static bool hasCapturedMessage;
             public void MutateIncoming(TransportMessage transportMessage)
             {
                 if (!hasCapturedMessage && transportMessage.IsMessageOfTye<MessageToSend>())
