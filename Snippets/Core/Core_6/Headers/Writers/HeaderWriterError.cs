@@ -5,8 +5,6 @@
     using System.Threading.Tasks;
     using Common;
     using NServiceBus;
-    using NServiceBus.Config;
-    using NServiceBus.Config.ConfigurationSource;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
     using Operations.Msmq;
@@ -38,6 +36,12 @@
                 {
                     components.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall);
                 });
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.Immediate(settings => settings.NumberOfRetries(1));
+            recoverability.Delayed(settings =>
+            {
+                settings.NumberOfRetries(0);
+            });
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
@@ -52,31 +56,6 @@
         {
         }
 
-        class TransportConfigProvider :
-            IProvideConfiguration<TransportConfig>
-        {
-            public TransportConfig GetConfiguration()
-            {
-                return new TransportConfig
-                {
-                    MaxRetries = 1
-                };
-            }
-        }
-
-        class ConfigureDelayedRetries :
-            IProvideConfiguration<SecondLevelRetriesConfig>
-        {
-            public SecondLevelRetriesConfig GetConfiguration()
-            {
-                return new SecondLevelRetriesConfig
-                {
-                    Enabled = false,
-                    NumberOfRetries = 1,
-                    TimeIncrease = TimeSpan.FromMilliseconds(1)
-                };
-            }
-        }
 
         class MessageHandler :
             IHandleMessages<MessageToSend>
@@ -108,7 +87,7 @@
                 };
             }
 
-            static bool hasCapturedMessage = false;
+            static bool hasCapturedMessage;
 
             public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
