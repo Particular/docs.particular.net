@@ -3,6 +3,24 @@
     using System;
     using NServiceBus;
     using NServiceBus.Saga;
+
+    class SendAtStartup
+    {
+
+        void Usage(IBus bus)
+        {
+            #region StartCustomTaskSaga
+
+            var message = new StartSaga
+            {
+                TaskName = "StartupTask1"
+            };
+            bus.SendLocal(message);
+
+            #endregion
+        }
+    }
+
     #region ScheduleTaskSaga
 
     class MySaga :

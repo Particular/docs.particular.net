@@ -4,6 +4,23 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
+    class SendAtStartup
+    {
+
+        void Usage(IEndpointInstance endpointInstance)
+        {
+            #region StartCustomTaskSaga
+
+            var message = new StartSaga
+            {
+                TaskName = "StartupTask1"
+            };
+            endpointInstance.SendLocal(message);
+
+            #endregion
+        }
+    }
+
     #region ScheduleTaskSaga
 
     class MySaga :

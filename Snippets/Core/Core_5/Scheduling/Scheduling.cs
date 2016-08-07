@@ -8,16 +8,22 @@
         Scheduling(Schedule schedule, IBus bus)
         {
             #region ScheduleTask
+
             // 'Schedule' is an instance class that can be resolved from the container.
             // To send a message every 5 minutes
-            schedule.Every(TimeSpan.FromMinutes(5), () =>
-            {
-                var callLegacySystem = new CallLegacySystem();
-                bus.Send(callLegacySystem);
-            });
+            schedule.Every(
+                timeSpan: TimeSpan.FromMinutes(5),
+                task: () =>
+                {
+                    var message = new CallLegacySystem();
+                    bus.Send(message);
+                });
 
             // Name a schedule task and invoke it every 5 minutes
-            schedule.Every(TimeSpan.FromMinutes(5), "MyCustomTask", SomeCustomMethod);
+            schedule.Every(
+                timeSpan: TimeSpan.FromMinutes(5),
+                name: "MyCustomTask",
+                task: SomeCustomMethod);
 
             #endregion
         }
@@ -27,6 +33,7 @@
         }
 
     }
+
     class CallLegacySystem
     {
     }

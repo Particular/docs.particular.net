@@ -52,12 +52,21 @@ In order to store these tasks in a durable way and support either a scale-out sc
 
 Converting the scheduler code to a saga, with the code for the example usage of the scheduler API shown above:
 
- 1. Create a saga for the specified task name that is started by a message. Create a new message if necessary. In this example, the message that starts the saga is `StartMyCustomTaskSaga`. Send this message on startup, using ` Bus.SendLocal(new StartMyCustomTaskSaga{TaskName = "StartupTask1"});`. If this was not done using the API with the task name, then name the saga appropriately. In this example, the saga is called `MyCustomTaskSaga`.
- 1. Create the required saga data and set the task name as a unique ID for the saga.
- 1. Setup the mapping for the saga. This is done so that there will only be one instance of the saga for a specified task name, so as to avoid duplicate tasks being scheduled if the endpoint is restarted.
- 1. In the `Handle()` method of the startup message, request a timeout. This would be the interval that was specified in the Schedule API. Request the timeout only if it hasn't been requested already to avoid duplicate tasks that can be scheduled if the endpoint is restarted.
- 1. Create a timeout class and add the `IHandleTimeouts<T>` in the saga definition.
- 1. Define the action that needs to occur in the `Timeout` method.
+Create a saga for the specified task name that is started by a message. Create a new message if necessary. In this example, the message that starts the saga is `StartMyCustomTaskSaga`. Send this message on startup, using:
+
+snippet: StartCustomTaskSaga
+
+If this was not done using the API with the task name, then name the saga appropriately. In this example, the saga is called `MyCustomTaskSaga`.
+
+Create the required saga data and set the task name as a unique ID for the saga.
+
+Setup the mapping for the saga. This is done so that there will only be one instance of the saga for a specified task name, so as to avoid duplicate tasks being scheduled if the endpoint is restarted.
+
+In the `Handle()` method of the startup message, request a timeout. This would be the interval that was specified in the Schedule API. Request the timeout only if it hasn't been requested already to avoid duplicate tasks that can be scheduled if the endpoint is restarted.
+
+Create a timeout class and add the `IHandleTimeouts<T>` in the saga definition.
+
+Define the action that needs to occur in the `Timeout` method.
 
 In the following example, the endpoint upon startup will send itself a `StartMyCustomSaga` message to initiate the saga. The saga will request a timeout for 5 minutes if the task hasn't already been scheduled and, in the timeout handler, it will send the `CallLegacySystem` message that will execute some task and also request another timeout for the specified interval.
 
