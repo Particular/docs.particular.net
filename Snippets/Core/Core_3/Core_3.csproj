@@ -139,6 +139,7 @@
     <Compile Include="Encryption\Usage.cs" />
     <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
     <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
+    <Compile Include="Recoverability\Immediate\ProvideConfiguration.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Routing\EndpointMapping\ProvideConfiguration.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />

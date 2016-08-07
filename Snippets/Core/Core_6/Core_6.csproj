@@ -102,8 +102,6 @@
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
-    <Compile Include="Recoverability\Delayed\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Recoverability\Delayed\ConfigurationSource\Usage.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\CustomExceptionPolicy.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicyOverridingDelayedRetriesPart.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\FullyCustomizedPolicy.cs" />
@@ -111,16 +109,12 @@
     <Compile Include="Recoverability\Delayed\CustomPolicies\PartiallyCustomizedPolicy.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\SimplePolicy.cs" />
     <Compile Include="Recoverability\Delayed\Usage.cs" />
-    <Compile Include="Recoverability\Delayed\ProvideConfiguration.cs" />
     <Compile Include="Recoverability\ErrorHandling\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Recoverability\ErrorHandling\ConfigurationSource\Usage.cs" />
     <Compile Include="Recoverability\ErrorHandling\ErrorHeadersCustomization.cs" />
     <Compile Include="Recoverability\ErrorHandling\ProvideConfiguration.cs" />
     <Compile Include="Recoverability\ErrorHandling\Usage.cs" />
-    <Compile Include="Recoverability\Immediate\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Recoverability\Immediate\ConfigurationSource\Usage.cs" />
     <Compile Include="Recoverability\Immediate\Usage.cs" />
-    <Compile Include="Recoverability\Immediate\ProvideConfiguration.cs" />
     <Compile Include="Features\SatelliteRecoverability.cs" />
     <Compile Include="Features\AdvancedSatelliteFeature.cs" />
     <Compile Include="Features\SatelliteFeature.cs" />
@@ -333,7 +327,6 @@
     </Content>
     <Content Include="Recoverability\Delayed\DelayedReties.config.xml" />
     <Content Include="Recoverability\ErrorHandling\ErrorQueue.config.xml" />
-    <Content Include="Recoverability\Immediate\immediateRetries.config.xml" />
     <Content Include="Recoverability\retriesLogging.txt" />
     <Content Include="Routing\EndpointMapping.config.xml" />
     <Content Include="Headers\Writers\HeaderWriterDataBusConvention.txt" />

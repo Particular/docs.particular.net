@@ -1,4 +1,4 @@
-﻿namespace Core6.Recoverability.Immediate
+﻿namespace Core3.Recoverability.Immediate
 {
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
@@ -6,11 +6,11 @@
     #region ImmediateRetriesProvideConfiguration
 
     class ProvideConfiguration :
-        IProvideConfiguration<TransportConfig>
+        IProvideConfiguration<MsmqTransportConfig>
     {
-        public TransportConfig GetConfiguration()
+        public MsmqTransportConfig GetConfiguration()
         {
-            return new TransportConfig
+            return new MsmqTransportConfig
             {
                 MaxRetries = 2
             };
