@@ -20,7 +20,7 @@ By default, the transaction timeout limit is set to 10 minutes. See the [Overrid
 
 In Windows, the Distributed Transaction Coordinator (DTC) is an OS-level service which manages transactions that span across multiple resources, e.g. queues and databases.
 
-The easiest way to configure DTC for NServiceBus is to run the [PlatformInstaller](http://docs.particular.net/platform/installer/) for NServiceBus, or to use the dedicated [Powershell commandlets](/nservicebus/operations/management-using-powershell.md).
+The easiest way to configure DTC for NServiceBus is to run the [PlatformInstaller](/platform/installer/) for NServiceBus, or to use the dedicated [PowerShell commandlets](/nservicebus/operations/management-using-powershell.md).
 
 
 ## Message processing loop
