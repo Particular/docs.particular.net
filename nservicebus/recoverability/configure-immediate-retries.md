@@ -12,7 +12,7 @@ related:
  - samples/faulttolerance
 ---
 
-NOTE: In order to get full control over Immediate Retries it is possible to override the default Recoverability Policy. For a comprehensive overview the Recoverability Policy refer to [Recoverability Policy](/nservicebus/recoverability/custom-recoverability-policy.md).
+NOTE: In order to get full control over Immediate Retries it is possible to override the default [Recoverability Policy](/nservicebus/recoverability/custom-recoverability-policy.md).
 
 WARNING: Immediate Retries cannot be used when [transport transaction](/nservicebus/transports/transactions.md) are disabled.
 
