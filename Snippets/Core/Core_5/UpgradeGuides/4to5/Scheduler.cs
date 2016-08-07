@@ -6,6 +6,7 @@
     public class Scheduler
     {
         #region 4to5Scheduler
+
         public class ScheduleMyTasks :
             IWantToRunWhenBusStartsAndStops
         {
@@ -21,18 +22,23 @@
             public void Start()
             {
                 // To send a message every 5 minutes
-                schedule.Every(TimeSpan.FromMinutes(5), () =>
-                {
-                    var myMessage = new MyMessage();
-                    bus.SendLocal(myMessage);
-                });
+                schedule.Every(
+                    timeSpan: TimeSpan.FromMinutes(5),
+                    task: () =>
+                    {
+                        var message = new MyMessage();
+                        bus.SendLocal(message);
+                    });
 
                 // Name a schedule task and invoke it every 5 minutes
-                schedule.Every(TimeSpan.FromMinutes(5), "Task name", () =>
-                {
-                    var myMessage = new MyMessage();
-                    bus.SendLocal(myMessage);
-                });
+                schedule.Every(
+                    timeSpan: TimeSpan.FromMinutes(5),
+                    name: "Task name",
+                    task: () =>
+                    {
+                        var message = new MyMessage();
+                        bus.SendLocal(message);
+                    });
             }
 
             public void Stop()
@@ -41,6 +47,7 @@
         }
 
         #endregion
+
         public class MyMessage :
             IMessage
         {
