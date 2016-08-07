@@ -58,15 +58,18 @@
         {
             var dependency = new DependencyWhichUsesAPM();
 
-            var result = await Task.Factory.FromAsync((callback, state) =>
-                {
-                    var d = (DependencyWhichUsesAPM) state;
-                    return d.BeginCall(callback, state);
-                }, rslt =>
-                {
-                    var d = (DependencyWhichUsesAPM) rslt.AsyncState;
-                    return d.EndCall(rslt);
-                }, dependency)
+            var result = await Task.Factory.FromAsync(
+                    beginMethod: (callback, state) =>
+                    {
+                        var d = (DependencyWhichUsesAPM) state;
+                        return d.BeginCall(callback, state);
+                    },
+                    endMethod: asyncResult =>
+                    {
+                        var d = (DependencyWhichUsesAPM) asyncResult.AsyncState;
+                        return d.EndCall(asyncResult);
+                    },
+                    state: dependency)
                 .ConfigureAwait(false);
 
             // Use the result in some way
@@ -110,8 +113,8 @@
         [OneWay]
         public string Callback(IAsyncResult ar)
         {
-            var del = (Func<string>)((AsyncResult)ar).AsyncDelegate;
-            return del.EndInvoke(ar);
+            var asyncDelegate = (Func<string>) ((AsyncResult) ar).AsyncDelegate;
+            return asyncDelegate.EndInvoke(ar);
         }
 
         public Task<string> Run()
@@ -120,15 +123,18 @@
 
             Func<string> remoteCall = remoteService.TimeConsumingRemoteCall;
 
-            return Task.Factory.FromAsync((callback, state) =>
-            {
-                var call = (Tuple<Func<string>, AsyncClient>) state;
-                return call.Item1.BeginInvoke(callback, state);
-            }, rslt =>
-            {
-                var call = (Tuple<Func<string>, AsyncClient>)rslt.AsyncState;
-                return call.Item2.Callback(rslt);
-            }, Tuple.Create(remoteCall, this));
+            return Task.Factory.FromAsync(
+                beginMethod: (callback, state) =>
+                {
+                    var call = (Tuple<Func<string>, AsyncClient>) state;
+                    return call.Item1.BeginInvoke(callback, state);
+                },
+                endMethod: asyncResult =>
+                {
+                    var call = (Tuple<Func<string>, AsyncClient>) asyncResult.AsyncState;
+                    return call.Item2.Callback(asyncResult);
+                },
+                state: Tuple.Create(remoteCall, this));
         }
     }
 

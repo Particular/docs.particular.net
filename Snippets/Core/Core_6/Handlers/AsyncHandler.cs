@@ -48,7 +48,6 @@
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var task = SomeLibrary.SomeAsyncMethod(message);
-
             return task;
         }
     }
