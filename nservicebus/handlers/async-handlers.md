@@ -69,7 +69,7 @@ For the majority of business scenarios this approach is acceptable since many of
 
 ## Calling long-running compute-bound code
 
-WARN: This approach should only be used after a thorough analysis of the runtime behavior and the code involved in the call hierarchy of a handler. Wrapping code inside the handler with Task.Run or `Task.Factory.StartNew` can seriously harm the throughput if applied incorrectly. It should be used when multiple long-running compute-bound tasks need to be executed in parallel.
+WARNING: This approach should only be used after a thorough analysis of the runtime behavior and the code involved in the call hierarchy of a handler. Wrapping code inside the handler with Task.Run or `Task.Factory.StartNew` can seriously harm the throughput if applied incorrectly. It should be used when multiple long-running compute-bound tasks need to be executed in parallel.
 
 Long running compute-bound code that is executed in a handler could be offloaded to the worker thread pool.
 
