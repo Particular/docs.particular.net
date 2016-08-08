@@ -52,5 +52,8 @@
     <Compile Include="UpgradeGuides\MultiInstance.cs" />
     <Compile Include="UpgradeGuides\Transactions.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExpiredIndex.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
