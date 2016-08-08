@@ -2,6 +2,6 @@
 
 If [callback](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing) support is not explicitly disabled, SQL Server transport is using an additional table for the endpoint-specific queue. The name of the table is derived from the endpoint name and the host name of the machine running the endpoint program.
 
-To disable the callback queue, use following API:
+Callbacks can be disabled using code API:
 
 snippet:sqlserver-config-disable-secondaries
