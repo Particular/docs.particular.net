@@ -1,1 +1,1 @@
-There was no distinction between `ReceiveOnly` and `SendsAtomicWithReceive`. Using native transaction was equivalent to `SendsAtomicWithReceive` mode.
+There was no distinction between `ReceiveOnly` and `SendsAtomicWithReceive`. Using native transaction is equivalent to `SendsAtomicWithReceive` mode in [Version 3 and higher](/nservicebus/sqlserver/transactions.md?version=sqlserver_3#native-transactions).
