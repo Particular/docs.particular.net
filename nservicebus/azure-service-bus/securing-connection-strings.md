@@ -1,7 +1,6 @@
 ---
 title: Securing Connection Strings To Namespaces
 summary: 'Azure Service Bus Transport: Securing connection strings to namespaces.'
-component: ASB
 tags:
 - Cloud
 - Azure

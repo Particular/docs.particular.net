@@ -1,7 +1,6 @@
 ---
 title: Azure Service Bus Transport Message lock renewal
 summary: Extending message lock for long handler operation
-component: ASB
 tags:
 - Cloud
 - Azure

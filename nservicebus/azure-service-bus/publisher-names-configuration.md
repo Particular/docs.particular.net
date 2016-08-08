@@ -2,11 +2,12 @@
 title: Publishers name configuration
 summary: Configuration mapping between publisher names and event types for Endpoint Oriented Topology
 component: ASB
+versions: "[7,)"
 tags:
 - Cloud
 - Azure
 - Transports
-reviewed: 2016-04-18
+reviewed: 2016-08-08
 ---
 
 When the [`EndpointOrientedTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-endpoint-oriented-topology) is selected, a mapping between publisher names and event types has to be properly configured, in order to ensure that subscriber can receive event messages. 
