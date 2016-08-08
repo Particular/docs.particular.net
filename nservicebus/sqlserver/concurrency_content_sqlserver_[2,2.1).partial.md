@@ -1,0 +1,3 @@
+Each endpoint running SQL Server transport spins up a fixed number of threads (controlled by `MaximumConcurrencyLevel` property of `TransportConfig` section) both for each input queue. Each thread runs in a loop, polling the database for messages awaiting processing.
+
+As a consequence, if `MaximumConcurrencyLevel` is set to 10, there are 31 threads running and constantly polling the database (10 threads for the main queue, 10 for each satellite and another one for the callback receiver). The maximum concurrency value for the callback receiver can be adjusted via the configuration API.

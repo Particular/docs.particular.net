@@ -213,6 +213,8 @@
       Articles:
         - "nservicebus/sqlserver/configuration"
         - "nservicebus/sqlserver/design"
+        - "nservicebus/sqlserver/transactions"
+        - "nservicebus/sqlserver/concurrency"
         - "nservicebus/sqlserver/deployment-options"
         - "nservicebus/sqlserver/operations-scripting"
     -

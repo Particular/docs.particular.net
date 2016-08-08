@@ -1,16 +1,13 @@
 ---
 title: SQL Server Transport Design
 summary: The design and implementation details of SQL Server Transport
-reviewed: 2016-04-20
+reviewed: 2016-08-08
+component: SqlServer
 tags:
 - SQL Server
 - Transactions
 - Transport
 ---
-
-
-## Queues
-
 
 ### Primary queue
 
@@ -18,13 +15,7 @@ Each endpoint has a single table representing the primary queue. The name of the
 
 In a scale-out scenario this single queue is shared by all instances.
 
-
-### Callback queues
-
-Each endpoint has one or more tables representing callback queues. Their names consist of the endpoint name with appropriate suffixes (machine name in Version 2, user-specified or default suffixes in Version 3).
-
-Since callback handlers are stored in-memory in the node that registers the callback, the same node should process the message representing reply. To guarantee this, in a scale-out scenario, each endpoint instance needs a dedicated callback queue.
-
+partial:callback
 
 ### Other queues
 
