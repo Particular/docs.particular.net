@@ -7,37 +7,31 @@ tags:
 - Transactions
 ---
 
+## Transaction Support
 
-## Transactions and delivery guarantees
+Azure Service Bus Transport supports `SendAtomicWithReceive`, `ReceiveOnly` and `None` transaction mode levels.
 
-NServiceBus Azure Service Bus transport relies on the underlying Azure Service Bus library which requires the use of the `Serializable` isolation level (the most restrictive isolation level that does not permit `dirty reads`, `phantom reads` and `non repeatable reads`; will block any reader until the writer is committed. For more information refer to [Transaction Isolation Levels Explained in Details](http://www.dotnetspeak.com/data/transaction-isolation-levels-explained-in-details/) article.
+### Sends atomic with Receive
 
-NServiceBus Azure Service Bus transport configuration is hard-coded to `Serializable` isolation level. Users can't override it.
+include: send-atomic-with-receive-note
 
-
-### Versions 6 and above
-
-Azure Service Bus Transport supports `SendAtomicWithReceive`, `ReceiveOnly` and `None` levels.
-
-
-#### Transport transaction - Sends atomic with Receive
-
-Note: `SendAtomicWithReceive` level is supported only when destination and receive queues are in the same namespace.
-
-The `SendAtomicWithReceive` guarantee is achieved by using `ViaEntityPath` property on outbound messages. It's value is set to the receiving queue.
+The `SendAtomicWithReceive` guarantee is achieved by setting the `ViaEntityPath` property on outbound message senders. Its value is set to the receiving queue.
 
 If the `ViaEntityPath` is not empty, then messages will be added to the receive queue. The messages will be forwarded to their actual destination (inside the broker) only when the complete operation is called on the received brokered message. The message won't be forwarded if the lock duration limit is exceeded (30 seconds by default) or if the message is explicitly abandoned.
 
-
-#### Transport transaction - Receive Only
+### Receive Only
 
 The `ReceiveOnly` guarantee is based on the Azure Service Bus Peek-Lock mechanism.
 
-The message is not removed from the queue directly after receive, but it's hidden by default for 30 seconds. That prevents other instances from picking it up. If the receiver fails to process the message withing that timeframe or explicitly abandons the message, then the message will become visible again. Other instances will be able to pick it up.
+The message is not removed from the queue directly after receive, but it's hidden for, by default , 30 seconds. That prevents other instances from picking it up. If the receiver fails to process the message withing that timeframe or explicitly abandons the message, then the message will become visible again. Other instances will be able to pick it up (effectively works like a rollback).
 
 
-#### Unreliable (Transactions Disabled)
+### Unreliable (Transactions Disabled)
 
-When transactions are disabled then NServiceBus uses the [ASB's ReceiveAndDelete mode](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.messaging.receivemode.aspx).
+When transactions are disabled in NServiceBus then the transport uses the [ASB's ReceiveAndDelete mode](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.messaging.receivemode.aspx).
 
 The message is deleted from the queue directly after receive operation completes, before it is processed.
+
+As transient exceptions occur regularly when integrating with online services, having retries off is highly unrecommended. This mode should only be used in very specific situations!
+
+NOTE: For a full explanation of the transactional behavior, refer to [Understanding internal transactions and delivery guarantees](understanding-transactions-and-delivery-guarantees.md).
