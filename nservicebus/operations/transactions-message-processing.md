@@ -4,6 +4,7 @@ summary: Fault-Tolerant by Default infrastructure saves remembering the configur
 reviewed: 2016-08-05
 redirects:
 - nservicebus/transactions-message-processing
+- nservicebus/operations/warning-for-cid-values
 related:
 - nservicebus/outbox
 - nservicebus/recoverability
@@ -27,9 +28,11 @@ The easiest way to configure DTC for NServiceBus is to run the [PlatformInstalle
 
 The [DTCPing](https://www.microsoft.com/en-us/download/details.aspx?id=2868) tool is very useful for verifying that DTC service is configured correctly, as well as for troubleshooting:
 
-![this is what the initial DTCPing window to look like.](dtcping.png "this is what the initial DTCPing window to look like.")
+![DTCPing tool](dtcping.png "DTCPing tool")
 
 For more information refer to the [Troubleshooting MSDTC issues with the DTCPing tool](https://blogs.msdn.microsoft.com/puneetgupta/2008/11/12/troubleshooting-msdtc-issues-with-the-dtcping-tool/) article on MSDN.
+
+NOTE: If the `DTCPing WARNING: The CID Values for Both Test Machines Are the Same` message appears when running the DTCPing tool, the reason might be that the machine name is longer than 14 characters. For DTCPing and MSDTC to work, the machine name should be shorter than 15 characters.
 
 
 ## Message processing loop

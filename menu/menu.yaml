@@ -357,7 +357,6 @@
         - "nservicebus/operations/tuning"
         - "nservicebus/operations/running-on-windows"
         - "nservicebus/operations/transactions-message-processing"
-        - "nservicebus/operations/warning-for-cid-values"
     -
       Title: "Scalability and HA"
       Url: "nservicebus/scalability-and-ha"
