@@ -115,6 +115,7 @@
     <Compile Include="PubSub\WithConvention\MessageToPublish.cs" />
     <Compile Include="PubSub\WithConvention\Usage.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="Recoverability\Delayed\ProvideConfiguration.cs" />
     <Compile Include="Recoverability\Delayed\Usage.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
