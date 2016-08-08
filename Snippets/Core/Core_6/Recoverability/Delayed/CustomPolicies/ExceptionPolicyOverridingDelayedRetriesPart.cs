@@ -6,23 +6,6 @@
 
     class ExceptionPolicyOverridingDelayedRetriesPart
     {
-        ExceptionPolicyOverridingDelayedRetriesPart(EndpointConfiguration endpointConfiguration)
-        {
-
-            #region DelayedRetriesCustomExceptionPolicyHandlerConfig
-
-            var recoverability = endpointConfiguration.Recoverability();
-            recoverability.Delayed(
-                delayed =>
-                {
-                    delayed.NumberOfRetries(3);
-                });
-
-            #endregion
-
-            recoverability.CustomPolicy(MyCustomRetryPolicy);
-        }
-
         #region DelayedRetriesCustomExceptionPolicyHandler
 
         RecoverabilityAction MyCustomRetryPolicy(RecoverabilityConfig config, ErrorContext context)

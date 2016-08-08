@@ -14,16 +14,6 @@
             recoverability.CustomPolicy(MyCustomRetryPolicy);
 
             #endregion
-
-            #region DelayedRetriesCustomPolicyHandlerConfig
-
-            recoverability.Delayed(
-                delayed =>
-                {
-                    delayed.NumberOfRetries(3);
-                });
-
-            #endregion
         }
 
         #region DelayedRetriesCustomPolicyHandler

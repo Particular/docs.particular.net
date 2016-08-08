@@ -1,6 +1,7 @@
 ---
 title: Configure delayed retries
-summary: Shows how to configure delayed retries which happen as a second stage of the default recoverability behavior.
+summary: Shows how to configure delayed retries which happens as a second stage of recoverability.
+component: Core
 tags:
  - Error Handling
  - Exceptions
@@ -17,36 +18,7 @@ NOTE: Starting from NServiceBus Version 6 Delayed Retries Policy (formerly known
 
 WARNING: Delayed Retries cannot be used when transport transactions are disabled or Delayed Delivery is not available. For more information about transport transactions, refer to [transport transaction](/nservicebus/transports/transactions.md). For more information about delayed delivery, refer to [delayed-delivery](/nservicebus/messaging/delayed-delivery.md#caveats).
 
-
-## Configuring Delayed Retries
-
-
-### Using app.config
-
-To configure Delayed Retries, enable its configuration section:
-
-snippet:DelayedRetriesAppConfig
-
- * `Enabled`: Turns the feature on and off. Default: true.
- * `TimeIncrease`: A time span after which the time between retries increases. Default: 10 seconds (`00:00:10`).
- * `NumberOfRetries`: Number of times Delayed Retries are performed. Default: 3.
-
-
-### Through code
-
-snippet:DelayedRetriesConfiguration
-
-
-### Through IProvideConfiguration
-
-snippet:DelayedRetriesProvideConfiguration
-
-
-### Through ConfigurationSource
-
-snippet:DelayedRetriesConfigurationSource
-
-snippet:DelayedRetriesConfigurationSourceUsage
+partial: config
 
 
 ## Disabling Delayed Retries through code
@@ -68,15 +40,11 @@ snippet:DelayedRetriesCustomPolicy
 
 The following retry policy that will retry a message 3 times with a 5 second interval.
 
-snippet:DelayedRetriesCustomPolicyHandlerConfig
-
 snippet:DelayedRetriesCustomPolicyHandler
 
 
 ### Exception based Policy
 
 The following retry policy extends the previous policy with a custom handling logic for a specific exception.
-
-snippet:DelayedRetriesCustomExceptionPolicyHandlerConfig
 
 snippet:DelayedRetriesCustomExceptionPolicyHandler

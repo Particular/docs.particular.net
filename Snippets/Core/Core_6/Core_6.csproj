@@ -325,7 +325,6 @@
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Recoverability\Delayed\DelayedReties.config.xml" />
     <Content Include="Recoverability\ErrorHandling\ErrorQueue.config.xml" />
     <Content Include="Recoverability\retriesLogging.txt" />
     <Content Include="Routing\EndpointMapping.config.xml" />
