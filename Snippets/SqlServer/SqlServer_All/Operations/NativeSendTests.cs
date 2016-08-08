@@ -55,7 +55,7 @@ public class NativeSendTests
     }
 
     [Test]
-    public void SendPowershell()
+    public void SendPowerShell()
     {
         var state = new State();
         using (var bus = StartBus(state))

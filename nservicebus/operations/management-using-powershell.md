@@ -26,12 +26,12 @@ The PowerShell module provides cmdlets to assist with:
 
 Prior to installation ensure that PowerShell Version 2 or greater is installed.
 
-From Version 5.0 the module is compatible with .NET 2 so there is no longer a requirement to upgrade PowerShell to Version 3.0+ or modify the `Powershell.exe.config` to force .NET 4 to be used.
+From Version 5.0 the module is compatible with .NET 2 so there is no longer a requirement to upgrade PowerShell to Version 3.0+ or modify the `PowerShell.exe.config` to force .NET 4 to be used.
 
 
 ## Installation
 
-The installation file for the module can be **[downloaded here](https://github.com/particular/NServiceBus.Powershell/releases/latest)**.
+The installation file for the module can be **[downloaded here](https://github.com/particular/NServiceBus.PowerShell/releases/latest)**.
 
 
 ## Usage

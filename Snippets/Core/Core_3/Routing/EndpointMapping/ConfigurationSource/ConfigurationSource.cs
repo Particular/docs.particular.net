@@ -34,7 +34,7 @@ namespace Core3.Routing.EndpointMapping.ConfigurationSource
                 return config as T;
             }
 
-            // To in app.config for other sections not defined in this method, otherwise return null.
+            // Respect app.config for other sections not defined in this method
             return ConfigurationManager.GetSection(typeof(T).Name) as T;
         }
     }

@@ -50,7 +50,7 @@ Function Usage
 				-MessageBody "{'Property':'Value'}" `
 				-Headers @{"NServiceBus.EnclosedMessageTypes" = "Operations.SqlServer.NativeSendTests+MessageToSend"}
 
-	# Alternative usage using Powershell Splatting (e.g. passing params as a hashtable)
+	# Alternative usage using PowerShell Splatting (e.g. passing params as a hashtable)
 
 	$payload = @{
 		ConnectionString = "Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True"

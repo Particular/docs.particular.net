@@ -34,7 +34,7 @@ namespace Gateway_2.Sites.ConfigurationSource
                 return gatewayConfig as T;
             }
 
-            // To in app.config for other sections not defined in this method, otherwise return null.
+            // Respect app.config for other sections not defined in this method
             return ConfigurationManager.GetSection(typeof(T).Name) as T;
         }
     }
