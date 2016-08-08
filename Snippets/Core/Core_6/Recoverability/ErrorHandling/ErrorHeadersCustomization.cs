@@ -6,7 +6,7 @@
     {
         public void ConfigureErrorHeadersCustomizations(EndpointConfiguration configuration)
         {
-            #region ErrorHeadersCustomizations 6
+            #region ErrorHeadersCustomizations
 
             var recoverability = configuration.Recoverability();
             recoverability.Failed(

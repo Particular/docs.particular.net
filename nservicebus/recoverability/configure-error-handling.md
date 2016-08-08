@@ -1,6 +1,7 @@
 ---
 title: Configure error handling
 summary: Messages that failed a certain number of times will be forwarded to the error queue. This page shows how to configure the error queue address.
+component: Core
 tags:
  - Error Handling
  - Exceptions
@@ -23,10 +24,7 @@ WARNING: When running with [transport transactions disabled](/nservicebus/transp
 
 Error queue can be configured in several ways.
 
-
-### Using Code
-
-snippet:ErrorWithCode
+partial:ErrorWithCode
 
 
 ### Using a IConfigurationProvider
@@ -51,14 +49,7 @@ NOTE: In NServiceBus Version 3.x the `ErrorQueue` settings can be set both via t
 
 For more details on `MsmqTransportConfig` refer to the [MSMQ transport](/nservicebus/msmq/transportconfig.md) article.
 
-
-## Error message header customizations
-
-Before message is moved to the error queue it is possible inspect and modify its headers including [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers).
-
-The following snippet shows how to configure header customizations and perform header value modification.
-
-snippet:ErrorHeadersCustomizations
+partial:errorheader
 
 
 ## Error queue monitoring

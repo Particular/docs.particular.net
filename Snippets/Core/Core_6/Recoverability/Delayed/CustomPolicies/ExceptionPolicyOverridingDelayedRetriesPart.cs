@@ -9,7 +9,7 @@
         ExceptionPolicyOverridingDelayedRetriesPart(EndpointConfiguration endpointConfiguration)
         {
 
-            #region DelayedRetriesCustomExceptionPolicyHandlerConfig 6
+            #region DelayedRetriesCustomExceptionPolicyHandlerConfig
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Delayed(
