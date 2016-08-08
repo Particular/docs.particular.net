@@ -1,6 +1,6 @@
 ---
 title: Transactions and Message Processing
-summary: Fault-Tolerant by Default infrastructure saves remembering the configuration of threading and state management elements.
+summary: Overview of message processing, transactions and consistency guarantees in NServiceBus.
 reviewed: 2016-08-05
 redirects:
 - nservicebus/transactions-message-processing

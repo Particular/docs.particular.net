@@ -11,7 +11,6 @@
         - "samples/step-by-step"
         - "nservicebus/architecture"
         - "nservicebus/architecture/principles"
-        - "nservicebus/operations/transactions-message-processing"
         - "nservicebus/architecture/nservicebus-and-wcf"
         - "nservicebus/architecture/nservicebus-and-biztalk"
         - "nservicebus/licensing/license-management"
@@ -347,6 +346,7 @@
       Title: "Operations"
       Url: "nservicebus/operations"
       Articles:
+        - "nservicebus/operations/transactions-message-processing"
         - "nservicebus/operations/auditing"
         - "nservicebus/security/encryption"
         - "nservicebus/operations/configuring-aws"
@@ -356,7 +356,6 @@
         - "nservicebus/operations/performance-counters"
         - "nservicebus/operations/tuning"
         - "nservicebus/operations/running-on-windows"
-        - "nservicebus/operations/transactions-message-processing"
     -
       Title: "Scalability and HA"
       Url: "nservicebus/scalability-and-ha"
