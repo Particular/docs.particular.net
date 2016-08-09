@@ -6,7 +6,7 @@ public static class NServiceBusFeatures
     public static void DisableNotUsedFeatures(this EndpointConfiguration endpointConfiguration)
     {
         endpointConfiguration.DisableFeature<Sagas>();
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.Recoverability().Delayed(s=>s.NumberOfRetries(0));
         endpointConfiguration.DisableFeature<TimeoutManager>();
     }
 }
