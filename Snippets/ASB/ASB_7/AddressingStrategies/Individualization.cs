@@ -1,6 +1,6 @@
 using System;
-using NServiceBus.AzureServiceBus.Addressing;
 using NServiceBus.Settings;
+using NServiceBus.Transport.AzureServiceBus;
 
 #region custom-individualization-strategy
 

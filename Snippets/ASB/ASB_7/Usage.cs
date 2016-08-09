@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using NServiceBus;
-using NServiceBus.AzureServiceBus;
 
 class Usage
 {
@@ -30,8 +29,8 @@ class Usage
         #region setting_queue_properties
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var queueSettings = transport.Queues();
-        queueSettings.LockDuration(TimeSpan.FromMinutes(1));
+        var queues = transport.Queues();
+        queues.LockDuration(TimeSpan.FromMinutes(1));
 
         #endregion
     }
@@ -41,8 +40,8 @@ class Usage
         #region setting_topic_properties
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var topicSettings = transport.Topics();
-        topicSettings.MaxSizeInMegabytes(SizeInMegabytes.Size5120);
+        var topics = transport.Topics();
+        topics.MaxSizeInMegabytes(SizeInMegabytes.Size5120);
 
         #endregion
     }
@@ -53,7 +52,7 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var topology = transport.UseTopology<EndpointOrientedTopology>();
-        topology.RegisterPublisherForType("publisherName", typeof(MyMessage));
+        topology.RegisterPublisher(typeof(MyMessage), "publisherName");
 
         #endregion
     }
@@ -65,7 +64,7 @@ class Usage
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var topology = transport.UseTopology<EndpointOrientedTopology>();
         var messagesAssembly = Assembly.LoadFrom("path/to/assembly/containing/messages");
-        topology.RegisterPublisherForAssembly("publisherName", messagesAssembly);
+        topology.RegisterPublisher(messagesAssembly, "publisherName");
 
         #endregion
     }
@@ -77,10 +76,10 @@ class Usage
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var topology = transport.UseTopology<EndpointOrientedTopology>();
 
-        topology.RegisterPublisherForType("publisherName", typeof(MyMessage));
+        topology.RegisterPublisher(typeof(MyMessage), "publisherName");
         // or
         var messagesAssembly = Assembly.LoadFrom("path/to/assembly/containing/messages");
-        topology.RegisterPublisherForAssembly("publisherName", messagesAssembly);
+        topology.RegisterPublisher(messagesAssembly, "publisherName");
 
         #endregion
     }
@@ -92,6 +91,7 @@ class Usage
     void TopologySelectionUpgradeGuide(EndpointConfiguration endpointConfiguration)
     {
         #region topology-selection-upgrade-guide
+
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
         transport.UseTopology<ForwardingTopology>();
@@ -108,8 +108,8 @@ class Usage
         #region asb-auto-lock-renewal
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var receiverSettings = transport.MessageReceivers();
-        receiverSettings.AutoRenewTimeout(maximumProcessingTime);
+        var receivers = transport.MessageReceivers();
+        receivers.AutoRenewTimeout(maximumProcessingTime);
 
         #endregion
     }
@@ -117,10 +117,13 @@ class Usage
     void ForwardDeadLettersConditional(EndpointConfiguration endpointConfiguration)
     {
         #region forward-deadletter-conditional-queue
+
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
-        var queueSettings = transport.Queues();
-        queueSettings.ForwardDeadLetteredMessagesTo(entityname => entityname == "yourqueue", "errorqueue");
+        var queues = transport.Queues();
+        queues.ForwardDeadLetteredMessagesTo(
+            condition: entityname => entityname == "yourqueue",
+            forwardDeadLetteredMessagesTo: "errorqueue");
 
         #endregion
     }
@@ -130,8 +133,8 @@ class Usage
         #region swap-sanitization-strategy
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var sanitizationSettings = transport.Sanitization();
-        sanitizationSettings.UseStrategy<MySanitizationStrategy>();
+        var sanitization = transport.Sanitization();
+        sanitization.UseStrategy<MySanitizationStrategy>();
 
         #endregion
     }
@@ -141,8 +144,8 @@ class Usage
         #region swap-composition-strategy
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var compositionSettings = transport.Composition();
-        compositionSettings.UseStrategy<MyCompositionStrategy>();
+        var composition = transport.Composition();
+        composition.UseStrategy<MyCompositionStrategy>();
 
         #endregion
     }
@@ -152,8 +155,8 @@ class Usage
         #region swap-namespace-partitioning-strategy
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var partitioningSettings = transport.NamespacePartitioning();
-        partitioningSettings.UseStrategy<MyNamespacePartitioningStrategy>();
+        var partitioning = transport.NamespacePartitioning();
+        partitioning.UseStrategy<MyNamespacePartitioningStrategy>();
 
         #endregion
     }
@@ -163,11 +166,10 @@ class Usage
         #region swap-individualization-strategy
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var individualizationSettings = transport.Individualization();
-        individualizationSettings.UseStrategy<MyIndividualizationStrategy>();
+        var individualization = transport.Individualization();
+        individualization.UseStrategy<MyIndividualizationStrategy>();
 
         #endregion
     }
 
 }
-

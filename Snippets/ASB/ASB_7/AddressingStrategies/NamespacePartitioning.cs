@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using NServiceBus.AzureServiceBus;
-using NServiceBus.AzureServiceBus.Addressing;
 using NServiceBus.Settings;
+using NServiceBus.Transport.AzureServiceBus;
 
 #region custom-namespace-partitioning-strategy
 

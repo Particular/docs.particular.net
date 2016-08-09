@@ -8,25 +8,27 @@ class BrokeredMessageBodyConventionUsage
     {
         #region ASB-outgoing-message-convention 6.3
 
-        BrokeredMessageBodyConversion.InjectBody = bytes =>
-        {
-            var messageAsStream = new MemoryStream(bytes);
-            return new BrokeredMessage(messageAsStream);
-        };
+        BrokeredMessageBodyConversion.InjectBody =
+            bytes =>
+            {
+                var messageAsStream = new MemoryStream(bytes);
+                return new BrokeredMessage(messageAsStream);
+            };
 
         #endregion
 
         #region ASB-incoming-message-convention 6.3
 
-        BrokeredMessageBodyConversion.ExtractBody = brokeredMessage =>
-        {
-            using (var stream = new MemoryStream())
-            using (var body = brokeredMessage.GetBody<Stream>())
+        BrokeredMessageBodyConversion.ExtractBody =
+            brokeredMessage =>
             {
-                body.CopyTo(stream);
-                return stream.ToArray();
-            }
-        };
+                using (var stream = new MemoryStream())
+                using (var body = brokeredMessage.GetBody<Stream>())
+                {
+                    body.CopyTo(stream);
+                    return stream.ToArray();
+                }
+            };
 
         #endregion
 

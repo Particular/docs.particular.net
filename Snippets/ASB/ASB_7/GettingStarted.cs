@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.AzureServiceBus;
 
 class GettingStarted
 {

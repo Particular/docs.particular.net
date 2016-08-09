@@ -3,9 +3,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using NServiceBus;
-using NServiceBus.AzureServiceBus;
-using NServiceBus.AzureServiceBus.Addressing;
 using NServiceBus.Settings;
+using NServiceBus.Transport.AzureServiceBus;
 
 class Sanitization
 {

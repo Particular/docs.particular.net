@@ -9,11 +9,12 @@ class TokenProvider
         #region asb-register-token-provider
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var namespaceManagers = transport.NamespaceManagers();
-        namespaceManagers.TokenProvider(s =>
-        {
-            return Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas");
-        });
+        var managers = transport.NamespaceManagers();
+        managers.TokenProvider(
+            factory: s =>
+            {
+                return Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas");
+            });
 
         #endregion
     }
@@ -23,14 +24,15 @@ class TokenProvider
         #region asb-register-token-provider-namespace-manager-settings
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var namespaceManagers = transport.NamespaceManagers();
-        namespaceManagers.NamespaceManagerSettingsFactory(s =>
-        {
-            return new NamespaceManagerSettings
+        var managers = transport.NamespaceManagers();
+        managers.NamespaceManagerSettingsFactory(
+            factory: s =>
             {
-                TokenProvider = Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas")
-            };
-        });
+                return new NamespaceManagerSettings
+                {
+                    TokenProvider = Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas")
+                };
+            });
 
         #endregion
     }
@@ -40,14 +42,15 @@ class TokenProvider
         #region asb-register-token-provider-messaging-factory-settings
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var messagingFactories = transport.MessagingFactories();
-        messagingFactories.MessagingFactorySettingsFactory(s =>
-        {
-            return new MessagingFactorySettings
+        var factories = transport.MessagingFactories();
+        factories.MessagingFactorySettingsFactory(
+            factory: s =>
             {
-                TokenProvider = Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas")
-            };
-        });
+                return new MessagingFactorySettings
+                {
+                    TokenProvider = Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas")
+                };
+            });
 
         #endregion
     }

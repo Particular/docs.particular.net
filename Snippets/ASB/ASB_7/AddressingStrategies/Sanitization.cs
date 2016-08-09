@@ -1,7 +1,7 @@
 using System;
-using NServiceBus.AzureServiceBus;
-using NServiceBus.AzureServiceBus.Addressing;
+using NServiceBus;
 using NServiceBus.Settings;
+using NServiceBus.Transport.AzureServiceBus;
 
 #region custom-sanitization-strategy
 

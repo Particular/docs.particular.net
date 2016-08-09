@@ -1,5 +1,4 @@
 ﻿using NServiceBus;
-using NServiceBus.AzureServiceBus.Addressing;
 
 class MultipleNamespaces
 {
@@ -8,9 +7,11 @@ class MultipleNamespaces
         #region single_namespace_partitioning_strategy_with_add_namespace
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var namespacePartitioning = transport.NamespacePartitioning();
-        namespacePartitioning.UseStrategy<SingleNamespacePartitioning>();
-        namespacePartitioning.AddNamespace("default", "Endpoint=sb://namespace.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+        var partitioning = transport.NamespacePartitioning();
+        partitioning.UseStrategy<SingleNamespacePartitioning>();
+        partitioning.AddNamespace(
+            name: "default",
+            connectionString: "Endpoint=sb://namespace.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
 
         #endregion
     }
@@ -20,7 +21,8 @@ class MultipleNamespaces
         #region single_namespace_partitioning_strategy_with_default_connection_string
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.ConnectionString("Endpoint=sb://namespace.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+        transport.ConnectionString(
+            connectionString: "Endpoint=sb://namespace.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
 
         #endregion
     }
@@ -30,10 +32,16 @@ class MultipleNamespaces
         #region round_robin_partitioning_strategy
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var namespacePartitioning = transport.NamespacePartitioning();
-        namespacePartitioning.AddNamespace("namespace1", "Endpoint=sb://namespace1.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
-        namespacePartitioning.AddNamespace("namespace2", "Endpoint=sb://namespace2.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
-        namespacePartitioning.AddNamespace("namespace3", "Endpoint=sb://namespace3.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+        var partitioning = transport.NamespacePartitioning();
+        partitioning.AddNamespace(
+            name: "namespace1",
+            connectionString: "Endpoint=sb://namespace1.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+        partitioning.AddNamespace(
+            name: "namespace2",
+            connectionString: "Endpoint=sb://namespace2.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+        partitioning.AddNamespace(
+            name: "namespace3",
+            connectionString: "Endpoint=sb://namespace3.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
 
         #endregion
     }
@@ -43,10 +51,14 @@ class MultipleNamespaces
         #region fail_over_partitioning_strategy
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var namespacePartitioning = transport.NamespacePartitioning();
-        namespacePartitioning.UseStrategy<FailOverNamespacePartitioning>();
-        namespacePartitioning.AddNamespace("primary", "Endpoint=sb://primary.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
-        namespacePartitioning.AddNamespace("secondary", "Endpoint=sb://secondary.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+        var partitioning = transport.NamespacePartitioning();
+        partitioning.UseStrategy<FailOverNamespacePartitioning>();
+        partitioning.AddNamespace(
+            name: "primary",
+            connectionString: "Endpoint=sb://primary.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+        partitioning.AddNamespace(
+            name: "secondary",
+            connectionString: "Endpoint=sb://secondary.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
 
         #endregion
     }
@@ -56,9 +68,13 @@ class MultipleNamespaces
         #region namespace_routing_registration
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var namespaceRouting = transport.NamespaceRouting();
-        namespaceRouting.AddNamespace("destination1", "Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
-        namespaceRouting.AddNamespace("destination2", "Endpoint=sb://destination2.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+        var routing = transport.NamespaceRouting();
+        routing.AddNamespace(
+            name: "destination1",
+            connectionString: "Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+        routing.AddNamespace(
+            name: "destination2",
+            connectionString: "Endpoint=sb://destination2.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
 
         #endregion
     }
