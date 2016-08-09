@@ -32,6 +32,11 @@ To support sending and receiving messages between endpoints using different seri
 
 snippet:AdditionalDeserializers
 
+### How to implement your own serializer
+
+To implement a serializer all it needs to be done is implement `IMessageSerializer`.
+The only tricky bit is to ensure that the string returned by `ContentType` does not clash with any existing registered serializer, the `ContentType` string is used internally as a dictionary key lookup.
+
 
 ### Community run serializers
 
