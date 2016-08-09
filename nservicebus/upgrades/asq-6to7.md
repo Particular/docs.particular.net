@@ -45,7 +45,7 @@ snippet:AzureStorageQueuePurgeOnStartup
 
 ### DefaultQueuePerInstance
 
-`DefaultQueuePerInstance` setting was deprecated and currently for setting this behavior refer to [Individualizing queue names when Scaling-Out](/nservicebus/scalability-and-ha/individualizing-queues-when-scaling-out.md).
+`DefaultQueuePerInstance` setting was deprecated and currently for setting this behavior refer to the [Data distribution](/nservicebus/azure/data-distribution.md) article.
 
 
 ### Default value changes

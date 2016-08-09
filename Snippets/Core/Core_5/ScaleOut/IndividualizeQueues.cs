@@ -6,7 +6,7 @@
     {
         void UniqueQueuePerEndpointInstance(BusConfiguration busConfiguration)
         {
-            #region UniqueQueuePerEndpointInstance 5.2
+            #region UniqueQueuePerEndpointInstance
 
             var scaleOutSettings = busConfiguration.ScaleOut();
             scaleOutSettings.UniqueQueuePerEndpointInstance();
@@ -16,7 +16,7 @@
 
         void UniqueQueuePerEndpointInstanceWithSuffix(BusConfiguration busConfiguration)
         {
-            #region UniqueQueuePerEndpointInstanceWithSuffix 5.2
+            #region UniqueQueuePerEndpointInstanceWithSuffix
 
             var scaleOutSettings = busConfiguration.ScaleOut();
             scaleOutSettings.UniqueQueuePerEndpointInstance("-MyCustomSuffix");
