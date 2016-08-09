@@ -31,7 +31,7 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-beta0006\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Wire, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Wire.2.0.1-beta001\lib\NET45\NServiceBus.Wire.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Wire.2.0.1-beta002\Lib\NET45\NServiceBus.Wire.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

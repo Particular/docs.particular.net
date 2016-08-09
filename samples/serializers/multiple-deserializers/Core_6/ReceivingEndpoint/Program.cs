@@ -4,6 +4,7 @@ using Newtonsoft.Json.Bson;
 using NServiceBus;
 using NServiceBus.Jil;
 using NServiceBus.MessagePack;
+using NServiceBus.Wire;
 
 static class Program
 {
@@ -42,6 +43,9 @@ static class Program
 
         // Message Pack
         endpointConfiguration.AddDeserializer<MessagePackSerializer>();
+
+        // Wire
+        endpointConfiguration.AddDeserializer<WireSerializer>();
 
         // register the mutator so the the message on the wire is written
         endpointConfiguration.RegisterComponents(

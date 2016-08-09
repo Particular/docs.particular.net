@@ -53,6 +53,13 @@ Send messages using the [MessagePack Serializer](/samples/serializers/message-pa
 snippet: configMessagePack
 
 
+### WireEndpoint
+
+Send messages using the [Wire Serializer](/samples/serializers/wire/).
+
+snippet: configWire
+
+
 ### XmlEndpoint
 
 Send messages using the [Xml Serializer](/nservicebus/serialization/xml.md).

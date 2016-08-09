@@ -13,9 +13,11 @@ static class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.MultipleDeserializers.WireEndpoint";
+        #region configWire
         var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.WireEndpoint");
         endpointConfiguration.UseSerialization<WireSerializer>();
         endpointConfiguration.RegisterOutgoingMessageLogger();
+        #endregion
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
