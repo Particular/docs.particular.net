@@ -62,7 +62,7 @@ snippet: configXml
 
 ## Shared
 
-Contains message definitions and a [message mutator](/nservicebus/pipeline/message-mutators.md) that logs the outgoing data. Shared by all endpoints.
+Contains message definitions and a [message mutator](/nservicebus/pipeline/message-mutators.md) that logs the outgoing data. Shared by all endpoints and configured by `endpointConfiguration.RegisterOutgoingMessageLogger();` in the above snippets.
 
 snippet: outgoingmutator
 

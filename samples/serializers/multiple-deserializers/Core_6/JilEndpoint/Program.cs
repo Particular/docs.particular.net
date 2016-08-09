@@ -17,13 +17,7 @@ static class Program
         #region configJil
         var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.JilEndpoint");
         var serialization = endpointConfiguration.UseSerialization<JilSerializer>();
-        var jilOptions = new Options(
-            prettyPrint: true,
-            excludeNulls: true,
-            includeInherited: true);
-        serialization.Options(jilOptions);
         serialization.ContentTypeKey("Jil");
-
         endpointConfiguration.RegisterOutgoingMessageLogger();
         #endregion
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
