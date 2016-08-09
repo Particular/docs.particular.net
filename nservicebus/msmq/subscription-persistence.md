@@ -2,7 +2,7 @@
 title: MSMQ Subscription Persistence
 ---
 
-WARNING: Storing subscriptions in MSMQ is not suitable when endpoints are scaled-out, becasue the subscription queue cannot be shared among multiple endpoints.
+WARNING: Storing subscriptions in MSMQ is not suitable when endpoints are scaled-out, because the subscription queue cannot be shared among multiple endpoints.
 
 To configure MSMQ as the subscription persistence:
 
