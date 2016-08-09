@@ -33,9 +33,8 @@
       <HintPath>..\..\..\packages\NServiceBus.RabbitMQ.2.1.3\lib\net45\NServiceBus.Transports.RabbitMQ.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RabbitMQ.Client, Version=3.6.3.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\RabbitMQ.Client.3.6.3\lib\net45\RabbitMQ.Client.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="RabbitMQ.Client">
+      <HintPath>..\..\..\packages\RabbitMQ.Client.3.6.5\lib\net45\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
