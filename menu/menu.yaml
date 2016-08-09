@@ -6,13 +6,15 @@
       Url: "platform"
       Articles:
         - "platform"
+        - Title: "NServiceBus Overview"
+          Articles:
+            - "nservicebus/architecture/principles"
+            - "nservicebus/architecture"
+            - "nservicebus/architecture/nservicebus-and-wcf"
+            - "nservicebus/architecture/nservicebus-and-biztalk"
+        - "samples/step-by-step"
         - "nservicebus/concept-overview"
         - "samples/endpoint-configuration"
-        - "samples/step-by-step"
-        - "nservicebus/architecture"
-        - "nservicebus/architecture/principles"
-        - "nservicebus/architecture/nservicebus-and-wcf"
-        - "nservicebus/architecture/nservicebus-and-biztalk"
         - "nservicebus/licensing/license-management"
     -
       Title: "Upgrade Guides"
