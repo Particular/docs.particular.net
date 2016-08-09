@@ -1,7 +1,6 @@
 ---
 title: Azure Service Bus Transport Retry behavior
 summary: Describes the relationship between NServiceBus' retry behavior and Azure Service Bus' native retry behavior
-component: ASB
 tags:
 - Cloud
 - Azure
