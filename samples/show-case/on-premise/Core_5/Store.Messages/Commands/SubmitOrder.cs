@@ -1,11 +1,13 @@
 ﻿namespace Store.Messages.Commands
 {
-    public class SubmitOrder
+    using NServiceBus;
+
+    public class SubmitOrder: ICommand
     {
         public int OrderNumber { get; set; }
         public string[] ProductIds { get; set; }
         public string ClientId { get; set; }
-        public string EncryptedCreditCardNumber { get; set; }
-        public string EncryptedExpirationDate { get; set; }
+        public WireEncryptedString CreditCardNumber { get; set; }
+        public WireEncryptedString ExpirationDate { get; set; }
     }
 }

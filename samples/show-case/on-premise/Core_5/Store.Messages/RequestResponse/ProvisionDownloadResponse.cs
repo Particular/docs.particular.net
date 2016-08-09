@@ -1,6 +1,8 @@
 ﻿namespace Store.Messages.RequestResponse
 {
-    public class ProvisionDownloadResponse
+    using NServiceBus;
+
+    public class ProvisionDownloadResponse : IMessage
     {
         public int OrderNumber { get; set; }
         public string[] ProductIds { get; set; }

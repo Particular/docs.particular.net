@@ -25,8 +25,8 @@ public class SubmitOrderHandler :
         log.Info($"Received an order #{message.OrderNumber} for [{string.Join(", ", message.ProductIds)}] products(s).");
 
         log.Info("The credit card values will be encrypted when looking at the messages in the queues");
-        log.Info($"CreditCard Number is {message.EncryptedCreditCardNumber}");
-        log.Info($"CreditCard Expiration Date is {message.EncryptedExpirationDate}");
+        log.Info($"CreditCard Number is {message.CreditCardNumber}");
+        log.Info($"CreditCard Expiration Date is {message.ExpirationDate}");
 
         // tell the client the order was received 
         bus.Publish<OrderPlaced>(o =>

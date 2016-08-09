@@ -1,6 +1,8 @@
 ﻿namespace Store.Messages.Events
 {
-    public interface OrderCancelled 
+    using NServiceBus;
+
+    public interface OrderCancelled : IEvent
     {
         int OrderNumber { get; set; }
         string ClientId { get; set; }

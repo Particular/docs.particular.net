@@ -31,11 +31,6 @@ The request/response pattern is illustrated for the product provisioning between
 The ECommerce endpoint is implemented as an ASP.NET application which uses SignalR to show feedback to the user.
 
 
-### Unobtrusive message conventions
-
-This sample also illustrates the use of Unobtrusive message conventions to let NServiceBus know in order to identify commands, events and messages defined as POCOs which avoids having to add a reference to the NServiceBus libraries in the message definition dlls.
-
-
 ### Message Mutator
 
 The use of message headers and message mutator is also illustrated when the user clicks on the Check box on the ECommerce web page, which conveniently stops at the predefined breakpoints in the message handler code on the endpoints.

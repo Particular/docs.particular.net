@@ -37,9 +37,9 @@ public class OrdersHub :
             OrderNumber = Interlocked.Increment(ref orderNumber),
             ProductIds = productIds,
             // This property will be encrypted. Therefore when viewing the message in the queue, the actual values will not be shown.
-            EncryptedCreditCardNumber = "4000 0000 0000 0008",
+            CreditCardNumber = "4000 0000 0000 0008",
             // This property will be encrypted.
-            EncryptedExpirationDate = "10/13"
+            ExpirationDate = "10/13"
         };
 
         MvcApplication.Bus.SetMessageHeader(command, "Debug", isDebug.ToString());
