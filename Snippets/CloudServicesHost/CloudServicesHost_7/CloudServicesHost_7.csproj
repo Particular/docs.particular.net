@@ -54,10 +54,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0005\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0006\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Hosting.Azure">
-      <HintPath>..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-beta0003\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-beta0005\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
