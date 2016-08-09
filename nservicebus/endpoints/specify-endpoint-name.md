@@ -59,9 +59,16 @@ snippet:InputQueueName
 
 Additionally, the actual queue name has to be passed to the endpoints that want to communicate with it:
 
-snippet:InputQueueOverrideRoutingXml
+
+### Override in code
 
 snippet:InputQueueOverrideRouting
+
+
+### Override in app.config
+
+snippet:InputQueueOverrideRoutingXml
+
 
 In Versions 5 and below the overridden input queue is passed directly to the routing configuration. In Versions 6 and above the logical routing works on an endpoint name level. The endpoint name is passed to the routing configuration, and a separate API call is required to specify the name of its input queue.
 
