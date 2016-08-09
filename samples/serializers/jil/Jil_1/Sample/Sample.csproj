@@ -27,7 +27,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Jil">
-      <HintPath>..\..\..\..\..\packages\Jil.2.14.3\lib\net45\Jil.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\Jil.2.14.5\lib\net45\Jil.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.14\lib\net45\NServiceBus.Core.dll</HintPath>
