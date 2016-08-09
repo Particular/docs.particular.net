@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Jil;
 using NServiceBus;
 using NServiceBus.Jil;
 
