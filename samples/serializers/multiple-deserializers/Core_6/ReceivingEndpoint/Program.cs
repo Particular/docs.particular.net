@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Jil;
-using Newtonsoft.Json;
+using Newtonsoft.Json.Bson;
 using NServiceBus;
 using NServiceBus.Jil;
 using NServiceBus.MessagePack;
@@ -24,26 +23,22 @@ static class Program
         // Xml
         endpointConfiguration.UseSerialization<XmlSerializer>();
 
-        // External Newtonsoft
-        var settings = new JsonSerializerSettings
-        {
-            Formatting = Formatting.Indented
-        };
-        var externalNewtonsoft = endpointConfiguration.AddDeserializer<NewtonsoftSerializer>();
-        externalNewtonsoft.Settings(settings);
-        externalNewtonsoft.ContentTypeKey("NewtonsoftJson");
+        // External Newtonsoft Json
+        var externalNewtonsoftJson = endpointConfiguration.AddDeserializer<NewtonsoftSerializer>();
+        externalNewtonsoftJson.ContentTypeKey("NewtonsoftJson");
+
+        // External Newtonsoft Bson
+        var externalNewtonsoftBson = endpointConfiguration.AddDeserializer<NewtonsoftSerializer>();
+        externalNewtonsoftBson.ReaderCreator(stream => new BsonReader(stream));
+        externalNewtonsoftBson.WriterCreator(stream => new BsonWriter(stream));
+        externalNewtonsoftBson.ContentTypeKey("NewtonsoftBson");
 
         // Jil
         var jil = endpointConfiguration.AddDeserializer<JilSerializer>();
-        var jilOptions = new Options(
-            prettyPrint: true,
-            excludeNulls: true,
-            includeInherited: true);
-        jil.Options(jilOptions);
         jil.ContentTypeKey("Jil");
 
         // Merged Newtonsoft
-        endpointConfiguration.AddDeserializer<NServiceBus.JsonSerializer>();
+        endpointConfiguration.AddDeserializer<JsonSerializer>();
 
         // Message Pack
         endpointConfiguration.AddDeserializer<MessagePackSerializer>();

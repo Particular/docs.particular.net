@@ -18,11 +18,18 @@ This sample the AddDeserializer API to illustrate a receiving endpoint deseriali
 There are multiple sending endpoints, one per serializer.
 
 
-### ExternalNewtonsoftEndpoint
+### ExternalNewtonsoftJsonEndpoint
 
-Send messages using the external [Json.NET Serializer](/nservicebus/serialization/newtonsoft.md).
+Send messages using the external [Json.NET Serializer](/nservicebus/serialization/newtonsoft.md) in Json format.
 
-snippet: configExternalNewtonsoft
+snippet: configExternalNewtonsoftJson
+
+
+### ExternalNewtonsoftBsonEndpoint
+
+Send messages using the external [Json.NET Serializer](/nservicebus/serialization/newtonsoft.md) in Bson format.
+
+snippet: configExternalNewtonsoftBson
 
 
 ### JilEndpoint

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using NServiceBus;
 
 static class Program
@@ -12,15 +11,10 @@ static class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.MultipleDeserializers.ExternalNewtonsoftEndpoint";
-        #region configExternalNewtonsoft
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.ExternalNewtonsoftEndpoint");
-        var settings = new JsonSerializerSettings
-        {
-            Formatting = Formatting.Indented
-        };
+        Console.Title = "Samples.MultipleDeserializers.ExternalNewtonsoftJsonEndpoint";
+        #region configExternalNewtonsoftJson
+        var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.ExternalNewtonsoftJsonEndpoint");
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
-        serialization.Settings(settings);
         serialization.ContentTypeKey("NewtonsoftJson");
         endpointConfiguration.RegisterOutgoingMessageLogger();
 

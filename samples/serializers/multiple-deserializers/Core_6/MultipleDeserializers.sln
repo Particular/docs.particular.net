@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 12.0.31101.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalNewtonsoftEndpoint", "ExternalNewtonsoftEndpoint\ExternalNewtonsoftEndpoint.csproj", "{6E6C9C2A-8D9B-41AF-B5E5-1AF5310686E7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JilEndpoint", "JilEndpoint\JilEndpoint.csproj", "{4A28EA8E-E32B-4D85-980C-A2934F0B733B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergedNewtonsoftEndpoint", "MergedNewtonsoftEndpoint\MergedNewtonsoftEndpoint.csproj", "{A37617D4-335E-415D-A9C4-45C404642287}"
@@ -17,13 +15,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceivingEndpoint", "Receiv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{172110CC-3A13-4EA5-9A76-FCE2554CAE90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalNewtonsoftBsonEndpoint", "ExternalNewtonsoftBsonEndpoint\ExternalNewtonsoftBsonEndpoint.csproj", "{6E6C9C2A-8D9B-41AF-B5E5-1AF5310686E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalNewtonsoftJsonEndpoint", "ExternalNewtonsoftJsonEndpoint\ExternalNewtonsoftJsonEndpoint.csproj", "{BDE4DFBD-42A1-44F5-B2CB-418470E4E091}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Senders", "Senders", "{216444CF-5BAA-450D-93ED-E45CC17B65F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6E6C9C2A-8D9B-41AF-B5E5-1AF5310686E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E6C9C2A-8D9B-41AF-B5E5-1AF5310686E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A28EA8E-E32B-4D85-980C-A2934F0B733B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A28EA8E-E32B-4D85-980C-A2934F0B733B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A37617D4-335E-415D-A9C4-45C404642287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -36,8 +38,20 @@ Global
 		{A2E753F8-1E10-4C79-B45F-280D8D5141CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{172110CC-3A13-4EA5-9A76-FCE2554CAE90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{172110CC-3A13-4EA5-9A76-FCE2554CAE90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E6C9C2A-8D9B-41AF-B5E5-1AF5310686E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E6C9C2A-8D9B-41AF-B5E5-1AF5310686E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDE4DFBD-42A1-44F5-B2CB-418470E4E091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDE4DFBD-42A1-44F5-B2CB-418470E4E091}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4A28EA8E-E32B-4D85-980C-A2934F0B733B} = {216444CF-5BAA-450D-93ED-E45CC17B65F0}
+		{A37617D4-335E-415D-A9C4-45C404642287} = {216444CF-5BAA-450D-93ED-E45CC17B65F0}
+		{C09218CA-8FF4-427E-988E-E86AEEDBC8A7} = {216444CF-5BAA-450D-93ED-E45CC17B65F0}
+		{A2202E81-B499-4038-AFE2-1846E904C61E} = {216444CF-5BAA-450D-93ED-E45CC17B65F0}
+		{6E6C9C2A-8D9B-41AF-B5E5-1AF5310686E7} = {216444CF-5BAA-450D-93ED-E45CC17B65F0}
+		{BDE4DFBD-42A1-44F5-B2CB-418470E4E091} = {216444CF-5BAA-450D-93ED-E45CC17B65F0}
 	EndGlobalSection
 EndGlobal

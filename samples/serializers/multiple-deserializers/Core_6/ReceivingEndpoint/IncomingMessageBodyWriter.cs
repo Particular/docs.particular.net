@@ -14,8 +14,7 @@ public class IncomingMessageBodyWriter :
     {
         var bodyAsString = Encoding.UTF8
             .GetString(context.Body);
-        log.Info($"ContentType '{context.Headers[Headers.ContentType]}'. Serialized Message Body:");
-        log.Info(bodyAsString);
+        log.Info($"ContentType \'{context.Headers[Headers.ContentType]}\'. Serialized Message Body:\r\n{bodyAsString}");
         return Task.FromResult(0);
     }
 }
