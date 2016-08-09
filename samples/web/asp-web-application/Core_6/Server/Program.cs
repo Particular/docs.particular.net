@@ -13,8 +13,7 @@ class Program
     {
         Console.Title = "Samples.AsyncPages.Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.Server");
-        var scaleOut = endpointConfiguration.ScaleOut();
-        scaleOut.InstanceDiscriminator("1");
+        endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

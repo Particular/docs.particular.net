@@ -13,8 +13,7 @@ static class Program
     {
         Console.Title = "Samples.WcfCallbacks.Endpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.WcfCallbacks.Endpoint");
-        var scaleOut = endpointConfiguration.ScaleOut();
-        scaleOut.InstanceDiscriminator("1");
+        endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

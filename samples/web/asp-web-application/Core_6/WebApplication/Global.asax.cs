@@ -16,8 +16,7 @@ public class Global : HttpApplication
         #region ApplicationStart
 
         var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.WebApplication");
-        var scaleOut = endpointConfiguration.ScaleOut();
-        scaleOut.InstanceDiscriminator("1");
+        endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

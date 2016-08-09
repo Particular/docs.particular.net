@@ -46,8 +46,7 @@ public class MvcApplication :
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.WebApplication");
-        var scaleOut = endpointConfiguration.ScaleOut();
-        scaleOut.InstanceDiscriminator("1");
+        endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UseContainer<AutofacBuilder>(
