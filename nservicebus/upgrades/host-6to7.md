@@ -24,9 +24,16 @@ An interface called [`IWantToRunWhenEndpointStartsAndStops`](/nservicebus/hostin
 
 DANGER: The `Start` and `Stop` methods will block start up and shut down of the endpoint. For more details, read: [Host Start Up Behavior](/nservicebus/hosting/nservicebus-host/#startup-behavior).
 
+
+### Interface in Version 5 of NServiceBus
+
 snippet:5to6-EndpointStartAndStopCore
 
+
+### Interface in Version 7 of NServiceBus.Host
+
 snippet:5to6-EndpointStartAndStopHost
+
 
 The `IMessageSession` parameter provides all the necessary methods to send messages as part of the endpoint start up.
 

@@ -56,6 +56,12 @@ Any code in custom profile handlers should be moved into the `IConfigureThisEndp
 
 An interface called `IWantToRunWhenEndpointStartsAndStops` has been added. This interface replaces the [`IWantToRunWhenBusStartsAndStops`](/nservicebus/lifecycle/endpointstartandstop.md) in the NServiceBus core.
 
+
+### Interface in Version 5 of NServiceBus
+
 snippet:5to6-EndpointStartAndStopCore
+
+
+### Interface in Version 7 of NServiceBus.Hosting.Azure
 
 snippet:5to6-EndpointStartAndStopCloudHost
