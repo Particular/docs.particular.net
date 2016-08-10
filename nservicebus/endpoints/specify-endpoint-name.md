@@ -69,19 +69,5 @@ By default the endpoint's input queue name is the same as endpoint's name. The i
 
 snippet:InputQueueName
 
-Additionally, the actual queue name has to be passed to the endpoints that want to communicate with it:
+Note: Changing the input queue may also require adjusting the routing configuration for senders to send messages to the renamed queue. See the [routing documentation](/nservicebus/messaging/routing.md) for further details about routing configuration.
 
-
-### Override in code
-
-snippet:InputQueueOverrideRouting
-
-
-### Override in app.config
-
-snippet:InputQueueOverrideRoutingXml
-
-
-In Versions 5 and below the overridden input queue is passed directly to the routing configuration. In Versions 6 and above the logical routing works on an endpoint name level. The endpoint name is passed to the routing configuration, and a separate API call is required to specify the name of its input queue.
-
-NOTE: In Versions 6 and above the same API is used to override the default translation of the endpoint name to the transport address (input queue name) for the endpoint's own input queue, as well as for any destination endpoints. To learn more about transport address generation in Versions 6 and above refer to the [routing](/nservicebus/messaging/routing.md) documentation.
