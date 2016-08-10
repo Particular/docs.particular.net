@@ -1,7 +1,7 @@
 ---
 title: Message Identity
-reviewed: 2016-07-21
-summary: How are individual messages identified?
+reviewed: 2016-09-10
+component: Core
 ---
 
 
