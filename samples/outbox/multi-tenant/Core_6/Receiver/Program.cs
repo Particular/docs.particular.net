@@ -9,7 +9,6 @@ using NHibernate.Mapping.ByCode;
 using NHibernate.Tool.hbm2ddl;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
-using NServiceBus.Features;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.NHibernate;
 using Configuration = NHibernate.Cfg.Configuration;
@@ -65,8 +64,6 @@ class Program
         endpointConfiguration.Pipeline.Register<PropagateIncomingTenantIdBehavior.Registration>();
 
         #endregion
-
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
         #region CreateSchema
 
