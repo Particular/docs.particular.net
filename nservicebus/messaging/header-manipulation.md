@@ -1,6 +1,7 @@
 ---
 title: Manipulating message headers
 summary: Access and manipulate the built in NServiceBus headers or add custom headers.
+component: Core
 tags:
 - Header
 redirects:
@@ -22,9 +23,7 @@ The mechanism for [header communication](/nservicebus/messaging/headers.md) is e
 Headers can be read for an incoming message.
 
 
-### From a Behavior
-
-snippet: header-incoming-behavior
+partial: incomingbehavior
 
 
 ### From a Mutator
@@ -47,9 +46,7 @@ snippet: header-incoming-saga
 Headers can be written for an outgoing message.
 
 
-### From a Behavior
-
-snippet: header-outgoing-behavior
+partial: outgoingbehavior
 
 
 ### From a Mutator
@@ -73,4 +70,4 @@ NServiceBus supports registering headers at configuration time that are then add
 
 snippet: header-static-endpoint
 
-WARNING: In Versions 3 through Version 5 the global outgoing headers are not thread safe. It is recommended that they are manipulated at startup. This has been limited to a configuration time only API in Version 6.
+partial: threadsafe
