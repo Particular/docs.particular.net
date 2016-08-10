@@ -74,15 +74,13 @@
                     var sendText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(context.Headers);
                     SnippetLogger.Write(
                         text: sendText,
-                        suffix: "Send",
-                        version: "6");
+                        suffix: "Send");
                     return Task.FromResult(0);
                 }
                 var auditText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(context.Headers);
                 SnippetLogger.Write(
                     text: auditText,
-                    suffix: "Audit",
-                    version: "6");
+                    suffix: "Audit");
                 ManualResetEvent.Set();
                 return Task.FromResult(0);
             }

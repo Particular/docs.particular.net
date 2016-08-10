@@ -69,11 +69,11 @@
                 {
                     receivedFirstMessage = true;
                     var sendText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(transportMessage.Headers);
-                    SnippetLogger.Write(text: sendText, suffix: "Send",version:"5");
+                    SnippetLogger.Write(text: sendText, suffix: "Send");
                     return;
                 }
                 var auditText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(transportMessage.Headers);
-                SnippetLogger.Write(text: auditText, suffix: "Audit", version: "5");
+                SnippetLogger.Write(text: auditText, suffix: "Audit");
                 ManualResetEvent.Set();
             }
         }

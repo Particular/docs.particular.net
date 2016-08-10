@@ -70,16 +70,14 @@
                     var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(headers);
                     SnippetLogger.Write(
                         text: sendingText,
-                        suffix: "Sending",
-                        version: "6");
+                        suffix: "Sending");
                 }
                 else
                 {
                     var returnText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(headers);
                     SnippetLogger.Write(
                         text: returnText,
-                        suffix: "Returning",
-                        version: "6");
+                        suffix: "Returning");
                     ManualResetEvent.Set();
                 }
                 return Task.FromResult(0);

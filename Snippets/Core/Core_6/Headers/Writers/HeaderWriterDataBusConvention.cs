@@ -83,8 +83,9 @@
             {
                 var headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusConvention>(context.Headers)
                     .Replace(typeof(MessageToSend).FullName, "MessageToSend");
-                SnippetLogger.Write(headerText, version: "6");
-                SnippetLogger.Write(Encoding.Default.GetString(context.Body), version: "6", suffix: "Body");
+                SnippetLogger.Write(headerText);
+                SnippetLogger.Write(Encoding.Default.GetString(context.Body),
+                    suffix: "Body");
                 ManualResetEvent.Set();
                 return Task.FromResult(0);
             }

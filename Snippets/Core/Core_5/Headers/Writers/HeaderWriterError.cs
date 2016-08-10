@@ -49,7 +49,7 @@
                         var headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(e.Headers);
                         headerText = BehaviorCleaner.CleanStackTrace(headerText);
                         headerText = StackTraceCleaner.CleanStackTrace(headerText);
-                        SnippetLogger.Write(text: headerText, suffix: "Error", version: "5");
+                        SnippetLogger.Write(text: headerText, suffix: "Error");
                         ManualResetEvent.Set();
                     });
                 var messageToSend = new MessageToSend();
@@ -109,8 +109,7 @@
                     var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(headers);
                     SnippetLogger.Write(
                         text: sendingText,
-                        suffix: "Sending",
-                        version: "5");
+                        suffix: "Sending");
                 }
             }
         }

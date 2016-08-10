@@ -80,8 +80,7 @@
                     var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(headers);
                     SnippetLogger.Write(
                         text: headerText,
-                        suffix: "Replying",
-                        version: "5");
+                        suffix: "Replying");
                     ManualResetEvent.Set();
                 }
                 if (transportMessage.IsMessageOfTye<MessageToSend>())
@@ -89,8 +88,7 @@
                     var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(headers);
                     SnippetLogger.Write(
                         text: headerText,
-                        suffix: "Sending",
-                        version: "5");
+                        suffix: "Sending");
                 }
             }
         }

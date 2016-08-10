@@ -76,8 +76,7 @@
                     var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(headers);
                     SnippetLogger.Write(
                         text: headerText,
-                        suffix: "Replying",
-                        version: "6");
+                        suffix: "Replying");
                     ManualResetEvent.Set();
                 }
                 if (context.IsMessageOfTye<MessageToSend>())
@@ -85,8 +84,7 @@
                     var headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(headers);
                     SnippetLogger.Write(
                         text: headerText,
-                        suffix: "Sending",
-                        version: "6");
+                        suffix: "Sending");
                 }
                 return Task.FromResult(0);
             }

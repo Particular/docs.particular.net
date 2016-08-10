@@ -131,8 +131,7 @@
                     var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(headers);
                     SnippetLogger.Write(
                         text: headerText,
-                        suffix: "Sending",
-                        version: "5");
+                        suffix: "Sending");
                     CountdownEvent.Signal();
                     return;
                 }
@@ -141,8 +140,7 @@
                     var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(headers);
                     SnippetLogger.Write(
                         text: headerText,
-                        suffix: "Replying",
-                        version: "5");
+                        suffix: "Replying");
                     CountdownEvent.Signal();
                     return;
                 }
@@ -151,8 +149,7 @@
                     var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(headers);
                     SnippetLogger.Write(
                         text: headerText,
-                        suffix: "ReplyingToOriginator",
-                        version: "5");
+                        suffix: "ReplyingToOriginator");
                     CountdownEvent.Signal();
                     return;
                 }
@@ -162,8 +159,7 @@
                     var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(headers);
                     SnippetLogger.Write(
                         text: headerText,
-                        suffix: "Timeout",
-                        version: "5");
+                        suffix: "Timeout");
                     CountdownEvent.Signal();
                 }
             }

@@ -71,8 +71,8 @@
             public void MutateIncoming(TransportMessage transportMessage)
             {
                 var headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusProperty>(transportMessage.Headers);
-                SnippetLogger.Write(headerText, version: "5");
-                SnippetLogger.Write(Encoding.Default.GetString(transportMessage.Body), version: "5", suffix: "Body");
+                SnippetLogger.Write(headerText);
+                SnippetLogger.Write(Encoding.Default.GetString(transportMessage.Body), suffix: "Body");
                 ManualResetEvent.Set();
             }
         }

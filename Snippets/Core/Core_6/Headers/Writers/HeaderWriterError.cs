@@ -81,8 +81,7 @@
                     headerText = StackTraceCleaner.CleanStackTrace(headerText);
                     SnippetLogger.Write(
                         text: headerText,
-                        suffix: "Error",
-                        version: "6");
+                        suffix: "Error");
                     ManualResetEvent.Set();
                 };
             }
@@ -98,8 +97,7 @@
                     var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(headers);
                     SnippetLogger.Write(
                         text: sendingText,
-                        suffix: "Sending",
-                        version: "6");
+                        suffix: "Sending");
                 }
                 return Task.FromResult(0);
             }

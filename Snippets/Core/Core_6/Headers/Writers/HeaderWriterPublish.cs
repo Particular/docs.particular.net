@@ -87,7 +87,7 @@
             public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
                 var headerText = HeaderWriter.ToFriendlyString<HeaderWriterPublish>(context.Headers);
-                SnippetLogger.Write(headerText, version: "6");
+                SnippetLogger.Write(headerText);
                 ManualResetEvent.Set();
                 return Task.FromResult(0);
             }
