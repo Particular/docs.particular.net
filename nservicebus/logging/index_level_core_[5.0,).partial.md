@@ -12,6 +12,11 @@ The supported logging levels are
 Note: When logging level is defined in both app.config and code the code wins.
 
 
+#### Via config API
+
+snippet:OverrideLoggingLevelInCode
+
+
 #### Via app.config
 
 snippet:OverrideLoggingDefaultsInAppConfig
@@ -21,7 +26,3 @@ snippet:OverrideLoggingDefaultsInAppConfig
 
 snippet:LoggingThresholdFromIProvideConfiguration
 
-
-#### Via config API
-
-snippet:OverrideLoggingLevelInCode
