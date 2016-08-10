@@ -1,6 +1,7 @@
 ---
 title: Controlling what is subscribed
 summary: When applying the publish-subscribe pattern there are several ways to control what messages are subscribed to
+component: Core
 ---
 
 
@@ -19,20 +20,14 @@ Messages matching the following criteria will be auto subscribed at startup.
 
 ### Exclude sagas from auto subscribe
 
-In Version 3 and below events that are only handled by sagas are not subscribed to by default. In Version 4 and above sagas are treated the same as handlers and will cause an endpoint to subscribe to a given event. It is possible to opt-in to the old exclude saga event handling behavior using:
-
-snippet:DoNotAutoSubscribeSagas
+partial: exclude
 
 
 ### Auto subscribe to plain messages
 
-In Version 4 and below all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention are automatically subscribed. In versions 4 and 5 it is possible to opt-in to that legacy behavior using following code
-
-snippet:AutoSubscribePlainMessages
-
 WARNING: This is a bad practice. Subscriptions should only be based on events.
 
-Since Version 6 the ability to auto subscribe to plain messages was removed. Although not recommended, this can be overridden by [manually subscribing](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#how-to-manually-subscribe-to-a-message) to other message types.
+partial: plainmessage
 
 
 ### When a subscriber stops or uninstalls
@@ -40,11 +35,7 @@ Since Version 6 the ability to auto subscribe to plain messages was removed. Alt
 A Subscriber will not unsubscribe when it stops, it will remain registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started it will consume the messages from its queue. The subscriber will never lose an event.
 
 
-## Disabling auto-subscription
-
-Automatic subscriptions by the infrastructure can be disabled using the configuration API:
-
-snippet:DisableAutoSubscribe
+partial:disableautosubscribe
 
 
 ## How to manually subscribe to a message?
