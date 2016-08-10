@@ -10,7 +10,7 @@ related:
  - nservicebus/hosting/nservicebus-host
 ---
 
-NServiceBus has the concept of installers to make sure that endpoint specific specific artifacts e.g., queues, folders, or databases are installed and configured automatically, if needed, at install time.
+NServiceBus has the concept of installers to make sure that endpoint specific artifacts e.g., queues, folders, or databases are installed and configured automatically, if needed, at install time.
 
 To create a custom installer is as easy as implementing the `INeedToInstallSomething` interface.
 
