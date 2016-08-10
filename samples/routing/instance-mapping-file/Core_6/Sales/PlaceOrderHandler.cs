@@ -2,7 +2,8 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-class PlaceOrderHandler : IHandleMessages<PlaceOrder>
+class PlaceOrderHandler :
+    IHandleMessages<PlaceOrder>
 {
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {

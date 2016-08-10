@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using NServiceBus;
 
-#region WcfMapper 
-public class WcfMapper : IDisposable
+#region WcfMapper
+public class WcfMapper :
+    IDisposable
 {
     IEndpointInstance endpointInstance;
     string server;

@@ -2,7 +2,8 @@
 {
     using NServiceBus;
 
-    public interface OrderPlaced : IEvent
+    public interface OrderPlaced :
+        IEvent
     {
         int OrderNumber { get; set; }
         string[] ProductIds { get; set; }

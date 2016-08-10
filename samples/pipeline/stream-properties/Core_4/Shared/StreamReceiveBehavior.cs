@@ -6,7 +6,8 @@ using NServiceBus.Pipeline.Contexts;
 #pragma warning disable 618
 
 #region ReceiveBehaviorDefinition
-class StreamReceiveBehavior : IBehavior<ReceiveLogicalMessageContext>
+class StreamReceiveBehavior :
+    IBehavior<ReceiveLogicalMessageContext>
 {
     string location;
 

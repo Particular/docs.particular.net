@@ -10,7 +10,8 @@ using NServiceBus.Unicast.Messages;
 
 #region deserialize-behavior
 
-class DeserializeBehavior : IBehavior<IncomingContext>
+class DeserializeBehavior :
+    IBehavior<IncomingContext>
 {
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;

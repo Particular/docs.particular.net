@@ -3,7 +3,8 @@
     using System.Collections.Generic;
     using NServiceBus;
 
-    public interface DownloadIsReady : IEvent
+    public interface DownloadIsReady :
+        IEvent
     {
         int OrderNumber { get; set; }
         Dictionary<string, string> ProductUrls { get; set; }

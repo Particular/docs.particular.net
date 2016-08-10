@@ -2,7 +2,8 @@
 {
     using NServiceBus;
 
-    public interface OrderCancelled : IEvent
+    public interface OrderCancelled :
+        IEvent
     {
         int OrderNumber { get; set; }
         string ClientId { get; set; }

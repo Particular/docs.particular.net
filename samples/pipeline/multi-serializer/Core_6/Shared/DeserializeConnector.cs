@@ -7,12 +7,12 @@ using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Pipeline;
 using NServiceBus.Transport;
-using NServiceBus.Transports;
 using NServiceBus.Unicast.Messages;
 
 #region deserialize-behavior
 
-class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIncomingLogicalMessageContext>
+class DeserializeConnector :
+    StageConnector<IIncomingPhysicalMessageContext, IIncomingLogicalMessageContext>
 {
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;

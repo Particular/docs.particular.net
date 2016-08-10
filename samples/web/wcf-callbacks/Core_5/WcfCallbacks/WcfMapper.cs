@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using NServiceBus;
 
-#region WcfMapper 
+#region WcfMapper
 public class WcfMapper :
     IDisposable
 {

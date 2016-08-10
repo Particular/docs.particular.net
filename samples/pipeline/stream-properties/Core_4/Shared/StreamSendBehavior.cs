@@ -6,7 +6,8 @@ using NServiceBus.Pipeline.Contexts;
 #pragma warning disable 618
 
 #region SendBehaviorDefinition
-class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
+class StreamSendBehavior :
+    IBehavior<SendLogicalMessageContext>
 {
     TimeSpan MaxMessageTimeToLive = TimeSpan.FromDays(14);
     string location;

@@ -4,7 +4,8 @@ using NServiceBus.Pipeline;
 
 #region behavior-configuration
 
-public class MultiSerializerFeature : Feature
+public class MultiSerializerFeature :
+    Feature
 {
     internal MultiSerializerFeature()
     {

@@ -3,7 +3,8 @@ using NServiceBus.Features;
 
 #region behavior-configuration
 
-public class MultiSerializerFeature : Feature
+public class MultiSerializerFeature :
+    Feature
 {
     internal MultiSerializerFeature()
     {

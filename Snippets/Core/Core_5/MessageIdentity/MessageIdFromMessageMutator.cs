@@ -5,7 +5,8 @@
 
     #region MessageId-Mutator
 
-    public class MessageIdFromMessageMutator : IMutateOutgoingMessages
+    public class MessageIdFromMessageMutator :
+        IMutateOutgoingMessages
     {
         IBus bus;
 

@@ -8,7 +8,8 @@ using NServiceBus.Serialization;
 using NServiceBus.Unicast.Messages;
 
 #region serialize-behavior
-class SerializeBehavior : IBehavior<OutgoingContext>
+class SerializeBehavior :
+    IBehavior<OutgoingContext>
 {
     SerializationMapper serializationMapper;
 

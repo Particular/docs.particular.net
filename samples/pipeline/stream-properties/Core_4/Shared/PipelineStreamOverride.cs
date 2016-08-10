@@ -5,7 +5,8 @@ using NServiceBus.Pipeline.MessageMutator;
 
 #pragma warning disable 618
 #region pipeline-config
-public class PipelineStreamOverride : IPipelineOverride
+public class PipelineStreamOverride :
+    IPipelineOverride
 {
     public void Override(BehaviorList<ReceiveLogicalMessageContext> behaviorList)
     {

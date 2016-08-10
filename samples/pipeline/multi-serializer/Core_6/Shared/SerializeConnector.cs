@@ -9,7 +9,8 @@ using NServiceBus.Unicast.Messages;
 
 #region serialize-behavior
 
-class SerializeConnector : StageConnector<IOutgoingLogicalMessageContext, IOutgoingPhysicalMessageContext>
+class SerializeConnector :
+    StageConnector<IOutgoingLogicalMessageContext, IOutgoingPhysicalMessageContext>
 {
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;

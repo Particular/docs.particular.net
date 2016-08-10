@@ -2,7 +2,8 @@
 {
     using NServiceBus;
 
-    public class SubmitOrder : ICommand
+    public class SubmitOrder :
+        ICommand
     {
         public int OrderNumber { get; set; }
         public string[] ProductIds { get; set; }

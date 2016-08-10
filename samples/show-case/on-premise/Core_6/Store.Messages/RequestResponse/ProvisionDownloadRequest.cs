@@ -2,7 +2,8 @@
 {
     using NServiceBus;
 
-    public class ProvisionDownloadRequest : IMessage
+    public class ProvisionDownloadRequest :
+        IMessage
     {
         public int OrderNumber { get; set; }
         public string[] ProductIds { get; set; }
