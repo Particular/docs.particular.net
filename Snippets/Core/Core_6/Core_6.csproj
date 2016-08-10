@@ -324,6 +324,21 @@
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Headers\Writers\HeaderWriterAuditAudit.txt" />
+    <Content Include="Headers\Writers\HeaderWriterAuditSend.txt" />
+    <Content Include="Headers\Writers\HeaderWriterDataBusConventionBody.txt" />
+    <Content Include="Headers\Writers\HeaderWriterDataBusPropertyBody.txt" />
+    <Content Include="Headers\Writers\HeaderWriterEncryptionBody.txt" />
+    <Content Include="Headers\Writers\HeaderWriterErrorError.txt" />
+    <Content Include="Headers\Writers\HeaderWriterErrorSending.txt" />
+    <Content Include="Headers\Writers\HeaderWriterReplyReplying.txt" />
+    <Content Include="Headers\Writers\HeaderWriterReplySending.txt" />
+    <Content Include="Headers\Writers\HeaderWriterReturnReturning.txt" />
+    <Content Include="Headers\Writers\HeaderWriterReturnSending.txt" />
+    <Content Include="Headers\Writers\HeaderWriterSagaReplying.txt" />
+    <Content Include="Headers\Writers\HeaderWriterSagaReplyingToOriginator.txt" />
+    <Content Include="Headers\Writers\HeaderWriterSagaSending.txt" />
+    <Content Include="Headers\Writers\HeaderWriterSagaTimeout.txt" />
     <Content Include="Recoverability\ErrorHandling\ErrorQueue.config.xml" />
     <Content Include="Recoverability\retriesLogging.txt" />
     <Content Include="Routing\EndpointMapping.config.xml" />

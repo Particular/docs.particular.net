@@ -2,14 +2,16 @@
 title: Message Headers
 summary: List of built-in NServiceBus message headers.
 reviewed: 2016-03-11
+component: Core
+versions: '[5.0,)'
 tags:
-- Header
+ - Header
 redirects:
-- nservicebus/message-headers
-- nservicebus/messaging/headers
+ - nservicebus/message-headers
+ - nservicebus/messaging/headers
 related:
-- samples/header-manipulation
-- nservicebus/messaging/header-manipulation
+ - samples/header-manipulation
+ - nservicebus/messaging/header-manipulation
 ---
 
 The headers in a message contain information that is used by the messaging infrastructure to help with the message delivery. Message headers are very similar, in both implementation and usage, to HTTP headers. This article documents the headers used by NServiceBus. To learn more about how to use custom headers, see the [header manipulation](/nservicebus/messaging/header-manipulation.md) article.
@@ -63,7 +65,7 @@ The following headers are used in various ways to enable different messaging int
 
 ### NServiceBus.MessageId
 
-A unique ID for the current message. The value can be manipulated, when dispatching a message, using a [transport mutator](/nservicebus/pipeline/message-mutators.md).
+A [unique ID for the current message](/nservicebus/messaging/message-identity.md).
 
 
 ### NServiceBus.CorrelationId
