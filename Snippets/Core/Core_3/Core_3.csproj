@@ -54,6 +54,7 @@
     <Content Include="EndpointMapping\EndpointMapping.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Forwarding\ForwardingConfig.xml" />
     <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Recoverability\Immediate\config.xml" />
     <Content Include="Recoverability\retriesLogging.txt" />
@@ -86,6 +87,9 @@
     <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
     <Compile Include="Encryption\MessageBody\Usage.cs" />
     <Compile Include="EndpointStartAndStop.cs" />
+    <Compile Include="Forwarding\ConfigurationSource.cs" />
+    <Compile Include="Forwarding\ConfigurationSourceUsage.cs" />
+    <Compile Include="Forwarding\ProvideConfiguration.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicy.cs" />
     <Compile Include="Handlers\GenericHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
