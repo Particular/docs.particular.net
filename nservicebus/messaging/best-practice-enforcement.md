@@ -1,6 +1,8 @@
 ---
 title: Enforcement of best practices
 summary: How to enable/disable the enforcement of messaging best practices based on Events and Commands
+component: Core
+versions: '[6.0,)'
 tags:
 - Convention
 - Command
