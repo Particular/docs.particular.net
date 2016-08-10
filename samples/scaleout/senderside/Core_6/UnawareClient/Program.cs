@@ -15,9 +15,12 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.UnawareClient");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
 
-        var routing = endpointConfiguration.Routing();
-        routing.RouteToEndpoint(typeof(DoSomething), "Samples.SenderSideScaleOut.Server");
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(
+            messageType: typeof(DoSomething),
+            destination: "Samples.SenderSideScaleOut.Server");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

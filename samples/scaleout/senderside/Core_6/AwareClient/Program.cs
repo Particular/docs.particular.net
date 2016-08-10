@@ -15,18 +15,21 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.AwareClient");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        var routingSettings = transport.Routing();
 
         #region Logical-Routing
 
-        var routing = endpointConfiguration.Routing();
-        routing.RouteToEndpoint(typeof(DoSomething), "Samples.SenderSideScaleOut.Server");
+        routingSettings.RouteToEndpoint(
+            messageType: typeof(DoSomething),
+            destination: "Samples.SenderSideScaleOut.Server");
 
         #endregion
 
         #region File-Based-Routing
 
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-        transport.DistributeMessagesUsingFileBasedEndpointInstanceMapping("routes.xml");
+        var instanceMappingFile = routingSettings.InstanceMappingFile();
+        instanceMappingFile.FilePath("routes.xml");
 
         #endregion
 
