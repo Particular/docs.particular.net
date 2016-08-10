@@ -5,7 +5,6 @@ using Common;
 using NServiceBus;
 using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
-using NServiceBus.Features;
 using NServiceBus.Logging;
 using NUnit.Framework;
 
@@ -55,7 +54,6 @@ public class NativeSendTests
         endpointConfiguration.SetTypesToScan(typesToScan);
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
         return Endpoint.Start(endpointConfiguration);
     }
 
