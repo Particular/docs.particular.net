@@ -59,7 +59,7 @@ Once this baseline has been established, follow these steps:
  * Turn on auditing for each endpoint that needs it and re-run the performance tests to assess impact.
  * For each endpoint, turn on any required Custom Checks and re-run the performance tests to assess impact.
 
-When an infrastructure outage occurs in a production environment it's possible that every message processed every endpoint may end up in the error queue. It can take ServiceControl some time to ingest all of these messages. Once ingested, a bulk retry operation will consume additional network and disk I/O above the usual requirements. It is important to simulate these conditions as a part of performance testing to ensure that these times and resources are catered for in recovery plans.
+When an infrastructure outage occurs in a production environment it's possible that every message processed on every endpoint may end up in the error queue. It can take ServiceControl some time to ingest all of these messages. Once ingested, a bulk retry operation will consume additional network and disk I/O above the usual requirements. It is important to simulate these conditions as a part of performance testing to ensure that these times and resources are catered for in recovery plans.
 
 
 ## Anti-Virus Checks
