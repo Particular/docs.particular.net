@@ -71,8 +71,8 @@ class Program
             .ToArray();
         distributionConfig.ExcludeTypes(typesToExclude);
         var transport = distributionConfig.UseTransport<MsmqTransport>();
-        var distributionRouting = transport.UnicastRouting();
-        distributionRouting.AddPublisher(
+        var routing = transport.Routing();
+        routing.RegisterPublisher(
             publisherEndpoint: "Samples.DataDistribution.Server",
             eventType: typeof(OrderAccepted));
 
@@ -93,11 +93,11 @@ class Program
             .ToArray();
         mainConfig.ExcludeTypes(typesToExclude);
         var transport = mainConfig.UseTransport<MsmqTransport>();
-        var mainRouting = transport.UnicastRouting();
+        var mainRouting = transport.Routing();
         mainRouting.RouteToEndpoint(
             messageType: typeof(PlaceOrder),
             destination: "Samples.DataDistribution.Server");
-        mainRouting.AddPublisher(
+        mainRouting.RegisterPublisher(
             publisherEndpoint: "Samples.DataDistribution.Server",
             eventType: typeof(OrderAccepted));
 

@@ -73,8 +73,8 @@ class Program
         #endregion
 
         var transport = distributionConfig.UseTransport<MsmqTransport>();
-        var distributionRouting = transport.UnicastRouting();
-        distributionRouting.AddPublisher(
+        var routing = transport.Routing();
+        routing.RegisterPublisher(
             publisherEndpoint: "Samples.DataDistribution.Server",
             eventType: typeof(OrderAccepted));
         ApplyDefaults(distributionConfig);
@@ -90,12 +90,12 @@ class Program
         #region FilterNamespace1
 
         var transport = mainConfig.UseTransport<MsmqTransport>();
-        var mainRouting = transport.UnicastRouting();
+        var mainRouting = transport.Routing();
 
         #endregion
 
         mainRouting.RouteToEndpoint(typeof(PlaceOrder), "Samples.DataDistribution.Server");
-        mainRouting.AddPublisher("Samples.DataDistribution.Server", typeof(OrderAccepted));
+        mainRouting.RegisterPublisher(typeof(OrderAccepted), "Samples.DataDistribution.Server");
         ApplyDefaults(mainConfig);
         return mainConfig;
     }
