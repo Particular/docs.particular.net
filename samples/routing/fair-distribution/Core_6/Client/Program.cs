@@ -69,9 +69,9 @@ class Program
         #region FairDistributionClient
 
         endpointConfiguration.EnableFeature<FairDistribution>();
-        var routing = endpointConfiguration.Routing();
+        var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
         var settings = endpointConfiguration.GetSettings();
-        routing.Mapping.SetMessageDistributionStrategy(
+        routing.SetMessageDistributionStrategy(
             endpointName: "Samples.FairDistribution.Server",
             distributionStrategy: new FairDistributionStrategy(settings));
 
@@ -83,9 +83,9 @@ class Program
         #region Routing
 
         const string server = "Samples.FairDistribution.Server";
-        var routing = endpointConfiguration.Routing();
+        var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
         routing.RouteToEndpoint(typeof(PlaceOrder), server);
-        routing.Mapping.Physical.Add(
+        routing.GetSettings().GetOrCreate<EndpointInstances>().Add(
             new EndpointInstance(server, "1").AtMachine(RuntimeEnvironment.MachineName),
             new EndpointInstance(server, "2").AtMachine(RuntimeEnvironment.MachineName));
 

@@ -2,7 +2,7 @@
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Routing;
-using NServiceBus.Transports;
+using NServiceBus.Transport;
 
 public class FairDistribution :
     Feature

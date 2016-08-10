@@ -43,7 +43,7 @@ class RoutingInfoSubscriber :
         messageSession = context;
 
         #region AddDynamic
-        routingTable.AddDynamic((list, bag) => FindEndpoint(list));
+        routingTable.AddDynamic((types, bag) => FindEndpoint(types));
         endpointInstances.AddDynamic(FindInstancesTask);
         publishers.AddDynamic(FindPublisher);
         #endregion
@@ -123,7 +123,7 @@ class RoutingInfoSubscriber :
     async Task UpdateCaches(EndpointInstance instanceName, Type[] handledTypes, Type[] publishedTypes)
     {
         var newInstanceMap = BuildNewInstanceMap(instanceName);
-        var newEndpointMap = BuildNewEndpointMap(instanceName.Endpoint.ToString(), handledTypes, endpointMap);
+        var newEndpointMap = BuildNewEndpointMap(instanceName.Endpoint, handledTypes, endpointMap);
         var newPublisherMap = BuildNewPublisherMap(instanceName, publishedTypes, publisherMap);
         LogChangesToEndpointMap(endpointMap, newEndpointMap);
         LogChangesToInstanceMap(instanceMap, newInstanceMap);
@@ -217,7 +217,7 @@ class RoutingInfoSubscriber :
     static Dictionary<Type, string> BuildNewPublisherMap(EndpointInstance endpointInstance, Type[] publishedTypes, Dictionary<Type, string> publisherMap)
     {
         var newPublisherMap = new Dictionary<Type, string>();
-        var endpointName = endpointInstance.Endpoint.ToString();
+        var endpointName = endpointInstance.Endpoint;
         foreach (var pair in publisherMap)
         {
             if (pair.Value != endpointName)
@@ -248,7 +248,7 @@ class RoutingInfoSubscriber :
             newInstanceMap[pair.Key] = new HashSet<EndpointInstance>(otherInstances);
         }
         HashSet<EndpointInstance> endpointEntry;
-        var endpointName = instanceName.Endpoint.ToString();
+        var endpointName = instanceName.Endpoint;
         if (!newInstanceMap.TryGetValue(endpointName, out endpointEntry))
         {
             endpointEntry = new HashSet<EndpointInstance>();
@@ -288,12 +288,12 @@ class RoutingInfoSubscriber :
         {
             return null;
         }
-        return new PublisherAddress(new EndpointName(publisherEndpoint));
+        return PublisherAddress.CreateFromEndpointName(publisherEndpoint);
     }
     #endregion
 
     #region FindEndpoint
-    IEnumerable<IUnicastRoute> FindEndpoint(List<Type> enclosedMessageTypes)
+    IEnumerable<IUnicastRoute> FindEndpoint(Type[] enclosedMessageTypes)
     {
         foreach (var type in enclosedMessageTypes)
         {
@@ -304,23 +304,22 @@ class RoutingInfoSubscriber :
             }
             foreach (var destination in destinations)
             {
-                var endpointName = new EndpointName(destination);
-                yield return new UnicastRoute(endpointName);
+                yield return UnicastRoute.CreateFromEndpointName(destination);
             }
         }
     }
     #endregion
 
     #region FindInstance
-    Task<IEnumerable<EndpointInstance>> FindInstancesTask(EndpointName endpointName)
+    Task<IEnumerable<EndpointInstance>> FindInstancesTask(string endpointName)
     {
         return Task.FromResult(FindInstances(endpointName));
     }
 
-    IEnumerable<EndpointInstance> FindInstances(EndpointName endpointName)
+    IEnumerable<EndpointInstance> FindInstances(string endpointName)
     {
         HashSet<EndpointInstance> instances;
-        if (!instanceMap.TryGetValue(endpointName.ToString(), out instances))
+        if (!instanceMap.TryGetValue(endpointName, out instances))
         {
             return Enumerable.Empty<EndpointInstance>();
         }

@@ -15,8 +15,7 @@ class Program
     {
         Console.Title = "Samples.CustomRouting.Sales.2";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Sales");
-        var scaleOut = endpointConfiguration.ScaleOut();
-        scaleOut.InstanceDiscriminator("2");
+        endpointConfiguration.MakeInstanceUniquelyAddressable("2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.ConnectionString(AutomaticRoutingConst.ConnectionString);
