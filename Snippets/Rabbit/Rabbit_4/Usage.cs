@@ -1,7 +1,7 @@
 ﻿using System;
 using RabbitMQ.Client;
 using NServiceBus;
-using NServiceBus.Transports;
+using NServiceBus.Transport;
 using NServiceBus.Transport.RabbitMQ;
 
 class Usage
