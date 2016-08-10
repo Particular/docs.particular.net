@@ -1,15 +1,15 @@
 ---
 title: Bus versus broker architecture
-summary: Using NServiceBus for communication between services in SOA and DDD projects. Bus versus broker architectural styles.
-reviewed: 2016-08-05
+summary: Bus versus broker architectural styles. NServiceBus, BizTalk and WCF. 
+component: Host
+reviewed: 2016-08-10
 redirects:
 - nservicebus/overview
+- nservicebus/nservicebus-and-biztalk
+- nservicebus/architecture/nservicebus-and-biztalk
 ---
 
-NServiceBus is designed for communication between business-oriented services in SOA and DDD projects. It is not a replacement for RPC technologies such as WCF. Successful systems use a mix of approaches and technologies for communication, not just NServiceBus.
-
-It takes some time to get used to the new approach, but the code written using NServiceBus is simple, more concise and easy to unit test. The systems using NServiceBus are reliable and scalable.
-
+NServiceBus is designed for communication between business-oriented services in SOA and DDD projects. It is not a replacement for RPC technologies such as WCF or broker integration tools like BizTalk. Successful systems use a mix of approaches and technologies for communication, not just NServiceBus.
 
 This article discusses the similarities and differences between NServiceBus and its Microsoft counterparts.
 
@@ -23,27 +23,40 @@ A good example is BizTalk:
 ![BizTalk](biztalk.jpg)
 
 
-A **_bus_** in the context of the **_bus architectural style_**, isn't necessarily a physical entity. There's no physical _bus_ one can point to in the network topology. The _bus_ is part of the infrastructure that is run in-process with a given application's code. It's like a peer-to-peer mesh that runs alongside code.
+A **_bus_** in the context of the **_bus architectural style_**, isn't a physical entity. There's no physical _bus_ one can point to in the network topology. The _bus_ is part of the infrastructure that is run in-process with a given application's code. It's like a peer-to-peer mesh that runs alongside code.
 
 A good example is WCF:
 
 ![deployment topology](deployment-topology.jpg)
 
-NServiceBus is similar to WCF more than BizTalk. Just like it is possible write a host process and activate WCF explicitly within it, the same can be done with NServiceBus. 
+In terms of architectural style, NServiceBus is similar to WCF more than BizTalk. Just like it is possible to write a host process and activate WCF explicitly within it, the same can be done with NServiceBus. 
 
 
-## Messaging versus RPC
+## NServiceBus and BizTalk
 
-NServiceBus enforces queued messaging, which has profound architectural implications. The principles and patterns underlying queued messaging are decades old and battle-tested through countless technological shifts.
+BizTalk is a centralized message broker with many adapters for 3rd party applications. Its primary use-case is integration with existing systems and legacy applications, possibly running on different technologies and using proprietary protocols. This is a classical Enterprise Application Integration (EAI) situation and is not what service buses are meant to address.
 
-It's very simple and straightforward to build an application and get it working using traditional RPC techniques that WCF supports. However, scalability and fault-tolerance are inherently hindered. When using blocking calls it's close to impossible to solve these problems, and even throwing more hardware at it has little effect. WCF doesn't force developers down this path, but it also doesn't prevent them.
+In these cases, NServiceBus can be used in combination with BizTalk. NServiceBus would handle the communication between the high-level business services. BizTalk would be responsible for the integration with existing systems and legacy applications within the relevant services, without crossing the service boundary. 
 
-NServiceBus directs away from these problems right from the beginning. There's no such thing as a blocking call when one uses one-way messaging. Common, transient errors can be resolved automatically, it's also very easy to recover from failures that require some manual intervention. Above all, even when something goes wrong, no data gets lost. 
+![How NServiceBus and BizTalk fit together in an architecture](nservicebus-biztalk.png)
 
-In order to learn more about the relationship between messaging and reliable, scalable, highly-available systems, watch Udi Dahan's presentation:
+When designing systems, keep in mind that mixing logical orchestration and routing with business logic, data access, and web services calls results in having slow, complex and unmaintainable code. Divide those responsibilities carefully. Note that when BizTalk is used within a service it is just an implementation detail that doesn't impact all the other services. Keeping it within a service boundary allows to avoid typical performance and maintainability problems.
 
-<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/6222577" webkitallowfullscreen width="400"></iframe>
 
-Refer to the [Architectural Principles](/nservicebus/architecture/principles.md) article to learn more about SOA and how NServiceBus aligns with SOA.
+## NServiceBus and WCF
 
-See [Case Studies](http://particular.net/casestudies) to learn how NServiceBus is used and read the successes stories.
+The main differences between NServiceBus and WCF with regards to features, are that WCF doesn't support [publish-subscribe pattern](/nservicebus/messaging/publish-subscribe/) out of the box and doesn't have built-in fault tolerance. Exceptions cause WCF proxies to break, requiring to "refresh" them in code, but the call data is liable to be lost. NServiceBus provides [full system rollback](/nservicebus/recoverability/). In case of a message processing failure, not only does the database remain consistent, but the messages return to their queues and no valuable data is lost. 
+
+
+### Interoperability
+
+partial:interop
+
+
+### Handling long-running business processes
+
+WCF integrates with Workflow Foundation (WF) to provide a capability known as durable services. WF provides the state management facilities that hook into the communication facilities provided by WCF. Unfortunately, transaction and exception boundaries aren't specified by the infrastructure.
+
+Unless developers are very careful about how they connect workflow activities, transaction scopes, and communications activities, the process state can get corrupted and exposed to remote services and clients. One of the reasons is that WF is designed as a generic workflow engine, not specifically for long-running processes.
+
+NServiceBus is designed to handle long-running business processes in a robust and scalable way using [sagas](/nservicebus/sagas/). Transactions are automatically handled on a per-message basis, by default they span all communications and state-management work done by an endpoint. An exception causes all work to be undone, including the sending of any messages, so that remote services and clients do not get exposed to inconsistent data.
