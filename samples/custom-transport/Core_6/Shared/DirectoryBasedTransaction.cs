@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using NServiceBus.Transports;
 
 #region DirectoryBasedTransaction
-class DirectoryBasedTransaction :
-    TransportTransaction
+class DirectoryBasedTransaction
 {
     public DirectoryBasedTransaction(string basePath)
     {

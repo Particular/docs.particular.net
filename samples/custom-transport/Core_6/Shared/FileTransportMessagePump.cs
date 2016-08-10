@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Extensibility;
 using NServiceBus.Logging;
-using NServiceBus.Transports;
+using NServiceBus.Transport;
 
 #region MessagePump
 
@@ -17,9 +17,10 @@ class FileTransportMessagePump :
 {
     static ILog log = LogManager.GetLogger<FileTransportMessagePump>();
 
-    public Task Init(Func<PushContext, Task> pipe, CriticalError criticalError, PushSettings settings)
+    public Task Init(Func<MessageContext, Task> onMessage, Func<ErrorContext, Task<ErrorHandleResult>> onError, CriticalError criticalError, PushSettings settings)
     {
-        pipeline = pipe;
+        this.onError = onError;
+        pipeline = onMessage;
         path = BaseDirectoryBuilder.BuildBasePath(settings.InputQueue);
         purgeOnStartup = settings.PurgeOnStartup;
         return TaskEx.CompletedTask;
@@ -176,21 +177,21 @@ class FileTransportMessagePump :
             }
             var tokenSource = new CancellationTokenSource();
 
-            using (var bodyStream = new FileStream(bodyPath, FileMode.Open))
-            {
-                var context = new ContextBag();
-                context.Set(transaction);
+            var body = File.ReadAllBytes(bodyPath);
+            var context = new ContextBag();
+            var transportTransaction = new TransportTransaction();
+            transportTransaction.Set(transaction);
 
-                var pushContext = new PushContext(
-                    messageId: messageId,
-                    headers: headers,
-                    bodyStream: bodyStream,
-                    transportTransaction: transaction,
-                    receiveCancellationTokenSource: tokenSource,
-                    context: context);
-                await pipeline(pushContext)
-                    .ConfigureAwait(false);
-            }
+            var pushContext = new MessageContext(
+                messageId: messageId,
+                headers: headers,
+                body: body,
+                transportTransaction: transportTransaction,
+                receiveCancellationTokenSource: tokenSource,
+                context: context);
+
+            await pipeline(pushContext)
+                .ConfigureAwait(false);
 
             if (tokenSource.IsCancellationRequested)
             {
@@ -211,9 +212,10 @@ class FileTransportMessagePump :
     SemaphoreSlim concurrencyLimiter;
     Task messagePumpTask;
     string path;
-    Func<PushContext, Task> pipeline;
+    Func<MessageContext, Task> pipeline;
     bool purgeOnStartup;
     ConcurrentDictionary<Task, Task> runningReceiveTasks;
+    Func<ErrorContext, Task<ErrorHandleResult>> onError;
 }
 
 #endregion
