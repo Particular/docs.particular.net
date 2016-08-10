@@ -16,12 +16,13 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        var routing = transport.Routing();
         #region Logical-Routing
 
-        var routing = endpointConfiguration.Routing();
         routing.RouteToEndpoint(typeof(DoSomething), "Samples.CustomDistributionStrategy.Server");
         // Distribute all messages using weighted algorithm
-        routing.Mapping.SetMessageDistributionStrategy(
+        routing.SetMessageDistributionStrategy(
             endpointName: "Samples.CustomDistributionStrategy.Server",
             distributionStrategy: new WeightedDistributionStrategy());
 
@@ -29,8 +30,8 @@ class Program
 
         #region File-Based-Routing
 
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-        transport.DistributeMessagesUsingFileBasedEndpointInstanceMapping("routes.xml");
+        var instanceMappingFile = routing.InstanceMappingFile();
+        instanceMappingFile.FilePath("routes.xml");
 
         #endregion
 
