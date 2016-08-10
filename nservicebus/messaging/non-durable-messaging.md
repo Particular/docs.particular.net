@@ -1,6 +1,7 @@
 ---
 title: Non-Durable Messaging
 summary: Information on how non-durable messaging effects the behaviors of endpoints and message delivery.
+component: Core
 redirects:
  - nservicebus/messaging/express-messages
 related:
@@ -35,11 +36,7 @@ A subset of messages can be configured to be non-durable by using a convention.
 snippet:ExpressMessageConvention
 
 
-### Global for the endpoint
-
-All message to be non durable via the configuration API.
-
-snippet: set-to-non-durable
+partial: global
 
 
 ## Effect on transports
@@ -53,7 +50,7 @@ The default behavior of MSMQ is to use the concept of Store and Forward. In this
 The underlying setting that is used to achieve this is to set [Message.Recoverable](https://msdn.microsoft.com/en-us/library/system.messaging.message.recoverable) to `false`.
 
 
-#### Extra config for MSMQ
+#### Extra configuration for MSMQ
 
 There are some extra configurations required for MSMQ
 
