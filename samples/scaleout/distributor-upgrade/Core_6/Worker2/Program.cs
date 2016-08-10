@@ -11,8 +11,7 @@ class Program
     static void Main()
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
-        var scaleOut = endpointConfiguration.ScaleOut();
-        scaleOut.InstanceDiscriminator(
+        endpointConfiguration.MakeInstanceUniquelyAddressable(
             discriminator: ConfigurationManager.AppSettings["InstanceId"]);
         endpointConfiguration.EnlistWithLegacyMSMQDistributor(
             masterNodeAddress: ConfigurationManager.AppSettings["DistributorAddress"],
