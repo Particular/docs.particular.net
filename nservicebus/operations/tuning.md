@@ -26,7 +26,7 @@ Examples where concurrency tuning is relevant are
 
 ## Tuning throughput
 
-WARNING: Throughput throttling options have been removed in NServiceBus Version 6.
+WARNING: Throughput throttling options have been deprecated in NServiceBus Version 6. To enable throttling on Version 6 and higher, a custom behavior should be used. The [throttling sample](/samples/throttling/) demonstrates how such a behavior can be implemented.
 
 Define a maximum value for the number of messages per second that the endpoint will process at any given time. This will help avoid the endpoint overloading sensitive resources that it's using like web-services, databases, other endpoints etc. A concrete example here could be an integration endpoint calling a web API, like api.github.com, that have restrictions on the number or requests per unit of time allowed.
 
