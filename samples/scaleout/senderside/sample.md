@@ -1,5 +1,5 @@
 ---
-title: Scale Out With Competing Consumers And Sender-Side Distribution
+title: Scale Out: Competing Consumers And Sender-Side Distribution
 summary: Scale out existing message processing either by using underlying transport's competing consumers capability or by sender-side distribution
 reviewed: 2016-03-17
 component: Core
