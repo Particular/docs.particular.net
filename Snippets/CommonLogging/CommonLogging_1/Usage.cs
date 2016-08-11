@@ -10,7 +10,6 @@ class Usage
         #region CommonLoggingInCode
 
         LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter();
-
         SetLoggingLibrary.Custom(new ConsoleLoggerFactory());
 
         #endregion
