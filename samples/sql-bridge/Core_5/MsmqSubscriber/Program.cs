@@ -13,7 +13,7 @@ class Program
         busConfiguration.EndpointName("MsmqSubscriber");
         busConfiguration.EnableInstallers();
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForMsmqTransport;Integrated Security=True");
+        persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=PersistenceForMsmqTransport;Integrated Security=True");
 
         #endregion
         using (var bus = Bus.Create(busConfiguration).Start())

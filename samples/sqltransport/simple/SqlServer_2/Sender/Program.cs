@@ -12,7 +12,7 @@ class Program
         #region TransportConfiguration
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=SqlServerSimple;Integrated Security=True");
+        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True");
 
         #endregion
         busConfiguration.UsePersistence<InMemoryPersistence>();

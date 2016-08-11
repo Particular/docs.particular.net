@@ -6,7 +6,7 @@ public static class QueueDeletion
 {
     public static async Task DeleteQueuesForEndpoint()
     {
-        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+        var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
 
         #region sqlserver-delete-queues-endpoint-usage
 
@@ -26,7 +26,7 @@ public static class QueueDeletion
 
     public static async Task DeleteSharedQueues()
     {
-        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+        var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
 
         #region sqlserver-delete-queues-shared-usage
 

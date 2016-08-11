@@ -21,7 +21,7 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForMsmqTransport;Integrated Security=True");
+        persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=PersistenceForMsmqTransport;Integrated Security=True");
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

@@ -28,7 +28,7 @@ class Usage
         #region ConnectionStringAPI
 
         endpointConfiguration.UsePersistence<NHibernatePersistence>()
-            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus");
+            .ConnectionString(@"Data Source=.\SqlExpress;Database=nservicebus");
 
         #endregion
     }

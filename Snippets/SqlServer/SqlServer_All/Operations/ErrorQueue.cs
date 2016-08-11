@@ -12,9 +12,9 @@ public static class ErrorQueue
         #region sqlserver-return-to-source-queue-usage
 
         await ReturnMessageToSourceQueue(
-            errorQueueConnectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
+            errorQueueConnectionString: @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True",
             errorQueueName: "errors",
-            retryConnectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
+            retryConnectionString: @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True",
             retryQueueName: "target",
             messageId: Guid.Parse("1667B60E-2948-4EF0-8BB1-8C851A9407D2")
             )

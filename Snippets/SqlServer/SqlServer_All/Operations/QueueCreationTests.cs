@@ -9,7 +9,7 @@ public class QueueCreationTests
     [Test]
     public async Task CreateQueuesForEndpoint()
     {
-        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+        var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
         using (var sqlConnection = new SqlConnection(connectionString))
         {
             await sqlConnection.OpenAsync()

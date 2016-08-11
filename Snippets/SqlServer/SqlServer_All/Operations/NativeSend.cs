@@ -14,7 +14,7 @@ public static class NativeSend
         #region sqlserver-nativesend-usage
 
         await SendMessage(
-                connectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
+                connectionString: @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True",
                 queue: "Samples.SqlServer.NativeIntegration",
                 messageBody: "{\"Property\":\"PropertyValue\"}",
                 headers: new Dictionary<string, string>

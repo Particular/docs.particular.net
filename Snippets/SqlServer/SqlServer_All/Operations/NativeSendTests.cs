@@ -17,7 +17,7 @@ public class NativeSendTests
 {
     string endpointName = "NativeSendTests";
     static string errorQueueName = "NativeSendTestsError";
-    static string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+    static string connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
     static string schema = "dbo";
 
     [SetUp]

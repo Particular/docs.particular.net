@@ -23,7 +23,7 @@ public class ErrorQueueTests
 
     string endpointName = "ReturnToSourceQueueTests";
     static string errorQueueName = "ReturnToSourceQueueTestsError";
-    static string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+    static string connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
     static string schema = "dbo";
 
     [SetUp]

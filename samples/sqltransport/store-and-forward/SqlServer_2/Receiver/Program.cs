@@ -15,7 +15,7 @@ class Program
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         var connectionInfo = EndpointConnectionInfo.For("Samples.SqlServer.StoreAndForwardSender")
-            .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True");
+            .UseConnectionString(@"Data Source=.\SqlExpress;Database=sender;Integrated Security=True");
         transport.UseSpecificConnectionInformation(connectionInfo);
 
         busConfiguration.UsePersistence<InMemoryPersistence>();

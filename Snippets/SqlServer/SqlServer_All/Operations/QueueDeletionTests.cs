@@ -10,7 +10,7 @@ public class QueueDeletionTests
     [Test]
     public async Task DeleteQueuesForEndpoint()
     {
-        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+        var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
         using (var sqlConnection = new SqlConnection(connectionString))
         {
             await sqlConnection.OpenAsync()
@@ -26,7 +26,7 @@ public class QueueDeletionTests
     [Test]
     public async Task DeleteSharedQueues()
     {
-        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+        var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
         using (var sqlConnection = new SqlConnection(connectionString))
         {
             await sqlConnection.OpenAsync()

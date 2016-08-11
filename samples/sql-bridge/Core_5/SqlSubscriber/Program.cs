@@ -13,9 +13,9 @@ class Program
         busConfiguration.EndpointName("SqlSubscriber");
         busConfiguration.EnableInstallers();
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True");
+        persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=PersistenceForSqlTransport;Integrated Security=True");
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=NServiceBus;Integrated Security=True");
+        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=NServiceBus;Integrated Security=True");
         #endregion
         using (var bus = Bus.Create(busConfiguration).Start())
         {

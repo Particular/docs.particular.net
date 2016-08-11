@@ -12,9 +12,9 @@ class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("SqlRelay");
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True");
+        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=PersistenceForSqlTransport;Integrated Security=True");
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True");
+        persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=PersistenceForSqlTransport;Integrated Security=True");
         busConfiguration.DisableFeature<AutoSubscribe>();
         busConfiguration.EnableInstallers();
         #endregion

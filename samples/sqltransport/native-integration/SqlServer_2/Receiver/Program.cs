@@ -18,7 +18,7 @@ class Program
         #region EndpointConfiguration
         var busConfiguration = new BusConfiguration();
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True");
+        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=samples;Integrated Security=True");
         busConfiguration.EndpointName("Samples.SqlServer.NativeIntegration");
         busConfiguration.UseSerialization<JsonSerializer>();
         #endregion
@@ -59,7 +59,7 @@ class Program
 
         #region SendingUsingAdoNet
 
-        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
+        var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
         using (var connection = new SqlConnection(connectionString))
         {
             await connection.OpenAsync()

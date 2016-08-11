@@ -9,7 +9,7 @@ class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SqlServer.SimpleReceiver");
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=SqlServerSimple;Integrated Security=True");
+        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True");
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         using (Bus.Create(busConfiguration).Start())

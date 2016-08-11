@@ -23,10 +23,10 @@ class Program
         #region SenderConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True");
+        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True");
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True");
+        persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True");
 
         endpointConfiguration.EnableOutbox();
 

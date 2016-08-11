@@ -15,8 +15,8 @@ public static class ConnectionProvider
 
     static string GetConnectionString(string transportAddress)
     {
-        var receiverConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=ReceiverCatalog;Integrated Security=True";
-        var senderConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=SenderCatalog;Integrated Security=True";
+        var receiverConnectionString = @"Data Source=.\SqlExpress;Database=ReceiverCatalog;Integrated Security=True";
+        var senderConnectionString = @"Data Source=.\SqlExpress;Database=SenderCatalog;Integrated Security=True";
         if (transportAddress.StartsWith("Samples.SqlServer.MultiInstanceSender"))
         {
             return senderConnectionString;

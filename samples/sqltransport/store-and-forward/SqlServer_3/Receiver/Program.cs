@@ -49,6 +49,6 @@ class Program
             .ConfigureAwait(false);
     }
 
-    const string ReceiverConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=receiver;Integrated Security=True";
-    const string SenderConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True";
+    const string ReceiverConnectionString = @"Data Source=.\SqlExpress;Database=receiver;Integrated Security=True";
+    const string SenderConnectionString = @"Data Source=.\SqlExpress;Database=sender;Integrated Security=True";
 }
