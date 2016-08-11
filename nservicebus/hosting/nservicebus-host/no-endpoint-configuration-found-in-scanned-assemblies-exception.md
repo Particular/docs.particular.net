@@ -1,5 +1,5 @@
 ---
-title: No Endpoint Configuration Found in Scanned Assemblies Exception
+title: No Endpoint Configuration Found in Scanned Assemblies
 summary: Troubleshooting when NServiceBus is not able to find the endpoint configuration (IConfigureThisEndoint)
 tags:
 - NServiceBus.Host

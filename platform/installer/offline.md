@@ -1,5 +1,5 @@
 ---
-title: Installing The Platform Components Manually without Platform Installer
+title: Installing Platform Components without Platform Installer
 tags: [Platform, Installation, Offline]
 ---
 

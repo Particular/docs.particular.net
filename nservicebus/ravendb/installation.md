@@ -1,6 +1,6 @@
 ---
 title: 'RavenDB Persistence: Installing RavenDB'
-summary: Article outlines various ways of installing RavenDB in different versions of NServiceBus. As of Version 5 it is mostly obsolete due to the fact that RavenDB is no longer part of the core.
+summary: How to install RavenDB when using RavenDB persistence for various versions of NServiceBus.
 tags:
  - Persistence
  - RavenDB

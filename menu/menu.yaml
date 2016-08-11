@@ -43,10 +43,9 @@
               Url: "nservicebus/upgrades/absdatabus-6to1"
         - Title: "Azure Storage Persistence"
           Articles:
-            - "nservicebus/upgrades/asp-saga-deduplication"
+            - "nservicebus/upgrades/asp-6to1"
             - "nservicebus/upgrades/asp-saga-pruning"
-            - Title: "Upgrade from NServiceBus.Azure"
-              Url: "nservicebus/upgrades/asp-6to1"
+            - "nservicebus/upgrades/asp-saga-deduplication"
         - Title: "Azure Storage Queues Transport"
           Articles:
             - "nservicebus/upgrades/asq-6to7"

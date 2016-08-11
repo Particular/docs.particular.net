@@ -1,5 +1,5 @@
 ---
-title: Upgrading a Distributor-based scaled out endpoint to Version 6
+title: Upgrading an endpoint using Distributor from Version 5 to 6
 summary: Upgrading an existing scaled-out endpoint that uses Distributor to version 6 of NServiceBus
 reviewed: 2016-03-21
 component: Core
