@@ -9,7 +9,6 @@ class Usage
         #region CommonLoggingInCode
 
         LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter();
-
         NServiceBus.Logging.LogManager.Use<CommonLoggingFactory>();
 
         #endregion
