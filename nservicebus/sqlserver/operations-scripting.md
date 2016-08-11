@@ -107,14 +107,15 @@ Create an `audit_archive` table with this SQL script.
 ```sql
 CREATE TABLE [dbo].[audit_archive](
 	[Id] [uniqueidentifier] NOT NULL,
-	[CorrelationId] [varchar](255) NULL,
-	[ReplyToAddress] [varchar](255) NULL,
+	[CorrelationId] [varchar](255),
+	[ReplyToAddress] [varchar](255),
 	[Recoverable] [bit] NOT NULL,
-	[Expires] [datetime] NULL,
+	[Expires] [datetime],
 	[Headers] [varchar](max) NOT NULL,
-	[Body] [varbinary](max) NULL,
+	[Body] [varbinary](max),
 	[RowVersion] [bigint] NOT NULL
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) 
+ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 ```
 
 
