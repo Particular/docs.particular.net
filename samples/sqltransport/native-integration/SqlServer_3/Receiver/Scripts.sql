@@ -31,7 +31,7 @@ BEGIN
 	SELECT CONVERT(UNIQUEIDENTIFIER, HASHBYTES('MD5',CONVERT(VARCHAR(255),i.Id))) as Id,
 	'true' as Recoverable,
 	'' as Headers,
-	CONVERT(varbinary(255), '{ $type: "LegacyOrderDetected",OrderId: "Hello from legacy Order ' + CONVERT(VARCHAR(255),i.Id) + '"}')as Body
+	CONVERT(varbinary(255), '{ $type: "LegacyOrderDetected",OrderId: "Hello from legacy Order ' + CONVERT(VARCHAR(255),i.Id) + '"}') as Body
 	FROM inserted i
 END
 GO

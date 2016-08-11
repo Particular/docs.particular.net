@@ -17,7 +17,7 @@ IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[D
 BEGIN
     CREATE TABLE [dbo].[Data](
 	    [Publisher] [varchar](100) NOT NULL,
-	    [Value] [nvarchar](max) NULL
+	    [Value] [nvarchar](max)
     ) ON [PRIMARY];
 END
 

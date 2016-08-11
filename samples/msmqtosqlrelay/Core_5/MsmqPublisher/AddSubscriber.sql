@@ -1,7 +1,6 @@
 ﻿-- startcode AddSubscriber 5
 Use PersistenceForMsmqTransport
 Go
-
 INSERT INTO Subscription
        ([SubscriberEndpoint]
        ,[MessageType]
