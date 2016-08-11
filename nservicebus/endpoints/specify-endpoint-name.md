@@ -29,6 +29,11 @@ When using NServiceBus.Host, the namespace of the class implementing `IConfigure
 
 snippet:EndpointNameByNamespace
 
+### Defined in code
+
+Set the endpoint name using the `DefineEndpointName(name)` extension method on the endpoint configuration.
+
+snippet:EndpointNameInCode
 
 ### EndpointName attribute
 
@@ -50,6 +55,13 @@ Specify a endpoint name when running the NServiceBus host: `/endpointName:"MyEnd
 
 NOTE: Only use code **OR** commandline/installation parameters.
 
+## When using NServiceBus.Hosting.Azure.HostProcess.exe
+
+### Defined in code
+
+Set the endpoint name using the `DefineEndpointName(name)` extension method on the endpoint configuration.
+
+snippet:EndpointNameInCodeForAzureHost
 
 ## Input queue
 

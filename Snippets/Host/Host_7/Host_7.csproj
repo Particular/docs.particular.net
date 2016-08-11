@@ -42,6 +42,7 @@
     <Compile Include="CustomizingHost.cs" />
     <Compile Include="EndpointConfigByNamespace.cs" />
     <Compile Include="EndpointConfigWithAttribute.cs" />
+    <Compile Include="EndpointNameInCode.cs" />
     <Compile Include="EndpointStartAndStop.cs" />
     <Compile Include="OverrideLoggingViaProfile.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
