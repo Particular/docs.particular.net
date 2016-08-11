@@ -29,6 +29,7 @@
             - "nservicebus/upgrades/5to6-moving-away-from-ibus"
             - "nservicebus/upgrades/5to6-migrate-existing-handlers"
             - "nservicebus/upgrades/5to6-async-suffix"
+            - "nservicebus/upgrades/5to6-recoverability"
             - "samples/scaleout/distributor-upgrade"
             - "nservicebus/upgrades/4to5"
             - "nservicebus/upgrades/3to4"

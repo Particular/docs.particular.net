@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode 5to6-configureImmediateRetriesViaXml-->
+<configuration>
+  <configSections>
+    <section name="TransportConfig"
+             type="NServiceBus.Config.TransportConfig, NServiceBus.Core"/>
+  </configSections>
+  <TransportConfig MaxRetries="2" />
+</configuration>
+<!--endcode-->

@@ -163,7 +163,7 @@
     <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
     <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
     <Compile Include="UpgradeGuides\5to6\AuthorizeSubscriptions.cs" />
-    <Compile Include="UpgradeGuides\5to6\DelayedDelivery.cs" />
+    <Compile Include="UpgradeGuides\5to6\Recoverability\DelayedDelivery.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStartAndStop.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\SimplePolicy.cs" />
@@ -337,7 +337,7 @@
     <Compile Include="UpgradeGuides\5to6\DependentFeature.cs" />
     <Compile Include="UpgradeGuides\5to6\HandlerOrdering.cs" />
     <Compile Include="UpgradeGuides\5to6\Saga.cs" />
-    <Compile Include="UpgradeGuides\5to6\CustomRetryPolicy.cs" />
+    <Compile Include="UpgradeGuides\5to6\Recoverability\CustomRetryPolicy.cs" />
     <Compile Include="UpgradeGuides\5to6\StartupInterface.cs" />
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />

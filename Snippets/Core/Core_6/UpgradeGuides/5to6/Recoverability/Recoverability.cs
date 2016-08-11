@@ -24,6 +24,33 @@
 
             #endregion
         }
+        void XmlReplacementImmediate(EndpointConfiguration endpointConfiguration)
+        {
+            #region 5to6-configureImmediateRetriesViaCode
+
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.Immediate(
+                customizations: immediate =>
+                {
+                    immediate.NumberOfRetries(2);
+                });
+
+            #endregion
+        }
+        void XmlReplacementDelayed(EndpointConfiguration endpointConfiguration)
+        {
+            #region 5to6-configureDelayedRetriesViaCode
+
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.Delayed(
+                customizations: delayed =>
+                {
+                    delayed.NumberOfRetries(3);
+                    delayed.TimeIncrease(TimeSpan.FromSeconds(10));
+                });
+
+            #endregion
+        }
 
         void DisableRetries(EndpointConfiguration endpointConfiguration)
         {

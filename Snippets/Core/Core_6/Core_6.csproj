@@ -311,6 +311,7 @@
     <Compile Include="UpgradeGuides\5to6\MsmqSubscriptionAuthorization.cs" />
     <Compile Include="UpgradeGuides\5to6\Recoverability.cs" />
     <Compile Include="UpgradeGuides\5to6\Saga.cs" />
+    <Compile Include="UpgradeGuides\5to6\SpecifyingHostId.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
     <Compile Include="UpgradeGuides\5to6\RawSend.cs" />
