@@ -114,6 +114,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="UpgradeGuides\5to6\null.xml" />
+    <Content Include="UpgradeGuides\5to6\Recoverability\delayedconfig.xml" />
+    <Content Include="UpgradeGuides\5to6\Recoverability\immediateconfig.xml" />
     <Content Include="XmlDocumentPayload.xml" />
     <Content Include="XmlElementPayload.xml" />
     <None Include="app.config" />

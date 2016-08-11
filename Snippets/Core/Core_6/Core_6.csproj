@@ -213,7 +213,6 @@
     <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
-    <Compile Include="UpgradeGuides\5to6\CustomRetryPolicy.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameHelper.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStartStop.cs" />
@@ -309,7 +308,8 @@
     <Compile Include="Transports\Throughput\ConcurrencyConfiguration.cs" />
     <Compile Include="TransportTransactions.cs" />
     <Compile Include="UpgradeGuides\5to6\MsmqSubscriptionAuthorization.cs" />
-    <Compile Include="UpgradeGuides\5to6\Recoverability.cs" />
+    <Compile Include="UpgradeGuides\5to6\Recoverability\CustomRetryPolicy.cs" />
+    <Compile Include="UpgradeGuides\5to6\Recoverability\Recoverability.cs" />
     <Compile Include="UpgradeGuides\5to6\Saga.cs" />
     <Compile Include="UpgradeGuides\5to6\SpecifyingHostId.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
