@@ -7,7 +7,7 @@ Total Attempts = (ImmediateRetries:NumberOfRetries + 1) * (DelayedRetries:Number
 
 So for example given a variety of Immediate and Delayed here are the resultant possible attempts.
 
-| ImmediateRetries:NumberOfRetries | DelayedRetries:NumberOfRetries | Total possible attempts |
+| ImmediateRetries: NumberOfRetries | DelayedRetries: NumberOfRetries | Total possible attempts |
 |----------------------------------|--------------------------------|-------------------------|
 | 1                                | 1                              | 4                       |
 | 1                                | 2                              | 6                       |
