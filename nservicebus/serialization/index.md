@@ -32,6 +32,7 @@ To support sending and receiving messages between endpoints using different seri
 
 snippet:AdditionalDeserializers
 
+
 ### How to implement your own serializer
 
 To implement a serializer all it needs to be done is implement `IMessageSerializer`.
