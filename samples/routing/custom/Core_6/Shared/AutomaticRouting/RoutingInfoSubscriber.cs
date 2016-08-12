@@ -21,7 +21,7 @@ class RoutingInfoSubscriber :
     Publishers publishers;
     TimeSpan sweepPeriod;
     TimeSpan heartbeatTimeout;
-    Dictionary<Type, HashSet<string>> endpointMap = new Dictionary<Type, HashSet<string>>();
+    Dictionary<Type, string> endpointMap = new Dictionary<Type, string>();
     Dictionary<string, HashSet<EndpointInstance>> instanceMap = new Dictionary<string, HashSet<EndpointInstance>>();
     Dictionary<EndpointInstance, EndpointInstanceInfo> instanceInformation = new Dictionary<EndpointInstance, EndpointInstanceInfo>();
     Dictionary<Type, string> publisherMap = new Dictionary<Type, string>();
@@ -43,7 +43,7 @@ class RoutingInfoSubscriber :
         messageSession = context;
 
         #region AddDynamic
-        routingTable.AddDynamic((types, bag) => FindEndpoint(types));
+        routingTable.SetFallbackRoute((type, bag) => FindEndpoint(type));
         endpointInstances.AddDynamic(FindInstancesTask);
         publishers.AddDynamic(FindPublisher);
         #endregion
@@ -180,38 +180,32 @@ class RoutingInfoSubscriber :
         }
     }
 
-    static void LogChangesToEndpointMap(Dictionary<Type, HashSet<string>> endpointMap, Dictionary<Type, HashSet<string>> newEndpointMap)
+    static void LogChangesToEndpointMap(Dictionary<Type, string> endpointMap, Dictionary<Type, string> newEndpointMap)
     {
         foreach (var addedType in newEndpointMap.Keys.Except(endpointMap.Keys))
         {
-            log.Info($"Added route for {addedType.Name} to {FormatSet(newEndpointMap[addedType])}");
+            log.Info($"Added route for {addedType.Name} to [{newEndpointMap[addedType]}]");
         }
 
         foreach (var removedType in endpointMap.Keys.Except(newEndpointMap.Keys))
         {
-            log.Info($"Removed route for {removedType.Name} to {FormatSet(newEndpointMap[removedType])}");
+            log.Info($"Removed route for {removedType.Name} to [{newEndpointMap[removedType]}]");
         }
 
         foreach (var existingType in endpointMap.Keys.Intersect(newEndpointMap.Keys))
         {
             var newSet = newEndpointMap[existingType];
             var currentSet = endpointMap[existingType];
-            var addedEndpoints = newSet.Except(currentSet).ToArray();
-            var removedEndpoints = currentSet.Except(newSet).ToArray();
-            if (addedEndpoints.Any())
+            if (newSet != currentSet)
             {
-                log.Info($"Added route for {existingType.Name} to {FormatSet(addedEndpoints)}");
-            }
-            if (removedEndpoints.Any())
-            {
-                log.Info($"Removed route for {existingType.Name} to {FormatSet(removedEndpoints)}");
+                log.Info($"Changed route for {existingType.Name} from {currentSet} to [{newSet}]");
             }
         }
     }
 
     static string FormatSet(IEnumerable<object> set)
     {
-        return string.Join(", ", set.Select(o => $"[{o}]"));
+        return string.Join(", ", set.Select(o => $"[{o.ToString()}]"));
     }
 
     static Dictionary<Type, string> BuildNewPublisherMap(EndpointInstance endpointInstance, Type[] publishedTypes, Dictionary<Type, string> publisherMap)
@@ -258,24 +252,13 @@ class RoutingInfoSubscriber :
         return newInstanceMap;
     }
 
-    static Dictionary<Type, HashSet<string>> BuildNewEndpointMap(string endpointName, Type[] types, Dictionary<Type, HashSet<string>> endpointMap)
+    static Dictionary<Type, string> BuildNewEndpointMap(string endpointName, Type[] types, Dictionary<Type, string> endpointMap)
     {
-        var newEndpointMap = new Dictionary<Type, HashSet<string>>();
-        foreach (var pair in endpointMap)
-        {
-            var otherEndpoints = pair.Value.Where(x => x != endpointName);
-            newEndpointMap[pair.Key] = new HashSet<string>(otherEndpoints);
-        }
+        var newEndpointMap = new Dictionary<Type, string>(endpointMap);
 
         foreach (var type in types)
         {
-            HashSet<string> typeEntry;
-            if (!newEndpointMap.TryGetValue(type, out typeEntry))
-            {
-                typeEntry = new HashSet<string>();
-                newEndpointMap[type] = typeEntry;
-            }
-            typeEntry.Add(endpointName);
+            newEndpointMap[type] = endpointName;
         }
         return newEndpointMap;
     }
@@ -293,20 +276,15 @@ class RoutingInfoSubscriber :
     #endregion
 
     #region FindEndpoint
-    IEnumerable<IUnicastRoute> FindEndpoint(Type[] enclosedMessageTypes)
+    Task<IUnicastRoute> FindEndpoint(Type messageType)
     {
-        foreach (var type in enclosedMessageTypes)
+        string destination;
+        if (endpointMap.TryGetValue(messageType, out destination))
         {
-            HashSet<string> destinations;
-            if (!endpointMap.TryGetValue(type, out destinations))
-            {
-                continue;
-            }
-            foreach (var destination in destinations)
-            {
-                yield return UnicastRoute.CreateFromEndpointName(destination);
-            }
+            return Task.FromResult<IUnicastRoute>(UnicastRoute.CreateFromEndpointName(destination));
         }
+
+        return Task.FromResult<IUnicastRoute>(null);
     }
     #endregion
 

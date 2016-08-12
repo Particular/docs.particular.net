@@ -32,7 +32,7 @@ class RoutingInfoPublisher :
     {
         publication = new RoutingInfo
         {
-            EndpointName = settings.EndpointName().ToString(),
+            EndpointName = settings.EndpointName(),
             Discriminator = settings.GetOrDefault<string>("EndpointInstanceDiscriminator"),
             InstanceProperties = settings.EndpointInstanceName().Properties.ToDictionary(kvp => kvp.Key, kvp => kvp.Value),
             HandledMessageTypes = hanledMessageTypes.Select(m => m.AssemblyQualifiedName).ToArray(),
