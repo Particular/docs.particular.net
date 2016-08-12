@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <root>
-  <!-- startcode InstanceMappingFile-MSMQ -->
+  <!-- startcode InstanceMappingFile -->
   <endpoints>
     <endpoint name="Sales">
-      <!-- Scaled-out endpoint -->
-      <instance Machine="Sales1"/>
-      <instance Machine="Sales2"/>
+      <instance Machine="VM-1"/>
     </endpoint>
     <endpoint name="Shipping">
-      <instance Machine="Shipping"/>
+      <instance Machine="VM-2"/>
+    </endpoint>
+    <endpoint name="Billing">
+      <instance Machine="VM-3"/>
     </endpoint>
   </endpoints>
   <!-- endcode -->

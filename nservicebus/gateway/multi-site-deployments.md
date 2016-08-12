@@ -63,7 +63,7 @@ The sending process in site A sends a message to the gateway's input queue. The 
 
 ## Configuration and code
 
-When configuring the client endpoint, ensure the [Message Owner](/nservicebus/messaging/message-owner.md) has been configured so that the relevant message types go to the gateway's input queue.
+When configuring the client endpoint, ensure the [routing](/nservicebus/messaging/routing.md) has been configured so that the relevant message types go to the gateway's input queue.
 
 To send a message to a remote site, use the `SendToSites` API call, as shown:
 

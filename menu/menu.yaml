@@ -97,7 +97,7 @@
         - "nservicebus/messaging/batched-dispatch"
         - "nservicebus/endpoints/specify-endpoint-name"
         - "nservicebus/messaging/routing"
-        - "nservicebus/messaging/message-owner"
+        - "nservicebus/messaging/routing-extensibility"
         - "nservicebus/messaging/unobtrusive-mode"
         - "nservicebus/messaging/best-practice-enforcement"
         - "nservicebus/scheduling"
@@ -226,6 +226,7 @@
       Title: "MSMQ Transport"
       Url: "nservicebus/msmq"
       Articles:
+        - "nservicebus/msmq/routing"
         - "nservicebus/msmq/connection-strings"
         - "nservicebus/msmq/viewing-message-content-in-msmq"
         - "nservicebus/msmq/transportconfig"

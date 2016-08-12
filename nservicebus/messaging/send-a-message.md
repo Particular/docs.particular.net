@@ -3,9 +3,8 @@ title: Sending messages
 redirects:
  - nservicebus/how-do-i-send-a-message
 related:
- - nservicebus/messaging/message-owner
- - nservicebus/messaging/messages-as-interfaces
  - nservicebus/messaging/routing
+ - nservicebus/messaging/messages-as-interfaces
 ---
 
 NServiceBus supports sending different types of messages (see [Messages, Events, and Commands](messages-events-commands.md)) to any endpoint. Messages can be sent either when the bus is started or as part of handling another message. When a message arrives at an endpoint, it goes through a [pipeline of processing steps](/nservicebus/pipeline/).

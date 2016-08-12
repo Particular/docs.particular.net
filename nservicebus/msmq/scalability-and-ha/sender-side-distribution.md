@@ -1,9 +1,8 @@
 ---
 title: Scaling out with sender-side distribution
 summary: How to scale out with sender-side distribution when using the MSMQ transport.
-versions: '[6.0,)'
 component: Core
-reviewed: 2016-08-23
+versions: "[6,)"
 tags:
 - Scale Out
 - Routing
@@ -11,7 +10,7 @@ tags:
 redirects:
 - nservicebus/messaging/file-based-routing
 related:
-- nservicebus/messaging/message-owner
+- nservicebus/msmq/routing
 - nservicebus/messaging/routing
 ---
 
@@ -34,7 +33,7 @@ snippet:Routing-MapMessagesToLogicalEndpoints
 
 This creates mappings specifying that the `AcceptOrder` command is handled by the **Sales** endpoint, while the `SendOrder` command is handled by the **Shipping** endpoint.
 
-Meanwhile, the logical-to-physical mappings will be configured in the Routes.xml file, as this information is an operational concern that must be changed for deployment to multiple machines.
+Meanwhile, the logical-to-physical mappings will be configured in the `instance-mapping.xml` file, as this information is an operational concern that must be changed for deployment to multiple machines.
 
 WARNING: If a message is mapped in an App.config file via the `UnicastBusConfig/MessageEndpointMappings` configuration section, then that message cannot participate in sender-side distribution. The endpoint address specified by a message endpoint mapping is a physical address (`QueueName@MachineName`, where machine name is assumed to be `localhost` if omitted) which combines the message-to-owner-endpoint and endpoint-to-physical-address concerns in a way that can't be separated.
 
@@ -43,43 +42,9 @@ WARNING: If a message is mapped in an App.config file via the `UnicastBusConfig/
 
 The routing configuration file specifies how logical endpoint names are mapped to physical queues on specific machines:
 
-snippet:InstanceMappingFile-MSMQ
+snippet:InstanceMappingFile-ScaleOut
 
-By default, a round-robin distribution strategy is used to distribute messages between the available endpoint instances.
-
-
-## Instance mapping file
-
-The instance mapping file is a simple XML file that has to be located either on a local hard drive or a network drive. When using MSMQ as the transport, NServiceBus will automatically look for an `instance-mapping.xml` file in `AppDomain.BaseDirectoy`.
-
-The mapping file is processed before the endpoint starts up and then re-processed at regular intervals so the changes in the document are reflected in the behavior of NServiceBus automatically. If the document is not present in its configured location when endpoint starts up, NServiceBus will not search again for the file at runtime. If it is deleted when the endpoint is already running, it will continue to run normally with the last successfully read routes.
-
-There are many different options to consider when deploying routing configuration.
-
- * Many endpoints can be configured to use one centralized mapping file on a network drive accessible by all, creating a single file that describes how messages flow across an entire system. Any given endpoint will not care if the file contains information for endpoints it does not need.
- * The mapping file can be kept in a centralized location and replicated out to many servers on demand, allowing each endpoint to read the file from a location on the local disk.
- * Each endpoint can keep its own instance mapping file containing only information for the endpoints it needs to know about, which can be deployed in the same directory as the endpoint binaries and only modified as part of a controlled deployment process.
-
-The following default settings can be adjusted:
- 
- 
-### RefreshInterval
-
-Specifies the interval between route data refresh attempts.
-
-Default: 30 seconds
-
-snippet: InstanceMappingFile-RefreshInterval
-
-
-### FilePath
-
-Specifies the path and file name of the instance mapping file. This can be a relative or an absolute file path. Relative file paths are resolved from `AppDomain.BaseDirectoy`.
-
-Default: `instance-mapping.xml`
-
-snippet: InstanceMappingFile-FilePath
-
+To read more about the instance mapping, refer to the [MSMQ routing page](/nservicebus/msmq/routing.md).
 
 ## Decommissioning endpoint instances
 

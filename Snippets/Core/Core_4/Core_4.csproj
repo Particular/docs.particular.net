@@ -69,6 +69,7 @@
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Routing\MSMQ\EndpointMapping.config.xml" />
     <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
     <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
     <Content Include="UpgradeGuides\3to4\TransportConfig.config.xml">
@@ -78,7 +79,7 @@
     <Content Include="Audit\audit.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="EndpointMapping\EndpointMapping.config.xml">
+    <Content Include="Routing\EndpointMapping.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />

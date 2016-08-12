@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--startcode endpoint-mapping-appconfig-->
+<!--startcode endpoint-mapping-msmq-->
 <configuration>
   <configSections>
     <section name="UnicastBusConfig"
@@ -7,16 +7,11 @@
   </configSections>
   <UnicastBusConfig>
     <MessageEndpointMappings>
-      <add Assembly="MyMessages" 
-           Endpoint="Sales" />
+      <add Assembly="Sales.Messages" 
+           Endpoint="Sales@VM-1" />
 
-      <add Assembly="MyMessages"
-           Namespace="PriorityMessages"
-           Endpoint="Preferred" />
-
-      <add Assembly="MyMessages"
-           Type="MyMessages.SendOrder"
-           Endpoint="Sending" />
+      <add Assembly="Billing.Messages"
+           Endpoint="Billing@VM-2" />
     </MessageEndpointMappings>
   </UnicastBusConfig>
 </configuration>

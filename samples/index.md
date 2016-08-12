@@ -86,9 +86,9 @@ While the default serializer in NServiceBus is [XML](/nservicebus/serialization/
 In many samples Messages are defined in a shared project along with reusable helper and configuration classes. This is done so reduce the number of projects in a solution. In a real solution message definitions are most likely isolated in their own projects.
 
 
-### [Message destinations](/nservicebus/messaging/message-owner.md)
+### [Message destinations](/nservicebus/messaging/routing.md)
 
-Many samples make use of `SendLocal` and sending to an endpoint directly by specify the destination using a string in code. This is done to simplify the amount of configuration in samples. In a real solution most message destination should be defined via [endpoint mappings](/nservicebus/messaging/message-owner.md#configuring-endpoint-mapping).
+Many samples make use of `SendLocal` and sending to an endpoint directly by specify the destination using a string in code. This is done to simplify the amount of configuration in samples. In a real solution most message destination should be defined via [routing configuration](/nservicebus/messaging/routing.md).
 
 
 ### [Container](/nservicebus/containers/)
