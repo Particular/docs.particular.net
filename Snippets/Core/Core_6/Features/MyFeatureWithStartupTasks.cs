@@ -6,19 +6,19 @@
     using NServiceBus;
     using NServiceBus.Features;
 
-    class MyFeature :
+    class MyFeatureWithStartupTasks :
         Feature
     {
+        #region FeatureStartupTaskRegistration
+
         protected override void Setup(FeatureConfigurationContext context)
         {
-            #region FeatureStartupTaskRegistration
-
             context.RegisterStartupTask(new MyStartupTask());
             // or
             context.RegisterStartupTask(() => new MyStartupTask());
-
-            #endregion
         }
+
+        #endregion
     }
 
 #region FeatureStartupTaskDefinition

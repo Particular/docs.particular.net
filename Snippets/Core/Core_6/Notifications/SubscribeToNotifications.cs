@@ -21,8 +21,8 @@ namespace Core6.BusNotifications
         void Subscribe(Notifications notifications)
         {
             var errors = notifications.Errors;
-            errors.MessageHasBeenSentToSecondLevelRetries += LogEvent;
-            errors.MessageHasFailedAFirstLevelRetryAttempt += LogEvent;
+            errors.MessageHasBeenSentToDelayedRetries += LogEvent;
+            errors.MessageHasFailedAnImmediateRetryAttempt += LogEvent;
             errors.MessageSentToErrorQueue += LogEvent;
         }
 
@@ -31,14 +31,14 @@ namespace Core6.BusNotifications
             log.Info("Message sent to error queue");
         }
 
-        void LogEvent(object sender, SecondLevelRetry retry)
+        void LogEvent(object sender, DelayedRetryMessage e)
         {
-            log.Info($"Message sent to Delayed Retries. RetryAttempt:{retry.RetryAttempt}");
+            log.Info($"Message sent to Delayed Retries. RetryAttempt:{e.RetryAttempt}");
         }
 
-        void LogEvent(object sender, FirstLevelRetry retry)
+        void LogEvent(object sender, ImmediateRetryMessage e)
         {
-            log.Info($"Message sent to Immediate Retries. RetryAttempt:{retry.RetryAttempt}");
+            log.Info($"Message has failed an immedediate retry attempt. RetryAttempt:{e.RetryAttempt}");
         }
 
         #endregion

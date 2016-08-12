@@ -3,7 +3,7 @@
 namespace Core6.Routing
 {
     using System;
-    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Features;
     using NServiceBus.Routing;
@@ -47,15 +47,8 @@ namespace Core6.Routing
             protected override void Setup(FeatureConfigurationContext context)
             {
                 var routingTable = context.RoutingTable();
-                routingTable.AddDynamic((types, contextBag) => new[]
-                {
-                    // Use endpoint name
-                    UnicastRoute.CreateFromEndpointName("Sales"),
-                    // Use endpoint instance name
-                    UnicastRoute.CreateFromEndpointInstance(new EndpointInstance("Sales", "1")),
-                    // Use transport address (e.g. MSMQ)
-                    UnicastRoute.CreateFromEndpointName("Sales-2@MachineA")
-                });
+                routingTable.SetFallbackRoute((type, contextBag) =>
+                    Task.FromResult<IUnicastRoute>(UnicastRoute.CreateFromEndpointName("Sales")));
             }
         }
 
@@ -68,19 +61,27 @@ namespace Core6.Routing
             protected override void Setup(FeatureConfigurationContext context)
             {
                 var routingTable = context.RoutingTable();
-                routingTable.AddDynamic((t, c) =>
-                LoadFromCache(t) ?? LoadFromDatabaseAndPutToCache(t));
+                routingTable.SetFallbackRoute((type, c) =>
+                {
+                    var cacheResult = LoadFromCache(type);
+                    if (cacheResult != null)
+                    {
+                        return Task.FromResult(cacheResult);
+                    }
+
+                    return LoadFromDatabaseAndPutToCache(type);
+                });
             }
         }
 
         #endregion
 
-        static IEnumerable<IUnicastRoute> LoadFromDatabaseAndPutToCache(Type[] type)
+        static Task<IUnicastRoute> LoadFromDatabaseAndPutToCache(Type type)
         {
             throw new NotImplementedException();
         }
 
-        static IEnumerable<IUnicastRoute> LoadFromCache(Type[] type)
+        static IUnicastRoute LoadFromCache(Type type)
         {
             throw new NotImplementedException();
         }
@@ -149,7 +150,7 @@ namespace Core6.Routing
         class CustomStrategy :
             DistributionStrategy
         {
-            public override IEnumerable<UnicastRoutingTarget> SelectDestination(IList<UnicastRoutingTarget> allInstances)
+            public override UnicastRoutingTarget SelectDestination(UnicastRoutingTarget[] allInstances)
             {
                 throw new NotImplementedException();
             }
