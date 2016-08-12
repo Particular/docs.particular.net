@@ -23,6 +23,15 @@ class Program3rdParty
 
             while (true)
             {
+                if (isReturningOk)
+                {
+                    Console.WriteLine("\r\nCurrently returning success");
+                }
+                else
+                {
+                    Console.WriteLine("\r\nCurrently returning error");
+                }
+
                 var key = Console.ReadKey();
                 Console.WriteLine();
 
