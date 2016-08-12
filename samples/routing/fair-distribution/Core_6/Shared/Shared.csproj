@@ -51,6 +51,7 @@
     <Compile Include="FairDistribution\MessageMarker.cs" />
     <Compile Include="Messages\OrderAccepted.cs" />
     <Compile Include="Messages\PlaceOrder.cs" />
+    <Compile Include="MultipleMachineSimulation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

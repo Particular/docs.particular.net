@@ -13,13 +13,13 @@ class Program
     {
         Console.Title = "Samples.FairDistribution.Server.1";
         var endpointConfiguration = new EndpointConfiguration("Samples.FairDistribution.Server");
-        endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         endpointConfiguration.AuditProcessedMessagesTo("audit");
+        endpointConfiguration.UseTransport<MsmqTransport>().SimulateMultipleMachines("Server1");
 
         #region FairDistributionServer
 

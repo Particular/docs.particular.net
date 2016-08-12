@@ -93,3 +93,20 @@ snippet:ProcessACKs
 The calculated number of in-flight messages can be used to distribute messages in such a way that all instances of downstream scaled-out endpoint have similar number of messages in their input queues. That way the load is appropriate for the capacity of the given instance, e.g. instances running on weaker machines process less messages. As a result no instance is getting overwhelmed and no instance is underutilized when work is available.
 
 snippet:GetLeastBusy
+
+
+### Simulating multiple machines
+
+All the endpoints enable multiple machine simulation in order to run this sample on a single developer machine without the need to set up a complex test environment.
+
+snippet:SimulateMultiMachine
+
+The simulation enables a custom address translation rule that overrides the default one.
+
+snippet:AddressTranslationRule
+
+The overridden rule substitutes the local machine name in the address specification with the one defined in each applications `Program.cs` to ensure the queues that NServiceBus created when installing have proper simulated machine names.
+
+The only difference is that the simulation requires that the instance mapping file contains `_machine` attributes instead of usual `machine`.
+
+snippet:instanceMapping

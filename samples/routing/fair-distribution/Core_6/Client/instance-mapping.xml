@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode instanceMapping-->
+<endpoints>
+  <endpoint name="Samples.FairDistribution.Server">
+    <instance _machine="Server1"/>
+    <instance _machine="Server2"/>
+  </endpoint>
+</endpoints>
+<!--endcode-->

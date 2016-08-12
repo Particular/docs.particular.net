@@ -3,8 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
-using NServiceBus.Routing;
-using NServiceBus.Support;
 
 class Program
 {
@@ -80,14 +78,18 @@ class Program
 
     static void AddRouting(EndpointConfiguration endpointConfiguration)
     {
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+
+        #region SimulateMultiMachine
+        transport.SimulateMultipleMachines("Client");
+
+        #endregion
+
+        var routing = transport.Routing();
+
         #region Routing
 
-        const string server = "Samples.FairDistribution.Server";
-        var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
-        routing.RouteToEndpoint(typeof(PlaceOrder), server);
-        routing.GetSettings().GetOrCreate<EndpointInstances>().Add(
-            new EndpointInstance(server, "1").AtMachine(RuntimeEnvironment.MachineName),
-            new EndpointInstance(server, "2").AtMachine(RuntimeEnvironment.MachineName));
+        routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.FairDistribution.Server");
 
         #endregion
     }
