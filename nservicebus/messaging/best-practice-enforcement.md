@@ -13,7 +13,7 @@ By default NServiceBus will ensure [messaging best practices](messages-events-co
 
 NOTE: In Versions 6 and above the default behavior can be overridden.
 
-To enable this feature at the endpoint level using:
+To disable this feature at the endpoint level using:
 
 snippet:DisableBestPracticeEnforcementPerEndpoint
 
