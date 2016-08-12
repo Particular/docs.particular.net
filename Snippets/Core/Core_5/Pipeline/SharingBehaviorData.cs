@@ -13,7 +13,6 @@
         {
             // set some shared information on the context
             context.Set(new SharedData());
-
             next();
         }
     }
@@ -25,7 +24,6 @@
         {
             // access the shared data
             var data = context.Get<SharedData>();
-
             next();
         }
     }
