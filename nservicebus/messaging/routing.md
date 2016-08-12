@@ -129,7 +129,7 @@ Following example shows how to implement a shared-store based routing where dest
 
 snippet:Routing-CustomRoutingStore
 
-NOTE: The function passed to the `AddDynamic` call is executed **each time** a message is sent so it is essential to make sure it is performant (e.g. by caching the results if getting the result requires crossing a process boundary).
+NOTE: The function passed to the `SetFallbackRoute` call is executed **each time** a message is sent so it is essential to make sure it is performant (e.g. by caching the results if getting the result requires crossing a process boundary).
 
 
 ### Endpoint instance mapping layer
