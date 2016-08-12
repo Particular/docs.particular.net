@@ -44,7 +44,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0006\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0007\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.NHibernate, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
@@ -209,7 +209,7 @@
     <Compile Include="Transports\QueueCreation\SequentialQueueCreator.cs" />
     <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
     <Compile Include="Features\FeatureConfiguration.cs" />
-    <Compile Include="Features\MyFeature.cs" />
+    <Compile Include="Features\MyFeatureWithStartupTasks.cs" />
     <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />

@@ -119,9 +119,9 @@ When necessary (e.g. for integration with legacy systems) the static routing to 
 snippet:Routing-StaticRoutes-Address
 
 
-#### Dynamic routes
+#### Fallback route
 
-Dynamic routes are meant to provide a convenient extensibility point that can be used by NServiceBus add-ons. To add a dynamic route pass a function that takes a `Type` and a `ContextBag` containing the context of current message processing and returns a collection of destinations.
+A fallback route can be registered to resolve routes in case no static routes have been found for a given message type. The fallback route provides a convenient extension for NServiceBus add-ons. To add a fallback route, pass a function that takes a `Type` and a `ContextBag` containing the context of current message processing and returns a destination.
 
 snippet:Routing-DynamicRoutes
 

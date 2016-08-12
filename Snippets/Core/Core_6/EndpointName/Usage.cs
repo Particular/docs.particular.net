@@ -2,7 +2,6 @@
 {
     using System;
     using NServiceBus;
-    using NServiceBus.Routing;
     using NServiceBus.Settings;
     using NServiceBus.Transport;
 
@@ -20,9 +19,7 @@
         {
             #region InputQueueName
 
-            var transport = endpointConfiguration.UseTransport<MyTransport>();
-            transport.AddAddressTranslationException(
-                new EndpointInstance("MyEndpoint"), "MyEndpoint.Messages");
+            endpointConfiguration.OverrideLocalAddress("MyEndpoint.Messages");
 
             #endregion
         }
@@ -33,9 +30,7 @@
 
             var transport = endpointConfiguration.UseTransport<MyTransport>();
             var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(MyMessage), "MyEndpoint");
-            transport.AddAddressTranslationException(
-                new EndpointInstance("MyEndpoint"), "MyEndpoint.Messages");
+            routing.RouteToEndpoint(typeof(MyMessage), "MyEndpoint.Messages");
 
             #endregion
         }

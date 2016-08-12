@@ -6,7 +6,7 @@
     using NServiceBus;
     using NServiceBus.Features;
 
-    class MyFeature :
+    class MyFeatureWithStartupTasks :
         Feature
     {
         protected override void Setup(FeatureConfigurationContext context)

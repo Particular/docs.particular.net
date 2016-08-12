@@ -4,39 +4,29 @@ namespace Core6.Features
     using System;
     using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Config;
     using NServiceBus.Features;
     using NServiceBus.Pipeline;
 
-    class SecondLevelRetries :
+    class MyFeature :
         Feature
     {
 
 #region FeatureSetup
         protected override void Setup(FeatureConfigurationContext context)
         {
-            var settings = context.Settings;
-            var retriesConfig = settings.GetConfigSection<SecondLevelRetriesConfig>();
+            var configurationValue = context.Settings.Get<string>("Key");
 
-            var retryPolicy = new SecondLevelRetryPolicy(
-                numberOfRetries: retriesConfig.NumberOfRetries,
-                timeIncrease: retriesConfig.TimeIncrease);
-            var container = context.Container;
-            container.RegisterSingleton(typeof(SecondLevelRetryPolicy), retryPolicy);
+            context.Container.RegisterSingleton(new MessageHandlerDependency());
 
-            var pipeline = context.Pipeline;
-            pipeline.Register<SecondLevelRetriesBehavior.Registration>();
+            context.Pipeline.Register(new CustomBehavior(configurationValue), "custom pipeline behavior");
         }
 #endregion
 
         async Task EndpointConfiguration(EndpointConfiguration endpointConfiguration)
         {
             #region EnableDisableFeatures
-            // enable delayed delivery feature since SLR relies on it
-            endpointConfiguration.EnableFeature<DelayedDeliveryFeature>();
-
             // this is not required if the feature uses EnableByDefault()
-            endpointConfiguration.EnableFeature<SecondLevelRetries>();
+            endpointConfiguration.EnableFeature<MyFeature>();
 
             // disable features not in use
             endpointConfiguration.DisableFeature<Sagas>();
@@ -46,29 +36,17 @@ namespace Core6.Features
 #endregion
         }
 
-        class SecondLevelRetriesBehavior
+        class MessageHandlerDependency
         {
-            public class Registration :
-                RegisterStep
-            {
-                public Registration()
-                    : base(string.Empty, typeof(object), null)
-                {
-                }
-            }
         }
 
-        class SecondLevelRetryPolicy
+        class CustomBehavior : Behavior<ITransportReceiveContext>
         {
-            public SecondLevelRetryPolicy(int numberOfRetries, TimeSpan timeIncrease)
+            public CustomBehavior(string configurationValue)
             {
             }
-        }
 
-        class DelayedDeliveryFeature :
-            Feature
-        {
-            protected override void Setup(FeatureConfigurationContext context)
+            public override Task Invoke(ITransportReceiveContext context, Func<Task> next)
             {
                 throw new NotImplementedException();
             }
