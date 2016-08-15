@@ -58,7 +58,7 @@
     <Compile Include="ShipOrder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\packages\RavenDB.Database.3.0.30143\content\Raven.Studio.Html5.zip">
+    <None Include="..\..\..\..\..\packages\RavenDB.Database.3.0.30153\content\Raven.Studio.Html5.zip">
       <Link>Raven.Studio.Html5.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
