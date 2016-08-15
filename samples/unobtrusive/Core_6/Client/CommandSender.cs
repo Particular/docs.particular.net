@@ -55,7 +55,7 @@ public class CommandSender
     {
         var messageThatExpires = new MessageThatExpires
         {
-            RequestId = new Guid()
+            RequestId = Guid.NewGuid()
         };
         await endpointInstance.Send(messageThatExpires)
             .ConfigureAwait(false);
