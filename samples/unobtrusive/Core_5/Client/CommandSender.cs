@@ -49,7 +49,7 @@ public class CommandSender
     {
         var messageThatExpires = new MessageThatExpires
         {
-            RequestId = new Guid()
+            RequestId = Guid.NewGuid()
         };
         bus.Send(messageThatExpires);
         Console.WriteLine("message with expiration was sent");
