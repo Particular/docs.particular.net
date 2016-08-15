@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using Events;
 using NServiceBus;
-using NServiceBus.AzureServiceBus;
-using NServiceBus.AzureServiceBus.Addressing;
 using NServiceBus.Features;
 
 class Program
@@ -29,8 +27,8 @@ class Program
 
         #region RegisterPublisherNames
 
-        topology.RegisterPublisherForType("Samples.ASB.Polymorphic.Publisher", typeof(BaseEvent));
-        topology.RegisterPublisherForType("Samples.ASB.Polymorphic.Publisher", typeof(DerivedEvent));
+        topology.RegisterPublisher(typeof(BaseEvent), "Samples.ASB.Polymorphic.Publisher");
+        topology.RegisterPublisher(typeof(DerivedEvent), "Samples.ASB.Polymorphic.Publisher");
 
         #endregion
 
@@ -45,7 +43,7 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.Recoverability().Delayed(settings => settings.NumberOfRetries(0));
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

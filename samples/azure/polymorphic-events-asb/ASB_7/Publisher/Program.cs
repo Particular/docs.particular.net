@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using Events;
 using NServiceBus;
-using NServiceBus.AzureServiceBus;
-using NServiceBus.Features;
 
 class Program
 {
@@ -28,7 +26,7 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.Recoverability().Delayed(settings => settings.NumberOfRetries(0));
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
