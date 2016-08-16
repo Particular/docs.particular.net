@@ -95,18 +95,6 @@ The calculated number of in-flight messages can be used to distribute messages i
 snippet:GetLeastBusy
 
 
-### Simulating multiple machines
+### Real-world scenario
 
-All the endpoints enable multiple machine simulation in order to run this sample on a single developer machine without the need to set up a complex test environment.
-
-snippet:SimulateMultiMachine
-
-The simulation enables a custom address translation rule that overrides the default one.
-
-snippet:AddressTranslationRule
-
-The overridden rule substitutes the local machine name in the address specification with the one defined in each applications `Program.cs` to ensure the queues that NServiceBus created when installing have proper simulated machine names.
-
-The only difference is that the simulation requires that the instance mapping file contains `_machine` attributes instead of usual `machine`.
-
-snippet:instanceMapping
+For the sake of simplicity, in this sample all the endpoints run on a single machine. In real world is is usually best to run each instance on a separate virtual machine. In such case the instance mapping file would contain `machine` attributes mapping instances to their machines' host names instead of `queue` attributes used to run more than one instance on a single box.

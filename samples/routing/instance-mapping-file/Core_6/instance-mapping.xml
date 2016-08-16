@@ -2,18 +2,15 @@
 <endpoints>
   <endpoint name="Samples.CustomRouting.Sales">
     <!-- Scaled-out endpoint -->
-    <instance Machine="Sales1"/>
-    <instance Machine="Sales2"/>
-  </endpoint>
-  <endpoint name="Samples.CustomRouting.Client">
-    <instance Machine="FrontEnd"/>
+    <instance queue="Samples.CustomRouting.Sales-1"/>
+    <instance queue="Samples.CustomRouting.Sales-2"/>
   </endpoint>
   <!--Multiple endpoints hosted on same machine-->
   <endpoint name="Samples.CustomRouting.Billing">
-    <instance Machine="BackEnd"/>
+    <instance machine="localhost"/>
   </endpoint>
   <endpoint name="Samples.CustomRouting.Shipping">
-    <instance Machine="BackEnd"/>
+    <instance machine="localhost"/>
   </endpoint>
 </endpoints>
 <!--endcode-->

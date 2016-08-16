@@ -79,11 +79,7 @@ class Program
     static void AddRouting(EndpointConfiguration endpointConfiguration)
     {
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-
-        #region SimulateMultiMachine
-        transport.SimulateMultipleMachines("Client");
-
-        #endregion
+        transport.EnableQueueNameOverrideInAddressTranslation();
 
         var routing = transport.Routing();
 

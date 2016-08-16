@@ -20,6 +20,7 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         endpointConfiguration.EnableAutomaticRouting(AutomaticRoutingConst.ConnectionString);
+        endpointConfiguration.UseTransport<MsmqTransport>().EnableQueueNameOverrideInAddressTranslation();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

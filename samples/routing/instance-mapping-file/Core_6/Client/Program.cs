@@ -32,9 +32,7 @@ class Program
 
         routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.CustomRouting.Sales");
 
-        #region SimulateMultiMachine
-        transport.SimulateMultipleMachines("FrontEnd");
-        #endregion
+        transport.EnableQueueNameOverrideInAddressTranslation();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

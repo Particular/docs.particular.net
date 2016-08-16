@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using NServiceBus;
 using NServiceBus.Routing;
 using NServiceBus.Settings;
@@ -14,7 +13,7 @@ public class FairDistributionStrategy :
         this.settings = settings;
     }
 
-    public override IEnumerable<UnicastRoutingTarget> SelectDestination(IList<UnicastRoutingTarget> allInstances)
+    public override UnicastRoutingTarget SelectDestination(UnicastRoutingTarget[] allInstances)
     {
         var hash = settings.Get<FlowManager>()
             .GetLeastBusyInstanceHash(allInstances);
@@ -24,13 +23,6 @@ public class FairDistributionStrategy :
             return i.Instance != null &&
                    i.Instance.ToString().GetHashCode() == hash;
         });
-        if (leastBusyInstance == null)
-        {
-            yield return allInstances.First();
-        }
-        else
-        {
-            yield return leastBusyInstance;
-        }
+        return leastBusyInstance ?? allInstances.First();
     }
 }

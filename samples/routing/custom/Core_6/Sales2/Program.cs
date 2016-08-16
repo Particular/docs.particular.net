@@ -15,12 +15,13 @@ class Program
     {
         Console.Title = "Samples.CustomRouting.Sales.2";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Sales");
-        endpointConfiguration.MakeInstanceUniquelyAddressable("2");
+        endpointConfiguration.OverrideLocalAddress("Samples.CustomRouting.Sales-2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.ConnectionString(AutomaticRoutingConst.ConnectionString);
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<MsmqTransport>().EnableQueueNameOverrideInAddressTranslation();
 
         var automaticRouting = endpointConfiguration.EnableAutomaticRouting(AutomaticRoutingConst.ConnectionString);
         automaticRouting.AdvertisePublishing(typeof(OrderAccepted));
