@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -185,42 +186,45 @@ class FileTransportMessagePump :
             var transportTransaction = new TransportTransaction();
             transportTransaction.Set(transaction);
 
-            var receiveCancellationTokenSource = new CancellationTokenSource();
-            var pushContext = new MessageContext(
-                messageId: messageId,
-                headers: headers,
-                body: body,
-                transportTransaction: transportTransaction,
-                receiveCancellationTokenSource: receiveCancellationTokenSource,
-                context: new ContextBag());
+            var shouldCommit = await HandleMessageWithRetries(messageId, headers, body, transportTransaction, 1);
 
-            await HandleMessageWithRetries(pushContext);
-
-            if (!receiveCancellationTokenSource.IsCancellationRequested)
+            if (shouldCommit)
             {
                 transaction.Commit();
             }
         }
     }
 
-    async Task HandleMessageWithRetries(MessageContext pushContext)
+    async Task<bool> HandleMessageWithRetries(string messageId, Dictionary<string, string> headers, byte[] body, TransportTransaction transportTransaction, int processingAttempt)
     {
-        var processingAttempt = 0;
-        var errorHandlingResult = ErrorHandleResult.Handled;
-        do
+        try
         {
-            processingAttempt++;
-            try
+            var receiveCancellationTokenSource = new CancellationTokenSource();
+            var pushContext = new MessageContext(
+                messageId: messageId,
+                headers: new Dictionary<string, string>(headers),
+                body: body,
+                transportTransaction: transportTransaction,
+                receiveCancellationTokenSource: receiveCancellationTokenSource,
+                context: new ContextBag());
+
+            await pipeline(pushContext)
+                .ConfigureAwait(false);
+
+            return !receiveCancellationTokenSource.IsCancellationRequested;
+        }
+        catch (Exception e)
+        {
+            var errorContext = new ErrorContext(e, headers, messageId, body, transportTransaction, processingAttempt);
+            var errorHandlingResult = await onError(errorContext);
+
+            if (errorHandlingResult == ErrorHandleResult.RetryRequired)
             {
-                await pipeline(pushContext)
-                    .ConfigureAwait(false);
+                return await HandleMessageWithRetries(messageId, headers, body, transportTransaction, ++processingAttempt);
             }
-            catch (Exception e)
-            {
-                var errorContext = new ErrorContext(e, pushContext.Headers, pushContext.MessageId, pushContext.Body, new TransportTransaction(), processingAttempt);
-                errorHandlingResult = await onError(errorContext);
-            }
-        } while (errorHandlingResult == ErrorHandleResult.RetryRequired);
+
+            return true;
+        }
     }
 }
 
