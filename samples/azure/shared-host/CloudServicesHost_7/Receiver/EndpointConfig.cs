@@ -1,8 +1,7 @@
 ﻿using NServiceBus;
 using NServiceBus.Logging;
 
-public class EndpointConfig :
-    IConfigureThisEndpoint
+public class EndpointConfig : IConfigureThisEndpoint
 {
     public void Customize(EndpointConfiguration configuration)
     {
