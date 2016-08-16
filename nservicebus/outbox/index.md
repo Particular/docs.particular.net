@@ -15,7 +15,6 @@ related:
 
 Using Outbox allows for running endpoints with similar reliability to DTC while not actually using DTC.
 
-
 ## How it works
 
 The Outbox feature has been implemented using the [Outbox](http://gistlabs.com/2014/05/the-outbox/) and the [Deduplication](https://en.wikipedia.org/wiki/Data_deduplication#In-line_deduplication) patterns.
@@ -54,7 +53,7 @@ In order to enable the Outbox for transports that support distributed transactio
 
 snippet: OutboxEnablingInAppConfig
 
-Note: When Outbox is enabled then NServiceBus automatically lowers the default delivery guarantee level to `ReceiveOnly`. A different level can be explicitly specified in configuration.
+Note: When Outbox is enabled then NServiceBus automatically lowers the default delivery guarantee level to `ReceiveOnly`. A different level can be explicitly [specified in configuration](/nservicebus/transports/transactions.md).
 
 Warning: The double opt-in configuration for transports supporting DTC is ensuring that Outbox is not accidentally used in combination with DTC. If endpoints using Outbox send messages to endpoints using DTC, then messages might get duplicated. As a result, the same messages might be processed multiple times. 
 
