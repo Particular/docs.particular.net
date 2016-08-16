@@ -24,6 +24,7 @@ public class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EnableInstallers();
 
         #endregion
 

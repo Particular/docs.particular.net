@@ -5,7 +5,7 @@ using NServiceBus.Extensibility;
 using NServiceBus.ObjectBuilder;
 using NServiceBus.Pipeline;
 using NServiceBus.Routing;
-using NServiceBus.Transports;
+using NServiceBus.Transport;
 
 public class ForwardBehavior :
     ForkConnector<IIncomingPhysicalMessageContext, IDispatchContext>

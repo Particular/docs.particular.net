@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Features;
 using NServiceBus.Persistence;
 
 class Program
@@ -32,10 +31,12 @@ class Program
 
         #endregion
 
-        endpointConfiguration.DisableFeature<FirstLevelRetries>();
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.Recoverability()
+            .Immediate(immediate => immediate.NumberOfRetries(0))
+            .Delayed(delayed => delayed.NumberOfRetries(0));
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
+        endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

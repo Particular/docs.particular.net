@@ -15,6 +15,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.SimpleSender");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
 
         #region TransportConfiguration
 
