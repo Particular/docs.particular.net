@@ -41,13 +41,6 @@ class RoutingInfoSubscriber :
     protected override Task OnStart(IMessageSession context)
     {
         messageSession = context;
-
-        #region AddDynamic
-        routingTable.SetFallbackRoute((type, bag) => FindEndpoint(type));
-        endpointInstances.AddDynamic(FindInstancesTask);
-        publishers.AddDynamic(FindPublisher);
-        #endregion
-
         sweepTimer = new Timer(state =>
         {
             foreach (var info in instanceInformation)
@@ -128,6 +121,17 @@ class RoutingInfoSubscriber :
         LogChangesToEndpointMap(endpointMap, newEndpointMap);
         LogChangesToInstanceMap(instanceMap, newInstanceMap);
         var toSubscribe = LogChangesToPublisherMap(publisherMap, newPublisherMap).ToArray();
+
+        #region AddDynamic
+        routingTable.AddOrReplaceRoutes("AutomaticRouting", newEndpointMap.Select(
+            x => new RouteTableEntry(x.Key, UnicastRoute.CreateFromEndpointName(x.Value))).ToList());
+
+        publishers.AddOrReplacePublishers("AutomaticRouting", newPublisherMap.Select(
+            x => new PublisherTableEntry(x.Key, PublisherAddress.CreateFromEndpointName(x.Value))).ToList());
+
+        endpointInstances.AddOrReplaceInstances("AutomaticRouting", newInstanceMap.SelectMany(x => x.Value).ToList());
+        #endregion
+
         instanceMap = newInstanceMap;
         endpointMap = newEndpointMap;
         publisherMap = newPublisherMap;
