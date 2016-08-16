@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.AzureServiceBus;
+using NServiceBus.Transport.AzureServiceBus;
 
 class Program
 {

@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
-using NServiceBus.AzureServiceBus;
-using NServiceBus.AzureServiceBus.Addressing;
+using NServiceBus;
+using NServiceBus.Transport.AzureServiceBus;
 
 #region Sha1SanitiazationStrategy
 
@@ -25,7 +25,7 @@ class Sha1Sanitization :
             entityPathOrName = rgx.Replace(entityPathOrName, "");
         }
 
-        int entityPathOrNameMaxLength = 0;
+        var entityPathOrNameMaxLength = 0;
 
         switch (entityType)
         {

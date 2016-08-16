@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.AzureServiceBus;
-using NServiceBus.Features;
 using Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events;
 
 class Program
@@ -28,9 +26,9 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.Recoverability().Delayed(settings => settings.NumberOfRetries(0));
 
-        IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration)
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
         try
@@ -40,10 +38,10 @@ class Program
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                var key = Console.ReadKey();
                 Console.WriteLine();
 
-                Guid eventId = Guid.NewGuid();
+                var eventId = Guid.NewGuid();
 
                 if (key.Key != ConsoleKey.E)
                 {
