@@ -17,6 +17,16 @@ class FileTransportMessagePump :
 {
     static ILog log = LogManager.GetLogger<FileTransportMessagePump>();
 
+    CancellationToken cancellationToken;
+    CancellationTokenSource cancellationTokenSource;
+    SemaphoreSlim concurrencyLimiter;
+    Task messagePumpTask;
+    Func<ErrorContext, Task<ErrorHandleResult>> onError;
+    string path;
+    Func<MessageContext, Task> pipeline;
+    bool purgeOnStartup;
+    ConcurrentDictionary<Task, Task> runningReceiveTasks;
+
     public Task Init(Func<MessageContext, Task> onMessage, Func<ErrorContext, Task<ErrorHandleResult>> onError, CriticalError criticalError, PushSettings settings)
     {
         this.onError = onError;
@@ -119,10 +129,6 @@ class FileTransportMessagePump :
     {
         var nativeMessageId = Path.GetFileNameWithoutExtension(filePath);
 
-        var transaction = new DirectoryBasedTransaction(path);
-
-        transaction.BeginTransaction(filePath);
-
         await concurrencyLimiter.WaitAsync(cancellationToken)
             .ConfigureAwait(false);
 
@@ -130,9 +136,8 @@ class FileTransportMessagePump :
         {
             try
             {
-                await ProcessFileWithTransaction(transaction, nativeMessageId)
+                await ProcessFileWithTransaction(filePath, nativeMessageId)
                     .ConfigureAwait(false);
-                transaction.Complete();
             }
             finally
             {
@@ -141,28 +146,29 @@ class FileTransportMessagePump :
         }, cancellationToken);
 
         task.ContinueWith(t =>
-                {
-                    Task toBeRemoved;
-                    runningReceiveTasks.TryRemove(t, out toBeRemoved);
-                },
-                TaskContinuationOptions.ExecuteSynchronously)
+        {
+            Task toBeRemoved;
+            runningReceiveTasks.TryRemove(t, out toBeRemoved);
+        },
+            TaskContinuationOptions.ExecuteSynchronously)
             .Ignore();
 
         runningReceiveTasks.AddOrUpdate(task, task, (k, v) => task)
             .Ignore();
     }
 
-    async Task ProcessFileWithTransaction(DirectoryBasedTransaction transaction, string messageId)
+    async Task ProcessFileWithTransaction(string filePath, string messageId)
     {
-        try
+        using (var transaction = new DirectoryBasedTransaction(path))
         {
+            transaction.BeginTransaction(filePath);
+
             var message = File.ReadAllLines(transaction.FileToProcess);
             var bodyPath = message.First();
             var json = string.Join("", message.Skip(1));
             var headers = HeaderSerializer.DeSerialize(json);
 
             string ttbrString;
-
             if (headers.TryGetValue(Headers.TimeToBeReceived, out ttbrString))
             {
                 var ttbr = TimeSpan.Parse(ttbrString);
@@ -171,51 +177,51 @@ class FileTransportMessagePump :
 
                 if (sentTime + ttbr < DateTime.UtcNow)
                 {
-                    transaction.Commit();
                     return;
                 }
             }
-            var tokenSource = new CancellationTokenSource();
 
             var body = File.ReadAllBytes(bodyPath);
-            var context = new ContextBag();
             var transportTransaction = new TransportTransaction();
             transportTransaction.Set(transaction);
 
+            var receiveCancellationTokenSource = new CancellationTokenSource();
             var pushContext = new MessageContext(
                 messageId: messageId,
                 headers: headers,
                 body: body,
                 transportTransaction: transportTransaction,
-                receiveCancellationTokenSource: tokenSource,
-                context: context);
+                receiveCancellationTokenSource: receiveCancellationTokenSource,
+                context: new ContextBag());
 
-            await pipeline(pushContext)
-                .ConfigureAwait(false);
+            await HandleMessageWithRetries(pushContext);
 
-            if (tokenSource.IsCancellationRequested)
+            if (!receiveCancellationTokenSource.IsCancellationRequested)
             {
-                transaction.Rollback();
-                return;
+                transaction.Commit();
             }
-
-            transaction.Commit();
-        }
-        catch (Exception)
-        {
-            transaction.Rollback();
         }
     }
 
-    CancellationToken cancellationToken;
-    CancellationTokenSource cancellationTokenSource;
-    SemaphoreSlim concurrencyLimiter;
-    Task messagePumpTask;
-    string path;
-    Func<MessageContext, Task> pipeline;
-    bool purgeOnStartup;
-    ConcurrentDictionary<Task, Task> runningReceiveTasks;
-    Func<ErrorContext, Task<ErrorHandleResult>> onError;
+    async Task HandleMessageWithRetries(MessageContext pushContext)
+    {
+        var processingAttempt = 0;
+        var errorHandlingResult = ErrorHandleResult.Handled;
+        do
+        {
+            processingAttempt++;
+            try
+            {
+                await pipeline(pushContext)
+                    .ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                var errorContext = new ErrorContext(e, pushContext.Headers, pushContext.MessageId, pushContext.Body, new TransportTransaction(), processingAttempt);
+                errorHandlingResult = await onError(errorContext);
+            }
+        } while (errorHandlingResult == ErrorHandleResult.RetryRequired);
+    }
 }
 
 #endregion

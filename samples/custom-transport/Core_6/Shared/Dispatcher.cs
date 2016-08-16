@@ -32,21 +32,11 @@ class Dispatcher :
 
             var messagePath = Path.Combine(basePath, $"{nativeMessageId}.txt");
 
-            DirectoryBasedTransaction directoryTransaction;
-            if (operation.RequiredDispatchConsistency != DispatchConsistency.Isolated &&
-                transaction.TryGet(out directoryTransaction))
-            {
-                directoryTransaction.Enlist(messagePath, messageContents);
-            }
-            else
-            {
-                var tempFile = Path.GetTempFileName();
-
-                // write to temp file first so an atomic move can be done
-                // this avoids the file being locked when the receiver tries to process it
-                File.WriteAllLines(tempFile, messageContents);
-                File.Move(tempFile, messagePath);
-            }
+            // write to temp file first so an atomic move can be done
+            // this avoids the file being locked when the receiver tries to process it
+            var tempFile = Path.GetTempFileName();
+            File.WriteAllLines(tempFile, messageContents);
+            File.Move(tempFile, messagePath);
         }
 
         return TaskEx.CompletedTask;

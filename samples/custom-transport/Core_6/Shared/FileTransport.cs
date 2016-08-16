@@ -71,7 +71,7 @@ public class FileTransportInfrastructure :
     {
         get
         {
-            return TransportTransactionMode.SendsAtomicWithReceive;
+            return TransportTransactionMode.ReceiveOnly;
         }
     }
 
