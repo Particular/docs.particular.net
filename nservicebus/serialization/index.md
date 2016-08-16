@@ -37,7 +37,7 @@ snippet:AdditionalDeserializers
 ### How to implement your own serializer
 
 To implement a serializer all it needs to be done is implement `IMessageSerializer`.
-The only tricky bit is to ensure that the string returned by `ContentType` does not clash with any existing registered serializer, the `ContentType` string is used internally as a dictionary key lookup.
+Note: When using multiple deserializers make sure that there's only one type registered per given `ContentType`.
 
 
 ### Community run serializers
