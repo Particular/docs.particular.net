@@ -47,6 +47,7 @@ public class NativeSendTests
         var endpointConfiguration = new EndpointConfiguration(endpointName);
         endpointConfiguration.SendFailedMessagesTo(errorQueueName);
         endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.Recoverability().Immediate(setting => setting.NumberOfRetries(0));
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=localhost");
         Type[] rabbitTypes = typeof(RabbitMQTransport).Assembly.GetTypes();
@@ -73,17 +74,4 @@ public class NativeSendTests
     {
         public string Property { get; set; }
     }
-
-    class ConfigTransport :
-        IProvideConfiguration<TransportConfig>
-    {
-        public TransportConfig GetConfiguration()
-        {
-            return new TransportConfig
-            {
-                MaxRetries = 0
-            };
-        }
-    }
-
 }
