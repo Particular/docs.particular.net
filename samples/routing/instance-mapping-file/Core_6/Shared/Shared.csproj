@@ -42,9 +42,9 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MultipleMachineSimulation.cs" />
     <Compile Include="OrderAccepted.cs" />
     <Compile Include="PlaceOrder.cs" />
+    <Compile Include="QueueNameAwareTranslation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
