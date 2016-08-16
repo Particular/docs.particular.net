@@ -2,7 +2,6 @@
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Features;
 using NServiceBus.Transport.SQLServer;
 #pragma warning disable 618
 
@@ -18,6 +17,7 @@ class Program
         Console.Title = "Samples.SqlServer.StoreAndForwardReceiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.StoreAndForwardReceiver");
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EnableInstallers();
 
         #region ReceiverConfiguration
 
@@ -38,7 +38,7 @@ class Program
         #endregion
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.Recoverability().Delayed(delayed => delayed.NumberOfRetries(0));
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

@@ -30,6 +30,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SQLNHibernateOutboxEF.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
 
         #region SenderConfiguration
 

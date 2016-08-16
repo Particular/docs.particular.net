@@ -5,7 +5,6 @@ using NHibernate.Dialect;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Tool.hbm2ddl;
 using NServiceBus;
-using NServiceBus.Features;
 using NServiceBus.Persistence;
 using Configuration = NHibernate.Cfg.Configuration;
 
@@ -51,13 +50,15 @@ class Program
 
         #region RetriesConfiguration
 
-        endpointConfiguration.DisableFeature<FirstLevelRetries>();
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.Recoverability()
+            .Immediate(immediate => immediate.NumberOfRetries(0))
+            .Delayed(delayed => delayed.NumberOfRetries(0));
 
         #endregion
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
+        endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
