@@ -24,17 +24,6 @@
             #endregion
         }
 
-        void InputQueueOverrideRouting(EndpointConfiguration endpointConfiguration)
-        {
-            #region InputQueueOverrideRouting
-
-            var transport = endpointConfiguration.UseTransport<MyTransport>();
-            var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(MyMessage), "MyEndpoint.Messages");
-
-            #endregion
-        }
-
         class MyTransport :
             TransportDefinition
         {

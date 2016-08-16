@@ -77,7 +77,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EndpointName\EndpointMapping.config.xml" />
     <Content Include="Headers\Writers\HeaderWriterAuditAudit.txt" />
     <Content Include="Headers\Writers\HeaderWriterAuditSend.txt" />
     <Content Include="Headers\Writers\HeaderWriterDataBusConventionBody.txt" />
