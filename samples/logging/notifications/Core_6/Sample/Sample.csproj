@@ -38,7 +38,6 @@
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ProvideDelayedRetriesConfiguration.cs" />
     <Compile Include="SubscribeToNotifications.cs" />
   </ItemGroup>
   <ItemGroup>
