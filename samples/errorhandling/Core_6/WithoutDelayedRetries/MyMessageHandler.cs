@@ -16,7 +16,7 @@ public class MyMessageHandler :
         log.Info($"ReplyToAddress: {context.ReplyToAddress} MessageId:{context.MessageId}");
 
         string numOfRetries;
-        if (context.MessageHeaders.TryGetValue(Headers.Retries, out numOfRetries))
+        if (context.MessageHeaders.TryGetValue(Headers.DelayedRetries, out numOfRetries))
         {
             string value;
             Last.TryGetValue(message.Id, out value);
