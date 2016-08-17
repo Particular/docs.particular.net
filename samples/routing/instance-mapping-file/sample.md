@@ -77,4 +77,4 @@ The shared project contains definitions for messages and the custom routing logi
 
 ### Real-world scenario
 
-For the sake of simplicity, in this sample all the endpoints run on a single machine. In real world is is usually best to run each instance on a separate virtual machine. In such case the instance mapping file would contain only the `machine` attributes mapping instances to their machines' host names.
+For the sake of simplicity, in this sample all the endpoints run on a single machine. In real world usually one would run each instance on a separate physical or virtual machine. In such case the instance mapping file would contain only the `machine` attributes mapping instances to their machines' host names.
