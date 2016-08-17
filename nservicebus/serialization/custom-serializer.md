@@ -1,21 +1,28 @@
 ---
-title: How to register a custom serializer
-reviewed: 2016-03-17
+title: Custom serializers
+summary: How to create and register custom serializer for NServiceBus.
+component: Core
+reviewed: 2016-08-17
 tags:
 - serialization
 redirects:
 - nservicebus/how-to-register-a-custom-serializer
 ---
 
-An example how to register a custom serializer. 
-
 
 ### Create a custom serializer
-Create a custom serializer which additionally requires a configuration value.
+
+A custom serializer needs to implement `IMessageSerializer` interface:
 
 snippet: CustomSerializer
 
+In order to see sample implementations, refer to the [community run serializers](/platform/extensions.md#serializers).
+
+
 ### Register the serializer
-Register the serializer and pass the configuration value.
+
+Register the serializer:
 
 snippet:RegisterCustomSerializer
+
+Note: When using multiple deserializers make sure that there's only one type registered per given `ContentType`.
