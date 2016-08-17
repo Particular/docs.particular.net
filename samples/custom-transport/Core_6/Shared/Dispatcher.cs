@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using NServiceBus.Extensibility;
-using NServiceBus.Transports;
+using NServiceBus.Transport;
 
 #region Dispatcher
 class Dispatcher :
     IDispatchMessages
 {
-    public Task Dispatch(TransportOperations outgoingMessages, ContextBag context)
+    public Task Dispatch(TransportOperations outgoingMessages, TransportTransaction transaction, ContextBag context)
     {
         foreach (var operation in outgoingMessages.UnicastTransportOperations)
         {
@@ -30,24 +30,13 @@ class Dispatcher :
                 HeaderSerializer.Serialize(operation.Message.Headers)
             };
 
-            DirectoryBasedTransaction transaction;
-
             var messagePath = Path.Combine(basePath, $"{nativeMessageId}.txt");
 
-            if (operation.RequiredDispatchConsistency != DispatchConsistency.Isolated &&
-                context.TryGet(out transaction))
-            {
-                transaction.Enlist(messagePath, messageContents);
-            }
-            else
-            {
-                var tempFile = Path.GetTempFileName();
-
-                // write to temp file first so an atomic move can be done
-                // this avoids the file being locked when the receiver tries to process it
-                File.WriteAllLines(tempFile, messageContents);
-                File.Move(tempFile, messagePath);
-            }
+            // write to temp file first so an atomic move can be done
+            // this avoids the file being locked when the receiver tries to process it
+            var tempFile = Path.GetTempFileName();
+            File.WriteAllLines(tempFile, messageContents);
+            File.Move(tempFile, messagePath);
         }
 
         return TaskEx.CompletedTask;

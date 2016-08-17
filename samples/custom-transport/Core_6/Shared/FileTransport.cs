@@ -7,7 +7,7 @@ using NServiceBus;
 using NServiceBus.Performance.TimeToBeReceived;
 using NServiceBus.Routing;
 using NServiceBus.Settings;
-using NServiceBus.Transports;
+using NServiceBus.Transport;
 
 #region TransportDefinition
 public class FileTransport :
@@ -15,7 +15,7 @@ public class FileTransport :
 {
     public override bool RequiresConnectionString => false;
 
-    protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+    public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
     {
         return new FileTransportInfrastructure();
     }
@@ -71,7 +71,7 @@ public class FileTransportInfrastructure :
     {
         get
         {
-            return TransportTransactionMode.SendsAtomicWithReceive;
+            return TransportTransactionMode.ReceiveOnly;
         }
     }
 
