@@ -37,6 +37,9 @@
       <HintPath>..\..\..\packages\Microsoft.Data.OData.5.7.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Data.Services.Client">
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ServiceBus, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\WindowsAzure.ServiceBus.2.8.2\lib\net40-full\Microsoft.ServiceBus.dll</HintPath>
       <Private>True</Private>
@@ -51,6 +54,9 @@
     <Reference Include="NServiceBus, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NServiceBus.Interfaces.4.7.12\lib\net40\NServiceBus.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="NServiceBus.Azure">
+      <HintPath>..\..\..\packages\NServiceBus.Azure.5.3.12\lib\net40\NServiceBus.Azure.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=5.3.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.5.3.12\lib\net40\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
