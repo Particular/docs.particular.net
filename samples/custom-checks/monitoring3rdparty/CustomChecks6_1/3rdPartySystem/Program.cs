@@ -19,6 +19,8 @@ class Program3rdParty
             listener.Start();
             listener.BeginGetContext(ListenerCallback, listener);
 
+            ReportStatus();
+
             while (true)
             {
                 var key = Console.ReadKey();
@@ -26,19 +28,26 @@ class Program3rdParty
 
                 if (key.Key != ConsoleKey.Enter)
                 {
+                    listener.Close();
                     return;
                 }
-                listener.Close();
-                if (isReturningOk)
-                {
-                    Console.WriteLine("\r\nCurrently returning success");
-                }
-                else
-                {
-                    Console.WriteLine("\r\nCurrently returning error");
-                }
+
                 isReturningOk = !isReturningOk;
+
+                ReportStatus();
             }
+        }
+    }
+
+    static void ReportStatus()
+    {
+        if (isReturningOk)
+        {
+            Console.WriteLine("\r\nCurrently returning success");
+        }
+        else
+        {
+            Console.WriteLine("\r\nCurrently returning error");
         }
     }
 
