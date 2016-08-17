@@ -7,15 +7,16 @@ using NServiceBus.Routing;
 class WeightedDistributionStrategy :
     DistributionStrategy
 {
-    public override IEnumerable<UnicastRoutingTarget> SelectDestination(IList<UnicastRoutingTarget> currentAllInstances)
+    public override UnicastRoutingTarget SelectDestination(UnicastRoutingTarget[] allInstances)
     {
-        if (currentAllInstances.Count == 0)
+        if (allInstances.Length == 0)
         {
-            yield break;
+            return null;
         }
-        var endpointName = currentAllInstances[0].Endpoint;
-        var index = indexes.AddOrUpdate(endpointName, e => 0L, (e, i) => i + ShouldMoveToNextInstance(CurrentInstance(currentAllInstances, i)));
-        yield return CurrentInstance(currentAllInstances, index);
+
+        var endpointName = allInstances[0].Endpoint;
+        var index = indexes.AddOrUpdate(endpointName, e => 0L, (e, i) => i + ShouldMoveToNextInstance(CurrentInstance(allInstances, i)));
+        return CurrentInstance(allInstances, index);
     }
 
     // There is 1/weight chance of returning 1 (which means move to next instance).
@@ -30,7 +31,7 @@ class WeightedDistributionStrategy :
     }
     #endregion
 
-    
+
     // Returns the weight of the instance based on XML config.
     // Defaults to 1 if value is not provided.
     static int GetWeight(UnicastRoutingTarget target)
