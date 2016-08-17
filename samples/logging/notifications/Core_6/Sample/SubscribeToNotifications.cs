@@ -13,8 +13,8 @@ public static class SubscribeToNotifications
     public static void Subscribe(EndpointConfiguration endpointConfiguration)
     {
         var errors = endpointConfiguration.Notifications.Errors;
-        errors.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => Log(retry);
-        errors.MessageHasFailedAFirstLevelRetryAttempt += (sender, retry) => Log(retry);
+        errors.MessageHasBeenSentToDelayedRetries += (sender, retry) => Log(retry);
+        errors.MessageHasFailedAnImmediateRetryAttempt += (sender, retry) => Log(retry);
         errors.MessageSentToErrorQueue += (sender, retry) => Log(retry);
     }
 
@@ -23,12 +23,12 @@ public static class SubscribeToNotifications
         log.Fatal("Message sent to error queue");
     }
 
-    static void Log(SecondLevelRetry secondLevelRetry)
+    static void Log(DelayedRetryMessage secondLevelRetry)
     {
         log.Fatal($"Message sent to SLR. RetryAttempt:{secondLevelRetry.RetryAttempt}");
     }
 
-    static void Log(FirstLevelRetry firstLevelRetry)
+    static void Log(ImmediateRetryMessage firstLevelRetry)
     {
         log.Fatal($"Message sent to FLR. RetryAttempt:{firstLevelRetry.RetryAttempt}");
     }
