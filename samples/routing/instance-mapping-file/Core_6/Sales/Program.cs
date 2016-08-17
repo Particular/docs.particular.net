@@ -13,6 +13,7 @@ class Program
     {
         Console.Title = "Samples.CustomRouting.Sales.1";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Sales");
+        endpointConfiguration.OverrideLocalAddress("Samples.CustomRouting.Sales-1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
@@ -22,7 +23,7 @@ class Program
         var routing = transport.Routing();
         var routingTable = routing.InstanceMappingFile();
         routingTable.FilePath(@"..\..\..\instance-mapping.xml");
-        transport.SimulateMultipleMachines("Sales1");
+        transport.EnableQueueNameOverrideInAddressTranslation();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

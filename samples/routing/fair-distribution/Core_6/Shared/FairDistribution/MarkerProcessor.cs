@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Pipeline;
 using NServiceBus.Routing;
-using NServiceBus.Transports;
+using NServiceBus.Transport;
 
 class MarkerProcessor :
     ForkConnector<ITransportReceiveContext, IRoutingContext>

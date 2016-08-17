@@ -75,8 +75,8 @@ class AutomaticRoutingFeature :
     {
         // get all potential messages
         return handlerRegistry.GetMessageTypes()
-            // never auto-route system messages
-            .Where(t => !conventions.IsInSystemConventionList(t))
+            // never auto-route system messages and events
+            .Where(t => !conventions.IsInSystemConventionList(t) && !conventions.IsEventType(t))
             .ToList();
     }
 }

@@ -3,8 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
-using NServiceBus.Routing;
-using NServiceBus.Support;
 
 class Program
 {
@@ -69,9 +67,9 @@ class Program
         #region FairDistributionClient
 
         endpointConfiguration.EnableFeature<FairDistribution>();
-        var routing = endpointConfiguration.Routing();
+        var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
         var settings = endpointConfiguration.GetSettings();
-        routing.Mapping.SetMessageDistributionStrategy(
+        routing.SetMessageDistributionStrategy(
             endpointName: "Samples.FairDistribution.Server",
             distributionStrategy: new FairDistributionStrategy(settings));
 
@@ -80,14 +78,14 @@ class Program
 
     static void AddRouting(EndpointConfiguration endpointConfiguration)
     {
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.EnableQueueNameOverrideInAddressTranslation();
+
+        var routing = transport.Routing();
+
         #region Routing
 
-        const string server = "Samples.FairDistribution.Server";
-        var routing = endpointConfiguration.Routing();
-        routing.RouteToEndpoint(typeof(PlaceOrder), server);
-        routing.Mapping.Physical.Add(
-            new EndpointInstance(server, "1").AtMachine(RuntimeEnvironment.MachineName),
-            new EndpointInstance(server, "2").AtMachine(RuntimeEnvironment.MachineName));
+        routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.FairDistribution.Server");
 
         #endregion
     }

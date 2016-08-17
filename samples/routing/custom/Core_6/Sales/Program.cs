@@ -14,13 +14,13 @@ class Program
     {
         Console.Title = "Samples.CustomRouting.Sales.1";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Sales");
-        var scaleOut = endpointConfiguration.ScaleOut();
-        scaleOut.InstanceDiscriminator("1");
+        endpointConfiguration.OverrideLocalAddress("Samples.CustomRouting.Sales-1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.ConnectionString(AutomaticRoutingConst.ConnectionString);
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<MsmqTransport>().EnableQueueNameOverrideInAddressTranslation();
 
         #region EnableAutomaticRouting
 

@@ -93,3 +93,8 @@ snippet:ProcessACKs
 The calculated number of in-flight messages can be used to distribute messages in such a way that all instances of downstream scaled-out endpoint have similar number of messages in their input queues. That way the load is appropriate for the capacity of the given instance, e.g. instances running on weaker machines process less messages. As a result no instance is getting overwhelmed and no instance is underutilized when work is available.
 
 snippet:GetLeastBusy
+
+
+### Real-world scenario
+
+For the sake of simplicity, in this sample all the endpoints run on a single machine. In real world is is usually best to run each instance on a separate virtual machine. In such case the instance mapping file would contain `machine` attributes mapping instances to their machines' host names instead of `queue` attributes used to run more than one instance on a single box.

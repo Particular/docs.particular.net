@@ -75,14 +75,6 @@ Shipping and Billing mimic back-end systems subscribing to events published by S
 The shared project contains definitions for messages and the custom routing logic.
 
 
-### Simulating multiple machines
+### Real-world scenario
 
-All the endpoints enable multiple machine simulation in order to run this sample on a single developer machine without the need to set up a complex test environment.
-
-snippet:SimulateMultiMachine
-
-The simulation enables a custom address translation rule that overrides the default one.
-
-snippet:AddressTranslationRule
-
-The overridden rule substitutes the local machine name in the address specification with the one defined in each applications `Program.cs` to ensure the queues that NServiceBus created when installing have proper simulated machine names.
+For the sake of simplicity, in this sample all the endpoints run on a single machine. In real world usually one would run each instance on a separate physical or virtual machine. In such case the instance mapping file would contain only the `machine` attributes mapping instances to their machines' host names.

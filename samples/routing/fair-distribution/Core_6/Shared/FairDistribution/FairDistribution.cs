@@ -2,7 +2,7 @@
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Routing;
-using NServiceBus.Transports;
+using NServiceBus.Transport;
 
 public class FairDistribution :
     Feature
@@ -19,10 +19,7 @@ public class FairDistribution :
         var controlAddress = context.Settings.InstanceSpecificQueue() ?? context.Settings.LocalAddress();
 
         var transportInfrastructure = context.Settings.Get<TransportInfrastructure>();
-        var instance = transportInfrastructure.BindToLocalEndpoint(
-            new EndpointInstance(
-                endpoint: context.Settings.EndpointName(),
-                discriminator: context.Settings.GetOrDefault<string>("EndpointInstanceDiscriminator")));
+        var instance = context.Settings.EndpointInstanceName();
 
         var pipeline = context.Pipeline;
         pipeline.Register(

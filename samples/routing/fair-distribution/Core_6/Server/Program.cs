@@ -13,14 +13,14 @@ class Program
     {
         Console.Title = "Samples.FairDistribution.Server.1";
         var endpointConfiguration = new EndpointConfiguration("Samples.FairDistribution.Server");
-        var scaleOut = endpointConfiguration.ScaleOut();
-        scaleOut.InstanceDiscriminator("1");
+        endpointConfiguration.OverrideLocalAddress("Samples.FairDistribution.Server-1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         endpointConfiguration.AuditProcessedMessagesTo("audit");
+        endpointConfiguration.UseTransport<MsmqTransport>().EnableQueueNameOverrideInAddressTranslation();
 
         #region FairDistributionServer
 
