@@ -1,20 +1,21 @@
 ---
 title: Redirects
-summary: Describes what are redirects and how this feature should be used.
+summary: Describes what message redirects are and how to use them.
 tags:
 - ServicePulse
 related:
 - servicepulse/troubleshooting
 ---
 
+## Message Redirects
 
-## Redirect
+In Versions **1.6.6** and above ServicePulse includes a screen to view and manage failed message redirects that have been created to send failed messages to an alternate queue when the original processing endpoint address is no longer available.
 
-Creating redirects is a new feature allowing to set up a rule that will be used during message redirection to route messages to a different destination. Redirect will only be used when retrying from ServiceControl, this rule will have no impact on messages send directly using NServiceBus.
+INFO: Message redirects are only a feature of ServicePulse/ServiceControl and will not alter the routing for normal NServiceBus messages in your system.
 
-To manage redirects go to Configuration page and select tab called `Redirects`.
+To manage redirects go to Configuration page and select tab called `Retry Redirects`.
 
-//TODO: here goes image
+![Redirects Tab](images/redirects.png 'width=500')
 
 ### Managing redirects
 On the redirect page a list of redirects is being displayed containing following information.
@@ -22,11 +23,15 @@ On the redirect page a list of redirects is being displayed containing following
  - **Destination Queue** This is the queue that will be new destination when doing retry.
  - **Last modified** This is a timestamp of last modification.
 
-Every redirect can be deleted using `End Redirect` button. This action requires an confirmation. 
+To create a redirect click the `Create Redirect` button. A dialog will appear.
 
-When editing a redirect only destination queue can be modified. Source queue is read-only. 
+![Create Redirects Dialog](images/redirects-create.png 'width=500')
 
-Adding a redirect is very similar to editing with the difference that source queue is editable and need to be filled out. 
+Choose a source queue from the dropdown. Enter the queue name for the target of the redirect in `To Physical Address` input. If you would like to immediately retry all unresolved failed messages from the sources address check the box with the label `Immediately retry any matching failed messages`.
+
+Once created every redirect can be deleted using `End Redirect` link. This action requires an confirmation. 
+
+To change the target of a redirect click the `Modify Redirect` link. Only the target queue can be modified, the source queue remains read-only.
 
 #### Validation errors
 
