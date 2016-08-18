@@ -62,7 +62,7 @@ snippet:Logical-Routing
 
 #### Weighted distribution
 
-NOTE: include:routing.distribution-strategy-performance
+include:routing.distribution-strategy-performance
 
 With that advice in mind the distribution algorithm in this sample is not based on the random value from the sum of weights (which requires iterating over instance list twice). Rather than that, it uses the weight to compute the probability of rotating the currently selected instance. This causes bursts of messages being sent to each instance where the burst length is random but influenced by the weight of that instance.
 
