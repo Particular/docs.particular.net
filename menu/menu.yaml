@@ -115,6 +115,8 @@
             - "nservicebus/gateway/troubleshooting"
             - "nservicebus/gateway/scale-out"
         - "nservicebus/outbox"
+              - "nservicebus/ravendb/outbox"
+              - "nservicebus/nhibernate/outbox"
     -
       Title: "Endpoints"
       Url: "nservicebus/endpoints"
@@ -268,12 +270,14 @@
             - "nservicebus/nhibernate/accessing-data"
             - "nservicebus/nhibernate/saga-concurrency"
             - "nservicebus/nhibernate/sql-azure"
+            - "nservicebus/nhibernate/outbox"
         - Title: "RavenDB Persistence"
           Url: "nservicebus/ravendb"
           Articles:
             - "nservicebus/ravendb/operations-scripting"
             - "nservicebus/ravendb/installation"
             - "nservicebus/ravendb/manual-dtc-settings"
+            - "nservicebus/ravendb/outbox"
         - Title: "Azure Storage Persistence"
           Url: "nservicebus/azure-storage-persistence"
           Articles:
