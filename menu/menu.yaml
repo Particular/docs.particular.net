@@ -114,7 +114,9 @@
             - "nservicebus/gateway/service-point-manager"
             - "nservicebus/gateway/troubleshooting"
             - "nservicebus/gateway/scale-out"
-        - "nservicebus/outbox"
+        - Title: "Outbox"
+          Url: "nservicebus/outbox"
+          Articles:
             - "nservicebus/ravendb/outbox"
             - "nservicebus/nhibernate/outbox"
     -
