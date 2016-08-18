@@ -18,6 +18,7 @@ NOTE: Only send operations can be deferred. Publish and reply operations cannot 
 
 partial:intro
 
+Note: Similar to `bus.SendLocal`, `bus.Defer` will also change the message's reply-to address to the endpoint deferring the message. Calling `bus.Reply` on a deferred message will send the reply to itself.
 
 ## Using a TimeSpan
 
