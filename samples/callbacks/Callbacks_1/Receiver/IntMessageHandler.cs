@@ -7,7 +7,7 @@ using NServiceBus.Logging;
 public class IntMessageHandler :
     IHandleMessages<IntMessage>
 {
-    static ILog log = LogManager.GetLogger<EnumMessageHandler>();
+    static ILog log = LogManager.GetLogger<IntMessage>();
 
     public Task Handle(IntMessage message, IMessageHandlerContext context)
     {
