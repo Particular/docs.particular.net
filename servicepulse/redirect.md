@@ -11,7 +11,7 @@ related:
 
 In Versions **1.6.6** and above ServicePulse includes a screen to view and manage failed message redirects that have been created to send failed messages to an alternate queue when the original processing endpoint address is no longer available.
 
-INFO: Message redirects are only a feature of ServicePulse/ServiceControl and will not alter the routing for normal NServiceBus messages in your system.
+INFO: Message redirects are only a feature of ServicePulse/ServiceControl and will not alter the routing for NServiceBus endpoints.
 
 To manage redirects go to Configuration page and select tab called `Retry Redirects`.
 
@@ -27,7 +27,7 @@ To create a redirect click the `Create Redirect` button. A dialog will appear.
 
 ![Create Redirects Dialog](images/redirects-create.png 'width=500')
 
-Choose a source queue from the dropdown. Enter the queue name for the target of the redirect in `To Physical Address` input. If you would like to immediately retry all unresolved failed messages from the sources address check the box with the label `Immediately retry any matching failed messages`.
+Choose a source queue from the dropdown. Enter the queue name for the target of the redirect in `To Physical Address` input. To immediately retry all unresolved failed messages from the sources address check the box with the label `Immediately retry any matching failed messages`.
 
 Once created every redirect can be deleted using `End Redirect` link. This action requires an confirmation. 
 
