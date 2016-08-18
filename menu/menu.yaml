@@ -115,8 +115,8 @@
             - "nservicebus/gateway/troubleshooting"
             - "nservicebus/gateway/scale-out"
         - "nservicebus/outbox"
-              - "nservicebus/ravendb/outbox"
-              - "nservicebus/nhibernate/outbox"
+            - "nservicebus/ravendb/outbox"
+            - "nservicebus/nhibernate/outbox"
     -
       Title: "Endpoints"
       Url: "nservicebus/endpoints"
