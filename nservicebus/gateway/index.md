@@ -69,3 +69,12 @@ snippet:GatewayConfiguration
 ### Recoverability
 
 partial: recoverability
+
+
+### Version compatibility
+
+The Gateway component ensures only forward compatibility for one major version. So a message sent by the NServiceBus 3.x Gateway can be understood by the NServiceBus 4.x Gateway, and a message sent by the NServiceBus 4.x Gateway can be understood by NServiceBus.Gateway 1.x (the independent package targeting NServiceBus 5.x).
+
+However, a message sent by the NServiceBus 3.x Gateway will not be understood by NServiceBus.Gateway 1.x (NServiceBus 5.x) as this skips a major version. Likewise, a message sent by NServiceBus.Gateway 2.x will not be understood by NServiceBus.Gateway 1.x, as backwards communication is not supported.
+
+Since a Gateway on the receiving end exists to receive HTTP requests and translate them to messages on the queue, it's possible to deploy multiple Gateway instances using different major versions, either on different servers, or using different ports on the same server. As long as these Gateway instances contain the same message routing settings, they don't require any handler logic. This can be useful during a gradual, endpoint-by-endpoint upgrade to ensure that each deployed endpoint can communicate with a remote Gateway instance that is compatible with it.
