@@ -104,7 +104,6 @@
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
-    <Compile Include="Handlers\EmptyHandler.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\CustomExceptionPolicy.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicyOverridingDelayedRetriesPart.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\FullyCustomizedPolicy.cs" />
