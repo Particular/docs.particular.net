@@ -358,8 +358,6 @@ The most common misuse of screenshots is when capturing console output. **DO NOT
 
 ## Markdown partials
 
-**Currently on implemented for samples.**
-
 Partials are version specific files that contain markdown.
 
 There are only rendered in the target page when the version filter matches the convention for a give file.
