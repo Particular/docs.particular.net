@@ -1,6 +1,7 @@
 ---
 title: Saga Timeouts
 summary: Call back into a saga after a defined period of time.
+reviewed: 2016-08-22
 component: Core
 tags:
 - Saga
@@ -9,15 +10,15 @@ related:
 - nservicebus/sagas
 ---
 
-When working in a message-driven environment no assumptions can be made about when the next message will arrive. While the connection-less nature of messaging prevents a system from consuming resources while waiting, there is usually an upper limit on how long from a business perspective to wait. At that point, some business-specific action should be taken, as shown:
+In a message-driven environment one can't make any assumptions regarding the order of received messages and when exactly they'll arrive. While the connection-less nature of messaging prevents a system from consuming resources while waiting, there is usually an upper limit to waiting period dictated by the business. 
+
+The upper wait time is modeled in NServiceBus as a `Timeout`:
 
 snippet:saga-with-timeout
 
-The `RequestTimeout<T>` method tells NServiceBus to send a message to the Timeout Manager which durably records that state. The Timeout manager is enabled by default, so there is no configuration needed to get this up and running.
+NOTE: Timeouts feature is enabled by default. To turn it off it's necessary to disable the `TimeoutManager` feature.
 
-When the timeout timestamp is elapsed, the Timeout Manager sends a message back to the saga causing its Timeout method to be called with the same state message originally passed.
-
-This timeout message will always be sent no matter if any message has been sent after requesting a timeout.
+After calling the `RequestTimeout<T>`, the timeout message will be persisted and scheduled to run after a specified delay or at specified time.
 
 NOTE: If the saga does not request a timeout then the corresponding timeout method will never be invoked.
 
@@ -52,3 +53,12 @@ The state parameter provides a way to pass state to the Sagas timeout handle met
 Some form of [Persistence](/nservicebus/persistence/) is required to store the timestamp and the state of a timeout.
 
 WARNING: A durable persistence (i.e. NOT [InMemory](/nservicebus/persistence/in-memory.md)) should be chosen before moving to production.
+
+
+## How timeouts work
+
+The timeout data is stored in three different locations at various stages of processing: `[endpoint_queue_name].Timeouts` queue, timeouts storage location specific for the chosen persistence (e.g. dedicated table or document type) and `[endpoint_queue_name].TimeoutsDipatcher` queue.
+
+After the `RequestTimeout<T>` method is called, NServiceBus sends the timeout message to the `Timeout Manager`, which sends the message to the `[endpoint_queue_name].Timeouts` queue. That queue is periodically inspected by the poller running on a dedicated thread, which will pick up new messages and store them using the selected NServiceBus persistence. NHibernate persistence stores timeout messages in a table called `TimeoutEntity`, RavenDB persistence stores them as documents of a type `TimeoutData`.
+
+The `TimeoutManager` periodically retrieves expiring timeouts from persistence. When a timeout expires, then the message is moved from persistent storage to the `[endpoint_queue_name].TimeoutsDipatcher` queue. That queue is periodically inspected by the poller running on a dedicated thread, which will pick up expired messages and send it to the receiving endpoint, skipping its input queue. That guarantees that timeout messages won't be blocked by other messages waiting in the endpoint's input queue. If the message was sent to the input queue, it'll be added at the end, which might cause significant delays in processing.
