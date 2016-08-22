@@ -48,7 +48,7 @@ WARNING: Pending retried messages can be retried however this feature should be 
 
 To retry a pending retry message, select the failed message(s) in the list and click the "Retry Selected" button.
 
-Alternately a queue can be selected and 
+Alternately a queue can be selected and "Retry All" option chosed which will retry all messages for that queue.
 
 Message retry will use [message redirects](redirect.md) if the original endpoint has been redirected in ServicePulse.
 
