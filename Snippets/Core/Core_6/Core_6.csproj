@@ -132,7 +132,6 @@
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
-    <Compile Include="CriticalErrorConfigAzure.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DataBus\CleanupStrategy\Define.cs" />
     <Compile Include="DataBus\CleanupStrategy\Usage.cs" />

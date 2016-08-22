@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core5to6\StartupInterface.cs" />
+    <Compile Include="CriticalErrorConfig.cs" />
     <Compile Include="EndpointNameInCode.cs" />
     <Compile Include="Definitions.cs" />
     <Compile Include="HostingAndConfiguration.cs" />

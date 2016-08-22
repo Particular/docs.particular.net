@@ -245,7 +245,6 @@
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
-    <Compile Include="CriticalErrorAzure.cs" />
     <Compile Include="Hosting.cs" />
     <Compile Include="Serialization\XmlSerializerUsage.cs" />
     <Compile Include="License.cs" />

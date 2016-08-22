@@ -74,6 +74,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CriticalErrorConfig.cs" />
     <Compile Include="Definitions.cs" />
     <Compile Include="HostingAndConfiguration.cs" />
     <Compile Include="Usage.cs" />
