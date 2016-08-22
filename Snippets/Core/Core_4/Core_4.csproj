@@ -107,6 +107,7 @@
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
     <Compile Include="Encryption\MessageBody\Usage.cs" />
+    <Compile Include="Handlers\EmptyHandler.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicy.cs" />
     <Compile Include="Forwarding\ConfigurationSource.cs" />
     <Compile Include="Forwarding\ConfigurationSourceUsage.cs" />

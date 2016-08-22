@@ -149,6 +149,7 @@
     <Compile Include="Features\AdvancedSatellite.cs" />
     <Compile Include="Features\CustomFaultManager.cs" />
     <Compile Include="Features\SimpleSatellite.cs" />
+    <Compile Include="Handlers\EmptyHandler.cs" />
     <Compile Include="MessageIdentity\MessageIdFromMessageMutator.cs" />
     <Compile Include="Notifications\SubscribeToNotifications.cs" />
     <Compile Include="Container\Custom\ContainerCustom.cs" />

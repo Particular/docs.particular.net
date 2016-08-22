@@ -1,17 +1,15 @@
 ﻿namespace Core3.Handlers
 {
-    using Common;
     using NServiceBus;
 
-    #region CreatingMessageHandler
+    #region EmptyHandler
 
-    public class MyHandler :
+    public class MyMessageHandler :
         IHandleMessages<MyMessage>
     {
         public void Handle(MyMessage message)
         {
-            // do something with the message data
-            SomeLibrary.SomeMethod(message.Data);
+            // do something in the client process
         }
     }
 
