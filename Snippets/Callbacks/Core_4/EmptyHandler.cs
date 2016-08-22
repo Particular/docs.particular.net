@@ -1,4 +1,4 @@
-﻿namespace Core3.Handlers
+﻿namespace Core4.Handlers
 {
     using NServiceBus;
 
@@ -14,4 +14,8 @@
     }
 
     #endregion
+
+    public class MyMessage
+    {
+    }
 }

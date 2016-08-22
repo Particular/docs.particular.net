@@ -38,6 +38,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmptyHandler.cs" />
     <Compile Include="Enum\Handler.cs" />
     <Compile Include="Enum\Message.cs" />
     <Compile Include="Enum\Status.cs" />

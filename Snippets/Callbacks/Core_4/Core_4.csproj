@@ -41,6 +41,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmptyHandler.cs" />
     <Compile Include="Enum\Message.cs" />
     <Compile Include="Enum\Handler.cs" />
     <Compile Include="Int\Message.cs" />

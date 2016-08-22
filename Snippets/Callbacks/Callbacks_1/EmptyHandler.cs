@@ -1,5 +1,6 @@
-﻿namespace Core4.Handlers
+﻿namespace Core6.Handlers
 {
+    using System.Threading.Tasks;
     using NServiceBus;
 
     #region EmptyHandler
@@ -7,13 +8,15 @@
     public class MyMessageHandler :
         IHandleMessages<MyMessage>
     {
-        public void Handle(MyMessage message)
+        public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             // do something in the client process
         }
     }
 
     #endregion
+
+    public class MyMessage
+    {
+    }
 }
-
-

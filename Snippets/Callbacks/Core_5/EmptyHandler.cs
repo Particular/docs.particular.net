@@ -14,6 +14,8 @@
     }
 
     #endregion
+
+    public class MyMessage
+    {
+    }
 }
-
-

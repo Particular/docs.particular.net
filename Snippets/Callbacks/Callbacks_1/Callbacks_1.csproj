@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Cancellation\Message.cs" />
     <Compile Include="Cancellation\Usage.cs" />
+    <Compile Include="EmptyHandler.cs" />
     <Compile Include="Enum\Handler.cs" />
     <Compile Include="Enum\Message.cs" />
     <Compile Include="Enum\Status.cs" />
