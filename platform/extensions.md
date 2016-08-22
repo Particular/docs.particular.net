@@ -60,7 +60,7 @@ Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) 
 
 https://www.nuget.org/packages/NServiceBus.SqlServer
 
-Provides support for sending messages over [Microsoft Sql Server](http://www.microsoft.com/en-us/server-cloud/products/sql-server/) using SQL tables as the storage mechanism for messages.
+Provides support for sending messages over [Microsoft Sql Server](https://www.microsoft.com/en-us/cloud-platform/sql-server) using SQL tables as the storage mechanism for messages.
 
 
 ## Serializers
@@ -183,7 +183,7 @@ https://www.nuget.org/packages/NServiceBus.CommonLogging
 
 https://www.nuget.org/packages/NServiceBus.Serilog
 
-Support for logging NServiceBus information to [Serilog](http://serilog.net/) logging library and the [Seq](http://serilog.net/) monitoring system both of which built on the concepts structured logging.
+Support for logging NServiceBus information to [Serilog](https://serilog.net/) logging library and the [Seq](https://getseq.net/) monitoring system both of which built on the concepts structured logging.
 
 
 ## Containers
