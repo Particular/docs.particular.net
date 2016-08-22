@@ -23,3 +23,6 @@ snippet:ConfigureNLog
 ### Pass that configuration to NServiceBus
 
 snippet:UseConfig
+
+
+include: verifyLoggingSample

@@ -18,3 +18,5 @@ This sample shows a usage of [CommonLogging](http://netcommon.sourceforge.net/) 
 ### Enabling Logging
 
 snippet:ConfigureLogging
+
+include: verifyLoggingSample

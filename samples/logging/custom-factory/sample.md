@@ -50,3 +50,6 @@ The implementation of `ILog` handles writing the entries and the log filtering.
 ### Enabling Logging
 
 snippet:ConfigureLogging
+
+
+include: verifyLoggingSample
