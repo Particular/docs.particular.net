@@ -18,7 +18,7 @@ This is a curated list of all the extensions to NServiceBus developed by both th
 
 https://www.nuget.org/packages/NServiceBus.AmazonSQS
 
-Provides support for sending messages over [Amazon SQS](http://aws.amazon.com/sqs/).
+Provides support for sending messages over [Amazon SQS](https://aws.amazon.com/sqs/).
 
 
 #### <img src="particular-project.png" title="A Particular run project"> [Azure Service Bus](/nservicebus/azure-service-bus/)
