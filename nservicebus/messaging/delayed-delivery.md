@@ -44,8 +44,6 @@ Delayed delivery of messages is only supported when the following requirements a
 
 When deferring a message, it is sent to the timeout manager requesting it to deliver the message at a later time or deferred by using the transports native capability to defer messages.
 
-snippet:configure-timeout-manager
-
 partial:caveatsnote
 
 NOTE: The sending endpoint must be running when the timeout is reached in order for the message to be sent. If the endpoint is not running when the timeout is reached then the message will be sent when the endpoint is next started.
