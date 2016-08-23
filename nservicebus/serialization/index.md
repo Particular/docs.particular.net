@@ -1,7 +1,8 @@
 ---
 title: Serialization In NServiceBus
 summary: How instances of .NET classes are serialized onto the transport.
-reviewed: 2016-08-17
+component: Core
+reviewed: 2016-08-23
 related:
  - samples/pipeline/multi-serializer
  - samples/serializers
@@ -29,13 +30,7 @@ NOTE: The same Serializer must be used by the sending endpoint to serialize mess
 In order to register community run serializer or custom serializer, refer to the [Custom serializers - Register the serializer](/nservicebus/serialization/custom-serializer.md#register-the-serializer) section.
 
 
-### Specifying additional deserializers
-
-To support sending and receiving messages between endpoints using different serializers, additional deserialization capability may be specified. Starting from NServiceBus Version 6 it's possible to register additional deserializers to process incoming messages. Additionally, if a deserializer requires custom settings, they can be provided during its registration.
-
-snippet:AdditionalDeserializers
-
-Note: When using multiple deserializers make sure that there's only one type registered per given `ContentType`.
+partial:additionaldeserializers
 
 
 ### Community run serializers
