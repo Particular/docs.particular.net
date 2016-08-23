@@ -98,13 +98,7 @@ NOTE: Timestamping does not weaken encryption. Messages already contain a timest
 If the `KeyIdentifier` attribute is set then this key will be used to decrypt message with a matching key ID but it will also be used to try decrypting messages without a key ID.
 
 
-#### Key format (Versions 5 and above)
-
-The key format can be specified in either *Base64* or *ASCII* format.
-
-With ASCII its not possible to use the full 8 bit range of a byte as its a 7 bit encoding and even then some characters need to be escaped which is not done resulting in even less characters. Meaning per byte only about 100 values are used. When using 16 byte / 128 bit keys this means only about 100^16 combinations are possible versus 256^16.
-
-NOTE: Use Base64 whenever possible, ASCII 7 bit keys are meant for backwards compatibility.
+partial: keyformat
 
 
 ### Defining the encryption key
@@ -131,25 +125,21 @@ This means that a 16 character ASCII key is almost 100.000 times weaker then a 1
 NOTE: Use Base64 if possible and to use ASCII 32 character keys for backward compatibility and not to use ASCII 16 character keys.
 
 
-#### App.config
+partial: code
+
+
+#### Via App.config
 
 The encryption key can be defined in the `app.config`.
 
 snippet: EncryptionFromAppConfig
 
 
-#### IProvideConfiguration
+#### Via IProvideConfiguration
 
 snippet:EncryptionFromIProvideConfiguration
 
 For more info on `IProvideConfiguration` see [Customizing NServiceBus Configuration](/nservicebus/hosting/custom-configuration-providers.md)
-
-
-#### Configuration API
-
-NOTE: Defining encryption keys via the configuration API is only supported in Versions 5 and above.
-
-snippet:EncryptionFromCode
 
 
 ### Multi-Key decryption
