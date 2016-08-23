@@ -1,5 +1,5 @@
 ---
-title: Scaling out NServiceBus endpoints
+title: Scaling out MSMQ endpoints
 summary: How to scale out when using the MSMQ transport.
 reviewed: 2016-07-15
 component: Core
