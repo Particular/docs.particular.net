@@ -9,13 +9,10 @@ namespace Core6.Routing
         {
             #region InstanceMappingFile-RefreshInterval
 
-            var instanceMappingFile = endpointConfiguration
-                                             .UseTransport<MsmqTransport>()
-                                             .Routing()
-                                             .InstanceMappingFile();
-
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            var routing = transport.Routing();
+            var instanceMappingFile = routing.InstanceMappingFile();
             var instanceMappingFileSettings = instanceMappingFile.FilePath(@"C:\instance-mapping.xml");
-
             instanceMappingFileSettings.RefreshInterval(TimeSpan.FromSeconds(45));
 
             #endregion
@@ -25,11 +22,9 @@ namespace Core6.Routing
         {
             #region InstanceMappingFile-FilePath
 
-            var instanceMappingFile = endpointConfiguration
-                                            .UseTransport<MsmqTransport>()
-                                            .Routing()
-                                            .InstanceMappingFile();
-
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            var routing = transport.Routing();
+            var instanceMappingFile = routing.InstanceMappingFile();
             instanceMappingFile.FilePath(@"C:\instance-mapping.xml");
 
             #endregion
