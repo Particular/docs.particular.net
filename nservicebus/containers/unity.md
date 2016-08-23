@@ -12,24 +12,11 @@ tags:
 NServiceBus can be configured to use [Unity](https://github.com/unitycontainer/unity) as a dependency injection container.
 
 
-## Usage
-
-
-### Pull in the NuGet packages
-
-https://www.nuget.org/packages/NServiceBus.Unity/
-
-    Install-Package NServiceBus.Unity
-
-
-### The Code
-
-
-#### Default Usage
+### Default Usage
 
 snippet:Unity
 
 
-#### Existing Container Instance
+### Existing Container Instance
 
 snippet:Unity_Existing

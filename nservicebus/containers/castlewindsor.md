@@ -11,24 +11,11 @@ tags:
 NServiceBus can be configured to use [CastleWindsor](https://github.com/castleproject/Windsor) as a dependency injection container.
 
 
-## Usage
-
-
-### Pull in the NuGets
-
-https://www.nuget.org/packages/NServiceBus.CastleWindsor/
-
-    Install-Package NServiceBus.CastleWindsor
-
-
-### The Code
-
-
-#### Default Usage
+### Default Usage
 
 snippet:CastleWindsor
 
 
-#### Existing Container Instance
+### Existing Container Instance
 
 snippet:CastleWindsor_Existing

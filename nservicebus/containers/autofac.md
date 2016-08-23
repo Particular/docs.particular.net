@@ -11,24 +11,11 @@ tags:
 NServiceBus can be configured to use [Autofac](https://autofac.org/) as a dependency injection container.
 
 
-## Usage
-
-
-### Pull in the NuGets
-
-https://www.nuget.org/packages/NServiceBus.Autofac/
-
-    Install-Package NServiceBus.Autofac
-
-
-### The Code
-
-
-#### Default Usage
+### Default Usage
 
 snippet:Autofac
 
 
-#### Existing Container Instance
+### Existing Container Instance
 
 snippet:Autofac_Existing
