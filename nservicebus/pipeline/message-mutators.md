@@ -22,7 +22,7 @@ NServiceBus enables two types of Message Mutators:
 
 ### Logical Message Mutators
 
-Message mutators change/react to individual messages being sent or received. The `IMessageMutator` interface allows the implementation of hooks for the sending and receiving sides. If more fine grained is required use `IMutateOutgoingMessages` or `IMutateIncomingMessages`.
+Message mutators change/react to individual messages being sent or received. The `IMutateOutgoingMessages` or `IMutateIncomingMessages` interfaces allow the implementation of hooks for the sending and receiving sides.
 
 Mutators can be used to perform actions such as validation of outgoing/incoming messages.
 
@@ -44,7 +44,7 @@ partial: imessagemutator
 
 ### Transport Messages Mutators
 
-Create transport message mutators by implementing the `IMutateTransportMessages` interface. This type of mutator works on the entire transport message and is useful for compression, header manipulation, etc.
+Create transport message mutators by implementing the `IMutateIncomingTransportMessages` or `IMutateOutgoingTransportMessages` interfaces. This type of mutator works on the entire transport message and is useful for compression, header manipulation, etc.
 
 
 #### IMutateIncomingTransportMessages
