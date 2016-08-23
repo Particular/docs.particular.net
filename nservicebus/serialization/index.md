@@ -1,5 +1,5 @@
 ---
-title: Serialization In NServiceBus
+title: Serialization
 summary: How instances of .NET classes are serialized onto the transport.
 component: Core
 reviewed: 2016-08-23
