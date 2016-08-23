@@ -24,7 +24,6 @@
     {
         public void Invoke(HandlerInvocationContext context, Action next)
         {
-            throw new NotImplementedException();
         }
     }
 }

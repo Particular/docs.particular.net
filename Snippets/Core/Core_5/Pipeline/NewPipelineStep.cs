@@ -14,7 +14,8 @@
                 behavior: typeof(SampleBehavior),
                 description: "Logs a warning when processing takes too long")
         {
-            // Optional: Specify where it needs to be invoked in the pipeline, for example InsertBefore or InsertAfter
+            // Optional: Specify where it needs to be invoked in the pipeline,
+            // for example InsertBefore or InsertAfter
             InsertBefore(WellKnownStep.InvokeHandlers);
         }
     }

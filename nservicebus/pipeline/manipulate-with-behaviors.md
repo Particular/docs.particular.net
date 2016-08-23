@@ -1,6 +1,9 @@
 ---
 title: Manipulate Pipeline with Behaviors
-summary: Manipulating the message handling pipeline with Behaviors.
+summary: Manipulating the message handling pipeline with Behaviors
+component: Core
+versions: '[4.0,)'
+reviewed: 2016-08-24
 tags:
 - Pipeline
 related:
@@ -31,9 +34,8 @@ To add a custom behavior to the pipeline define a step for it:
 
 snippet:NewPipelineStep
 
-Then register the new step in the pipeline settings:
 
-snippet:AddPipelineStep
+partial:registernew
 
 
 ## Replace an existing step
@@ -50,9 +52,7 @@ Note: Steps can also be registered from a [Feature](features.md).
 Exceptions thrown from a behaviors `Invoke` method bubble up the chain. If the exception is not handled by a behavior, the message is considered as faulted which results in putting the message back in the queue (and rolling back the transaction) or moving it to the error queue (depending on the endpoint configuration).
 
 
-### MessageDeserializationException (Versions 5.1 and above)
-
-If a message fails to deserialize a `MessageDeserializationException` will be thrown by the  `DeserializeLogicalMessagesBehavior`. In this case, the message is directly moved to the error queue to avoid blocking the system by poison messages.
+partial: messagedeserializationexception
 
 
 ## Skip Serialization
@@ -72,4 +72,5 @@ Sometimes a parent behavior might need to pass some information to a child behav
 
 snippet:SharingBehaviorData
 
-Note: In Versions 6 and above the context respects the stage hierarchy and only allows adding new entries in the scope of the current context. A child behavior (later in the pipeline chain) can read and even modify entries set by a parent behavior (earlier in the pipeline chain) but entries added by the child cannot be accessed from the parent.
+
+partial: sharedcontext
