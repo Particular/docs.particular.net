@@ -35,10 +35,10 @@
             #endregion
         }
 
-        Task Shutdown(IEndpointInstance endpointInstance)
+        async Task Shutdown(IEndpointInstance endpointInstance)
         {
             #region Hosting-Shutdown
-            return endpointInstance.Stop();
+            await endpointInstance.Stop();
             #endregion
         }
 
