@@ -1,6 +1,8 @@
 ---
 title: In Memory Persistence
-summary: In memory persistence stores data in a non-durable manner.
+summary: In memory persistence stores data in a non-durable manner
+component: Core
+reviewed: 2016-08-24
 tags:
 - Persistence
 ---
