@@ -1,15 +1,16 @@
 ---
 title: Configuration order for persistence
 summary: When configuring persistence, order is very important
+component: Core
+reviewed: 2016-08-24
 tags:
 - Persistence
 redirects:
 - nservicebus/persistence-order
 ---
 
-When configuring persistence in NServiceBus Version 5, order is very important.
-The last configured persistence option wins.
-Lets have a look at some examples.
+When configuring persistence in NServiceBus Version 5, order is very important. The last configured persistence option wins.
+
 
 ### Example 1
 
@@ -17,11 +18,13 @@ In this example the last configuration option will override all previous options
 
 snippet:PersistenceOrder_Incorrect
 
+
 ### Example 2
 
 In this example all configuration options are explicit.
 
 snippet:PersistenceOrder_Explicit
+
 
 ### Example 3
 
