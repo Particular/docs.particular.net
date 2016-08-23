@@ -32,7 +32,6 @@
             // this can be done using any information from the context
             context.OutgoingBody = ServiceThatChangesBody.Mutate(context.OutgoingMessage);
 
-
             // the outgoing headers
             var headers = context.OutgoingHeaders;
 

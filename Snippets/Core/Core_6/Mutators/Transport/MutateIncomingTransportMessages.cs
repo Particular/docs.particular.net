@@ -15,7 +15,6 @@
             // optionally replace the Body
             context.Body = ServiceThatChangesBody.Mutate(context.Body);
 
-
             // the incoming headers
             var headers = context.Headers;
 
