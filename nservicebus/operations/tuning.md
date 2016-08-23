@@ -14,7 +14,8 @@ NServiceBus will by default allow the transport to optimize for maximum performa
 
 ## Tuning concurrency
 
-NOTE: NServiceBus Version 5 and below will by default limit concurrency to `1` if not configured by the user
+NOTE: NServiceBus Version 5 and below will by default limit concurrency to `1` if not configured by the user.
+NOTE: NServiceBus Version 6 and up will by default limit concurrency to `100` if not configured by the user.
 
 Define a maximum concurrency setting that will make sure that no more messages than the specified value is ever being processed at the same time. Set this value to `1` to process messages sequentially. If not specified the transport will choose an optimal value.
 
