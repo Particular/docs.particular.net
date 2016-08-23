@@ -27,9 +27,7 @@ include: notificationThread
 The notification instance is also injected into the [container](/nservicebus/containers/).
 
 
-## Reactive Extensions
-
-Between Versions 5.1 and 6 the subscription was done via [Reactive Extensions](https://msdn.microsoft.com/en-au/data/gg577609.aspx).
+partial: reactive
 
 
 ## Unsubscribing
