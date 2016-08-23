@@ -1,5 +1,6 @@
 ---
 title: Encryption
+component: Core
 tags:
 - Encryption
 - Security
