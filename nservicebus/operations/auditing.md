@@ -20,10 +20,11 @@ It is recommended to specify a central auditing queue for all related endpoints 
 ## Message headers
 
 The audited message is enriched with additional headers, which contain information related to processing the message:
-* Processing start and end times.
-* Processing host id and name.
-* Processing machine address.
-* Processing endpoint.
+
+ * Processing start and end times.
+ * Processing host id and name.
+ * Processing machine address.
+ * Processing endpoint.
 
 
 ## Handling Audit messages
@@ -47,7 +48,12 @@ To force a [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) on
 
 Note that while the phrasing is "forwarding a message" in the implementation it is actually "cloning and sending a new message". This is important when considering TimeToBeReceived since the time taken to receive and process the original message is not part of the TimeToBeReceived of the new audit message. So in effect the audit message receives the full time allotment of whatever TimeToBeReceived is used.
 
-Warning: Since MSMQ forces the same TimeToBeReceived on all messages in the a transaction, OverrideTimeToBeReceived is not supported when using the [MSMQ Transport](/nservicebus/msmq/). If OverrideTimeToBeReceived is detected when using MSMQ an exception, with the following text, will be thrown: `Setting a custom OverrideTimeToBeReceived for audits is not supported on transactional MSMQ`.
+{{Warning: Since MSMQ forces the same TimeToBeReceived on all messages in the a transaction, OverrideTimeToBeReceived is not supported when using the [MSMQ Transport](/nservicebus/msmq/). If OverrideTimeToBeReceived is detected when using MSMQ an exception, with the following text, will be thrown:
+
+```no-highlight
+Setting a custom OverrideTimeToBeReceived for audits is not supported on transactional MSMQ
+```
+}}
 
 
 #### Default Value
@@ -94,8 +100,12 @@ If the auditing settings are in `app.config`, remove them or comment them out.
 
 If the machine level auditing is turned on, clear the value for the string value `AuditQueue` under
 
-    HKEY_LOCAL_MACHINE\\SOFTWARE\\ParticularSoftware\\ServiceBus
+```no-highlight
+HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceBus
+```
 
 If running 64 bit, in addition to the above, also clear the value for `AuditQueue` under
 
-    HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\ParticularSoftware\\ServiceBus
+```no-highlight
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ParticularSoftware\ServiceBus
+```
