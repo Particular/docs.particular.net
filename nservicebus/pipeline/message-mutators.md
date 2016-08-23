@@ -17,7 +17,7 @@ Message Mutators allow mutation of messages in the pipeline.
 
 ## Two flavors of Mutators
 
-NServiceBus enables two types of Message Mutators:
+NServiceBus enables two categories of Message Mutators:
 
 
 ### Logical Message Mutators
