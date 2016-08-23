@@ -1,13 +1,13 @@
 ---
 title: CommonLogging
-summary: Logging all NServiceBus entries using CommonLogging.
+summary: Logging to CommonLogging
 component: CommonLogging
-reviewed: 2016-03-17
+reviewed: 2016-08-23
 related:
 - samples/logging/commonlogging
 ---
 
-Support for using [CommonLogging](http://netcommon.sourceforge.net/).
+Support for writing all NServiceBus log entries to [CommonLogging](http://netcommon.sourceforge.net/).
 
 
 ## Usage

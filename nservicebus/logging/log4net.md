@@ -1,13 +1,13 @@
 ---
 title: Log4Net
-summary: Logging using Log4Net
+summary: Logging to Log4Net
 reviewed: 2016-08-23
 component: Log4Net
 related:
 - samples/logging/log4net-custom
 ---
 
-Support for [Log4Net](http://logging.apache.org/log4net/).
+Support for writing all NServiceBus log entries to [Log4Net](http://logging.apache.org/log4net/).
 
 
 ## Usage
