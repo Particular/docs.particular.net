@@ -20,7 +20,6 @@
             // this can be done using either the information from the logicalMessage or transportMessage
             transportMessage.Body = ServiceThatChangesBody.Mutate(logicalMessage.Instance);
 
-
             // the outgoing headers
             var headers = transportMessage.Headers;
 
