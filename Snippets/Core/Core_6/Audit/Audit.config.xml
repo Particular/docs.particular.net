@@ -2,10 +2,10 @@
 <!--startcode configureAuditUsingXml -->
 <configuration>
   <configSections>
-    <section name="AuditConfig" 
+    <section name="AuditConfig"
              type="NServiceBus.Config.AuditConfig, NServiceBus.Core"/>
   </configSections>
   <AuditConfig QueueName="auditqueue@adminmachine"
                OverrideTimeToBeReceived="00:10:00"/>
 </configuration>
-<!--endcode--> 
+<!--endcode-->

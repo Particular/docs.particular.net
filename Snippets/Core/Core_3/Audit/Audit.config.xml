@@ -2,10 +2,10 @@
 <!--startcode configureAuditUsingXml-->
 <configuration>
   <configSections>
-    <section name="UnicastBusConfig" 
+    <section name="UnicastBusConfig"
              type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
   </configSections>
-  <UnicastBusConfig 
+  <UnicastBusConfig
     ForwardReceivedMessagesTo="auditqueue@adminmachine"/>
 </configuration>
-<!--endcode--> 
+<!--endcode-->
