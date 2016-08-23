@@ -1,7 +1,8 @@
 ---
 title: NServiceBus
 summary: NServiceBus Documentation Table of Contents
-reviewed: 2016-03-17
+component: Core
+reviewed: 2016-08-23
 ---
 
 include: nservicebus
