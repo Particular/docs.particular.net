@@ -39,9 +39,7 @@ snippet:IMutateIncomingMessages
 snippet:IMutateOutgoingMessages
 
 
-#### IMessageMutator
-
-`IMessageMutator` is an interface that combines both `IMutateIncomingMessages` and `IMutateOutgoingMessages`. It only exists in Versions 5 and below. In Versions 6 and above implement both `IMutateIncomingMessages` and `IMutateOutgoingMessages` instead.
+partial: imessagemutator
 
 
 ### Transport Messages Mutators
@@ -59,9 +57,7 @@ snippet:IMutateIncomingTransportMessages
 snippet:IMutateOutgoingTransportMessages
 
 
-#### IMutateTransportMessages
-
-`IMutateTransportMessages` is an interface that combines both `IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`. It only exists in Versions 5 and below. In Versions 6 and above implement both `IMutateTransportMessages` and `IMutateOutgoingTransportMessages` instead.
+partial: imutatetransportmessages
 
 
 ## Registering a Mutator
@@ -79,4 +75,4 @@ If a incoming throws an exception, the message aborts, rolls back to the queue, 
 
 If a outgoing mutator throws an exception, the exception bubbles up to the method performing the Send or Publish.
 
-include: non-null-task
+partial: nonnulltask

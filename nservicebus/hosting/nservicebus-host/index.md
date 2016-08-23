@@ -27,6 +27,11 @@ To avoid the scanning process, configure the type of the endpoint configuration 
 snippet:ExplicitHostConfigType
 
 
+### Controlling assembly scanning using code
+
+snippet:ScanningConfigurationInNSBHost
+
+
 ### Controlling assembly scanning using the command line
 
 A list of assemblies to scan can also be controlled using the `/scannedAssemblies` switch. If this option is used, the `NServiceBus.Host.exe` loads only assemblies that have been explicitly listed on the command line. Each assembly must be added using a separate switch:

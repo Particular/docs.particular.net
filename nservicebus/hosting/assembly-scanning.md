@@ -14,11 +14,7 @@ Scanning is invoked by default for self-hosting
 
 snippet:ScanningDefault
 
-or when [NServiceBus Host](nservicebus-host) is used
-
-snippet:ScanningConfigurationInNSBHost
-
-NOTE: During the scanning process, the core dlls for NServiceBus namely `NServiceBus.Core.dll`, `NServiceBus.dll` (in versions prior to Version 5) and if in use `NServiceBus.Host.exe` are automatically included since the endpoint needs them to function properly.
+NOTE: During the scanning process, the core dlls for NServiceBus namely `NServiceBus.Core.dll`, `NServiceBus.dll` (in versions prior to Version 5) are automatically included since the endpoint needs them to function properly.
 
 
 ## Controlling the assemblies to scan
