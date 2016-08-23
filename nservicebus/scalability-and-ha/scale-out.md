@@ -1,5 +1,5 @@
 ---
-title: Scaling out NServiceBus endpoints
+title: Scaling out endpoints
 reviewed: 2016-03-17
 tags:
 - Scale Out
