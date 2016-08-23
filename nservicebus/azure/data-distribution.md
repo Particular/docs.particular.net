@@ -2,6 +2,7 @@
 title: Data distribution
 summary: How to configure NServiceBus to distribute data to all instances of a given endpoint
 component: Core
+reviewed: 2016-08-10
 versions: "[5,)"
 tags:
 - Cloud
