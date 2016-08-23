@@ -1,6 +1,7 @@
 ---
 title: Property injection
-reviewed: 2016-03-24
+reviewed: 2016-08-23
+component: Core
 tags:
  - Dependency Injection
 redirects:
@@ -18,10 +19,4 @@ Setting the properties is done as follows:
 snippet: ConfigurePropertyInjectionForHandler
 
 
-## A Handler/Saga specific API
-
-Versions 5.2 and above supported a new, more explicit, API that specifically targets Handlers and Sagas.
-
-NOTE: This API has been obsoleted with error in Versions 6 and above.
-
-snippet: ConfigurePropertyInjectionForHandlerExplicit
+partial: handler
