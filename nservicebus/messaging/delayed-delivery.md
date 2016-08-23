@@ -20,6 +20,7 @@ partial:intro
 
 Note: Similar to `SendLocal`, `Defer` will also change the message's reply-to address to the endpoint deferring the message. Calling `Reply` on a deferred message will send the reply to itself.
 
+
 ## Using a TimeSpan
 
 Delays delivery of a message for a specified duration.
