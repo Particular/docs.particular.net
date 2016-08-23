@@ -13,14 +13,12 @@
         public Task MutateIncoming(MutateIncomingTransportMessageContext context)
         {
             context.Body = context.Body.Reverse().ToArray();
-
             return Task.FromResult(false);
         }
 
         public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
         {
             context.OutgoingBody = context.OutgoingBody.Reverse().ToArray();
-
             return Task.FromResult(false);
         }
     }
