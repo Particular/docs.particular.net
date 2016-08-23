@@ -3,6 +3,7 @@ title: Configuration order for persistence
 summary: When configuring persistence, order is very important
 component: Core
 reviewed: 2016-08-24
+versions: '[5.0,)'
 tags:
 - Persistence
 redirects:
