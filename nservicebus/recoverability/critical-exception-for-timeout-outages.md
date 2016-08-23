@@ -1,7 +1,9 @@
 ---
 title: Critical exception wait time
 summary: A critical error is raised when timeout retrieval fails.
-reviewed: 2016-03-02
+component: Core
+reviewed: 2016-07-23
+versions: '[5.0,)'
 tags:
 - timeout
 redirects:
