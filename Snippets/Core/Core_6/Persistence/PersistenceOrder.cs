@@ -41,7 +41,7 @@
 
             endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
 
-            // This one will override the above settings!
+            // This one will override the above settings
             endpointConfiguration.UsePersistence<RavenDBPersistence>();
             #endregion
         }

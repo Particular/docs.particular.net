@@ -87,7 +87,7 @@
             busConfiguration.UsePersistence<InMemoryPersistence>()
                 .For(Storage.GatewayDeduplication);
 
-            // This one will override the above settings!
+            // This one will override the above settings
             busConfiguration.UsePersistence<RavenDBPersistence>();
 
             #endregion
@@ -103,7 +103,7 @@
 
             busConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
 
-            // This one will override the above settings!
+            // This one will override the above settings
             busConfiguration.UsePersistence<RavenDBPersistence>();
 
             #endregion
