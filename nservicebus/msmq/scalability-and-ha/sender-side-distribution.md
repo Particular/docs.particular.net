@@ -1,6 +1,9 @@
 ---
 title: Scaling out with sender-side distribution
 summary: How to scale out with sender-side distribution when using the MSMQ transport.
+versions: '[6.0,)'
+component: Core
+reviewed: 2016-08-23
 tags:
 - Scale Out
 - Routing
@@ -14,13 +17,11 @@ related:
 
 NServiceBus endpoints using the MSMQ transport are unable to use the competing consumers pattern to scale out by adding additional worker instances. Sender-side distribution is a method of scaling out an NServiceBus endpoint using the MSMQ transport, without relying on a centralized [distributor](/nservicebus/scalability-and-ha/distributor/) assigning messages to available workers.
 
-NOTE: Sender-side distribution is available in NServiceBus Versions 6 and above.
-
 When using sender-side distribution:
 
-* Multiple endpoint instances (deployed to different servers) are capable of processing a message that requires scaled-out processing.
-* A client sending a message is aware of all the endpoint instances that can process the message.
-* The client sends the message to a worker endpoint instance based on round-robin distribution, or a custom distribution strategy.
+ * Multiple endpoint instances (deployed to different servers) are capable of processing a message that requires scaled-out processing.
+ * A client sending a message is aware of all the endpoint instances that can process the message.
+ * The client sends the message to a worker endpoint instance based on round-robin distribution, or a custom distribution strategy.
 
 Using sender-side distribution requires two parts. The first part maps message types to logical endpoints, and occurs in code. The second part maps logical endpoints to physical endpoint instances running on a specific machine.
 
@@ -55,9 +56,9 @@ The mapping file is processed before the endpoint starts up and then re-processe
 
 There are many different options to consider when deploying routing configuration.
 
-* Many endpoints can be configured to use one centralized mapping file on a network drive accessible by all, creating a single file that describes how messages flow across an entire system. Any given endpoint will not care if the file contains information for endpoints it does not need.
-* The mapping file can be kept in a centralized location and replicated out to many servers on demand, allowing each endpoint to read the file from a location on the local disk.
-* Each endpoint can keep its own instance mapping file containing only information for the endpoints it needs to know about, which can be deployed in the same directory as the endpoint binaries and only modified as part of a controlled deployment process.
+ * Many endpoints can be configured to use one centralized mapping file on a network drive accessible by all, creating a single file that describes how messages flow across an entire system. Any given endpoint will not care if the file contains information for endpoints it does not need.
+ * The mapping file can be kept in a centralized location and replicated out to many servers on demand, allowing each endpoint to read the file from a location on the local disk.
+ * Each endpoint can keep its own instance mapping file containing only information for the endpoints it needs to know about, which can be deployed in the same directory as the endpoint binaries and only modified as part of a controlled deployment process.
 
 The following default settings can be adjusted:
  
@@ -73,7 +74,7 @@ snippet: InstanceMappingFile-RefreshInterval
 
 ### FilePath
 
-Specifies the path and file name of the instance mapping file. This can be a realtive or an absolute file path. Relative file paths are resolved from `AppDomain.BaseDirectoy`.
+Specifies the path and file name of the instance mapping file. This can be a relative or an absolute file path. Relative file paths are resolved from `AppDomain.BaseDirectoy`.
 
 Default: `instance-mapping.xml`
 
@@ -86,9 +87,9 @@ When using sender-side distribution, message senders have no knowledge of the st
 
 Therefore, when scaling down (removing a "target" endpoint instance from service), it is important to properly decommission the instance:
 
-1. Change the instance mapping file to remove the target endpoint instance.
-1. Ensure that the updated instance mapping information is distributed to all endpoint instances that might send a message to the target endpoint.
-1. Allow time (30 seconds by default) for all endpoints to reread the instance mapping file, and ensure no new messages are arriving in the target instance's queue.
-1. Allow the target endpoint instance to complete processing all messages in its queue.
-1. Disable the target endpoint instance.
-1. Check the input queue of the decommissioned instance for leftover messages and move them to other instances if necessary.
+ 1. Change the instance mapping file to remove the target endpoint instance.
+ 1. Ensure that the updated instance mapping information is distributed to all endpoint instances that might send a message to the target endpoint.
+ 1. Allow time (30 seconds by default) for all endpoints to reread the instance mapping file, and ensure no new messages are arriving in the target instance's queue.
+ 1. Allow the target endpoint instance to complete processing all messages in its queue.
+ 1. Disable the target endpoint instance.
+ 1. Check the input queue of the decommissioned instance for leftover messages and move them to other instances if necessary.
