@@ -10,10 +10,11 @@
         public void Customize(BusConfiguration busConfiguration)
         {
             // Perform initialization
-            // This is after type scanning. Do not call the following here:
-            // * configuration.AssembliesToScan();
-            // * configuration.ScanAssembliesInDirectory();
-            // * configuration.TypesToScan();
+            // This is after type scanning.
+            // Do NOT call the following here:
+            // busConfiguration.AssembliesToScan();
+            // busConfiguration.ScanAssembliesInDirectory();
+            // busConfiguration.TypesToScan();
         }
     }
 

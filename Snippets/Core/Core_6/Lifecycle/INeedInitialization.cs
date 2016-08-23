@@ -10,10 +10,11 @@
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
             // Perform initialization
-            // This is after Type Scanning. Do not call the following here:
-            // * configuration.ExcludeAssemblies();
-            // * configuration.ExcludeTypes();
-            // * configuration.ScanAssembliesInNestedDirectories();
+            // This is after Type Scanning.
+            // Do NOT call the following here:
+            // endpointConfiguration.ExcludeAssemblies();
+            // endpointConfiguration.ExcludeTypes();
+            // endpointConfiguration.ScanAssembliesInNestedDirectories();
         }
     }
 
