@@ -1,1 +1,0 @@
-NOTE: This interface is found in the `NServiceBus.Config` namespace.
