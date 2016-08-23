@@ -1,0 +1,2 @@
+NOTE: `INeedInitialization` exists in both the `NServiceBus.Config` and the `NServiceBus` namespaces. 
+`NServiceBus.Config.INeedInitialization` is marked as obsolete. All instances of `NServiceBus.Config.INeedInitialization` are created and called and then all instances of `NServiceBus.INeedInitialization` are created and called.
