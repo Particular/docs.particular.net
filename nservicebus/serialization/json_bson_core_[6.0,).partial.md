@@ -1,0 +1,1 @@
+WARNING: The built in BSON serializer has been deprecated. The external [Newtonsoft serializer](/nservicebus/serialization/newtonsoft.md) can be used as a replacement.

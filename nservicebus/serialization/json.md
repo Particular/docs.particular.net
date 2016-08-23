@@ -1,7 +1,8 @@
 ---
 title: JSON Serializer
 summary: A json serializer that uses Json.NET.
-reviewed: 2016-03-17
+reviewed: 2016-08-23
+component: Core
 related:
  - samples/serializers/json
 ---
@@ -14,16 +15,7 @@ Using [Json](https://en.wikipedia.org/wiki/Json) via an ILMerged copy of [Json.N
 snippet:JsonSerialization
 
 
-## Json.net versions
-
-Over time the version of ILMerged Json.NET has changed.
-
-| NServiceBus Version | Json.net Version |
-|---|---|
-| 3.X  | 4.0.8 |
-| 4.0 | 4.5.11 |
-| 4.1-5.X | 5.0.6 |
-| 6.0-6.X | 8.0.2 |
+partial: version
 
 
 ## Customization
@@ -68,11 +60,4 @@ The result will be
 
 ## Bson
 
-WARNING: In Version 6 of NServiceBus the built in BSON serializer has been deprecated. The [Newtonsoft serializer](/nservicebus/serialization/newtonsoft.md) can be used as a replacement
-
-Using [Bson](https://en.wikipedia.org/wiki/BSON) via the same ILMerged copy of Json.NET as above.
-
-
-### Usage
-
-snippet:BsonSerialization
+partial: bson
