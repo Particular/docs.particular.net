@@ -12,10 +12,11 @@
         public void Handle(StartMessage message)
         {
             Data.SomeID = message.SomeID;
-            ReplyToOriginator(new AlmostDoneMessage
+            var almostDoneMessage = new AlmostDoneMessage
             {
                 SomeID = Data.SomeID
-            });
+            };
+            ReplyToOriginator(almostDoneMessage);
         }
 
         #endregion

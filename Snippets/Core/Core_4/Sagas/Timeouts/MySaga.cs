@@ -27,10 +27,11 @@
         public void Handle(Message2 message)
         {
             Data.Message2Arrived = true;
-            ReplyToOriginator(new AlmostDoneMessage
+            var almostDoneMessage = new AlmostDoneMessage
             {
                 SomeID = Data.SomeID
-            });
+            };
+            ReplyToOriginator(almostDoneMessage);
         }
 
         public void Timeout(MyCustomTimeout state)
