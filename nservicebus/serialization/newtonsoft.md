@@ -36,7 +36,7 @@ The only incompatibility with the [core serializer](json.md) is that this serial
 
 
 {{WARNING:
-This serializer is not compatible with multiple bundled messages (when using the `bus.Send(object[] messages)` APIs) sent from Versions 3 and below of NServiceBus. If this scenario is detected then an exception with the following message will be thrown: 
+This serializer is not compatible with multiple bundled messages (when using the `Send(object[] messages)` APIs) sent from Versions 3 and below of NServiceBus. If this scenario is detected then an exception with the following message will be thrown: 
 
 ```no-highlight
 Multiple messages in the same stream are not supported.
@@ -45,8 +45,6 @@ Multiple messages in the same stream are not supported.
 The `AddDeserializer` API can help transition between serializers. See the [Multiple Deserializers Sample](/samples/serializers/multiple-deserializers/) for more information.
 
 }}
-
-
 
 
 ## Usage
