@@ -1,6 +1,9 @@
 ---
 title: Custom Recoverability Policy
 summary: Shows how to take full control over Recoverability by implementing a Recoverability Policy
+component: Core
+reviewed: 2016-08-23
+versions: '[6.0,)'
 tags:
  - Error Handling
  - Exceptions
@@ -9,6 +12,7 @@ tags:
 related:
  - samples/faulttolerance
 ---
+
 
 ## Default Recoverability
 
