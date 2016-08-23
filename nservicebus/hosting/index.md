@@ -1,6 +1,8 @@
 ---
 title: Hosting
 summary: Outlines the various approaches to hosting NServiceBus
+component: Core
+reviewed: 2016-08-24
 tags:
 - Hosting
 redirects:
@@ -67,7 +69,9 @@ NServiceBus can be hosted in any web technology that support .NET. See [Web Appl
 
 ### Multi-Hosting
 
-"Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .NET process. In Version 4 and earlier this could be achieved through multiple AppDomains. In Version 5 and above multiple endpoints can share the same AppDomain or use the multiple AppDomains approach.
+"Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .NET process.
+
+partial:multi
 
 Related:
 
@@ -88,9 +92,7 @@ Related:
  * [Sending from an ASP.NET MVC Controller](/samples/web/send-from-mvc-controller/)
 
 
-NOTE: In Versions 6 and above, `IEndpointInstance`/`IMessageSession` (the equivalent of `IBus` in earlier versions) is no longer automatically injected into the container. In order to send messages explicitly create a bus context. Here's a sample code showing how to automate this task using the Autofac container
-
-snippet:Hosting-Inject
+partial: injecting
 
 
 #### Static variable
