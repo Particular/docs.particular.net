@@ -16,7 +16,7 @@ The following diagram details a scenario where two sagas and an integration endp
 
 ![Sample sequence diagram](reply-replaytooriginator-differences.png)
 
-The reason why a call to `Bus.Reply<ShipOrder>()` sends a message to the `Shipment Gateway` is that it is invoked in the context of handling the `ShipmentReserved` message, and the return address of `ShipmentReserved` is `Shipment Gateway`.
+The reason why a call to `Reply<ShipOrder>()` sends a message to the `Shipment Gateway` is that it is invoked in the context of handling the `ShipmentReserved` message, and the return address of `ShipmentReserved` is `Shipment Gateway`.
 
 In the context of a `Saga` it is not always clear, at a first look, who is the sender of a message. In the above sample when handling the expired `ShipmentReservation` timeout the sender of the message is the `Delivery Manager` endpoint, so in this case a `Reply` would be delivered to the `Delivery Manager`, that is not necessarily desired.
 
