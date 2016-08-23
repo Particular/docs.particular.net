@@ -1,6 +1,7 @@
 ---
 title: Message Mutators
-summary: Message mutators allow mutation of messages in the pipeline.
+summary: Message Mutators allow mutation of messages in the pipeline
+component: Core
 tags:
 - Mutator
 redirects:
@@ -10,12 +11,12 @@ related:
 - nservicebus/messaging/headers
 ---
 
-The message pipeline in NServiceBus V2.X consisted of message modules. They served their purpose but didn't quite give full control over the message pipeline for more advanced things, and there was no way to hook into the pipeline at the sending/client side of the message conversation.
+Message Mutators allow mutation of messages in the pipeline.
 
 
-## Two flavors of mutators
+## Two flavors of Mutators
 
-NServiceBus enables two types of message mutators:
+NServiceBus enables two types of Message Mutators:
 
 
 ### Logical Message Mutators
