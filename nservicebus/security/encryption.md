@@ -19,7 +19,8 @@ The encryption algorithm used is [Rijndael](https://msdn.microsoft.com/en-us/lib
 
 Keep in mind that the security is only as strong as the keys; if the key is exposed, then an attacker can decipher the information. As such avoid encryption keys stored on the client (if deployed remotely) or even on a web server in the DMZ.
 
-NOTE: In NServiceBus Versions 5 and below encryption is enabled by default and disables itself when there are no messages that require encryption. In NServiceBus Versions 6 and above encryption is only enabled when explicitly configured with either `endpointConfiguration.RijndaelEncryptionService` or `endpointConfiguration.RegisterEncryptionService`.
+partial: default
+
 
 ### Defining encrypted properties
 
