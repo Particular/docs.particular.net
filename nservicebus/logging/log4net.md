@@ -1,23 +1,13 @@
 ---
 title: Log4Net
-summary: Logging using Log4Net.
-reviewed: 2016-03-17
+summary: Logging using Log4Net
+reviewed: 2016-08-23
 component: Log4Net
 related:
 - samples/logging/log4net-custom
 ---
 
-Support for [Log4Net](http://logging.apache.org/log4net/) is available starting with NServiceBus Versions 3 and above.
-
-
-### NServiceBus Versions 4 and below
-
-NServiceBus Log4Net support was built in.
-
-
-### NServiceBus Versions 5 and above
-
-Log4Net was externalized to its own NuGet package, [NServiceBus.Log4Net](https://www.nuget.org/packages/NServiceBus.Log4Net/) to facilitate logging all NServiceBus entries in the endpoint using Log4Net.
+Support for [Log4Net](http://logging.apache.org/log4net/).
 
 
 ## Usage
