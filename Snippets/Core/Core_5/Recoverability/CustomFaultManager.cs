@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Features
+﻿namespace Core5.Recoverability
 {
     using System;
     using NServiceBus;
@@ -10,17 +10,17 @@
     {
         public void SerializationFailedForMessage(TransportMessage message, Exception e)
         {
-            // implement any custom steps for this message when the failure was due to deserialization
+            // implement steps for this message when the failure is due to deserialization
         }
 
         public void ProcessingAlwaysFailsForMessage(TransportMessage message, Exception e)
         {
-            // implement any custom steps for this message after it fails all first level retry attempts
+            // implement steps for this message after it fails all first level retry attempts
         }
 
         public void Init(Address address)
         {
-            // Implement any initializations for the custom fault manager.
+            // implement initializations for the custom fault manager.
         }
     }
     #endregion

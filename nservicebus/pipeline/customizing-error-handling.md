@@ -1,5 +1,5 @@
 ---
-title: Migrating IManageMessageFailures
+title: IManageMessageFailures
 summary: Extension point for handling message failures.
 reviewed: 2016-04-16
 related:
