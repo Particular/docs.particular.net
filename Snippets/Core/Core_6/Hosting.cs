@@ -60,8 +60,8 @@
         async Task InjectEndpoint()
         {
             #region Hosting-Inject
-            var containerBuilder = new ContainerBuilder();
 
+            var containerBuilder = new ContainerBuilder();
             var endpointConfiguration = new EndpointConfiguration("EndpointName");
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
