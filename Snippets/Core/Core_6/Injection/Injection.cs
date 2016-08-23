@@ -38,8 +38,10 @@
 
             public Task Handle(EmailMessage message, IMessageHandlerContext context)
             {
-                var client = new SmtpClient(SmtpAddress, SmtpPort);
-                // ...
+                using (var client = new SmtpClient(SmtpAddress, SmtpPort))
+                {
+                    // use client
+                }
                 return Task.FromResult(0);
             }
         }

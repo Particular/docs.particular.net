@@ -26,8 +26,10 @@
 
             public void Handle(EmailMessage message)
             {
-                var client = new SmtpClient(SmtpAddress, SmtpPort);
-                // ...
+                using (var client = new SmtpClient(SmtpAddress, SmtpPort))
+                {
+                    // use client
+                }
             }
         }
 
