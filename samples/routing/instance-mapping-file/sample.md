@@ -1,7 +1,7 @@
 ---
 title: Mapping endpoint instances using a shared file
 summary: Mapping logical endpoints to physical instances using a shared file
-reviewed: 2016-09-01
+reviewed: 2016-08-01
 component: Core
 tags:
  - Routing
