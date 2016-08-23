@@ -1,10 +1,13 @@
 ---
 title: Aborting Pipeline execution
 summary: How to tell NServiceBus to abort processing any more handlers in the pipeline
+component: Core
+reviewed: 2016-08-24
 tags:
 - Pipeline
 - Security
 ---
+
 
 ## From inside a Handler
 
@@ -15,10 +18,4 @@ snippet: AbortHandler
 Warning: Handler execution order by default is non-deterministic. To configure the ordering see [Handler Ordering](/nservicebus/handlers/handler-ordering.md).
 
 
-## Via a pipeline Behavior
-
-The pipeline can also be aborted by injecting a custom Behavior that, with some custom logic, optionally decides to abort Behaviors nested inside it.
-
-snippet: AbortPipelineWithBehavior
-
-For more information about creating and where to inject a behavior see [customizing the pipeline](/nservicebus/pipeline/manipulate-with-behaviors.md).
+partial:behavior
