@@ -9,9 +9,7 @@ related:
 - samples/logging/nlog-custom
 ---
 
-Support for [NLog](http://nlog-project.org/) is available starting with NServiceBus Versions 5 and above.
-
-The [NServiceBus.NLog NuGet package](https://www.nuget.org/packages/NServiceBus.NLog/) facilitates logging of all NServiceBus entries in the endpoint using NLog.
+Support for [NLog](http://nlog-project.org/).
 
 
 ## Usage
