@@ -22,6 +22,6 @@ Requires [.NET Framework Version 4.5](https://www.microsoft.com/en-au/download/d
 Requires [.NET Framework Version 4.0](https://www.microsoft.com/en-au/download/details.aspx?id=17851)
 
 
-### NServiceBus Version 3.x requires
+### NServiceBus Version 3.x
 
 Requires [.NET Framework Version 3.5](https://www.microsoft.com/en-au/download/details.aspx?id=21)
