@@ -20,12 +20,10 @@
 
         public void Handle(Message1 message)
         {
-            // code to handle Message1
         }
 
         public void Handle(Message2 message)
         {
-            // code to handle Message2
         }
     }
 

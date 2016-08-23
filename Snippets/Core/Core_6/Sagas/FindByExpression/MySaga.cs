@@ -21,12 +21,10 @@ namespace Core6.Sagas.FindByExpression
 
         public async Task Handle(Message1 message, IMessageHandlerContext context)
         {
-            // code to handle Message1
         }
 
         public async Task Handle(Message2 message, IMessageHandlerContext context)
         {
-            // code to handle Message2
         }
     }
 
