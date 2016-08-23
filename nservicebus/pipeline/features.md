@@ -1,7 +1,9 @@
 ---
 title: Features
 summary: Implement a Feature for advanced extension of NServiceBus.
-reviewed: 2016-05-31
+reviewed: 2016-08-24
+component: Core
+versions: '[5.0,)'
 tags:
  - feature
  - pipeline
@@ -41,7 +43,7 @@ snippet:DependentFeature
 
 A feature might use either strongly or loosely typed API when declaring dependencies (the latter can be useful if a dependency is declared in an external assembly).
 
-WARNING: The feature name is derived from the name of the type. In Version 5 and below the suffix `Feature`, if present in the type name, must be removed from the name of the feature (e.g. use `DependsOn("Demo")` instead of `DependsOn("DemoFeature")`). In Versions 6 and above the `Feature` suffix must not be removed and dependency strings must be prefixed with the namespace of the target Feature.
+partial: dependson
 
 The API also allows to declare optional dependencies on one or more of listed features.
 
@@ -127,8 +129,4 @@ The task will only be created and called if the feature is enabled. The `Feature
 Note: Avoid long running operations which will delay the bus startup time.
 
 
-### Accessing the Endpoint Instance
-
-In Versions 6 and above access to the message session, which allows to do basic endpoint operations, inside a `FeatureStartupTask` is provided via parameters.
-
-snippet:MyStartupTaskThatUsesMessageSession
+partial: endpointinstance

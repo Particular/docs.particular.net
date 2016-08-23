@@ -1,0 +1,1 @@
+WARNING: The feature name is derived from the name of the type. The suffix `Feature`, if present in the type name, must be removed from the name of the feature (e.g. use `DependsOn("Demo")` instead of `DependsOn("DemoFeature")`).

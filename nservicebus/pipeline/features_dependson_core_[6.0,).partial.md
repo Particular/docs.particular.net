@@ -1,0 +1,1 @@
+WARNING: The feature name is derived from the name of the type. The `Feature` suffix must not be removed and dependency strings must be prefixed with the namespace of the target Feature.
