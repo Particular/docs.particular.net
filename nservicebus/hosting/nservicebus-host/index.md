@@ -172,6 +172,8 @@ NServiceBus.Host.exe /install /serviceName:"MyPublisher"
 
 NOTE: When installing the Host using a custom user account, as in the above sample, the user account is added to the `Performance Monitor Users` and is granted `run as a service` privileges. If, at a later time, the user needs to be changed it is suggested to uninstall the Host and re-install it in order to guarantee that the new user is correctly setup.
 
+NOTE: Version 7 of the Host supports Group Managed Service Accounts (GMSA).  For more information on GMSA please review this [step by step guide](http://blog.windowsserversecurity.com/2015/01/27/step-by-step-guide-to-configure-group-managed-service-accounts/).  When specifying a GMSA account the `/username` command line argument should include the trailing dollar sign e.g. `/username:"corp\gmsaaccount$"` and the `/password` command line switch should be omitted.
+
 To uninstall, call
 
 ```dos
