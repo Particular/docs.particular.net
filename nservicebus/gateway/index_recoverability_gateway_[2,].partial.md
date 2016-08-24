@@ -19,7 +19,7 @@ The provided example shows the built-in default retry policy.
 
 Custom retry policies should eventually give up retrying, otherwise the message could get stuck in a loop being retried forever. To discontinue retries return `TimeSpan.MinValue` from the custom retry policy. The message will be then be handled by [recoverability](/nservicebus/recoverability/).
 
-WARNING: The recoverability mechanisms built into the Gateway do not roll back the [receive transaction](/nservicebus/messaging/) or any ambient transaction when sending a message to another site fails. Any custom recoverability policy cannot rely on an ambient transaction being rolled back.
+WARNING: The recoverability mechanism built into the Gateway does not roll back the [receive transaction](/nservicebus/messaging/) or any ambient transactions when sending a message to another site fails. Any custom recoverability policy cannot rely on an ambient transaction being rolled back.
 
 To disable retries in the gateway use the `DisableRetries` setting:
 
