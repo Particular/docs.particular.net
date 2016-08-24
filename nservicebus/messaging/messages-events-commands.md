@@ -20,7 +20,7 @@ redirects:
 
 A *Message* is the unit of communication for NServiceBus. There are two sub-types of messages that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default unless disabled in [configuration](best-practice-enforcement.md).
 
-Note: Messages in NServiceBus have to be C# classes. Using C# structs instead will generate exceptions at runtime when attempting to send a message.
+Note: Messages in NServiceBus have to be .net classes. Using structs instead will generate exceptions at runtime when attempting to send a message.
 
 ### Command
 
