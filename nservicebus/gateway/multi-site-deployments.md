@@ -1,6 +1,6 @@
 ---
 title: 'Gateway: Multi-Site Deployments'
-summary: Explanation of how NServiceBus handles multi-site communication.
+summary: Explanation of how the Gateway handles multi-site communication.
 component: Gateway
 redirects:
  - nservicebus/the-gateway-and-multi-site-distribution
@@ -116,14 +116,7 @@ Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/
 Going across alternate channels like HTTP means that the MSMQ safety guarantees of exactly one message are lost. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid being burdened with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured [Persistence](/nservicebus/persistence/) so potential duplicates can be detected.
 
 
-### Versions 5 and above
-
-The gateway will use the storage type configured. At this stage [InMemory](/nservicebus/persistence/in-memory.md), [NHibernate](/nservicebus/nhibernate/) and [RavenDB](/nservicebus/ravendb/) is supported.
-
-
-### Version 4
-
-By default, NServiceBus uses [RavenDB](/nservicebus/ravendb/) to store the IDs but [InMemory](/nservicebus/persistence/in-memory.md) and [NHibernate](/nservicebus/nhibernate/) persistences are supported as well.
+partial: dedup
 
 
 ## Incoming channels
