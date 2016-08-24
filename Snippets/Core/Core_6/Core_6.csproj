@@ -357,9 +357,6 @@
     <Content Include="Outbox\EnablingInConfig.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Outbox\NHibernate\TimeToKeep.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>

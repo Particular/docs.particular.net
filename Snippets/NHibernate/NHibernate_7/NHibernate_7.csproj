@@ -55,6 +55,7 @@
     <Content Include="nhibernate.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="OutboxTimeToKeep.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

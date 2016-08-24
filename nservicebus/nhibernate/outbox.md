@@ -1,5 +1,8 @@
 ---
 title: Using Outbox with NHibernate persistence
+versions: '[6.0,)'
+component: NHibernate
+reviewed: 2016-08-24
 tags:
  - NHibernate
  - Outbox
@@ -10,12 +13,12 @@ related:
 The [Outbox](/nservicebus/outbox) feature requires persistence in order to store the messages and enable deduplication.
 
 
-## What extra tables does NHibernate Outbox persistence create
+## Extra tables created by the NHibernate Outbox persistence
 
 To keep track of duplicate messages, the NHibernate implementation of Outbox requires the creation of `OutboxRecord` table.
 
 
-## How long are the deduplication records kept
+## Deduplication record lifespan
 
 The NHibernate implementation by default keeps deduplication records for 7 days and runs the purge every 1 minute.
 
