@@ -3,6 +3,7 @@ title: Satellites
 summary: Extension point for raw processing of messages.
 reviewed: 2016-08-01
 component: Core
+versions: '[5,]'
 related:
  - nservicebus/pipeline/manipulate-with-behaviors
  - nservicebus/pipeline/features
