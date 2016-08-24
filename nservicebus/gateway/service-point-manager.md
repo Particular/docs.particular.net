@@ -15,6 +15,6 @@ It is possible to change the default connection limit of a process via the stati
 ServicePointManager.DefaultConnectionLimit = 10;
 ```
 
-The above code can be placed in conjunction with the endpoint configuration code, at process startup, or in the `EndpointConfig` class.
+The above code can be placed in the process startup.
 
 See [ServicePointManager on MSDN](https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.aspx) for more information.
