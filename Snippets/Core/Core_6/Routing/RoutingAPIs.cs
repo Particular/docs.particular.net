@@ -48,7 +48,7 @@ namespace Core6.Routing
             {
                 var routingTable = context.RoutingTable();
                 routingTable.SetFallbackRoute((type, contextBag) =>
-                    Task.FromResult<IUnicastRoute>(UnicastRoute.CreateFromEndpointName("Sales")));
+                        Task.FromResult<IUnicastRoute>(UnicastRoute.CreateFromEndpointName("Sales")));
             }
         }
 
@@ -87,6 +87,7 @@ namespace Core6.Routing
         }
 
         #region Routing-StaticEndpointMapping
+
         class StaticEndpointMapping : Feature
         {
             protected override void Setup(FeatureConfigurationContext context)
@@ -99,9 +100,11 @@ namespace Core6.Routing
                     new EndpointInstance(sales, "2"));
             }
         }
+
         #endregion
 
         #region Routing-DynamicEndpointMapping
+
         class DynamicEndpointMapping : Feature
         {
             protected override void Setup(FeatureConfigurationContext context)
@@ -113,14 +116,15 @@ namespace Core6.Routing
                     {
                         return new[]
                         {
-                        new EndpointInstance(e, "1").SetProperty("SomeProp", "SomeValue"),
-                        new EndpointInstance(e, "2").AtMachine("B")
-                    };
+                            new EndpointInstance(e, "1").SetProperty("SomeProp", "SomeValue"),
+                            new EndpointInstance(e, "2").AtMachine("B")
+                        };
                     }
                     return null;
                 });
             }
         }
+
         #endregion
 
         void CustomDistributionStrategy(EndpointConfiguration endpointConfiguration)
