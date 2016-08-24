@@ -1,5 +1,5 @@
 ---
-title: Manually configuring RavenDB DTC
+title: Configuring RavenDB DTC
 summary: Guidance on how to change the RavenDB ResourceManagerID and TransactionRecoveryStorage.
 component: Raven
 tags:
