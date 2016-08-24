@@ -1,5 +1,5 @@
 ---
-title: Using Outbox with RavenDB persistence
+title: Outbox with RavenDB persistence
 tags:
  - RavenDB
  - Outbox
@@ -10,12 +10,12 @@ related:
 The [Outbox](/nservicebus/outbox) feature requires persistence in order to store the messages and enable deduplication.
 
 
-## What extra documents does RavenDB outbox persistence create
+## Extra tables created by the RavenDB Outbox persistence
 
 To keep track of duplicate messages, the RavenDB implementation of Outbox creates a special collection of documents called `OutboxRecord`.
 
 
-## How long are the deduplication records kept
+## Deduplication record lifespan
 
 The RavenDB implementation by default keeps deduplication records for 7 days and runs the purge every 1 minute.
 
