@@ -1,6 +1,7 @@
 ---
 title: 'Gateway: Multi-Site Deployments'
 summary: Explanation of how NServiceBus handles multi-site communication.
+component: Gateway
 redirects:
  - nservicebus/the-gateway-and-multi-site-distribution
 related:
@@ -98,7 +99,7 @@ Then at configuration time:
 snippet:UseCustomConfigurationSourceForGatewaySitesConfig
 
 
-NServiceBus automatically sets the required headers to enable sending messages back over the gateway using the familiar `Bus.Reply`.
+NServiceBus automatically sets the required headers to enable sending messages back over the gateway using the familiar `Reply`.
 
 NOTE: All cross-site interactions are performed internally to a service, so publish and subscribe are not supported across gateways.
 
