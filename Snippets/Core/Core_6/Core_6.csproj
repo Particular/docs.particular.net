@@ -178,7 +178,6 @@
     <Compile Include="NonDurable\DisableDurable.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="InstallSomething.cs" />
-    <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
     <Compile Include="Outbox\Usage.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Persistence\Msmq\Usage.cs" />

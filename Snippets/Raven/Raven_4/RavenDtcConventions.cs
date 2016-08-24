@@ -23,11 +23,12 @@ class RavenDtcConventions :
 
     IDocumentStore CreateDocumentStore(ReadOnlySettings settings)
     {
-        var endpointName = settings.EndpointName().ToString();
+        var endpointName = settings.EndpointName();
 
         var store = new DocumentStore
         {
-            Url = "http://localhost:8083", // RavenServerUrl
+            // RavenServerUrl
+            Url = "http://localhost:8083",
             DefaultDatabase = endpointName
         };
 

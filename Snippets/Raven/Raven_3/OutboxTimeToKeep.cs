@@ -1,12 +1,12 @@
-﻿namespace Core5.Outbox.RavenDB
+﻿namespace Raven_3
 {
     using System;
     using NServiceBus;
     using NServiceBus.RavenDB.Outbox;
 
-    class TimeToKeep
+    class OutboxTimeToKeep
     {
-        TimeToKeep(BusConfiguration busConfiguration)
+        OutboxTimeToKeep(BusConfiguration busConfiguration)
         {
             #region OutboxRavendBTimeToKeep
             busConfiguration.SetTimeToKeepDeduplicationData(TimeSpan.FromDays(7));

@@ -33,7 +33,8 @@ static class RavenDtcExtensions
         var txRecoveryPath = Path.Combine(programDataPath, "NServiceBus.RavenDB", resourceManagerId.ToString());
         var store = new DocumentStore
         {
-            Url = "http://localhost:8083", // RavenServerUrl
+            // RavenServerUrl
+            Url = "http://localhost:8083",
             DefaultDatabase = endpointName,
             ResourceManagerId = resourceManagerId,
             TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(txRecoveryPath)

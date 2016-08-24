@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Configure.cs" />
     <Compile Include="RavenDtcConventions.cs" />
+    <Compile Include="OutboxTimeToKeep.cs" />
     <Compile Include="UpgradeGuides\3to4\HandlerWithRavenSession.cs" />
     <Compile Include="UpgradeGuides\3to4\SharedSessionEndpointConfig.cs" />
   </ItemGroup>

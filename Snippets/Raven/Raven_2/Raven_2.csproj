@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configure.cs" />
+    <Compile Include="OutboxTimeToKeep.cs" />
     <Compile Include="RavenDtcConventions.cs" />
   </ItemGroup>
   <ItemGroup>
