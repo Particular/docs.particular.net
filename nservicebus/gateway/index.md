@@ -58,7 +58,7 @@ snippet:SendToSites
 
 ### Configuring the gateway
 
-In Versions 5 and above the gateway is provided by the `NServiceBus.Gateway` NuGet package. In Version 3 and Version 4 the gateway is part of the `NServiceBus` NuGet package.
+In Versions 5 and above the gateway is provided by the `NServiceBus.Gateway` NuGet package. In Version 4 the gateway is part of the `NServiceBus` NuGet package.
 
 The gateway feature needs to be explicitly enabled using configuration API:
 
