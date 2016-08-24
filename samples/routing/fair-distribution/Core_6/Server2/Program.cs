@@ -20,7 +20,6 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         endpointConfiguration.AuditProcessedMessagesTo("audit");
-        endpointConfiguration.UseTransport<MsmqTransport>().EnableQueueNameOverrideInAddressTranslation();
 
         endpointConfiguration.EnableFeature<FairDistribution>();
 

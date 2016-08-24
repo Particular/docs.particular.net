@@ -9,37 +9,35 @@ class FlowManager
 {
     public long GetNextMarker(string transportAddress)
     {
-        var f = data.GetOrAdd(transportAddress, s => new FlowData());
+        var f = data.GetOrAdd(transportAddress, s => new FlowData(transportAddress));
         return f.GenerateMarker();
     }
 
-    public void Acknowledge(string key, int endpointInstanceHash, long markerValue)
+    public void Acknowledge(string receiverAddress, long markerValue)
     {
         FlowData f;
-        if (data.TryGetValue(key, out f))
+        if (data.TryGetValue(receiverAddress, out f))
         {
-            f.Acknowledge(endpointInstanceHash, markerValue);
+            f.Acknowledge(markerValue);
         }
     }
 
     #region GetLeastBusy
 
-    public int? GetLeastBusyInstanceHash(IEnumerable<UnicastRoutingTarget> allInstances)
+    public string FindShortestQueue(string[] receiverAddresses)
     {
         FlowData best = null;
 
-        foreach (var hash in allInstances
-            .Where(t => t.Instance != null)
-            .Select(t => t.Instance.ToString().GetHashCode()))
+        foreach (var address in receiverAddresses)
         {
-            var candidate = data.Values.FirstOrDefault(o => o.InstanceHash == hash);
-            if (candidate == null) // This instance is not yet tracked, so assume it has shortest queue.
+            FlowData candidate;
+            if (!data.TryGetValue(address, out candidate)) // This instance is not yet tracked, so assume it has shortest queue.
             {
-                return hash;
+                return address;
             }
             best = Compare(best, candidate);
         }
-        return best?.InstanceHash;
+        return best.Address;
     }
 
     #endregion
@@ -62,11 +60,15 @@ class FlowManager
 
     class FlowData
     {
-        int instanceHash;
         long lastAckedMarker;
         long lastGeneratedMarker;
 
-        public int InstanceHash => instanceHash;
+        public FlowData(string transportAddress)
+        {
+            Address = transportAddress;
+        }
+
+        public string Address { get; }
 
         public long MessagesInFlight => lastGeneratedMarker - lastAckedMarker;
 
@@ -75,9 +77,8 @@ class FlowManager
             return Interlocked.Increment(ref lastGeneratedMarker);
         }
 
-        public void Acknowledge(int instanceHash, long markerValue)
+        public void Acknowledge(long markerValue)
         {
-            this.instanceHash = instanceHash;
             InterlockedExchangeIfGreaterThan(ref lastAckedMarker, markerValue);
         }
 
