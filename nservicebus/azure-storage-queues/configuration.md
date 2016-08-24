@@ -131,7 +131,7 @@ It is possible to accidentally leak sensitive information in the connection stri
 
 In order to prevent it, `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 7 and above allow for creating an alias for each connection string. The alias is mapped to the physical connection string, and connection strings are always referred to by their alias. In the event of an error or when logging only the alias can be accidentally leaked.
 
-This feature can be enabled by specifying `.UseAccountAliasesInsteadOfConnectionStrings()` when configuring the `AzureStorageQueueTransport`:
+This feature can be enabled when configuring the `AzureStorageQueueTransport`:
 
 snippet:AzureStorageQueueUseAccountAliasesInsteadOfConnectionStrings
 
