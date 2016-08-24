@@ -2,6 +2,8 @@
 title: Message routing
 summary: How NServiceBus routes messages between the endpoints.
 reviewed: 2016-06-11
+component: Core
+versions: '[6,]'
 tags:
 - routing
 - message
