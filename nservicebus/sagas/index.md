@@ -74,7 +74,7 @@ Version 5 and below allowed correlation on more than one saga property.
 
 snippet:saga-find-by-expression
 
-Underneath the covers, when `CompleteOrder` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `OrderSagaData` that has a property `OrderId` whose value is the same as the `OrderId` property of the message. If found the saga instance will be loaded and the `Handle` method for the `CompleteOrder` message will be invoked. Should the saga instance not be found and the message not be allowed to start a saga, the [saga not found](/nservicebus/sagas/saga-not-found.md) handlers will be invoked.
+When `CompleteOrder` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `OrderSagaData` that has a property `OrderId` whose value is the same as the `OrderId` property of the message. If found the saga instance will be loaded and the `Handle` method for the `CompleteOrder` message will be invoked. Should the saga instance not be found and the message not be allowed to start a saga, the [saga not found](/nservicebus/sagas/saga-not-found.md) handlers will be invoked.
 
 If correlating on more than one property is necessary, or matched properties are of different types, use a [custom saga finder](saga-finding.md).
 
