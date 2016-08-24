@@ -10,7 +10,6 @@ namespace Core5.Extending
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
-
         }
     }
 
