@@ -8,7 +8,6 @@ namespace Core6.Extending
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
-
         }
     }
     #endregion
