@@ -1,5 +1,5 @@
 ---
-title: Using Outbox with NHibernate persistence
+title: Outbox with NHibernate persistence
 versions: '[6.0,)'
 component: NHibernate
 reviewed: 2016-08-24
