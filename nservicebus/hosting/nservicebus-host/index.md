@@ -211,3 +211,30 @@ When using the NServiceBus host, installers are invoked as shown:
 The installers are controlled by both the `/install` command line option to the host and the current profile in use. Custom profiles can be created to meet other specific requirements.
 
 NOTE: The use of `/installInfrastructure` flag with the `NServiceBus.Host` has been deprecated in Version 4.0. To install needed infrastructure, use the [PowerShell commandlets](/nservicebus/operations/management-using-powershell.md) instead.
+
+
+
+## Specify Endpoint Name
+
+
+### Namespace convention
+
+When using NServiceBus.Host, the namespace of the class implementing `IConfigureThisEndpoint` will be used as the endpoint name as the default convention. In the following example the endpoint name when running NServiceBus host becomes `MyServer`. This is the recommended way to name a endpoint. Also this emphasizes convention over configuration approach.
+
+snippet:EndpointNameByNamespace
+
+
+### Defined in code
+
+Set the endpoint name using the `DefineEndpointName(name)` extension method on the endpoint configuration.
+
+snippet:EndpointNameInCodeForHost
+
+
+### EndpointName attribute
+
+Set the endpoint name using the `[EndpointName]` attribute on the endpoint configuration.
+
+NOTE: This will only work when using [NServiceBus host](/nservicebus/hosting/nservicebus-host/).
+
+snippet: EndpointNameByAttribute

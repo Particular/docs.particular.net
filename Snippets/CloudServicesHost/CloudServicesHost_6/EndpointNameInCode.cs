@@ -1,12 +1,12 @@
-﻿namespace CloudServicesHost_7
+﻿namespace CloudServicesHost_6
 {
     using NServiceBus;
     public class EndpointNameInCode : IConfigureThisEndpoint
     {
         #region EndpointNameInCodeForAzureHost
-        public void Customize(EndpointConfiguration endpointConfiguration)
+        public void Customize(BusConfiguration busConfiguration)
         {
-            endpointConfiguration.DefineEndpointName("CustomEndpointName");
+            busConfiguration.EndpointName("CustomEndpointName");
         }
         #endregion
     }
