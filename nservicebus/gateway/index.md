@@ -1,9 +1,9 @@
 ---
 title: Gateway
 summary: NServiceBus enables durable fire-and-forget messaging across physically separated IT infrastructure
-component: 
+component: Gateway
 reviewed: 2016-07-23
-redirects: Gateway
+redirects:
  - nservicebus/introduction-to-the-gateway
 related:
  - samples/gateway
