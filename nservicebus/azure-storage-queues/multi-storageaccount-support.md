@@ -64,7 +64,7 @@ Each endpoint uses its own Azure storage account, thereby increasing message thr
 
 ## Using aliases for connection strings to storage accounts for Scale Out
 
-When the message throughput is increased, by using multiple storage accounts, its worth to consider using aliases instead of raw connection strings. When applied, raw connection string values are replaced with registered aliases removing the possibility of leaking a connection string value. The concept of [using aliases for connection strings to storage accounts](/nservicebus/azure-storage-queues/configuration.md#using-aliases-for-connection-strings-to-storage-accounts) has been introduced in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Version 7. When using a single account, aliasing connection string is limited to calling `.UseAccountAliasesInsteadOfConnectionStrings()`. When Scaling Out is applied, it requires registering an alias for each storage account.
+When the message throughput is increased, by using multiple storage accounts, it's worth to consider using aliases instead of raw connection strings. When applied, raw connection string values are replaced with registered aliases removing the possibility of leaking a connection string value. The concept of [using aliases for connection strings to storage accounts](/nservicebus/azure-storage-queues/configuration.md#using-aliases-for-connection-strings-to-storage-accounts) has been introduced in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Version 7. When using a single account, aliasing connection string is limited to calling `.UseAccountAliasesInsteadOfConnectionStrings()`. When Scaling Out is applied, it requires registering an alias for each storage account.
 
 Consider the following example:
 
