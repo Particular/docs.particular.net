@@ -35,12 +35,6 @@ Using NServiceBus, it is possible to explicitly define the data used for this st
 
 snippet: simple-saga-data
 
-There are two production-supported storage mechanisms for saga data in NServiceBus, namely RavenDB and NHibernate. Prior to Version 5, RavenDB was a default implementation. Since NServiceBus 5, both implementations are equal and the user needs to explicitly chose one.
-
-Both implementations have their strong points. While the schema-less nature of document databases makes them a perfect fit for saga storage where each saga instance is persisted as a single document, NHibernate allows using almost any relational database engine existing.
-
-These implementations can be swap out by implementing the `ISagaPersister` interface (`IPersistSagas` prior to Version 5).
-
 
 ## Adding behavior
 
