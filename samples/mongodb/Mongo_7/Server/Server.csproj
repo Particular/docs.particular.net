@@ -40,11 +40,11 @@
       <HintPath>..\..\..\..\packages\MongoDB.Driver.GridFS.2.2.4\lib\net45\MongoDB.Driver.GridFS.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\NServiceBus.6.0.0-beta0003\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.6.0.0-beta0007\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Persistence.MongoDB, Version=7.0.0.17, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\NServiceBus.Persistence.MongoDb.7.0.0.17-beta1\lib\net452\NServiceBus.Persistence.MongoDB.dll</HintPath>
+    <Reference Include="NServiceBus.Persistence.MongoDB, Version=7.0.0.21, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\NServiceBus.Persistence.MongoDb.7.0.0.21-beta1\lib\net452\NServiceBus.Persistence.MongoDB.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
