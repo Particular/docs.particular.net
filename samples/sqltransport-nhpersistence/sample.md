@@ -11,7 +11,7 @@ related:
 - nservicebus/sqlserver
 ---
 
- 1. Make sure an instance is SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create a databases `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under *security* folder in SSMS database tree).
+ 1. Make sure an instance is SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create a databases `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under *security* directory in SSMS database tree).
  1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
  1. Start the Receiver project.
  1. In the Sender's console notice the `Press <enter> to send a message` text when the app is ready.

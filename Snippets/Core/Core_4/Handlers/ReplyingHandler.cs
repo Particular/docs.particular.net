@@ -30,7 +30,7 @@
             bus.Send(bus.CurrentMessageContext.ReplyToAddress, bus.CurrentMessageContext.Id, response);
         }
 
-        #endregion ReplyingMessageHandler
+        #endregion
 
     }
 

@@ -101,7 +101,7 @@ snippet:ComponentRegistartion
 
 snippet: SendingSmall
 
-Since the message buffer field is empty, `GZipStreamer` in the outgoing transport message mutator easily compresses it to a size under the MSMQ limit of 4MB and the message will get to the server.
+Since the message buffer field is empty, `GZipStreamer` in the outgoing transport message mutator easily compresses it to a size within the MSMQ limit of 4MB and the message will get to the server.
 
 See how an invalid message is sent that will never be received since an exception will be thrown at the outgoing message mutator:
 

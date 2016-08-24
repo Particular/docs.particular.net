@@ -17,5 +17,5 @@ If this exception is encountered when using NServiceBus in an ASP.NET applicatio
 ## Solution
 
  1. Stop the [w3svc process](https://technet.microsoft.com/en-us/library/cc734944.aspx) of the website being upgraded.
- 1. Delete temporary ASP.NET files, usually found in the folder `c:\Windows\Microsoft.NET\Framework(64)\{version}\`.
+ 1. Delete temporary ASP.NET files, usually found in the directory `c:\Windows\Microsoft.NET\Framework(64)\{version}\`.
  1. Run the application again. The exception should no longer happen.

@@ -38,10 +38,10 @@ snippet: MessageWithLargePayload
 
 `DataBusProperty<byte[]>` is an NServiceBus data type that instructs NServiceBus to treat the `LargeBlob` property as an attachment. It is not transported in the NServiceBus normal flow.
 
-When sending a message using the NServiceBus Message attachments mechanism, the message's payload resides in the folder. In addition, a
+When sending a message using the NServiceBus Message attachments mechanism, the message's payload resides in the directory. In addition, a
 'signaling' message is sent to the Receiving endpoint.
 
-The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is allowed to clean the MSMQ message after one minute if it was not received by the receiver. The message payload remains in the Storage folder after the MSMQ message is cleaned by the NServiceBus framework.
+The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is allowed to clean the MSMQ message after one minute if it was not received by the receiver. The message payload remains in the Storage directory after the MSMQ message is cleaned by the NServiceBus framework.
 
 Following is an example of the signaling message that is sent to the receiving endpoint:
 

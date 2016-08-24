@@ -29,14 +29,14 @@ ServicePulse is configured to connect to the ServiceControl REST API. To specify
 
 ### For Versions before 1.3.0
 
- * Go to the installation folder for ServicePulse. Typically this is `C:\Program Files (x86)\Particular Software\ServicePulse\`
- * Go to the `app` folder and edit `config.js`
+ * Go to the installation directory for ServicePulse. Typically this is `C:\Program Files (x86)\Particular Software\ServicePulse\`
+ * Go to the `app` directory and edit `config.js`
  * Change the value of the url after `service_control_url`
 
 
 ### For Versions 1.3.0 and after
 
- * Go to the installation folder for ServicePulse. Typically this is `C:\Program Files (x86)\Particular Software\ServicePulse\`
- * Go to the `app\js` folder and edit `app.constants.js`
- * If there are any `*.js` in the `app` folder delete them
+ * Go to the installation directory for ServicePulse. Typically this is `C:\Program Files (x86)\Particular Software\ServicePulse\`
+ * Go to the `app\js` directory and edit `app.constants.js`
+ * If there are any `*.js` in the `app` directory delete them
  * Change the value of the url after `service_control_url`

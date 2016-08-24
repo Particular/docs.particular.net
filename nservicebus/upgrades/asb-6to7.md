@@ -29,7 +29,7 @@ snippet:setting_asb_connection_string
 
 ### Setting Entity Property Values
 
-The other configuration properties found on `AzureServiceBusQueueConfig` were related to the configuration of Azure Service Bus entities used under the hood. Even though the name implied differently, these settings were not only applied to queues, but also to topics and subscriptions.
+The other configuration properties found on `AzureServiceBusQueueConfig` were related to the configuration of Azure Service Bus entities. Even though the name implied differently, these settings were not only applied to queues, but also to topics and subscriptions.
 
 In the new configuration API the settings for queues, topics and subscriptions can be configured individually using the `Queues()`, `Topics()` and `Subscriptions()` extension points.
 

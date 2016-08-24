@@ -96,7 +96,7 @@ The logging behavior configured for the three built-in profiles is shown:
 | Integration | Console      | Info
 | Production  | Rolling File | Configurable, Warn by default
 
-When running under the production profile, the logs are written to 'logfile' in the same directory as the exe. The file grows to a maximum size of 1MB and then a new file is created. A maximum of 10 files is held and then the oldest file is erased. If no configuration exists, the logging threshold is Warn. To configure the logging threshold see [changing logging level via config file](/nservicebus/logging/#logging-levels-changing-the-logging-level-via-app-config).
+When running the production profile, the logs are written to 'logfile' in the same directory as the exe. The file grows to a maximum size of 1MB and then a new file is created. A maximum of 10 files is held and then the oldest file is erased. If no configuration exists, the logging threshold is Warn. To configure the logging threshold see [changing logging level via config file](/nservicebus/logging/#logging-levels-changing-the-logging-level-via-app-config).
 
 For changes to the configuration to have an effect, the process must be restarted.
 

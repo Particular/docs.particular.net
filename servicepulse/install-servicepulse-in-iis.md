@@ -20,12 +20,12 @@ These instructions assume the following:
 
 Steps
 
- 1. Create folder for ServicePulse files.
+ 1. Create directory for ServicePulse files.
  1. Extract ServicePulse files.
  1. Disable/Remove ServicePulse.
  1. Remove `netsh` url restriction.
  1. Create ServicePulse website in IIS.
- 1. Refer to ServicePulse folder.
+ 1. Refer to ServicePulse directory.
 
 
 ServicePulse, by default, is [installed](installation.md) as a Windows Service that will self-host the ServicePulse web application.
@@ -64,11 +64,11 @@ This is useful to lock down access to ServicePulse or to expose the web site ove
 Installation Steps:
 
  1. Install the IIS [Application Request Routing](http://www.iis.net/downloads/microsoft/application-request-routing) extension.
- 1. Go to the root folder for the Web site created in the basic configuration.
+ 1. Go to the root directory for the Web site created in the basic configuration.
  1. Create a new subdirectory called `api`.
  1. Edit `app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `/api`.
  1. Open the IIS management tool.
- 1. Select the api sub folder from within IIS management tool.
+ 1. Select the api sub directory from within IIS management tool.
  1. Click the `URL Rewrite`.
  1. Add a new URL Rewrite Rule.
  1. Choose `Reverse Proxy` from the list of rule templates.
@@ -76,7 +76,7 @@ Installation Steps:
  1. The website will now answer on `/api` as though it were directly accessing ServiceControl. Verify this by opening the reverse proxy url in a browser `http://localhost:9090/api/` (9090 is the port chosen for the ServicePulse web site).
  1. Restrict access to website.
 
-The procedure above should result in a `web.config` file in the newly created `/api` folder similar to this:
+The procedure above should result in a `web.config` file in the newly created `/api` directory similar to this:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -103,7 +103,7 @@ It is also recommended that the IIS web site be configured to use SSL if an auth
 
 ### Configuring Reverse Proxy in a non-root directory
 
-Due to a [bug in SignalR](https://github.com/SignalR/SignalR/issues/3649) in Microsoft.AspNet.SignalR.JS version 2.2.0, usage of IIS as a reverse proxy in a virtual directory requires an additional URL Rewrite Rule on the `/api/` sub folder. This rule makes sure that SignalR uses the correct path when hosted within a virtual directory. This rule should look as follows:
+Due to a [bug in SignalR](https://github.com/SignalR/SignalR/issues/3649) in Microsoft.AspNet.SignalR.JS version 2.2.0, usage of IIS as a reverse proxy in a virtual directory requires an additional URL Rewrite Rule on the `/api/` sub directory. This rule makes sure that SignalR uses the correct path when hosted within a virtual directory. This rule should look as follows:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

@@ -87,7 +87,7 @@ The data in RavenDB is stored in three different collections.
 
 Note that the message type maps to multiple subscriber endpoints.
 
- * The Subscription message type and version are stored under the `MessageType` property.
+ * The Subscription message type and version are stored in the `MessageType` property.
  * The list of subscribers is stored in a array of objects each containing `Queue` and `MachineName` properties.
 
 ![](subscriptions.png)

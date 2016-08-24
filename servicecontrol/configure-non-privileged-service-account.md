@@ -35,7 +35,7 @@ If the ServiceControl configuration is manually changed to listen to an alternat
 
 ### RavenDB Security
 
-The installer will set the permissions to allow any member of the local Windows Users group to modify files in the embedded Raven DB folder. These rights can be changed manually to be more restrictive as long as the service account user retains modify rights. Note that manual changes to the ACLs may be lost during an upgrade or re-installation of ServiceControl.
+The installer will set the permissions to allow any member of the local Windows Users group to modify files in the embedded Raven DB directory. These rights can be changed manually to be more restrictive as long as the service account user retains modify rights. Note that manual changes to the ACLs may be lost during an upgrade or re-installation of ServiceControl.
 
 
 ### Testing the Configuration

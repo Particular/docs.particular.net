@@ -55,7 +55,7 @@ Saga data stored in Azure will need to be patched using the `NServiceBus.AzureSt
      </connectionStrings>
   </configuration>
   ```
- 1. Copy endpoint dlls to the same folder as the de-duplication tool. These files will be scanned to find all implementations of `IContainSagaData` which will indicate the sagas that need to be verified in Azure Storage.
+ 1. Copy endpoint dlls to the same directory as the de-duplication tool. These files will be scanned to find all implementations of `IContainSagaData` which will indicate the sagas that need to be verified in Azure Storage.
  1. Run de-duplication utility (refer to the [Running the de-duplication utility](#patch-steps-running-the-de-duplication-utility) section for more details).
  1. All class names returned by the de-duplication tool in the previous step will need to add the `[Unique]` attribute to one property. `IContainSagaData` classes without a property decorated by the `[Unique]` attribute will cause their sagas to throw exceptions post upgrade.
  1. Update NServiceBus.Azure dependency to version 6.2.4 or higher in all endpoints that use it and release the updated endpoints.
@@ -70,7 +70,7 @@ Saga data stored in Azure will need to be patched using the `NServiceBus.AzureSt
 
 Open a commandline and run the following command `NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe directory=<directory> operation=Download` where:
 
- * **directory**: This should be the full path of the working directory that the de-duplication tool will use for storing conflicting sagas payloads. The tool will need to have read, write and delete permissions on the folder selected. If there are any spaces in the directory path this value should be enclosed in double quotes. If the tool was run previously, ensure that the directory indicated is empty. For example: `directory="C:\my working folder\deduplication"`.
+ * **directory**: This should be the full path of the working directory that the de-duplication tool will use for storing conflicting sagas payloads. The tool will need to have read, write and delete permissions on the directory selected. If there are any spaces in the directory path this value should be enclosed in double quotes. If the tool was run previously, ensure that the directory indicated is empty. For example: `directory="C:\my working directory\deduplication"`.
 
 
 #### 2. Utility Output
@@ -101,7 +101,7 @@ data
         └───8ee2f4b2-eaf2-4d12-a87e-a5e000aaa815
 ```
 
-Where the `0e36dc9a-eec0-455c-a4d3-b8b275711d15` and `8ee2f4b2-eaf2-4d12-a87e-a5e000aaa815` folders contain the JSON payload of each of the conflicting sagas. In addition to the saga properties the JSON payload contains a property, `"$Choose_this_saga"`, to indicate which of the conflicting sagas is to be used as the selected saga.
+Where the `0e36dc9a-eec0-455c-a4d3-b8b275711d15` and `8ee2f4b2-eaf2-4d12-a87e-a5e000aaa815` directories contain the JSON payload of each of the conflicting sagas. In addition to the saga properties the JSON payload contains a property, `"$Choose_this_saga"`, to indicate which of the conflicting sagas is to be used as the selected saga.
 
 ```json
 {

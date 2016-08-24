@@ -48,10 +48,10 @@ There are two ways to avoid the issue:
 
 Starting from IIS 7.5 and above the above steps can be combined into one by following these steps:
 
- 1. Enable [AlwaysRunning mode](https://msdn.microsoft.com/en-us/library/ee677285.aspx) for the application pool of the site. Go to the application pool management, open the Advanced Settings under General switch the `Start Mode` to `AlwaysRunning`.
- 1. Enabled Preload for the site itself. Right click on the site, then Manage Site under Advanced Settings in the General settings, switch `Enable Preload` to `true`.
+ 1. Enable [AlwaysRunning mode](https://msdn.microsoft.com/en-us/library/ee677285.aspx) for the application pool of the site. Go to the application pool management, open the Advanced Settings in General switch the `Start Mode` to `AlwaysRunning`.
+ 1. Enabled Preload for the site itself. Right click on the site, then Manage Site in Advanced Settings in the General settings, switch `Enable Preload` to `true`.
  1. Install the [Application Initialization Module](http://www.iis.net/learn/get-started/whats-new-in-iis-8/iis-80-application-initialization).
- 1. Add the following to the web.config under the [system.webServer node](https://msdn.microsoft.com/en-us/library/ms689429.aspx).
+ 1. Add the following to the web.config in the [system.webServer node](https://msdn.microsoft.com/en-us/library/ms689429.aspx).
 
 ```xml
 <applicationInitialization doAppInitAfterRestart="true" >

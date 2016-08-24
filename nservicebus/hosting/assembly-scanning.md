@@ -8,7 +8,7 @@ redirects:
  - nservicebus/assembly-scanning
 ---
 
-By default, NServiceBus scans all assemblies in the endpoint bin folder to find types implementing its interfaces so that it can configure them automatically.
+By default, NServiceBus scans all assemblies in the endpoint bin directory to find types implementing its interfaces so that it can configure them automatically.
 
 Scanning is invoked by default for self-hosting
 
@@ -30,11 +30,11 @@ NOTE: Extensions to NServiceBus (for example `NServiceBus.Distributor.MSMQ.dll` 
 
 ## Nested Directories
 
-In Versions 6 and above the default behavior is **not** to scan nested folders for assemblies. Nested folders assembly scanning can be enabled using:
+In Versions 6 and above the default behavior is **not** to scan nested directories for assemblies. Nested directories assembly scanning can be enabled using:
 
 snippet:ScanningNestedAssebliesEnabled
 
-In Versions 5 and below assemblies in nested folders are scanned by default.
+In Versions 5 and below assemblies in nested directories are scanned by default.
 
 
 ## Assemblies to scan

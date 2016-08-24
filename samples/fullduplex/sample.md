@@ -37,7 +37,7 @@ snippet: ClientLoop
 
 This code performs the following action every time the 'Enter' key is pressed:
 
- * A new Guid is created and then set in the outgoing headers of the bus under the "Test" key.
+ * A new Guid is created and then set in the outgoing headers of the bus using the "Test" key.
  * The bus sends a `RequestDataMessage `whose DataId property is set to the same `Guid`, and whose `String` property is set to an XML fragment.
  * A callback is registered and invoked when a response arrives to the request sent. In the callback, the values of several headers are written to the console.
 

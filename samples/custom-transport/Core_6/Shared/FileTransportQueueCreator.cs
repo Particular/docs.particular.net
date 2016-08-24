@@ -11,18 +11,18 @@ class FileTransportQueueCreator :
     {
         foreach (var address in queueBindings.SendingAddresses)
         {
-            CreateQueueFolder(address);
+            CreateQueueDirectory(address);
         }
 
         foreach (var address in queueBindings.ReceivingAddresses)
         {
-            CreateQueueFolder(address);
+            CreateQueueDirectory(address);
         }
 
         return TaskEx.CompletedTask;
     }
 
-    static void CreateQueueFolder(string address)
+    static void CreateQueueDirectory(string address)
     {
         var fullPath = BaseDirectoryBuilder.BuildBasePath(address);
         var commitedPath = Path.Combine(fullPath, ".committed");

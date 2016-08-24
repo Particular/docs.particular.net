@@ -51,7 +51,7 @@ For a more detailed overview over the compatibility see [RavenDB version compati
 
 [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) smaller than Version 3.0.0 requires RavenDB Version 2.5 build 2908 or higher build number for Version 2.5.
 
-NOTE: If RavenDB 2.0 is already installed from a previous NServiceBus Version 4.0 or prior version and want to run Version 2.5, it can be uninstalled by finding the `Raven.Server.exe` executable on the machine and running it from the command line with `/uninstall`. See [Uninstalling RavenDB](uninstalling-v4.md) for full removal instructions. Note that the Version 2.5 download will be unlicensed, so a copy of the license.xml file will need to be taken from the Version 2.0 installation folder to the Version 2.5 installation folder. Contact Particular Software and request a Version 2.5 license file, or use a custom license file.
+NOTE: If RavenDB 2.0 is already installed from a previous NServiceBus Version 4.0 or prior version and want to run Version 2.5, it can be uninstalled by finding the `Raven.Server.exe` executable on the machine and running it from the command line with `/uninstall`. See [Uninstalling RavenDB](uninstalling-v4.md) for full removal instructions. Note that the Version 2.5 download will be unlicensed, so a copy of the license.xml file will need to be taken from the Version 2.0 installation directory to the Version 2.5 installation directory. Contact Particular Software and request a Version 2.5 license file, or use a custom license file.
 
 NServiceBus Version 4.0 is tested and compatible with RavenDB Version 2261 and RavenDB Version 2.
 

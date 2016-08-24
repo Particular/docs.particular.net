@@ -37,7 +37,7 @@ The role entry point also doubles as a host process for the endpoint, one that i
 
 Notice that an `NServiceBus.Hosting.Azure.HostProcess.exe` is now referenced. This exe can also run on a development machine outside the context of a service runtime. It can also be used to debug an endpoint locally without starting the Azure emulator. This is done by adding this exe to the debug path in the project properties.
 
-Next pack the build output as a zip file so that the `NServiceBus.Hosting.Azure.HostProcess.exe` is in the root of the archive. (Just zip the debug or release folder)
+Next pack the build output as a zip file so that the `NServiceBus.Hosting.Azure.HostProcess.exe` is in the root of the archive. (Just zip the debug or release directory)
 
 Finally go to Azure storage account and create a private container called `endpoints` and put the zip file in there. Configure the host role entry point to download endpoints from this container later.
 

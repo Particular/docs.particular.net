@@ -24,7 +24,7 @@ Despite the many performance counters Microsoft provides for MSMQ (including mes
 
 ## NServiceBus performance counters
 
-NServiceBus includes several performance counters. They are installed under the `NServiceBus` category.
+NServiceBus includes several performance counters. They are installed in the `NServiceBus` category.
 
 Since all performance counters in Windows are exposed via Windows Management Instrumentation (WMI), it is very straightforward to pull this information into the existing monitoring infrastructure.
 

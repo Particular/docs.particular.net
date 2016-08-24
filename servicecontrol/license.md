@@ -33,7 +33,7 @@ Import-ServiceControlLicense <LicenseFile>
 
 ### Instance Licensing
 
-In Version 1.17 and below, a license can be applied to an individual instance rather than using a license installed in the registry. To do this, copy the `license.xml` file to a `license` folder under the installation path of the instance.
+In Version 1.17 and below, a license can be applied to an individual instance rather than using a license installed in the registry. To do this, copy the `license.xml` file to a `license` directory under the installation path of the instance.
 
 NOTE: Instance Licensing is deprecated in Version 1.18 and above. Use the ServiceControl Management Utility or PowerShell module to install the license file to the registry.
 

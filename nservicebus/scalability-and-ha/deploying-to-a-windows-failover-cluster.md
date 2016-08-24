@@ -34,7 +34,7 @@ Set up a clustered DTC access point:
 Configure DTC for NServiceBus:
 
  1. On each server, in `Administrative Tools - Component Services`, expand `Component Services - Computers - My Computer - Distributed Transaction Coordinator`.
- 1. For the Local DTC, if the clustered DTC is on the current node, note the Clustered DTCs folder with the clustered DTC name inside it.
+ 1. For the Local DTC, if the clustered DTC is on the current node, note the Clustered DTCs directory with the clustered DTC name inside it.
  1. For both instances (so three times counting each node and the clustered instance), right-click, select Properties, and switch to the Security tab.
  1. At the very least, check "Network DTC Access" and "Allow Outbound."
  1. Optionally, check "Allow Remote Clients" and "Allow Inbound."

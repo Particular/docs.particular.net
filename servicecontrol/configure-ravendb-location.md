@@ -8,7 +8,7 @@ tags:
 
 Each ServiceControl service stores its data in a RavenDB embedded database. The location of the database is set at install time.
 
-To see the current database location, open the ServiceControl Management Utility and the location is listed under the instance details.
+To see the current database location, open the ServiceControl Management Utility and the location is listed in the instance details.
 
 ![](managementutil-instance-datapath.png 'width=500')
 
@@ -19,7 +19,7 @@ The ServiceControl Management Utility does not provide a means of moving the Ser
 
  * Open the ServiceControl Management Utility
  * Stop the service from the provided options
- * The current database path will be listed in the utility. Copy the contents of this folder to the new location
+ * The current database path will be listed in the utility. Copy the contents of this directory to the new location
  * Ensure that the service account used has read/write access to the new location.
  * Manually edit the configuration and specify the new location by changing/adding the `ServiceControl\DBPath` setting. See [Configuration Settings](creating-config-file.md)
  * Restart the Service

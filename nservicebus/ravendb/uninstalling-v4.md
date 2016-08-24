@@ -8,7 +8,7 @@ redirects:
  - nservicebus/using-ravendb-uninstalling-v4
 ---
 
-As of 2014-10-15, the Platform Installer no longer installs RavenDB Version 2.0 in a folder called "NServiceBus.Persistence.v4" under `Program Files` as a prerequisite since NServiceBus Version 5 no longer uses it as the default persistence - [see RavenDB installation](installation.md). If previously installed this and want to remove it will be necessary to be done manually.
+As of 2014-10-15, the Platform Installer no longer installs RavenDB Version 2.0 in a directory called "NServiceBus.Persistence.v4" under `Program Files` as a prerequisite since NServiceBus Version 5 no longer uses it as the default persistence - [see RavenDB installation](installation.md). If previously installed this and want to remove it will be necessary to be done manually.
 
 
 ## Manual Removal Instructions
@@ -39,11 +39,11 @@ netsh.exe http delete urlacl url=http://+:8080/
 ```
 
 
-### Final Folder Cleanup
+### Final Directory Cleanup
 
-Remove the folder and sub-folder (assuming the of RavenDB databases are are no longer needed).
+Remove the directory and sub-directory (assuming the of RavenDB databases are are no longer needed).
 
-There is one additional cleanup step if the PlatformInstaller was used as the method of install. The Platform Installer used Chocolatey behind the scenes to install packages. It  keeps a copy of the install in a sub-folder.
+There is one additional cleanup step if the PlatformInstaller was used as the method of install. The Platform Installer used Chocolatey behind the scenes to install packages. It  keeps a copy of the install in a sub-directory.
 
 The following PowerShell command will list the directory which can be safely deleted.
 

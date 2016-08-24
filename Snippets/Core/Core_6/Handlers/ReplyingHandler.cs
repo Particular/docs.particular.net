@@ -21,7 +21,7 @@
             return context.Reply(response);
         }
 
-        #endregion ReplyingMessageHandler
+        #endregion
 
     }
 
