@@ -10,7 +10,7 @@ redirects:
  - nservicebus/ravendb/resourcemanagerid
 ---
 
-In order to provide reliable support for distributed transactions in RavenDB, a custom DocumentStore must be provided to NServiceBus and configured to uniquely identify the NServiceBus endpoint to the Distributed Transaction Coordinator (DTC) and provide a storage location for uncommitted transaction recovery.
+In order to provide reliable support for distributed transactions in RavenDB, a custom DocumentStore must be provided and configured to uniquely identify the endpoint to the Distributed Transaction Coordinator (DTC) and provide a storage location for uncommitted transaction recovery.
 
 
 ## Definitions
