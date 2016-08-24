@@ -1,6 +1,7 @@
 ---
 title: Manually configuring RavenDB DTC
 summary: Guidance on how to change the RavenDB ResourceManagerID and TransactionRecoveryStorage.
+component: RavenDB
 tags:
  - RavenDB
  - Persistence
