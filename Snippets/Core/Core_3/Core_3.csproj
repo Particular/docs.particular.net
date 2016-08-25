@@ -29,6 +29,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\log4net.2.0.5\lib\net40-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="NServiceBus">
       <HintPath>..\..\..\packages\NServiceBus.Interfaces.3.3.18\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
@@ -177,6 +178,10 @@
     <Compile Include="Pipeline\Abort\MyMessage.cs" />
     <Compile Include="Routing\BasicOperations.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
+    <Compile Include="Sagas\FindSagas\DbSessionProvider.cs" />
+    <Compile Include="Sagas\FindSagas\MyMessage.cs" />
+    <Compile Include="Sagas\FindSagas\MySagaData.cs" />
+    <Compile Include="Sagas\FindSagas\MySagaFinder.cs" />
     <Compile Include="Sagas\Reply\AlmostDoneMessage.cs" />
     <Compile Include="Sagas\Reply\MySaga.cs" />
     <Compile Include="Sagas\Reply\MySagaData.cs" />

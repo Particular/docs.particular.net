@@ -30,6 +30,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="NHibernate">
       <HintPath>..\..\..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
@@ -158,7 +159,8 @@
     <Compile Include="Forwarding\ConfigurationSource.cs" />
     <Compile Include="Forwarding\ConfigurationSourceUsage.cs" />
     <Compile Include="Forwarding\ProvideConfiguration.cs" />
-    <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
+    <Compile Include="Sagas\FindSagas\DbSessionProvider.cs" />
+    <Compile Include="Sagas\FindSagas\MySagaFinder.cs" />
     <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
     <Compile Include="UpgradeGuides\5to6\AuthorizeSubscriptions.cs" />
     <Compile Include="UpgradeGuides\5to6\Recoverability\DelayedDelivery.cs" />
@@ -293,7 +295,6 @@
     <Compile Include="UpgradeGuides\4to5\BusInstance.cs" />
     <Compile Include="UpgradeGuides\4to5\SagaMappingForUpgrade.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
-    <Compile Include="Sagas\FindSagas\NHibernateSagaFinder.cs" />
     <Compile Include="Sagas\SimpleSaga\OrderSagaData.cs" />
     <Compile Include="Sagas\SimpleSaga\CompleteOrder.cs" />
     <Compile Include="Sagas\SimpleSaga\OrderSaga.cs" />

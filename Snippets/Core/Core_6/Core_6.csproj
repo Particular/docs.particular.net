@@ -35,6 +35,7 @@
       <HintPath>..\..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
@@ -194,8 +195,8 @@
     <Compile Include="Routing\InstanceMapping.cs" />
     <Compile Include="Routing\RoutingAPIs.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
-    <Compile Include="Sagas\FindSagas\NHibernateSagaFinder.cs" />
-    <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
+    <Compile Include="Sagas\FindSagas\MySagaFinder.cs" />
+    <Compile Include="Sagas\FindSagas\SynchronizedStorageSessionEx.cs" />
     <Compile Include="Serialization\AdditionalDeserializers.cs" />
     <Compile Include="Serialization\JsonSerializerUsage.cs" />
     <Compile Include="Serialization\RegisterCustomSerializer.cs" />

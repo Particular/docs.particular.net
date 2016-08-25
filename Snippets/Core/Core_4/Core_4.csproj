@@ -30,6 +30,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="NHibernate">
       <HintPath>..\..\..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
@@ -195,6 +196,10 @@
     <Compile Include="Pipeline\NewStep\NewPipelineStep.cs" />
     <Compile Include="Pipeline\Replace\ReplacePipelineBehavior.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
+    <Compile Include="Sagas\FindSagas\DbSessionProvider.cs" />
+    <Compile Include="Sagas\FindSagas\MyMessage.cs" />
+    <Compile Include="Sagas\FindSagas\MySagaData.cs" />
+    <Compile Include="Sagas\FindSagas\MySagaFinder.cs" />
     <Compile Include="Sagas\Reply\AlmostDoneMessage.cs" />
     <Compile Include="Sagas\Reply\MySaga.cs" />
     <Compile Include="Sagas\Reply\MySagaData.cs" />
