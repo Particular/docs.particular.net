@@ -11,6 +11,7 @@ or a configuration provider:
 snippet:endpoint-mapping-configurationprovider
 
 The `MessageEndpointMappings` collection can be populated based on any external source. It is read during the endpoint start-up, before any messages are sent. Extending the routing with a custom data source makes sense in following scenarios:
+
  * When centralizing all routing information in a database
  * When dynamically calculating routes based on endpoint discovery protocol (similar of UDDI)
  * When using a convention based on massage naming 
