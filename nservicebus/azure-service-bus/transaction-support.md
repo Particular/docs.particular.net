@@ -9,13 +9,13 @@ tags:
 
 ## Transaction Support
 
-Azure Service Bus Transport supports [`SendAtomicWithReceive`, `ReceiveOnly` and `None` transaction mode levels](/nservicebus/transports/transactions.md).
+Azure Service Bus Transport supports `SendsAtomicWithReceive`, `ReceiveOnly` and `None` [`TransportTransactionMode` levels](/nservicebus/transports/transactions.md).
 
 ### Sends atomic with Receive
 
 include: send-atomic-with-receive-note
 
-The `SendAtomicWithReceive` guarantee is achieved by setting the `ViaEntityPath` property on outbound message senders. Its value is set to the receiving queue.
+The `SendsAtomicWithReceive` guarantee is achieved by setting the `ViaEntityPath` property on outbound message senders. Its value is set to the receiving queue.
 
 If the `ViaEntityPath` is not empty, then messages will be added to the receive queue. The messages will be forwarded to their actual destination (inside the broker) only when the complete operation is called on the received brokered message. The message won't be forwarded if the lock duration limit is exceeded (30 seconds by default) or if the message is explicitly abandoned.
 
