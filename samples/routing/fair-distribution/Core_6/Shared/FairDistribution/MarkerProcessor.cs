@@ -4,17 +4,16 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Pipeline;
-using NServiceBus.Routing;
 using NServiceBus.Transport;
 
 class MarkerProcessor :
     ForkConnector<ITransportReceiveContext, IRoutingContext>
 {
-    public MarkerProcessor(EndpointInstance endpointInstance, int maxAckBatchSize)
+    public MarkerProcessor(string endpoint, string localAddress, int maxAckBatchSize)
     {
+        this.endpoint = endpoint;
+        this.localAddress = localAddress;
         this.maxAckBatchSize = maxAckBatchSize;
-        endpointName = endpointInstance.Endpoint;
-        instanceString = endpointInstance.ToString();
     }
 
     #region ProcessMarkers
@@ -26,10 +25,8 @@ class MarkerProcessor :
         string sessionId;
         string markerString;
         string controlAddress;
-        string key;
         var headers = context.Message.Headers;
         if (!headers.TryGetValue("NServiceBus.FlowControl.Marker", out markerString) ||
-            !headers.TryGetValue("NServiceBus.FlowControl.Key", out key) ||
             !headers.TryGetValue("NServiceBus.FlowControl.ControlAddress", out controlAddress) ||
             !headers.TryGetValue("NServiceBus.FlowControl.SessionId", out sessionId))
         {
@@ -43,20 +40,19 @@ class MarkerProcessor :
             updateValueFactory: (k, v) => v.OnNewMarker(sessionId, marker));
         if (tracker.ShouldAcknowledge(maxAckBatchSize))
         {
-            await SendAcknowledgement(context, fork, tracker.Marker, controlAddress, sessionId, key)
+            await SendAcknowledgement(context, fork, tracker.Marker, controlAddress, sessionId)
                 .ConfigureAwait(false);
         }
     }
     #endregion
 
-    Task SendAcknowledgement(ITransportReceiveContext context, Func<IRoutingContext, Task> fork, long lastAcked, string controlAddress, string sessionId, string key)
+    Task SendAcknowledgement(ITransportReceiveContext context, Func<IRoutingContext, Task> fork, long lastAcked, string controlAddress, string sessionId)
     {
         var ackHeaders = new Dictionary<string, string>
         {
             ["NServiceBus.FlowControl.ACK"] = lastAcked.ToString(),
-            ["NServiceBus.FlowControl.Key"] = key,
-            ["NServiceBus.FlowControl.Endpoint"] = endpointName,
-            ["NServiceBus.FlowControl.Instance"] = instanceString,
+            ["NServiceBus.FlowControl.Endpoint"] = endpoint,
+            ["NServiceBus.FlowControl.Address"] = localAddress,
             ["NServiceBus.FlowControl.SessionId"] = sessionId
         };
         var ackMessage = new OutgoingMessage(Guid.NewGuid().ToString(), ackHeaders, new byte[0]);
@@ -64,9 +60,9 @@ class MarkerProcessor :
         return fork(ackContext);
     }
 
+    string endpoint;
     int maxAckBatchSize;
-    string endpointName;
-    string instanceString;
+    string localAddress;
     ConcurrentDictionary<string, MarkerTracker> acknowledgedMarkers = new ConcurrentDictionary<string, MarkerTracker>();
 
     struct MarkerTracker

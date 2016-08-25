@@ -32,8 +32,6 @@ class Program
 
         routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.CustomRouting.Sales");
 
-        transport.EnableQueueNameOverrideInAddressTranslation();
-
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         try

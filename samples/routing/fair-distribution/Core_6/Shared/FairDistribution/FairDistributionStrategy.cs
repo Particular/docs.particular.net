@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.Routing;
 using NServiceBus.Settings;
 
@@ -8,21 +7,14 @@ public class FairDistributionStrategy :
 {
     ReadOnlySettings settings;
 
-    public FairDistributionStrategy(ReadOnlySettings settings)
+    public FairDistributionStrategy(ReadOnlySettings settings, string endpint, DistributionStrategyScope scope) 
+        : base(endpint, scope)
     {
         this.settings = settings;
     }
-
-    public override UnicastRoutingTarget SelectDestination(UnicastRoutingTarget[] allInstances)
+    
+    public override string SelectReceiver(string[] receiverAddresses)
     {
-        var hash = settings.Get<FlowManager>()
-            .GetLeastBusyInstanceHash(allInstances);
-
-        var leastBusyInstance = allInstances.FirstOrDefault(i =>
-        {
-            return i.Instance != null &&
-                   i.Instance.ToString().GetHashCode() == hash;
-        });
-        return leastBusyInstance ?? allInstances.First();
+        return settings.Get<FlowManager>().FindShortestQueue(receiverAddresses);
     }
 }

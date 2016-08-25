@@ -19,7 +19,6 @@ public class FairDistribution :
         var controlAddress = context.Settings.InstanceSpecificQueue() ?? context.Settings.LocalAddress();
 
         var transportInfrastructure = context.Settings.Get<TransportInfrastructure>();
-        var instance = context.Settings.EndpointInstanceName();
 
         var pipeline = context.Pipeline;
         pipeline.Register(
@@ -32,7 +31,7 @@ public class FairDistribution :
             description: "Processes incoming acknowledgements.");
         pipeline.Register(
             stepId: "FlowControl.MarkerProcessor",
-            behavior: new MarkerProcessor(instance, 1),
+            behavior: new MarkerProcessor(context.Settings.EndpointName(), context.Settings.LocalAddress(), 1),
             description: "Processes markers and sends ACKs");
         pipeline.Register(
             stepId: "FlowControl.SendMessageMarker",

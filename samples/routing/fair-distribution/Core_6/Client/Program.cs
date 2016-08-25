@@ -70,8 +70,7 @@ class Program
         var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
         var settings = endpointConfiguration.GetSettings();
         routing.SetMessageDistributionStrategy(
-            endpointName: "Samples.FairDistribution.Server",
-            distributionStrategy: new FairDistributionStrategy(settings));
+            new FairDistributionStrategy(settings, "Samples.FairDistribution.Server", DistributionStrategyScope.Send));
 
         #endregion
     }
@@ -79,7 +78,6 @@ class Program
     static void AddRouting(EndpointConfiguration endpointConfiguration)
     {
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-        transport.EnableQueueNameOverrideInAddressTranslation();
 
         var routing = transport.Routing();
 
