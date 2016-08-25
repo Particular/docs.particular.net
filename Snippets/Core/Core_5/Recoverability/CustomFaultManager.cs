@@ -15,7 +15,7 @@
 
         public void ProcessingAlwaysFailsForMessage(TransportMessage message, Exception e)
         {
-            // implement steps for this message after it fails all first level retry attempts
+            // implement steps for this message after it fails all Immediate Retry attempts
         }
 
         public void Init(Address address)

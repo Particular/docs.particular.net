@@ -30,7 +30,7 @@ More details on [Endpoints and Heartbeats in ServicePulse](intro-endpoints-heart
 
 ### MessageFailed
 
-The `MessageFailed` event is published to notify that a message has failed all the First Level Retry steps and all the Second Level Retry steps and has reached the configured error queue. The event itself carries all the details of the failure and has a `MessageStatus` enumeration that details the type of failure:
+The `MessageFailed` event is published to notify that a message has failed all the [Immediate Retry](/nservicebus/recoverability/#immediate-retries) steps and all the [Delayed Retry](/nservicebus/recoverability/#delayed-retries) steps and has reached the configured error queue. The event itself carries all the details of the failure and has a `MessageStatus` enumeration that details the type of failure:
 
  * `Failed`: The message has failed and has arrived for the first time in the error queue;
 * `RepeatedFailure`: The message has failed multiple times;
