@@ -31,3 +31,12 @@ As of 11 July 2016, Version 4 is no longer supported.
 ### NServiceBus 3.x
 
 As of 10 October 2015, Version 3 is no longer supported.
+
+
+## Compatibility guarantees
+
+The compatibility guarantees cover two aspects: upgrades and communication between endpoints in various versions (so called `wire compatibility`).
+
+The recommended approach is to upgrade 1 major version at a time, with deployment to production. That guarantees that the necessary transformations of data are performed and no information will be lost.
+
+The wire compatibility is guaranteed across 1 major version. Additionally, there's the best effort and extensive testing to cover compatibility across all versions, starting with NServiceBus Version 3.
