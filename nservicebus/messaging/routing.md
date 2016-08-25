@@ -25,6 +25,7 @@ related:
 - nservicebus/msmq/scalability-and-ha/sender-side-distribution
 ---
 
+
 ## Routing concepts
 
 Routing subsystem is responsible for finding destinations for the messages. In most cases the sending code should not care about the destination of the message being sent:
@@ -34,6 +35,7 @@ snippet:BasicSend
 Based on the type of the message the routing provides the destination address.
 
 partial:concepts
+
 
 ## Command routing
 
@@ -68,6 +70,7 @@ Other transports do not support Publish-Subscribe natively. These transports emu
 partial:events
 
 In the `UnicastBusConfig/MessageEndpointMappings` configuration section publishers are registered in the same way as the command destinations are defined. If a given assembly or namespace contains both events and commands, the mapping will recognize that fact and configure the routing correctly (both commands and subscribe messages will be routed to the destination specified in `Endpoint` attribute).
+
 
 ## Reply routing
 
