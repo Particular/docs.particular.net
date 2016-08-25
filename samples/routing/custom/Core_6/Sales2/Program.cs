@@ -21,7 +21,6 @@ class Program
         persistence.ConnectionString(AutomaticRoutingConst.ConnectionString);
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UseTransport<MsmqTransport>().EnableQueueNameOverrideInAddressTranslation();
 
         var automaticRouting = endpointConfiguration.EnableAutomaticRouting(AutomaticRoutingConst.ConnectionString);
         automaticRouting.AdvertisePublishing(typeof(OrderAccepted));

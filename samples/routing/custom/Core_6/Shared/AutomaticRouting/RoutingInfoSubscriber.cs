@@ -41,13 +41,6 @@ class RoutingInfoSubscriber :
     protected override Task OnStart(IMessageSession context)
     {
         messageSession = context;
-
-        #region AddDynamic
-        routingTable.SetFallbackRoute((type, bag) => FindEndpoint(type));
-        endpointInstances.AddDynamic(FindInstancesTask);
-        publishers.AddDynamic(FindPublisher);
-        #endregion
-
         sweepTimer = new Timer(state =>
         {
             foreach (var info in instanceInformation)
@@ -128,6 +121,17 @@ class RoutingInfoSubscriber :
         LogChangesToEndpointMap(endpointMap, newEndpointMap);
         LogChangesToInstanceMap(instanceMap, newInstanceMap);
         var toSubscribe = LogChangesToPublisherMap(publisherMap, newPublisherMap).ToArray();
+
+        #region AddOrReplace
+        routingTable.AddOrReplaceRoutes("AutomaticRouting", newEndpointMap.Select(
+            x => new RouteTableEntry(x.Key, UnicastRoute.CreateFromEndpointName(x.Value))).ToList());
+
+        publishers.AddOrReplacePublishers("AutomaticRouting", newPublisherMap.Select(
+            x => new PublisherTableEntry(x.Key, PublisherAddress.CreateFromEndpointName(x.Value))).ToList());
+
+        endpointInstances.AddOrReplaceInstances("AutomaticRouting", newInstanceMap.SelectMany(x => x.Value).ToList());
+        #endregion
+
         instanceMap = newInstanceMap;
         endpointMap = newEndpointMap;
         publisherMap = newPublisherMap;
@@ -262,53 +266,4 @@ class RoutingInfoSubscriber :
         }
         return newEndpointMap;
     }
-
-    #region FindPublisher
-    PublisherAddress FindPublisher(Type eventType)
-    {
-        string publisherEndpoint;
-        if (!publisherMap.TryGetValue(eventType, out publisherEndpoint))
-        {
-            return null;
-        }
-        return PublisherAddress.CreateFromEndpointName(publisherEndpoint);
-    }
-    #endregion
-
-    #region FindEndpoint
-    Task<IUnicastRoute> FindEndpoint(Type messageType)
-    {
-        string destination;
-        if (endpointMap.TryGetValue(messageType, out destination))
-        {
-            return Task.FromResult<IUnicastRoute>(UnicastRoute.CreateFromEndpointName(destination));
-        }
-
-        return Task.FromResult<IUnicastRoute>(null);
-    }
-    #endregion
-
-    #region FindInstance
-    Task<IEnumerable<EndpointInstance>> FindInstancesTask(string endpointName)
-    {
-        return Task.FromResult(FindInstances(endpointName));
-    }
-
-    IEnumerable<EndpointInstance> FindInstances(string endpointName)
-    {
-        HashSet<EndpointInstance> instances;
-        if (!instanceMap.TryGetValue(endpointName, out instances))
-        {
-            return Enumerable.Empty<EndpointInstance>();
-        }
-        var activeInstances = instances.Where(i => instanceInformation[i].State == InstanceState.Active)
-            .ToArray();
-        if (activeInstances.Any())
-        {
-            return activeInstances;
-        }
-        log.Info($"No active instances of endpoint {endpointName} detected. Trying to route to the inactive ones.");
-        return instances;
-    }
-    #endregion
 }

@@ -46,7 +46,6 @@
     <Compile Include="AutomaticRouting\AdvertisePublishingSettings.cs" />
     <Compile Include="AutomaticRouting\AutomaticRoutingFeature.cs" />
     <Compile Include="AutomaticRouting\Installer.cs" />
-    <Compile Include="AutomaticRouting\QueueNameAwareTranslation.cs" />
     <Compile Include="AutomaticRouting\RoutingInfoCommunicator.cs" />
     <Compile Include="AutomaticRouting\AutomaticRoutingConfigExtensions.cs" />
     <Compile Include="AutomaticRouting\EndpointInstanceInfo.cs" />

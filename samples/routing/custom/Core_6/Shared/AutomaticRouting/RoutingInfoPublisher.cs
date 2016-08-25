@@ -30,18 +30,14 @@ class RoutingInfoPublisher :
 
     protected override Task OnStart(IMessageSession context)
     {
-        var instanceName = settings.EndpointInstanceName();
-        var overriddenQueueName = settings.GetOrDefault<string>("BaseInputQueueName");
-        if (overriddenQueueName != null)
-        {
-            instanceName = instanceName.SetProperty("queue", overriddenQueueName);
-        }
-
+        var mainLogicalAddress = settings.LogicalAddress();
+        var instanceProperties = mainLogicalAddress.EndpointInstance.Properties.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        instanceProperties["queue"] = mainLogicalAddress.EndpointInstance.Endpoint;
         publication = new RoutingInfo
         {
             EndpointName = settings.EndpointName(),
-            Discriminator = settings.GetOrDefault<string>("EndpointInstanceDiscriminator"),
-            InstanceProperties = instanceName.Properties.ToDictionary(kvp => kvp.Key, kvp => kvp.Value),
+            Discriminator = mainLogicalAddress.EndpointInstance.Discriminator,
+            InstanceProperties = instanceProperties,
             HandledMessageTypes = hanledMessageTypes.Select(m => m.AssemblyQualifiedName).ToArray(),
             PublishedMessageTypes = publishedMessageTypes.Select(m => m.AssemblyQualifiedName).ToArray(),
             Active = true,

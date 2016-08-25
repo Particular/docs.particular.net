@@ -20,7 +20,6 @@ class Program
         persistence.ConnectionString(AutomaticRoutingConst.ConnectionString);
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UseTransport<MsmqTransport>().EnableQueueNameOverrideInAddressTranslation();
 
         #region EnableAutomaticRouting
 
