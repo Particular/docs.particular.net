@@ -48,7 +48,7 @@ Available subscription persistences include
  * [InMemory](/nservicebus/persistence/in-memory.md)
  * [Azure Storage](/nservicebus/azure-storage-persistence)
 
-The message-driven publish-subscribe is used by the unicast transports ({include:transports-unicast}). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
+The message-driven publish-subscribe is used by the [unicast transports](/nservicebus/transports/#types-of-transports-unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
 
 #### Subscribe
 
@@ -94,7 +94,7 @@ Publisher->Subscriber2: Send Message1
 
 ### Native
 
-For transports that support publish–subscribe natively (multicast, i.e. {include:transports-multicast}) neither persistence nor control message exchange is required to complete the publish-subscribe workflow. 
+For multicast transports that [support publish–subscribe natively](/nservicebus/transports/#types-of-transports-multicast-enabled-transports) neither persistence nor control message exchange is required to complete the publish-subscribe workflow. 
 
 
 #### Subscribe

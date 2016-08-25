@@ -27,9 +27,9 @@ snippet:RoutingExtensibility-TriggerEndpointShutdown
 
 ## Event routing
 
-Event routing differs depending on the transport capabilities. Transports supporting the [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) pattern natively ({include: transports-multicast}) implement the event routing themselves. Refer to specific transport documentation for details on extensibility points.
+Event routing differs depending on the transport capabilities. [Multicast transports]((/nservicebus/transports/#types-of-transports-multicast-enabled-transports)) which support [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) pattern natively implement the event routing themselves. Refer to specific transport documentation for details on extensibility points.
 
-Transports without that support ({include: transports-unicast}) rely on NServiceBus core routing for event delivery. To emulate multicast routing on top of a unicast transport NServiceBus uses. The key concept is the collection of publishers. For each event it contains information on the logical endpoint that publishes it. Routing extensions can access the publishers collections from `EndpointConfiguration` or from the `Feature` set up code:
+Transports without that support rely on NServiceBus core routing for event delivery. To emulate multicast routing on top of a unicast transport NServiceBus uses. The key concept is the collection of publishers. For each event it contains information on the logical endpoint that publishes it. Routing extensions can access the publishers collections from `EndpointConfiguration` or from the `Feature` set up code:
 
 snippet:RoutingExtensibility-Publishers
 
@@ -41,7 +41,7 @@ The publishers collection is thread-safe and all operations on that collection a
 
 Physical routing is responsible for mapping the destination logical endpoint to the actual transport address (queue name). 
 
-When using a broker transport ({include:transports-broker}), the physical routing is entirely managed by NServiceBus and does not require any configuration.
+When using a [broker transport](http://docs.particular.net/nservicebus/transports/#types-of-transports-broker-transports), the physical routing is entirely managed by NServiceBus and does not require any configuration.
 
 When using a bus transport ({include:transports-bus}), the physical routing is important because the transport address has to contain the information about the node of the bus that the endpoint is using. In MSMQ each machine runs a single node of the MSMQ system.
 
