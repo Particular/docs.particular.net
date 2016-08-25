@@ -41,11 +41,11 @@ The publishers collection is thread-safe and all operations on that collection a
 
 Physical routing is responsible for mapping the destination logical endpoint to the actual transport address (queue name). 
 
-When using a [broker transport](http://docs.particular.net/nservicebus/transports/#types-of-transports-broker-transports), the physical routing is entirely managed by NServiceBus and does not require any configuration.
+When using a [broker transport](/nservicebus/transports/#types-of-transports-broker-transports), the physical routing is entirely managed by NServiceBus and does not require any configuration.
 
-When using a bus transport ({include:transports-bus}), the physical routing is important because the transport address has to contain the information about the node of the bus that the endpoint is using. In MSMQ each machine runs a single node of the MSMQ system.
+When using a [bus transport](/nservicebus/transports/#types-of-transports-bus-transports), the physical routing is important because the transport address has to contain the information about the node of the bus that the endpoint is using. In MSMQ each machine runs a single node of the MSMQ system.
 
-Routing extensions can influence the physical routing by modifying the endpoint instances collection. This is especially important for bus transports ({include:transports-bus}) in a dynamically changing environment such as the cloud. Endpoints can be elastically scaled out and in and the routing, to be able to stay in sync, needs to derive the physical information from the current state of the environment, not from a static file.
+Routing extensions can influence the physical routing by modifying the endpoint instances collection. This is especially important for [bus transports](/nservicebus/transports/#types-of-transports-bus-transports) in a dynamically changing environment such as the cloud. Endpoints can be elastically scaled out and in and the routing, to be able to stay in sync, needs to derive the physical information from the current state of the environment, not from a static file.
 
 snippet:RoutingExtensibility-Instances
 
@@ -55,7 +55,7 @@ The instances collection is thread-safe. It allows registering multiple instance
 
 ## Message distribution
 
-Every message is always delivered to a single physical instance of the logical endpoint. When scaling out an endpoint with a bus transport ({include:transports-bus}) there are multiple instances of a single logical endpoint registered in the routing system. Each outgoing message has to undergo the distribution process to determine which instance is going to receive this particular message. By default a round-robin algorithm is used to determine the destination. Routing extensions can override this behavior by registering a custom `DistributionStrategy` for a given destination endpoint.
+Every message is always delivered to a single physical instance of the logical endpoint. When scaling out an endpoint with a [bus transport](/nservicebus/transports/#types-of-transports-bus-transports) there are multiple instances of a single logical endpoint registered in the routing system. Each outgoing message has to undergo the distribution process to determine which instance is going to receive this particular message. By default a round-robin algorithm is used to determine the destination. Routing extensions can override this behavior by registering a custom `DistributionStrategy` for a given destination endpoint.
 
 snippet:RoutingExtensibility-Distribution
 
