@@ -1,9 +1,11 @@
 The routing system can be extended by accessing the APIs via the settings bag. Extending the routing with a custom data source makes sense in following scenarios:
+
  * When centralizing all routing information in a database
  * When dynamically calculating routes based on endpoint discovery protocol (similar of UDDI)
  * When using a convention based on massage naming
 
 To learn more about implementing a routing extension see the [custom routing sample](/samples/routing/custom/).
+
 
 ## Command routing
 
@@ -24,6 +26,7 @@ The route table API is thread-safe and atomic, meaning either all the changes fr
 The routing system prevents route ambiguity. If the new or replaced routes conflict with existing ones, an exception is thrown. It is up to the route extension to deal with that exception but usually it is best practice to trigger the endpoint shutdown to prevent misrouting of messages.
 
 snippet:RoutingExtensibility-TriggerEndpointShutdown 
+
 
 ## Event routing
 
@@ -53,6 +56,7 @@ The source parameter has the same meaning and effect as in the routes collection
 
 The instances collection is thread-safe. It allows registering multiple instance of a given endpoint. In case there is more than one, message distribution is involved. 
 
+
 ## Message distribution
 
 Every message is always delivered to a single physical instance of the logical endpoint. When scaling out an endpoint with a [bus transport](/nservicebus/transports/#types-of-transports-bus-transports) there are multiple instances of a single logical endpoint registered in the routing system. Each outgoing message has to undergo the distribution process to determine which instance is going to receive this particular message. By default a round-robin algorithm is used to determine the destination. Routing extensions can override this behavior by registering a custom `DistributionStrategy` for a given destination endpoint.
@@ -61,4 +65,4 @@ snippet:RoutingExtensibility-Distribution
 
 snippet:RoutingExtensibility-DistributionStrategy
 
-To learn more about creating custom distribution strategies see the [fair distribution sample](/samples/routing/fair-distribution/)
+To learn more about creating custom distribution strategies see the [fair distribution sample](/samples/routing/fair-distribution/).
