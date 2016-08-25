@@ -17,25 +17,23 @@ namespace Core5.Transports
 
         public Address Address { get; }
 
-        public bool ShouldCreateQueue()
-        {
-            return true;
-        }
+        public bool IsDisabled => true;
+
     }
 
     public class FeatureThatRequiresAQueue :
         Feature
     {
-        protected override void Setup(FeatureConfigurationContext context)
+        public override void Initialize()
         {
-            var container = context.Container;
-            container.ConfigureComponent(
+            Configure.Component(
                 componentFactory: () =>
                 {
                     return new QueueRegistration(Address.Parse("someQueue"));
                 },
-                dependencyLifecycle: DependencyLifecycle.InstancePerCall);
+                lifecycle: DependencyLifecycle.InstancePerCall);
         }
+
     }
 
     #endregion

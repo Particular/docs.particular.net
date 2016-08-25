@@ -1,6 +1,9 @@
 ---
 title: Declaring and creating queues
-summary: Explains how to declare additional queues and create them
+summary: Explains how to declare and create additional queues
+component: Core
+reviewed: 2016-08-25
+versions: '[4,]'
 tags:
  - Queue
  - QueueBindings

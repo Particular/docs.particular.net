@@ -208,6 +208,7 @@
     <Compile Include="Serialization\BinarySerializerUsage.cs" />
     <Compile Include="Serialization\JsonSerializerUsage.cs" />
     <Compile Include="Transports\Msmq\AuthorizeSubscriptions.cs" />
+    <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\CompleteOrder.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\OrderSaga.cs" />
