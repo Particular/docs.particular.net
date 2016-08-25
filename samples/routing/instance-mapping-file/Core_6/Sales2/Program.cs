@@ -24,7 +24,6 @@ class Program
         var routing = transport.Routing();
         var routingTable = routing.InstanceMappingFile();
         routingTable.FilePath(@"..\..\..\instance-mapping.xml");
-        transport.EnableQueueNameOverrideInAddressTranslation();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
