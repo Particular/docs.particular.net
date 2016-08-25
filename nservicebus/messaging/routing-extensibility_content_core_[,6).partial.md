@@ -14,6 +14,6 @@ The `MessageEndpointMappings` collection can be populated based on any external 
 
  * When centralizing all routing information in a database
  * When dynamically calculating routes based on endpoint discovery protocol (similar of UDDI)
- * When using a convention based on massage naming 
+ * When using a convention based on massage naming
 
 NOTE: The route table is not updated during run-time, even if the contents of the mappings collection change. In case the routing data changes frequently, consider implementing a mechanism that would restart the endpoint when the change is detected.
