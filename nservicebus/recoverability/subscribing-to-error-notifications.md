@@ -14,8 +14,8 @@ related:
 
 Error notifications are available for several events.
 
- * When a first level retry occurs.
- * When a second level retry occurs.
+ * When a [Immediate Retry](/nservicebus/recoverability/#immediate-retries) occurs.
+ * When a [Delayed Retry](/nservicebus/recoverability/#delayed-retries) occurs.
  * When a message fails all retries and is forwarded to the error queue.
 
 The following example shows how to be notified every time a message is handled by [recoverability](/nservicebus/recoverability/). While this code writes to the console any other action could be taken, for example sending an email or writing to a monitoring system.
