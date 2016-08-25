@@ -9,7 +9,7 @@ tags:
 
 ## Transaction Support
 
-Azure Service Bus Transport supports `SendAtomicWithReceive`, `ReceiveOnly` and `None` transaction mode levels.
+Azure Service Bus Transport supports [`SendAtomicWithReceive`, `ReceiveOnly` and `None` transaction mode levels](/nservicebus/transports/transactions).
 
 ### Sends atomic with Receive
 
@@ -21,15 +21,15 @@ If the `ViaEntityPath` is not empty, then messages will be added to the receive 
 
 ### Receive Only
 
-The `ReceiveOnly` guarantee is based on the Azure Service Bus Peek-Lock mechanism.
+The `ReceiveOnly` guarantee is based on the Azure Service Bus [Peek-Lock mode](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.messaging.receivemode.aspx).
 
-The message is not removed from the queue directly after receive, but it's hidden for, by default, 30 seconds. This prevents other instances from receiving the message. If the receiver fails to process the message within that time frame or explicitly abandons the message, then the message will become visible again. Other instances will be able to pick it up (effectively, rolls back the incoming message).
+The message is not removed from the queue directly after receive, but it's hidden for, by default, 30 seconds. This prevents other instances from receiving the message. If the receiver fails to process the message within that time frame or explicitly abandons the message, then the message will become visible again. Other instances will be able to pick it up (effectively that rolls back the incoming message).
 
 
 ### Unreliable (Transactions Disabled)
 
-When transactions are disabled in NServiceBus then the transport uses the [ASB's 'ReceiveAndDelete' mode](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.messaging.receivemode.aspx).
+When transactions are disabled in NServiceBus then the transport uses the Azure Service Bus ['ReceiveAndDelete' mode](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.messaging.receivemode.aspx).
 
-The message is deleted from the queue directly after the receive operation completes, before it is processed, meaning that no retries will occur. As transient exceptions occur regularly when integrating with online services, disabling retries when in unreliable mode is highly not recommended. This mode should only be used in very specific situations.
+The message is deleted from the queue directly after the receive operation completes, before it is processed, meaning that it's not possible to retry that message in case of processing failures. As transient exceptions occur regularly when integrating with online services, disabling retries when in unreliable mode is not recommended. This mode should only be used in very specific situations, when message loss is acceptable.
 
-NOTE: For a full explanation of the transactional behavior, refer to [Understanding internal transactions and delivery guarantees](understanding-transactions-and-delivery-guarantees.md).
+NOTE: For a full explanation of the transactional behavior in Azure, refer to [Understanding internal transactions and delivery guarantees](understanding-transactions-and-delivery-guarantees.md).

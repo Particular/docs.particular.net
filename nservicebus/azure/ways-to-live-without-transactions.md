@@ -25,7 +25,7 @@ The possible approaches:
 
 ### Sharing local transactions
 
-If local transactions are available, and all business and messaging operations occur on the same transactional resource (e.g. SQL database), it is possible to running fully transactional even without DTC. To prevent promoting transaction to the distributed transaction, one can reuse a single local transaction between resources. The outermost local transaction/unit of work, started by the receiving transport is passed to the rest of the application (e.g. to an ORM). This way only a single transaction is used for both receiving and handling a message and its result.
+If local transactions are available, and all business and messaging operations occur on the same transactional resource (e.g. SQL database), it is possible to use transactions without DTC. To prevent promoting transaction to the distributed transaction, one can reuse a single local transaction between resources. The outermost local transaction/unit of work, started by the receiving transport is passed to the rest of the application (e.g. to an ORM). This way only a single transaction is used for both receiving and handling a message and its result.
 
 
 #### Advantages
