@@ -1,5 +1,7 @@
 ---
 title: Sending messages
+reviewed: 2016-08-26
+component: Core
 redirects:
  - nservicebus/how-do-i-send-a-message
 related:
@@ -20,8 +22,6 @@ In some cases, messages that need to be sent may not be related to an incoming m
 To send a message when the bus is started:
 
 snippet:BasicSend
-
-Note: In Versions 5 and below, `IBus` is automatically registered in the configured dependency injection container. In Versions 6 and above, `IBus` has been deprecated and replaced with `IEndpointInstance` for sending messages outside the pipeline. `IEndpointInstance` is not registered by default.
 
 
 ## Inside the incoming message processing pipeline
@@ -47,9 +47,8 @@ Using the destination address:
 
 snippet:BasicSendSetDestination
 
-Using the ID of the target instance:
 
-snippet:BasicSendSpecificInstance
+partial:route-to-specific-instance
 
 
 ## Sending to *self*
@@ -60,41 +59,23 @@ An endpoint can send a message to any of its instances:
 
 snippet:BasicSendToAnyInstance
 
-Or, it can request a message to be routed to itself, i.e. the same instance.
-NOTE: This option is only possible when endpoint instance ID has been specified
 
-snippet:BasicSendToThisInstance
+partial:route-to-this-instance
 
 
-## Influencing the reply behavior
-
-The sender of the message can also control how the reply messages are received. When a receiving endpoint replies to a message, by default the reply message will be routed to any instance of the sending endpoint.
-
-To explicitly control the reply message to be dispatched to a particular instance:
-
-snippet:BasicSendReplyToThisInstance
-
-To send the reply message to any instance of the endpoint:
-
-snippet:BasicSendReplyToAnyInstance
-
-The sender can also request the reply to be routed to a specific destination address
-
-snippet:BasicSendReplyToDestination
+partial: influence-reply
 
 
 ## Dispatching a message immediately
 
 While its usually best to let NServiceBus [handle all exceptions](/nservicebus/recoverability/), there are some scenarios where messages might need to be sent regardless of if the message handler succeeds or not. For example, sending a reply notifying that there was a problem with processing the message.
 
-To request immediate dispatch use the following syntax:
-
-snippet:RequestImmediateDispatch
-
 WARNING: By specifying immediate dispatch, outgoing messages will not be [batched](/nservicebus/messaging/batched-dispatch.md) or enlisted in the current receive transaction even if the transport has support for it.
 
-Suppressing the ambient transaction to have the outgoing message sent immediately is also possible:
+Suppressing the ambient transaction to have the outgoing message sent immediately is possible:
 
 snippet:RequestImmediateDispatchUsingScope
 
-WARNING: Suppressing transaction scopes only works for MSMQ and SQL transports in DTC mode. Other transports or disabled DTC may result in unexpected behavior. In Version 6 and above, use the explicit immediate dispatch API instead.
+WARNING: Suppressing transaction scopes only works for MSMQ and SQL transports in DTC mode. Other transports or disabled DTC may result in unexpected behavior.
+
+partial:immediate-dispatch
