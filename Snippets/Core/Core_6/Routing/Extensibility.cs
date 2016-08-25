@@ -5,25 +5,26 @@
     using System.Threading;
     using System.Threading.Tasks;
     using NServiceBus;
+    using NServiceBus.Configuration.AdvanceExtensibility;
     using NServiceBus.Features;
     using NServiceBus.Routing;
     using NServiceBus.Routing.MessageDrivenSubscriptions;
 
     public class Extensibility
     {
-        class RouteTable : Feature
+        void RouteTableViaConfig(EndpointConfiguration config)
         {
-            #region RoutingExtensibility-RouteTable
-            protected override void Setup(FeatureConfigurationContext context)
-            {
-                context.RoutingTable().AddOrReplaceRoutes("MySource",
+            #region RoutingExtensibility-RouteTableConfig
+
+            config.GetSettings().Get<UnicastRoutingTable>().AddOrReplaceRoutes("MySource",
                     new List<RouteTableEntry>
                     {
-                        new RouteTableEntry(typeof(MyCommand), 
+                        new RouteTableEntry(typeof(MyCommand),
                             UnicastRoute.CreateFromEndpointName("MyEndpoint"))
                     });
-            }
+
             #endregion
+
         }
 
         class RefreshingRouteTable : Feature
@@ -31,7 +32,7 @@
             #region RoutingExtensibility-StartupTaskRegistration
             protected override void Setup(FeatureConfigurationContext context)
             {
-                var routeTable = context.RoutingTable();
+                var routeTable = context.Settings.Get<UnicastRoutingTable>();
                 var refresherTask = new Refresher(routeTable);
                 context.RegisterStartupTask(refresherTask);
             }
@@ -120,10 +121,10 @@
             #region RoutingExtensibility-Publishers
             protected override void Setup(FeatureConfigurationContext context)
             {
-                context.Publishers().AddOrReplacePublishers("MySource",
+                context.Settings.Get<Publishers>().AddOrReplacePublishers("MySource",
                     new List<PublisherTableEntry>
                     {
-                        new PublisherTableEntry(typeof(MyEvent), 
+                        new PublisherTableEntry(typeof(MyEvent),
                             PublisherAddress.CreateFromEndpointName("PublisherEndpoint"))
                     });
             }
@@ -135,7 +136,7 @@
             #region RoutingExtensibility-Instances
             protected override void Setup(FeatureConfigurationContext context)
             {
-                context.EndpointInstances().AddOrReplaceInstances("MySource",
+                context.Settings.Get<EndpointInstances>().AddOrReplaceInstances("MySource",
                     new List<EndpointInstance>
                     {
                         new EndpointInstance("MyEndpoint").AtMachine("VM-1"),
@@ -151,7 +152,7 @@
 
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
             var routing = transport.Routing();
-            routing.SetMessageDistributionStrategy("Sales", new RandomStrategy());
+            routing.SetMessageDistributionStrategy(new RandomStrategy("Sales", DistributionStrategyScope.Send));
 
             #endregion
         }
@@ -162,10 +163,13 @@
         {
             static readonly Random r = new Random();
 
-            public override UnicastRoutingTarget SelectDestination(
-                UnicastRoutingTarget[] allInstances)
+            public RandomStrategy(string endpoint, DistributionStrategyScope scope) : base(endpoint, scope)
             {
-                return allInstances[r.Next(allInstances.Length)];
+            }
+
+            public override string SelectReceiver(string[] receiverAddresses)
+            {
+                return receiverAddresses[r.Next(receiverAddresses.Length)];
             }
         }
 
@@ -177,7 +181,7 @@
 
         class MyEvent : IEvent
         {
-            
+
         }
     }
 }

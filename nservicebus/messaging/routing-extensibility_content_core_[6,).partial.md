@@ -1,4 +1,4 @@
-The routing system can be extended by creating a custom `Feature` and enabling it in an NServiceBus endpoint. Extending the routing with a custom data source makes sense in following scenarios:
+The routing system can be extended by accessing the APIs via the settings bag. Extending the routing with a custom data source makes sense in following scenarios:
  * When centralizing all routing information in a database
  * When dynamically calculating routes based on endpoint discovery protocol (similar of UDDI)
  * When using a convention based on massage naming
@@ -7,11 +7,11 @@ To learn more about implementing a routing extension see the [custom routing sam
 
 ## Command routing
 
-Routing extensions can access the route table via the feature configuration context:
+Routing extensions can access the route table from `EndpointConfiguration` level:
 
-snippet:RoutingExtensibility-RouteTable
+snippet:RoutingExtensibility-RouteTableConfig
 
-The route table can either be modified once during the feature set up phase or can be passed further e.g. to a `FeatureStartupTask` and updated periodically when the source of routing information changes.
+Or from the feature level. In this case the route table can be modified in the feature set up phase or can be passed further e.g. to a `FeatureStartupTask` and updated periodically when the source of routing information changes.
 
 snippet:RoutingExtensibility-StartupTaskRegistration
 
@@ -29,7 +29,7 @@ snippet:RoutingExtensibility-TriggerEndpointShutdown
 
 Event routing differs depending on the transport capabilities. Transports supporting the [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) pattern natively ({include: transports-multicast}) implement the event routing themselves. Refer to specific transport documentation for details on extensibility points.
 
-Transports without that support ({include: transports-unicast}) rely on NServiceBus core routing for event delivery. To emulate multicast routing on top of a unicast transport NServiceBus uses. The key concept is the collection of publishers. For each event it contains information on the logical endpoint that publishes it. Routing extensions can access the publishers collections from the `Feature` set up code:
+Transports without that support ({include: transports-unicast}) rely on NServiceBus core routing for event delivery. To emulate multicast routing on top of a unicast transport NServiceBus uses. The key concept is the collection of publishers. For each event it contains information on the logical endpoint that publishes it. Routing extensions can access the publishers collections from `EndpointConfiguration` or from the `Feature` set up code:
 
 snippet:RoutingExtensibility-Publishers
 
