@@ -23,13 +23,13 @@ If the `ViaEntityPath` is not empty, then messages will be added to the receive 
 
 The `ReceiveOnly` guarantee is based on the Azure Service Bus Peek-Lock mechanism.
 
-The message is not removed from the queue directly after receive, but it's hidden for, by default , 30 seconds. That prevents other instances from picking it up. If the receiver fails to process the message withing that timeframe or explicitly abandons the message, then the message will become visible again. Other instances will be able to pick it up (effectively, rolls back the incoming message).
+The message is not removed from the queue directly after receive, but it's hidden for, by default, 30 seconds. This prevents other instances from receiving the message. If the receiver fails to process the message within that time frame or explicitly abandons the message, then the message will become visible again. Other instances will be able to pick it up (effectively, rolls back the incoming message).
 
 
 ### Unreliable (Transactions Disabled)
 
 When transactions are disabled in NServiceBus then the transport uses the [ASB's 'ReceiveAndDelete' mode](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.messaging.receivemode.aspx).
 
-The message is deleted from the queue directly after receive operation completes, before it is processed, meaning that no retries will occur. As transient exceptions occur regularly when integrating with online services, having retries off in unreliable mode is highly unrecommended. This mode should only be used in very specific situations!
+The message is deleted from the queue directly after the receive operation completes, before it is processed, meaning that no retries will occur. As transient exceptions occur regularly when integrating with online services, disabling retries when in unreliable mode is highly not recommended. This mode should only be used in very specific situations.
 
 NOTE: For a full explanation of the transactional behavior, refer to [Understanding internal transactions and delivery guarantees](understanding-transactions-and-delivery-guarantees.md).

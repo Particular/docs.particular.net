@@ -1,1 +1,1 @@
-Note: `SendAtomicWithReceive` level is only supported as from version 7 of Azure Service Bus transport. It requires destination and receive queues to be in the same namespace.
+Note: `SendAtomicWithReceive` level is only supported in Versions 7 and above of the Azure Service Bus transport. It requires destination and receive queues to be in the same namespace.

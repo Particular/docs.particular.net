@@ -35,7 +35,7 @@ This is the primary reason why many Azure hosted services do not support transac
 
 When both the database management system and client are under the same ownership, e.g. when SQL Server is deployed to the virtual machine, then transactions are available and the lock duration can be controlled. 
 
-But even in that scenario distributed transactions must be used carefully!
+Even in the above scenario distributed transactions must be used carefully.
 
 When multiple transaction-aware resources are involved in a single transaction, then this transaction automatically is promoted to a distributed transaction. That means that handling the unit of work is performed outside the database system by the so-called Global Transaction Manager, or Distributed Transaction Coordinator (DTC). 
 
