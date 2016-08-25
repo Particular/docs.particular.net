@@ -14,16 +14,8 @@
     }
     #endregion
 
+  #region CustomQueueCreator
     class YourQueueCreator :
-        ICreateQueues
-    {
-        public void CreateQueueIfNecessary(Address address, string account)
-        {
-        }
-    }
-
-    #region SequentialCustomQueueCreator
-    class SequentialQueueCreator :
         ICreateQueues
     {
         public void CreateQueueIfNecessary(Address address, string account)

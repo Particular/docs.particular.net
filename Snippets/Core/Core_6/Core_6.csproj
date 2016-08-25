@@ -203,8 +203,6 @@
     <Compile Include="Serialization\XmlSerializerUsage.cs" />
     <Compile Include="TransactionScopeUnitOfWork.cs" />
     <Compile Include="Transports\Mqmq\SubscriptionAuthorization.cs" />
-    <Compile Include="Transports\QueueCreation\ConcurrentQueueCreator.cs" />
-    <Compile Include="Transports\QueueCreation\SequentialQueueCreator.cs" />
     <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
     <Compile Include="Features\FeatureConfiguration.cs" />
     <Compile Include="Features\MyFeatureWithStartupTasks.cs" />
@@ -302,7 +300,6 @@
     <Compile Include="Hosting.cs" />
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
     <Compile Include="Transports\QueueCreation\YourMessagePump.cs" />
-    <Compile Include="Transports\QueueCreation\YourQueueCreator.cs" />
     <Compile Include="Transports\Throughput\ConcurrencyConfiguration.cs" />
     <Compile Include="TransportTransactions.cs" />
     <Compile Include="UpgradeGuides\5to6\MsmqSubscriptionAuthorization.cs" />

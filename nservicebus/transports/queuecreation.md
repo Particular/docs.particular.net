@@ -34,13 +34,9 @@ In Version 6 and above it is the responsibility of the queue creator to either s
 
 In Version 5 and below the queue creation process is always executed sequentially.
 
-Here a sample of a sequential queue creator
+Here a sample of a queue creator
 
-snippet:SequentialCustomQueueCreator
-
-Here a sample of a concurrent queue creator
-
-snippet:ConcurrentCustomQueueCreator
+snippet:CustomQueueCreator
 
 The custom queue creator needs to be registered.
 

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Routing;
@@ -59,5 +60,21 @@
         }
 
         public override string ExampleConnectionStringForErrorMessage { get; }
+    }
+
+
+    #region CustomQueueCreator
+    class YourQueueCreator :
+        ICreateQueues
+    {
+        public Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
+        {
+            return Task.WhenAll(queueBindings.SendingAddresses.Select(CreateQueue));
+        }
+        #endregion
+        static Task CreateQueue(string address)
+        {
+            return Task.FromResult(address);
+        }
     }
 }
