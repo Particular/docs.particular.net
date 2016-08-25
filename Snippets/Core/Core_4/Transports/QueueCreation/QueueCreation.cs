@@ -3,18 +3,20 @@
     using NServiceBus;
     using NServiceBus.Transports;
 
-    #region RegisteringTheQueueCreator
-    class RegisterQueueCreator :
-        INeedInitialization
+    class RegisterQueueCreator
     {
-        public void Init()
+        RegisterQueueCreator()
         {
+            #region RegisteringTheQueueCreator
+
             Configure.Component<YourQueueCreator>(DependencyLifecycle.InstancePerCall);
+
+            #endregion
         }
     }
-    #endregion
 
-  #region CustomQueueCreator
+    #region CustomQueueCreator
+
     class YourQueueCreator :
         ICreateQueues
     {
@@ -22,6 +24,7 @@
         {
             // create the queues here
         }
+
         #endregion
     }
 }
