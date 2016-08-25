@@ -75,9 +75,9 @@ snippet: 5to6-configureDelayedRetriesViaCode
 
 snippet: 5to6-configureDelayedRetriesViaXml
 
-## Legacy `.Retries` queue
+## Legacy .Retries queue
 
-In NServiceBus 5 all messages scheduled for delayed retry where forwarded to `.Retries` queue. In version 6 this queue is no longer used, however it is possible that after upgrading from version 5 the queue will contain unprocessed messages.
+In NServiceBus 5 and below the messages scheduled for delayed retry where forwarded to the `[endpoint_name].Retries` queue. In version 6 this queue is no longer used, however it is possible that after upgrading from version 5 the queue will contain unprocessed messages.
 
 To prevent message loss, version 6 runs a dedicated receiver that processes any messages left in `.Retries` queue. The receiver is enabled by default. It is safe to disable it and delete `.Retries` queue if the endpoint did not use Delayed Retries or after upgrade when the queue is empty.   
 
