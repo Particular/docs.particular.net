@@ -15,22 +15,24 @@
 
             #endregion
         }
-    }
 
-    #region UnitOfWorkImplementation
+        #region UnitOfWorkImplementation
 
-    public class MyUnitOfWork :
-        IManageUnitsOfWork
-    {
-        public void Begin()
+        public class MyUnitOfWork :
+            IManageUnitsOfWork
         {
-            // Do custom work here
+            public void Begin()
+            {
+                // Do custom work here
+            }
+
+            public void End(Exception ex = null)
+            {
+                // Do custom work here
+            }
         }
 
-        public void End(Exception ex = null)
-        {
-            // Do custom work here
-        }
+        #endregion
     }
-    #endregion
+
 }

@@ -19,25 +19,26 @@
 
             #endregion
         }
-    }
 
+        #region UnitOfWorkImplementation
 
-    #region UnitOfWorkImplementation
-
-    public class MyUnitOfWork :
-        IManageUnitsOfWork
-    {
-        public Task Begin()
+        public class MyUnitOfWork :
+            IManageUnitsOfWork
         {
-            // Do custom work here
-            return Task.FromResult(0);
+            public Task Begin()
+            {
+                // Do custom work here
+                return Task.FromResult(0);
+            }
+
+            public Task End(Exception ex = null)
+            {
+                // Do custom work here
+                return Task.FromResult(0);
+            }
         }
 
-        public Task End(Exception ex = null)
-        {
-            // Do custom work here
-            return Task.FromResult(0);
-        }
+        #endregion
     }
-    #endregion
+
 }

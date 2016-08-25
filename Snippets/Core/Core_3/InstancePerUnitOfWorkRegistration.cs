@@ -1,6 +1,8 @@
 ﻿namespace Core3
 {
+    using System;
     using NServiceBus;
+    using NServiceBus.UnitOfWork;
 
     class InstancePerUnitOfWorkRegistration
     {
@@ -9,14 +11,27 @@
             #region InstancePerUnitOfWorkRegistration
 
             var configureComponents = configuration.Configurer;
-            configureComponents.ConfigureComponent<MyService>(DependencyLifecycle.InstancePerCall);
+            configureComponents.ConfigureComponent<MyUnitOfWork>(DependencyLifecycle.InstancePerCall);
 
             #endregion
         }
 
-        public class MyService
+        #region UnitOfWorkImplementation
+
+        public class MyUnitOfWork :
+            IManageUnitsOfWork
         {
+            public void Begin()
+            {
+                // Do custom work here
+            }
+
+            public void End(Exception ex = null)
+            {
+                // Do custom work here
+            }
         }
+        #endregion
     }
 }
 
