@@ -22,13 +22,13 @@ There are a few things to keep in mind when developing for Azure. The most impor
 
 Transaction processing is designed to maintain systems integrity (typically a database or some modern filesystems and services), i.e. to always keep them in a consistent state. That is achieved by ensuring that interdependent operations are either all completed successfully or all canceled. This article focuses on Azure databases and storage services.
 
-In order to guarantee integrity the database engine, or service, must lock a certain number of records inside the transaction when updating values. Which records and how many of them are locked depends, among others, on the selected isolation level.
+To guarantee integrity the database engine, or service, must lock a certain number of records inside the transaction when updating values. Which records and how many of them are locked depends, among others, on the selected isolation level.
 
-It is really important to understand, especially in the context of cloud services, that other transactions cannot work with locked records at the same time. In a cloud or self-service environment such locks become a trust issue, because external parties can leverage them to perform a denial of service attack (sometimes not even intentionally).
+It is really important to understand, especially in the context of cloud services, that other transactions cannot work with locked records at the same time. In a cloud or self-service environment such locks become a trust issue because external parties can leverage them to perform a denial of service attack (sometimes not even intentionally).
 
 This is the primary reason why many Azure hosted services do not support transactions at all or are very aggressive when it comes to the lock duration, for example:
 
- * Azure Storage Services officially do not participate in transactions. If transactional behavior is required, it needs to be implemented in the client system as atomic operations within the limits imposed by Azure Storage Services on atomicity.
+ * Azure Storage Services officially do not participate in transactions. If a transactional behavior is required, it needs to be implemented in the client system as atomic operations within the limits imposed by Azure Storage Services on atomicity.
  * The Azure SQL Server supports local transactions (with .NET 4.6.1 and higher), but only grants locks on resources for 20 seconds (when requested by a system task) or 24 hours (otherwise). See [Azure SQL Database resource limits](https://azure.microsoft.com/en-us/documentation/articles/sql-database-resource-limits/) for more details.
 
 ## Understanding distributed transactions and the two-phase commit protocol

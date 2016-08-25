@@ -6,7 +6,7 @@ The new architecture for `SendAtomicWithReceive` is schematically represented in
 
 Note the [fork in the pipeline](/nservicebus/pipeline/steps-stages-connectors.md) which is separating the user code invocation path from the dispatching path. By putting a suppress scope around this section of the pipeline, the transport can prevent any other transactional resource from enlisting in the scope.
 
-Furthermore the Azure Service Bus transport also takes advantage of a little known capability of the Azure Service Bus SDK, [the via entity path / transfer queue](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions). Using this feature, send operations to different Azure Service Bus entities can be executed via a single entity, usually the receive queue.  
+Furthermore, the Azure Service Bus transport also takes advantage of a little-known capability of the Azure Service Bus SDK, [the via entity path / transfer queue](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions). Using this feature, send operations to different Azure Service Bus entities can be executed via a single entity, usually the receive queue.  
 
 Schematically it works like this:
 
