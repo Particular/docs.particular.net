@@ -25,7 +25,7 @@ class ProgramService :
             {
                 service.OnStart(null);
 
-                Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
+                Console.WriteLine("\r\nEndpoint created and configured; press any key to stop program\r\n");
                 Console.ReadKey();
 
                 service.OnStop();
@@ -92,6 +92,12 @@ class ProgramService :
         #region error
 
         endpointConfiguration.SendFailedMessagesTo("error");
+
+        #endregion
+
+        #region audit
+
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
 
         #endregion
 
