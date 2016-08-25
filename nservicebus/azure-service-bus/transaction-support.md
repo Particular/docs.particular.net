@@ -9,7 +9,7 @@ tags:
 
 ## Transaction Support
 
-Azure Service Bus Transport supports [`SendAtomicWithReceive`, `ReceiveOnly` and `None` transaction mode levels](/nservicebus/transports/transactions).
+Azure Service Bus Transport supports [`SendAtomicWithReceive`, `ReceiveOnly` and `None` transaction mode levels](/nservicebus/transports/transactions.md).
 
 ### Sends atomic with Receive
 
