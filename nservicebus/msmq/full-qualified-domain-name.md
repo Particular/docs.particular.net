@@ -16,4 +16,4 @@ Check [how to find FQDM of local machine](http://stackoverflow.com/questions/804
 
 snippet:MsmqMachineNameFQDN
 
-When first adopting FQDM the same will need to be done for [message mappings](/nservicebus/messaging/message-owner.md) and any direct queue destinations provided to NServiceBus.
+When first adopting FQDM the same will need to be done in the [routing](/nservicebus/messaging/routing.md) configuration and any direct queue destinations provided to NServiceBus.

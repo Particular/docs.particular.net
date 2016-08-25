@@ -7,9 +7,17 @@
   </configSections>
   <UnicastBusConfig>
     <MessageEndpointMappings>
-      <add Assembly="assembly" 
-           Endpoint="queue@machinename" />
+      <add Assembly="MyMessages"
+           Endpoint="Sales" />
+
+      <add Assembly="MyMessages"
+           Namespace="PriorityMessages"
+           Endpoint="Preferred" />
+
+      <add Assembly="MyMessages"
+           Type="MyMessages.SendOrder"
+           Endpoint="Sending" />
     </MessageEndpointMappings>
   </UnicastBusConfig>
 </configuration>
-<!--endcode--> 
+<!--endcode-->

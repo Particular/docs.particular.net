@@ -2,21 +2,34 @@
 
 namespace Core6.Routing
 {
-    using System;
-    using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Features;
-    using NServiceBus.Routing;
 
     class RoutingAPIs
     {
-        void StaticRoutesEndpoint(TransportExtensions transportExtensions)
+        void LogicalRouting(TransportExtensions transportExtensions)
         {
-            #region Routing-StaticRoutes-Endpoint
+            #region Routing-Logical
 
             var routing = transportExtensions.Routing();
-            routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            routing.RouteToEndpoint(typeof(AcceptOrder).Assembly, "Sales");
 
+            routing.RouteToEndpoint(typeof(AcceptOrder).Assembly, "PriorityMessages", "Preferred");
+
+            routing.RouteToEndpoint(typeof(SendOrder), "Sending");
+
+            #endregion
+        }
+
+        void SubscribeRouting(TransportExtensions<MsmqTransport> transportExtensions)
+        {
+            #region Routing-RegisterPublisher
+
+            var routing = transportExtensions.Routing();
+            routing.RegisterPublisher(typeof(OrderAccepted).Assembly, "Sales");
+
+            routing.RegisterPublisher(typeof(OrderAccepted).Assembly, "PriorityMessages", "Preferred");
+
+            routing.RegisterPublisher(typeof(OrderSent), "Sending");
             #endregion
         }
 
@@ -26,114 +39,6 @@ namespace Core6.Routing
 
             var routing = transportExtensions.Routing();
             routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
-
-            #endregion
-        }
-
-        void StaticRoutesAddress(TransportExtensions transportExtensions)
-        {
-            #region Routing-StaticRoutes-Address
-
-            var routing = transportExtensions.Routing();
-            routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
-
-            #endregion
-        }
-
-        #region Routing-DynamicRoutes
-
-        class DynamicRouting : Feature
-        {
-            protected override void Setup(FeatureConfigurationContext context)
-            {
-                var routingTable = context.RoutingTable();
-                routingTable.SetFallbackRoute((type, contextBag) =>
-                        Task.FromResult<IUnicastRoute>(UnicastRoute.CreateFromEndpointName("Sales")));
-            }
-        }
-
-        #endregion
-
-        #region Routing-CustomRoutingStore
-
-        class CustomRoutingStore : Feature
-        {
-            protected override void Setup(FeatureConfigurationContext context)
-            {
-                var routingTable = context.RoutingTable();
-                routingTable.SetFallbackRoute((type, c) =>
-                {
-                    var cacheResult = LoadFromCache(type);
-                    if (cacheResult != null)
-                    {
-                        return Task.FromResult(cacheResult);
-                    }
-
-                    return LoadFromDatabaseAndPutToCache(type);
-                });
-            }
-        }
-
-        #endregion
-
-        static Task<IUnicastRoute> LoadFromDatabaseAndPutToCache(Type type)
-        {
-            throw new NotImplementedException();
-        }
-
-        static IUnicastRoute LoadFromCache(Type type)
-        {
-            throw new NotImplementedException();
-        }
-
-        #region Routing-StaticEndpointMapping
-
-        class StaticEndpointMapping : Feature
-        {
-            protected override void Setup(FeatureConfigurationContext context)
-            {
-                var sales = "Sales";
-
-                var endpointInstances = context.EndpointInstances();
-                endpointInstances.Add(
-                    new EndpointInstance(sales, "1"),
-                    new EndpointInstance(sales, "2"));
-            }
-        }
-
-        #endregion
-
-        #region Routing-DynamicEndpointMapping
-
-        class DynamicEndpointMapping : Feature
-        {
-            protected override void Setup(FeatureConfigurationContext context)
-            {
-                var endpointInstances = context.EndpointInstances();
-                endpointInstances.AddDynamic(async e =>
-                {
-                    if (e.ToString().StartsWith("Sales"))
-                    {
-                        return new[]
-                        {
-                            new EndpointInstance(e, "1").SetProperty("SomeProp", "SomeValue"),
-                            new EndpointInstance(e, "2").AtMachine("B")
-                        };
-                    }
-                    return null;
-                });
-            }
-        }
-
-        #endregion
-
-        void CustomDistributionStrategy(EndpointConfiguration endpointConfiguration)
-        {
-            #region Routing-CustomDistributionStrategy
-
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            var routing = transport.Routing();
-            routing.SetMessageDistributionStrategy("Sales", new CustomStrategy());
 
             #endregion
         }
@@ -151,20 +56,19 @@ namespace Core6.Routing
             #endregion
         }
 
-        class CustomStrategy :
-            DistributionStrategy
-        {
-            public override UnicastRoutingTarget SelectDestination(UnicastRoutingTarget[] allInstances)
-            {
-                throw new NotImplementedException();
-            }
-        }
-
         class AcceptOrder
         {
         }
 
         class SendOrder
+        {
+        }
+
+        class OrderSent
+        {
+        }
+
+        class OrderAccepted
         {
         }
     }

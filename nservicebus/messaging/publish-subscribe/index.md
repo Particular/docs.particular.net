@@ -1,7 +1,7 @@
 ---
 title: Publish-Subscribe
 summary: Subscribers tell the publisher they are interested. Publishers store addresses for sending messages.
-reviewed: 2016-03-17
+reviewed: 2016-08-17
 tags:
 - Publish Subscribe
 - Messaging Patterns
@@ -31,14 +31,14 @@ Or in simpler terms
 
 ## Mechanics
 
-Depending on the features provided by a given transport there are two possible implementations of Publish-Subscribe mechanics: "Persistence based" and "Native".
+Depending on the features provided by a given transport there are two possible implementations of Publish-Subscribe mechanics: persistence-based message-driven and native.
 
 Note: For simplicity these explanations refer to specific endpoints as "Subscribers" and "Publishers". However in reality any endpoint can be both a publisher and/or and a subscriber.
 
 
-### Persistence Based
+### Persistence-based message-driven
 
-Persistence based publish-subscribe is driven by *subscribe* and *unsubscribe* control messages sent by the subscriber to the publisher and relies on the publisher having access to a location to store the connection between message types and their subscribers.
+Persistence-based message-driven publish-subscribe is controlled by *subscribe* and *unsubscribe* system messages sent by the subscriber to the publisher and relies on the publisher having access to a persistent store for maintaining the mapping between message types and their subscribers.
 
 Available subscription persistences include
 
@@ -48,19 +48,16 @@ Available subscription persistences include
  * [InMemory](/nservicebus/persistence/in-memory.md)
  * [Azure Storage](/nservicebus/azure-storage-persistence)
 
-Transports that require persistences
-
- * [MSMQ](/nservicebus/msmq)
- * [SQLServer](/nservicebus/sqlserver)
- * [Azure Storage Queues](/nservicebus/azure-storage-queues)
-
+The message-driven publish-subscribe is used by the [unicast transports](/nservicebus/transports/#types-of-transports-unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
 
 #### Subscribe
 
-The subscribe workflow for persistence based transports is as follows
+The subscribe workflow for unicast transports is as follows
 
  1. Subscribers request to a publisher the intent to subscribe to certain message types.
  1. Publisher stores both the subscriber names and the message types in the persistence.
+
+![](mechanics-persistence-subscribe.svg)
 
 <!-- https://bramp.github.io/js-sequence-diagrams/
 Participant Subscriber1 As Subscriber1
@@ -71,22 +68,12 @@ Subscriber2->Publisher: Subscribe to Message1
 Publisher->Persistence: Store "Subscriber2\nwants Message1"
 -->
 
-The publisher's address is provided by [specifying a message owner in the message endpoint mappings](/nservicebus/messaging/message-owner.md). For example:
-
-snippet:endpoint-mapping-appconfig
-
-In Versions 6 and above it is possible to also specify the publishers in code. The following API is only available for transports that do not have native support for publish-subscribe.
-
-snippet:PubSub-CodePublisherMapping
-
-NOTE: In Versions 5 and below the *subscribe* message contains only the transport address of the subscriber. In Versions 6 and above the message contains also the information about the logical endpoint which is requesting the subscription. This information allows Version 6 and above endpoints to publish events to scaled out MSMQ endpoints without the need for a distributor in the middle. Unfortunately since Version 5 and below endpoints are not aware of this information, they require a distributor to be placed in front of a scaled out endpoint in order to maintain the correct semantics of event messages (being delivered to a single instance of an endpoint).
-
-![](mechanics-persistence-subscribe.svg)
+The publisher's address is provided via [routing configuration](/nservicebus/messaging/routing.md).
 
 
 #### Publish
 
-The publish workflow for persistence based transports is as follows
+The publish workflow for unicast transports is as follows
 
  1. Some code (e.g. a saga or a handler) request that a message be published.
  1. Publisher queries the storage for a list of subscribers.
@@ -105,19 +92,14 @@ Publisher->Subscriber2: Send Message1
 ![](mechanics-persistence-publish.svg)
 
 
-### Native Based
+### Native
 
-For transports that support publish–subscribe natively no persistence is required.
-
-Transport that support native publish–subscribe
-
- * [Azure Service Bus](/nservicebus/azure-service-bus/)
- * [RabbitMQ](/nservicebus/rabbitmq/)
+For multicast transports that [support publish–subscribe natively](/nservicebus/transports/#types-of-transports-multicast-enabled-transports) neither persistence nor control message exchange is required to complete the publish-subscribe workflow. 
 
 
 #### Subscribe
 
-The subscribe workflow for native transports is as follows
+The subscribe workflow for multicast transports is as follows
 
  1. Subscribers send request to the broker with the intent to subscribe to certain message types.
  1. Broker stores the subscription information.
@@ -138,7 +120,7 @@ Subscriber2->Broker: Subscribe to Message1
 
 #### Publish
 
-The publish workflow for native transports is as follows
+The publish workflow for multicast transports is as follows
 
  1. Some code (e.g. a saga or a handler) request that a message be published.
  1. Publisher sends the message to the Broker.
@@ -168,6 +150,6 @@ NOTE: Version 2.X required a perfect match. This should make it easier to upgrad
 
 In some circumstances it may not be desirable to allow any endpoints to subscribe to a given publisher or event. NServiceBus provides a way to intervene in the subscription process and decide whether a given client should be allowed to subscribe to a given message.
 
-NOTE: Subscription authorization is only available when using transports that require persistence based publish-subscribe.
+NOTE: Subscription authorization is not supported when using transports with native publish-subscribe support.
 
 The class implements the `IAuthorizeSubscriptions` interface, which requires the `AuthorizeSubscribe` and `AuthorizeUnsubscribe` methods. The implementation that comes in the sample doesn't do very much, returning true for both. In a real project, access some Access Control System, Active Directory, or maybe just a database to decide if the action should be allowed.

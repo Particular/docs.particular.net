@@ -8,7 +8,6 @@ tags:
 - Routing
 - MSMQ
 related:
-- nservicebus/messaging/message-owner
 - nservicebus/messaging/routing
 ---
 

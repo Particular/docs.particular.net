@@ -110,13 +110,16 @@
     <Content Include="Recoverability\Delayed\config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Routing\EndpointMapping.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Routing\MSMQ\EndpointMapping.config.xml" />
     <Content Include="UpgradeGuides\5to6\null.xml" />
     <Content Include="UpgradeGuides\5to6\Recoverability\delayedconfig.xml" />
     <Content Include="UpgradeGuides\5to6\Recoverability\immediateconfig.xml" />
     <Content Include="XmlDocumentPayload.xml" />
     <Content Include="XmlElementPayload.xml" />
     <None Include="app.config" />
-    <Content Include="EndpointMapping\EndpointMapping.config.xml" />
     <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Recoverability\Immediate\config.xml" />
     <Content Include="Monitoring\ServiceControlEvents.config.xml">
@@ -354,5 +357,6 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

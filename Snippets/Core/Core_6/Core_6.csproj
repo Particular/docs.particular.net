@@ -45,7 +45,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0007\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.6.0.0-beta0008\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
@@ -192,6 +192,7 @@
     <Compile Include="Pipeline\CustomForkConnector.cs" />
     <Compile Include="Pipeline\CustomStageConnector.cs" />
     <Compile Include="Pipeline\CustomStageForkConnector.cs" />
+    <Compile Include="Routing\Extensibility.cs" />
     <Compile Include="Routing\InstanceMapping.cs" />
     <Compile Include="Routing\RoutingAPIs.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
@@ -255,7 +256,6 @@
     <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
-    <Compile Include="PubSub\PublisherMapping.cs" />
     <Compile Include="Pipeline\NewPipelineStep.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
     <Compile Include="Pipeline\SharingBehaviorData.cs" />
@@ -357,7 +357,9 @@
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Routing\InstanceMappingFile.xml" />
+    <Content Include="Routing\MSMQ\EndpointMapping.config.xml" />
+    <Content Include="Routing\MSMQ\InstanceMappingFileScaleOut.xml" />
+    <Content Include="Routing\MSMQ\InstanceMappingFile.xml" />
     <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
     <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
