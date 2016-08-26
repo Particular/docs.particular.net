@@ -25,7 +25,7 @@ By default the Azure Service Bus transport uses the `SingleNamespacePartitioning
 
 snippet: single_namespace_partitioning_strategy_with_default_connection_string
 
-This is the functional equivalent of providing a namespace using the `AddNamespace` partitioning API with the default namespace name and namespace's connection string.
+This is the functional equivalent of providing a namespace using the `AddNamespace` partitioning API with the default namespace alias and namespace's connection string.
 
 snippet: single_namespace_partitioning_strategy_with_add_namespace
 
@@ -52,31 +52,31 @@ Exactly two namespaces have to be configured when using `FailOverNamespacePartit
 
 ## Cross namespace routing
 
-NServiceBus allows to specify destination addresses using an `"endpoint@physicallocation"` in various places such as the [Send](/nservicebus/messaging/send-a-message.md) and [Routing](/nservicebus/messaging/routing.md). In this notation the `physicallocation` section represents the location where the endpoint's infrastructure is hosted, such as a machine name or a servicebus namespace.
+NServiceBus allows to specify destination addresses using an `"endpoint@physicallocation"` in various places such as the [Send](/nservicebus/messaging/send-a-message.md) and [Routing](/nservicebus/messaging/routing.md) API or the `MessageEndpointMappings`. In this notation the `physicallocation` section represents the location where the endpoint's infrastructure is hosted, such as a machine name or a Service Bus namespace.
 
 Using this notation it is possible to route messages to any endpoint hosted in namespaces that do not belong to the current endpoint's partition set.
 
 snippet: namespace_routing_send_options_full_connectionstring
 
-Versions 7 and above of the Azure Service Bus transport it is also possible to name namespaces, and use those namespace names instead of the connectionstring value; in all of these places.
+Versions 7 and above of the Azure Service Bus transport it is also possible to provide an alias for namespaces, and use alias instead of connection string value; in all of these places.
 
 snippet: namespace_routing_send_options_named
 
-This requires the namespace name and connectionstring to be registered using the `NamespaceRouting()` API.
+This requires namespace alias and connection string to be registered using the `NamespaceRouting()` API.
 
 snippet: namespace_routing_registration
 
 
-### Default namespace name
+### Default namespace alias
 
-When using the `ConnectionString` method to configure a namespace, it will get a name as well. This name is represented by the `DefaultNamespaceName` configuration setting, which has a value of `default`.
+When using the `ConnectionString` method to configure a namespace, it will get an alias as well. This alias is represented by the `DefaultNamespaceAlias` configuration setting, which has a value of `default`.
 
-When doing cross namespace request reply communication between endpoints configured this way, in combination with the `UseNamespaceNamesInsteadOfConnectionStrings()` configuration method to [secure connection strings](securing-connection-strings.md), then the reply address header will include a value of `"sourceendpoint@default"`. However the connectionstring that is mapped to this name is different for each endpoint in the communication and it will break the request reply pattern.
+When doing cross namespace request reply communication between endpoints configured this way, in combination with the `UseNamespaceAliasesInsteadOfConnectionStrings()` configuration method to [secure connection strings](securing-connection-strings.md), then the reply address header will include a value of `"sourceendpoint@default"`. However, the connection string that is mapped to this alias is different for each endpoint in the communication and it will break the request-reply pattern.
 
-In order to overcome this problem, it is possible to change the value of the `DefaultNamespaceName` configuration setting using the API:
+In order to overcome this problem, it is possible to change the value of the `DefaultNamespaceAlias` configuration setting using the API:
 
-snippet: default_namespace_name
+snippet: default_namespace_alias
 
-or use `NamespacePartitioning().AddNamespace()` with a different name instead of the `ConnectionString()` method in the source endpoint.
+or use `NamespacePartitioning().AddNamespace()` with a different alias instead of the `ConnectionString()` method in the source endpoint.
 
-And ensure that the same name and connectionstring are registered in the replying endpoint using the `NamespaceRouting().AddNamespace()` method.
+And ensure that the same alias and connection string are registered with the replying endpoint using the `NamespaceRouting().AddNamespace()` method.

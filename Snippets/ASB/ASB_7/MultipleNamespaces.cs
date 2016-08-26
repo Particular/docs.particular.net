@@ -99,10 +99,10 @@ class MultipleNamespaces
 
     void DefaultNamespaceName(EndpointConfiguration endpointConfiguration)
     {
-        #region default_namespace_name
+        #region default_namespace_alias
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.DefaultNamespaceName("myname");
+        transport.DefaultNamespaceAlias("myalias");
 
         #endregion
     }
