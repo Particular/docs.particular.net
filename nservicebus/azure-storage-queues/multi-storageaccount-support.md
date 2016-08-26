@@ -83,8 +83,7 @@ To enable sending from `account_B` to `account_A`, following configuration has t
 
 snippet:AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings2
 
-`DefaultAccountAlias(string alias)` maps an alias of an account used by this endpoint.
-`AccountRouting().AddAccount(string accountAlias, string connectionString)` adds a mapping for other accounts, enabling using `@` notation for destination addresses `queue_name@accountName`.
+Aliases can be provided for both: the endpoint's connection string as well as other accounts' connection strings. This enables using `@` notation for destination addresses `queue_name@accountName`.
 
 NOTE: The examples above use different default accounts' aliases to enable a coherent addressing. Using the same name, like `default` for all main accounts is highly discouraged as it introduces ambiguity in resolving addresses like `queue@default`. For example, when an address is interpreted as a reply address, the name `default` will point to a different connection string.
 
