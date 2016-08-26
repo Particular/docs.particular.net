@@ -9,7 +9,7 @@ related:
 - nservicebus/licensing/licensing-limitations
 ---
 
-NServiceBus will by default try to optimize for maximum performance when it comes to message processing. While this is usually the preferred mode of operation there are situations where tuning needs to be applied.
+NServiceBus uses defaults that ensure good performance in most common cases. While this is usually the preferred mode of operation there are situations where tuning needs to be applied.
 
 
 ## Tuning concurrency
