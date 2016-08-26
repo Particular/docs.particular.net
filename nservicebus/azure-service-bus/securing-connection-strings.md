@@ -50,12 +50,12 @@ For a detailed explanation on configuring namespace mappings for namespace routi
 
 include: asb-credential-warning
 
-Internally the transport (Version 7 an above) uses namespace aliass to refer to namespaces. Even when using the `ConnectionString(string connectionString)` method on the configuration API directly, as shown below, it will cause the transport to add a mapping between a namespace alias `default` and the provided connection string internally.
+Internally the transport (Versions 7 and above) uses namespace alias to refer to namespaces. Even when using the `ConnectionString(string connectionString)` method on the configuration API directly, as shown below, it will cause the transport to add a mapping between a namespace alias `default` and the provided connection string internally.
 
 snippet: map_default_logical_alias_to_connection_string
 
 Without enabling the `UseNamespaceAliasInsteadOfConnectionStrings()` behavior, the transport will ensure that all outbound headers are converted to the `queueName@connectionString` format before delivering messages. This ensures backward compatibility among endpoints of different versions.
 
-By calling `UseNamespaceAliasNameInsteadOfConnectionString()` the transport will change its behavior, and will not embed connections string in headers, using namespace aliases instead.
+By calling `UseNamespaceAliasNameInsteadOfConnectionString()` the transport will change its behavior. Instead of embedding connection strings in headers, namespace aliases will be used instead.
 
 Any incoming message can have headers in either format, the transport will automatically convert connection strings on the wire to namespace alias for internal use.
