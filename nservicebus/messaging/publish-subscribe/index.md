@@ -6,18 +6,19 @@ tags:
 - Publish Subscribe
 - Messaging Patterns
 redirects:
-- nservicebus/how-pub-sub-works
-- nservicebus/messaging/publish-subscribe/how-to-pub-sub
-- nservicebus/how-to-pub-sub-with-nservicebus
-- nservicebus/publish-subscribe-configuration
-- nservicebus/messaging/publish-subscribe/configuration
+ - nservicebus/how-pub-sub-works
+ - nservicebus/messaging/publish-subscribe/how-to-pub-sub
+ - nservicebus/how-to-pub-sub-with-nservicebus
+ - nservicebus/publish-subscribe-configuration
+ - nservicebus/messaging/publish-subscribe/configuration
 related:
-- samples/pubsub
-- samples/step-by-step
-- nservicebus/messaging/messages-events-commands
-- nservicebus/messaging/headers
-- nservicebus/persistence
-- nservicebus/scalability-and-ha/distributor/publish-subscribe
+ - samples/pubsub
+ - samples/step-by-step
+ - nservicebus/messaging/messages-events-commands
+ - nservicebus/messaging/headers
+ - nservicebus/persistence
+ - nservicebus/scalability-and-ha/distributor/publish-subscribe
+ - nservicebus/msmq/subscription-authorisation
 ---
 
 NServiceBus has a built in implementation of the [Publish-subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).
@@ -49,6 +50,7 @@ Available subscription persistences include
  * [Azure Storage](/nservicebus/azure-storage-persistence)
 
 The message-driven publish-subscribe is used by the [unicast transports](/nservicebus/transports/#types-of-transports-unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
+
 
 #### Subscribe
 
@@ -141,15 +143,4 @@ Transport->Subscriber2: Send Message1
 
 ## Versioning subscriptions
 
-In NServiceBus Version 3.0 and onwards subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
-
-NOTE: Version 2.X required a perfect match. This should make it easier to upgrade the publishers without affecting the subscribers.
-
-
-## Authorizations
-
-In some circumstances it may not be desirable to allow any endpoints to subscribe to a given publisher or event. NServiceBus provides a way to intervene in the subscription process and decide whether a given client should be allowed to subscribe to a given message.
-
-NOTE: Subscription authorization is not supported when using transports with native publish-subscribe support.
-
-The class implements the `IAuthorizeSubscriptions` interface, which requires the `AuthorizeSubscribe` and `AuthorizeUnsubscribe` methods. The implementation that comes in the sample doesn't do very much, returning true for both. In a real project, access some Access Control System, Active Directory, or maybe just a database to decide if the action should be allowed.
+Subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
