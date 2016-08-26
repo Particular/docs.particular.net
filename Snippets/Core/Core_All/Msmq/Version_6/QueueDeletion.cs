@@ -1,27 +1,10 @@
-﻿namespace Operations.Msmq
+namespace CoreAll.Msmq.Version_6
 {
     using System;
     using System.Messaging;
 
     public static class QueueDeletion
     {
-
-        static void Usage()
-        {
-            #region msmq-delete-queues-endpoint-usage
-
-            DeleteQueuesForEndpoint("myendpoint");
-
-            #endregion
-
-            #region msmq-delete-queues-shared-usage
-
-            DeleteQueue(queueName: "error");
-            DeleteQueue(queueName: "audit");
-
-            #endregion
-        }
-
         #region msmq-delete-queues
 
         public static void DeleteAllQueues()
@@ -47,9 +30,6 @@
             // main queue
             DeleteQueue(endpointName);
 
-            // retries queue
-            DeleteQueue($"{endpointName}.retries");
-
             // timeout queue
             DeleteQueue($"{endpointName}.timeouts");
 
@@ -58,6 +38,5 @@
         }
 
         #endregion
-
     }
 }

@@ -1,44 +1,17 @@
-﻿namespace Operations.Msmq
+﻿namespace CoreAll.Msmq.Version_6
 {
     using System;
     using System.Messaging;
     using System.Security.Principal;
 
-    public static class QueueCreation
+    public class QueueCreation
     {
-
-        public static void Usage()
-        {
-            #region msmq-create-queues-endpoint-usage
-
-            CreateQueuesForEndpoint(
-                endpointName: "myendpoint",
-                account: Environment.UserName);
-
-            #endregion
-
-            #region msmq-create-queues-shared-usage
-
-            CreateQueue(
-                queueName: "error",
-                account: Environment.UserName);
-
-            CreateQueue(
-                queueName: "audit",
-                account: Environment.UserName);
-
-            #endregion
-        }
-
         #region msmq-create-queues
 
         public static void CreateQueuesForEndpoint(string endpointName, string account)
         {
             // main queue
             CreateQueue(endpointName, account);
-
-            // retries queue
-            CreateQueue($"{endpointName}.retries", account);
 
             // timeout queue
             CreateQueue($"{endpointName}.timeouts", account);
