@@ -30,38 +30,38 @@ class Usage
         #endregion
     }
 
-    void AccountNamesInsteadOfConnectionStrings(EndpointConfiguration endpointConfiguration)
+    void AccountAliasesInsteadOfConnectionStrings(EndpointConfiguration endpointConfiguration)
     {
-        #region AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
+        #region AzureStorageQueueUseAccountAliasesInsteadOfConnectionStrings
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.UseAccountNamesInsteadOfConnectionStrings();
+        transport.UseAccountAliasesInsteadOfConnectionStrings();
 
         #endregion
     }
 
-    void MultipleAccountNamesInsteadOfConnectionStrings1(EndpointConfiguration endpointConfiguration)
+    void MultipleAccountAliasesInsteadOfConnectionStrings1(EndpointConfiguration endpointConfiguration)
     {
-        #region AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings1
+        #region AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings1
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("account_A_connection_string");
-        transport.UseAccountNamesInsteadOfConnectionStrings();
-        transport.DefaultAccountName("account_A");
+        transport.UseAccountAliasesInsteadOfConnectionStrings();
+        transport.DefaultAccountAlias("account_A");
         var accountRouting = transport.AccountRouting();
         accountRouting.AddAccount("account_B", "account_B_connection_string");
 
         #endregion
     }
 
-    void MultipleAccountNamesInsteadOfConnectionStrings2(EndpointConfiguration endpointConfiguration)
+    void MultipleAccountAliasesInsteadOfConnectionStrings2(EndpointConfiguration endpointConfiguration)
     {
-        #region AzureStorageQueueUseMultipleAccountNamesInsteadOfConnectionStrings2
+        #region AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings2
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("account_B_connection_string");
-        transport.UseAccountNamesInsteadOfConnectionStrings();
-        transport.DefaultAccountName("account_B");
+        transport.UseAccountAliasesInsteadOfConnectionStrings();
+        transport.DefaultAccountAlias("account_B");
         var accountRouting = transport.AccountRouting();
         accountRouting.AddAccount("account_A", "account_A_connection_string");
 

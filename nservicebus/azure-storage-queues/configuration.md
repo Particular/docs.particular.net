@@ -125,17 +125,17 @@ Note that multiple connection string formats apply when working with Azure stora
 For more details refer to [Configuring Azure Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/storage-configure-connection-string/) document.
 
 
-### Securing connection strings to storage accounts
+### Using aliases for connection strings to storage accounts
 
 It is possible to accidentally leak sensitive information in the connection string for a storage account if it's not properly secured. E.g. the information can be leaked if an error occurs when communicating across untrusted boundaries, or if the error information is logged to an unsecured log file.
 
-In order to prevent it, `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 7 and above allow for creating a logical name for each connection string. The name is mapped to the physical connection string, and connection strings are always referred to by their logical name. In the event of an error or when logging only the logical name can be accidentally leaked.
+In order to prevent it, `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 7 and above allow for creating an alias for each connection string. The alias is mapped to the physical connection string, and connection strings are always referred to by their alias. In the event of an error or when logging only the alias can be accidentally leaked.
 
-This feature can be enabled by specifying `.UseAccountNamesInsteadOfConnectionStrings()` when configuring the `AzureStorageQueueTransport`:
+This feature can be enabled when configuring the `AzureStorageQueueTransport`:
 
-snippet:AzureStorageQueueUseAccountNamesInsteadOfConnectionStrings
+snippet:AzureStorageQueueUseAccountAliasesInsteadOfConnectionStrings
 
-See also [Securing connection strings to storage accounts for Scale Out](/nservicebus/azure-storage-queues/multi-storageaccount-support.md#securing-connection-strings-to-storage-accounts-for-scale-out)
+See also [Using aliases for connection strings to storage accounts for Scale Out](/nservicebus/azure-storage-queues/multi-storageaccount-support.md#using-aliases-for-connection-strings-to-storage-accounts-for-scale-out)
 
 ## Hashing algorithms
 
