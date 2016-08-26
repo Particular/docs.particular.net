@@ -9,7 +9,8 @@
         void DisableFeature(EndpointConfiguration endpointConfiguration)
         {
             #region DisableBestPracticeEnforcementPerEndpoint
-            endpointConfiguration.DisableFeature<BestPracticeEnforcement>();
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+            routing.DisableBestPracticeEnforcement();
             #endregion
         }
 
