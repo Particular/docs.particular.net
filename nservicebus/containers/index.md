@@ -1,10 +1,12 @@
 ---
 title: Containers
-summary: NServiceBus automatically registers components, user-implemented handlers, and sagas.
+summary: NServiceBus automatically registers components, handlers, and sagas.
+component: Core
+reviewed: 2016-08-26
 tags:
-- Dependency Injection
+ - Dependency Injection
 redirects:
-- nservicebus/containers
+ - nservicebus/containers
 related:
 - samples/containers
 ---
@@ -20,12 +22,12 @@ NServiceBus has a built-in container (currently an ILMerged version of Autofac) 
 
 Support for other containers is provided via custom integrations.
 
-- [Autofac](autofac.md)
-- [Ninject](ninject.md)
-- [CastleWindsor](castlewindsor.md)
-- [StructureMap](structuremap.md)
-- [Spring](spring.md)
-- [Unity](unity.md)
+ * [Autofac](autofac.md)
+ * [Ninject](ninject.md)
+ * [CastleWindsor](castlewindsor.md)
+ * [StructureMap](structuremap.md)
+ * [Spring](spring.md)
+ * [Unity](unity.md)
 
 
 ## Using an existing container
@@ -33,17 +35,7 @@ Support for other containers is provided via custom integrations.
 The above pages all have examples of how to pass in an instance of an existing container. This is useful to make use of the full features of the container and share the DI behavior with NServiceBus.
 
 
-### Endpoint resolution
-
-Note that the instance of `IBus` (in Version 3-5) is scoped for the lifetime of the container. Hence to resolve `IBus` and then dispose of it the endpoint will stop processing messages. Note that all NServiceBus services, including `IBus`, will be injected into the passed in container instance. As such there is no need to register these instances at configuration time. In Version 6 `IEndpointInstance` needs to be registered to be properly resolved.
-
-
-### Cleanup
-
-NOTE: In Version 6 `IEndpointInstance` is not `IDisposable`.
-When using an external container normally the bus instance is not disposed of manually. If `IBus.Dispose()` is called that would indirectly trigger the container to dispose lifetime scope.
-
-NOTE: Do NOT call `IBus.Dispose` when using an external container, instead call dispose in the container during shutdown.
+partial: content
 
 
 ## Plugging in the container
