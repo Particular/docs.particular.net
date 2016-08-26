@@ -13,6 +13,7 @@ CustomChecks3: ServiceControl.Plugin.Nsb3.CustomChecks
 CustomChecks4: ServiceControl.Plugin.Nsb4.CustomChecks
 CustomChecks5: ServiceControl.Plugin.Nsb5.CustomChecks
 CustomChecks6: ServiceControl.Plugin.Nsb6.CustomChecks
+ServiceControlContracts: ServiceControl.Contracts
 CloudServicesHost: NServiceBus.Hosting.Azure
 Distributor: NServiceBus.Distributor.MSMQ
 Gateway: NServiceBus.Gateway
