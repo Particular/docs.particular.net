@@ -1,5 +1,5 @@
 ---
-title: Transactions in Azure
+title: Ways To Live Without Transactions
 summary: Understanding transactions in Azure and NServiceBus.
 tags:
 - Azure
@@ -7,53 +7,12 @@ tags:
 - Transactions
 - Idempotency
 - DTC
-redirects:
- - nservicebus/understanding-transactions-in-windows-azure
-reviewed: 2016-04-20
 ---
+## Ways To Live Without Transactions
 
-The Azure Platform and NServiceBus complement each other. Azure is a distributed, scalable and flexible platform. NServiceBus provides high level abstractions and features that make development in Azure easier.
+In case of other transports (MSMQ, SQL Server) NServiceBus by default relies on DTC to make distributed system reliable and ensure consistency. But in the Azure environment DTC shouldn't be used and many services don't even supoprt transactions at all, as explained in [Understanding transactionality in azure](understanding-transactionality-in-azure.md).
 
-There are a few things to keep in mind when developing for Azure. The most important one is the lack of (distributed) transactions.
-
-
-## Understanding transactions
-
-Transaction processing is designed to maintain systems integrity (typically a database or some modern filesystems and services), i.e. to always keep them in a consistent state. That is achieved by ensuring that interdependent operations are either all completed successfully or all canceled. This article focuses on Azure databases and storage services.
-
-In order to guarantee integrity the database engine must lock a certain number of records inside the transaction when updating values. Which records and how many of them are locked depends, among others, on the selected isolation level.
-
-It is really important to understand, especially in the context of cloud services, that other transactions cannot work with locked records at the same time. In a cloud or self-service environment such locks become a trust issue, because external parties can use them to perform a denial of service attack (sometimes not even intentionally).
-
-This is the primary reason why many Azure hosted services do not support transactions at all or are very aggressive when it comes to the lock duration, for example:
-
- * Azure Storage Services officially do not participate in transactions. If the transactional behavior is required, it needs to be implemented in the specific system.
- * The Azure SQL Server supports local transactions (with .NET 4.6.1 and higher), but only grants locks on resources for 20 seconds (when requested by a system task) or 24 hours (otherwise). See [Azure SQL Database resource limits](https://azure.microsoft.com/en-us/documentation/articles/sql-database-resource-limits/) for more details.
-
-The lock duration can be directly controlled when both the database management system and client are under the same ownership, e.g. when SQL Server is deployed to the virtual machine. But even in that scenario distributed transactions must be used carefully.
-
-
-## Understanding distributed transactions and the two-phase commit protocol
-
-When multiple transaction-aware resources are involved in a single transaction, then this transaction automatically is promoted to a distributed transaction. That means that handling the unit of work is performed outside the database system by the so-called Global Transaction Manager, or Distributed Transaction Coordinator (DTC). The coordinator is a service on the machine where the transaction started. It communicates with similar services, called resource managers, which are running on other machines involved in the transaction. They communicate using the two-phase commit protocol.
-
-As illustrated in the diagram, the two-phase commit protocol consists of two phases. During the preparation phase the Global Transaction Manager instructs all resource managers to get ready to commit. Then all resource managers need to inform the Global Transaction Manager whether they approve the transaction. After collecting that information the Global Transaction Manager instructs all resource managers to either complete the commit or to rollback.
-
-![Two Phase Commit](two-phase-commit.png)
-
-Note that this protocol requires two communication steps for each resource manager added to the transaction and requires a response from each of them to be able to continue. Both of these conditions are problematic in a huge data center such as Azure because:
-
- * Two extra communication steps per each resource manager result in an exponential explosion of additional communication: 2 resources - 4 network calls, 4 resources - 16 calls, 100 resources - 10000 calls, etc.
- * Azure data centers are huge and consist of thousands of machines. That means the failure needs to be expected and all systems must be able to deal with network partitions. The network partition results in slow or [in doubt](https://msdn.microsoft.com/en-us/library/ms681727.aspx) transactions. Therefore the requirement to wait for responses from all resource managers is problematic even if the communication overhead is manageable.
-
-The latter is the primary reason why none of the Azure services supports distributed transactions, and the recommendation is not to use them even if it's technically possible.
-
-
-## Recommendations for using NServiceBus in Azure
-
-In case of other transports (MSMQ, SQL Server) NServiceBus by default relies on DTC to make distributed system reliable and ensure consistency. But in the Azure environment DTC shouldn't be used, as explained above.
-
-There are a few possible approaches to deal with that limitation. The rest of this article lists the options and discusses their advantages and disadvantages. Which approach would be the best depends on the specific system.
+This article lists the options available to live without transactions and discusses their advantages and disadvantages. Which approach would be the best depends on the specific system.
 
 The possible approaches:
 
@@ -66,7 +25,7 @@ The possible approaches:
 
 ### Sharing local transactions
 
-To prevent promoting transaction to the distributed transaction, one can reuse a single local transaction between resources. The outermost local transaction/unit of work, started by the receiving transport is passed to the rest of the application (e.g. to an ORM). This way only a single transaction is used for both receiving and handling a message and its result.
+If local transactions are available, and all business and messaging operations occur on the same transactional resource (e.g. SQL database), it is possible to use transactions without DTC. To prevent promoting transaction to the distributed transaction, one can reuse a single local transaction between resources. The outermost local transaction/unit of work, started by the receiving transport is passed to the rest of the application (e.g. to an ORM). This way only a single transaction is used for both receiving and handling a message and its result.
 
 
 #### Advantages
@@ -82,7 +41,7 @@ To prevent promoting transaction to the distributed transaction, one can reuse a
 
 ### Atomic operations and transport retries
 
-If a resource does not support transactions, to ensure consistency one can use atomic operations combined with automatic retries. The idea is that every operation is *transactional* (atomic), meaning that the whole operation either succeeds or fails as a single unit. If all operations conform to that rule then transactions are not needed anymore.
+If a resource does not support transactions, to ensure consistency one can use atomic operations combined with automatic retries. The idea is that every atomic operation is *transactional*, meaning that the whole operation either succeeds or fails as a single unit. If all operations conform to that rule then transactions are not needed anymore.
 
 One of operations that fit this criteria is a unit of work pattern with batching. With some restrictions, it can be used to emulate a transaction. Azure Storage Services allow to group a number of operations into a single batch in order to make the whole set of operations atomic. However, it works only for Azure Storage Tables and only when the partition key for all operations is the same.
 
@@ -97,7 +56,7 @@ Another important consideration is that regular transactions also have a *rollba
 
 #### Disadvantages
 
- * The application must ensure that operations related to business logic are atomic, i.e. have a single insert, update or delete statement per operation. That often requires changes in programs structure.
+ * The application must ensure that operations related to business logic are atomic, i.e. have a single insert, update or delete statement per operation. That often requires changes in program structure.
  * Operations related to business logic have to be idempotent. That guarantees that automatic retries don't cause unintended side-effects. [The need for idempotency](#the-need-for-idempotency) section discusses techniques to achieve idempotency.
  * The retry behavior is usually combined with timeouts. The timeouts cause retries not only if the operation fails, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel, even though it hasn't failed.
 

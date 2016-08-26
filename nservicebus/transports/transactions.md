@@ -23,7 +23,7 @@ It does not discuss the transaction isolation aspect. Transaction isolation appl
 
 ## Transactions
 
-NServiceBus offers four levels of guarantees with regards to message processing. Levels availability depends on the selected transport. See also [Transaction handling in Azure](/nservicebus/azure/transactions.md).
+NServiceBus offers four levels of guarantees with regards to message processing. Levels availability depends on the selected transport. See also [Transaction handling in Azure](/nservicebus/azure/understanding-transactionality-in-azure.md).
 
 
 ### Transaction levels supported by NServiceBus transports
