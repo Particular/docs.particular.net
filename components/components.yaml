@@ -101,7 +101,7 @@
     - ServiceControl.Plugin.Nsb3.CustomChecks
 
 - Key: ServiceControlContracts
-  Name: ServiceControl contracts
+  Name: ServiceControl Contracts
   DocoUrl: servicecontrol/contracts
   Category: Other
   ProjectUrl: https://github.com/Particular/ServiceControl.Contracts
