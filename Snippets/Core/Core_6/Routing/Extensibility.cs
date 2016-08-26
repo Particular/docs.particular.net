@@ -16,7 +16,8 @@
         {
             #region RoutingExtensibility-RouteTableConfig
 
-            config.GetSettings().Get<UnicastRoutingTable>().AddOrReplaceRoutes("MySource",
+            var routingTable = config.GetSettings().Get<UnicastRoutingTable>();
+            routingTable.AddOrReplaceRoutes("MySource",
                     new List<RouteTableEntry>
                     {
                         new RouteTableEntry(typeof(MyCommand),
@@ -24,7 +25,6 @@
                     });
 
             #endregion
-
         }
 
         class RefreshingRouteTable : Feature
@@ -32,8 +32,8 @@
             #region RoutingExtensibility-StartupTaskRegistration
             protected override void Setup(FeatureConfigurationContext context)
             {
-                var routeTable = context.Settings.Get<UnicastRoutingTable>();
-                var refresherTask = new Refresher(routeTable);
+                var routingTable = context.Settings.Get<UnicastRoutingTable>();
+                var refresherTask = new Refresher(routingTable);
                 context.RegisterStartupTask(refresherTask);
             }
             #endregion
@@ -61,15 +61,9 @@
 
                 #endregion
 
-                IList<RouteTableEntry> LoadRoutes()
-                {
-                    return null;
-                }
+                IList<RouteTableEntry> LoadRoutes() => null;
 
-                protected override Task OnStop(IMessageSession session)
-                {
-                    return Task.FromResult(0);
-                }
+                protected override Task OnStop(IMessageSession session) => Task.FromResult(0);
             }
 
             class RobustRefresher : FeatureStartupTask
@@ -104,15 +98,9 @@
 
                 #endregion
 
-                IList<RouteTableEntry> LoadRoutes()
-                {
-                    return null;
-                }
+                IList<RouteTableEntry> LoadRoutes() => null;
 
-                protected override Task OnStop(IMessageSession session)
-                {
-                    return Task.FromResult(0);
-                }
+                protected override Task OnStop(IMessageSession session) => Task.FromResult(0);
             }
         }
 
@@ -181,7 +169,6 @@
 
         class MyEvent : IEvent
         {
-
         }
     }
 }
