@@ -147,13 +147,14 @@
   <ItemGroup>
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
+    <Compile Include="Container\Custom\MyContainerDefinition.cs" />
     <Compile Include="Features\AdvancedSatellite.cs" />
     <Compile Include="Recoverability\CustomFaultManager.cs" />
     <Compile Include="Features\SimpleSatellite.cs" />
     <Compile Include="MessageIdentity\MessageIdFromMessageMutator.cs" />
     <Compile Include="Notifications\SubscribeToNotifications.cs" />
-    <Compile Include="Container\Custom\ContainerCustom.cs" />
-    <Compile Include="Container\Custom\MyObjectBuilder.cs" />
+    <Compile Include="Container\Custom\Usage.cs" />
+    <Compile Include="Container\Custom\MyContainer.cs" />
     <Compile Include="Container\MyService.cs" />
     <Compile Include="DataBus\CleanupStrategy\Define.cs" />
     <Compile Include="DataBus\CleanupStrategy\Usage.cs" />

@@ -5,9 +5,11 @@ namespace Core4.Container.Custom
     using NServiceBus;
     using NServiceBus.ObjectBuilder.Common;
 
-    public class MyCustomObjectBuilder :
+    #region CustomContainer
+    public class MyContainer :
         IContainer
     {
+        #endregion
         public void Dispose()
         {
         }

@@ -1,13 +1,15 @@
-namespace Core3.Container.Custom
+namespace Core5.Container.Custom
 {
     using System;
     using System.Collections.Generic;
     using NServiceBus;
     using NServiceBus.ObjectBuilder.Common;
 
-    public class MyCustomObjectBuilder :
+    #region CustomContainer
+    public class MyContainer :
         IContainer
     {
+        #endregion
         public void Dispose()
         {
         }

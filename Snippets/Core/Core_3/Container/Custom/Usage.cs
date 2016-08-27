@@ -7,10 +7,10 @@
     {
         Usage(Configure configure)
         {
-            #region CustomContainers
+            #region CustomContainerUsage
 
             // Create a class that implements 'IContainer'
-            configure.UsingContainer<MyCustomObjectBuilder>();
+            configure.UsingContainer<MyContainer>();
 
             #endregion
         }

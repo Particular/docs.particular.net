@@ -105,6 +105,7 @@
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
+    <Compile Include="Container\Custom\MyContainerDefinition.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\CustomExceptionPolicy.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicyOverridingDelayedRetriesPart.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\FullyCustomizedPolicy.cs" />
@@ -127,8 +128,8 @@
     <Compile Include="MessageIdentity\MessageIdSendOptions.cs" />
     <Compile Include="Notifications\SubscribeToNotifications.cs" />
     <Compile Include="Notifications\EventsToObservables.cs" />
-    <Compile Include="Container\Custom\ContainerCustom.cs" />
-    <Compile Include="Container\Custom\MyObjectBuilder.cs" />
+    <Compile Include="Container\Custom\Usage.cs" />
+    <Compile Include="Container\Custom\MyContainer.cs" />
     <Compile Include="Container\MyService.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Correlation\Usage.cs" />

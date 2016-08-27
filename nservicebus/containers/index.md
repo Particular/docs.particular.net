@@ -23,10 +23,10 @@ NServiceBus has a built-in container (currently an ILMerged version of Autofac) 
 Support for other containers is provided via custom integrations.
 
  * [Autofac](autofac.md)
- * [Ninject](ninject.md)
  * [CastleWindsor](castlewindsor.md)
- * [StructureMap](structuremap.md)
+ * [Ninject](ninject.md)
  * [Spring](spring.md)
+ * [StructureMap](structuremap.md)
  * [Unity](unity.md)
 
 
@@ -42,4 +42,4 @@ partial: content
 
 If a specific container is not already supported, then create a plugin using the `IContainer` abstraction. Once this is created and registered, NServiceBus will use the custom container to look up its own dependencies.
 
-snippet:CustomContainers
+partial: custom
