@@ -6,7 +6,7 @@ snippet:CustomContainer
 
 Create a class that implements 'ContainerDefinition' and returns the 'IContainer' implementation:
 
-snippet CustomContainerDefinition
+snippet: CustomContainerDefinition
 
 
 Then register the `ContainerDefinition` to be used:
