@@ -1,8 +1,8 @@
 ﻿#pragma warning disable 649
+
 namespace Core5
 {
     using System;
-    using System.Threading;
     using NServiceBus;
     using NServiceBus.Logging;
     using NServiceBus.ObjectBuilder;
@@ -64,36 +64,17 @@ namespace Core5
             startableBus.Dispose();
 
             #endregion
-
         }
 
-        void DefaultHostAction(string errorMessage, Exception exception)
-        {
-            // https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Hosting.Windows/GenericHost.cs
-
-            #region DefaultHostCriticalErrorAction
-
-            if (Environment.UserInteractive)
-            {
-                // so that user can see on their screen the problem
-                Thread.Sleep(10000);
-            }
-
-            var fatalMessage = $"NServiceBus critical error:\n{errorMessage}\nShutting down.";
-            Environment.FailFast(fatalMessage, exception);
-
-            #endregion
-
-        }
         void InvokeCriticalError(CriticalError criticalError, string errorMessage, Exception exception)
         {
             #region InvokeCriticalError
+
             // 'criticalError' is an instance of NServiceBus.CriticalError
             // This instance can be resolved from the container.
             criticalError.Raise(errorMessage, exception);
 
             #endregion
-
         }
     }
 }

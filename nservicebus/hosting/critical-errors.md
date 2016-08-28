@@ -27,13 +27,6 @@ snippet:DefaultCriticalErrorAction
 NOTE: In Version 4 and Version 3 the bus stops processing messages but is not disposed. This means sending of messages is allowed but no processing of messages will occur.
 
 
-### Default action handling in NServiceBus.Host
-
-snippet:DefaultHostCriticalErrorAction
-
-WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if co-hosting NServiceBus with a web-service or website.
-
-
 ### Logging of critical errors
 
 For Versions 4 and above Critical Errors are logged inside the critical error action. This means that if replacing the Critical Error in these versions ensure to write the log entry.

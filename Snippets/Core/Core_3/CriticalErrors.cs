@@ -2,8 +2,6 @@
 namespace Core3.Host
 {
     using System;
-    using System.Diagnostics;
-    using System.Threading;
     using log4net;
     using NServiceBus;
     using NServiceBus.Unicast.Transport;
@@ -55,18 +53,6 @@ namespace Core3.Host
             #endregion
         }
 
-        void DefaultHostAction()
-        {
-            // https://github.com/Particular/NServiceBus/blob/support-3.3/src/hosting/NServiceBus.Hosting.Windows/WindowsHost.cs
-
-            #region DefaultHostCriticalErrorAction
-            // so that user can see on their screen the problem
-            Thread.Sleep(10000);
-            Process.GetCurrentProcess().Kill();
-
-            #endregion
-
-        }
 
         void InvokeCriticalError()
         {
@@ -75,7 +61,6 @@ namespace Core3.Host
             Configure.Instance.OnCriticalError();
 
             #endregion
-
         }
 
     }

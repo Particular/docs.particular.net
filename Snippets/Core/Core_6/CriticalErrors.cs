@@ -3,7 +3,6 @@
 namespace Core6
 {
     using System;
-    using System.Threading;
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Logging;
@@ -55,24 +54,6 @@ namespace Core6
             #endregion
         }
 
-        void DefaultHostAction(string errorMessage, Exception exception)
-        {
-            //TODO: verify when host is updated to v6
-
-            #region DefaultHostCriticalErrorAction
-
-            if (Environment.UserInteractive)
-            {
-                // so that user can see on their screen the problem
-                Thread.Sleep(10000);
-            }
-
-            string fatalMessage = $"NServiceBus critical error:\n{errorMessage}\nShutting down.";
-            Environment.FailFast(fatalMessage, exception);
-
-            #endregion
-
-        }
 
         void InvokeCriticalError(CriticalError criticalError, string errorMessage, Exception exception)
         {
@@ -83,7 +64,6 @@ namespace Core6
             criticalError.Raise(errorMessage, exception);
 
             #endregion
-
         }
     }
 }

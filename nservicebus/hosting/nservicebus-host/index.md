@@ -8,9 +8,9 @@ tags:
 redirects:
  - nservicebus/the-nservicebus-host
 related:
-- samples/hosting/nservicebus-host
-- nservicebus/operations/installers
-- nservicebus/lifecycle
+ - samples/hosting/nservicebus-host
+ - nservicebus/operations/installers
+ - nservicebus/lifecycle
 ---
 
 The NServiceBus Host takes a more opinionated approach to hosting. It allows the execution as both a windows service and a console application (for development).
@@ -238,3 +238,12 @@ Set the endpoint name using the `[EndpointName]` attribute on the endpoint confi
 NOTE: This will only work when using [NServiceBus host](/nservicebus/hosting/nservicebus-host/).
 
 snippet: EndpointNameByAttribute
+
+
+## Default Critical error action handling
+
+The default [Critical Error Action](/nservicebus/hosting/critical-errors.md) for the Host is:
+
+snippet:DefaultHostCriticalErrorAction
+
+WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if co-hosting NServiceBus with a web-service or website.
