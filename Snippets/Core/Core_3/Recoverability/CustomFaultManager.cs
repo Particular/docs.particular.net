@@ -3,10 +3,10 @@
     using System;
     using NServiceBus;
     using NServiceBus.Faults;
-    using NServiceBus.Config;
     using NServiceBus.Unicast.Transport;
 
     #region CustomFaultManager
+
     public class CustomFaultManager :
         IManageMessageFailures
     {
@@ -25,18 +25,19 @@
             // implement initializations for the custom fault manager.
         }
     }
+
     #endregion
 
-    class RegisterFaultManager :
-        INeedInitialization
+    class RegisterFaultManager
     {
 
-        public void Init()
+        RegisterFaultManager()
         {
             #region RegisterFaultManager
 
             var components = Configure.Instance.Configurer;
             components.ConfigureComponent<CustomFaultManager>(DependencyLifecycle.InstancePerCall);
+
             #endregion
         }
     }

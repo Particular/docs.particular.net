@@ -5,6 +5,7 @@
     using NServiceBus.Faults;
 
     #region CustomFaultManager
+
     public class CustomFaultManager :
         IManageMessageFailures
     {
@@ -23,19 +24,21 @@
             // implement initializations for the custom fault manager.
         }
     }
+
     #endregion
 
-    class RegisterFaultManager :
-        INeedInitialization
+    class RegisterFaultManager
     {
-        public void Customize(BusConfiguration configuration)
+        RegisterFaultManager(BusConfiguration configuration)
         {
             #region RegisterFaultManager
+
             configuration.RegisterComponents(
                 registration: components =>
                 {
                     components.ConfigureComponent<CustomFaultManager>(DependencyLifecycle.InstancePerCall);
                 });
+
             #endregion
         }
     }

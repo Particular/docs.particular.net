@@ -25,11 +25,9 @@
     }
     #endregion
 
-    class RegisterFaultManager :
-        INeedInitialization
+    class RegisterFaultManager
     {
-
-        public void Init()
+        RegisterFaultManager()
         {
             #region RegisterFaultManager
             Configure.Component<CustomFaultManager>(DependencyLifecycle.InstancePerCall);
