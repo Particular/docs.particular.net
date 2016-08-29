@@ -407,7 +407,7 @@ snippet: HeaderWriterEncryptionBody
 
 ## FileShare DataBus Headers
 
-When using the [FileShare DataBus](/nservicebus/messaging/databus.md) extra headers and serialized message information is necessary to correlate between the information on the queue and the data on the file system.
+When using the [FileShare DataBus](/nservicebus/messaging/databus/file-share.md) extra headers and serialized message information is necessary to correlate between the information on the queue and the data on the file system.
 
 
 ### When using DataBusProperty

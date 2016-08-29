@@ -9,7 +9,7 @@ redirects:
 - nservicebus/plugin-custom-databus
 ---
 
-NServiceBus endpoints support sending and receiving large chunks of data via the [DataBus feature](databus.md).
+Endpoints support sending and receiving large chunks of data via the [DataBus](./).
 
 It is possible to create a custom DataBus implementation by implementing the `IDataBus` interface, such as in the following minimalistic sample:
 
