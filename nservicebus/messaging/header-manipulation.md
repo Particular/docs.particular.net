@@ -1,6 +1,7 @@
 ---
 title: Manipulating message headers
 summary: Access and manipulate the built in NServiceBus headers or add custom headers.
+reviewed: 2016-08-29
 component: Core
 tags:
 - Header
