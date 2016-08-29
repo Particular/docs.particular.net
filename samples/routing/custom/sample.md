@@ -139,20 +139,11 @@ RI -up-> S2_S
 
 ![Automatic routing design](design.png)
 
-In order to define custom routing it's necessary to add logical addresses of endpoints to the routing table, specify all physical instances of the endpoints, and specify all event publishers:
+The routing information in the core of NServiceBus consists of three parts:
+ * Logical command routing (mapping of message types to logical destinations)
+ * Logical event routing (mapping of even types to their respective logical publishers)
+ * Physical routing (mapping of logical endpoint to physical instances)
 
-snippet:AddDynamic
+This information is updated every time the automatic routing feature detects a change in the topology via following API calls:
 
-All necessary information is stored in a *routing cache*, which consists of four parts. The first one is used in the [endpoint mapping layer](/nservicebus/messaging/routing.md#unicast-routing-endpoint-mapping-layer) and maps message types to sets of endpoints which are known (because they advertised this fact) to have handlers for these message types.
-
-snippet:FindEndpoint
-
-The second one is used in the [instance mapping layer](/nservicebus/messaging/routing.md#unicast-routing-endpoint-instance-mapping-layer) and maps endpoint names to sets of known endpoint instances.
-
-snippet:FindInstance
-
-The third one maps an event type to its publisher. By definition there can be only one logical publisher for a given event.
-
-snippet:FindPublisher
-
-The fourth, auxiliary structure holds state information about the known endpoint instances. This information is used to optimize the instance mapping by excluding inactive endpoints.
+snippet:AddOrReplace
