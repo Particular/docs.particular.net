@@ -7,8 +7,8 @@ tags:
  - Notifications
 related:
 - servicecontrol/contracts
-- servicecontrol/plugins/
-- samples/custom-checks/monitoring3rdparty/
+- servicecontrol/plugins
+- samples/custom-checks/monitoring3rdparty
 ---
 
 ## Prerequisistes
