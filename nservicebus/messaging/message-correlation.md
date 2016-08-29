@@ -1,11 +1,15 @@
 ---
 title: Message correlation
 summary: Explains the concept of a message correlation and the use of the correlation ID header
+component: Core
+reviewed: 2016-08-29
+related:
+ - nservicebus/messaging/headers
 ---
 
 Message correlation is the act of connecting instances of request messages with instances of response messages. Since all messages have a `Message Id` the `Correlation Id` is just a reference back to the specific message instance that caused this message to be sent back as a reply.
 
-This is a well known pattern from the [Enterprise Integration Patterns book](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CorrelationIdentifier.html)
+This is a pattern from the [Enterprise Integration Patterns book](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CorrelationIdentifier.html).
 
 One example usage is that it allows NServiceBus to find out which callback to invoke should the user have requested a callback when the request message was sent out.
 
