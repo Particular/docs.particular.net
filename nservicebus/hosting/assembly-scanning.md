@@ -41,7 +41,7 @@ In Versions 5 and below assemblies in nested directories are scanned by default.
 
 In Versions 6 and above the API uses an "Exclude a list" approach. This supports that the common scenario removing specific assemblies from scanning without the common side effect of accidentally excluding required assemblies.
 
-In Versions 5 and below the API for assembly scanning took an "Include a list" approach. This proved to be problematic. Many extensions to NServiceBus rely on assembly scanning, for example transports and persistences in external NuGets. If, at endpoint configuration time, a list of assemblies was generated, and that list did not include extension assemblies, the endpoint would fail at runtime with some unexpected and hard to diagnose behaviors.
+In Versions 5 and below the API for assembly scanning took an "Include a list" approach. This proved to be problematic. Many extensions to NServiceBus rely on assembly scanning, for example transports and persistences in external NuGet packages. If, at endpoint configuration time, a list of assemblies was generated, and that list did not include extension assemblies, the endpoint would fail at runtime with some unexpected and hard to diagnose behaviors.
 
 
 ## Exclude a list approach

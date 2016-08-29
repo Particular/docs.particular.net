@@ -1,12 +1,14 @@
 ---
-title: DataBus Feature
+title: DataBus
+component: Core
+reviewed: 2016-08-29
 tags:
  - DataBus
  - Attachments
 redirects:
  - nservicebus/databus
 related:
- - samples/databus
+ - samples/file-share-databus
  - samples/azure/blob-storage-databus
 ---
 
@@ -17,25 +19,13 @@ Messages are intended to be small. Some scenarios require sending large binary d
 
 The `DataBus` approach is to store a large payload in a location that both the sending and receiving parties can access. The message is sent with a reference to the location, and upon processing, the payload is brought, allowing the receiving part to access the message along with the payload. If the location is not available upon sending, the message fails the send operation. When the payload location is not available, the receive operation fails as well and results in standard NServiceBus behavior, causing retries and eventually going into the error queue.
 
-The FileShare DataBus also [leverage both serialization and headers](/nservicebus/messaging/headers.md#fileshare-databus-headers) to provide its functionality.
-
 
 ## Enabling the DataBus
 
-NServiceBus supports two DataBus implementations:
+See the individual DataBus implementations for details on enabling and configuring the DataBus.
 
- * `FileShareDataBus`
- * `AzureDataBus`
-
-To enable DataBus, NServiceBus needs to be configured. For file share based DataBus:
-
-snippet:FileShareDataBus
-
-For Azure (storage blobs) based DataBus:
-
-snippet:AzureDataBus
-
-NOTE: The `AzureDataBus` implementation is part of the Azure transport package.
+ * [FileShare DataBus](file-share.md)
+ * [Azure Blob Storage DataBus](azure-blob-storage.md)
 
 
 ## Specifying DataBus properties
@@ -77,49 +67,3 @@ Automatically removing these attachments can cause problems in many situations. 
  * If the outbox feature in NServiceBus is enabled, the message will be removed from the incoming queue, but it might not have been processed yet.
  * If the DataBus feature is used in combination with multiple subscribers, the subscribers cannot determine who should remove the file.
  * If a messages fails it will be handled by [recoverability](/nservicebus/recoverability/). This message can then be retried some period after that failure. The databus files need to exist for that message to be re-processed correctly.
-
-
-### AzureDataBus Implementation
-
-AzureDataBus will **remove** the Azure storage blobs used for physical attachments after the message is processed if the `TimeToBeReceived` value is specified. When this value isn't provided, the physical attachments will not be removed.
-
-
-#### Cleanup Strategy for AzureDataBus
-
-Specify a proper value for the `TimeToBeReceived` property. For more details on how to specify this, read this article on [discarding old messages](/nservicebus/messaging/discard-old-messages.md).
-
-
-### FileShareDataBus
-
-WARNING: FileShareDataBus **does not** remove physical attachments once the message has been processed.
-
-
-#### Custom cleanup strategy for FileShareDataBus
-
-The business requirements can indicate how a message and its corresponding file should be processed and when the files can safely be removed. One strategy to deal with these attachments is to set up a cleanup policy which removes any attachments after a certain number of days has passed based on business SLA.
-
-The file location used by the databus is set during configuration time.
-
-snippet:DefineFileLocationForDatabusFiles
-
-This same location should be used when performing the cleanup.
-
-So for example this path can be used in a Handler for a message containing databus properties.
-
-snippet:HandlerThatCleansUpDatabus
-
-
-## Configuring AzureDataBus
-
-The following extension methods are available for changing the behavior of `AzureDataBus` defaults:
-
-snippet:AzureDataBusSetup
-
- * `ConnectionString()`: The connection string to the storage account for storing DataBus properties, defaults to `UseDevelopmentStorage=true`.
- * `Container()`: Container name, defaults to '`databus`'.
- * `BasePath()`: The blobs base path in the container, defaults to empty string.
- * `DefaultTTL`: Time in seconds to keep blob in storage before it is removed, defaults to `Int64.MaxValue` seconds.
- * `MaxRetries`: Number of upload/download retries, defaults to 5 retries.
- * `NumberOfIOThreads`: Number of blocks that will be simultaneously uploaded, defaults to 5 threads.
- * `BackOffInterval`: The back-off time between retries, defaults to 30 seconds.
- * `BlockSize`: The size of a single block for upload when the number of IO threads is more than 1, defaults to 4MB.
