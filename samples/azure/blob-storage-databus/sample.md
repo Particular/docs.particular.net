@@ -10,7 +10,6 @@ tags:
 - Message size limit
 related:
 - nservicebus/messaging/databus
-- samples/databus
 ---
 
  1. Start [Azure Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/)
