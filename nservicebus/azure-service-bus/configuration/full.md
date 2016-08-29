@@ -6,8 +6,11 @@ tags:
 - Cloud
 redirects:
 - nservicebus/azure-service-bus/configuration/configuration
+reviewed: 2016-08-29
 ---
 
+
+INFO: This document is intended for Azure Service Bus transport versions 7 and above.
 
 ## Full Configuration API
 

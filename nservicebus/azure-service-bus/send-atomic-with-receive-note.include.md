@@ -1,1 +1,1 @@
-Note: `TransportTransactionMode.SendsAtomicWithReceive` level is only supported in Versions 7 and above of the Azure Service Bus transport. It requires destination and receive queues to be in the same namespace and the use of the NetMessaging transport type.
+Note: `TransportTransactionMode.SendsAtomicWithReceive` level is only supported in Versions 7 and above of the Azure Service Bus transport. It requires destination and receive queues to be in the same namespace. Also, the transport type must be set to `TransportType.NetMessaging` instead of `TransportType.Amqp`.
