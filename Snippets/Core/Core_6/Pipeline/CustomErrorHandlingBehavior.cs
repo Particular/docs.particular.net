@@ -35,7 +35,7 @@
             }
             catch (MessageDeserializationException deserializationException)
             {
-                // Handle any custom processing that needs to occur when a serialization failure occurs.
+                // Custom processing that needs to occur when a serialization failure occurs.
                 log.Error("Message deserialization failed", deserializationException);
                 throw;
             }
@@ -60,7 +60,7 @@
             }
             catch (Exception exception)
             {
-                // Handle any custom processing that need to occur when a message always fails.
+                // Custom processing that need to occur when a message always fails.
                 log.Error("Message processing failed", exception);
                 throw;
             }
@@ -83,7 +83,7 @@
             }
             catch (Exception)
             {
-                // Handle any custom processing that need to occur when a message always fails.
+                // Custom processing that need to occur when a message always fails.
                 // To rollback the receive operation instead of mark as processed:
                 context.AbortReceiveOperation();
             }
