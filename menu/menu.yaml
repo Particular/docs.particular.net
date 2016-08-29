@@ -206,6 +206,12 @@
             - "nservicebus/azure/understanding-transactionality-in-azure"
             - "nservicebus/azure/ways-to-live-without-transactions"
             - "nservicebus/azure-service-bus/understanding-transactions-and-delivery-guarantees"
+        - Title: Error Handling
+          Url: "nservicebus/azure-service-bus/error-handling"
+          Articles:
+            - "nservicebus/azure-service-bus/common-exceptions"
+            - "nservicebus/azure-service-bus/dlq-forwarding"
+            - "nservicebus/azure-service-bus/oversized-sends"
         - "nservicebus/azure-service-bus/faq"
         - "nservicebus/azure-service-bus/native-integration"
     -
