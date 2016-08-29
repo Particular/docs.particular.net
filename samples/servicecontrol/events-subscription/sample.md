@@ -7,14 +7,14 @@ tags:
  - Notifications
 related:
 - servicecontrol/contracts
-- servicecontrol/plugins
-- samples/custom-checks/monitoring3rdparty
+- servicecontrol/plugins/
+- samples/custom-checks/monitoring3rdparty/
 ---
 
 ## Prerequisistes
 
-1. [Install ServiceControl](/servicecontrol/installation).
-1. Using [ServiceControl Management Utility](/servicecontrol/license#licensing-servicecontrol-servicecontrol-management-utility) tool, set up ServiceControl to monitor endpoints using MSMQ transport.
+1. [Install ServiceControl](/servicecontrol/installation.md).
+1. Using [ServiceControl Management Utility](/servicecontrol/license.md#licensing-servicecontrol-servicecontrol-management-utility) tool, set up ServiceControl to monitor endpoints using MSMQ transport.
 1. Make sure the `ServiceControl` process is running before running the sample. 
 
 
@@ -44,7 +44,7 @@ In order to observe that, stop the `NServiceBusEndpoint` application and wait fo
 
 Then restart the `NServiceBusEndpoint` application and wait for up to 30 seconds. When a `HeartbeatRestored` event is received, the `EndpointsMonitor` prints a green `Heartbeat from EndpointsMonitoring.NServiceBusEndpoint restored.` text in its console window.
 
-![Heartbeat events](images/heartbeats_events.png)
+![Heartbeat events](images/heartbeats-events.png)
 
 
 ## Code walk-through 
