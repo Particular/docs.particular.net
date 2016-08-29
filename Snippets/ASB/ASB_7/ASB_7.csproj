@@ -87,6 +87,7 @@
     <Compile Include="AddressingStrategies\SanitizationExtension.cs" />
     <Compile Include="AddressingStrategies\Sanitization.cs" />
     <Compile Include="Composition.cs" />
+    <Compile Include="DeadLetterQueueForwarding.cs" />
     <Compile Include="GettingStarted.cs" />
     <Compile Include="MultipleNamespaces.cs" />
     <Compile Include="Sanitization.cs" />
