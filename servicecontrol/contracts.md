@@ -10,6 +10,8 @@ redirects:
  - servicepulse/custom-notification-and-alerting-using-servicecontol-events
  - servicepulse/custom-notification-and-alerting-using-servicecontrol-events
  - servicecontrol/external-integrations
+related:
+ - samples/servicecontrol/events-subscription/
 ---
 
 

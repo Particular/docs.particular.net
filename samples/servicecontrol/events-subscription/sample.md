@@ -3,7 +3,8 @@ title: Monitoring NServiceBus endpoints with ServiceControl events.
 component: ServiceControlContracts
 reviewed: 2016-03-26
 tags:
-- ServiceControl
+ - ServiceControl
+ - Notifications
 related:
 - servicecontrol/contracts
 - servicecontrol/plugins/
