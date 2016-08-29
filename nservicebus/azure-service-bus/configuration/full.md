@@ -6,8 +6,11 @@ tags:
 - Cloud
 redirects:
 - nservicebus/azure-service-bus/configuration/configuration
+reviewed: 2016-08-29
 ---
 
+
+INFO: This document is intended for Azure Service Bus transport versions 7 and above.
 
 ## Full Configuration API
 
@@ -110,6 +113,7 @@ The following settings determine how NServiceBus will connect to Azure Service B
 
  * `NumberOfClientsPerEntity(int)`: NServiceBus maintains a pool of receive and send clients for each entity. This setting determines how big that pool is. Defaults to 5.
  * `ConnectivityMode(ConnectivityMode)`: Determines how NServiceBus connects to Azure Service Bus, using TCP or HTTP. Defaults to TCP.
+ * `TransportType(TransportType)`: Determines what transport protocol NServiceBus is using for Azure Service Bus, `TransportType.NetMessaging` or `TransportType.Amqp`. Defaults to `TransportType.NetMessaging`.
  * `BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes)`: Controls how the body of a brokered message will be serialized, either as a byte array or as a stream. Defaults to byte array.
  * `MessagingFactories()`: Provides access to settings of the used native instances of the class `MessagingFactory`. These settings will automatically apply to all `MessageReceiver` and `MessageSender` instances created by the `MessagingFactory`.
  * `MessageReceivers()`: Provides access to the settings of the `MessageReceiver` instances.
