@@ -12,8 +12,8 @@ namespace Core6.Routing
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
             var routing = transport.Routing();
             var instanceMappingFile = routing.InstanceMappingFile();
-            var instanceMappingFileSettings = instanceMappingFile.FilePath(@"C:\instance-mapping.xml");
-            instanceMappingFileSettings.RefreshInterval(TimeSpan.FromSeconds(45));
+            var fileSettings = instanceMappingFile.FilePath(@"C:\instance-mapping.xml");
+            fileSettings.RefreshInterval(TimeSpan.FromSeconds(45));
 
             #endregion
         }

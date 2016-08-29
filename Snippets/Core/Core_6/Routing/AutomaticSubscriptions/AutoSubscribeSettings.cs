@@ -18,7 +18,8 @@
         {
             #region DoNotAutoSubscribeSagas
 
-            endpointConfiguration.AutoSubscribe().DoNotAutoSubscribeSagas();
+            var autoSubscribe = endpointConfiguration.AutoSubscribe();
+            autoSubscribe.DoNotAutoSubscribeSagas();
 
             #endregion
         }

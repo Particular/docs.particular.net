@@ -11,11 +11,18 @@ namespace Core6.Routing
             #region Routing-Logical
 
             var routing = transportExtensions.Routing();
-            routing.RouteToEndpoint(typeof(AcceptOrder).Assembly, "Sales");
+            routing.RouteToEndpoint(
+                assembly: typeof(AcceptOrder).Assembly,
+                destination: "Sales");
 
-            routing.RouteToEndpoint(typeof(AcceptOrder).Assembly, "PriorityMessages", "Preferred");
+            routing.RouteToEndpoint(
+                assembly: typeof(AcceptOrder).Assembly,
+                @namespace: "PriorityMessages",
+                destination: "Preferred");
 
-            routing.RouteToEndpoint(typeof(SendOrder), "Sending");
+            routing.RouteToEndpoint(
+                messageType: typeof(SendOrder),
+                destination: "Sending");
 
             #endregion
         }
@@ -25,11 +32,18 @@ namespace Core6.Routing
             #region Routing-RegisterPublisher
 
             var routing = transportExtensions.Routing();
-            routing.RegisterPublisher(typeof(OrderAccepted).Assembly, "Sales");
+            routing.RegisterPublisher(
+                assembly: typeof(OrderAccepted).Assembly,
+                publisherEndpoint: "Sales");
 
-            routing.RegisterPublisher(typeof(OrderAccepted).Assembly, "PriorityMessages", "Preferred");
+            routing.RegisterPublisher(
+                assembly: typeof(OrderAccepted).Assembly,
+                @namespace: "PriorityMessages",
+                publisherEndpoint: "Preferred");
 
-            routing.RegisterPublisher(typeof(OrderSent), "Sending");
+            routing.RegisterPublisher(
+                eventType: typeof(OrderSent),
+                publisherEndpoint: "Sending");
             #endregion
         }
 
@@ -38,7 +52,9 @@ namespace Core6.Routing
             #region Routing-StaticRoutes-Endpoint-Broker
 
             var routing = transportExtensions.Routing();
-            routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            routing.RouteToEndpoint(
+                messageType: typeof(AcceptOrder),
+                destination: "Sales");
 
             #endregion
         }
@@ -50,8 +66,12 @@ namespace Core6.Routing
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
             var routing = transport.Routing();
 
-            routing.RouteToEndpoint(typeof(AcceptOrder), "Sales");
-            routing.RouteToEndpoint(typeof(SendOrder), "Shipping");
+            routing.RouteToEndpoint(
+                messageType: typeof(AcceptOrder),
+                destination: "Sales");
+            routing.RouteToEndpoint(
+                messageType: typeof(SendOrder),
+                destination: "Shipping");
 
             #endregion
         }

@@ -109,11 +109,12 @@
             #region RoutingExtensibility-Publishers
             protected override void Setup(FeatureConfigurationContext context)
             {
-                context.Settings.Get<Publishers>().AddOrReplacePublishers("MySource",
+                var publishers = context.Settings.Get<Publishers>();
+                var publisherAddress = PublisherAddress.CreateFromEndpointName("PublisherEndpoint");
+                publishers.AddOrReplacePublishers("MySource",
                     new List<PublisherTableEntry>
                     {
-                        new PublisherTableEntry(typeof(MyEvent),
-                            PublisherAddress.CreateFromEndpointName("PublisherEndpoint"))
+                        new PublisherTableEntry(typeof(MyEvent), publisherAddress)
                     });
             }
             #endregion
@@ -124,7 +125,8 @@
             #region RoutingExtensibility-Instances
             protected override void Setup(FeatureConfigurationContext context)
             {
-                context.Settings.Get<EndpointInstances>().AddOrReplaceInstances("MySource",
+                var endpointInstances = context.Settings.Get<EndpointInstances>();
+                endpointInstances.AddOrReplaceInstances("MySource",
                     new List<EndpointInstance>
                     {
                         new EndpointInstance("MyEndpoint").AtMachine("VM-1"),

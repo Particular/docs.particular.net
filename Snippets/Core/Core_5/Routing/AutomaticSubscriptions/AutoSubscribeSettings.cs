@@ -18,7 +18,8 @@
         {
             #region DoNotAutoSubscribeSagas
 
-            busConfiguration.AutoSubscribe().DoNotAutoSubscribeSagas();
+            var autoSubscribe = busConfiguration.AutoSubscribe();
+            autoSubscribe.DoNotAutoSubscribeSagas();
 
             #endregion
         }
@@ -27,7 +28,8 @@
         {
             #region AutoSubscribePlainMessages
 
-            busConfiguration.AutoSubscribe().AutoSubscribePlainMessages();
+            var autoSubscribe = busConfiguration.AutoSubscribe();
+            autoSubscribe.AutoSubscribePlainMessages();
 
             #endregion
         }
