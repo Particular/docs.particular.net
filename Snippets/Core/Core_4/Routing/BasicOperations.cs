@@ -7,18 +7,27 @@
         void ConcreteMessage(IBus bus)
         {
             #region InstancePublish
-            var message = new MyEvent { SomeProperty = "Hello world" };
-            bus.Publish(message);
-            #endregion
 
+            var message = new MyEvent
+            {
+                SomeProperty = "Hello world"
+            };
+            bus.Publish(message);
+
+            #endregion
         }
 
         void InterfaceMessage(IBus bus)
         {
             #region InterfacePublish
-            bus.Publish<IMyEvent>(m => { m.SomeProperty = "Hello world"; });
-            #endregion
 
+            bus.Publish<IMyEvent>(
+                messageConstructor: message =>
+                {
+                    message.SomeProperty = "Hello world";
+                });
+
+            #endregion
         }
 
         void Subscribe(IBus bus)
@@ -28,7 +37,6 @@
 
             bus.Unsubscribe<MyEvent>();
             #endregion
-
         }
 
         class MyEvent
