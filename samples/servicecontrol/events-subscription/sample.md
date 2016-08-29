@@ -27,7 +27,7 @@ In order to observe that, press `Enter` in the `EndpointsMonitoring.NServiceBusE
 
 When a `MessageFailed` event is received, the `EndpointsMonitor` prints a red `Received ServiceControl 'MessageFailed' event for a SimpleMessage.` text in its console window.
 
-![Failed message event](failedmessage-event.PNG)
+![Failed message event](images/failedmessage-event.png)
 
 
 ### HeartbeatStopped and HeartbeatRestored events
@@ -40,7 +40,7 @@ In order to observe that, stop the `EndpointsMonitoring.NServiceBusEndpoint` app
 
 Then restart the `EndpointsMonitoring.NServiceBusEndpoint` application and wait for up to 30 seconds. When a `HeartbeatRestored` event is received, the `EndpointsMonitor` prints a green `Heartbeat from EndpointsMonitoring.NServiceBusEndpoint restored.` text in its console window.
 
-![Heartbeat events](heartbeats_events.PNG)
+![Heartbeat events](images/heartbeats_events.png)
 
 
 ## Code walk-through 
