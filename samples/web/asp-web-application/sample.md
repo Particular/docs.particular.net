@@ -1,6 +1,5 @@
 ---
 title: Using NServiceBus in a ASP.NET Web Application
-summary: Using NServiceBus in a WebForms application.
 component: Core
 reviewed: 2016-03-21
 redirects:
