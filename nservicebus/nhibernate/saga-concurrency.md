@@ -1,5 +1,7 @@
 ---
-title: NHibernate Persistence Saga concurrency settings
+title: NHibernate Persistence Saga concurrency
+component: NHibernate
+versions: '[6,]'
 tags:
  - NHibernate
  - Persistence
