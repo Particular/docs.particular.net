@@ -29,9 +29,10 @@ A `MessageFailed` event is emitted whenever processing a message fails and messa
 
 In order to observe that, press `Enter` in the `NServiceBusEndpoint` console window. That will send a new `SimpleMessage`. Processing of the message fails every time.
 
-When a `MessageFailed` event is received, the `EndpointsMonitor` prints a red `Received ServiceControl 'MessageFailed' event for a SimpleMessage.` text in its console window.
+When a `MessageFailed` event is received, the `EndpointsMonitor` prints a red text in its console window: 
 
-![Failed message event](images/failedmessage-event.png)
+> `Received ServiceControl 'MessageFailed' event for a SimpleMessage.`
+
 
 
 ### HeartbeatStopped and HeartbeatRestored events
@@ -40,11 +41,13 @@ The `HeartbeatStopped` event is emitted whenever an endpoint fails to send a con
 
 Note that Monitor needs to receive at least one control message, before it can observe that endpoint stopped responding, and that `HeartbeatStopped` event is emitted only following the `HeartbeatStopped` event. 
 
-In order to observe that, stop the `NServiceBusEndpoint` application and wait for up to 30 seconds. When a `HeartbeatStopped` event is received, the `EndpointsMonitor` prints a yellow `Heartbeat from NServiceBusEndpoint stopped.` text in its console window.
+In order to observe that, stop the `NServiceBusEndpoint` application and wait for up to 30 seconds. When a `HeartbeatStopped` event is received, the `EndpointsMonitor` prints a yellow text in its console window:
 
-Then restart the `NServiceBusEndpoint` application and wait for up to 30 seconds. When a `HeartbeatRestored` event is received, the `EndpointsMonitor` prints a green `Heartbeat from EndpointsMonitoring.NServiceBusEndpoint restored.` text in its console window.
+> `Heartbeat from NServiceBusEndpoint stopped.`
 
-![Heartbeat events](images/heartbeats-events.png)
+Then restart the `NServiceBusEndpoint` application and wait for up to 30 seconds. When a `HeartbeatRestored` event is received, the `EndpointsMonitor` prints a green text in its console window:
+
+> `Heartbeat from EndpointsMonitoring.NServiceBusEndpoint restored.`
 
 
 ## Code walk-through 
@@ -53,6 +56,10 @@ The solution consists of two projects. The `NServiceBusEndpoint` is a simple end
 
 
 ### NServiceBusEndpoint
+
+The retries are disabled in the sample for simplicity, therefore the message is immediately moved to the error queue after processing failure:
+
+snippet:DisableRetries
 
 The `MessageFailed` event is published for any standard NServiceBus endpoint that is monitored by ServiceControl.
 

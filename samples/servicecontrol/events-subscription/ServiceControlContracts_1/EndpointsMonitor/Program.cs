@@ -2,46 +2,43 @@
 using System.Threading.Tasks;
 using NServiceBus;
 
-namespace EndpointsMonitor
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main()
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
+        Console.Title = "EndpointsMonitor";
+        var endpointConfiguration = new EndpointConfiguration("EndpointsMonitor");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
+
+        var conventions = endpointConfiguration.Conventions();
+        conventions.DefiningEventsAs(type =>
         {
-            AsyncMain().GetAwaiter().GetResult();
+            return typeof(IEvent).IsAssignableFrom(type) ||
+                   // include ServiceControl events
+                   type.Namespace != null &&
+                   type.Namespace.StartsWith("ServiceControl.Contracts");
+        });
+
+
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
+        try
+        {
+            Console.WriteLine("Press any key to finish.");
+            Console.ReadKey();
         }
-
-        static async Task AsyncMain()
+        finally
         {
-            Console.Title = "EndpointsMonitor";
-            var endpointConfiguration = new EndpointConfiguration("EndpointsMonitor");
-            endpointConfiguration.UseSerialization<JsonSerializer>();
-            endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.SendFailedMessagesTo("error");
-
-            var conventions = endpointConfiguration.Conventions();
-            conventions.DefiningEventsAs(type =>
-            {
-                return typeof(IEvent).IsAssignableFrom(type) ||
-                       // include ServiceControl events
-                       type.Namespace != null &&
-                       type.Namespace.StartsWith("ServiceControl.Contracts");
-            });
-
-
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            await endpointInstance.Stop()
                 .ConfigureAwait(false);
-            try
-            {
-                Console.WriteLine("Press any key to finish.");
-                Console.ReadKey();
-            }
-            finally
-            {
-                await endpointInstance.Stop()
-                    .ConfigureAwait(false);
-            }
         }
     }
 }
