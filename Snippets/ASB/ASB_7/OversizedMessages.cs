@@ -7,7 +7,8 @@ class OversizedMessages
         #region asb-configure-oversized-messages-handler-config
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.MessageSenders().OversizedBrokeredMessageHandler(new CustomOversizedBrokeredMessageHandler());
+        var messageSenders = transport.MessageSenders();
+        messageSenders.OversizedBrokeredMessageHandler(new CustomOversizedBrokeredMessageHandler());
 
         #endregion
     }
