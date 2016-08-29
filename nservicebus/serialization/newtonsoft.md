@@ -9,12 +9,12 @@ related:
  - samples/serializers/newtonsoft-bson
 ---
 
-Using [JSON](https://en.wikipedia.org/wiki/Json) via a nuget dependency on [Json.NET](http://www.newtonsoft.com/json).
+Using [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet dependency on [Json.NET](http://www.newtonsoft.com/json).
 
 
 ## How the NServiceBus core uses Json.net
 
-The core of [NServiceBus uses Json.net](json.md). However it is ILMerged where this library has a standard dll and nuget dependency. While ILMerging reduces versioning issues in the core it does cause several restrictions:
+The core of [NServiceBus uses Json.net](json.md). However it is ILMerged where this library has a standard dll and NuGet dependency. While ILMerging reduces versioning issues in the core it does cause several restrictions:
 
  * Can't use a different version of Json.net
  * Can't use Json.net attributes

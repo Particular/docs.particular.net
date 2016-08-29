@@ -228,17 +228,17 @@ The component key allows for shorthand when referring to components in page head
 
 ### Component URL
 
-The component URL is the definitive source of documentation for a given component. This will eventually be used to link back to said documentation from both nuget usages, samples and articles.
+The component URL is the definitive source of documentation for a given component. This will eventually be used to link back to said documentation from both NuGet usages, samples and articles.
 
 
 ### Component NugetOrder
 
-Since components can be split over multiple different nugets, it is not possible to infer the order from the nuget version alone. So we need to have a lookup index and the NugetOrder allows us to sensibly sort component versions. For example, NServiceBus.Callbacks.1.0.0 should sort higher than the version of Callbacks that exists in NServiceBus.5.0.0.
+Since components can be split over multiple different nugets, it is not possible to infer the order from the NuGet version alone. So we need to have a lookup index and the NugetOrder allows us to sensibly sort component versions. For example, NServiceBus.Callbacks.1.0.0 should sort higher than the version of Callbacks that exists in NServiceBus.5.0.0.
 
 
 ## nugetAlias.txt
 
-All NServiceBus-related nugets (used in documentation) are listed in [components/nugetAlias.txt](components/nugetAlias.txt). The alias part of the nuget is the key that is used to infer the version and component for all snippets. For example, [Snippets/Callbacks](Snippets/Callbacks) has, over its lifetime, existed in both the Core nuget and the Callbacks nuget. So the directories under Callbacks are indicative of the nuget (alias) they exist in and then split over the multiple versions of a given nuget.
+All NServiceBus-related NuGet packages (used in documentation) are listed in [components/nugetAlias.txt](components/nugetAlias.txt). The alias part of the NuGet is the key that is used to infer the version and component for all snippets. For example, [Snippets/Callbacks](Snippets/Callbacks) has, over its lifetime, existed in both the Core NuGet and the Callbacks NuGet. So the directories under Callbacks are indicative of the NuGet (alias) they exist in and then split over the multiple versions of a given NuGet.
 
 Example aliases:
 
@@ -388,7 +388,7 @@ There are only rendered in the target page when the version filter matches the c
 
 Partial Convention: `filePrefix_key_nugetAlias_version.partial.md`
 
-The nuget alias in samples should match the prefix as defined by the samples solution directories.
+The NuGet alias in samples should match the prefix as defined by the samples solution directories.
 
 Partials are rendered in the target page by using the following syntax
 
@@ -499,7 +499,7 @@ Snippets are versioned. These versions are used to render snippets in a tabbed m
 
 <img src="tabbed_snippets.png" style='border:1px solid #000000' />
 
-Versions follow the [nuget versioning convention](https://docs.nuget.org/create/versioning#specifying-version-ranges-in-.nuspec-files). If either `Minor` or `Patch` is not defined they will be rendered as an `x`. For example, Version `3.3` would be rendered as `3.3.x` and Version `3` would be rendered as `3.x`.
+Versions follow the [NuGet versioning convention](https://docs.nuget.org/create/versioning#specifying-version-ranges-in-.nuspec-files). If either `Minor` or `Patch` is not defined they will be rendered as an `x`. For example, Version `3.3` would be rendered as `3.3.x` and Version `3` would be rendered as `3.x`.
 
 Snippet versions are derived in two ways
 
@@ -624,9 +624,9 @@ The code used by snippets and samples is compiled on the build server. The compi
 
 ## Unreleased nugets
 
-There are some scenarios where documentation may require unreleased or beta nugets. For example, when creating a PR against documentation for a feature that is not yet released. In this case, it is ok for a PR to reference an unreleased nuget and have that PR fail to build on the build server. Once the nugets have been released that PR can be merged.
+There are some scenarios where documentation may require unreleased or beta NuGet packages. For example, when creating a PR against documentation for a feature that is not yet released. In this case, it is ok for a PR to reference an unreleased NuGet and have that PR fail to build on the build server. Once the NuGet packages have been released that PR can be merged.
 
-In some cases it may be necessary to have merged documentation for unreleased features. In this case the nuget should be pushed to the [Particular feed on MyGet](https://www.myget.org/feed/Packages/particular). The feed is included by default in the [Snippets nuget.config](https://github.com/Particular/docs.particular.net/blob/master/Snippets/nuget.config#L14).
+In some cases it may be necessary to have merged documentation for unreleased features. In this case the NuGet packages should be pushed to the [Particular feed on MyGet](https://www.myget.org/feed/Packages/particular). The feed is included by default in the [Snippets nuget.config](https://github.com/Particular/docs.particular.net/blob/master/Snippets/nuget.config#L14).
 
 
 ## Alerts
@@ -837,7 +837,7 @@ Under https://github.com/Particular/docs.particular.net/tree/master/tools there 
 
 ## nugets.linq
 
-Uses nuget.exe to update all nuget pages in all solutions to the newest patch version. This script takes 10-20 minutes depending on bandwidth.
+Uses nuget.exe to update all NuGet packages in all solutions to the newest patch version. This script takes 10-20 minutes depending on bandwidth.
 
 
 ## resharpersettings.linq

@@ -17,7 +17,7 @@ Anotar simplifies logging through a static class and some IL manipulation done b
 
 ## Including Anotar
 
-When the Anotar nuget is pulled in Fody will create a configuration file (`FodyWeavers.xml`) with the following:
+When the Anotar NuGet package is pulled in Fody will create a configuration file (`FodyWeavers.xml`) with the following:
 
 snippet:weavers
 
