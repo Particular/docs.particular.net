@@ -1,6 +1,7 @@
 ---
 title: 'MSMQ Transport: Uninstalling the MSMQ Service'
 summary: How to remove the Microsoft Messaging Queue (MSMQ) service
+reviewed: 2016-08-29
 tags:
 - Transports
 - MSMQ
@@ -12,14 +13,15 @@ The Platform Installer and the NServiceBus.PowerShell modules provide a simple m
 
 The removal instructions vary depend on the operating system and are detailed below.
 
+
 ## Before proceeding
 
 DANGER: Removing the MSMQ Service is a destructive operation which can result in data loss
 
 When the MSMQ service is uninstalled the following actions are also carried out:
 
-- All existing queues and queue configuration information is deleted
-- All messages contained in those queue and the system dead letter queue (DLQ) is deleted
+ * All existing queues and queue configuration information is deleted
+ * All messages contained in those queue and the system dead letter queue (DLQ) is deleted
 
 
 ### Dependent Services
@@ -88,6 +90,7 @@ To list which MSMQ features are enabled execute:
 ```dos
 DISM /Online /Get-Features /Format:Table | FINDSTR "^MSMQ-"
 ```
+
 The output will be similar to this:
 
 ```no-highlight
@@ -125,5 +128,4 @@ Get-WindowsOptionalFeature -Online |
 }
 ```
 
-The script is suppressing restarts to stop a prompt being shown for each feature as it is removed.
-Once the script has completed the system should be restarted to finalize the changes.
+The script is suppressing restarts to stop a prompt being shown for each feature as it is removed. Once the script has completed the system should be restarted to finalize the changes.
