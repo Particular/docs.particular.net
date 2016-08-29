@@ -3,7 +3,6 @@ title: Message routing
 summary: How NServiceBus routes messages between the endpoints.
 reviewed: 2016-08-17
 component: Core
-versions: '[6,]'
 tags:
 - routing
 - message
@@ -42,6 +41,10 @@ partial:concepts
 As described [here](/nservicebus/messaging/messages-events-commands.md), NServiceBus distinguishes several types of messages. Command messages are always routed to a single logical endpoint. 
 
 partial:commands
+
+Each entry in the collection has to specify the assembly where the messages are defined. In addition to that, a type name or the namespace name can be also specified for additional filtering. 
+
+NOTE: For backwards compatibility a `Messages` attribute can be used instead of `Type` and `Namespace` attributes. 
 
 snippet:endpoint-mapping-appconfig
 
