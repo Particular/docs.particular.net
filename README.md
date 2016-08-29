@@ -36,6 +36,18 @@ For more information, see [Collaborating on GitHub](https://help.github.com/cate
 
 If, as part of editing a page, a full review of the content is done, the [reviewed header](#reviewed) should be updated. This date is used to render http://docs.particular.net/review.
 
+As part of a full review the following should be done:
+
+ * Spelling (US)
+ * Grammar
+ * Version specific language and content is correct
+ * Language is concise
+ * All links are relevant
+ * Are there any more links that can be added to improve the content
+ * Content is correct up to and including the current released version
+ * Tags are correct
+ * Summary and title is adequate
+
 
 # Conventions
 
