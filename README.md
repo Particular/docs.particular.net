@@ -42,11 +42,13 @@ As part of a full review the following should be done:
  * Grammar
  * Version specific language and content is correct
  * Language is concise
- * All links are relevant
+ * All links are relevant. No 3rd part links have redirects or 404s.
  * Are there any more links that can be added to improve the content
  * Content is correct up to and including the current released version
  * Tags are correct
  * Summary and title is adequate
+
+**Note that for minor fixes (e.g. individual spelling or grammar fixes) the reviewed header should NOT be updated.**
 
 
 # Conventions
