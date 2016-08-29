@@ -12,13 +12,6 @@ related:
 Using [JSON](https://en.wikipedia.org/wiki/Json) via a nuget dependency on [Json.NET](http://www.newtonsoft.com/json).
 
 
-## The nuget package
-
-https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/
-
-    PM> Install-Package NServiceBus.Newtonsoft.Json
-
-
 ## How the NServiceBus core uses Json.net
 
 The core of [NServiceBus uses Json.net](json.md). However it is ILMerged where this library has a standard dll and nuget dependency. While ILMerging reduces versioning issues in the core it does cause several restrictions:
