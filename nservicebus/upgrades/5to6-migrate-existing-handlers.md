@@ -1,5 +1,5 @@
 ---
-title: Migrate existing handlers/sagas to Version 6
+title: Migrate handlers/sagas to Version 6
 reviewed: 2016-08-29
 ---
 
