@@ -75,7 +75,7 @@ For example:
 ---
 title: Auditing With NServiceBus
 summary: Provides built-in message auditing for every endpoint.
-version: '[4,)'
+versions: '[4,)'
 tags:
 - Auditing
 - Forwarding Messages
@@ -96,10 +96,10 @@ title: Auditing With NServiceBus
 Required. Used for the web page title tag `<head><title>`, displayed in the page content, and displayed in search results.
 
 
-### Version
+### Versions
 
 ```
-version: '[4,)'
+versions: '[4,)'
 ```
 
 Optional. Used for specifying what versions the given page covers, especially relevant for features that are not available in all supported versions. Format is 'nuget_version_range'
