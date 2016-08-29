@@ -9,16 +9,16 @@ related:
 
 ## Message Redirects
 
-In Versions **1.6.6** and above ServicePulse includes a screen to view and manage failed message redirects that have been created to send failed messages to an alternate queue when the original processing endpoint address is no longer available.
+When a failed message needs to be retried, but the destination endpoint no longer exists and the message needs to be routed to a different endpoint than what is specified in the failed message headers, ServicePulse offers the redirect feature. This feature is only available from Versions 1.6.6 and above.
 
-INFO: Message redirects are only a feature of ServicePulse/ServiceControl and will not alter the routing for NServiceBus endpoints.
+WARNING: Message redirects are only a feature of ServicePulse/ServiceControl and will not alter the routing for NServiceBus endpoints.
 
-To manage redirects go to Configuration page and select tab called `Retry Redirects`.
+Redirects can be managed from the Configuration page by selecting the `Retry Redirects` tab.
 
 ![Redirects Tab](images/redirects.png 'width=500')
 
 ### Managing redirects
-On the redirect page a list of redirects is being displayed containing following information.
+This page displays the configured redirects that are currently in effect along with the following information:
  - **Source Queue** This is the queue for which this redirect will be applied.
  - **Destination Queue** This is the queue that will be new destination when doing retry.
  - **Last modified** This is a timestamp of last modification.
@@ -29,17 +29,19 @@ To create a redirect click the `Create Redirect` button. A dialog will appear.
 
 Choose a source queue from the dropdown. Enter the queue name for the target of the redirect in `To Physical Address` input. To immediately retry all unresolved failed messages from the sources address check the box with the label `Immediately retry any matching failed messages`.
 
-Once created every redirect can be deleted using `End Redirect` link. This action requires an confirmation. 
+Any existing redirects can be deleted using `End Redirect` link. This action requires an confirmation. 
 
-To change the target of a redirect click the `Modify Redirect` link. Only the target queue can be modified, the source queue remains read-only.
+To change the target of a redirect, click the `Modify Redirect` link. Only the target queue can be modified, the source queue remains read-only.
+
+### Immediately retry any matching failed messages
+Selecting this option will immediately retry any failed messages that match the redirect rule. This does not apply to failed messages whose retry status is in the Pending state.
 
 #### Validation errors
 
-When adding and editing redirects following validation rules are checked:
- - **Duplicate** There can not be more than one rule for given Source Queue. In that case the following message will be displayed: "Can not create redirect to a queue *QueueName* as it already has a redirect. Provide a different queue or end the redirect."
- - **Dependent** There can never be two redirects that one destination queue in one is a destination queue in another. To use an example: when there is a rule QueueA -> QueueB. There can not be a second rule QueueB -> QueueC or QueueC -> QueueA. When this error occur the following message will be displayed: "Failed to create a redirect, can not create a redirect to a queue that already has a redirect or is a target of a redirect."
+When adding and editing redirects, the following validation rules are applied:
+ - **Duplicate** There can only be one redirect for the Source Queue. When attempting to add multiple redirects for the same source queue, an error message will be displayed: "Can not create redirect to a queue *QueueName* as it already has a redirect. Provide a different queue or end the redirect."
+ - **Dependent** Redirects cannot be chained i.e., a destination queue in one redirect cannot be the source queue for another redirect. For example, if there is a configured redirect that redirects messages from QueueA -> QueueB, there cannot be a second rule that's configured to redirect from QueueB -> QueueC. An error message will be displayed when attempting to chain multiple redirects: "Failed to create a redirect, can not create a redirect to a queue that already has a redirect or is a target of a redirect."
 
-### Immediately retry any matching failed messages
-When editing or adding a redirect a checkbox is present allowing to immediately retry all failed messages to which this rule will apply. This will apply only to messages that are failed and not the ones that are pending for retry.
+
 
  
