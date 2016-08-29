@@ -5,6 +5,8 @@ using ServiceControl.Contracts;
 
 namespace EndpointsMonitor
 {
+    #region ServiceControlEventsHandlers
+
     public class CustomEventsHandler : 
         IHandleMessages<MessageFailed>, 
         IHandleMessages<HeartbeatStopped>, 
@@ -35,4 +37,6 @@ namespace EndpointsMonitor
             return Task.FromResult(0);
         }
     }
+
+    #endregion
 }

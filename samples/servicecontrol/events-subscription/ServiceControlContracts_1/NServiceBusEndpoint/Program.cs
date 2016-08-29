@@ -13,8 +13,8 @@ namespace NServiceBusEndpoint
 
         static async Task AsyncMain()
         {
-            Console.Title = "EndpointsMonitoring.NServiceBusEndpoint";
-            var endpointConfiguration = new EndpointConfiguration("EndpointsMonitoring.NServiceBusEndpoint");
+            Console.Title = "NServiceBusEndpoint";
+            var endpointConfiguration = new EndpointConfiguration("NServiceBusEndpoint");
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
@@ -41,7 +41,7 @@ namespace NServiceBusEndpoint
 
                     var guid = Guid.NewGuid();
 
-                    await endpointInstance.Send("EndpointsMonitoring.NServiceBusEndpoint", new SimpleMessage{ Id = guid });
+                    await endpointInstance.Send("NServiceBusEndpoint", new SimpleMessage{ Id = guid });
                     Console.WriteLine($"Sent a new message with Id = {guid}.");
 
                     Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
