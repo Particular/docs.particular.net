@@ -17,7 +17,7 @@ This document explains how to patch a system for [SQL injection vulnerability in
 
 NOTE: Detailed information about the vulnerability, its impact, available mitigation steps and patching instructions can be found in the [security advisory](/security-advisories/sqlserver-sqlinjection.md).
 
-### Updating the NuGet package
+## Updating the NuGet package
 
 This vulnerability can be fixed by upgrading the SQL Server Transport package that is being used. The package can be updated by issuing the following command in the Package Manager Console within Visual Studio:
 
@@ -27,7 +27,7 @@ Update-Package NServiceBus.SqlServer -Version 2.2.4
 
 After the package has been updated, all affected endpoints need to be rebuilt and redeployed.
 
-### Patching a deployed system
+## Patching a deployed system
 
 This vulnerability can also be fixed by updating the SQL Server Transport .dll without the need to rebuild and redeploy an affected endpoint by following these steps:
 
