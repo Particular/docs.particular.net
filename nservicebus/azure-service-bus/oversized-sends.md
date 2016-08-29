@@ -21,6 +21,6 @@ In order to provide alternate behavior, the application could provide it's own i
 
 Snippet: asb-configure-oversized-messages-handler
 
-and register it using the `Snippet: asb-configure-oversized-messages-handler` configuration API.
+and register it using the `OversizedBrokeredMessageHandler` configuration API.
 
 Snippet: asb-configure-oversized-messages-handler-config
