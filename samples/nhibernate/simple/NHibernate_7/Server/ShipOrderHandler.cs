@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using NServiceBus;
 
+#region Handler
 public class ShipOrderHandler :
     IHandleMessages<ShipOrder>
 {
@@ -19,3 +20,4 @@ public class ShipOrderHandler :
         return Task.FromResult(true);
     }
 }
+#endregion

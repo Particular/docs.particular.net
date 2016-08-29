@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
+#region OrderSaga
+
 public class OrderSaga :
     Saga<Server.OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
@@ -53,3 +55,4 @@ public class OrderSaga :
         MarkAsComplete();
     }
 }
+#endregion

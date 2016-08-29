@@ -35,7 +35,7 @@ class Program
         persistence.UseConfiguration(nhConfiguration);
 
         #endregion
-
+        
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();

@@ -1,9 +1,8 @@
-﻿
-using System;
-using System.Threading.Tasks;
-using NServiceBus;
+﻿using System;
 using NServiceBus.Logging;
 using NServiceBus.Saga;
+
+#region OrderSaga
 
 public class OrderSaga :
     Saga<Server.OrderSagaData>,
@@ -53,3 +52,4 @@ public class OrderSaga :
         MarkAsComplete();
     }
 }
+#endregion

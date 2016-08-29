@@ -2,6 +2,7 @@
 using NHibernate;
 using NServiceBus;
 
+#region Handler
 public class ShipOrderHandler :
     IHandleMessages<ShipOrder>
 {
@@ -23,3 +24,4 @@ public class ShipOrderHandler :
         this.session = session;
     }
 }
+#endregion
