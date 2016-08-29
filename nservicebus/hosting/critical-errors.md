@@ -1,21 +1,19 @@
 ---
 title: Critical Errors
 summary: How to handle critical errors which adversely affect messaging in an endpoint.
-reviewed: 2016-03-16
+reviewed: 2016-08-29
+component: Core
 tags:
 - Hosting
 - Self Hosting
 - Logging
 ---
 
-For many scenarios NServiceBus has built-in [recoverability](/nservicebus/recoverability/), however certain scenarios are not possible to handle in a graceful way. The reason for this is that NServiceBus does not have enough context to make a sensible decision on how to proceed after these error have occurred. Some of these **Critical Errors** include:
+For many scenarios NServiceBus has built-in [recoverability](/nservicebus/recoverability/), however certain scenarios are not possible to handle in a graceful way. The reason for this is that NServiceBus does not have enough context to make a sensible decision on how to proceed after these error have occurred. Some examples **Critical Errors** include:
 
  * An Exception occurs when NServiceBus is attempting to move a message to the Error Queue.
  * There are repeated failures in reading information from a required storage.
  * An exception occurs reading from the input queue.
- * In Versions 5 and below when an implementation of `IWantToRunWhenBusStartsAndStops.Start` throws an exception.
- * In Versions 6 and above when an implementation of `FeatureStartupTask.Start` throws an exception.
- * In Versions 6 and above when an implementation of `IWantToRunWhenEndpointStartsAndStops.Start` throws an exception. This interface is only available when using either [NServiceBus.Host](nservicebus-host) or [NServiceBus.Host.AzureCloudService](/nservicebus/hosting/cloud-services-host/).
 
 
 ### Default action handling in NServiceBus
@@ -24,16 +22,10 @@ And hence the default behavior that will be taken in any kind of self hosting sc
 
 snippet:DefaultCriticalErrorAction
 
-NOTE: In Version 4 and Version 3 the bus stops processing messages but is not disposed. This means sending of messages is allowed but no processing of messages will occur.
-
 
 ### Logging of critical errors
 
-For Versions 4 and above Critical Errors are logged inside the critical error action. This means that if replacing the Critical Error in these versions ensure to write the log entry.
-
-snippet:DefaultCriticalErrorActionLogging
-
-NOTE: Version 3 does not write a log entry as part of default Critical Error handler. This is done high up the stack in the location where the exception occurs. It is for this reason that the `Exception` instance is not passed to the Critical Error handler. So it is optional to write a log entry when replacing the Critical Error in Version 3.
+partial: logging
 
 
 ## Custom handling
@@ -56,10 +48,10 @@ snippet:CustomHostErrorHandlingAction
 
 The default action should be overridden whenever that default does not meet the specific hosting requirements. For example
 
- * If using NServiceBus Host, and wish to take a custom action before the endpoint process is killed.
- * If self hosting the process can be shut down the process via `Environment.FailFast` and re-start the process once the root cause has been diagnosed.
+ * If using [NServiceBus Host](/nservicebus/hosting/nservicebus-host), and wish to take a custom action before the endpoint process is killed.
+ * If self hosting the process can be shut down the process via [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) and re-start the process once the root cause has been diagnosed.
 
-NOTE: If not killing the process and just dispose the bus, be aware that any `Send` operations will result in `ObjectDisposedException` being thrown.
+NOTE: If not killing the process and just dispose the bus, be aware that any `Send` operations will result in [ObjectDisposedException](https://msdn.microsoft.com/en-us/library/system.objectdisposedexception.aspx) being thrown.
 
 
 ## Raising Critical error
