@@ -1,5 +1,6 @@
 ---
 title: Moving away from IBus in Version 6
+reviewed: 2016-08-29
 summary: Describes how to send messages without the IBus
 ---
 

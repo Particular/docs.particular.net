@@ -1,5 +1,6 @@
 ---
 title: Migrate existing handlers/sagas to Version 6
+reviewed: 2016-08-29
 ---
 
 In previous versions of NServiceBus, a typical handler class looks like the below:

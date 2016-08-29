@@ -48,7 +48,7 @@ As part of a full review the following should be done:
  * Tags are correct
  * Summary and title is adequate
 
-**Note that for minor fixes (e.g. individual spelling or grammar fixes) the reviewed header should NOT be updated.**
+**Note that for minor changes (e.g. individual spelling or grammar fixes) the reviewed header should NOT be updated.**
 
 
 # Conventions

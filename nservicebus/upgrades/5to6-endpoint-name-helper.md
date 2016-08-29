@@ -1,5 +1,6 @@
 ---
 title: Using Version 5 endpoint name behavior in Version 6
+reviewed: 2016-08-29
 summary: Helper class for Version 5 derived endpoint name behavior in Version 6.
 ---
 

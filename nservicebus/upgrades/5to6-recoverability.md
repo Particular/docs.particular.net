@@ -1,5 +1,6 @@
 ---
 title: Upgrade Version 5 to 6 - Recoverability
+reviewed: 2016-08-29
 tags:
  - upgrade
  - migration
