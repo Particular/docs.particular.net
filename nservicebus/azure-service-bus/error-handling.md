@@ -13,9 +13,9 @@ Next to the [error handling capabilities offered by NServiceBus](/nservicebus/re
 
 ### Azure Service Bus SDK
 
-In a cloud environment exceptions are not really exceptional at all. Given the size and complexity of a cloud environment, connectivity and service side capacity problems are to be expected. For a large part these problems are covered by leveraging the retry behavior on transient exceptions of the ASB SDK, the so called `RetryPolicy`.
+In a cloud environment exceptions are not really exceptional at all. Given the size and complexity of a cloud environment, connectivity and service side capacity problems are to be expected. For a large part these problems are covered by leveraging the retry behavior on transient exceptions of the Azure Service Bus SDK, the so called `RetryPolicy`.
 
-The following document describes a list of [common exceptions](common-exceptions.md) that may be logged by NServiceBus. Usually these exceptions are transient in nature and will be automatically resolved by the retry policy of the ASB SDK, or they are resolved at the transport level by reestablishing the connection to the service.
+The following document describes a list of [common exceptions](https://azure.microsoft.com/en-us/documentation/articles/service-bus-messaging-exceptions/) that may be logged by NServiceBus. Usually these exceptions are transient in nature and will be automatically resolved by the retry policy of the Azure Service Bus SDK, or they are resolved at the transport level by reestablishing the connection to the service.
 
 If the problems persist they will eventually trigger the transport's circuit breaker which results in crashing the process with a fatal exception.
 
