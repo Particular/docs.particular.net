@@ -209,7 +209,6 @@
         - Title: Error Handling
           Url: "nservicebus/azure-service-bus/error-handling"
           Articles:
-            - "nservicebus/azure-service-bus/common-exceptions"
             - "nservicebus/azure-service-bus/dlq-forwarding"
             - "nservicebus/azure-service-bus/oversized-sends"
         - "nservicebus/azure-service-bus/faq"
