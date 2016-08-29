@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Mapping.ByCode;
 using NServiceBus;
-using NServiceBus.Features;
 using NServiceBus.Persistence;
 using Server;
 using Environment = NHibernate.Cfg.Environment;
@@ -35,7 +34,7 @@ class Program
         persistence.UseConfiguration(nhConfiguration);
 
         #endregion
-        
+
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
