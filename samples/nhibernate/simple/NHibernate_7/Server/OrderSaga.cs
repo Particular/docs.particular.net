@@ -7,13 +7,13 @@ using NServiceBus.Logging;
 #region OrderSaga
 
 public class OrderSaga :
-    Saga<Server.OrderSagaData>,
+    Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
     IHandleTimeouts<CompleteOrder>
 {
     static ILog log = LogManager.GetLogger<OrderSaga>();
 
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<Server.OrderSagaData> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
         mapper.ConfigureMapping<StartOrder>(message => message.OrderId)
             .ToSaga(sagaData => sagaData.OrderId);
