@@ -75,7 +75,6 @@
     </Compile>
     <Compile Include="ApprovalTestConfig.cs" />
     <Compile Include="AsyncSuffix\MissingAwaitTests.cs" />
-    <Compile Include="Msmq\V6\QueueDeletion.cs" />
     <None Include="AsyncSuffix\MissingAwait.cs" />
     <Compile Include="AsyncSuffix\MissingTaskUsageDetector.cs" />
     <Compile Include="AsyncSuffix\MissingTaskUsageDetectorTests.cs" />
@@ -84,8 +83,6 @@
     <Compile Include="Msmq\NativeSend.cs" />
     <Compile Include="Msmq\ErrorQueueTests.cs" />
     <Compile Include="Msmq\QueueCreationTests.cs" />
-    <Compile Include="Msmq\V6\QueueCreation.cs" />
-    <Compile Include="Msmq\QueueDeletion.cs" />
     <Compile Include="Msmq\QueueDeletionUtils.cs" />
     <Compile Include="Msmq\QueueDeletionTests.cs" />
     <Compile Include="Msmq\ErrorQueue.cs" />
@@ -94,18 +91,6 @@
   <ItemGroup>
     <None Include="Msmq\NativeSend.ps1" />
     <None Include="Msmq\NativeSendUsage.ps1" />
-    <None Include="Msmq\V6\QueueCreation.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Msmq\V6\QueueDeletion.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Msmq\QueueDeletion.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Msmq\QueueCreation.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Msmq\ErrorQueue.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
