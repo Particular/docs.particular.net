@@ -7,8 +7,6 @@ tags:
 - Error Handling
 ---
 
-## Native Error Handling
-
 Next to the [error handling capabilities offered by NServiceBus](/nservicebus/recoverability/configure-error-handling.md), the Azure Service Bus also provides error handling capabilities of its own. This document describes the native error handling capabilities and compensating actions should there be a need. 
 
 ### Azure Service Bus SDK

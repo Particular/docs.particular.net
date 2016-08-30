@@ -8,8 +8,6 @@ tags:
 - Error Handling
 ---
 
-## Custom handling of oversized Sends
-
 As mentioned, [in error handling](error-handling.md#message-size-problems), the ASB SDK has a peculiar behavior when it comes to computing the message size, resulting in the possibility that oversized messages get sent even when not intended.
 
 The transport handles this scenario by advising to use [the databus](/nservicebus/messaging/databus/) to send oversized messages instead. However, in certain scenarios, this is not the desired behavior. Therefore it is possible to override this behavior.

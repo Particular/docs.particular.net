@@ -8,8 +8,6 @@ tags:
 - Error Handling
 ---
 
-## Dead Letter Queue Forwarding
-
 When Azure Service Bus service detects that an endpoint cannot process messages, or when it has been configured not to discard expired or filtered messages, then it will move those messages to a dead letter queue associated with the entity, originally contained those messages.
 
 From a management perspective, this is less than ideal when operations staff has to monitor a multitude of entities for dead lettered or discarded messages.
