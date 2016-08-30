@@ -46,6 +46,8 @@ snippet:2to3-enable-ambient-transaction
 
 The handler needs to open its own connection to access the data but, assuming both handler and the transport are configured to use the same connection string, there is no DTC escalation. SQL Server 2008 and later can detect that both connections target the same resource and merges the two transaction into a single lightweight transaction.
 
+NOTE: The above statement is true only when not using the NHibernate persistence. NHibernate persistence opens its own connection within the context of the ambient transaction. See [access business data](/nservicebus/nhibernate/accessing-data) in context of processing a message with NHibernate persistence.
+
 ### Multi-schema support
 
 The configuration API for [multi-schema support](/nservicebus/sqlserver/deployment-options.md#multi-schema) has now changed. The `Queue Schema` parameter is no longer supported in the config file and the code configuration API.
@@ -73,6 +75,7 @@ Note that `EnableLagacyMultiInstanceMode` method replaces both [pull and push mo
 snippet:sqlserver-multiinstance-upgrade
 
 Note that `multi-instance` mode has been deprecated and will not be supported in Versions 4 and higher.
+
 
 ### Circuit breaker
 
