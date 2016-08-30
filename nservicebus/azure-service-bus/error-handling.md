@@ -11,15 +11,15 @@ Next to the [error handling capabilities offered by NServiceBus](/nservicebus/re
 
 ### Azure Service Bus SDK
 
-In a cloud environment, exceptions are not exceptional at all. Given the size and complexity of a cloud environment, connectivity and service side capacity problems are to be expected. For a large part, these problems are covered by leveraging the retry behavior on transient exceptions of the Azure Service Bus SDK, known as [`RetryPolicy`](https://azure.microsoft.com/en-us/documentation/articles/best-practices-retry-service-specific/#service-bus-retry-guidelines).
+In a cloud environment, exceptions are common. Given the size and complexity of a cloud environment, connectivity and service side capacity problems are to be expected. For a large part, these problems are covered by leveraging the retry behavior on transient exceptions of the Azure Service Bus SDK, known as [`RetryPolicy`](https://azure.microsoft.com/en-us/documentation/articles/best-practices-retry-service-specific/#service-bus-retry-guidelines).
 
-The following document describes a list of [common exceptions](https://azure.microsoft.com/en-us/documentation/articles/service-bus-messaging-exceptions/) that may be logged by NServiceBus. Usually, these exceptions are transient in their nature and will be automatically resolved by the retry policy of the Azure Service Bus SDK, or they are resolved at the transport level by reestablishing the connection to the service.
+The following document describes a list of [common exceptions](https://azure.microsoft.com/en-us/documentation/articles/service-bus-messaging-exceptions/), coming from the broker or connectivity to the broker, that may be logged by NServiceBus. Usually, these exceptions are transient in their nature and will be automatically resolved by the retry policy of the Azure Service Bus SDK, or they are resolved at the transport level by reestablishing the connection to the service.
 
 If the exceptions persist, they will eventually trigger the transport's circuit breaker which results in crashing the process with a fatal exception.
 
 #### Broker side exceptions
 
-A subset of these exceptions originates from within the Azure Service Bus service itself. These exceptions can be recognized by the `TrackingId` field and its value in the exception message. Usually, these exceptions are also transient in nature and will disappear after a few minutes. 
+A subset of these exceptions originate from within the Azure Service Bus service itself. These exceptions can be recognized by the `TrackingId` field and its value in the exception message. Usually, these exceptions are also transient in nature and will cease occurring after a few minutes. 
 
 Note: If broker side exceptions persist the `TrackingId` value can be used to contact Azure Support to investigate further with Microsoft and Azure Service Bus teams.
 
@@ -27,7 +27,7 @@ Note: If broker side exceptions persist the `TrackingId` value can be used to co
 
 A peculiar behavior of the Azure Service Bus SDK is how it reports on actual message size. It can only do so accurately after a message has been sent. Before sending the reported message size only covers the body section and not the final size that would include header and serialization overhead. This can obviously lead to unexpected results when trying to send a message.
 
-If the application is intended to send large messages, it should always leverage the [NServiceBus Databus](/nservicebus/messaging/databus/) to send large payloads. In case the application sends regular messages that borderline with the maximum message size than extra precaution may be necessary.
+If the application is intended to send large messages, it should leverage the [NServiceBus Databus](/nservicebus/messaging/databus/) to send large payloads. In the scenario where an application sends regular messages that borderline with the maximum message size than extra precaution may be necessary.
 
 The transport deals with this problem for a large part by performing an [estimated batch size calculation](batching.md#batching-messages-sent-from-a-handler-padding-and-estimated-batch-size-calculation) that includes both body and headers as well as a percentage for padding due to serialization. 
 
@@ -42,7 +42,7 @@ Next to the client-side error handling concerns described above, the broker itse
 
 Broker will respond to any of these conditions by moving the message to a dead letter queue, which is a sub-queue below a messaging entity. Each regular queue or subscription has a dead letter queue.
 
-From a management perspective, this behavior is not ideal, though, as it requires operations to check multiple dead letter queue instances for failed messages. One solution could be to set up [dead letter queue forwarding](dlq-forwarding.md) to a centralized error or dead letter queue.
+From a management perspective, it is not ideal for an operations staff to monitor a multitude of entities for dead lettered or discarded messages in multiple locations. One solution could be to set up [dead letter queue forwarding](dlq-forwarding.md) to a centralized error or dead letter queue.
 
 
 

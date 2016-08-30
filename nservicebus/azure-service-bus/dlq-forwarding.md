@@ -14,13 +14,13 @@ From a management perspective, this is less than ideal when operations staff has
 
 A better approach might be to consolidate all those messages into a single centralized queue by enabling forwarding on the dead letter queue of each entity, except for the destination entity itself.
 
-NServiceBus supports this capability; it allows to configure forwarding for dead letter queues when it creates entities on behalf of the application.
+The Azure Service Bus transport supports this capability; it allows to configure forwarding for dead letter queues when it creates entities on behalf of the application.
 
 ### Configuration
 
 To set up dead letter queue forwarding, the API provides a configuration method called `ForwardDeadLetteredMessagesTo(string)` on both the `Queues` and `Subscriptions` extension points.
 
-When dead letter forwarding is enabled, it will take place for all dead letter queues associated with the queues created by the transport. API allows making exceptions by using an overload configuration API. It is advised to set up forwarding for all entities except for the error queue, audit queue and centralized dead letter queue.
+When dead letter forwarding is enabled, it will be enabled for all dead letter queues associated with the queues created by the transport. The API allows making exceptions by using an overload on the configuration API. It is advised to set up forwarding for all entities except for the error queue, audit queue and centralized dead letter queue.
 
 Snippet: asb-configure-dead-letter-queue-forwarding
 
