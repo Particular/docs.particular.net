@@ -1,8 +1,12 @@
 ---
 title: 'Sagas: Message Correlation'
 summary: Correlation is needed in order to find existing saga instances based on data on the incoming message
+component: Core
+reviewed: 2016-08-30
 tags:
  - Saga
+related:
+ - nservicebus/sagas/concurrency
 ---
 
 
@@ -10,29 +14,18 @@ Correlation is needed in order to find existing saga instances based on data on 
 
 To declare this use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to. Note that NServiceBus will only allow correlation on a single saga property and that the property types must match.
 
-NOTE: The value for correlated message properties must have a non default value.
 
-{{NOTE:
-In Version 6 and above NServiceBus will enforce that all correlated properties have a non default value when the saga instance is persisted. This means that all messages starting a saga must have a mapping.
-
-In Version 6 and above NServiceBus does not support changing the value of correlated properties for existing instances.
-
-Version 5 and below allowed correlation on more than one saga property.
-}}
+partial: note
 
 snippet:saga-find-by-property
 
-When `MyMessage` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `OrderSagaData` that has a property `SomeId` whose value is the same as the `SomeId` property of the message. If found the saga instance will be loaded and the `Handle` method for the `MyMessage` message will be invoked. Should the saga instance not be found and the message not be allowed to start a saga, the [saga not found](/nservicebus/sagas/saga-not-found.md) handlers will be invoked.
+When `MyMessage` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `MySagaData` that has a property `SomeId` whose value is the same as the `SomeId` property of the message. If found the saga instance will be loaded and the `Handle` method for the `MyMessage` message will be invoked. Should the saga instance not be found and the message not be allowed to start a saga, the [saga not found](saga-not-found.md) handlers will be invoked.
 
 If correlating on more than one property is necessary, or matched properties are of different types, use a [custom saga finder](saga-finding.md).
 
 
-{{NOTE:
-Since Version 5 it is possible to specify the mapping to the message using expressions if the correlation information is split between multiple fields.
-}}
+partial: expression
 
-
-snippet:saga-find-by-expression
 
 ## Auto correlation
 
@@ -54,6 +47,4 @@ NServiceBus will make sure that all properties used for correlation are unique a
 
 Mapping a single message to multiple saga instances is not supported. This can be simulated by using a message handler that looks up all saga instance affected and send a separate message targeting each of those instances using the regular correlation described above.
 
-NOTE: Versions prior to Version 6 required a `[Unique]` attribute on the saga properties used for correlation to enforce uniqueness
-
-Read more about the [concurrency](concurrency.md).
+partial: unique
