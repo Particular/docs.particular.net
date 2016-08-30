@@ -13,12 +13,15 @@ RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.htm
 
 ## Specifying the connection string via code
 
+
+### Via code
+
 To specify the connection string in code:
 
 snippet:rabbitmq-config-connectionstring-in-code
 
 
-## Specifying the connection string via app.config
+## Via app.config
 
 By default, the transport will look for a connection string called `NServiceBus/Transport` in `app.config`:
 
@@ -29,7 +32,7 @@ To use a custom name for the connection string:
 snippet:rabbitmq-config-connectionstringname
 
 
-## Connection string options
+## Options
 
 Below is the list of connection string options. When constructing a connection string, these options should be separated by a semicolon.
 
