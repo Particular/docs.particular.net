@@ -7,8 +7,8 @@
     <ProjectGuid>{551FC1B3-C43B-48DD-9EC0-238A4F1FC8B1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Distributor_3</RootNamespace>
-    <AssemblyName>Distributor_3</AssemblyName>
+    <RootNamespace>Core_3</RootNamespace>
+    <AssemblyName>Core_3</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

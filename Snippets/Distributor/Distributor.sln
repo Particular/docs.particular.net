@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Distributor_4", "Distributo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Distributor_5", "Distributor_5\Distributor_5.csproj", "{9C5C25D9-007B-4622-8673-381B2ABA8C9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Distributor_3", "Distributor_3\Distributor_3.csproj", "{551FC1B3-C43B-48DD-9EC0-238A4F1FC8B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_3", "Core_3\Core_3.csproj", "{551FC1B3-C43B-48DD-9EC0-238A4F1FC8B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
