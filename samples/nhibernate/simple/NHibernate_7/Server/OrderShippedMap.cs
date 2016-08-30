@@ -1,13 +1,10 @@
-﻿namespace Server
-{
-    using NHibernate.Mapping.ByCode.Conformist;
+﻿using NHibernate.Mapping.ByCode.Conformist;
 
-    public class OrderShippedMap : ClassMapping<OrderShipped>
+public class OrderShippedMap : ClassMapping<OrderShipped>
+{
+    public OrderShippedMap()
     {
-        public OrderShippedMap()
-        {
-            Id(x => x.Id);
-            Property(x => x.ShippingDate);
-        }
+        Id(x => x.Id);
+        Property(x => x.ShippingDate);
     }
 }

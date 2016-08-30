@@ -10,7 +10,7 @@ public class ShipOrderHandler :
 
     public void Handle(ShipOrder message)
     {
-        var orderShipped = new Server.OrderShipped
+        var orderShipped = new OrderShipped
         {
             Id = message.OrderId,
             ShippingDate = DateTime.UtcNow,

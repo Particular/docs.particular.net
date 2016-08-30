@@ -3,7 +3,6 @@ using NHibernate.Cfg;
 using NHibernate.Mapping.ByCode;
 using NServiceBus;
 using NServiceBus.Persistence;
-using Server;
 using Environment = NHibernate.Cfg.Environment;
 
 class Program
@@ -18,16 +17,16 @@ class Program
         busConfiguration.EndpointName("Samples.NHibernate.Server");
 
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
-        var nhConfiguration = new Configuration();
+        var nhConfig = new Configuration();
 
-        nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
-        nhConfiguration.SetProperty(Environment.ConnectionDriver, "NHibernate.Driver.Sql2008ClientDriver");
-        nhConfiguration.SetProperty(Environment.Dialect, "NHibernate.Dialect.MsSql2008Dialect");
-        nhConfiguration.SetProperty(Environment.ConnectionStringName, "NServiceBus/Persistence");
+        nhConfig.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
+        nhConfig.SetProperty(Environment.ConnectionDriver, "NHibernate.Driver.Sql2008ClientDriver");
+        nhConfig.SetProperty(Environment.Dialect, "NHibernate.Dialect.MsSql2008Dialect");
+        nhConfig.SetProperty(Environment.ConnectionStringName, "NServiceBus/Persistence");
 
-        AddMappings(nhConfiguration);
+        AddMappings(nhConfig);
 
-        persistence.UseConfiguration(nhConfiguration).RegisterManagedSessionInTheContainer();
+        persistence.UseConfiguration(nhConfig).RegisterManagedSessionInTheContainer();
 
         #endregion
 
@@ -42,7 +41,7 @@ class Program
         bus.Dispose();
     }
 
-    private static void AddMappings(Configuration nhConfiguration)
+    static void AddMappings(Configuration nhConfiguration)
     {
         var mapper = new ModelMapper();
         mapper.AddMappings(typeof (OrderShipped).Assembly.GetTypes());

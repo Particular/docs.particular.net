@@ -32,6 +32,7 @@ snippet:config
 
 
 ### Order Saga Data
+
 Note that to use NHibernate's lazy-loading, all the properties on the Saga data class must be `virtual`.
 
 snippet:sagadata
