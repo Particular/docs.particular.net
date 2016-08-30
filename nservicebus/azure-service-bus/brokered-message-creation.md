@@ -4,3 +4,5 @@ tags:
 - Azure
 - Cloud
 ---
+
+partial: body
