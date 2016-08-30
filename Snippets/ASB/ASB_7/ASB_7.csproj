@@ -70,6 +70,7 @@
       <HintPath>..\..\..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -87,8 +88,11 @@
     <Compile Include="AddressingStrategies\SanitizationExtension.cs" />
     <Compile Include="AddressingStrategies\Sanitization.cs" />
     <Compile Include="Composition.cs" />
+    <Compile Include="CustomOversizedBrokeredMessageHandler.cs" />
+    <Compile Include="DeadLetterQueueForwarding.cs" />
     <Compile Include="GettingStarted.cs" />
     <Compile Include="MultipleNamespaces.cs" />
+    <Compile Include="OversizedMessages.cs" />
     <Compile Include="Sanitization.cs" />
     <Compile Include="SecureCredentials.cs" />
     <Compile Include="AddressingStrategies\CompositionExtension.cs" />
