@@ -103,7 +103,7 @@ snippet:msmq-create-queues-powershell
 
 To create all queues for a given endpoint name.
 
-partial: instanceId
+partial: instance-id
 
 snippet:msmq-create-queues-for-endpoint-usage
 
@@ -129,7 +129,7 @@ snippet:msmq-delete-queues-powershell
 
 To delete all queues for a given endpoint name.
 
-partial: instanceId
+partial: instance-id
 
 snippet:msmq-delete-queues-endpoint-usage
 
