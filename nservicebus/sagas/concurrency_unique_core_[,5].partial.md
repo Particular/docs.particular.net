@@ -1,0 +1,1 @@
+NOTE: When a `[Unique]` attribute is added to a saga data property, NServiceBus creates the constraint for that property. This works for both the NHibernate and the RavenDB saga persister.

@@ -1,6 +1,7 @@
 ---
 title: 'Sagas: Concurrency'
 summary: NServiceBus gives ACID semantics, using underlying storage so only one worker thread hitting a saga instance can commit.
+component: Core
 tags:
 - Saga
 redirects:
@@ -23,7 +24,7 @@ In this case only one thread is allowed to commit. The others roll back and the 
 
 NServiceBus solves this by automatically creating a unique constraint in the database for the correlation property. With this constraint in place, only one thread is allowed to create a new saga instance.
 
-NOTE: Version 3 to 5 provided a `[Unique]` attribute. When this attribute is added to a saga data property, NServiceBus creates the constraint for that property. This works for both the NHibernate and the RavenDB saga persister.
+partial: unique
 
 
 ## Concurrent access to existing saga instances
