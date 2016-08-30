@@ -1,5 +1,4 @@
 ﻿using NServiceBus;
-using NServiceBus.Settings;
 
 class Usage
 {
@@ -8,33 +7,33 @@ class Usage
         #region ConfiguringDistributor
 
         // Running the Distributor and a Worker
-        configure.AsMSMQMasterNode();
+        configure.AsMasterNode();
         // or
-        configure.RunMSMQDistributor();
+        configure.RunDistributor();
 
         // Running the Distributor only
-        configure.RunMSMQDistributor(withWorker: false);
+        configure.RunDistributor(withWorker: false);
 
         #endregion
 
         #region ConfiguringWorker
 
-        configure.EnlistWithMSMQDistributor();
+        configure.EnlistWithDistributor();
 
         #endregion
     }
 
-    void IsEnabled()
+    void IsEnabled(Configure configure)
     {
         #region IsDistributorEnabled
 
-        var isDistributorEnabled = SettingsHolder.GetOrDefault<bool>("Distributor.Enabled");
+        var isDistributorEnabled = configure.DistributorEnabled();
 
         #endregion
 
         #region IsWorkerEnabled
 
-        var isWorkerEnabled = SettingsHolder.GetOrDefault<bool>("Worker.Enabled");
+        var isWorkerEnabled = configure.WorkerRunsOnThisEndpoint();
 
         #endregion
 

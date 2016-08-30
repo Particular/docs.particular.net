@@ -1,0 +1,3 @@
+The Delayed Retries policy is applied *only* on the workers for both *TimeIncrease* and *NumberOfRetries* settings. If a Delayed Retries configuration is available on the distributor then these settings are ignored.
+
+When an error occurs the worker schedules the retry according to the SLR TimeIncrease setting and when the corresponding timeout is triggered the message is forwarded to the incoming queue of the distributor which will then forward the message to an available worker.
