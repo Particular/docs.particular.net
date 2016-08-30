@@ -256,6 +256,7 @@
         - "nservicebus/rabbitmq/rabbitmqclient-nuget"
         - "nservicebus/rabbitmq/connection-strings"
         - "nservicebus/rabbitmq/configuration-api"
+        - "nservicebus/rabbitmq/routing-topology"
         - "nservicebus/rabbitmq/cluster"
         - "nservicebus/rabbitmq/operations-scripting"
     -
