@@ -3,6 +3,8 @@ title: RabbitMQ Transport Transactions and delivery guarantees
 reviewed: 2016-08-30
 versions: '[4,]'
 component: Rabbit
+tags:
+ - Transactions
 ---
 
 The RabbitMQ transport supports the following [Transport Transaction Modes](/nservicebus/transports/transactions.md):

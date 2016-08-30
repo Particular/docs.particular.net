@@ -254,8 +254,7 @@
       Url: "nservicebus/rabbitmq"
       Articles:
         - "nservicebus/rabbitmq/rabbitmqclient-nuget"
-        - "nservicebus/rabbitmq/connection-strings"
-        - "nservicebus/rabbitmq/configuration-api"
+        - "nservicebus/rabbitmq/connection-settings"
         - "nservicebus/rabbitmq/routing-topology"
         - "nservicebus/rabbitmq/callbacks"
         - "nservicebus/rabbitmq/message-id-strategy"

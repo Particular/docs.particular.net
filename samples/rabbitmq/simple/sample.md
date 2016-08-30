@@ -6,6 +6,7 @@ tags:
 - RabbitMQ
 related:
 - nservicebus/rabbitmq
+- nservicebus/rabbitmq/connection-settings
 ---
 
 
@@ -21,11 +22,9 @@ snippet:ConfigureRabbit
 
 ### Configuring RabbitMQ
 
-Since the above connection string does not define a username NServiceBus will default to
+Since the above connection string does not define a username it will default to
 
 ```no-highlight
 username: guest
 password: guest
 ```
-
-For more information on the RabbitMQ connection string see [Configuring RabbitMQ transport to be used](/nservicebus/rabbitmq/configuration-api.md).
