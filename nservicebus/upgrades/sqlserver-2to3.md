@@ -19,6 +19,7 @@ related:
 
 The primary namespace is `NServiceBus`. Advanced customization APIs have been moved to `NServiceBus.Transport.SqlServer`. A `using NServiceBus` directive should be sufficient to find all basic options. A `using NServiceBus.Transport.SqlServer` is needed to access advanced configuration options.
 
+
 ### Transactions
 
 The native transaction support has been split into two different levels: `ReceiveOnly` and `SendAtomicWithReceive`. SQL Server Transport supports both. `SendAtomicWithReceive` is equivalent to disabling distributed transactions in NServiceBus Version 5.
@@ -46,7 +47,8 @@ snippet:2to3-enable-ambient-transaction
 
 The handler needs to open its own connection to access the data but, assuming both handler and the transport are configured to use the same connection string, there is no DTC escalation. SQL Server 2008 and later can detect that both connections target the same resource and merges the two transaction into a single lightweight transaction.
 
-NOTE: The above statement is true only when not using the NHibernate persistence. NHibernate persistence opens its own connection within the context of the ambient transaction. See [access business data](/nservicebus/nhibernate/accessing-data) in context of processing a message with NHibernate persistence.
+NOTE: The above statement is true only when not using the NHibernate persistence. NHibernate persistence opens its own connection within the context of the ambient transaction. See [access business data](/nservicebus/nhibernate/accessing-data.md) in context of processing a message with NHibernate persistence.
+
 
 ### Multi-schema support
 
