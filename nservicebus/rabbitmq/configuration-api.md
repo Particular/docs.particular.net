@@ -156,37 +156,6 @@ snippet:rabbitmq-connectionstring-debug
 Increasing these settings can help prevent the connection to the broker from timing out while the code is paused from hitting a breakpoint.
 
 
-## Callback support
-
-When scaling out an endpoint using the RabbitMQ transport, any of the endpoint instances can consume messages from the same shared broker queue. However, this behavior can cause problems when dealing with callback messages because the reply message for the callback needs to go to the specific instance that requested the callback.
-
-
-### Versions 4 and above
-
-In Versions 4 and above, callbacks are no longer directly managed by the RabbitMQ transport and are not enabled by default. To enable them, follow the steps outlined in the [Callbacks documentation](/nservicebus/messaging/handling-responses-on-the-client-side.md#message-routing-nservicebus-callbacks-version-1-and-above).
-
-
-### Versions 3 and below
-
-In Versions 3 and below, callbacks are enabled by default, and the transport will create a separate callback receiver queue, named `{endpointname}.{machinename}`, to which all callbacks are routed.
-
-
-#### DisableCallbackReceiver
-
-If callbacks are not being used, the callback receiver can be disabled using the following setting:
-
-snippet:rabbitmq-config-disable-callback-receiver
-
-This means that the queue will not be created and no extra threads will be used to fetch messages from that queue.
-
-
-#### CallbackReceiverMaxConcurrency
-
-By default, 1 dedicated thread is used for the callback receiver queue. To add more threads, due to a high rate of callbacks, use the following:
-
-snippet:rabbitmq-config-callbackreceiver-thread-count
-
-
 ## Transport Layer Security support
 
 In Versions 3.2 and above, the RabbitMQ transport supports creating secure connections to the broker using Transport Layer Security (TLS). For information on how to configure TLS on the RabbitMQ broker, refer to the [RabbitMQ documentation](http://www.rabbitmq.com/ssl.html). To enable TLS support, set the `UseTls` setting to `true` in the connection string. If the RabbitMQ broker has been configured to require client authentication, a client certificate can be specified in the `CertPath` setting. If that certificate requires a password, it can be specified in the `CertPassphrase` setting.
