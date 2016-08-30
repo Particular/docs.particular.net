@@ -72,8 +72,7 @@ class Usage
         #region rabbitmq-config-useconnectionmanager
 
         var transport = busConfiguration.UseTransport<RabbitMQTransport>();
-        transport
-            .UseConnectionManager<MyConnectionManager>();
+        transport.UseConnectionManager<MyConnectionManager>();
 
         #endregion
     }
