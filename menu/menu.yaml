@@ -258,6 +258,7 @@
         - "nservicebus/rabbitmq/configuration-api"
         - "nservicebus/rabbitmq/routing-topology"
         - "nservicebus/rabbitmq/callbacks"
+        - "nservicebus/rabbitmq/message-id-strategy"
         - "nservicebus/rabbitmq/cluster"
         - "nservicebus/rabbitmq/operations-scripting"
     -
