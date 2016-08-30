@@ -14,7 +14,7 @@
         {
             var almostDoneMessage = new AlmostDoneMessage
             {
-                SomeID = Data.SomeID
+                SomeId = Data.SomeId
             };
             return ReplyToOriginator(context, almostDoneMessage);
         }

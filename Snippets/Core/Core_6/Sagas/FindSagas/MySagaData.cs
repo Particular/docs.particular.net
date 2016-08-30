@@ -5,7 +5,7 @@ namespace Core6.Sagas.FindSagas
     public class MySagaData :
         ContainSagaData
     {
-        public string SomeID { get; set; }
+        public string SomeId { get; set; }
         public string SomeData { get; set; }
     }
 }

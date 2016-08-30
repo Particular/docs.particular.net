@@ -6,24 +6,19 @@ namespace Core6.Sagas.FindByExpression
 
     public class MySaga :
         Saga<MySagaData>,
-        IAmStartedByMessages<Message1>,
-        IHandleMessages<Message2>
+        IAmStartedByMessages<MyMessage>
     {
         #region saga-find-by-expression
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
-            mapper.ConfigureMapping<Message2>(message => $"{message.Part1}_{message.Part2}")
-                .ToSaga(sagaData => sagaData.SomeID);
+            mapper.ConfigureMapping<MyMessage>(message => $"{message.Part1}_{message.Part2}")
+                .ToSaga(sagaData => sagaData.SomeId);
         }
 
         #endregion
 
-        public async Task Handle(Message1 message, IMessageHandlerContext context)
-        {
-        }
-
-        public async Task Handle(Message2 message, IMessageHandlerContext context)
+        public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
         }
     }

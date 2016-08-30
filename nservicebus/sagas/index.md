@@ -56,52 +56,7 @@ NOTE: As of Version 6 NServiceBus will require each saga to have at least one me
 
 ## Correlating messages to a saga
 
-Correlation is needed in order to find existing saga instances based on data on the incoming message. In the example the `OrderId ` property of the `CompleteOrder` message is used to find the existing saga instance for that order.
-
-To declare this use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to. Note that NServiceBus will only allow correlation on a single saga property and that the property types must match.
-
-NOTE: The value for correlated message properties must have a non default value.
-
-{{NOTE:
-In Version 6 and above NServiceBus will enforce that all correlated properties have a non default value when the saga instance is persisted. This means that all messages starting a saga must have a mapping.
-
-In Version 6 and above NServiceBus does not support changing the value of correlated properties for existing instances.
-
-Since Version 5 it is possible to specify the mapping to the message using expressions if the correlation information is split between multiple fields.
-
-Version 5 and below allowed correlation on more than one saga property.
-}}
-
-snippet:saga-find-by-expression
-
-When `CompleteOrder` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `OrderSagaData` that has a property `OrderId` whose value is the same as the `OrderId` property of the message. If found the saga instance will be loaded and the `Handle` method for the `CompleteOrder` message will be invoked. Should the saga instance not be found and the message not be allowed to start a saga, the [saga not found](/nservicebus/sagas/saga-not-found.md) handlers will be invoked.
-
-If correlating on more than one property is necessary, or matched properties are of different types, use a [custom saga finder](saga-finding.md).
-
-
-### Auto correlation
-
-A common usage of sagas is to have them send out a request message to get some work done and receive a response message back when the work is complete. To make this easier NServiceBus will automatically correlate those response messages back to the correct saga instance.
-
-NOTE: If it's not clear if the message can be auto correlated, it's better to provide the mappings. In case the message will be auto correlated, the mappings will be ignored.
-
-NOTE: A caveat of this feature is that it currently doesn't support auto correlation between sagas. If the request is handled by a another saga relevant message properties must be added and mapped to the requesting saga using the syntax described above.
-
-
-### Custom saga finder
-
-Full control over how a message is correlated can be achieved by create a custom [saga finder](/nservicebus/sagas/saga-finding.md).
-
-
-## Uniqueness
-
-NServiceBus will make sure that all properties used for correlation are unique across all instances of the given saga type. How this is enforced is up to each persister but will most likely translate to a unique key constraint in the database.
-
-Mapping a single message to multiple saga instances is not supported. This can be simulated by using a message handler that looks up all saga instance affected and send a separate message targeting each of those instances using the regular correlation described above.
-
-NOTE: Versions prior to Version 6 required a `[Unique]` attribute on the saga properties used for correlation to enforce uniqueness
-
-Read more about the [concurrency](concurrency.md).
+Correlation is needed in order to find existing saga instances based on data on the incoming message. See [Message Correlation](message-correlation.md) for more details.
 
 
 ## Ending a long-running process

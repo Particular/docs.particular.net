@@ -11,6 +11,6 @@ namespace Core5.Sagas.FindByExpression
         public string OriginalMessageId { get; set; }
 
         [Unique]
-        public string SomeID { get; set; }
+        public string SomeId { get; set; }
     }
 }

@@ -5,6 +5,6 @@ namespace Core6.Sagas.FindByExpression
     public class MySagaData :
         ContainSagaData
     {
-        public string SomeID { get; set; }
+        public string SomeId { get; set; }
     }
 }

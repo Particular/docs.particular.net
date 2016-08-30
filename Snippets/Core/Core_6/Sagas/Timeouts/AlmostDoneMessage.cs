@@ -2,6 +2,6 @@
 {
     public class AlmostDoneMessage
     {
-        public string SomeID { get; set; }
+        public string SomeId { get; set; }
     }
 }

@@ -163,6 +163,9 @@
     <Compile Include="Forwarding\ConfigurationSource.cs" />
     <Compile Include="Forwarding\ConfigurationSourceUsage.cs" />
     <Compile Include="Forwarding\ProvideConfiguration.cs" />
+    <Compile Include="Sagas\FindByProperty\MyMessage.cs" />
+    <Compile Include="Sagas\FindByProperty\MySaga.cs" />
+    <Compile Include="Sagas\FindByProperty\MySagaData.cs" />
     <Compile Include="Sagas\FindSagas\DbSessionProvider.cs" />
     <Compile Include="Sagas\FindSagas\MySagaFinder.cs" />
     <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
@@ -282,8 +285,7 @@
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
     <Compile Include="Routing\EndpointMapping\ProvideConfiguration.cs" />
-    <Compile Include="Sagas\FindByExpression\Message1.cs" />
-    <Compile Include="Sagas\FindByExpression\Message2.cs" />
+    <Compile Include="Sagas\FindByExpression\MyMessage.cs" />
     <Compile Include="Sagas\FindByExpression\MySagaData.cs" />
     <Compile Include="Sagas\FindSagas\MyMessage.cs" />
     <Compile Include="Sagas\FindSagas\MySagaData.cs" />

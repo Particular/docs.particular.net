@@ -15,7 +15,7 @@
             // SynchronizedStorageSession will have a persistence specific extension method
             // For example purposes GetDbSession is a stub extension method
             var dbSession = storageSession.GetDbSession();
-            return await dbSession.GetSagaFromDB(message.SomeID, message.SomeData);
+            return await dbSession.GetSagaFromDB(message.SomeId, message.SomeData);
             // If a saga can't be found Task.FromResult(null) should be returned
         }
     }

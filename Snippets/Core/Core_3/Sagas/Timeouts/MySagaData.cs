@@ -11,7 +11,7 @@ namespace Core3.Sagas.Timeouts
         public string OriginalMessageId { get; set; }
 
         [Unique]
-        public string SomeID { get; set; }
+        public string SomeId { get; set; }
 
         public bool Message2Arrived { get; set; }
     }

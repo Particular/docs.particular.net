@@ -15,13 +15,13 @@
         public override void ConfigureHowToFindSaga()
         {
             ConfigureMapping<Message2>(
-                sagaData => sagaData.SomeID,
-                message => message.SomeID);
+                sagaData => sagaData.SomeId,
+                message => message.SomeId);
         }
 
         public void Handle(Message1 message)
         {
-            Data.SomeID = message.SomeID;
+            Data.SomeId = message.SomeId;
             RequestUtcTimeout<MyCustomTimeout>(TimeSpan.FromHours(1));
         }
 
@@ -30,7 +30,7 @@
             Data.Message2Arrived = true;
             var almostDoneMessage = new AlmostDoneMessage
             {
-                SomeID = Data.SomeID
+                SomeId = Data.SomeId
             };
             ReplyToOriginator(almostDoneMessage);
         }

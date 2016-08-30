@@ -139,6 +139,7 @@
       Title: "Sagas"
       Url: "nservicebus/sagas"
       Articles:
+        - "nservicebus/sagas/message-correlation"
         - "nservicebus/sagas/timeouts"
         - "nservicebus/sagas/saga-finding"
         - "nservicebus/sagas/saga-not-found"

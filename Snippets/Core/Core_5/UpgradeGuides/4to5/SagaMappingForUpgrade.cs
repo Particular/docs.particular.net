@@ -14,8 +14,8 @@
         {
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
             {
-                mapper.ConfigureMapping<Message2>(message => message.SomeID)
-                    .ToSaga(sagaData => sagaData.SomeID);
+                mapper.ConfigureMapping<Message2>(message => message.SomeId)
+                    .ToSaga(sagaData => sagaData.SomeId);
             }
 
             #endregion
@@ -34,7 +34,7 @@
 
         public class Message2
         {
-            public Guid SomeID { get; set; }
+            public Guid SomeId { get; set; }
         }
 
         public class MySagaData :
@@ -43,7 +43,7 @@
             public Guid Id { get; set; }
             public string Originator { get; set; }
             public string OriginalMessageId { get; set; }
-            public Guid SomeID { get; set; }
+            public Guid SomeId { get; set; }
         }
     }
 }

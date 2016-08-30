@@ -5,7 +5,7 @@ namespace Core6.Sagas.Reply
     public class MySagaData :
         ContainSagaData
     {
-        public string SomeID { get; set; }
+        public string SomeId { get; set; }
 
         public bool Message2Arrived { get; set; }
     }

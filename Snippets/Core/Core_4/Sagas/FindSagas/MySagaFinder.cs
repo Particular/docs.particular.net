@@ -21,7 +21,7 @@
             // Use the injected sessionProvider to get a db session
             // For example purposes GetDbSession is a stub extension method
             var dbSession = sessionProvider.GetDbSession();
-            return dbSession.GetSagaFromDB(message.SomeID, message.SomeData);
+            return dbSession.GetSagaFromDB(message.SomeId, message.SomeData);
             // If a saga can't be found null should be returned
         }
     }

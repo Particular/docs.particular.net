@@ -14,8 +14,8 @@
     {
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
-            mapper.ConfigureMapping<Message2>(message => message.SomeID)
-                .ToSaga(sagaData => sagaData.SomeID);
+            mapper.ConfigureMapping<Message2>(message => message.SomeId)
+                .ToSaga(sagaData => sagaData.SomeId);
         }
 
         public Task Handle(Message1 message, IMessageHandlerContext context)
@@ -28,7 +28,7 @@
             Data.Message2Arrived = true;
             var almostDoneMessage = new AlmostDoneMessage
             {
-                SomeID = Data.SomeID
+                SomeId = Data.SomeId
             };
             return RequestTimeout(context, TimeSpan.FromHours(1), almostDoneMessage);
         }

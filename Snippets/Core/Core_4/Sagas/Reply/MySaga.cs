@@ -11,10 +11,10 @@
 
         public void Handle(StartMessage message)
         {
-            Data.SomeID = message.SomeID;
+            Data.SomeId = message.SomeId;
             var almostDoneMessage = new AlmostDoneMessage
             {
-                SomeID = Data.SomeID
+                SomeId = Data.SomeId
             };
             ReplyToOriginator(almostDoneMessage);
         }

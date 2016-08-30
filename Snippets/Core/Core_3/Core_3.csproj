@@ -179,6 +179,9 @@
     <Compile Include="Pipeline\Abort\MyMessage.cs" />
     <Compile Include="Routing\BasicOperations.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
+    <Compile Include="Sagas\FindByProperty\MyMessage.cs" />
+    <Compile Include="Sagas\FindByProperty\MySaga.cs" />
+    <Compile Include="Sagas\FindByProperty\MySagaData.cs" />
     <Compile Include="Sagas\FindSagas\DbSessionProvider.cs" />
     <Compile Include="Sagas\FindSagas\MyMessage.cs" />
     <Compile Include="Sagas\FindSagas\MySagaData.cs" />
