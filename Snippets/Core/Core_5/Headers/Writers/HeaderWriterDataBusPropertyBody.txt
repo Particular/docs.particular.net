@@ -3,11 +3,11 @@ startcode HeaderWriterDataBusPropertyBody
 <?xml version="1.0" ?>
 <MessageToSend xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.net/Core5.Headers.Writers">
 <LargeProperty1>
-<Key>2016-08-10_15\d25ddb24-f0ea-40ae-bf1a-54cf6874bea4</Key>
+<Key>2016-08-30_10\1ce75f45-47ac-4fc5-8d15-855d8f5f4ea3</Key>
 <HasValue>true</HasValue>
 </LargeProperty1>
 <LargeProperty2>
-<Key>2016-08-10_15\d97c5639-09cf-4f78-8869-c5b184d09dcf</Key>
+<Key>2016-08-30_10\f68171f1-80a2-4c6f-870d-1d6a72c95d38</Key>
 <HasValue>true</HasValue>
 </LargeProperty2>
 </MessageToSend>

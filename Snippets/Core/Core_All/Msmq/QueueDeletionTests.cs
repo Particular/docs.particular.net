@@ -12,28 +12,31 @@
         [Test]
         public void DeleteAllQueues()
         {
-            QueueDeletion.DeleteAllQueues();
+            QueueDeletionUtils.DeleteAllQueues();
         }
 
         [Test]
         public void DeleteQueuesForEndpoint()
         {
-            QueueCreation.CreateQueuesForEndpoint(
-                endpointName: "myendpoint",
-                account: Environment.UserName);
-            QueueDeletion.DeleteQueuesForEndpoint("myendpoint");
-            Assert.IsFalse(MessageQueue.Exists(@".\private$\myendpoint"));
-
+            //TODO: move this to separate version specific queue deletion tests
+            /*
             QueueCreation.CreateQueue(
+                queueName: "myendpoint",
+                account: Environment.UserName);
+            QueueDeletion.DeleteQueue("myendpoint");
+            Assert.IsFalse(MessageQueue.Exists(@".\private$\myendpoint"));
+            */
+
+            QueueCreationUtils.CreateQueue(
                 queueName: "myerror",
                 account: Environment.UserName);
-            QueueDeletion.DeleteQueue(queueName: "myerror");
+            QueueDeletionUtils.DeleteQueue(queueName: "myerror");
             Assert.IsFalse(MessageQueue.Exists(@".\private$\myerror"));
 
-            QueueCreation.CreateQueue(
+            QueueCreationUtils.CreateQueue(
                 queueName: "myaudit",
                 account: Environment.UserName);
-            QueueDeletion.DeleteQueue(queueName: "myaudit");
+            QueueDeletionUtils.DeleteQueue(queueName: "myaudit");
             Assert.IsFalse(MessageQueue.Exists(@".\private$\myaudit"));
         }
     }

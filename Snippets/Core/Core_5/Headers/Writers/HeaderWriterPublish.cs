@@ -21,7 +21,7 @@
         [TearDown]
         public void Setup()
         {
-            QueueDeletion.DeleteQueuesForEndpoint(EndpointName);
+            QueueDeletionUtils.DeleteQueue(EndpointName);
         }
 
         [Test]

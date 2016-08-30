@@ -86,9 +86,10 @@
     <Compile Include="Msmq\QueueCreationTests.cs" />
     <Compile Include="Msmq\V6\QueueCreation.cs" />
     <Compile Include="Msmq\QueueDeletion.cs" />
+    <Compile Include="Msmq\QueueDeletionUtils.cs" />
     <Compile Include="Msmq\QueueDeletionTests.cs" />
     <Compile Include="Msmq\ErrorQueue.cs" />
-    <Compile Include="Msmq\QueueCreation.cs" />
+    <Compile Include="Msmq\QueueCreationUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Msmq\NativeSend.ps1" />
