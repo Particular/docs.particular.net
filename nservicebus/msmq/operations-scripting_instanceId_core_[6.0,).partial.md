@@ -1,0 +1,1 @@
+NOTE: InstanceId should be specifed when endpoint uses instance specific queue. This is the case when using [Callbacks](/nservicebus/messaging/handling-responses-on-the-client-side#message-routing) or scale-out based on [Client Side Dynamic Routing](/samples/scaleout/senderside/#code-walk-through-server1-and-server2-instance-id).
