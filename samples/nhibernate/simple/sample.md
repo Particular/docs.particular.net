@@ -12,6 +12,11 @@ related:
 ---
 
 
+## Prerequisites
+
+The samples rely on `.\SQLEXPRESS` and need the database `Samples.NHibernate` to run properly.
+
+
 ## Code walk-through
 
 This sample shows a simple Client + Server scenario.
@@ -57,7 +62,7 @@ The data in the database is stored in three different tables.
 ### The Saga Data
 
  * `IContainSagaData.Id` maps to the OrderSagaData primary-key and unique identifier column `Id`.
- * `IContainSagaData.Originator` and `IContainSagaData.OriginalMessageId` map to columns of the same name of type varchar(255).
+ * `IContainSagaData.Originator` and `IContainSagaData.OriginalMessageId` map to columns of the same name of type `varchar(255)`.
  * Custom properties on the SagaData, in this case `OrderDescription` and `OrderId`, are also mapped to columns with the same name and of the respecting types.
 
 ![](sagadata.png)
