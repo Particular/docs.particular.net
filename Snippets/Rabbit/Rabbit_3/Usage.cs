@@ -61,8 +61,12 @@ class Usage
         #region rabbitmq-config-custom-id-strategy
 
         var transport = busConfiguration.UseTransport<RabbitMQTransport>();
-        transport.CustomMessageIdStrategy(deliveryArgs =>
-                deliveryArgs.BasicProperties.Headers["MyCustomId"].ToString());
+        transport.CustomMessageIdStrategy(
+            customIdStrategy: deliveryArgs =>
+            {
+                var headers = deliveryArgs.BasicProperties.Headers;
+                return headers["MyCustomId"].ToString();
+            });
 
         #endregion
     }
@@ -92,7 +96,9 @@ class Usage
         #region rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
         var transport = busConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseDirectRoutingTopology(MyRoutingKeyConvention,(address,eventType) => "MyTopic");
+        transport.UseDirectRoutingTopology(
+            routingKeyConvention: MyRoutingKeyConvention,
+            exchangeNameConvention: (address,eventType) => "MyTopic");
 
         #endregion
     }

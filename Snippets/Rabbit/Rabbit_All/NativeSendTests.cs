@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common;
 using NServiceBus;
-using NServiceBus.Config;
-using NServiceBus.Config.ConfigurationSource;
 using NServiceBus.Logging;
 using NUnit.Framework;
 
