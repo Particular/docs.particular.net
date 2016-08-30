@@ -1,6 +1,8 @@
 ---
 title: Sagas
 summary: NServiceBus uses event-driven architecture to include fault-tolerance and scalability in long-term business processes.
+component: Core
+reviewed: 2016-08-30
 tags:
 - Saga
 redirects:
@@ -51,7 +53,7 @@ This interface tells NServiceBus that the saga not only handles `StartOrder`, bu
 
 > Create a new instance if an existing one can't be found
 
-NOTE: As of Version 6 NServiceBus will require each saga to have at least one message that is able to start it.
+partial: at-least-one
 
 
 ## Correlating messages to a saga
@@ -74,7 +76,7 @@ When a message is received that could possibly be handled by a saga, and no exis
 
 Messages can be publishing from a saga at any time. This is often used to notify the original caller, that caused the saga to be started, of some interim state that isn't relevant to other subscribers.
 
-Attempting to use `Bus.Reply()` or `Bus.Return()` to communicate with the caller, that would only achieve the desired result in the case where the current message came from that client, and not in the case where any other partner sent a message arriving at that saga. For this reason, notice that the saga data contains the original client's return address. It also contains the message ID of the original request so that the client can correlate status messages on its end.
+Attempting to use `Reply()` or `Return()` to communicate with the caller, that would only achieve the desired result in the case where the current message came from that client, and not in the case where any other partner sent a message arriving at that saga. For this reason, notice that the saga data contains the original client's return address. It also contains the message ID of the original request so that the client can correlate status messages on its end.
 
 To communicate status in the example:
 
