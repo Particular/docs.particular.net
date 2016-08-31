@@ -10,4 +10,3 @@ When scaling out an endpoint using the RabbitMQ transport, any of the endpoint i
 
 
 partial: queue
-

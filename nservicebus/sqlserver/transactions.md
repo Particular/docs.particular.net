@@ -9,12 +9,17 @@ tags:
 - Transport
 ---
 
+
 SQL Server transport supports the following [Transport Transaction Modes](/nservicebus/transports/transactions.md):
 
  * Transaction scope (Distributed transaction)
  * Transport transaction - Sends atomic with Receive
  * Transport transaction - Receive Only
  * Unreliable (Transactions Disabled)
+
+`TransactionScope` mode is particularly useful as it enables `exactly once` message processing with usage of distributed transactions. However, when transport, persistence and business data are all stored in a single SQL Server catalog it is possible to achieve `exactly-once` message delivery without distributed transactions. For more details refer to the [SQL Server native integration](/samples/sqltransport/native-integration/) sample.
+
+NOTE: `Exactly once` message processing without distributed transactions can be achieved with any transport using [Outbox](/nservicebus/outbox/). It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage.
 
 
 ### Transaction scope (Distributed transaction)
@@ -23,7 +28,7 @@ In this mode the ambient transaction is started before receiving the message. Th
 
 If either the configured NServiceBus persistence mechanism or the user data access also support transactions via `TransactionScope`, the ambient transaction is escalated to a distributed one via the Distributed Transaction Coordinator (DTC).
 
-NOTE: If the peristence mechanisms use SQL Server 2008 or later as an underlying data store and the connection string configured for the SQL Server transport and the persistence is the same, there will be no DTC escalation as SQL Server is able to handle multiple non-overlapping connections via a local transaction.
+NOTE: If the persistence mechanisms use SQL Server 2008 or later as an underlying data store and the connection string configured for the SQL Server transport and the persistence is the same, there will be no DTC escalation as SQL Server is able to handle multiple non-overlapping connections via a local transaction.
 
 See also [Sample covering this mode of operation](/samples/sqltransport-nhpersistence/).
 

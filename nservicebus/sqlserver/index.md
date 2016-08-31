@@ -13,7 +13,7 @@ related:
  - samples/outbox/sqltransport-nhpersistence-ef
 ---
 
-The SQL Server transport implements a message queuing mechanism on top of [Microsoft SQL Server](https://www.microsoft.com/en-us/cloud-platform/sql-server). It provides support for sending messages over SQL Server tables. It does **not** make any use of ServiceBroker, a messaging technology built into the SQL Server.
+The SQL Server transport implements a message queuing mechanism on top of [Microsoft SQL Server](https://www.microsoft.com/en-us/cloud-platform/sql-server). It provides support for sending messages over SQL Server tables. It does **not** make any use of [Service Broker](https://technet.microsoft.com/en-us/library/ms166104.aspx).
 
 
 ## How it works
@@ -54,20 +54,13 @@ This section explains the important factors to consider when choosing technologi
 NOTE: No matter what deployment options are chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside in a single SQL Server catalog**. Multi-instance/multi-catalog deployment topology is still available but is deprecated in version 3 of the SQL Server transport. It will be removed in version 4.
 
 
-### Transactionality
-
-SQL Server Transport supports all NServiceBus [transaction modes](/nservicebus/transports/transactions.md). `TransactionScope` mode is particularly useful as it enables `exactly once` message processing with usage of distributed transactions. However, when transport, persistence and business data are all stored in a single SQL Server catalog it is possible to achieve `exactly-once` message delivery without distributed transactions. For more details refer to the [SQL Server native integration](/samples/sqltransport/native-integration/) sample.
-
-NOTE: `Exactly once` message processing without distributed transactions can be achieved with any transport using [Outbox](/nservicebus/outbox/). It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage.
-
-
 ### Security
 
 Security considerations for SQL Server Transport should follow [the principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
 
 Each endpoint should use a dedicated SQL Server principal with `SELECT` and `DELETE` permissions on its input queue tables and `INSERT` permission on input queue tables of endpoints it sends messages to. Each endpoint should also have permissions to insert rows to audit and error queue tables.
 
-[Multi-schema](/nservicebus/sqlserver/configuration.md#multiple-custom-schemas) configuration can be used to manage fine-grained access control to various database objects used by the endpoint, including its queue tables.
+[Multi-schema](/nservicebus/sqlserver/connection-settings.md#multiple-custom-schemas) configuration can be used to manage fine-grained access control to various database objects used by the endpoint, including its queue tables.
 
 
 ### Service Control
@@ -101,3 +94,15 @@ The best option is to have a dedicated catalog for the queues. This approach all
 In such a case local transactions are not enough to ensure `exactly-once` message processing. When required, one option is to use Microsoft Distributed Transaction Coordinator and distributed transactions (NServiceBus with SQL Server transport is DTC-enabled by default). In this mode the message receive transaction and all data modifications that result from processing the message are part of one distributed transaction that spans two SQL catalogs (possibly stored on two different instances).
 
 Another options is to use the [Outbox](/nservicebus/outbox/) feature, that provides `exactly-once` processing semantics over an `at-least-once` message delivery infrastructure. In this mode each individual endpoint has to store business data and persistence data in the same catalog. Outgoing messages are stored by persistence infrastructure in a dedicated table. Single local transaction handles outgoing message persistence together with business data modifications. After the local transaction commits successfully the messages are dispatched to the final destination.
+
+
+## Persistence
+
+When the SQL Server transport is used in combination [NHibernate persistence](/nservicebus/nhibernate/) it allows for sharing database connections and optimizing transactions handling to avoid escalating to DTC. However, SQL Server Transport can be used with any other available persistence implementation.
+
+
+## Transactions
+
+SQL Server transport supports all [transaction handling modes](/nservicebus/transports/transactions.md), i.e. Transaction scope, Receive only, Sends atomic with Receive and No transactions.
+
+Refer to [Transport Transactions](/nservicebus/transports/transactions.md) for detailed explanation of the supported transaction handling modes and available configuration options.

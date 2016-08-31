@@ -230,13 +230,14 @@
       Title: "SQL Server Transport"
       Url: "nservicebus/sqlserver"
       Articles:
-        - "nservicebus/sqlserver/configuration"
         - "nservicebus/sqlserver/design"
+        - "nservicebus/sqlserver/connection-settings"
         - "nservicebus/sqlserver/transactions"
         - "nservicebus/sqlserver/concurrency"
         - "nservicebus/sqlserver/deployment-options"
         - "nservicebus/sqlserver/operations-scripting"
         - "nservicebus/sqlserver/entity-framework"
+        - "nservicebus/sqlserver/callbacks"
     -
       Title: "MSMQ Transport"
       Url: "nservicebus/msmq"

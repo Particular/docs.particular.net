@@ -1,16 +1,18 @@
 ---
-title: SQL Server Transport configuration
+title: SQL Server Transport Connection Settings
 reviewed: 2016-03-24
 tags:
  - SQL Server
 redirects:
  - nservicebus/sqlserver/concurrency
+ - nservicebus/sqlserver/configuration
 ---
 
 
-## Connection strings
-
 The SQL Server transport is built on top of ADO.NET and will use connection pooling. This may result in the connection pool being shared by the transport and other parts of the endpoint process. Depending on the situation it might be necessary to adjust the default connection pool size. See also [SQL Server Connection Pooling and Configuration](https://msdn.microsoft.com/en-us/library/8xx3tyca.aspx).
+
+
+## Connection configuration
 
 Connection string can be configured in several ways:
 
@@ -123,39 +125,6 @@ In some environments it might be necessary to adapt to database server settings,
 That can be done by passing the transport a custom factory method which will provide connection strings at runtime, and which can perform custom actions:
 
 snippet:sqlserver-custom-connection-factory
-
-
-## Persistence
-
-When the SQL Server transport is used in combination [NHibernate persistence](/nservicebus/nhibernate/) it allows for sharing database connections and optimizing transactions handling to avoid escalating to DTC. However, SQL Server Transport can be used with any other available persistence implementation.
-
-
-## Transactions
-
-SQL Server transport supports all [transaction handling modes](/nservicebus/transports/transactions.md), i.e. Transaction scope, Receive only, Sends atomic with Receive and No transactions.
-
-Refer to [Transport Transactions](/nservicebus/transports/transactions.md) for detailed explanation of the supported transaction handling modes and available configuration options.
-
-
-## Callbacks
-
-The settings mentioned below are available in version 2.x of the SQL Server transport. In version 3.x using callbacks requires the new `NServiceBus.Callbacks` NuGet package. Refer to [callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md) for more details.
-
-
-### Disable callbacks
-
-Callbacks and callback queues receivers are enabled by default. In order to disable them use the following setting:
-
-snippet:sqlserver-config-disable-secondaries
-
-Secondary queues use the same adaptive concurrency model as the primary queue. Secondary queues (and hence callbacks) are disabled for satellite receivers.
-
-
-### Callback Receiver Max Concurrency
-
-Changes the number of threads used for the callback receiver. The default is 1 thread.
-
-snippet:sqlserver-CallbackReceiverMaxConcurrency
 
 
 ## Circuit Breaker

@@ -72,7 +72,7 @@ snippet:sqlserver-singledb-multischema-config
 
 The configuration API for [multi-instance support](/nservicebus/sqlserver/deployment-options.md#multi-instance) has now changed. Multiple connection strings have to be provided by connection factory method passed to `EnableLagacyMultiInstanceMode` method.
 
-Note that `EnableLagacyMultiInstanceMode` method replaces both [pull and push modes](/nservicebus/sqlserver/configuration.md#multiple-connection-strings) from Version 2.x.
+Note that `EnableLagacyMultiInstanceMode` method replaces both [pull and push modes](/nservicebus/sqlserver/connection-settings.md#multiple-connection-strings) from Version 2.x.
 
 snippet:sqlserver-multiinstance-upgrade
 
