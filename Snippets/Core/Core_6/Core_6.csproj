@@ -75,6 +75,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
       <Private>True</Private>
@@ -106,6 +107,10 @@
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="Container\Custom\MyContainerDefinition.cs" />
+    <Compile Include="Msmq\EndpointQueuesCreation.cs" />
+    <Compile Include="Msmq\EndpointQueuesCreationTests.cs" />
+    <Compile Include="Msmq\EndpointQueuesDeletionTest.cs" />
+    <Compile Include="Msmq\EndpointQueuesDeletion.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\CustomExceptionPolicy.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicyOverridingDelayedRetriesPart.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\FullyCustomizedPolicy.cs" />
@@ -370,6 +375,8 @@
     <Content Include="XmlDocumentPayload.xml" />
     <Content Include="XmlElementPayload.xml" />
     <None Include="app.config" />
+    <None Include="Msmq\QueueCreation.ps1" />
+    <None Include="Msmq\QueueDeletion.ps1" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -387,5 +394,6 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

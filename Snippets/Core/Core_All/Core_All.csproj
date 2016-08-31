@@ -83,20 +83,14 @@
     <Compile Include="Msmq\NativeSend.cs" />
     <Compile Include="Msmq\ErrorQueueTests.cs" />
     <Compile Include="Msmq\QueueCreationTests.cs" />
-    <Compile Include="Msmq\QueueDeletion.cs" />
+    <Compile Include="Msmq\QueueDeletionUtils.cs" />
     <Compile Include="Msmq\QueueDeletionTests.cs" />
     <Compile Include="Msmq\ErrorQueue.cs" />
-    <Compile Include="Msmq\QueueCreation.cs" />
+    <Compile Include="Msmq\QueueCreationUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Msmq\NativeSend.ps1" />
     <None Include="Msmq\NativeSendUsage.ps1" />
-    <None Include="Msmq\QueueDeletion.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Msmq\QueueCreation.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Msmq\ErrorQueue.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

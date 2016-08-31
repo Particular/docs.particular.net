@@ -4,49 +4,29 @@
     using System.Messaging;
     using System.Security.Principal;
 
-    public static class QueueCreation
+    public static class QueueCreationUsage
     {
 
         public static void Usage()
         {
-            #region msmq-create-queues-endpoint-usage
-
-            CreateQueuesForEndpoint(
-                endpointName: "myendpoint",
-                account: Environment.UserName);
-
-            #endregion
-
             #region msmq-create-queues-shared-usage
 
-            CreateQueue(
+            QueueCreationUtils.CreateQueue(
                 queueName: "error",
                 account: Environment.UserName);
 
-            CreateQueue(
+            QueueCreationUtils.CreateQueue(
                 queueName: "audit",
                 account: Environment.UserName);
 
             #endregion
         }
+    }
 
-        #region msmq-create-queues
+    #region msmq-create-queues-shared
 
-        public static void CreateQueuesForEndpoint(string endpointName, string account)
-        {
-            // main queue
-            CreateQueue(endpointName, account);
-
-            // retries queue
-            CreateQueue($"{endpointName}.retries", account);
-
-            // timeout queue
-            CreateQueue($"{endpointName}.timeouts", account);
-
-            // timeout dispatcher queue
-            CreateQueue($"{endpointName}.timeoutsdispatcher", account);
-        }
-
+    public static class QueueCreationUtils
+    {
         public static void CreateQueue(string queueName, string account)
         {
             var path = $@"{Environment.MachineName}\private$\{queueName}";
@@ -86,8 +66,7 @@
                 .Translate(typeof(NTAccount))
                 .ToString();
         }
-
-        #endregion
     }
 
+    #endregion
 }

@@ -52,6 +52,8 @@
     <Compile Include="QueueCreationTests.cs" />
     <Compile Include="QueueDeletion.cs" />
     <Compile Include="QueueDeletionTests.cs" />
+    <Compile Include="Version_6\QueueCreation.cs" />
+    <Compile Include="Version_6\QueueDeletion.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -89,6 +89,8 @@
     <Compile Include="Operations\QueueCreationTests.cs" />
     <Compile Include="Operations\QueueDeletion.cs" />
     <Compile Include="Operations\QueueDeletionTests.cs" />
+    <Compile Include="Operations\Version_6\QueueCreation.cs" />
+    <Compile Include="Operations\Version_6\QueueDeletion.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="EfEdmx\MySample.Context.tt">

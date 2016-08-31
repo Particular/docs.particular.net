@@ -70,5 +70,14 @@
 
             #endregion
         }
+
+        void DisableLegacyRetriesSatellite(EndpointConfiguration endpointConfiguration)
+        {
+            #region 5to6-DisableLegacyRetriesSatellite
+
+            endpointConfiguration.Recoverability().DisableLegacyRetriesSatellite();
+
+            #endregion
+        }
     }
 }

@@ -97,44 +97,45 @@ NOTE: Write access is granted to both `Everyone` and `Anonymous`. The reason for
 
 #### In C&#35;
 
-snippet:msmq-create-queues
+snippet:msmq-create-queues-for-endpoint
 
+snippet:msmq-create-queues-shared
 
 #### In PowerShell
 
 snippet:msmq-create-queues-powershell
 
-
 ### Using the create helper queue methods
 
 To create all queues for a given endpoint name.
 
-snippet:msmq-create-queues-endpoint-usage
+partial: instance-id
+
+snippet:msmq-create-queues-for-endpoint-usage
 
 To create shared queues.
 
 snippet:msmq-create-queues-shared-usage
 
-
 ## Delete queues
-
 
 ### The delete helper queue methods
 
-
 #### In C&#35;
 
-snippet:msmq-delete-queues
+snippet:msmq-delete-queues-for-endpoint
 
+snippet:msmq-delete-queues-shared
 
 #### In PowerShell
 
 snippet:msmq-delete-queues-powershell
 
-
 ### Using the delete queue helper methods
 
 To delete all queues for a given endpoint name.
+
+partial: instance-id
 
 snippet:msmq-delete-queues-endpoint-usage
 
