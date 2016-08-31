@@ -2,6 +2,7 @@
 title: Transports Transactions
 summary: Supported transaction modes and their consistency guarantees
 component: Core
+versions: "[4,)"
 tags:
 - Transactions
 - Retries
