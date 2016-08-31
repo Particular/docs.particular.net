@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 12.0.31101.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServer_1", "SqlServer_1\SqlServer_1.csproj", "{F21FC001-ABBF-4ED8-B661-B9E9FED8BCBE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServer_2", "SqlServer_2\SqlServer_2.csproj", "{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServer_3", "SqlServer_3\SqlServer_3.csproj", "{68C4BC46-AD10-4D29-91F6-AA1A3E16D5AB}"
@@ -18,8 +16,6 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F21FC001-ABBF-4ED8-B661-B9E9FED8BCBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F21FC001-ABBF-4ED8-B661-B9E9FED8BCBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68C4BC46-AD10-4D29-91F6-AA1A3E16D5AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
