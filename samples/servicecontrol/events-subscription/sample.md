@@ -1,21 +1,22 @@
 ---
-title: Monitoring NServiceBus endpoints with ServiceControl events.
+title: Monitoring NServiceBus endpoints with ServiceControl events
 component: ServiceControlContracts
-reviewed: 2016-03-26
+reviewed: 2016-08-31
 tags:
  - ServiceControl
  - Notifications
 related:
-- servicecontrol/contracts
-- servicecontrol/plugins
-- samples/custom-checks/monitoring3rdparty
+ - servicecontrol
+ - servicecontrol/contracts
+ - servicecontrol/plugins
+ - samples/custom-checks/monitoring3rdparty
 ---
 
 ## Prerequisistes
 
-1. [Install ServiceControl](/servicecontrol/installation.md).
-1. Using [ServiceControl Management Utility](/servicecontrol/license.md#licensing-servicecontrol-servicecontrol-management-utility) tool, set up ServiceControl to monitor endpoints using MSMQ transport.
-1. Make sure the `ServiceControl` process is running before running the sample. 
+ 1. [Install ServiceControl](/servicecontrol/installation.md).
+ 1. Using [ServiceControl Management Utility](/servicecontrol/license.md#licensing-servicecontrol-servicecontrol-management-utility) tool, set up ServiceControl to monitor endpoints using MSMQ transport.
+ 1. Ensure the `ServiceControl` process is running before running the sample. 
 
 
 ## Running the project
@@ -34,12 +35,11 @@ When a `MessageFailed` event is received, the `EndpointsMonitor` prints the foll
 > `Received ServiceControl 'MessageFailed' event for a SimpleMessage.`
 
 
-
 ### HeartbeatStopped and HeartbeatRestored events
 
 The `HeartbeatStopped` event is emitted whenever an endpoint fails to send a control message at expected interval. The `HeartbeatRestored` event is emitted whenever the endpoint successfully sends a control message again. 
 
-Note that Monitor needs to receive at least one control message, before it can observe that endpoint stopped responding, and that `HeartbeatStopped` event is emitted only following the `HeartbeatStopped` event. 
+Note: The Monitor needs to receive at least one control message, before it can observe that endpoint stopped responding.
 
 In order to observe that, stop the `NServiceBusEndpoint` application and wait for up to 30 seconds. When a `HeartbeatStopped` event is received, the `EndpointsMonitor` prints the following message in its console window:
 
@@ -65,7 +65,7 @@ The `MessageFailed` event is published for any standard NServiceBus endpoint tha
 
 In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpoint needs to use the [heartbeats plugin](/servicecontrol/plugins/heartbeat.md).
 
-NOTE: Hearbeat control messages are sent [every 30 seconds by default](/servicecontrol/plugins/heartbeat.md#configuration-ttl). That means there might be up to 30 seconds delay before ServiceControl realizes that it lost or restored connection with the endpoint. 
+NOTE: Heartbeat control messages are sent [every 30 seconds by default](/servicecontrol/plugins/heartbeat.md#configuration-ttl). That means there might be up to 30 seconds delay before ServiceControl realizes that it lost or restored connection with the endpoint.
 
 
 ### EndpointsMonitor
