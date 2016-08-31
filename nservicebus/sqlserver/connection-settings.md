@@ -1,6 +1,7 @@
 ---
 title: SQL Server Transport Connection Settings
-reviewed: 2016-03-24
+reviewed: 2016-08-31
+component: SqlServer
 tags:
  - SQL Server
 redirects:
@@ -51,12 +52,7 @@ In [*multi-catalog* and *multi-instance* modes](/nservicebus/sqlserver/deploymen
 
 Connection strings for the remote endpoint can be configured in several ways:
 
-
-### Via the configuration API - Push mode
-
-In the push mode the whole collection of endpoint connection information objects is passed during configuration time.
-
-snippet:sqlserver-multidb-other-endpoint-connection-push
+partial:multiple-connection-push
 
 
 ### Via the configuration API - Pull mode
@@ -65,24 +61,10 @@ The pull mode can be used when specific information is not available at configur
 
 snippet:sqlserver-multidb-other-endpoint-connection-pull
 
-Note that in Version 3 the `EnableLagacyMultiInstanceMode` method passes transport address parameter. Transport address conforms to the `endpoint_name@schema_name` convention, e.g. could be equal to "Samples.SqlServer.MultiInstanceSender@[dbo]".
-
-### Via the App.Config
-
-In Versions 2.1 to 2.x the endpoint-specific connection information is discovered by reading the connection strings from the configuration file with `NServiceBus/Transport/{name of the endpoint in the message mappings}` naming convention.
+Note that in Version 3 the `EnableLagacyMultiInstanceMode` method passes transport address parameter. Transport address conforms to the `endpoint_name@schema_name` convention, e.g. could be equal to `Samples.SqlServer.MultiInstanceSender@[dbo]`.
 
 
-### Example
-
-Given the following mappings:
-
-snippet:sqlserver-multidb-messagemapping
-
-and the following connection strings:
-
-snippet:sqlserver-multidb-connectionstrings
-
-The messages sent to the endpoint called `billing` will be dispatched to the database catalog `Billing` on the server instance `DbServerB`. Because the endpoint configuration isn't specified for `sales`, any messages sent to the `sales` endpoint will be dispatched to the default database catalog and database server instance. In this example that will be `MyDefaultDB` on server `DbServerA`.
+partial: multiple-appconfig
 
 
 ## Custom database schemas
@@ -92,11 +74,7 @@ The schema for the specific endpoint can be configured using `DefaultSchema` met
 
 snippet:sqlserver-non-standard-schema
 
-In Versions 1.2.3 to 2.x it was also possible to pass custom schema in the connection string, using `Queue Schema` parameter:
-
-snippet:sqlserver-non-standard-schema-connString
-
-snippet:sqlserver-non-standard-schema-connString-xml
+partial: custom-schema
 
 
 ## Multiple custom schemas
@@ -109,7 +87,7 @@ If the endpoints are configured to use a different schema, then additional confi
 
 The schema for another endpoint can be specified in the following ways:
 
-snippet:sqlserver-multischema-config-push
+partial:multischema-config-push
 
 snippet:sqlserver-multischema-config-pull
 
@@ -141,8 +119,4 @@ The default value is 2 minutes.
 snippet:sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
 
 
-### Pause Time
-
-Overrides the default time to pause after a failure while trying to receive a message. The setting is only available in Version 2.x. The default value is 10 seconds.
-
-snippet: sqlserver-PauseAfterReceiveFailure
+partial: pause-time
