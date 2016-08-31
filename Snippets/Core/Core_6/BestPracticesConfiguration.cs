@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Features;
 
     class BestPracticesConfiguration
     {
@@ -10,7 +9,7 @@
         {
             #region DisableBestPracticeEnforcementPerEndpoint
             var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
-            routing.DisableBestPracticeEnforcement();
+            routing.DoNotEnforceBestPractices();
             #endregion
         }
 
