@@ -1,5 +1,7 @@
 ---
 title: 'RabbitMQ Transport: In a cluster'
+component: Rabbit
+reviewed: 2016-08-31
 ---
 
 The [RabbitMQ Clustering Guide](https://www.rabbitmq.com/clustering.html) recommends that client applications should not bake in the hostnames or IP addresses of the machines hosting nodes in a RabbitMQ cluster. An approach such as DNS or load balancing should be used instead. This approach is recommended when using the NServiceBus RabbitMQ transport. For more details, see the guide.
