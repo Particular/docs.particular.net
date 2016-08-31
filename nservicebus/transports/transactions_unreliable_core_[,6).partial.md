@@ -1,0 +1,1 @@
+NOTE: When transactions are disabled, no retries will be performed and messages **will not be forwarded** to the error queue in the event of any failure and the message will be permanently lost.
