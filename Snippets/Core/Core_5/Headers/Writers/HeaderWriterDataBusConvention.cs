@@ -3,10 +3,10 @@
     using System.Text;
     using System.Threading;
     using Common;
+    using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
-    using Operations.Msmq;
 
     [TestFixture]
     public class HeaderWriterDataBusConvention
@@ -19,7 +19,7 @@
         [TearDown]
         public void Setup()
         {
-            QueueDeletion.DeleteQueuesForEndpoint(endpointName);
+            DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName);
         }
 
         [Test]

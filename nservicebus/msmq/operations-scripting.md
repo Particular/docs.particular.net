@@ -105,15 +105,45 @@ snippet:msmq-create-queues
 snippet:msmq-create-queues-powershell
 
 
-### Using the create helper queue methods
+### Creating queues for an endpoint
 
 To create all queues for a given endpoint name.
 
+
+#### In C&#35;
+
+snippet: msmq-create-queues-for-endpoint
+
+
+#### In PowerShell
+
+snippet: msmq-create-queues-for-endpoint-powershell
+
+
+### Using the create create endpoint queues
+
+
+#### In C&#35;
+
 snippet:msmq-create-queues-endpoint-usage
 
-To create shared queues.
+
+#### In PowerShell
+
+snippet:msmq-create-queues-endpoint-usage-powershell
+
+
+### To create shared queues
+
+
+#### In C&#35;
 
 snippet:msmq-create-queues-shared-usage
+
+
+#### In PowerShell
+
+snippet:msmq-create-queues-shared-usage-powershell
 
 
 ## Delete queues
@@ -132,12 +162,13 @@ snippet:msmq-delete-queues
 snippet:msmq-delete-queues-powershell
 
 
-### Using the delete queue helper methods
+### To delete all queues for a given endpoint
 
-To delete all queues for a given endpoint name.
+snippet: msmq-delete-queues-for-endpoint
 
 snippet:msmq-delete-queues-endpoint-usage
 
-To delete shared queues
+
+### To delete shared queues
 
 snippet:msmq-delete-queues-shared-usage

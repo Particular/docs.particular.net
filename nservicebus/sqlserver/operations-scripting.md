@@ -46,13 +46,15 @@ Queue creation can be done for a specific endpoint or queues shared between mult
 snippet:sqlserver-create-queues
 
 
-### Using the create helper queue methods
+### Creating queues for an endpoint
 
 To create all queues for a given endpoint name:
 
+snippet: sqlserver-create-queues-for-endpoint
+
 snippet:sqlserver-create-queues-endpoint-usage
 
-To create shared queues:
+### To create shared queues
 
 snippet:sqlserver-create-queues-shared-usage
 
@@ -65,13 +67,12 @@ snippet:sqlserver-create-queues-shared-usage
 snippet:sqlserver-delete-queues
 
 
-### Using the delete queue helper methods
-
-To delete all queues for a given endpoint name:
+### To delete all queues for a given endpoint
 
 snippet:sqlserver-delete-queues-endpoint-usage
 
-To delete shared queues:
+
+### To delete shared queues
 
 snippet:sqlserver-delete-queues-shared-usage
 

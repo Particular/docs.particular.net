@@ -2,12 +2,12 @@
 {
     using System.Threading;
     using Common;
+    using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
-    using Operations.Msmq;
 
     [TestFixture]
     public class HeaderWriterAudit
@@ -20,7 +20,7 @@
         [TearDown]
         public void Setup()
         {
-            QueueDeletion.DeleteQueuesForEndpoint(endpointName);
+            DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName);
         }
 
         [Test]

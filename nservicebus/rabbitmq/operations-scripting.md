@@ -64,13 +64,19 @@ Queue creation can be done for a specific endpoint or queues shared between mult
 snippet:rabbit-create-queues
 
 
-### Using the create queue helper methods
+### Creating queues for an endpoint
 
 To create all queues for a given endpoint name.
 
+snippet: rabbit-create-queues-for-endpoint
+
+
+### Using the create create endpoint queues
+
 snippet:rabbit-create-queues-endpoint-usage
 
-To create shared queues.
+
+### To create shared queues
 
 snippet:rabbit-create-queues-shared-usage
 
@@ -88,12 +94,13 @@ To configure HA policy, refer to the [RabbitMQ HA documentation](https://www.rab
 snippet:rabbit-delete-queues
 
 
-### Using the delete queue helper methods
+### To delete all queues for a given endpoint
 
-To delete all queues for a given endpoint name:
+snippet: rabbit-delete-queues-for-endpoint
 
 snippet:rabbit-delete-queues-endpoint-usage
 
-To delete shared queues:
+
+### To delete shared queues
 
 snippet:rabbit-delete-queues-shared-usage

@@ -81,14 +81,16 @@
     <Compile Include="EfEdmx\Person.cs">
       <DependentUpon>MySample.tt</DependentUpon>
     </Compile>
-    <Compile Include="Operations\ErrorQueue.cs" />
-    <Compile Include="Operations\ErrorQueueTests.cs" />
-    <Compile Include="Operations\NativeSend.cs" />
-    <Compile Include="Operations\NativeSendTests.cs" />
-    <Compile Include="Operations\QueueCreation.cs" />
-    <Compile Include="Operations\QueueCreationTests.cs" />
-    <Compile Include="Operations\QueueDeletion.cs" />
-    <Compile Include="Operations\QueueDeletionTests.cs" />
+    <Compile Include="Operations\ErrorQueue\ErrorQueue.cs" />
+    <Compile Include="Operations\ErrorQueue\Tests.cs" />
+    <Compile Include="Operations\NativeSend\NativeSend.cs" />
+    <Compile Include="Operations\NativeSend\Tests.cs" />
+    <Compile Include="Operations\QueueCreation\QueueCreationUtils.cs" />
+    <Compile Include="Operations\QueueCreation\QueueCreationUtilsUsage.cs" />
+    <Compile Include="Operations\QueueCreation\Tests.cs" />
+    <Compile Include="Operations\QueueDeletion\QueueDeletionUtils.cs" />
+    <Compile Include="Operations\QueueDeletion\QueueDeletionUtilsUsage.cs" />
+    <Compile Include="Operations\QueueDeletion\Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="EfEdmx\MySample.Context.tt">
@@ -112,7 +114,7 @@
     <None Include="EfEdmx\MySample.edmx.diagram">
       <DependentUpon>MySample.edmx</DependentUpon>
     </None>
-    <None Include="Operations\NativeSend.ps1">
+    <None Include="Operations\NativeSend\NativeSend.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

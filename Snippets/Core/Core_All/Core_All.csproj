@@ -79,25 +79,29 @@
     <Compile Include="AsyncSuffix\MissingTaskUsageDetector.cs" />
     <Compile Include="AsyncSuffix\MissingTaskUsageDetectorTests.cs" />
     <Compile Include="AsyncSuffix\TaskExtensions.cs" />
-    <Compile Include="Msmq\NativeSendTests.cs" />
-    <Compile Include="Msmq\NativeSend.cs" />
-    <Compile Include="Msmq\ErrorQueueTests.cs" />
-    <Compile Include="Msmq\QueueCreationTests.cs" />
-    <Compile Include="Msmq\QueueDeletion.cs" />
-    <Compile Include="Msmq\QueueDeletionTests.cs" />
-    <Compile Include="Msmq\ErrorQueue.cs" />
-    <Compile Include="Msmq\QueueCreation.cs" />
+    <Compile Include="Msmq\NativeSend\Tests.cs" />
+    <Compile Include="Msmq\NativeSend\NativeSend.cs" />
+    <Compile Include="Msmq\ErrorQueue\Tests.cs" />
+    <Compile Include="Msmq\QueueCreation\QueueCreationUtils.cs" />
+    <Compile Include="Msmq\QueueCreation\Tests.cs" />
+    <Compile Include="Msmq\QueueCreation\CreateEndpointQueues.cs" />
+    <Compile Include="Msmq\QueueDeletion\QueueDeletionUtils.cs" />
+    <Compile Include="Msmq\QueueDeletion\DeleteEndpointQueues.cs" />
+    <Compile Include="Msmq\QueueDeletion\QueueDeletionUtilsUsage.cs" />
+    <Compile Include="Msmq\QueueDeletion\Tests.cs" />
+    <Compile Include="Msmq\ErrorQueue\ErrorQueue.cs" />
+    <Compile Include="Msmq\QueueCreation\QueueCreationUtilsUsage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Msmq\NativeSend.ps1" />
-    <None Include="Msmq\NativeSendUsage.ps1" />
-    <None Include="Msmq\QueueDeletion.ps1">
+    <None Include="Msmq\NativeSend\NativeSend.ps1" />
+    <None Include="Msmq\NativeSend\NativeSendUsage.ps1" />
+    <None Include="Msmq\QueueDeletion\QueueDeletion.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Msmq\QueueCreation.ps1">
+    <None Include="Msmq\QueueCreation\QueueCreation.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Msmq\ErrorQueue.ps1">
+    <None Include="Msmq\ErrorQueue\ErrorQueue.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

@@ -44,14 +44,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EndpointConfigurationExtensions.cs" />
-    <Compile Include="ErrorQueue.cs" />
-    <Compile Include="ErrorQueueTests.cs" />
-    <Compile Include="NativeSend.cs" />
-    <Compile Include="NativeSendTests.cs" />
-    <Compile Include="QueueCreation.cs" />
-    <Compile Include="QueueCreationTests.cs" />
-    <Compile Include="QueueDeletion.cs" />
-    <Compile Include="QueueDeletionTests.cs" />
+    <Compile Include="ErrorQueue\ErrorQueue.cs" />
+    <Compile Include="ErrorQueue\Tests.cs" />
+    <Compile Include="NativeSend\NativeSend.cs" />
+    <Compile Include="NativeSend\Tests.cs" />
+    <Compile Include="QueueCreation\QueueCreationUtils.cs" />
+    <Compile Include="QueueCreation\CreateEndpointQueues.cs" />
+    <Compile Include="QueueCreation\QueueCreationUtilsUsage.cs" />
+    <Compile Include="QueueCreation\Tests.cs" />
+    <Compile Include="QueueDeletion\QueueDeletionUtils.cs" />
+    <Compile Include="QueueDeletion\QueueDeletionUtilsUsage.cs" />
+    <Compile Include="QueueDeletion\DeleteEndpointQueues.cs" />
+    <Compile Include="QueueDeletion\Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
