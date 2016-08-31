@@ -58,6 +58,22 @@
             #endregion
         }
 
+        void TransportTransactionsWithScope()
+        {
+            #region TransactionsWrapHandlersExecutionInATransactionScope
+
+            var transactions = Configure.Transactions;
+            transactions.Enable();
+            transactions.Advanced(
+                action: advancedSettings =>
+                {
+                    advancedSettings.DisableDistributedTransactions();
+                    advancedSettings.WrapHandlersExecutionInATransactionScope();
+                });
+
+            #endregion
+        }
+
         void CustomTransactionTimeout()
         {
             #region CustomTransactionTimeout

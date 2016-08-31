@@ -1,6 +1,8 @@
 ---
 title: Transports Transactions
 summary: Supported transaction modes and their consistency guarantees
+component: Core
+versions: "[4,)"
 tags:
 - Transactions
 - Retries
@@ -9,7 +11,7 @@ tags:
 - TransactionScope
 redirects:
 - nservicebus/messaging/transactions
-reviewed: 2016-04-21
+reviewed: 2016-08-31
 ---
 
 This article covers various levels of consistency guarantees NServiceBus provides with regards to:
@@ -33,14 +35,7 @@ NServiceBus offers four levels of guarantees with regards to message processing.
 
 The implementation details for each transport are discussed in the dedicated documentation sections. They can be accessed by clicking the links with the transport name in the following table:
 
-|  | [Transaction scope (Distributed transaction)](/nservicebus/transports/transactions.md#transactions-transaction-scope-distributed-transaction) | [Transport transaction - Sends atomic with Receive](/nservicebus/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive)  | [Transport transaction - Receive Only](/nservicebus/transports/transactions.md#transactions-transport-transaction-receive-only) | [Unreliable (Transactions Disabled)](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled) |
-| :------------------| :-: |:-:| :-:| :-: |
-| [MSMQ](/nservicebus/msmq/transportconfig.md#transactions-and-delivery-guarantees) | &#10004; | &#10004; | &#10004; | &#10004; |
-| [SQL Server](/nservicebus/sqlserver/design.md#transactions-and-delivery-guarantees) | &#10004; | &#10004; | &#10004; | &#10004; |
-| [RabbitMQ](/nservicebus/rabbitmq/transactions-and-delivery-guarantees.md) | &#10006; | &#10006; | &#10004; | &#10004; |
-| [Azure Storage Queues](/nservicebus/azure-storage-queues/transaction-support.md#transactions-and-delivery-guarantees)| &#10006; | &#10006; | &#10004; | &#10004; |
-| [Azure Service Bus](/nservicebus/azure-service-bus/transaction-support.md#transactions-and-delivery-guarantees) | &#10006; | &#10004; | &#10004; | &#10004; |
-
+partial:matrix
 
 ### Transaction scope (Distributed transaction)
 
@@ -63,45 +58,7 @@ Distributed transactions do not guarantee atomicity. Changes to the database mig
 
 NOTE: This mode requires the selected storage to support participating in distributed transactions.
 
-
-### Transport transaction - Sends atomic with Receive
-
-Some transports support enlisting outgoing operations in the current receive transaction. This prevents messages being sent to downstream endpoints during retries.
-
-Use the following code to use this mode:
-
-snippet:TransportTransactionAtomicSendsWithReceive
-
-
-#### Consistency guarantees
-
-This mode has the same consistency guarantees as the *Receive Only* mode, but additionally it prevents occurrence of *ghost messages* since all outgoing operations are atomic with the ongoing receive operation.
-
-
-### Transport transaction - Receive Only
-
-In this mode the receive operation is wrapped in a transport's native transaction. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is finished successfully. See also [recoverability](/nservicebus/recoverability/) for more details on retries.
-
-Use the following code to use this mode:
-
-snippet:TransportTransactionReceiveOnly
-
-NOTE: Prior to Version 6 receive only mode couldn't be requested for transports supporting the `atomic sends with receive` mode (see below).
-
-
-#### Consistency guarantees
-
-In this mode some (or all) handlers might get invoked multiple times and partial results might be visible:
-
- * partial updates - where one handler succeeded updating its data but the other didn't
- * partial sends - where some of the messages has been sent but others not
-
-When using this mode all handlers must be [idempotent](/nservicebus/concept-overview.md#idempotence). In other words the result needs to be consistent from a business perspective even when the message is processed more than once.
-
-See the `Outbox` section below for details on how NServiceBus can handle idempotency at the infrastructure level.
-
-NOTE: Versions 5 and below do not support [batched dispatch](/nservicebus/messaging/batched-dispatch.md) and this meant that messages could be sent out without a matching update to business data, depending on the order in which  statements were executed. Such messages are called *ghost messages*. To avoid this situation make sure to perform all bus operations only after modifications to business data. When reviewing the code remember that there can be multiple handlers for a given message and that [handlers are executed in a certain order](/nservicebus/handlers/handler-ordering.md).
-
+partial:native
 
 ### Unreliable (Transactions Disabled)
 
@@ -111,24 +68,9 @@ DANGER: In this mode, when encountering a critical failure such as system or end
 
 snippet:TransactionsDisable
 
+partial:unreliable
 
-#### Versions 6 and above
-
-In this mode the transport doesn't wrap the receive operation in any kind of transaction. Should the message fail to process it will be moved straight to the error queue.
-
-
-#### Versions 5 and below
-
-In Versions 5 and below, when transactions are disabled, no retries will be performed and messages **will not be forwarded** to the error queue in the event of any failure and the message will be permanently lost.
-
-
-## Outbox
-
-The [Outbox](/nservicebus/outbox) feature provides idempotency at the infrastructure level and allows running in *transport transaction* mode while still getting the same semantics as *Transaction scope* mode.
-
-NOTE: Outbox data needs to be stored in the same database as business data to achieve the `exactly-once delivery`.
-
-When using the Outbox, any messages resulting from processing a given received message are not sent immediately but rather stored in the persistence database and pushed out after the handling logic is done. This mechanism ensures that the handling logic can only succeed once so there is no need to design for idempotency.
+partial:outbox
 
 
 ## Avoiding partial updates
@@ -137,11 +79,11 @@ In this mode there is a risk of partial updates since one handler might succeed 
 
 snippet:TransactionsWrapHandlersExecutionInATransactionScope
 
-NOTE: This requires the selected storage to support enlisting in transaction scopes.
+NOTE: This requires that all the data stores used by the handler support enlisting in a distributed transaction (e.g. SQL Server), including the sage store when using sagas.
 
 WARNING: This might escalate to a distributed transaction if data in different databases are updated.
 
-WARNING: This API must not be used in combination with transports running in a *transaction scope* mode. Starting from version 6, wrapping handlers in a `TransactionScope` in such a situation throws an exception.
+partial:partial-updates
 
 
 ## Controlling transaction scope options
@@ -150,24 +92,4 @@ The following options for transaction scopes used during message processing can 
 
 NOTE: In Versions 6 and above isolation level and timeout for transaction scopes are also configured at the transport level.
 
-
-### Isolation level
-
-NServiceBus will by default use the `ReadCommitted` [isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel).
-
-NOTE: Versions 3 and below used the default isolation level of .Net which is `Serializable`.
-
-Change the isolation level using
-
-snippet:CustomTransactionIsolationLevel
-
-
-### Transaction timeout
-
-NServiceBus will use the [default transaction timeout](https://msdn.microsoft.com/en-us/library/system.transactions.transactionmanager.defaulttimeout) of the machine the endpoint is running on.
-
-Change the transaction timeout using
-
-snippet:CustomTransactionTimeout
-
-Or via .config file using a [example DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.aspx#Anchor_5).
+partial:scope-options
