@@ -1,0 +1,74 @@
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.WindowsAzure.Storage.Table;
+using NServiceBus;
+using NServiceBus.Logging;
+using Shared;
+
+public class LongProcessingRequestSaga : Saga<SagaState>, 
+                                            IAmStartedByMessages<LongProcessingRequest>, 
+                                            IHandleTimeouts<ProcessingPossiblyFailed>,
+                                            IHandleMessages<LongProcessingFinished>,
+                                            IHandleMessages<LongProcessingFailed>
+{
+    static ILog log = LogManager.GetLogger<LongProcessingRequestSaga>();
+    public CloudTable table;
+
+    public LongProcessingRequestSaga()
+    {
+        var cloudTableClient = StorageHelper.GetTableClient();
+        table = cloudTableClient.GetTableReference(Constants.TableName);
+        table.CreateIfNotExists();
+    }
+
+    public async Task Handle(LongProcessingRequest message, IMessageHandlerContext context)
+    {
+        log.Info($"Received LongProcessingRequest with ID {message.Id}, EstimatedProcessingTime: {message.EstimatedProcessingTime}.");
+
+        var timeoutToBeInvokedAt = DateTime.Now + message.EstimatedProcessingTime + TimeSpan.FromSeconds(10);
+        await RequestTimeout(context, timeoutToBeInvokedAt, new ProcessingPossiblyFailed { Id = message.Id });
+        log.Info($"Timeout is set to be executed at {timeoutToBeInvokedAt}.");
+
+
+        log.Info("Registering long running request with Processor.");
+        // Saga enqueues the request in storate table. Normally, if there's more than that, work should be done by a handler
+        var request = new RequestRecord(message.Id, Status.Pending, message.EstimatedProcessingTime);
+        await table.ExecuteAsync(TableOperation.Insert(request)).ConfigureAwait(false);
+
+        await context.Reply(new LongProcessingRequestReply
+        {
+            Id = message.Id
+        });
+        log.Info($"Acknowledged LongProcessingRequest with ID {message.Id}.");
+    }
+
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaState> mapper)
+    {
+        mapper.ConfigureMapping<LongProcessingRequest>(message => message.Id).ToSaga(state => state.LongProcessingId);
+        mapper.ConfigureMapping<LongProcessingFinished>(message => message.Id).ToSaga(state => state.LongProcessingId);
+        mapper.ConfigureMapping<LongProcessingFailed>(message => message.Id).ToSaga(state => state.LongProcessingId);
+    }
+
+    public async Task Timeout(ProcessingPossiblyFailed timeoutMessage, IMessageHandlerContext context)
+    {
+        log.Info($"Processing of LongProcessingRequest with ID {timeoutMessage.Id} has not finished in the estimated time. Try again.");
+
+        await context.Publish<LongProcessingWarning>(m => m.Id = timeoutMessage.Id).ConfigureAwait(false);
+
+        MarkAsComplete();
+    }
+
+    public Task Handle(LongProcessingFinished message, IMessageHandlerContext context)
+    {
+        MarkAsComplete();
+
+        return Task.FromResult(0);
+    }
+
+    public Task Handle(LongProcessingFailed message, IMessageHandlerContext context)
+    {
+        MarkAsComplete();
+
+        return Task.FromResult(0);
+    }
+}
