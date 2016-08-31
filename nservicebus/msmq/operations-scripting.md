@@ -2,7 +2,7 @@
 title: 'MSMQ Transport: Scripting'
 summary: Example code and scripts to facilitate deployment and operational actions against MSMQ.
 reviewed: 2016-08-31
-component: Msmq
+component: Core
 ---
 
 Example code and scripts to facilitate deployment and operational actions against MSMQ.
