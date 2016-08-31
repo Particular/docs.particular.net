@@ -13,7 +13,7 @@ related:
  - samples/outbox/sqltransport-nhpersistence-ef
 ---
 
-The SQL Server transport implements a message queuing mechanism on top of Microsoft SQL Server. It provides support for sending messages over [SQL Server](https://www.microsoft.com/en-us/cloud-platform/sql-server) tables. It does **not** make any use of ServiceBroker, a messaging technology built into the SQL Server.
+The SQL Server transport implements a message queuing mechanism on top of [Microsoft SQL Server](https://www.microsoft.com/en-us/cloud-platform/sql-server). It provides support for sending messages over SQL Server tables. It does **not** make any use of ServiceBroker, a messaging technology built into the SQL Server.
 
 
 ## How it works
@@ -27,7 +27,7 @@ SQL Server transport uses SQL Server to store queues and messages. It doesn't us
 ### Advantages
 
  * No additional licensing and training costs, as majority of Microsoft stack organizations already have SQL Server installed and have knowledge required to run it.
- * Great tooling (SSMS).
+ * Mature tooling (SSMS).
  * Free to start (Express edition).
  * Queues support competing consumers (multiple instances of same endpoint feeding off of same queue) so scale-out doesn't require using [distributor](/nservicebus/scalability-and-ha/distributor/).
 
