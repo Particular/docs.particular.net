@@ -1,15 +1,16 @@
 ---
 title: SQL Server Transport
 summary: High-level description of NServiceBus SQL Server Transport.
-reviewed: 2016-06-20
+reviewed: 2016-08-31
+component: SqlServer
 tags:
-- SQL Server
+ - SQL Server
 redirects:
-- nservicebus/sqlserver/usage
+ - nservicebus/sqlserver/usage
 related:
-- samples/outbox/sqltransport-nhpersistence
-- samples/sqltransport-nhpersistence
-- samples/outbox/sqltransport-nhpersistence-ef
+ - samples/outbox/sqltransport-nhpersistence
+ - samples/sqltransport-nhpersistence
+ - samples/outbox/sqltransport-nhpersistence-ef
 ---
 
 The SQL Server transport implements a message queuing mechanism on top of Microsoft SQL Server. It provides support for sending messages over [SQL Server](https://www.microsoft.com/en-us/cloud-platform/sql-server) tables. It does **not** make any use of ServiceBroker, a messaging technology built into the SQL Server.
@@ -17,7 +18,7 @@ The SQL Server transport implements a message queuing mechanism on top of Micros
 
 ## How it works
 
-SQL Server transport uses SQL Server to store queues and messages. It doesn't use any queuing services provided by SQL Server, the queuing logic is implemented within the NServiceBus SQL Server transport. The SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than [store-and-forward](/nservicebus/architecture/principles.md#drilling-down-into-details-store-and-forward-messaging) transport such as MSMQ.
+SQL Server transport uses SQL Server to store queues and messages. It doesn't use any queuing services provided by SQL Server, the queuing logic is implemented within the transport. The SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than [store-and-forward](/nservicebus/architecture/principles.md#drilling-down-into-details-store-and-forward-messaging) transport such as MSMQ.
 
 
 ## Advantages and Disadvantages of choosing SQL Server Transport
@@ -41,17 +42,20 @@ SQL Server transport uses SQL Server to store queues and messages. It doesn't us
 ## Deployment considerations
 
 The typical process hosting NServiceBus operates and manages three different kinds of data:
+
  * Transport data - queues and messages managed by the transport.
  * Persistence data - required for correct operation of specific transport features, e.g. saga data, timeout manager state and subscriptions.
  * Business data - application-specific data, independent of NServiceBus, usually managed via code executed from inside message handlers.
 
-SQL Server Transport manages transport data, but it puts no constraints on the type and configuration of storage technology used for persistence or business data. It can work with any of the available persisters i.e. [NHibernate](/nservicebus/nhibernate) or [RavenDB](/nservicebus/ravendb/) for storing NServiceBus data, as well as any storage mechanisms for storing business datra.
+SQL Server Transport manages transport data, but it puts no constraints on the type and configuration of storage technology used for persistence or business data. It can work with any of the available persisters i.e. [NHibernate](/nservicebus/nhibernate) or [RavenDB](/nservicebus/ravendb/) for storing NServiceBus data, as well as any storage mechanisms for storing business data.
 
 This section explains the important factors to consider when choosing technologies for managing business and persistence data to use in combination with the SQL Server transport.
 
 NOTE: No matter what deployment options are chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside in a single SQL Server catalog**. Multi-instance/multi-catalog deployment topology is still available but is deprecated in version 3 of the SQL Server transport. It will be removed in version 4.
 
+
 ### Transactionality
+
 SQL Server Transport supports all NServiceBus [transaction modes](/nservicebus/transports/transactions.md). `TransactionScope` mode is particularly useful as it enables `exactly once` message processing with usage of distributed transactions. However, when transport, persistence and business data are all stored in a single SQL Server catalog it is possible to achieve `exactly-once` message delivery without distributed transactions. For more details refer to the [SQL Server native integration](/samples/sqltransport/native-integration/) sample.
 
 NOTE: `Exactly once` message processing without distributed transactions can be achieved with any transport using [Outbox](/nservicebus/outbox/). It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage.
@@ -96,4 +100,4 @@ The best option is to have a dedicated catalog for the queues. This approach all
 
 In such a case local transactions are not enough to ensure `exactly-once` message processing. When required, one option is to use Microsoft Distributed Transaction Coordinator and distributed transactions (NServiceBus with SQL Server transport is DTC-enabled by default). In this mode the message receive transaction and all data modifications that result from processing the message are part of one distributed transaction that spans two SQL catalogs (possibly stored on two different instances).
 
-Another options is to use the [Outbox](/nservicebus/outbox/) feature, that provides `exactly-once` processing semantics over an `at-least-once` message delivery infrastructure. In this mode each individual endpoint has to store bussiness data and persistence data in the same catalog. Outgoing messages are stored by persistece infrastructure in a dedicated table. Single local transaction handles outgoing message persistence together with business data modifications. After the local transaction commits successfully the messages are dispatched to the final destination.
+Another options is to use the [Outbox](/nservicebus/outbox/) feature, that provides `exactly-once` processing semantics over an `at-least-once` message delivery infrastructure. In this mode each individual endpoint has to store business data and persistence data in the same catalog. Outgoing messages are stored by persistence infrastructure in a dedicated table. Single local transaction handles outgoing message persistence together with business data modifications. After the local transaction commits successfully the messages are dispatched to the final destination.
