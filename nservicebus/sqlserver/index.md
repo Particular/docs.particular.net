@@ -21,7 +21,7 @@ The SQL Server transport implements a message queuing mechanism on top of Micros
 SQL Server transport uses SQL Server to store queues and messages. It doesn't use any queuing services provided by SQL Server, the queuing logic is implemented within the transport. The SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than [store-and-forward](/nservicebus/architecture/principles.md#drilling-down-into-details-store-and-forward-messaging) transport such as MSMQ.
 
 
-## Advantages and Disadvantages of choosing SQL Server Transport
+## Advantages and Disadvantages
 
 
 ### Advantages
