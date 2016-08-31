@@ -24,6 +24,7 @@
 
             #endregion
         }
+
         void XmlReplacementImmediate(EndpointConfiguration endpointConfiguration)
         {
             #region 5to6-configureImmediateRetriesViaCode
@@ -37,6 +38,7 @@
 
             #endregion
         }
+
         void XmlReplacementDelayed(EndpointConfiguration endpointConfiguration)
         {
             #region 5to6-configureDelayedRetriesViaCode
@@ -69,6 +71,19 @@
                 });
 
             #endregion
+        }
+
+        void DisableLegacyRetriesSatellite(EndpointConfiguration endpointConfiguration)
+        {
+            //TODO: remove comments whe core is upgraded
+            /**
+            #region 5to6-DisableLegacyRetriesSatellite
+
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.DisableLegacyRetriesSatellite();
+
+            #endregion
+            **/
         }
     }
 }

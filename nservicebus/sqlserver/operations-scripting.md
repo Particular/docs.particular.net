@@ -54,6 +54,7 @@ snippet: sqlserver-create-queues-for-endpoint
 
 snippet:sqlserver-create-queues-endpoint-usage
 
+
 ### To create shared queues
 
 snippet:sqlserver-create-queues-shared-usage
@@ -68,6 +69,8 @@ snippet:sqlserver-delete-queues
 
 
 ### To delete all queues for a given endpoint
+
+snippet:sqlserver-delete-queues-for-endpoint
 
 snippet:sqlserver-delete-queues-endpoint-usage
 

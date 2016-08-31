@@ -17,7 +17,7 @@ namespace SqlServer_All.Operations.QueueDeletion
             {
                 await sqlConnection.OpenAsync()
                     .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueuesForEndpoint(
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(
                         connection: sqlConnection,
                         schema: "dbo",
                         endpointName: "myendpoint")

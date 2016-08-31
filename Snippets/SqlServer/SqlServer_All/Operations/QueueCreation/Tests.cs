@@ -16,7 +16,7 @@ namespace SqlServer_All.Operations.QueueCreation
             {
                 await sqlConnection.OpenAsync()
                     .ConfigureAwait(false);
-                await QueueCreationUtilsUsage.CreateQueuesForEndpoint(
+                await CreateEndpointQueues.CreateQueuesForEndpoint(
                         connection: sqlConnection,
                         schema: "dbo",
                         endpointName: "myendpoint")

@@ -48,10 +48,12 @@
     <Compile Include="ErrorQueue\Tests.cs" />
     <Compile Include="NativeSend\NativeSend.cs" />
     <Compile Include="NativeSend\Tests.cs" />
+    <Compile Include="QueueCreation\CreateEndpointQueues_4_and_above.cs" />
     <Compile Include="QueueCreation\QueueCreationUtils.cs" />
     <Compile Include="QueueCreation\CreateEndpointQueues.cs" />
     <Compile Include="QueueCreation\QueueCreationUtilsUsage.cs" />
     <Compile Include="QueueCreation\Tests.cs" />
+    <Compile Include="QueueDeletion\DeleteEndpointQueues_4_and_above.cs" />
     <Compile Include="QueueDeletion\QueueDeletionUtils.cs" />
     <Compile Include="QueueDeletion\QueueDeletionUtilsUsage.cs" />
     <Compile Include="QueueDeletion\DeleteEndpointQueues.cs" />

@@ -48,3 +48,6 @@ snippet:DelayedRetriesCustomPolicyHandler
 The following retry policy extends the previous policy with a custom handling logic for a specific exception.
 
 snippet:DelayedRetriesCustomExceptionPolicyHandler
+
+
+partial: legacy

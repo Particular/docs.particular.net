@@ -1,27 +1,15 @@
 ﻿namespace CoreAll.Msmq.QueueDeletion
 {
 
-    public class DeleteEndpointQueues
+    public class DeleteEndpointQueues_6_and_above
     {
 
-        DeleteEndpointQueues()
-        {
-            #region msmq-delete-queues-endpoint-usage
-
-            DeleteQueuesForEndpoint("myendpoint");
-
-            #endregion
-        }
-
-        #region msmq-delete-queues-for-endpoint [,5]
+        #region msmq-delete-queues-for-endpoint [6,]
 
         public static void DeleteQueuesForEndpoint(string endpointName)
         {
             // main queue
             QueueDeletionUtils.DeleteQueue(endpointName);
-
-            // retries queue
-            QueueDeletionUtils.DeleteQueue($"{endpointName}.retries");
 
             // timeout queue
             QueueDeletionUtils.DeleteQueue($"{endpointName}.timeouts");

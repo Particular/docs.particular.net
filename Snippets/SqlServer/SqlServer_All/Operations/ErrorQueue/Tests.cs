@@ -37,9 +37,9 @@ namespace SqlServer_All.Operations.ErrorQueue
             {
                 await connection.OpenAsync()
                     .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueuesForEndpoint(connection, schema, endpointName)
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(connection, schema, endpointName)
                     .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueuesForEndpoint(connection, schema, errorQueueName)
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(connection, schema, errorQueueName)
                     .ConfigureAwait(false);
             }
         }

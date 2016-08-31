@@ -82,9 +82,11 @@
     <Compile Include="Msmq\NativeSend\Tests.cs" />
     <Compile Include="Msmq\NativeSend\NativeSend.cs" />
     <Compile Include="Msmq\ErrorQueue\Tests.cs" />
+    <Compile Include="Msmq\QueueCreation\CreateEndpointQueues.cs" />
     <Compile Include="Msmq\QueueCreation\QueueCreationUtils.cs" />
     <Compile Include="Msmq\QueueCreation\Tests.cs" />
-    <Compile Include="Msmq\QueueCreation\CreateEndpointQueues.cs" />
+    <Compile Include="Msmq\QueueCreation\CreateEndpointQueues_6_and_above.cs" />
+    <Compile Include="Msmq\QueueDeletion\DeleteEndpointQueues_6_and_above.cs" />
     <Compile Include="Msmq\QueueDeletion\QueueDeletionUtils.cs" />
     <Compile Include="Msmq\QueueDeletion\DeleteEndpointQueues.cs" />
     <Compile Include="Msmq\QueueDeletion\QueueDeletionUtilsUsage.cs" />

@@ -1,30 +1,15 @@
 ﻿namespace CoreAll.Msmq.QueueCreation
 {
-    using System;
 
-    class CreateEndpointQueues
+    class CreateEndpointQueues_6_and_above
     {
 
-        CreateEndpointQueues()
-        {
-            #region msmq-create-queues-endpoint-usage
-
-            CreateQueuesForEndpoint(
-                endpointName: "myendpoint",
-                account: Environment.UserName);
-
-            #endregion
-        }
-
-        #region msmq-create-queues-for-endpoint [,5]
+        #region msmq-create-queues-for-endpoint [6,]
 
         public static void CreateQueuesForEndpoint(string endpointName, string account)
         {
             // main queue
             QueueCreationUtils.CreateQueue(endpointName, account);
-
-            // retries queue
-            QueueCreationUtils.CreateQueue($"{endpointName}.retries", account);
 
             // timeout queue
             QueueCreationUtils.CreateQueue($"{endpointName}.timeouts", account);
