@@ -236,6 +236,7 @@
         - "nservicebus/sqlserver/concurrency"
         - "nservicebus/sqlserver/deployment-options"
         - "nservicebus/sqlserver/operations-scripting"
+        - "nservicebus/sqlserver/entity-framework"
     -
       Title: "MSMQ Transport"
       Url: "nservicebus/msmq"
