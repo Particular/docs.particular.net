@@ -12,9 +12,7 @@
         public void Invoke(IncomingContext context, Action next)
         {
             // custom logic before calling the next step in the pipeline.
-
             next();
-
             // custom logic after all inner steps in the pipeline completed.
         }
     }
