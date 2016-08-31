@@ -1,7 +1,8 @@
 ---
 title: 'MSMQ Transport: Scripting'
 summary: Example code and scripts to facilitate deployment and operational actions against MSMQ.
-reviewed: 2016-03-11
+reviewed: 2016-08-31
+component: Msmq
 ---
 
 Example code and scripts to facilitate deployment and operational actions against MSMQ.
@@ -24,19 +25,24 @@ A send involves the following actions:
 
 snippet:msmq-nativesend
 
+
 #### In PowerShell
 
 snippet:msmq-nativesend-powershell
 
+
 ### Using the native send helper methods
+
 
 #### In C&#35;
 
 snippet:msmq-nativesend-usage
 
+
 #### In PowerShell
 
 snippet:msmq-nativesend-powershell-usage
+
 
 ## Return message to source queue
 
