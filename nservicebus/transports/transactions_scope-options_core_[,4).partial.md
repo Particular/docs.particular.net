@@ -1,6 +1,7 @@
 ## Controlling transaction scope options
 
-The following options for transaction scopes used during message processing can be configured.W
+The following options for transaction scopes used during message processing can be configured.
+
 
 ### Isolation level
 

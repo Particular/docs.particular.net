@@ -86,10 +86,4 @@ WARNING: This might escalate to a distributed transaction if data in different d
 partial:partial-updates
 
 
-## Controlling transaction scope options
-
-The following options for transaction scopes used during message processing can be configured.
-
-NOTE: In Versions 6 and above isolation level and timeout for transaction scopes are also configured at the transport level.
-
 partial:scope-options

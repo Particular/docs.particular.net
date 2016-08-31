@@ -2,6 +2,7 @@
 
 The following options for transaction scopes used during message processing can be configured.
 
+
 ### Isolation level
 
 NServiceBus will by default use the `ReadCommitted` [isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel). Change the isolation level using
