@@ -75,11 +75,11 @@ public class NativeSendTests
                 powershell.AddScript(script, false);
                 powershell.Invoke();
                 powershell.Commands.Clear();
-                powershell.AddCommand("SendMessage")
-                    .AddParameter(null, connectionString)
-                    .AddParameter(null, endpointName)
-                    .AddParameter(null, message)
-                    .AddParameter(null, headers);
+                var command = powershell.AddCommand("SendMessage");
+                command.AddParameter(null, connectionString);
+                command.AddParameter(null, endpointName);
+                command.AddParameter(null, message);
+                command.AddParameter(null, headers);
                 var results = powershell.Invoke();
             }
 

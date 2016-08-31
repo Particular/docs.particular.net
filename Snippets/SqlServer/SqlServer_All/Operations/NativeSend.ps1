@@ -30,12 +30,14 @@ Function SendMessage
 	$sqlConnection.Open()
 
     $sqlCommand = $sqlConnection.CreateCommand()
-	$sqlCommand.CommandText = "INSERT INTO [$Queue] ([Id],[Recoverable],[Headers],[Body]) VALUES (@Id, @Recoverable, @Headers, @Body)"
-	$sqlCommand.Parameters.Add("Id", [System.Data.SqlDbType]::UniqueIdentifier).Value = [System.Guid]::NewGuid()
+	$sqlCommand.CommandText =
+	    "INSERT INTO [$Queue] ([Id], [Recoverable], [Headers], [Body]) VALUES (@Id, @Recoverable, @Headers, @Body)"
+    $parameters = $sqlCommand.Parameters
+	$parameters.Add("Id", [System.Data.SqlDbType]::UniqueIdentifier).Value = [System.Guid]::NewGuid()
 	$serializedHeaders = ConvertTo-Json $Headers
-	$sqlCommand.Parameters.Add("Headers", [System.Data.SqlDbType]::VarChar).Value = $serializedHeaders
-	$sqlCommand.Parameters.Add("Body", [System.Data.SqlDbType]::VarBinary).Value = $UTF8.GetBytes($MessageBody)
-	$sqlCommand.Parameters.Add("Recoverable", [System.Data.SqlDbType]::Bit).Value = 1
+	$parameters.Add("Headers", [System.Data.SqlDbType]::VarChar).Value = $serializedHeaders
+	$parameters.Add("Body", [System.Data.SqlDbType]::VarBinary).Value = $UTF8.GetBytes($MessageBody)
+	$parameters.Add("Recoverable", [System.Data.SqlDbType]::Bit).Value = 1
 	$sqlCommand.ExecuteNonQuery()
 
 	$sqlConnection.Close()
