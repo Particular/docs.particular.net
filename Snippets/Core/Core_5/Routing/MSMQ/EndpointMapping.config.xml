@@ -9,7 +9,6 @@
     <MessageEndpointMappings>
       <add Assembly="Sales.Messages" 
            Endpoint="Sales@VM-1" />
-
       <add Assembly="Billing.Messages"
            Endpoint="Billing@VM-2" />
     </MessageEndpointMappings>
