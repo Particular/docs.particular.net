@@ -1,6 +1,8 @@
 ---
 title: MSMQ Transport
 summary: MSMQ is the primary durable communications technology for Microsoft but does not dynamically detect network interfaces.
+component: core
+reviewed: 2016-08-31
 redirects:
  - nservicebus/msmq-information
 ---
@@ -17,15 +19,14 @@ The supported configuration is to only have the base MSMQ service installed with
 Alternatively the MSMQ service can be manually installed by following these Operating System specific instructions:
 
 
-### Windows 7
+### Windows 2008 R2 and Windows 2012
 
-From the Control Panel, choose Programs
-Then run the Windows Features Wizard by click on `Turn Windows Features On or Off`. Enable `Microsoft Message Queue (MSMQ) Server Core`. All other MSMQ sub-options should be disabled.
+From Server Manager's Add Roles and Features Wizard enable `Message Queue Server`. All other MSMQ options should be disabled.
 
 The DISM command line equivalent is:
 
 ```dos
-DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server
+DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server
 ```
 
 
@@ -40,14 +41,14 @@ DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Serv
 ```
 
 
-### Windows 2008 R2 and Windows 2012
+### Windows 7
 
-From Server Manager's Add Roles and Features Wizard enable `Message Queue Server`. All other MSMQ options should be disabled.
+From the Control Panel, choose Programs. Then run the Windows Features Wizard by click on `Turn Windows Features On or Off`. Enable `Microsoft Message Queue (MSMQ) Server Core`. All other MSMQ sub-options should be disabled.
 
 The DISM command line equivalent is:
 
 ```dos
-DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server
+DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server
 ```
 
 
@@ -60,4 +61,4 @@ So downtime is proportional to the time taken for the MSMQ service to restart on
 
 ## Remote Queues
 
-Remote queues are not supported for MSMQ as this conflicts with the Distributed Bus architectural style that is predicated on consents of durability, autonomy and avoiding a single point of failure. For scenarios where a Broker Bus style architecture is required use transports like Sql Server and RabbitMQ.
+Remote queues are not supported for MSMQ as this conflicts with the Distributed Bus architectural style that is predicated on consents of durability, autonomy and avoiding a single point of failure. For scenarios where a Broker Bus style architecture is required use transports like [Sql Server](/nservicebus/sqlserver/) and [RabbitMQ](/nservicebus/rabbitmq/).
