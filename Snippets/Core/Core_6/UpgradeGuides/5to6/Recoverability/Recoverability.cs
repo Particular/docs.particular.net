@@ -77,7 +77,7 @@
         {
             //TODO: remove comments whe core is upgraded
             /**
-            #region 5to6-DisableLegacyRetriesSatellite
+            #region 5to6-DisableLegacyRetriesSatellite [5,6]
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.DisableLegacyRetriesSatellite();
