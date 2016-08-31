@@ -16,21 +16,18 @@ public class CustomEventsHandler :
     public Task Handle(MessageFailed message, IMessageHandlerContext context)
     {
         log.Error("Received ServiceControl 'MessageFailed' event for a SimpleMessage.");
-
         return Task.FromResult(0);
     }
 
     public Task Handle(HeartbeatStopped message, IMessageHandlerContext context)
     {
         log.Warn($"Heartbeat from {message.EndpointName} stopped.");
-
         return Task.FromResult(0);
     }
 
     public Task Handle(HeartbeatRestored message, IMessageHandlerContext context)
     {
         log.Info($"Heartbeat from {message.EndpointName} restored.");
-
         return Task.FromResult(0);
     }
 }

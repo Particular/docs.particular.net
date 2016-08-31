@@ -10,7 +10,6 @@ public class SimpleMessageHandler : IHandleMessages<SimpleMessage>
     public Task Handle(SimpleMessage message, IMessageHandlerContext context)
     {
         log.Info($"Received message with Id = {message.Id}.");
-
         throw new Exception("BOOM!");
     }
 }
