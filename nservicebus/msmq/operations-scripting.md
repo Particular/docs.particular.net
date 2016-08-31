@@ -75,6 +75,8 @@ snippet:msmq-return-to-source-queue-usage
 
 Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.
 
+partial: extra-queues
+
 
 ### Default permissions
 
