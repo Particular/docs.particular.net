@@ -38,7 +38,8 @@
                 using (var queue = new MessageQueue(queuePath))
                 using (var message = new Message())
                 {
-                    message.BodyStream = new MemoryStream(Encoding.UTF8.GetBytes(messageBody));
+                    var bytes = Encoding.UTF8.GetBytes(messageBody);
+                    message.BodyStream = new MemoryStream(bytes);
                     message.Extension = CreateHeaders(headers);
                     queue.Send(message, MessageQueueTransactionType.Automatic);
                 }
