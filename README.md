@@ -538,10 +538,6 @@ If a file named `prerelease.txt` exists in a versioned directory then a `-pre` w
 
 For example, if there is a directory `docs.particular.net\Snippets\Snippets_6\` and it contains a `prerelease.txt` file then the version will be `(≥ 6.0.0-pre)`
 
-If `prerelease.txt` contains text then that text will be used for the pre-release text.
-
-For example, if `prerelease.txt` contains `beta` then the version will be `(≥ 6.0.0-beta)`
-
 
 ### Using Snippets
 
