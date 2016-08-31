@@ -39,7 +39,8 @@ namespace Rabbit_All.NativeSend
                 var properties = channel.CreateBasicProperties();
                 properties.MessageId = Guid.NewGuid().ToString();
                 properties.Headers = headers;
-                channel.BasicPublish(string.Empty, queueName, false, properties, Encoding.UTF8.GetBytes(messageBody));
+                var body = Encoding.UTF8.GetBytes(messageBody);
+                channel.BasicPublish(string.Empty, queueName, false, properties, body);
             }
         }
 

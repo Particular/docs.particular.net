@@ -28,23 +28,24 @@ namespace Rabbit_All.ErrorQueue
         {
             using (var channel = connection.CreateModel())
             {
-                BasicGetResult getResult;
+                BasicGetResult result;
 
                 do
                 {
-                    getResult = channel.BasicGet(errorQueueName, false);
+                    result = channel.BasicGet(errorQueueName, false);
 
-                    if (getResult?.BasicProperties.MessageId == messageId)
+                    if (result == null || result.BasicProperties.MessageId != messageId)
                     {
-                        string failedQueueName;
-                        ReadFailedQueueHeader(out failedQueueName, getResult);
-
-                        channel.BasicPublish(string.Empty, failedQueueName, false, getResult.BasicProperties, getResult.Body);
-                        channel.BasicAck(getResult.DeliveryTag, false);
-
-                        return;
+                        continue;
                     }
-                } while (getResult != null);
+                    string failedQueueName;
+                    ReadFailedQueueHeader(out failedQueueName, result);
+
+                    channel.BasicPublish(string.Empty, failedQueueName, false, result.BasicProperties, result.Body);
+                    channel.BasicAck(result.DeliveryTag, false);
+
+                    return;
+                } while (result != null);
 
                 throw new Exception($"Could not find message with id '{messageId}'");
             }
