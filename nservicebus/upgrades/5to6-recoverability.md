@@ -25,11 +25,18 @@ snippet: 5to6-RecoverabilityCodeFirstApi
 The api enables setting all automatic retry parameters that were previously available only with configuration source approach.
 
 
-## Enabling and disabling Immediate Retries Delayed Retries
+## Disabling Immediate Retries
 
-`FirstLevelRetries` and `SecondLevelRetries` are no longer features. As a result `configuration.DisableFeature<FirstLevelRetries>()` and `configuration.DisableFeature<SecondLevelRetries>()` cannot be used to disable them. Equivalent behavior can be achieved through code API by setting Immediate Retries and Delayed Retries to `0`:
+The `TransportConfig` API is obsolete and no longer used to disable Immediate Retries. Equivalent behavior can be achieved through code API by setting Immediate Retries to `0`:
 
-snippet: 5to6-RecoverabilityDisableRetries
+snippet: 5to6-RecoverabilityDisableImmediateRetries
+
+
+## Disabling Delayed Retries
+
+The `SecondLevelRetries` Feature is no used to disable Delayed Retries. Equivalent behavior can be achieved through code API by setting Delayed Retries to `0`:
+
+snippet: 5to6-RecoverabilityDisableDelayedRetries
 
 
 ## MaxRetries value for First Level Retries

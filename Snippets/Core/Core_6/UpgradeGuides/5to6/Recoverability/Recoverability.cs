@@ -54,9 +54,9 @@
             #endregion
         }
 
-        void DisableRetries(EndpointConfiguration endpointConfiguration)
+        void DisableImmediateRetries(EndpointConfiguration endpointConfiguration)
         {
-            #region 5to6-RecoverabilityDisableRetries
+            #region 5to6-RecoverabilityDisableImmediateRetries
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Immediate(
@@ -64,6 +64,15 @@
                 {
                     immediate.NumberOfRetries(0);
                 });
+
+            #endregion
+        }
+
+        void DisableDelayedRetries(EndpointConfiguration endpointConfiguration)
+        {
+            #region 5to6-RecoverabilityDisableDelayedRetries
+
+            var recoverability = endpointConfiguration.Recoverability();
             recoverability.Delayed(
                 customizations: delayed =>
                 {
