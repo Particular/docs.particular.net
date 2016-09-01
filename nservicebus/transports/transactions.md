@@ -1,5 +1,5 @@
 ---
-title: Transports Transactions
+title: Transport Transactions
 summary: Supported transaction modes and their consistency guarantees
 component: Core
 versions: "[4,)"
