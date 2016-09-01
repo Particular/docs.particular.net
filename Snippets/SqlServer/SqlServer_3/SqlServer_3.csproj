@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigurationSettings.cs" />
+    <Compile Include="DelayConfig.cs" />
     <Compile Include="NamedConnectionString.cs" />
     <Compile Include="MultiDb.cs" />
     <Compile Include="MultiSchema.cs" />
