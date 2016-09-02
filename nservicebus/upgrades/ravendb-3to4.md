@@ -4,7 +4,7 @@ summary: Instructions on how to upgrade NServiceBus.RavenDB 3 to 4
 tags:
  - upgrade
  - migration
- - raven
+ - ravendb
 related:
  - nservicebus/upgrades/5to6
 redirects:
