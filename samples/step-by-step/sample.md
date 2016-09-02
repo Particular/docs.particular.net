@@ -39,7 +39,7 @@ Completing these steps will serve as an introduction to many important NServiceB
 
 ### MSMQ
 
-INFO: While this sample requires MSMQ as the queuing transport, it is possible to use NServiceBus with a variety of other transports such as [RabbitMQ](/nservicebus/rabbitmq/), [Azure Service Bus](/nservicebus/azure-service-bus/), [Azure Storage Queues](/nservicebus/azure-storage-queues/) and, [SQL Server](/nservicebus/sqlserver/). If any of these transports are already available, it is simple to configure the endpoints to use them instead of MSMQ. 
+INFO: While this sample requires MSMQ as the queuing transport, it is possible to use NServiceBus with a variety of other transports such as [RabbitMQ](/nservicebus/rabbitmq/), [Azure Service Bus](/nservicebus/azure-service-bus/), [Azure Storage Queues](/nservicebus/azure-storage-queues/), and [SQL Server](/nservicebus/sqlserver/). If any of these transports are already available, it is simple to configure the endpoints to use them instead of MSMQ. 
 
 Microsoft Message Queuing (MSMQ) must be properly installed and configured. The easiest way to do this is with the appropriate command line below. Alternatively, it can be installed via the Windows Features tool. For more details on installing and configuring MSMQ see [MSMQ Transport](/nservicebus/msmq/).
 
