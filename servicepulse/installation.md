@@ -1,6 +1,7 @@
 ---
 title: Installing ServicePulse
 summary: Describes how ServicePulse is installed - independently or via the PlatformInstaller - and its basic requirements
+reviewed: 2016-09-02
 tags:
 - ServicePulse
 - Installation
