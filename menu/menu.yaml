@@ -238,6 +238,7 @@
         - "nservicebus/sqlserver/operations-scripting"
         - "nservicebus/sqlserver/entity-framework"
         - "nservicebus/sqlserver/callbacks"
+        - "nservicebus/sqlserver/queuepeek"        
     -
       Title: "MSMQ Transport"
       Url: "nservicebus/msmq"
