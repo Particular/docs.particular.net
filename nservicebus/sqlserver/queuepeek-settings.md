@@ -2,6 +2,7 @@
 title: SQL Server Transport Queue Peek Settings
 reviewed: 2016-09-01
 component: SqlServer
+versions: '[3.0,)'
 tags:
  - SQL Server
 ---
