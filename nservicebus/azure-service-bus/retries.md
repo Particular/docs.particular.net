@@ -4,7 +4,7 @@ summary: Describes the relationship between NServiceBus' retry behavior and Azur
 tags:
 - Cloud
 - Azure
-- Transports
+- Transport
 ---
 
 This article describes the relationship between NServiceBus retry behavior and Azure Service Bus native retry behavior.

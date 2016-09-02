@@ -6,7 +6,7 @@ versions: "[7,)"
 tags:
 - Cloud
 - Azure
-- Transports
+- Transport
 ---
 
 At the core of the Azure Service Bus service, there is a Service Registry which tracks the location of each queue, topic, relay or eventhub in the service. This Service Registry provides a DNS integrated hierarchical naming system, that has a root entry point (called a namespace) at a URI with the following scheme.

@@ -4,7 +4,7 @@ summary: Frequently Asked Questions related to the Azure Service Bus Transport.
 tags:
 - Cloud
 - Azure
-- Transports
+- Transport
 ---
 
 

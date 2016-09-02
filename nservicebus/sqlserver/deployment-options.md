@@ -4,7 +4,7 @@ reviewed: 2016-08-31
 component: sqlserver
 tags:
 - SQL Server
-- Transports
+- Transport
 redirects:
 - nservicebus/sqlserver/multiple-databases
 ---

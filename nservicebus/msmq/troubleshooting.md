@@ -2,7 +2,7 @@
 title: MSMQ Transport Troubleshooting
 summary: Resolutions for common problems with the MSMQ transport.
 tags:
-- Transports
+- Transport
 - MSMQ
 redirects:
  - nservicebus/messagequeueexception-insufficient-resources-to-perform-operation

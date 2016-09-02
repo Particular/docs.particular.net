@@ -7,7 +7,7 @@ tags:
 - Transactions
 - Retries
 - Consistency
-- Transports
+- Transport
 - TransactionScope
 redirects:
 - nservicebus/messaging/transactions

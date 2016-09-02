@@ -4,7 +4,7 @@ summary: Extending message lock for long handler operation
 tags:
 - Cloud
 - Azure
-- Transports
+- Transport
 reviewed: 2016-04-20
 ---
 

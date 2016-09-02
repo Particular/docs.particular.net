@@ -3,7 +3,7 @@ title: MSMQ Transport Configuration
 summary: Explains the mechanics of MSMQ transport, its configuration options and various other configuration settings that were at some point coupled to this transport
 reviewed: 2016-04-20
 tags:
-- Transports
+- Transport
 - MSMQ
 - Transactions
 redirects:

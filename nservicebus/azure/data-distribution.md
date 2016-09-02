@@ -7,7 +7,7 @@ versions: "[5,)"
 tags:
 - Cloud
 - Azure
-- Transports
+- Transport
 redirects:
 - nservicebus/scalability-and-ha/individualizing-queues-when-scaling-out
 ---

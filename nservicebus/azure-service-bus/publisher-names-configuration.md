@@ -6,7 +6,7 @@ versions: "[7,)"
 tags:
 - Cloud
 - Azure
-- Transports
+- Transport
 reviewed: 2016-08-08
 ---
 

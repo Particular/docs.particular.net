@@ -5,7 +5,7 @@ component: ASB
 tags:
 - Cloud
 - Azure
-- Transports
+- Transport
 reviewed: 2016-06-23
 ---
 

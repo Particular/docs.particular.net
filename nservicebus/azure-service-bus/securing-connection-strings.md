@@ -4,7 +4,7 @@ summary: 'Azure Service Bus Transport: Securing connection strings to namespaces
 tags:
 - Cloud
 - Azure
-- Transports
+- Transport
 - Security
 reviewed: 2016-08-24
 related:

@@ -4,7 +4,7 @@ summary: Frequently Asked Questions related to using azure storage queues as a t
 tags:
 - Cloud
 - Azure
-- Transports
+- Transport
 - ASQ
 - Azure Storage Queues
 ---
