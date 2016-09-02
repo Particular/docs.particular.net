@@ -5,7 +5,7 @@ tags:
 - Profiles
 - NServiceBus.Host
 - Installers
-- Features
+- Feature
 - Distributor
 - Performance Counters
 redirects:
