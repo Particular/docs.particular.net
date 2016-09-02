@@ -87,6 +87,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Receiver\NServiceBus.Hosting.Azure.HostProcess.exe.config">
+      <Link>NServiceBus.Hosting.Azure.HostProcess.exe.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
