@@ -172,4 +172,12 @@ class Usage
         #endregion
     }
 
+    void Serializer(EndpointConfiguration endpointConfiguration)
+    {
+        #region asb-serializer
+
+        endpointConfiguration.UseSerialization<XmlSerializer>();
+
+        #endregion
+    }
 }

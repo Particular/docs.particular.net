@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Microsoft.ServiceBus.Messaging;
+using NServiceBus;
 using NServiceBus.Azure.Transports.WindowsAzureServiceBus;
 
 class BrokeredMessageBodyConventionUsage
@@ -32,5 +33,14 @@ class BrokeredMessageBodyConventionUsage
 
         #endregion
 
+    }
+
+    BrokeredMessageBodyConventionUsage(BusConfiguration busConfiguration)
+    {
+        #region asb-serializer
+
+        busConfiguration.UseSerialization<XmlSerializer>();
+        
+        #endregion
     }
 }
