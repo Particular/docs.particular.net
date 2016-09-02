@@ -35,9 +35,11 @@ The Azure Service Bus transport is using the JSON serializer by default. Therefo
 { Content: "Hello from native sender", SentOnUtc: "2015-10-27T20:47:27.4682716Z" }
 ```
 
-If the application usages a different serialization for message content, then the serializer can be configured using the following configuration API.
+If the application uses a different serialization for message content, then the serializer can be configured using the following configuration API.
 
 snippet: asb-serializer
+
+If the message content is in an unsupported or proprietary format, then the application will have to provide a [custom serializer](/nservicebus/serialization/custom-serializer.md)
 
 #### Required Headers
 
@@ -47,6 +49,6 @@ partial: headers
 
 NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the message type expected by the NServiceBus endpoint. Message type should include namespace it's contained in.
 
-In native integration scenarios it is not always possible, or desireable, to modify the headers of the brokered message at the sending end. If this is the case, the receiving end can also add the required headers to the message by registering a behavior in the pipeline.
+In native integration scenarios it is not always possible, or desireable, to modify the headers of the brokered message at the sending end. If this is the case, the receiving end can also add the required headers to the message by registering an incoming message mutator. Refer to [Message Mutators](/nservicebus/pipeline/message-mutators.md) for more information on this topic.
 
-TODO: add snippet that shows this
+For more information on native integration refer to [third party integration](/nservicebus/messaging/third-party-integration.md)
