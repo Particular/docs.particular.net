@@ -6,8 +6,6 @@ reviewed: 2016-08-23
 versions: '[5.0,)'
 tags:
 - Pipeline
-- Connector
-- Stage
 related:
 - nservicebus/pipeline/manipulate-with-behaviors
 ---
