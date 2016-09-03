@@ -81,13 +81,9 @@ NOTE: Storing all message definitions in a single location is not a best practic
 In the `Client`, `Server`, and `Subscriber` projects, add a reference to the `Shared` project.
 
 
-#### Reference the NServiceBus NuGet package
+#### Add the NServiceBus NuGet package
 
-To install the `NServiceBus` NuGet package, copy-paste and run the following command in the [Package Manager Console](https://docs.nuget.org/consume/package-manager-console):
-
-```ps
-Get-Project -All | Install-Package nservicebus
-```
+Install the NServiceBus NuGet package (https://www.nuget.org/packages/NServiceBus) in all projects.
 
 
 ## Defining messages
