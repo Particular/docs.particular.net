@@ -80,7 +80,7 @@ class Usage
         var topology = transport.UseTopology<EndpointOrientedTopology>();
 
         topology.RegisterPublisher(typeof(MyMessage), "publisherName");
-        // or
+        // OR
         var messagesAssembly = Assembly.LoadFrom("path/to/assembly/containing/messages");
         topology.RegisterPublisher(messagesAssembly, "publisherName");
 
@@ -98,7 +98,7 @@ class Usage
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
         transport.UseTopology<ForwardingTopology>();
-        // or
+        // OR
         transport.UseTopology<EndpointOrientedTopology>();
 
         #endregion
@@ -189,8 +189,10 @@ class Usage
         #region asb-incoming-message-convention
 
         var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+
         transportConfig.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
-        // or transportConfig.UseBrokeredMessageToIncomingMessageConverter<CustomIncomingMessageConversion>();
+        // OR
+        transportConfig.UseBrokeredMessageToIncomingMessageConverter<CustomIncomingMessageConversion>();
 
         #endregion
     }
@@ -200,8 +202,10 @@ class Usage
         #region asb-outgoing-message-convention
 
         var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+
         transportConfig.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
-        // or transportConfig.UseOutgoingMessageToBrokeredMessageConverter<CustomOutgoingMessageConversion>();
+        // OR
+        transportConfig.UseOutgoingMessageToBrokeredMessageConverter<CustomOutgoingMessageConversion>();
 
         #endregion
     }

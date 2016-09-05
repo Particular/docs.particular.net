@@ -1,3 +1,4 @@
- 1. `NServiceBus.EnclosedMessageTypes`: Represents the message type expressed in a .Net native full typename specification (including namespace). E.g. `MyContracts.MyEvent`
- 1. `NServiceBus.MessageIntent`: Represents what the message intent is, most likely the value has to be either `Send` or `Publish`.
- 1. `Transport-Encoding`: This header is optional and triggers the transport's body format detection, if it was not explicitly configured. The value has to be `application/octect-stream` 
+ 
+ * [`NServiceBus.EnclosedMessageTypes`](/nservicebus/messaging/headers/md#serialization-headers-nservicebus-enclosedmessagetypes)
+ * [`NServiceBus.MessageIntent`](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-messageintent)
+ * `Transport-Encoding`: This header is optional and triggers the transport's body format detection, if it was not explicitly configured. The value has to be `application/octect-stream` 
