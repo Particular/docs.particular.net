@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
+using Microsoft.ServiceBus.Messaging;
 using NServiceBus;
+using NServiceBus.Pipeline;
+using NServiceBus.Transport.AzureServiceBus;
 
 class Usage
 {
@@ -179,5 +183,44 @@ class Usage
         endpointConfiguration.UseSerialization<XmlSerializer>();
 
         #endregion
+    }
+
+    void IncomingBrokeredMessageBody(EndpointConfiguration endpointConfiguration)
+    {
+        #region asb-incoming-message-convention
+
+        var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transportConfig.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
+        // or transportConfig.UseBrokeredMessageToIncomingMessageConverter<CustomIncomingMessageConversion>();
+
+        #endregion
+    }
+
+    void OutgoingBrokeredMessageBody(EndpointConfiguration endpointConfiguration)
+    {
+        #region asb-outgoing-message-convention
+
+        var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transportConfig.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
+        // or transportConfig.UseOutgoingMessageToBrokeredMessageConverter<CustomOutgoingMessageConversion>();
+
+        #endregion
+    }
+
+
+    public class CustomIncomingMessageConversion : IConvertBrokeredMessagesToIncomingMessages
+    {
+        public IncomingMessageDetails Convert(BrokeredMessage brokeredMessage)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class CustomOutgoingMessageConversion : IConvertOutgoingMessagesToBrokeredMessages
+    {
+        public IEnumerable<BrokeredMessage> Convert(IEnumerable<BatchedOperation> outgoingOperations, RoutingOptions routingOptions)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
