@@ -37,19 +37,10 @@ class Program
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.DefaultSchema("receiver");
-        transport.UseSpecificSchema(queueName =>
-        {
-            if (queueName.Equals("error", StringComparison.OrdinalIgnoreCase) ||
-                queueName.Equals("audit", StringComparison.OrdinalIgnoreCase))
-            {
-                return "dbo";
-            }
-            if (queueName.Equals("Samples.SQLNHibernateOutboxEF.Sender", StringComparison.OrdinalIgnoreCase))
-            {
-                return "sender";
-            }
-            return null;
-        });
+
+        transport.UseSchemaForEndpoint("Samples.SQLNHibernateOutboxEF.Sender", "sender");
+        transport.UseSchemaForQueue("error", "dbo");
+        transport.UseSchemaForQueue("audit", "dbo");
 
         endpointConfiguration
             .UsePersistence<NHibernatePersistence>();

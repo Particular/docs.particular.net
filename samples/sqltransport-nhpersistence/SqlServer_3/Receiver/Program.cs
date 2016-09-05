@@ -45,18 +45,9 @@ class Program
         endpointConfiguration.EnableInstallers();
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.DefaultSchema("receiver");
-        transport.UseSpecificSchema(e =>
-        {
-            if (e == "error" || e == "audit")
-            {
-                return "dbo";
-            }
-            if (e == "Samples.SqlNHibernate.Sender")
-            {
-                return "sender";
-            }
-            return null;
-        });
+        transport.UseSchemaForQueue("error", "dbo");
+        transport.UseSchemaForQueue("audit", "dbo");
+        transport.UseSchemaForQueue("Samples.SqlNHibernate.Sender", "sender");
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(hibernateConfig);

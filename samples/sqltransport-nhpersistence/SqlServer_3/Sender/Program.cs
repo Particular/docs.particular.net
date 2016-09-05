@@ -37,14 +37,8 @@ class Program
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.DefaultSchema("sender");
-        transport.UseSpecificSchema(e =>
-            {
-                if (e == "error" || e == "audit")
-                {
-                    return "dbo";
-                }
-                return null;
-            });
+        transport.UseSchemaForQueue("error", "dbo");
+        transport.UseSchemaForQueue("audit", "dbo");
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(hibernateConfig);

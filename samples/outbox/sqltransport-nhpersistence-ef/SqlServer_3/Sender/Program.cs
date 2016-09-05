@@ -36,15 +36,8 @@ class Program
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.DefaultSchema("sender");
-        transport.UseSpecificSchema(queueName =>
-        {
-            if (queueName.Equals("error", StringComparison.OrdinalIgnoreCase) ||
-                queueName.Equals("audit", StringComparison.OrdinalIgnoreCase))
-            {
-                return "dbo";
-            }
-            return null;
-        });
+        transport.UseSchemaForQueue("error", "dbo");
+        transport.UseSchemaForQueue("audit", "dbo");
 
         endpointConfiguration.UsePersistence<NHibernatePersistence>();
         endpointConfiguration.EnableOutbox();
