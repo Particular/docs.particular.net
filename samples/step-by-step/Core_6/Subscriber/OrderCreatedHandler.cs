@@ -9,10 +9,6 @@ public class OrderCreatedHandler :
 {
     static ILog log = LogManager.GetLogger<OrderCreatedHandler>();
 
-    public void Handle(OrderPlaced message)
-    {
-    }
-
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
         log.Info($"Handling: OrderPlaced for Order Id: {message.OrderId}");

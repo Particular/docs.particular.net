@@ -10,10 +10,6 @@ public class PlaceOrderHandler :
 {
     static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
 
-    public void Handle(PlaceOrder message)
-    {
-    }
-
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
         log.Info($"Order for Product:{message.Product} placed with id: {message.Id}");
