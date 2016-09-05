@@ -15,7 +15,7 @@ The Azure Service Bus API allows the construction of a `BrokeredMessage` body fr
 
 NOTE: Both the sender (native or NServiceBus) and the receiver must agree on the convention used for sending the message body.
 
-By default the `BrokeredMessage` body is assumed to be a byte array. But for scenarios such as native integration it is usually more appropriate that the body can be retrieved using `Stream` as most non .NET ASB SDK's only support the `Stream` body format. `Stream` does not perform any serialization on the body, so it stays in its raw form on the wire.
+By default the `BrokeredMessage` body is assumed to be a byte array to remain backward compatible with previous versions of the transport. But it is recommended that the body can be retrieved using `Stream`for new implementations, as it does incur the serialization overhead. It is especially for scenarios such as native integration as most non .NET ASB SDK's only support the `Stream` body format.
 
 To specify how the `BrokeredMessage` body is stored and retrieved, override the default conventions by using `BrokeredMessageBodyConversion` class.
 
@@ -32,7 +32,7 @@ snippet: ASB-incoming-message-convention
 The Azure Service Bus transport is using the JSON serializer by default. Therefore, the message sent by a native sender needs to be valid JSON.
 
 ``` json
-{ Content: "Hello from native sender", SentOnUtc: "2015-10-27T20:47:27.4682716Z" }
+{ "Content": "Hello from native sender", "SentOnUtc": "2015-10-27T20:47:27.4682716Z" }
 ```
 
 If the application uses a different serialization for message content, then the serializer can be configured using the following configuration API.
