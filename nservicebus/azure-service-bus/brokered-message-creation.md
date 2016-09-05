@@ -5,7 +5,7 @@ tags:
 - Cloud
 ---
 
-This document describes how to modify NServiceBus endpoints in order to set up a native integration between these endpoints and non-NServiceBus endpoints that share an Azure Service Bus namespaces as mutual communication channel.
+This document describes how to modify NServiceBus endpoints' brokered message creation logic, in order to set up a native integration between these endpoints and non-NServiceBus endpoints.
 
 ### BrokeredMessage conventions
 
