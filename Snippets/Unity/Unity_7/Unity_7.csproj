@@ -52,9 +52,8 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\packages\NServiceBus.6.0.0-rc0001\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Unity, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.Unity.7.0.0-beta0001\lib\net452\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.ObjectBuilder.Unity">
+      <HintPath>..\..\..\packages\NServiceBus.Unity.7.0.0-rc0001\lib\net452\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

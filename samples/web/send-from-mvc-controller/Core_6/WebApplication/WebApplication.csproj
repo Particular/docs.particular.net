@@ -39,7 +39,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc">
-      <HintPath>..\..\..\..\..\packages\Autofac.Mvc5.4.0.0-rc3-219\lib\net451\Autofac.Integration.Mvc.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\Autofac.Mvc5.4.0.0\lib\net451\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-rc0001\lib\net452\NServiceBus.Core.dll</HintPath>

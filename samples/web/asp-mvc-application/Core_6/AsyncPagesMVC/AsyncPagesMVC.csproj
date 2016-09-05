@@ -41,7 +41,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc">
-      <HintPath>..\..\..\..\..\packages\Autofac.Mvc5.4.0.0-rc3-219\lib\net451\Autofac.Integration.Mvc.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\Autofac.Mvc5.4.0.0\lib\net451\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
