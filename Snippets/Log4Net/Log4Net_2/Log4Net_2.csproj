@@ -36,10 +36,6 @@
     <Reference Include="NServiceBus.Log4Net">
       <HintPath>..\..\..\packages\NServiceBus.Log4Net.2.0.0-rc0001\lib\net452\NServiceBus.Log4Net.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceControl.Contracts">
-      <HintPath>..\..\..\packages\ServiceControl.Contracts.1.2.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
