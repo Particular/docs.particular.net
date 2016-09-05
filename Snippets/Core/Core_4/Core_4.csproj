@@ -52,9 +52,6 @@
     <Reference Include="Raven.Client.Lightweight">
       <HintPath>..\..\..\packages\RavenDB.Client.2.5.25001\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceControl.Contracts">
-      <HintPath>..\..\..\packages\ServiceControl.Contracts.1.2.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -84,9 +81,6 @@
     </Content>
     <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Recoverability\Immediate\config.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Monitoring\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <None Include="packages.config">
@@ -248,8 +242,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
-    <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
-    <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\SimplePolicy.cs" />

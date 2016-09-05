@@ -2,6 +2,7 @@
 title: Using ServiceControl events
 summary: Build custom notifications by subscribing to ServiceControl events
 reviewed: 2016-07-15
+component: ServiceControlContracts
 tags:
  - ServiceControl
  - ServicePulse

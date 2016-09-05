@@ -52,10 +52,6 @@
     <Reference Include="Raven.Client.Lightweight">
       <HintPath>..\..\..\packages\RavenDB.Client.3.0.30153\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceControl.Contracts">
-      <HintPath>..\..\..\packages\ServiceControl.Contracts.1.2.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -122,9 +118,6 @@
     <None Include="app.config" />
     <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Recoverability\Immediate\config.xml" />
-    <Content Include="Monitoring\ServiceControlEvents.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -260,8 +253,6 @@
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\UsingLogging.cs" />
-    <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
-    <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="NonDurable\DisableDurable.cs" />
     <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />

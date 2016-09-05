@@ -66,10 +66,6 @@
     <Reference Include="Raven.Client.Lightweight">
       <HintPath>..\..\..\packages\RavenDB.Client.3.0.30153\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceControl.Contracts">
-      <HintPath>..\..\..\packages\ServiceControl.Contracts.1.2.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -172,8 +168,6 @@
     <Compile Include="Headers\Writers\HeaderWriterSaga.cs" />
     <Compile Include="Headers\Writers\HeaderWriterSend.cs" />
     <Compile Include="Headers\Writers\TransportMessageExtension.cs" />
-    <Compile Include="Monitoring\MessageFailedHandler.cs" />
-    <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="NonDurable\DisableDurable.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
@@ -351,7 +345,6 @@
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Monitoring\ServiceControlEvents.config.xml" />
     <Content Include="Outbox\EnablingInConfig.xml">
       <SubType>Designer</SubType>
     </Content>

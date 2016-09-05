@@ -36,9 +36,6 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\packages\NServiceBus.3.3.18\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceControl.Contracts">
-      <HintPath>..\..\..\packages\ServiceControl.Contracts.1.2.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -56,7 +53,6 @@
     <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Recoverability\Immediate\config.xml" />
     <Content Include="Recoverability\retriesLogging.txt" />
-    <Content Include="Monitoring\ServiceControlEvents.config.xml" />
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -171,8 +167,6 @@
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\UsingLogging.cs" />
-    <Compile Include="Monitoring\MessageFailedHandler.cs" />
-    <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
