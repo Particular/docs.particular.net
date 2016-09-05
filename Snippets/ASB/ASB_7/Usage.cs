@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using Microsoft.ServiceBus.Messaging;
 using NServiceBus;
-using NServiceBus.Pipeline;
 using NServiceBus.Transport.AzureServiceBus;
 
 class Usage
