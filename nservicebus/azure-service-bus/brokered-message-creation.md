@@ -1,5 +1,8 @@
 ---
 title: Azure Service Bus Transport Brokered Message Creation
+summary: Details on brokered message creation with Azure Service Bus
+component: ASB
+reviewed: 2016-09-05
 tags:
 - Azure
 - Cloud
