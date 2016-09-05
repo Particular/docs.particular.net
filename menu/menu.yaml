@@ -212,8 +212,12 @@
           Articles:
             - "nservicebus/azure-service-bus/dlq-forwarding"
             - "nservicebus/azure-service-bus/oversized-sends"
+        - Title: Native Integration
+          Url: "nservicebus/azure-service-bus/native-integration"
+          Articles:
+            - "nservicebus/azure-service-bus/brokered-message-creation"
+            - "nservicebus/azure-service-bus/operational-scripting"
         - "nservicebus/azure-service-bus/faq"
-        - "nservicebus/azure-service-bus/native-integration"
     -
       Title: "Azure Storage Queues Transport"
       Url: "nservicebus/azure-storage-queues"

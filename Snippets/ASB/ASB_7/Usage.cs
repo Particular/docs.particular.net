@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
+using Microsoft.ServiceBus.Messaging;
 using NServiceBus;
+using NServiceBus.Transport.AzureServiceBus;
 
 class Usage
 {
@@ -77,7 +80,7 @@ class Usage
         var topology = transport.UseTopology<EndpointOrientedTopology>();
 
         topology.RegisterPublisher(typeof(MyMessage), "publisherName");
-        // or
+        // OR
         var messagesAssembly = Assembly.LoadFrom("path/to/assembly/containing/messages");
         topology.RegisterPublisher(messagesAssembly, "publisherName");
 
@@ -95,7 +98,7 @@ class Usage
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
         transport.UseTopology<ForwardingTopology>();
-        // or
+        // OR
         transport.UseTopology<EndpointOrientedTopology>();
 
         #endregion
@@ -172,4 +175,55 @@ class Usage
         #endregion
     }
 
+    void Serializer(EndpointConfiguration endpointConfiguration)
+    {
+        #region asb-serializer
+
+        endpointConfiguration.UseSerialization<XmlSerializer>();
+
+        #endregion
+    }
+
+    void IncomingBrokeredMessageBody(EndpointConfiguration endpointConfiguration)
+    {
+        #region asb-incoming-message-convention
+
+        var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+
+        transportConfig.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
+        // OR
+        transportConfig.UseBrokeredMessageToIncomingMessageConverter<CustomIncomingMessageConversion>();
+
+        #endregion
+    }
+
+    void OutgoingBrokeredMessageBody(EndpointConfiguration endpointConfiguration)
+    {
+        #region asb-outgoing-message-convention
+
+        var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+
+        transportConfig.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
+        // OR
+        transportConfig.UseOutgoingMessageToBrokeredMessageConverter<CustomOutgoingMessageConversion>();
+
+        #endregion
+    }
+
+
+    public class CustomIncomingMessageConversion : IConvertBrokeredMessagesToIncomingMessages
+    {
+        public IncomingMessageDetails Convert(BrokeredMessage brokeredMessage)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class CustomOutgoingMessageConversion : IConvertOutgoingMessagesToBrokeredMessages
+    {
+        public IEnumerable<BrokeredMessage> Convert(IEnumerable<BatchedOperation> outgoingOperations, RoutingOptions routingOptions)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
