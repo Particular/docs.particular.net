@@ -18,23 +18,10 @@ class MultiSchema
         #region sqlserver-multischema-config-pull
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.UseSpecificSchema(queueName =>
-            {
-                if (queueName == "sales")
-                {
-                    return "salesSchema";
-                }
-                if (queueName == "billing")
-                {
-                    return "[billingSchema]";
-                }
-                if (queueName == "error")
-                {
-                    return "error";
-                }
-                return null;
-            });
-
+        transport.UseSchemaForEndpoint("Sales", "salesSchema");
+        transport.UseSchemaForEndpoint("Billing", "[billingSchema]");
+        transport.UseSchemaForQueue("error", "error");
+        
         #endregion
     }
 }

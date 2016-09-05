@@ -18,7 +18,7 @@ class SingleDbMultiSchema
         #region sqlserver-singledb-multidb-pull
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.UseSpecificSchema(tn => tn == "AnotherEndpoint" ? "receiver1" : null);
+        transport.UseSchemaForEndpoint("AnotherEndpoint", "receiver1");
 
         #endregion
     }
