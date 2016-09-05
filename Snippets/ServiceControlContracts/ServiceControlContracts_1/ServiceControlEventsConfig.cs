@@ -8,6 +8,7 @@
         {
             #region ServiceControlEventsConfig
 
+            busConfiguration.UseSerialization<JsonSerializer>();
             var conventions = busConfiguration.Conventions();
             conventions.DefiningEventsAs(type =>
             {
