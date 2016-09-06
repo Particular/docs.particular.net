@@ -9,13 +9,13 @@ redirects:
  - servicepulse/servicepulse-host-config
 ---
 
-To modify the port used by ServicePulse the commandline specified in the registry must be updated.
+To modify the port used by ServicePulse the command line specified in the registry must be updated.
 
 To change it:
 
  1. Open Regedit.exe
  1. Goto `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Particular.ServicePulse`
- 1. Edit the value of `ImagePath`. The value contains the full path to the ServicePulse.exe and a commandline of the URL to use:
+ 1. Edit the value of `ImagePath`. The value contains the full path to the ServicePulse.exe and a command line of the URL to use:
 
 The default value for ImagePath is:
 

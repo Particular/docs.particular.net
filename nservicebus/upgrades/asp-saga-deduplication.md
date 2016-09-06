@@ -68,7 +68,7 @@ Saga data stored in Azure will need to be patched using the `NServiceBus.AzureSt
 
 #### 1. Run the SagaDeduplicator Utility
 
-Open a commandline and run the following command `NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe directory=<directory> operation=Download` where:
+Open a command line and run the following command `NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe directory=<directory> operation=Download` where:
 
  * **directory**: This should be the full path of the working directory that the de-duplication tool will use for storing conflicting sagas payloads. The tool will need to have read, write and delete permissions on the directory selected. If there are any spaces in the directory path this value should be enclosed in double quotes. If the tool was run previously, ensure that the directory indicated is empty. For example: `directory="C:\my working directory\deduplication"`.
 
@@ -136,7 +136,7 @@ This saga selection will need to be performed on all sagas that are downloaded t
 
 Once all conflicting sagas have been resolved, run the following command: `NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe directory=<directory> operation=Upload`. This step will update the Azure Storage to contain the conflicted sagas that were marked `"$Choose_this_saga": true` in step #3.
 
- * All of the commandline parameters, with the exception of `operation=Upload`, should be the same as they were in step #1.
+ * All of the command line parameters, with the exception of `operation=Upload`, should be the same as they were in step #1.
 
 
 ## After the patch process
@@ -150,4 +150,4 @@ Sagas of type {sagaType.Name} with the following identifiers '<comma separated l
 When this happens the involved messages will be sent to the error queue. There are two ways to re-queue these messages.
 
  * If ServiceControl and ServicePulse are running then follow the instructions for [Failed Message Retry using ServicePulse](/servicepulse/#failed-message-retry) to requeue the messages.
- * To requeue messages without ServicePulse and/or ServiceControl in place the messages will need to be manually moved from the error queue to the appropriate processing queue. The way this is done will vary depending on which transport is being used.
+ * To re-queue messages without ServicePulse and/or ServiceControl in place the messages will need to be manually moved from the error queue to the appropriate processing queue. The way this is done will vary depending on which transport is being used.
