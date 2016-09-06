@@ -28,9 +28,6 @@ In previous versions of NServiceBus, to send or publish messages within a messag
 For more details on the various scenarios when using IBus, see: [Migrating from IBus](moving-away-from-ibus.md).
 
 
-include:5to6removePShelpers
-
-
 ## Outbox
 
 
@@ -42,28 +39,6 @@ include:5to6removePShelpers
 ## MSMQ ReturnToSourceQueue.exe
 
 The MSMQ ReturnToSourceQueue.exe tool is now deprecated. The code for this tool has been moved to [ParticularLabs/MsmqReturnToSourceQueue](https://github.com/ParticularLabs/MsmqReturnToSourceQueue) repository. See the readme in that repository for full details.
-
-
-## Assembly scanning
-
-See [Assembly Scanning API](/nservicebus/hosting/assembly-scanning.md) for more information.
-
-
-### Nested Directories
-
-NServiceBus Version 6 is no longer scanning nested directories for assemblies. This behavior can re-enable using the [Assembly Scanning API](/nservicebus/hosting/assembly-scanning.md#nested-directories).
-
-
-### Include moved to Exclude
-
-In Version 6 the API has been changed to an "Exclude a list" approach. See [Assemblies to scan](/nservicebus/hosting/assembly-scanning.md#assemblies-to-scan) for more information.
-
-snippet:5to6ScanningUpgrade
-
-
-## Timeout Persistence interfaces redesigned
-
-The `IPersistTimeouts` interface was redesigned, and can now be implemented to provide a customized timeout persistence option. If using a custom timeout persister, note that the interface has been split into `IQueryTimeouts` and `IPersistTimeouts` (while `IPersistTimeoutsV2` has been removed). For more details see [authoring a custom persistence](/nservicebus/persistence/authoring-custom.md#timeout-persister).
 
 
 ## Queue creation

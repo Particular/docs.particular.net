@@ -48,6 +48,8 @@
               Url: "nservicebus/upgrades/5to6/recoverability"
             - Title: Subscriptions
               Url: "nservicebus/upgrades/5to6/subscriptions"
+            - Title: "Assembly Scanning"
+              Url: "nservicebus/upgrades/5to6/assembly-scanning"
             - Title: "Transport Seam"
               Url: "nservicebus/upgrades/5to6/transport-seam"
             - Title: "Deprecated TransportMessage"
@@ -60,6 +62,8 @@
               Url: "nservicebus/upgrades/5to6/features"
             - Title: "Configure Type Removed"
               Url: "nservicebus/upgrades/5to6/configure-type"
+            - Title: "VS Powershell Helpers"
+              Url: "nservicebus/upgrades/5to6/powershell-helpers"
         - Title: "NServiceBus 4"
           Url: "nservicebus/upgrades/4to5"
         - Title: "NServiceBus 3"
