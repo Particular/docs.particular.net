@@ -1,9 +1,18 @@
 ---
-title: Endpoint Start and Stop changes in Version 6
+title: Endpoint API changes in Version 6
 tags:
  - upgrade
  - migration
 ---
+
+
+## [Endpoint](/nservicebus/endpoints/) Name is mandatory
+
+In Versions 6 and above endpoint name is mandatory.
+
+snippet: 5to6-endpointNameRequired
+
+The endpoint name is used as a logical identifier when sending or receiving messages. It is also used for determining the name of the input queue the endpoint will be bound to. See [Derived endpoint name](#endpoint-name-helper) for the algorithm used in Versions 5 and below to select endpoint name if backwards compatibility is a concern.
 
 
 ## Interface Changes
@@ -33,3 +42,10 @@ See the upgrade guide for more details on [using the new interface](/nservicebus
 ### Using [AzureCloudService Host](/nservicebus/hosting/cloud-services-host/)
 
 See the upgrade guide for more details on [using the new interface](/nservicebus/upgrades/acs-host-6to7.md) provided by the host.
+
+
+## Endpoint Name helper
+
+This algorithm is used in Version 5 of NServiceBus to determine Endpoint Name if none is provided. So if the same behavior is is desired in Versions 6 and above this helper class can be used.
+
+snippet: 5to6EndpointNameHelper

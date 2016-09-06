@@ -28,12 +28,10 @@
           Articles:
             - Title: "Moving away from IBus"
               Url: "nservicebus/upgrades/5to6/moving-away-from-ibus"
-            - Title: "Endpoint Start and Stop"
-              Url: "nservicebus/upgrades/5to6/endpoint-start-stop"
-            - Title: Sagas
-              Url: "nservicebus/upgrades/5to6/sagas"
-            - Title: "Migrate Handlers"
-              Url: "nservicebus/upgrades/5to6/migrate-existing-handlers"
+            - Title: "Endpoint API changes"
+              Url: "nservicebus/upgrades/5to6/endpoint"
+            - Title: "Migrate Handlers & Sagas"
+              Url: "nservicebus/upgrades/5to6/handlers-and-sagas"
             - Title: Async Suffix
               Url: "nservicebus/upgrades/5to6/async-suffix"
             - Title: "Transaction configuration"
@@ -56,6 +54,8 @@
               Url: "nservicebus/upgrades/5to6/deprecated-transportmessage"
             - Title: Distributor
               Url: "samples/scaleout/distributor-upgrade"
+            - Title: "Timeouts"
+              Url: "nservicebus/upgrades/5to6/timeouts"
             - Title: "Feature API"
               Url: "nservicebus/upgrades/5to6/features"
             - Title: "Configure Type Removed"

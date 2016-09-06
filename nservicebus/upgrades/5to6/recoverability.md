@@ -11,6 +11,7 @@ redirects:
  - nservicebus/upgrades/5to6-recoverability
 ---
 
+
 ## Renaming
 
 First Level Retries (FLR) has been renamed to [Immediate Retries](/nservicebus/recoverability/#immediate-retries).
@@ -119,3 +120,21 @@ If are using `RepeatedFailuresOverTimeCircuitBreaker` instead include [the sourc
 The API for defining a [Critical Error Action](/nservicebus/hosting/critical-errors.md) has been changed to be a custom delegate.
 
 snippet: 5to6CriticalError
+
+
+## Notifications
+
+The `BusNotifications` class has been renamed to `Notifications`.
+
+`BusNotifications` previously exposed the available notification hooks as observables implementing `IObservable`. This required implementing the `IObserver` interface or including [Reactive-Extensions](https://msdn.microsoft.com/en-au/data/gg577609.aspx) to use this API. In Version 6 the notifications API has been changed for easier usage. It exposes regular events instead of observables. To continue using Reactive-Extensions the events API can be transformed into `IObservable`s like this:
+
+snippet: ConvertEventToObservable
+
+Notification subscriptions can now also be registered at configuration time on the `EndpointConfiguration.Notifications` property. See the [error notifications documentation](/nservicebus/recoverability/subscribing-to-error-notifications.md) for more details and samples.
+
+
+### Delayed delivery error notifications
+
+In Versions 6 and above the `TimeoutManager` does not provide any error notifications. When an error occurs during processing of a deferred message by the `TimeoutManager`, the message will be retried and possibly moved to the error queue. The user will not be notified about these events.
+
+Note that in Versions 5 and below, when the user [subscribes to error notifications](/nservicebus/recoverability/subscribing-to-error-notifications.md) they receive notification in the situation described above.

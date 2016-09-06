@@ -33,4 +33,4 @@ Since most of the methods available on the `ISessionFactory` are related to cach
 
 NServiceBus will automatically make the correlated saga property unique without the need for an explicit `[Unique]` attribute to be used. This attribute can be safely removed from saga data types.
 
-Refer to the [NServiceBus upgrade guide for migrating from Version 5 to 6](/nservicebus/upgrades/5to6/sagas.md) to learn more about changes regarding sagas.
+Refer to the [NServiceBus upgrade guide for migrating from Version 5 to 6](/nservicebus/upgrades/5to6/handlers-and-sagas.md) to learn more about changes regarding sagas.
