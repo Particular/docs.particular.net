@@ -9,6 +9,7 @@
     using NServiceBus;
 
     #region HandlerWhichIntegratesWithEvent
+
     public class HandlerWhichIntegratesWithEvent :
         IHandleMessages<MyMessage>
     {
@@ -19,11 +20,13 @@
 
             var taskCompletionSource = new TaskCompletionSource<object>();
 
-            using (cancellationToken.Token.Register(state =>
-            {
-                var completionSource = (TaskCompletionSource<object>) state;
-                completionSource.TrySetCanceled();
-            }, taskCompletionSource))
+            using (cancellationToken.Token.Register(
+                callback: state =>
+                {
+                    var completionSource = (TaskCompletionSource<object>) state;
+                    completionSource.TrySetCanceled();
+                },
+                state: taskCompletionSource))
             {
                 var dependency = new DependencyWhichRaisedEvent();
                 dependency.MyEvent += (sender, args) =>
@@ -36,6 +39,7 @@
             }
         }
     }
+
     #endregion
 
 
@@ -147,7 +151,8 @@
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            var result = await Task.Run(() =>
+            var result = await Task.Run(
+                function: () =>
                 {
                     var remoteService = new RemoteService();
                     return remoteService.TimeConsumingRemoteCall();

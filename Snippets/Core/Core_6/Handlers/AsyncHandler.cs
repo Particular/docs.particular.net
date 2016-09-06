@@ -12,7 +12,8 @@
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             ComputeBoundComponent.BlocksForAShortTime();
-            return Task.FromResult(0);  // or Task.CompletedTask
+            // or Task.CompletedTask
+            return Task.FromResult(0);
         }
     }
     #endregion
