@@ -1,6 +1,6 @@
 ---
 title: 'ServiceControl: Installing Silently'
-reviewed: 2016-03-24
+reviewed: 2016-09-06
 tags:
 - ServiceControl
 - Installation
