@@ -1,8 +1,9 @@
 ---
 title: Azure Service Bus Transport
 tags:
-- Azure
-- Cloud
+ - Azure
+ - Cloud
+component: ASB
 redirects:
  - nservicebus/using-azure-servicebus-as-transport-in-nservicebus
  - nservicebus/azure/azure-servicebus-transport
@@ -26,25 +27,20 @@ NOTE: NServiceBus provides two transports in its platform: Azure Storage Queues 
 
 When creating the namespace at the Azure portal, choose Standard or Premium Messaging Tier for Azure Service Bus.
 
-In the solution, reference `NServiceBus.Azure.Transports.WindowsAzureServiceBus` NuGet package.
-
-```ps
-PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureServiceBus
-```
-
-Then use the Configuration API to set up NServiceBus, by specifying `.UseTransport<AzureServiceBus>()` to override the default transport:
+Then at configuration time set ASB as the transport:
 
 snippet:AzureServiceBusTransportWithAzure
 
 
 ## Setting the Connection String
 
-The default way to set the connection string is using the `.ConnectionString()` configuration API or the .NET provided `connectionStrings` configuration section in an `app.config` or a `web.config` file, with the name `NServiceBus\Transport`:
+For more details on setting up connection strings and securing them, refer to the [Configuration Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-topics-subscriptions/#set-up-a-service-bus-connection-string) and the [Securing Credentials](/nservicebus/azure-service-bus/securing-connection-strings.md) articles.
 
-snippet:setting_asb_connection_string
+To set the connection string use the following:
 
-or
+partial: code-connection
+
+
+### Via App.Config
 
 snippet:AzureServiceBusConnectionStringFromAppConfig
-
-For more details on setting up connection strings and securing them, refer to the [Configuration Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-topics-subscriptions/#set-up-a-service-bus-connection-string) and the [Securing Credentials](/nservicebus/azure-service-bus/securing-connection-strings.md) articles.
