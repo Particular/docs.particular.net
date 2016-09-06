@@ -1,11 +1,12 @@
 ---
 title: Azure Storage Persistence Performance Tuning
 reviewed: 2016-04-21
+component: ASP
 tags:
-- Azure
-- Cloud
-- Persistence
-- Performance
+ - Azure
+ - Cloud
+ - Persistence
+ - Performance
 ---
 
 include: azure-storage-performance-tuning
