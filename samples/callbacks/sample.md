@@ -4,8 +4,6 @@ component: Callbacks
 reviewed: 2016-03-21
 tags:
 - Callback
-related:
-- nservicebus/messaging/handling-responses-on-the-client-side
 ---
 
  1. Run the solution. Two console applications and a web application will start.

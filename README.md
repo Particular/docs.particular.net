@@ -214,7 +214,7 @@ Sample Component:
 
 ```
 - Key: Callbacks
-  Url: nservicebus/messaging/handling-responses-on-the-client-side
+  Url: nservicebus/messaging/callbacks
   NugetOrder:
     - NServiceBus.Callbacks
     - NServiceBus

@@ -84,7 +84,7 @@
         - "nservicebus/messaging/conventions"
         - "nservicebus/messaging/discard-old-messages"
         - "nservicebus/messaging/non-durable-messaging"
-        - "nservicebus/messaging/handling-responses-on-the-client-side"
+        - "nservicebus/messaging/callbacks"
         - "nservicebus/messaging/headers"
         - "nservicebus/messaging/header-manipulation"
         - "nservicebus/messaging/message-correlation"

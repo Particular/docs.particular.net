@@ -4,14 +4,13 @@ summary: Mapping between WCF and messages on the bus via the Callbacks API.
 reviewed: 2016-03-21
 component: Callbacks
 related:
-- nservicebus/messaging/handling-responses-on-the-client-side
 - samples/web/owin-pass-through
 ---
 
 
 ## Introduction
 
-This samples shows how to perform a WCF request response by leveraging the [callback API](/nservicebus/messaging/handling-responses-on-the-client-side.md) of NServiceBus.
+This samples shows how to perform a WCF request response by leveraging [Callback](/nservicebus/messaging/callbacks.md) of NServiceBus.
 
 
 ## WCF Helpers

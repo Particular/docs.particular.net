@@ -5,7 +5,7 @@ component: SqlServer
 tags:
  - SQL Server
 related:
- - nservicebus/messaging/handling-responses-on-the-client-side
+ - nservicebus/messaging/callbacks
 ---
 
 partial: content

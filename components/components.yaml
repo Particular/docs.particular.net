@@ -58,7 +58,7 @@
 
 - Key: Callbacks
   Name: Callbacks
-  DocoUrl: nservicebus/messaging/handling-responses-on-the-client-side
+  DocoUrl: nservicebus/messaging/callbacks
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Callbacks
   NugetOrder:

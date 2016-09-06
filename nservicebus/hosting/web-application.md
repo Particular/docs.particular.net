@@ -11,7 +11,7 @@ related:
  - nservicebus/lifecycle
  - samples/startup-shutdown-sequence
  - samples/endpoint-configuration
- - nservicebus/messaging/handling-responses-on-the-client-side
+ - nservicebus/messaging/callbacks
  - nservicebus/hosting/publishing-from-web-applications
 ---
 

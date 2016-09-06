@@ -1,9 +1,10 @@
 ---
-title: Handling Responses on the Client Side
+title: Client side Callbacks
 summary: The client (or sending process) has its own queue. When messages arrive in the queue, they are handled by a message handler.
 component: Callbacks
 redirects:
 - nservicebus/how-do-i-handle-responses-on-the-client-side
+- nservicebus/messaging/handling-responses-on-the-client-side
 related:
 - samples/callbacks
 ---
@@ -18,7 +19,7 @@ snippet:EmptyHandler
 
 When sending a message, a callback can be registered that will be invoked when a response arrives.
 
-DANGER: If the server process returns multiple responses, NServiceBus cannot know which response message will be the last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a process restart (common scenarios are a crash or an IIS recycle) as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](/nservicebus/sagas/).
+DANGER: If the server process returns multiple responses, NServiceBus cannot know which response message will be the last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a process restart (common scenarios are a crash or an [IIS recycle](https://msdn.microsoft.com/en-us/library/ms525803.aspx)) as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](/nservicebus/sagas/).
 
 
 ## Prerequisites for callback functionality

@@ -29,4 +29,4 @@ Handle HA requirements by setting the LB to fail over to another endpoint instan
 
 ## Caveats
 
-[Callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md) through the gateway are not supported on scaled-out endpoints.
+[Callbacks](/nservicebus/messaging/callbacks.md) through the gateway are not supported on scaled-out endpoints.
