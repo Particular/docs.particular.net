@@ -47,7 +47,6 @@
     <Compile Include="NamedConnectionString.cs" />
     <Compile Include="MultiDb.cs" />
     <Compile Include="MultiSchema.cs" />
-    <Compile Include="SingleDbMultiSchema.cs" />
     <Compile Include="UpgradeGuides\MultiInstance.cs" />
     <Compile Include="UpgradeGuides\Transactions.cs" />
   </ItemGroup>

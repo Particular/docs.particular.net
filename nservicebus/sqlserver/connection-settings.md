@@ -69,27 +69,29 @@ partial: multiple-appconfig
 
 ## Custom database schemas
 
-The default schema in SQL Server transport is `dbo`.
-The schema for the specific endpoint can be configured using `DefaultSchema` method:
+SQL Server transport uses `dbo` as a default schema. Default schema is used for every queue if no other schema is explictly provided in transport address. That includes all local queues, error, audit and remote queues of other endpoints. 
+In Sql Server default schema can be overridden using `DefaultSchema` method:
 
 snippet:sqlserver-non-standard-schema
 
 partial: custom-schema
 
+## Custom schema per destination
 
-## Multiple custom schemas
+If different schemas should be used for different destinations, then additional configuration is required:
 
-If the endpoints are configured to use a different schema, then additional configuration is required for proper message routing:
-
- * The sending endpoint needs to know the schema information of the receiving endpoint.
+ * The sending endpoint needs to know the custom schema of the receiving endpoint's input queue.
+ * The sending endpoint needs to know the custom schema of infrastructural queues e.g. error. 
  * The subscriber will need the schema information of the publisher, in order to send subscription request.
  * In Versions 2.1.x to 2.x publisher also needs to know the schema of every subscriber. The same applies to sending reply messages using `ReplyTo()` or callbacks.
 
-The schema for another endpoint can be specified in the following ways:
+The schema for an endpoint can be specified in the following way:
 
-partial:multischema-config-push
+snippet: sqlserver-multischema-config-for-endpoint
 
-snippet:sqlserver-multischema-config-pull
+The schema for a given queue can be specifed in the following way:
+
+snippet:sqlserver-multischema-config-for-queue
 
 snippet:sqlserver-non-standard-schema-messagemapping
 

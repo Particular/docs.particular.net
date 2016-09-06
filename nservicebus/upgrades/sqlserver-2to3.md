@@ -56,16 +56,16 @@ The configuration API for [multi-schema support](/nservicebus/sqlserver/deployme
 
 The schema for the configured endpoint can be specified using `DefaultSchema` method:
 
-snippet:sqlserver-singledb-multischema
+snippet:sqlserver-non-standard-schema
 
-or by defining a custom connection factory:
+or by defining a custom schema per endpoint:
 
-snippet:sqlserver-singledb-multidb-pull
+snippet:sqlserver-multischema-config-for-endpoint
 
-The custom connection factory is also used for specifying schemas for other endpoints that the configured endpoint communicates with.
+This enables configuring custom schema both for local endpoint as well as for other endpoints that the configured endpoint communicates with.
 When using configuration file to specify schemas for other endpoints, their schemas should be placed in the `MessageEndpointMappings` section and follow `endpoint-name@schema-name` convention:
 
-snippet:sqlserver-singledb-multischema-config
+snippet:sqlserver-multischema-config
 
 
 ### Multi-instance support
