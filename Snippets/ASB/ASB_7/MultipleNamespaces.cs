@@ -11,7 +11,7 @@ class MultipleNamespaces
         partitioning.UseStrategy<SingleNamespacePartitioning>();
         partitioning.AddNamespace(
             name: "default",
-            connectionString: "Endpoint=sb://namespace.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+            connectionString: "Endpoint=sb://[NAMESPACE].servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
 
         #endregion
     }
@@ -22,7 +22,7 @@ class MultipleNamespaces
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         transport.ConnectionString(
-            connectionString: "Endpoint=sb://namespace.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+            connectionString: "Endpoint=sb://[NAMESPACE].servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
 
         #endregion
     }
@@ -35,13 +35,13 @@ class MultipleNamespaces
         var partitioning = transport.NamespacePartitioning();
         partitioning.AddNamespace(
             name: "namespace1",
-            connectionString: "Endpoint=sb://namespace1.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+            connectionString: "Endpoint=sb://namespace1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
         partitioning.AddNamespace(
             name: "namespace2",
-            connectionString: "Endpoint=sb://namespace2.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+            connectionString: "Endpoint=sb://namespace2.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
         partitioning.AddNamespace(
             name: "namespace3",
-            connectionString: "Endpoint=sb://namespace3.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+            connectionString: "Endpoint=sb://namespace3.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
 
         #endregion
     }
@@ -55,10 +55,10 @@ class MultipleNamespaces
         partitioning.UseStrategy<FailOverNamespacePartitioning>();
         partitioning.AddNamespace(
             name: "primary",
-            connectionString: "Endpoint=sb://primary.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+            connectionString: "Endpoint=sb://primary.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
         partitioning.AddNamespace(
             name: "secondary",
-            connectionString: "Endpoint=sb://secondary.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+            connectionString: "Endpoint=sb://secondary.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
 
         #endregion
     }
@@ -71,10 +71,10 @@ class MultipleNamespaces
         var routing = transport.NamespaceRouting();
         routing.AddNamespace(
             name: "destination1",
-            connectionString: "Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+            connectionString: "Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
         routing.AddNamespace(
             name: "destination2",
-            connectionString: "Endpoint=sb://destination2.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]");
+            connectionString: "Endpoint=sb://destination2.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
 
         #endregion
     }
@@ -84,7 +84,7 @@ class MultipleNamespaces
         string destination;
         #region namespace_routing_send_options_full_connectionstring
 
-        destination = "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]";
+        destination = "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]";
         endpointInstance.Send(destination, new MyMessage());
 
         #endregion

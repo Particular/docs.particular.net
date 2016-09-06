@@ -8,7 +8,7 @@ class Usage
         #region AzureServiceBusTransportWithAzure
 
         var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.ConnectionString("Endpoint=sb://{namespace}.servicebus.windows.net/;SharedAccessKeyName={keyname};SharedAccessKey={keyvalue}");
+        transport.ConnectionString("Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
 
         #endregion
     }
@@ -19,7 +19,7 @@ class Usage
 
         #region namespace_routing_send_options_full_connectionstring
 
-        destination = "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[shared access key name];SharedAccessKey=[shared access key]";
+        destination = "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]";
         bus.Send(destination, new MyMessage());
 
         #endregion

@@ -14,9 +14,9 @@ class GettingStarted
         transport.UseTopology<ForwardingTopology>();
         transport.ConnectionString("Paste connectionstring here");
 
-        var initializableEndpoint = await Endpoint.Create(endpointConfiguration)
+        var startableEndpoint = await Endpoint.Create(endpointConfiguration)
             .ConfigureAwait(false);
-        var endpointInstance = await initializableEndpoint.Start()
+        var endpointInstance = await startableEndpoint.Start()
             .ConfigureAwait(false);
 
         #endregion
