@@ -25,5 +25,5 @@ For larger solutions the Visual Studio extension [Target Framework Migrator](htt
 
 In previous versions of NServiceBus, to send or publish messages within a message handler or other extension interfaces, the message session (`IBus` interface in Versions 5 and below) was accessed via container injection. In Versions 6 injecting the message session is no longer required. Message handlers and other extension interfaces now provide context parameters such as `IMessageHandlerContext` or `IEndpointInstance` which give access to the same functions that used to be available via the `IBus` interface.
 
-For more details on the various scenarios when using IBus, see: [Migrating from IBus](moving-away-from-ibus.md).
+INFO: For more details on the various scenarios when using IBus, see: [Migrating from IBus](moving-away-from-ibus.md).
 
