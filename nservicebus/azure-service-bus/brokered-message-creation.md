@@ -63,4 +63,4 @@ For a native message to be processed, NServiceBus endpoints using the Azure Serv
 
 partial: headers
 
-In native integration scenarios it is not always possible, or desirable, to modify the headers of the brokered message at the sending end. If this is the case, the receiving end can also add the required headers to the message by registering an incoming [[Message Mutators](/nservicebus/pipeline/message-mutators.md) or via a [Pipeline Behavior](/nservicebus/pipeline/manipulate-with-behaviors.md).
+In native integration scenarios it is not always possible, or desirable, to modify the headers of the brokered message at the sending end. If this is the case, the receiving end can also add the required headers to the message by registering an incoming [Message Mutators](/nservicebus/pipeline/message-mutators.md) or via a [Pipeline Behavior](/nservicebus/pipeline/manipulate-with-behaviors.md).
