@@ -95,8 +95,7 @@ snippet:sqlserver-multischema-config-for-queue
 
 snippet:sqlserver-non-standard-schema-messagemapping
 
-Notice that in Versions 3 and higher the table and schema names can be passed either using common convention with square brackets, or without them. 
- 
+partial: multi-schema-config-notes
 
 ## Custom SQL Server transport connection factory
 
