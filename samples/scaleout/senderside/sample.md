@@ -50,7 +50,7 @@ Contains message definitions shared by the server and the clients.
 
 ### Unaware client
 
-This project contains a code for a client which is not aware of specific scale out design of the server. The client specifies only the logical routing:
+This project contains code for a client which is not aware of specific scale out design of the server. The client specifies only the logical routing:
 
 snippet:Logical-Routing
 
