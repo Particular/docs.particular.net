@@ -1,21 +1,22 @@
 ---
 title: 'ServiceControl: Installing Silently'
-reviewed: 2016-03-24
+reviewed: 2016-09-06
 tags:
 - ServiceControl
 - Installation
 ---
 
-
 ### Silent Installation Options
 
 Note: This documentation covers silent installation instructions for ServiceControl Version 1.7 or greater.
+
+The command line examples referred to the ServiceControl installation exe as `<install.exe>`.   Replace this with the specific exe name for the version being deployed.  (e.g. Particular.ServiceControl-1.22.0.exe) 
 
 
 The following command line will silently install the ServiceControl Management utility only.
 
 ```dos
-Particular.ServiceControl.1.7.0.exe /quiet
+ <install.exe> /quiet
 ```
 
 Instances of the ServiceControl service can be deleted, added or upgraded via the Utility.
@@ -26,13 +27,13 @@ Instances of the ServiceControl service can be deleted, added or upgraded via th
 The following command line will silently install the ServiceControl Management and a ServiceControl instance.
 
 ```bat
-Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml
+ <install.exe> /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml
 ```
 
 For details on how to make the `unattendedfile.xml` file refer to ServiceControl Management [PowerShell](installation-powershell.md) documentation. The installed instance will use `localsystem` as the service account. To specify an alternative service account use the `SERVICEACCOUNT` and `PASSWORD` command line switches.
 
 ```dos
-Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml SERVICEACCOUNT=MyServiceAccount PASSWORD=MyPassword
+<install.exe> /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml SERVICEACCOUNT=MyServiceAccount PASSWORD=MyPassword
 ```
 
 NOTE: The settings contained in an unattended installation files are version specific. The file contents will be validated when used and if a required setting is missing an error will be logged. To correct this regenerate the XML file using the `New-ServiceControlUnattendedFile` cmdlet.
@@ -45,19 +46,19 @@ If an existing service matching the name specified in the unattended XML file al
 In this example the ServiceControl Management Utility is silently installed and attempt to upgrade all the installed instances of the ServiceControl service. Either `*` or `ALL` can be used to specify all instances should be upgraded.
 
 ```dos
-Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL
+<install.exe> /quiet /LV* install.log UPGRADEINSTANCES=ALL
 ```
 
 In this example the ServiceControl Management Utility is silently installed and attempt to upgrade just one instance called `TestServiceControl`.
 
 ```dos
-Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl
+<install.exe> /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl
 ```
 
 To specify multiple instances use a comma separated list:
 
 ```dos
-Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl,ProdServiceControl
+ <install.exe> /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl,ProdServiceControl
 ```
 
 
@@ -66,7 +67,7 @@ Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=Tes
 In this example the ServiceControl Management Utility is silently installed and import the license file.
 
 ```dos
-Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log LICENSEFILE=license.xml
+<install.exe> /quiet /LV* install.log LICENSEFILE=license.xml
 ```
 
 
@@ -79,7 +80,7 @@ When upgrading instances running on Version 1.11.1 and below the `FORWARDERRORME
 The Error Forwarding Queue queue exists to allow external tools to receive error messages. If there is no process reading messages from the Error Forwarding Queue this setting should be `FALSE`.
 
 ```dos
-Particular.ServiceControl.1.11.2.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL FORWARDERRORMESSAGES=FALSE
+<install.exe> /quiet /LV* install.log UPGRADEINSTANCES=ALL FORWARDERRORMESSAGES=FALSE
 ```
 
 
@@ -97,7 +98,7 @@ NOTE: If the current configuration already has values for `ServiceControl/AuditR
 If the configuration does not contain the `ServiceControl/AuditRetentionPeriod` or `ServiceControl/HoursToKeepMessagesBeforeExpiring`setting the value for the audit retention period should be included as a command line value. If the configuration does contains an entry for  `ServiceControl/HoursToKeepMessagesBeforeExpiring` then that value will be migrated to `ServiceControl/AuditRetentionPeriod` and no command line option is required. The valid range for this property is documented in [configuration settings](creating-config-file.md).
 
 ```dos
-Particular.ServiceControl.1.13.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL AUDITRETENTION=30.0:0:0
+<install.exe> /quiet /LV* install.log UPGRADEINSTANCES=ALL AUDITRETENTION=30.0:0:0
 ```
 
 NOTE: This value has a large impact on database size. Monitor the size of the ServiceControl database is recommended to ensure that this value is adequate.
@@ -108,7 +109,7 @@ NOTE: This value has a large impact on database size. Monitor the size of the Se
 If the configuration does not contain the `ServiceControl/ErrorRetentionPeriod` then the command line option is required. The valid range for this property is documented in [configuration settings](creating-config-file.md).
 
 ```dos
-Particular.ServiceControl.1.13.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL ERRORRETENTION=30.0:0:0
+<install.exe> /quiet /LV* install.log UPGRADEINSTANCES=ALL ERRORRETENTION=30.0:0:0
 ```
 
 NOTE: This value has a large impact on database size. Monitor the size of the ServiceControl database is recommended to ensure that this value is adequate.
