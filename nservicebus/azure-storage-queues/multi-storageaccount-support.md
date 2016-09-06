@@ -1,6 +1,8 @@
 ---
 title: 'Azure Storage Queues Transport: Multiple storage accounts'
 summary: NServiceBus can use multiple Azure storage accounts for scale out
+component: ASQ
+versions: '[7,]'
 tags:
 - Azure
 - Cloud
@@ -21,7 +23,7 @@ An NServiceBus-based system running on Azure Storage Queues transport using a si
 
 All messages in a queue are accessed via a single queue partition. A single queue is targeted to process up to 2,000 messages per second. Scalability targets for storage accounts can vary based on region with up to 20,000 messages per second (throughput achieved using an object size of 1KB). This is subject to change and should be periodically verified using [MSDN Azure Storage Scalability and Performance Targets](https://azure.microsoft.com/en-us/documentation/articles/storage-scalability-targets/).
 
-When the number of messages exceeds this quota, storage service responds with an HTTP 503 Server Busy message. This message indicates that the platform is throttling the queue. If a single storage account is unable to handle an application`s request rate, an application could also leverage several different storage accounts using a storage account per endpoint. This ensures application scalability without choking a single storage account. This also allows discrete control over queue processing, based on the sensitivity and priority of the messages that are handled by different endpoints. High priority endpoints could have more workers dedicated to them than low priority endpoints.
+When the number of messages exceeds this quota, storage service responds with an HTTP 503 Server Busy message. This message indicates that the platform is throttling the queue. If a single storage account is unable to handle an application's request rate, an application could also leverage several different storage accounts using a storage account per endpoint. This ensures application scalability without choking a single storage account. This also allows discrete control over queue processing, based on the sensitivity and priority of the messages that are handled by different endpoints. High priority endpoints could have more workers dedicated to them than low priority endpoints.
 
 
 ## Scaling Out
@@ -42,8 +44,9 @@ Message mapping for Endpoint 1:
 
 ```xml
 <MessageEndpointMappings>
-	<add Messages="Contracts" Namespace="Contracts.Commands.ForEndpoint2"
-		 Endpoint="Endpoint2@connection_string_for_endpoint_2" />
+  <add Messages="Contracts"
+       Namespace="Contracts.Commands.ForEndpoint2"
+       Endpoint="Endpoint2@connection_string_for_endpoint_2" />
 </MessageEndpointMappings>
 ```
 
@@ -51,8 +54,9 @@ Message mapping for Endpoint 2:
 
 ```xml
 <MessageEndpointMappings>
-	<add Messages="Contracts" Namespace="Contracts.Commands.ForEndpoint1"
-		 Endpoint="Endpoint1@connection_string_for_endpoint_1" />
+  <add Messages="Contracts"
+       Namespace="Contracts.Commands.ForEndpoint1"
+       Endpoint="Endpoint1@connection_string_for_endpoint_1" />
 </MessageEndpointMappings>
 ```
 
