@@ -72,7 +72,7 @@ public class EndpointHostConfig :
 {
     public HostingSettings Configure()
     {
-        return new HostingSettings("DefaultEndpointsProtocol=https;AccountName={yourAccount};AccountKey={yourKey};");
+        return new HostingSettings("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
     }
 }
 

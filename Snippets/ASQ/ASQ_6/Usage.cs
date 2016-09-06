@@ -7,7 +7,7 @@ class Usage
         #region AzureStorageQueueTransportWithAzure
 
         var transport = busConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName={youraccount};AccountKey={yourkey};");
+        transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
 
         #endregion
     }
@@ -20,7 +20,7 @@ class Usage
         public void Customize(BusConfiguration busConfiguration)
         {
             var transport = busConfiguration.UseTransport<AzureStorageQueueTransport>();
-            transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName={youraccount};AccountKey={yourkey};");
+            transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
         }
     }
 
