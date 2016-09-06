@@ -138,3 +138,8 @@ Notification subscriptions can now also be registered at configuration time on t
 In Versions 6 and above the `TimeoutManager` does not provide any error notifications. When an error occurs during processing of a deferred message by the `TimeoutManager`, the message will be retried and possibly moved to the error queue. The user will not be notified about these events.
 
 Note that in Versions 5 and below, when the user [subscribes to error notifications](/nservicebus/recoverability/subscribing-to-error-notifications.md) they receive notification in the situation described above.
+
+
+## Timeout Automatic retries
+
+Previously configuring the number of times a message will be retried by the First Level Retries (FLR) mechanism also determined how many times the `TimeoutManager` attempted to retry dispatching a deferred message in case an exception was thrown. From Version 6, the `TimeoutManager` will attempt the dispatch five times (this number is not configurable anymore). The configuration of the FLR mechanism for non-deferred message dispatch has not been changed.
