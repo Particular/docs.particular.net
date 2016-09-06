@@ -1,6 +1,7 @@
 ---
 title: Logging in ServiceInsight
 summary: How logging works and how to access the log files if necessary.
+component: ServiceInsight
 tags:
  - Logging
 redirects:

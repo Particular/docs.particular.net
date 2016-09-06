@@ -1,5 +1,6 @@
 ---
 title: ServiceInsight Application Invocation
+component: ServiceInsight
 summary: How the integration between ServicePulse and ServiceInsight works and how to use the parameterized invocation of ServiceInsight.
 tags:
 ---

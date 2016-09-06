@@ -1,6 +1,7 @@
 ---
 title: Sequence Diagram
 summary: ServiceInsight Sequence Diagram view
+component: ServiceInsight
 tags:
 - ServiceInsight
 - Sequence Diagram

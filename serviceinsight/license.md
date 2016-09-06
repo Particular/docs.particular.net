@@ -1,6 +1,7 @@
 ---
 title: Install the license in ServiceInsight
 summary: Install the Particular Platform license in ServiceInsight.
+component: ServiceInsight
 tags:
  - ServiceInsight
  - license
@@ -20,6 +21,7 @@ The license can be loaded by clicking the "Browse..." button and selecting the l
 ![trial period licensed](images/trial-period-licensed.png)
 
 Note that the license file might allow running multiple products (NServiceBus Core, ServiceInsight and ServicePulse), therefore the license file can be loaded from other products such as ServiceControl Management Utility as well but the end result will be the same.
+
 
 ### Verifying a license is applied
 

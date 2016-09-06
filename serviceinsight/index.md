@@ -1,6 +1,7 @@
 ---
 title: ServiceInsight
 reviewed: 2016-03-17
+component: ServiceInsight
 tags:
 - ServiceInsight
 redirects:
