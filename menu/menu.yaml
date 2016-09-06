@@ -30,7 +30,7 @@
               Url: "nservicebus/upgrades/5to6/moving-away-from-ibus"
             - Title: "Endpoint API changes"
               Url: "nservicebus/upgrades/5to6/endpoint"
-            - Title: "Migrate Handlers & Sagas"
+            - Title: "Handlers & Sagas"
               Url: "nservicebus/upgrades/5to6/handlers-and-sagas"
             - Title: Async Suffix
               Url: "nservicebus/upgrades/5to6/async-suffix"
