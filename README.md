@@ -352,13 +352,15 @@ Do not write a sample when:
 
 ### Startup projects
 
-Startup projects are set to "all startable projects" in the solution. This is done via  https://github.com/ParticularLabs/SetStartupProjects. If you want to control the default projects start then add a file named `DefaultStartupProjects.txt` in the same directory as the solution file with relative paths to the project files you would like to use for startup projects.
+When a sample is zipped the [VS startup projects](https://msdn.microsoft.com/en-us/library/a1awth7y.aspx) are also configured. This is done by using https://github.com/ParticularLabs/SetStartupProjects. By default startable projects are [detected though interrogating the project settings](https://github.com/ParticularLabs/SetStartupProjects/blob/master/src/SetStartupProjects/StartProjectFinder.cs). To override this convention and hard code the list of startup projects add a file named `DefaultStartupProjects.txt` in the same directory as the solution file. It should contain the relative paths to the project files you would like to use for startup projects. 
 
 For example if the solution contains two endpoints and you only want to start `Endpoint1` the content of `DefaultStartupProjects.txt` would be:
 
 ```
 Endpoint1\Endpoint1.csproj
 ```
+
+To apply this convention on you local clone of the docs repo use the [set startup projects linkpad script](#setstartuplinq).
 
 
 ### Bootstrapping a sample
