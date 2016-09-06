@@ -1,10 +1,11 @@
 ---
 title: Azure Storage Queues Transport
 summary: Using Azure Storage Queues as transport
+component: ASQ
 tags:
-- Azure
-- ASQ
-- Azure Storage Queues
+ - Azure
+ - ASQ
+ - Azure Storage Queues
 related:
  - samples/azure/storage-queues
 ---
@@ -20,14 +21,8 @@ NOTE: As part of the Azure support for NServiceBus, one can choose between two t
 
 ## How to enable the transport
 
-Reference `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` NuGet package.
-
-```ps
-PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureStorageQueues
-```
-
-Then use the Configuration API to configure NServiceBus to use the Azure Storage Queues Transport:
+Then at configuration time set ASB as the transport:
 
 snippet:AzureStorageQueueTransportWithAzure
 
-Then set up appropriate [connection strings](/nservicebus/azure-storage-queues/configuration.md#connection-strings), and ensure they are [secure](/nservicebus/azure-storage-queues/configuration.md#securing-the-connection-string) .
+Then set up appropriate [connection strings](/nservicebus/azure-storage-queues/configuration.md#connection-strings), and ensure they are [secure](/nservicebus/azure-storage-queues/configuration.md#securing-the-connection-string).
