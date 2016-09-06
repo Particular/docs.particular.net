@@ -31,6 +31,8 @@ Raven: NServiceBus.RavenDB
 Serilog: NServiceBus.Serilog
 ServiceBootstrap: NServiceBus.Bootstrap.WindowsService
 ServiceControl: ServiceControl
+ServicePulse: ServicePulse
+ServiceInsight: ServiceInsight
 StructureMap: NServiceBus.StructureMap
 Spring: NServiceBus.Spring
 SqlServer: NServiceBus.SqlServer
