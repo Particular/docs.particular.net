@@ -3,7 +3,7 @@ title: Header API changes Version 6
 tags:
  - upgrade
  - migration
-
+---
 
 ## Setting headers on outgoing messages
 
