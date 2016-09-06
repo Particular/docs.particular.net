@@ -431,7 +431,7 @@
     -
       Title: "Configuration"
       Articles:
-        - "servicepulse/servicepulse-host-config"
+        - "servicepulse/host-config"
         - "servicepulse/how-to-configure-endpoints-for-monitoring"
         - "servicepulse/install-servicepulse-in-iis"
         - "servicepulse/troubleshooting"
