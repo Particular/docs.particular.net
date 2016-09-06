@@ -10,7 +10,7 @@ tags:
 
 Note: This documentation covers silent installation instructions for ServiceControl Version 1.7 or greater.
 
-The command line examples referred to the ServiceControl installation exe as <installexe>.   Replace this with the specific exe name for the version being deployed.  (e.g. Particular.ServiceControl-1.22.0.exe) 
+The command line examples referred to the ServiceControl installation exe as `<install.exe>`.   Replace this with the specific exe name for the version being deployed.  (e.g. Particular.ServiceControl-1.22.0.exe) 
 
 
 The following command line will silently install the ServiceControl Management utility only.
