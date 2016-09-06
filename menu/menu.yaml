@@ -23,16 +23,25 @@
         - Title: "Security Advisories"
           Articles:
             - "security-advisories/sqlserver-sqlinjection"
-        - Title: "NServiceBus"
+        - Title: "NServiceBus 6"
+          Url: "nservicebus/upgrades/5to6"
           Articles:
-            - "nservicebus/upgrades/5to6"
-            - "nservicebus/upgrades/5to6-moving-away-from-ibus"
-            - "nservicebus/upgrades/5to6-migrate-existing-handlers"
-            - "nservicebus/upgrades/5to6-async-suffix"
-            - "nservicebus/upgrades/5to6-recoverability"
-            - "samples/scaleout/distributor-upgrade"
-            - "nservicebus/upgrades/4to5"
-            - "nservicebus/upgrades/3to4"
+            - Title: Moving away from IBus
+              Url: "nservicebus/upgrades/5to6-moving-away-from-ibus"
+            - Title: Migrate Handlers
+              Url: "nservicebus/upgrades/5to6-migrate-existing-handlers"
+            - Title: Async Suffix
+              Url: "nservicebus/upgrades/5to6-async-suffix"
+            - Title: Recoverability
+              Url: "nservicebus/upgrades/5to6-recoverability"
+            - Title: An endpoint using Distributor
+              Url: "samples/scaleout/distributor-upgrade"
+        - Title: "NServiceBus 4"
+          Url: "nservicebus/upgrades/4to5"
+        - Title: "NServiceBus 3"
+          Url: "nservicebus/upgrades/3to4"
+        - Title: "Other"
+          Articles:
             - "nservicebus/upgrades/encryption-key-identifiers"
         - Title: "NServiceBus Host"
           Articles:
