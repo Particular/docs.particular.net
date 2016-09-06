@@ -28,7 +28,7 @@ snippet:PersistanceWithAzure
 
 ### Saga correlation
 
-NOTE: In Versions 6 and above of NServiceBus, all correlated properties are [unique by default](/nservicebus/upgrades/5to6.md#sagas-unique-attribute-no-longer-needed) so there is no longer a configuration setting.
+NOTE: In Versions 6 and above of NServiceBus, all correlated properties are [unique by default](/nservicebus/upgrades/5to6/sagas.md#unique-attribute-no-longer-needed) so there is no longer a configuration setting.
 
 One of the limitations of the Azure Storage Persistence is support for only one `[Unique]` property (a saga property which value is guaranteed to be unique across all sagas of this type).
 

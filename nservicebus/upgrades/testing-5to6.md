@@ -15,7 +15,7 @@ related:
 
 NServiceBus.Testing requires NServiceBus Version 6.
 
-As part of upgrading to NServiceBus.Testing Version 6, projects will also require an upgrade to [NServiceBus Version 6](/nservicebus/upgrades/5to6.md).
+As part of upgrading to NServiceBus.Testing Version 6, projects will also require an upgrade to [NServiceBus Version 6](/nservicebus/upgrades/5to6/).
 
 
 ## New Unit Testing capabilities

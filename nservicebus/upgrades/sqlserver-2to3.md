@@ -28,7 +28,7 @@ snippet:2to3-enable-native-transaction
 
 As shown in the above snippet, transaction settings are now handled in the transport level configuration.
 
-For more details and examples refer to [Transaction configuration API](/nservicebus/upgrades/5to6.md#transaction-configuration-api) and [Transaction support](/nservicebus/transports/transactions.md) pages.
+For more details and examples refer to [Transaction configuration API](/nservicebus/upgrades/5to6/transaction-configuration.md) and [Transaction support](/nservicebus/transports/transactions.md) pages.
 
 
 ### Connection factory

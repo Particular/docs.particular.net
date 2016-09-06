@@ -11,7 +11,7 @@ redirects:
  - nservicebus/ravendb/upgrades/3to4
 ---
 
-As part of this update [NServiceBus Version 6](/nservicebus/upgrades/5to6.md) will be required.
+As part of this update [NServiceBus Version 6](/nservicebus/upgrades/5to6/) will be required.
 
 
 ## Namespace changes

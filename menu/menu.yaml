@@ -51,15 +51,15 @@
             - Title: Subscriptions
               Url: "nservicebus/upgrades/5to6/subscriptions"
             - Title: "Transport Seam"
-              Url: "nservicebus/upgrades/5to6-transport-seam"
+              Url: "nservicebus/upgrades/5to6/transport-seam"
             - Title: "Deprecated TransportMessage"
               Url: "nservicebus/upgrades/5to6/deprecated-transportmessage"
             - Title: Distributor
               Url: "samples/scaleout/distributor-upgrade"
             - Title: "Feature API"
-              Url: "samples/scaleout/5to6/features"
+              Url: "nservicebus/upgrades/5to6/features"
             - Title: "Configure Type Removed"
-              Url: "samples/scaleout/5to6/configure-type"
+              Url: "nservicebus/upgrades/5to6/configure-type"
         - Title: "NServiceBus 4"
           Url: "nservicebus/upgrades/4to5"
         - Title: "NServiceBus 3"
