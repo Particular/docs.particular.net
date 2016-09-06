@@ -84,15 +84,14 @@
 
         void DisableLegacyRetriesSatellite(EndpointConfiguration endpointConfiguration)
         {
-            //TODO: remove comments whe core is upgraded
-            /**
+#pragma warning disable 618
             #region 5to6-DisableLegacyRetriesSatellite [5,6]
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.DisableLegacyRetriesSatellite();
 
             #endregion
-            **/
+#pragma warning restore 618
         }
     }
 }
