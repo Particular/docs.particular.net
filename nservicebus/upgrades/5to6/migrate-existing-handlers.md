@@ -1,6 +1,11 @@
 ---
-title: Migrate handlers/sagas to Version 6
+title: Migrate handlers and sagas to Version 6
 reviewed: 2016-08-29
+related:
+ - nservicebus/handlers
+ - nservicebus/sagas
+redirects:
+ - nservicebus/upgrades/5to6-migrate-existing-handlers
 ---
 
 In previous versions of NServiceBus, a typical handler class looks like the below:
@@ -11,7 +16,7 @@ Implement the new `IHandleMessages` interface. Remove any code that is generated
 
 snippet:5to6-handler-migration-step1
 
-Rename the bus property or the bus constructor parameter to `context`. Although the [IBus interface has been deprecated](/nservicebus/upgrades/5to6-moving-away-from-ibus.md) and can be safely removed, for this step renaming the property instead of deleting it comes in useful when refactoring existing code. It's much easier to rename all the existing references from `bus` property to `context`.
+Rename the bus property or the bus constructor parameter to `context`. Although the [IBus interface has been deprecated](moving-away-from-ibus.md) and can be safely removed, for this step renaming the property instead of deleting it comes in useful when refactoring existing code. It's much easier to rename all the existing references from `bus` property to `context`.
 
 snippet:5to6-handler-migration-step2
 

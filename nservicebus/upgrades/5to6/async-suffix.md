@@ -1,9 +1,9 @@
 ---
-title: Async Suffix
+title: No Async Suffix in Version 6
 summary: Reasoning for no Async suffix to Task based APIs
 reviewed: 2016-07-21
-related:
- - nservicebus/upgrades/5to6
+redirects:
+ - nservicebus/upgrades/5to6-async-suffix
 ---
 
 
@@ -11,11 +11,11 @@ related:
 
 Starting with NServiceBus Version 6, all APIs that contain potentially IO bound code are [Async](https://msdn.microsoft.com/en-us/library/mt674882.aspx). Some examples include:
 
- * Endpoint messaging methods such as [Send and Publish](/nservicebus/upgrades/5to6.md#message-handlers-bus-send-and-receive)
- * [Sagas and Message Handlers](/nservicebus/upgrades/5to6.md#message-handlers)
- * [Message pipeline extension points](/nservicebus/upgrades/5to6.md#pipeline-customization).
- * [Endpoint Start and Stop](/nservicebus/upgrades/5to6.md#endpoint-start-and-stop).
- * [Message mutators](/nservicebus/upgrades/5to6.md#pipeline-customization-message-mutators).
+ * Endpoint messaging methods such as [Send and Publish](/nservicebus/upgrades/5to6/#message-handlers-bus-send-and-receive)
+ * [Sagas and Message Handlers](/nservicebus/upgrades/5to6/#message-handlers)
+ * [Message pipeline extension points](/nservicebus/upgrades/5to6/#pipeline-customization).
+ * [Endpoint Start and Stop](/nservicebus/upgrades/5to6/#endpoint-start-and-stop).
+ * [Message mutators](/nservicebus/upgrades/5to6/#pipeline-customization-message-mutators).
 
 None of the above mentioned APIs have the *Async* suffix as recommended by the Microsoft convention, which states: 
 

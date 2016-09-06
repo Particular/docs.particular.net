@@ -2,6 +2,8 @@
 title: Moving away from IBus in Version 6
 reviewed: 2016-08-29
 summary: Describes how to send messages without the IBus
+redirects:
+ - nservicebus/upgrades/5to6-moving-away-from-ibus
 ---
 
 Starting with Version 6, the `IBus` interface has been deprecated.
@@ -15,7 +17,7 @@ The `IBus` interface contained numerous methods and properties. However, not all
 
 For users new to the NServiceBus API, the fact that `IBus` was available in message handlers using Dependency Injection wasn't obvious, especially when trying to send or publish messages from inside message handlers. Rather than using dependency injection, an `IMessageHandlerContext` parameter is now available in all the message handlers. This parameter exposes all of the appropriate actions to the message handler. Methods that aren't applicable will not be available making the API simpler.
 
-All of the previous `Bus` methods now available via the `IMessageHandlerContext` parameter in the message handlers and the methods in the `IMessageSession` interface available when the endpoint is started are fully async. However, the original method names are retained rather than adding the [async suffix](/nservicebus/upgrades/5to6-async-suffix.md) to make the upgrade easier.
+All of the previous `Bus` methods now available via the `IMessageHandlerContext` parameter in the message handlers and the methods in the `IMessageSession` interface available when the endpoint is started are fully async. However, the original method names are retained rather than adding the [async suffix](async-suffix.md) to make the upgrade easier.
 
 
 ## Migrating away from IBus

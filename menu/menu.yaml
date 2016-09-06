@@ -26,23 +26,45 @@
         - Title: "NServiceBus 6"
           Url: "nservicebus/upgrades/5to6"
           Articles:
-            - Title: Moving away from IBus
-              Url: "nservicebus/upgrades/5to6-moving-away-from-ibus"
-            - Title: Migrate Handlers
-              Url: "nservicebus/upgrades/5to6-migrate-existing-handlers"
+            - Title: "Moving away from IBus"
+              Url: "nservicebus/upgrades/5to6/moving-away-from-ibus"
+            - Title: "Endpoint Start and Stop"
+              Url: "nservicebus/upgrades/5to6/endpoint-start-stop"
+            - Title: Sagas
+              Url: "nservicebus/upgrades/5to6/sagas"
+            - Title: "Migrate Handlers"
+              Url: "nservicebus/upgrades/5to6/migrate-existing-handlers"
             - Title: Async Suffix
-              Url: "nservicebus/upgrades/5to6-async-suffix"
+              Url: "nservicebus/upgrades/5to6/async-suffix"
+            - Title: "Transaction configuration"
+              Url: "nservicebus/upgrades/5to6/transaction-configuration"
+            - Title: Headers
+              Url: "nservicebus/upgrades/5to6/headers"
+            - Title: Callbacks
+              Url: "nservicebus/upgrades/5to6/callbacks"
+            - Title: Messaging
+              Url: "nservicebus/upgrades/5to6/messaging"
+            - Title: Serialization
+              Url: "nservicebus/upgrades/5to6/serialization"
             - Title: Recoverability
-              Url: "nservicebus/upgrades/5to6-recoverability"
-            - Title: An endpoint using Distributor
+              Url: "nservicebus/upgrades/5to6/recoverability"
+            - Title: Subscriptions
+              Url: "nservicebus/upgrades/5to6/subscriptions"
+            - Title: "Transport Seam"
+              Url: "nservicebus/upgrades/5to6-transport-seam"
+            - Title: "Deprecated TransportMessage"
+              Url: "nservicebus/upgrades/5to6/deprecated-transportmessage"
+            - Title: Distributor
               Url: "samples/scaleout/distributor-upgrade"
+            - Title: "Feature API"
+              Url: "samples/scaleout/5to6/features"
+            - Title: "Configure Type Removed"
+              Url: "samples/scaleout/5to6/configure-type"
         - Title: "NServiceBus 4"
           Url: "nservicebus/upgrades/4to5"
         - Title: "NServiceBus 3"
           Url: "nservicebus/upgrades/3to4"
-        - Title: "Other"
-          Articles:
-            - "nservicebus/upgrades/encryption-key-identifiers"
+        - "nservicebus/upgrades/encryption-key-identifiers"
         - Title: "NServiceBus Host"
           Articles:
             - "nservicebus/upgrades/host-6to7"

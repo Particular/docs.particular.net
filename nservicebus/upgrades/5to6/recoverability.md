@@ -1,12 +1,14 @@
 ---
-title: Upgrade Version 5 to 6 - Recoverability
+title: Recoverability changes in Version 6
 reviewed: 2016-08-29
 tags:
  - upgrade
  - migration
 related:
-- nservicebus/upgrades/5to6
-- nservicebus/recoverability
+ - nservicebus/upgrades/5to6
+ - nservicebus/recoverability
+redirects:
+ - nservicebus/upgrades/5to6-recoverability
 ---
 
 ## Renaming
@@ -98,3 +100,22 @@ Once the upgrade is done the receiver can be safely [disabled](/nservicebus/reco
 ### When Creating New Endpoints using Version 6
 
 In Version 6, the only reason that the `.retries` queue exists is so that Version 5 endpoints can be migrated to Version 6 without any message loss. Any endpoints that are written purely using Version 6, can safely use the following configuration API to disable the satellite from even starting.
+
+
+## IManageMessageFailures is now obsolete.
+
+The `IManageMessageFailures` interface was the extension point to customize the handling of second level retries before a message failure is forwarded to the error queue.
+
+This same functionality and more can be achieved using the [message processing pipeline](/nservicebus/pipeline/). See also [Customizing error handling with the pipeline](/nservicebus/pipeline/customizing-error-handling.md).
+
+
+## RepeatedFailuresOverTimeCircuitBreaker has been made internal
+
+If are using `RepeatedFailuresOverTimeCircuitBreaker` instead include [the source code](https://github.com/Particular/NServiceBus/blob/5.2.5/src/NServiceBus.Core/CircuitBreakers/RepeatedFailuresOverTimeCircuitBreaker.cs) in the project.
+
+
+## [Critical Error Action](/nservicebus/hosting/critical-errors.md)
+
+The API for defining a [Critical Error Action](/nservicebus/hosting/critical-errors.md) has been changed to be a custom delegate.
+
+snippet: 5to6CriticalError
