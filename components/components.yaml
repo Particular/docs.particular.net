@@ -240,6 +240,22 @@
   NugetOrder:
     - ServiceControl
 
+- Key: ServicePulse
+  Name: ServicePulse
+  DocoUrl: servicepulse
+  Category: Other
+  ProjectUrl: https://github.com/Particular/ServicePulse
+  NugetOrder:
+    - ServicePulse
+
+- Key: ServiceInsight
+  Name: ServiceInsight
+  DocoUrl: serviceinsight
+  Category: Other
+  ProjectUrl: https://github.com/Particular/ServiceInsight
+  NugetOrder:
+    - ServiceInsight
+
 - Key: Spring
   Name: Spring Container
   DocoUrl: nservicebus/containers/spring

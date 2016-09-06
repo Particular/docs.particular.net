@@ -2,6 +2,7 @@
 title: Troubleshooting
 summary: ServicePulse installation and common issues troubleshooting
 reviewed: 2016-09-02
+component: ServicePulse
 tags:
  - ServicePulse
  - Troubleshooting
