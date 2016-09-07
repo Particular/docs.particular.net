@@ -14,7 +14,7 @@ For MSMQ, the ACL default for a queue allows Administrators full access. Switchi
 
  * `particular.servicecontrol`
  * `particular.servicecontrol.errors`
- * `particular.servicecontrol.staging` (only created from v1.6+)
+ * `particular.servicecontrol.staging` (only used in Versions 1.6 and above)
  * `particular.servicecontrol.timeouts`
  * `particular.servicecontrol.timeoutsdispatcher`
 
