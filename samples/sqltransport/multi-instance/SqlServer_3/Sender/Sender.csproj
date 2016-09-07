@@ -46,10 +46,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EndpointConnectionLookup\EndpointConnectionLookup.csproj">
-      <Project>{FFD933D2-00DF-4352-8DE2-7C9ADBC8257C}</Project>
-      <Name>EndpointConnectionLookup</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Messages\Messages.csproj">
       <Project>{a50e54fa-4ae8-4018-bba4-b8ed7748f214}</Project>
       <Name>Messages</Name>

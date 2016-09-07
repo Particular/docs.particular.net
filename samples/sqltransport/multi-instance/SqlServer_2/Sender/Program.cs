@@ -1,6 +1,7 @@
 ﻿using System;
 using Messages;
 using NServiceBus;
+using NServiceBus.Transports.SQLServer;
 
 public class Program
 {
@@ -13,8 +14,8 @@ public class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SqlServer.MultiInstanceSender");
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        transport.UseSpecificConnectionInformation(ConnectionProvider.GetConnection);
-        transport.ConnectionString(ConnectionProvider.SenderConnectionString);
+        transport.UseSpecificConnectionInformation(ConnectionInfoProvider.GetConnection);
+        transport.ConnectionString(ConnectionInfoProvider.DefaultConnectionString);
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
@@ -47,4 +48,24 @@ public class Program
         }
     }
 
+    #region SenderConnectionProvider
+
+    static class ConnectionInfoProvider
+    {
+        const string ReceiverConnectionString = @"Data Source=.\SqlExpress;Database=ReceiverCatalog;Integrated Security=True";
+        public const string DefaultConnectionString = @"Data Source=.\SqlExpress;Database=SenderCatalog;Integrated Security=True";
+
+        public static ConnectionInfo GetConnection(string transportAddress)
+        {
+            var connectionString = transportAddress.StartsWith("Samples.SqlServer.MultiInstanceReceiver")
+                ? ReceiverConnectionString
+                : DefaultConnectionString;
+
+            return ConnectionInfo
+                    .Create()
+                    .UseConnectionString(connectionString);
+        }
+    }
+
+    #endregion
 }

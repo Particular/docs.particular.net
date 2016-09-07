@@ -63,11 +63,11 @@ It receives `ClientOrder` message sent by Sender and replies to them with `Clien
 snippet:Reply
 
 
-### EndpointConnectionLookup project
+### Multi-instance connection lookup
 
-The EndpointConnectionLookup provides an open `SqlConnection` for address requested either by Sender or Receiver. Note that in Version 2 it provides connections for remote endpoints only, in Version 3 it provides connections for all endpoints.
+Both sender and receiver provide a custom lookup mechanism for providing connection information for given destination. The following snippet shows lookup logic used by Sender.
 
-snippet:ConnectionProvider
+snippet:SenderConnectionProvider
 
 
 ## How it works
