@@ -56,7 +56,7 @@
         Title: Assembly Scanning
       - Url: nservicebus/upgrades/5to6/deprecated-transportmessage
         Title: Deprecated TransportMessage
-      - Url: samples/scaleout/distributor-upgrade
+      - Url: nservicebus/upgrades/5to6/distributor
         Title: Distributor
       - Url: nservicebus/upgrades/5to6/extension-seams
         Title: Extension Seams
