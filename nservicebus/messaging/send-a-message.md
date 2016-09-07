@@ -23,6 +23,7 @@ To send a message when the bus is started:
 
 snippet:BasicSend
 
+partial:batch-sends-performance
 
 ## Inside the incoming message processing pipeline
 
