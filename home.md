@@ -116,7 +116,7 @@ span.blue {
 <div class="row">
 <div class="col-md-12 block top clearfix">
   <a href="/nservicebus/"><img src="/menu/nservicebus-icon.svg" width="47" height="47"><span class="productlink">NServiceBus</span></a>
-  <button type="button" class="btn btn-primary btn-lg pull-right" href="/nservicebus/">Documentation topics</button>
+  <a type="button" class="btn btn-primary btn-lg pull-right" href="/nservicebus/">Documentation topics</a>
 </div>
 </div>
 <div class="row">
