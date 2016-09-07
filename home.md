@@ -110,6 +110,9 @@ span.blue {
   font-weight: bold;
   padding-bottom: 7px;
 }
+.mainicon{
+  font-size: 67px;
+}
 </style>
 <div class="row">
 <div class="col-md-12 block top clearfix">
@@ -121,22 +124,22 @@ span.blue {
 <div class="col-md-12 block middle">
   <div class="ic">
     <a href="/samples/step-by-step/">
-      <img src="/home/getting-started_v1.svg" height="72" width="72"><br>Getting Started
+      <i class="glyphicon glyphicon-play mainicon"></i><br>Getting Started
     </a>
   </div>
   <div class="ic">
     <a href="http://particular.net/videos-and-presentations">
-      <img src="/home/videos_v1.svg" height="72" width="72"><br>Intro Videos
+      <i class="glyphicon glyphicon-film mainicon"></i><br>Intro Videos
     </a>
   </div>
   <div class="ic">
     <a href="https://groups.google.com/forum/#!forum/particularsoftware">
-      <img src="/home/discussion_v1.svg" height="72" width="72"/><br/>Discussion group
+      <i class="glyphicon glyphicon-user mainicon"></i><br>Discussion group
     </a>
   </div>
   <div class="ic">
     <a href="/samples/" class="rarr">
-      <img src="/home/samples_v1.svg" height="72" width="72"/><br/>Samples
+      <img src="/home/samples_v1.svg" height="72" width="72"/><br>Samples
     </a>
   </div>
 </div>
