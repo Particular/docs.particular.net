@@ -16,7 +16,7 @@ This also includes queues needed by all declared [satellites](/nservicebus/satel
 
 Refer to the scripting guidelines to take full control over queue creation:
 
-* [SqlServer](/nservicebus/sqlserver/operations-scripting#create-queues)
-* [MSMQ](/nservicebus/msmq/operations-scripting#create-queues)
-* [RabbitMQ](/nservicebus/rabbitmq/operations-scripting#create-queues)
-* [Azure ServiceBus](/nservicebus/azure-service-bus/operational-scripting)
+* [SqlServer](/nservicebus/sqlserver/operations-scripting.md#create-queues)
+* [MSMQ](/nservicebus/msmq/operations-scripting.md#create-queues)
+* [RabbitMQ](/nservicebus/rabbitmq/operations-scripting.md#create-queues)
+* [Azure ServiceBus](/nservicebus/azure-service-bus/operational-scripting.md)
