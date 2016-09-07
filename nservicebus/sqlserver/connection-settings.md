@@ -1,6 +1,6 @@
 ---
 title: SQL Server Transport Connection Settings
-reviewed: 2016-08-31
+reviewed: 2016-09-07
 component: SqlServer
 tags:
  - SQL Server
@@ -10,7 +10,7 @@ redirects:
 ---
 
 
-The SQL Server transport is built on top of ADO.NET and will use connection pooling. This may result in the connection pool being shared by the transport and other parts of the endpoint process. Depending on the situation it might be necessary to adjust the default connection pool size. See also [SQL Server Connection Pooling and Configuration](https://msdn.microsoft.com/en-us/library/8xx3tyca.aspx).
+The SQL Server transport is built on top of [ADO.NET](https://msdn.microsoft.com/en-us/library/e80y5yhx.aspx) and will use connection pooling. This may result in the connection pool being shared by the transport and other parts of the endpoint process. Depending on the situation it might be necessary to adjust the default connection pool size. See also [SQL Server Connection Pooling and Configuration](https://msdn.microsoft.com/en-us/library/8xx3tyca.aspx).
 
 
 ## Connection configuration
@@ -38,7 +38,7 @@ By using the `ConnectionStringName` extension method:
 
 snippet:sqlserver-named-connection-string
 
-combined with a named connection in the `connectionStrings` node of the `app.config` file:
+Combined this with a named connection in the `connectionStrings` node of the `app.config` file:
 
 snippet:sqlserver-named-connection-string-xml
 
@@ -69,32 +69,36 @@ partial: multiple-appconfig
 
 ## Custom database schemas
 
-The default schema in SQL Server transport is `dbo`.
-The schema for the specific endpoint can be configured using `DefaultSchema` method:
+SQL Server transport uses `dbo` as a default schema. Default schema is used for every queue if no other schema is explicitly provided in transport address. That includes all local queues, error, audit and remote queues of other endpoints.
+
+In SQL Server default schema can be overridden using `DefaultSchema` method:
 
 snippet:sqlserver-non-standard-schema
 
 partial: custom-schema
 
 
-## Multiple custom schemas
+## Custom schema per destination
 
-If the endpoints are configured to use a different schema, then additional configuration is required for proper message routing:
+If different schemas should be used for different destinations, then additional configuration is required:
 
- * The sending endpoint needs to know the schema information of the receiving endpoint.
+ * The sending endpoint needs to know the custom schema of the receiving endpoint's input queue.
+ * The sending endpoint needs to know the custom schema of infrastructural queues e.g. error.
  * The subscriber will need the schema information of the publisher, in order to send subscription request.
  * In Versions 2.1.x to 2.x publisher also needs to know the schema of every subscriber. The same applies to sending reply messages using `ReplyTo()` or callbacks.
 
-The schema for another endpoint can be specified in the following ways:
+The schema for an endpoint can be specified in the following way:
 
-partial:multischema-config-push
+snippet: sqlserver-multischema-config-for-endpoint
 
-snippet:sqlserver-multischema-config-pull
+The schema for a given queue can be specifed in the following way:
+
+snippet:sqlserver-multischema-config-for-queue
 
 snippet:sqlserver-non-standard-schema-messagemapping
 
-Notice that in Versions 3 and higher the table and schema names can be passed either using common convention with square brackets, or without them. 
- 
+partial: multi-schema-config-notes
+
 
 ## Custom SQL Server transport connection factory
 
