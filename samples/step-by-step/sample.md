@@ -83,7 +83,7 @@ In the `Client`, `Server`, and `Subscriber` projects, add a reference to the `Sh
 
 #### Add the NServiceBus NuGet package
 
-Install the NServiceBus NuGet package (https://www.nuget.org/packages/NServiceBus) in all projects.
+Install the [NServiceBus NuGet package](https://www.nuget.org/packages/NServiceBus) in all projects.
 
 
 ## Defining messages
