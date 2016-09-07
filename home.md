@@ -116,7 +116,10 @@ span.blue {
 <div class="row">
 <div class="col-md-12 block top clearfix">
   <a href="/nservicebus/"><img src="/menu/nservicebus-icon.svg" width="47" height="47"><span class="productlink">NServiceBus</span></a>
-  <a type="button" class="btn btn-primary btn-lg pull-right" href="/nservicebus/">Documentation topics</a>
+  <span class="pull-right">
+    <a class="btn btn-info btn-lg" href="https://github.com/Particular/docs.particular.net/issues/new" target="_blank"><em class="glyphicon glyphicon-comment"></em>Feedback</a>
+    <a type="button" class="btn btn-primary btn-lg" href="/nservicebus/">Documentation topics</a>
+  </span>
 </div>
 </div>
 <div class="row">
