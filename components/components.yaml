@@ -236,6 +236,7 @@
   Name: ServiceControl
   DocoUrl: servicecontrol
   Category: Other
+  UsesNuget: false
   ProjectUrl: https://github.com/Particular/ServiceControl
   NugetOrder:
     - ServiceControl
@@ -244,6 +245,7 @@
   Name: ServicePulse
   DocoUrl: servicepulse
   Category: Other
+  UsesNuget: false
   ProjectUrl: https://github.com/Particular/ServicePulse
   NugetOrder:
     - ServicePulse
@@ -252,6 +254,7 @@
   Name: ServiceInsight
   DocoUrl: serviceinsight
   Category: Other
+  UsesNuget: false
   ProjectUrl: https://github.com/Particular/ServiceInsight
   NugetOrder:
     - ServiceInsight

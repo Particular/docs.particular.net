@@ -30,5 +30,9 @@ Change the value after `--url=` and restart the service.
 
 ServicePulse is configured to connect to the ServiceControl REST API. To specify the URL to connect do  the following
 
+Note: Ensure Version 1.3 or above is being used.
 
-partial: steps
+ * Go to the installation directory for ServicePulse. Typically this is `C:\Program Files (x86)\Particular Software\ServicePulse\`
+ * Go to the `app\js` directory and edit `app.constants.js`
+ * If there are any `*.js` in the `app` directory delete them
+ * Change the value of the url after `service_control_url`
