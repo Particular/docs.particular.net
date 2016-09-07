@@ -1,27 +1,4 @@
 <style>
-.small.button {
-  line-height: 45px;
-  font-size: 16px;
-  padding-left: 15px;
-  font-family: 'Lato', Bold;
-  display: inline-block;
-}
-.small.button a {
-  display: block;
-  color: white;
-  line-height: 45px;
-  width: 215px;
-  background-color: #00a3c4;
-  border-bottom: 5px solid #0071a0;
-  clear: both;
-  text-align: center;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-weight: 700;
-}
-.small.button a:hover {
-  background-color: #03AFF8;
-}
 .block.black a,
 .block.middle a,
 .productcolumn a {
@@ -32,7 +9,6 @@
   background-color: rgb(233, 240, 242);
   padding: 21px;
   margin-bottom: 2px;
-  font-family: 'Lato';
   display: inline-block;
 }
 .block.top img,
@@ -41,11 +17,6 @@
 }
 .block.black img {
   float: inherit;
-}
-.block.top .button {
-  float: right;
-  width: 225px;
-  font-size: 15px;
 }
 .block.middle .ic {
   min-width: 25%;
@@ -90,7 +61,6 @@ span.blue {
 }
 .block h4 {
   font-size: 16px !important;
-  font-family: 'Dosis', bold;
   font-weight: bold;
   margin-top: 0px;
 }
@@ -135,11 +105,9 @@ span.blue {
 }
 </style>
 <div class="row">
-<div class="col-md-12 block top">
+<div class="col-md-12 block top clearfix">
   <a href="/nservicebus/"><img src="/home/nservicebus_v1.svg"  width="208" height="47"></a>
-  <div class="small button">
-    <a class="blue" href="/nservicebus/">Documentation topics</a>
-  </div>
+  <button type="button" class="btn btn-primary btn-lg pull-right" href="/nservicebus/">Documentation topics</button>
 </div>
 </div>
 <div class="row">
