@@ -1,4 +1,11 @@
 <style>
+.productlink {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin: 8px;
+    display: inline-block;
+}
 .block.black a,
 .block.middle a,
 .productcolumn a {
@@ -106,7 +113,7 @@ span.blue {
 </style>
 <div class="row">
 <div class="col-md-12 block top clearfix">
-  <a href="/nservicebus/"><img src="/home/nservicebus_v1.svg"  width="208" height="47"></a>
+  <a href="/nservicebus/"><img src="/menu/nservicebus-icon.svg" width="47" height="47"><span class="productlink">NServiceBus</span></a>
   <button type="button" class="btn btn-primary btn-lg pull-right" href="/nservicebus/">Documentation topics</button>
 </div>
 </div>
@@ -191,25 +198,19 @@ span.blue {
 <div class="row">
 <div class="productcolumn header">
   <div class="block top">
-    <a href="/serviceinsight/">
-      <img src="/home/serviceinsight_v1.svg" width="219" height="47"/>
-    </a>
+    <a href="/serviceinsight/"><img src="/menu/serviceinsight-icon.svg" width="47" height="47"><span class="productlink">ServiceInsight</span></a>
     <div style="clear: both"></div>
   </div>
 </div>
 <div class="productcolumn header">
   <div class="block top">
-    <a href="/servicecontrol/">
-      <img src="/home/servicecontrol_v1.svg" width="219" height="47"/>
-    </a>
+    <a href="/servicecontrol/"><img src="/menu/servicecontrol-icon.svg" width="47" height="47"><span class="productlink">ServiceControl</span></a>
     <div style="clear: both"></div>
   </div>
 </div>
 <div class="productcolumn header last">
   <div class="block top">
-    <a href="/servicepulse/">
-      <img src="/home/servicepulse_v1.svg" width="219" height="47"/>
-    </a>
+    <a href="/servicepulse/"><img src="/menu/servicepulse-icon.svg" width="47" height="47"><span class="productlink">ServicePulse</span></a>
     <div style="clear: both"></div>
   </div>
 </div>
