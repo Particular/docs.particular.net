@@ -9,8 +9,13 @@ redirects:
  - nservicebus/sqlserver/configuration
 ---
 
+## Using connection pool
 
-The SQL Server transport is built on top of [ADO.NET](https://msdn.microsoft.com/en-us/library/e80y5yhx.aspx) and will use connection pooling. This may result in the connection pool being shared by the transport and other parts of the endpoint process. Depending on the situation it might be necessary to adjust the default connection pool size. See also [SQL Server Connection Pooling and Configuration](https://msdn.microsoft.com/en-us/library/8xx3tyca.aspx).
+The SQL Server transport is built on top of [ADO.NET](https://msdn.microsoft.com/en-us/library/e80y5yhx.aspx) and will use connection pooling. This may result in the connection pool being shared by the transport, as well as other parts of the endpoint process and the business logic. 
+
+In scenarios where the default concurrent message processing is changed or the database connection is used for other purposes as mentioned above, in  it is advisable to tweak the connection pool size to ensure that the pool won't run out of connections. See also [SQL Server Connection Pooling and Configuration](https://msdn.microsoft.com/en-us/library/8xx3tyca.aspx).
+
+Note that on NServiceBus Version 6 the default level of concurrency is based on the number of logical processors and as such, if the pool size is not explicitly set on the connection string a warning message will be logged. See also [Tuning endpoint message processing](/nservicebus/operations/tuning.md) 
 
 
 ## Connection configuration
