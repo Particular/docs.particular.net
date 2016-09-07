@@ -14,7 +14,7 @@ NServiceBus will automatically request the transport to create queues needed if 
 
 This also includes queues needed by all declared [satellites](/nservicebus/satellites).
 
-Please refer to the scripting guidelines to take full control over queue creation:
+Refer to the scripting guidelines to take full control over queue creation:
 
 * [SqlServer](/nservicebus/sqlserver/operations-scripting#create-queues)
 * [MSMQ](/nservicebus/msmq/operations-scripting#create-queues)
