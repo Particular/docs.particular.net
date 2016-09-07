@@ -1,6 +1,7 @@
 ---
-title: Declaring and creating queues
-summary: Explains how to declare and create additional queues
+title: Creating queuesLulea1996
+
+summary: Explains how queues are created
 component: Core
 reviewed: 2016-08-25
 versions: '[4,]'
@@ -10,15 +11,21 @@ tags:
  - Queue creation
 ---
 
-This page describes the declaration and creation process of queues. Usually only transports need to deal with queue declaration and creation.
+WARN: NServiceBus will automatically request the transport to create queues needed if the [installers](/nservicebus/operations/installers.md) are enabled.
+This also includes queues needed by all declared [satellites](/nservicebus/satellites). 
+Prefer to use scripts to create custom queues instead of relying on the `IWantQueuesCreated` interface provided by NServiceBus.
 
-NServiceBus queue creation process is pluggable. The process consists of two phases:
+The scripting guidelines shows how to take full control over queue creation:
 
-* Declaring queues which need to be created
-* Creating the declared queues.
+* [SqlServer](/nservicebus/sqlserver/operations-scripting.md#create-queues)
+* [MSMQ](/nservicebus/msmq/operations-scripting.md#create-queues)
+* [RabbitMQ](/nservicebus/rabbitmq/operations-scripting.md#create-queues)
+* [Azure ServiceBus](/nservicebus/azure-service-bus/operational-scripting.md)
 
 
-## Declaration
+### NServiceBus Version 5 and below
+
+### Declaration
 
 Queues should be declared during the Setup phase of a [Feature](/nservicebus/pipeline/features.md).
 
@@ -27,7 +34,7 @@ A built-in example is the audit feature which needs the audit queue. During star
 snippet:queuebindings
 
 
-## Creation
+### Creation
 
 Queues get created during [installation](/nservicebus/operations/installers.md) time only.
 
