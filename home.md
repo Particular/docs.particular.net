@@ -31,7 +31,6 @@
   text-align: center;
   font-size: 18px;
   font-weight: bold;
-  line-height: 50px;
   color: rgb(0, 114, 156);
 }
 .block.black {
