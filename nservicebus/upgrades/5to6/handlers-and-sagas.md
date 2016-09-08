@@ -107,6 +107,8 @@ snippet:5to6-ConfigureHowToFindSaga
 
 Version 6 automatically correlates incoming message properties to its saga data counterparts. Any saga data correlation in the message handler code can be safely removed. Correlated properties (for existing saga instances) will not be changed once set.
 
+NOTE: NServiceBus will no longer allow a correlated property to have a null/default value. Use a custom finder for the relevant message to override this validation.
+
 snippet:5to6-NoSagaDataCorrelationNeeded
 
 Version 6 will only support correlating messages to a single saga property. Correlating on more than one property is still supported by creating a custom [saga finder](/nservicebus/sagas/saga-finding.md).
