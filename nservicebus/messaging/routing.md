@@ -47,7 +47,7 @@ NOTE: For backwards compatibility a `Messages` attribute can be used instead of 
 
 snippet:endpoint-mapping-appconfig
 
-The per-namespace routes override assembly-level routes and the per-type routes override both namespace and assembly routes.
+The per-namespace routes override assembly-level routes and the per-type routes override both namespace and assembly routes. 
 
 
 ### Overriding the destination
@@ -65,13 +65,15 @@ Events can be received by multiple logical endpoints, however even in case of sc
 Some transports support Publish-Subscribe pattern natively. In this case the subscriber uses the APIs of the transport to create a route for a given subscribed message type.
 
 
-### Emulated
+### Message-driven
 
 Other transports do not support Publish-Subscribe natively. These transports emulate the publish behavior by sending message to each subscriber directly. To do this, the publisher endpoint has to know it's subscribers and subscribers have to notify the publisher about their interest in a given event type. The notification message (known as *subscribe* message) has to be routed to the publisher.
 
 partial:events
 
 In the `UnicastBusConfig/MessageEndpointMappings` configuration section publishers are registered in the same way as the command destinations are defined. If a given assembly or namespace contains both events and commands, the mapping will recognize that fact and configure the routing correctly (both commands and subscribe messages will be routed to the destination specified in `Endpoint` attribute).
+
+`MessageEndpointMappings` routing configuration can take advantage of message inheritence: base types "inherit" routes from the derived types (opposite to member inheritence in .NET). If both `EventOne` and `EventTwo` inherit from `BaseEvent`, when subscribing to `BaseEvent` the subscription messages are sent to publishers of both `EventOne` and `EventTwo`.
 
 
 ## Reply routing
