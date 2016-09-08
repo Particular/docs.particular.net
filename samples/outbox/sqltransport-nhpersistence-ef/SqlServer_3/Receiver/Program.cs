@@ -36,6 +36,10 @@ class Program
         #region ReceiverConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+
+        transport.Routing().RouteToEndpoint(typeof(OrderAccepted).Assembly, "Samples.SQLNHibernateOutboxEF.Sender");
+        transport.Routing().RegisterPublisher(typeof(OrderAccepted).Assembly, "Samples.SQLNHibernateOutboxEF.Sender");
+
         transport.DefaultSchema("receiver");
 
         transport.UseSchemaForEndpoint("Samples.SQLNHibernateOutboxEF.Sender", "sender");

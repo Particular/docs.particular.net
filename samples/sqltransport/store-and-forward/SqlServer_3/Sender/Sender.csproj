@@ -30,8 +30,9 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-rc0001\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Transport.SQLServer">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.SqlServer.3.0.0-beta0007\lib\net452\NServiceBus.Transport.SQLServer.dll</HintPath>
+    <Reference Include="NServiceBus.Transport.SQLServer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.SqlServer.3.0.0-rc0001\lib\net452\NServiceBus.Transport.SQLServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
