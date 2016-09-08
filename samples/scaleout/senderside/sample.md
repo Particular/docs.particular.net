@@ -50,14 +50,14 @@ Contains message definitions shared by the server and the clients.
 
 ### Unaware client
 
-This project contains code for a client which is not aware of specific scale out design of the server. The client specifies only the logical routing:
+This project contains code for a client which is not aware of specific scale out design of the server. The client specifies only the logical routing as shown below:
 
 snippet:Logical-Routing
 
 
 ### Aware client
 
-In addition to the logical routing, the scale out-aware client uses a [instance mapping file](/nservicebus/msmq/routing.md) to tell NServiceBus about the specific instances of the Server:
+In addition to the logical routing, the scale out-aware client uses an [instance mapping file](/nservicebus/msmq/routing.md) to tell NServiceBus about the specific instances of the server. This is done as shown below:
 
 snippet:File-Based-Routing
 
@@ -73,9 +73,9 @@ Start the solution with all the console applications (`Server1`, `Server2`, `Una
 
 Go to the `UnawareClient` console an press enter a few times. `Message received.` will printed out on `Server1` and `Server2` consoles. These messages seem to be routed randomly to either of the servers and there are cases when a number of consecutive messages end up in a single server (consequence of randomness). This is because the unaware client uses the queue shared by both servers and the message is processed by the first one that retrieves it from the underlying queue.
 
-NOTE: The competing consumers scale out approach only works with all scaled out receivers running on the same machine.
+WARN: The competing consumers scale out approach only works with all scaled out receivers running on the same machine.
 
 
 ### Round robin
 
-Now go to the `AwareClient` console and, again, press enter a few times. `Message received.` messages show up alternately in `Server1` and `Server2` windows. This is because the client is responsible for the distribution and sends its messages to the configured instance-specific queues using [sender-side distribution](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md)
+In the `AwareClient` console, press enter a few times to generate message load. This results in both the `Server1` and `Server2` consoles processing the generated message load in an alternating fashion. This is because, the messages are sent in a round-robin fashion to `Server1` and `Server2` by the client using the [sender-side distribution feature](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md).
