@@ -26,8 +26,8 @@
             recoverability.Delayed(
                 delayed =>
                 {
-                    var retries = delayed.NumberOfRetries(2);
-                    retries.TimeIncrease(TimeSpan.FromMinutes(5));
+                    delayed.NumberOfRetries(2);
+                    delayed.TimeIncrease(TimeSpan.FromMinutes(5));
                 });
             #endregion
         }
