@@ -237,9 +237,7 @@
     - Url: nservicebus/handlers/async-handlers
       Title: Asynchronous Handlers
     - Url: nservicebus/sagas/reply-replaytooriginator-differences
-      Title: Reply and ReplyToOriginator differences.
-    - Url: nservicebus/persistence
-      Title: Persistence In NServiceBus
+      Title: Reply and ReplyToOriginator differences
   - Url: nservicebus/recoverability
     Title: Recoverability
     Articles:
