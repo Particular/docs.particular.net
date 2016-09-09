@@ -37,7 +37,7 @@ using a custom partitionining strategy, named replicated partitioning strategy, 
 
 ## Subscriber
 
-`Subscriber` subscribes to only one of the namespaces (it will ask which one) using the default `SingleNamespacePartitioningStrategy` and handles `SomeEvent`. 
+There are 2 identical instances of `Subscriber`, each instance subscribes to only one of the namespaces using the default `SingleNamespacePartitioningStrategy` and handles `SomeEvent`. 
 
 ### Creating a custom partitioning strategy
 

@@ -136,6 +136,9 @@ In order to allow configuration of the custom namespace partitioning strategy it
 
 snippet:custom-namespace-partitioning-strategy-extension
 
+#### Example custom partitioning strategy
+
+The [custom partitioning sample](/samples/azure/custom-partitioning-asb/) shows a more concrete implementation of a partitioning strategy, it replicates messages across multiple namespaces.
 
 ### Composition
 
