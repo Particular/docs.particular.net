@@ -98,25 +98,7 @@ WARNING: The values of `BatchSize` , `DegreeOfParallelism`, `Concurrency`, [Serv
 
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify the endpoint name and select a scale-out option.
 
-Parameters' values can be configured in the following ways:
-
-
-### Via the configuration API
-
-In Versions 7 and below the default settings can be overridden only using configuration API:
-
-snippet:AzureStorageQueueConfigCodeOnly
-
-
-### Via the App.Config
-
-In Versions 5 and 6 all settings can be overridden by adding to the `web.config` or the `app.config` files a configuration section called `AzureQueueConfig`:
-
-snippet:AzureStorageQueueConfig
-
-Note that the connection string can be also configured by specifying a value for connection string called `NServiceBus/Transport`, however this value will be overridden if another is provided in `AzureServiceBusQueueConfig`:
-
-snippet: AzureStorageQueueConnectionStringFromAppConfig
+partial:config
 
 
 ## Connection strings
