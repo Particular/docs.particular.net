@@ -52,7 +52,7 @@ After addressing the root cause of the message's processing failure, resend the 
 
 To retry a failed message, select the failed message(s) in the failed messages list and click the "Retry Selected" button (or click "Retry Group").
 
-A message that is sent for retry is marked as such, and is not displayed in the failed message list or included in failed message groups, unless the reprocessing fails again.
+A message that is sent for retry is marked as such, and is not displayed in the failed message list or included in failed message groups, unless the reprocessing fails again. Messages sent for retry appear in the [Pending Retries screen](intro-pending-retries.md) until either an audit message is received indicating success, the message is returned as an error, or the message is manually marked as resolved.
 
 If a message fails repeated retry attempts, an indication is added, including the number of times it has failed.
 
