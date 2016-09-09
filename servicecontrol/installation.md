@@ -14,7 +14,7 @@ The ServiceControl installation file consists of an embedded MSI bootstrapper EX
 
 The ServiceControl Installation has the following prerequisites:
 
- 1. [Microsoft .Net 4.5 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=30653)
+ * [Microsoft .Net 4.5 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=30653)
 
 If ServiceControl is installed via the Particular Software Platform Installer then the installation and configuration of these prerequisites are managed bu the installer.
 
