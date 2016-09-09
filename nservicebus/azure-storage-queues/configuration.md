@@ -46,6 +46,7 @@ Defaults: `false`, i.e. messages are not removed when endpoint starts.
 
 Versions: 6 and below
 
+
 #### MessageInvisibleTime
 
 The [visibilitytimeout mechanism](https://msdn.microsoft.com/en-us/library/azure/dd179474.aspx), supported by Azure Storage Queues, causes the message to become *invisible* after read for a specified period of time. If the processing unit fails to delete the message in the specified time, the message will reappear on the queue. Then another process can retry the message.
@@ -78,7 +79,9 @@ The number of parallel receive operations that the transport is issuing against 
 
 Defaults: In Versions 7 and above the value is dynamically calculated based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
 
-`Degree of parallelism = square root of MaxConcurrency (rounded)`
+```no-highlight
+Degree of parallelism = square root of MaxConcurrency (rounded)
+```
 
 |`MaxConcurrency` | `DegreeOfReceiveParallelism` |
 | :-: |:-:|
@@ -113,4 +116,4 @@ partial: aliasesAndHashing
 
 ## Serialization
 
-Azure Storage Queues Transport changes the default serializer choice to JSON. The serializer can be changed using the [serialization API](/nservicebus/serialization).
+Azure Storage Queues Transport changes the default serializer to JSON. The serializer can be changed using the [serialization API](/nservicebus/serialization).
