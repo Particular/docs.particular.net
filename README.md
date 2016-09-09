@@ -67,7 +67,7 @@ Use a dash (`-`) to delimit filenames (e.g. `specify-endpoint-name.md`).
 
 Each document has a header. It is enclosed by `---` and is defined in a [YAML](https://en.wikipedia.org/wiki/YAML) document format.
 
-The GitHub  UI will [correctly render YAML](https://github.com/blog/1647-viewing-yaml-metadata-in-your-documents).
+The GitHub UI will [correctly render YAML](https://github.com/blog/1647-viewing-yaml-metadata-in-your-documents).
 
 For example:
 
@@ -130,6 +130,7 @@ tags:
 - Auditing
 - Forwarding Messages
 ```
+
 Optional. Used to flag the article as being part of a group of articles.
 
 Tags are rendered in the articles content with the full list of tags being rendered at [http://docs.particular.net/tags](http://docs.particular.net/tags). Untagged articles will be rendered here [http://docs.particular.net/tags/untagged](http://docs.particular.net/tags/untagged)
@@ -255,6 +256,31 @@ Callbacks: NServiceBus.Callbacks
 The menu is a YAML text document stored at [menu/menu.yaml](menu/menu.yaml).
 
 Any sub-items that are prefixed with the title of the parent item will have that prefix removed
+
+Example content:
+
+```
+- Name: NServiceBus
+  Topics:
+  - Url: platform
+    Title: Getting Started
+    Articles:
+    - Url: platform
+      Title: Particular Service Platform Overview
+    - Title: NServiceBus Overview
+      Articles:
+      - Url: nservicebus/architecture/principles
+        Title: Architectural Principles
+      - Url: nservicebus/architecture
+        Title: Bus versus broker architecture
+```
+
+Conventions:
+
+ * Top level items the `Name` is used for the URL.
+ * `Title` is required for all nodes other than top level.
+ * Maximum of 4 levels deep.
+ * URL is optional. if it does not exist it will render as an expandable node.
 
 
 ## URLs
