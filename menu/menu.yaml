@@ -1,7 +1,6 @@
 - Name: NServiceBus
   Topics:
-  - Url: platform
-    Title: Getting Started
+  - Title: Getting Started
     Articles:
     - Url: platform
       Title: Particular Service Platform Overview
