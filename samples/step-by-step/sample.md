@@ -50,14 +50,14 @@ To enable MSMQ on Windows 8.x or 10 run the following command on the command lin
 DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server
 ```
 
-For other windows versions see [MSMQ Transport / Configuration](/nservicebus/msmq/#nservicebus-configuration).
+For other Windows versions see [MSMQ Transport / Configuration](/nservicebus/msmq/#nservicebus-configuration).
 
 
 ## Project structure
 
 The finished solution will contain four projects. Create a new Visual Studio solution containing the following:
 
-Note: Ensure .net 4.5.2 is selected as the [target framework](https://msdn.microsoft.com/en-us/library/bb398202.aspx).
+Note: Ensure .NET 4.5.2 is selected as the [target framework](https://msdn.microsoft.com/en-us/library/bb398202.aspx).
 
  * A Console Application named `Client`
  * A Console Application named `Server`
