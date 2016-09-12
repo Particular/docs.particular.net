@@ -47,7 +47,7 @@ The Failed Messages tab allows inspection of failed messages in more detail and 
 
 Endpoints health monitoring ensures that the endpoint is functional, meaning it can receive, process and send messages. However, in some situations the system's operation might depend on other factors, such as a 3rd party webservice.
 
-ServicePulse allows for developing Custom and Period Checks that can verify any required condition using custom .net code. If the specified condition cannot satisfied, ServicePulse will raise alerts.
+ServicePulse allows for developing Custom and Period Checks that can verify any required condition using custom .NET code. If the specified condition cannot satisfied, ServicePulse will raise alerts.
 
 **Learn more:**
 
