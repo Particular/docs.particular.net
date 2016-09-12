@@ -3,7 +3,7 @@ title: Deprecated Distributor in Version 6
 tags:
  - upgrade
  - migration
- related:
+related:
  - samples/scaleout/distributor-upgrade
 ---
 
