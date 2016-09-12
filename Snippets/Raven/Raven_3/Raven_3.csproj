@@ -26,7 +26,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\packages\NServiceBus.5.2.15\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.5.2.16\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
       <HintPath>..\..\..\packages\NServiceBus.RavenDB.3.0.10\lib\net45\NServiceBus.RavenDB.dll</HintPath>

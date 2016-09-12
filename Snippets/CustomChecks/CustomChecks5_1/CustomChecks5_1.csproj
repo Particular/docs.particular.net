@@ -26,7 +26,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\packages\NServiceBus.5.2.15\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.5.2.16\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.Plugin.Nsb5.CustomChecks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\ServiceControl.Plugin.Nsb5.CustomChecks.1.0.1\lib\net45\ServiceControl.Plugin.Nsb5.CustomChecks.dll</HintPath>
