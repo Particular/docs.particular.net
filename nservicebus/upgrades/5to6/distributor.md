@@ -7,7 +7,7 @@ tags:
  - samples/scaleout/distributor-upgrade
 ---
 
-The [distributor](/nservicebus/scalability-and-ha/distributor.md) has been deprecated and replaced by [sender-side distribution]((/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md)) with NServiceBus Version 6.
+The [distributor](/nservicebus/scalability-and-ha/distributor.md) has been deprecated and replaced by [sender-side distribution](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md) with NServiceBus Version 6.
 
 ## Client-side distribution
 
@@ -59,6 +59,7 @@ This process requires all endpoints communicating with the Distributor to be shu
 ## Upgrade steps
 
 ### Upgrade endpoint to Version 6
+
 * Remove the `NServiceBus.Distributor.MSMQ` package.
 * Remove Distributor specific configuration options.
   * Remove the `MasterNodeConfig` section from the application configuration file.
