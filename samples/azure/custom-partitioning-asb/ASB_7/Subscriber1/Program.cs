@@ -11,7 +11,7 @@ class Program
 
     static async Task MainAsync()
     {
-        Console.Title = "Samples.ASB.Partitioning.Subscriber";
+        Console.Title = "Samples.ASB.Partitioning.Subscriber with AzureServiceBus.ConnectionString1";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Partitioning.Subscriber");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString1");
