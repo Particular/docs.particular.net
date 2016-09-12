@@ -129,7 +129,7 @@ snippet: BatchedDispatchHandler
 
 #### Immediate dispatch
 
-[Immediate dispatch](/nservicebus/messaging/send-a-message.md#immediate-dispatch) means outgoing message operations will be immediately dispatched to the transport of choice. For immediate dispatch operations, it might make sense execute them concurrently like shown below.
+[Immediate dispatch](/nservicebus/messaging/send-a-message.md#immediate-dispatch) means outgoing message operations will be immediately dispatched to the underlying transport. For immediate dispatch operations, it might make sense execute them concurrently like shown below.
 
 snippet: ImmediateDispatchHandler
 
