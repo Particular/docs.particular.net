@@ -164,7 +164,7 @@
     - Url: nservicebus/endpoints/specify-endpoint-name
       Title: Specify Endpoint Name
     - Url: nservicebus/messaging/routing
-      Title: Message routing
+      Title: Routing
     - Url: nservicebus/messaging/routing-extensibility
       Title: Routing system extensibility points
     - Url: nservicebus/messaging/unobtrusive-mode
