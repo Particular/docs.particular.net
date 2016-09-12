@@ -107,7 +107,11 @@ snippet:5to6-ConfigureHowToFindSaga
 
 Version 6 automatically correlates incoming message properties to its saga data counterparts. Any saga data correlation in the message handler code can be safely removed. Correlated properties (for existing saga instances) will not be changed once set.
 
-NOTE: NServiceBus will no longer allow a correlated property to have a null/default value. Use a custom finder for the relevant message to override this validation.
+NOTE: Correlated properties must have a non [null/default value](https://msdn.microsoft.com/en-us/library/83fhsxwc.aspx) assigned when the saga is persisted. 
+If not the following exception will be thrown: 
+`We detected that the correlated property 'MyPropery' on saga 'MySaga' does not have a value'.
+All correlated properties must have a non null or empty value assigned to them when a new saga instance is created.`
+Use a custom finder for the received message to override this validation.
 
 snippet:5to6-NoSagaDataCorrelationNeeded
 
