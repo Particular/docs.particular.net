@@ -1,38 +1,31 @@
 ﻿namespace Core6.Pipeline
 {
     using NServiceBus;
-    using NServiceBus.Pipeline;
+    using NServiceBus.Features;
 
-    #region NewPipelineStep
-
-    class NewPipelineStep :
-        RegisterStep
+    class BehaviorRegistration
     {
-        public NewPipelineStep()
-            : base(
-                stepId: "NewPipelineStep",
-                behavior: typeof(SampleBehavior),
-                description: "Logs a warning when processing takes too long")
+        void Configure(EndpointConfiguration endpointConfiguration)
         {
+            #region RegisterBehaviorEndpointConfiguration
+
+            endpointConfiguration.Pipeline.Register(new SampleBehavior(), "Logs a warning when processing takes too long");
+
+            #endregion
         }
     }
 
-    #endregion
-
-    #region AddPipelineStep
-
-    class NewPipelineStepRegistration :
-        INeedInitialization
+    class FeatureWithBehavior : Feature
     {
-        public void Customize(EndpointConfiguration endpointConfiguration)
-        {
-            // Register the new step in the pipeline
-            var pipeline = endpointConfiguration.Pipeline;
-            pipeline.Register<NewPipelineStep>();
-        }
-    }
+        #region RegisterBehaviorFromFeature
 
-    #endregion
+        protected override void Setup(FeatureConfigurationContext context)
+        {
+            context.Pipeline.Register(new SampleBehavior(), "Logs a warning when processing takes too long");
+        }
+
+        #endregion
+    }
 
     #region ReplacePipelineStep
 
