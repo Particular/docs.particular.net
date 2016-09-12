@@ -30,7 +30,7 @@ public class ReplicatedNamespacePartitioningStrategy : INamespacePartitioningStr
         return namespaces.Select(
             selector: namespaceInfo =>
             {
-                Console.WriteLine($"Choosing namespace {namespaceInfo.Alias} ({namespaceInfo.ConnectionString})");
+                log.Info($"Choosing namespace {namespaceInfo.Alias} ({namespaceInfo.ConnectionString})");
                 return new RuntimeNamespaceInfo(
                     alias: namespaceInfo.Alias,
                     connectionString: namespaceInfo.ConnectionString,
