@@ -27,17 +27,24 @@ class Program
         transport.UseTopology<ForwardingTopology>();
 
         #region CustomPartitioning
+
         var namespacePartitioning = transport.NamespacePartitioning();
         namespacePartitioning.AddNamespace("namespace1", connectionString1);
         namespacePartitioning.AddNamespace("namespace2", connectionString2);
         namespacePartitioning.UseStrategy<ReplicatedNamespacePartitioningStrategy>();
+
         #endregion
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.Recoverability().Delayed(settings => settings.NumberOfRetries(0));
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Delayed(
+            customizations: settings =>
+            {
+                settings.NumberOfRetries(0);
+            });
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

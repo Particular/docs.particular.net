@@ -6,12 +6,10 @@ tags:
 ---
 
 
-## Physical Addressing Logic
-
 One of the responsibilities of the transport is determining the names and physical location of entities in the underlying physical infrastructure. This is achieved by turning logical endpoint names into physical addresses of the Azure Service Bus entities, which is called *Physical Addressing Logic*.
 
 
-### Versions 6 and below
+## Versions 6 and below
 
 In Versions 6 and below, the *Physical Addressing Logic* implementation made a number of implicit assumptions regarding names, such as length limitations, legal characters, differences between paths and names, etc. There was no way to explicitly control those settings, and over time subtle variations started to show up.
 
@@ -20,12 +18,12 @@ For example `Mixed` namespaces allowed paths and names to have up to 290 charact
 To mitigate these changes, the transport started to expose certain checks as lambda expressions, which became collectively known as the [Naming Conventions](/nservicebus/azure-service-bus/naming-conventions.md).
 
 
-### Versions 7 and above
+## Versions 7 and above
 
 In Versions 7 and above the configuration API allows to modify all behaviors and assumptions related to the addressing logic. This article will mainly focus on describing the different aspects of the addressing logic and will show how to replace parts if further changes should occur, for a full list of out of the box options refer to [Full Configuration API](/nservicebus/azure-service-bus/configuration/full.md).
 
 
-### Addressing Aspects
+## Addressing Aspects
 
 The following aspects are found in the addressing logic:
 
@@ -35,7 +33,7 @@ The following aspects are found in the addressing logic:
  * Composition: Determines how entities are hierarchically composed inside a single namespace.
 
 
-### Sanitization
+## Sanitization
 
 The sanitization aspect is represented by an implementation of `ISanitizationStrategy`.
 
@@ -49,7 +47,7 @@ The default implementation of this strategy can be replaced by using the configu
 snippet:swap-sanitization-strategy
 
 
-#### Implementing a custom sanitization strategy
+### Implementing a custom sanitization strategy
 
 Implementing a custom sanitization strategy requires a class that implements `ISanitizationStrategy`. This interface contains one method, called `Sanitize`, which provides access to the entity path in case the entity is a queue or topic (or name if the entity is a subscription or rule), and returns a string that should contain a cleaned up version of the entity path/name passed in. The entity type is passed in as second parameter and can be used to differentiate between queues, topics and subscription.
 
@@ -58,19 +56,19 @@ If the implementation of a sanitization strategy requires configuration settings
 snippet:custom-sanitization-strategy
 
 
-#### Extending the configuration API for custom sanitization settings
+### Extending the configuration API for custom sanitization settings
 
 In order to allow configuration of the custom sanitization strategy it is advised to create an extension method at the `AzureServiceBusSanitizationSettings` extension point , returned by `.Sanitization()`, in the NServiceBus configuration API. This provides access to the settings, in which the value can be registered using a well known key.
 
 snippet:custom-sanitization-strategy-extension
 
 
-#### Example custom sanitization strategy
+### Example custom sanitization strategy
 
 The [custom sanitization sample](/samples/azure/custom-sanitization-asb/) shows a more concrete implementation of a sanitization strategy, it removes invalid characters and uses SHA1 hashing to reduce the length of an entity name if the maximum length is exceeded.
 
 
-### Individualization
+## Individualization
 
 The individualization aspect is represented by an implementation of `IIndividualizationStrategy`.
 
@@ -84,7 +82,7 @@ The default implementation of this strategy can be replaced by using the configu
 snippet:swap-individualization-strategy
 
 
-#### Implementing a custom individualization strategy
+### Implementing a custom individualization strategy
 
 Implementing a custom individualization strategy requires a class that implements `IIndividualizationStrategy`. This interface contains one method, called `Individualize`, which provides access to the current endpoint name, and returns a string that should contain a unique representation of the current endpoint instance. Note that, depending on other settings, the endpoint name passed in may differ already from the one originally configured.
 
@@ -93,14 +91,14 @@ If the implementation of a individualization strategy requires configuration set
 snippet:custom-individualization-strategy
 
 
-#### Extending the configuration API for custom individualization settings
+### Extending the configuration API for custom individualization settings
 
 In order to allow configuration of the custom individualization strategy it is advised to create an extension method at the `AzureServiceBusIndividualizationSettings` extension point , returned by `.Individualization()`, in the NServiceBus configuration API. This provides access to the settings, in which the value can be registered using a well known key.
 
 snippet:custom-individualization-strategy-extension
 
 
-### Namespace Partitioning
+## Namespace Partitioning
 
 The namespace partitioning aspect is represented by an implementation of `INamespacePartitioningStrategy`.
 
@@ -115,7 +113,7 @@ The default implementation of this strategy can be replaced by using the configu
 snippet:swap-namespace-partitioning-strategy
 
 
-#### Implementing a custom namespace partitioning strategy
+### Implementing a custom namespace partitioning strategy
 
 Implementing a custom namespace partitioning strategy requires a class that implements `INamespacePartitioningStrategy`. This interface contains one method, called `GetNamespaces`, which provides access to the `PartitioningIntent` for which namespaces are requested and returns a set of namespaces, represented by the `RuntimeNamespaceInfo` class, that should be used for the specified intent.
 
@@ -130,17 +128,19 @@ If the implementation of a namespace partitioning strategy requires configuratio
 snippet:custom-namespace-partitioning-strategy
 
 
-#### Extending the configuration API for custom partitioning settings
+### Extending the configuration API for custom partitioning settings
 
 In order to allow configuration of the custom namespace partitioning strategy it is advised to create an extension method at the `AzureServiceBusNamespacePartitioningSettings` extension point , returned by `.NamespacePartitioning()`, in the NServiceBus configuration API. This provides access to the settings, in which the value can be registered using a well known key.
 
 snippet:custom-namespace-partitioning-strategy-extension
 
-#### Example custom partitioning strategy
+
+### Example custom partitioning strategy
 
 The [custom partitioning sample](/samples/azure/custom-partitioning-asb/) shows a more concrete implementation of a partitioning strategy, it replicates messages across multiple namespaces.
 
-### Composition
+
+## Composition
 
 The composition aspect is represented by an implementation of `ICompositionStrategy`.
 
@@ -154,7 +154,7 @@ The default implementation of this strategy can be replaced by using the configu
 snippet:swap-composition-strategy
 
 
-#### Implementing a custom composition strategy
+### Implementing a custom composition strategy
 
 Implementing a custom composition strategy requires a class that implements `ICompositionStrategy`. This interface contains one method, called `GetEntityPath`, which provides access to an entity name as well as the type of the entity in question, and returns a string that should contain an entity path representing the location of the entity inside an Azure Service Bus namespace. Note that only queues and topics support positioning in a namespace hierarchy, subscriptions will always sit underneath the topic that they are being subscribed too, so only prefix the name with path information for `EntityType.Queue` and `EntityType.Topic`.
 
@@ -163,7 +163,7 @@ If the implementation of a composition strategy requires configuration settings,
 snippet:custom-composition-strategy
 
 
-#### Extending the configuration API for custom composition settings
+### Extending the configuration API for custom composition settings
 
 In order to allow configuration of the custom composition partitioning strategy it is advised to create an extension method at the `AzureServiceBusCompositionSettings` extension point , returned by `.Composition()`, in the NServiceBus configuration API. This provides access to the settings, in which the value can be registered using a well known key.
 

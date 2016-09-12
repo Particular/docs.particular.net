@@ -17,16 +17,21 @@ class Program
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString1");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception($"Could not read the 'AzureServiceBus.ConnectionString1' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString1' environment variable. Check the sample prerequisites.");
         }
         transport.ConnectionString(connectionString);
         var topology = transport.UseTopology<ForwardingTopology>();
-        
+
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.Recoverability().Delayed(settings => settings.NumberOfRetries(0));
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Delayed(
+            customizations: settings =>
+            {
+                settings.NumberOfRetries(0);
+            });
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
