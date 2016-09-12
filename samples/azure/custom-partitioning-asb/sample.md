@@ -27,6 +27,7 @@ This sample has two endpoints
 * `Publisher`
 * `Subscriber`
 
+
 ## Publisher
 
 `Publisher` publishes `SomeEvent`.
@@ -35,9 +36,11 @@ snippet: SomeEvent
 
 using a custom partitionining strategy, named replicated partitioning strategy, which decides that events should be published to multiple namespaces.
 
+
 ## Subscriber
 
 There are 2 identical instances of `Subscriber`, each instance subscribes to only one of the namespaces using the default `SingleNamespacePartitioningStrategy` and handles `SomeEvent`. 
+
 
 ### Creating a custom partitioning strategy
 
@@ -45,14 +48,16 @@ For the purpose of this sample, a custom partitioning strategy is used which sim
 
 snippet: replicated-namespace-partitioning-strategy
 
+
 #### Registering custom strategy
 
 A custom namespace strategy is registered using `NamespacePartitioning().UseStrategy<T>`. Note that multiple namespaces can be registered using the `NamespacePartitioning().AddNamespace()` API:
 
 snippet: CustomPartitioning
 
+
 ## Running the sample
 
  * Start 2 instances of this subscriber each with a different namespace.
  * Start 1 instance of the publisher
- * Both subscribers should receive the event
+ * Both subscribers will receive the event
