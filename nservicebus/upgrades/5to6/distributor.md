@@ -7,7 +7,7 @@ related:
  - samples/scaleout/distributor-upgrade
 ---
 
-The [distributor](/nservicebus/scalability-and-ha/distributor.md) has been deprecated and replaced by [sender-side distribution](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md) with NServiceBus Version 6.
+The [distributor](/nservicebus/scalability-and-ha/distributor) has been deprecated and replaced by [sender-side distribution](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md) with NServiceBus Version 6.
 
 ## Client-side distribution
 
