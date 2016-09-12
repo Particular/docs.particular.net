@@ -3,7 +3,7 @@ title: Pending Retries Message Management in ServicePulse
 summary: Describes how ServicePulse detects and monitors failed messages in the pending state, and allows retrying, or archiving them.
 tags:
  - ServicePulse
-reviewed: 2016-07-28
+reviewed: 2016-09-12
 ---
 
 
@@ -19,8 +19,9 @@ Pending retries messages can be found by going to the pending retries screen.
 The Pending Retries Messages screen shows failed messages which have been retried, but the status of that retry is pending. The status of retried failures is updated when either the message is processed again as either an Audited message (success) or as a failed message.
 
 Failed messages that are retried may stay in the pending state for the following reasons:
- - The retrying endpoint is not working (e.g. crashed or is scaled-out) and the retried messages is waiting in the queue and has not yet been processed.
- - The retrying endpoint does not have auditing enabled but has successfully processed the retried message.
+
+ * The retrying endpoint is not working (e.g. crashed or is scaled-out) and the retried messages is waiting in the queue and has not yet been processed.
+ * The retrying endpoint does not have auditing enabled but has successfully processed the retried message.
 
 The messages displayed in this screen can be filtered based on the time period by selecting one of the options, such as messages in the last 2 hours, messages in the previous day or week. The default option is set to display all of the pending messages.
 
@@ -34,6 +35,7 @@ The information about the message such as Failure timestamp, endpoint, stack tra
  
  * **Redirect** Information if redirect is created for this queue.
 
+
 ### Message Retry
 
 WARNING: Failed messages that are currently in the pending status can be retried again, however this feature should be used with care. Retrying pending messages can cause the endpoint to reprocess the same message multiple times. Person should ensure that this message was not processed or was processed incorrectly before using retry feature.
@@ -45,6 +47,7 @@ Alternately a queue can be selected and the "Retry All" option can be used to re
 Message retry will use [message redirects](redirect.md) if the original endpoint has been redirected in ServicePulse.
 
 WARNING: A pending retry message that is sent for retry will remain in the pending retry list until it is resolved or fails again.
+
 
 ### Mark as complete
 
