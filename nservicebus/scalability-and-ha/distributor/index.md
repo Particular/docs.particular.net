@@ -145,11 +145,11 @@ NServiceBus.Host.exe NServiceBus.Worker
 Configure the name of the master node server as shown in this `app.config` example. Note the `MasterNodeConfig` section:
 
 ```xml
-<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <configSections>
     <!-- Other sections go here -->
-    <section name="MasterNodeConfig" type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Core" />
+    <section name="MasterNodeConfig" 
+             type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Core" />
   </configSections>
   <!-- Other config options go here -->
   <MasterNodeConfig Node="MachineWhereDistributorRuns"/>
@@ -192,7 +192,8 @@ The Distributor uses two queues for its runtime operation. The `DataInputQueue` 
 To use values other than the NServiceBus defaults override them, as shown in the `UnicastBusConfig` section below:
 
 ```xml
-<UnicastBusConfig DistributorControlAddress="EndpointName.Distributor.Control@MachineWhereDistributorRuns" DistributorDataAddress="EndpointName@MachineWhereDistributorRuns">
+<UnicastBusConfig DistributorControlAddress="EndpointName.Distributor.Control@MachineWhereDistributorRuns"
+                  DistributorDataAddress="EndpointName@MachineWhereDistributorRuns">
   <MessageEndpointMappings>
     <!-- regular entries -->
   </MessageEndpointMappings>

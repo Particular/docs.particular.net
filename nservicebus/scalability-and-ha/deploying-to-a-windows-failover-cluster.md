@@ -146,12 +146,13 @@ While in development, the endpoint configurations probably don't have any `@` sy
 
 
 ```xml
-<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <configSections>
     <!-- Other sections go here -->
-    <section name="MasterNodeConfig" type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Core" />
-    <section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
+    <section name="MasterNodeConfig" 
+             type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Core" />
+    <section name="UnicastBusConfig" 
+             type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
   </configSections>
   <!-- Other config options go here -->
   <MasterNodeConfig Node="MachineWhereDistributorRuns"/>
