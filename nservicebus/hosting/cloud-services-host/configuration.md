@@ -21,7 +21,7 @@ When an endpoint is hosted in Azure Cloud Services, then it should be configured
 
 ### Enabling the Transport
 
-To enable a transport of choice, the `UseTransport<T>` should be called on the endpoint configuration and a connection string must be provided.
+To enable a given transport, the `UseTransport<T>` should be called on the endpoint configuration and a connection string must be provided.
 
 For example using Azure Service Bus Transport
 
