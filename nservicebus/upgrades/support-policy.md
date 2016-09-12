@@ -23,9 +23,7 @@ If a version is not listed or has expired but support is required [contact Parti
 
 ### NServiceBus 4.x
 
-| Version | Major Released | Minor Released | Support Expires |
-|:-------:|----------------|----------------|:---------------:|
-|   4.x   | 2013-07-11     | 2014-10-07     |    2016-07-11   |
+As of 11 July 2016, Version 4 is no longer supported. If support is required [contact Particular](http://particular.net/contactus).
 
 
 ### NServiceBus 3.x
