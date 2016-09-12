@@ -44,6 +44,7 @@ Note: On the wire level the Outbox guarantees `at-least-once` message delivery, 
  * The endpoints using DTC can communicate with endpoints using Outbox only if either of the following conditions are satisfied:
    * The endpoints using Outbox don't send messages to endpoints using DTC. However, endpoints using DTC can send messages to endpoints using Outbox.
    * If endpoints using Outbox send messages to endpoints using DTC, then the handlers processing those messages are [idempotent](https://en.wikipedia.org/wiki/Idempotence).
+ * The Outbox may generate duplicate messages if outgoing messages are successfully dispatched but the _Mark as dispatched_ phase fails. This may happen for a variety of reasons, including _Outbox storage_ connectivity issues and deadlocks.
 
 ## Enabling the Outbox
 
