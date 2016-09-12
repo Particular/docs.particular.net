@@ -1,5 +1,5 @@
 ---
-title: Deprecated Distributor in Version 6
+title: Deprecated Distributor in NServiceBus Version 6
 tags:
  - upgrade
  - migration
@@ -34,7 +34,7 @@ WARNING: To avoid duplicate events, the Distributor node needs to be upgraded to
 * Remove Distributor specific configuration options.
   * Remove the `MasterNodeConfig` section from the application configuration file.
   * Remove the `DistributorControlAddress` and `DistributorDataAddress` attributes from the `UnicastBusConfig` configuration section in the application configuration file.
-* Upgrade the endpoint to Version 6 (See the [Upgrade Guide](/nservicebus/upgrades/5to6)).
+* Upgrade the endpoint to Version 6 (See the [Upgrade Guide](/nservicebus/upgrades/5to6).
 
 
 ## Mixing NServiceBus Versions
