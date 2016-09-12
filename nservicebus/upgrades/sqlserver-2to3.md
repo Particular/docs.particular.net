@@ -79,6 +79,11 @@ snippet:sqlserver-multiinstance-upgrade
 Note that `multi-instance` mode has been deprecated and will not be supported in Versions 4 and higher.
 
 
+#### Multi-instance support and Outbox
+
+Version 3 does not support Outbox in `multi-instance` mode.
+
+
 ### Circuit breaker
 
 The parameter `PauseAfterReceiveFailure(TimeSpan)` is no longer supported. In Version 3, the pause value is hard-coded at 1 second.
