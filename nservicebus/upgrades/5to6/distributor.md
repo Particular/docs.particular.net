@@ -18,7 +18,7 @@ With sender-side distribution, senders are aware of scaled out receivers, allowi
 
 This process aims to allow upgrade in production environments without missing events and minimal downtime.
 
-WARN: To avoid duplicate events, the Distributor node needs to be upgraded to a worker node using NServiceBus 6 (it can be decommissioned after all workers are upgraded to Version 6).
+WARNING: To avoid duplicate events, the Distributor node needs to be upgraded to a worker node using NServiceBus 6 (it can be decommissioned after all workers are upgraded to Version 6).
 
 * Upgrade all endpoints communicating to the Distributor (by commands or event subscription messages) to NServiceBus Version 6 first.
 * Shut down the Distributor instance.
