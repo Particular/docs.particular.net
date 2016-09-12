@@ -1,7 +1,7 @@
 ---
 title: 'SQL Server Transport: Multi-Instance Mode'
 summary: SqlServer transport running in Multi-Instance Mode
-reviewed: 2016-03-25
+reviewed: 2016-09-13
 component: SqlServer
 tags:
  - SQL Server
@@ -14,7 +14,7 @@ related:
 
  1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
  1. Create two databases called `receivercatalog` and `sendercatalog`.
- 1. Make sure that Distributed Transaction Coordinator (DTC) is running. It can be started running `net start msdtc` command in system console.
+ 1. Make sure that [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx) is running. It can be started from the command line by running `net start msdtc`.
 
 
 ## Running the project
@@ -36,7 +36,6 @@ This sample contains the following projects:
  * Sender - A console application responsible for sending the initial `ClientOrder` message and processing the follow-up `ClientOrderAccepted` message.
  * Receiver - A console application responsible for processing the order message.
  * Messages - A class library containing message definitions.
- * EndpointConnectionLookup - A class library containing common code for providing new `SqlConnection` for transport addresses used in the sample.
 
 partial: passconnection
 

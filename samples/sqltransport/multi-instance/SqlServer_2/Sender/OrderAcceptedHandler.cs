@@ -1,11 +1,12 @@
-﻿using System;
-using Messages;
+﻿using Messages;
 using NServiceBus;
+using NServiceBus.Logging;
 
 public class OrderAcceptedHandler :
     IHandleMessages<ClientOrderAccepted>
 {
     IBus bus;
+    static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
 
     public OrderAcceptedHandler(IBus bus)
     {
@@ -14,6 +15,6 @@ public class OrderAcceptedHandler :
 
     public void Handle(ClientOrderAccepted message)
     {
-        Console.WriteLine($"Received ClientOrderAccepted for ID {message.OrderId}");
+        log.Info($"Received ClientOrderAccepted for ID {message.OrderId}");
     }
 }
