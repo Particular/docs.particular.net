@@ -655,8 +655,12 @@
       Title: Failed Message Monitoring
     - Url: servicepulse/intro-archived-messages
       Title: Archived Message Management
+    - Url: servicepulse/intro-pending-retries
+      Title: Pending Retries Message Management 
     - Url: servicepulse/intro-endpoints-custom-checks
       Title: Custom Check Monitoring
+    - Url: servicepulse/redirect
+      Title: Redirects 
     - Url: servicepulse/event-types
       Title: Events
   - Title: Configuration
