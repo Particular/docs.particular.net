@@ -261,6 +261,7 @@
       - Url: nservicebus/lifecycle/endpointstartandstop
         Title: Endpoint Instance Starts & Stops
   - Title: Handlers & Sagas
+    Articles:
     - Url: nservicebus/handlers
       Title: Handlers
       Articles:
