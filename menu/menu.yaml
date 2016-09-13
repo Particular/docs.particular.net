@@ -324,7 +324,7 @@
       - Url: nservicebus/azure/understanding-transactionality-in-azure
         Title: Understanding Transactionality in Azure
       - Url: nservicebus/azure/ways-to-live-without-transactions
-        Title: Ways To Live Without Transactions
+        Title: Avoiding Transactions
       - Url: nservicebus/azure-service-bus/understanding-transactions-and-delivery-guarantees
         Title: Understanding internal transactions and delivery guarantees
     - Url: nservicebus/azure-service-bus/error-handling
@@ -353,7 +353,7 @@
     - Url: nservicebus/azure/understanding-transactionality-in-azure
       Title: Understanding Transactionality in Azure
     - Url: nservicebus/azure/ways-to-live-without-transactions
-      Title: Ways To Live Without Transactions
+      Title: Avoiding Transactions
     - Url: nservicebus/azure-storage-queues/configuration
       Title: Configuration
     - Url: nservicebus/azure-storage-queues/performance-tuning
