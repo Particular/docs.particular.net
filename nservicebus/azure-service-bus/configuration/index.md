@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Transport Configuration
+title: Configuration
 tags:
 - Azure
 - Cloud
