@@ -1,6 +1,6 @@
 ---
 title: RabbitMQ Transport
-reviewed: 2016-08-23
+reviewed: 2016-09-13
 component: Rabbit
 related:
  - samples/rabbitmq/simple
@@ -15,14 +15,14 @@ tags:
 Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) using the [RabbitMQ .NET Client](https://www.nuget.org/packages/RabbitMQ.Client/).
 
 
-## Configuring the endpoint to use the RabbitMQ transport
+## Configuring the endpoint
 
 To use RabbitMQ as the underlying transport:
 
 snippet:rabbitmq-config-basic
 
 
-## Advantages and Disadvantages of choosing RabbitMQ Transport
+## Advantages and Disadvantages
 
 
 ### Advantages
