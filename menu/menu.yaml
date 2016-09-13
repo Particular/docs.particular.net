@@ -35,7 +35,7 @@
       - Url: nservicebus/upgrades/5to6/endpoint
         Title: Endpoint API changes
       - Url: nservicebus/upgrades/5to6/handlers-and-sagas
-        Title: Handlers & Sagas
+        Title: Handlers and Sagas
       - Url: nservicebus/upgrades/5to6/async-suffix
         Title: Async Suffix
       - Url: nservicebus/upgrades/5to6/transaction-configuration
@@ -63,7 +63,7 @@
       - Url: nservicebus/upgrades/5to6/container
         Title: Container
       - Url: nservicebus/upgrades/5to6/tools-and-helpers
-        Title: Tools & Helpers
+        Title: Tools and Helpers
     - Url: nservicebus/upgrades/4to5
       Title: NServiceBus 4
     - Url: nservicebus/upgrades/3to4
@@ -130,7 +130,7 @@
     Title: Messaging
     Articles:
     - Url: nservicebus/messaging/messages-events-commands
-      Title: Messages, Events & Commands
+      Title: Messages, Events and Commands
     - Url: nservicebus/messaging/message-identity
       Title: Message Identity
     - Url: nservicebus/messaging/conventions
@@ -179,7 +179,7 @@
       - Url: nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
         Title: Subscription configuration
       - Url: nservicebus/messaging/publish-subscribe/publish-handle-event
-        Title: Publish & Handle an Event
+        Title: Publish and Handle an Event
     - Url: nservicebus/gateway
       Title: Gateway
       Articles:
@@ -259,8 +259,8 @@
       - Url: nservicebus/lifecycle/iwanttorunwhenconfigurationiscomplete
         Title: Configuration Ends
       - Url: nservicebus/lifecycle/endpointstartandstop
-        Title: Endpoint Instance Starts & Stops
-  - Title: Handlers & Sagas
+        Title: Endpoint Instance Starts and Stops
+  - Title: Handlers and Sagas
     Articles:
     - Url: nservicebus/handlers
       Title: Handlers
@@ -285,7 +285,7 @@
       - Url: nservicebus/handlers/async-handlers
         Title: Asynchronous Handlers
       - Url: nservicebus/sagas/reply-replaytooriginator-differences
-        Title: Reply & ReplyToOriginator differences
+        Title: Reply and ReplyToOriginator differences
     - Url: nservicebus/testing
       Title: Testing
       Articles:
@@ -314,7 +314,7 @@
     Title: Pipeline
     Articles:
     - Url: nservicebus/pipeline/steps-stages-connectors
-      Title: Steps, Stages & Connectors
+      Title: Steps, Stages and Connectors
     - Url: nservicebus/pipeline/manipulate-with-behaviors
       Title: Manipulate with Behaviors
     - Url: nservicebus/pipeline/message-mutators
@@ -381,7 +381,7 @@
       - Url: nservicebus/azure/ways-to-live-without-transactions
         Title: Avoiding Transactions
       - Url: nservicebus/azure-service-bus/understanding-transactions-and-delivery-guarantees
-        Title: Internal transaction & delivery guarantees
+        Title: Internal transaction and delivery guarantees
     - Url: nservicebus/azure-service-bus/error-handling
       Title: Error Handling
       Articles:
@@ -480,7 +480,7 @@
     - Url: nservicebus/rabbitmq/message-id-strategy
       Title: Message Id strategy
     - Url: nservicebus/rabbitmq/transactions-and-delivery-guarantees
-      Title: Transactions & delivery guarantees
+      Title: Transactions and delivery guarantees
     - Url: nservicebus/rabbitmq/cluster
       Title: In a cluster
     - Url: nservicebus/rabbitmq/operations-scripting
@@ -590,7 +590,7 @@
     Title: Operations
     Articles:
     - Url: nservicebus/operations/transactions-message-processing
-      Title: Transactions & Message Processing
+      Title: Transactions and Message Processing
     - Url: nservicebus/operations/auditing
       Title: Auditing Messages
     - Url: nservicebus/security/encryption
@@ -610,7 +610,7 @@
     - Url: nservicebus/operations/running-on-windows
       Title: Running on Windows
   - Url: nservicebus/scalability-and-ha
-    Title: Scalability & HA
+    Title: Scalability and HA
     Articles:
     - Url: nservicebus/scalability-and-ha/scale-out
       Title: Scaling endpoints
@@ -650,7 +650,7 @@
     - Url: servicepulse/installation
       Title: Installation
     - Url: servicepulse/intro-endpoints-heartbeats
-      Title: Endpoints & Heartbeats
+      Title: Endpoints and Heartbeats
     - Url: servicepulse/intro-failed-messages
       Title: Failed Messages
     - Url: servicepulse/intro-archived-messages
