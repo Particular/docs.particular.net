@@ -1,5 +1,5 @@
 ---
-title: SQL Server Transport deployment options
+title: Deployment options
 reviewed: 2016-08-31
 component: sqlserver
 tags:
