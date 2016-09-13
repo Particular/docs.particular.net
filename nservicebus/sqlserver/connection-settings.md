@@ -66,7 +66,7 @@ The pull mode can be used when specific information is not available at configur
 
 snippet:sqlserver-multidb-other-endpoint-connection-pull
 
-Note that in Version 3 the `EnableLagacyMultiInstanceMode` method passes transport address parameter. Transport address conforms to the `endpoint_name@schema_name` convention, e.g. could be equal to `Samples.SqlServer.MultiInstanceSender@[dbo]`.
+Note that in Version 3 the `EnableLegacyMultiInstanceMode` method passes transport address parameter. Transport address conforms to the `endpoint_name@schema_name` convention, e.g. could be equal to `Samples.SqlServer.MultiInstanceSender@[dbo]`.
 
 
 partial: multiple-appconfig
