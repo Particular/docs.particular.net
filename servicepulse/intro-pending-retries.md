@@ -38,7 +38,7 @@ The information about the message such as Failure timestamp, endpoint, stack tra
 
 ### Message Retry
 
-WARNING: Failed messages that are currently in the pending status can be retried again, however this feature should be used with care. Retrying pending messages can cause the endpoint to reprocess the same message multiple times. Person should ensure that this message was not processed or was processed incorrectly before using retry feature.
+WARNING: Failed messages that are currently in the pending status can be retried, however this feature should be used with care. Retrying pending messages can cause the same message to be processed multiple times. Do not retry a message if it has been processed by the endpoint. In this context "processed" includes both the successful handling of the message and the failure state of it being send to the error queue.
 
 To retry a pending retry message, select the failed message(s) in the list and click the "Retry Selected" button.
 
