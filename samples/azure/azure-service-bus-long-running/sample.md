@@ -1,5 +1,6 @@
 ---
 title: Long running operations with Azure Service Bus Transport
+component: ASB
 reviewed: 2016-09-12
 related:
 - nservicebus/azure-service-bus
@@ -24,6 +25,28 @@ This sample shows a simplified long running process
  * `Server` enqueues requests from `Client` to be processed by `Processor`.
  * `Processor` raises events about successful or failed results.
  * `Server` issues warnings for `Client` if estimated processing time is going to be violated. 
+
+![](long-running-task.svg)
+
+<!-- https://bramp.github.io/js-sequence-diagrams/
+Participant Client
+Participant Server
+Participant Storage Table
+Note over Processor: Polling\nStorage Table\nfor requests
+Participant Processor
+Note left of Client: bus.Publish()\nMessage1 occurs
+Client->Server: LongProcessingRequest\n(ID, Processing Time)
+Server->Storage Table: Store RequestRecord
+Server->Server: Set timeout
+Processor->Processor: process reques
+Processor->Storage Table: Update RequestRecord
+Note over Server: If processing takes\nlonger than anticipated
+Server->Server: Timeout raised
+Server->>Client: LongProcessingWarning
+Note over Server: Otherwise
+Processor->>Server: LongProcessingFinished / LongProcessingFailed
+Processor->>Client: LongProcessingFinished / LongProcessingFailed
+-->
 
 
 ### Performing processing outside of a message handler
