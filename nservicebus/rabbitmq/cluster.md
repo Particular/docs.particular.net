@@ -1,5 +1,5 @@
 ---
-title: 'RabbitMQ Transport: In a cluster'
+title: In a cluster
 component: Rabbit
 reviewed: 2016-08-31
 ---
