@@ -4,7 +4,7 @@
     Articles:
     - Url: platform
       Title: Particular Service Platform Overview
-    - Title: NServiceBus Overview
+    - Title: Overview
       Articles:
       - Url: nservicebus/architecture/principles
         Title: Architectural Principles
@@ -13,11 +13,11 @@
     - Url: samples/step-by-step
       Title: Step by Step Guide
     - Url: nservicebus/concept-overview
-      Title: Concepts Overview
+      Title: Concepts
     - Url: samples/endpoint-configuration
       Title: Endpoint configuration choices
     - Url: nservicebus/licensing/license-management
-      Title: Install the NServiceBus license
+      Title: License Installation
   - Url: nservicebus/upgrades
     Title: Upgrade Guides
     Articles:
@@ -28,12 +28,12 @@
     - Title: Security Advisories
       Articles:
       - Url: security-advisories/sqlserver-sqlinjection
-        Title: Security Advisory 2016-07-05
+        Title: 2016-07-05
     - Url: nservicebus/upgrades/5to6
       Title: NServiceBus 6
       Articles:
       - Url: nservicebus/upgrades/5to6/moving-away-from-ibus
-        Title: Moving away from IBus
+        Title: Migrating off IBus
       - Url: nservicebus/upgrades/5to6/endpoint
         Title: Endpoint API changes
       - Url: nservicebus/upgrades/5to6/handlers-and-sagas
@@ -75,7 +75,7 @@
     - Title: NServiceBus Host
       Articles:
       - Url: nservicebus/upgrades/host-6to7
-        Title: Host Upgrade Version 6 to 7
+        Title: Version 6 to 7
     - Title: Azure BlobStorage DataBus
       Articles:
       - Url: nservicebus/upgrades/absdatabus-6to1
@@ -146,7 +146,7 @@
     - Url: nservicebus/messaging/headers
       Title: Message Headers
     - Url: nservicebus/messaging/header-manipulation
-      Title: Manipulating message headers
+      Title: Header Manipulation
     - Url: nservicebus/messaging/message-correlation
       Title: Message correlation
     - Url: nservicebus/messaging/third-party-integration
@@ -166,11 +166,11 @@
     - Url: nservicebus/messaging/routing
       Title: Routing
     - Url: nservicebus/messaging/routing-extensibility
-      Title: Routing system extensibility points
+      Title: Routing extensibility points
     - Url: nservicebus/messaging/unobtrusive-mode
       Title: Unobtrusive Mode
     - Url: nservicebus/messaging/best-practice-enforcement
-      Title: Enforcement of best practices
+      Title: Best practice enforcement
     - Url: nservicebus/scheduling
       Title: Scheduling
     - Url: nservicebus/messaging/delayed-delivery
@@ -213,12 +213,12 @@
     Title: Endpoints
     Articles:
     - Url: nservicebus/endpoints/specify-endpoint-name
-      Title: Specify Endpoint Name
+      Title: Endpoint Name
   - Url: nservicebus/handlers
     Title: Handlers
     Articles:
     - Url: nservicebus/handlers/handler-ordering
-      Title: Handler Ordering
+      Title: Handler Order
     - Url: nservicebus/handlers/async-handlers
       Title: Asynchronous Handlers
   - Url: nservicebus/sagas
@@ -278,7 +278,7 @@
     Title: Transports
     Articles:
     - Url: nservicebus/transports/transactions
-      Title: Transport Transactions
+      Title: Transactions
     - Url: nservicebus/transports/queuecreation
       Title: Creating queues
   - Url: nservicebus/azure-service-bus
@@ -290,7 +290,7 @@
       Title: Configuration
       Articles:
       - Url: nservicebus/azure-service-bus/configuration/full
-        Title: Full Configuration API
+        Title: Full API
       - Url: nservicebus/azure-service-bus/retries
         Title: Retry behavior
       - Url: nservicebus/azure-service-bus/sanitization
@@ -300,15 +300,15 @@
       - Url: nservicebus/azure-service-bus/securing-connection-strings
         Title: Securing Namespace Connections
       - Url: nservicebus/azure-service-bus/namespace-hierarchy
-        Title: Namespace hierarchy support
+        Title: Namespace hierarchy
       - Url: nservicebus/azure-service-bus/token-provider
-        Title: Custom Token Provider
+        Title: Token Provider
     - Title: Routing
       Articles:
       - Url: nservicebus/azure-service-bus/publisher-names-configuration
         Title: Publishers name configuration
       - Url: nservicebus/azure-service-bus/multiple-namespaces-support
-        Title: Multiple namespace support
+        Title: Multiple namespaces
       - Url: nservicebus/azure/data-distribution
         Title: Data distribution
     - Url: nservicebus/azure-service-bus/performance-tuning
@@ -466,18 +466,18 @@
       - Url: nservicebus/nhibernate/sql-azure
         Title: SQL Azure
       - Url: nservicebus/nhibernate/outbox
-        Title: Outbox with NHibernate
+        Title: Outbox
     - Url: nservicebus/ravendb
       Title: RavenDB Persistence
       Articles:
       - Url: nservicebus/ravendb/operations-scripting
         Title: Scripting
       - Url: nservicebus/ravendb/installation
-        Title: Installing RavenDB
+        Title: Installation
       - Url: nservicebus/ravendb/manual-dtc-settings
-        Title: Configuring RavenDB DTC
+        Title: Configure DTC
       - Url: nservicebus/ravendb/outbox
-        Title: Outbox with RavenDB
+        Title: Outbox
     - Url: nservicebus/azure-storage-persistence
       Title: Azure Storage Persistence
       Articles:
@@ -497,7 +497,7 @@
     - Url: nservicebus/containers/child-containers
       Title: Child Containers
     - Url: nservicebus/containers/injecting-ibus
-      Title: IBus in a Message Handler
+      Title: IBus in a Handler
     - Url: nservicebus/containers/property-injection
       Title: Property injection
     - Url: nservicebus/containers/autofac
@@ -544,7 +544,7 @@
       Title: NServiceBus Host
       Articles:
       - Url: nservicebus/hosting/nservicebus-host/profiles
-        Title: Profiles For NServiceBus Host
+        Title: Profiles
     - Url: nservicebus/hosting/cloud-services-host
       Title: Azure Cloud Services Host
       Articles:
@@ -624,7 +624,7 @@
       - Url: nservicebus/scalability-and-ha/distributor/disconnect-workers
         Title: Disconnect Workers
       - Url: nservicebus/scalability-and-ha/distributor/publish-subscribe
-        Title: Distributor & Publish-Subscribe
+        Title: Publish-Subscribe
       - Url: nservicebus/scalability-and-ha/distributor/upgrading-the-distributor
         Title: Upgrading
       - Url: nservicebus/scalability-and-ha/distributor/error-handling
