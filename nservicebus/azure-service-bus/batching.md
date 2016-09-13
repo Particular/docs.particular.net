@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Transport Batching
+title: Batching
 summary: Batching with Azure Service Bus and how it works
 component: ASB
 tags:
