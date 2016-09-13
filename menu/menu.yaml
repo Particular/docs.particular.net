@@ -252,7 +252,7 @@
     - Url: nservicebus/recoverability/exception-caveats
       Title: Exception Caveats
     - Url: nservicebus/recoverability/custom-recoverability-policy
-      Title: Custom Recoverability Policy
+      Title: Custom Policy
     - Url: nservicebus/recoverability/subscribing-to-error-notifications
       Title: Error notifications
   - Url: nservicebus/pipeline
@@ -261,13 +261,13 @@
     - Url: nservicebus/pipeline/steps-stages-connectors
       Title: Steps, Stages & Connectors
     - Url: nservicebus/pipeline/manipulate-with-behaviors
-      Title: Manipulate Pipeline with Behaviors
+      Title: Manipulate with Behaviors
     - Url: nservicebus/pipeline/message-mutators
       Title: Message Mutators
     - Url: nservicebus/pipeline/unit-of-work
       Title: Unit of Work
     - Url: nservicebus/pipeline/aborting
-      Title: Aborting Pipeline execution
+      Title: Abort execution
     - Url: nservicebus/pipeline/features
       Title: Features
     - Url: nservicebus/pipeline/customizing-error-handling
