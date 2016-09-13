@@ -652,13 +652,13 @@
     - Url: servicepulse/intro-endpoints-heartbeats
       Title: Endpoints & Heartbeats
     - Url: servicepulse/intro-failed-messages
-      Title: Failed Message Monitoring
+      Title: Failed Messages
     - Url: servicepulse/intro-archived-messages
-      Title: Archived Message Management
+      Title: Archived Messages
     - Url: servicepulse/intro-pending-retries
-      Title: Pending Retries Message Management 
+      Title: Pending Retries 
     - Url: servicepulse/intro-endpoints-custom-checks
-      Title: Custom Check Monitoring
+      Title: Custom Checks
     - Url: servicepulse/redirect
       Title: Redirects 
     - Url: servicepulse/event-types
@@ -682,13 +682,13 @@
     - Url: servicecontrol/installation-silent
       Title: Installing Silently
     - Url: servicecontrol/installation-powershell
-      Title: Managing Instances via PowerShell
+      Title: Managing via PowerShell
     - Url: servicecontrol/license
       Title: Licensing
     - Url: servicecontrol/creating-config-file
       Title: Settings
     - Url: servicecontrol/configure-ravendb-location
-      Title: RavenDB Embedded Location
+      Title: RavenDB Location
     - Url: servicecontrol/setting-custom-hostname
       Title: Configure the URI
     - Url: servicecontrol/logging
@@ -696,7 +696,7 @@
     - Url: servicecontrol/errorlog-auditlog-behavior
       Title: Forwarding Queues
     - Url: servicecontrol/deploying-servicecontrol-in-a-cluster
-      Title: Deploying to a cluster
+      Title: Cluster Deployment
     - Url: servicecontrol/troubleshooting
       Title: Troubleshooting
     - Url: servicecontrol/plugins
@@ -715,17 +715,17 @@
   - Title: Management
     Articles:
     - Url: servicecontrol/securing-servicecontrol
-      Title: Securing Access
+      Title: Security
     - Url: servicecontrol/capacity-and-planning
       Title: Capacity Planning
     - Url: servicecontrol/servicecontrol-in-practice
-      Title: Optimizing for use in different environments
+      Title: Optimizing use in different environments
     - Url: servicecontrol/how-purge-expired-data
-      Title: Automatic Expiration of Data
+      Title: Data Expiration
     - Url: servicecontrol/use-ravendb-studio
       Title: Expose Data via RavenDB Studio
     - Url: servicecontrol/backup-sc-database
-      Title: Data Backup
+      Title: Backup
     - Url: servicecontrol/configure-non-privileged-service-account
       Title: Non-Privileged Accounts
     - Url: servicecontrol/db-compaction
