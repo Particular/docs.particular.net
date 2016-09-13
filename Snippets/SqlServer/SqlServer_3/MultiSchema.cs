@@ -32,7 +32,18 @@ class MultiSchema
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.UseSchemaForEndpoint("sales", "sender");
         transport.UseSchemaForEndpoint("billing", "receiver");
-        
+
+        #endregion
+    }
+
+    void ConfigureCustomSchemaForEndpointAndQueue(EndpointConfiguration endpointConfiguration)
+    {
+        #region sqlserver-multischema-config-for-endpoint-and-queue
+
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.UseSchemaForEndpoint("sales", "sender");
+        transport.UseSchemaForQueue("error", "control");
+
         #endregion
     }
 }

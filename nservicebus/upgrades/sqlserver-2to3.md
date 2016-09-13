@@ -55,9 +55,9 @@ The schema for the configured endpoint can be specified using `DefaultSchema` me
 
 snippet:sqlserver-non-standard-schema
 
-or by defining a custom schema per endpoint:
+or by defining a custom schema per endpoint or queue:
 
-snippet:sqlserver-multischema-config-for-endpoint
+snippet:sqlserver-multischema-config-for-endpoint-and-queue
 
 This enables configuring custom schema both for local endpoint as well as for other endpoints that the configured endpoint communicates with. When using configuration file to specify schemas for other endpoints, their schemas should be placed in the `MessageEndpointMappings` section and follow `endpoint-name@schema-name` convention:
 
