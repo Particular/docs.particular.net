@@ -6,17 +6,15 @@ tags:
  - migration
 ---
 
-## Subscriptions
 
-
-### Subscription storage
+## Storage
 
 `ISubscriptionStorage` has been split into two interfaces, `ISubscriptionStorage` and `IInitializableSubscriptionStorage`, to properly separate those storage concerns. `ISubscriptionStorage` must be implemented to have a fully functional subscription infrastructure. `IInitializableSubscriptionStorage` is only necessary when the subscription storage needs to be initialized.
 
 `ISubscriptionStorage` implements the concern of storage, retrieval, and removal for subscriptions, which is executed inside the context of a pipeline. Furthermore, `ISubscriptionStorage` introduced a new parameter `SubscriptionStorageOptions`. This parameter allows access to the pipeline context. This enables subscription storages to manipulate everything that exists in the context during message pipeline execution.
 
 
-### Auto subscribing plain messages
+## Auto subscribing plain messages
 
 The option to automatically subscribe to plain messages was removed, as message subscription should be based on events. Although not recommended, this can be overridden by [manually subscribing](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#how-to-manually-subscribe-to-a-message) to other message types.
 
