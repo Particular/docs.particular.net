@@ -6,9 +6,6 @@ redirects:
  - nservicebus/upgrades/5to6-async-suffix
 ---
 
-
-## No Async Suffix for NServiceBus APIs
-
 Starting with NServiceBus Version 6, all APIs that contain potentially IO bound code are [Async](https://msdn.microsoft.com/en-us/library/mt674882.aspx). Some examples include:
 
  * Endpoint messaging methods such as [Send and Publish](/nservicebus/upgrades/5to6/#message-handlers-bus-send-and-receive)
