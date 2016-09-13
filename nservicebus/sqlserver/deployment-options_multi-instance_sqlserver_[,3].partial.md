@@ -1,8 +1,11 @@
 ### Multi-instance
 
-WARNING: The *multi-instance* option won't be supported in Versions 4 and higher. Version 3 supports *multi-instance* mode only with DTC.
+WARNING: The multi-instance option is no longer supported from Versions 4 and above.
 
- * Requires DTC, or in case of Version 2 using Outbox and storing business data in the same database as Outbox data.
+WARNING: Although Versions 3 and above offer support for multi-instance mode when using DTC, Outbox is not a supported option when running in multi-instance mode.
+
+ * Requires storing business data in the same database as Outbox data.
+ * Requires DTC or Outbox (if available).
 
 
 ### Multi-instance with store-and-forward
