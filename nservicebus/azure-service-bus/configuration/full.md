@@ -12,6 +12,8 @@ reviewed: 2016-08-29
 ---
 
 
+INFO: This document is intended for Versions 7 and above.
+
 The full configuration API can be accessed from the `UseTransport<AzureServiceBusTransport>()` extension method and provides low level access to various aspects of the transport's behavior.
 
 
