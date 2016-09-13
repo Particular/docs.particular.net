@@ -1,5 +1,5 @@
 ---
-title: SQL Server Transport Callback support
+title: Callback support
 reviewed: 2016-08-31
 component: SqlServer
 tags:
