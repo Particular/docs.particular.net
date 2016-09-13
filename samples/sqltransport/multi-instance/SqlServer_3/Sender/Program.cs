@@ -42,7 +42,7 @@ public class Program
                     return;
                 }
                 await PlaceOrder(endpointInstance)
-                .ConfigureAwait(false);
+                    .ConfigureAwait(false);
             }
         }
         finally
@@ -67,5 +67,4 @@ public class Program
 
         Console.WriteLine($"ClientOrder message sent with ID {order.OrderId}");
     }
-
 }
