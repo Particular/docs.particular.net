@@ -9,8 +9,6 @@ tags:
 ---
 
 
-## Multiple namespaces support
-
 Azure Service Bus transport supports configuring multiple Azure Service Bus namespaces, in order to:
 
  * Enable various _namespace partitioning strategies_ to cover scenarios such as High Availability and multiple Data Center support, or to overcome [Azure services limits](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/).
