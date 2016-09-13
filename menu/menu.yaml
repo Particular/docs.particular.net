@@ -387,7 +387,7 @@
     Title: MSMQ Transport
     Articles:
     - Url: nservicebus/msmq/routing
-      Title: Physical routing in MSMQ
+      Title: Physical routing
     - Url: nservicebus/msmq/connection-strings
       Title: Connection strings
     - Url: nservicebus/msmq/viewing-message-content-in-msmq
@@ -397,13 +397,13 @@
     - Url: nservicebus/msmq/troubleshooting
       Title: Troubleshooting
     - Url: nservicebus/msmq/subscription-authorisation
-      Title: MSMQ Subscription Authorization
+      Title: Subscription Authorization
     - Url: nservicebus/msmq/operations-scripting
       Title: Scripting
     - Url: nservicebus/msmq/uninstalling-msmq
       Title: Uninstalling MSMQ
     - Url: nservicebus/msmq/subscription-persistence
-      Title: MSMQ Subscription Persistence
+      Title: Subscription Persistence
     - Url: nservicebus/msmq/full-qualified-domain-name
       Title: Fully Qualified Domain Names
     - Url: nservicebus/msmq/scalability-and-ha
@@ -434,24 +434,24 @@
     Title: Serialization
     Articles:
     - Url: nservicebus/serialization/xml
-      Title: Xml Serializer
+      Title: Xml
     - Url: nservicebus/serialization/json
-      Title: JSON Serializer
+      Title: JSON
     - Url: nservicebus/serialization/newtonsoft
-      Title: Json.NET Serializer
+      Title: Json.NET
     - Url: nservicebus/serialization/binary
-      Title: Binary Serializer
+      Title: Binary
     - Url: nservicebus/serialization/custom-serializer
-      Title: Custom serializers
+      Title: Custom
     - Url: nservicebus/serialization/type-was-not-registered
-      Title: Type Not Registered in Serializer
+      Title: Type Not Registered
   - Url: nservicebus/persistence
     Title: Persistence
     Articles:
     - Url: nservicebus/persistence/order
       Title: Persistence order
     - Url: nservicebus/persistence/authoring-custom
-      Title: Authoring a custom
+      Title: Custom
     - Url: nservicebus/persistence/in-memory
       Title: In Memory
     - Url: nservicebus/msmq/subscription-persistence
@@ -482,9 +482,9 @@
       Title: Azure Storage Persistence
       Articles:
       - Url: nservicebus/upgrades/asp-saga-deduplication
-        Title: Upgrade Version 6.2.3 to 6.2.4
+        Title: Version 6.2.3 to 6.2.4
       - Url: nservicebus/upgrades/asp-saga-pruning
-        Title: Upgrade Version 6.2.4 to 6.2.5
+        Title: Version 6.2.4 to 6.2.5
       - Url: nservicebus/azure-storage-persistence/configuration
         Title: Configuration
       - Url: nservicebus/azure/understanding-transactionality-in-azure
