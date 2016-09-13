@@ -1,5 +1,5 @@
 ---
-title: SQL Server Transport Entity Framework caveats
+title: Entity Framework caveats
 reviewed: 2016-08-31
 component: SqlServer
 tags:
