@@ -1,5 +1,5 @@
 ---
-title: No Async Suffix in Version 6
+title: No Async Suffix
 summary: Reasoning for no Async suffix to Task based APIs
 reviewed: 2016-07-21
 redirects:
