@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Transport Performance Tuning
+title: Performance Tuning
 tags:
 - Azure
 - Cloud
