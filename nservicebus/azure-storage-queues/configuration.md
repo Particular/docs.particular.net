@@ -43,8 +43,6 @@ Instructs the transport to remove any existing messages from the input queue on 
 
 Defaults: `false`, i.e. messages are not removed when endpoint starts.
 
-Versions: 6 and below
-
 
 #### MessageInvisibleTime
 
@@ -71,7 +69,7 @@ The number of parallel receive operations that the transport is issuing against 
 Defaults: In Versions 7 and above the value is dynamically calculated based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
 
 ```no-highlight
-Degree of parallelism = square root of MaxConcurrency (rounded)
+Degree of parallelism = square root of MaxConcurrency
 ```
 
 |`MaxConcurrency` | `DegreeOfReceiveParallelism` |
