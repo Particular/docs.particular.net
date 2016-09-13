@@ -1,5 +1,5 @@
 ---
-title: Reply and ReplyToOriginator differences.
+title: Reply and ReplyToOriginator differences
 summary: Document the different behaviors of the Reply and ReplyToOriginator methods of the IMessageHandlerContext/IBus instance.
 reviewed: 2016-04-05
 ---
