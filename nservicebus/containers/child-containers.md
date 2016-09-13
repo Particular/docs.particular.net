@@ -1,5 +1,5 @@
 ---
-title: Support for Child Containers
+title: Child Containers
 summary: Child containers are a snapshot of the main container; transient instances are treated as as singletons in the child container.
 component: Core
 reviewed: 2016-03-17
