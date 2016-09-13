@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Transport Retry behavior
+title: Retry behavior
 summary: Describes the relationship between NServiceBus' retry behavior and Azure Service Bus' native retry behavior
 tags:
 - Cloud
