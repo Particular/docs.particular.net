@@ -52,7 +52,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-rc0001\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-rc0002\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Unity">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Unity.7.0.0-rc0001\lib\net452\NServiceBus.ObjectBuilder.Unity.dll</HintPath>

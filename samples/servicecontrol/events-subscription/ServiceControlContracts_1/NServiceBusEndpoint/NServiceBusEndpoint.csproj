@@ -28,7 +28,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-rc0001\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-rc0002\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.Plugin.Nsb6.Heartbeat">
       <HintPath>..\..\..\..\..\packages\ServiceControl.Plugin.Nsb6.Heartbeat.1.0.0-rc0001\lib\net452\ServiceControl.Plugin.Nsb6.Heartbeat.dll</HintPath>
