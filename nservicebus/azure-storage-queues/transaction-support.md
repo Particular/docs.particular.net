@@ -1,5 +1,5 @@
 ---
-title: Azure Storage Queues Transport Transaction Support
+title: Transaction Support
 summary: Understanding transactions in Azure Storage Queue Transport.
 component: ASQ
 versions: '[6,]'
