@@ -173,13 +173,6 @@ span.blue {
   </div>
   <div class="row">
     <div class="col-md-6">
-      <a href="https://www.packtpub.com/application-development/learning-nservicebus-second-edition">
-        <img src="/home/book_v1.svg" width="36" height="36">
-        <h3>Learning NServiceBus - Second Edition</h3>
-      </a>
-      <p>Building reliable and scalable software with NServiceBus.</p>
-    </div>
-    <div class="col-md-6">
       <a href="http://stackoverflow.com/questions/tagged/nservicebus">
         <img src="/home/stackoverflow_v1.svg" width="36" height="36">
         <h3>StackOverflow</h3>
