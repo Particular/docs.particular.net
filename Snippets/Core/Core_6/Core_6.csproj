@@ -250,7 +250,7 @@
     <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
-    <Compile Include="Pipeline\NewPipelineStep.cs" />
+    <Compile Include="Pipeline\BehaviorRegistration.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
     <Compile Include="Pipeline\SharingBehaviorData.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />

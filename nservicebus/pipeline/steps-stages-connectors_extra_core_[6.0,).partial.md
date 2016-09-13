@@ -1,4 +1,4 @@
-NServiceBus Version 6 further splits the existing pipelines into smaller composable units called "Stages" and "Connectors". A stage is a group of steps acting on the same level of abstraction.
+NServiceBus Version 6 further splits the existing pipelines into smaller composable units called *Stages* and *Connectors*. A stage is a group of steps acting on the same level of abstraction.
 
 
 ## Stages
@@ -40,7 +40,7 @@ Fork connectors fork from a current stage (i.e. `IIncomingPhysicalMessageContext
 
 snippet:CustomForkConnector
 
-There is currently no mechanism available to create pipelines which are not known to NServiceBus.
+Note: There is currently no mechanism available to create custom pipelines and stages.
 
 
 ## Stage Fork Connector
@@ -51,4 +51,4 @@ Stage fork connectors are essentially a marriage of a stage connector and a fork
 
 snippet:CustomStageForkConnector
 
-Note: There is currently no mechanism available to create pipelines which are not known to NServiceBus.
+Note: There is currently no mechanism available to create custom pipelines and stages.
