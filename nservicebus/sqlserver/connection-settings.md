@@ -1,5 +1,5 @@
 ---
-title: SQL Server Transport Connection Settings
+title: Connection Settings
 reviewed: 2016-09-07
 component: SqlServer
 tags:
