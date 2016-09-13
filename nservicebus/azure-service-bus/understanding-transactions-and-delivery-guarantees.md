@@ -1,13 +1,11 @@
 ---
 title: Understanding internal transactions and delivery guarantees
 reviewed: 2016-08-22
-tags:
-- Azure
-- Cloud
-- Transactions
 component: ASB
+tags:
+ - Azure
+ - Cloud
+ - Transactions
 ---
-
-## Understanding internal transactions and delivery guarantees
 
 partial: desc
