@@ -79,60 +79,60 @@
     - Title: Azure BlobStorage DataBus
       Articles:
       - Url: nservicebus/upgrades/absdatabus-6to1
-        Title: Upgrade From NServiceBus.Azure
+        Title: Migrating off NServiceBus.Azure
     - Title: Azure Storage Persistence
       Articles:
       - Url: nservicebus/upgrades/asp-6to1
-        Title: Upgrade from NServiceBus Azure Version 6
+        Title: NServiceBus.Azure Version 6
       - Url: nservicebus/upgrades/asp-saga-pruning
-        Title: Upgrade Version 6.2.4 to 6.2.5
+        Title: Version 6.2.4 to 6.2.5
       - Url: nservicebus/upgrades/asp-saga-deduplication
-        Title: Upgrade Version 6.2.3 to 6.2.4
+        Title: Version 6.2.3 to 6.2.4
     - Title: Azure Storage Queues Transport
       Articles:
       - Url: nservicebus/upgrades/asq-6to7
-        Title: Upgrade Version 6 to 7
+        Title: Version 6 to 7
     - Title: Azure Service Bus Transport
       Articles:
       - Url: nservicebus/upgrades/asb-6to7
-        Title: Upgrade Version 6 to 7
+        Title: Version 6 to 7
     - Title: Azure Cloud Services Host
       Articles:
       - Url: nservicebus/upgrades/acs-host-6to7
-        Title: Upgrade Version 6 to 7
+        Title: Version 6 to 7
     - Title: Gateway
       Articles:
       - Url: nservicebus/upgrades/gateway-1to2
-        Title: Upgrade Version 1 to 2
+        Title: Version 1 to 2
     - Title: NHibernate Persistence
       Articles:
       - Url: nservicebus/upgrades/nhibernate-6to7
-        Title: Upgrade Version 6 to 7
+        Title: Version 6 to 7
     - Title: RabbitMQ Transport
       Articles:
       - Url: nservicebus/upgrades/rabbitmq-3to4
-        Title: Upgrade Version 3 to 4
+        Title: Version 3 to 4
     - Title: RavenDB Persistence
       Articles:
       - Url: nservicebus/upgrades/ravendb-3to4
-        Title: Upgrade from 3 to 4
+        Title: Version 3 to 4
     - Title: SQL Server Transport
       Articles:
       - Url: nservicebus/upgrades/sqlserver-2to3
-        Title: Upgrade Version 2 to 3
+        Title: Version 2 to 3
       - Url: nservicebus/upgrades/sqlserver-2.x-2.2.4
-        Title: Upgrade Version 2.x to 2.2.4
+        Title: Version 2.x to 2.2.4
       - Url: nservicebus/upgrades/sqlserver-1.x-1.2.5
-        Title: Upgrade Version 1.x to 1.2.5
+        Title: Version 1.x to 1.2.5
     - Title: NServiceBus Testing
       Articles:
       - Url: nservicebus/upgrades/testing-5to6
-        Title: Testing Upgrade Version 5 to 6
+        Title: Version 5 to 6
   - Url: nservicebus/messaging
     Title: Messaging
     Articles:
     - Url: nservicebus/messaging/messages-events-commands
-      Title: Messages, Events and Commands
+      Title: Messages, Events & Commands
     - Url: nservicebus/messaging/message-identity
       Title: Message Identity
     - Url: nservicebus/messaging/conventions
@@ -154,11 +154,11 @@
     - Url: nservicebus/messaging/messages-as-interfaces
       Title: Messages as Interfaces
     - Url: nservicebus/messaging/reply-to-a-message
-      Title: Replying to a Message
+      Title: Replying
     - Url: nservicebus/messaging/send-a-message
-      Title: Sending messages
+      Title: Sending
     - Url: nservicebus/messaging/forwarding
-      Title: Message forwarding
+      Title: Forwarding
     - Url: nservicebus/messaging/batched-dispatch
       Title: Batched message dispatch
     - Url: nservicebus/endpoints/specify-endpoint-name
@@ -168,7 +168,7 @@
     - Url: nservicebus/messaging/routing-extensibility
       Title: Routing system extensibility points
     - Url: nservicebus/messaging/unobtrusive-mode
-      Title: Unobtrusive Mode Messages
+      Title: Unobtrusive Mode
     - Url: nservicebus/messaging/best-practice-enforcement
       Title: Enforcement of best practices
     - Url: nservicebus/scheduling
@@ -179,9 +179,9 @@
       Title: Publish Subscribe
       Articles:
       - Url: nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
-        Title: Controlling what is subscribed
+        Title: Subscription configuration
       - Url: nservicebus/messaging/publish-subscribe/publish-handle-event
-        Title: Publish and Handle an Event
+        Title: Publish & Handle an Event
     - Url: nservicebus/gateway
       Title: Gateway
       Articles:
@@ -208,7 +208,7 @@
       - Url: nservicebus/messaging/databus/azure-blob-storage
         Title: Azure Blob Storage DataBus
       - Url: nservicebus/messaging/databus/custom
-        Title: Custom DataBus implementation
+        Title: Custom DataBus
   - Url: nservicebus/endpoints
     Title: Endpoints
     Articles:
@@ -227,9 +227,9 @@
     - Url: nservicebus/sagas/message-correlation
       Title: Message Correlation
     - Url: nservicebus/sagas/timeouts
-      Title: Saga Timeouts
+      Title: Timeouts
     - Url: nservicebus/sagas/saga-finding
-      Title: Complex saga finding logic
+      Title: Complex finding logic
     - Url: nservicebus/sagas/saga-not-found
       Title: Not Found
     - Url: nservicebus/sagas/concurrency
@@ -237,7 +237,7 @@
     - Url: nservicebus/handlers/async-handlers
       Title: Asynchronous Handlers
     - Url: nservicebus/sagas/reply-replaytooriginator-differences
-      Title: Reply and ReplyToOriginator differences
+      Title: Reply & ReplyToOriginator differences
   - Url: nservicebus/recoverability
     Title: Recoverability
     Articles:
@@ -259,7 +259,7 @@
     Title: Pipeline
     Articles:
     - Url: nservicebus/pipeline/steps-stages-connectors
-      Title: Steps, Stages and Connectors
+      Title: Steps, Stages & Connectors
     - Url: nservicebus/pipeline/manipulate-with-behaviors
       Title: Manipulate Pipeline with Behaviors
     - Url: nservicebus/pipeline/message-mutators
@@ -298,7 +298,7 @@
       - Url: nservicebus/azure-service-bus/addressing-logic
         Title: Addressing Logic
       - Url: nservicebus/azure-service-bus/securing-connection-strings
-        Title: Securing Connection Strings To Namespaces
+        Title: Securing Namespace Connections
       - Url: nservicebus/azure-service-bus/namespace-hierarchy
         Title: Namespace hierarchy support
       - Url: nservicebus/azure-service-bus/token-provider
@@ -322,18 +322,18 @@
       Title: Transaction Support
       Articles:
       - Url: nservicebus/azure/understanding-transactionality-in-azure
-        Title: Understanding Transactionality in Azure
+        Title: Transactions in Azure
       - Url: nservicebus/azure/ways-to-live-without-transactions
         Title: Avoiding Transactions
       - Url: nservicebus/azure-service-bus/understanding-transactions-and-delivery-guarantees
-        Title: Understanding internal transactions and delivery guarantees
+        Title: Internal transaction & delivery guarantees
     - Url: nservicebus/azure-service-bus/error-handling
       Title: Error Handling
       Articles:
       - Url: nservicebus/azure-service-bus/dlq-forwarding
-        Title: Azure Service Bus DLQ Forwarding
+        Title: Forwarding
       - Url: nservicebus/azure-service-bus/oversized-sends
-        Title: Azure Service Bus Oversized Sends
+        Title: Oversized Sends
     - Url: nservicebus/azure-service-bus/native-integration
       Title: Native Integration
       Articles:
@@ -351,7 +351,7 @@
     - Url: nservicebus/azure-storage-queues/transaction-support
       Title: Transaction Support
     - Url: nservicebus/azure/understanding-transactionality-in-azure
-      Title: Understanding Transactionality in Azure
+      Title: Transactions in Azure
     - Url: nservicebus/azure/ways-to-live-without-transactions
       Title: Avoiding Transactions
     - Url: nservicebus/azure-storage-queues/configuration
@@ -387,7 +387,7 @@
     Title: MSMQ Transport
     Articles:
     - Url: nservicebus/msmq/routing
-      Title: Physical routing with MSMQ
+      Title: Physical routing in MSMQ
     - Url: nservicebus/msmq/connection-strings
       Title: Connection strings
     - Url: nservicebus/msmq/viewing-message-content-in-msmq
@@ -401,7 +401,7 @@
     - Url: nservicebus/msmq/operations-scripting
       Title: Scripting
     - Url: nservicebus/msmq/uninstalling-msmq
-      Title: Uninstalling the MSMQ Service
+      Title: Uninstalling MSMQ
     - Url: nservicebus/msmq/subscription-persistence
       Title: MSMQ Subscription Persistence
     - Url: nservicebus/msmq/full-qualified-domain-name
@@ -425,7 +425,7 @@
     - Url: nservicebus/rabbitmq/message-id-strategy
       Title: Message Id strategy
     - Url: nservicebus/rabbitmq/transactions-and-delivery-guarantees
-      Title: Transactions and delivery guarantees
+      Title: Transactions & delivery guarantees
     - Url: nservicebus/rabbitmq/cluster
       Title: In a cluster
     - Url: nservicebus/rabbitmq/operations-scripting
@@ -444,12 +444,12 @@
     - Url: nservicebus/serialization/custom-serializer
       Title: Custom serializers
     - Url: nservicebus/serialization/type-was-not-registered
-      Title: Type Not Registered in the Serializer
+      Title: Type Not Registered in Serializer
   - Url: nservicebus/persistence
     Title: Persistence
     Articles:
     - Url: nservicebus/persistence/order
-      Title: Configuration order for
+      Title: Persistence order
     - Url: nservicebus/persistence/authoring-custom
       Title: Authoring a custom
     - Url: nservicebus/persistence/in-memory
@@ -488,16 +488,16 @@
       - Url: nservicebus/azure-storage-persistence/configuration
         Title: Configuration
       - Url: nservicebus/azure/understanding-transactionality-in-azure
-        Title: Understanding Transactionality in Azure
+        Title: Transactions in Azure
       - Url: nservicebus/azure-storage-persistence/performance-tuning
         Title: Performance Tuning
   - Url: nservicebus/containers
     Title: Containers
     Articles:
     - Url: nservicebus/containers/child-containers
-      Title: Support for Child Containers
+      Title: Child Containers
     - Url: nservicebus/containers/injecting-ibus
-      Title: Using IBus in a Message Handler
+      Title: IBus in a Message Handler
     - Url: nservicebus/containers/property-injection
       Title: Property injection
     - Url: nservicebus/containers/autofac
@@ -520,9 +520,9 @@
     - Url: nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized
       Title: Before Configuration Finalized
     - Url: nservicebus/lifecycle/iwanttorunwhenconfigurationiscomplete
-      Title: When Configuration Ends
+      Title: Configuration Ends
     - Url: nservicebus/lifecycle/endpointstartandstop
-      Title: When Endpoint Instance Starts and Stops
+      Title: Endpoint Instance Starts & Stops
   - Url: nservicebus/hosting
     Title: Hosting
     Articles:
@@ -555,9 +555,9 @@
       - Url: nservicebus/hosting/cloud-services-host/startup
         Title: Startup Behavior
       - Url: nservicebus/hosting/cloud-services-host/shared-hosting
-        Title: Shared Hosting in Azure
+        Title: Shared Hosting
       - Url: nservicebus/hosting/cloud-services-host/critical
-        Title: Critical Error Behavior
+        Title: Critical Errors
       - Url: nservicebus/hosting/cloud-services-host/faq
         Title: FAQ
   - Url: nservicebus/testing
@@ -590,19 +590,19 @@
     Title: Operations
     Articles:
     - Url: nservicebus/operations/transactions-message-processing
-      Title: Transactions and Message Processing
+      Title: Transactions & Message Processing
     - Url: nservicebus/operations/auditing
       Title: Auditing Messages
     - Url: nservicebus/security/encryption
       Title: Encryption
     - Url: nservicebus/operations/configuring-aws
-      Title: Configuring AWS For NServiceBus
+      Title: NServiceBus in AWS
     - Url: nservicebus/operations/dotnet-framework-version-requirements
       Title: .NET Framework requirements
     - Url: nservicebus/operations/installers
       Title: Installers
     - Url: nservicebus/operations/management-using-powershell
-      Title: Management using PowerShell
+      Title: PowerShell
     - Url: nservicebus/operations/performance-counters
       Title: Performance Counters
     - Url: nservicebus/operations/tuning
@@ -610,25 +610,25 @@
     - Url: nservicebus/operations/running-on-windows
       Title: Running on Windows
   - Url: nservicebus/scalability-and-ha
-    Title: Scalability and HA
+    Title: Scalability & HA
     Articles:
     - Url: nservicebus/scalability-and-ha/scale-out
-      Title: Scaling out endpoints
+      Title: Scaling endpoints
     - Url: nservicebus/scalability-and-ha/deploying-to-a-windows-failover-cluster
-      Title: Deploying in a Windows Failover Cluster
+      Title: Deploying to Failover Cluster
     - Url: nservicebus/scalability-and-ha/distributor
-      Title: Scaling out with the Distributor
+      Title: Scaling with the Distributor
       Articles:
       - Url: nservicebus/scalability-and-ha/distributor/when-worker-goes-down
-        Title: What happens when a worker goes down
+        Title: When a worker goes down
       - Url: nservicebus/scalability-and-ha/distributor/disconnect-workers
         Title: Disconnect Workers
       - Url: nservicebus/scalability-and-ha/distributor/publish-subscribe
-        Title: Distributor and Publish-Subscribe
+        Title: Distributor & Publish-Subscribe
       - Url: nservicebus/scalability-and-ha/distributor/upgrading-the-distributor
-        Title: Upgrading the Distributor and Workers
+        Title: Upgrading
       - Url: nservicebus/scalability-and-ha/distributor/error-handling
-        Title: Distributor error handling
+        Title: Error handling
 - Name: ServiceInsight
   Topics:
   - Title: Getting Started
@@ -636,21 +636,21 @@
     - Url: serviceinsight/application-invocation
       Title: Application Invocation
     - Url: serviceinsight/logging
-      Title: Logging in ServiceInsight
+      Title: Logging
     - Url: serviceinsight/sequence-diagram
       Title: Sequence Diagram
     - Url: serviceinsight/no-data-available
       Title: Data not available
     - Url: serviceinsight/license
-      Title: Install the license in ServiceInsight
+      Title: License installation
 - Name: ServicePulse
   Topics:
   - Title: Introduction
     Articles:
     - Url: servicepulse/installation
-      Title: Installing ServicePulse
+      Title: Installation
     - Url: servicepulse/intro-endpoints-heartbeats
-      Title: Endpoints and Heartbeats
+      Title: Endpoints & Heartbeats
     - Url: servicepulse/intro-failed-messages
       Title: Failed Message Monitoring
     - Url: servicepulse/intro-archived-messages
@@ -666,11 +666,11 @@
   - Title: Configuration
     Articles:
     - Url: servicepulse/host-config
-      Title: Configuring Hosting
+      Title: Hosting
     - Url: servicepulse/how-to-configure-endpoints-for-monitoring
-      Title: Configuring endpoints for monitoring
+      Title: Monitoring endpoints
     - Url: servicepulse/install-servicepulse-in-iis
-      Title: Install ServicePulse in IIS
+      Title: Install in IIS
     - Url: servicepulse/troubleshooting
       Title: Troubleshooting
 - Name: ServiceControl
@@ -678,7 +678,7 @@
   - Title: Configuration
     Articles:
     - Url: servicecontrol/installation
-      Title: Installing ServiceControl
+      Title: Installation
     - Url: servicecontrol/installation-silent
       Title: Installing Silently
     - Url: servicecontrol/installation-powershell
@@ -725,8 +725,8 @@
     - Url: servicecontrol/use-ravendb-studio
       Title: Expose Data via RavenDB Studio
     - Url: servicecontrol/backup-sc-database
-      Title: Backup the ServiceControl Data
+      Title: Data Backup
     - Url: servicecontrol/configure-non-privileged-service-account
-      Title: Configuring a Non-Privileged Account
+      Title: Non-Privileged Accounts
     - Url: servicecontrol/db-compaction
       Title: Compacting RavenDB
