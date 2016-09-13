@@ -1,6 +1,8 @@
 ---
 title: Azure Service Bus Transport Full Configuration API
 summary: List of all Azure Service Bus Transport configuration settings
+component: ASB
+versions: '[7,)'
 tags:
 - Azure
 - Cloud
@@ -9,10 +11,6 @@ redirects:
 reviewed: 2016-08-29
 ---
 
-
-INFO: This document is intended for Azure Service Bus transport versions 7 and above.
-
-## Full Configuration API
 
 The full configuration API can be accessed from the `UseTransport<AzureServiceBusTransport>()` extension method and provides low level access to various aspects of the transport's behavior.
 
