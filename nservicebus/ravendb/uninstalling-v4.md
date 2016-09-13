@@ -1,6 +1,6 @@
 ---
-title: 'RavenDB Persistence: Uninstall RavenDB v2.0'
-summary: Article outlines uninstalling RavenDB that were installed by previous versions of the Platform Installer.
+title: Uninstall RavenDB v2.0
+summary: Uninstalling RavenDB instances that were installed by previous versions of the Platform Installer.
 tags:
 - Persistence
 - RavenDB

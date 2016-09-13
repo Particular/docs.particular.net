@@ -1,8 +1,8 @@
 ---
 title: Performance Tuning
 tags:
-- Azure
-- Cloud
+ - Azure
+ - Cloud
 ---
 
 

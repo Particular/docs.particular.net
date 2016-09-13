@@ -1,5 +1,5 @@
 ---
-title: 'ServicePulse: Failed Message Monitoring' 
+title: Failed Message Monitoring
 summary: Describes how ServicePulse detects and monitors failed messages, and allows retrying, or archiving failing messages
 component: ServicePulse
 tags:

@@ -1,5 +1,5 @@
 ---
-title: 'Outbox: SQL Server Transport and NHibernate'
+title: Outbox with SQL Server Transport and NHibernate
 summary: Integrating SQL Server Transport with NHibernate persistence using Outbox.
 reviewed: 2016-03-21
 component: SqlServer

@@ -1,5 +1,5 @@
 ---
-title: 'RavenDB Persistence: Installing RavenDB'
+title: Installing RavenDB
 summary: How to install RavenDB when using RavenDB persistence for various versions of NServiceBus.
 tags:
  - Persistence

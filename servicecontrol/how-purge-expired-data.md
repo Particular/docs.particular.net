@@ -1,5 +1,5 @@
 ---
-title: 'ServiceControl: Automatic Expiration of Data'
+title: Automatic Expiration of Data
 summary: Configuring ServiceControl data retention
 related:
  - nservicebus/recoverability

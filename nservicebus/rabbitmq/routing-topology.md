@@ -1,5 +1,5 @@
 ---
-title: RabbitMQ Transport Routing topology
+title: Routing topology
 reviewed: 2016-08-30
 component: Rabbit
 versions: '[2,]'

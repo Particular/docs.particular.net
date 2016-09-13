@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus DLQ Forwarding
+title: Dead Letter Queue Forwarding
 versions: '[7,)'
 reviewed: 2016-08-29
 tags:

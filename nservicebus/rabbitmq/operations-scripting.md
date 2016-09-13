@@ -1,5 +1,5 @@
 ---
-title: 'RabbitMQ Transport: Scripting'
+title: Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against RabbitMQ.
 reviewed: 2016-08-31
 component: Rabbit

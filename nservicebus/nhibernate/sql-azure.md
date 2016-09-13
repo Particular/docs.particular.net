@@ -1,5 +1,5 @@
 ---
-title: 'NHibernate Persistence: SQL Azure'
+title: SQL Azure
 summary: How to configure the NHibernate-based persistence for NServiceBus when running on SQL Azure
 component: NHibernate
 versions: '[6,]'

@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Transport Full Configuration API
+title: Full Configuration API
 summary: List of all Azure Service Bus Transport configuration settings
 component: ASB
 versions: '[7,)'

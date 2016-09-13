@@ -1,6 +1,6 @@
 ---
-title: 'Gateway: Multi-Site Deployments'
-summary: Explanation of how the Gateway handles multi-site communication.
+title: Multi-Site Deployments
+summary: How multi-site communication is handled.
 component: Gateway
 redirects:
  - nservicebus/the-gateway-and-multi-site-distribution

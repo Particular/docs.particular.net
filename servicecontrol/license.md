@@ -1,5 +1,5 @@
 ---
-title: 'ServiceControl: Licensing'
+title: Licensing
 tags:
  - servicecontrol
  - license

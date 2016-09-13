@@ -1,6 +1,5 @@
 ---
 title: Sanitization
-summary: Sanitization with Azure Service Bus and how it works
 component: ASB
 tags:
 - Cloud

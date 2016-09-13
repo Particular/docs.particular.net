@@ -1,5 +1,5 @@
 ---
-title: 'ServiceControl: Logging'
+title: Logging
 tags:
 - ServiceControl
 - Logging

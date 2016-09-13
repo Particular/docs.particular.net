@@ -1,5 +1,5 @@
 ---
-title: Azure Storage Queues Transport Configuration
+title: Configuration
 summary: Using Azure Storage Queues as transport
 tags:
 - Azure
@@ -44,6 +44,7 @@ Instructs the transport to remove any existing messages from the input queue on 
 Defaults: `false`, i.e. messages are not removed when endpoint starts.
 
 Versions: 6 and below
+
 
 #### MessageInvisibleTime
 
@@ -136,6 +137,7 @@ This feature can be enabled when configuring the `AzureStorageQueueTransport`:
 snippet:AzureStorageQueueUseAccountAliasesInsteadOfConnectionStrings
 
 See also [Using aliases for connection strings to storage accounts for Scale Out](/nservicebus/azure-storage-queues/multi-storageaccount-support.md#using-aliases-for-connection-strings-to-storage-accounts-for-scale-out)
+
 
 ## Hashing algorithms
 

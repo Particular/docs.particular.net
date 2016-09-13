@@ -1,6 +1,6 @@
 ---
-title: Azure Service Bus Error Handling
-reviewed: 2016-08-29
+title: Error Handling
+reviewed: 2016-09-14
 tags:
 - Azure
 - Cloud
@@ -30,7 +30,7 @@ Note: If broker side exceptions persist the `TrackingId` value can be used to co
 
 A peculiar behavior of the Azure Service Bus SDK is how it reports on actual message size. It can only do so accurately after a message has been sent. Before sending the reported message size only covers the body section and not the final size that would include header and serialization overhead. This can obviously lead to unexpected results when trying to send a message.
 
-If the application is intended to send large messages, it should leverage the [NServiceBus Databus](/nservicebus/messaging/databus/) to send large payloads. In the scenario where an application sends regular messages that borderline with the maximum message size than extra precaution may be necessary.
+If the application is intended to send large messages, it should leverage the [DataBus](/nservicebus/messaging/databus/) to send large payloads. In the scenario where an application sends regular messages that borderline with the maximum message size than extra precaution may be necessary.
 
 The transport deals with this problem for a large part by performing an [estimated batch size calculation](batching.md#batching-messages-sent-from-a-handler-padding-and-estimated-batch-size-calculation) that includes both body and headers as well as a percentage for padding due to serialization.
 

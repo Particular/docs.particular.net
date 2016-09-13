@@ -1,6 +1,5 @@
 ---
 title: Transaction Support
-summary: Understanding transactions in Azure Storage Queue Transport.
 component: ASQ
 versions: '[6,]'
 tags:
@@ -12,7 +11,10 @@ tags:
 reviewed: 2016-09-06
 ---
 
-Azure Storage Queues Transport supports `ReceiveOnly` and `Unreliable` levels.
+The following [`TransportTransactionMode` levels](/nservicebus/transports/transactions.md) are supported
+
+ * `ReceiveOnly`
+ * `Unreliable`
 
 
 ## Transport transaction - Receive Only

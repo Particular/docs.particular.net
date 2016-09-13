@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Oversized Sends
+title: Oversized Sends
 reviewed: 2016-08-29
 versions: '[7,)'
 tags:

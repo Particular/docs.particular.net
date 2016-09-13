@@ -1,5 +1,5 @@
 ---
-title: RabbitMQ Transport Message Id strategy
+title: Message Id strategy
 summary: Controlling the message Id strategy.
 reviewed: 2016-08-30
 component: rabbit

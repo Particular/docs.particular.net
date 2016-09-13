@@ -1,17 +1,18 @@
 ---
 title: Retry behavior
-summary: Describes the relationship between NServiceBus' retry behavior and Azure Service Bus' native retry behavior
+summary: Describes the relationship between the NServiceBus retry behavior and the Azure Service Bus native retry behavior
 tags:
 - Cloud
 - Azure
 - Transport
 ---
 
-This article describes the relationship between NServiceBus retry behavior and Azure Service Bus native retry behavior.
+This article describes the relationship between the NServiceBus retry behavior and the Azure Service Bus native retry behavior.
 
 NServiceBus supports First Level Retries and Second Level Retries features at the endpoint instance level as described in the [recoverability](/nservicebus/recoverability/) article.
 
 Azure Service Bus supports a `MaxDeliveryCount` at the entity level, which defines how many times Azure Service Bus attempts to deliver a message before sending it to the dead letter queue. Refer to [the full configuration API](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-queues) article to learn how to adjust this setting.
+
 
 ## First Level Retries vs MaxDeliveryCount
 
@@ -20,6 +21,7 @@ In order to implement First Level Retries, NServiceBus maintains an internal cou
 Each endpoint's instance maintains its own internal counter for retries. If an endpoint is scaled out then the message can be retried a few times by each instance, before one of them decides to send the message to the error queue. So in effect the global retry count, as seen by the Azure Service Bus entity, will in the worst case scenario be equal to `MaxRetries * number of instances`.
 
 In Azure Service Bus Versions 6 and below the default value for `MaxDeliveryCount` is 6. In Azure Service Bus Versions 7 and higher it has been changed to 10, based on the assumption that by default there are 2 instances of each endpoint and `MaxRetries` has the default value of 5.
+
 
 ### Elastic Scale
 
@@ -30,6 +32,7 @@ This becomes a problem when the number of instances exceeds what was originally 
 One way to solve this problem is to configure the entity to forward dead letter messages to the error queue:
 
 snippet:forward-deadletter-conditional-queue
+
 
 ## Second Level Retries
 

@@ -1,6 +1,6 @@
 ---
-title: 'Azure Storage Queues Transport: Multiple storage accounts'
-summary: NServiceBus can use multiple Azure storage accounts for scale out
+title: Multiple storage accounts
+summary: Use multiple Azure storage accounts for scale out
 component: ASQ
 versions: '[7,]'
 tags:
@@ -16,7 +16,7 @@ related:
  - nservicebus/azure-storage-queues/configuration
 ---
 
-An NServiceBus-based system running on Azure Storage Queues transport using a single storage account is subject to potential throttling once the maximum number of messages is written to the storage account. To overcome this limitation, use multiple storage accounts. To better understand scale out options with storage accounts, it is necessary understand Azure storage account scalability and performance.
+Endpoints running on Azure Storage Queues transport using a single storage account is subject to potential throttling once the maximum number of messages is written to the storage account. To overcome this limitation, use multiple storage accounts. To better understand scale out options with storage accounts, it is necessary understand Azure storage account scalability and performance.
 
 
 ## Azure Storage Scalability and Performance

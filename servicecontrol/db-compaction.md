@@ -1,5 +1,5 @@
 ---
-title: 'ServiceControl: Compacting RavenDB'
+title: Compacting RavenDB
 summary: How to compact (release disk space to OS) the RavenDB database backing the ServiceControl
 tags:
 - ServiceControl

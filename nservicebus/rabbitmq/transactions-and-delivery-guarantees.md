@@ -1,5 +1,5 @@
 ---
-title: RabbitMQ Transport Transactions and delivery guarantees
+title: Transactions and delivery guarantees
 reviewed: 2016-08-30
 versions: '[4,]'
 component: Rabbit

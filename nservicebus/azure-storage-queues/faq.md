@@ -1,6 +1,5 @@
 ---
-title: Azure Storage Queues Transport FAQ
-summary: Frequently Asked Questions related to using azure storage queues as a transport.
+title: Frequently Asked Questions
 component: ASQ
 tags:
 - Cloud

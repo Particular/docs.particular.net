@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Transport Brokered Message Creation
+title: Brokered Message Creation
 summary: Details on brokered message creation with Azure Service Bus
 component: ASB
 versions: '[6,)'

@@ -1,5 +1,5 @@
 ---
-title: 'ServiceControl: Configure the URI'
+title: Configure the URI
 summary: How to configure ServiceControl to be exposed through a custom hostname and IP port
 tags:
 - ServiceControl

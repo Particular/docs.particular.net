@@ -1,6 +1,5 @@
 ---
 title: Securing Connection Strings To Namespaces
-summary: 'Azure Service Bus Transport: Securing connection strings to namespaces.'
 tags:
 - Cloud
 - Azure

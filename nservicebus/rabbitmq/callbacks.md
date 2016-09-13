@@ -1,5 +1,5 @@
 ---
-title: RabbitMQ Transport Callback support
+title: Callback support
 reviewed: 2016-08-30
 component: Rabbit
 reviewed: 2016-08-30

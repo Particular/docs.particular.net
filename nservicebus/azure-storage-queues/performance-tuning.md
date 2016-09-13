@@ -1,6 +1,5 @@
 ---
-title: Azure Storage Queues Transport Performance Tuning
-summary: Tuning Azure Storage Queues Transport performance
+title: Performance Tuning
 component: ASQ
 versions: '[7,]'
 reviewed: 2016-04-21

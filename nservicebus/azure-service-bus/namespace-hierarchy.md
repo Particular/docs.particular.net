@@ -15,7 +15,7 @@ At the core of the Azure Service Bus service, there is a Service Registry which 
 https://{serviceNamespace}.servicebus.windows.net/{path}
 ```
 
-The {path} parameter can be specified at any depth, allowing the hierarchy to be extended with application specific sub trees. This is very usefull for large systems to group, manage and secure resources more efficiently, for example:
+The {path} parameter can be specified at any depth, allowing the hierarchy to be extended with application specific sub trees. This is very useful for large systems to group, manage and secure resources more efficiently, for example:
 
 ```no-highlight
 https://mynamespace.servicebus.Windows.net/production/tenant1/sales
@@ -33,7 +33,7 @@ NServiceBus provides to tan endpoint the capability to register its Azure Servic
 
 snippet: asb-hierarchy-composition
 
-Note that the path generator is a lambda function, so it will be invoked each time the transport wants to determine the location of a given entity. This function must mett the following rules:
+Note that the path generator is a lambda function, so it will be invoked each time the transport wants to determine the location of a given entity. This function must meet the following rules:
 
  * Return the path to the entity.
  * **Does not** appending the entity name itself.

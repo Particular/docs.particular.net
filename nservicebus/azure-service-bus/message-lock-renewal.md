@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Transport Message lock renewal
+title: Message lock renewal
 summary: Extending message lock for long handler operation
 tags:
 - Cloud

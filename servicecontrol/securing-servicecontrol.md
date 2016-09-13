@@ -1,5 +1,5 @@
 ---
-title: 'ServiceControl: Securing Access'
+title: Securing Access
 summary: How security is addressed in ServiceControl V1.x. How to limit access to ServiceControl data.
 tags:
 - ServiceControl

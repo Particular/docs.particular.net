@@ -1,5 +1,5 @@
 ---
-title: Gateway Troubleshooting
+title: Troubleshooting
 redirects:
  - nservicebus/gateway-trouble-shooting
 ---

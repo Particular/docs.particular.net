@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Transport Naming Conventions
+title: Naming Conventions
 summary: Naming Conventions for Azure Service Bus, Versions 6 and below.
 tags:
  - Azure

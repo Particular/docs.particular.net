@@ -1,5 +1,5 @@
 ---
-title: 'RavenDB Persistence: RavenDB Version Compatibility'
+title: RavenDB Version Compatibility
 summary: The various approaches used by different versions of NServiceBus when integrating with RavenDB
 tags:
 - RavenDB

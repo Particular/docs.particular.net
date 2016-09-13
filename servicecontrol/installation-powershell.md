@@ -1,5 +1,5 @@
 ---
-title: 'ServiceControl: Managing Instances via PowerShell'
+title: Managing Instances via PowerShell
 reviewed: 2016-03-24
 tags:
  - ServiceControl

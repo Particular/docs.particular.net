@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Transport Native Integration
+title: Native Integration
 summary: Native integration with Azure Service Bus
 component: ASB
 reviewed: 2016-09-05

@@ -1,5 +1,5 @@
 ---
-title: 'ServiceControl: Deploying to a cluster'
+title: Deploying to a cluster
 tags:
 - ServiceControl
 - Cluster

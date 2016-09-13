@@ -1,5 +1,5 @@
 ---
-title: 'ServiceControl: Installing Silently'
+title: Installing Silently
 reviewed: 2016-09-06
 tags:
 - ServiceControl

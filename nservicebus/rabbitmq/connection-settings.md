@@ -1,5 +1,5 @@
 ---
-title: RabbitMQ Transport Connection settings
+title: Connection settings
 summary: The various ways to customize the RabbitMQ transport.
 reviewed: 2016-08-30
 component: Rabbit
