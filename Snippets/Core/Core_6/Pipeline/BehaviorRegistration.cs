@@ -9,7 +9,10 @@
         {
             #region RegisterBehaviorEndpointConfiguration
 
-            endpointConfiguration.Pipeline.Register(new SampleBehavior(), "Logs a warning when processing takes too long");
+            var pipeline = endpointConfiguration.Pipeline;
+            pipeline.Register(
+                behavior: new SampleBehavior(),
+                description: "Logs a warning when processing takes too long");
 
             #endregion
         }
@@ -21,7 +24,10 @@
 
         protected override void Setup(FeatureConfigurationContext context)
         {
-            context.Pipeline.Register(new SampleBehavior(), "Logs a warning when processing takes too long");
+            var pipeline = context.Pipeline;
+            pipeline.Register(
+                behavior: new SampleBehavior(),
+                description: "Logs a warning when processing takes too long");
         }
 
         #endregion
