@@ -1,6 +1,5 @@
 ---
 title: Azure Storage Queues Transport Configuration
-summary: Using Azure Storage Queues as transport
 component: ASQ
 tags:
 - Azure
