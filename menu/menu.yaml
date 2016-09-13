@@ -3,13 +3,11 @@
   - Title: Getting Started
     Articles:
     - Url: platform
-      Title: Particular Service Platform Overview
-    - Title: Overview
-      Articles:
-      - Url: nservicebus/architecture/principles
-        Title: Architectural Principles
-      - Url: nservicebus/architecture
-        Title: Bus versus broker architecture
+      Title: Service Platform
+    - Url: nservicebus/architecture/principles
+      Title: Architectural Principles
+    - Url: nservicebus/architecture
+      Title: Bus vs. Vroker
     - Url: samples/step-by-step
       Title: Step by Step Guide
     - Url: nservicebus/concept-overview

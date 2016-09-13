@@ -160,7 +160,7 @@ span.blue {
     <div class="col-md-6">
       <a href="/platform/">
         <img src="/home/platform_v1.svg" width="36" height="36"/>
-        <h3>Particular Service Platform Overview</h3>
+        <h3>Service Platform Overview</h3>
       </a>
       <p>A short and high level overview of the Platform</p>
     </div>
@@ -228,7 +228,7 @@ span.blue {
     <p></p>
     <ul>
       <li><a href="/serviceinsight/application-invocation.md">Application invocation</a></li>
-      <li><a href="/serviceinsight/logging.md">Logging in ServiceInsight</a></li>
+      <li><a href="/serviceinsight/logging.md">Logging</a></li>
     </ul>
     <a href="/serviceinsight/"><h3>All ServiceInsight articles</h3></a><br/>
     <div style="clear: both"></div>
@@ -238,8 +238,8 @@ span.blue {
     <h4>Gather all the data and monitor multiple endpoints from a single location</h4>
     <p></p>
     <ul>
-      <li><a href="/servicecontrol/servicecontrol-in-practice.md">Optimizing for use in different environments</a></li>
-      <li><a href="/servicecontrol/installation.md">Installing ServiceControl</a></li>
+      <li><a href="/servicecontrol/servicecontrol-in-practice.md">Optimizing use in different environments</a></li>
+      <li><a href="/servicecontrol/installation.md">Installing</a></li>
     </ul>
     <a href="/servicecontrol/"><h3>All ServiceControl articles</h3></a><br/>
     <div style="clear: both"></div>
