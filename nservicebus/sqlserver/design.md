@@ -1,5 +1,5 @@
 ---
-title: SQL Server Transport Design
+title: Design
 summary: The design and implementation details of SQL Server Transport
 reviewed: 2016-08-08
 component: SqlServer
