@@ -11,8 +11,6 @@ related:
 ---
 
 
-## Summary
-
 This document explains how to patch a system for [SQL injection vulnerability in the SQL Server Transport](https://github.com/Particular/NServiceBus.SqlServer/issues/272) using hotfix release 2.2.4.
 
 NOTE: Detailed information about the vulnerability, its impact, available mitigation steps and patching instructions can be found in the [security advisory](/security-advisories/sqlserver-sqlinjection.md).
