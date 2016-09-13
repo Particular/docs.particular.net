@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Transport Queue Configuration Section
+title: Queue Configuration Section
 summary: Configuring Azure Service Bus as transport
 tags:
 - Azure
