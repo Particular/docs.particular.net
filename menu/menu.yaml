@@ -207,35 +207,91 @@
         Title: Azure Blob Storage DataBus
       - Url: nservicebus/messaging/databus/custom
         Title: Custom DataBus
-  - Url: nservicebus/endpoints
-    Title: Endpoints
+  - Url: nservicebus/hosting
+    Title: Hosting
     Articles:
-    - Url: nservicebus/endpoints/specify-endpoint-name
-      Title: Endpoint Name
-  - Url: nservicebus/handlers
-    Title: Handlers
-    Articles:
-    - Url: nservicebus/handlers/handler-ordering
-      Title: Handler Order
-    - Url: nservicebus/handlers/async-handlers
-      Title: Asynchronous Handlers
-  - Url: nservicebus/sagas
-    Title: Sagas
-    Articles:
-    - Url: nservicebus/sagas/message-correlation
-      Title: Message Correlation
-    - Url: nservicebus/sagas/timeouts
-      Title: Timeouts
-    - Url: nservicebus/sagas/saga-finding
-      Title: Complex finding logic
-    - Url: nservicebus/sagas/saga-not-found
-      Title: Not Found
-    - Url: nservicebus/sagas/concurrency
-      Title: Concurrency
-    - Url: nservicebus/handlers/async-handlers
-      Title: Asynchronous Handlers
-    - Url: nservicebus/sagas/reply-replaytooriginator-differences
-      Title: Reply & ReplyToOriginator differences
+    - Url: nservicebus/endpoints
+      Title: Endpoints
+      Articles:
+      - Url: nservicebus/endpoints/specify-endpoint-name
+        Title: Endpoint Name
+    - Url: nservicebus/hosting/windows-service
+      Title: Windows Service Hosting
+    - Url: nservicebus/hosting/override-hostid
+      Title: Override host identifier
+    - Url: nservicebus/hosting/custom-configuration-providers
+      Title: Overriding app.config settings
+    - Url: nservicebus/hosting/assembly-scanning
+      Title: Assembly scanning
+    - Url: nservicebus/hosting/critical-errors
+      Title: Critical Errors
+    - Url: nservicebus/hosting/web-application
+      Title: Web Application Hosting
+    - Url: nservicebus/hosting/publishing-from-web-applications
+      Title: Publishing from Web Applications
+    - Url: nservicebus/hosting/nservicebus-host
+      Title: NServiceBus Host
+      Articles:
+      - Url: nservicebus/hosting/nservicebus-host/profiles
+        Title: Profiles
+    - Url: nservicebus/hosting/cloud-services-host
+      Title: Azure Cloud Services Host
+      Articles:
+      - Url: nservicebus/hosting/cloud-services-host/configuration
+        Title: Configuration
+      - Url: nservicebus/hosting/cloud-services-host/logging
+        Title: Logging
+      - Url: nservicebus/hosting/cloud-services-host/startup
+        Title: Startup Behavior
+      - Url: nservicebus/hosting/cloud-services-host/shared-hosting
+        Title: Shared Hosting
+      - Url: nservicebus/hosting/cloud-services-host/critical
+        Title: Critical Errors
+      - Url: nservicebus/hosting/cloud-services-host/faq
+        Title: FAQ
+    - Url: nservicebus/lifecycle
+      Title: Interface life-cycles
+      Articles:
+      - Url: nservicebus/lifecycle/ineedinitialization
+        Title: Initialization
+      - Url: nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized
+        Title: Before Configuration Finalized
+      - Url: nservicebus/lifecycle/iwanttorunwhenconfigurationiscomplete
+        Title: Configuration Ends
+      - Url: nservicebus/lifecycle/endpointstartandstop
+        Title: Endpoint Instance Starts & Stops
+  - Title: Handlers & Sagas
+    - Url: nservicebus/handlers
+      Title: Handlers
+      Articles:
+      - Url: nservicebus/handlers/handler-ordering
+        Title: Handler Order
+      - Url: nservicebus/handlers/async-handlers
+        Title: Asynchronous Handlers
+    - Url: nservicebus/sagas
+      Title: Sagas
+      Articles:
+      - Url: nservicebus/sagas/message-correlation
+        Title: Message Correlation
+      - Url: nservicebus/sagas/timeouts
+        Title: Timeouts
+      - Url: nservicebus/sagas/saga-finding
+        Title: Complex finding logic
+      - Url: nservicebus/sagas/saga-not-found
+        Title: Not Found
+      - Url: nservicebus/sagas/concurrency
+        Title: Concurrency
+      - Url: nservicebus/handlers/async-handlers
+        Title: Asynchronous Handlers
+      - Url: nservicebus/sagas/reply-replaytooriginator-differences
+        Title: Reply & ReplyToOriginator differences
+    - Url: nservicebus/testing
+      Title: Testing
+      Articles:
+      - Url: nservicebus/testing
+        Title: NServiceBus
+      - Url: samples/unit-testing
+        Title: Unit Testing NServiceBus
   - Url: nservicebus/recoverability
     Title: Recoverability
     Articles:
@@ -510,61 +566,6 @@
       Title: StructureMap
     - Url: nservicebus/containers/unity
       Title: Unity
-  - Url: nservicebus/lifecycle
-    Title: Interface life-cycles
-    Articles:
-    - Url: nservicebus/lifecycle/ineedinitialization
-      Title: Initialization
-    - Url: nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized
-      Title: Before Configuration Finalized
-    - Url: nservicebus/lifecycle/iwanttorunwhenconfigurationiscomplete
-      Title: Configuration Ends
-    - Url: nservicebus/lifecycle/endpointstartandstop
-      Title: Endpoint Instance Starts & Stops
-  - Url: nservicebus/hosting
-    Title: Hosting
-    Articles:
-    - Url: nservicebus/hosting/windows-service
-      Title: Windows Service Hosting
-    - Url: nservicebus/hosting/override-hostid
-      Title: Override host identifier
-    - Url: nservicebus/hosting/custom-configuration-providers
-      Title: Overriding app.config settings
-    - Url: nservicebus/hosting/assembly-scanning
-      Title: Assembly scanning
-    - Url: nservicebus/hosting/critical-errors
-      Title: Critical Errors
-    - Url: nservicebus/hosting/web-application
-      Title: Web Application Hosting
-    - Url: nservicebus/hosting/publishing-from-web-applications
-      Title: Publishing from Web Applications
-    - Url: nservicebus/hosting/nservicebus-host
-      Title: NServiceBus Host
-      Articles:
-      - Url: nservicebus/hosting/nservicebus-host/profiles
-        Title: Profiles
-    - Url: nservicebus/hosting/cloud-services-host
-      Title: Azure Cloud Services Host
-      Articles:
-      - Url: nservicebus/hosting/cloud-services-host/configuration
-        Title: Configuration
-      - Url: nservicebus/hosting/cloud-services-host/logging
-        Title: Logging
-      - Url: nservicebus/hosting/cloud-services-host/startup
-        Title: Startup Behavior
-      - Url: nservicebus/hosting/cloud-services-host/shared-hosting
-        Title: Shared Hosting
-      - Url: nservicebus/hosting/cloud-services-host/critical
-        Title: Critical Errors
-      - Url: nservicebus/hosting/cloud-services-host/faq
-        Title: FAQ
-  - Url: nservicebus/testing
-    Title: Testing
-    Articles:
-    - Url: nservicebus/testing
-      Title: NServiceBus
-    - Url: samples/unit-testing
-      Title: Unit Testing NServiceBus
   - Url: nservicebus/logging
     Title: Logging
     Articles:
