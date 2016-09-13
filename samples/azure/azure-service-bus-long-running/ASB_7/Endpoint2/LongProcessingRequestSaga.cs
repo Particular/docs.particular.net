@@ -25,12 +25,20 @@ public class LongProcessingRequestSaga : Saga<SagaState>,
     {
         log.Info($"Received LongProcessingRequest with ID {message.Id}, EstimatedProcessingTime: {message.EstimatedProcessingTime}.");
 
+        #region setting-timeout
+
         var timeoutToBeInvokedAt = DateTime.Now + message.EstimatedProcessingTime + TimeSpan.FromSeconds(10);
         await RequestTimeout(context, timeoutToBeInvokedAt, new ProcessingPossiblyFailed { Id = message.Id });
+
+        #endregion
+
         log.Info($"Timeout is set to be executed at {timeoutToBeInvokedAt}.");
 
 
         log.Info("Registering long running request with Processor.");
+
+        #region enqueue-request-for-processor
+
         // Saga enqueues the request in storate table. Normally, if there's more than that, work should be done by a handler
         var request = new RequestRecord(message.Id, Status.Pending, message.EstimatedProcessingTime);
         await table.ExecuteAsync(TableOperation.Insert(request)).ConfigureAwait(false);
@@ -39,6 +47,9 @@ public class LongProcessingRequestSaga : Saga<SagaState>,
         {
             Id = message.Id
         });
+
+        #endregion
+
         log.Info($"Acknowledged LongProcessingRequest with ID {message.Id}.");
     }
 
@@ -53,9 +64,12 @@ public class LongProcessingRequestSaga : Saga<SagaState>,
     {
         log.Info($"Processing of LongProcessingRequest with ID {timeoutMessage.Id} has not finished in the estimated time. Try again.");
 
-        await context.Publish<LongProcessingWarning>(m => m.Id = timeoutMessage.Id).ConfigureAwait(false);
+        #region on-timeout
 
+        await context.Publish<LongProcessingWarning>(m => m.Id = timeoutMessage.Id).ConfigureAwait(false);
         MarkAsComplete();
+
+        #endregion
     }
 
     public Task Handle(LongProcessingFinished message, IMessageHandlerContext context)

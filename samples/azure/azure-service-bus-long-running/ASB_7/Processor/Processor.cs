@@ -26,8 +26,12 @@ public class Processor
 
         var task = new Task(() =>
         {
+            #region tasks
+
             StartPolling(token);
             StartProcessing(token);
+
+            #endregion
         }, token);
         task.Start();
     }
@@ -53,12 +57,16 @@ public class Processor
                 {
                     log.Info($"Processing request with ID {request.RequestId} and estimated processing time {request.EstimatedProcessingTime}.");
                     request.StartedAt = DateTime.UtcNow;
-                    
+
+                    #region failed-scenario
+
                     // emulate failure
                     if (DateTime.UtcNow.Ticks % 2 == 0)
                     {
                         throw new Exception("Some exception during processing.");
                     }
+
+                    #endregion
 
                     // process
                     var estimatedProcessingTime = TimeSpan.Parse(request.EstimatedProcessingTime);
