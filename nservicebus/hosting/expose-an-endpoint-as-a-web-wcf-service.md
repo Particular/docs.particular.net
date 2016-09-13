@@ -1,5 +1,5 @@
 ---
-title: Exposing an NServiceBus Endpoint via WCF
+title: Exposing Endpoints via WCF
 summary: Receiving and processing messages which pass through WCF
 tags:
 - WCF
