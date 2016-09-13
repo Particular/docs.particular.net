@@ -14,6 +14,7 @@ related:
 
 Every solution is different and will encounter unique challenges when upgrading a major dependency like NServiceBus. It's important to plan out an upgrade project and proceed in well defined steps, stopping to ensure that everything is working after each step. Here are a few things to consider when planning an upgrade project.
 
+
 ### Endpoint selection
 
 It is not necessary for every endpoint in the solution to be running the same version of NServiceBus. Endpoints running Version 6 are able to exchange messages with endpoints running Version 5 transparently. This [wire compatability](link to wire compat doco) helps to reduce the complexity of an upgrade project by allowing each endpoint to be upgraded one at a time. 
@@ -112,24 +113,86 @@ See also:
 - [Migrating from IBus](moving-away-from-ibus.md) (provides more in-depth discussion about the decision to deprecate `IBus` and how to handle other scenarios that depend on `IBus`).
 - [Endpoint API changes in Version 6](endpoint.md)
 - [NServiceBus Host Upgrade Version 6 to 7](host-6-7.md)
+- [Transaction configuration chnges in Version 6](transaction-configuration.md)
+- [Recoverability changes in Version 6](recoverability.md)
+- [Assembly scanning changes in Version 6](assembly-scanning.md)
 
 
 ### Update Handlers
 
-Short explanation
-Link off to full doco about how to do this
+In Version 6 the signature of `IHandleMessages<T>` has been changed to support asynchronous processing. In Version 5 and below, each message was handled by a dedicated thread. This meant that NServiceBus was able to take advantage of thread static state to keep track of the message being handled as well as the current transaction. In Version 6, each message is handled by a task which may run on several threads before processing is completed. Rather than rely on thread context and state, each handler is explicitly passed in a context object with all of the information it needs to execute. 
 
+NOTE: This context object includes methods to send and publish new messages. As NServiceBus can no longer rely on thread static state to access information about the message and transaction being handled, it is not possible to rely on an injected copy of `IBus` to perform these operations. Always send and publish new messages using the context object rather than an injected instance of the endpoint. 
 
-### Update sending messages
+As the handler is running in the context of a transport receive operation (an I/O context) and is likely to contain other asynchronous operations (like sends and publishes), all handlers must return a Task.
 
-Now that Handler Contexts have been introduced, talk about bus.Send and bus.Publish outside of handlers
+To update a handler to Version 6 follow this simple process:
+
+1.  As the signature of `IHandleMessages<T>` has changed, Visual Studio will complain that the handler is not implementing it. To correctly implement the handler interface, change the return type of the `Handle` method from `void` to `async Task`. Next add a second parameter to the `Handle` method `IMessageHandlerContext context`.
+2.  If the handler has an instance of `IBus` injected into it, it needs to be removed. Before getting rid of it, rename it to `context` as all operations that previously relied on `IBus` will now go through the passed in instance of `IMessageHandlerContext`.
+3.  Finally, the methods on `IMessageHandlerContext` all return tasks. It is important to `await` each of these tasks and to add `.ConfigureAwait(false)` on to each one.
+
+**If we can embed video in a doco page then here we should embed https://www.youtube.com/watch?v=QolL1Oum72Q**
+
+See also:
+- [Migrate handlers and sagas to Version 6](handlers-and-sagas.md)
+- [Migrating from IBus](moving-away-from-ibus.md)
+- [Messaging changes in Version 6](messaging.md)
 
 
 ### Update Sagas
 
-Should be simple given the above topics.
+Updating a saga is very similar to updating a handler with just a few extra steps. 
+
+The `Saga<T>` base class has been moved from to the `NServiceBus` namespace. Remove all `using` statements that refer to `NServiceBus.Saga`.
+
+Update all of the `IHandleMessages<T>` implementations using the process outlined in the previous section. Note that `IAmStartedByMessages<T>` implementations can be updated in the same manner.
+
+Check the implementation of `ConfigureHowToFindSaga()`. NServiceBus will be able to automatically correlate any message that is a reply to a message originally sent by this saga. For any other message type, including messages that can start the saga, an explicit mapping is required.
+
+Remove the `[Unique]` attribute from the saga data class. NServiceBus will now automatically make correlated saga properties unique.
+
+Note that calls to `RequestTimeout()` now require an instance `IMessageHandlerContext` to be passed in. Pass in the context parameter that was passed in to the `Handle()` method. Additionally, this method returns a `Task` which should have `ConfigureAwait(false)` applied and then wait for the response with `await`.
+
+See also:
+- [Migrate handlers and sagas to Version 6](handlers-and-sagas.md)
+- [Migrating from IBus](moving-away-from-ibus.md)
+- [Messaging changes in Version 6](messaging.md)
 
 
-### Finishing touches
+### Sending and Publishing outside of a handler
 
-At this point the number of issues remaining should be minimal. Link off to the full upgrade guide for all of the remaining topics. 
+Once all of the handlers and sagas in an endpoint have been updated to Version 6 there may still be places in the code that send and publish messages using an instance of `IBus` that need to be updated.
+
+WARN: All message handlers and sagas that are included in the endpoint should be updated before taking this step. It is important that the techniques presented here are not used from inside message handlers or transactional consistency with the transport is not guaranteed. 
+
+The endpoint instance returned from `Endpoint.Create()` or `Endpoint.Start()` implements `IMessageSession` which contains `Send()` and `Publish()` methods that can be used outside of a message handler or saga. If the endpoint sends messages in the same part of the code that creates/starts the endpoint then call these methods on the returned endpoint instance directly. 
+
+NOTE: As the `Send` and `Publish` methods on the endpoint instance should not be used from within a handler or saga, there is no implementation of the interface injected into the configured IoC container. For recommendations on how to get access to `IMessageSession` in other locations, see [Dependcy Injection](moving-away-from-ibus.md#dependency-injection).
+
+See also:
+- [Migrating from IBus](moving-away-from-ibus.md)
+- [Messaging changes in Version 6](messaging.md)
+
+
+### Final steps
+
+This covers the basic steps required to update an endpoint to Version 6. Each of the other NServiceBus dependencies may also require additional steps. Please see the dependency specific upgrade guides for more information.
+
+- Hosting
+  - [NServiceBus Host](host-6to7.md)
+  - [Azure Cloud Services Host](acs-host-6to7.md)
+- Transports
+  - MSMQ - *there are no special upgrade requirements for endpoints using the MSMQ transport. If the solution being upgraded includes the distributor component then see [Upgrading an endpoint using Distributor from Version 5 to 6](/samples/scaleout/distributor-upgrade.md)*
+  - [Azure Service Bus](asb-6to7.md)
+  - [Azure Storage Queues](asq-6to7.md)
+  - [RabbitMQ](rabbitmq-3to4.md)
+  - [SQL Server](sqlserver-2to3.md)
+- Persistences
+  - [Azure Storage](asp-6to1.md)
+  - [NHibernate](nhibernate-6to7.md)
+  - [RavenDB](ravendb-3to4.md)
+- Others
+  - [NServiceBus Testing](testing-5to6.md)
+  - [Gateway](gateway-1to2.md)
+  - [Azure Blob Storage DataBus](absdatabus-6to1.md)
