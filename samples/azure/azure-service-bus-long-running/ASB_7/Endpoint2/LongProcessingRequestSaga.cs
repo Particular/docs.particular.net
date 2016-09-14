@@ -72,7 +72,11 @@ public class LongProcessingRequestSaga : Saga<SagaState>,
 
         #region on-timeout
 
-        await context.Publish<LongProcessingWarning>(m => m.Id = timeoutMessage.Id)
+        var processingWarning = new LongProcessingWarning
+        {
+            Id = timeoutMessage.Id
+        };
+        await context.Publish(processingWarning)
             .ConfigureAwait(false);
         MarkAsComplete();
 
@@ -82,14 +86,12 @@ public class LongProcessingRequestSaga : Saga<SagaState>,
     public Task Handle(LongProcessingFinished message, IMessageHandlerContext context)
     {
         MarkAsComplete();
-
         return Task.FromResult(0);
     }
 
     public Task Handle(LongProcessingFailed message, IMessageHandlerContext context)
     {
         MarkAsComplete();
-
         return Task.FromResult(0);
     }
 }

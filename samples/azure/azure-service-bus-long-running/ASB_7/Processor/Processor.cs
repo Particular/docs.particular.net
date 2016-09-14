@@ -81,7 +81,11 @@ public class Processor
                     await table.ExecuteAsync(TableOperation.Merge(request), token)
                         .ConfigureAwait(false);
                     toProccess.TryDequeue(out request);
-                    await endpoint.Publish<LongProcessingFinished>(m => m.Id = request.RequestId)
+                    var processingFinished = new LongProcessingFinished
+                    {
+                        Id = request.RequestId
+                    };
+                    await endpoint.Publish(processingFinished)
                         .ConfigureAwait(false);
                 }
                 catch (Exception ex)
@@ -91,11 +95,12 @@ public class Processor
                     await table.ExecuteAsync(TableOperation.Merge(request), token)
                         .ConfigureAwait(false);
                     toProccess.TryDequeue(out request);
-                    await endpoint.Publish<LongProcessingFailed>(m =>
+                    var processingFailed = new LongProcessingFailed
                     {
-                        m.Id = request.RequestId;
-                        m.Reason = ex.Message;
-                    })
+                        Id = request.RequestId,
+                        Reason = ex.Message
+                    };
+                    await endpoint.Publish(processingFailed)
                     .ConfigureAwait(false);
                 }
             }
