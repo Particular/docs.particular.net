@@ -85,7 +85,7 @@ Note that in Version 5 and below, `IBus` implements `IDisposable` and stops comm
 
 See also:
 
- * [Migrating from IBus](moving-away-from-ibus.md) (provides more in-depth discussion about the decision to deprecate `IBus` and how to handle other scenarios that depend on `IBus`).
+ * [Migrating from IBus](moving-away-from-ibus.md) provides more in-depth discussion about the decision to deprecate `IBus` and how to handle other scenarios that depend on `IBus`.
  * [Endpoint API changes in Version 6](endpoint.md)
  * [NServiceBus Host Upgrade Version 6 to 7](../host-6to7.md)
  * [Transaction configuration changes in Version 6](transaction-configuration.md)
@@ -104,7 +104,7 @@ As each handler is running in the context of a transport receive operation (an I
 To update a handler to Version 6 follow this process:
 
  1. As the signature of `IHandleMessages<T>` has changed, Visual Studio will complain that the handler is not implementing it. To correctly implement the handler interface, change the return type of the `Handle` method from `void` to `async Task`. Next add a second parameter to the `Handle` method `IMessageHandlerContext context`.
- 1. If the handler has an instance of `IBus` injected into it, it needs to be removed. Before getting rid of it, rename it to `context` as all operations that previously relied on `IBus` will now go through the passed in instance of `IMessageHandlerContext`.
+ 1. If the handler has an instance of `IBus` injected into it, it needs to be removed. Prior to removing it, rename it to `context` as all operations that previously relied on `IBus` will now go through the passed in instance of `IMessageHandlerContext`.
  1. Finally, the methods on `IMessageHandlerContext` all return tasks. It is important to `await` each of these tasks and to add `.ConfigureAwait(false)` on to each one.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QolL1Oum72Q" frameborder="0" allowfullscreen></iframe>
