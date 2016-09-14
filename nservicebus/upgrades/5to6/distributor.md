@@ -1,5 +1,5 @@
 ---
-title: Deprecated Distributor in NServiceBus Version 6
+title: Migrating the Distributor to use Sender Side Distribution
 tags:
  - upgrade
  - migration
