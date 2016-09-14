@@ -1,6 +1,6 @@
 ---
-title: Configuration
-summary: Using Azure Storage Queues as transport
+title: Azure Storage Queues Transport Configuration
+component: ASQ
 tags:
 - Azure
 - Cloud
@@ -43,8 +43,6 @@ Instructs the transport to remove any existing messages from the input queue on 
 
 Defaults: `false`, i.e. messages are not removed when endpoint starts.
 
-Versions: 6 and below
-
 
 #### MessageInvisibleTime
 
@@ -63,22 +61,16 @@ Defaults:
  * 32 in Version 7
 
 
-#### SerializeMessageWrapperWith
-
-Azure Storage Queues Transport wraps messages in a transport specific structure containing message metadata. By default, Azure Storage Queues Transport uses the same serializer for the message wrapper as configured for the contained message. In Versions 7 and above, it's possible to configure a different serializer for the wrapper using the `SerializeMessageWrapperWith` option
-
-snippet:SerializerAndMessageWrapperSerializer
-
-Note: All endpoints in the same system must use the same serializer for the message wrapper. This can be achieved by configuring the same message serializer using the `UseSerializer()` or the above `SerializeMessageWrapperWith` API.
-
-
+partial:serialization
 #### DegreeOfReceiveParallelism
 
 The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it.
 
 Defaults: In Versions 7 and above the value is dynamically calculated based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
 
-`Degree of parallelism = square root of MaxConcurrency (rounded)`
+```no-highlight
+Degree of parallelism = square root of MaxConcurrency
+```
 
 |`MaxConcurrency` | `DegreeOfReceiveParallelism` |
 | :-: |:-:|
@@ -96,27 +88,7 @@ WARNING: Changing the value of `DegreeOfReceiveParallelism` will influence the t
 
 WARNING: The values of `BatchSize` , `DegreeOfParallelism`, `Concurrency`, [ServicePointManager Settings](/nservicebus/azure-storage-persistence/performance-tuning.md) and the other parameters like `MaximumWaitTimeWhenIdle` have to be selected carefully in order to get the desired speed out of the transport while not exceeding [the boundaries](https://azure.microsoft.com/en-us/documentation/articles/azure-subscription-service-limits/#storage-limits) of the allowed number of operations per second.
 
-NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify the endpoint name and select a scale-out option.
-
-Parameters' values can be configured in the following ways:
-
-
-### Via the configuration API
-
-In Versions 7 and below the default settings can be overridden only using configuration API:
-
-snippet:AzureStorageQueueConfigCodeOnly
-
-
-### Via the App.Config
-
-In Versions 5 and 6 all settings can be overridden by adding to the `web.config` or the `app.config` files a configuration section called `AzureQueueConfig`:
-
-snippet:AzureStorageQueueConfig
-
-Note that the connection string can be also configured by specifying a value for connection string called `NServiceBus/Transport`, however this value will be overridden if another is provided in `AzureServiceBusQueueConfig`:
-
-snippet: AzureStorageQueueConnectionStringFromAppConfig
+partial:config
 
 
 ## Connection strings
@@ -126,28 +98,9 @@ Note that multiple connection string formats apply when working with Azure stora
 For more details refer to [Configuring Azure Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/storage-configure-connection-string/) document.
 
 
-### Using aliases for connection strings to storage accounts
-
-It is possible to accidentally leak sensitive information in the connection string for a storage account if it's not properly secured. E.g. the information can be leaked if an error occurs when communicating across untrusted boundaries, or if the error information is logged to an unsecured log file.
-
-In order to prevent it, `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 7 and above allow for creating an alias for each connection string. The alias is mapped to the physical connection string, and connection strings are always referred to by their alias. In the event of an error or when logging only the alias can be accidentally leaked.
-
-This feature can be enabled when configuring the `AzureStorageQueueTransport`:
-
-snippet:AzureStorageQueueUseAccountAliasesInsteadOfConnectionStrings
-
-See also [Using aliases for connection strings to storage accounts for Scale Out](/nservicebus/azure-storage-queues/multi-storageaccount-support.md#using-aliases-for-connection-strings-to-storage-accounts-for-scale-out)
-
-
-## Hashing algorithms
-
-If a queue name is longer than [63 characters](https://msdn.microsoft.com/en-us/library/azure/dd179349.aspx), the Azure Storage Queues Transport uses a hashing algorithm to rename it. The default algorithm is `MD5`. In order to use `SHA1`, apply the following configuration:
-
-snippet:AzureStorageQueueUseSha1
-
-NOTE: This feature is available in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Versions 7 and above.
+partial: aliasesAndHashing
 
 
 ## Serialization
 
-Azure Storage Queues Transport changes the default serializer choice to JSON. The serializer can be changed using the [serialization API](/nservicebus/serialization).
+Azure Storage Queues Transport changes the default serializer to JSON. The serializer can be changed using the [serialization API](/nservicebus/serialization).
