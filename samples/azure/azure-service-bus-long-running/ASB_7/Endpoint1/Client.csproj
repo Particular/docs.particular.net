@@ -75,7 +75,7 @@
   <ItemGroup>
     <Compile Include="LongProcessingFailedHandler.cs" />
     <Compile Include="LongProcessingFinishedHandler.cs" />
-    <Compile Include="LongProcessingRequestReplyHandler.cs" />
+    <Compile Include="LongProcessingReplyHandler.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

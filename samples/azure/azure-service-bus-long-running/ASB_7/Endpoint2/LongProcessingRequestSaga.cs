@@ -39,11 +39,14 @@ public class LongProcessingRequestSaga : Saga<SagaState>,
 
         #region enqueue-request-for-processor
 
-        // Saga enqueues the request in storate table. Normally, if there's more than that, work should be done by a handler
+        // Saga enqueues the request to process in a storage table. This is the logical equivalent of adding a message to a queue. 
+        // If there would be business specific work to perform here, that work should be done by sending a message to a handler instead
+        // and not handled in the saga.
+
         var request = new RequestRecord(message.Id, Status.Pending, message.EstimatedProcessingTime);
         await table.ExecuteAsync(TableOperation.Insert(request)).ConfigureAwait(false);
 
-        await context.Reply(new LongProcessingRequestReply
+        await context.Reply(new LongProcessingReply
         {
             Id = message.Id
         });

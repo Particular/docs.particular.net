@@ -1,7 +1,7 @@
 using System;
 using NServiceBus;
 
-public class LongProcessingRequestReply : IMessage
+public class LongProcessingReply : IMessage
 {
     public Guid Id { get; set; }
 }

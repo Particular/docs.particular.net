@@ -84,7 +84,7 @@
     <Compile Include="LongProcessingFailed.cs" />
     <Compile Include="LongProcessingWarning.cs" />
     <Compile Include="LongProcessingFinished.cs" />
-    <Compile Include="LongProcessingRequestReply.cs" />
+    <Compile Include="LongProcessingReply.cs" />
     <Compile Include="LongProcessingRequest.cs" />
     <Compile Include="RequestRecord.cs" />
     <Compile Include="StorageHelper.cs" />
