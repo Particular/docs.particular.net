@@ -20,7 +20,7 @@ This process aims to allow upgrade in production environments without missing ev
 
 WARNING: To avoid duplicate events, the Distributor node needs to be upgraded to a worker node using NServiceBus 6 (it can be decommissioned after all workers are upgraded to Version 6).
 
-* Upgrade all endpoints communicating to the Distributor (by commands or event subscription messages) to NServiceBus Version 6 first.
+* Upgrade all endpoints that interact with the distributor to Version 6 first. For example, upgrade all endpoints that send command messages to the Distributor endpoint for the load to be distributed, or endpoints that send subscription messages to the distributor, subscribing to events when a worker node publishes an event. At this stage, do not upgrade the workers to Version 6.
 * Shut down the Distributor instance.
 * [Upgrade the Distributor to NServiceBus Version 6](#upgrade-endpoint-to-version-6). This will migrate the Distributor endpoint to a regular worker instance.
 * Start the instance again.
@@ -37,7 +37,7 @@ WARNING: To avoid duplicate events, the Distributor node needs to be upgraded to
 * Upgrade the endpoint to Version 6 (See the [Upgrade Guide](/nservicebus/upgrades/5to6).
 
 
-## Mixing NServiceBus Versions
+## Use of the Distributor in Mixed Version Environments
 
 Environments consisting entirely of NServiceBus Version 6 endpoints no longer require Distributor endpoints. NServiceBus Version 5 endpoints can communicate directly to NServiceBus Version 6 endpoints but the sender-side distribution feature of Version 6 is not compatible with endpoints using NServiceBus Version 5.
 
