@@ -160,14 +160,14 @@ span.blue {
     <div class="col-md-6">
       <a href="/platform/">
         <img src="/home/platform_v1.svg" width="36" height="36"/>
-        <h3>Service Platform Overview</h3>
+        <h4>Service Platform Overview</h4>
       </a>
       <p>A short and high level overview of the Platform</p>
     </div>
     <div class="col-md-6">
       <a href="https://www.pluralsight.com/courses/microservices-nservicebus-scaling-applications">
         <img src="/home/pluralsight_v1.svg" width="36" height="36">
-        <h3>Pluralsight: Scaling Applications with<br> Microservices and NServiceBus</h3>
+        <h4>Pluralsight: Scaling Applications with<br> Microservices and NServiceBus</h4>
       </a>
     </div>
   </div>
@@ -175,14 +175,14 @@ span.blue {
     <div class="col-md-6">
       <a href="http://stackoverflow.com/questions/tagged/nservicebus">
         <img src="/home/stackoverflow_v1.svg" width="36" height="36">
-        <h3>StackOverflow</h3>
+        <h4>StackOverflow</h4>
       </a>
       <p>All questions and answers tagged 'NServiceBus'</p>
     </div>
     <div class="col-md-6">
       <a href="/platform/extensions.md">
         <img src="/home/extensions_v1.svg" width="36" height="36">
-        <h3>Extensions and integrations</h3>
+        <h4>Extensions and integrations</h4>
       </a>
       <p>Extensions developed by both the community and Particular</p>
     </div>
@@ -219,7 +219,7 @@ span.blue {
       <li><a href="/serviceinsight/application-invocation.md">Application invocation</a></li>
       <li><a href="/serviceinsight/logging.md">Logging</a></li>
     </ul>
-    <a href="/serviceinsight/"><h3>All ServiceInsight articles</h3></a><br/>
+    <a href="/serviceinsight/"><h4>All ServiceInsight articles</h4></a><br/>
     <div style="clear: both"></div>
   </div>
   <div class="productcolumn block">
@@ -230,7 +230,7 @@ span.blue {
       <li><a href="/servicecontrol/servicecontrol-in-practice.md">Optimizing use in different environments</a></li>
       <li><a href="/servicecontrol/installation.md">Installing</a></li>
     </ul>
-    <a href="/servicecontrol/"><h3>All ServiceControl articles</h3></a><br/>
+    <a href="/servicecontrol/"><h4>All ServiceControl articles</h4></a><br/>
     <div style="clear: both"></div>
   </div>
   <div class="productcolumn last block">
@@ -241,7 +241,7 @@ span.blue {
       <li><a href="/servicepulse/intro-endpoints-heartbeats.md">Monitoring Endpoints</a></li>
       <li><a href="/servicepulse/intro-failed-messages.md">Handling Failed Messages</a></li>
     </ul>
-    <a href="/servicepulse/"><h3>All ServicePulse articles</h3></a><br/>
+    <a href="/servicepulse/"><h4>All ServicePulse articles</h4></a><br/>
     <div style="clear: both"></div>
   </div>
 </div>
