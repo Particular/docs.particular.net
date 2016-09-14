@@ -30,14 +30,14 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        var cts = new CancellationTokenSource();
+        var cancellationSource = new CancellationTokenSource();
         var processor = new Processor();
 
-        processor.Start(endpointInstance, cts.Token);
+        processor.Start(endpointInstance, cancellationSource.Token);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        cts.Cancel();
+        cancellationSource.Cancel();
 
         await endpointInstance.Stop()
             .ConfigureAwait(false);

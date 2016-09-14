@@ -51,7 +51,8 @@ class Program
                 var message = new LongProcessingRequest
                 {
                     Id = Guid.NewGuid(),
-                    EstimatedProcessingTime = Constants.EstimatedProcessingTime // set to a longer period of time to emulate longer processing
+                    // set to a longer period of time to emulate longer processing
+                    EstimatedProcessingTime = Constants.EstimatedProcessingTime
                 };
 
                 #endregion
