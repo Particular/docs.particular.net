@@ -36,7 +36,7 @@
          table="OrderSagaDataXml_Location">
     <id name="Id"
         type="Guid">
-      <generator class="guid.comb"></generator>
+      <generator class="guid.comb"/>
     </id>
     <property name="Lat"/>
     <property name="Long"/>
