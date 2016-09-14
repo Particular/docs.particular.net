@@ -2,15 +2,15 @@
 title: Exposing Endpoints via WCF
 summary: Receiving and processing messages which pass through WCF
 tags:
-- WCF
-- Hosting
+ - WCF
+ - Hosting
 redirects:
  - nservicebus/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service
 related:
  - samples/web/wcf-callbacks
 ---
 
-Note: Starting from NServiceBus Core Versions 6 and above, the built-in support for WCF integration has been removed. For more details refer to the [Upgrade Guide](/nservicebus/upgrades/host-6to7).
+Note: Starting from NServiceBus Core Versions 6 and above, the built-in support for WCF integration has been removed. For more details refer to the [Upgrade Guide](/nservicebus/upgrades/host-6to7.md).
 
 Inherited from `NServiceBus.WcfService<TCommand, TErrorCode>`, as shown below. `TCommand` is the message type of the request. `TErrorCode` must be an enumerated type, and should represent the result of processing the command. Example:
 
@@ -18,7 +18,7 @@ snippet:ExposeWCFService
 
 NOTE: Version 4 and above of NServiceBus `WcfService<TCommand, TErrorCode>` has been moved to [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host), so this package needs to be referenced.
 
-And finally expose the wcf service via the config file, for the example above the xml would look something like:
+And finally expose the WCF service via the config file, for the example above the XML would look something like:
 
 ```xml
 <system.serviceModel>
@@ -31,8 +31,11 @@ And finally expose the wcf service via the config file, for the example above th
     </serviceBehaviors>
   </behaviors>
   <services>
-    <service name="Server.WebServices.CancelOrderService" behaviorConfiguration="Default">
-      <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
+    <service name="Server.WebServices.CancelOrderService"
+             behaviorConfiguration="Default">
+      <endpoint address="mex"
+                binding="mexHttpBinding" 
+                contract="IMetadataExchange" />
       <host>
         <baseAddresses>
           <add baseAddress="http://localhost:9009/services/cancelOrder" />
