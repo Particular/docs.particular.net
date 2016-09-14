@@ -1,5 +1,5 @@
 ---
-title: RavenDB Persistence
+title: Simple RavenDB Persistence Usage
 summary: Using RavenDB to store Sagas and Timeouts.
 reviewed: 2016-03-21
 component: Raven
