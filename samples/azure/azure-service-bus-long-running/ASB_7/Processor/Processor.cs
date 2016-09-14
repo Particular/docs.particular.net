@@ -43,7 +43,7 @@ public class Processor
         {
             await LoadRequests()
                 .ConfigureAwait(false);
-            await Task.Delay(TimeSpan.FromSeconds(Constants.PollingFrequencyInSeconds), token)
+            await Task.Delay(Constants.PollingFrequency, token)
                 .ConfigureAwait(false);
         }
     }
@@ -63,7 +63,7 @@ public class Processor
                     #region failed-scenario
 
                     // emulate failure
-                    if (DateTime.UtcNow.Ticks % 2 == 0)
+                    if (DateTime.UtcNow.Ticks%2 == 0)
                     {
                         throw new Exception("Some exception during processing.");
                     }
@@ -101,7 +101,7 @@ public class Processor
                         Reason = ex.Message
                     };
                     await endpoint.Publish(processingFailed)
-                    .ConfigureAwait(false);
+                        .ConfigureAwait(false);
                 }
             }
         }
@@ -112,7 +112,8 @@ public class Processor
         var partitionKeyFilter = TableQuery.GenerateFilterCondition(nameof(RequestRecord.PartitionKey), QueryComparisons.Equal, Constants.PartitionKey);
         var statusFilter = TableQuery.GenerateFilterCondition(nameof(RequestRecord.Status), QueryComparisons.Equal, Status.Pending.ToString());
         var filter = TableQuery.CombineFilters(partitionKeyFilter, TableOperators.And, statusFilter);
-        var query = new TableQuery<RequestRecord>().Where(filter);
+        var query = new TableQuery<RequestRecord>()
+            .Where(filter);
 
         var records = new List<RequestRecord>();
         TableContinuationToken continuationToken = null;

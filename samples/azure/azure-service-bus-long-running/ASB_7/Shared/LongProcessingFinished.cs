@@ -1,9 +1,7 @@
-﻿namespace Shared
+﻿using System;
+using NServiceBus;
+public class LongProcessingFinished :
+    IEvent
 {
-    using System;
-    using NServiceBus;
-    public class LongProcessingFinished : IEvent
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }

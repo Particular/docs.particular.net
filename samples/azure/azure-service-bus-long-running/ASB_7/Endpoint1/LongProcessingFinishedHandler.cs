@@ -1,19 +1,15 @@
-﻿namespace Endpoint1
+﻿using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Logging;
+
+public class LongProcessingFinishedHandler :
+    IHandleMessages<LongProcessingFinished>
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.Logging;
-    using Shared;
+    static ILog log = LogManager.GetLogger<LongProcessingFinishedHandler>();
 
-    public class LongProcessingFinishedHandler : IHandleMessages<LongProcessingFinished>
+    public Task Handle(LongProcessingFinished message, IMessageHandlerContext context)
     {
-        static ILog log = LogManager.GetLogger<LongProcessingFinishedHandler>();
-
-        public Task Handle(LongProcessingFinished message, IMessageHandlerContext context)
-        {
-            log.Info($"Request with ID {message.Id} was successfully finished.");
-
-            return Task.FromResult(0);
-        }
+        log.Info($"Request with ID {message.Id} was successfully finished.");
+        return Task.FromResult(0);
     }
 }

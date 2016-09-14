@@ -5,11 +5,12 @@ using NServiceBus;
 using NServiceBus.Logging;
 using Shared;
 
-public class LongProcessingRequestSaga : Saga<SagaState>,
-                                            IAmStartedByMessages<LongProcessingRequest>,
-                                            IHandleTimeouts<ProcessingPossiblyFailed>,
-                                            IHandleMessages<LongProcessingFinished>,
-                                            IHandleMessages<LongProcessingFailed>
+public class LongProcessingRequestSaga :
+    Saga<SagaState>,
+    IAmStartedByMessages<LongProcessingRequest>,
+    IHandleTimeouts<ProcessingPossiblyFailed>,
+    IHandleMessages<LongProcessingFinished>,
+    IHandleMessages<LongProcessingFailed>
 {
     static ILog log = LogManager.GetLogger<LongProcessingRequestSaga>();
     public CloudTable table;
@@ -28,31 +29,36 @@ public class LongProcessingRequestSaga : Saga<SagaState>,
         #region setting-timeout
 
         var timeoutToBeInvokedAt = DateTime.Now + message.EstimatedProcessingTime + TimeSpan.FromSeconds(10);
-        await RequestTimeout(context, timeoutToBeInvokedAt, new ProcessingPossiblyFailed { Id = message.Id })
-                .ConfigureAwait(false);
+        var timeoutMessage = new ProcessingPossiblyFailed
+        {
+            Id = message.Id
+        };
+        await RequestTimeout(context, timeoutToBeInvokedAt, timeoutMessage)
+            .ConfigureAwait(false);
 
         #endregion
 
         log.Info($"Timeout is set to be executed at {timeoutToBeInvokedAt}.");
 
-
         log.Info("Registering long running request with Processor.");
 
         #region enqueue-request-for-processor
 
-        // Saga enqueues the request to process in a storage table. This is the logical equivalent of adding a message to a queue.
-        // If there would be business specific work to perform here, that work should be done by sending a message to a handler instead
-        // and not handled in the saga.
+        // Saga enqueues the request to process in a storage table. This is the
+        // logical equivalent of adding a message to a queue. If there would be
+        // business specific work to perform here, that work should be done by
+        // sending a message to a handler instead and not handled in the saga.
 
         var request = new RequestRecord(message.Id, Status.Pending, message.EstimatedProcessingTime);
         await table.ExecuteAsync(TableOperation.Insert(request))
             .ConfigureAwait(false);
 
-        await context.Reply(new LongProcessingReply
+        var processingReply = new LongProcessingReply
         {
             Id = message.Id
-        })
-                .ConfigureAwait(false);
+        };
+        await context.Reply(processingReply)
+            .ConfigureAwait(false);
 
         #endregion
 
@@ -61,9 +67,12 @@ public class LongProcessingRequestSaga : Saga<SagaState>,
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaState> mapper)
     {
-        mapper.ConfigureMapping<LongProcessingRequest>(message => message.Id).ToSaga(state => state.LongProcessingId);
-        mapper.ConfigureMapping<LongProcessingFinished>(message => message.Id).ToSaga(state => state.LongProcessingId);
-        mapper.ConfigureMapping<LongProcessingFailed>(message => message.Id).ToSaga(state => state.LongProcessingId);
+        mapper.ConfigureMapping<LongProcessingRequest>(message => message.Id)
+            .ToSaga(state => state.LongProcessingId);
+        mapper.ConfigureMapping<LongProcessingFinished>(message => message.Id)
+            .ToSaga(state => state.LongProcessingId);
+        mapper.ConfigureMapping<LongProcessingFailed>(message => message.Id)
+            .ToSaga(state => state.LongProcessingId);
     }
 
     public async Task Timeout(ProcessingPossiblyFailed timeoutMessage, IMessageHandlerContext context)

@@ -1,19 +1,15 @@
-﻿namespace Endpoint1
+﻿using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Logging;
+
+public class LongProcessingFailedHandler :
+    IHandleMessages<LongProcessingFailed>
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.Logging;
-    using Shared;
+    static ILog log = LogManager.GetLogger<LongProcessingFailedHandler>();
 
-    public class LongProcessingFailedHandler : IHandleMessages<LongProcessingFailed>
+    public Task Handle(LongProcessingFailed message, IMessageHandlerContext context)
     {
-        static ILog log = LogManager.GetLogger<LongProcessingFailedHandler>();
-
-        public Task Handle(LongProcessingFailed message, IMessageHandlerContext context)
-        {
-            log.Info($"Request with ID {message.Id} has failed. Reason: {message.Reason}");
-
-            return Task.FromResult(0);
-        }
+        log.Info($"Request with ID {message.Id} has failed. Reason: {message.Reason}");
+        return Task.FromResult(0);
     }
 }

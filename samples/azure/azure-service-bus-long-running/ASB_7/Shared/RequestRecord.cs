@@ -4,7 +4,8 @@ using Microsoft.WindowsAzure.Storage.Table;
 using Shared;
 
 [DebuggerDisplay("RequestId: {RequestId}, Status: {Status}")]
-public class RequestRecord : TableEntity
+public class RequestRecord :
+    TableEntity
 {
     public RequestRecord() {}
 
@@ -19,11 +20,4 @@ public class RequestRecord : TableEntity
     public DateTime? StartedAt { get; set; }
     public DateTime? FinishedAt { get; set; }
     public string EstimatedProcessingTime { get; set; }
-}
-
-public enum Status
-{
-    Pending,
-    Finished,
-    Failed
 }

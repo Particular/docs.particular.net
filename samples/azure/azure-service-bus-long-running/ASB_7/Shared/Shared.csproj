@@ -87,6 +87,7 @@
     <Compile Include="LongProcessingReply.cs" />
     <Compile Include="LongProcessingRequest.cs" />
     <Compile Include="RequestRecord.cs" />
+    <Compile Include="Status.cs" />
     <Compile Include="StorageHelper.cs" />
   </ItemGroup>
   <ItemGroup>
