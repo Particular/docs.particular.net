@@ -1,5 +1,5 @@
 ---
-title: SQL Server transport store-and-forward
+title: Store-and-forward
 summary: Add store-and-forward functionality for external-facing endpoints.
 reviewed: 2016-04-27
 component: SqlServer
