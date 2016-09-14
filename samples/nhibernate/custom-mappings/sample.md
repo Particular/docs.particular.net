@@ -1,5 +1,5 @@
 ---
-title: NHibernate Custom mapping
+title: Custom mapping
 summary: Create a custom mapping to change how NHibernate creates the database schema using different techniques.
 reviewed: 2016-03-21
 component: NHibernate
@@ -83,10 +83,10 @@ With [NHibernate.Mapping.Attributes](http://nhibernate.info/doc/nhibernate-refer
 
 NHibernate.Mapping.Attributes needs to know what types to scan to generate an NHibernate mapping configuration that gets passed to the NHibernate configuration.
 
-1. Add the NuGet package `NHibernate.Mapping.Attributes`
-2. Create a custom NHibernate configuration object.
-3. Initialize the attribute mapping (see sample below).
-4. Pass it to the NServiceBus NHibernate configuration.
+ 1. Add the NuGet package `NHibernate.Mapping.Attributes`
+ 1. Create a custom NHibernate configuration object.
+ 1. Initialize the attribute mapping (see sample below).
+ 1. Pass it to the NServiceBus NHibernate configuration.
 
 
 Initialize the NHibernate attribute based mappings:
