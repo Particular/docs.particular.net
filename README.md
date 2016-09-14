@@ -73,7 +73,7 @@ For example:
 
 ```
 ---
-title: Auditing With NServiceBus
+title: Auditing Messages
 summary: Provides built-in message auditing for every endpoint.
 versions: '[4,)'
 tags:
@@ -94,6 +94,8 @@ title: Auditing With NServiceBus
 ```
 
 Required. Used for the web page title tag `<head><title>`, displayed in the page content, and displayed in search results.
+
+**Note: When considering what is a good title keep in mind that the parent context of a given page is fairly well known by other means. ie people can see where it exists in the menu and can see where in the hierarchy it is through the breadcrumbs. So it is often not necessary to include the parent title in the current pages title. For example when documenting "Publishers name configuration", for "Azure Service Bus Transport", then "Publishers name configuration" would be a sufficient title where "Publishers name configuration in Azure Service Bus Transport" is overly verbose and partially redundant.**
 
 
 ### Versions
