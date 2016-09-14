@@ -122,7 +122,7 @@ Optional. Used to capture the last date that a page was fully reviewed. Format i
 summary: Provides built-in message auditing for every endpoint.
 ```
 
-Required. Used for the meta description tag (`<meta name="description" />`) and displaying the search results.
+Optional. Used for the meta description tag (`<meta name="description" />`) and displaying the search results.
 
 
 ### Tags
