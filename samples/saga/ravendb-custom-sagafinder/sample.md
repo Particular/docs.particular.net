@@ -1,5 +1,5 @@
 ---
-title: Custom Saga Finding Logic (RavenDB)
+title: RavenDB Custom Saga Finding Logic
 summary: Perform custom saga finding logic based on custom query logic when the Saga storage is RavenDB and how to use multiple Unique attributes.
 component: Raven
 tags:

@@ -1,5 +1,5 @@
 ---
-title: Delayed Delivery Sample
+title: Delayed Delivery
 reviewed: 2016-03-21
 component: Core
 tags:

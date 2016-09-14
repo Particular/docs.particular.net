@@ -1,5 +1,5 @@
 ---
-title: Callback Sample
+title: Callback Usage
 component: Callbacks
 reviewed: 2016-03-21
 tags:

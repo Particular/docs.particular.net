@@ -1,6 +1,6 @@
 ---
-title: NServiceBus self hosting
-summary: Hosting an in-process instance of NServiceBus.
+title: Self hosting
+summary: Hosting in-process Endpoints
 reviewed: 2016-03-21
 component: Core
 tags:

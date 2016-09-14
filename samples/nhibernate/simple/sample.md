@@ -1,5 +1,5 @@
 ---
-title: NHibernate persistence Sample
+title: NHibernate Persistence
 summary: Using NHibernate to store Sagas and Timeouts.
 reviewed: 2016-08-29
 component: NHibernate
