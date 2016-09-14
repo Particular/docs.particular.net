@@ -97,6 +97,9 @@ partial: DequeueTimeout
 partial: PrefetchCount
 
 
+partial: PrefetchCountPerMessageProcessor
+
+
 ### UsePublisherConfirms
 
 Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used.
