@@ -1,5 +1,5 @@
 ---
-title: Simple RabbitMQ usage
+title: Simple RabbitMQ Transport usage
 reviewed: 2016-03-21
 component: Rabbit
 tags:
