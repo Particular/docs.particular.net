@@ -42,16 +42,20 @@ It is recommended to update to .NET 4.5.2 and perform a full migration to produc
 
 For larger solutions the Visual Studio extension [Target Framework Migrator](https://visualstudiogallery.msdn.microsoft.com/47bded90-80d8-42af-bc35-4736fdd8cd13) can reduce the manual effort required in performing an upgrade.
 
+See also:
+- [.NET Blog - Moving to the .NET Framework 4.5.2](https://blogs.msdn.microsoft.com/dotnet/2014/08/07/moving-to-the-net-framework-4-5-2/)
+
 
 ## Update NServiceBus dependencies
 
 All NServiceBus dependencies for an endpoint project are managed via NuGet. Open the Manage NuGet Packages window for the endpoint project, switch to the Updates tab and look for packages that start with NServiceBus. Update each one to the latest Version 6 package.
 
-(screenshot?)
-
 NOTE: All of the NuGet packages are currently available as prerelease builds so the Include prerelease option must be selected by either checking the box in the Manage NuGet Packages window or by including the `-Pre` flag in the Package Manager Console. 
 
-Once all of the NServiceBus packages have been updated to Version 6 the project will contain quite a few errors. This is expected as a lot of things have changed.
+Once packages have been updated the project will contain quite a few errors. This is expected as a lot of things have changed.
+
+See also:
+- [NuGet Package Manager Dialog - Updating a Package](https://docs.nuget.org/consume/package-manager-dialog#updating-a-package)
 
 
 ## Update Endpoint configuration
@@ -68,42 +72,11 @@ Once the instance of `EndpointConfiguration` has been created, it can be used to
 
 In Version 6 and above, any operation that interacts with the transport is asynchronous and returns a `Task`. This includes the `Start` method on the static `Endpoint` class and the `Stop` method on `IEndpointInstance`. Ideally these methods are called from within an `async` method and the results can simply be `awaited` (with `ConfigureAwait(false)` applied to them).
 
-```CSharp
-public async Task Run(EndpointConfiguration config)
-{
-  // pre startup
-  var endpointInstance = await Endpoint.Start(config).ConfigureAwait(false);
-  // post startup
-
-  // block process
-
-  // pre shutdown
-  await endpointInstance.Stop().ConfigureAwait(false);
-  // post shutdown
-}
-```
+snippet: v6-endpoint-start-stop-full-async
 
 If this is not the case then you can convert these calls back into synchronous ones using `GetAwaiter().GetResult()`. It is recommended that this conversion occurs early in the application lifecycle.
 
-```CSharp
-public void Run(EndpointConfiguration config)
-{
-	RunAsync(config).GetAwaiter().GetResult();
-}
-
-public async Task RunAsync(EndpointConfiguration config)
-{
-  // pre startup
-  var endpointInstance = await Endpoint.Start(config).ConfigureAwait(false);
-  // post startup
-
-  // block process
-
-  // pre shutdown
-  await endpointInstance.Stop().ConfigureAwait(false);
-  // post shutdown
-}
-```
+snippet: v6-endpoint-start-stop-sync-wrapper
 
 Note that in Version 5 and below, `IBus` implements `IDisposable` and stops communicating with the transport when `Dispose` is called. It has been common to call `Bus.Create` from within a `using` block in console applications. In Version 6 as above, stopping an instance of an endpoint is asynchronous and needs to return a `Task` which is not possible with the signature of `IDisposable`. `IEndpointInstance` does not implement `IDisposable` and explicitly calling `Stop` and `await`ing the returned `Task` is the only way to shut down the endpoint. 
 

@@ -34,6 +34,52 @@
                 .ConfigureAwait(false);
             #endregion
         }
+
+    }
+
+    class EndpointStartStopFullAsync
+    {
+        #region v6-async-endpoint-start-stop
+
+        async Task Run(EndpointConfiguration config)
+        {
+            // pre startup
+            var endpointInstance = await Endpoint.Start(config).ConfigureAwait(false);
+            // post startup
+
+            // block process
+
+            // pre shutdown
+            await endpointInstance.Stop().ConfigureAwait(false);
+            // post shutdown
+        }
+
+        #endregion
+    }
+
+    class EndpointStartStopSyncToAsync
+    {
+        #region v6-sync-endpoint-start-stop
+
+        void Run(EndpointConfiguration config)
+        {
+            RunAsync(config).GetAwaiter().GetResult();
+        }
+
+        async Task RunAsync(EndpointConfiguration config)
+        {
+            // pre startup
+            var endpointInstance = await Endpoint.Start(config).ConfigureAwait(false);
+            // post startup
+
+            // block process
+
+            // pre shutdown
+            await endpointInstance.Stop().ConfigureAwait(false);
+            // post shutdown
+        }
+
+        #endregion
     }
 
     class SomeMessage
