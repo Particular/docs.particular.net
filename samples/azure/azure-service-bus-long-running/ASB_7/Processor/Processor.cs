@@ -36,7 +36,7 @@ public class Processor
         task.Start();
     }
 
-    private async Task StartPolling(CancellationToken token)
+    async Task StartPolling(CancellationToken token)
     {
         // should do CancellationToken and handle TaskCanceledException
         while (!token.IsCancellationRequested)
@@ -48,7 +48,7 @@ public class Processor
         }
     }
 
-    private async Task StartProcessing(CancellationToken token)
+    async Task StartProcessing(CancellationToken token)
     {
         while (!token.IsCancellationRequested)
         {
@@ -102,7 +102,7 @@ public class Processor
         }
     }
 
-    private async Task LoadRequests()
+    async Task LoadRequests()
     {
         var partitionKeyFilter = TableQuery.GenerateFilterCondition(nameof(RequestRecord.PartitionKey), QueryComparisons.Equal, Constants.PartitionKey);
         var statusFilter = TableQuery.GenerateFilterCondition(nameof(RequestRecord.Status), QueryComparisons.Equal, Status.Pending.ToString());
