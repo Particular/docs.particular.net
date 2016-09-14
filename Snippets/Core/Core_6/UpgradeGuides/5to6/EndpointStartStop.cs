@@ -39,7 +39,7 @@
 
     class EndpointStartStopFullAsync
     {
-        #region v6-async-endpoint-start-stop
+        #region v6-endpoint-start-stop-full-async
 
         async Task Run(EndpointConfiguration config)
         {
@@ -59,7 +59,7 @@
 
     class EndpointStartStopSyncToAsync
     {
-        #region v6-sync-endpoint-start-stop
+        #region v6-endpoint-start-stop-sync-wrapper
 
         void Run(EndpointConfiguration config)
         {
