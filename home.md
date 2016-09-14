@@ -60,7 +60,7 @@ span.blue {
 }
 .block h3 {
   font-weight: bold;
-  font-size: 17px;
+  font-size: 17px !important;
   margin-top: 0px;
   margin-bottom: 0px;
   color: rgb(0, 114, 156);
