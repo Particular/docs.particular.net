@@ -51,7 +51,7 @@ SQL Server Transport manages transport data, but it puts no constraints on the t
 
 This section explains the important factors to consider when choosing technologies for managing business and persistence data to use in combination with the SQL Server transport.
 
-NOTE: No matter what deployment options are chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should reside in a single SQL Server catalog**. Multi-instance/multi-catalog deployment topology is still available but is deprecated in version 3 of the SQL Server transport. It will be removed in version 4.
+NOTE: No matter what deployment options are chosen, there is one general rule that should always apply: **All transport data (input, audit and error queues) should be stored in a single SQL Server catalog**. Multi-instance/multi-catalog deployment topology is still available in version 3 of the SQL Server transport to allow interoperability with version 2, but it is deprecated. It is not recommended for new projects and will be removed in version 4.
 
 
 ### Security
