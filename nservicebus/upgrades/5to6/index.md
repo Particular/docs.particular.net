@@ -10,12 +10,10 @@ related:
 ---
 
 
-## Upgrading to NServiceBus 6
-
 Every solution is different and will encounter unique challenges when upgrading a major dependency like NServiceBus. It's important to plan out an upgrade project and proceed in well defined steps, stopping to ensure that everything is working after each step. Here are a few things to consider when planning an upgrade project.
 
 
-### Endpoint selection
+## Endpoint selection
 
 It is not necessary for every endpoint in the solution to be running the same version of NServiceBus. Endpoints running Version 6 are able to exchange messages with endpoints running Version 5 transparently. This [wire compatability](link to wire compat doco) helps to reduce the complexity of an upgrade project by allowing each endpoint to be upgraded one at a time. 
 
@@ -34,7 +32,7 @@ There is one common issue with upgrading a single endpoint at a time. If the end
 The process of upgrading each endpoint is going to follow a common sequence of steps. Being able to repeatably apply those steps is key to the success of the upgrade project. The recommended approach is to upgrade a simple and low risk endpoint first to ensure that the process is well understood before tackling the endpoints that make up the core of the solution. Endpoints that send email or generate documents are often good candidates for this. When selecting the first endpoint to upgrade look for a small number of reasonably straightforward handlers and a small amount of NServiceBus configuration. It is worth considering selecting a simple endpoint to upgrade even if it will not take advantage of Version 6 features to practice the upgrade process. 
 
 
-### Move to .NET 4.5.2
+## Move to .NET 4.5.2
 
 The minimum .NET version for NServiceBus Version 6 is .NET 4.5.2.
 
@@ -45,7 +43,7 @@ It is recommended to update to .NET 4.5.2 and perform a full migration to produc
 For larger solutions the Visual Studio extension [Target Framework Migrator](https://visualstudiogallery.msdn.microsoft.com/47bded90-80d8-42af-bc35-4736fdd8cd13) can reduce the manual effort required in performing an upgrade.
 
 
-### Update NServiceBus dependencies
+## Update NServiceBus dependencies
 
 All NServiceBus dependencies for an endpoint project are managed via NuGet. Open the Manage NuGet Packages window for the endpoint project, switch to the Updates tab and look for packages that start with NServiceBus. Update each one to the latest Version 6 package.
 
@@ -56,7 +54,7 @@ NOTE: All of the NuGet packages are currently available as prerelease builds so 
 Once all of the NServiceBus packages have been updated to Version 6 the project will contain quite a few errors. This is expected as a lot of things have changed.
 
 
-### Update Endpoint configuration
+## Update Endpoint configuration
 
 In previous versions of NServiceBus, to connect a process to the transport, an instance of `IBus` was needed. In Version 6 and above, this concept has been deprecated and now an instance of `IEndpointInstance` is required. The code required to create and configure an `IEndpointInstance` is very similar to the code found in Version 5 endpoints for creating and configuring `IBus` instances.
 
@@ -118,7 +116,7 @@ See also:
 - [Assembly scanning changes in Version 6](assembly-scanning.md)
 
 
-### Update Handlers
+## Update Handlers
 
 In Version 6 the signature of `IHandleMessages<T>` has been changed to support asynchronous processing. In Version 5 and below, each message was handled by a dedicated thread. This meant that NServiceBus was able to take advantage of thread static state to keep track of the message being handled as well as the current transaction. In Version 6, each message is handled by a task which may run on several threads before processing is completed. Rather than rely on thread context and state, each handler is explicitly passed in a context object with all of the information it needs to execute. 
 
@@ -140,7 +138,7 @@ See also:
 - [Messaging changes in Version 6](messaging.md)
 
 
-### Update Sagas
+## Update Sagas
 
 Updating a saga is very similar to updating a handler with just a few extra steps. 
 
@@ -160,7 +158,7 @@ See also:
 - [Messaging changes in Version 6](messaging.md)
 
 
-### Sending and Publishing outside of a handler
+## Sending and Publishing outside of a handler
 
 Once all of the handlers and sagas in an endpoint have been updated to Version 6 there may still be places in the code that send and publish messages using an instance of `IBus` that need to be updated.
 
@@ -175,7 +173,7 @@ See also:
 - [Messaging changes in Version 6](messaging.md)
 
 
-### Final steps
+## Final steps
 
 This covers the basic steps required to update an endpoint to Version 6. Each of the other NServiceBus dependencies may also require additional steps. Please see the dependency specific upgrade guides for more information.
 
