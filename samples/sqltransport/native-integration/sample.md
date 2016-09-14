@@ -1,5 +1,5 @@
 ---
-title: SQL Server Native integration
+title: Native integration
 summary: Integrating natively with the SQL Server transport.
 reviewed: 2016-03-30
 component: SqlServer
