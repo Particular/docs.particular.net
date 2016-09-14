@@ -27,6 +27,7 @@ The `End()` method is called when the processing is complete. If there is an exc
 
 This gives a way to perform different actions depending on the outcome of the message(s).
 
+partial: imanageunitsofwork-outbox
 partial: nulltask
 
 
