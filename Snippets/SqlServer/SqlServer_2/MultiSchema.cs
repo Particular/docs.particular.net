@@ -38,6 +38,21 @@ class MultiSchema
         #endregion
     }
 
+    void ConfigureCustomSchemaForEndpointAndQueue(BusConfiguration busConfiguration)
+    {
+        #region sqlserver-multischema-config-for-endpoint-and-queue [2.1,3.0)
+
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.UseSpecificConnectionInformation(
+            EndpointConnectionInfo.For("sales")
+                .UseSchema("sender"),
+            EndpointConnectionInfo.For("error")
+                .UseSchema("control")
+            );
+
+        #endregion
+    }
+
     void OtherEndpointConnectionParamsPull(BusConfiguration busConfiguration)
     {
         #region sqlserver-multischema-config-for-queue 2.1
