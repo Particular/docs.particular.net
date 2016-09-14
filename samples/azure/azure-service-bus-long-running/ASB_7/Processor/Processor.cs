@@ -25,12 +25,14 @@ public class Processor
 
         var task = new Task(() =>
         {
+#pragma warning disable 4014
             #region tasks
 
             StartPolling(token);
             StartProcessing(token);
 
             #endregion
+#pragma warning restore 4014
         }, token);
         task.Start();
     }
