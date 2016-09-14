@@ -15,7 +15,7 @@ public class Processor
     IEndpointInstance endpoint;
     CloudTable table;
 
-    static readonly ConcurrentQueue<RequestRecord> toProccess = new ConcurrentQueue<RequestRecord>();
+    static readonly ConcurrentQueue<RequestRecord> toProcess = new ConcurrentQueue<RequestRecord>();
 
     public void Start(IEndpointInstance endpointInstance, CancellationToken token)
     {
@@ -53,7 +53,7 @@ public class Processor
         while (!token.IsCancellationRequested)
         {
             RequestRecord request;
-            while (toProccess.TryPeek(out request))
+            while (toProcess.TryPeek(out request))
             {
                 try
                 {
@@ -80,7 +80,7 @@ public class Processor
                     request.FinishedAt = DateTime.UtcNow;
                     await table.ExecuteAsync(TableOperation.Merge(request), token)
                         .ConfigureAwait(false);
-                    toProccess.TryDequeue(out request);
+                    toProcess.TryDequeue(out request);
                     var processingFinished = new LongProcessingFinished
                     {
                         Id = request.RequestId
@@ -94,7 +94,7 @@ public class Processor
                     request.Status = Status.Failed.ToString();
                     await table.ExecuteAsync(TableOperation.Merge(request), token)
                         .ConfigureAwait(false);
-                    toProccess.TryDequeue(out request);
+                    toProcess.TryDequeue(out request);
                     var processingFailed = new LongProcessingFailed
                     {
                         Id = request.RequestId,
@@ -126,9 +126,9 @@ public class Processor
 
         foreach (var record in records)
         {
-            if (toProccess.All(r => r.RequestId != record.RequestId))
+            if (toProcess.All(r => r.RequestId != record.RequestId))
             {
-                toProccess.Enqueue(record);
+                toProcess.Enqueue(record);
             }
         }
     }
