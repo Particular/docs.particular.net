@@ -40,3 +40,8 @@ The `IMessageSession` parameter provides all the necessary methods to send messa
 include:5to6removePShelpers
 
 WARNING: If an `EndpointConfig.cs` file already exists in the project, be careful to not overwrite it when upgrading the `NServiceBus.Host` package. If Visual Studio detects a conflict, it will ask whether the file should be overwritten. To keep the old configuration, choose `No`.
+
+
+## WCF Integration
+
+The WCF integration using `WcfService` has been removed from the host. The [WCF request response via Callbacks](/samples/web/wcf-callbacks) sample shows how to expose message handlers over WCF services using NServiceBus Version 6 and the NServiceBus.Callbacks package.

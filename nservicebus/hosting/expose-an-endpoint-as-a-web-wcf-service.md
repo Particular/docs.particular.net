@@ -10,6 +10,8 @@ related:
  - samples/web/wcf-callbacks
 ---
 
+Note: Starting from NServiceBus Core Versions 6 and above, the built-in support for WCF integration has been removed. For more details refer to the [Upgrade Guide](/nservicebus/upgrades/host-6to7).
+
 Inherited from `NServiceBus.WcfService<TCommand, TErrorCode>`, as shown below. `TCommand` is the message type of the request. `TErrorCode` must be an enumerated type, and should represent the result of processing the command. Example:
 
 snippet:ExposeWCFService
