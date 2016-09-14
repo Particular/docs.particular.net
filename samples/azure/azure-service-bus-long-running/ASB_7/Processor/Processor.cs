@@ -41,8 +41,10 @@ public class Processor
         // should do CancellationToken and handle TaskCanceledException
         while (!token.IsCancellationRequested)
         {
-            await LoadRequests().ConfigureAwait(false);
-            await Task.Delay(TimeSpan.FromSeconds(Constants.PollingFrequencyInSeconds), token).ConfigureAwait(false);
+            await LoadRequests()
+                .ConfigureAwait(false);
+            await Task.Delay(TimeSpan.FromSeconds(Constants.PollingFrequencyInSeconds), token)
+                .ConfigureAwait(false);
         }
     }
 
@@ -70,26 +72,31 @@ public class Processor
 
                     // process
                     var estimatedProcessingTime = TimeSpan.Parse(request.EstimatedProcessingTime);
-                    await Task.Delay(estimatedProcessingTime, token).ConfigureAwait(false);
+                    await Task.Delay(estimatedProcessingTime, token)
+                        .ConfigureAwait(false);
                     log.Info($"Request with ID {request.RequestId} processed.");
 
                     request.Status = Status.Finished.ToString();
                     request.FinishedAt = DateTime.UtcNow;
-                    await table.ExecuteAsync(TableOperation.Merge(request), token).ConfigureAwait(false);
+                    await table.ExecuteAsync(TableOperation.Merge(request), token)
+                        .ConfigureAwait(false);
                     toProccess.TryDequeue(out request);
-                    await endpoint.Publish<LongProcessingFinished>(m => m.Id = request.RequestId).ConfigureAwait(false);
+                    await endpoint.Publish<LongProcessingFinished>(m => m.Id = request.RequestId)
+                        .ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
                     log.Info($"Request with ID {request.RequestId} threw an exception.");
                     request.Status = Status.Failed.ToString();
-                    await table.ExecuteAsync(TableOperation.Merge(request), token).ConfigureAwait(false);
+                    await table.ExecuteAsync(TableOperation.Merge(request), token)
+                        .ConfigureAwait(false);
                     toProccess.TryDequeue(out request);
                     await endpoint.Publish<LongProcessingFailed>(m =>
                     {
                         m.Id = request.RequestId;
                         m.Reason = ex.Message;
-                    }).ConfigureAwait(false);
+                    })
+                    .ConfigureAwait(false);
                 }
             }
         }
@@ -106,7 +113,8 @@ public class Processor
         TableContinuationToken continuationToken = null;
         do
         {
-            var tableQuerySegment = await table.ExecuteQuerySegmentedAsync(query, continuationToken).ConfigureAwait(false);
+            var tableQuerySegment = await table.ExecuteQuerySegmentedAsync(query, continuationToken)
+                .ConfigureAwait(false);
             continuationToken = tableQuerySegment.ContinuationToken;
             records.AddRange(tableQuerySegment);
         } while (continuationToken != null);

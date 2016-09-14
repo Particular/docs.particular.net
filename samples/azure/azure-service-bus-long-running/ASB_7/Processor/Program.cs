@@ -27,7 +27,8 @@ class Program
         transport.UseTopology<ForwardingTopology>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         var cts = new CancellationTokenSource();
         var processor = new Processor();
@@ -38,6 +39,7 @@ class Program
         Console.ReadKey();
         cts.Cancel();
 
-        await endpointInstance.Stop().ConfigureAwait(false);
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

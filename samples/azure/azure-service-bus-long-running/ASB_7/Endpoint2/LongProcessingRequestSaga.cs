@@ -5,8 +5,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 using Shared;
 
-public class LongProcessingRequestSaga : Saga<SagaState>, 
-                                            IAmStartedByMessages<LongProcessingRequest>, 
+public class LongProcessingRequestSaga : Saga<SagaState>,
+                                            IAmStartedByMessages<LongProcessingRequest>,
                                             IHandleTimeouts<ProcessingPossiblyFailed>,
                                             IHandleMessages<LongProcessingFinished>,
                                             IHandleMessages<LongProcessingFailed>
@@ -28,7 +28,8 @@ public class LongProcessingRequestSaga : Saga<SagaState>,
         #region setting-timeout
 
         var timeoutToBeInvokedAt = DateTime.Now + message.EstimatedProcessingTime + TimeSpan.FromSeconds(10);
-        await RequestTimeout(context, timeoutToBeInvokedAt, new ProcessingPossiblyFailed { Id = message.Id });
+        await RequestTimeout(context, timeoutToBeInvokedAt, new ProcessingPossiblyFailed { Id = message.Id })
+                .ConfigureAwait(false);
 
         #endregion
 
@@ -39,17 +40,19 @@ public class LongProcessingRequestSaga : Saga<SagaState>,
 
         #region enqueue-request-for-processor
 
-        // Saga enqueues the request to process in a storage table. This is the logical equivalent of adding a message to a queue. 
+        // Saga enqueues the request to process in a storage table. This is the logical equivalent of adding a message to a queue.
         // If there would be business specific work to perform here, that work should be done by sending a message to a handler instead
         // and not handled in the saga.
 
         var request = new RequestRecord(message.Id, Status.Pending, message.EstimatedProcessingTime);
-        await table.ExecuteAsync(TableOperation.Insert(request)).ConfigureAwait(false);
+        await table.ExecuteAsync(TableOperation.Insert(request))
+            .ConfigureAwait(false);
 
         await context.Reply(new LongProcessingReply
         {
             Id = message.Id
-        });
+        })
+                .ConfigureAwait(false);
 
         #endregion
 
@@ -69,7 +72,8 @@ public class LongProcessingRequestSaga : Saga<SagaState>,
 
         #region on-timeout
 
-        await context.Publish<LongProcessingWarning>(m => m.Id = timeoutMessage.Id).ConfigureAwait(false);
+        await context.Publish<LongProcessingWarning>(m => m.Id = timeoutMessage.Id)
+            .ConfigureAwait(false);
         MarkAsComplete();
 
         #endregion

@@ -29,7 +29,8 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         try
         {
             Console.WriteLine("Press 'enter' to send a message");
@@ -52,17 +53,19 @@ class Program
                     Id = Guid.NewGuid(),
                     EstimatedProcessingTime = Constants.EstimatedProcessingTime // set to a longer period of time to emulate longer processing
                 };
-                
+
                 #endregion
 
-                await endpointInstance.Send("Samples.Azure.ServiceBus.Server", message).ConfigureAwait(false);
+                await endpointInstance.Send("Samples.Azure.ServiceBus.Server", message)
+                    .ConfigureAwait(false);
 
                 Console.WriteLine($"LongProcessingRequest with ID {message.Id} and estimated processing time {message.EstimatedProcessingTime} sent.");
             }
         }
         finally
         {
-            await endpointInstance.Stop().ConfigureAwait(false);
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }
