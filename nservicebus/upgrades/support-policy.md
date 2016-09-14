@@ -13,7 +13,7 @@ Supported versions include any major version released within the last 3 years. W
 
 If a version is not listed or has expired but support is required [contact Particular](http://particular.net/contactus). For more information on the relationship between releases and support see [the release policy](/nservicebus/upgrades/release-policy.md).
 
-WARNING: If support is required for **any** [contact Particular](http://particular.net/contactus).
+WARNING: If support is required for **any version** [contact Particular](http://particular.net/contactus).
 
 ### NServiceBus 5.x
 
