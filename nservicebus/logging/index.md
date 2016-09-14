@@ -1,5 +1,5 @@
 ---
-title: Logging in NServiceBus
+title: Logging
 summary: Manage and integrate with NServiceBus logging.
 reviewed: 2016-08-10
 component: Core
