@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using Microsoft.WindowsAzure.Storage.Table;
-using Shared;
 
 [DebuggerDisplay("RequestId: {RequestId}, Status: {Status}")]
 public class RequestRecord :

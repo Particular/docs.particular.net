@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage.Table;
 using NServiceBus;
 using NServiceBus.Logging;
-using Shared;
 
 public class LongProcessingRequestSaga :
     Saga<SagaState>,
