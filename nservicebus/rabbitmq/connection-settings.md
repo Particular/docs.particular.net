@@ -47,7 +47,6 @@ By default, the [guest user can only connect via localhost](https://www.rabbitmq
 
 ```xml
 <connectionStrings>
-   <!-- RabbitMQ -->
    <add name="NServiceBus/Transport"
         connectionString="host=myremoteserver;
                           username=myusername;
