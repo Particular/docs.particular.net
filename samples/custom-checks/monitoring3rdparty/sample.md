@@ -1,5 +1,5 @@
 ---
-title: Simple CustomChecks Usage
+title: Monitoring 3rd party systems with custom checks
 summary: Monitoring 3rd party systems which are exposed as HTTP endpoints with custom checks.
 component: CustomChecks
 reviewed: 2016-03-21
