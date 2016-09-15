@@ -93,9 +93,6 @@ partial: DequeueTimeout
 partial: PrefetchCount
 
 
-partial: PrefetchCountPerMessageProcessor
-
-
 ### UsePublisherConfirms
 
 Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used.
@@ -123,6 +120,9 @@ partial: tls-details
 
 
 partial: connection-manager
+
+
+partial: prefetch-control
 
 
 ## Controlling behavior when the broker connection is lost
