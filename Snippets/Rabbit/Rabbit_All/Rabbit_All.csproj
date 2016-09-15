@@ -29,7 +29,7 @@
       <HintPath>..\..\..\packages\NServiceBus.6.0.0-rc0002\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.RabbitMQ, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.RabbitMQ.4.0.0-rc0003\lib\net452\NServiceBus.Transports.RabbitMQ.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.RabbitMQ.4.0.0-rc0004\lib\net452\NServiceBus.Transports.RabbitMQ.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework">
@@ -61,7 +61,6 @@
     <Compile Include="QueueDeletion\Tests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
