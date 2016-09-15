@@ -835,6 +835,20 @@ Avoid ambiguity.
 **Versions X** and NOT **VX** or **version X**.
 
 
+## Embedding videos
+
+There is a CSS class that will properly style videos: `video-container`
+
+Use it as follows:
+
+```
+<div class="video-container">
+<iframe src="https://www.youtube.com/embed/QolL1Oum72Q" frameborder="0" allowfullscreen></iframe>
+</div>
+```
+
+
+
 ## Terminology
 
 

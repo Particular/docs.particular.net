@@ -108,7 +108,7 @@ To update a handler to Version 6 follow this process:
  1. Finally, the methods on `IMessageHandlerContext` all return tasks. It is important to `await` each of these tasks and to add `.ConfigureAwait(false)` on to each one.
 
 <div class="video-container">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QolL1Oum72Q" frameborder="0" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/QolL1Oum72Q" frameborder="0" allowfullscreen></iframe>
 </div>
 
 See also:
