@@ -107,7 +107,9 @@ To update a handler to Version 6 follow this process:
  1. If the handler has an instance of `IBus` injected into it, it needs to be removed. Prior to removing it, rename it to `context` as all operations that previously relied on `IBus` will now go through the passed in instance of `IMessageHandlerContext`.
  1. Finally, the methods on `IMessageHandlerContext` all return tasks. It is important to `await` each of these tasks and to add `.ConfigureAwait(false)` on to each one.
 
+<div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QolL1Oum72Q" frameborder="0" allowfullscreen></iframe>
+</div>
 
 See also:
 
