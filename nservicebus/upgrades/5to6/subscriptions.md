@@ -1,6 +1,5 @@
 ---
 title: Subscription changes in Version 6
-summary: Instructions on how to upgrade NServiceBus Version 5 to 6.
 tags:
  - upgrade
  - migration
