@@ -115,6 +115,10 @@ Default: `10` seconds
 
 partial: tls
 
+
+partial: debugging-note
+
+
 partial: connection-manager
 
 

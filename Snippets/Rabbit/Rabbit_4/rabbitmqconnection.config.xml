@@ -10,7 +10,7 @@
   <!--startcode rabbitmq-connectionstring-debug -->
   <connectionStrings>
     <add name="NServiceBus/Transport"
-         connectionString="host=broker1;RequestedHeartbeat=600;DequeueTimeout=600"/>
+         connectionString="host=broker1;RequestedHeartbeat=600"/>
   </connectionStrings>
   <!--endcode-->
 
