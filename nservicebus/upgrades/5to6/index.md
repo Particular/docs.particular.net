@@ -16,7 +16,7 @@ It is not necessary for every endpoint in the solution to be running the same ve
 
 Not every endpoint in the solution needs to be upgraded to Version 6 at all. Each endpoint only needs to be upgraded if it will take advantage of a new feature introduced in Version 6. New endpoints added to the system can be started, developed and deployed entirely in Version 6 and will be able to exchange messages with the other endpoints in the solution that are on Version 5.
 
-**Do not upgrade an endpoint unless there is a compelling reason to do so.**
+**Only upgrade an endpoint if there is a compelling reason to do so.**
 
 Note that some new features added in Version 6 require that all endpoints are running on Version 6 prior to enabling this feature. For example the [multiple deserializers API](/samples/serializers/multiple-deserializers/). Ensure that any new features are adequately researched in regards to its impact on the upgrade process.
 
