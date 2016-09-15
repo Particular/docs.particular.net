@@ -51,7 +51,8 @@ class Program
                     OrderId = orderId,
                     Value = random.Next(100)
                 };
-                await endpointInstance.Send(message).ConfigureAwait(false);
+                await endpointInstance.Send(message)
+                    .ConfigureAwait(false);
             }
 
         }
@@ -69,8 +70,12 @@ class Program
         endpointConfiguration.EnableFeature<FairDistribution>();
         var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
         var settings = endpointConfiguration.GetSettings();
+        var strategy = new FairDistributionStrategy(
+            settings: settings,
+            endpoint: "Samples.FairDistribution.Server",
+            scope: DistributionStrategyScope.Send);
         routing.SetMessageDistributionStrategy(
-            new FairDistributionStrategy(settings, "Samples.FairDistribution.Server", DistributionStrategyScope.Send));
+            strategy);
 
         #endregion
     }

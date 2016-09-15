@@ -1,7 +1,6 @@
 ﻿using System;
 using NServiceBus;
 using NServiceBus.Features;
-using NServiceBus.Routing;
 using NServiceBus.Transport;
 
 public class FairDistribution :

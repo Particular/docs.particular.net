@@ -16,7 +16,8 @@ static class ConnectionProvider
 
         var connection = new SqlConnection(connectionString);
 
-        await connection.OpenAsync().ConfigureAwait(false);
+        await connection.OpenAsync()
+            .ConfigureAwait(false);
 
         return connection;
     }

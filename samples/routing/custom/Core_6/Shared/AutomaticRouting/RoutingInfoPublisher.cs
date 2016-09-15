@@ -45,7 +45,10 @@ class RoutingInfoPublisher :
 
         timer = new Timer(state =>
         {
-            Publish().ConfigureAwait(false).GetAwaiter().GetResult();
+            Publish()
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }, null, TimeSpan.Zero, heartbeatPeriod);
 
         return Publish();

@@ -44,13 +44,15 @@
         async Task Run(EndpointConfiguration config)
         {
             // pre startup
-            var endpointInstance = await Endpoint.Start(config).ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(config)
+                .ConfigureAwait(false);
             // post startup
 
             // block process
 
             // pre shutdown
-            await endpointInstance.Stop().ConfigureAwait(false);
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
             // post shutdown
         }
 
@@ -69,13 +71,15 @@
         async Task RunAsync(EndpointConfiguration config)
         {
             // pre startup
-            var endpointInstance = await Endpoint.Start(config).ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(config)
+                .ConfigureAwait(false);
             // post startup
 
             // block process
 
             // pre shutdown
-            await endpointInstance.Stop().ConfigureAwait(false);
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
             // post shutdown
         }
 

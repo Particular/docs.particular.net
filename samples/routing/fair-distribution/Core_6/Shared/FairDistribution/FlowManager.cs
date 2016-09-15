@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
-using NServiceBus;
 
 class FlowManager
 {
@@ -31,7 +28,8 @@ class FlowManager
         foreach (var address in receiverAddresses)
         {
             FlowData candidate;
-            if (!data.TryGetValue(address, out candidate)) // This instance is not yet tracked, so assume it has shortest queue.
+            // This instance is not yet tracked, so assume it has shortest queue.
+            if (!data.TryGetValue(address, out candidate))
             {
                 return address;
             }

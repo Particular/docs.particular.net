@@ -25,7 +25,10 @@ class RoutingInfoCommunicator :
     {
         timer = new Timer(state =>
         {
-            Refresh().ConfigureAwait(false).GetAwaiter().GetResult();
+            Refresh()
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
         return Task.FromResult(0);
     }
@@ -35,7 +38,8 @@ class RoutingInfoCommunicator :
         var addedOrUpdated = new List<Entry>();
         var results = await dataAccess.Query()
             .ConfigureAwait(false);
-        var removed = cache.Values.Where(x => results.All(r => r.Publisher != x.Publisher))
+        var removed = cache.Values
+            .Where(x => results.All(r => r.Publisher != x.Publisher))
             .ToArray();
         foreach (var entry in results)
         {

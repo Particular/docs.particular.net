@@ -47,7 +47,8 @@ class Program
                     OrderId = orderId,
                     Value = random.Next(100)
                 };
-                await mainEndpoint.Send(message).ConfigureAwait(false);
+                await mainEndpoint.Send(message)
+                    .ConfigureAwait(false);
             }
         }
         finally

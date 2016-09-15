@@ -17,7 +17,7 @@ class MultiDb
             var connectionString = address.Equals("RemoteEndpoint") ? "SomeConnectionString" : "SomeOtherConnectionString";
             var connection = new SqlConnection(connectionString);
             await connection.OpenAsync()
-            .ConfigureAwait(false);
+                .ConfigureAwait(false);
             return connection;
         });
 
@@ -53,7 +53,8 @@ class MultiDb
             }
 
             var connection = new SqlConnection(connectionString);
-            await connection.OpenAsync().ConfigureAwait(false);
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
             return connection;
         });
 

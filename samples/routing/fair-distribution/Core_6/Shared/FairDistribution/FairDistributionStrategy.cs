@@ -7,14 +7,15 @@ public class FairDistributionStrategy :
 {
     ReadOnlySettings settings;
 
-    public FairDistributionStrategy(ReadOnlySettings settings, string endpint, DistributionStrategyScope scope) 
-        : base(endpint, scope)
+    public FairDistributionStrategy(ReadOnlySettings settings, string endpoint, DistributionStrategyScope scope)
+        : base(endpoint, scope)
     {
         this.settings = settings;
     }
-    
+
     public override string SelectReceiver(string[] receiverAddresses)
     {
-        return settings.Get<FlowManager>().FindShortestQueue(receiverAddresses);
+        return settings.Get<FlowManager>()
+            .FindShortestQueue(receiverAddresses);
     }
 }
