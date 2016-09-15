@@ -29,7 +29,6 @@ class Program
             Threshold = Level.Info,
             Layout = layout
         };
-        // Note that ActivateOptions is required in NSB 5 and above
         consoleAppender.ActivateOptions();
         BasicConfigurator.Configure(consoleAppender);
         #endregion

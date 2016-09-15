@@ -21,7 +21,6 @@ class Usage
             Threshold = Level.Debug,
             Layout = layout
         };
-        // Note that ActivateOptions is required in NSB 5 and above
         consoleAppender.ActivateOptions();
 
         BasicConfigurator.Configure(consoleAppender);
