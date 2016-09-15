@@ -113,10 +113,13 @@ The time to wait before trying to reconnect to the broker if the connection is l
 Default: `10` seconds
 
 
-partial: tls
+partial: tls-settings
 
 
 partial: debugging-note
+
+
+partial: tls-details
 
 
 partial: connection-manager
