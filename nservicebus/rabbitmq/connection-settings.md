@@ -93,14 +93,7 @@ partial: DequeueTimeout
 partial: PrefetchCount
 
 
-### UsePublisherConfirms
-
-Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used.
-
-Default: `true`
-
-
-partial: maxwaittimeforconfirms
+partial: publisher-confirms
 
 
 ### RetryDelay
@@ -123,6 +116,9 @@ partial: connection-manager
 
 
 partial: prefetch-control
+
+
+partial: publisher-confirms-setting
 
 
 ## Controlling behavior when the broker connection is lost
