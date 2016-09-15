@@ -146,7 +146,7 @@
   Name: Log4Net Logger
   DocoUrl: nservicebus/logging/log4net
   Category: Logger
-  ProjectUrl: https://github.com/Particular/NServiceBus.Host
+  ProjectUrl: https://github.com/Particular/NServiceBus.Log4Net
   NugetOrder:
     - NServiceBus.Log4Net
     - NServiceBus
