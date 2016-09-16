@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport Upgrade Version 3 to 4
 summary: Instructions on how to upgrade RabbitMQ Transport Version 3 to 4.
-reviewed: 2016-05-12
+reviewed: 2016-09-09
 tags:
  - upgrade
  - migration
@@ -33,6 +33,11 @@ The `DequeueTimeout` setting has been removed because the message pump no longer
 
 The `MaxWaitTimeForConfirms` setting has been removed because the transport no longer requires a timeout for how long it should block while waiting for publisher confirmation messages.
 
+### UsePublisherConfirms
+
+The `UsePublisherConfirms` setting has been removed from connection string and added as a code API `EndpointConfiguration.UsePublisherConfirms` method.
+
+snippet:3to4rabbitmq-use-publisher-confirms
 
 ## Callback support
 

@@ -31,5 +31,15 @@ class Upgrade
         #endregion
     }
 
+    void UsePublisherConfirmsSettings(EndpointConfiguration endpointConfiguration)
+    {
+        #region 3to4rabbitmq-use-publisher-confirms
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UsePublisherConfirms(true);
+
+        #endregion
+    }
+
 
 }
