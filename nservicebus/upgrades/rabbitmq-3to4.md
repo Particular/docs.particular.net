@@ -37,7 +37,7 @@ The `MaxWaitTimeForConfirms` setting has been removed because the transport no l
 
 The `UsePublisherConfirms` setting has been removed from connection string and added as a code API `EndpointConfiguration.UsePublisherConfirms` method.
 
-snipper:3to4rabbitmq-use-publisher-confirms
+snippet:3to4rabbitmq-use-publisher-confirms
 
 ## Callback support
 
