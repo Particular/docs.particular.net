@@ -107,6 +107,26 @@ class Usage
         #endregion
     }
 
+    void PrefetchMultipler(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-config-prefetch-multiplier
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.PrefetchMultiplier(4);
+
+        #endregion
+    }
+
+    void PrefetchCount(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-config-prefetch-count
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.PrefetchCount(100);
+
+        #endregion
+    }
+
     class MyRoutingTopology :
         IRoutingTopology
     {
