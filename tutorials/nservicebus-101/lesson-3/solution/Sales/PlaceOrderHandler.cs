@@ -5,9 +5,10 @@ using NServiceBus.Logging;
 
 namespace Sales
 {
-    public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
+    public class PlaceOrderHandler :
+        IHandleMessages<PlaceOrder>
     {
-        static readonly ILog logger = LogManager.GetLogger<PlaceOrderHandler>();
+        static ILog logger = LogManager.GetLogger<PlaceOrderHandler>();
 
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
