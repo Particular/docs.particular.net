@@ -169,6 +169,15 @@ related:
 A list of related pages for this page. These links will be rendered at the bottom of the page. Can include both samples and articles and they will be grouped as such when rendered in html.
 
 
+### Suppress Related
+
+```
+suppressRelated: true
+```
+
+No related content will be displayed at the bottom of the article, including specifically included articles in the metadata, as well as any documents discovered by traversing the directory structure. This is intended for pages where tight control over the presentation of related material is desired.
+
+
 ### Redirects
 
 ```
