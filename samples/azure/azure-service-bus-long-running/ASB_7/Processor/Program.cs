@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -30,15 +29,14 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        var cancellationSource = new CancellationTokenSource();
         var processor = new Processor();
 
-        processor.Start(endpointInstance, cancellationSource.Token);
+        await processor.Start(endpointInstance).ConfigureAwait(false);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        cancellationSource.Cancel();
 
+        await processor.Stop().ConfigureAwait(false);
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
