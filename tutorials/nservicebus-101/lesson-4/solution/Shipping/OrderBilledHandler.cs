@@ -7,7 +7,7 @@ namespace Shipping
 {
     public class OrderBilledHandler : IHandleMessages<OrderBilled>
     {
-        static readonly ILog logger = LogManager.GetLogger<OrderBilledHandler>();
+        static ILog logger = LogManager.GetLogger<OrderBilledHandler>();
 
         public Task Handle(OrderBilled message, IMessageHandlerContext context)
         {

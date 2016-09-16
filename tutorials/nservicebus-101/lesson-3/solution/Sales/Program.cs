@@ -6,7 +6,7 @@ namespace Sales
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             AsyncMain().GetAwaiter().GetResult();
         }
@@ -22,12 +22,14 @@ namespace Sales
             endpointConfig.SendFailedMessagesTo("error");
             endpointConfig.EnableInstallers();
 
-            var endpointInstance = await Endpoint.Start(endpointConfig).ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfig)
+                .ConfigureAwait(false);
 
             Console.WriteLine("Press Enter to exit.");
             Console.ReadLine();
 
-            await endpointInstance.Stop().ConfigureAwait(false);
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

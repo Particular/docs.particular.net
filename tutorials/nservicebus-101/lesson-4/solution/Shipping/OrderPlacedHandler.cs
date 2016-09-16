@@ -7,7 +7,7 @@ namespace Shipping
 {
     public class OrderPlacedHandler : IHandleMessages<OrderPlaced>
     {
-        static readonly ILog logger = LogManager.GetLogger<OrderPlacedHandler>();
+        static ILog logger = LogManager.GetLogger<OrderPlacedHandler>();
 
         public Task Handle(OrderPlaced message, IMessageHandlerContext context)
         {
