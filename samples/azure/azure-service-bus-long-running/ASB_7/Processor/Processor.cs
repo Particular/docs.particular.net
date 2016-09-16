@@ -13,36 +13,42 @@ public class Processor
     static ILog log = LogManager.GetLogger<Processor>();
     IEndpointInstance endpoint;
     CloudTable table;
+    CancellationTokenSource cancellationTokenSource;
 
-    static readonly ConcurrentQueue<RequestRecord> toProcess = new ConcurrentQueue<RequestRecord>();
+    ConcurrentQueue<RequestRecord> toProcess = new ConcurrentQueue<RequestRecord>();
+    CancellationToken cancellationToken;
+    Task pollingTask;
+    Task processingTask;
 
-    public void Start(IEndpointInstance endpointInstance, CancellationToken token)
+    public async Task Start(IEndpointInstance endpointInstance)
     {
+        cancellationTokenSource = new CancellationTokenSource();
+        cancellationToken = cancellationTokenSource.Token;
         endpoint = endpointInstance;
+
         var cloudTableClient = StorageHelper.GetTableClient();
         table = cloudTableClient.GetTableReference(Constants.TableName);
-        table.CreateIfNotExists();
+        await table.CreateIfNotExistsAsync(cancellationToken).ConfigureAwait(false);
 
-        var task = new Task(() =>
-        {
-#pragma warning disable 4014
-            #region tasks
+        #region tasks
+        pollingTask = Task.Run(() => StartPolling(cancellationToken));
+        processingTask = Task.Run(() => StartProcessing(cancellationToken));
+        #endregion
+    }
 
-            StartPolling(token);
-            StartProcessing(token);
-
-            #endregion
-#pragma warning restore 4014
-        }, token);
-        task.Start();
+    public async Task Stop()
+    {
+        cancellationTokenSource.Cancel();
+        await Task.WhenAll(pollingTask, processingTask).ConfigureAwait(false);
+        cancellationTokenSource.Dispose();
     }
 
     async Task StartPolling(CancellationToken token)
     {
-        // should do CancellationToken and handle TaskCanceledException
+        // should handle TaskCanceledException
         while (!token.IsCancellationRequested)
         {
-            await LoadRequests()
+            await LoadRequests(token)
                 .ConfigureAwait(false);
             await Task.Delay(Constants.PollingFrequency, token)
                 .ConfigureAwait(false);
@@ -108,7 +114,7 @@ public class Processor
         }
     }
 
-    async Task LoadRequests()
+    async Task LoadRequests(CancellationToken token)
     {
         var partitionKeyFilter = TableQuery.GenerateFilterCondition(nameof(RequestRecord.PartitionKey), QueryComparisons.Equal, Constants.PartitionKey);
         var statusFilter = TableQuery.GenerateFilterCondition(nameof(RequestRecord.Status), QueryComparisons.Equal, Status.Pending.ToString());
@@ -120,7 +126,7 @@ public class Processor
         TableContinuationToken continuationToken = null;
         do
         {
-            var tableQuerySegment = await table.ExecuteQuerySegmentedAsync(query, continuationToken)
+            var tableQuerySegment = await table.ExecuteQuerySegmentedAsync(query, continuationToken, token)
                 .ConfigureAwait(false);
             continuationToken = tableQuerySegment.ContinuationToken;
             records.AddRange(tableQuerySegment);
