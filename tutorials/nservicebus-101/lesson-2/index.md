@@ -1,5 +1,6 @@
 ---
 title: "Lesson 2: Sending a command"
+suppressRelated: true
 ---
 
 Sending and receiving messages is the heart and soul of any NServiceBus system. The fact that we are dealing with systems and not applications is the whole reason we send messages in the first place.

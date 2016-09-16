@@ -1,5 +1,6 @@
 ---
 title: Using the SQL Server transport
+suppressRelated: true
 ---
 
 NServiceBus is a messaging framework and requires a **message transport** to move messages around. Natively, NServiceBus supports Microsoft Message Queuing (MSMQ), RabbitMQ, Azure Storage Queues, Azure Service Bus, and SQL Server as message transports. (Although SQL Server is not a message queue, the SQL Server Transport emulates queues within database tables.)
