@@ -15,7 +15,7 @@ public class Processor
     CloudTable table;
     CancellationTokenSource cancellationTokenSource;
 
-    readonly ConcurrentQueue<RequestRecord> toProcess = new ConcurrentQueue<RequestRecord>();
+    ConcurrentQueue<RequestRecord> toProcess = new ConcurrentQueue<RequestRecord>();
     CancellationToken cancellationToken;
     Task pollingTask;
     Task processingTask;
