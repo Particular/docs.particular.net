@@ -14,14 +14,7 @@ related:
 
 ## Connection string options
 
-When upgrading, there are several [connection string options](/nservicebus/rabbitmq/connection-settings.md) that should be removed from any existing connection strings.
-
-
-### PrefetchCount
-
-The [consumer prefetch count](http://www.rabbitmq.com/amqp-0-9-1-reference.html#basic.qos.prefetch-count) is no longer controlled by the `PrefetchCount` setting. Instead, to better integrate with the new concurrency model, the value passed to `EndpointConfiguration.LimitMessageProcessingConcurrencyTo` is used to control the prefetch count. See [Tuning](/nservicebus/operations/tuning.md).
-
-snippet:3to4rabbitmq-config-prefetch-count-replacement
+When upgrading, there are several [connection string options](/nservicebus/rabbitmq/connection-settings.md#connection-string-options) that should be removed from any existing connection strings.
 
 
 ### DequeueTimeout
@@ -29,15 +22,29 @@ snippet:3to4rabbitmq-config-prefetch-count-replacement
 The `DequeueTimeout` setting has been removed because the message pump no longer polls for incoming messages, so there is no need for a timeout on how long it should block while waiting for a new message.
 
 
+### PrefetchCount
+
+The [consumer prefetch count](http://www.rabbitmq.com/amqp-0-9-1-reference.html#basic.qos.prefetch-count) is no longer controlled by the `PrefetchCount` setting. Instead, the prefetch count is calculated by setting it to a multiple
+of the [maximum concurrency](/nservicebus/operations/tuning.md#tuning-concurrency) value. The multiplier used in the calculation can be changed.
+
+snippet:3to4rabbitmq-config-prefetch-multiplier
+
+Alternatively, the calculation can be overridden and prefetch count can be set directly.
+
+snippet:3to4rabbitmq-config-prefetch-count
+
+
+### UsePublisherConfirms
+
+The `UsePublisherConfirms` setting has been replaced by the following: 
+
+snippet:3to4rabbitmq-use-publisher-confirms
+
+
 ### MaxWaitTimeForConfirms
 
 The `MaxWaitTimeForConfirms` setting has been removed because the transport no longer requires a timeout for how long it should block while waiting for publisher confirmation messages.
 
-### UsePublisherConfirms
-
-The `UsePublisherConfirms` setting has been removed from connection string and added as a code API `EndpointConfiguration.UsePublisherConfirms` method.
-
-snippet:3to4rabbitmq-use-publisher-confirms
 
 ## Callback support
 
@@ -58,7 +65,7 @@ snippet:3to4rabbitmq-config-callbackreceiver-thread-count
 
 ## Providing a custom connection manager
 
-The ability to [provide a custom connection manager](/nservicebus/rabbitmq/connection-settings.md) via the `IManageRabbitMqConnections` interface has been removed. Connections are now managed internally by the transport in a way that is not extensible.
+The ability to [provide a custom connection manager](/nservicebus/rabbitmq/connection-settings.md#providing-a-custom-connection-manager) via the `IManageRabbitMqConnections` interface has been removed. Connections are now managed internally by the transport in a way that is not extensible.
 
 
 ## Controlling behavior when the broker connection is lost
@@ -68,7 +75,7 @@ The XML configuration options for [controlling lost connection behavior](/nservi
 
 ### TimeToWaitBeforeTriggering
 
-The 'TimeToWaitBeforeTriggering` setting can now be configured via the following:
+The `TimeToWaitBeforeTriggering` setting can now be configured via the following:
 
 snippet:3to4rabbitmq-custom-breaker-settings-time-to-wait-before-triggering
 

@@ -3,11 +3,23 @@ using NServiceBus;
 
 class Upgrade
 {
-    void PrefetchCountReplacement(EndpointConfiguration endpointConfiguration)
+    void PrefetchMultiplier(EndpointConfiguration endpointConfiguration)
     {
-        #region 3to4rabbitmq-config-prefetch-count-replacement
+        #region 3to4rabbitmq-config-prefetch-multiplier
 
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.PrefetchMultiplier(4); //Prefetch count set to 10 * 4 = 40
+
+        #endregion
+    }
+
+    void PrefetchCount(EndpointConfiguration endpointConfiguration)
+    {
+        #region 3to4rabbitmq-config-prefetch-count
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.PrefetchCount(100);
 
         #endregion
     }
@@ -31,7 +43,7 @@ class Upgrade
         #endregion
     }
 
-    void UsePublisherConfirmsSettings(EndpointConfiguration endpointConfiguration)
+    void UsePublisherConfirms(EndpointConfiguration endpointConfiguration)
     {
         #region 3to4rabbitmq-use-publisher-confirms
 
@@ -40,6 +52,4 @@ class Upgrade
 
         #endregion
     }
-
-
 }
