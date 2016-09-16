@@ -30,8 +30,10 @@ public class Processor
         table = cloudTableClient.GetTableReference(Constants.TableName);
         await table.CreateIfNotExistsAsync(cancellationToken).ConfigureAwait(false);
 
+        #region tasks
         pollingTask = Task.Run(() => StartPolling(cancellationToken));
         processingTask = Task.Run(() => StartProcessing(cancellationToken));
+        #endregion
     }
 
     public async Task Stop()
@@ -43,7 +45,7 @@ public class Processor
 
     async Task StartPolling(CancellationToken token)
     {
-        // should do CancellationToken and handle TaskCanceledException
+        // should handle TaskCanceledException
         while (!token.IsCancellationRequested)
         {
             await LoadRequests(token)
