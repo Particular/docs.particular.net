@@ -1,5 +1,6 @@
 ---
 title: "Lesson 1: Hello world"
+suppressRelated: true
 ---
 
 Every framework needs a Hello World, and for NServiceBus, this is it. There's no time to waste, so let's get started!
