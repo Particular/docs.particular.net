@@ -11,17 +11,14 @@ redirects:
 RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.html). The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker. This connection string can be specified via code or via `app.config`.
 
 
-## Specifying the connection string via code
-
-
-### Via code
+### Specifying the connection string via code
 
 To specify the connection string in code:
 
 snippet:rabbitmq-config-connectionstring-in-code
 
 
-## Via app.config
+### Specifying the connection string via app.config
 
 By default, the transport will look for a connection string called `NServiceBus/Transport` in `app.config`:
 
@@ -32,7 +29,7 @@ To use a custom name for the connection string:
 snippet:rabbitmq-config-connectionstringname
 
 
-## Options
+## Connection string options
 
 Below is the list of connection string options. When constructing a connection string, these options should be separated by a semicolon.
 
@@ -96,17 +93,7 @@ partial: DequeueTimeout
 partial: PrefetchCount
 
 
-partial: PrefetchCountPerMessageProcessor
-
-
-### UsePublisherConfirms
-
-Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used.
-
-Default: `true`
-
-
-partial: maxwaittimeforconfirms
+partial: publisher-confirms
 
 
 ### RetryDelay
@@ -116,9 +103,22 @@ The time to wait before trying to reconnect to the broker if the connection is l
 Default: `10` seconds
 
 
-partial: tls
+partial: tls-settings
+
+
+partial: debugging-note
+
+
+partial: tls-details
+
 
 partial: connection-manager
+
+
+partial: prefetch-control
+
+
+partial: publisher-confirms-setting
 
 
 ## Controlling behavior when the broker connection is lost

@@ -72,6 +72,16 @@ class Usage
         #endregion
     }
 
+    void DisablePublisherConfirms(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-config-disablepublisherconfirms
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UsePublisherConfirms(false);
+
+        #endregion
+    }
+
     string MyRoutingKeyConvention(Type type)
     {
         throw new NotImplementedException();
@@ -93,6 +103,26 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
+
+        #endregion
+    }
+
+    void PrefetchMultiplier(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-config-prefetch-multiplier
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.PrefetchMultiplier(4);
+
+        #endregion
+    }
+
+    void PrefetchCount(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-config-prefetch-count
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.PrefetchCount(100);
 
         #endregion
     }
