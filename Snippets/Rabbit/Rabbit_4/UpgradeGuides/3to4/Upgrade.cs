@@ -9,7 +9,8 @@ class Upgrade
 
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.PrefetchMultiplier(4); //Prefetch count set to 10 * 4 = 40
+        // Prefetch count set to 10 * 4 = 40
+        transport.PrefetchMultiplier(4);
 
         #endregion
     }

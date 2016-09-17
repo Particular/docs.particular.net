@@ -107,7 +107,7 @@ class Usage
         #endregion
     }
 
-    void PrefetchMultipler(EndpointConfiguration endpointConfiguration)
+    void PrefetchMultiplier(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-prefetch-multiplier
 
