@@ -72,7 +72,7 @@
     <Compile Include="StartOrderSagaFinder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\packages\RavenDB.Database.3.0.30154\content\Raven.Studio.Html5.zip">
+    <None Include="..\..\..\..\..\packages\RavenDB.Database.3.0.30155\content\Raven.Studio.Html5.zip">
       <Link>Raven.Studio.Html5.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
