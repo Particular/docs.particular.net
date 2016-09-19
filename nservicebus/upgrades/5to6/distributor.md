@@ -16,16 +16,16 @@ With sender-side distribution, senders are aware of scaled out receivers, allowi
 
 ## Upgrade scenario
 
-This process aims to allow upgrade in production environments without missing events and minimal downtime.
+This process aims to allow upgrade in production environments without missing any messages and minimal downtime.
 
 * Upgrade all endpoints that interact with the distributor to Version 6 first. For example, upgrade all endpoints that send command messages to the Distributor endpoint for the load to be distributed, or endpoints that send subscription messages to the distributor, subscribing to events when a worker node publishes an event. At this stage, do not upgrade the workers to Version 6.
-* Apply the following steps for each scaled out instance enlisted to the Distributor, one instance after another:
-  * Shut down the instance.
-  * [Upgrade the instance to NServiceBus Version 6](#upgrade-endpoint-to-version-6).
-  * [Enlist it with the distributor](#enlist-version-6-endpoints-with-a-distributor).
-  * Start the instance again.
-* Configure [sender-side distribution](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md) for all endpoints sending commands or receiving events from the distributor.
-* Detach the instances from the Distributor by  applying the following steps to the instances enlisted to the Distributor. But *skip this step for at least one instance* to ensure some instances are still attached to the distributor.
+* Apply the following steps for each workr, one after another:
+  * Shut down.
+  * [Upgrade to NServiceBus Version 6](#upgrade-endpoint-to-version-6).
+  * [Configure it to enlist it with the distributor](#enlist-version-6-endpoints-with-a-distributor).
+  * Start it again.
+* Configure [sender-side distribution](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md) for all endpoints sending commands or publishing events to the scaled out endpoint.
+* Detach the instances from the Distributor by applying the following steps to the instances enlisted to the Distributor. But *skip this step for at least one instance* to ensure some instances are still attached to the distributor.
   * Shut down the instance.
   * Detach the instance from the Distributor by removing the `EnlistWithLegacyMSMQDistributor` configuration.
   * Start the instance again.
