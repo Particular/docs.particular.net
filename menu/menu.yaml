@@ -7,7 +7,7 @@
     - Url: nservicebus/architecture/principles
       Title: Architectural Principles
     - Url: nservicebus/architecture
-      Title: Bus vs. Vroker
+      Title: Bus vs. Broker
     - Url: samples/step-by-step
       Title: Step by Step Guide
     - Url: nservicebus/concept-overview
