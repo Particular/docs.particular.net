@@ -48,7 +48,7 @@ The cause of this exception is that the MSMQ has run out of space for holding on
  1. Make sure that the hard disk drive has sufficient space.
  1. Purge the transactional dead-letter queue (TDLQ) under System Queues.
   * This queue acts as a recycle bin for other transactional queues, so if other transactional queues have been purged, ensure the TDLQ as well purged as well.
-  * Within the TLDQ, the Class column will show the reason the message arrived there. Common messages include "The queue was purged" or "The queue was deleted".
+  * Within the TDLQ, the Class column will show the reason the message arrived there. Common messages include "The queue was purged" or "The queue was deleted".
  1. If journaling is turned on, purge messages found in journaling queue under System Queues. Ensure that journaling is disabled on each queue level, and only turn it on if needed for debugging purposes.
  1. Increase the MSMQ storage quota ([MSDN article](https://support.microsoft.com/en-us/kb/899612))
 
@@ -77,4 +77,7 @@ While non-transactional messaging in a Network Load Balancing (NLB) environment 
  - [Technet content for troubleshooting MSMQ on Windows 2008](https://blogs.msdn.microsoft.com/johnbreakwell/2008/05/07/technet-content-for-troubleshooting-msmq-on-windows-2008-and-vista/)
  - [Publicly available tools for troubleshooting MSMQ problems](https://blogs.msdn.microsoft.com/johnbreakwell/2007/12/13/what-publically-available-tools-are-there-for-troubleshooting-msmq-problems/)
  - [MSMQ service might not send or receive messages after a restart](https://support.microsoft.com/en-us/kb/2554746)
+ - [MSMQ Errors and Events](https://technet.microsoft.com/en-us/library/dd337466.aspx)
+   - [Message Queueing Resources](https://technet.microsoft.com/en-us/library/dd337480.aspx)
+   - [Message Queueing System Resources](https://technet.microsoft.com/en-us/library/dd337537.aspx)
  - [Troubleshooting MSDTC issues with the DTCPing tool](https://blogs.msdn.microsoft.com/distributedservices/2008/11/12/troubleshooting-msdtc-issues-with-the-dtcping-tool/)
