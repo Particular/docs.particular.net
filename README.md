@@ -346,6 +346,51 @@ Don't render YAML front-matter by going to
 And checking `Ignore YAML Front-matter`
 
 
+## EIP references 
+
+[Enterprise Integration Patters (EIP)](http://www.enterpriseintegrationpatterns.com/) is a bible of messaging. We sometimes use the same or similar patterns, but name them differently. When describing such a pattern, it's useful to reference the related EIP pattern, to make it easier to understand.
+
+Here's the list of patterns:
+### Terms we use and are aligned with EIP
+
+ * Message
+ * Message Endpoint
+ * [Messaging Bridge](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingBridge.html) - Unfortunately we don't have any implementation other than MSMQ-SQL sample
+ * [Command Message](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CommandMessage.html)
+ * [Event Message](http://www.enterpriseintegrationpatterns.com/patterns/messaging/EventMessage.html)
+ * [Request-Reply](http://www.enterpriseintegrationpatterns.com/patterns/messaging/RequestReply.html) - not sure if we are 100% aligned here. We use the term *Full Duplex* to describe a non-synchronous request reply and only use *Request-Reply* or *Callback* for the synchronous variant
+ * [Correlation ID](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CorrelationIdentifier.html)
+ * [Transactional Client](http://www.enterpriseintegrationpatterns.com/patterns/messaging/TransactionalClient.html)
+ * [Competing Consumers](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html)
+ * [Message Store](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageStore.html) - we have it in ServiceControl
+
+### EIP terms and ideas we don't use but can
+
+ * [Message Bus](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageBus.html) - we dropped using the *bus* world when referring to an *endpoint* (which is correct) but I think we can take advantage of this definition of the bus because it is aligned with our concepts.
+ * [Dead Letter Channel](http://www.enterpriseintegrationpatterns.com/patterns/messaging/DeadLetterChannel.html) - only MSMQ imlements it, we don't have it on NSB level
+ * [Datatype Channel](http://www.enterpriseintegrationpatterns.com/patterns/messaging/DatatypeChannel.html) - is a channel reserved for a single data/message type. This is something we should be selling users as a good practice
+ * [Channel Adapter]http://www.enterpriseintegrationpatterns.com/patterns/messaging/ChannelAdapter.html - this seems to be simialr to the ADSD idea for integration components that pull data from various services in order to combine them into a message
+ * [Messaging Gateway](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingGateway.html) and [Messaging Mapper](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingMapper.html) - we could prepare guidance based on them on how to use NSB in the application
+ * [Control Bus](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ControlBus.html) - I believe we should get this implemented in (close) future
+ * [Test Message](http://www.enterpriseintegrationpatterns.com/patterns/messaging/TestMessage.html)
+
+### Terms we use but have a different meaning or name
+
+ * Message Channel - we call it a queue but EIP name seeps to be more appropriate since e.g. SQL transport does not use queues
+ * [Point-to-Point](http://www.enterpriseintegrationpatterns.com/patterns/messaging/PointToPointChannel.html) - we use *Unicast* instead
+ * [Publish-Subscribe](http://www.enterpriseintegrationpatterns.com/patterns/messaging/PublishSubscribeChannel.html) - we use *Multicast* instead. I think these two discrepancies are something we need to live with because we reserve *Publish/Subscribe* name to a logical pattern.
+ * [Invalid Message Channel](http://www.enterpriseintegrationpatterns.com/patterns/messaging/InvalidMessageChannel.html) - we call it *error queue*
+ * [Guaranteed Delivery](http://www.enterpriseintegrationpatterns.com/patterns/messaging/GuaranteedMessaging.html) - we call it *store and forward*
+ *[Return Address](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ReturnAddress.html) - we use *reply address* but I think we are close enough.
+ * [Process Manager](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) - we call it *Saga*
+ * [Message Broker](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageBroker.html) - we use the term broker to describe a centralized transport mechanism where all message channels are on remote machine/cluster. EIP sees broker as a thing that also does routing based on message types (and/or content)
+ * [Claim Check](http://www.enterpriseintegrationpatterns.com/patterns/messaging/StoreInLibrary.html) - we call it *Data bus*
+ * [Event-Driven Consumer](http://www.enterpriseintegrationpatterns.com/patterns/messaging/EventDrivenConsumer.html) - we call it *message pump* or *IPushMessages*
+ * [Message Dispatcher](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageDispatcher.html) - we call it *Distributor*
+ * [Selective Consumer](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageSelector.html) - I believe our closest equivalent is a message handler
+ * [Wire Tap](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ControlBus.html) - we call it audit queue which confuses the purpose with the implementation. The thing is called *wire tap* and it is usually used to *audit* message flows.
+
+
 ## Samples
 
 
