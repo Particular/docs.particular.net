@@ -112,7 +112,7 @@ The following settings are available to define how subscriptions should be creat
 The following settings determine how NServiceBus will connect to Azure Service Bus:
 
  * `NumberOfClientsPerEntity(int)`: NServiceBus maintains a pool of receive and send clients for each entity. This setting determines how big that pool is. Defaults to 5.
- * `ConnectivityMode(ConnectivityMode)`: Determines how NServiceBus connects to Azure Service Bus, using TCP or HTTP. Defaults to TCP.
+ * `ConnectivityMode(ConnectivityMode)`: Determines how NServiceBus connects to Azure Service Bus, using [TCP, HTTPS or HTTP](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.connectivitymode.aspx). Defaults to TCP.
  * `TransportType(TransportType)`: Determines what transport protocol NServiceBus is using for Azure Service Bus, `TransportType.NetMessaging` or `TransportType.Amqp`. Defaults to `TransportType.NetMessaging`.
  * `BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes)`: Controls how the body of a brokered message will be serialized, either as a byte array or as a stream. Defaults to byte array.
  * `MessagingFactories()`: Provides access to settings of the used native instances of the class `MessagingFactory`. These settings will automatically apply to all `MessageReceiver` and `MessageSender` instances created by the `MessagingFactory`.
