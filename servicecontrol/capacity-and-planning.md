@@ -16,7 +16,7 @@ The primary job of ServiceControl is to collect information on system behavior i
 
 #### Location
 
-Each ServiceControl instance stores its data in a [RavenDB embedded](http://ravendb.net/docs/search/3.0/csharp?searchTerm=RavenDB%20embedded) instance. The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. Configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
+Each ServiceControl instance stores its data in a [RavenDB embedded](https://ravendb.net/docs/search/3.0/csharp?searchTerm=RavenDB%20embedded) instance. The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. Configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
 
 
 #### Size

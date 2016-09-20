@@ -24,14 +24,14 @@ The ResourceManagerId is a Guid that uniquely identifies a transactional resourc
 
 > "A resource manager with the same identifier is already registered with the specified transaction coordinator"
 
-NOTE: It is possible to [configure the ResourceManagerId from a RavenDB connection string](http://ravendb.net/docs/search/3.0/csharp?searchTerm=connection-string), however this is not recommended as this method does not allow for the configuration of a suitable TransactionRecoveryStorage.
+NOTE: It is possible to [configure the ResourceManagerId from a RavenDB connection string](https://ravendb.net/docs/search/3.0/csharp?searchTerm=connection-string), however this is not recommended as this method does not allow for the configuration of a suitable TransactionRecoveryStorage.
 
 
 ### TransactionRecoveryStorage
 
 To guard against the loss of a committed transaction, RavenDB requires a storage location to persist data in the event of a process crash immediately following a transaction commit.
 
-RavenDB provides [transaction recovery storage options](http://ravendb.net/docs/search/3.0/csharp?searchTerm=TransactionRecoveryStorage) for volatile (in-memory) storage, IsolatedStorage, and local directory storage. `LocalDirectoryTransactionRecoveryStorage` is recommended as the only stable and reliable option.
+RavenDB provides [transaction recovery storage options](https://ravendb.net/docs/search/3.0/csharp?searchTerm=TransactionRecoveryStorage) for volatile (in-memory) storage, IsolatedStorage, and local directory storage. `LocalDirectoryTransactionRecoveryStorage` is recommended as the only stable and reliable option.
 
 
 ## Configuring safe settings

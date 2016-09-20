@@ -21,16 +21,16 @@ When the default Saga message mappings do not satisfy the requirements, custom l
 This sample shows how to:
 
  * Perform custom saga finding logic based on custom query logic.
- * Use multiple Unique attributes using the default [RavenDB Unique Constraint bundle](http://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints).
+ * Use multiple Unique attributes using the default [RavenDB Unique Constraint bundle](https://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints).
 
 
 ### RavenDB setup
 
 This sample requires [RavenDB persistence](/nservicebus/ravendb/) package and a running RavenDB instance configured accordingly.
 
-NServiceBus out of the box does not support saga data with multiple `Unique` attributes, in order to achieve that it is possible to utilize the default RavenDB `UniqueConstraint` Bundle. Follow the [instructions on the RavenDB site](http://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints) to correctly install the bundle in the RavenDB server. It is also required to configure the client side of the bundle by registering the `UniqueConstraintsStoreListener` as shown above.
+NServiceBus out of the box does not support saga data with multiple `Unique` attributes, in order to achieve that it is possible to utilize the default RavenDB `UniqueConstraint` Bundle. Follow the [instructions on the RavenDB site](https://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints) to correctly install the bundle in the RavenDB server. It is also required to configure the client side of the bundle by registering the `UniqueConstraintsStoreListener` as shown above.
 
-NOTE: If running this sample against an external RavenDB server ensure that the `RavenDB.Bundles.UniqueConstraints` [bundle](http://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints) is currently installed according to the [extending RavenDB](http://ravendb.net/docs/search/latest/csharp?searchTerm=server%20extending%20plugins) documentation. If the server side of the plugin is not correctly loaded, notice that the [`SagaNotFoundHandler`](/nservicebus/sagas/saga-not-found.md) will be invoked.
+NOTE: If running this sample against an external RavenDB server ensure that the `RavenDB.Bundles.UniqueConstraints` [bundle](https://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints) is currently installed according to the [extending RavenDB](https://ravendb.net/docs/search/latest/csharp?searchTerm=server%20extending%20plugins) documentation. If the server side of the plugin is not correctly loaded, notice that the [`SagaNotFoundHandler`](/nservicebus/sagas/saga-not-found.md) will be invoked.
 
 
 ### In Process Raven Host

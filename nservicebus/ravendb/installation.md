@@ -10,11 +10,11 @@ redirects:
 
 Starting from NServiceBus Version 5.0 RavenDB is no longer the default persistence option in NServiceBus. A user has to explicitly select persistence. For more information, on the various available persistence options, read: [Persistence in NServiceBus](/nservicebus/persistence/).
 
-RavenDB-related code has been moved to a separate package  [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) and it is up to a user to install the RavenDB server from the [official download page](http://ravendb.net/download) following instructions on RavenDB website.
+RavenDB-related code has been moved to a separate package  [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) and it is up to a user to install the RavenDB server from the [official download page](https://ravendb.net/download) following instructions on RavenDB website.
 
 NServiceBus Version 4.x and 3.x used RavenDB for persistence by default. The NServiceBus license permits the use of RavenDB for the storage needs of the endpoint. This only includes NServiceBus-related data such as sagas and subscriptions. If application-specific data is stored in RavenDB then the purchase of a separate license is required.
 
-To use the default storage, ensure a RavenDB server is running to which the endpoint can connect. To set up RavenDB [Download](http://ravendb.net/download) and install.
+To use the default storage, ensure a RavenDB server is running to which the endpoint can connect. To set up RavenDB [Download](https://ravendb.net/download) and install.
 
 
 ## NServiceBus auto-installation of RavenDB
@@ -33,12 +33,12 @@ To use the default storage, ensure a RavenDB server is running to which the endp
 
 When a master node is defined, NServiceBus understands that all data will be stored on that designated server  instead. This means that the RavenDB server runs on that remote machine and not the local machine where the install is executed.
 
-See also [Administration of a RavenDB server](http://ravendb.net/docs/search/latest/csharp?searchTerm=server-administration).
+See also [Administration of a RavenDB server](https://ravendb.net/docs/search/latest/csharp?searchTerm=server-administration).
 
 
 ## Upgrading RavenDB
 
-To upgrade an existing RavenDB installation refer to the [RavenDB upgrade process](http://ravendb.net/docs/search/latest/csharp?searchTerm=server-administration%20upgrade).
+To upgrade an existing RavenDB installation refer to the [RavenDB upgrade process](https://ravendb.net/docs/search/latest/csharp?searchTerm=server-administration%20upgrade).
 
 It is highly recommended to backup all databases before upgrading.
 
@@ -55,6 +55,6 @@ NOTE: If RavenDB 2.0 is already installed from a previous NServiceBus Version 4.
 
 NServiceBus Version 4.0 is tested and compatible with RavenDB Version 2261 and RavenDB Version 2.
 
-NServiceBus Version 3.X is tested and compatible with all RavenDB versions from Version 616 through version 992 and RavenDB version 1. It is strongly recommend using version 992 since it has better support for transaction recovery. Download version 992 here: [RavenDB Server - 992](http://hibernatingrhinos.com/builds/ravendb-stable-v1.0/992).
+NServiceBus Version 3.X is tested and compatible with all RavenDB versions from Version 616 through version 992 and RavenDB version 1. It is strongly recommend using version 992 since it has better support for transaction recovery. Download version 992 here: [RavenDB Server - 992](https://hibernatingrhinos.com/builds/ravendb-stable-v1.0/992).
 
-For more information regarding RavenDB compatibility, refer to [this article](version-compatibility.md) and the [RavenDB website](http://ravendb.net/docs/search/latest/csharp?searchTerm=client-api%20backward-compatibility).
+For more information regarding RavenDB compatibility, refer to [this article](version-compatibility.md) and the [RavenDB website](https://ravendb.net/docs/search/latest/csharp?searchTerm=client-api%20backward-compatibility).

@@ -173,7 +173,7 @@ span.blue {
   </div>
   <div class="row">
     <div class="col-md-6">
-      <a href="http://stackoverflow.com/questions/tagged/nservicebus">
+      <a href="https://stackoverflow.com/questions/tagged/nservicebus">
         <img src="/home/stackoverflow_v1.svg" width="36" height="36">
         <h3>StackOverflow</h3>
       </a>

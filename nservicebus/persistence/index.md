@@ -26,9 +26,11 @@ Various features of NServiceBus require persistence.
 
 A volatile RAM based storage mainly used for development purposes. Can also be used where the storage is not required to persist between process restarts.
 
+
 ### [RavenDB](/nservicebus/ravendb/)
 
-Uses the [RavenDB document database](http://ravendb.net/) for storage.
+Uses the [RavenDB document database](https://ravendb.net/) for storage.
+
 
 ### [NHibernate](/nservicebus/nhibernate/)
 
