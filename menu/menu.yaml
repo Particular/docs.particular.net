@@ -185,8 +185,6 @@
       Articles:
       - Url: nservicebus/gateway/multi-site-deployments
         Title: Multi-Site Deployments
-      - Url: nservicebus/gateway/service-point-manager
-        Title: ServicePointManager HTTP connections
       - Url: nservicebus/gateway/troubleshooting
         Title: Troubleshooting
       - Url: nservicebus/gateway/scale-out
