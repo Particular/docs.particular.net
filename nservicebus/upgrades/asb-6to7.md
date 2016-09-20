@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 6 to 7
 summary: Instructions on how to upgrade Azure Service Bus Transport Version 6 to 7.
-reviewed: 2016-04-19
+reviewed: 2016-09-19
 tags:
  - upgrade
  - migration
@@ -10,46 +10,6 @@ related:
 - nservicebus/upgrades/5to6
 ---
 
-
-## New Configuration API
-
-In Versions 6 and below the Azure Service Bus transport was configured using an XML configuration section called `AzureServiceBusQueueConfig`. This section has been removed in favor of a more granular, code based configuration API.
-
-The new configuration API is accessible through extension methods on the `UseTransport<AzureServiceBusTransport>()` extension point in the endpoint configuration. Refer to the [Full Configuration Page](/nservicebus/azure-service-bus/configuration/full.md) for more details.
-
-snippet:AzureServiceBusTransportWithAzure
-
-
-### Setting The Connection String
-
-Setting the connection string can still be done using the `ConnectionString` extension method:
-
-snippet:setting_asb_connection_string
-
-
-### Setting Entity Property Values
-
-The other configuration properties found on `AzureServiceBusQueueConfig` were related to the configuration of Azure Service Bus entities. Even though the name implied differently, these settings were not only applied to queues, but also to topics and subscriptions.
-
-In the new configuration API the settings for queues, topics and subscriptions can be configured individually using the `Queues()`, `Topics()` and `Subscriptions()` extension points.
-
-For example the lock duration on a queue can be configured using the `LockDuration` setting:
-
-snippet:setting_queue_properties
-
-and the size of the topics can be configured using the `MaxSizeInMegabytes` setting:
-
-snippet:setting_topic_properties
-
-
-### Default value changes
-
-The default values of the following settings have been changed:
-
- * `BatchSize`, which had a default value of 1000, is replaced by `PrefetchCount` with a default value of 200.
- * `MaxDeliveryCount` changed from 6 to 10.
-
-For more details refer to the [ASB Batching](/nservicebus/azure-service-bus/batching.md) and [ASB Retry behavior](/nservicebus/azure-service-bus/retries.md) articles.
 
 ## [Topology](/nservicebus/azure-service-bus/topologies/) is mandatory
 
@@ -74,6 +34,47 @@ In order to maintain backward compatibility, [register a custom sanitization str
 In version 6.4.0 `NamingConventions` class was introduced to customize sanitization. The class is obsoleted. Instead, implement a [custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#version-7-and-above).
 
 
+## New Configuration API
+
+In Versions 6 and below the Azure Service Bus transport was configured using an XML configuration section called `AzureServiceBusQueueConfig`. This section has been removed in favor of a more granular, code based configuration API.
+
+The new configuration API is accessible through extension methods on the `UseTransport<AzureServiceBusTransport>()` extension point in the endpoint configuration. Refer to the [Full Configuration Page](/nservicebus/azure-service-bus/configuration/full.md) for more details.
+
+snippet:AzureServiceBusTransportWithAzure
+
+
+### Setting The Connection String
+
+Setting the connection string can still be done using the `ConnectionString` extension method:
+
+snippet:setting_asb_connection_string
+
+
+### Default value changes
+
+The default values of the following settings have been changed:
+
+ * `BatchSize`, which had a default value of 1000, is replaced by `PrefetchCount` with a default value of 200.
+ * `MaxDeliveryCount` changed from 6 to 10.
+
+For more details refer to the [ASB Batching](/nservicebus/azure-service-bus/batching.md) and [ASB Retry behavior](/nservicebus/azure-service-bus/retries.md) articles.
+
+
+### Setting Entity Property Values
+
+The other configuration properties found on `AzureServiceBusQueueConfig` were related to the configuration of Azure Service Bus entities. Even though the name implied differently, these settings were not only applied to queues, but also to topics and subscriptions.
+
+In the new configuration API the settings for queues, topics and subscriptions can be configured individually using the `Queues()`, `Topics()` and `Subscriptions()` extension points.
+
+For example the lock duration on a queue can be configured using the `LockDuration` setting:
+
+snippet:setting_queue_properties
+
+and the size of the topics can be configured using the `MaxSizeInMegabytes` setting:
+
+snippet:setting_topic_properties
+
+
 ## [Securing Credentials](/nservicebus/azure-service-bus/securing-connection-strings.md)
 
 include:asb-credential-warning
@@ -82,3 +83,8 @@ In order to enhance security and to avoid sharing sensitive information using `U
 
  * Upgrade all endpoints to Version 7 or above. Previous versions of transport aren't able to understand namespace name instead of connection string.
  * After the above has been done and all endpoints deployed configure each endpoint switching on `UseNamespaceNameInsteadOfConnectionString` feature and re-deploy.
+
+
+## BrokeredMessage conventions
+
+In versions 6 and below, `BrokeredMessage` conventions were specified using `BrokeredMessageBodyConversion` class. In versions 7 and above, it has been replaced by [configuration API](/nservicebus/azure-service-bus/brokered-message-creation.md).
