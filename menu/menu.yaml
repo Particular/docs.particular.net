@@ -193,18 +193,18 @@
       Title: Outbox
       Articles:
       - Url: nservicebus/ravendb/outbox
-        Title: With RavenDB persistence
+        Title: RavenDB persistence
       - Url: nservicebus/nhibernate/outbox
-        Title: With NHibernate persistence
+        Title: NHibernate persistence
     - Url: nservicebus/messaging/databus
       Title: Databus
       Articles:
       - Url: nservicebus/messaging/databus/file-share
-        Title: File Share DataBus
+        Title: File Share
       - Url: nservicebus/messaging/databus/azure-blob-storage
-        Title: Azure Blob Storage DataBus
+        Title: Azure Blob Storage
       - Url: nservicebus/messaging/databus/custom
-        Title: Custom DataBus
+        Title: Custom
   - Url: nservicebus/hosting
     Title: Hosting
     Articles:
@@ -214,7 +214,7 @@
       - Url: nservicebus/endpoints/specify-endpoint-name
         Title: Endpoint Name
     - Url: nservicebus/hosting/windows-service
-      Title: Windows Service Hosting
+      Title: Windows Service
     - Url: nservicebus/hosting/override-hostid
       Title: Override host identifier
     - Url: nservicebus/hosting/custom-configuration-providers
@@ -224,7 +224,7 @@
     - Url: nservicebus/hosting/critical-errors
       Title: Critical Errors
     - Url: nservicebus/hosting/web-application
-      Title: Web Application Hosting
+      Title: Web Application
     - Url: nservicebus/hosting/publishing-from-web-applications
       Title: Publishing from Web Applications
     - Url: nservicebus/hosting/nservicebus-host
