@@ -306,3 +306,13 @@
   ProjectUrl: https://github.com/hmemcpy/NServiceBus.Wire
   NugetOrder:
     - NServiceBus.Wire
+
+- Key: Wcf
+  Name: WCF Support
+  DocoUrl: samples/web/wcf-callbacks
+  Category: Host
+  ProjectUrl: https://github.com/Particular/NServiceBus.Host.Wcf
+  NugetOrder:
+    - NServiceBus.Host.Wcf  
+    - NServiceBus.Callbacks
+    - NServiceBus

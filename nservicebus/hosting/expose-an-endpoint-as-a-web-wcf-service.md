@@ -10,7 +10,13 @@ related:
  - samples/web/wcf-callbacks
 ---
 
-Note: Starting from NServiceBus Core Versions 6 and above, the built-in support for WCF integration has been removed. For more details refer to the [Upgrade Guide](/nservicebus/upgrades/host-6to7.md).
+## Prerequisites for WCF functionality
+
+In NServiceBus.Host Version 6 and below WCF support is built into the NuGet package.
+
+In NServiceBus.Host Version 7 and above WCF support is shipped as `NServiceBus.Host.Wcf` NuGet package.
+
+For more details refer to the [Upgrade Guide](/nservicebus/upgrades/host-6to7.md).
 
 Inherited from `NServiceBus.WcfService<TCommand, TErrorCode>`, as shown below. `TCommand` is the message type of the request. `TErrorCode` must be an enumerated type, and should represent the result of processing the command. Example:
 
