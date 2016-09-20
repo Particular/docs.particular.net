@@ -17,7 +17,7 @@ In Versions 7 and above the topology selection is mandatory:
 
 snippet:topology-selection-upgrade-guide
 
-The [`EndpointOrientedTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-endpoint-oriented-topology)  is backward compatible with version 6 and below of the transport. The [`ForwardingTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-forwarding-topology) is the recommended option for new projects.
+The [`EndpointOrientedTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-endpoint-oriented-topology)  is backward compatible with versions 6 and below of the transport. The [`ForwardingTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-forwarding-topology) is the recommended option for new projects.
 
 When selecting `EndpointOrientedTopology`, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers are subscribed to the correct publisher:
 
@@ -36,7 +36,7 @@ In version 6.4.0 `NamingConventions` class was introduced to customize sanitizat
 
 ## New Configuration API
 
-In Versions 6 and below the Azure Service Bus transport was configured using an XML configuration section called `AzureServiceBusQueueConfig`. This section has been removed in favor of a more granular, code based configuration API.
+In Versions 6 and below the transport was configured using an XML configuration section called `AzureServiceBusQueueConfig`. This section has been removed in favor of a more granular, code based configuration API.
 
 The new configuration API is accessible through extension methods on the `UseTransport<AzureServiceBusTransport>()` extension point in the endpoint configuration. Refer to the [Full Configuration Page](/nservicebus/azure-service-bus/configuration/full.md) for more details.
 
