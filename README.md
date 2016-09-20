@@ -12,7 +12,7 @@ There are two approaches to contributing.
 
 For simple changes, the GitHub web UI should suffice.
 
- 1. Find the page you want to edit on http://docs.particular.net/.
+ 1. Find the page you want to edit on https://docs.particular.net/.
  1. Click the `Improve this doc` button. This will automatically fork the project so you can edit the file.
  1. Make the changes you require. Ensure you verify the changes in the `Preview` tab.
  1. Add a description of the changes.
@@ -34,7 +34,7 @@ For more information, see [Collaborating on GitHub](https://help.github.com/cate
 
 ## Reviewing a page
 
-If, as part of editing a page, a full review of the content is done, the [reviewed header](#reviewed) should be updated. This date is used to render http://docs.particular.net/review.
+If, as part of editing a page, a full review of the content is done, the [reviewed header](#reviewed) should be updated. This date is used to render https://docs.particular.net/review.
 
 As part of a full review the following should be done:
 
@@ -135,7 +135,7 @@ tags:
 
 Optional. Used to flag the article as being part of a group of articles.
 
-Tags are rendered in the articles content with the full list of tags being rendered at [http://docs.particular.net/tags](http://docs.particular.net/tags). Untagged articles will be rendered here [http://docs.particular.net/tags/untagged](http://docs.particular.net/tags/untagged)
+Tags are rendered in the articles content with the full list of tags being rendered at [https://docs.particular.net/tags](https://docs.particular.net/tags). Untagged articles will be rendered here [https://docs.particular.net/tags/untagged](https://docs.particular.net/tags/untagged)
 
 Tags are interpreted in two ways.
 
@@ -298,14 +298,14 @@ Conventions:
 
 The directory structure where a `.md` exists is used to derive the URL for that document.
 
-So a file existing at `nservicebus\logging\nlog.md` will have a URL of `http://docs.particular.net/nservicebus/logging/nlog`.
+So a file existing at `nservicebus\logging\nlog.md` will have a URL of `https://docs.particular.net/nservicebus/logging/nlog`.
 
 
 ### Index Pages
 
 One exception to the URL rule is when a page is named `index.md`. In this case the `index.md` is omitted in the URL and only the directory structure is used.
 
-So a file existing at `nservicebus\logging\index.md` will have a URL of `http://docs.particular.net/nservicebus/logging/`.
+So a file existing at `nservicebus\logging\index.md` will have a URL of `https://docs.particular.net/nservicebus/logging/`.
 
 
 #### Related Pages on Index Pages
@@ -332,9 +332,9 @@ Don't link to `index.md` pages, instead link to the directory. So link to `/nser
 The site is rendered using [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown)
 
 
-### [MarkdownPad](http://markdownpad.com/)
+### [MarkdownPad](https://markdownpad.com/)
 
-For editing markdown on the desktop (after cloning locally with Git) try [MarkdownPad](http://markdownpad.com/).
+For editing markdown on the desktop (after cloning locally with Git) try [MarkdownPad](https://markdownpad.com/).
 
 
 #### Markdown flavor
@@ -376,9 +376,9 @@ Here's the list of patterns:
 ### EIP terms and ideas we don't use but can
 
  * [Message Bus](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageBus.html) - we dropped using the *bus* world when referring to an *endpoint* (which is correct) but I think we can take advantage of this definition of the bus because it is aligned with our concepts.
- * [Dead Letter Channel](http://www.enterpriseintegrationpatterns.com/patterns/messaging/DeadLetterChannel.html) - only MSMQ imlements it, we don't have it on NSB level
+ * [Dead Letter Channel](http://www.enterpriseintegrationpatterns.com/patterns/messaging/DeadLetterChannel.html) - only MSMQ implements it, we don't have it on NServiceBus level
  * [Datatype Channel](http://www.enterpriseintegrationpatterns.com/patterns/messaging/DatatypeChannel.html) - is a channel reserved for a single data/message type. This is something we should be selling users as a good practice
- * [Channel Adapter]http://www.enterpriseintegrationpatterns.com/patterns/messaging/ChannelAdapter.html - this seems to be simialr to the ADSD idea for integration components that pull data from various services in order to combine them into a message
+ * [Channel Adapter](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ChannelAdapter.html) - this seems to be similar to the ADSD idea for integration components that pull data from various services in order to combine them into a message
  * [Messaging Gateway](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingGateway.html) and [Messaging Mapper](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingMapper.html) - we could prepare guidance based on them on how to use NSB in the application
  * [Control Bus](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ControlBus.html) - I believe we should get this implemented in (close) future
  * [Test Message](http://www.enterpriseintegrationpatterns.com/patterns/messaging/TestMessage.html)
@@ -390,7 +390,7 @@ Here's the list of patterns:
  * [Publish-Subscribe](http://www.enterpriseintegrationpatterns.com/patterns/messaging/PublishSubscribeChannel.html) - we use *Multicast* instead. I think these two discrepancies are something we need to live with because we reserve *Publish/Subscribe* name to a logical pattern.
  * [Invalid Message Channel](http://www.enterpriseintegrationpatterns.com/patterns/messaging/InvalidMessageChannel.html) - we call it *error queue*
  * [Guaranteed Delivery](http://www.enterpriseintegrationpatterns.com/patterns/messaging/GuaranteedMessaging.html) - we call it *store and forward*
- *[Return Address](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ReturnAddress.html) - we use *reply address* but I think we are close enough.
+ * [Return Address](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ReturnAddress.html) - we use *reply address* but I think we are close enough.
  * [Process Manager](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) - we call it *Saga*
  * [Message Broker](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageBroker.html) - we use the term broker to describe a centralized transport mechanism where all message channels are on remote machine/cluster. EIP sees broker as a thing that also does routing based on message types (and/or content)
  * [Claim Check](http://www.enterpriseintegrationpatterns.com/patterns/messaging/StoreInLibrary.html) - we call it *Data bus*
@@ -418,14 +418,14 @@ Do not write a sample when:
 
 ### Recommendations
 
- * Samples should illustrate a feature or scenario with as few moving pieces as possible. For example, if the sample is "illustrating IOC with MVC" then "adding SignalR" to that sample will only cause confusion. In general, the fewer nugets you need to get the point across the better.
+ * Samples should illustrate a feature or scenario with as few moving pieces as possible. For example, if the sample is "illustrating IOC with MVC" then "adding SignalR" to that sample will only cause confusion. In general, the fewer NuGet packages required to get the point across the better.
  * Do not "document things inside a sample". A sample is to show how something is used, not to document it. Instead update the appropriate documentation page and link to it. As a general rule, if you add any content to a sample, where that guidance could possibly be applicable to other samples, then that guidance should probably exist in a documentation page.
 
 
 ### Conventions
 
  * Samples are located here: https://github.com/Particular/docs.particular.net/tree/master/samples.
- * They are linked to from the home page and are rendered here: http://docs.particular.net/samples/.
+ * They are linked to from the home page and are rendered here: https://docs.particular.net/samples/.
  * Any directory in that structure with a sample.md will be considered a "root for a sample" or Sample Root.
  * A Sample Root may not contain a sample.md in subdirectories.
  * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
@@ -527,8 +527,8 @@ File extensions scanned for snippets include:
 
 ### Snippets are highlighted using highlightjs
 
- * [Documentation](http://highlightjs.readthedocs.io/)
- * [Language List](http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases)
+ * [Documentation](https://highlightjs.readthedocs.io/)
+ * [Language List](https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases)
 
 
 ### Inline Code
@@ -713,7 +713,7 @@ In some cases it may be necessary to have merged documentation for unreleased fe
 
 Sometimes it is necessary to draw attention to items you want to call out in a document.
 
-This is achieved through bootstrap alerts http://getbootstrap.com/components/#alerts
+This is achieved through bootstrap alerts https://getbootstrap.com/components/#alerts
 
 There are several keys each of which map to a different colored alert
 
@@ -841,7 +841,7 @@ Sequence diagram images are generated using the https://bramp.github.io/js-seque
 
 ### Flowchart diagrams
 
-Flowchar diagrams can be generated with [Code2Flow](http://code2flow.com/#) using a nice pseudocode syntax like this:
+Flowchar diagrams can be generated with [Code2Flow](https://code2flow.com/#) using a nice pseudocode syntax like this:
 
 ```
 switch (Operation?) {
@@ -857,7 +857,7 @@ switch (Operation?) {
 }
 ```
 
-For a more complex example, go to the [routing](http://docs.particular.net/nservicebus/messaging/routing) page.
+For a more complex example, go to the [routing](https://docs.particular.net/nservicebus/messaging/routing) page.
 
 ## Some Useful Characters
 
@@ -921,7 +921,7 @@ The word `Bus` is allowed when a particular piece of documentation refers specif
 
 ## RavenDB
 
-Avoid deep link into the RavenDB documentation since it is a maintenance pain. For example don't link to `http://ravendb.net/docs/article-page/3.0/Csharp/client-api//session/transaction-support/dtc-transactions#transaction-storage-recovery` since when RavenDB 4 is release `article-page/3.0/Csharp` is invalid and requires an update. Also the RavenDB documentation does not maintain structure between versions. e.g. `http://ravendb.net/docs/article-page/2.0/Csharp/client-api//session/transaction-support/dtc-transactions#transaction-storage-recovery` is a 404. So we can't trust that "just change the version" will work. Instead link to the RavenDB docs search: `http://ravendb.net/docs/search/latest/csharp?searchTerm=THE-SEARCH-TERM`. So for the above example it would be `http://ravendb.net/docs/search/latest/csharp?searchTerm=Transaction-storage-recovery`.
+Avoid deep link into the RavenDB documentation since it is a maintenance pain. For example don't link to `https://ravendb.net/docs/article-page/3.0/Csharp/client-api//session/transaction-support/dtc-transactions#transaction-storage-recovery` since when RavenDB 4 is release `article-page/3.0/Csharp` is invalid and requires an update. Also the RavenDB documentation does not maintain structure between versions. e.g. `https://ravendb.net/docs/article-page/2.0/Csharp/client-api//session/transaction-support/dtc-transactions#transaction-storage-recovery` is a 404. So we can't trust that "just change the version" will work. Instead link to the RavenDB docs search: `https://ravendb.net/docs/search/latest/csharp?searchTerm=THE-SEARCH-TERM`. So for the above example it would be `https://ravendb.net/docs/search/latest/csharp?searchTerm=Transaction-storage-recovery`.
 
 
 # Utilities
