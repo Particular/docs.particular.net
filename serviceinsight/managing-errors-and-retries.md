@@ -1,5 +1,5 @@
 ---
-title: Managing Errors and Retries in ServiceInsight
+title: Managing Errors and Retries
 summary: View the details of Failed Messages with ServiceInsight and the Retry them
 component: ServiceInsight
 reviewed: 2016-06-02
