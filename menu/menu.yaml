@@ -630,17 +630,22 @@
 - Name: ServiceInsight
   Topics:
   - Title: Getting Started
+    Url: serviceinsight
+    Articles:
+    - Url: serviceinsight/license
+      Title: License installation
+  - Title: Usage
     Articles:
     - Url: serviceinsight/application-invocation
       Title: Application Invocation
-    - Url: serviceinsight/logging
-      Title: Logging
+    - Url: serviceinsight/managing-errors-and-retries
+      Title: Managing Errors and Retries
     - Url: serviceinsight/sequence-diagram
       Title: Sequence Diagram
+    - Url: serviceinsight/logging
+      Title: Logging
     - Url: serviceinsight/no-data-available
       Title: Data not available
-    - Url: serviceinsight/license
-      Title: License installation
 - Name: ServicePulse
   Topics:
   - Title: Introduction
