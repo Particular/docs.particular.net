@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 6 to 7
 summary: Instructions on how to upgrade Azure Service Bus Transport Version 6 to 7.
-reviewed: 2016-04-19
+reviewed: 2016-09-19
 tags:
  - upgrade
  - migration
@@ -11,9 +11,32 @@ related:
 ---
 
 
+## [Topology](/nservicebus/azure-service-bus/topologies/) is mandatory
+
+In Versions 7 and above the topology selection is mandatory:
+
+snippet:topology-selection-upgrade-guide
+
+The [`EndpointOrientedTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-endpoint-oriented-topology)  is backward compatible with versions 6 and below of the transport. The [`ForwardingTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-forwarding-topology) is the recommended option for new projects.
+
+When selecting `EndpointOrientedTopology`, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers are subscribed to the correct publisher:
+
+snippet:publisher_names_mapping_upgrade_guide
+
+For more details on topologies refer to the [Azure Service Bus Transport Topologies](/nservicebus/azure-service-bus/topologies/) article.
+
+## Sanitization
+
+In Versions 6 and below sanitization was performed by default and the MD5 algorithm was used to truncate entity names. In Versions 7 and above, the sanitization has to be enabled and configured explicitly.
+
+In order to maintain backward compatibility, [register a custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#backward-compatibility-with-versions-6-and-below).
+
+In version 6.4.0 `NamingConventions` class was introduced to customize sanitization. The class is obsoleted. Instead, implement a [custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#version-7-and-above).
+
+
 ## New Configuration API
 
-In Versions 6 and below the Azure Service Bus transport was configured using an XML configuration section called `AzureServiceBusQueueConfig`. This section has been removed in favor of a more granular, code based configuration API.
+In Versions 6 and below the transport was configured using an XML configuration section called `AzureServiceBusQueueConfig`. This section has been removed in favor of a more granular, code based configuration API.
 
 The new configuration API is accessible through extension methods on the `UseTransport<AzureServiceBusTransport>()` extension point in the endpoint configuration. Refer to the [Full Configuration Page](/nservicebus/azure-service-bus/configuration/full.md) for more details.
 
@@ -24,7 +47,17 @@ snippet:AzureServiceBusTransportWithAzure
 
 Setting the connection string can still be done using the `ConnectionString` extension method:
 
-snippet:setting_asb_connection_string
+snippet:6to7_setting_asb_connection_string
+
+
+### Default value changes
+
+The default values of the following settings have been changed:
+
+ * `BatchSize`, which had a default value of 1000, is replaced by `PrefetchCount` with a default value of 200.
+ * `MaxDeliveryCount` changed from 6 to 10.
+
+For more details refer to the [ASB Batching](/nservicebus/azure-service-bus/batching.md) and [ASB Retry behavior](/nservicebus/azure-service-bus/retries.md) articles.
 
 
 ### Setting Entity Property Values
@@ -42,38 +75,6 @@ and the size of the topics can be configured using the `MaxSizeInMegabytes` sett
 snippet:setting_topic_properties
 
 
-### Default value changes
-
-The default values of the following settings have been changed:
-
- * `BatchSize`, which had a default value of 1000, is replaced by `PrefetchCount` with a default value of 200.
- * `MaxDeliveryCount` changed from 6 to 10.
-
-For more details refer to the [ASB Batching](/nservicebus/azure-service-bus/batching.md) and [ASB Retry behavior](/nservicebus/azure-service-bus/retries.md) articles.
-
-## [Topology](/nservicebus/azure-service-bus/topologies/) is mandatory
-
-In Versions 7 and above the topology selection is mandatory:
-
-snippet:topology-selection-upgrade-guide
-
-The [`EndpointOrientedTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-endpoint-oriented-topology)  is backward compatible with the Azure Service Bus transport Version 6 and below. The [`ForwardingTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-forwarding-topology) is the recommended option for new projects.
-
-When selecting `EndpointOrientedTopology`, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers are subscribed to the correct publisher:
-
-snippet:publisher_names_mapping_upgrade_guide
-
-For more details on topologies refer to the [Azure Service Bus Transport Topologies](/nservicebus/azure-service-bus/topologies/) article.
-
-## Sanitization
-
-In Versions 6 and below sanitization was performed by default and the MD5 algorithm was used to truncate entity names. In Versions 7 and above, the sanitization has to be enabled and configured explicitly.
-
-In order to maintain backward compatibility, [register a custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#backward-compatibility-with-versions-6-and-below).
-
-In version 6.4.0 `NamingConventions` class was introduced to customize sanitization. The class is obsoleted. Instead, implement a [custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#version-7-and-above).
-
-
 ## [Securing Credentials](/nservicebus/azure-service-bus/securing-connection-strings.md)
 
 include:asb-credential-warning
@@ -82,3 +83,8 @@ In order to enhance security and to avoid sharing sensitive information using `U
 
  * Upgrade all endpoints to Version 7 or above. Previous versions of transport aren't able to understand namespace name instead of connection string.
  * After the above has been done and all endpoints deployed configure each endpoint switching on `UseNamespaceNameInsteadOfConnectionString` feature and re-deploy.
+
+
+## BrokeredMessage conventions
+
+In versions 6 and below, `BrokeredMessage` conventions were specified using `BrokeredMessageBodyConversion` class. In versions 7 and above, it has been replaced by [configuration API](/nservicebus/azure-service-bus/brokered-message-creation.md).
