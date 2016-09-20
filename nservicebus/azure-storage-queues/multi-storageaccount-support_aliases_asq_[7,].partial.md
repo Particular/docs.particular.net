@@ -1,6 +1,6 @@
 ## Using aliases for connection strings to storage accounts for Scale Out
 
-In order to prevent accidentally leaking connection string values, it is recommended to use aliases instead of raw connection strings. When applied, raw connection string values are replaced with registered aliases removing the possibility of leaking a connection string value. The concept of using aliases for connection strings to storage accounts has been introduced in `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` Version 7. When using a single account, aliasing connection string is limited to just enabling it. When Scaling Out is applied, it requires registering an alias for each storage account.
+In order to prevent accidentally leaking connection string values, it is recommended to use aliases instead of raw connection strings. When applied, raw connection string values are replaced with registered aliases removing the possibility of leaking a connection string value. The concept of using aliases for connection strings to storage accounts has been introduced in Version 7. When using a single account, aliasing connection string is limited to just enabling it. When Scaling Out is applied, it requires registering an alias for each storage account.
 
 Consider the following example:
 
@@ -21,4 +21,4 @@ snippet:AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings2
 
 Aliases can be provided for both: the endpoint's connection string as well as other accounts' connection strings. This enables using `@` notation for destination addresses `queue_name@accountName`.
 
-NOTE: The examples above use different default accounts' aliases to enable a coherent addressing. Using the same name, like `default` for all main accounts is highly discouraged as it introduces ambiguity in resolving addresses like `queue@default`. For example, when an address is interpreted as a reply address, the name `default` will point to a different connection string.
+NOTE: The examples above use different default accounts' aliases to enable a coherent addressing. Using the same name, like `default`, for all main accounts is highly discouraged as it introduces ambiguity in resolving addresses like `queue@default`. For example, when an address is interpreted as a reply address, the name `default` will point to a different connection string.
