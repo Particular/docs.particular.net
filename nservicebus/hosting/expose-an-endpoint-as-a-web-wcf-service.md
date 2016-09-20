@@ -54,6 +54,7 @@ And finally expose the WCF service via the config file, for the example above th
 
 The service name in `<service name="XXX"` needs to match the [`Type.FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) that derives from `NServiceBus.WcfService<TCommand, TErrorCode>`
 
+partial:wcfcancellation
 
 ## Queries and other return values
 
