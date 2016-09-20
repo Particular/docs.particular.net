@@ -47,7 +47,7 @@ snippet:AzureServiceBusTransportWithAzure
 
 Setting the connection string can still be done using the `ConnectionString` extension method:
 
-snippet:setting_asb_connection_string
+snippet:6to7_setting_asb_connection_string
 
 
 ### Default value changes

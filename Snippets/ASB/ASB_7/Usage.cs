@@ -26,6 +26,15 @@ class Usage
 
         #endregion
     }
+    void SettingConnectionString_UpgradeGuide(EndpointConfiguration endpointConfiguration)
+    {
+        #region 6to7_setting_asb_connection_string
+
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.ConnectionString("Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
+
+        #endregion
+    }
 
     void SettingQueueProperties(EndpointConfiguration endpointConfiguration)
     {
