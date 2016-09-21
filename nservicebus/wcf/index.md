@@ -1,28 +1,37 @@
 ---
 title: Exposing Endpoints via WCF
 summary: Receiving and processing messages which pass through WCF
+component: Wcf
 tags:
  - WCF
  - Hosting
 redirects:
  - nservicebus/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service
+ - nservicebus/hosting/expose-an-endpoint-as-a-web-wcf-service
 related:
  - samples/web/wcf-callbacks
+ - nservicebus/messaging/callbacks
 ---
+
+To handle responses on the client, the client (or the sending process) must have its own queue and cannot be configured as a SendOnly endpoint. When messages arrive in this queue, they are handled just like on the server by a message handler:
+
+snippet:WcfEmptyHandler
 
 ## Prerequisites for WCF functionality
 
-In NServiceBus.Host Version 6 and below WCF support is built into the NuGet package.
+In NServiceBus Version 4 and above the WCF support has been moved to [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host).
 
-In NServiceBus.Host Version 7 and above WCF support is shipped as `NServiceBus.Host.Wcf` NuGet package.
+In NServiceBus.Host Version 5 to 6 WCF support is built into the NuGet package.
+
+In NServiceBus.Host Version 7 and above WCF support is shipped as [NServiceBus.Wcf NuGet package](https://www.nuget.org/packages/NServiceBus.Wcf). The package has a dependency to `NServiceBus.Callback`. The endpoint hosting the WCF services as well as any endpoints which might receive the messages dispatched by the WCF services need to configure the [callbacks accordingly](/nservicebus/messaging/callbacks.md).
 
 For more details refer to the [Upgrade Guide](/nservicebus/upgrades/host-6to7.md).
+
+## Implement a WCF service
 
 Inherited from `NServiceBus.WcfService<TCommand, TErrorCode>`, as shown below. `TCommand` is the message type of the request. `TErrorCode` must be an enumerated type, and should represent the result of processing the command. Example:
 
 snippet:ExposeWCFService
-
-NOTE: Version 4 and above of NServiceBus `WcfService<TCommand, TErrorCode>` has been moved to [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host), so this package needs to be referenced.
 
 And finally expose the WCF service via the config file, for the example above the XML would look something like:
 
