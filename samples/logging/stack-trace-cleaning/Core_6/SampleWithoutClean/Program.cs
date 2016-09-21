@@ -45,9 +45,15 @@ class Program
         endpointConfiguration.EnableInstallers();
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Immediate(
-            customizations: immediate => { immediate.NumberOfRetries(0); });
+            customizations: immediate =>
+            {
+                immediate.NumberOfRetries(0);
+            });
         recoverability.Delayed(
-            customizations: delayed => { delayed.NumberOfRetries(0); });
+            customizations: delayed =>
+            {
+                delayed.NumberOfRetries(0);
+            });
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.SendFailedMessagesTo("error");
 
