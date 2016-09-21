@@ -23,6 +23,21 @@ NOTE: To properly identify the chosen deployment option all queues that the endp
 The transport will route messages to destination based on the configuration. If no specific configuration has been provided for a particular destination, the transport assumes the destination has the same configuration as the sending endpoint (i.e. identical schema, catalog and instance name). If the destination has a different configuration and it hasn't been provided, then exception will be thrown when sending a message, because the transport wouldn't be able to connect to the destination queue.
 
 
+### Example
+
+The following table shows sample possible fully qualified queue table names for different deployment options:
+
+| Deployment option | Endpoint | Queue table name                                                      |
+|-------------------|----------|-----------------------------------------------------------------------|
+| Default           | Sales    | `[sql_server_01]`.`[nsb_database]`.`[nsb_schema]`.`[Sales]`           |
+|                   | Billing  | `[sql_server_01]`.`[nsb_database]`.`[nsb_schema]`.`[Billing]`         |
+| Multi-schema      | Sales    | `[sql_server_01]`.`[nsb_database]`.**`[sales_schema]`**.`[Sales]`     |
+|                   | Billing  | `[sql_server_01]`.`[nsb_database]`.**`[billing_schema]`**.`[Billing]` |
+| Multi-catalog     | Sales    | `[sql_server_01]`.**`[sales_database]`**.`[nsb_schema]`.`[Sales]`     |
+|                   | Billing  | `[sql_server_01]`.**`[billing_database]`**.`[nsb_schema]`.`[Billing]` |
+| Multi-instance    | Sales    | **`[sql_server_01]`**.`[nsb_database]`.`[nsb_schema]`.`[Sales]`       |
+|                   | Billing  | **`[sql_server_02]`**.`[nsb_database]`.`[nsb_schema]`.`[Billing]`     |
+
 ## Modes overview
 
 
