@@ -1,6 +1,6 @@
 ## Using aliases for connection strings to storage accounts for Scale Out
 
-In order to prevent accidentally leaking connection string values, it is recommended to use aliases instead of raw connection strings. When applied, raw connection string values are replaced with registered aliases removing the possibility of leaking a connection string value. The concept of using aliases for connection strings to storage accounts has been introduced in Version 7. When using a single account, aliasing connection string is limited to just enabling it. When Scaling Out is applied, it requires registering an alias for each storage account.
+In order to prevent accidentally leaking connection string values, it is recommended to use aliases instead of raw connection strings. When applied, raw connection string values are replaced with registered aliases removing the possibility of leaking a connection string value. The concept of using aliases for connection strings to storage accounts has been introduced in Version 7. When using a single account, aliasing connection string is limited to just enabling it. When multiple accounts are used, an alias has to be registered for each storage account.
 
 Consider the following example:
 
