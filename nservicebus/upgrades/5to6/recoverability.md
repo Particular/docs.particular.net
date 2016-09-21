@@ -132,6 +132,9 @@ snippet: ConvertEventToObservable
 
 Notification subscriptions can now also be registered at configuration time on the `EndpointConfiguration.Notifications` property. See the [error notifications documentation](/nservicebus/recoverability/subscribing-to-error-notifications.md) for more details and samples.
 
+### Access to exception details
+
+Exception details is now available on the passed `Notifications` parameter and not as `NServiceBus.ExceptionInfo.*` headers on the provided message.
 
 ### Delayed delivery error notifications
 
