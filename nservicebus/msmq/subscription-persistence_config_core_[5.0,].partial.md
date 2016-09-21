@@ -2,7 +2,7 @@ To configure MSMQ as the subscription persistence:
 
 snippet:ConfiguringMsmqPersistence
 
-By default NServiceBus uses a queue called `NServiceBus.Subscriptions`. In order to specify a different queue to store the subscriptions, add the following `configSections` and subsequent config entry:
+By default NServiceBus uses a queue called `NServiceBus.Subscriptions`. If not specified otherwise, all endpoints will share that queue to store subscriptions. In order to specify a different queue, add the following `configSections` and subsequent config entry:
 
 snippet:MsmqSubscriptionAppConfig
 
