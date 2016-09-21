@@ -1,6 +1,7 @@
 ---
 title: Client side Callbacks
 summary: The client (or sending process) has its own queue. When messages arrive in the queue, they are handled by a message handler.
+reviewed: 2016-09-21
 component: Callbacks
 redirects:
 - nservicebus/how-do-i-handle-responses-on-the-client-side
@@ -9,7 +10,7 @@ related:
 - samples/callbacks
 ---
 
-To handle responses on the client, the client (or the sending process) must have its own queue and cannot be configured as a SendOnly endpoint. When messages arrive in this queue, they are handled just like on the server by a message handler:
+To handle responses on the client, the client (or the sending process) must have its own queue and cannot be configured as a [SendOnly endpoint](/nservicebus/hosting/#self-hosting-send-only-hosting). When messages arrive in this queue, they are handled just like on the server by a message handler:
 
 
 snippet:EmptyHandler
@@ -102,4 +103,4 @@ When using callbacks in a ASP.NET Web/MVC/Web API, the NServiceBus callbacks can
 ## Message routing
 
 
-partial:rout
+partial:route
