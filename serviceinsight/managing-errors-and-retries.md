@@ -7,7 +7,6 @@ tags:
 - ServiceInsight
 ---
 
-
 When message processing fails NServiceBus will [automatically retry it](/nservicebus/recoverability/). If a message continues to fail it will be forwarded to the error queue and become visible within ServiceInsight.
 
 The views in ServiceInsight show information about message processing failure with the message. No manual correlation of log files or accessing of remote servers is necessary to research the reasons for an error.
