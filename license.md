@@ -4,6 +4,8 @@ Copyright © Particular Software Limited.
 
 ### Code and Samples Licensed under The MIT License
 
+https://opensource.org/licenses/MIT
+
 ```
 The MIT License
 
@@ -31,7 +33,7 @@ THE SOFTWARE.
 
 ### Content Licensed under the Apache License, Version 2.0
 
-<https://www.apache.org/licenses/LICENSE-2.0>
+https://www.apache.org/licenses/LICENSE-2.0
 
 ```
 Licensed under the Apache License, Version 2.0 (the "License");
