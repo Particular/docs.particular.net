@@ -1,6 +1,7 @@
 ---
 title: Upgrade Version 5 to 6
 summary: Instructions on how to upgrade NServiceBus Version 5 to 6.
+reviewed: 2016-09-21
 tags:
  - upgrade
  - migration
