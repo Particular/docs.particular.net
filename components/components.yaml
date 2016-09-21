@@ -309,10 +309,9 @@
 
 - Key: Wcf
   Name: WCF Support
-  DocoUrl: samples/web/wcf-callbacks
-  Category: Host
-  ProjectUrl: https://github.com/Particular/NServiceBus.Host.Wcf
+  DocoUrl: /nservicebus/wcf
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Wcf
   NugetOrder:
-    - NServiceBus.Host.Wcf  
-    - NServiceBus.Callbacks
-    - NServiceBus
+    - NServiceBus.Wcf  
+    - NServiceBus.Host
