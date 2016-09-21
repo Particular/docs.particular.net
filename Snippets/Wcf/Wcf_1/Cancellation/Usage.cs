@@ -11,7 +11,7 @@ namespace Wcf1.Cancellation
 
         void Simple(EndpointConfiguration configuration)
         {
-            #region WcfCancelAfter
+            #region WcfCancelRequest
 
             var wcfSettings = configuration.Wcf();
             wcfSettings.CancelAfter(service => service == typeof(MyService) ? TimeSpan.FromSeconds(5) : TimeSpan.FromSeconds(60));

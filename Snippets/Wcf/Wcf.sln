@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host_6", "Host_6\Host_6.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host_5", "Host_5\Host_5.csproj", "{0BC1A508-E067-4223-AF8C-EA9C3A06071B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host_4", "Host_4\Host_4.csproj", "{D50BD1D6-3981-4C56-A353-FDBE012F674C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,8 @@ Global
 		{62EDEAAA-1E92-478C-AC69-28A0C9940A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BC1A508-E067-4223-AF8C-EA9C3A06071B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0BC1A508-E067-4223-AF8C-EA9C3A06071B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D50BD1D6-3981-4C56-A353-FDBE012F674C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D50BD1D6-3981-4C56-A353-FDBE012F674C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

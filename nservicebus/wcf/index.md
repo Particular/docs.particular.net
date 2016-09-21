@@ -27,11 +27,17 @@ In NServiceBus.Host Version 7 and above WCF support is shipped as [NServiceBus.W
 
 For more details refer to the [Upgrade Guide](/nservicebus/upgrades/host-6to7.md).
 
-## Implement a WCF service
+## Expose a WCF service
 
-Inherited from `NServiceBus.WcfService<TCommand, TErrorCode>`, as shown below. `TCommand` is the message type of the request. `TErrorCode` must be an enumerated type, and should represent the result of processing the command. Example:
+Inherited from `NServiceBus.WcfService<TRequest, TResponse>`, as shown below. `TRequest` is the message type of the request. `TResponse` represents the result of processing the command and can be any type that is supported by the `NServiceBus.Callback` package.
+
+NOTE: In previous versions of the WCF support `TResponse` must be an enumerated type.
+
+Example:
 
 snippet:ExposeWCFService
+
+## Configure binding and address of WCF service
 
 And finally expose the WCF service via the config file, for the example above the XML would look something like:
 
@@ -61,9 +67,15 @@ And finally expose the WCF service via the config file, for the example above th
 </system.serviceModel>
 ```
 
-The service name in `<service name="XXX"` needs to match the [`Type.FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) that derives from `NServiceBus.WcfService<TCommand, TErrorCode>`
+The service name in `<service name="XXX"` needs to match the [`Type.FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) that derives from `NServiceBus.WcfService<TRequest, TResponse>`
+
+partial:wcfbindingaddressincode
+
+partial:wcfrequestresponse
 
 partial:wcfcancellation
+
+partial:wcfrouting
 
 ## Queries and other return values
 
