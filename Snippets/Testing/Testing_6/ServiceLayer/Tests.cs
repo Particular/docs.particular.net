@@ -11,11 +11,25 @@
     public class Tests
     {
         [Test]
-        public void Run()
+        public void TestHandler()
         {
             Test.Handler<MyHandler>()
                 .ExpectReply<ResponseMessage>(m => m.String == "hello")
                 .OnMessage<RequestMessage>(m => m.String = "hello");
+        }
+
+        [Test]
+        public async Task TestHandler_AAA()
+        {
+            var handler = new MyHandler();
+            var context = new TestableMessageHandlerContext();
+
+            await handler.Handle(new RequestMessage {String = "hello"}, context)
+                .ConfigureAwait(false);
+
+            Assert.AreEqual(1, context.RepliedMessages.Length);
+            Assert.IsInstanceOf<ResponseMessage>(context.RepliedMessages[0].Message);
+            Assert.AreEqual("hello", ((ResponseMessage)context.RepliedMessages[0].Message).String);
         }
     }
 

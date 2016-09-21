@@ -1,6 +1,7 @@
 ﻿namespace Testing_6.Saga
 {
     using System;
+    using System.Threading.Tasks;
     using NServiceBus.Testing;
     using NUnit.Framework;
 
@@ -10,7 +11,7 @@
     {
         #region TestingSaga
         [Test]
-        public void Run()
+        public void TestSaga()
         {
             Test.Saga<MySaga>()
                     .ExpectReplyToOriginator<MyResponse>()
@@ -22,6 +23,20 @@
                 .WhenSagaTimesOut()
                     .AssertSagaCompletionIs(true);
         }
+
+        //[Test]
+        //public async Task TestSaga_AAA()
+        //{
+        //    var saga = new MySaga();
+        //    var context = new TestableMessageHandlerContext();
+        //    var message = new StartsSaga();
+
+        //    //TODO: get it working with replytooriginator and requesttimoeut in side the saga handler :/
+        //    //await saga.Handle(message, context)
+        //    //    .ConfigureAwait(false);
+
+        //    //var processMessage = context.SentMessages[0].Message;
+        //}
         #endregion
     }
 }

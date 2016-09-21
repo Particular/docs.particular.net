@@ -7,7 +7,8 @@ namespace Testing_6.Saga
     public class MySaga :
         Saga<MySagaData>,
         IAmStartedByMessages<StartsSaga>,
-        IHandleTimeouts<StartsSaga>
+        IHandleTimeouts<StartsSaga>,
+        IHandleMessages<MyResponse>
     {
         public async Task Handle(StartsSaga message, IMessageHandlerContext context)
         {
@@ -26,6 +27,11 @@ namespace Testing_6.Saga
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
+        }
+
+        public Task Handle(MyResponse message, IMessageHandlerContext context)
+        {
+            return Task.FromResult(0);
         }
     }
 }

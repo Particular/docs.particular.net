@@ -18,5 +18,7 @@ public class MessageHandlerTests
         Assert.AreEqual(1, context.RepliedMessages.Length);
         Assert.IsInstanceOf<MyResponse>(context.RepliedMessages[0].Message);
     }
+
+
     #endregion
 }
