@@ -6,4 +6,4 @@ By default NServiceBus uses a queue called `NServiceBus.Subscriptions`. In order
 
 snippet:MsmqSubscriptionAppConfig
 
-WARNING: When using MSMQ Subscription Persistence on multiple endpoints running on the same machine, every endpoint requires it's own dedicated subscription storage queue.
+WARNING: When using MSMQ Subscription Persistence on multiple endpoints running on the same machine, every endpoint requires a dedicated subscription storage queue.
