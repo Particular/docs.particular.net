@@ -1,7 +1,7 @@
-﻿namespace Core6.Int
-{
-    using NServiceBus;
+﻿using NServiceBus;
 
+namespace Wcf1.Int
+{
     public class Message :
         IMessage
     {

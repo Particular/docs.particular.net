@@ -1,7 +1,7 @@
-﻿using NServiceBus;
-
-namespace Wcf1.Cancellation
+﻿namespace Wcf1.Routing
 {
+    using NServiceBus;
+
     public class Request :
         ICommand
     {

@@ -1,7 +1,8 @@
-namespace Core6.Enum
+using System.Threading.Tasks;
+using NServiceBus;
+
+namespace Wcf1.Enum
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
 
     #region WcfEnumCallbackResponse
 

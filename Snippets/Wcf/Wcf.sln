@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 12.0.31101.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wcf_1", "Wcf_1\Wcf_1.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host_6", "Host_6\Host_6.csproj", "{62EDEAAA-1E92-478C-AC69-28A0C9940A3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host_5", "Host_5\Host_5.csproj", "{0BC1A508-E067-4223-AF8C-EA9C3A06071B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,6 +16,10 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62EDEAAA-1E92-478C-AC69-28A0C9940A3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62EDEAAA-1E92-478C-AC69-28A0C9940A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BC1A508-E067-4223-AF8C-EA9C3A06071B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BC1A508-E067-4223-AF8C-EA9C3A06071B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

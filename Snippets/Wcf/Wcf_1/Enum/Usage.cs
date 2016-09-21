@@ -1,7 +1,7 @@
-﻿namespace Core6.Enum
-{
-    using NServiceBus;
+﻿using NServiceBus;
 
+namespace Wcf1.Enum
+{
     class Usage
     {
         #region WcfEnum

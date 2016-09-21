@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    #region EmptyHandler
+    #region WcfEmptyHandler
 
     public class MyMessageHandler :
         IHandleMessages<MyMessage>

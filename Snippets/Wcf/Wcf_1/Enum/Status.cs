@@ -1,4 +1,4 @@
-﻿namespace Core6.Enum
+﻿namespace Wcf1.Enum
 {
     public enum Status
     {

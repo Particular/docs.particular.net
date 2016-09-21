@@ -1,7 +1,8 @@
-namespace Core6.Int
+using System.Threading.Tasks;
+using NServiceBus;
+
+namespace Wcf1.Int
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
 
     #region WcfIntCallbackResponse
 
