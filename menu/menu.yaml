@@ -219,8 +219,6 @@
       Title: Override host identifier
     - Url: nservicebus/hosting/custom-configuration-providers
       Title: Overriding app.config settings
-    - Url: nservicebus/hosting/logging
-      Title: Logging
     - Url: nservicebus/hosting/assembly-scanning
       Title: Assembly scanning
     - Url: nservicebus/hosting/critical-errors
@@ -232,6 +230,10 @@
     - Url: nservicebus/hosting/nservicebus-host
       Title: NServiceBus Host
       Articles:
+      - Url: nservicebus/hosting/nservicebus-host/installation
+        Title: Installation
+      - Url: nservicebus/hosting/nservicebus-host/logging
+        Title: Logging
       - Url: nservicebus/hosting/nservicebus-host/profiles
         Title: Profiles
     - Url: nservicebus/hosting/cloud-services-host
