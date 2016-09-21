@@ -16,8 +16,16 @@ class Sanitization
         var strategy = sanitization.UseStrategy<ThrowOnFailedValidation>();
         strategy.QueuePathValidation(queuePath => new ValidationResult());
         strategy.TopicPathValidation(topicPath => new ValidationResult());
-        strategy.SubscriptionNameValidation(subscriptionName => new ValidationResult());
-        strategy.RuleNameValidation(ruleName => new ValidationResult());
+        strategy.SubscriptionNameValidation(
+            subscriptionNameValidator: subscriptionName =>
+            {
+                return new ValidationResult();
+            });
+        strategy.RuleNameValidation(
+            ruleNameValidator: ruleName =>
+            {
+                return new ValidationResult();
+            });
 
         #endregion
     }
@@ -30,9 +38,21 @@ class Sanitization
         var strategy = sanitization.UseStrategy<ValidateAndHashIfNeeded>();
         strategy.QueuePathSanitization(queuePath => "sanitized queuePath");
         strategy.TopicPathSanitization(topicPath => "sanitized topicPath");
-        strategy.SubscriptionNameSanitization(subscriptionName => "sanitized subscriptionName");
-        strategy.RuleNameSanitization(ruleName => "sanitized ruleName");
-        strategy.Hash(pathOrName => "hashed pathOrName");
+        strategy.SubscriptionNameSanitization(
+            subscriptionNameSanitizer: subscriptionName =>
+            {
+                return "sanitized subscriptionName";
+            });
+        strategy.RuleNameSanitization(
+            ruleNameSanitizer: ruleName =>
+            {
+                return "sanitized ruleName";
+            });
+        strategy.Hash(
+            hash: pathOrName =>
+            {
+                return "hashed pathOrName";
+            });
 
         #endregion
     }

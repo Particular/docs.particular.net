@@ -28,26 +28,44 @@ class NamingConventionsUsage
 
         #endregion
 
-        Func<ReadOnlySettings, Type, string, bool, string> DetermineQueueNameUsingCustomLogic = (settings, messagetype, queueName, doNotIndividualize) => "";
-        Func<ReadOnlySettings, Type, string, string> DetermineTopicNameUsingCustomLogic = (settings, messageType, endpointName) => "";
-        Func<ReadOnlySettings, Type, string, string> DetermineSubscriptionNameUsingCustomLogic = (settings, eventType, endpointName) => "";
-        Func<ReadOnlySettings, Address, Address> DeterminePublisherNameUsingCustomLogic = (settings, address) => new Address("queue", "machine");
-        Func<ReadOnlySettings, Address, bool, Address> DetermineQueueAddressUsingCustomLogic = (settings, address, doNotIndividualize) => new Address("queue", "machine");
-        Func<ReadOnlySettings, Address, Address> DeterminePublisherAddressUsingCustomLogic = (settings, address) => new Address("queue", "machine");
+        Func<ReadOnlySettings, Type, string, bool, string> DetermineQueueNameUsingCustomLogic = null;
+        Func<ReadOnlySettings, Type, string, string> DetermineTopicNameUsingCustomLogic = null;
+        Func<ReadOnlySettings, Type, string, string> DetermineSubscriptionNameUsingCustomLogic = null;
+        Func<ReadOnlySettings, Address, Address> DeterminePublisherNameUsingCustomLogic = null;
+        Func<ReadOnlySettings, Address, bool, Address> DetermineQueueAddressUsingCustomLogic = null;
+        Func<ReadOnlySettings, Address, Address> DeterminePublisherAddressUsingCustomLogic = null;
 
         #region ASB-NamingConventions-entity-creation-conventions 6.4
 
-        NamingConventions.QueueNamingConvention = (settings, messageType, queue, doNotIndividualize) => DetermineQueueNameUsingCustomLogic(settings, messageType, queue, doNotIndividualize);
+        NamingConventions.QueueNamingConvention = (settings, messageType, queue, doNotIndividualize) =>
+        {
+            return DetermineQueueNameUsingCustomLogic(settings, messageType, queue, doNotIndividualize);
+        };
 
-        NamingConventions.TopicNamingConvention = (settings, messageType, endpointName) => DetermineTopicNameUsingCustomLogic(settings, messageType, endpointName);
+        NamingConventions.TopicNamingConvention = (settings, messageType, endpointName) =>
+        {
+            return DetermineTopicNameUsingCustomLogic(settings, messageType, endpointName);
+        };
 
-        NamingConventions.SubscriptionNamingConvention = (settings, eventType, endpointName) => DetermineSubscriptionNameUsingCustomLogic(settings, eventType, endpointName);
+        NamingConventions.SubscriptionNamingConvention = (settings, eventType, endpointName) =>
+        {
+            return DetermineSubscriptionNameUsingCustomLogic(settings, eventType, endpointName);
+        };
 
-        NamingConventions.PublisherAddressConvention = (settings, address) => DeterminePublisherNameUsingCustomLogic(settings, address);
+        NamingConventions.PublisherAddressConvention = (settings, address) =>
+        {
+            return DeterminePublisherNameUsingCustomLogic(settings, address);
+        };
 
-        NamingConventions.QueueAddressConvention = (settings, address, doNotIndividualize) => DetermineQueueAddressUsingCustomLogic(settings, address, doNotIndividualize);
+        NamingConventions.QueueAddressConvention = (settings, address, doNotIndividualize) =>
+        {
+            return DetermineQueueAddressUsingCustomLogic(settings, address, doNotIndividualize);
+        };
 
-        NamingConventions.PublisherAddressConvention = (settings, address) => DeterminePublisherAddressUsingCustomLogic(settings, address);
+        NamingConventions.PublisherAddressConvention = (settings, address) =>
+        {
+            return DeterminePublisherAddressUsingCustomLogic(settings, address);
+        };
 
         #endregion
     }

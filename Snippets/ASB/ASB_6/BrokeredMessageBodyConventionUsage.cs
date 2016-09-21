@@ -40,7 +40,7 @@ class BrokeredMessageBodyConventionUsage
         #region asb-serializer
 
         busConfiguration.UseSerialization<XmlSerializer>();
-        
+
         #endregion
     }
 }

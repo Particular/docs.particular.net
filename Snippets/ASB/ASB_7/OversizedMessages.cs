@@ -8,7 +8,8 @@ class OversizedMessages
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var messageSenders = transport.MessageSenders();
-        messageSenders.OversizedBrokeredMessageHandler(new CustomOversizedBrokeredMessageHandler());
+        var oversizedMessageHandler = new CustomOversizedBrokeredMessageHandler();
+        messageSenders.OversizedBrokeredMessageHandler(oversizedMessageHandler);
 
         #endregion
     }

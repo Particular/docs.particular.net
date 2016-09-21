@@ -134,7 +134,10 @@ class Usage
 
         var queues = transport.Queues();
         queues.ForwardDeadLetteredMessagesTo(
-            condition: entityname => entityname == "yourqueue",
+            condition: entityname =>
+            {
+                return entityname == "yourqueue";
+            },
             forwardDeadLetteredMessagesTo: "errorqueue");
 
         #endregion

@@ -10,7 +10,11 @@ class Composition
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var composition = transport.Composition();
         var hierarchy = composition.UseStrategy<HierarchyComposition>();
-        hierarchy.PathGenerator(entityName => "production/tenant1/" );
+        hierarchy.PathGenerator(
+            pathGenerator: entityName =>
+            {
+                return "production/tenant1/";
+            });
 
         #endregion
     }

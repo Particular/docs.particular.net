@@ -2,7 +2,7 @@ using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 using NServiceBus;
 
-class TokenProvider
+class TokenProviderUsage
 {
     void RegisterTokenProvider(EndpointConfiguration endpointConfiguration)
     {
@@ -13,7 +13,7 @@ class TokenProvider
         managers.TokenProvider(
             factory: s =>
             {
-                return Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas");
+                return TokenProvider.CreateSharedAccessSignatureTokenProvider("sas");
             });
 
         #endregion
@@ -30,7 +30,7 @@ class TokenProvider
             {
                 return new NamespaceManagerSettings
                 {
-                    TokenProvider = Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas")
+                    TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("sas")
                 };
             });
 
@@ -48,7 +48,7 @@ class TokenProvider
             {
                 return new MessagingFactorySettings
                 {
-                    TokenProvider = Microsoft.ServiceBus.TokenProvider.CreateSharedAccessSignatureTokenProvider("sas")
+                    TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("sas")
                 };
             });
 
