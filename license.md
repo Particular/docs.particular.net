@@ -1,5 +1,6 @@
-Copyright © Particular Software Limited.
-<http://particular.net/>
+Copyright © NServiceBus Ltd. doing business as Particular Software.
+
+<https://particular.net/>
 
 
 ### Code and Samples Licensed under The MIT License
