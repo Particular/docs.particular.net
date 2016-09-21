@@ -77,22 +77,6 @@ After the custom initialization is done the regular core `INeedInitalization` im
 include:host-startup
 
 
-## Logging
-
-As of NServiceBus Version 5 [logging](/nservicebus/logging/) for the host is controlled with the same API as the core.
-
-Add the logging API calls as mentioned in the above article directly in the implementation of `IConfigureThisEndoint.Customize` method.
-
-
-### NServiceBus Version 4 and Version 3
-
-To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure the custom setup. To make NServiceBus use the logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](/nservicebus/logging) and shown below:
-
-snippet:CustomHostLogging
-
-In order to specify different logging levels (`DEBUG`, `WARN`, etc.) and possibly different targets `(CONSOLE`, `FILE`, etc.): The host provides a mechanism for changing these permutations with no code or configuration changes, via [profiles](/nservicebus/hosting/nservicebus-host/profiles.md).
-
-
 ## Roles - Built-in configurations
 
 As of Version 5 roles are obsoleted and should not be used. The functionality of `AsA_Server`, and `AsA_Publisher` has been made defaults in the core and can be safely removed. If the `AsA_Client` functionality is still required add the following configuration.
