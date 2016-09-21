@@ -16,12 +16,12 @@ This is primarily because:
  * The PI requires Internet access which may not be available in a production environment.
  * The PI `setup.exe` will fail on Windows servers were `IE Enhanced Security Configuration` is enabled.
 
-[Download the PI](http://particular.net/start-platform-download).
+[Download the PI](https://particular.net/start-platform-download).
 
 For testing and production environments it is recommended to:
 
  * Use the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md) to install any required prerequisites.
- * Download and run the individual installers from [downloads](http://particular.net/downloads) rather than installing via the PI.
+ * Download and run the individual installers from [downloads](https://particular.net/downloads) rather than installing via the PI.
 
 
 ## What to expect

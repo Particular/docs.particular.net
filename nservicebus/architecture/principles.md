@@ -45,7 +45,7 @@ In order to learn more about the relationship between messaging and reliable, sc
 
 <iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/6222577" webkitallowfullscreen width="400"></iframe>
 
-See [Case Studies](http://particular.net/casestudies) to learn how NServiceBus is used and read the successes stories.
+See [Case Studies](https://particular.net/casestudies) to learn how NServiceBus is used and read the successes stories.
 
 
 ### Store and forward messaging

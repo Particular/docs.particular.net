@@ -8,4 +8,4 @@ related:
 
 ## License details
 
-See [Particular Licensing](http://particular.net/licensing) for license specifics.
+See [Particular Licensing](https://particular.net/licensing) for license specifics.

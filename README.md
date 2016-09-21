@@ -3,7 +3,7 @@
 Before you start, ensure you have
 
  *  Created a [GitHub account](https://github.com/join)
- *  Signed the Particular [Contributor License Agreement](http://particular.net/contributors-license-agreement-consent).
+ *  Signed the Particular [Contributor License Agreement](https://particular.net/contributors-license-agreement-consent).
 
 There are two approaches to contributing.
 

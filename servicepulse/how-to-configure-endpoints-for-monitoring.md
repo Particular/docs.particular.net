@@ -15,7 +15,7 @@ related:
  1. Endpoint availability (using heartbeat signals sent from the endpoint)
  1. Failed messages (by monitoring the error queue defined for the endpoints)
  1. Custom checks (defined and developed per application needs)
- 1. And more (see [An Introduction to ServicePulse for NServiceBus](http://particular.net/blog/an-introduction-to-servicepulse-for-nservicebus) for additional upcoming monitoring features)
+ 1. And more (see [An Introduction to ServicePulse for NServiceBus](https://particular.net/blog/an-introduction-to-servicepulse-for-nservicebus) for additional upcoming monitoring features)
 
 ![ServicePulse dashboard](dashboard.png 'width=500')
 

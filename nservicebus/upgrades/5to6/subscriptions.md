@@ -20,7 +20,7 @@ The option to automatically subscribe to plain messages was removed, as message 
 
 ## SubscriptionEventArgs has been deprecated
 
-Version 5 introduced an undocumented way to get the list of subscribers when publishing a message on the transports using [persistence based pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based). This is no longer available; [contact support](http://particular.net/support) should this information be required in Version 6.
+Version 5 introduced an undocumented way to get the list of subscribers when publishing a message on the transports using [persistence based pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based). This is no longer available; [contact support](https://particular.net/support) should this information be required in Version 6.
 
 
 ## AutoSubscribe

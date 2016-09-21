@@ -34,7 +34,7 @@ Here is a few guidelines for contributing.
 
 ## Submitting Changes
 
- * Sign the [Contributor License Agreement](http://particular.net/contributors-license-agreement-consent).
+ * Sign the [Contributor License Agreement](https://particular.net/contributors-license-agreement-consent).
  * Push the changes to a feature branch in the fork of the repository.
  * Submit a pull request to the NServiceBus repository.
 

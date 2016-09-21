@@ -70,4 +70,4 @@ The transports supported by ServiceControl out-of-the-box (i.e. MSMQ, RabbitMQ, 
 
 Azure Queues and Service Bus throughput varies significantly based on deployment options and multiple related variables inherent to cloud deployment scenarios.
 
-It is recommended to plan and perform realistic throughput tests on ServiceControl using the transport of the choice and deployment options that are as close as possible to the planned production deployment. For additional questions or information [contact Particular Software](http://particular.net/contactus).
+It is recommended to plan and perform realistic throughput tests on ServiceControl using the transport of the choice and deployment options that are as close as possible to the planned production deployment. For additional questions or information [contact Particular Software](https://particular.net/contactus).

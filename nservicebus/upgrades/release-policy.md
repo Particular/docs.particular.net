@@ -43,7 +43,7 @@ Some examples:
 
 It is strongly recommend to upgrade frequently enough to stay on a supported version. For a best upgrade experience upgrade from major version to major version. For example if using NServiceBus Version 3.3.15 and want to upgrade to NServiceBus Version 5.2.3. First upgrade to the latest NServiceBus Version 4.x release (i.e. Version 4.7.6). Follow the suggested API upgrade guides and obsoletion messages and then upgrade to NServiceBus Version 5.2.3.
 
-[Contact support](http://particular.net/support) if there are any bugfixes that believe should be back-ported to a specific. version
+[Contact support](https://particular.net/support) if there are any bugfixes that believe should be back-ported to a specific. version
 
 
 ## Summary

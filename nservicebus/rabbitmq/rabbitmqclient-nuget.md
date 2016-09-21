@@ -39,4 +39,4 @@ Particular's standard approach to targeting NuGet ranges is to target "any Minor
 
 To address this, starting with NServiceBus.RabbitMQ Version 2.1.3, the package will target a "current Minor" range i.e. `≥ CurrentMajor.CurrentMinor && < CurrentMajor.NextMinor`. This is a compromise between the above two approaches. It allows some movement between RabbitMQ.Client versions while reducing the chance of breaking API changes. It also results in fewer deployments of NServiceBus.RabbitMQ to keep in sync.
 
-So, after an upgrade of the RabbitMQ.Client NuGet, if there are any problems with the above exceptions it is most likely a breaking API change. In that scenario [contact support](http://particular.net/contactus) or raise an issue in the [NServiceBus.RabbitMQ GitHub Repository](https://github.com/Particular/NServiceBus.RabbitMQ).
+So, after an upgrade of the RabbitMQ.Client NuGet, if there are any problems with the above exceptions it is most likely a breaking API change. In that scenario [contact support](https://particular.net/contactus) or raise an issue in the [NServiceBus.RabbitMQ GitHub Repository](https://github.com/Particular/NServiceBus.RabbitMQ).

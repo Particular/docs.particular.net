@@ -130,7 +130,7 @@ span.blue {
     </a>
   </div>
   <div class="ic">
-    <a href="http://particular.net/videos-and-presentations">
+    <a href="https://particular.net/videos-and-presentations">
       <i class="glyphicon glyphicon-film mainicon"></i><br>Intro Videos
     </a>
   </div>
@@ -150,7 +150,7 @@ span.blue {
 <div class="col-md-12 block black">
   <span class="blue"><a href="https://github.com/Particular/NServiceBus/releases"><span class="glyphicon glyphicon-calendar"></span> Release notes</a></span>
   <span class="blue">
-<a href="http://particular.net/downloads"><span class="glyphicon glyphicon-download"></span> Downloads</a>
+<a href="https://particular.net/downloads"><span class="glyphicon glyphicon-download"></span> Downloads</a>
 </span>
 </div>
 </div>
