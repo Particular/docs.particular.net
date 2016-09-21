@@ -3,13 +3,13 @@
   <!-- startcode InstanceMappingFile -->
   <endpoints>
     <endpoint name="Sales">
-      <instance Machine="VM-1"/>
+      <instance machine="VM-1"/>
     </endpoint>
     <endpoint name="Shipping">
-      <instance Machine="VM-2"/>
+      <instance machine="VM-2"/>
     </endpoint>
     <endpoint name="Billing">
-      <instance Machine="VM-3"/>
+      <instance machine="VM-3"/>
     </endpoint>
   </endpoints>
   <!-- endcode -->
