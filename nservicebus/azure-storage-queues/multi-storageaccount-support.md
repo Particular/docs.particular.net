@@ -2,6 +2,7 @@
 title: Multiple storage accounts
 summary: Use multiple Azure storage accounts for scale out
 component: ASQ
+reviewed: 2016-09-23
 tags:
 - Azure
 - Cloud
