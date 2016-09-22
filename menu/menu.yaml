@@ -539,6 +539,8 @@
         Title: Configure DTC
       - Url: nservicebus/ravendb/outbox
         Title: Outbox
+      - Url: nservicebus/ravendb/version-compatibility
+        Title: RavenDB Client Versions
     - Url: nservicebus/azure-storage-persistence
       Title: Azure Storage Persistence
       Articles:
