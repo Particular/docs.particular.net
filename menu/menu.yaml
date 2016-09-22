@@ -28,7 +28,7 @@
       - Url: security-advisories/sqlserver-sqlinjection
         Title: 2016-07-05
     - Url: nservicebus/upgrades/5to6
-      Title: NServiceBus 6
+      Title: NServiceBus 5 to 6
       Articles:
       - Url: nservicebus/upgrades/5to6/moving-away-from-ibus
         Title: Migrating off IBus
@@ -65,9 +65,9 @@
       - Url: nservicebus/upgrades/5to6/tools-and-helpers
         Title: Tools and Helpers
     - Url: nservicebus/upgrades/4to5
-      Title: NServiceBus 4
+      Title: NServiceBus 4 to 5
     - Url: nservicebus/upgrades/3to4
-      Title: NServiceBus 3
+      Title: NServiceBus 3 to 4
     - Url: nservicebus/upgrades/encryption-key-identifiers
       Title: Upgrade encryption configuration
     - Title: NServiceBus Host
