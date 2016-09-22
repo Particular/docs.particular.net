@@ -131,46 +131,32 @@
     Articles:
     - Url: nservicebus/messaging/messages-events-commands
       Title: Messages, Events and Commands
-    - Url: nservicebus/messaging/message-identity
-      Title: Message Identity
-    - Url: nservicebus/messaging/conventions
-      Title: Conventions
-    - Url: nservicebus/messaging/discard-old-messages
-      Title: Discarding Old Messages
-    - Url: nservicebus/messaging/non-durable-messaging
-      Title: Non-Durable Messaging
-    - Url: nservicebus/messaging/callbacks
-      Title: Client side Callbacks
-    - Url: nservicebus/messaging/headers
-      Title: Message Headers
-    - Url: nservicebus/messaging/header-manipulation
-      Title: Header Manipulation
-    - Url: nservicebus/messaging/message-correlation
-      Title: Message correlation
-    - Url: nservicebus/messaging/third-party-integration
-      Title: Third Party Integration
-    - Url: nservicebus/messaging/messages-as-interfaces
-      Title: Messages as Interfaces
-    - Url: nservicebus/messaging/reply-to-a-message
-      Title: Replying
+      Articles:
+      - Url: nservicebus/messaging/message-identity
+        Title: Message Identity
+      - Url: nservicebus/messaging/messages-as-interfaces
+        Title: Messages as Interfaces
+      - Url: nservicebus/messaging/conventions
+        Title: Conventions
+      - Url: nservicebus/messaging/unobtrusive-mode
+        Title: Unobtrusive Mode
+      - Url: nservicebus/messaging/best-practice-enforcement
+        Title: Best practice enforcement
     - Url: nservicebus/messaging/send-a-message
-      Title: Sending
-    - Url: nservicebus/messaging/forwarding
-      Title: Forwarding
-    - Url: nservicebus/messaging/batched-dispatch
-      Title: Batched message dispatch
-    - Url: nservicebus/endpoints/specify-endpoint-name
-      Title: Specify Endpoint Name
-    - Url: nservicebus/messaging/routing
-      Title: Routing
-    - Url: nservicebus/messaging/routing-extensibility
-      Title: Routing extensibility points
-    - Url: nservicebus/messaging/unobtrusive-mode
-      Title: Unobtrusive Mode
-    - Url: nservicebus/messaging/best-practice-enforcement
-      Title: Best practice enforcement
-    - Url: nservicebus/scheduling
-      Title: Scheduling
+      Title: Sending messages
+      Articles:
+      - Url: nservicebus/messaging/reply-to-a-message
+        Title: Replying
+      - Url: nservicebus/messaging/batched-dispatch
+        Title: Batched message dispatch
+      - Url: nservicebus/messaging/callbacks
+        Title: Client side Callbacks
+      - Url: nservicebus/messaging/discard-old-messages
+        Title: Discarding Old Messages
+      - Url: nservicebus/messaging/non-durable-messaging
+        Title: Non-Durable Messaging
+      - Url: nservicebus/messaging/forwarding
+        Title: Forwarding
     - Url: nservicebus/messaging/delayed-delivery
       Title: Delayed Delivery
     - Url: nservicebus/messaging/publish-subscribe
@@ -180,6 +166,24 @@
         Title: Subscription configuration
       - Url: nservicebus/messaging/publish-subscribe/publish-handle-event
         Title: Publish and Handle an Event
+    - Url: nservicebus/messaging/headers
+      Title: Message Headers
+      Articles:
+      - Url: nservicebus/messaging/header-manipulation
+        Title: Header Manipulation
+      - Url: nservicebus/messaging/message-correlation
+        Title: Message correlation
+      - Url: nservicebus/messaging/third-party-integration
+        Title: Third Party Integration
+    - Url: nservicebus/endpoints/specify-endpoint-name
+      Title: Specify Endpoint Name
+    - Url: nservicebus/messaging/routing
+      Title: Routing
+      Articles:
+      - Url: nservicebus/messaging/routing-extensibility
+        Title: Routing extensibility points
+    - Url: nservicebus/scheduling
+      Title: Scheduling
     - Url: nservicebus/gateway
       Title: Gateway
       Articles:
