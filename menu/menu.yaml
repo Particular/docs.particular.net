@@ -288,11 +288,11 @@
         Title: Asynchronous Handlers
       - Url: nservicebus/sagas/reply-replaytooriginator-differences
         Title: Reply and ReplyToOriginator differences
-    - Url: nservicebus/testing
-      Title: Testing
-      Articles:
-      - Url: samples/unit-testing
-        Title: AAA style tests
+  - Url: nservicebus/testing
+    Title: Testing
+    Articles:
+    - Url: samples/unit-testing
+      Title: AAA style tests
   - Url: nservicebus/recoverability
     Title: Recoverability
     Articles:
