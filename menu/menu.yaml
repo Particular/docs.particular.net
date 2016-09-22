@@ -531,6 +531,8 @@
     - Url: nservicebus/ravendb
       Title: RavenDB Persistence
       Articles:
+      - Url: nservicebus/ravendb/connection
+        Title: Connection Options
       - Url: nservicebus/ravendb/operations-scripting
         Title: Scripting
       - Url: nservicebus/ravendb/installation
