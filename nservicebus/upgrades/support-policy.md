@@ -11,9 +11,11 @@ related:
 
 Supported versions include any major version released within the last 3 years. Within a supported major version, the latest minor version is supported, or any minor version released within the last year.
 
-If a version is not listed or has expired but support is required [contact support](https://particular.net/contactus). For more information on the relationship between releases and support see [the release policy](/nservicebus/upgrades/release-policy.md).
+WARNING: If a version is not listed or has expired, but support is required contact [Particular support](http://particular.net/support). 
 
-WARNING: If support is required for **any version** [contact support](https://particular.net/contactus).
+Particular guarantees patching all supported versions with critical bug fixes, even if the specific issue issue was raised only for one version. In case the bug also impacts non supported version, the recommended approach is to upgrade to the supported version which contains the fix.
+
+For more information refer to [the release policy](/nservicebus/upgrades/release-policy.md).
 
 
 ### NServiceBus 5.x
@@ -35,8 +37,13 @@ As of 10 October 2015, Version 3 is no longer supported.
 
 ## Compatibility guarantees
 
-The compatibility guarantees cover two aspects: upgrades and communication between endpoints in various versions (so called `wire compatibility`).
+All new features are backwards compatible by default. In the rare cases when it's not true, enabling the new features requires an explicit opt-in. 
 
-The recommended approach is to upgrade 1 major version at a time, with deployment to production. That guarantees that the necessary transformations of data are performed and no information will be lost.
 
-The wire compatibility is guaranteed across 1 major version. Additionally, there's the best effort and extensive testing to cover compatibility across all versions, starting with NServiceBus Version 3.
+## Upgrading
+
+The NServiceBus versions are wire-compatible, meaning the endpoints using different versions can exchange messages with each other. 
+
+However, some features might require data migration (e.g. converting from old to new format), and the conversion might be performed in the background after upgrade. 
+
+Therefore the recommended approach is to upgrade 1 major version at a time, including a full regression testing of the system and deployment to production.
