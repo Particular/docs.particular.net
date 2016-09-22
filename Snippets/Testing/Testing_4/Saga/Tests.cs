@@ -20,8 +20,8 @@
                     .ExpectPublish<MyEvent>()
                     .ExpectSend<MyCommand>()
                 .When(s => s.Handle(new StartsSaga()))
-                    .ExpectPublish<MyEvent>()
                 .WhenSagaTimesOut()
+                    .ExpectPublish<MyOtherEvent>()
                     .AssertSagaCompletionIs(true);
         }
         #endregion
