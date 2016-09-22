@@ -7,7 +7,7 @@ related:
  - nservicebus/licensing
 ---
 
-To reduce scope and risk small components are released with a regular cadence. Particular is committed to backport all important bugfixes to the specific version, this enables staying up to date while keeping the risk of upgrading to a minimum.
+To reduce scope and risk small components are released with a regular cadence. Particular is committed to backport all critical bugfixes to all [supported versions](/nservicebus/upgrades/support-policy.md), this enables staying up to date while keeping the risk of upgrading to a minimum.
 
 While this may seem to result in a large number of releases only a small fraction of these will actually affect the system.
 
