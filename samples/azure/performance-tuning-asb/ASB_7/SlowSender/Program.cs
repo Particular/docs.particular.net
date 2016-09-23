@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
@@ -7,7 +6,7 @@ using NServiceBus;
 class Program
 {
 
-    const int NumberOfMessages = 10000;
+    const int NumberOfMessages = 100;
 
     static void Main()
     {
@@ -16,7 +15,7 @@ class Program
 
     static async Task MainAsync()
     {
-        Console.Title = "Samples.ASB.Performance.Sender1";
+        Console.Title = "Samples.ASB.Performance.SlowSender";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Performance.Sender");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
@@ -56,14 +55,17 @@ class Program
 
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
-                var tasks = new List<Task>();
+
+                #region slow-send
                 for (var i = 0; i < NumberOfMessages; i++)
                 {
                     Console.WriteLine("Sending a message...");
-                    tasks.Add(endpointInstance.Send(new SomeMessage()));
-                    //    await endpointInstance.Send(new MyMessage());
+
+                    // by awaiting each individual send, no client side batching can take place
+                    // latency is incurred for each send and thus lowest performance possible
+                    await endpointInstance.Send(new SomeMessage());
                 }
-                await Task.WhenAll(tasks);
+                #endregion
 
                 stopwatch.Stop();
                 var elapsedSeconds = stopwatch.ElapsedTicks / (double)Stopwatch.Frequency;
