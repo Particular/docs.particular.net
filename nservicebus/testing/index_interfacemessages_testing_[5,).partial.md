@@ -1,5 +1,5 @@
 
 
-### Testing interface messages
+### Interface messages
 
-To support testing of interface messages use `.WhenHandling<T>()` method, where T is the interface type.
+To support testing of interface messages use `.WhenHandling<T>()` method, where `T` is the interface type.

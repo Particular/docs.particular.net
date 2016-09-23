@@ -11,27 +11,18 @@ related:
 ---
 
 
-Testing enterprise-scale distributed systems is a challenge. NServiceBus provides a dedicated NuGet package, `NServiceBus.Testing`, with tools that allow unit testing endpoint handlers, sagas and workflows.
+Testing enterprise-scale distributed systems is a challenge. A dedicated NuGet package, `NServiceBus.Testing`, is provided with tools that allow unit testing endpoint handlers and sagas.
 
-The testing package can be used with any .NET unit testing framework, such as NUnit, xUnit.net or MSBuild.
-
-
-## Getting started
-
-To install the package with unit testing tools, run the following command in the Package Manager Console:
-
-```ps
-Install-Package NServiceBus.Testing
-```
+The testing package can be used with any .NET unit testing framework, such as [NUnit](http://www.nunit.org/), [xUnit.net](https://xunit.github.io/) or [MSTest](https://msdn.microsoft.com/en-us/library/ms243147.aspx).
 
 
-## Test structure
+## Structure
 
 
 partial:teststructure
 
 
-## Testing message handlers
+## Handlers
 
 Testing handlers focuses on their externally visible behavior - the types of messages they send or reply with.
 
@@ -40,7 +31,7 @@ snippet: TestingServiceLayer
 The test verifies that when a message of the type `RequestMessage` is processed by `MyHandler`, it responds with a message of the type `ResponseMessage`. Also, the test checks that if the request message's String property value is "hello" then that should be the value of the String property of the response message.
 
 
-## Testing sagas
+## Sagas
 
 Testing sagas focuses on their externally visible behavior - the types of messages they send or reply with, but it's also possible to verify that saga requested a timeout or was completed.
 
@@ -53,7 +44,7 @@ Note that the expectation for `MyOtherEvent` is set only after the message is se
 partial:interfacemessages
 
 
-## Testing header manipulation
+## Header manipulation
 
 Message handlers retrieve information from the incoming message headers and set headers for the outgoing messages, for example NServiceBus uses that set correlation Id or address for reply. Headers can be also used for passing [custom information](/nservicebus/messaging/header-manipulation.md).
 
