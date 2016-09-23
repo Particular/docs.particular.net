@@ -57,7 +57,7 @@ In specific cases, like sending to self or to a particular queue (e.g. for integ
 
 ## Event routing
 
-Events can be received by multiple logical endpoints, however even in case of scale-out each event will be received only by one physical instance of any logical subscriber. Before the message is published and delivered, the subscriber has to express its interest in a given type of event. 
+Events can be received by multiple logical endpoints, however even in case of scale out each event will be received only by one physical instance of any logical subscriber. Before the message is published and delivered, the subscriber has to express its interest in a given type of event. 
 
 
 ### Native

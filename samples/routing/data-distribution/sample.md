@@ -60,7 +60,7 @@ snippet:FilterNamespace1
 
 snippet:FilterNamespace2
 
-In real-world scenarios NServiceBus is scaled out by deploying multiple instances of same application binaries to multiple machines (e.g. Client in this sample). For simplicity in this sample the scale-out is simulated by having two separate applications, Client and Client2.
+In real-world scenarios NServiceBus is scaled out by deploying multiple instances of same application binaries to multiple machines (e.g. Client in this sample). For simplicity in this sample the scale out is simulated by having two separate applications, Client and Client2.
 
 
 ### Server

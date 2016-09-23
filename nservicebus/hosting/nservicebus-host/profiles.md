@@ -25,8 +25,8 @@ Starting out with NServiceBus development isn't always easy. There are many conf
 NServiceBus comes with three profiles out of the box: Lite, Integration, and Production. Each profile configures a cohesive combination of technologies:
 
  * Lite keeps everything in memory with the most detailed logging.
- * Integration uses technologies closer to production but without scale-out and less logging.
- * Production uses scale-out friendly technologies and minimal file-based logging.
+ * Integration uses technologies closer to production but without scale out and less logging.
+ * Production uses scale out friendly technologies and minimal file-based logging.
 
 
 ## Specifying which profiles to run

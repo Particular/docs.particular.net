@@ -48,7 +48,7 @@ WARNING: This will result in the task not being executed but also not being resc
 
 ## Converting a scheduled task into a saga
 
-In order to store these tasks in a durable way and support either a scale-out scenario or a side-by-side deployment scenario, use a [saga](/nservicebus/sagas) instead. Think of the scheduler as a never ending saga.
+In order to store these tasks in a durable way and support either a scale out scenario or a side-by-side deployment scenario, use a [saga](/nservicebus/sagas) instead. Think of the scheduler as a never ending saga.
 
 Converting the scheduler code to a saga, with the code for the example usage of the scheduler API shown above:
 

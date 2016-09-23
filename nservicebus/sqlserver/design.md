@@ -13,7 +13,7 @@ tags:
 
 Each endpoint has a single table representing the primary queue. The name of the primary queue matches the name of the endpoint.
 
-In a scale-out scenario this single queue is shared by all instances.
+In a scale out scenario this single queue is shared by all instances.
 
 partial:callback
 

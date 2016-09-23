@@ -21,7 +21,7 @@ There are some good reasons to avoid publishing events from within web applicati
 
  1. **Transactions and Consistency** - [Events should announce that something has *already* happened](/nservicebus/messaging/messages-events-commands.md). Many times this involves making some changes to a database and then publishing the result. But HTTP is inherently unreliable and does not have built-in retries. If an exception occurs before the event is published, the only opportunity to publish that event may lost. In these circumstances, it's generally better to send a command with the payload of the HTTP request, and have another endpoint process that command with the advantages of [recoverability](/nservicebus/recoverability/).
  1. **Resource Optimization** - The most precious resource in a web server is a request processing thread. When these are exhausted, the server can no longer handle additional load and must be scaled out. Complex database updates (possibly involving the Distributed Transaction Coordinator depending on choice of transport) can block these request threads while waiting for I/O to and from the database. In these situations it's much more efficient to send a command to a back-end processor. Typically this allows for much more scalability with fewer server resources.
- 1. **Web Application Scale-Out** - Because events can only be published from one logical publisher, it can be problematic to scale out a web application that is publishing events. More on this later.
+ 1. **Web Application Scale out** - Because events can only be published from one logical publisher, it can be problematic to scale out a web application that is publishing events. More on this later.
 
 Given these facts, conventional wisdom has suggested that when in the context of a web application, it is better to only send commands to a back-end service endpoint, which can then publish a similar event.
 
@@ -95,4 +95,4 @@ It can be useful, at times, to publish events from a web application. Always kee
 
  * Don't publish from the web tier if an exception before the event is published could lead to data loss.
  * For storage-driven transports, all web application instances must share the same subscription storage.
- * Never use an individual web server name to identify the source of an event being published, which would interfere with effective scale-out.
+ * Never use an individual web server name to identify the source of an event being published, which would interfere with effective scale out.

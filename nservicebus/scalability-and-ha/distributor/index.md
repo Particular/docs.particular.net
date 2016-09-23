@@ -35,7 +35,7 @@ Version 4 of MSMQ, made available with Vista and Server 2008, can perform [remot
 
 Even though the Distributor provided similar functionality even before Vista was released, there are other reasons to use it even on the newer operating systems. The problem with 'remote transactional receive' is that it gets proportionally slower as more worker nodes are added. This is due to the overhead of managing more transactions, as well as the longer period of time that these transactions are open.
 
-In short, the scale-out benefits of MSMQ Version 4 by itself are quite limited.
+In short, the scale out benefits of MSMQ Version 4 by itself are quite limited.
 
 
 ## Performance

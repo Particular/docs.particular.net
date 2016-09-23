@@ -9,7 +9,7 @@ tags:
 - DistributionStrategy
 ---
 
-The sample demonstrates how NServiceBus routing model can be extended with a custom distribution strategy. Distribution strategies replace the Distributor feature as a scale-out mechanism for MSMQ. The default built-in distribution strategy uses a simple round-robin approach. This sample shows a more sophisticated distribution strategy that keeps the queue length of all load-balanced instances equal, allowing for effective usage of non-heterogeneous worker clusters.
+The sample demonstrates how NServiceBus routing model can be extended with a custom distribution strategy. Distribution strategies replace the Distributor feature as a scale out mechanism for MSMQ. The default built-in distribution strategy uses a simple round-robin approach. This sample shows a more sophisticated distribution strategy that keeps the queue length of all load-balanced instances equal, allowing for effective usage of non-heterogeneous worker clusters.
 
 
 ## Prerequisites
@@ -59,7 +59,7 @@ The Server project mimics the back-end system where orders are accepted. Apart f
 
 snippet:FairDistributionServer
 
-In real-world scenarios NServiceBus is scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines (e.g. Server in this sample). For simplicity in this sample the scale-out is simulated by having two separate endpoints Server and Server2.
+In real-world scenarios NServiceBus is scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines (e.g. Server in this sample). For simplicity in this sample the scale out is simulated by having two separate endpoints Server and Server2.
 
 
 ### Shared project

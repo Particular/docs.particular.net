@@ -79,7 +79,7 @@ snippet:EnableAutomaticRouting
 
 NOTE: In order to use this custom routing all published types need to be specified.
 
-In real-world scenarios NServiceBus is scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines (e.g. `Sales` in this sample). For simplicity in this sample the scale-out is simulated by having two separate endpoints `Sales` and `Sales2`.
+In real-world scenarios NServiceBus is scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines (e.g. `Sales` in this sample). For simplicity in this sample the scale out is simulated by having two separate endpoints `Sales` and `Sales2`.
 
 
 ### Shipping and Billing

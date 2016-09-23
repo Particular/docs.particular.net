@@ -35,6 +35,6 @@ NOTE: Most of these values are applied when a queue or topic is created and cann
  * `EnablePartitioning`: Increase overall throughput by allowing to use multiple brokers/stores to handle queues and topics to overcome limitations of a single broker/store at increased cost. Partitioning does reduce number of queues or topics per namespace. Defaults to false.
  * `SupportOrdering`: Specifies whether queues and topics should enable support for message ordering. Defaults to true.
 
-NOTE: AzureServiceBusQueueConfig is only available in Versions 6 and below. `QueueName` and `QueuePerInstance` are obsoleted since version 6. Instead, specify endpoint name and scale-out option.
+NOTE: AzureServiceBusQueueConfig is only available in Versions 6 and below. `QueueName` and `QueuePerInstance` are obsoleted since version 6. Instead, specify endpoint name and scale out option.
 
 Defaults are just starting values. These values should be always measured and tested against the specific solution and adjusted accordingly.

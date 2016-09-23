@@ -62,7 +62,7 @@ snippet:FileInstanceMapping
 
 The Sales project mimics the back-end system where orders are accepted.
 
-In real-world scenarios NServiceBus is scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines (e.g. `Sales` in this sample). For simplicity in this sample the scale-out is simulated by having two separate endpoints `Sales` and `Sales2`.
+In real-world scenarios NServiceBus is scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines (e.g. `Sales` in this sample). For simplicity in this sample the scale out is simulated by having two separate endpoints `Sales` and `Sales2`.
 
 
 ### Shipping and Billing
