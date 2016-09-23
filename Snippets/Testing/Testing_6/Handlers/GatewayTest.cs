@@ -11,11 +11,16 @@
     public class GatewayTest
     {
         #region ExpectSendToSiteV6
+
         [Test]
         public void ExpectSendToSite()
         {
             Test.Handler<MyHandler>()
-                .ExpectSend<GatewayMessage>((message, options) => options.GetSitesRoutingTo().Contains("myFavouriteSite"))
+                .ExpectSend<GatewayMessage>(
+                    check: (message, options) =>
+                    {
+                        return options.GetSitesRoutingTo().Contains("myFavouriteSite");
+                    })
                 .OnMessage(new MyMessage());
         }
 
@@ -30,6 +35,7 @@
                 return context.Send(new GatewayMessage(), options);
             }
         }
+
         #endregion
 
         class MyMessage :

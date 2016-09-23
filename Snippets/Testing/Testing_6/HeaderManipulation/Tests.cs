@@ -6,6 +6,7 @@
     using NUnit.Framework;
 
     [Explicit]
+
     #region TestingHeaderManipulation
 
     [TestFixture]
@@ -16,9 +17,17 @@
         {
             Test.Handler<MyMessageHandler>()
                 .SetIncomingHeader("MyHeaderKey", "myHeaderValue")
-                .ExpectReply<ResponseMessage>((m, replyOptions) =>
-                    replyOptions.GetHeaders()["MyHeaderKey"] == "myHeaderValue")
-                .OnMessage<RequestMessage>(m => m.String = "hello");
+                .ExpectReply<ResponseMessage>(
+                    check: (message, replyOptions) =>
+                    {
+                        var headers = replyOptions.GetHeaders();
+                        return headers["MyHeaderKey"] == "myHeaderValue";
+                    })
+                .OnMessage<RequestMessage>(
+                    initializeMessage: message =>
+                    {
+                        message.String = "hello";
+                    });
         }
     }
 

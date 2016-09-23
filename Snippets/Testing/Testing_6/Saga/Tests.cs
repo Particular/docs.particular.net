@@ -9,19 +9,29 @@
     public class Tests
     {
         #region TestingSaga
+
         [Test]
         public void TestSaga()
         {
             Test.Saga<MySaga>()
-                    .ExpectReplyToOriginator<MyResponse>()
-                    .ExpectTimeoutToBeSetIn<StartsSaga>((state, span) => span == TimeSpan.FromDays(7))
-                    .ExpectPublish<MyEvent>()
-                    .ExpectSend<MyCommand>()
-                .When((s, context) => s.Handle(new StartsSaga(), context))
+                .ExpectReplyToOriginator<MyResponse>()
+                .ExpectTimeoutToBeSetIn<StartsSaga>(
+                    check: (state, span) =>
+                    {
+                        return span == TimeSpan.FromDays(7);
+                    })
+                .ExpectPublish<MyEvent>()
+                .ExpectSend<MyCommand>()
+                .When(
+                    sagaIsInvoked: (saga, context) =>
+                    {
+                        return saga.Handle(new StartsSaga(), context);
+                    })
                 .WhenSagaTimesOut()
-                    .ExpectPublish<MyOtherEvent>()
-                    .AssertSagaCompletionIs(true);
+                .ExpectPublish<MyOtherEvent>()
+                .AssertSagaCompletionIs(true);
         }
+
         #endregion
     }
 }
