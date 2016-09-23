@@ -67,7 +67,7 @@ class Program
 
                 Console.WriteLine("Waiting for completion...");
                 // by awaiting the sends as one unit, this code allows the ASB SDK's client side batching to kick in and bundle sends
-                // this results in less latency overhead per individual send and thus higher performance
+                // this results in less latency overhead per individual sends and thus higher performance
                 await Task.WhenAll(tasks);
                 #endregion
 
