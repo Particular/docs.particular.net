@@ -8,9 +8,7 @@ tags:
 reviewed: 2016-09-22
 ---
 
-This article describes the relationship between the NServiceBus retry behavior and the Azure Service Bus native retry behavior.
-
-NServiceBus supports Immediate Retries and Delayed Retries at the endpoint instance level as described in the [recoverability](/nservicebus/recoverability/) article.
+This article describes the relationship between [recoverability behavior](/nservicebus/recoverability/) and the Azure Service Bus native retry behavior.
 
 Azure Service Bus supports a `MaxDeliveryCount` at the entity level, which defines how many times Azure Service Bus attempts to deliver a message before sending it to the dead letter queue. Refer to [the full configuration API](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-queues) article to learn how to adjust this setting.
 
@@ -21,7 +19,7 @@ To implement Immediate Retries, NServiceBus is using Azure Service Bus native `M
 
 A scaled out endpoint will retry the message by any of its instances, before one of them decides to send the message to the delayed retries or the error queue. So in effect, the number of immediate retries attempts will never exceed the defined number of immediate retries for an endpoint.
 
-In Azure Service Bus Versions 6 and below the default value for `MaxDeliveryCount` is 6. In Azure Service Bus Versions 7 and higher it has been changed to be equal to a number of immediate retries for an endpoint plus one. For system queues, such as audit and error queues, the default was changed to 10. Should endpoint disable immediate retries, immediate retries will be set to 10.
+Versions 6 and below the default value for `MaxDeliveryCount` is 6. Versions 7 and higher it has been changed to be equal to a number of immediate retries for an endpoint plus one. For system queues, such as audit and error queues, the default was changed to 10. Should endpoint disable immediate retries, immediate retries will be set to 10.
 
 
 ### Keeping MaxDeliveryCount in sync with immediate retries
