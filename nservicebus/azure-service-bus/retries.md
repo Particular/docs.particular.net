@@ -15,7 +15,7 @@ Azure Service Bus supports a `MaxDeliveryCount` at the entity level, which defin
 
 ## Immediate Retries and MaxDeliveryCount
 
-To implement Immediate Retries, NServiceBus is using Azure Service Bus native `MaxDeliveryCount` property of the `BrokeredMessage` to track the processing attempts by the endpoint instances for a specific message. If the number of attempts exceeds the `MaxRetries` setting, then the message will be forwarded to the delayed retries if configured, and eventually to at the error queue in case error persists.
+To implement Immediate Retries, the native Azure Service Bus `MaxDeliveryCount` property of the `BrokeredMessage` is used to track the processing attempts by the endpoint instances for a specific message. If the number of attempts exceeds the `MaxRetries` setting, then the message will be forwarded to the delayed retries if configured, and eventually to at the error queue in case error persists.
 
 A scaled out endpoint will retry the message by any of its instances, before one of them decides to send the message to the delayed retries or the error queue. So in effect, the number of immediate retries attempts will never exceed the defined number of immediate retries for an endpoint.
 
