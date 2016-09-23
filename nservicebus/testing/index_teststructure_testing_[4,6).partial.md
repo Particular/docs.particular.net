@@ -1,5 +1,5 @@
 
-The tests have to follow a well-defined structure, otherwise a subtle issues might arise at runtime. The recommended approach is to illustrated in the code snippets in this article.
+The tests have to follow a well-defined structure, otherwise a subtle issues might arise at runtime. The recommended structure is presented in the code snippets in this article.
 
 Before executing any test method, it is necessary to call the `Test.Initialize()` method (or any of its overloads).
 
