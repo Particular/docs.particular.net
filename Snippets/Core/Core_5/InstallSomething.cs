@@ -10,7 +10,7 @@
     {
         public void Install(string identity, Configure config)
         {
-            // My code to install something
+            // Code to install something
         }
     }
 

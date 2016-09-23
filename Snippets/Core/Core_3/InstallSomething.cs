@@ -10,7 +10,7 @@
     {
         public void Install(WindowsIdentity identity)
         {
-            // My code to install something
+            // Code to install something
         }
     }
 

@@ -9,7 +9,7 @@
     {
         public void Install(string identity)
         {
-            // My code to install something
+            // Code to install something
         }
     }
 

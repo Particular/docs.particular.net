@@ -10,7 +10,7 @@
     {
         public Task Install(string identity)
         {
-            // My code to install something
+            // Code to install something
 
             return Task.FromResult(0);
         }
