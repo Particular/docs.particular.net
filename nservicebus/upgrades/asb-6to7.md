@@ -54,11 +54,10 @@ snippet:6to7_setting_asb_connection_string
 
 The default values of the following settings have been changed:
 
- * `BatchSize`, which had a default value of 1000, is replaced by `PrefetchCount` with a default value of 200.
- * `MaxDeliveryCount` changed from 6 to 10.
+ * `BatchSize`, which had a default value of 1000, is replaced by `PrefetchCount` with a default value of 200. 
+ * `MaxDeliveryCount` is set to number of immediate retries + 1. For system queues the value has changed from 6 to 10.
 
-For more details refer to the [ASB Batching](/nservicebus/azure-service-bus/batching.md) and [ASB Retry behavior](/nservicebus/azure-service-bus/retries.md) articles.
-
+For more details refer to the [ASB Batching](/nservicebus/azure-service-bus/batching.md) and [ASB Retry behavior](/nservicebus/azure-service-bus/retries.md) articles. 
 
 ### Setting Entity Property Values
 

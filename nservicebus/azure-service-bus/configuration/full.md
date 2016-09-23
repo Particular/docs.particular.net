@@ -56,7 +56,7 @@ The topology will create entities it needs, based on the following settings:
 The following settings are available to define how queues should be created:
 
  * `MaxSizeInMegabytes(SizeInMegabytes)`: The size of the queue, in megabytes. Defaults to 1,024 MB.
- * `MaxDeliveryCount(int)`: Sets the maximum delivery count, defaults to 10.
+ * `MaxDeliveryCount(int)`: Sets the maximum delivery count, defaults to the number of Immediate Retries + 1. For endpoints with no retries and system queues defaults to 10.
  * `LockDuration(TimeSpan)`: The period of time that Azure Service Bus will lock a message before trying to redeliver it, defaults to 30 seconds.
  * `ForwardDeadLetteredMessagesTo(string)`: Forward all dead lettered messages to the specified entity. This setting is off by default.
  * `ForwardDeadLetteredMessagesTo(Func<string, bool>, string)`: Forward all dead lettered messages to the specified entity if the given condition equals to `true` (e.g. it allows to exclude forwarding dead lettered messages on the error queue). This setting is off by default.
@@ -102,7 +102,7 @@ The following settings are available to define how subscriptions should be creat
  * `ForwardDeadLetteredMessagesTo(string)`: Forwards all dead lettered messages to the specified entity. This setting is off by default.
  * `ForwardDeadLetteredMessagesTo(Func<string, bool>, string)`: Forwards all dead lettered messages to the specified entity if the given condition is `true`. This setting is off by default.
  * `LockDuration(TimeSpan)`: The period of time that Azure Service Bus will lock a message before trying to redeliver it, defaults to 30 seconds.
- * `MaxDeliveryCount(int)`: Sets the maximum delivery count, defaults to 10.
+ * `MaxDeliveryCount(int)`: Sets the maximum delivery count, defaults to the number of Immediate Retries + 1. For endpoints with no retries and system queues defaults to 10.  
  * `AutoDeleteOnIdle(TimeSpan)`: Automatically deletes the subscription if it hasn't been used for the specified time period. By default the subscription will not be automatically deleted.
  * `DescriptionFactory(Func<string, string, ReadOnlySettings, SubscriptionDescription>)`: A factory method that allows to create a `SubscriptionDescription` object from the Azure Service Bus SDK. Use this factory method to override any (future) setting that is not supported by the Subscription API.
 
