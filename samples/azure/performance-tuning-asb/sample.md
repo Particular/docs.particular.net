@@ -11,7 +11,9 @@ related:
 
 ## Prerequisites
 
-include: asb-connectionstring environment variables named `AzureServiceBus.ConnectionString1` and `AzureServiceBus.ConnectionString2` with a different connection string to an Azure Service Bus namespace each.
+include: asb-connectionstring 
+
+Environment variables named `AzureServiceBus.ConnectionString1` and `AzureServiceBus.ConnectionString2` with a different connection string to an Azure Service Bus namespace each.
 
 include: asb-transport
 
