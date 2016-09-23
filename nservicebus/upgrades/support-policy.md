@@ -13,7 +13,7 @@ Supported versions include any major version released within the last 3 years. W
 
 WARNING: If a version is not listed or has expired, but support is required contact [Particular support](http://particular.net/support). 
 
-Particular guarantees patching all supported versions with critical bug fixes, even if the specific issue issue was raised only for one version. In case the bug also impacts non supported version, the recommended approach is to upgrade to the supported version which contains the fix.
+Particular will apply critical bug fixes to all supported versions. If the bug also impacts a non supported version, the recommended approach is to upgrade to a supported version which contains the fix.
 
 For more information refer to [the release policy](/nservicebus/upgrades/release-policy.md).
 
@@ -37,7 +37,7 @@ As of 10 October 2015, Version 3 is no longer supported.
 
 ## Compatibility guarantees
 
-All new features are backwards compatible by default. In the rare cases when it's not true, enabling the new features requires an explicit opt-in. 
+All new features are backwards compatible by default. In the rare cases when it's not true, enabling the new feature requires an explicit opt-in. 
 
 
 ## Upgrading
