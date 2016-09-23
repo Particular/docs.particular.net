@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.ServiceBus;
 using NServiceBus;
 
 class Program
@@ -26,7 +27,9 @@ class Program
         transport.UseTopology<ForwardingTopology>();
         transport.ConnectionString(connectionString);
 
-        transport.Routing().RouteToEndpoint(typeof(SomeMessage), "Samples.ASB.Performance.Receiver");
+        var receiverName = "Samples.ASB.Performance.Receiver";
+        await EnsureReceiverQueueExists(receiverName, connectionString).ConfigureAwait(false);
+        transport.Routing().RouteToEndpoint(typeof(SomeMessage), receiverName);
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -80,4 +83,14 @@ class Program
                 .ConfigureAwait(false);
         }
     }
+
+    static async Task EnsureReceiverQueueExists(string receiverPath, string connectionString)
+    {
+        var namespaceManager = NamespaceManager.CreateFromConnectionString(connectionString);
+        if (!await namespaceManager.QueueExistsAsync(receiverPath).ConfigureAwait(false))
+        {
+            await namespaceManager.CreateQueueAsync(receiverPath);
+        }
+    }
+
 }
