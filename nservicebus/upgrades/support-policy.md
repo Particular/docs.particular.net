@@ -11,9 +11,9 @@ related:
 
 Supported versions include any major version released within the last 3 years. Within a supported major version, the latest minor version is supported, or any minor version released within the last year.
 
-If a version is not listed or has expired but support is required [contact Particular](https://particular.net/contactus). For more information on the relationship between releases and support see [the release policy](/nservicebus/upgrades/release-policy.md).
+If a version is not listed or has expired but support is required [contact support](https://particular.net/contactus). For more information on the relationship between releases and support see [the release policy](/nservicebus/upgrades/release-policy.md).
 
-WARNING: If support is required for **any version** [contact Particular](https://particular.net/contactus).
+WARNING: If support is required for **any version** [contact support](https://particular.net/contactus).
 
 
 ### NServiceBus 5.x
