@@ -14,7 +14,8 @@
         public void RunWithDependencyInjection()
         {
             var mockService = new MyService();
-            var handler = Test.Handler(new WithDependencyInjectionHandler(mockService));
+            var injectionHandler = new WithDependencyInjectionHandler(mockService);
+            var handler = Test.Handler(injectionHandler);
             // Rest of test
         }
     }
