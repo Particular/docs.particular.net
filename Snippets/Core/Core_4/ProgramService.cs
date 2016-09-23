@@ -38,7 +38,11 @@
             configure.DefineEndpointName("EndpointName");
             bus = configure.UnicastBus()
                 .CreateBus()
-                .Start(() => configure.ForInstallationOn<Windows>().Install());
+                .Start(
+                    startupAction: () =>
+                    {
+                        configure.ForInstallationOn<Windows>().Install();
+                    });
         }
 
         protected override void OnStop()

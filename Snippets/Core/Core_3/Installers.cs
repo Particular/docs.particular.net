@@ -11,7 +11,11 @@
 
             var configUnicastBus = configure.UnicastBus();
             var startableBus = configUnicastBus.CreateBus();
-            startableBus.Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+            startableBus.Start(
+                startupAction: () =>
+                {
+                    configure.ForInstallationOn<Windows>().Install();
+                });
 
             #endregion
         }

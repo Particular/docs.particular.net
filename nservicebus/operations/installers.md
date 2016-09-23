@@ -9,7 +9,7 @@ redirects:
  - nservicebus/nservicebus-installers
 ---
 
-NServiceBus has the concept of installers to make sure that endpoint specific artifacts e.g., queues, directories, or databases are installed and configured automatically, if needed, at install time.
+NServiceBus has the concept of installers to make sure that endpoint specific artifacts e.g. queues, directories, or databases are installed and configured automatically, if needed, at install time.
 
 To create a custom installer is as easy as implementing the `INeedToInstallSomething` interface.
 
