@@ -1,7 +1,8 @@
 ---
 title: Testing NServiceBus
 summary: Develop service layers and long-running processes using test-driven development.
-reviewed: 2016-03-31
+reviewed: 2016-09-22
+component: Testing
 redirects:
  - nservicebus/unit-testing
  - nservicebus/testing/unit-testing
@@ -9,68 +10,43 @@ related:
  - samples/unit-testing
 ---
 
-Developing enterprise-scale distributed systems is hard and testing them is just as challenging a task. The architectural approach supported by NServiceBus makes these challenges more manageable. The testing facilities provided make unit testing endpoints and workflows easy, allowing developing service layers and long-running processes using Test-Driven Development.
+
+Testing enterprise-scale distributed systems is a challenge. A dedicated NuGet package, `NServiceBus.Testing`, is provided with tools that allow unit testing endpoint handlers and sagas.
+
+The testing package can be used with any .NET unit testing framework, such as [NUnit](http://www.nunit.org/), [xUnit.net](https://xunit.github.io/) or [MSTest](https://msdn.microsoft.com/en-us/library/ms243147.aspx).
 
 
-## Getting started
-
-NServiceBus ships with a stand alone testing helper NuGet package that makes testing a lot simpler.
-
-To install this package:
-
-```ps
-Install-Package NServiceBus.Testing
-```
-
-Once the package is installed, create a new test using any of the testing frameworks, such as NUnit, xUnit.net or MSBuild.
-
-In Versions 5 and below, `Test.Initialize()` (or any of its overloads) must be called before executing any test method.
-
-To limit the assemblies and types scanned by the test framework it is possible to use the `Initialize()` overload that accepts a delegate to customize the `ConfigurationBuilder`. The list of assemblies scanned must include `NServiceBus.Testing.dll`
-
-snippet: TestInitializeAssemblies
+## Structure
 
 
-## Test structure
-
-The NServiceBus testing framework in all versions offers a fluent API for defining tests as shown in the snippets below.
-
-Note that tests written using fluent API follow a specific structure, that is they specify expectations before invoking the tested behavior. Violating this order might in some cases lead to subtle issues when executing tests. The recommended approach is to follow the order presented in code snippets.
-
-In NServiceBus Version 6 and above it's also possible to write tests without using fluent API, in the traditional `Arrange-Act-Assert (AAA)` fashion. For more details refer to the [Unit Testing NServiceBus 6](/samples/unit-testing/) sample.
+partial:teststructure
 
 
-## Testing the service layer
+## Handlers
 
-The service layer in an NServiceBus application is made from message handlers. Each class typically handles one specific type of message. Testing these classes usually focuses on their externally visible behavior: the types of messages they send or reply with. This is as simple to test as could be expected:
+Testing handlers focuses on their externally visible behavior - the types of messages they send or reply with.
 
 snippet: TestingServiceLayer
 
-This test says that when a message of the type `RequestMessage` is processed by `MyHandler`, it responds with a message of the type `ResponseMessage`. Also, the test checks that if the request message's String property value is "hello" then that should be the value of the String property of the response message.
+The test verifies that when a message of the type `RequestMessage` is processed by `MyHandler`, it responds with a message of the type `ResponseMessage`. Also, the test checks that if the request message's String property value is "hello" then that should be the value of the String property of the response message.
 
 
-## Testing a Saga
+## Sagas
+
+Testing sagas focuses on their externally visible behavior - the types of messages they send or reply with, but it's also possible to verify that saga requested a timeout or was completed.
 
 snippet:TestingSaga
 
+The test verifies that when a message of the type `StartsSaga` is processed by `MySaga`, the saga replies to the sender with the `MyResponse` message, publishes `MyEvent`, sends `MyCommand` and requests a timeout for message `StartsSaga`. Also it checks if the saga publishes `MyOtherEvent` and is completed, after the timeout expires.
 
-## Configuring unobtrusive message conventions
+Note that the expectation for `MyOtherEvent` is set only after the message is sent.
 
-In Versions 5 and below, if [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md) is used, it must be configured with those conventions as shown below.
-
-snippet:SetupConventionsForUnitTests
-
-Note: In Versions 6 and above, unobtrusive message conventions are no longer required to use the NServiceBus Testing Framework.
+partial:interfacemessages
 
 
-### Testing interface messages
+## Header manipulation
 
-To support testing of interface messages Version 5 introduces a `.WhenHandling<T>()` method where T is the interface type.
-
-
-## Testing header manipulation
-
-It is the responsibility of the message handlers in the service layer to use data from headers found in the request to make decisions, and to set headers for the response messages. This is how such functionality can be tested:
+Message handlers retrieve information from the incoming message headers and set headers for the outgoing messages, for example NServiceBus uses that set correlation Id or address for reply. Headers can be also used for passing [custom information](/nservicebus/messaging/header-manipulation.md).
 
 snippet:TestingHeaderManipulation
 
@@ -79,13 +55,12 @@ This test asserts that the value of the outgoing header has been set.
 
 ## Injecting additional dependencies into the service layer
 
-Many of the message handling classes in the service layer make use of other objects to perform their work. When testing these classes, replace those objects with "stubs" so that the class under test is isolated. Here's how:
+Many of the message handling classes in the service layer make use of other objects to perform their work. When testing these classes, replace those objects with "stubs" so that the class under test is isolated.
 
 snippet:TestingAdditionalDependencies
 
 
-## Constructor injected bus
+partial:nsbinjection
 
-NOTE: In Versions 6 and higher, the `IBus` interface was deprecated and removed, and replaced with the contextual `IMessageHandlerContext` parameter on the `IHandleMessages<T>.Handle()` methods.
 
-snippet: ConstructorInjectedBus
+partial: init

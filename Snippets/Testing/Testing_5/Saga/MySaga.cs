@@ -18,7 +18,7 @@ namespace Testing_5.Saga
 
         public void Timeout(StartsSaga state)
         {
-            Bus.Publish<MyEvent>();
+            Bus.Publish<MyOtherEvent>();
             MarkAsComplete();
         }
 

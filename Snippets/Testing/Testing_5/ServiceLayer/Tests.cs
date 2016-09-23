@@ -5,7 +5,9 @@
     using NUnit.Framework;
 
     [Explicit]
+
     #region TestingServiceLayer
+
     [TestFixture]
     public class Tests
     {
@@ -15,8 +17,16 @@
             Test.Initialize();
 
             Test.Handler<MyHandler>()
-                .ExpectReply<ResponseMessage>(m => m.String == "hello")
-                .OnMessage<RequestMessage>(m => m.String = "hello");
+                .ExpectReply<ResponseMessage>(
+                    check: message =>
+                    {
+                        return message.String == "hello";
+                    })
+                .OnMessage<RequestMessage>(
+                    initializeMessage: message =>
+                    {
+                        message.String = "hello";
+                    });
         }
     }
 

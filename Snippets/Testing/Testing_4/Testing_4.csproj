@@ -49,6 +49,7 @@
     <Compile Include="HeaderManipulation\ResponseMessage.cs" />
     <Compile Include="HeaderManipulation\Tests.cs" />
     <Compile Include="Saga\MyCommand.cs" />
+    <Compile Include="Saga\MyOtherEvent.cs" />
     <Compile Include="Saga\MyEvent.cs" />
     <Compile Include="Saga\MyResponse.cs" />
     <Compile Include="Saga\MySagaData.cs" />

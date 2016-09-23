@@ -19,7 +19,7 @@ namespace Testing_6.Saga
 
         public async Task Timeout(StartsSaga state, IMessageHandlerContext context)
         {
-            await context.Publish<MyEvent>();
+            await context.Publish<MyOtherEvent>();
 
             MarkAsComplete();
         }

@@ -5,8 +5,6 @@
     using NServiceBus.Testing;
     using NUnit.Framework;
 
-    // ReSharper disable SuggestVarOrType_Elsewhere
-
     [Explicit]
     #region TestingAdditionalDependencies
     [TestFixture]

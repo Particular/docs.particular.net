@@ -5,7 +5,9 @@
     using NUnit.Framework;
 
     [Explicit]
+
     #region TestingAdditionalDependencies
+
     [TestFixture]
     public class Tests
     {
@@ -15,7 +17,11 @@
             Test.Initialize();
 
             var mockService = new MyService();
-            Test.Handler(bus => new WithDependencyInjectionHandler(mockService));
+            Test.Handler(
+                handlerCreationCallback: bus =>
+                {
+                    return new WithDependencyInjectionHandler(mockService);
+                });
             // Rest of test
         }
     }
@@ -38,7 +44,9 @@
     #endregion
 
     [Explicit]
+
     #region ConstructorInjectedBus
+
     [TestFixture]
     public class Tests2
     {
@@ -48,7 +56,11 @@
             Test.Initialize();
 
             var mockService = new MyService();
-            Test.Handler(bus => new WithConstructorInjectedBusHandler(bus));
+            Test.Handler(
+                handlerCreationCallback: bus =>
+                {
+                    return new WithConstructorInjectedBusHandler(bus);
+                });
             // Rest of test
         }
     }
@@ -62,6 +74,7 @@
         {
             this.bus = bus;
         }
+
         public void Handle(MyMessage message)
         {
         }
