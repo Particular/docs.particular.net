@@ -5,7 +5,7 @@ tags:
 - Cloud
 - Azure
 - Transport
-reviewed: 2016-09-21
+reviewed: 2016-09-22
 ---
 
 This article describes the relationship between the NServiceBus retry behavior and the Azure Service Bus native retry behavior.

@@ -8,7 +8,7 @@ tags:
 - Cloud
 redirects:
 - nservicebus/azure-service-bus/configuration/configuration
-reviewed: 2016-08-29
+reviewed: 2016-09-22
 ---
 
 
