@@ -10,7 +10,7 @@ reviewed: 2016-09-22
 
 This article describes the relationship between the NServiceBus retry behavior and the Azure Service Bus native retry behavior.
 
-NServiceBus supports Immediate Retries (formerly known as First Level Retries) and Delayed Retries (previously known as Second Level) at the endpoint instance level as described in the [recoverability](/nservicebus/recoverability/) article.
+NServiceBus supports Immediate Retries and Delayed Retries at the endpoint instance level as described in the [recoverability](/nservicebus/recoverability/) article.
 
 Azure Service Bus supports a `MaxDeliveryCount` at the entity level, which defines how many times Azure Service Bus attempts to deliver a message before sending it to the dead letter queue. Refer to [the full configuration API](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-queues) article to learn how to adjust this setting.
 
