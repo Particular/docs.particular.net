@@ -37,7 +37,7 @@ As of 10 October 2015, Version 3 is no longer supported.
 
 ## Compatibility guarantees
 
-All new features are backwards compatible by default. In the rare cases when it's not true, enabling the new feature requires an explicit opt-in. 
+All new features are backwards compatible by default. In the rare cases when this is not possible, the new feature would be disabled by default and require an explicit opt-in to be enabled. These types of features are covered in the [Upgrade Guide](/nservicebus/upgrades/) for the new target version.
 
 
 ## Upgrading
