@@ -6,149 +6,94 @@ tags:
 - Installation
 ---
 
-### Silent Installation Options
+### Silent Installation
 
-Note: This documentation covers silent installation instructions for ServiceControl Version 1.7 or greater.
+Note: This documentation covers silent installation instructions for ServiceControl Version 2.0 or greater.
 
-The command line examples referred to the ServiceControl installation exe as `<install.exe>`.   Replace this with the specific exe name for the version being deployed.  (e.g. Particular.ServiceControl-1.22.0.exe) 
+The command line examples referred to the ServiceControl installation exe as `<install.exe>`.   Replace this with the specific exe name for the version being deployed.  e.g. `Particular.ServiceControl-2.0.0.exe 
 
 
-The following command line will silently install the ServiceControl Management utility only.
+The following command line will silently install the ServiceControl Management Utility and the ServiceControl Management PowerShell Module.
 
-```dos
+```os
  <install.exe> /quiet
 ```
 
-Instances of the ServiceControl service can be deleted, added or upgraded via the Utility.
+#### Logging the output of the Silent Installation
 
+The installation executable uses standard MSI command line switches to specify logging.  The following example shows the command line  switches to turn on verbose logging. For more information on the available command line switches refer to the [Advanced Installer documentation]( http://www.advancedinstaller.com/user-guide/exe-setup-file.html ) 
 
-#### Silently Add ServiceControl during installation
-
-The following command line will silently install the ServiceControl Management and a ServiceControl instance.
-
-```bat
- <install.exe> /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml
+```os
+<install.exe> /quiet /LV* install.log 
 ```
 
-For details on how to make the `unattendedfile.xml` file refer to ServiceControl Management [PowerShell](installation-powershell.md) documentation. The installed instance will use `localsystem` as the service account. To specify an alternative service account use the `SERVICEACCOUNT` and `PASSWORD` command line switches.
+#### Install the license file as part of the Silent installation
 
-```dos
-<install.exe> /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml SERVICEACCOUNT=MyServiceAccount PASSWORD=MyPassword
-```
+The installation executable can import a Particular License file into the registry as part of the installation process.  
 
-NOTE: The settings contained in an unattended installation files are version specific. The file contents will be validated when used and if a required setting is missing an error will be logged. To correct this regenerate the XML file using the `New-ServiceControlUnattendedFile` cmdlet.
-
-
-#### Silently Upgrade ServiceControl during installation
-
-If an existing service matching the name specified in the unattended XML file already exists the unattended install option is ignored. To update one or more instances of ServiceControl as part of the silent installation the command line switch `UPGRADEINSTANCES` command line argument can be used.
-
-In this example the ServiceControl Management Utility is silently installed and attempt to upgrade all the installed instances of the ServiceControl service. Either `*` or `ALL` can be used to specify all instances should be upgraded.
-
-```dos
-<install.exe> /quiet /LV* install.log UPGRADEINSTANCES=ALL
-```
-
-In this example the ServiceControl Management Utility is silently installed and attempt to upgrade just one instance called `TestServiceControl`.
-
-```dos
-<install.exe> /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl
-```
-
-To specify multiple instances use a comma separated list:
-
-```dos
- <install.exe> /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl,ProdServiceControl
-```
-
-
-#### Add the license file as part of the Silent installation
-
-In this example the ServiceControl Management Utility is silently installed and import the license file.
-
-```dos
+```os
 <install.exe> /quiet /LV* install.log LICENSEFILE=license.xml
 ```
 
+License installation can also be done post installation by using the ServiceControl Management Utility or via the
+PowerShell
 
-#### Specifying ForwardErrorMessages during Upgrade
+NOTE: Running the installation updates the ServiceControl Powershell module. When scripting an upgrade do not import the PowerShell module prior to running the installation as it will terminate the script.   
 
-Version 1.11.1 and below automatically forwarded all messages read from the Error queue to a secondary queue known as the Error Forwarding Queue. From Version 1.12.0 the MSI command line parameter `FORWARDERRORMESSAGES` was introduced to set to allow this behavior to be enabled or disabled as part of the upgrade of an instance.
+#### Setting up a ServiceControl Control Service
 
-When upgrading instances running on Version 1.11.1 and below the `FORWARDERRORMESSAGES` parameter is mandatory. Valid options are `TRUE` and `FALSE`.
+To silently install an instance of the ServiceControl Service use the ServiceControl Management PowerShell after the Installation exe has completed use the `New-ServiceControlInstance` cmdlet.  The cmdlet has a large number of parameters so to make it easier to display the following example uses PowerShell feature called [splatting](https://blogs.technet.microsoft.com/heyscriptingguy/2010/10/18/use-splatting-to-simplify-your-powershell-scripts/)  which allows cmdlet parameters as a hash table
 
-The Error Forwarding Queue queue exists to allow external tools to receive error messages. If there is no process reading messages from the Error Forwarding Queue this setting should be `FALSE`.
+snippet: unattendedInstall
 
-```dos
-<install.exe> /quiet /LV* install.log UPGRADEINSTANCES=ALL FORWARDERRORMESSAGES=FALSE
-```
+#### Updating a ServiceControl Instance
 
+Installing a newer version of the installation executable updates the ServiceControl Management utility and PowerShell but it does not automatically update any instances of the ServiceControl service.  
 
-#### Specifying AuditRetentionPeriod and ErrorRetentionPeriod during Upgrade
+The `Invoke-ServiceControlUpgrade` cmdlet is used to script an upgrade of the instance
 
-Version 1.13 introduced two new mandatory application configuration settings to control the expiry of database content. These setting can be set by using two new MSI switches when upgrading. Both of these value should be expressed as `TimeSpan` values
+This cmdlet does the following:
 
-e.g `20.0:0:0` is 20 days
+* Updates the binaries to the last version
+* Updates the configuration file to include any new settings introduced
+* Optionally completes a backup of the RavenDB prior to upgrade (recommended)
+* Creates any needed queues or folders that do not currently exist
+* Restarts the service if it was already running
 
-NOTE: If the current configuration already has values for `ServiceControl/AuditRetentionPeriod` or `ServiceControl/ErrorRetentionPeriod` the command line values will  overwrite the configuration
+##### Updating with default settings
 
+The `Invoke-ServiceControlUpgrade` cmdlet has two parameter sets .  The first set is intended to make upgrading simple. It will add any new required configuration settings to the configuration file using default values. 
 
-##### AuditRetentionPeriod
+snippet: upgradeWithDefaults
 
-If the configuration does not contain the `ServiceControl/AuditRetentionPeriod` or `ServiceControl/HoursToKeepMessagesBeforeExpiring`setting the value for the audit retention period should be included as a command line value. If the configuration does contains an entry for  `ServiceControl/HoursToKeepMessagesBeforeExpiring` then that value will be migrated to `ServiceControl/AuditRetentionPeriod` and no command line option is required. The valid range for this property is documented in [configuration settings](creating-config-file.md).
+##### Updating and specifying settings 
 
-```dos
-<install.exe> /quiet /LV* install.log UPGRADEINSTANCES=ALL AUDITRETENTION=30.0:0:0
-```
+The second parameter set allows the values of the new required settings to be configured.  The sample below shows the upgrade parameters required to update ServiceControl version 1.0 to ServiceControl  version 2.0.  Any parameters provided overwrite existing configuration settings if they exist.   
 
-NOTE: This value has a large impact on database size. Monitor the size of the ServiceControl database is recommended to ensure that this value is adequate.
+snippet: upgradeWithSpecificValues
 
+##### Backup the database prior to upgrade
 
-##### ErrorRetentionPeriod
+To enable the backup of the embedded RavenDB as part of the upgrade add a `BackupPath` parameter to the options passed to `Invoke-ServiceControlUpgrade` as shown below.  This option is common to both parameters sets.
 
-If the configuration does not contain the `ServiceControl/ErrorRetentionPeriod` then the command line option is required. The valid range for this property is documented in [configuration settings](creating-config-file.md).
+snippet: backupAndUpgrade 
 
-```dos
-<install.exe> /quiet /LV* install.log UPGRADEINSTANCES=ALL ERRORRETENTION=30.0:0:0
-```
+In order for the backup to succeed the following must be true.  The target directory path passed to the `BackupPath` parameter:
 
-NOTE: This value has a large impact on database size. Monitor the size of the ServiceControl database is recommended to ensure that this value is adequate.
+* must be a fully qualified local directory path
+* may already exist but must be empty  
+* must be writable by the service account user
+* can not be a root drive letter only (e.g. `c:`)
 
+To carry out the backup the service will be started in maintenance mode and a RavenDB backup request issued.  Once the backup is completed the ServiceControl upgrade is carried out if the backup was successful.
 
-#### Combining command line options
+#### Setting configuration entries not covered in the unattended install or upgrade
 
-It is valid to combine the `LICENSEFILE`, `UNATTENDEDFILE`,  `SERVICEACCOUNT` and `PASSWORD` options on the same command line. The `SERVICEACCOUNT` and `PASSWORD` only apply to a new instance, these values are not used on upgrades.
+Note:  It is possible to suppress the automatic restart of a service after upgrade.  This is done by including the `SuppressRestart` parameter in the arguments passed to `Invoke-ServiceControlUpgrade`.
 
-The command line `UPGRADEINSTANCES` can be combined with `FORWARDERRORMESSAGES`, `AUDITRETENTIONPERIOD` and `ERRORRETENTIONPERIOD`.
+This example shows how to add configuration setting that are not covered by cmdlet parameters available via `New-ServiceControlInstance` or `Invoke-ServiceControlUpgrade`.  See [Configuration Settings](creating-config-file.md) for a full list of the available settings. 
 
-
-#### Command line Uninstall
-
-The following command can be used to uninstall ServiceControl Management Utility silently:
-
-```dos
-wmic product where (name like '%servicecontrol%') call uninstall
-```
-
-NOTE: This command will not remove any ServiceControl service instances that are currently deployed.
-
-
-#### Logging and Failures
-
-In each of the samples above a log file was specified on the command line. The silent install actions will log to the MSI log file specified. For Version 1.6.3 and below if an installation action failed the installation was rolled back, this resulted in failed upgrades acting like a complete uninstall of the product. For Version 1.7 and above a failure to do an unattended install action will be logged but the overall installation will not rollback, in this scenario only the ServiceControl Management Utility will have been updated. Instances can subsequently be upgrade through the ServiceControl Management Utility.
-
-
-#### PowerShell
-
-All of the actions that can be carried out as unattended installation action are also available via the [ServiceControl Management PowerShell](installation-powershell.md).
-
-
-#### Setting configuration entries not covered in the unattended file
-
-The unattended file does not cover all the settings available to customize the operation of the ServiceControl service. The following PowerShell script shows a simple way to script the modification of some of the optional configuration settings. The provided script makes use of the ServiceControl Management PowerShell module shipped with version 1.7 to find the configuration file locations.
-
-Prior to using the script, modify the `$customSettings` hash table to set the optional configuration settings desired as key/value pairs. Refer to the [configuration settings](creating-config-file.md) documentation details on how to set those settings.
-
-NOTE: The provided entries in the `$customSettings` hash table are to illustrate how to set the values and are not meant to be a recommendation on the values for these settings.
-
+ 
 snippet: customSettingsToConfig
+
+Note: Adding incorrect values to the configuration may prevent the service from starting.  If the service fails to start consult the Windows Event log and the ServiceControl log files.

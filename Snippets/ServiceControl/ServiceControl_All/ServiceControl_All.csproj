@@ -33,8 +33,12 @@
     <Content Include="MultiDb.config.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="backupAndUpgrade.ps1" />
     <None Include="customSettingsToConfig.ps1" />
     <None Include="packages.config" />
+    <None Include="unattendedInstall.ps1" />
+    <None Include="upgradeWithDefaults.ps1" />
+    <None Include="upgradeWithSpecificValues.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

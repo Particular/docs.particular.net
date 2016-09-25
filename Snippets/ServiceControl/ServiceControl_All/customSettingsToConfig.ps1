@@ -5,14 +5,15 @@
 Add-Type -AssemblyName System.Configuration
 Import-Module 'C:\Program Files (x86)\Particular Software\ServiceControl Management\ServiceControlMgmt.psd1'
 
+#Hashtable of settings to add
 $customSettings = @{
     'ServiceControl/HeartbeatGracePeriod'='00:01:30'
 }
 
-foreach ($sc in Get-ServiceControlInstances)
-{
-    $exe = Join-Path $sc.InstallPath -ChildPath 'servicecontrol.exe'
-    $configManager = [System.Configuration.ConfigurationManager]::OpenExeConfiguration($exe)
+$sc = Get-ServiceControlInstances | ? Name -eq "Particular.ServiceControl"
+$sc | % {
+
+    $configManager = [System.Configuration.ConfigurationManager]::OpenExeConfiguration((Join-Path $sc.InstallPath, "ServiceControl.exe"))
     $appSettings = $configManager.AppSettings.Settings
     foreach ($key in $customSettings.Keys)
     {
@@ -20,6 +21,7 @@ foreach ($sc in Get-ServiceControlInstances)
         $appSettings.Add((New-Object System.Configuration.KeyValueConfigurationElement($key, $customSettings[$key])))
     }
     $configManager.Save()
-    Restart-Service $sc.Name
 }
+$sc | Restart-Service
+
 # endcode
