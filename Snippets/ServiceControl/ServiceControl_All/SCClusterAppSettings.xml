@@ -3,7 +3,13 @@
 <configuration>
   <appSettings>
     <add key="ServiceControl/DbPath" 
-         value="drive:\SomeDir\" />
+         value="drive:\DBPathOnSharedDisk\" />
+    <add key="ServiceControl/IngestionCachePath" 
+	value="drive:\IngestionCacheOnSharedDisk\" />
+    <add key="ServiceControl/BodyStoragePath" 
+	value="drive:\BodyStorageOnSharedDisk\" />
+    <add key="ServiceControl/LogPath" 
+	value="drive:\LogsOnSharedDisk\" />
     <add key="ServiceControl/Hostname" 
          value="clusterName" />
     <add key="ServiceControl/Port" 
