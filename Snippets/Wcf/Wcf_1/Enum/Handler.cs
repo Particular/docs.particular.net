@@ -3,7 +3,6 @@ using NServiceBus;
 
 namespace Wcf1.Enum
 {
-
     #region WcfEnumCallbackResponse
 
     public class Handler :

@@ -14,7 +14,10 @@ namespace Wcf1.Cancellation
             #region WcfCancelRequest
 
             var wcfSettings = configuration.Wcf();
-            wcfSettings.CancelAfter(service => service == typeof(MyService) ? TimeSpan.FromSeconds(5) : TimeSpan.FromSeconds(60));
+            wcfSettings.CancelAfter(service =>
+                service == typeof(MyService) ?
+                    TimeSpan.FromSeconds(5) :
+                    TimeSpan.FromSeconds(60));
 
             #endregion
         }

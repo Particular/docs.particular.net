@@ -8,7 +8,7 @@ namespace Wcf1.Cancellation
     }
 
     public class Response :
-    IMessage
+        IMessage
     {
     }
 }

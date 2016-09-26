@@ -18,12 +18,18 @@ namespace Wcf1.Binding
             wcfSettings.Binding(service => {
                 if (service == typeof(MyService))
                 {
-                    return new BindingConfiguration(new NetNamedPipeBinding(), new Uri("net.pipe://localhost/MyService"));
+                    var binding = new NetNamedPipeBinding();
+                    var address = new Uri("net.pipe://localhost/MyService");
+
+                    return new BindingConfiguration(binding, address);
                 }
 
                 if (service == typeof(CancelOrderService))
                 {
-                    return new BindingConfiguration(new BasicHttpBinding(), new Uri("http://localhost:9009/services/cancelOrder"));
+                    var binding = new BasicHttpBinding();
+                    var address = new Uri("http://localhost:9009/services/cancelOrder");
+
+                    return new BindingConfiguration(binding, address);
                 }
 
                 return new BindingConfiguration(new BasicHttpBinding());

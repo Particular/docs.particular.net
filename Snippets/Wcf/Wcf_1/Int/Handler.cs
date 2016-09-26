@@ -3,7 +3,6 @@ using NServiceBus;
 
 namespace Wcf1.Int
 {
-
     #region WcfIntCallbackResponse
 
     public class Handler :

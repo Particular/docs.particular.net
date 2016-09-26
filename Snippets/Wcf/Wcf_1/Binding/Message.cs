@@ -8,7 +8,7 @@ namespace Wcf1.Binding
     }
 
     public class Response :
-    IMessage
+        IMessage
     {
     }
 }
