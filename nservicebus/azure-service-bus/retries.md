@@ -41,7 +41,9 @@ See [Message Receivers configuration](/nservicebus/azure-service-bus/configurati
 
 ## Retries and dead letter queues
 
-If a message could not be successfully processed even after retries, it will eventually end up in the error queue.. If a message is poisonous or cannot be moved to an error queue, it will be moved by the broker to a dead letter queue. Each endpoint has its own DLQ. Monitoring multiple DLQs might be challenging. One way to solve this problem is to configure the entity to forward dead letter messages to the error queue:
+If a message could not be successfully processed even after retries, it will eventually end up in the error queue. If a message is poisonous or cannot be moved to an error queue, it will be moved by the broker to the Dead Letter Queue (DLQ). 
+
+Each endpoint has its own DLQ, however monitoring multiple DLQs might be challenging. One way to solve this problem is to configure the entity to forward dead letter messages to the error queue:
 
 snippet:forward-deadletter-conditional-queue
 
