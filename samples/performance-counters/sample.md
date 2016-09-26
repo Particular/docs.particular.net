@@ -43,7 +43,7 @@ snippet:enable-counters
 
 The other counters are enabled by default.
 
-NOTE: Regardless of whether the SLA and Critical Time counters are enabled, all endpoints must be restarted after installing the counters before data will start to be collected.
+NOTE: Regardless of whether the SLA and Critical Time counters are enabled, all endpoints must be restarted after installing the counters in order to start collecting the new data.
 
 
 ## The Handler

@@ -124,7 +124,7 @@ To list the installed counters use
 Get-Counter -ListSet NServiceBus | Select-Object -ExpandProperty Counter
 ```
 
-NOTE: After installing the performance counters, all endpoints must be restarted before data will start to be collected.
+NOTE: After installing the performance counters, all endpoints must be restarted in order to start collecting the new data.
 
 ## Performance Monitor Users local security group
 
