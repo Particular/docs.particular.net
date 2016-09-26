@@ -36,7 +36,7 @@ For NServiceBus Version 4 and above adds better debugging experience in ServiceI
 
 Header key  | Value
 ------------- | -------------
-NServiceBus.ConversationId  | Valid GUID, useful to tie in the whole message flow to get an accurate view in ServiceInsight, for example in a message flow or sequence diagrams. If not provided, then the external message won't be included in the conversation it started. ConversationId will be generated though for all the following messages sent using NServiceBus.
+NServiceBus.ConversationId  | String value, used to tie in the whole message flow to get an accurate view in ServiceInsight, for example in a message flow or sequence diagrams. If not provided, then the external message won't be included in the conversation it started. ConversationId will be generated though for all the following messages sent using NServiceBus.
 NServiceBus.OriginatingEndpoint  | Name of the third party endpoint sending the message, for e.g. BizTalk.ProcessOrder
 NServiceBus.OriginatingMachine  | Server where the third party endpoint is located, for e.g. BizTalkServer
 
