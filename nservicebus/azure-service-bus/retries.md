@@ -32,7 +32,7 @@ For system queues, such as audit and error queues, if a custom value was configu
 
 ### Excessive prefetching and MaxDeliveryCount 
 
-When a message is received for processing, the transport will also [prefetch](/nservicebus/azure-service-bus/configuration/full.md#controlling-connectivity-message-receivers) additional messages. "If processing a message takes too long time, then the broker will consider that a failed processing attempt and increase `DeliveryCount` counter on the messages w/o processing attempt taking place.  
+When a message is received for processing, the transport will also [prefetch](/nservicebus/azure-service-bus/configuration/full.md#controlling-connectivity-message-receivers) additional messages. If processing a message takes too long time, then the broker will consider that a failed processing attempt and increase `DeliveryCount` counter on the messages w/o processing attempt taking place.  
 
 Endpoints with high `PrefetchCount` that take long time to process an incoming message can cause prefetched message to be sent to the `Delayed Retries` or the error queue without being retried the desired number of times. To prevent this issue, lower the `PrefetchCount`.
 
