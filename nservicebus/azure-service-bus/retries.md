@@ -24,7 +24,7 @@ In versions 6 and below, the default value for `MaxDeliveryCount` is 6. Starting
 
 ### Keeping MaxDeliveryCount in sync with immediate retries
 
-Whenever an endpoint is redeployed with a new `Immediate Retries` value, endpoint specific queues, such as endpoint`s input queue, will be updated with the new value.
+Whenever an endpoint is redeployed with a new `Immediate Retries` value, endpoint specific queues, such as endpoint's input queue, will be updated with the new value.
 
 
 For system queues, such as audit and error queues, if a custom value was configured for `MaxDeliveryCount` redeploying the endpoint will not overwrite the already configured value.
