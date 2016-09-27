@@ -42,7 +42,7 @@ TimeToBeReceived relies on underlying functionality in the transport infrastruct
 
 MSMQ continuously checks the TimeToBeReceived attribute of all queued messages. As soon as the message has expired, it is removed from the queue, and disk space reclaimed. MSMQ will however only allow a single TimeToBeReceived for all messages in a transaction. It will silently copy the TimeToBeReceived from the first message enlisted to all other messages in the transaction, leading to a potential message loss scenario.
 
-If TTBR is required than [immediate message dispatch](send-a-message#dispatching-a-message-immediately) can be used with the caveat that this message will be send even though an error occurs after sending.
+If TTBR is required than [immediate message dispatch](send-a-message.md#dispatching-a-message-immediately) can be used with the caveat that this message will be send even though an error occurs after sending.
 
 ### RabbitMQ transport
 
