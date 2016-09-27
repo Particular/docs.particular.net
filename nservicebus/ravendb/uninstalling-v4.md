@@ -14,7 +14,7 @@ As of 2014-10-15, the Platform Installer no longer installs RavenDB Version 2.0 
 ## Manual Removal Instructions
 
  1. Run "Raven.Server.exe /uninstall" to unregister the service. This doesn't remove the directory, which is by design as the data sub-directory contains any created databases. See [RunningRavendDB as a service](https://ravendb.net/docs/search/latest/csharp?searchTerm=Running-as-a%20service).
- 1. Remove the registry key "RavenPort" under "HKLM\SOFTWARE\ParticularSoftware\ServiceBus".
+ 1. Remove the registry key "RavenPort" under "HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceBus".
  1. Remove URLACL for RavenDB Port - it will correspond to the RavenPort listed above, it can also be found in the `Raven.Server.config`.
 
 
