@@ -13,7 +13,7 @@
             #region WcfRouting
 
             var wcfSettings = configuration.Wcf();
-            wcfSettings.SendOptions(service =>
+            wcfSettings.RouteWith(service =>
             {
                 if (service == typeof(MyService))
                 {
