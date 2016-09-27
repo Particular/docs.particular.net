@@ -15,6 +15,7 @@ related:
  - serviceinsight/license
 ---
 
+
 ## License details
 
 See [Particular Licensing](https://particular.net/licensing) for license specifics.
@@ -58,7 +59,7 @@ It is possible to specify the license in `app.config`:
        value="C:\NServiceBus\License\License.xml" />
 </appSettings>
 ```
- - Use the key `NServiceBus/License` to transfer the actual HTML-encoded contents of the license. For example:
+ - Use the key `NServiceBus/License` to transfer the actual XML-encoded contents of the license. For example:
 
 ```xml
 <appSettings>
