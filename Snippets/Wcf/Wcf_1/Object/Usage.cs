@@ -6,7 +6,8 @@
     {
         #region WcfObjectCallback
 
-        class MyService : WcfService<Message, ResponseMessage>
+        class MyService :
+            WcfService<Message, ResponseMessage>
         {
         }
 

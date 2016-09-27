@@ -6,7 +6,8 @@ namespace Wcf1.Enum
     {
         #region WcfEnum
 
-        class MyService : WcfService<Message, Status>
+        class MyService :
+            WcfService<Message, Status>
         {
         }
 

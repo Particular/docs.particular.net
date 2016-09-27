@@ -15,25 +15,27 @@ namespace Wcf1.Binding
             #region WcfOverrideBinding
 
             var wcfSettings = configuration.Wcf();
-            wcfSettings.Binding(service => {
-                if (service == typeof(MyService))
+            wcfSettings.Binding(
+                provider: serviceType =>
                 {
-                    var binding = new NetNamedPipeBinding();
-                    var address = new Uri("net.pipe://localhost/MyService");
+                    if (serviceType == typeof(MyService))
+                    {
+                        var binding = new NetNamedPipeBinding();
+                        var address = new Uri("net.pipe://localhost/MyService");
 
-                    return new BindingConfiguration(binding, address);
-                }
+                        return new BindingConfiguration(binding, address);
+                    }
 
-                if (service == typeof(CancelOrderService))
-                {
-                    var binding = new BasicHttpBinding();
-                    var address = new Uri("http://localhost:9009/services/cancelOrder");
+                    if (serviceType == typeof(CancelOrderService))
+                    {
+                        var binding = new BasicHttpBinding();
+                        var address = new Uri("http://localhost:9009/services/cancelOrder");
 
-                    return new BindingConfiguration(binding, address);
-                }
+                        return new BindingConfiguration(binding, address);
+                    }
 
-                return new BindingConfiguration(new BasicHttpBinding());
-            });
+                    return new BindingConfiguration(new BasicHttpBinding());
+                });
 
             #endregion
         }

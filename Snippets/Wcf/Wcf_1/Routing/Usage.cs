@@ -4,7 +4,8 @@
 
     class Usage
     {
-        class MyService : WcfService<Request, Response>
+        class MyService :
+            WcfService<Request, Response>
         {
         }
 
@@ -13,27 +14,28 @@
             #region WcfRouting
 
             var wcfSettings = configuration.Wcf();
-            wcfSettings.RouteWith(service =>
-            {
-                if (service == typeof(MyService))
+            wcfSettings.RouteWith(
+                provider: serviceType =>
                 {
-                    // route to fix remote destination
+                    if (serviceType == typeof(MyService))
+                    {
+                        // route to fix remote destination
+                        return () =>
+                        {
+                            var sendOptions = new SendOptions();
+                            sendOptions.SetDestination("SomeDestination");
+                            return sendOptions;
+                        };
+                    }
+
+                    // route to this instance
                     return () =>
                     {
                         var sendOptions = new SendOptions();
-                        sendOptions.SetDestination("SomeDestination");
+                        sendOptions.RouteToThisInstance();
                         return sendOptions;
                     };
-                }
-
-                // route to this instance
-                return () =>
-                {
-                    var sendOptions = new SendOptions();
-                    sendOptions.RouteToThisInstance();
-                    return sendOptions;
-                };
-            });
+                });
 
             #endregion
         }

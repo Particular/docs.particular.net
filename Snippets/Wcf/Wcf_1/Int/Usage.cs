@@ -6,7 +6,8 @@ namespace Wcf1.Int
     {
         #region WcfIntCallback
 
-        class MyService : WcfService<Message, int>
+        class MyService :
+            WcfService<Message, int>
         {
         }
 
