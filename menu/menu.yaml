@@ -556,6 +556,8 @@
         Title: Transactions in Azure
       - Url: nservicebus/azure-storage-persistence/performance-tuning
         Title: Performance Tuning
+      - Url: nservicebus/azure-storage-persistence/scripting
+        Title: Scripting
   - Url: nservicebus/containers
     Title: Containers
     Articles:
