@@ -32,9 +32,9 @@ partial: code
 
 ### Using the Registry
 
-NOTE: Using the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md) is the preferred and simplest method of adding the license file.
+NOTE: Using the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md) is the preferred and simplest method of adding the license file. 
 
-Using the registry to store the license information is a way that all platform tools can access this information easily. This includes NServiceBus endpoints, ServiceControl, and ServiceInsight. (ServicePulse determines licensing status by querying the ServiceControl API.) Using the registry ensures that all the platform tools can access the license status without requiring additional complexity on every deployment.
+Using the registry allows all platform tools (endpoints, [ServiceControl](/servicecontrol/license.md), and [ServiceInsight](/serviceinsight/license.md)) to access the same license. Using the registry ensures that all the platform tools can access the license status without requiring additional complexity on every deployment.
 
 partial: registry
 
@@ -43,7 +43,7 @@ partial: registry-caveats
 
 ### Using a sub-directory in the BIN directory
 
-To have NServiceBus automatically pick up the License.xml file, place it in a sub-directory named /License in the BIN directory.
+A file located at `[bin-directory]/License/License.xml` will be automatically detected.
 
 
 ### Using the app.config settings
