@@ -1,5 +1,5 @@
 ---
-title: Handling a Message
+title: Handlers
 summary: Write a class to handle messages in NServiceBus.
 component: Core
 reviewed: 2016-07-27
