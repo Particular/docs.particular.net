@@ -1,11 +1,11 @@
 ---
-title: Licensing limitations when using the Distributor
-summary: Basic licenses are limited to two worker nodes.
+title: Licensing limitations
 tags:
 - Distributor
 - Licensing
 redirects:
  - nservicebus/licensing-and-distribution
+ - nservicebus/licensing/licensing-and-distribution
 ---
 
 
