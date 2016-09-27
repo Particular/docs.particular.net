@@ -85,7 +85,7 @@ For RavenDB installation instructions review [Installing RavenDB](/nservicebus/r
 
 ### Licensing
 
-Version 5 of the PowerShell module includes a commandlet for importing a Particular Platform License. This will work for NServiceBus versions 4. To install a license for versions prior to NServiceBus Version 4.5 then an alternative method should be used. See [License Management](/nservicebus/licensing/license-management.md).
+Version 5 of the PowerShell module includes a commandlet for importing a Particular Platform License. This will work for NServiceBus versions 4. To install a license for versions prior to NServiceBus Version 4.5 then an alternative method should be used. See [License](/nservicebus/licensing/).
 
 
 ## Older versions of NServiceBus PowerShell

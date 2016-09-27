@@ -15,8 +15,8 @@
       Title: Concepts
     - Url: samples/endpoint-configuration
       Title: Endpoint configuration choices
-    - Url: nservicebus/licensing/license-management
-      Title: License Installation
+    - Url: nservicebus/licensing
+      Title: License
   - Url: nservicebus/upgrades
     Title: Upgrade Guides
     Articles:

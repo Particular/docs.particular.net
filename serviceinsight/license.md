@@ -9,7 +9,7 @@ redirects:
  - serviceinsight/how-to-install-your-license-file-serviceinsight
 related:
 - servicecontrol/license
-- nservicebus/licensing/license-management
+- nservicebus/licensing
 ---
 
 To register ServiceInsight, before or after the trial period is over, click on "Help" \> "Register" menu item. Running ServiceInsight after the trial period is expired, the following dialog will be displayed:
