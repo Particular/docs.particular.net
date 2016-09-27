@@ -104,6 +104,40 @@ For every endpoint the Distributor (including its workers) subscribes to:
 * Run the query.
 * On all listed documents, remove the entry with the Distributor's subscriber address and save it.
 
+See the following sample documents on how to remote the Distributor subscription:
+
+Before:
+
+```javascript
+{
+    "MessageType": "Shared.Events.DemoEvent, Version=1.0.0.0",
+    "Subscribers": [
+        {
+            "TransportAddress": "Samples.Subscriber@machineA",
+            "Endpoint": "Samples.Subscriber"
+        },
+        {
+            "TransportAddress": "Samples.Distributor@distributor",
+            "Endpoint": "Samples.Distributor"
+        }
+    ]
+}
+```
+
+After:
+
+```javascript
+{
+    "MessageType": "Shared.Events.DemoEvent, Version=1.0.0.0",
+    "Subscribers": [
+        {
+            "TransportAddress": "Samples.Subscriber@machineA",
+            "Endpoint": "Samples.Subscriber"
+        }
+    ]
+}
+```
+
 
 ### Removing subscriptions from [NHibernate Persistence](/nservicebus/nhibernate)
 
