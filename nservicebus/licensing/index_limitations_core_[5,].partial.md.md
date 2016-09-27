@@ -1,0 +1,1 @@
+No limitations are enforced when no license is found.

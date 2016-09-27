@@ -1,6 +1,10 @@
 ---
-title: NServiceBus Licensing
-summary: Outlines the usage, management and restrictions of the NServiceBus license.
+title: Licensing
+component: core
+reviewed: 2016-09-27
+redirects:
+ - nservicebus/licensing-limitations
+ - nservicebus/licensing/licensing-limitations
 related:
  - nservicebus/upgrades/release-policy
  - nservicebus/upgrades/support-policy
@@ -9,3 +13,8 @@ related:
 ## License details
 
 See [Particular Licensing](https://particular.net/licensing) for license specifics.
+
+
+## Throughput limitations
+
+partial: limitations
