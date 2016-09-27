@@ -68,7 +68,9 @@ function Remove-Subscriptions(
 
 Then execute the script:
 
-`Remove-Subscriptions -accountStorageName <storageAccountName> -accountStorageKey <storageAccountKey> -subscriptionTableName <subscriptionTable> -transportAddressToRemove <subscriberAddress>`
+```ps
+Remove-Subscriptions -accountStorageName <storageAccountName> -accountStorageKey <storageAccountKey> -subscriptionTableName <subscriptionTable> -transportAddressToRemove <subscriberAddress>
+```
 
 where:
 * `<storageAccountName>` is the name of the storage account containing the subscription storage.
