@@ -1,6 +1,7 @@
 - Name: NServiceBus
   Topics:
-  - Title: Getting Started
+  - Url: nservicebus
+    Title: Getting Started
     Articles:
     - Url: platform
       Title: Service Platform
@@ -266,7 +267,8 @@
         Title: Configuration Ends
       - Url: nservicebus/lifecycle/endpointstartandstop
         Title: Endpoint Instance Starts and Stops
-  - Title: Handlers and Sagas
+  - Url: nservicebus/handlers-and-sagas
+    Title: Handlers and Sagas
     Articles:
     - Url: nservicebus/handlers
       Title: Handlers
