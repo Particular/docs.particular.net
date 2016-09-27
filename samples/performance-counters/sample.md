@@ -37,11 +37,13 @@ The following will result
 
 ## Enabling Counters For The Endpoint
 
-Both the SLA and Critical time are enabled and configured in configuration code.
+Both the SLA and Critical Time counters are enabled and configured in configuration code.
 
 snippet:enable-counters
 
 The other counters are enabled by default.
+
+NOTE: Regardless of whether the SLA and Critical Time counters are enabled, all endpoints must be restarted after installing the counters in order to start collecting the new data.
 
 
 ## The Handler
