@@ -1,6 +1,7 @@
 ---
 title: NHibernate Persistence
 summary: NHibernate-based persistence for NServiceBus
+component: NHibernate
 tags:
  - NHibernate
 redirects:
@@ -24,50 +25,24 @@ Uses the [NHibernate ORM](http://nhibernate.info/) for persistence.
 
 ## Usage
 
-
-### Pull in the NuGets
-
-Install the [NServiceBus.NHibernate](https://www.nuget.org/packages/NServiceBus.NHibernate) NuGet. This has a dependency on the `NHibernate` NuGet so that will automatically be pulled in.
-
-
-### The Code
-
 The next stage is to actually tell NServiceBus how to use NHibernate for persistence
 
 snippet:ConfiguringNHibernate
 
 
-### Connection strings
+## Connection strings
 
-NHibernate persistence requires specifying a connection string.
+It is possible to pass connection string in the `app.config` file, as described in the [Using configuration convention](/nservicebus/nhibernate/#customizing-the-configuration-using-configuration-convention) section.
 
-The connection string might be passed using code configuration:
 
-snippet:ConnectionStringAPI
-
-It's also possible to pass connection string in the `app.config` file, as described in the [Using configuration convention](/nservicebus/nhibernate/#customizing-the-configuration-using-configuration-convention) section.
+partial: code-connection
 
 
 ## Customizing the configuration
 
 To customize the NHibernate `Configuration` object used to bootstrap the persistence mechanism, either provide a ready-made object via code or use convention-based XML configuration. The code-based approach overrides the configuration-based one when both are used.
 
-
-### Passing Configuration in code
-
-The following snippet tells NServiceBus to use a given `Configuration` object for all the persistence concerns
-
-snippet:CommonNHibernateConfiguration
-
-To specific configuration on a per-concern basis, use following
-
-snippet:SpecificNHibernateConfiguration
-
-NOTE: Combine both approaches to define a common configuration and override it for one specific concern.
-
-WARNING: When using per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern being enabled. The following code will set up NHibernate persistence only for `GatewayDeduplication` concern but will override the default configuration **for all the concerns**.
-
-snippet:CustomCommonNhibernateConfigurationWarning
+partial:code
 
 
 ### Using configuration convention
@@ -95,31 +70,9 @@ NOTE: Publishing is performed on stale data. This is only advised in high volume
 snippet:NHibernateSubscriptionCaching
 
 
-## Controlling schema
-
-In some cases it may be necessary to take full control over creating the SQL structure used by the NHibernate persister. In these cases the automatic creation of SQL structures on install can be disabled as follows:
+partial: schema
 
 
-**For all persistence schema updates:**
+## Generating scripts for deployment
 
-snippet:DisableSchemaUpdate
-
-
-**For Gateway schema update:**
-
-snippet:DisableGatewaySchemaUpdate
-
-
-**For Subscription schema update:**
-
-snippet:DisableSubscriptionSchemaUpdate
-
-
-**For Timeout schema update:**
-
-snippet:DisableTimeoutSchemaUpdate
-
-
-### Generating scripts for deployment
-
-To create scripts, for execution in production without using the NServiceBus installers, run an install in a lower environment and then export the SQL structure. This structure can then be migrated to production.
+To create scripts, for execution in production without using the [installers](/nservicebus/operations/installers.md), run an install in a lower environment and then export the SQL structure. This structure can then be migrated to production.
