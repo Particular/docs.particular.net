@@ -948,11 +948,11 @@ Sets the correct startup projects for every solution. This is persisted in an `.
 
 In general the quality of the git history is not important in this repository. The reason for this is that the standard usages of a clean history (blame, supporting old versions, support branches etc) do not apply to a documentation repository. As such there are several recommendations based on that:
 
- * If pushed to GitHub **do not** re-write history. Even locally it is probably no worth the effort.
+ * If pushed to GitHub **do not** re-write history. Even locally it is probably not worth the effort.
  * **Do not** force push.
  * Optionally merge commits immediately prior to merging a PR.
 
-So if following the [Git pretty glow chart](http://justinhileman.info/article/git-pretty/) you should usually end in the "It's safest to let it stay ugly" end point.
+So if following the [Git pretty flow chart](http://justinhileman.info/article/git-pretty/) you should usually end in the "It's safest to let it stay ugly" end point.
 
 
 # Additional Resources
