@@ -950,6 +950,7 @@ In general the quality of the git history is not important in this repository. T
 
  * If pushed to GitHub **do not** re-write history. Even locally it is probably no worth the effort.
  * **Do not** force push.
+ * Optionally merge commits immediately prior to merging a PR.
 
 So if following the [Git pretty glow chart](http://justinhileman.info/article/git-pretty/) you should usually end in the "It's safest to let it stay ugly" end point.
 
