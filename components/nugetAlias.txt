@@ -39,4 +39,4 @@ SqlServer: NServiceBus.SqlServer
 Testing: NServiceBus.Testing
 Unity: NServiceBus.Unity
 Wire: NServiceBus.Wire
-Wcf: NServiceBus.Host.Wcf
+Wcf: NServiceBus.Wcf
