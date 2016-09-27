@@ -76,3 +76,5 @@ If a incoming throws an exception, the message aborts, rolls back to the queue, 
 If a outgoing mutator throws an exception, the exception bubbles up to the method performing the Send or Publish.
 
 partial: nonnulltask
+
+include: mutators-versus-behaviors
