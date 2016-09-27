@@ -34,7 +34,7 @@ partial: code
 
 NOTE: Using the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md) is the preferred and simplest method of adding the license file. 
 
-Using the registry allows all platform tools (endpoints, [ServiceControl](/servicecontrol/license.md), and [ServiceInsight](/serviceinsight/license.md)) to access the same license. Using the registry ensures that all the platform tools can access the license status without requiring additional complexity on every deployment.
+Using the registry allows all platform tools (endpoints, [ServiceControl](/servicecontrol/license.md), and [ServiceInsight](/serviceinsight/license.md)) to access the same license.
 
 partial: registry
 
