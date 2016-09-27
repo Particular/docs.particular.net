@@ -43,7 +43,7 @@ partial: registry-caveats
 
 ### Using a sub-directory in the BIN directory
 
-A file located at `[bin-directory]/License/License.xml` will be automatically detected.
+A file located at `[AppDomain.CurrentDomain.BaseDirectory]/License/License.xml` will be automatically detected.
 
 
 ### Using the app.config settings
