@@ -1,12 +1,10 @@
 ---
 title: Tuning endpoint message processing
-summary: 'How to optimize message processing by limiting concurrency and/or throughput.'
+summary: Optimize message processing by configuring concurrency and/or throughput
 redirects:
-- nservicebus/how-to-reduce-throughput-of-an-endpoint
-- nservicebus/operations/reducing-throughput
-- nservicebus/operations/throughput
-related:
-- nservicebus/licensing/licensing-limitations
+ - nservicebus/how-to-reduce-throughput-of-an-endpoint
+ - nservicebus/operations/reducing-throughput
+ - nservicebus/operations/throughput
 ---
 
 NServiceBus uses defaults that ensure good performance in most common cases. While this is usually the preferred mode of operation there are situations where tuning needs to be applied.
