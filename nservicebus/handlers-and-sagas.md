@@ -13,7 +13,7 @@ There are two standards ways of executing code when a message is processed: [Han
 
 Handler instances are instantiated on a per message basis, executed and then disposed of.
 
-Saga instances are also instantiated on a per message basis, executed and then disposed of. However they differ from Handlers in that they once instantiated they are passed an instance of a "Data" class. The "Saga Data" is persistence state that is shared between a given saga type based on a key.
+Saga instances are also instantiated on a per message basis, executed and then disposed of. However they differ from Handlers in that they once instantiated they are passed an instance of a "Data" class. The "Saga Data" is persistent state that is shared between a given saga type based on a key.
 
 Other concepts that both Handlers and Sagas share
 
