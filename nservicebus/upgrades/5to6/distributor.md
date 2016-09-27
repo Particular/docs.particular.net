@@ -5,6 +5,8 @@ tags:
  - migration
 related:
  - samples/scaleout/distributor-upgrade
+redirects:
+ - nservicebus/scalability-and-ha/distributor/upgrading-the-distributor
 ---
 
 The [distributor](/nservicebus/scalability-and-ha/distributor) has been deprecated and replaced by [sender-side distribution](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md) with NServiceBus Version 6.
