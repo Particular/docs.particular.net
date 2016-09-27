@@ -33,6 +33,6 @@ NOTE: For 64 bit operating systems repeat the process in both the PowerShell pro
  * Create a new Multi-String Value (`REG_MULTI_SZ`) named `License`
  * Paste the contents of the license file.
 
-If `HKEY_LOCAL_MACHINE`is the chosen license location and the operating system is 64-bit then repeat the import process for the `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ParticularSoftware` key to support 32-bit clients.
+If `HKEY_LOCAL_MACHINE` is the chosen license location and the operating system is 64-bit then repeat the import process for the `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ParticularSoftware` key to support 32-bit clients.
 
 It is safe to ignore any warnings regarding empty strings.
