@@ -1,5 +1,6 @@
 ---
 title: Licensing
+summary: Outlines license usage, management, and restrictions
 component: core
 reviewed: 2016-09-27
 redirects:
