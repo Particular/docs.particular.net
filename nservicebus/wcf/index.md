@@ -31,7 +31,7 @@ For more details refer to the [Upgrade Guide](/nservicebus/upgrades/host-6to7.md
 
 Inherited from `NServiceBus.WcfService<TRequest, TResponse>`, as shown below. `TRequest` is the message type of the request. `TResponse` represents the result of processing the command and can be any type that is supported by the `NServiceBus.Callback` package.
 
-NOTE: In previous versions of the WCF support `TResponse` must be an enumerated type. In order to reply with enumeration types the replying endpoint needs to reference `NServiceBus.Callback` and [configure](/nservicebus/messaging/callbacks.md) it accordingly.
+NOTE: In previous versions of the WCF support `TResponse` must be an enumerated type. To reply with enumeration types, the replying endpoint needs to reference `NServiceBus.Callback` and [configure](/nservicebus/messaging/callbacks.md) it accordingly.
 
 Example:
 
@@ -81,7 +81,7 @@ partial:wcfrouting
 
 To allow clients to perform queries, it is best not to use NServiceBus. Messaging is designed for non-blocking operations, and queries are (for the most part) operations for which the user wishes to wait.
 
-If there is some other operation that isn't strictly a query that returns a value for example some type of calculation consider invoking the operation locally where possible by referencing the DLL on the client.
+If there is some other operation that isn't strictly a query that returns a value, for example, some type of calculation consider invoking the operation locally where possible by referencing the DLL on the client.
 
 
 ## Calling Web/WCF services

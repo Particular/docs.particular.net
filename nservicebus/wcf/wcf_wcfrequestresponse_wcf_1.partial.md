@@ -2,6 +2,8 @@
 
 The integer response scenario allows any integer value to be returned in a strong typed manner.
 
+NOTE: The receiving endpoint requires a reference to `NServiceBus.Callbacks`.
+
 #### Expose service
 
 snippet:WcfIntCallback
@@ -13,6 +15,8 @@ snippet:WcfIntCallbackResponse
 ### Enum
 
 The enum response scenario allows any enum value to be returned in a strong typed manner.
+
+NOTE: The receiving endpoint requires a reference to `NServiceBus.Callbacks`.
 
 #### Expose service
 
@@ -26,6 +30,7 @@ snippet:WcfEnumCallbackResponse
 
 The Object response scenario allows an object instance to be returned.
 
+NOTE: The receiving endpoint does not require a reference to `NServiceBus.Callbacks`.
 
 #### The Response message
 

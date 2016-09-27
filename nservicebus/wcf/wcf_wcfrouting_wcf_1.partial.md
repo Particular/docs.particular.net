@@ -9,6 +9,4 @@ the replying endpoint handler:
 
 snippet:WcfReplyFromAnotherEndpoint
 
-NOTE: The receiving endpoint requires a reference to `NServiceBus.Callbacks`.
-
 The delegate is invoked for each service type discovered. The delegate needs to return a function delegate which creates a `SendOption` instance everytime it is called.
