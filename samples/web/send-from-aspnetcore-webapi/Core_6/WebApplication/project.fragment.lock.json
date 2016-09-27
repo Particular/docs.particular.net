@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "exports": {
+    "Shared/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.2",
+      "compile": {
+        "bin/Debug/Shared.dll": {}
+      },
+      "runtime": {
+        "../../../../../packages/NServiceBus.6.0.0-rc0002/lib/net452/NServiceBus.Core.dll": {},
+        "bin/Debug/Shared.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/Shared.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}
