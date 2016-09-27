@@ -41,7 +41,7 @@ partial: registry
 partial: registry-caveats
 
 
-### Using a sub-directory in the BIN directory
+### Using a License sub-directory
 
 A file located at `[AppDomain.CurrentDomain.BaseDirectory]/License/License.xml` will be automatically detected.
 
