@@ -23,7 +23,7 @@ In NServiceBus Version 4 and above the WCF support has been moved to [NServiceBu
 
 In NServiceBus.Host Version 5 to 6 WCF support is built into the NuGet package.
 
-In NServiceBus.Host Version 7 and above WCF support is shipped as [NServiceBus.Wcf NuGet package](https://www.nuget.org/packages/NServiceBus.Wcf). The package has a dependency to `NServiceBus.Callback`. The endpoint hosting the WCF services as well as any endpoints which might receive the messages dispatched by the WCF services need to configure the [callbacks accordingly](/nservicebus/messaging/callbacks.md).
+In NServiceBus.Host Version 7 and above WCF support is shipped as [NServiceBus.Wcf NuGet package](https://www.nuget.org/packages/NServiceBus.Wcf). The package has a dependency to `NServiceBus.Callback`. The endpoint hosting the WCF services needs to configure the [callbacks accordingly](/nservicebus/messaging/callbacks.md). 
 
 For more details refer to the [Upgrade Guide](/nservicebus/upgrades/host-6to7.md).
 
@@ -31,7 +31,7 @@ For more details refer to the [Upgrade Guide](/nservicebus/upgrades/host-6to7.md
 
 Inherited from `NServiceBus.WcfService<TRequest, TResponse>`, as shown below. `TRequest` is the message type of the request. `TResponse` represents the result of processing the command and can be any type that is supported by the `NServiceBus.Callback` package.
 
-NOTE: In previous versions of the WCF support `TResponse` must be an enumerated type.
+NOTE: In previous versions of the WCF support `TResponse` must be an enumerated type. In order to reply with enumeration types the replying endpoint needs to reference `NServiceBus.Callback` and [configure](/nservicebus/messaging/callbacks.md) it accordingly.
 
 Example:
 
