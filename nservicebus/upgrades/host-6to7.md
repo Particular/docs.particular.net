@@ -44,4 +44,6 @@ WARNING: If an `EndpointConfig.cs` file already exists in the project, be carefu
 
 ## WCF Integration
 
-The WCF integration using `WcfService` has been removed from the host. The [WCF request response via Callbacks](/samples/web/wcf-callbacks) sample shows how to expose message handlers over WCF services using NServiceBus Version 6 and the NServiceBus.Callbacks package.
+The WCF integration using `WcfService` has been moved from the host to the separate Nuget package [NServiceBus.Wcf](https://www.nuget.org/packages/NServiceBus.Wcf/). That package must be used in order to use the WCF integration functionality in Version 7. The package is now fully independent from the host and can also be used in self-hosting scenarios.
+
+The WCF integration has been augmented with additional functionality such as the ability to reply with messages to the client, cancel requests and reroute to other endpoints. More information can be found in [Wcf](/nservicebus/wcf).
