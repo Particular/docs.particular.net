@@ -107,15 +107,7 @@ For every endpoint the Distributor (including its workers) subscribes to:
 
 ### Removing subscriptions from [NHibernate Persistence](/nservicebus/nhibernate)
 
-Execute the following script against the database which is configured for NHibernate persistence:
-
-```
-DELETE
-FROM dbo.Subscription
-WHERE SubscriberEndpoint = '<distributorAddress>'
-```
-
-where `<distributorAddress>` is the address of the Distributor. E.g. `My.Endpoint@distributor-machine`.
+Remove the Distributor from publisher's subscription storages by removing all subscriptions related to the Distributor's address. See the [NHibernate Persistence Scripting](/nservicebus/nhibernate/scripting.md) documentation page on how to remove subscriptions.
 
 
 ### Removing subscriptions from [Azure Storage Persistence](/nservicebus/azure-storage-persistence)
