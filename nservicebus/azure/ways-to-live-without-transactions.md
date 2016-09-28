@@ -1,6 +1,5 @@
 ---
 title: Avoiding Transactions in Azure
-summary: Understanding transactions in Azure and NServiceBus.
 reviewed: 2016-09-13
 tags:
  - Azure
