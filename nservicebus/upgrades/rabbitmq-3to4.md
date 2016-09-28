@@ -14,7 +14,7 @@ related:
 
 ## Connection string options
 
-When upgrading, there are several [connection string options](/nservicebus/rabbitmq/connection-settings.md#connection-string-options) that should be removed from any existing connection strings.
+When upgrading, there are several [connection string options](/nservicebus/rabbitmq/connection-settings.md?version=Rabbit_3#connection-string-options) that should be removed from any existing connection strings.
 
 
 ### DequeueTimeout
@@ -48,7 +48,7 @@ The `MaxWaitTimeForConfirms` setting has been removed because the transport no l
 
 ## Callback support
 
-[Callbacks](/nservicebus/rabbitmq/callbacks.md) are no longer directly managed by the RabbitMQ transport, so the settings related to the callback receiver queue have been removed.
+[Callbacks](/nservicebus/rabbitmq/callbacks.md?version=Rabbit_3) are no longer directly managed by the RabbitMQ transport, so the settings related to the callback receiver queue have been removed.
 
 
 ### DisableCallbackReceiver
@@ -65,12 +65,12 @@ snippet:3to4rabbitmq-config-callbackreceiver-thread-count
 
 ## Providing a custom connection manager
 
-The ability to [provide a custom connection manager](/nservicebus/rabbitmq/connection-settings.md#providing-a-custom-connection-manager) via the `IManageRabbitMqConnections` interface has been removed. Connections are now managed internally by the transport in a way that is not extensible.
+The ability to [provide a custom connection manager](/nservicebus/rabbitmq/connection-settings.md?version=Rabbit_3#providing-a-custom-connection-manager) via the `IManageRabbitMqConnections` interface has been removed. Connections are now managed internally by the transport in a way that is not extensible.
 
 
 ## Controlling behavior when the broker connection is lost
 
-The XML configuration options for [controlling lost connection behavior](/nservicebus/rabbitmq/connection-settings.md#controlling-behavior-when-the-broker-connection-is-lost) have been removed.
+The XML configuration options for [controlling lost connection behavior](/nservicebus/rabbitmq/connection-settings.md?version=Rabbit_3#controlling-behavior-when-the-broker-connection-is-lost) have been removed.
 
 
 ### TimeToWaitBeforeTriggering
