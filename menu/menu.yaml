@@ -158,6 +158,8 @@
         Title: Non-Durable Messaging
       - Url: nservicebus/messaging/forwarding
         Title: Forwarding
+      - Url: nservicebus/wcf
+        Title: WCF message dispatch        
     - Url: nservicebus/messaging/delayed-delivery
       Title: Delayed Delivery
     - Url: nservicebus/messaging/publish-subscribe
