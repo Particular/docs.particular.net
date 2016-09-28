@@ -16,4 +16,3 @@ namespace Core6.Int
 
     #endregion
 }
-

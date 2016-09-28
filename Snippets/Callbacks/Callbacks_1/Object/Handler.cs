@@ -20,4 +20,3 @@ namespace Core6.Object
 
     #endregion
 }
-

@@ -51,10 +51,11 @@ class Program
 
         var message = new EnumMessage();
         bus.Send("Samples.Callbacks.Receiver", message)
-            .Register<Status>(status =>
-            {
-                Console.WriteLine($"Callback received with status:{status}");
-            });
+            .Register<Status>(
+                callback: status =>
+                {
+                    Console.WriteLine($"Callback received with status:{status}");
+                });
 
         #endregion
 
@@ -67,10 +68,11 @@ class Program
 
         var message = new IntMessage();
         bus.Send("Samples.Callbacks.Receiver", message)
-            .Register<int>(response =>
-            {
-                Console.WriteLine($"Callback received with response:{response}");
-            });
+            .Register<int>(
+                callback: response =>
+                {
+                    Console.WriteLine($"Callback received with response:{response}");
+                });
 
         #endregion
 
@@ -83,12 +85,14 @@ class Program
 
         var message = new ObjectMessage();
         bus.Send("Samples.Callbacks.Receiver", message)
-            .Register(ar =>
-            {
-                var localResult = (CompletionResult) ar.AsyncState;
-                var response = (ObjectResponseMessage)localResult.Messages[0];
-                Console.WriteLine($"Callback received with response property value:{response.Property}");
-            }, null);
+            .Register(
+                callback: asyncResult =>
+                {
+                    var localResult = (CompletionResult) asyncResult.AsyncState;
+                    var response = (ObjectResponseMessage) localResult.Messages[0];
+                    Console.WriteLine($"Callback received with response property value:{response.Property}");
+                },
+                state: null);
 
         #endregion
 

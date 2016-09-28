@@ -22,4 +22,3 @@ namespace Core5.Int
 
     #endregion
 }
-

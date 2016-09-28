@@ -47,7 +47,11 @@ public class HomeController :
         var message = new ObjectMessage();
         var bus = MvcApplication.Bus;
         var responseTask = bus.Send("Samples.Callbacks.Receiver", message)
-            .Register(completion => (ObjectResponseMessage) completion.Messages[0])
+            .Register(
+                completion: completion =>
+                {
+                    return (ObjectResponseMessage) completion.Messages[0];
+                })
             .ConfigureAwait(false);
 
         return View("SendObjectMessage", await responseTask);

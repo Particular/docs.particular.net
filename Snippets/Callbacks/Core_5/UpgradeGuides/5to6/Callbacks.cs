@@ -11,11 +11,13 @@
 
             var requestMessage = new RequestMessage();
             bus.Send(requestMessage)
-                .Register(ar =>
-                {
-                    var localResult = (CompletionResult) ar.AsyncState;
-                    var response = (ResponseMessage) localResult.Messages[0];
-                }, null);
+                .Register(
+                    callback: asyncResult =>
+                    {
+                        var localResult = (CompletionResult) asyncResult.AsyncState;
+                        var response = (ResponseMessage) localResult.Messages[0];
+                    },
+                    state: null);
 
             #endregion
         }

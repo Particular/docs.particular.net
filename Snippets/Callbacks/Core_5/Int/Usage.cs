@@ -12,10 +12,11 @@
 
             var message = new Message();
             bus.Send(message)
-                .Register<int>(response =>
-                {
-                    log.Info($"Callback received with response:{response}");
-                });
+                .Register<int>(
+                    callback: response =>
+                    {
+                        log.Info($"Callback received with response:{response}");
+                    });
 
             #endregion
         }

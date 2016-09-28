@@ -12,12 +12,14 @@
 
             var message = new Message();
             bus.Send(message)
-                .Register(ar =>
-                {
-                    var localResult = (CompletionResult)ar.AsyncState;
-                    var response = (ResponseMessage)localResult.Messages[0];
-                    log.Info($"Callback received with response:{response.Property}");
-                }, null);
+                .Register(
+                    callback: asyncResult =>
+                    {
+                        var localResult = (CompletionResult) asyncResult.AsyncState;
+                        var response = (ResponseMessage) localResult.Messages[0];
+                        log.Info($"Callback received with response:{response.Property}");
+                    },
+                    state: null);
 
             #endregion
         }

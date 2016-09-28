@@ -16,13 +16,13 @@ namespace Core3.Object
 
         public void Handle(Message message)
         {
-            bus.Reply(new ResponseMessage
+            var responseMessage = new ResponseMessage
             {
                 Property = "PropertyValue"
-            });
+            };
+            bus.Reply(responseMessage);
         }
     }
 
     #endregion
 }
-

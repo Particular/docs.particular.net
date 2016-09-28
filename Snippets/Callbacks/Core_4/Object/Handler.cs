@@ -16,10 +16,11 @@ namespace Core4.Object
 
         public void Handle(Message message)
         {
-            bus.Reply(new ResponseMessage
+            var response = new ResponseMessage
             {
                 Property = "PropertyValue"
-            });
+            };
+            bus.Reply(response);
         }
     }
 
