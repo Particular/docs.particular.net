@@ -1,6 +1,6 @@
 ---
 title: ServiceInsight
-reviewed: 2016-03-17
+reviewed: 2016-09-28
 component: ServiceInsight
 tags:
 - ServiceInsight
@@ -36,7 +36,7 @@ The Refresh and Auto-Refresh toolbar buttons enable allow updating the displayed
 
 Auto-refresh keeps the information in ServiceInsight automatically refreshed, delivering near real-time information to the views.
 
-The auto-refresh rate can be specified in the "View" > "Options" > "Auto-Refresh Timer" setting (default is auto-refresh every 15 seconds; lowest value is 1 second), or specify the auto-refresh rate using the ServiceInsight invocation parameter (see [ServiceInsight Invocation](application-invocation.md))
+The auto-refresh rate can be specified in the `View -> Options -> Auto-Refresh Timer` setting (default is auto-refresh every 15 seconds; lowest value is 1 second), or specify the auto-refresh rate using the ServiceInsight invocation parameter (see [ServiceInsight Invocation](application-invocation.md))
 
 
 ### Timing and Performance
@@ -45,7 +45,7 @@ Use the performance-related information in the message header to sort the messag
 
 The message timing measurements include the following:
 
- * Processing Time: the amount of time it took to actually process the message, within the processing endpoint, by the message processing handler method
+ * **Processing Time**: the amount of time it took to actually process the message, within the processing endpoint, by the message processing handler method
 
 Using the messages window column headers the messages can be sorted in ascending or descending order (the sorting operation applies on all the relevant messages in the underlying ServiceControl instance, and is not limited to the currently displayed messages).
 
@@ -95,19 +95,14 @@ While the Flow Diagram is very good at showing *why* each message in a conversat
 Read more about the [Sequence Diagram](/serviceinsight/sequence-diagram/)
 
 
-## Body and Log Views
+## Body View
 
-Along the bottom edge of the flow diagram is a tab for the Body and Log views.
-
-
-### Body View
-
-ServiceInsight obviates the need for MSMQ tools provided by Windows. ServiceInsight provides raw message data in the Body tab of the flow diagram, with XML and HEX views of the body.
+ServiceInsight can show the body of a message in either `XML` or `JSON` format, and in raw `HEX`.
 
 ![Body Tab](images/overview-bodyview.png 'width=500')
 
 
-### Log View
+## Log View
 
 ServiceInsight leverages the ServiceControl API to retrieve information. The Log tab of the Flow Diagram window displays details of the interactions as ServiceInsight polls ServiceControl for more data.
 

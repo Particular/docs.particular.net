@@ -1,5 +1,6 @@
 ---
 title: Data not available
+reviewed: 2016-09-28
 summary: Why ServiceInsight cannot visualize a conversation.
 component: ServiceInsight
 tags:

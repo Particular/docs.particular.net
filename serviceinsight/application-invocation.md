@@ -1,13 +1,12 @@
 ---
 title: ServiceInsight Application Invocation
+reviewed: 2016-09-28
 component: ServiceInsight
 summary: How the integration between ServicePulse and ServiceInsight works and how to use the parameterized invocation of ServiceInsight.
 tags:
 ---
 
-When the NServiceBus suite of tools was built, carefully considered the integration between them. Since the tools are conceptually built for different purposes, the people using them must be able to collaborate.
-
-If the support team uses ServicePulse to monitor distributed system for errors. When they encounter an error message, they might want a developer to investigate it further. They can see why from the exception information provided by ServiceInsight by clicking the "Open in ServiceInsight" link and bringing up the particular message that failed.
+When using ServicePulse it is possible to load any given message in ServiceInsight easiy by clicking the "Open in ServiceInsight" link to load the message in ServiceInsight.
 
 ![ServicePulse Error Messages](images/007-servicepulse-error-messages.png 'width=500')
 
