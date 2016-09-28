@@ -51,7 +51,7 @@ function Remove-Subscriptions(
 
         $entries | Format-Table @{ Label = "MessageType"; Expression={$_.PartitionKey}}, @{ Label = "EndpointName"; Expression={$_.Properties["EndpointName"].StringValue }} -AutoSize
 
-        $confirmation = Read-Host "Are you sure you want to remove this entries? [y/n]"
+        $confirmation = Read-Host "Confirm entry removal? [y/n]"
 
         if ($confirmation -eq 'y') {
             #Delete entries
@@ -73,7 +73,8 @@ Remove-Subscriptions -accountStorageName <storageAccountName> -accountStorageKey
 ```
 
 where:
-* `<storageAccountName>` is the name of the storage account containing the subscription storage.
-* `<storageAccountKey>` is a key to access the storage account.
-* `<subscriptionTable>` is the configured subscription table. By default this is `Subscription`. This parameter is optional.
-* `<distributorAddress>` is the address of the subscriber which should be removed from the subscription storage.
+
+ * `<storageAccountName>` is the name of the storage account containing the subscription storage.
+ * `<storageAccountKey>` is a key to access the storage account.
+ * `<subscriptionTable>` is the configured subscription table. By default this is `Subscription`. This parameter is optional.
+ * `<distributorAddress>` is the address of the subscriber which should be removed from the subscription storage.
