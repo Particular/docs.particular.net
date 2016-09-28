@@ -19,6 +19,10 @@ NServiceBus handles this automatically. Should full control be needed over the `
 
 snippet:custom-correlationid
 
+
+
 ### Correlation vs conversations
 
-Correlation allows NServiceBus to match requests with responses. In addition to this NServiceBus tracks message flows than span more than one message exchange. First message that is sent in a new flow is assigned a unique `Conversation Id` that is then propagated to all the messages that are subsequently sent, thus forming a _conversation_. Similar to the `Correlation Id`, the `Conversation Id` is transmitted in `NServiceBus.ConversationId` message header.
+Correlation allows requests to be matched with responses. It also enables the tracking of message flows that span more than one message exchange. First message that is sent in a new flow is assigned a unique `Conversation Id` that is then propagated to all the messages that are subsequently sent, thus forming a _conversation_. Each message that is sent within a conversation also has a `RelatedTo` value that identifies the originating message that caused it to be sent. `Conversation Id` and `RelatedTo` fields allow [ServiceInsight](/serviceinsight/#flow-diagram) to reliably reconstruct the entire message flow.
+
+Similar to the `Correlation Id`, the `Conversation Id` and `RelatedTo` are transmitted in `NServiceBus.ConversationId` and `NServiceBus.RelatedTo` message headers.
