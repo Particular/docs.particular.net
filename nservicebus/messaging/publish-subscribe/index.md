@@ -140,7 +140,3 @@ Transport->Subscriber2: Send Message1
 
 ![](mechanics-native-publish.svg)
 
-
-## Versioning subscriptions
-
-Subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
