@@ -9,7 +9,7 @@
         async Task RequestImmediateDispatch(IPipelineContext context)
         {
             #region RequestImmediateDispatch
-            var options = new SendOptions();
+            var options = new SendOptions(); // or PublishOptions for context.Publish(..)
             options.RequireImmediateDispatch();
             var message = new MyMessage();
             await context.Send(message, options)
