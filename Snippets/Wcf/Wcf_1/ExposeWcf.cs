@@ -13,9 +13,9 @@ public class CancelOrderHandler :
 {
     public Task Handle(CancelOrder message, IMessageHandlerContext context)
     {
-        // Write code here
+        // code to handle the message
 
-        // Must return a status so that the WCF service has a return value
+        // return a status so that the WCF service has a return value
         return context.Reply(ErrorCodes.Success);
     }
 }

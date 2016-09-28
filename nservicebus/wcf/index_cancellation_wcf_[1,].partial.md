@@ -1,7 +1,7 @@
 
 ## Cancellation
 
-By default a request is canceled after 60 seconds. It is possible to override the cancelation behavior with:
+By default a request is canceled after 60 seconds. It is possible to override the cancellation behavior with:
 
 snippet:WcfCancelRequest
 

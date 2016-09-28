@@ -9,4 +9,4 @@ the replying endpoint handler:
 
 snippet:WcfReplyFromAnotherEndpoint
 
-The delegate is invoked for each service type discovered. The delegate needs to return a function delegate which creates a `SendOption` instance everytime it is called.
+The delegate is invoked for each service type discovered. The delegate needs to return a function delegate which creates a `SendOption` instance every time it is called.

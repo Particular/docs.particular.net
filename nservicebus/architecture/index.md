@@ -43,20 +43,6 @@ In these cases, NServiceBus can be used in combination with BizTalk. NServiceBus
 When designing systems, keep in mind that mixing logical orchestration and routing with business logic, data access, and web services calls results in having slow, complex and unmaintainable code. Divide those responsibilities carefully. Note that when BizTalk is used within a service it is just an implementation detail that doesn't impact all the other services. Keeping it within a service boundary allows to avoid typical performance and maintainability problems.
 
 
-## NServiceBus and WCF
+## Handling long-running business processes
 
-The main differences between NServiceBus and WCF with regards to features, are that WCF doesn't support [publish-subscribe pattern](/nservicebus/messaging/publish-subscribe/) out of the box and doesn't have built-in fault tolerance. Exceptions cause WCF proxies to break, requiring to "refresh" them in code, but the call data is liable to be lost. NServiceBus provides [full system rollback](/nservicebus/recoverability/). In case of a message processing failure, not only does the database remain consistent, but the messages return to their queues and no valuable data is lost. 
-
-
-### Interoperability
-
-partial:interop
-
-
-### Handling long-running business processes
-
-WCF integrates with Workflow Foundation (WF) to provide a capability known as durable services. WF provides the state management facilities that hook into the communication facilities provided by WCF. Unfortunately, transaction and exception boundaries aren't specified by the infrastructure.
-
-Unless developers are very careful about how they connect workflow activities, transaction scopes, and communications activities, the process state can get corrupted and exposed to remote services and clients. One of the reasons is that WF is designed as a generic workflow engine, not specifically for long-running processes.
-
-NServiceBus is designed to handle long-running business processes in a robust and scalable way using [sagas](/nservicebus/sagas/). Transactions are automatically handled on a per-message basis, by default they span all communications and state-management work done by an endpoint. An exception causes all work to be undone, including the sending of any messages, so that remote services and clients do not get exposed to inconsistent data.
+Unless developers are very careful about how they connect workflow activities, transaction scopes, and communications activities, the process state can get corrupted and exposed to remote services and clients. NServiceBus is designed to handle long-running business processes in a robust and scalable way using [sagas](/nservicebus/sagas/). Transactions are automatically handled on a per-message basis, by default they span all communications and state-management work done by an endpoint. An exception causes all work to be undone, including the sending of any messages, so that remote services and clients do not get exposed to inconsistent data.

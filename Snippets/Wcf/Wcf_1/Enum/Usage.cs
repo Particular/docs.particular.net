@@ -4,7 +4,7 @@ namespace Wcf1.Enum
 {
     class Usage
     {
-        #region WcfEnum
+        #region WcfEnumCallback
 
         class MyService :
             WcfService<Message, Status>

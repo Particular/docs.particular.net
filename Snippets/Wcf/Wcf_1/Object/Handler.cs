@@ -20,4 +20,3 @@ namespace Wcf1.Object
 
     #endregion
 }
-

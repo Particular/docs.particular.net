@@ -309,7 +309,7 @@
 
 - Key: Wcf
   Name: WCF Support
-  DocoUrl: /nservicebus/wcf
+  DocoUrl: nservicebus/wcf
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Wcf
   NugetOrder:
