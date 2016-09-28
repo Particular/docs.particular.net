@@ -1,6 +1,6 @@
 ---
 title: Bus versus broker architecture
-summary: Bus versus broker architectural styles. NServiceBus, BizTalk and WCF. 
+summary: Bus versus broker architectural styles.
 component: Host
 reviewed: 2016-08-10
 redirects:
