@@ -71,12 +71,16 @@ partial: influence-reply
 
 While its usually best to let NServiceBus [handle all exceptions](/nservicebus/recoverability/), there are some scenarios where messages might need to be sent regardless of if the message handler succeeds or not. For example, sending a reply notifying that there was a problem with processing the message.
 
-WARNING: By specifying immediate dispatch, outgoing messages will not be [batched](/nservicebus/messaging/batched-dispatch.md) or enlisted in the current receive transaction even if the transport has support for it.
+WARNING: Immediate dispatch bypasses [batched dispatch](/nservicebus/messaging/batched-dispatch.md) or transaction enlist in the current receive transaction even if the transport supports it.
+
+partial:immediate-dispatch
+
+### Suppressing the ambient transaction
 
 Suppressing the ambient transaction to have the outgoing message sent immediately is possible:
 
-snippet:RequestImmediateDispatchUsingScope
-
 WARNING: Suppressing transaction scopes only works for MSMQ and SQL transports in DTC mode. Other transports or disabled DTC may result in unexpected behavior.
 
-partial:immediate-dispatch
+snippet:RequestImmediateDispatchUsingScope
+
+
