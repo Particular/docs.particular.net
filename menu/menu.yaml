@@ -232,6 +232,8 @@
       Title: Web Application
     - Url: nservicebus/hosting/publishing-from-web-applications
       Title: Publishing from Web Applications
+    - Url: nservicebus/wcf
+      Title: Exposing endpoints via WCF
     - Url: nservicebus/hosting/nservicebus-host
       Title: NServiceBus Host
       Articles:
