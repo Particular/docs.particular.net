@@ -57,7 +57,7 @@
         Title: Assembly Scanning
       - Url: nservicebus/upgrades/5to6/deprecated-transportmessage
         Title: Deprecated TransportMessage
-      - Url: samples/scaleout/distributor-upgrade
+      - Url: nservicebus/upgrades/5to6/distributor
         Title: Distributor
       - Url: nservicebus/upgrades/5to6/extension-seams
         Title: Extension Seams
@@ -530,6 +530,8 @@
         Title: SQL Azure
       - Url: nservicebus/nhibernate/outbox
         Title: Outbox
+      - Url: nservicebus/nhibernate/scripting
+        Title: Scripting
     - Url: nservicebus/ravendb
       Title: RavenDB Persistence
       Articles:
@@ -558,6 +560,8 @@
         Title: Transactions in Azure
       - Url: nservicebus/azure-storage-persistence/performance-tuning
         Title: Performance Tuning
+      - Url: nservicebus/azure-storage-persistence/scripting
+        Title: Scripting
   - Url: nservicebus/containers
     Title: Containers
     Articles:
@@ -637,8 +641,6 @@
         Title: Disconnect Workers
       - Url: nservicebus/scalability-and-ha/distributor/publish-subscribe
         Title: Publish-Subscribe
-      - Url: nservicebus/scalability-and-ha/distributor/upgrading-the-distributor
-        Title: Upgrading
       - Url: nservicebus/scalability-and-ha/distributor/error-handling
         Title: Error handling
 - Name: ServiceInsight
@@ -673,11 +675,11 @@
     - Url: servicepulse/intro-archived-messages
       Title: Archived Messages
     - Url: servicepulse/intro-pending-retries
-      Title: Pending Retries 
+      Title: Pending Retries
     - Url: servicepulse/intro-endpoints-custom-checks
       Title: Custom Checks
     - Url: servicepulse/redirect
-      Title: Redirects 
+      Title: Redirects
     - Url: servicepulse/event-types
       Title: Events
   - Title: Configuration
