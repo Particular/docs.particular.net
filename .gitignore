@@ -3,6 +3,7 @@ deploy
 build32
 binaries
 *.vshost.*
+*.lock.json
 .nu
 _UpgradeReport.*
 *.cache
