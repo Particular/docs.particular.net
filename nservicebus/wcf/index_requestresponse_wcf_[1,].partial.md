@@ -50,8 +50,6 @@ snippet:WcfCallbackResponseMessage
 
 snippet:WcfObjectCallback
 
-partial:WcfFakeHandler
-
 
 #### Response
 
