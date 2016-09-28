@@ -2,28 +2,26 @@
 using Microsoft.AspNetCore.Mvc;
 using NServiceBus;
 
-namespace WebApplication.Controllers
+[Route("api/[controller]")]
+public class SendMessageController : Controller
 {
-    [Route("api/[controller]")]
-    public class SendMessageController : Controller
+    IMessageSession messageSession;
+
+    #region MessageSessionInjection
+    public SendMessageController(IMessageSession messageSession)
     {
-        private readonly IMessageSession _messageSession;
-
-        #region MessageSessionInjection
-        public SendMessageController(IMessageSession messageSession)
-        {
-            _messageSession = messageSession;
-        }
-        #endregion
-
-
-        #region MessageSessionUsage
-        [HttpGet]
-        public async Task<string> Get()
-        {
-            await _messageSession.Send(new MyMessage());
-            return "Message sent to endpoint";
-        }
-        #endregion
+        this.messageSession = messageSession;
     }
+    #endregion
+
+
+    #region MessageSessionUsage
+    [HttpGet]
+    public async Task<string> Get()
+    {
+        var message = new MyMessage();
+        await messageSession.Send(message);
+        return "Message sent to endpoint";
+    }
+    #endregion
 }

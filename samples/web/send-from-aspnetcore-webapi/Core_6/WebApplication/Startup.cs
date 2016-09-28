@@ -5,52 +5,59 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 
-namespace WebApplication
+public class Startup
 {
-    public class Startup
+    public Startup(IHostingEnvironment env)
     {
-        public Startup(IHostingEnvironment env)
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
-        }
+        var builder = new ConfigurationBuilder()
+            .SetBasePath(env.ContentRootPath)
+            .AddEnvironmentVariables();
+        Configuration = builder.Build();
+    }
 
-        public IConfigurationRoot Configuration { get; }
+    public IConfigurationRoot Configuration { get; }
 
-        
-        public void ConfigureServices(IServiceCollection services)
-        {
-            #region EndpointConfiguration
-            var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.SendOnly();
-            #endregion
 
-            #region Routing
-            transport.Routing().RouteToEndpoint(assembly: typeof(MyMessage).Assembly, destination: "Samples.ASPNETCore.Endpoint");
-            #endregion
+    public void ConfigureServices(IServiceCollection services)
+    {
+        #region EndpointConfiguration
 
-            #region EndpointStart
-            var endpointInstance = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
-            #endregion
+        var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendOnly();
 
-            #region ServiceRegistration
-            services.AddSingleton<IMessageSession>(endpointInstance);
-            #endregion
+        #endregion
 
-            services.AddMvc();
-        }
-        
+        #region Routing
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(
+            assembly: typeof(MyMessage).Assembly,
+            destination: "Samples.ASPNETCore.Endpoint");
 
-            app.UseMvc();
-        }
+        #endregion
+
+        #region EndpointStart
+
+        var endpointInstance = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
+
+        #endregion
+
+        #region ServiceRegistration
+
+        services.AddSingleton<IMessageSession>(endpointInstance);
+
+        #endregion
+
+        services.AddMvc();
+    }
+
+
+    public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+    {
+        loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+        loggerFactory.AddDebug();
+        app.UseMvc();
     }
 }
