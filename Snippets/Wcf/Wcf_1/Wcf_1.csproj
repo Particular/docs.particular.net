@@ -64,7 +64,6 @@
     <Compile Include="Routing\Handler.cs" />
     <Compile Include="Routing\Message.cs" />
     <Compile Include="Routing\Usage.cs" />
-    <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
