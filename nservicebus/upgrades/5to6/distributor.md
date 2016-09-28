@@ -54,7 +54,7 @@ This approach enables the continued utilization of the resources used for the Di
 * Ensure no more messages are routed to the Distributor by updating routing and sender-side distribution configuration on sending endpoints.
 * When the Distributor input queue is empty, shut down the Distributor.
 * When the attached instances input queues are empty, shut down the attached instances.
-* Remove the Distributor and the attached instances. Alternatively you can detach the attached instances from the Distributor and start them again (make sure to include them in the sender-side distribution configuration too).
+* Remove the Distributor and the attached instances. Alternatively, detach the attached instances from the Distributor and start them again (make sure to include them in the sender-side distribution configuration too).
 
 
 ## Simple upgrade scenario
@@ -100,7 +100,7 @@ For every endpoint the Distributor (including its workers) subscribes to:
 * Find the publishers database in the [RavenDB Management Studio](https://ravendb.net/docs/search/latest/csharp?searchTerm=management-studio).
 * Go to the [Query View](https://ravendb.net/docs/search/latest/csharp?searchTerm=query%20view).
 * From the indexes select `Subscriptions`
-* Enter the following Query: `Subscribers:*"<endpointAddress>"*` where you replace `<endpointAddress>` with the address of your endpoint. Make sure to escape special characters like `.` or `-` with `\`. E.g. `my\.endpoint@distributor\-machine`.
+* Enter the following Query: `Subscribers:*"<endpointAddress>"*` and replace `<endpointAddress>` with the address of the distributor endpoint. Make sure to escape special characters like `.` or `-` with `\`. E.g. `my\.endpoint@distributor\-machine`.
 * Run the query.
 * On all listed documents, remove the entry with the Distributor's subscriber address and save it.
 
