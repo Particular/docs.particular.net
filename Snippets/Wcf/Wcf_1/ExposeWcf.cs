@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System.Threading.Tasks;
+using NServiceBus;
 
 #region ExposeWCFService
 
@@ -10,19 +11,12 @@ public class CancelOrderService :
 public class CancelOrderHandler :
     IHandleMessages<CancelOrder>
 {
-    IBus bus;
-
-    public CancelOrderHandler(IBus bus)
+    public Task Handle(CancelOrder message, IMessageHandlerContext context)
     {
-        this.bus = bus;
-    }
+        // code to handle the message
 
-    public void Handle(CancelOrder message)
-    {
-        // Write code here
-
-        // Must return a status so that the WCF service has a return value
-        bus.Return(ErrorCodes.Success);
+        // return a status so that the WCF service has a return value
+        return context.Reply(ErrorCodes.Success);
     }
 }
 

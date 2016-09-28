@@ -1,1 +1,0 @@
-See [WCF callback sample](/samples/web/wcf-callbacks/) to learn how to integrate WCF with NServiceBus.

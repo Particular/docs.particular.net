@@ -9,7 +9,7 @@ The synchronous request-response feature, also known as callbacks, has been move
 
 The API was also modified. Version 6 API is asynchronous by default and allows to easily access the response message. It is no longer possible to use callbacks inside handlers or sagas, because extension methods are only available on the message session. The differences in the API are fully covered in [Callbacks](/nservicebus/messaging/callbacks.md).
 
-The `NServiceBus.Callbacks` package has to be referenced only by the requesting endpoint. The responding endpoint does not need any additional packages.
+The `NServiceBus.Callbacks` package has to be referenced only by the requesting endpoint. The responding endpoint only need `NServiceBus.Callbacks` if it replies  with `int` or `enum` types.
 
 snippet: 5to6-Callbacks
 

@@ -306,3 +306,12 @@
   ProjectUrl: https://github.com/hmemcpy/NServiceBus.Wire
   NugetOrder:
     - NServiceBus.Wire
+
+- Key: Wcf
+  Name: WCF Support
+  DocoUrl: nservicebus/wcf
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Wcf
+  NugetOrder:
+    - NServiceBus.Wcf  
+    - NServiceBus.Host

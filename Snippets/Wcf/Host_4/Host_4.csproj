@@ -44,21 +44,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CriticalErrors.cs" />
-    <Compile Include="CustomLogging.cs" />
-    <Compile Include="EndpointConfigByNamespace.cs" />
-    <Compile Include="EndpointConfigWithAttribute.cs" />
-    <Compile Include="OverrideLoggingViaProfile.cs" />
-    <Compile Include="PerformanceMonitoring.cs" />
-    <Compile Include="Profiles\DefiningProfile.cs" />
-    <Compile Include="Profiles\ConfigureLogging.cs" />
-    <Compile Include="Profiles\DependentProfile.cs" />
-    <Compile Include="ScanningPublicApi.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ExplicitConfigType.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Compile Include="ExposeWcf.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

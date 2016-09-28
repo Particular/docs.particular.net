@@ -49,7 +49,6 @@
     <Compile Include="Profiles\CustomProfiles.cs" />
     <Compile Include="Profiles\DefiningProfile.cs" />
     <Compile Include="Profiles\DependentProfile.cs" />
-    <Compile Include="ExposeWcf.cs" />
     <Compile Include="ScanningPublicApi.cs" />
   </ItemGroup>
   <ItemGroup>

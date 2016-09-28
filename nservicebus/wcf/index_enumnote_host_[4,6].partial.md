@@ -1,0 +1,2 @@
+
+NOTE: In previous versions of the WCF support `TResponse` must be an enumerated type. To reply with enumeration types, the replying endpoint needs to reference `NServiceBus.Callback` and [configure](/nservicebus/messaging/callbacks.md) it accordingly.

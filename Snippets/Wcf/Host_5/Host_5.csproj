@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{62EDEAAA-1E92-478C-AC69-28A0C9940A3E}</ProjectGuid>
+    <ProjectGuid>{0BC1A508-E067-4223-AF8C-EA9C3A06071B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Host_6</RootNamespace>
-    <AssemblyName>Host_6</AssemblyName>
+    <RootNamespace>Host_5</RootNamespace>
+    <AssemblyName>Host_5</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -28,8 +28,8 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\packages\NServiceBus.5.2.16\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Host, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.Host.6.0.0\lib\net45\NServiceBus.Host.exe</HintPath>
+    <Reference Include="NServiceBus.Host, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NServiceBus.Host.5.0.11\lib\net45\NServiceBus.Host.exe</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -39,24 +39,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AsAClientEquivalent.cs" />
-    <Compile Include="CriticalErrors.cs" />
-    <Compile Include="CustomizingHost.cs" />
-    <Compile Include="EndpointConfigByNamespace.cs" />
-    <Compile Include="EndpointConfigWithAttribute.cs" />
-    <Compile Include="OverrideLoggingViaProfile.cs" />
-    <Compile Include="PerformanceMonitoring.cs" />
-    <Compile Include="Profiles\ConfigureLogging.cs" />
-    <Compile Include="Profiles\CustomProfiles.cs" />
-    <Compile Include="Profiles\DefiningProfile.cs" />
-    <Compile Include="Profiles\DependentProfile.cs" />
-    <Compile Include="ScanningPublicApi.cs" />
-    <Compile Include="UpgradeGuides\6to7\CustomizingHost.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ExplicitConfigType.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Compile Include="ExposeWcf.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
