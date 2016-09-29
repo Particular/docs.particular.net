@@ -13,7 +13,7 @@ related:
  - nservicebus/messaging/callbacks
 ---
 
-It is possible to "expose" the message send+receive action as a WCF. This, in effect, allows a WCF service call to be "proxied" through to a message being sent, and then waiting for the response to return the WCF result.
+It is possible to "expose" the message send+receive action as a WCF service. This, in effect, allows a WCF service call to be "proxied" through to a message being sent, and then waiting for the response to return the WCF result.
 
 NOTE: When doing a blocking send+receive inside a WCF service acting a client in the same way as the [Callback Functionality](/nservicebus/messaging/callbacks.md). 
 
