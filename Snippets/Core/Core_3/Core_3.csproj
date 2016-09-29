@@ -128,8 +128,6 @@
     <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="Conventions\Usage.cs" />
-    <Compile Include="Correlation\Usage.cs" />
-    <Compile Include="Correlation\MyRequest.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DataBus\Conventions\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />
