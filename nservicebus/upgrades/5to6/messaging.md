@@ -8,7 +8,7 @@ tags:
 
 ## Using a custom correlation id
 
-Custom [correlation Id's](/nservicebus/messaging/message-correlation.md) for outgoing messages should now be set using the new `Send`/`Reply` or `Publish` options instead of being passed into `bus.Send`.
+Custom [correlation Id's](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-correlationid) for outgoing messages should now be set using the new `Send`/`Reply` or `Publish` options instead of being passed into `bus.Send`.
 
 
 ## Remove WinIdName Header
