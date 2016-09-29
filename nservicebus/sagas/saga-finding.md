@@ -1,7 +1,7 @@
 ---
 title: Complex saga finding logic
 summary: Use IFindSaga to write custom code that resolves sagas.
-reviewed: 2016-08-25
+reviewed: 2016-09-29
 component: Core
 tags:
 - Saga
