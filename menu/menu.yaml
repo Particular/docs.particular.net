@@ -172,8 +172,6 @@
       Articles:
       - Url: nservicebus/messaging/header-manipulation
         Title: Header Manipulation
-      - Url: nservicebus/messaging/message-correlation
-        Title: Message correlation
       - Url: nservicebus/messaging/third-party-integration
         Title: Third Party Integration
     - Url: nservicebus/endpoints/specify-endpoint-name
