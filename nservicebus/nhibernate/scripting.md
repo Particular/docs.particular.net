@@ -1,6 +1,8 @@
 ---
 title: NHibernate Persistence Scripts
 summary: Collection of scripts for managing NHibernate Persistence
+component: NHibernate
+reviewed: 2016-09-29
 tags:
  - NHibernate
 ---
@@ -18,6 +20,7 @@ FROM <database>
 WHERE SubscriberEndpoint = '<distributorAddress>'
 ```
 
-where 
-* `<distributorAddress>` is the address of the subscriber. E.g. `My.Endpoint@subscriber-machine`.
-* `<database>` is the configured database for NHibernate Peristence. By default this is `dbo.Subscription`
+Where:
+
+ * `<distributorAddress>` is the address of the subscriber. E.g. `My.Endpoint@subscriber-machine`.
+ * `<database>` is the configured database for NHibernate Persistence. By default this is `dbo.Subscription`

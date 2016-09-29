@@ -1,6 +1,8 @@
 ---
 title: Azure Storage Persistence Scripts
 summary: Collection of scripts for managing Azure Storage Persistence
+component: ASP
+reviewed: 2016-09-29
 tags:
 - Azure
 - Persistence
@@ -16,7 +18,7 @@ function Remove-Subscriptions(
     [string] $accountStorageKey,
     [string] $subscriptionTableName = 'Subscription',
     [string] $transportAddressToRemove
-    ) 
+    )
 {
     # create Context
     $ctx = New-AzureStorageContext -StorageAccountName $accountStorageName -StorageAccountKey  $accountStorageKey
@@ -72,7 +74,7 @@ Then execute the script:
 Remove-Subscriptions -accountStorageName <storageAccountName> -accountStorageKey <storageAccountKey> -subscriptionTableName <subscriptionTable> -transportAddressToRemove <subscriberAddress>
 ```
 
-where:
+Where:
 
  * `<storageAccountName>` is the name of the storage account containing the subscription storage.
  * `<storageAccountKey>` is a key to access the storage account.
