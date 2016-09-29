@@ -74,3 +74,5 @@ The default value for `MessageSizePaddingPercentage` is 5%. The custom percentag
 | 100K  | 137,937 | 146,464 | 7% |
 | 170K  | 233,509 | 246,815 | 6% |
 | 180K  | 247,161 | 261,149  | 6% |
+
+WARN: When `TransportTransactionMode.SendsAtomicWithReceive` is used, Azure Service Bus limits number of outgoing operations from a handler context to 100. If number of outgoing operations exceeds the limit, `TransactionContainsTooManyMessages` exception will be thrown and incoming message will be eventually moved to the error queue. To send more than 100 outgoing operations, lower transport transaction mode. 
