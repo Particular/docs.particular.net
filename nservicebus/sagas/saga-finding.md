@@ -1,7 +1,7 @@
 ---
 title: Complex saga finding logic
 summary: Use IFindSaga to write custom code that resolves sagas.
-reviewed: 2016-08-25
+reviewed: 2016-09-29
 component: Core
 tags:
 - Saga
@@ -23,4 +23,4 @@ include: non-null-task
 
 Many finders may exist for a a given saga or message type. If a saga can't be found and if the saga specifies that it is to be started for that message type, NServiceBus will know that a new saga instance is to be created.
 
-NOTE: When using custom saga finders users are expected to configure any additional indexes needed using the tooling of the selected storage engine.
+WARNING: When using custom saga finders users are expected to configure any additional indexes needed to handle [concurrent access to saga instances](/nservicebus/sagas/concurrency.md) properly using the tooling of the selected storage engine.
