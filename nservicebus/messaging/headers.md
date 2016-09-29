@@ -70,12 +70,20 @@ A [unique ID for the current message](/nservicebus/messaging/message-identity.md
 
 ### NServiceBus.CorrelationId
 
-A string used to [correlate](message-correlation.md) reply messages to their corresponding request message.
+NServiceBus implements pattern is known as [Correlation Identifier](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CorrelationIdentifier.html) by using a `Correlation Id` header. 
+
+Message correlation connects request messages with their corresponding response messages. Each message has a `Message Id`. The `Correlation Id` of the response message is a `Message Id` of its corresponding request message.
+
+In NServiceBus Correlation Identifier is used, for example in [callbacks](/nservicebus/messaging/callbacks.md).
 
 
 ### NServiceBus.ConversationId
 
-The conversation that this message is part of.
+The conversation that this message is part of. It enables the tracking of message flows that span more than one message exchange. `Conversation Id` and `RelatedTo` fields allow [ServiceInsight](/serviceinsight/#flow-diagram) to reconstruct the entire message flow.
+
+The first message that is sent in a new flow is automatically assigned a unique `Conversation Id` that is then propagated to all the messages that are subsequently sent, thus forming a _conversation_. Each message that is sent within a conversation also has a `RelatedTo` value that identifies the originating message that caused it to be sent. 
+
+The `Conversation Id` header can be manipulated to create custom conversations which are meaningful from the domain perspective (e.g. using Order Id as the `Conversation Id` to track the life cycle of the order).
 
 
 ### NServiceBus.RelatedTo
