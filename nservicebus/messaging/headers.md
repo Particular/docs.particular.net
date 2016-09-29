@@ -9,6 +9,7 @@ tags:
 redirects:
  - nservicebus/message-headers
  - nservicebus/messaging/headers
+ - nservicebus/messaging/message-correlation
 related:
  - samples/header-manipulation
  - nservicebus/messaging/header-manipulation
