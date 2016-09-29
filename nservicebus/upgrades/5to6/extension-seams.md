@@ -39,9 +39,19 @@ Feature Dependencies, using the string API, now need to be declared using the ta
 snippet: 5to6-DependentFeature
 
 
+## Satellites
+
+
 ### ISatellite and IAdvancedSatellite interfaces are obsolete
 
 Both the `ISatellite` and the `IAdvancedSatellite` interfaces are deprecated. The same functionality is available via the `AddSatelliteReceiver` method on the context passed to the [features](/nservicebus/pipeline/features.md#feature-api) `Setup` method. The [satellite documentation](/nservicebus/satellites/) shows this in detail.
+
+
+### Performance Counters
+
+Satellite pipelines (e.g. retries or timeouts) no longer create Performance Counters. Endpoints provide a single performance counter instance related to the main message processing pipeline.
+
+To learn more about using Perfomance Cunters in NServiceBus, refer to the [Performance Counter Usage](/samples/performance-counters/) sample and [Performance Counters](/nservicebus/operations/performance-counters.md) article.
 
 
 ## Transport Seam
