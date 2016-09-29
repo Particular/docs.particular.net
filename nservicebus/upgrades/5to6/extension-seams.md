@@ -51,6 +51,8 @@ Both the `ISatellite` and the `IAdvancedSatellite` interfaces are deprecated. Th
 
 Satellite pipelines (e.g. retries or timeouts) no longer create Performance Counters. Endpoints provide a single performance counter instance related to the main message processing pipeline.
 
+To learn more about using Perfomance Cunters in NServiceBus, refer to the [Performance Counter Usage](/samples/performance-counters/) sample and [Performance Counters](/nservicebus/operations/performance-counters.md) article.
+
 
 ## Transport Seam
 
