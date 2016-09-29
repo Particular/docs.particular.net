@@ -56,7 +56,7 @@ To access it at runtime create a new [`Feature`](/nservicebus/pipeline/features.
 
 snippet: 5to6-IConfigureComponentsNotInjected
 
-## Existing passed to the configuration API are no longer disposed
+## Containers passed to the configuration API are no longer disposed
 
 snippet:5-to-6-autofac-existing
 
