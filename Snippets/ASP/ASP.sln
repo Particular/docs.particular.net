@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure_6", "Azure_6\Azure_6.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure_5", "Azure_5\Azure_5.csproj", "{0E096763-0236-457E-9957-F888D4E0C3C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "All", "All\All.csproj", "{DD0A09B6-274A-452B-865A-1269ACBFD35C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,8 +20,6 @@ Global
 		{EE0127CD-0565-4616-8330-25EBAD5075C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E096763-0236-457E-9957-F888D4E0C3C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0E096763-0236-457E-9957-F888D4E0C3C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD0A09B6-274A-452B-865A-1269ACBFD35C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD0A09B6-274A-452B-865A-1269ACBFD35C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
