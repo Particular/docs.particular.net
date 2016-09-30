@@ -189,7 +189,7 @@ Notice how much more quickly the message proceeds through delayed retries, becau
 
 ### Extra Credit: Replay a message
 
-If you installed the Particular Service Platform, you should have the ServiceControl and ServicePulse tools installed.
+If you used the [Particular Platform Installer](/platform/installer/) to install MSMQ, you should already have the [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/) tools installed.
 
 To check for these tools:
 

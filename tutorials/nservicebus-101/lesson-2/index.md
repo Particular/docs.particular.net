@@ -263,7 +263,7 @@ Let's take a closer look at the case when we want to place an order. Since the `
         
         break;
     
-`SendLocal(object message)` is a method that is available on the `IEndpointInstance` interface, as we are using here, and also on the `IMessageHandlerContext` interface, which we saw when we were defining our message handler. The *Local* part means that we are not sending to an external endpoint, so we intend to handle the message in the same endpoint that sent it. Using `SendLocal()`, we don't have to specify any mappings to tell the message where to go.
+`SendLocal(object message)` is a method that is available on the `IEndpointInstance` interface, as we are using here, and also on the `IMessageHandlerContext` interface, which we saw when we were defining our message handler. The *Local* part means that we are not sending to an external endpoint (in a different process) so we intend to handle the message in the same endpoint that sent it. Using `SendLocal()`, we don't have to specify any mappings to tell the message where to go.
 
 Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properly.
  
