@@ -18,39 +18,17 @@ By the end of this lesson, you will have learned:
 
 ## Prerequisites
 
-There are a few things we need to do in order to build a solution with the latest version of NServiceBus. First we'll concentrate on getting these set up.
+There are a few things we need in order to build a solution with the latest version of NServiceBus.
 
-
-### .NET Framework
-
-NServiceBus 6.0 requires .NET Framework 4.5.2 or higher, although using at least .NET Framework 4.6 will give you access to features that will make certain things easier, such as writing async code.
-
-
-### Message transport
-
-NServiceBus is a messaging framework and requires a **message transport**, normally a message queuing technology, to move messages around. Natively, NServiceBus supports Microsoft Message Queuing (MSMQ), RabbitMQ, Azure Storage Queues, Azure Service Bus, and SQL Server as message transports. (Although SQL Server is not a message queue per se, the SQL Server Transport emulates queues within database tables.)
-
-For the sake of simplicity, this tutorial will use MSMQ, which is the default message transport for NServiceBus. MSMQ is included with every version of Windows, although it is not installed by default.
-
-> NOTE: In some environments, you may not have sufficient privileges on your system to install MSMQ. If this is the case, the SQL Server transport is a good substitute for this tutorial. If you don't have ready access to a SQL Server instance, you can install [SQL Server Express](http://downloadsqlserverexpress.com/) locally.
-
-> To use the SQL Server transport for this guide, see the [SQL Server transport setup instructions](using-sql-transport.md).
-
-The easiest way to set up MSMQ is to use the **Particular Platform Installer**. The platform installer will get several things set up that will be useful later on:
-
-* Install the MSMQ Windows Feature and configure it correctly for NServiceBus.
-* Configure the Distributed Transaction Coordinator (DTC) so that queues and databases can all work together within a single atomic transaction.
-* Install tools that will make developing NServiceBus systems easier. Although we won't use them until Lesson 5, the Platform Installer will get these set up right away:
-    * [ServiceControl](/servicecontrol/) - a service that stores copies of processed messages to enable features found in the other tools
-    * [ServiceInsight](/serviceinsight/) - a desktop application that enables debugging and visualization of your message-based system
-    * [ServicePulse](/servicepulse/) - a web application, installed as a service, that provides operations monitoring of a message-driven system
-
-You can [download the Platform Installer now](http://particular.net/start-platform-download), read the [Platform Installer documentation](/platform/installer/), or view the [release notes](/platform/release-notes.md). You can also [configure MSMQ manually](/nservicebus/msmq/#nservicebus-configuration).
+* This course uses Visual Studio 2015 and .NET Framework 4.6.1, although NServiceBus only requires .NET Framework 4.5.2.
+* NServiceBus requires queuing infrastructure to move messages around. This course uses Microsoft Message Queuing (MSMQ) as a default.
+  * The [Particular Platform Installer](/platform/installer/) will install MSMQ and its dependencies for you. [Download and run the Platform Installer]() to get started, or [follow these instructions to configure MSMQ manually](/nservicebus/msmq/#nservicebus-configuration).
+  * If you don't have sufficient privileges to install MSMQ, you can [use the SQL Server transport as a substitute](using-sql-transport.md). 
 
 
 ## Exercise
 
-Now that we have a system configured for NServiceBus, let's build something simple to try it out.
+Let's build something simple to give NServiceBus a try.
 
 
 ### Create a solution
@@ -61,7 +39,7 @@ First, let's create a basic solution and include the dependencies we need.
 2. Set the project name to **ClientUI**.
 3. Set the Solution Name to **RetailDemo**.
 
-Next, we need to add the NServiceBus NuGet package as a dependency. From the NuGet Package Manager Console, type the following:
+Next, we need to add the NServiceBus NuGet package as a dependency. From the [NuGet Package Manager Console](https://docs.nuget.org/ndocs/tools/package-manager-console), type the following:
 
     Install-Package NServiceBus -ProjectName ClientUI
 

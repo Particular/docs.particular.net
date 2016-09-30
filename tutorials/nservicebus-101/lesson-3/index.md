@@ -154,7 +154,7 @@ The difference, of course, is the name "Sales" in the console title and `Endpoin
 
 This means that the Sales endpoint will create its own queue named `Sales` where it will listen for messages. We now have two processes that each have their own mailbox, so now we can send messages between them.
 
-> Note: Does this seem repetitive to you? Before you get your hackles all raised, remember that this is still an introductory exercise. In the next course, we will explore methods that allow you to centralize most of this repetitive endpoint configuration code.
+> Note: This is quite repetitive, but remember that this is still an introductory exercise. In the next course, we will explore methods that allow you to centralize most of this repetitive endpoint configuration code.
 
 
 ### Debugging multiple projects
