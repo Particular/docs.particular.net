@@ -25,7 +25,6 @@ snippet: 5to6ReAddWinIdNameHeader
 
 Another option is to use a custom header as illustrated in [Appending username using headers](/samples/username-header/) sample.
 
-
 ## Throttling
 
 Requirements to throttling mechanisms are very different. While some 3rd party services (e.g. GitHub, Twitter, Google, etc.) enforce rate limits on certain time periods, other services may have entirely different usage limitations. The previous throttling API offered a very limited, messages per second based, throttling mechanism which only works for very few scenarios. Therefore, the throttling API has been removed with Version 6 without a built-in alternative. [Tuning NServiceBus](/nservicebus/operations/tuning.md) contains more information about implementing a custom throttling mechanism.
@@ -65,3 +64,9 @@ snippet: 5to6delayed-delivery
 ## Message forwarding
 
 The forwarded messages no longer contain additional [auditing headers](/nservicebus/operations/auditing.md#message-headers), such as processing start and end times, processing host id and name and processing endpoint.
+
+## Audit InvokedSagas Header
+
+The `InvokedSagas` header added to audited messages populated with the name of the saga classes invoked along with their unique identifiers.
+
+This functionality has been moved from the NServiceBus core to the [SagaAudit plugin](/servicecontrol/plugins/saga-audit.md) compatible with NServiceBus Version 6.
