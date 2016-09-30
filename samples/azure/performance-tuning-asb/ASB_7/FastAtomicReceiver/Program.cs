@@ -38,12 +38,17 @@ class Program
 
         transportConfiguration.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
 
+        transportConfiguration.Queues().EnablePartitioning(true);
+
         var numberOfCores = Environment.ProcessorCount;
-        var concurrency = numberOfCores * 4;
+        var concurrency = numberOfCores * 2;
 
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(concurrency);
-        transportConfiguration.MessageReceivers().PrefetchCount(concurrency * 2);
-        
+        transportConfiguration.MessageReceivers().PrefetchCount(0);
+
+        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(20);
+        transportConfiguration.NumberOfClientsPerEntity(20);
+
         #endregion
 
 

@@ -37,6 +37,7 @@ class Program
         #region slow-non-atomic-config
 
         transportConfiguration.Transactions(TransportTransactionMode.ReceiveOnly);
+        transportConfiguration.Queues().EnablePartitioning(true);
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         transportConfiguration.MessageReceivers().PrefetchCount(0);
 

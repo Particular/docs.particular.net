@@ -38,14 +38,15 @@ class Program
 
         transportConfiguration.Transactions(TransportTransactionMode.ReceiveOnly);
 
-        var numberOfCores = Environment.ProcessorCount;
-        var concurrency = numberOfCores * 64;
+        transportConfiguration.Queues().EnablePartitioning(true);
+        
+        endpointConfiguration.LimitMessageProcessingConcurrencyTo(100);
+        transportConfiguration.MessageReceivers().PrefetchCount(200);
 
-        endpointConfiguration.LimitMessageProcessingConcurrencyTo(concurrency);
-        transportConfiguration.MessageReceivers().PrefetchCount(concurrency*2);
+        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(20);
+        transportConfiguration.NumberOfClientsPerEntity(20);
 
         #endregion
-
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

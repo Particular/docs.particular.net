@@ -26,6 +26,7 @@ class Program
         }
         transport.UseTopology<ForwardingTopology>();
         transport.ConnectionString(connectionString);
+        transport.Queues().EnablePartitioning(true);
 
         var receiverName = "Samples.ASB.Performance.Receiver";
         await EnsureReceiverQueueExists(receiverName, connectionString).ConfigureAwait(false);
