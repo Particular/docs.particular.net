@@ -147,6 +147,8 @@
         Title: Unobtrusive Mode
       - Url: nservicebus/messaging/best-practice-enforcement
         Title: Best practice enforcement
+    - Url: nservicebus/messaging/evolving-contracts
+      Title: Evolving contracts
     - Url: nservicebus/messaging/send-a-message
       Title: Sending messages
       Articles:
