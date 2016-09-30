@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Instance1</RootNamespace>
     <AssemblyName>Instance1</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
