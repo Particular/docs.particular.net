@@ -23,7 +23,7 @@ An inactive endpoint indicates that there is a failure in the communication path
 NOTE: It is essential to deploy this plugin to the endpoint in production for ServicePulse to be able to monitor the endpoint.
 
 
-## NuGets
+## NuGet packages
 
  * NServiceBus Version 6.x: [ServiceControl.Plugin.Nsb6.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.Heartbeat)
  * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat)

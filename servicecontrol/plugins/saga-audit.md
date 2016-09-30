@@ -34,7 +34,8 @@ This plugin results in an increase in load in several areas
 The increase in load is proportional to size of the saga data multiplied by the number of messages the the saga receives. Since both these variables are dependent on the specific saga implementation it is not possible to give accurate predictions on the impact of this load in a production system.
 
 
-## NuGets
+## NuGet packages
+
  * NServiceBus Version 6.x: [ServiceControl.Plugin.NSb6.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.SagaAudit)
  * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.SagaAudit)
  * NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit)

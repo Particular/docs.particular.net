@@ -77,7 +77,7 @@ The result of a custom check is either success or a failure (with a detailed des
 NOTE: It is essential to deploy this plugin to the endpoint in production in order to receive error notifications about the custom check failures in the ServicePulse dashboard.
 
 
-## NuGets
+## NuGet packages
 
  * NServiceBus Version 6.x: [ServiceControl.Plugin.Nsb6.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.CustomChecks)
  * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks)

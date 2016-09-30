@@ -1,6 +1,6 @@
 ---
 title: RabbitMQ.Client NuGet usage
-summary: Explains why the RabbitMQ.Client NuGet version range is inconsistent with most other NServiceBus extension NuGets.
+summary: Explains why the RabbitMQ.Client NuGet version range is inconsistent with most other NServiceBus extension NuGet packages.
 component: Rabbit
 reviewed: 2016-08-31
 ---
