@@ -7,7 +7,6 @@
 
     public static class QueueDeletionUtils
     {
-
         public static void DeleteAllQueues()
         {
             var machineQueues = MessageQueue.GetPrivateQueuesByMachine(".");
@@ -25,7 +24,6 @@
                 MessageQueue.Delete(path);
             }
         }
-
     }
 
     #endregion
