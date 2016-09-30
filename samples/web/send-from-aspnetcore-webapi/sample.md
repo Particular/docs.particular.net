@@ -7,11 +7,18 @@ related:
 - nservicebus/hosting
 ---
 
+
 This sample shows how to send messages to a NServiceBus endpoint from a ASP.NET Core WebAPI application. It only works for ASP.NET Core solutions targeting the full .NET Framework. The .NET Core runtime is currently not supported.
 
 Run the solution, a new browser window/tab opens, as well as a console application.
 
 The browser will open up the URL `http://localhost:51863/api/sendmessage`. An async [WebAPI](https://www.asp.net/web-api) controller handles the request. It creates an NServiceBus message and sends it to the endpoint running in the console application. The message has been processed successfully when the console application prints "Message received at endpoint". 
+
+
+### Prerequisites
+
+- Install [.NET Core](https://www.microsoft.com/net/core#windows)
+
 
 ### Initialize the WebAPI endpoint
 
