@@ -87,6 +87,8 @@ Delayed Retries might be useful when dealing with unreliable third-party resourc
 
 For more information about how to configure delayed retries, refer to [configure delayed retries](configure-delayed-retries.md).
 
+For more information how delayed retries work internally, refer to the [Delayed delivery - how it works](/nservicebus/messaging/delayed-delivery.md#how-it-works) section.
+
 NOTE: Retrying messages for extended periods of time would hide failures from operators, thus preventing them from taking manual action to honor their Service Level Agreements. To avoid this, NServiceBus will make sure that no message is retried for more than 24 hours before being sent the error queue.
 
 
