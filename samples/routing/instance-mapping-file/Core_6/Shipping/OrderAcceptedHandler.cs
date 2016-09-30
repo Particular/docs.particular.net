@@ -8,7 +8,7 @@ class OrderAcceptedHandler :
     public Task Handle(OrderAccepted message, IMessageHandlerContext context)
     {
         log.Info($"Order {message.OrderId} shipped.");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();

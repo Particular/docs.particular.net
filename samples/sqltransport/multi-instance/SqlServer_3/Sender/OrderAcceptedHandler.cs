@@ -11,6 +11,6 @@ public class OrderAcceptedHandler :
     public Task Handle(ClientOrderAccepted message, IMessageHandlerContext context)
     {
         log.Info($"Received ClientOrderAccepted for ID {message.OrderId}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

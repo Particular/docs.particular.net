@@ -18,8 +18,8 @@ class RoutingInfoCommunicator :
         this.dataAccess = dataAccess;
     }
 
-    public Func<Entry, Task> Changed = entry => Task.FromResult(0);
-    public Func<Entry, Task> Removed = entry => Task.FromResult(0);
+    public Func<Entry, Task> Changed = entry => Task.CompletedTask;
+    public Func<Entry, Task> Removed = entry => Task.CompletedTask;
 
     protected override Task OnStart(IMessageSession messageSession)
     {
@@ -30,7 +30,7 @@ class RoutingInfoCommunicator :
                 .GetAwaiter()
                 .GetResult();
         }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     async Task Refresh()
@@ -71,7 +71,7 @@ class RoutingInfoCommunicator :
             timer.Dispose(waitHandle);
             waitHandle.WaitOne();
         }
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     public Task Publish(string data)

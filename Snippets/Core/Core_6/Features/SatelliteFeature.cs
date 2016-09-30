@@ -32,7 +32,7 @@
         {
             // Implement what this satellite needs to do once it receives a message
             var messageId = context.MessageId;
-            return Task.FromResult(true);
+            return Task.CompletedTask;
         }
     }
     #endregion

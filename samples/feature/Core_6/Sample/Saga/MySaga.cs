@@ -41,6 +41,6 @@ public class MySaga :
     {
         log.Info("Received CompleteSagaMessage");
         MarkAsComplete();
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

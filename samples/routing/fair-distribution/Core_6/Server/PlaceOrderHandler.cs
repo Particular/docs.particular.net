@@ -10,7 +10,7 @@ class PlaceOrderHandler :
     {
         Thread.Sleep(1000);
         log.Info($"Order {message.OrderId} accepted.");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     static ILog log = LogManager.GetLogger<PlaceOrderHandler>();

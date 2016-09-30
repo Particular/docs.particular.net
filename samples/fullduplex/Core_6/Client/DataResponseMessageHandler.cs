@@ -11,7 +11,7 @@ class DataResponseMessageHandler :
     public Task Handle(DataResponseMessage message, IMessageHandlerContext context)
     {
         log.Info($"Response received with description: {message.String}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
 }

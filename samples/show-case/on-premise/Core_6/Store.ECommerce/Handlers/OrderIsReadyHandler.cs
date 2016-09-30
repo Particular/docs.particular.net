@@ -16,6 +16,6 @@ public class OrderIsReadyHandler :
                 message.OrderNumber,
                 ProductUrls = message.ProductUrls.Select(pair => new { Id = pair.Key, Url = pair.Value }).ToArray()
             });
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

@@ -10,6 +10,6 @@ public class LongProcessingFailedHandler :
     public Task Handle(LongProcessingFailed message, IMessageHandlerContext context)
     {
         log.Info($"Request with ID {message.Id} has failed. Reason: {message.Reason}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

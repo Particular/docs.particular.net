@@ -10,6 +10,6 @@ public class CreateOrderHandler :
     public Task Handle(CreateOrder message, IMessageHandlerContext context)
     {
         log.Info("Order received. OriginatingEndpoint:" + context.MessageHeaders[Headers.OriginatingEndpoint]);
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

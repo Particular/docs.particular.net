@@ -61,7 +61,7 @@
         {
             public Task Handle(MessageToPublish message, IMessageHandlerContext context)
             {
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
 
@@ -89,7 +89,7 @@
                 var headerText = HeaderWriter.ToFriendlyString<HeaderWriterPublish>(context.Headers);
                 SnippetLogger.Write(headerText);
                 ManualResetEvent.Set();
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
     }

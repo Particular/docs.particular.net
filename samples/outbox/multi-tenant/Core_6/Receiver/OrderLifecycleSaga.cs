@@ -22,13 +22,13 @@ public class OrderLifecycleSaga :
 
         RequestTimeout<OrderTimeout>(context, TimeSpan.FromSeconds(5));
 
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     public Task Timeout(OrderTimeout state, IMessageHandlerContext context)
     {
         log.Info("Got timeout");
 
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

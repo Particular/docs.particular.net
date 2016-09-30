@@ -29,7 +29,7 @@
 
         Task SomeCustomMethod(IPipelineContext context)
         {
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
     }

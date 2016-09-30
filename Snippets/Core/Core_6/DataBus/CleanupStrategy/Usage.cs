@@ -30,7 +30,7 @@ namespace Core6.DataBus.CleanupStrategy
         {
             var filePath = message.FilePath;
             // Code to clean up
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
 

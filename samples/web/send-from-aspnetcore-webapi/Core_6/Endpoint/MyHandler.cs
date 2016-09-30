@@ -10,7 +10,7 @@ public class MyHandler : IHandleMessages<MyMessage>
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         log.Info("Message received at endpoint");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
     #endregion
 }

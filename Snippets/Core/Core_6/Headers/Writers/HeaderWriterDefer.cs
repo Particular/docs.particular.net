@@ -62,7 +62,7 @@
         {
             public Task Handle(MessageToSend message, IMessageHandlerContext context)
             {
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
 
@@ -89,7 +89,7 @@
                 var headerText = HeaderWriter.ToFriendlyString<HeaderWriterDefer>(context.Headers);
                 SnippetLogger.Write(headerText);
                 ManualResetEvent.Set();
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
     }

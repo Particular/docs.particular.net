@@ -11,6 +11,6 @@ public class MessagesThatMarkWithExpirationHandler :
     public Task Handle(MessageThatExpires message, IMessageHandlerContext context)
     {
         log.Info($"Message [{message.GetType()}] received, id: [{message.RequestId}]");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

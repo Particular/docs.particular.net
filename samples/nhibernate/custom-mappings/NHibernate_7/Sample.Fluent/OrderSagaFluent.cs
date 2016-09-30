@@ -48,7 +48,7 @@ public class OrderSagaFluent :
     {
         log.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
 }

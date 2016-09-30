@@ -17,7 +17,7 @@ public class ShipOrderHandler :
 
         session.Save(orderShipped);
 
-        return Task.FromResult(true);
+        return Task.CompletedTask;
     }
 }
 #endregion

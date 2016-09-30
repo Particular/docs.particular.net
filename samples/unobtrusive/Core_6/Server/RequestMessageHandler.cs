@@ -17,6 +17,6 @@ public class RequestMessageHandler :
             ResponseId = message.RequestId
         };
         context.Reply(response);
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

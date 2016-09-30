@@ -15,7 +15,7 @@ public class MessageBodyWriter :
             .GetString(context.Body);
         log.Info("Serialized Message Body:");
         log.Info(bodyAsString);
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 #endregion

@@ -11,7 +11,7 @@ namespace DataDistribution
         public Task Handle(OrderAccepted message, IMessageHandlerContext context)
         {
             log.Info("Invalidating cache.");
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
 }

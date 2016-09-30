@@ -11,7 +11,7 @@ public class LegacyOrderDetectedHandler :
     {
         log.Info($"Legacy order with id {message.OrderId} detected");
         // Get the order details from the database and publish an event
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
 }

@@ -15,13 +15,13 @@ public class ValidationMessageMutator :
     public Task MutateOutgoing(MutateOutgoingMessageContext context)
     {
         ValidateDataAnnotations(context.OutgoingMessage);
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     public Task MutateIncoming(MutateIncomingMessageContext context)
     {
         ValidateDataAnnotations(context.Message);
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     static void ValidateDataAnnotations(object message)

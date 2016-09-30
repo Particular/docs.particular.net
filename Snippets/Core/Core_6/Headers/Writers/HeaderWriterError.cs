@@ -99,7 +99,7 @@
                         text: sendingText,
                         suffix: "Sending");
                 }
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
     }

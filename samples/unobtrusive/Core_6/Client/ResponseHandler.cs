@@ -11,7 +11,7 @@ public class ResponseHandler :
     public Task Handle(Response message, IMessageHandlerContext context)
     {
         log.Info($"Response received from server for request with id:{message.ResponseId}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
 }

@@ -10,6 +10,6 @@ public class RunBeforeEndpointStop :
     public Task Run(IEndpointInstance endpoint)
     {
         log.Info("Endpoint Stopping");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

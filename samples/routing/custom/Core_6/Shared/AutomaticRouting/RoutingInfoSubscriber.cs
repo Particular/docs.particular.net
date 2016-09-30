@@ -51,7 +51,7 @@ class RoutingInfoSubscriber :
                 }
             }
         }, null, sweepPeriod + sweepPeriod, sweepPeriod);
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     protected override Task OnStop(IMessageSession session)
@@ -61,7 +61,7 @@ class RoutingInfoSubscriber :
             sweepTimer.Dispose(waitHandle);
             waitHandle.WaitOne();
         }
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     public async Task OnRemoved(Entry entry)

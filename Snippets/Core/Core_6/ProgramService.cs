@@ -52,7 +52,7 @@ namespace Core6
             {
                 return endpointInstance.Stop();
             }
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
 }

@@ -9,7 +9,7 @@ public class MutateOutgoingMessages :
     {
         var headers = context.OutgoingHeaders;
         headers["MutateOutgoingMessages"] = "ValueMutateOutgoingMessages";
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 #endregion

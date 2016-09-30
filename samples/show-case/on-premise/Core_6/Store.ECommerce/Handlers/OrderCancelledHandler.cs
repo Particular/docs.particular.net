@@ -15,7 +15,7 @@ public class OrderCancelledHandler :
             {
                 message.OrderNumber,
             });
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
 }

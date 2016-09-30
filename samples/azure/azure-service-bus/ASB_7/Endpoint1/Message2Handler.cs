@@ -10,6 +10,6 @@ public class Message2Handler :
     public Task Handle(Message2 message, IMessageHandlerContext context)
     {
         log.Info($"Received Message2: {message.Property}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

@@ -10,6 +10,6 @@ public class MyHandler :
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         log.Info($"Got `MyMessage` with id: {context.MessageId}, property value: {message.SomeProperty}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

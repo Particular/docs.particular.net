@@ -12,6 +12,6 @@ public class Startup :
 
     public Task Stop(IMessageSession session)
     {
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

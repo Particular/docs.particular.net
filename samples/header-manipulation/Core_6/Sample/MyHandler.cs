@@ -19,7 +19,7 @@ public class MyHandler :
         {
             log.Info(line);
         }
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 

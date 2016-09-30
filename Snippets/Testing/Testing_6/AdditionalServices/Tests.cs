@@ -33,7 +33,7 @@
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             // use myService here
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
 

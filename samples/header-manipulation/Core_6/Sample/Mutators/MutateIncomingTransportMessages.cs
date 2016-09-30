@@ -9,7 +9,7 @@ public class MutateIncomingTransportMessages :
     {
         var headers = context.Headers;
         headers.Add("MutateIncomingTransportMessages", "ValueMutateIncomingTransportMessages");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 #endregion

@@ -12,6 +12,6 @@ public class AnotherEventMessageHandler :
         log.Info($"Subscriber 1 received AnotherEventMessage with Id {message.EventId}.");
         log.Info($"Message time: {message.Time}.");
         log.Info($"Message duration: {message.Duration}.");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

@@ -38,14 +38,14 @@ public class OrderSaga :
     {
         log.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     public Task Timeout(CancelOrder state, IMessageHandlerContext context)
     {
         log.Info($"Complete not received soon enough OrderId {Data.OrderId}");
         MarkAsComplete();
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 #endregion

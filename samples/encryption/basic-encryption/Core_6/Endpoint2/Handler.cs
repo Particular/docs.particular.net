@@ -15,7 +15,7 @@ public class Handler :
         {
             log.Info($"CreditCard: {creditCard.Number.Value} is valid to {creditCard.ValidTo}");
         }
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
 }

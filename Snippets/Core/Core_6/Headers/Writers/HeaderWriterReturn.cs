@@ -80,7 +80,7 @@
                         suffix: "Returning");
                     ManualResetEvent.Set();
                 }
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
     }

@@ -18,7 +18,7 @@ public class SomeLibrary
 {
     public static Task SomeAsyncMethod(MyMessage message, IAsyncDocumentSession ravenSession)
     {
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 public class MyMessage

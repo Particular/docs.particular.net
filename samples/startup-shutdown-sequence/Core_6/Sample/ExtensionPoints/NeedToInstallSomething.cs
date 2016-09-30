@@ -7,6 +7,6 @@ public class NeedToInstallSomething :
     public Task Install(string identity)
     {
         Logger.WriteLine("Inside INeedToInstallSomething.Install");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

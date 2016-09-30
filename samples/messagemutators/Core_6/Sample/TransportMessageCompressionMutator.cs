@@ -27,7 +27,7 @@ public class TransportMessageCompressionMutator :
         context.OutgoingBody = outStream.ToArray();
         context.OutgoingHeaders["IWasCompressed"]= "true";
         log.Info($"transportMessage.Body size after compression: {context.OutgoingBody.Length}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     public async Task MutateIncoming(MutateIncomingTransportMessageContext context)

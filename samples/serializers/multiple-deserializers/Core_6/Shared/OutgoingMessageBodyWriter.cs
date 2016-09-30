@@ -15,7 +15,7 @@ class OutgoingMessageBodyWriter :
         var bodyAsString = Encoding.UTF8
             .GetString(context.OutgoingBody);
         log.Info($"Serialized Message Body:\r\n{bodyAsString}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 

@@ -29,7 +29,7 @@
             // optionally replace the message instance by setting context.OutgoingMessage
             var outgoingMessage = context.OutgoingMessage;
 
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
     #endregion

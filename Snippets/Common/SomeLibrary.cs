@@ -6,11 +6,11 @@ namespace Common
     {
         public static Task SomeAsyncMethod(params object[] data)
         {
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
         public static Task AnotherAsyncMethod(params object[] data)
         {
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
         public static void SomeMethod(params object[] data)
         {
