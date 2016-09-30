@@ -16,7 +16,7 @@
             // optionally replace the message instance by setting context.Message
             var message = context.Message;
 
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
     #endregion

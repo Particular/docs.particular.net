@@ -22,9 +22,9 @@
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             // when no asynchronous code is executed in a handler
-            // Task.FromResult(0) or Task.CompletedTask can be returned
+            // Task.CompletedTask can be returned
             SomeLibrary.SomeMethod(message.Data);
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
 

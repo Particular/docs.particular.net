@@ -7,5 +7,4 @@ public static class TaskEx
     public static void Ignore(this Task task)
     {
     }
-    public static readonly Task CompletedTask = Task.FromResult(0);
 }

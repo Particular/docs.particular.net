@@ -21,7 +21,7 @@ The combination of these characteristics makes that any transaction executed aga
 The NHibernate community has already gone through this exercise and provides a driver specific for SqlAzure called [NHibernate.SqlAzure](https://github.com/MRCollective/NHibernate.SqlAzure/). This driver leverages the Microsoft Transient Fault Handling library to ensure reliable SQL Azure connections.
 
 
-## NuGets
+## NuGet packages
 
 There are two choices of package for this library.
 

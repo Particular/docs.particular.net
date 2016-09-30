@@ -26,6 +26,6 @@ public class OrderLifecycleSaga :
     public Task Timeout(OrderTimeout state, IMessageHandlerContext context)
     {
         log.Info("Got timeout");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

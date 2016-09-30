@@ -12,7 +12,7 @@ public class AcknowledgedHandler :
     public Task Handle(PriceUpdateAcknowledged message, IMessageHandlerContext context)
     {
         log.Info($"Price update received by: {message.BranchOffice}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 

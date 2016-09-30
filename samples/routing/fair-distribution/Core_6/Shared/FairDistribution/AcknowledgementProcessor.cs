@@ -28,11 +28,11 @@ class AcknowledgementProcessor :
         }
         if (sessionId != currentSessionId)
         {
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
         var ack = long.Parse(ackString);
         flowManager.Acknowledge(address, ack);
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
     #endregion
 

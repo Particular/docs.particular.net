@@ -10,6 +10,6 @@ public class LongProcessingReplyHandler :
     public Task Handle(LongProcessingReply message, IMessageHandlerContext context)
     {
         log.Info($"Request ID {message.Id} was enqueued for processing.");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

@@ -94,12 +94,12 @@ public class LongProcessingRequestSaga :
     public Task Handle(LongProcessingFinished message, IMessageHandlerContext context)
     {
         MarkAsComplete();
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     public Task Handle(LongProcessingFailed message, IMessageHandlerContext context)
     {
         MarkAsComplete();
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

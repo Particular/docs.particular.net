@@ -20,7 +20,7 @@
             {
                 var currentIdentity = Thread.CurrentPrincipal.Identity;
                 context.OutgoingHeaders["WinIdName"] = currentIdentity.Name;
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
 
@@ -58,7 +58,7 @@
                 new Func<ICriticalErrorContext, Task>(context =>
                 {
                     // place custom handling here
-                    return Task.FromResult(0);
+                    return Task.CompletedTask;
                 }));
 
             #endregion

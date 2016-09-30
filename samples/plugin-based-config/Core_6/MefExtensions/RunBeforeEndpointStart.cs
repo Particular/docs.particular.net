@@ -11,6 +11,6 @@ public class RunBeforeEndpointStart :
     public Task Run()
     {
         log.Info("Endpoint Starting");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

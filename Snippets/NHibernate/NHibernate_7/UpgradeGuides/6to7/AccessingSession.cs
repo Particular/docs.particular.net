@@ -21,7 +21,7 @@ class AccessingSession
         {
             var nhibernateSession = context.SynchronizedStorageSession.Session();
             nhibernateSession.Save(new Order());
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
 

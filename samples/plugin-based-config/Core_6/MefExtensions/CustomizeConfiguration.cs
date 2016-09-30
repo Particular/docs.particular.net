@@ -14,7 +14,7 @@ public class CustomizeConfiguration :
     {
         log.Info("Setting serializer to JSON in an extension");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 #endregion

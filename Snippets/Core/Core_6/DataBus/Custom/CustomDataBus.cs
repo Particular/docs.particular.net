@@ -28,7 +28,7 @@
 
         public Task Start()
         {
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
 

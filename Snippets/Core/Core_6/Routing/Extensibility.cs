@@ -56,14 +56,14 @@
                     {
                         routeTable.AddOrReplaceRoutes("MySource", LoadRoutes());
                     }, null, TimeSpan.FromSeconds(30), TimeSpan.FromSeconds(30));
-                    return Task.FromResult(0);
+                    return Task.CompletedTask;
                 }
 
                 #endregion
 
                 IList<RouteTableEntry> LoadRoutes() => null;
 
-                protected override Task OnStop(IMessageSession session) => Task.FromResult(0);
+                protected override Task OnStop(IMessageSession session) => Task.CompletedTask;
             }
 
             class RobustRefresher : FeatureStartupTask
@@ -93,14 +93,14 @@
                             criticalError.Raise("Ambiguous route detected", ex);
                         }
                     }, null, TimeSpan.FromSeconds(30), TimeSpan.FromSeconds(30));
-                    return Task.FromResult(0);
+                    return Task.CompletedTask;
                 }
 
                 #endregion
 
                 IList<RouteTableEntry> LoadRoutes() => null;
 
-                protected override Task OnStop(IMessageSession session) => Task.FromResult(0);
+                protected override Task OnStop(IMessageSession session) => Task.CompletedTask;
             }
         }
 

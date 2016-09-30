@@ -10,6 +10,6 @@ public class AuditThisMessageHandler :
     public Task Handle(AuditThisMessage message, IMessageHandlerContext context)
     {
         log.Info($"Handling {message.GetType().Name}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

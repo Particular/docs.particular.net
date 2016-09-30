@@ -10,6 +10,6 @@ public class CreateOrderHandler :
     public Task Handle(CreateOrder message, IMessageHandlerContext context)
     {
         log.Info("Order received");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

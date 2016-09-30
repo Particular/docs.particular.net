@@ -12,7 +12,7 @@ public class MyHandler :
     {
         log.Info($"Message received. Id: {message.Id}");
         // throw new Exception("Uh oh - something went wrong....");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 #endregion

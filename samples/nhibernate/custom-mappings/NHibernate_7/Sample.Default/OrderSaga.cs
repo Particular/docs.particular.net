@@ -33,7 +33,7 @@ public class OrderSaga :
     {
         log.Info($"OrderSaga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
 }

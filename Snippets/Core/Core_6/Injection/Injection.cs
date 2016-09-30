@@ -42,7 +42,7 @@
                 {
                     // use client
                 }
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
 

@@ -16,7 +16,7 @@ public class IncomingMessageBodyWriter :
             .GetString(context.Body);
         var contentType = context.Headers[Headers.ContentType];
         log.Info($"ContentType \'{contentType}\'. Serialized Message Body:\r\n{bodyAsString}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 #endregion

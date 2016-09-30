@@ -19,7 +19,7 @@ class FileTransportQueueCreator :
             CreateQueueDirectory(address);
         }
 
-        return TaskEx.CompletedTask;
+        return Task.CompletedTask;
     }
 
     static void CreateQueueDirectory(string address)

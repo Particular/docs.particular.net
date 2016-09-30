@@ -10,6 +10,6 @@ public class LongProcessingFinishedHandler :
     public Task Handle(LongProcessingFinished message, IMessageHandlerContext context)
     {
         log.Info($"Request with ID {message.Id} was successfully finished.");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

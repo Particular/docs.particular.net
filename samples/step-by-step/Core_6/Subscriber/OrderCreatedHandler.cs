@@ -12,7 +12,7 @@ public class OrderCreatedHandler :
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
         log.Info($"Handling: OrderPlaced for Order Id: {message.OrderId}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 #endregion

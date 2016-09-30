@@ -10,7 +10,7 @@ public class RunAfterEndpointStart :
     public Task Run(IEndpointInstance endpoint)
     {
         log.Info("Endpoint Started.");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 #endregion

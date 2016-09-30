@@ -13,7 +13,7 @@
         {
             ComputeBoundComponent.BlocksForAShortTime();
             // or Task.CompletedTask
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
     #endregion
@@ -65,7 +65,7 @@
             if (someCondition)
             {
                 // Task.CompletedTask
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
 
             return SomeLibrary.SomeAsyncMethod(message);

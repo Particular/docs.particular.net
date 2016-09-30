@@ -35,6 +35,11 @@ The samples are located in GitHub at [Particular/docs.particular.net/samples](ht
 Unless otherwise specified (by an individual sample) the following are the default technology choices.
 
 
+### Visual Studio and .NET
+
+[Visual Studio 2015 Update 1](https://www.visualstudio.com/en-us/news/releasenotes/vs2015-update1-vs) and [.NET 4.6.1](https://www.microsoft.com/en-au/download/details.aspx?id=49981) are required.
+
+
 ### C# Language Level
 
 All samples target **C# 6.0** to take advantage of the newer language features. If any help is required in converting to earlier versions of C# then [raise an issue](https://github.com/Particular/docs.particular.net/issues).
@@ -44,7 +49,7 @@ All samples target **C# 6.0** to take advantage of the newer language features. 
 
 Samples default to using the using [MSMQ](/nservicebus/msmq/). **See [MSMQ NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) to configure MSMQ in a way that is compatible with NServiceBus.**
 
-On startup each sample will create the required queues. By default the samples use the prefix `samples.` for all queue names. There is no process to clean up these queues, as such after running samples those queues remain in MSMQ. To clean up these queues manually use a [MSMQ management tool](/nservicebus/msmq/viewing-message-content-in-msmq.md) or [programmatically using the native MSMQ API](/nservicebus/msmq/operations-scripting.md#delete-queues)
+On startup each sample will create the required queues. By default the samples use the prefix `samples.` for all queue names. There is no process to clean up these queues, as such after running samples those queues remain in MSMQ. To clean up these queues manually use a [MSMQ management tool](/nservicebus/msmq/viewing-message-content-in-msmq.md) or [programmatically using the native MSMQ API](/nservicebus/msmq/operations-scripting.md#delete-queues).
 
 For example this PowerShell will delete all queues prefixed with `private$\samples.`.
 
@@ -93,4 +98,4 @@ Many samples make use of `SendLocal` and sending to an endpoint directly by spec
 
 ### [Container](/nservicebus/containers/)
 
-Samples default to using the built-in container since it does not require pulling in any external NuGets. Switching to an external container will give greater flexibility in DI customizations.
+Samples default to using the built-in container since it does not require pulling in any external NuGet packages. Switching to an external container will give greater flexibility in DI customizations.

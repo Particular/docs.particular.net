@@ -11,7 +11,7 @@ public class MessageBHandler :
     public Task Handle(MessageB message, IMessageHandlerContext context)
     {
         log.Info("MessageB Handled");
-        return TaskEx.CompletedTask;
+        return Task.CompletedTask;
     }
 }
 #endregion

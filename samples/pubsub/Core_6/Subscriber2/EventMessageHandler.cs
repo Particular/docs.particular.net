@@ -12,7 +12,7 @@ public class EventMessageHandler :
         log.Info($"Subscriber 2 received IEvent with Id {message.EventId}.");
         log.Info($"Message time: {message.Time}.");
         log.Info($"Message duration: {message.Duration}.");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
 }

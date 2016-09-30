@@ -39,7 +39,7 @@ class Dispatcher :
             File.Move(tempFile, messagePath);
         }
 
-        return TaskEx.CompletedTask;
+        return Task.CompletedTask;
     }
 }
 #endregion

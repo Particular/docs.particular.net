@@ -35,12 +35,12 @@ public class DebugFlagMutator :
         {
             debug.Value = false;
         }
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {
         context.OutgoingHeaders["Debug"] = Debug.ToString();
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

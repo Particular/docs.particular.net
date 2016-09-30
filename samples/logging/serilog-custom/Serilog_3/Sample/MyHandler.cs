@@ -10,6 +10,6 @@ public class MyHandler :
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         log.Info("Hello from MyHandler");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

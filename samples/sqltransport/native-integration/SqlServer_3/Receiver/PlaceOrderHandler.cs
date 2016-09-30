@@ -10,7 +10,7 @@ public class PlaceOrderHandler :
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
         log.Info($"Order {message.OrderId} placed");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
 }

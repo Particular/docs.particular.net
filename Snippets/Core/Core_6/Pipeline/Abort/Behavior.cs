@@ -17,7 +17,7 @@ namespace Core6.Pipeline.Abort
                 return next();
             }
             // since next is not invoke all downstream behaviors will be skipped
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
         bool ShouldPipelineContinue(IIncomingLogicalMessageContext context)

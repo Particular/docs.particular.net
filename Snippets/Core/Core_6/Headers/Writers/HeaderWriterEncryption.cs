@@ -64,7 +64,7 @@
         {
             public Task Handle(MessageToSend message, IMessageHandlerContext context)
             {
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
 
@@ -78,7 +78,7 @@
                 SnippetLogger.Write(Encoding.Default.GetString(context.Body),
                     suffix: "Body");
                 ManualResetEvent.Set();
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
     }

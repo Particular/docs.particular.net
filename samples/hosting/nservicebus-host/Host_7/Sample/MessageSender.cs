@@ -14,7 +14,7 @@ public class MessageSender :
 
     public Task Stop(IMessageSession session)
     {
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 

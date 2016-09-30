@@ -10,7 +10,7 @@ public class MutateIncomingMessages :
     {
         var headers = context.Headers;
         headers.Add("MutateIncomingMessages", "ValueMutateIncomingMessages");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 

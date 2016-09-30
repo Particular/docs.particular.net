@@ -12,7 +12,7 @@ namespace Core6.Pipeline.Abort
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             context.DoNotContinueDispatchingCurrentMessageToHandlers();
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
 

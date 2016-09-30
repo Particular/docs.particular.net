@@ -11,7 +11,7 @@ public class ExpressMessagesHandler :
     public Task Handle(RequestExpress message, IMessageHandlerContext context)
     {
         log.Info($"Message [{message.GetType()}] received, id: [{message.RequestId}]");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
 }

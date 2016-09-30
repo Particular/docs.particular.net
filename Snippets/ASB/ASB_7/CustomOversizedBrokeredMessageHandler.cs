@@ -10,7 +10,7 @@ class CustomOversizedBrokeredMessageHandler :
     {
         // do something useful with the brokered message
         // e.g. store it in blob storage
-        return Task.FromResult(true);
+        return Task.CompletedTask;
     }
 }
 #endregion

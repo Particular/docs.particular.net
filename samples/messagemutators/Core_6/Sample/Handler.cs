@@ -11,7 +11,7 @@ public class Handler :
     public Task Handle(CreateProductCommand message, IMessageHandlerContext context)
     {
         log.Info($"Received a CreateProductCommand message: {message}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 #endregion

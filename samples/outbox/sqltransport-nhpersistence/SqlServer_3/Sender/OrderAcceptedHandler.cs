@@ -10,6 +10,6 @@ public class OrderAcceptedHandler :
     public Task Handle(OrderAccepted message, IMessageHandlerContext context)
     {
         log.Info($"Order {message.OrderId} accepted.");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

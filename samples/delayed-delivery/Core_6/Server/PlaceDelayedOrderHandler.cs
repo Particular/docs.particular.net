@@ -11,7 +11,7 @@ public class PlaceDelayedOrderHandler :
     public Task Handle(PlaceDelayedOrder message, IMessageHandlerContext context)
     {
         log.Info($"[Defer Message Delivery] Order for Product:{message.Product} placed with id: {message.Id}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 

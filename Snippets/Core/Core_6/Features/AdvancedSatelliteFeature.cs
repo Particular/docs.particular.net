@@ -39,7 +39,7 @@
             var criticalError = builder.Build<CriticalError>();
             criticalError.Raise("Something bad happened - trigger critical error", exception);
 
-            return Task.FromResult(true);
+            return Task.CompletedTask;
         }
 
         #endregion

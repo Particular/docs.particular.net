@@ -12,7 +12,7 @@ public class MessageWithLargePayloadHandler :
     public Task Handle(MessageWithLargePayload message, IMessageHandlerContext context)
     {
         log.Info($"Message received. Description: '{message.Description}'. Size of payload property: {message.LargePayload.Value.Length} Bytes");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 

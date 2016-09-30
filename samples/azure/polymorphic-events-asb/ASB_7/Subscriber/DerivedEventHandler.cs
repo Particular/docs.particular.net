@@ -11,6 +11,6 @@ public class DerivedEventHandler :
     public Task Handle(DerivedEvent message, IMessageHandlerContext context)
     {
         log.Info($"Received DerivedEvent. EventId: {message.EventId} Data: {message.Data}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

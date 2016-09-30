@@ -15,6 +15,6 @@ public class OrderPlacedHandler :
                 message.OrderNumber,
                 message.ProductIds
             });
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

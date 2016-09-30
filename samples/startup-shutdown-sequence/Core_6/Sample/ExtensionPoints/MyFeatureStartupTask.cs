@@ -8,12 +8,12 @@ public class MyFeatureStartupTask :
     protected override Task OnStart(IMessageSession session)
     {
         Logger.WriteLine("Inside FeatureStartupTask.OnStart");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     protected override Task OnStop(IMessageSession session)
     {
         Logger.WriteLine("Inside FeatureStartupTask.OnStop");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

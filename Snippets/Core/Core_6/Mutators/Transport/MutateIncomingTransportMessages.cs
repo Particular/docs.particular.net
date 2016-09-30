@@ -26,7 +26,7 @@
             // remove a header
             headers.Remove("MyHeaderKey2");
 
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
     }

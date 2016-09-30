@@ -16,7 +16,7 @@ class SendWelcomePacket :
             Debugger.Break();
         }
         log.Info($"Handler WhenCustomerIsPreferredSendWelcomeEmail invoked for CustomerId: {message.ClientId}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
 }

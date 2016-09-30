@@ -11,6 +11,6 @@ public class SomethingHappenedHandler :
     public Task Handle(ISomethingHappened message, IMessageHandlerContext context)
     {
         log.Info($"Something happened with some data {message.SomeData} and no more info");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

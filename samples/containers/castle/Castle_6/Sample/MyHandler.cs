@@ -15,7 +15,7 @@ public class MyHandler :
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         myService.WriteHello();
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 #endregion

@@ -28,13 +28,13 @@
             public Task Begin()
             {
                 // Do custom work here
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
 
             public Task End(Exception ex = null)
             {
                 // Do custom work here
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
 

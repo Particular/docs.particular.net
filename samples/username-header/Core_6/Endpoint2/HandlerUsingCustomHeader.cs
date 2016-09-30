@@ -13,7 +13,7 @@ public class HandlerUsingCustomHeader :
         var headers = context.MessageHeaders;
         var usernameFromHeader = headers["UserName"];
         log.Info($"Username extracted from header: {usernameFromHeader}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
 }

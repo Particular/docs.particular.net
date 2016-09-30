@@ -11,6 +11,6 @@ public class SomeEventHandler :
     public Task Handle(SomeEvent message, IMessageHandlerContext context)
     {
         log.Info($"Received SomeEvent. EventId: {message.EventId}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

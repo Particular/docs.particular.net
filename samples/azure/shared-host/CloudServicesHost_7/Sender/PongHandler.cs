@@ -9,7 +9,7 @@ public class PongHandler :
     public Task Handle(Pong message, IMessageHandlerContext context)
     {
         VerificationLogger.Write("Sender", "Got Pong from Receiver");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 

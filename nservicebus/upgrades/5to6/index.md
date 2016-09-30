@@ -44,8 +44,10 @@ For solutions with many projects the Visual Studio extension [Target Framework M
 
 See also:
 
- * [.NET Blog - Moving to the .NET Framework 4.5.2](https://blogs.msdn.microsoft.com/dotnet/2014/08/07/moving-to-the-net-framework-4-5-2/)
- * [Known issues for the .NET Framework 4.5.2](https://support.microsoft.com/en-us/kb/2962547)
+ * [.NET Blog - Moving to .NET 4.5.2](https://blogs.msdn.microsoft.com/dotnet/2014/08/07/moving-to-the-net-framework-4-5-2/)
+ * [Known issues for .NET 4.5.2](https://support.microsoft.com/en-us/kb/2962547)
+
+NOTE: While a minimum of .NET 4.5.2 is required, it is recommended to update to at least [.NET 4.6.1](https://www.microsoft.com/en-au/download/details.aspx?id=49981) since this gives access to [Task.CompletedTask](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.completedtask.aspx).
 
 
 ## Update NServiceBus dependencies

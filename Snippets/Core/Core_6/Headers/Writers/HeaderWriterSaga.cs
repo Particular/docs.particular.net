@@ -79,12 +79,12 @@
 
             public Task Handle(ReplyFromSagaMessage message, IMessageHandlerContext context)
             {
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
 
             public Task Handle(ReplyToOriginatorFromSagaMessage message, IMessageHandlerContext context)
             {
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
 
@@ -120,7 +120,7 @@
 
             public Task Timeout(TimeoutFromSaga state, IMessageHandlerContext context)
             {
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
 
@@ -138,7 +138,7 @@
                         text: headerText,
                         suffix: "Sending");
                     CountdownEvent.Signal();
-                    return Task.FromResult(0);
+                    return Task.CompletedTask;
                 }
                 if (context.IsMessageOfTye<ReplyFromSagaMessage>())
                 {
@@ -147,7 +147,7 @@
                         text: headerText,
                         suffix: "Replying");
                     CountdownEvent.Signal();
-                    return Task.FromResult(0);
+                    return Task.CompletedTask;
                 }
                 if (context.IsMessageOfTye<ReplyToOriginatorFromSagaMessage>())
                 {
@@ -156,7 +156,7 @@
                         text: headerText,
                         suffix: "ReplyingToOriginator");
                     CountdownEvent.Signal();
-                    return Task.FromResult(0);
+                    return Task.CompletedTask;
                 }
 
                 if (context.IsMessageOfTye<TimeoutFromSaga>())
@@ -166,9 +166,9 @@
                         text: headerText,
                         suffix: "Timeout");
                     CountdownEvent.Signal();
-                    return Task.FromResult(0);
+                    return Task.CompletedTask;
                 }
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
 

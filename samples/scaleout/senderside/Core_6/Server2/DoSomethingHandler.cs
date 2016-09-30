@@ -10,6 +10,6 @@ public class DoSomethingHandler :
     public Task Handle(DoSomething message, IMessageHandlerContext context)
     {
         log.Info($"Message {message.SequenceId} received.");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

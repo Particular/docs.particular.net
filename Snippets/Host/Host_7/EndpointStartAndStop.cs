@@ -10,13 +10,13 @@ class RunWhenEndpointStartsAndStops :
     public Task Start(IMessageSession session)
     {
         // perform startup logic
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     public Task Stop(IMessageSession session)
     {
         // perform shutdown logic
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 

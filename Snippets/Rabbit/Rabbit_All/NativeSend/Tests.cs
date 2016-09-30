@@ -66,7 +66,7 @@ namespace Rabbit_All.NativeSend
             {
                 Assert.AreEqual("Value", message.Property);
                 tcs.SetResult(true);
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
 

@@ -13,7 +13,7 @@ public class UsernameMutator :
     {
         log.Info("Adding Thread.CurrentPrincipal user to headers");
         context.OutgoingHeaders["UserName"] = Thread.CurrentPrincipal.Identity.Name;
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 #endregion

@@ -25,7 +25,7 @@
 
                 string fatalMessage = $"NServiceBus critical error:\n{context.Error}\nShutting down.";
                 Environment.FailFast(fatalMessage, context.Exception);
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             });
 
             #endregion

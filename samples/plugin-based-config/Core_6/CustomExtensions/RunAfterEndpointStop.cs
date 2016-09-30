@@ -9,6 +9,6 @@ public class RunAfterEndpointStop :
     public Task Run()
     {
         log.Info("Endpoint Stopped");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
