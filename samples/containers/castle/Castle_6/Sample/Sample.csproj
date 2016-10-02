@@ -36,9 +36,8 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-rc0003\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.CastleWindsor, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.CastleWindsor.6.0.0-rc0001\lib\net452\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.ObjectBuilder.CastleWindsor">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.CastleWindsor.6.0.0-rc0002\lib\net452\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
