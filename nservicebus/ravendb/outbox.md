@@ -8,12 +8,13 @@ tags:
  - Outbox
 related:
 - nservicebus/outbox
+reviewed: 2016-10-04
 ---
 
 The [Outbox](/nservicebus/outbox) feature requires persistence in order to store the messages and enable deduplication.
 
 
-## Extra tables created by the RavenDB Outbox persistence
+## Extra collections created by the RavenDB Outbox persistence
 
 To keep track of duplicate messages, the RavenDB implementation of Outbox creates a special collection of documents called `OutboxRecord`.
 
