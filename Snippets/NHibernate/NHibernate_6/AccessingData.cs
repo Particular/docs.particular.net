@@ -30,7 +30,8 @@ class AccessingData
 
             public void Handle(OrderMessage message)
             {
-                dataContext.Session.Save(new Order());
+                var nhibernateSession = dataContext.Session;
+                nhibernateSession.Save(new Order());
             }
         }
 
