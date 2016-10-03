@@ -8,6 +8,7 @@ tags:
  - Persistence
 related:
  - samples/ravendb
+reviewed: 2016-10-04
 ---
 
 Uses the [RavenDB document database](https://ravendb.net/) for storage.
