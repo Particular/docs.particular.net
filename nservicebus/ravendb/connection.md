@@ -9,6 +9,7 @@ related:
 redirects:
  - nservicebus/using-ravendb-in-nservicebus-connecting
  - nservicebus/ravendb/connecting
+reviewed: 2016-10-03
 ---
 
 
