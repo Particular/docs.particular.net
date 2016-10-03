@@ -8,6 +8,7 @@ tags:
 redirects:
  - nservicebus/ravendb/how-to-change-resourcemanagerid
  - nservicebus/ravendb/resourcemanagerid
+reviewed: 2016-10-03
 ---
 
 In order to provide reliable support for distributed transactions in RavenDB, a custom DocumentStore must be provided and configured to uniquely identify the endpoint to the Distributed Transaction Coordinator (DTC) and provide a storage location for uncommitted transaction recovery.
@@ -20,7 +21,7 @@ Support for the Distributed Transaction Coordinator (DTC) in RavenDB is dependen
 
 ### ResourceManagerId
 
-The ResourceManagerId is a Guid that uniquely identifies a transactional resource on a machine, and must be both unique on that machine, and stable (deterministic) between restarts of the process utilizing the DTC. If more than one RavenDB document store attempts to use the same ResourceManagerId, it can result in the following error during a commit operation:
+The ResourceManagerId is a Guid that uniquely identifies a transactional resource on a machine, and must be both unique system wide, and stable (deterministic) between restarts of the process utilizing the DTC. If more than one RavenDB document store attempts to use the same ResourceManagerId, it can result in the following error during a commit operation:
 
 > "A resource manager with the same identifier is already registered with the specified transaction coordinator"
 
