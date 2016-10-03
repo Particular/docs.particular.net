@@ -2,7 +2,7 @@
 title: Accessing Business data
 summary: How to access business data in sync with message consumption and modifications to NServiceBus-controlled data.
 component: NHibernate
-versions: '[6,]'
+versions: '[4,]'
 reviewed: 2016-03-15
 tags:
  - NHibernate
@@ -27,10 +27,6 @@ To access the data in an *exactly-once* way is to just lean on the Distributed T
 The upside is that the application may use any data store that supports the DTC-coordinated transaction.
 
 NServiceBus [persistence](/nservicebus/persistence/) offers a solution to these problems but limits the data storage choices. The NHibernate persistence supports 'hooking-up' to the data context used by NServiceBus to ensure atomic changes.
-
-snippet:NHibernateAccessingDataViaContext
-
-As shown above, `NHibernateStorageContext` can be used directly to access NHibernate `ISession`.
 
 partial:direct-access
 

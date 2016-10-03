@@ -54,6 +54,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessingData.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <ItemGroup>
