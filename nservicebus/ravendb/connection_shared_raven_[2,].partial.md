@@ -20,7 +20,7 @@ Instead of connecting to a database on the local server, a connection string can
 
 snippet:shared-document-store-via-connection-string
 
-RavenDB connection strings can include the database name and other parameters as well. See [How to set up a connection string](https://ravendb.net/docs/article-page/3.0/csharp/client-api/setting-up-connection-string#Format) in the RavenDB documentation for more details. The runtime will use the the connection string to create a shared `DocumentStore` instance for all persisters.
+RavenDB connection strings can include the database name and other parameters as well. See [How to set up a connection string](https://ravendb.net/docs/article-page/3.0/csharp/client-api/setting-up-connection-string#Format) in the RavenDB documentation for more details. The runtime will use the connection string to create a shared `DocumentStore` instance for all persisters.
 
 
 ## Shared store for all persisters defined via connection parameters
