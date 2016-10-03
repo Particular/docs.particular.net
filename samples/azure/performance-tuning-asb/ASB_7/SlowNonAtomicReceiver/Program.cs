@@ -15,7 +15,7 @@ class Program
 
     static async Task MainAsync()
     {
-        Console.Title = "Samples.ASB.Performance.Receiver1";
+        Console.Title = "Samples.ASB.Performance.SlowNonAtomicReceiver";
 
         ReceiveCounter.Subscribe(i => _logger.Warn("Process " + i + " messages per second"));
 
@@ -40,6 +40,9 @@ class Program
         transportConfiguration.Queues().EnablePartitioning(true);
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         transportConfiguration.MessageReceivers().PrefetchCount(0);
+
+        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(1);
+        transportConfiguration.NumberOfClientsPerEntity(1);
 
         #endregion
 

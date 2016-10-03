@@ -42,6 +42,9 @@ class Program
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         transportConfiguration.MessageReceivers().PrefetchCount(0);
 
+        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(1);
+        transportConfiguration.NumberOfClientsPerEntity(1);
+
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

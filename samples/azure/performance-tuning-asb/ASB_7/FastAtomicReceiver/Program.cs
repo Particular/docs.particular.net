@@ -22,6 +22,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Performance.Receiver");
         var transportConfiguration = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+
         if (string.IsNullOrWhiteSpace(connectionString))
         {
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
@@ -41,13 +42,13 @@ class Program
         transportConfiguration.Queues().EnablePartitioning(true);
 
         var numberOfCores = Environment.ProcessorCount;
-        var concurrency = numberOfCores * 2;
+        var concurrency = numberOfCores * 4; //32 on test machine with 8 logical cores
 
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(concurrency);
         transportConfiguration.MessageReceivers().PrefetchCount(0);
 
-        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(20);
-        transportConfiguration.NumberOfClientsPerEntity(20);
+        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(32);
+        transportConfiguration.NumberOfClientsPerEntity(32);
 
         #endregion
 

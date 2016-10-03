@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.ServiceBus;
+using Microsoft.ServiceBus.Messaging;
 using NServiceBus;
 
 class Program
@@ -36,7 +37,13 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-       
+
+        #region slow-send-config
+        transport.MessagingFactories().BatchFlushInterval(TimeSpan.Zero);
+        transport.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(1);
+        transport.NumberOfClientsPerEntity(1);
+        #endregion
+
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
@@ -90,7 +97,11 @@ class Program
         var namespaceManager = NamespaceManager.CreateFromConnectionString(connectionString);
         if (!await namespaceManager.QueueExistsAsync(receiverPath).ConfigureAwait(false))
         {
-            await namespaceManager.CreateQueueAsync(receiverPath);
+            await namespaceManager.CreateQueueAsync(new QueueDescription(receiverPath)
+            {
+                EnablePartitioning = true,
+                EnableBatchedOperations = true
+            });
         }
     }
 
