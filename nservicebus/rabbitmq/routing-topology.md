@@ -10,7 +10,7 @@ The RabbitMQ transport has the concept of a routing topology, which controls how
 
 ## Conventional Routing Topology
 
-By default, the RabbitMQ transport uses the `ConventionalRoutingTopology`, which creates separate [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) for each message type being published in the system and for each endpoint. This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchanges based on the event types that it has handlers for. 
+By default, the RabbitMQ transport uses the `ConventionalRoutingTopology`, which creates separate [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) for each message type being published in the system and for each endpoint. 
 
 ### Sending using Conventional Routing Topology
 
@@ -19,6 +19,8 @@ Every endpoint creates a queue and an exchange which names are equal to endpoint
 ### Publishing using Conventional Routing Topology
 
 Every endpoint before publishing an event creates a fanout exchange for the event and it's base types. Every exchange has a name matching `namespace.eventType` of that event. Bindings are established to ensure that publishing base type events also are moved to sub-type exchanges. Endpoint that subscribes to given event looks for exchange of given name and set up binding to move those messages to its queue. 
+
+This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchanges based on the event types that it has handlers for. 
 
 ## Direct Routing Topology
 
@@ -30,9 +32,9 @@ Every endpoint creates a queue with name that is equal to endpoint name. When en
 
 ### Publishing using Direct Routing Topology
 
-Endpoints publish an event using default exchange with a routing key that match events 'namespace.eventType', that event is passed to all queues that has binding for that event type.
+Endpoints publish an event using `amq.topic` exchange with a routing key that match events 'namespace.eventType', that event is passed to all queues that has binding for that event type.
 
-Endpoint that subscribes to given event set-up binding to a default exchange with a routing key matching eventType. 
+Endpoint that subscribes to given event set-up binding to a default exchange with a routing key matching eventType.
 
 ### Enabling Direct Routing Topology
 
