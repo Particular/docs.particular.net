@@ -1,19 +1,21 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NServiceBus;
 
 public class SomeMessageHandler :
     IHandleMessages<SomeMessage>
 {
-    public const int NumberOfMessagesToSend = 1000; 
+    public const int NumberOfMessagesToSend = 100; 
 
-    public async Task Handle(SomeMessage message, IMessageHandlerContext context)
+    public Task Handle(SomeMessage message, IMessageHandlerContext context)
     {
         Program.ReceiveCounter.OnNext(message);
 
+        var list = new List<Task>();
         for (var i = 0; i < NumberOfMessagesToSend; i++)
         {
-            await context.Send(new SomeMessage());
+            list.Add(context.Send(new SomeMessage()));
         }
-
+        return Task.WhenAll(list);
     }
 }
