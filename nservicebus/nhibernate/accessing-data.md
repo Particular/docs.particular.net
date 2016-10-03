@@ -2,6 +2,7 @@
 title: Accessing Business data
 summary: How to access business data in sync with message consumption and modifications to NServiceBus-controlled data.
 component: NHibernate
+versions: '[6,]'
 reviewed: 2016-03-15
 tags:
  - NHibernate
