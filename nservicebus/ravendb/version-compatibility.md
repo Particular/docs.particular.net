@@ -4,6 +4,7 @@ summary: The various approaches used by different versions of NServiceBus when i
 tags:
 - RavenDB
 - Persistence
+reviewed: 2016-10-03
 ---
 
 ## NServiceBus 5: Externalized RavenDB
@@ -26,7 +27,7 @@ The current approach moving forward for the RavenDB integration is to ship outsi
 ### Supported NServiceBus versions
 
  * Version 1 of NServiceBus.RavenDB targets NServiceBus 4.1 through 4.x;
- * Version 2 & 3 of NServiceBus.RavenDB targets NServiceBus 5.x ;
+ * Version 2 & 3 of NServiceBus.RavenDB target NServiceBus 5.x;
 
 
 ## NServiceBus 4: Resource Merged into the core
@@ -35,7 +36,7 @@ In Version 4 of NServiceBus the approach to embedding RavenDB in NServiceBus.Cor
 
 This enables, at runtime, to chose the newest version of the RavenDB assemblies found on disk. So if a consumer of NServiceBus has updated to newer RavenDB assemblies NServiceBus would use those instead of the merged versions.
 
-This resolved all the issue with ILMerged but raised a different one:  **Compatibility between different versions of the RavenDB client assemblies**. NServiceBus need to use a small subset of the RavenDB client APIs. At any one time it is necessary to choose one version of those APIs to reference. This means that any incompatibilities between different versions of the RavenDB client API require a new version of NServiceBus to be release that copes with that incompatibility using reflection.
+This resolved all the issue with ILMerged but raised a different one:  **Compatibility between different versions of the RavenDB client assemblies**. NServiceBus need to use a small subset of the RavenDB client APIs. At any one time it is necessary to choose one version of those APIs to reference. This means that any incompatibilities between different versions of the RavenDB client API require a new version of NServiceBus to be released that copes with that incompatibility using reflection.
 
 The root underlying cause of these compatibility issue is that NServiceBus follows SemVer but RavenDB doesn't.
 
