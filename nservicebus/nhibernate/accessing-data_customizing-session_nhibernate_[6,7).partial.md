@@ -1,6 +1,6 @@
 ## Customizing the session
 
-Versions 5 and below supported customizing the instantiation of the `ISession`. This is done by hooking up to the creation process by providing a custom delegate:
+Version 6 supports customizing the instantiation of the `ISession`. This is done by hooking up to the creation process by providing a custom delegate:
 
 snippet:CustomSessionCreation
 
