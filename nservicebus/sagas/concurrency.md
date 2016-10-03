@@ -6,9 +6,10 @@ tags:
 - Saga
 redirects:
 - nservicebus/nservicebus-sagas-and-concurrency
+reviewed: 2016-10-03
 ---
 
-If the endpoint runs with more than one worker thread, it is possible that multiple messages will hit the same saga instance simultaneously. To give ACID semantics in this situation, NServiceBus uses the underlying storage to produce consistent behavior, only allowing one of the threads to commit. NServiceBus handles most of this automatically but there are some caveats.
+If the endpoint runs with more than one worker thread or is scaled out, it is possible that multiple messages will hit the same saga instance simultaneously. To give ACID semantics in this situation, NServiceBus uses the underlying storage to produce consistent behavior, only allowing one of the threads to commit. NServiceBus handles most of this automatically but there are some caveats.
 
 Concurrent access to saga instances is divided into two scenarios;
 
@@ -29,7 +30,7 @@ partial: unique
 
 ## Concurrent access to existing saga instances
 
-This works predictably due to reliance on the underlying database providing optimistic concurrency support. When more than one thread tries to update the same saga instance, the database detects it and only allows one of them to commit. If this happens the retries will occur and the race condition be solved.
+This works predictably due to reliance on the underlying database providing optimistic concurrency support. When more than one thread, or endpoint instance, tries to update the same saga instance, the database detects it and only allows one of them to commit. If this happens the retries will occur and the race condition be solved.
 
 When using the RavenDB saga persister, no action is required since the NServiceBus framework (on RavenDB) turns on [UseOptimisticConcurrency](https://ravendb.net/docs/search/latest/csharp?searchTerm=how-to%20enable-optimistic-concurrency).
 
