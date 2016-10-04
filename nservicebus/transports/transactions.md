@@ -51,7 +51,7 @@ snippet:TransportTransactionScope
 
 In this mode handlers will execute inside the `TransactionScope` created by the transport. This means that all the data updates are executed as a whole or rolled back as a whole.
 
-Distributed transactions do not guarantee atomicity. Changes to the database might be visible *before* the messages disappear from the queue or vice-versa, but they are guaranteed to eventually all sync up to reflect the outcome of the transaction.
+Distributed transactions do not guarantee atomicity for an outside observer. For example outgoing messages might be dispatched and processed by some other endpoint before changes to the database get committed. However it is guaranteed that eventually all resoruces will sync up to reflect the outcome of the transaction.
 
 NOTE: This mode requires the selected storage to support participating in distributed transactions.
 
