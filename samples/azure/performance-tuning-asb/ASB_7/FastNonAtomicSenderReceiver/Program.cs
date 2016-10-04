@@ -47,14 +47,15 @@ class Program
 
         transportConfiguration.Queues().EnablePartitioning(true);
 
-        var numberOfCores = Environment.ProcessorCount;
-        var concurrency = numberOfCores * 16; //128 on test machine with 8 logical cores
+        var perReceiverConcurrency = 8; //values between 2 and 8 work best, as tx is serializable it makes no sense to allow many concurrent tasks
+        var numberOfReceivers = 16; // increase number of receivers as much as bandwidth allows (probably less than receiver due to send volume)
+        var globalConcurrency = numberOfReceivers * perReceiverConcurrency;
 
-        endpointConfiguration.LimitMessageProcessingConcurrencyTo(concurrency);
+        endpointConfiguration.LimitMessageProcessingConcurrencyTo(globalConcurrency);
         transportConfiguration.MessageReceivers().PrefetchCount(0);
 
-        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(16);
-        transportConfiguration.NumberOfClientsPerEntity(16);
+        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(numberOfReceivers);
+        transportConfiguration.NumberOfClientsPerEntity(numberOfReceivers);
 
         #endregion
 

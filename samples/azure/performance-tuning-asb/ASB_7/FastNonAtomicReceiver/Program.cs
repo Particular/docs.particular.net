@@ -42,13 +42,16 @@ class Program
         transportConfiguration.Queues().EnablePartitioning(true);
 
         var numberOfCores = Environment.ProcessorCount;
-        var concurrency = numberOfCores * 32; //256 on test machine with 8 logical cores
 
-        endpointConfiguration.LimitMessageProcessingConcurrencyTo(concurrency);
-        transportConfiguration.MessageReceivers().PrefetchCount(concurrency*2);
+        var perReceiverConcurrency = 128; // concurrency allowed
+        var numberOfReceivers = 32; // increase number of receivers as much as bandwidth allows
+        var globalConcurrency = numberOfReceivers * perReceiverConcurrency;
 
-        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(32);
-        transportConfiguration.NumberOfClientsPerEntity(32);
+        endpointConfiguration.LimitMessageProcessingConcurrencyTo(globalConcurrency);
+        transportConfiguration.MessageReceivers().PrefetchCount(perReceiverConcurrency); // as is prefetching
+
+        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(numberOfReceivers);
+        transportConfiguration.NumberOfClientsPerEntity(numberOfReceivers);
 
         #endregion
 
