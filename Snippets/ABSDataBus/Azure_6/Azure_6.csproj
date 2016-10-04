@@ -50,10 +50,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Azure">
-      <HintPath>..\..\..\packages\NServiceBus.Azure.6.2.5\lib\net45\NServiceBus.Azure.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.Azure.6.2.6\lib\net45\NServiceBus.Azure.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\packages\NServiceBus.5.2.16\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.5.2.17\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

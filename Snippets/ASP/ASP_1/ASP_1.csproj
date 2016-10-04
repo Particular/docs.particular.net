@@ -55,7 +55,7 @@
       <HintPath>..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-rc0002\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Persistence.AzureStorage">
-      <HintPath>..\..\..\packages\NServiceBus.Persistence.AzureStorage.1.0.0-rc0002\lib\net452\NServiceBus.Persistence.AzureStorage.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.Persistence.AzureStorage.1.0.0-rc0003\lib\net452\NServiceBus.Persistence.AzureStorage.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
