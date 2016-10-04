@@ -4,6 +4,7 @@ summary: How to compact (release disk space to OS) the RavenDB database backing 
 tags:
 - ServiceControl
 - RavenDB
+reviewed: 2016-10-04
 ---
 
 
@@ -83,13 +84,9 @@ Once ServiceControl is running in this mode the following procedure can be used 
 ### Step 1: Start ServiceControl in the maintenance mode
 
  * Open the ServiceControl Management utility
- * Stop the Service from the actions icons
- * Note down:
-  * the installation path for the service.
-  * the database path for the service.
- * Open command line, as Administrator, at installation path for the service
- * Type `ServiceControl -maint`
- * ServiceControl will start in the maintenance mode with RavenDB studio exposed on `http://localhost:{selected port}/storage`.
+ * Click on the "advanced options" icon of the instance that needs to be run in maintenance mode
+ * Click on the "Start Maintenance Mode" button
+ * ServiceControl will re-start in maintenance mode with RavenDB studio exposed on `http://localhost:{selected port}/storage`.
 
 
 ### Step 2: Export the current database
@@ -111,8 +108,7 @@ Once ServiceControl is running in this mode the following procedure can be used 
 
 ![](export-database-step4.png)
 
- * Once the export operation is complete, stop ServiceControl (press `<enter>` in the console).
-
+ * Once the export operation is complete, stop ServiceControl (from the ServiceControl Management utility).
 
 ### Step 3: Delete the existing database
 
@@ -137,12 +133,11 @@ NOTE: At this point it is advisable to take a backup copy of the existing databa
 ![](import-database-step3.png 'width=500')
 
  * Wait for the operation to complete.
-
  * After the operation has completed wait for the stale index count in the footer to indicate there are no stale indexes.
 
 ![](import-database-step4.png 'width=500')
 
- * Stop ServiceControl (press `<enter>` in the console).
+ * Stop ServiceControl (from the ServiceControl Management utility).
 
 NOTE: If an `System.OutOfMemoryException` occurs during import work around this error by reducing the batch size in advanced settings.
 
