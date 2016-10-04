@@ -18,7 +18,7 @@ Every endpoint creates a queue and an exchange with names equal to the endpoint 
 
 ### Publishing using Conventional Routing Topology
 
-Every endpoint, before publishing an event, creates a fanout exchange for the event and it's base types. Every exchange has a name of the form `Namespace.TypeName`, corresponding to the type of the event. Bindings are created to ensure that base type events also are moved to the exchanges for the derived types when they are published. An endpoint that subscribes to a given event type looks for the exchange with the appropriate name and creates a binding to move those messages of that type to its queue.
+Every endpoint, before publishing an event, creates a fanout exchange for the event and it's base types. Every exchange has a name of the form `Namespace.TypeName`, corresponding to the type of the event. Bindings are created to ensure that base type events also are moved to the exchanges for the derived types when they are published. An endpoint that subscribes to a given event type looks for the exchange with the appropriate name and creates a binding to move messages of that type to its queue.
 
 This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchanges based on the event types that it has handlers for.
 
