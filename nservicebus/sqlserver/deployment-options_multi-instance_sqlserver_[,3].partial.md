@@ -1,6 +1,6 @@
 ### Multi-instance
 
-WARNING: The multi-instance option is no longer supported from Versions 4 and above.
+WARNING: The multi-instance option is deprecated and not recommended for new projects.
 
 WARNING: Although Versions 3 and above offer support for multi-instance mode when using DTC, Outbox is not a supported option when running in multi-instance mode.
 
@@ -10,7 +10,7 @@ WARNING: Although Versions 3 and above offer support for multi-instance mode whe
 
 ### Multi-instance with store-and-forward
 
-WARNING: This option will not be supported in Versions 4 and above.
+WARNING: This option is deprecated and not recommended for new projects.
 
 SQL Server transport does not support store-and-forward mechanism natively. Therefore, if the receiving endpoint's infrastructure e.g. DTC or SQL Server instance is unavailable especially in a *multi-instance* mode, messages to the endpoint can't be delivered. The sending endpoint and all the other endpoints that depend on it will also be unavailable. The problem can be addressed by using the [Outbox](/nservicebus/outbox/) feature.
 
