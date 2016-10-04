@@ -53,7 +53,7 @@
       <HintPath>..\..\..\packages\NServiceBus.Autofac.6.0.0-rc0002\lib\net452\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
-      <HintPath>..\..\..\packages\NServiceBus.RavenDB.4.0.0-rc0001\lib\net452\NServiceBus.RavenDB.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.RavenDB.4.0.0-rc0002\lib\net452\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
