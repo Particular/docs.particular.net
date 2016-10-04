@@ -27,9 +27,10 @@ SQL Server transport uses SQL Server to store queues and messages. It doesn't us
 ### Advantages
 
  * No additional licensing and training costs, as majority of Microsoft stack organizations already have SQL Server installed and have knowledge required to run it.
- * Mature tooling (SSMS).
- * Free to start (Express edition).
+ * Mature tooling ([SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/en-us/library/mt238290.aspx).
+ * Free to start ([SQL Server Express edition](https://www.microsoft.com/en-au/cloud-platform/sql-server-editions-express).
  * Queues support competing consumers (multiple instances of same endpoint feeding off of same queue) so scale out doesn't require using [distributor](/nservicebus/scalability-and-ha/distributor/).
+ * Supports [Microsoft Distributed Transaction Coordinator (MSDTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx).
 
 
 ### Disadvantages
