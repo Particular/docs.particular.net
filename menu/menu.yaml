@@ -216,6 +216,8 @@
       Articles:
       - Url: nservicebus/endpoints/specify-endpoint-name
         Title: Endpoint Name
+	  - Url: nservicebus/endpoints/decommissioning-endpoints
+        Title: Decommissioning Endpoints
     - Url: nservicebus/hosting/windows-service
       Title: Windows Service
     - Url: nservicebus/hosting/override-hostid
@@ -625,6 +627,8 @@
       Title: Tuning endpoint message processing
     - Url: nservicebus/operations/running-on-windows
       Title: Running on Windows
+    - Url: nservicebus/endpoints/decommissioning-endpoints
+      Title: Decommissioning Endpoints
   - Url: nservicebus/scalability-and-ha
     Title: Scalability and HA
     Articles:
