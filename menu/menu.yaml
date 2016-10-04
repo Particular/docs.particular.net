@@ -113,7 +113,7 @@
         Title: Version 3 to 4
     - Title: RavenDB Persistence
       Articles:
-      - Url: nservicebus/upgrades/ravenravendb-3to4
+      - Url: nservicebus/upgrades/ravendb-3to4
         Title: Version 3 to 4
     - Title: SQL Server Transport
       Articles:
