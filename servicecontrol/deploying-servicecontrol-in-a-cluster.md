@@ -6,6 +6,7 @@ tags:
 - Windows Cluster
 related:
 - servicecontrol/troubleshooting
+reviewed: 2016-10-04
 ---
 
 The following procedure is a high level guide on how to deploy ServiceControl onto a Microsoft fault tolerance Windows cluster. This guide assumes that MSMQ is the underlying transport.
@@ -17,8 +18,8 @@ The following procedure is a high level guide on how to deploy ServiceControl on
   * [Creating a Cluster in Windows Server 2008](https://blogs.msdn.microsoft.com/clustering/2008/01/18/creating-a-cluster-in-windows-server-2008/)
   * [Creating a Cluster in Windows Server 2012R2](https://technet.microsoft.com/en-us/library/dn505754.aspx)
  * Install ServiceControl on each node adding it as a "Generic service" using the cluster manager. This means that ServiceControl will fail over automatically with the cluster.
- * Set up a MSMQ Cluster Group. Cluster group is a group of resources that have a unique DNS name and can be addressed externally like a computer.
- * Add the ServiceControl generic clustered service to the MSMQ cluster group:
+ * Set up a MSMQ Cluster Group. Cluster Group is a group of resources that have a unique DNS name and can be addressed externally like a computer.
+ * Add the ServiceControl generic clustered service to the MSMQ Cluster Group:
   * Make it depend on MSMQ and MSMQ network name;
   * Check "use network name as computer name" in the service configuration;
 
@@ -36,7 +37,7 @@ The RavenDB database needs to be located in *shared storage* that is highly avai
 
 Once the Failover cluster is created and ServiceControl is installed, the next step is to configure ServiceControl to run in a clustered environment.
 
-NOTE: The following steps needs to be applied to all the ServiceControl installation on every node in the cluster.
+NOTE: The following steps needs to be applied to all the ServiceControl installations on every node in the cluster.
 
 
 ### URL ACL(s)
