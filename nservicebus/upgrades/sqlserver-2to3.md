@@ -72,7 +72,7 @@ Note that `EnableLagacyMultiInstanceMode` method replaces both [pull and push mo
 
 snippet:sqlserver-multiinstance-upgrade
 
-Note that `multi-instance` mode has been deprecated and will not be supported in Versions 4 and higher.
+Note that `multi-instance` mode has been deprecated and is not recommended for new projects.
 
 
 #### Multi-instance support and Outbox
