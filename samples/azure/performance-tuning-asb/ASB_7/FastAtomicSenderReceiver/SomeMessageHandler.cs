@@ -4,7 +4,7 @@ using NServiceBus;
 public class SomeMessageHandler :
     IHandleMessages<SomeMessage>
 {
-    public const int NumberOfMessagesToSend = 100; //maximum 100 for atomic sends
+    public const int NumberOfMessagesToSend = 1; //maximum 100 for atomic sends
 
     public async Task Handle(SomeMessage message, IMessageHandlerContext context)
     {

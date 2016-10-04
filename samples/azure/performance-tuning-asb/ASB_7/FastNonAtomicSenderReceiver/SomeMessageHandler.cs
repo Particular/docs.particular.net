@@ -5,7 +5,7 @@ using NServiceBus;
 public class SomeMessageHandler :
     IHandleMessages<SomeMessage>
 {
-    public const int NumberOfMessagesToSend = 100; 
+    public const int NumberOfMessagesToSend = 1; 
 
     public Task Handle(SomeMessage message, IMessageHandlerContext context)
     {
