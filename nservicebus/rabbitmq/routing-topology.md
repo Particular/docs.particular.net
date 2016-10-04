@@ -28,7 +28,7 @@ The `DirectRoutingTopology` routes all events through a single exchange, `amq.to
 
 ### Sending using Direct Routing Topology
 
-Every endpoint creates a queue with name that is equal to the endpoint name. When an endpoint sends a message it sends it to a default exchange with a routing key equal to the destination endpoint name. This makes use of RabbitMQ [default exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html) to pass the message to a queue with the same name.
+Every endpoint creates a queue with name that is equal to the endpoint name. When an endpoint sends a message it sends it to a default exchange with a routing key equal to the destination endpoint name. This makes use of RabbitMQ [default exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html) to move the message to a queue with the same name.
 
 ### Publishing using Direct Routing Topology
 
