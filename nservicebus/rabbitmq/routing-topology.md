@@ -34,7 +34,7 @@ Every endpoint creates a queue with name that is equal to the endpoint name. Whe
 
 Every endpoint publishes an event using the `amq.topic` exchange with a routing key of the form 'Namespace.TypeName', corresponding to the type of the event. The event is moved to all queues that have a binding for that event type.
 
-An endpoint that subscribes to a given event creates a binding to a default exchange with the appropriate routing key.
+An endpoint that subscribes to a given event creates a binding to the default exchange with the appropriate routing key.
 
 ### Enabling Direct Routing Topology
 
