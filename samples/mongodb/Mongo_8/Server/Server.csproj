@@ -43,7 +43,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\packages\NServiceBus.5.2.16\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.5.2.17\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Persistence.MongoDB, Version=8.0.24.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\NServiceBus.Persistence.MongoDb.8.0.24\lib\net45\NServiceBus.Persistence.MongoDB.dll</HintPath>
