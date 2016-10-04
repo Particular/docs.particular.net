@@ -27,17 +27,17 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-rc0002\lib\net452\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-rc0003\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.StructureMap, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.StructureMap.6.0.0-rc0001\lib\net452\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.ObjectBuilder.StructureMap">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.StructureMap.6.0.0-rc0002\lib\net452\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=4.4.1.451, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\StructureMap.4.4.1\lib\net45\StructureMap.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\..\..\..\packages\structuremap.4.0.0.244-alpha\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4">
+      <HintPath>..\..\..\..\..\packages\structuremap.4.0.0.244-alpha\lib\net40\StructureMap.Net4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

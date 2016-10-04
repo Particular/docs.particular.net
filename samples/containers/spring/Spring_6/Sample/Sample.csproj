@@ -35,11 +35,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.16\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.17\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Spring, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Spring.6.0.0\lib\net45\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
+    <Reference Include="NServiceBus.ObjectBuilder.Spring">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Spring.6.0.1\lib\net45\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Core, Version=2.0.1.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
