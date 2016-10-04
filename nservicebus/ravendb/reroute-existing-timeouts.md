@@ -6,6 +6,8 @@ tags:
  - RavenDB
  - Persistence
  - Timeouts
+related:
+ - nservicebus/endpoints/decommissioning-endpoints
 ---
 
 ## Rerouting existing timeouts 
