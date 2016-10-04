@@ -30,6 +30,7 @@ SQL Server transport uses SQL Server to store queues and messages. It doesn't us
  * Mature tooling (SSMS).
  * Free to start (Express edition).
  * Queues support competing consumers (multiple instances of same endpoint feeding off of same queue) so scale out doesn't require using [distributor](/nservicebus/scalability-and-ha/distributor/).
+ * Supports Distributed Transactions.
 
 
 ### Disadvantages
