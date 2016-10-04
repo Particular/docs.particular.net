@@ -7,7 +7,7 @@ tags:
 reviewed: 2016-10-03
 ---
 
-## NServiceBus 5: Externalized RavenDB
+## Externalized RavenDB
 
 RavenDB persistence is available as a separate NuGet [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB)
 
@@ -28,6 +28,7 @@ The current approach moving forward for the RavenDB integration is to ship outsi
 
  * Version 1 of NServiceBus.RavenDB targets NServiceBus 4.1 through 4.x;
  * Version 2 & 3 of NServiceBus.RavenDB target NServiceBus 5.x;
+ * Version 4 of NServiceBus.RavenDB target NServiceBus 6.x;
 
 
 ## NServiceBus 4: Resource Merged into the core
