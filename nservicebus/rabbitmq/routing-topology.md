@@ -42,6 +42,7 @@ Every endpoint publishes an event using the `amq.topic` exchange with a routing 
 
 An endpoint that subscribes to a given event creates a binding to the default exchange with the appropriate routing key.
 
+WARNING: Routing key has a length limitation of 255 chars coming from AMQP 0.9.1 standard. For more details see [RabbitMQ documentation](http://www.rabbitmq.com/amqp-0-9-1-reference.html#basic.publish.routing-key).
 
 ### Enabling Direct Routing Topology
 
