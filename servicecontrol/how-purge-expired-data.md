@@ -7,6 +7,7 @@ related:
 tags:
 - ServiceControl
 - Expiration
+reviewed: 2016-10-05
 ---
 
 ServiceControl stores audit and error data. Any audit and error data that is older than the specified mandatory thresholds is deleted from the embedded RavenDB. The expiration thresholds for both faulted and audited messages needs to be set at installation time. These value can be modified later on by launching the ServiceControl Management Utility and editing the configuration settings for the instance.
