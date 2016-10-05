@@ -547,8 +547,8 @@
         Title: Outbox
       - Url: nservicebus/ravendb/version-compatibility
         Title: RavenDB Client Versions
-    - Url: nservicebus/ravendb/reroute-existing-timeouts
-      Title: Reroute Existing Timeouts
+      - Url: nservicebus/ravendb/reroute-existing-timeouts
+        Title: Reroute Existing Timeouts
     - Url: nservicebus/azure-storage-persistence
       Title: Azure Storage Persistence
       Articles:
