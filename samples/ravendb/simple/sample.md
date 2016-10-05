@@ -9,6 +9,7 @@ tags:
 related:
  - nservicebus/sagas
  - nservicebus/ravendb
+reviewed: 2016-10-05
 ---
 
 include: raven-resourcemanagerid-warning
@@ -35,7 +36,7 @@ snippet:config
 
 ### In Process Raven Host
 
-So that no running instance of RavenDB server is required.
+It is possible to self-host RavenDB so that no running instance of RavenDB server is required to run the sample.
 
 snippet:ravenhost
 
