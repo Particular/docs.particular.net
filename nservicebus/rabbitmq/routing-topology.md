@@ -33,7 +33,7 @@ The `DirectRoutingTopology` routes all events through a single exchange, `amq.to
 
 ### Sending using Direct Routing Topology
 
-Every endpoint creates a queue with name that is equal to the endpoint name. When an endpoint sends a message it sends it to a default exchange with a routing key equal to the destination endpoint name. This makes use of RabbitMQ [default exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html) to move the message to a queue with the same name.
+Every endpoint creates a queue with a name that is equal to the endpoint name. When an endpoint sends a message it sends it to a default exchange with a routing key equal to the destination endpoint name. This makes use of RabbitMQ [default exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html) to move the message to a queue with the same name.
 
 
 ### Publishing using Direct Routing Topology
@@ -42,7 +42,7 @@ Every endpoint publishes an event using the `amq.topic` exchange with a routing 
 
 An endpoint that subscribes to a given event creates a binding to the default exchange with the appropriate routing key.
 
-WARNING: In accordance with the [AMQP 0.9.1 standard](http://www.rabbitmq.com/amqp-0-9-1-reference.html#basic.publish.routing-key) the routing key has a length limit of 255 characters.
+WARNING: In accordance with the [AMQP 0.9.1 standard](https://www.rabbitmq.com/amqp-0-9-1-reference.html#basic.publish.routing-key) the routing key has a length limit of 255 characters.
 
 ### Enabling Direct Routing Topology
 
