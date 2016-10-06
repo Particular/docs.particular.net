@@ -1,6 +1,7 @@
 ---
 title: CustomChecks Plugin
 summary: Define a custom set of conditions that are checked on the endpoint.
+reviewed: 2016-10-06
 tags:
 - ServiceControl
 related:

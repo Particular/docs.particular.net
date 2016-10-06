@@ -1,6 +1,7 @@
 ---
 title: Heartbeat Plugin
 summary: Use the Heartbeat plugin to monitor the health of the endpoints
+reviewed: 2016-10-06
 tags:
 - ServiceControl
 - Heartbeat
@@ -52,7 +53,7 @@ Where the value is convertible to a `TimeSpan` value. The above sample is settin
 When configuring heartbeat interval, make sure Service Control setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#configuration-options-servicecontrol-heartbeatgraceperiod) is greater than the heartbeat interval.
 
 
-### TTL
+### Time-To-Live (TTL)
 
 When the plugin sends heartbeat messages, the default TTL is fixed to four times the configured value of the Heartbeat interval.
 

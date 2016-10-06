@@ -1,6 +1,7 @@
 ---
 title: Securing Access
 summary: How security is addressed in ServiceControl V1.x. How to limit access to ServiceControl data.
+reviewed: 2016-10-06
 tags:
 - ServiceControl
 - Security
@@ -45,9 +46,9 @@ Following are several options for doing so, based on the specific requirements.
 It is possible to setup IIS to act as a reverse proxy and secure ServiceControl using Windows Authentication. Refer to the [instructions](/servicepulse/install-servicepulse-in-iis.md) here on see how to go about this and the limitations of the approach.
 
 
-#### Limiting Access to ServiceControl Through VPN Requirements
+#### Limiting Access to ServiceControl Through VPN Requirements or Firewall restrictions
 
-Use VPN requirements to require authorization when accessing the ServiceControl service, especially when doing so from outside the internal corporate network.
+Use VPN requirements or Firewall restrictions to require authorization when accessing the ServiceControl service URI, especially when doing so from outside the internal corporate network.
 
 This requires administration and logistical support, but also has the advantage of allowing full control of the authentication and authorization mechanisms using existing corporate policies and tools.
 

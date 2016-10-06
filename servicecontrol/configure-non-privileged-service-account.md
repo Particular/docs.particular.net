@@ -3,6 +3,7 @@ title: Configuring a Non-Privileged Account
 summary: Using low privilege account for ServiceControl
 tags:
 - ServiceControl
+reviewed: 2016-10-06
 ---
 
 To allow a non-privileged account to function as the the service account for ServiceControl the following things should be considered:
@@ -25,7 +26,7 @@ In addition the Service requires rights to the configured audit and error queues
  * `error.log`
  * `audit.log`
 
-If the service account user does not have appropriate rights the service will fail.
+If the service account user does not have appropriate rights the service will fail to start. 
 
 
 ### Configuration Changes
@@ -44,6 +45,11 @@ These methods confirm that the user account has sufficient rights:
 
  * Configure and start the service as the user and then check the log files.
  * Interactively run ServiceControl as the user.
+
+Note: When running the ServiceControl.exe from the command line it is important to use the same command line switches that are used when running the service. The command line is visible from within the standard Windows Services user interface.  
+
+
+![](servicedetailsview.png 'width=500')
 
 
 #### Method 1: Running the service as a non-privileged user
