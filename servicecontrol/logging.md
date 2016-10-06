@@ -1,5 +1,6 @@
 ---
 title: Logging
+reviewed: 2016-10-06
 tags:
 - ServiceControl
 - Logging
