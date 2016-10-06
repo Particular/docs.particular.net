@@ -32,7 +32,7 @@
       <HintPath>..\..\..\packages\NServiceBus.Gateway.2.0.0-rc0001\lib\net452\NServiceBus.Gateway.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Testing">
-      <HintPath>..\..\..\packages\NServiceBus.Testing.6.0.0-rc0001\lib\net452\NServiceBus.Testing.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.Testing.6.0.0\lib\net452\NServiceBus.Testing.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
