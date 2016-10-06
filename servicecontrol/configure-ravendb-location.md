@@ -4,6 +4,7 @@ summary: Increase space for monitored data by configuring ServiceControl to save
 tags:
 - ServiceControl
 - RavenDB Embedded
+reviewed: 2016-10-06
 ---
 
 Each ServiceControl service stores its data in a RavenDB embedded database. The location of the database is set at install time.
@@ -20,7 +21,7 @@ The ServiceControl Management Utility does not provide a means of moving the Ser
  * Open the ServiceControl Management Utility
  * Stop the service from the provided options
  * The current database path will be listed in the utility. Copy the contents of this directory to the new location
- * The new database location should not be a subfolder of one of the exsiting locations (Installation path, Log Path etc)
+ * The new database location should not be a sub folder of one of the existing locations (Installation path, Log Path etc)
  * Ensure that the service account used has read/write access to the new location.
  * Manually edit the configuration and specify the new location by changing/adding the `ServiceControl\DBPath` setting. See [Configuration Settings](creating-config-file.md)
  * Restart the Service
@@ -28,4 +29,3 @@ The ServiceControl Management Utility does not provide a means of moving the Ser
 
 This will generate a new instance of the RavenDB embedded instance in the specified path.
 
-NOTE: The ServiceControl process must have read/write access to the specified path.
