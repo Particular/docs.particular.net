@@ -31,7 +31,7 @@
       <HintPath>..\..\..\..\..\packages\Jil.2.14.5\lib\net45\Jil.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-rc0003\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Jil">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Jil.2.0.0-beta0004\Lib\NET452\NServiceBus.Jil.dll</HintPath>
