@@ -1,5 +1,6 @@
 ---
 title: Installing ServiceControl
+reviewed: 2016-10-06
 tags:
 - ServiceControl
 - Installation

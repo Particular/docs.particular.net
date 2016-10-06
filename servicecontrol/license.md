@@ -1,5 +1,6 @@
 ---
 title: Licensing
+reviewed: 2016-10-06
 tags:
  - servicecontrol
  - license
