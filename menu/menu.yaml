@@ -735,8 +735,6 @@
         Title: CustomChecks Plugin
       - Url: servicecontrol/plugins/saga-audit
         Title: SagaAudit Plugin
-      - Url: servicecontrol/plugins/debug-session
-        Title: DebugSession Plugin
   - Title: Management
     Articles:
     - Url: servicecontrol/securing-servicecontrol
