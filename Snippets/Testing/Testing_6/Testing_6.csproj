@@ -29,7 +29,7 @@
       <HintPath>..\..\..\packages\NServiceBus.6.0.0\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Gateway">
-      <HintPath>..\..\..\packages\NServiceBus.Gateway.2.0.0-rc0001\lib\net452\NServiceBus.Gateway.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.Gateway.2.0.0\lib\net452\NServiceBus.Gateway.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Testing">
       <HintPath>..\..\..\packages\NServiceBus.Testing.6.0.0\lib\net452\NServiceBus.Testing.dll</HintPath>
