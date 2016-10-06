@@ -1,6 +1,7 @@
 ---
 title: ServiceControl Endpoint Plugins
 summary: Describes the purpose and internal behavior of the endpoint plugins used by ServiceControl
+reviewed: 2016-10-06
 tags:
 - ServiceControl
 related:

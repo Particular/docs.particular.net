@@ -4,6 +4,7 @@ summary: How to configure ServiceControl to allow direct access to the embedded 
 tags:
 - ServiceControl
 - RavenDB
+reviewed: 2016-10-06
 ---
 
 ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If direct access to the RavenDB instance is required, run the instance in Maintenance Mode by launching the ServiceControl Management Utility.
