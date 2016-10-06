@@ -38,7 +38,7 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Host">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Host.7.0.0-rc0001\lib\net452\NServiceBus.Host.exe</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Host.7.0.0\lib\net452\NServiceBus.Host.exe</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Log4Net">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Log4Net.2.0.0-rc0001\lib\net452\NServiceBus.Log4Net.dll</HintPath>
