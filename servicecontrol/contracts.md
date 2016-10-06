@@ -25,7 +25,7 @@ WARNING: External notification events are sent in batches. If a problem is encou
 [ServiceControl Endpoint Plugins](/servicecontrol/plugins/) collect information from monitored NServiceBus endpoints.
 
 
-### Alerting on `FailedMessages` Event
+### Alerting on FailedMessages Event
 
 Once a message ends up in the error queue ServiceControl will publish a `MessageFailed` event. The message contains:
 
@@ -65,7 +65,7 @@ snippet:MessageFailedHandler
 Both heartbeat and custom check events contain identifying information about the host and the endpoint.
 
 
-### Alerting on `HeartbeatStopped` Event
+### Alerting on HeartbeatStopped Event
 
 [Heartbeats](/servicepulse/intro-endpoints-heartbeats.md#active-vs-inactive-endpoints) are used to track endpoints health.
 
@@ -76,7 +76,7 @@ The message contains the time it was detected and the last heartbeat time.
 Similarly to the code above it is possible to subscribe to the event, handle it, and perform custom actions.
 
 
-### Alerting on `HeartbeatRestored` Event
+### Alerting on HeartbeatRestored Event
 
 Once an endpoint resumes sending heartbeats to the ServiceControl queue then a `HeartbeatRestored` event will be published.
 
@@ -85,7 +85,7 @@ The event contains the time the heartbeat was restored.
 Similarly to the code above it is possible to subscribe to the event, handle it and provide custom actions.
 
 
-### Alerting on `CustomCheckFailed` Event
+### Alerting on CustomCheckFailed Event
 
 [Custom checks](/servicepulse/intro-endpoints-custom-checks.md) are used to alert OPS of possible issues with third parties.
 
@@ -96,7 +96,7 @@ The message contains the time it was detected and the failure reason.
 Similarly to the code above it is possible to subscribe to the event, handle it, and provide custom actions.
 
 
-### Alerting on `CustomCheckSucceeded` Event
+### Alerting on CustomCheckSucceeded Event
 
 Once a custom check succeeds ServiceControl will publish a `CustomCheckSucceeded` event.
 
