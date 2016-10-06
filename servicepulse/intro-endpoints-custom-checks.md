@@ -2,6 +2,7 @@
 title: Custom Check Monitoring
 summary: Describes how ServicePulse uses custom checks to monitor and detect problem that are unique to the solution or endpoint(s) monitored
 component: ServicePulse
+reviewed: 2016-10-06
 tags:
 - ServicePulse
 related:
