@@ -38,7 +38,6 @@ class Program
         #region NecessaryHeaders
 
         message.Properties["NServiceBus.EnclosedMessageTypes"] = "NativeMessage";
-        message.Properties["NServiceBus.MessageIntent"] = "Send";
         message.Properties["Transport-Encoding"] = "application/octect-stream";
 
         #endregion

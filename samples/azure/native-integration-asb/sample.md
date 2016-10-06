@@ -54,7 +54,7 @@ NOTE: Both the sender (native or NServiceBus) and the receiver must agree on the
 For a native message to be processed, NServiceBus endpoints using  the Azure Service Bus transport require two headers:
 
  1. Message type
- 1. Message intent
+ 1. BrokeredMessage body type
 
 These headers need to be stored as `BrokeredMessage` properties.
 
