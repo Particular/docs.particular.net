@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Capacity Planning
 summary: Details the ServiceControl capacity, throughput, and storage considerations to plan and support production environments
-reviewed: 2016-05-07
+reviewed: 2016-10-06
 tags:
  - ServiceControl
 ---
@@ -25,7 +25,7 @@ The storage size that ServiceControl requires depend on the production load and 
 
 Since ServiceControl is intended to be a "recent-history storage" to support ServicePulse and ServiceInsight monitoring and debugging activity. This is different from a long-term data archiving system, that is intended to provide extremely long term archiving and storage solutions (measured in years, subject to various business or regulatory requirements).
 
-ServiceControl is configured with a default expiration policy that deletes old messages after a predefined time. The expiration policy can be customized to decrease or increase the amount of time data is retained, which impacts the storage requirements of ServiceControl.
+ServiceControl is configured with a default expiration policy that deletes old messages after a predefined time. The expiration policies can be customized to decrease or increase the amount of time data is retained, which impacts the storage requirements of ServiceControl.
 
 To limit the rate at which the database grows, the body of an audit messages can be truncated if it exceeds a configurable threshold.
 
