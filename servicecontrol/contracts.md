@@ -1,7 +1,7 @@
 ---
 title: Using ServiceControl events
 summary: Build custom notifications by subscribing to ServiceControl events
-reviewed: 2016-07-15
+reviewed: 2016-10-06
 component: ServiceControlContracts
 tags:
  - ServiceControl
@@ -18,14 +18,14 @@ related:
 
 ## Custom notification and alerting using ServiceControl events
 
-ServiceControl events enable the construction of custom notifications and integrations that will alert of something going wrong in the system.
+ServiceControl events enable the construction of custom notifications and integration that will alert of something going wrong in the system.
 
 WARNING: External notification events are sent in batches. If a problem is encountered part way through a batch, the entire batch will be re-sent. This can result in receiving multiple events for a single notification.
 
 [ServiceControl Endpoint Plugins](/servicecontrol/plugins/) collect information from monitored NServiceBus endpoints.
 
 
-### Alerting on FailedMessages Event
+### Alerting on `FailedMessages` Event
 
 Once a message ends up in the error queue ServiceControl will publish a `MessageFailed` event. The message contains:
 
@@ -51,7 +51,7 @@ snippet:ServiceControlEventsXmlConfig
 
 NOTE: It's important that integration endpoints doesn't use the same `error` and `audit` queue as business endpoints since this might risk failures in the integration endpoint to cause an infinite feedback loop. Using the same `audit` queue will cause the integration messages to be included in search results in ServiceInsight. This will confuse users searching for given failure since both the failure and the failure notification will be shown to them. See also [recoverability](/nservicebus/recoverability/) and [audit queue settings](/nservicebus/operations/auditing.md).
 
-The code sample to do both customizations is as shown below:
+This code sample illustrates how to do this customization:
 
 snippet:ServiceControlEventsConfig
 
@@ -65,7 +65,7 @@ snippet:MessageFailedHandler
 Both heartbeat and custom check events contain identifying information about the host and the endpoint.
 
 
-### Alerting on HeartbeatStopped Event
+### Alerting on `HeartbeatStopped` Event
 
 [Heartbeats](/servicepulse/intro-endpoints-heartbeats.md#active-vs-inactive-endpoints) are used to track endpoints health.
 
@@ -76,7 +76,7 @@ The message contains the time it was detected and the last heartbeat time.
 Similarly to the code above it is possible to subscribe to the event, handle it, and perform custom actions.
 
 
-### Alerting on HeartbeatRestored Event
+### Alerting on `HeartbeatRestored` Event
 
 Once an endpoint resumes sending heartbeats to the ServiceControl queue then a `HeartbeatRestored` event will be published.
 
@@ -85,7 +85,7 @@ The event contains the time the heartbeat was restored.
 Similarly to the code above it is possible to subscribe to the event, handle it and provide custom actions.
 
 
-### Alerting on CustomCheckFailed Event
+### Alerting on `CustomCheckFailed` Event
 
 [Custom checks](/servicepulse/intro-endpoints-custom-checks.md) are used to alert OPS of possible issues with third parties.
 
@@ -96,7 +96,7 @@ The message contains the time it was detected and the failure reason.
 Similarly to the code above it is possible to subscribe to the event, handle it, and provide custom actions.
 
 
-### Alerting on CustomCheckSucceeded Event
+### Alerting on `CustomCheckSucceeded` Event
 
 Once a custom check succeeds ServiceControl will publish a `CustomCheckSucceeded` event.
 
