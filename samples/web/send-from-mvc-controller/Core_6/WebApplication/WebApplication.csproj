@@ -44,7 +44,7 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Autofac">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Autofac.6.0.0-rc0002\lib\net452\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Autofac.6.0.0\lib\net452\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
