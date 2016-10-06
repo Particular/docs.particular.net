@@ -30,7 +30,7 @@ Function CreateHeaders {
     $serializer = New-Object System.Xml.Serialization.XmlSerializer( $headerinfos.GetType() )
     $stream = New-Object System.IO.MemoryStream
     try
-    { 
+    {
         $serializer.Serialize($stream, $headerInfos)
         return $stream.ToArray()
     }
@@ -59,7 +59,7 @@ Function SendMessage {
     $scope = New-Object System.Transactions.TransactionScope
     $queue = New-Object System.Messaging.MessageQueue($QueuePath)
     $message = New-Object System.Messaging.Message
-    
+
     try
     {
         $msgStream = New-Object System.IO.MemoryStream

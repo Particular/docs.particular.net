@@ -25,16 +25,17 @@ Function CreateQueuesForEndpoint
     )
 
 
-    #main queue
+    # main queue
     CreateQueue $endpointName $account
 
-    #retries queue
+    # retries queue
+    # TODO: Only required in Versions 5 and below
     CreateQueue ($endpointName + ".retries") $account
 
-    #timeout queue
+    # timeout queue
     CreateQueue ($endpointName + ".timeouts") $account
 
-    #timeout dispatcher queue
+    # timeout dispatcher queue
     CreateQueue ($endpointName + ".timeoutsdispatcher") $account
 }
 # endcode
@@ -50,14 +51,14 @@ Function CreateQueue
     )
 
     $queuePath = '{0}\private$\{1}'-f [System.Environment]::MachineName, $queueName
-	if ([System.Messaging.MessageQueue]::Exists($queuePath))
+    if ([System.Messaging.MessageQueue]::Exists($queuePath))
     {
-		$messageQueue = New-Object System.Messaging.MessageQueue($queuePath)
-		SetPermissionsForQueue $messageQueue $account
-		return
-	}
-	$messageQueue = [System.Messaging.MessageQueue]::Create($queuePath,$true)
-	SetPermissionsForQueue $messageQueue $account
+        $messageQueue = New-Object System.Messaging.MessageQueue($queuePath)
+        SetPermissionsForQueue $messageQueue $account
+        return
+    }
+    $messageQueue = [System.Messaging.MessageQueue]::Create($queuePath,$true)
+    SetPermissionsForQueue $messageQueue $account
 }
 
 Function SetPermissionsForQueue
@@ -88,8 +89,8 @@ Function GetGroupName
         [System.Security.Principal.WellKnownSidType] $wellKnownSidType
     )
 
-	$account = New-Object System.Security.Principal.SecurityIdentifier($wellKnownSidType, $null)
-	return $account.Translate([System.Security.Principal.NTAccount]).ToString()
+    $account = New-Object System.Security.Principal.SecurityIdentifier($wellKnownSidType, $null)
+    return $account.Translate([System.Security.Principal.NTAccount]).ToString()
 }
 
 # endcode

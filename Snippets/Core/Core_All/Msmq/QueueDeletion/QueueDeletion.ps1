@@ -10,16 +10,17 @@ Function DeleteQueuesForEndpoint
         [string] $endpointName
     )
 
-    #main queue
+    # main queue
     DeleteQueue $endpointName
 
-    #retries queue
+    # retries queue
+    # TODO: Only required in Versions 5 and below
     DeleteQueue ($endpointName + ".retries")
 
-    #timeout queue
+    # timeout queue
     DeleteQueue ($endpointName + ".timeouts")
 
-    #timeout dispatcher queue
+    # timeout dispatcher queue
     DeleteQueue ($endpointName + ".timeoutsdispatcher")
 }
 
@@ -43,4 +44,4 @@ Function DeleteAllQueues
         [System.Messaging.MessageQueue]::Delete($queue.Path)
     }
 }
-#endcode
+# endcode

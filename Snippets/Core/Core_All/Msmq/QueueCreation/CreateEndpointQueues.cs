@@ -15,8 +15,7 @@
 
             #endregion
         }
-
-        #region msmq-create-queues-for-endpoint [,5]
+        #region msmq-create-queues-for-endpoint
 
         public static void CreateQueuesForEndpoint(string endpointName, string account)
         {
@@ -24,6 +23,7 @@
             QueueCreationUtils.CreateQueue(endpointName, account);
 
             // retries queue
+            // TODO: Only required in Versions 5 and below
             QueueCreationUtils.CreateQueue($"{endpointName}.retries", account);
 
             // timeout queue
