@@ -17,4 +17,4 @@ If additional data needs to be stored in the RavenDB, aside from what is managed
 
 ## Running RavenDB externally
 
-Since NServiceBus Version 5.x no longer installs and manages RavenDB automatically, a license file is required to register the RavenDB instance. If the usage is limited to the license agreement above, [email our support team](mailto://support@particular.net) to recieve a RavenDB license file. 
+Since NServiceBus Version 5.x no longer installs and manages RavenDB automatically, a license file is required to register the RavenDB instance. If the usage is limited to the license agreement above, [email the support team](mailto://support@particular.net) to recieve a RavenDB license file. 
