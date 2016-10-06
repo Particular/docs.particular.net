@@ -2,10 +2,23 @@
 
 namespace Rabbit_All.QueueCreation
 {
-    class CreateEndpointQueues_4_and_above
+    class CreateEndpointQueues
     {
 
-        #region rabbit-create-queues-for-endpoint [4,]
+        CreateEndpointQueues()
+        {
+            #region rabbit-create-queues-endpoint-usage
+
+            CreateQueuesForEndpoint(
+                uri: "amqp://guest:guest@localhost:5672",
+                endpointName: "myendpoint",
+                durableMessages: true,
+                createExchanges: true);
+
+            #endregion
+        }
+
+        #region rabbit-create-queues-for-endpoint
 
         public static void CreateQueuesForEndpoint(string uri, string endpointName, bool durableMessages, bool createExchanges)
         {
@@ -20,6 +33,11 @@ namespace Rabbit_All.QueueCreation
 
             // timeout dispatcher queue
             QueueCreationUtils.CreateQueue(uri, $"{endpointName}.TimeoutsDispatcher", durableMessages, createExchanges);
+
+            // retries queue
+            // TODO: Only required in Versions 3 and below
+            QueueCreationUtils.CreateQueue(uri, $"{endpointName}.Retries", durableMessages, createExchanges);
+
         }
 
 

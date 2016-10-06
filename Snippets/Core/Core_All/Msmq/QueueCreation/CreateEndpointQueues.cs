@@ -22,15 +22,15 @@
             // main queue
             QueueCreationUtils.CreateQueue(endpointName, account);
 
-            // retries queue
-            // TODO: Only required in Versions 5 and below
-            QueueCreationUtils.CreateQueue($"{endpointName}.retries", account);
-
             // timeout queue
             QueueCreationUtils.CreateQueue($"{endpointName}.timeouts", account);
 
             // timeout dispatcher queue
             QueueCreationUtils.CreateQueue($"{endpointName}.timeoutsdispatcher", account);
+
+            // retries queue
+            // TODO: Only required in Versions 5 and below
+            QueueCreationUtils.CreateQueue($"{endpointName}.retries", account);
         }
 
         #endregion

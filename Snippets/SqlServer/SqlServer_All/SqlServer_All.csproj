@@ -85,12 +85,10 @@
     <Compile Include="Operations\ErrorQueue\Tests.cs" />
     <Compile Include="Operations\NativeSend\NativeSend.cs" />
     <Compile Include="Operations\NativeSend\Tests.cs" />
-    <Compile Include="Operations\QueueCreation\CreateEndpointQueues_3_and_above.cs" />
-    <Compile Include="Operations\QueueCreation\QueueCreationUtils.cs" />
     <Compile Include="Operations\QueueCreation\CreateEndpointQueues.cs" />
+    <Compile Include="Operations\QueueCreation\QueueCreationUtils.cs" />
     <Compile Include="Operations\QueueCreation\QueueCreationUtilsUsage.cs" />
     <Compile Include="Operations\QueueCreation\Tests.cs" />
-    <Compile Include="Operations\QueueDeletion\DeleteEndpointQueues_3_and_above.cs" />
     <Compile Include="Operations\QueueDeletion\DeleteEndpointQueues.cs" />
     <Compile Include="Operations\QueueDeletion\QueueDeletionUtils.cs" />
     <Compile Include="Operations\QueueDeletion\QueueDeletionUtilsUsage.cs" />

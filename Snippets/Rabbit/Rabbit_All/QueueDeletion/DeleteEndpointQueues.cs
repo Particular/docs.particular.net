@@ -1,6 +1,7 @@
 ﻿namespace Rabbit_All.QueueDeletion
 {
     using System;
+
     public class DeleteEndpointQueues
     {
 
@@ -15,7 +16,8 @@
             #endregion
         }
 
-        #region rabbit-delete-queues-for-endpoint [,3]
+        #region rabbit-delete-queues-for-endpoint
+
         public static void DeleteQueuesForEndpoint(string uri, string endpointName)
         {
             // main queue
@@ -24,15 +26,17 @@
             // callback queue
             QueueDeletionUtils.DeleteQueue(uri, $"{endpointName}.{Environment.MachineName}");
 
-            // retries queue
-            QueueDeletionUtils.DeleteQueue(uri, $"{endpointName}.Retries");
-
             // timeout queue
             QueueDeletionUtils.DeleteQueue(uri, $"{endpointName}.Timeouts");
 
             // timeout dispatcher queue
             QueueDeletionUtils.DeleteQueue(uri, $"{endpointName}.TimeoutsDispatcher");
+
+            // retries queue
+            // TODO: Only required in Versions 3 and below
+            QueueDeletionUtils.DeleteQueue(uri, $"{endpointName}.Retries");
         }
+
         #endregion
     }
 }

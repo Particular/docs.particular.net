@@ -19,15 +19,15 @@
             // main queue
             QueueDeletionUtils.DeleteQueue(endpointName);
 
-            // retries queue
-            // TODO: Only required in Versions 5 and below
-            QueueDeletionUtils.DeleteQueue($"{endpointName}.retries");
-
             // timeout queue
             QueueDeletionUtils.DeleteQueue($"{endpointName}.timeouts");
 
             // timeout dispatcher queue
             QueueDeletionUtils.DeleteQueue($"{endpointName}.timeoutsdispatcher");
+
+            // retries queue
+            // TODO: Only required in Versions 5 and below
+            QueueDeletionUtils.DeleteQueue($"{endpointName}.retries");
         }
 
         #endregion

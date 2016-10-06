@@ -13,15 +13,15 @@ Function DeleteQueuesForEndpoint
     # main queue
     DeleteQueue $endpointName
 
-    # retries queue
-    # TODO: Only required in Versions 5 and below
-    DeleteQueue ($endpointName + ".retries")
-
     # timeout queue
     DeleteQueue ($endpointName + ".timeouts")
 
     # timeout dispatcher queue
     DeleteQueue ($endpointName + ".timeoutsdispatcher")
+
+    # retries queue
+    # TODO: Only required in Versions 5 and below
+    DeleteQueue ($endpointName + ".retries")
 }
 
 Function DeleteQueue

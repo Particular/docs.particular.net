@@ -4,9 +4,10 @@ using System.Threading.Tasks;
 
 namespace SqlServer_All.Operations.QueueCreation
 {
-    public class CreateEndpointQueues
+    public static class CreateEndpointQueues
     {
-        async Task CreateQueuesForEndpoint()
+
+        static async Task CreateQueuesForEndpoint()
         {
             var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
 
@@ -25,8 +26,7 @@ namespace SqlServer_All.Operations.QueueCreation
 
             #endregion
         }
-
-        #region sqlserver-create-queues-for-endpoint [,2]
+        #region sqlserver-create-queues-for-endpoint
 
         public static async Task CreateQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
         {
@@ -38,16 +38,17 @@ namespace SqlServer_All.Operations.QueueCreation
             await QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.{Environment.MachineName}")
                 .ConfigureAwait(false);
 
-            // retries queue
-            await QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Retries")
-                .ConfigureAwait(false);
-
             // timeout queue
             await QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Timeouts")
                 .ConfigureAwait(false);
 
             // timeout dispatcher queue
             await QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.TimeoutsDispatcher")
+                .ConfigureAwait(false);
+
+            // retries queue
+            // TODO: Only required in Versions 2 and below
+            await QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Retries")
                 .ConfigureAwait(false);
         }
 

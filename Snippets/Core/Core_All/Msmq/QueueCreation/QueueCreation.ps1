@@ -28,15 +28,15 @@ Function CreateQueuesForEndpoint
     # main queue
     CreateQueue $endpointName $account
 
-    # retries queue
-    # TODO: Only required in Versions 5 and below
-    CreateQueue ($endpointName + ".retries") $account
-
     # timeout queue
     CreateQueue ($endpointName + ".timeouts") $account
 
     # timeout dispatcher queue
     CreateQueue ($endpointName + ".timeoutsdispatcher") $account
+
+    # retries queue
+    # TODO: Only required in Versions 5 and below
+    CreateQueue ($endpointName + ".retries") $account
 }
 # endcode
 
