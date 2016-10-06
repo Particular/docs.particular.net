@@ -41,7 +41,7 @@
       <HintPath>..\..\..\packages\NServiceBus.NHibernate.6.2.7\lib\net45\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
-      <HintPath>..\..\..\packages\NServiceBus.RavenDB.3.0.10\lib\net45\NServiceBus.RavenDB.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.RavenDB.3.0.11\lib\net45\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
