@@ -1,6 +1,7 @@
 ---
 title: SagaAudit Plugin
 summary: Helps visualize and debug Sagas with ServiceInsight
+reviewed: 2016-10-06
 tags:
 - ServiceControl
 ---
@@ -9,7 +10,7 @@ DANGER: **For Development only**. This plugin will result in a significant incre
 
 The SagaAudit plugin enables the [Saga View feature in ServiceInsight](/serviceinsight/#the-saga-view). It is built specifically to help developers verify Saga logic during development. It does this by capturing Saga message behavior and changes in Saga data/state as the Saga is being processed. It then sends this information to a ServiceControl endpoint setup in the development environment.
 
-NOTE: Saga Audit messages will not be sent to Service Control if an Exception is thrown during Saga processing.
+NOTE: Saga audit messages will not be sent to ServiceControl if an Exception is thrown during Saga processing.
 
 ## Implementation
 
@@ -20,10 +21,10 @@ The SagaAudit plugin captures the following information:
  * A snapshot of the current saga data.
  * The saga state
 
-All this information is sent to and stored in ServiceControl. Note that the saga audit data is transmitted to ServiceControl via a message and is serialized using the built in Json Serializer of NServiceBus.
+All this information is sent to and stored in ServiceControl. Note that the saga audit data is transmitted to ServiceControl via a message and is serialized using the built in JSON Serializer of NServiceBus.
 
 
-## Impact on Service Control performance
+## Impact on ServiceControl performance
 
 This plugin results in an increase in load in several areas
 
@@ -52,7 +53,8 @@ If using the older version of the plugin, namely **ServiceControl.Plugin.SagaAud
 If currently running the endpoint with the SagaAudit plugin in Production, do the following to remove it:
 
  1. Stop the endpoint
- 1. Delete the SagaAudit plugin dll from the endpoint's bin directory. (Either `ServiceControl.Plugin.Nsb5.SagaAudit.dll` or `ServiceControl.Plugin.Nsb4.SagaAudit.dll`). In addition to that, if there is an automated deployment processes in place, ensure that this dll is no longer included.
+ 1. Delete the SagaAudit plugin dll from the endpoint's bin directory. 
+ 1. If there is an automated deployment processes in place, ensure that this dll is no longer included.
  1. Restart the endpoint
 
 Doing so will stop sending the saga state change messages to ServiceControl reducing message load to ServiceControl. Turn it back on if or when needed.
