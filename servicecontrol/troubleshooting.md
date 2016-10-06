@@ -57,12 +57,12 @@ Some transports have access controls build into them. Ensure the service account
 Note: To examine the configured URLACLs use either the ServiceControl Management PowerShell prompt and issue `Get-UrlAcls` or to examine this from a command prompt using this command line `netsh http show urlacl`.
 
 
-### Service fails to start: `EsentInstanceUnavailableException`
+### Service fails to start: EsentInstanceUnavailableException
 
 If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-malware real-time and scheduled scan.
 
 
-### Service fails to start: `EsentDatabaseDirtyShutdownException`
+### Service fails to start: EsentDatabaseDirtyShutdownException
 
 If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentDatabaseDirtyShutdownException` run Esent Recovery against the ServiceControl database followed by an Esent Repair.
 
