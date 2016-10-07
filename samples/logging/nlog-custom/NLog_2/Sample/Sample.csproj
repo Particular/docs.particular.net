@@ -33,8 +33,9 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.NLog">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.NLog.2.0.0-rc0001\lib\net452\NServiceBus.NLog.dll</HintPath>
+    <Reference Include="NServiceBus.NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.NLog.2.0.0\lib\net452\NServiceBus.NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
