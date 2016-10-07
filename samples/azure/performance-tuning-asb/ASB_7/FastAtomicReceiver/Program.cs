@@ -46,7 +46,7 @@ class Program
         var globalConcurrency = numberOfReceivers * perReceiverConcurrency;
 
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(globalConcurrency);
-        transportConfiguration.MessageReceivers().PrefetchCount(0);
+        transportConfiguration.MessageReceivers().PrefetchCount(20);
 
         transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(numberOfReceivers);
         transportConfiguration.NumberOfClientsPerEntity(numberOfReceivers);
