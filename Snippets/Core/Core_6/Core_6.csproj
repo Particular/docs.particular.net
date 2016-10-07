@@ -51,8 +51,9 @@
     <Reference Include="NServiceBus.ObjectBuilder.Autofac">
       <HintPath>..\..\..\packages\NServiceBus.Autofac.6.0.0\lib\net452\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.RavenDB">
-      <HintPath>..\..\..\packages\NServiceBus.RavenDB.4.0.0-rc0002\lib\net452\NServiceBus.RavenDB.dll</HintPath>
+    <Reference Include="NServiceBus.RavenDB, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
+      <HintPath>..\..\..\packages\NServiceBus.RavenDB.4.0.0\lib\net452\NServiceBus.RavenDB.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
