@@ -24,9 +24,7 @@ This sample has three endpoints
 
 * `Sender`
 * `Receiver`
-* `InfiniteReceiver`
-
-
+* `SenderReceiver`
 
 ## Sender
 
@@ -44,12 +42,48 @@ There are multiple variations of `Sender` to show different ways of sending mess
 
 Again there are different permutations of settings that have impact on the combines send & receive throughput.
 
-## InfiniteReceiver
+## SenderReceiver
 
-`InfiniteReceiver` is a variation on `Receiver` that does not only receive messages, but it also sends them back to itself to go in an infinite send and receive loop.
+`SenderReceiver` is a variation on `Receiver` that does not only receive messages, but it also sends messages to a destination queue.
 
 ## Running the sample
 
  * Run the sender standalone to test send performance, but also to fill up the receive queue.
  * Run the receiver standalone to test receive performance, if the queue empties, just run the sender again.
- * Run the infinite receiver standalone
+ * Run the sender receiver standalone
+ 
+## Variations
+ 
+### Slow Sender
+ 
+Snippet: slow-send-config
+Snippet: slow-send  
+
+### Fast Sender
+
+Snippet: fast-send-config
+Snippet: fast-send
+
+### Slow Atomic Receiver
+
+Snippet: slow-atomic-receiver-config
+
+### Fast Atomic Receiver
+
+Snippet: fast-atomic-receiver-config
+
+### Fast Atomic Sender Receiver
+
+Snippet: fast-atomic-send-receive-config
+
+### Slow Non Atomic Receiver
+
+Snippet: slow-non-atomic-receiver-config
+
+### Fast Non Atomic Receiver
+
+Snippet: fast-non-atomic-receiver-config
+
+### Fast Non Atomic Sender Receiver
+
+Snippet: fast-non-atomic-sender-receiver-config
