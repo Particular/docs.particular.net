@@ -96,6 +96,7 @@
     <Compile Include="GettingStarted.cs" />
     <Compile Include="MultipleNamespaces.cs" />
     <Compile Include="OversizedMessages.cs" />
+    <Compile Include="Performance.cs" />
     <Compile Include="Sanitization.cs" />
     <Compile Include="SecureCredentials.cs" />
     <Compile Include="AddressingStrategies\CompositionExtension.cs" />

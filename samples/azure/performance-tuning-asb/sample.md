@@ -8,7 +8,6 @@ related:
  - samples/azure/azure-service-bus
 ---
 
-
 ## Prerequisites
 
 include: asb-connectionstring 
@@ -32,9 +31,9 @@ This sample has three endpoints
 
 snippet: SomeMessage
 
-The sender sends a large amount of messages to the receiver and times how long it takes to do so. The resulting time will be divided by the number of messages sent in order to compute the throughput. 
+The sender sends a large amount of messages to the receiver and times how long it takes to do so. The resulting time will be divided by the number of messages sent in order to compute the average throughput. 
 
-There are multiple variations of `Sender` to show different ways of sending messages, outside the scope of a receive operation, and what the impact is on throughput.
+There are two variations of `Sender` to show different ways of sending messages, outside the scope of a receive operation, and what the impact is on throughput.
 
 ## Receiver
 
@@ -55,7 +54,7 @@ Again there are different permutations of settings that have impact on the combi
 ## Variations
  
 ### Slow Sender
- 
+
 Snippet: slow-send-config
 Snippet: slow-send  
 
