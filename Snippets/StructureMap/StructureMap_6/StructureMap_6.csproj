@@ -30,7 +30,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.StructureMap, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\packages\NServiceBus.StructureMap.6.0.0-rc0002\lib\net452\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.StructureMap.6.0.0\lib\net452\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StructureMap, Version=4.4.1.451, Culture=neutral, processorArchitecture=MSIL">
