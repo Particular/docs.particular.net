@@ -34,7 +34,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-        #region slow-atomic-config
+        #region slow-atomic-receiver-config
 
         transportConfiguration.Queues().EnablePartitioning(true);
 

@@ -34,7 +34,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-        #region slow-non-atomic-config
+        #region slow-non-atomic-receiver-config
 
         transportConfiguration.Transactions(TransportTransactionMode.ReceiveOnly);
         transportConfiguration.Queues().EnablePartitioning(true);

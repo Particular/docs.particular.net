@@ -35,7 +35,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-        #region fast-atomic-config
+        #region fast-atomic-receiver-config
 
         transportConfiguration.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
 
