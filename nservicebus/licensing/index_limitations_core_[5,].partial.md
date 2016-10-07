@@ -1,1 +1,1 @@
-No limitations are enforced when no license is found.
+No limitations are enforced when either no license is found or a license has expired.
