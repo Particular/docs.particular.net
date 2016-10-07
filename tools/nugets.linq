@@ -8,20 +8,21 @@ void Main()
 	var docsDirectory = Directory.GetParent(toolsDiretory).FullName;
 	var nuget = Path.Combine(toolsDiretory, "nuget.exe");
 	var packagesDirectory = Path.Combine(docsDirectory, "packages");
+	var nugetConfigFile = Path.Combine(docsDirectory, "nuget.config");
 
 	var solutionFiles = Directory.EnumerateFiles(docsDirectory, "*.sln", SearchOption.AllDirectories);
 
 	Directory.SetCurrentDirectory(docsDirectory);
 
 	Parallel.ForEach(solutionFiles,
-	new ParallelOptions() { MaxDegreeOfParallelism = 20 },
+	new ParallelOptions() { MaxDegreeOfParallelism = 1 },
 	(solutionFile) =>
 		{
 			Debug.WriteLine(solutionFile);
 			try
 			{ 
-				Execute(nuget, "restore " + solutionFile + " -packagesDirectory " + packagesDirectory);
-				Execute(nuget, "update " + solutionFile + " -safe -NonInteractive -repositoryPath " + packagesDirectory);
+				Execute(nuget, "restore " + solutionFile + " -packagesDirectory " + packagesDirectory + " -configfile " + nugetConfigFile);
+				Execute(nuget, "update " + solutionFile + " -safe -NonInteractive -repositoryPath " + packagesDirectory + " -configfile " + nugetConfigFile);
 			}
 			catch (Exception ex)
 			{
@@ -37,20 +38,49 @@ void Main()
 
 void Execute(string file, string arguments)
 {
-	var startInfo = new ProcessStartInfo();
-	startInfo.FileName = file;
-	startInfo.CreateNoWindow = true;
-	startInfo.UseShellExecute = false;
-	startInfo.RedirectStandardOutput = true;
-	startInfo.RedirectStandardError = true;
-	startInfo.Arguments = arguments;
-	var process = Process.Start(startInfo);
-	process.WaitForExit();
-	var error = process.StandardError.ReadToEnd();
-	if (!string.IsNullOrWhiteSpace(error))
+ 	var commandline = file + " " + arguments;
+	Debug.WriteLine(commandline);
+
+	using (Process process = new Process())
 	{
-		throw new Exception(error);
+		process.StartInfo.FileName = file;
+		process.StartInfo.Arguments = arguments;
+		process.StartInfo.UseShellExecute = false;
+		process.StartInfo.RedirectStandardOutput = true;
+		process.StartInfo.RedirectStandardError = true;
+		process.StartInfo.CreateNoWindow = true;
+
+		var output = new StringBuilder();
+		var error = new StringBuilder();
+
+		process.OutputDataReceived += (sender, e) =>
+		{
+			if (e.Data != null)
+			{
+				output.AppendLine(e.Data);
+			}
+		};
+		process.ErrorDataReceived += (sender, e) =>
+		{
+			if (e.Data != null)
+			{
+				error.AppendLine(e.Data);
+			}
+		};
+
+		process.Start();
+
+		process.BeginOutputReadLine();
+		process.BeginErrorReadLine();
+		if (process.WaitForExit(30000))
+		{
+			Debug.WriteLine("Finished. ExitCode: " + process.ExitCode);
+		}
+		else
+		{
+			Debug.WriteLine("Timed Out: " + error);
+		}
+		Debug.WriteLine("Error: " + error);
+		Debug.WriteLine("output: " + output);
 	}
-	var result = process.StandardOutput.ReadToEnd();
-	Debug.WriteLine(result);
 }
