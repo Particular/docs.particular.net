@@ -1,6 +1,7 @@
 ---
 title: "Lesson 1: Hello world"
 suppressRelated: true
+component: Core
 ---
 
 Every framework needs a Hello World, and for NServiceBus, this is it. There's no time to waste, so let's get started!
@@ -23,7 +24,7 @@ There are a few things we need in order to build a solution with the latest vers
 * This course uses Visual Studio 2015 and .NET Framework 4.6.1, although NServiceBus only requires .NET Framework 4.5.2.
 * NServiceBus requires queuing infrastructure to move messages around. This course uses Microsoft Message Queuing (MSMQ) as a default.
   * The [Particular Platform Installer](/platform/installer/) will install MSMQ and its dependencies for you. [Download and run the Platform Installer]() to get started, or [follow these instructions to configure MSMQ manually](/nservicebus/msmq/#nservicebus-configuration).
-  * If you don't have sufficient privileges to install MSMQ, you can [use the SQL Server transport as a substitute](using-sql-transport.md). 
+  * If you don't have sufficient privileges to install MSMQ, you can [use the SQL Server transport as a substitute](../using-sql-transport.md). 
 
 
 ## Exercise
@@ -52,18 +53,7 @@ Although NServiceBus is a completely async framework, the console application's 
 
 In the **Program.cs** file, modify the code to look like the following:
 
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            AsyncMain().GetAwaiter().GetResult();
-        }
-
-        static async Task AsyncMain()
-        {
-
-        }
-    }
+snippet:EmptyProgram
 
 Now we're ready to create a **messaging endpoint**. A messaging endpoint (or just **endpoint**) is a logical component that's capable of sending and receiving messages. An endpoint is hosted within a process, which in this case is a simple console application, but could be a web application or other .NET process.
 
@@ -71,24 +61,14 @@ Let's take a look at all the code required to run an endpoint within a console a
 
 Add this code to your AsyncMain method:
 
-    static async Task AsyncMain()
-    {
-        Console.Title = "ClientUI";
-
-        var endpointConfig = new EndpointConfiguration("ClientUI");
-        endpointConfig.UseTransport<MsmqTransport>();
-        endpointConfig.UseSerialization<JsonSerializer>();
-        endpointConfig.UsePersistence<InMemoryPersistence>();
-        endpointConfig.SendFailedMessagesTo("error");
-        endpointConfig.EnableInstallers();
-    }
+snippet:AsyncMain
 
 This really isn't many lines of code at all, but let's take it line-by-line.
 
 
 #### Console Title
 
-    Console.Title = "ClientUI";
+snippet:ConsoleTitle
 
 When developing NServiceBus systems, we tend to run multiple message endpoints at the same time in separate console windows. If we're not careful, it can become difficult to tell them apart. Giving each one a short, clear name can be helpful to make it easier to find the desired window later on.
 
@@ -97,14 +77,14 @@ In later lessons, we'll expand our project to have several endpoints, and this o
 
 #### EndpointConfiguration
 
-    var endpointConfig = new EndpointConfiguration("ClientUI");
+snippet:EndpointName
 
 The `EndpointConfiguration` class is where we define all the settings that determine how our endpoint will operate. The single string parameter `ClientUI` is the **endpoint name**, which serves as the logical identity for our endpoint, and forms a naming convention by which other things will derive their names. Chief among these is the **input queue** where the endpoint will listen for messages to process.
 
 
 #### Message transport
 
-    endpointConfig.UseTransport<MsmqTransport>();
+snippet:Transport
 
 This setting defines the message transport that NServiceBus will use to send and receive messages. `MsmqTransport` is the only transport available within the core library. All other transports require additional NuGet packages.
 
@@ -113,7 +93,7 @@ The MSMQ transport is the default setting, so we technically don't need this lin
 
 #### Message serializer
 
-    endpointConfig.UseSerialization<JsonSerializer>();
+snippet:Serializer
 
 When sending messages, an endpoint needs to serialize message objects to a stream, and then deserialize the stream back to a message object on the receiving end. The choice of serialization governs what format that will take.
 
@@ -122,21 +102,21 @@ The default serializer is the `XmlSerializer`, which is similar to the built-in 
 
 #### Persistence
 
-    endpointConfig.UsePersistence<InMemoryPersistence>();
+snippet:Persistence
 
 NServiceBus needs to store some data in between handling messages. We will explore the reasons for this in future lessons but for now, we'll use an implementation that stores everything in memory. This has the advantage during development of allowing us to iterate quickly by providing us with a clean slate every time we start up.
 
 
 #### Error queue
 
-    endpointConfig.SendFailedMessagesTo("error");
+snippet:ErrorQueue
 
 When things go wrong, NServiceBus needs a place to send failed messages. Otherwise a bug in a message handler could cause a **poison message**, blocking the queue and keeping other work from getting done. This queue is referred to as the **error queue** and is commonly named `error`. We will discuss this more in [Lesson 5: Retrying errors](../lesson-5/).
 
 
 #### Installers
 
-    endpointConfig.EnableInstallers();
+snippet:EnableInstallers
 
 This setting instructs the NServiceBus endpoint to run its installers on startup. Installers are pieces of code used to set up anything the endpoint requires to run. The most common example is creating necessary queues, such as the endpoint's input queue where it will receive messages.
 
@@ -145,12 +125,7 @@ This setting instructs the NServiceBus endpoint to run its installers on startup
 
 Now things start to get interesting. At the end of the `AsyncMain` method, after the configuration code, add the following code which will start up the endpoint, keep it running until we press the Enter key, and then shut it down.
 
-    var endpointInstance = await Endpoint.Start(endpointConfig).ConfigureAwait(false);
-
-    Console.WriteLine("Press Enter to exit...");
-    Console.ReadLine();
-
-    await endpointInstance.Stop().ConfigureAwait(false);
+snippet:Startup
 
 When the endpoint starts, the `EndpointConfiguration` information is locked down from further changes, and the settings it contains are used to initialize the endpoint.
 
@@ -166,6 +141,6 @@ When you run the endpoint for the first time, take note of the following:
 
 In this lesson we set up the prerequisites for NServiceBus and created a simple messaging endpoint to make sure it works. The fun doesn't really begin, however, until we start sending messages. In the next lesson, we'll define a message, a message handler, and then send the message and watch it get processed.
 
-Before moving on, you might want to check your code against the [completed solution](solution/) to see if there's anything you may have missed.
+Before moving on, you might want to check your code against the [completed solution](https://github.com/Particular/docs.particular.net/tree/academy-nsb101/tutorials/nservicebus-101/lesson-1/solution/) to see if there's anything you may have missed.
 
 When you're ready, move on to [**Lesson 2: Sending a command**](../lesson-2/).

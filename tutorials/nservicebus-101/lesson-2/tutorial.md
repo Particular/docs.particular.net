@@ -1,6 +1,7 @@
 ---
 title: "Lesson 2: Sending a command"
 suppressRelated: true
+component: Core
 ---
 
 Sending and receiving messages is the heart and soul of any NServiceBus system. The fact that we are dealing with systems and not applications is the whole reason we send messages in the first place.
@@ -140,7 +141,7 @@ When NServiceBus starts up, it will find all of these message handler classes an
 
 ## Exercise
 
-Now let's take the "Hello world" solution we started in the last lesson and modify it to send a message. You can also grab the [completed solution from the last lesson](../lesson-1/solution/) to use as a starting point.
+Now let's take the "Hello world" solution we started in the last lesson and modify it to send a message. You can also grab the [completed solution from the last lesson](https://github.com/Particular/docs.particular.net/tree/academy-nsb101/tutorials/nservicebus-101/lesson-1/solution/) to use as a starting point.
 
 When we're done, the ClientUI endpoint will be sending a PlaceOrder message to itself, and then processing that message, as depicted in the following diagram:
 
@@ -306,6 +307,6 @@ In this lesson we learned about messages, message assemblies, and message handle
 
 In the next lesson, we'll create a second messaging endpoint, move our message handler over to it, and then configure the ClientUI to send the message to the new endpoint. We'll also be able to observe what happens when we send messages while the receiver endpoint is offline.
 
-Before moving on, you might want to check your code against the [completed solution](solution/) to see if there's anything you may have missed.
+Before moving on, you might want to check your code against the [completed solution](https://github.com/Particular/docs.particular.net/tree/academy-nsb101/tutorials/nservicebus-101/lesson-2/solution/) to see if there's anything you may have missed.
 
 When you're ready, move on to [**Lesson 3: Managing multiple endpoints**](../lesson-3/).

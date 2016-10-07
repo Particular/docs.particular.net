@@ -1,6 +1,7 @@
 ---
 title: "Lesson 5: Retrying errors"
 suppressRelated: true
+component: Core
 ---
 
 In software systems, exceptions are a fact of life. Even with perfect, bug-free code, problems will arise when we have to deal with the issue of connectivity. If a database is overloaded, or a web service is down, we have no recourse except to try again.
@@ -93,7 +94,7 @@ Sometimes, a new release will contain a bug in handler logic that isn't found un
 
 ## Exercise
 
-This is an exploratory exercise, where we'll be playing with different retry options. We'll use the [completed solution from the previous lesson](../lesson-4/solution/).
+This is an exploratory exercise, where we'll be playing with different retry options. We'll use the [completed solution from the previous lesson](https://github.com/Particular/docs.particular.net/tree/academy-nsb101/tutorials/nservicebus-101/lesson-4/solution/).
 
 
 ### Throw an exception

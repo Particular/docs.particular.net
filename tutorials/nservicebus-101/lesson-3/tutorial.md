@@ -1,6 +1,7 @@
 ---
 title: "Lesson 3: Managing multiple endpoints"
 suppressRelated: true
+component: Core
 ---
 
 Up until this point, we have constrained our activities to a single endpoint, but this is not how real systems behave. The strength of a messaging application is the ability to run code in multiple processes, on multiple servers, which can all collaborate by exchanging messages.
@@ -252,6 +253,6 @@ In this lesson, we got our first true taste of sending messages between endpoint
 
 In the next lesson, we'll learn about events, a different kind of message that can be published to multiple subscribers using the Publish/Subscribe pattern. We'll also learn how the decoupling provided by this pattern allows us to structure our distributed systems in a more logical and maintainable way.
 
-Before moving on, you might want to check your code against the [completed solution](solution/) to see if there's anything you may have missed.
+Before moving on, you might want to check your code against the [completed solution](https://github.com/Particular/docs.particular.net/tree/academy-nsb101/tutorials/nservicebus-101/lesson-3/solution/) to see if there's anything you may have missed.
 
 When you're ready, move on to [**Lesson 4: Publishing events**](../lesson-4/).
