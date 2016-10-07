@@ -1,7 +1,7 @@
 
 ### Versions 4.5 
 
-No limitations are enforced by NServiceBus if no license is found.
+No limitations are enforced when either no license is found or a license has expired.
 
 
 ### Versions 4.0 to 4.5
