@@ -24,7 +24,8 @@ class Program
 
         #region CustomSanitization
 
-        transport.Sanitization().UseStrategy<Sha1Sanitization>();
+        var sanitization = transport.Sanitization();
+        sanitization.UseStrategy<Sha1Sanitization>();
 
         #endregion
 
@@ -33,7 +34,12 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.Recoverability().Delayed(settings => settings.NumberOfRetries(0));
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Delayed(
+            customizations: settings =>
+            {
+                settings.NumberOfRetries(0);
+            });
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

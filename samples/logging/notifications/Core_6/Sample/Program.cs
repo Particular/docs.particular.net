@@ -14,13 +14,19 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Notifications";
+
         #region logging
+
         var defaultFactory = LogManager.Use<DefaultFactory>();
         defaultFactory.Level(LogLevel.Fatal);
+
         #endregion
+
         #region endpointConfig
+
         var endpointConfiguration = new EndpointConfiguration("Samples.Notifications");
         SubscribeToNotifications.Subscribe(endpointConfiguration);
+
         #endregion
 
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -30,11 +36,13 @@ class Program
 
         #region customDelayedRetries
 
-        endpointConfiguration.Recoverability().Delayed(
-            delayed =>
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Delayed(
+            customizations: delayed =>
             {
                 delayed.TimeIncrease(TimeSpan.FromSeconds(1));
             });
+
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

@@ -23,15 +23,19 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
+
         #region DelayedRetriesConfig
+
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Delayed(
-            delayed =>
+            customizations: delayed =>
             {
                 delayed.NumberOfRetries(100);
                 delayed.TimeIncrease(TimeSpan.FromSeconds(10));
             });
+
         #endregion
+
         recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
 
         #region SenderConfiguration

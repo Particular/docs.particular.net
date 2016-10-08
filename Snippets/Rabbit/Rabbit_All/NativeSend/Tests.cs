@@ -43,16 +43,21 @@ namespace Rabbit_All.NativeSend
 
         Task<IEndpointInstance> StartBus()
         {
-            LogManager.Use<DefaultFactory>()
-                .Level(LogLevel.Warn);
+            var logFactory = LogManager.Use<DefaultFactory>();
+            logFactory.Level(LogLevel.Warn);
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.SendFailedMessagesTo(errorQueueName);
             endpointConfiguration.UseSerialization<JsonSerializer>();
-            endpointConfiguration.Recoverability().Immediate(setting => setting.NumberOfRetries(0));
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.Immediate(
+                customizations: setting =>
+                {
+                    setting.NumberOfRetries(0);
+                });
             var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
             transport.ConnectionString("host=localhost");
-            Type[] rabbitTypes = typeof(RabbitMQTransport).Assembly.GetTypes();
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<Tests>(rabbitTypes);
+            var rabbitTypes = typeof(RabbitMQTransport).Assembly.GetTypes();
+            var typesToScan = TypeScanner.NestedTypes<Tests>(rabbitTypes);
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();

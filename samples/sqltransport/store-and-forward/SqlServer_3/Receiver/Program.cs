@@ -22,11 +22,17 @@ class Program
         #region ReceiverConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.EnableLegacyMultiInstanceMode(async transportAddress =>
+        transport.EnableLegacyMultiInstanceMode(async address =>
         {
-            var connectionString = transportAddress.StartsWith("Samples.SqlServer.StoreAndForwardReceiver") || transportAddress == "error"
-                ? ReceiverConnectionString
-                : SenderConnectionString;
+            string connectionString;
+            if (address.StartsWith("Samples.SqlServer.StoreAndForwardReceiver") || address == "error")
+            {
+                connectionString = ReceiverConnectionString;
+            }
+            else
+            {
+                connectionString = SenderConnectionString;
+            }
 
             var connection = new SqlConnection(connectionString);
             await connection.OpenAsync()
@@ -38,7 +44,12 @@ class Program
         #endregion
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.Recoverability().Delayed(delayed => delayed.NumberOfRetries(0));
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Delayed(
+            customizations: delayed =>
+            {
+                delayed.NumberOfRetries(0);
+            });
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
