@@ -31,7 +31,7 @@ class Usage
 
     void UseUnitOfWorkScope()
     {
-        #region NinjectUnitOfWork [4.0,6.0]
+        #region NinjectUnitOfWork
 
         var kernel = new StandardKernel();
 
@@ -44,7 +44,7 @@ class Usage
 
     void UseConditionalBinding()
     {
-        #region NinjectConditionalBindings [4.0,6.0]
+        #region NinjectConditionalBindings
 
         var kernel = new StandardKernel();
 

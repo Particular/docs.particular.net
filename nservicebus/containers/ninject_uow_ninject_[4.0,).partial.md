@@ -1,6 +1,6 @@
 ## Unit of work
 
-In addition to that, the `NServiceBus.Ninject` NuGet package allows bindings to use an _Unit of Work_ scope which corresponds to the `DependencyLifecycle.InstancePerUnitOfWork` lifecycle when registering components with `configuration.RegisterComponents(...)`.
+Its is possible to bind to use an _Unit of Work_ scope, which corresponds to the `DependencyLifecycle.InstancePerUnitOfWork` lifecycle, when registering components with `configuration.RegisterComponents(...)`.
 
 In essence, bindings using _Unit of Work_ scope
 
