@@ -85,7 +85,7 @@
         void DisableLegacyRetriesSatellite(EndpointConfiguration endpointConfiguration)
         {
 #pragma warning disable 618
-            #region 5to6-DisableLegacyRetriesSatellite [5,6]
+            #region 5to6-DisableLegacyRetriesSatellite
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.DisableLegacyRetriesSatellite();
