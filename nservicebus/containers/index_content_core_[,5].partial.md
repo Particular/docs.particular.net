@@ -5,6 +5,7 @@ Note that the instance of `IBus` is scoped for the lifetime of the container. He
 
 ### Cleanup
 
-When using an external container normally the bus instance is not disposed of manually. If `IBus.Dispose()` is called that would indirectly trigger the container to dispose lifetime scope.
+When using an external container normally the bus instance is not disposed of automatically. The following dispose sequence should be applied if latest container adapter packages are used:
 
-NOTE: Do NOT call `IBus.Dispose` when using an external container, instead call dispose in the container during shutdown.
+1. Dispose the bus by calling `IBus.Dispose()`.
+2. Dispose the external container with `container.Dispose()`.
