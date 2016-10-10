@@ -4,7 +4,7 @@
     using System.Transactions;
     using NServiceBus;
 
-    class Transactions
+    class TransportTransactions
     {
         void Unreliable(Configure configure)
         {
