@@ -17,7 +17,7 @@ class Program
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");
-            Console.Read();
+            Console.ReadKey();
         }
     }
 }
