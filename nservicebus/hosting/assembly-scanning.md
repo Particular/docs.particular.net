@@ -8,11 +8,9 @@ redirects:
  - nservicebus/assembly-scanning
 ---
 
-By default, NServiceBus scans all assemblies in the endpoint bin directory to find types implementing its interfaces so that it can configure them automatically.
+By default all assemblies in the endpoint bin directory are scanned to find types implementing its interfaces so that it can configure them automatically.
 
-Scanning is invoked by default for self-hosting
-
-snippet:ScanningDefault
+Scanning is invoked by default for [self-hosting](/nservicebus/hosting/#self-hosting).
 
 NOTE: During the scanning process, the core dlls for NServiceBus namely `NServiceBus.Core.dll`, `NServiceBus.dll` (in versions prior to Version 5) are automatically included since the endpoint needs them to function properly.
 

@@ -9,14 +9,6 @@
 
     class ScanningPublicApi
     {
-        void ScanningDefault()
-        {
-            #region ScanningDefault
-
-            Configure.With();
-
-            #endregion
-        }
 
         void ScanningListOfAssemblies(IEnumerable<Assembly> myListOfAssemblies, Assembly assembly2, Assembly assembly1)
         {

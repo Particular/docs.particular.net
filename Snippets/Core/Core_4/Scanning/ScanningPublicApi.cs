@@ -9,15 +9,6 @@
 
     class ScanningPublicApi
     {
-        void ScanningDefault()
-        {
-            #region ScanningDefault
-
-            Configure.With();
-
-            #endregion
-
-        }
 
         void ScanningExcludeByName()
         {

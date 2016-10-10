@@ -5,14 +5,6 @@
 
     class ScanningPublicApi
     {
-        void ScanningDefault()
-        {
-            #region ScanningDefault
-
-            var endpointConfiguration = new EndpointConfiguration("EndpointName");
-
-            #endregion
-        }
 
         void ScanningNestedAssembliesEnabled(EndpointConfiguration endpointConfiguration)
         {

@@ -9,14 +9,6 @@
 
     class ScanningPublicApi
     {
-        void ScanningDefault()
-        {
-            #region ScanningDefault
-
-            var busConfiguration = new BusConfiguration();
-
-            #endregion
-        }
 
         void ScanningExcludeByName(BusConfiguration busConfiguration)
         {
