@@ -1,0 +1,1 @@
+An "Exclude a list" approach is used. This supports that the common scenario removing specific assemblies from scanning without the common side effect of accidentally excluding required assemblies.
