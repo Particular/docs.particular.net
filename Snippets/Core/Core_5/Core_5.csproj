@@ -322,7 +322,7 @@
     <Compile Include="Hosting.cs" />
     <Compile Include="Serialization\XmlSerializerUsage.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicy.cs" />
-    <Compile Include="Transactions.cs" />
+    <Compile Include="TransportTransactions.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transports\Throughput\Usage.cs" />
     <Compile Include="UpgradeGuides\4to5\Scheduler.cs" />

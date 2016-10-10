@@ -6,6 +6,7 @@ Use the following code to use this mode:
 
 snippet:TransportTransactionReceiveOnly
 
+
 #### Consistency guarantees
 
 In this mode some (or all) handlers might get invoked multiple times and partial results might be visible:

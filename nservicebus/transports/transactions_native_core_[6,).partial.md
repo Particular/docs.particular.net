@@ -6,6 +6,7 @@ Use the following code to use this mode:
 
 snippet:TransportTransactionReceiveOnly
 
+
 #### Consistency guarantees
 
 In this mode some (or all) handlers might get invoked multiple times and partial results might be visible:
@@ -13,9 +14,10 @@ In this mode some (or all) handlers might get invoked multiple times and partial
  * partial updates - where one handler succeeded updating its data but the other didn't
  * partial sends - where some of the messages has been sent but others not
 
-When using this mode all handlers must be [idempotent](/nservicebus/concept-overview.md#idempotence). In other words the result needs to be consistent from a business perspective even when the message is processed more than once.
+When using this mode all handlers must be [idempotent](/nservicebus/concept-overview.md#idempotence), i.e. the result needs to be consistent from a business perspective even when the message is processed more than once.
 
-See the `Outbox` section below for details on how NServiceBus can handle idempotency at the infrastructure level.
+See the `Outbox` section below for details on how NServiceBus ca
+
 
 ### Transport transaction - Sends atomic with Receive
 
