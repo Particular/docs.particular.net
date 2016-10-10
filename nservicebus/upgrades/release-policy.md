@@ -79,3 +79,40 @@ Since all critical issues will be back-ported, choose to upgrade when convenient
 ### Major
 
 Since a new `major` version will contain breaking changes and will likely require modifications to the consuming code. Because of the extent of code changes in a major version, it is recommendation that a full regression test of the system is done.
+
+
+### Release quality
+
+Our release cycle consists of the following quality stages
+
+* Alpha
+* Beta (Optional)
+* RC (Optional)
+* Stable
+
+### Alpha
+
+* Binaries are considered unstable
+* API's might change without notice
+* We use the binaries for internal development, updating docs, etc.
+
+### Beta
+
+* The component is feature complete
+* Likely to contain a number of known or unknown bugs
+* Performance and stability testing has not been fully completed
+* We will not provide a go live license, production use is not supported
+* All public API's should be stable but we can still change based on feedback from users 
+
+#### Open and closed beta
+
+* Closed beta versions are released to a restricted group customers by invitation
+* Open beta versions are public and target the entire user base
+
+### RC
+
+A release candidate (RC) is a version intended to be a final product, which is ready to release unless significant bugs emerge. In this stage of stabilization, all features have been designed, coded and tested through one or more beta cycles and has no known critical bugs. There could still be source code changes to fix defects, changes to documentation and data files, and peripheral code for test cases or utilities. 
+
+### RTM
+
+This is the stable production release
