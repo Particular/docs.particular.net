@@ -203,7 +203,6 @@
     <Compile Include="Serialization\BsonSerializerUsage.cs" />
     <Compile Include="Serialization\JsonSerializerUsage.cs" />
     <Compile Include="Serialization\XmlSerializerUsage.cs" />
-    <Compile Include="TransportTransactions.cs" />
     <Compile Include="Transports\Msmq\AuthorizeSubscriptions.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\CompleteOrder.cs" />

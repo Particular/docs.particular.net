@@ -34,6 +34,7 @@ The implementation details for each transport are discussed in the dedicated doc
 
 partial:matrix
 
+
 ### Transaction scope (Distributed transaction)
 
 In this mode the transport receive operation is wrapped in a [`TransactionScope`](https://msdn.microsoft.com/en-us/library/system.transactions.transactionscope). Other operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole.
