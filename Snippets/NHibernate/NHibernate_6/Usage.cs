@@ -33,9 +33,9 @@ class Usage
     void ConnectionString(BusConfiguration busConfiguration)
     {
         #region ConnectionStringAPI
-        
-        busConfiguration.UsePersistence<NHibernatePersistence>()
-            .ConnectionString(@"Data Source=.\SqlExpress;Database=nservicebus");
+
+        var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=nservicebus");
 
         #endregion
     }

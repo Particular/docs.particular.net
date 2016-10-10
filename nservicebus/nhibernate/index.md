@@ -42,6 +42,15 @@ partial: code-connection
 
 To customize the NHibernate `Configuration` object used to bootstrap the persistence mechanism, either provide a ready-made object via code or use convention-based XML configuration. The code-based approach overrides the configuration-based one when both are used.
 
+
+### Passing Configuration in code
+
+To specific configuration on a per-concern basis, use following
+
+snippet:SpecificNHibernateConfiguration
+
+NOTE: Combine both approaches to define a common configuration and override it for one specific concern.
+
 partial:code
 
 
