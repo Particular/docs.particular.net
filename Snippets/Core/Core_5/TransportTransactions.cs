@@ -26,16 +26,6 @@
             #endregion
         }
 
-        void TransportTransactionAtomicSendsWithReceive(BusConfiguration busConfiguration)
-        {
-            #region TransportTransactionAtomicSendsWithReceive
-
-            var transactionSettings = busConfiguration.Transactions();
-            transactionSettings.DisableDistributedTransactions();
-
-            #endregion
-        }
-
         void TransportTransactionScope(BusConfiguration busConfiguration)
         {
             #region TransportTransactionScope

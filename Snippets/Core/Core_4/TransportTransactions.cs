@@ -29,20 +29,6 @@
             #endregion
         }
 
-        void TransportTransactionAtomicSendsWithReceive()
-        {
-            #region TransportTransactionAtomicSendsWithReceive
-
-            var transactions = Configure.Transactions;
-            transactions.Advanced(
-                action: advancedSettings =>
-                {
-                    advancedSettings.DisableDistributedTransactions();
-                });
-
-            #endregion
-        }
-
         void TransportTransactionScope()
         {
             #region TransportTransactionScope
