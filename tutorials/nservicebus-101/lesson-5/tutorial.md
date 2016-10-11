@@ -1,6 +1,5 @@
 ---
-title: "Lesson 5: Retrying errors"
-suppressRelated: true
+title: "NServiceBus 101 Lesson 5: Retrying errors"
 component: Core
 ---
 

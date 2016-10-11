@@ -1,6 +1,5 @@
 ---
-title: "Lesson 1: Hello world"
-suppressRelated: true
+title: "NServiceBus 101 Lesson 1: Hello world"
 component: Core
 ---
 
@@ -141,6 +140,6 @@ When you run the endpoint for the first time, take note of the following:
 
 In this lesson we set up the prerequisites for NServiceBus and created a simple messaging endpoint to make sure it works. The fun doesn't really begin, however, until we start sending messages. In the next lesson, we'll define a message, a message handler, and then send the message and watch it get processed.
 
-Before moving on, you might want to check your code against the [completed solution](https://github.com/Particular/docs.particular.net/tree/academy-nsb101/tutorials/nservicebus-101/lesson-1/solution/) to see if there's anything you may have missed.
+Before moving on, you might want to check your code against the completed solution (below) to see if there's anything you may have missed.
 
 When you're ready, move on to [**Lesson 2: Sending a command**](../lesson-2/).

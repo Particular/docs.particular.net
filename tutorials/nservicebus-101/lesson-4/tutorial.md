@@ -1,6 +1,5 @@
 ---
-title: "Lesson 4: Publishing events"
-suppressRelated: true
+title: "NServiceBus 101 Lesson 4: Publishing events"
 component: Core
 ---
 
@@ -246,6 +245,6 @@ In this lesson we learned all about events, how they differ from commands, and h
 
 In the final lesson for this course, we'll see what happens when we introduce errors into our system, and see how we can automatically retry those messages to make a truly resilient system.
 
-Before moving on, you might want to check your code against the [completed solution](https://github.com/Particular/docs.particular.net/tree/academy-nsb101/tutorials/nservicebus-101/lesson-4/solution/) to see if there's anything you may have missed.
+Before moving on, you might want to check your code against the completed solution (below) to see if there's anything you may have missed.
 
 When you're ready, move on to [**Lesson 5: Retrying errors**](../lesson-5/).

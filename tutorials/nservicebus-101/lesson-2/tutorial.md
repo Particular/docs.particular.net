@@ -1,6 +1,5 @@
 ---
-title: "Lesson 2: Sending a command"
-suppressRelated: true
+title: "NServiceBus 101 Lesson 2: Sending a command"
 component: Core
 ---
 
@@ -307,6 +306,6 @@ In this lesson we learned about messages, message assemblies, and message handle
 
 In the next lesson, we'll create a second messaging endpoint, move our message handler over to it, and then configure the ClientUI to send the message to the new endpoint. We'll also be able to observe what happens when we send messages while the receiver endpoint is offline.
 
-Before moving on, you might want to check your code against the [completed solution](https://github.com/Particular/docs.particular.net/tree/academy-nsb101/tutorials/nservicebus-101/lesson-2/solution/) to see if there's anything you may have missed.
+Before moving on, you might want to check your code against the completed solution (below) to see if there's anything you may have missed.
 
 When you're ready, move on to [**Lesson 3: Managing multiple endpoints**](../lesson-3/).

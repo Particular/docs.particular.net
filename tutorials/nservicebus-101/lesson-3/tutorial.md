@@ -1,6 +1,5 @@
 ---
-title: "Lesson 3: Managing multiple endpoints"
-suppressRelated: true
+title: "NServiceBus 101 Lesson 3: Managing multiple endpoints"
 component: Core
 ---
 
@@ -253,6 +252,6 @@ In this lesson, we got our first true taste of sending messages between endpoint
 
 In the next lesson, we'll learn about events, a different kind of message that can be published to multiple subscribers using the Publish/Subscribe pattern. We'll also learn how the decoupling provided by this pattern allows us to structure our distributed systems in a more logical and maintainable way.
 
-Before moving on, you might want to check your code against the [completed solution](https://github.com/Particular/docs.particular.net/tree/academy-nsb101/tutorials/nservicebus-101/lesson-3/solution/) to see if there's anything you may have missed.
+Before moving on, you might want to check your code against the completed solution (below) to see if there's anything you may have missed.
 
 When you're ready, move on to [**Lesson 4: Publishing events**](../lesson-4/).
