@@ -1,6 +1,7 @@
 ---
 title: Release Policy
 summary: What version numbers mean to Particular.
+reviewed: 2016-10-11
 redirects:
  - nservicebus/release-policy
 related:
@@ -41,9 +42,9 @@ Some examples:
  * Version 4.6 was released on 2014-05-01 this means that its latest patch release will be supported till 2015-05-01. This means that there will be no fixes minor versions after 2015-05-01. It is required to update to at least a newer minor version that is still supported as this version will receive a patch release.
  * A newer patch release will automatically mean that the previous patch release will be obsolete. Particular will apply a bugfix on the latest patch release but will not officially release a patch for a obsolete patch release. In other words, version X.Y.3 will not be patched (to version X.Y.3.1) when version X.Y.4 is the latest patch. That would then be released as version X.Y.5
 
-It is strongly recommend to upgrade frequently enough to stay on a supported version. For a best upgrade experience upgrade from major version to major version. For example if using NServiceBus Version 3.3.15 and want to upgrade to NServiceBus Version 5.2.3. First upgrade to the latest NServiceBus Version 4.x release (i.e. Version 4.7.6). Follow the suggested API upgrade guides and obsoletion messages and then upgrade to NServiceBus Version 5.2.3.
+It is strongly recommend to upgrade frequently enough to stay on a supported version. For a best upgrade experience upgrade from major version to major version. For example if using NServiceBus Version 3.3.15 and want to upgrade to NServiceBus Version 5.2.3. First upgrade to the latest NServiceBus Version 4.x release (i.e. Version 4.7.6). Follow the suggested API upgrade guides and [ObsoleteAttribute messages](https://msdn.microsoft.com/en-us/library/system.obsoleteattribute.aspx) and then upgrade to NServiceBus Version 5.2.3.
 
-[Contact support](https://particular.net/support) if there are any bugfixes that believe should be back-ported to a specific. version
+[Contact support](https://particular.net/support) if there are any bugfixes that believe should be back-ported to a specific version.
 
 
 ## Summary
@@ -83,36 +84,41 @@ Since a new `major` version will contain breaking changes and will likely requir
 
 ### Release quality
 
-Our release cycle consists of the following quality stages
+The release cycle consists of the following quality stages:
 
-* Alpha
-* Beta (Optional)
-* RC (Optional)
-* Stable
+ * Alpha
+ * Beta (Optional)
+ * Release Candidate (Optional)
+ * Stable
+
 
 ### Alpha
 
-* Binaries are considered unstable
-* API's might change without notice
-* We use the binaries for internal development, updating docs, etc.
+ * Binaries are considered unstable.
+ * APIs might change without notice.
+ * Packages are used for internal development, updating docs, etc.
+
 
 ### Beta
 
-* The component is feature complete
-* Likely to contain a number of known or unknown bugs
-* Performance and stability testing has not been fully completed
-* We will not provide a go live license, production use is not supported
-* All public API's should be stable but we can still change based on feedback from users 
+ * The component is feature complete.
+ * Likely to contain a number of known or unknown bugs.
+ * Performance and stability testing has not been fully completed.
+ * **No** "go live" license is provided and production use is **not supported**.
+ * All public APIs should be stable but may change based on feedback from consumers.
+
 
 #### Open and closed beta
 
-* Closed beta versions are released to a restricted group customers by invitation
-* Open beta versions are public and target the entire user base
+ * Closed beta versions are released to a restricted group customers by invitation.
+ * Open beta versions are public and target the entire user base.
 
-### RC
 
-A release candidate (RC) is a version intended to be a final product, which is ready to release unless significant bugs emerge. In this stage of stabilization, all features have been designed, coded and tested through one or more beta cycles and has no known critical bugs. There could still be source code changes to fix defects, changes to documentation and data files, and peripheral code for test cases or utilities. 
+### Release Candidate (RC)
 
-### RTM
+A Release Candidate is a version intended to be a final product, which is ready to release unless significant bugs emerge. In this stage of stabilization, all features have been designed, coded and tested through one or more beta cycles and has no known critical bugs. There could still be source code changes to fix defects, changes to documentation and data files, and peripheral code for test cases or utilities.
 
-This is the stable production release
+
+### Release To Market (RTM)
+
+This is the stable production release.
