@@ -54,8 +54,6 @@ NOTE: While a minimum of .NET 4.5.2 is required, it is recommended to update to 
 
 All NServiceBus dependencies for an endpoint project are managed via NuGet. Open the Manage NuGet Packages window for the endpoint project, switch to the Updates tab and look for packages that start with NServiceBus. Update each one to the latest Version 6 package.
 
-NOTE: All of the NuGet packages are currently available as pre-release builds so the *Include pre-release* option must be selected by either checking the box in the Manage NuGet Packages window or by including the `-Pre` flag in the Package Manager Console. 
-
 Once packages have been updated the project will contain quite a few errors. This is expected as a lot of things have changed.
 
 See also:
