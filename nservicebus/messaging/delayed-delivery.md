@@ -18,7 +18,7 @@ To handle the current message at a later time `bus.HandleCurrentMessageLater()` 
 
 Note: RabbitMQ tries to put the message back in the queue as close to its original position as possible, which may mean at the head of the queue where it will be picked up immediately again. 
 
-A bigger potential issue with this method is that although the message is put back into the queue, the transaction(s) will still commit. This means if a database entity is mutated in the handler code and then the message is put back into the queue, the database transaction will still commit. As such, this method will be depricated in NServiceBus version 7.0 and it is recommended to use either the first/second level retries or the deferring mechanism below, depending on the case at hand.  
+A bigger potential issue with this method is that although the message is put back into the queue, the transaction(s) will still commit. This means if a database entity is mutated in the handler code and then the message is put back into the queue, the database transaction will still commit. As such, this method will be depricated in NServiceBus version 7.0 and it is recommended to use either [Delayed Retries](nservicebus/recoverability/#delayed-retries) or one of the deferring mechanisms below, depending on the case at hand.  
 
 ## Delaying message dispatching
 
