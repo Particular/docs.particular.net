@@ -13,6 +13,12 @@ The message doesn't have to be dispatched immediately after sending, it can be d
 
 NOTE: Only send operations can be deferred. Publish and reply operations cannot be deferred.
 
+## Handling current message later
+To handle the current message at a later time `bus.HandleCurrentMessageLater()` method can be used.  This was the initial way of *deferring* a message. This would put the message at the end of the queue and the message eventually will be pick up again once other messages are processed. The problem with this approach is that if there are no other messages in the queue (or that many of them) the message will pop right back up so the intended deferring might not happen. 
+
+Note: RabbitMQ tries to put the message back in the queue as close to its original position as possible, which may mean at the head of the queue where it will be picked up immediately again. 
+
+A bigger potential issue with this method is that although the message is put back into the queue, the transaction(s) will still commit. This means if a database entity is mutated in the handler code and then the message is put back into the queue, the database transaction will still commit. As such, this method will be depricated in NServiceBus version 7.0 and it is recommended to use either the first/second level retries or the deferring mechanism below, depending on the case at hand.  
 
 ## Delaying message dispatching
 
