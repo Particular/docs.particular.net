@@ -1,7 +1,7 @@
 ---
 title: Bus versus broker architecture
 summary: Bus versus broker architectural styles.
-component: Host
+component: core
 reviewed: 2016-08-10
 redirects:
 - nservicebus/overview
