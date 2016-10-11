@@ -46,3 +46,5 @@ snippet:ScanningExcludeTypes
 
 
 partial: include
+
+partial: mixing
