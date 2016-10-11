@@ -8,7 +8,7 @@ related:
 ---
 
 
-This sample shows how to send messages to a NServiceBus endpoint from a ASP.NET Core WebAPI application. It only works for ASP.NET Core solutions targeting the full .NET Framework. The .NET Core runtime is currently not supported.
+This sample shows how to send messages to a NServiceBus endpoint from a ASP.NET Core WebAPI application. **It only works for ASP.NET Core solutions targeting the full .NET Framework. The .NET Core runtime is currently not supported.**
 
 Run the solution, a new browser window/tab opens, as well as a console application.
 
