@@ -42,9 +42,9 @@ Some examples:
  * Version 4.6 was released on 2014-05-01 this means that its latest patch release will be supported till 2015-05-01. This means that there will be no fixes minor versions after 2015-05-01. It is required to update to at least a newer minor version that is still supported as this version will receive a patch release.
  * A newer patch release will automatically mean that the previous patch release will be obsolete. Particular will apply a bugfix on the latest patch release but will not officially release a patch for a obsolete patch release. In other words, version X.Y.3 will not be patched (to version X.Y.3.1) when version X.Y.4 is the latest patch. That would then be released as version X.Y.5
 
-It is strongly recommend to upgrade frequently enough to stay on a supported version. For a best upgrade experience upgrade from major version to major version. For example if using NServiceBus Version 3.3.15 and want to upgrade to NServiceBus Version 5.2.3. First upgrade to the latest NServiceBus Version 4.x release (i.e. Version 4.7.6). Follow the suggested API upgrade guides and [ObsoleteAttribute messages](https://msdn.microsoft.com/en-us/library/system.obsoleteattribute.aspx) and then upgrade to NServiceBus Version 5.2.3.
+It is strongly recommended to upgrade frequently enough, to stay on a supported version. For the best upgrade experience upgrade from major version to major version. For example, if using NServiceBus Version 4.7.2 and want to upgrade to NServiceBus Version 6.0.0. First upgrade to the latest NServiceBus Version 5.x release (i.e. Version 5.2.19). Follow the suggested API upgrade guides and [ObsoleteAttribute messages](https://msdn.microsoft.com/en-us/library/system.obsoleteattribute.aspx) and then upgrade to NServiceBus Version 6.0.0.
 
-[Contact support](https://particular.net/support) if there are any bugfixes that believe should be back-ported to a specific version.
+[Contact support](https://particular.net/support) if there are any bugfixes that needs to be back-ported to a specific version.
 
 
 ## Summary
@@ -104,7 +104,7 @@ The release cycle consists of the following quality stages:
  * The component is feature complete.
  * Likely to contain a number of known or unknown bugs.
  * Performance and stability testing has not been fully completed.
- * **No** "go live" license is provided and production use is **not supported**.
+ * This version does not come with a "go live" license and will **not be supported** in Production.
  * All public APIs should be stable but may change based on feedback from consumers.
 
 
@@ -112,11 +112,15 @@ The release cycle consists of the following quality stages:
 
  * Closed beta versions are released to a restricted group customers by invitation.
  * Open beta versions are public and target the entire user base.
+ * [Contact us](http://particular.net/contactus) to join the closed beta customer group and to be included for evaluating future beta versions.
 
 
 ### Release Candidate (RC)
 
-A Release Candidate is a version intended to be a final product, which is ready to release unless significant bugs emerge. In this stage of stabilization, all features have been designed, coded and tested through one or more beta cycles and has no known critical bugs. There could still be source code changes to fix defects, changes to documentation and data files, and peripheral code for test cases or utilities.
+ * A Release Candidate is a version intended to be a final product, which is ready to release unless significant bugs emerge. 
+ * In this stage of stabilization, all features have been designed, coded and tested through one or more beta cycles and has no known critical bugs. 
+ * There could still be source code changes to fix defects, changes to documentation and data files, and peripheral code for test cases or utilities.
+ * This version comes with a "go live" license and will **be supported** in Production.
 
 
 ### Release To Market (RTM)
