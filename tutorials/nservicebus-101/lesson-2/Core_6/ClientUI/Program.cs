@@ -33,6 +33,8 @@ namespace ClientUI
                 .ConfigureAwait(false);
         }
 
+        #region RunLoop
+
         static async Task RunLoop(IEndpointInstance endpointInstance)
         {
             var logger = LogManager.GetLogger<Program>();
@@ -67,5 +69,7 @@ namespace ClientUI
                 }
             }
         }
+
+        #endregion
     }
 }

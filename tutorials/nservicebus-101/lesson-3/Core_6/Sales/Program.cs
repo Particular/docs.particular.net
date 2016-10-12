@@ -4,6 +4,8 @@ using NServiceBus;
 
 namespace Sales
 {
+    #region SalesProgram
+
     class Program
     {
         static void Main()
@@ -32,4 +34,6 @@ namespace Sales
                 .ConfigureAwait(false);
         }
     }
+
+    #endregion
 }

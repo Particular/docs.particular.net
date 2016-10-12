@@ -30,10 +30,7 @@ In this lesson, we're going to be focusing on the simpler type of message: comma
 
 Defining a command is pretty easy. We just create a class and mark it with the `ICommand` marker interface.
 
-    public class DoSomething : ICommand
-    {
-        public string SomeProperty { get; set; }
-    }
+snippet:Command
 
 The marker interface has no implementation, but lets NServiceBus know that the class is a command so that it can build up some metadata about the message type when the endpoint starts up. Any properties you create within the message constitute the message data.
 
@@ -43,23 +40,7 @@ When sending a message, the endpoint's message serializer will serialize an inst
 
 Messages can support whatever data the serializer can successfully process. Thus messages can even contain child objects or collections.
 
-    public class DoSomethingComplex : ICommand
-    {
-        public int SomeId { get; set; }
-        public ChildClass ChildStuff { get; set; }
-        public List<ChildClass> ListOfStuff { get; set; }
-        
-        public DoSomethingComplex()
-        {
-            // Nobody likes dealing with null collections
-            ListOfStuff = new List<ChildClass>();
-        }
-    }
-    
-    public class ChildClass
-    {
-        public string SomeProperty { get; set; }
-    }
+snippet:ComplexCommand
 
 While it can be pretty tempting to throw in the kitchen sink, consider that messages are a contract between two endpoints. Any change to the message will likely involve a change on both the sender and receiver side. The more properties you have on a message, the more reasons it has to change, so keep your messages as slim as possible.
 
@@ -76,20 +57,14 @@ A **message assembly** should contain only NServiceBus message contracts, and an
 
 Message assemblies should be entirely self-contained. They should have no dependencies other than libraries included with the .NET Framework, and the NServiceBus core assembly, which is required to reference the `ICommand` interface. Limiting dependencies makes your message contracts more resilient to future changes in the system.
 
-> In another course, we'll learn how (and why) to use [message conventions](/nservicebus/messaging/conventions.md) to identify message types, rather than the `ICommand` interface. Then we don't even need to reference the NServiceBus assembly in our message assemblies, but we'll leave that out of scope for now.
+NOTE: In another course, we'll learn how (and why) to use [message conventions](/nservicebus/messaging/conventions.md) to identify message types, rather than the `ICommand` interface. Then we don't even need to reference the NServiceBus assembly in our message assemblies, but we'll leave that out of scope for now.
 
 
 ## How do I process a message?
 
 To process a message, we create a **message handler**, a class that implements `IHandleMessages<T>`, where `T` is a message type. A message handler looks like this:
 
-    public class DoSomethingHandler : IHandleMessages<DoSomething>
-    {
-        public Task Handle(DoSomething message, IMessageHandlerContext context)
-        {
-            // Do something with the message here!
-        }
-    }
+snippet:EmptyHandler
 
 The implementation of the `IHandleMessages<T>` interface is the `Handle` method, which NServiceBus will invoke when a matching message (in this case `DoSomething`) arrives. The message handling method receives an instance of the message, as well as an `IMessageHandlerContext` instance that contains the messaging tools (sending messages, etc.) that can be used within a message handler.
 
@@ -97,43 +72,13 @@ True to the asynchronous nature of NServiceBus, the `Handle` method returns a `T
 
 If all of the operations within the message handler are synchronous, you can simply return `Task.CompletedTask` if using .NET 4.6 or greater, or `Task.FromResult(false)` if `CompletedTask` is not available.
 
-    public class DoSomethingHandler : IHandleMessages<DoSomething>
-    {
-        public Task Handle(DoSomething message, IMessageHandlerContext context)
-        {
-            Console.WriteLine("Got the message!");
-            return Task.CompletedTask;
-        }
-    }
-
 If you plan to call asynchronous operations within the message handler, you can add the `async` keyword to the method, and then await any tasks needed. Then no explicit return is needed because the compiler generates it for you as part of the async state machine.
 
-    public class DoSomethingHandler : IHandleMessages<DoSomething>
-    {
-        public async Task Handle(DoSomething message, IMessageHandlerContext context)
-        {
-            await SomeOperationAsync().ConfigureAwait(false);
-            await SomeOperationAsync().ConfigureAwait(false);
-        }
-    }
+snippet:AsyncHandler
 
 You can even implement `IHandleMessages<T>` for multiple different message types within the same class, if it makes sense to logically group the handlers together. Just don't expect any state in class variables to be persisted. NServiceBus will create a new instance of the class for every message that it handles.
 
-    public class DoSomethingHandler : IHandleMessages<DoSomething>,
-        IHandleMessages<DoSomethingElse>
-    {
-        public Task Handle(DoSomething message, IMessageHandlerContext context)
-        {
-            Console.WriteLine("Received DoSomething");
-            return Task.CompletedTask;
-        }
-        
-        public Task Handle(DoSomethingElse message, IMessageHandlerContext context)
-        {
-            Console.WriteLine("Received DoSomethingElse");
-            return Task.CompletedTask;
-        }
-    }
+snippet:MultiHandler
 
 When NServiceBus starts up, it will find all of these message handler classes and automatically wire them up, so that they will be invoked when messages arrive. There's no special setup or configuration needed.
 
@@ -159,25 +104,18 @@ Messages should be self-contained within a separate assembly so that they can be
 
 ### Create a message
 
-In order to better organize messages, we'll create our first command in a folder called **Commands**.
-
-> NOTE: Because of Visual Studio's automatic namespace conventions, this will make the namespace of any class we create in this folder `Messages.Commands`, which will help later on when we want to apply [message conventions](/nservicebus/messaging/conventions.md) to identify messages instead of marker interfaces.
+In order to better organize messages, we'll create our first command in a folder called **Commands**. Because of Visual Studio's automatic namespace conventions, this will make the namespace of any class we create in this folder `Messages.Commands`, which will help later on when we want to apply [message conventions](/nservicebus/messaging/conventions.md) to identify messages instead of marker interfaces.
 
 1. In the **Messages** project, create a new folder called **Commands**.
 2. In the **Commands** folder, add a new class named `PlaceOrder`.
 3. Mark `PlaceOrder` as `public` and implement `ICommand`.
-    > NOTE: The .NET Framework contains another interface named `ICommand` in the `System.Windows.Input` namespace. Be sure that if you use tooling to resolve the namespace, you select `NServiceBus.ICommand`. Most of the types you will need will reside in the `NServiceBus` namespace.
 4. Add a public property of type `string` named `OrderId`.
+
+NOTE: The .NET Framework contains another interface named `ICommand` in the `System.Windows.Input` namespace. Be sure that if you use tooling to resolve the namespace, you select `NServiceBus.ICommand`. Most of the types you will need will reside in the `NServiceBus` namespace.
 
 When complete, your `PlaceOrder` class should look like the following:
 
-    namespace Messages.Commands
-    {
-        public class PlaceOrder : ICommand
-        {
-            public string OrderId { get; set; }
-        }
-    }
+snippet:PlaceOrder
 
 
 ### Create a handler
@@ -198,18 +136,7 @@ Now that we've defined a message, we can create a message handler to handle it. 
 
 When complete, your `PlaceOrderHandler` class should look like this:
 
-```
-public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
-{
-    private ILog logger = LogManager.GetLogger<PlaceOrderHandler>();
-
-    public Task Handle(PlaceOrder message, IMessageHandlerContext context)
-    {
-        logger.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
-        return Task.CompletedTask;
-    }
-}
-```
+snippet:PlaceOrderHandler
 
 
 ### Send a message locally
@@ -220,48 +147,9 @@ In the **ClientUI** project, we are currently stopping the endpoint when we pres
 
 Add the following method to the **Program.cs** file:
 
-    static async Task RunLoop(IEndpointInstance endpointInstance)
-    {
-        var logger = LogManager.GetLogger<Program>();
-
-        while (true)
-        {
-            logger.Info("Enter 'placeorder' to place an order, or 'quit' to quit.");
-            string input = Console.ReadLine();
-
-            switch (input?.ToLower())
-            {
-                case "placeorder":
-                    // Instantiate the command
-                    var command = new PlaceOrder { OrderId = Guid.NewGuid().ToString() };
-
-                    // Send the command to the current
-                    logger.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
-                    await endpointInstance.SendLocal(command).ConfigureAwait(false);
-                    
-                    break;
-
-                case "quit":
-                    return;
-
-                default:
-                    logger.Info("Unknown input. Please try again.");
-                    break;
-            }
-        }
-    }
+snippet:RunLoop
  
 Let's take a closer look at the case when we want to place an order. Since the `PlaceOrder` command is just a class, we can instantiate it normally, supplying a unique value for the `OrderId`. Then, after logging the details, we can send it with the `SendLocal` method.
-
-    case "placeorder":
-        // Instantiate the command
-        var command = new PlaceOrder { OrderId = Guid.NewGuid().ToString() };
-
-        // Send the command to the current
-        logger.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
-        await endpointInstance.SendLocal(command).ConfigureAwait(false);
-        
-        break;
     
 `SendLocal(object message)` is a method that is available on the `IEndpointInstance` interface, as we are using here, and also on the `IMessageHandlerContext` interface, which we saw when we were defining our message handler. The *Local* part means that we are not sending to an external endpoint (in a different process) so we intend to handle the message in the same endpoint that sent it. Using `SendLocal()`, we don't have to specify any mappings to tell the message where to go.
 
@@ -269,18 +157,9 @@ Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properl
  
 In order to use our `RunLoop` method, we need to replace the previous Console operations with a call to the new method in the `AsyncMain` method:
 
-    var endpointInstance = await Endpoint.Start(endpointConfig).ConfigureAwait(false);
+snippet:AddRunLoopToAsyncMain
 
-    // Remove these two lines
-    Console.WriteLine("Press Enter to exit...");
-    Console.ReadLine();
-    
-    // Replace with:
-    await RunLoop(endpointInstance);
-
-    await endpointInstance.Stop().ConfigureAwait(false);
-
-> Note: Although we're calling `SendLocal()` from the endpoint instance, this method (and others such as `Send()`, `Publish()`, etc.) is also available from the `IMessageHandlerContext` that gets passed in to a message handler's `Handle()` method.
+NOTE: Although we're calling `SendLocal()` from the endpoint instance, this method (and others such as `Send()`, `Publish()`, etc.) is also available from the `IMessageHandlerContext` that gets passed in to a message handler's `Handle()` method.
 
 
 ### Running the solution

@@ -5,6 +5,8 @@ using NServiceBus.Logging;
 
 namespace Billing
 {
+    #region SubscriberHandler
+
     public class OrderPlacedHandler :
         IHandleMessages<OrderPlaced>
     {
@@ -21,4 +23,6 @@ namespace Billing
             return context.Publish(orderBilled);
         }
     }
+
+    #endregion
 }

@@ -21,19 +21,11 @@ By the end of this lesson, you will have learned:
 
 We've already shown how an endpoint can "send a message to itself" using the `SendLocal()` method, which is available on the `IEndpointInstance` that we use in the endpoint startup code to create a UI, and also on the `IMessageHandlerContext` that we can access while handling a message.
 
-    // From endpoint startup code
-    await endpointInstance.SendLocal(command).ConfigureAwait(false);
-    
-    // From a message handler
-    await context.SendLocal(command).ConfigureAwait(false);
+snippet:SendLocal
 
 Sending a message to another endpoint is exactly the same, we just need to drop the word **Local** from the method name.
 
-    // From endpoint startup code
-    await endpointInstance.Send(command).ConfigureAwait(false);
-
-    // From a message handler
-    await context.Send(command).ConfigureAwait(false);
+snippet:Send
 
 The main difference is that with `SendLocal()`, the destination (local) for the message is already known. So when we call `Send()`, how does NServiceBus know where to send the message?
 
@@ -42,11 +34,7 @@ The main difference is that with `SendLocal()`, the destination (local) for the 
 
 We could specify where we want the message to go directly in code. There is actually an overload of the `Send()` method that allows us to do this:
 
-    // Not recommended, most of the time!
-    Task endpointInstance.Send(string destination, object message)
-    
-    // On the IMessageHandlerContext too, but still not recommended!
-    Task context.Send(string destination, object message)
+snippet:SendDestination
 
 However, doing that in most cases isn't a good idea. This requires each developer to remember where each message is supposed to go and type it in every time that message is sent.
 
@@ -56,9 +44,11 @@ This is **logical routing**, the mapping of specific message types to logical en
 
 We say *logical routing* because this is at a logical layer only, which isn't necessarily the same as *physical routing*. Within one *logical* endpoint, there may be many *physical* endpoint instances deployed to multiple servers.
 
-> An **endpoint** is a logical concept, defined by an endpoint name and associated code, that defines an owner responsible for processing messages.
+{{NOTE:
+An **endpoint** is a logical concept, defined by an endpoint name and associated code, that defines an owner responsible for processing messages.
 
-> An **endpoint instance** is a physical instance of the endpoint deployed to a single server. Many endpoint instances may be deployed to many servers in order to scale out the processing of a high-volume message to multiple servers.
+An **endpoint instance** is a physical instance of the endpoint deployed to a single server. Many endpoint instances may be deployed to many servers in order to scale out the processing of a high-volume message to multiple servers.
+}}
 
 For now we'll only concern ourselves with logical routing, and leave the rest of it (physical routing, scale-out, etc.) for a later time.
 
@@ -71,26 +61,13 @@ Therefore, it makes sense that logical routing is defined in code.
 
 Routing is a function of the message transport, so all routing functionality is accessed from the method that defines the message transport, as shown in this example using the MSMQ transport:
 
-```
-// Returns a RoutingSettings<MsmqTransport>
-var routing = endpointConfig.UseTransport<MsmqTransport>()
-    .Routing();
-```
+snippet:RoutingSettings
 
 `RoutingSettings<T>` is scoped to the actual transport being used, and routing options are exposed as extension methods on this class. Therefore, only routing options that are viable for the transport in use will appear. Routing configurations only applicable to Microsoft Azure, for example, won't clutter up the API when using the MSMQ transport.
 
 In order to define routes, start with the `routing` variable and call the `RouteToEndpoint` method as needed, which comes in three varieties:
 
-```
-// Specify the routing for a specific type
-routing.RouteToEndpoint(typeof(DoSomething), "SomeEndpoint");
-
-// Specify the routing for all messages in an assembly
-routing.RouteToEndpoint(typeof(DoSomething).Assembly, "SomeEndpoint");
-
-// Specify the routing for all messages in a given assembly and namespace
-routing.RouteToEndpoint(typeof(DoSomething).Assembly, "Specific.Namespace", "SomeEndpoint")
-```
+snippet:RouteToEndpoint
 
 For now we will use the first overload, specifying individual message types. In another course, we will explore how to best organize message types into assemblies in order to take advantage of the other overloads.
 
@@ -113,32 +90,7 @@ First, let's create the project for our new endpoint.
 
 Now that we have a project for our Sales endpoint, we need to add similar code to configure and start an NServiceBus endpoint:
 
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            AsyncMain().GetAwaiter().GetResult();
-        }
-
-        static async Task AsyncMain()
-        {
-            Console.Title = "Sales";
-
-            var endpointConfig = new EndpointConfiguration("Sales");
-            endpointConfig.UseTransport<MsmqTransport>();
-            endpointConfig.UseSerialization<JsonSerializer>();
-            endpointConfig.UsePersistence<InMemoryPersistence>();
-            endpointConfig.SendFailedMessagesTo("error");
-            endpointConfig.EnableInstallers();
-
-            var endpointInstance = await Endpoint.Start(endpointConfig).ConfigureAwait(false);
-
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
-
-            await endpointInstance.Stop().ConfigureAwait(false);
-        }
-    }
+snippet:SalesProgram
 
 Most of this configuration looks exactly the same as our ClientUI endpoint. It's critical for the configuration between endpoints to match (especially message transport and serializer) otherwise the endpoints would not be able to understand each other.
 
@@ -146,15 +98,13 @@ For example, if the ClientUI endpoint used `.UseSerialization<XmlSerializer>()` 
 
 While most of the configuration is the same, let me draw your attention to two specific lines that are different:
 
-    Console.Title = "Sales";
-
-    var endpointConfig = new EndpointConfiguration("Sales");
+snippet:EndpointDifferences
 
 The difference, of course, is the name "Sales" in the console title and `EndpointConfiguration` constructor, which defines the endpoint name for the Sales endpoint and gives it its own identity.
 
 This means that the Sales endpoint will create its own queue named `Sales` where it will listen for messages. We now have two processes that each have their own mailbox, so now we can send messages between them.
 
-> Note: This is quite repetitive, but remember that this is still an introductory exercise. In the next course, we will explore methods that allow you to centralize most of this repetitive endpoint configuration code.
+NOTE: This is quite repetitive, but remember that this is still an introductory exercise. In the next course, we will explore methods that allow you to centralize most of this repetitive endpoint configuration code.
 
 
 ### Debugging multiple projects
@@ -185,7 +135,7 @@ So now that the handler is in the correct endpoint, what would happen if we star
 
 If you attempt to place an order in the ClientUI, an exception will be thrown because ClientUI no longer has a handler for it:
 
-> System.InvalidOperationException: No handlers could be found for message type: Messages.Commands.PlaceOrder
+WARNING: System.InvalidOperationException: No handlers could be found for message type: Messages.Commands.PlaceOrder
 
 In fact, you will probably get a giant wall of exception text, because the message is tried and retried, and then retried some more after successively longer delays, until finally failing for good some time later. We'll cover this behavior in more detail in [Lesson 5: Retrying errors](../lesson-5/).
 
@@ -199,25 +149,16 @@ Now we need to fix up the ClientUI so that it is sending `PlaceOrder` to the Sal
 1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
 2. In the `AsyncMain` method of the same file, change the call to use the MSMQ transport to access the routing configuration and specify the logical routing for `PlaceOrder` by changing your code as follows.
     
-    **Change this:**
-    ```
-    endpointConfig.UseTransport<MsmqTransport>();
-    ```
-    **To this:**
-    ```
-    var routing = endpointConfig.UseTransport<MsmqTransport>()
-        .Routing();
-        
-    routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
-    ```
-    This establishes that commands of type `PlaceOrder` should be sent to the **Sales** endpoint. While these two calls could be strung together in the same statement, there will commonly be multiple logical routes specified, so it's advantageous to assign the `routing` variable for future use.
+snippet:AddingRouting
+
+This establishes that commands of type `PlaceOrder` should be sent to the **Sales** endpoint. While these two calls could be strung together in the same statement, there will commonly be multiple logical routes specified, so it's advantageous to assign the `routing` variable for future use.
 
 
 ### Running the solution
 
 Now when we run the solution, we get two console windows, one for ClientUI and one for Sales. After moving them around so that we can see both, we can try to place an order by typing `placeorder` in the **ClientUI** window.
 
-> Hint: You can also keep console windows from showing up in random screen locations each time by right-clicking the console window's title bar, and in the **Layout** tab, unchecking the **Let system position window** checkbox.
+INFO: You can also keep console windows from showing up in random screen locations each time by right-clicking the console window's title bar, and in the **Layout** tab, unchecking the **Let system position window** checkbox.
 
 In the **ClientUI** window, we see this output:
 

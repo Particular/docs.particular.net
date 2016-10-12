@@ -5,6 +5,8 @@ using NServiceBus.Logging;
 
 namespace ClientUI
 {
+    #region PlaceOrderHandler
+
     public class PlaceOrderHandler :
         IHandleMessages<PlaceOrder>
     {
@@ -16,4 +18,6 @@ namespace ClientUI
             return Task.CompletedTask;
         }
     }
+
+    #endregion
 }

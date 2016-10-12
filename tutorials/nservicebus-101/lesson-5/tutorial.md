@@ -27,7 +27,7 @@ In systems programming, where connectivity is a major concern, there are general
 
 Let's consider a common scenario. You have some code that updates a record in the database. Two threads attempt to lock the row at the same time, resulting in a deadlock. The database chooses one transaction to succeed and the other fails. The exception message Microsoft SQL Server returns for a deadlock is this:
 
-> Transaction (Process ID 58) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction.
+WARNING: Transaction (Process ID 58) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction.
 
 This is an example of a **transient exception**. Transient exceptions appear to be caused by random quantum fluctuations in the ether. If the failing code is immediately retried, it will probably succeed. Indeed, the exception message above tells us to do exactly that.
 
@@ -102,21 +102,13 @@ Presumably, you already know how to create bugs. But for the purposes of this ex
 
 1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
 2. After logging receipt of the message, throw an exception:
-    ```
-    public Task Handle(PlaceOrder message, IMessageHandlerContext context)
-    {
-        logger.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
 
-        // This is normally where some database logic would occur
-        throw new Exception("BOOM!");
+snippet:Throw
 
-        var orderPlaced = new OrderPlaced {OrderId = message.OrderId};
-        return context.Publish(orderPlaced);
-    }
-    ```
-3. Run the solution.
-4. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running, but does not break into the debugger when we throw our exception.
-5. In the **ClientUI** window, place an order by thping `placeorder`, and then watch carefully!
+Now, run the solution.
+
+1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running, but does not break into the debugger when we throw our exception.
+2. In the **ClientUI** window, place an order by typing `placeorder`, and then watch carefully!
 
 When we do these steps, we'll see a wall of exception messages in white text, which is log level INFO, followed by one in yellow text, which is log level WARN. The exception traces in white are the failures during immediate retries, and the last trace in yellow is the failure that hands the message over to delayed retries.
 
@@ -134,7 +126,7 @@ When we do these steps, we'll see a wall of exception messages in white text, wh
 
 This may be a good time to take a look at your error queue. For MSMQ, open the **Computer Management** administrative tool (or type `compmgmt.msc` at the **Run** prompt) and open **Computer Management (Local)** > **Services and Applications** > **Message Queuing** > **Private Queues**. If you are running ServiceControl, it should have consumed any errors and moved the messages to the **error.log** queue. If not, any errors you've generated should be located in the **error** queue.
 
-> NOTE: The MSMQ management tools built into Windows are somewhat lacking. [QueueExplorer](http://www.cogin.com/mq/), a tool created by [Cogin](http://www.cogin.com/), provides much more capability and a nicer user interface.
+NOTE: The MSMQ management tools built into Windows are somewhat lacking. [QueueExplorer](http://www.cogin.com/mq/), a tool created by [Cogin](http://www.cogin.com/), provides much more capability and a nicer user interface.
 
 
 ### Modify immediate retries
@@ -143,11 +135,10 @@ The only configurable option you need for immediate retries is how many of them 
 
 1. In the **Sales** endpoint, locate the **Program.cs** file.
 2. Before the endpoint is started, add the following code:
-    ```
-    var recoverability = endpointConfig.Recoverability();
-    recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
-    ```
-3. Re-run the solution.
+
+snippet:ImmediateRetries
+
+Now, re-run the solution.
 
 Notice how delayed retries still occur (with exception traces in yellow) but no immediate retries (in white) occur between each delayed retry.
 
@@ -158,31 +149,17 @@ Of course, the number of retries supplied to the immediate retries API can be pu
 
 Now let's try modifying the delayed retries. First let's try disabling them completely, which can also be beneficial during development to remove noise.
 
-1. Modify the recoverability code you wrote previously:
-    ```
-    var recoverability = endpointConfig.Recoverability();
-    recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
-    
-    recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
-    ```
-2. Re-run the solution.
+Modify the recoverability code you wrote previously, then re-run the solution:
+
+snippet:DelayedRetries
 
 Notice how the message is only attempted once. The stack trace is red, and the message is immediately forwarded to the error queue.
 
 With delayed retries, we can also modify the time increase applied to each round of retries. Let's reset the number of delayed retries back to `3`, and decrease the time increase to 3 seconds so the delayed retries will occur very quickly.
 
-1. Modify the same recoverability code:
-    ```
-    var recoverability = endpointConfig.Recoverability();
-    recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
+Modify the same recoverability code, and re-run the solution:
 
-    recoverability.Delayed(delayed =>
-    {
-        delayed.NumberOfRetries(3);
-        delayed.TimeIncrease(TimeSpan.FromSeconds(3));
-    });
-    ```
-2. Re-run the solution.
+snippet:TimeIncrease
 
 Notice how much more quickly the message proceeds through delayed retries, because instead of delays of 10/20/30 seconds (60 seconds total) the delays are now 3/6/9 seconds, for a total of 18 seconds wait time.
 

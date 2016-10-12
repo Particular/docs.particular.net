@@ -11,6 +11,8 @@ namespace Sales
     {
         static ILog logger = LogManager.GetLogger<PlaceOrderHandler>();
 
+        #region UpdatedHandler
+
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
             logger.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
@@ -23,5 +25,7 @@ namespace Sales
             };
             return context.Publish(orderPlaced);
         }
+
+        #endregion
     }
 }

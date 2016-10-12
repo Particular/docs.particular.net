@@ -23,9 +23,11 @@ By the end of this lesson, you will have learned:
 
 An **event** is another type of message that is published to multiple receivers, unlike a command which is sent to one receiver. Let's take a look at the formal definitions for commands and events:
 
-> A **command** is a message that can be sent from one or more senders and is processed by a single receiver.
+{{INFO:
+A **command** is a message that can be sent from one or more senders and is processed by a single receiver.
 
-> An **event** is a message that is published from a single sender, and is processed by (potentially) many receivers.
+An **event** is a message that is published from a single sender, and is processed by (potentially) many receivers.
+}}
 
 You can see that in many ways, commands and events are exact opposites, and the differences in their definition leads us to different uses for each.
 
@@ -65,10 +67,7 @@ This means that when the code for the credit card processing changes, we don't e
 
 Creating an event message is just as easy as creating an event. We just create a class and mark it with the `IEvent` (rather than `ICommand`) marker interface.
 
-    public class SomethingHappened : IEvent
-    {
-        public string SomeProperty { get; set; }
-    }
+snippet:Event
 
 All the other considerations for command messages apply to events as well. Properties can be simple types, complex types, or collections - whatever the message serializer supports. However, with events, you should be even more careful to refrain from getting carried away and putting too much information in an event message. Since a publisher does not know (or care) how many subscribers it has, it may not be possible to modify all of them if a change is required.
 
@@ -77,13 +76,7 @@ All the other considerations for command messages apply to events as well. Prope
 
 Handling an event is the exact same as handling a command. Just create a handler class by implementing `IHandleMessages<T>` where `T` is the type of the event message.
 
-    public class SomethingHappenedHandler : IHandleMessages<SomethingHappened>
-    {
-        public Task Handle(SomethingHappened message, IMessageHandlerContext context)
-        {
-            // Do something with the event here!
-        }
-    }
+snippet:EventHandler
 
 
 ## Subscribing to events
@@ -92,13 +85,9 @@ For the MSMQ transport (which we are using in this course) NServiceBus needs to 
 
 You can configure the publisher endpoint via the Routing API like this:
 
-```
-var routing = endpointConfig.UseTransport<MsmqTransport>()
-    .Routing();
-    
-routing.RegisterPublisherForType(typeof(SomethingHappened), "PublisherEndpoint");
-```
-> NOTE: Some other transports have built-in publish/subscribe capabilities, so all that is required to subscribe to an event is to create a message handler for the event. A subscription request message is not required. Because the routing configuration is scoped to the transport type, transports that don't require publisher configuration simply won't contain this API.
+snippet:RegisterPublisher
+
+NOTE: Some other transports have built-in publish/subscribe capabilities, so all that is required to subscribe to an event is to create a message handler for the event. A subscription request message is not required. Because the routing configuration is scoped to the transport type, transports that don't require publisher configuration simply won't contain this API.
 
 
 ## Exercise
@@ -123,15 +112,9 @@ Let's create our first event, `OrderPlaced`:
 
 When complete, your `OrderPlaced` class should look like the following:
 
-    namespace Messages.Events
-    {
-        public class OrderPlaced : IEvent
-        {
-            public string OrderId { get; set; }
-        }
-    }
+snippet:OrderPlaced
 
-> NOTE: Notice that because of our use of folders for **Commands** and **Events**, we now have our commands and events in namespaces called `Messages.Commands` and `Messages.Events`, respectively. In a future course, we will be able to [take advantage of this organization](/nservicebus/messaging/conventions.md) to identify commands and events without needing to use the `ICommand` and `IEvent` interfaces at all!
+NOTE: Notice that because of our use of folders for **Commands** and **Events**, we now have our commands and events in namespaces called `Messages.Commands` and `Messages.Events`, respectively. In a future course, we will be able to [take advantage of this organization](/nservicebus/messaging/conventions.md) to identify commands and events without needing to use the `ICommand` and `IEvent` interfaces at all!
 
 
 ### Publish an event
@@ -142,15 +125,7 @@ Now that the `OrderPlaced` event is defined, we can publish it from the `PlaceOr
 2. Remove the `return Task.CompletedTask;` line.
 3. Instead, modify the `Handle` method to look like the following:
 
-        public Task Handle(PlaceOrder message, IMessageHandlerContext context)
-        {
-            logger.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
-
-            // This is normally where some database logic would occur
-
-            var orderPlaced = new OrderPlaced {OrderId = message.OrderId};
-            return context.Publish(orderPlaced);
-        }
+snippet:UpdatedHandler
 
 Like `.Send()`, `.Publish()` also returns a `Task`. We could mark this method as `async` and then `await` the return task, but since this is the only `Task`-returning operation we're using, we can just return this `Task` from our handler method.
 
@@ -163,7 +138,7 @@ Unlike the command `PlaceOrder`, which is a request to do something, `OrderPlace
 
 When an order is placed, we will want to charge the credit card for that order. So we will create a **Billing** service, which will subscribe to `OrderPlaced` so that it can handle the payment transaction.
 
-> NOTE: Since this is the third endpoint we've created, the instructions will be a little more abbreviated. Feel free to refer back to [Lesson 2](../lesson-2/) where we created the Sales endpoint for more detailed instructions.
+NOTE: Since this is the third endpoint we've created, the instructions will be a little more abbreviated. Feel free to refer back to [Lesson 2](../lesson-2/) where we created the Sales endpoint for more detailed instructions.
 
 1. Create a new **Console Application** named **Billing**.
 2. Add references for the **NServiceBus NuGet package** and the **Messages** assembly.
@@ -171,39 +146,23 @@ When an order is placed, we will want to charge the credit card for that order. 
 4. In the **Billing** endpoint's **Program.cs**, change the value of `Console.Title` and the endpoint name argument of the `EndpointConfiguration` constructor to `"Billing"`.
 5. In the **Billing** endpoint, add a class named `OrderPlacedHandler`, mark it as `public`, and implement `IHandleMessages<OrderPlaced>`.
 6. Modify the handler class to log the receipt of the event:
-    ```
-    public class OrderPlacedHandler : IHandleMessages<OrderPlaced>
-    {
-        static readonly ILog logger = LogManager.GetLogger<OrderPlacedHandler>();
 
-        public Task Handle(OrderPlaced message, IMessageHandlerContext context)
-        {
-            logger.Info($"Received OrderPlaced, OrderId = {message.OrderId} - Charging credit card...");
-            return Task.CompletedTask;
-        }
-    } 
-    ```
-7. Modify the solution properties so that **Billing** will start when debugging.
+snippet:SubscriberHandler
+
+And finally, modify the solution properties so that **Billing** will start when debugging.
 
 
 ### Subscribe to an event
 
 We now have a handler in place for `OrderPlaced`, but just like in real life, having a mailbox isn't enough to get a newspaper delivered to your house. We need to let the publisher know we want to subscribe to get the message.
 
-1. In the **Billing** endpoint, locate the **AsyncMain** method in the **Program.cs** file.
-2. In the **Billing** endpoint, modify the **AsyncMain** method to gain access to the Routing API:
-    ```
-    // Replace this:
-    endpointConfig.UseTransport<MsmqTransport>();
-    
-    // With this:
-    var routing = endpointConfig.UseTransport<MsmqTransport>()
-        .Routing();
-    ```
-2. With the `routing` variable, configure the publisher for `OrderPlaced`:
-    ```
-    routing.RegisterPublisherForType(typeof(OrderPlaced), "Sales");
-    ```
+In the **Billing** endpoint, locate the **AsyncMain** method in the **Program.cs** file. Modify it to gain access to the Routing API:
+
+snippet:BillingRouting
+
+With the `routing` variable, configure the publisher for `OrderPlaced`:
+
+snippet:OrderPlacedPublisher
 
 Now when we run the solution, we'll see the following output in the **Billing** window:
 
