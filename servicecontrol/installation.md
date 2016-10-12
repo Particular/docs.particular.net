@@ -17,12 +17,19 @@ The ServiceControl Installation has the following prerequisites:
 
  * [Microsoft .Net 4.5 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=30653)
 
-If ServiceControl is installed via the Particular Software Platform Installer then the installation and configuration of these prerequisites are managed bu the installer.
+If ServiceControl is installed via the Particular Software Platform Installer then the installation and configuration of these prerequisites are managed by the installer.
 
 
-### Transport Support
+### Setting up the Windows Service for ServiceControl
 
-From ServiceControl 1.7 the transport DLLs are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the NServiceBus supported transports listed below using the ServiceControl Management Utility:
+From Version 1.7 the installer does not automatically install or update the Windows Services.
+To install or upgrade the Windows Service:
+
+* Download and Install the Installer
+* Launch the ServiceControl Management Utility from the start menu or choose the launch option at the end of the installer.
+* Choose Add Instance from the Management Utility to add the Windows Service 
+
+From Version 1.7 the transport DLLs are managed by the installation and do not need to be manually downloaded from NuGet. ServiceControl can be configured to use one of the NServiceBus supported transports listed below using the ServiceControl Management Utility:
 
  * Microsoft Message Queuing (MSMQ)
  * Azure Storage Queues
@@ -30,8 +37,7 @@ From ServiceControl 1.7 the transport DLLs are managed by the installation and d
  * SQL Server
  * RabbitMQ
 
-Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#msmq). When using the Particular Platform Installer the MSMQ service is added automatically as part of the `NServiceBus Pre-Requisites` option.
-
+Adding third party transports via the Management Utility is not supported. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#msmq). When using the Particular Platform Installer the MSMQ service is added automatically as part of the `NServiceBus Pre-Requisites` option.
 
 #### Performance Counter
 
@@ -39,7 +45,7 @@ ServiceControl reports metrics via the NServiceBus Performance Counters if the c
 
 For instructions on how to install the Performance Counters without the Platform Installer refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
 
-The installation of the NServiceBus Performance counters is optional for ServiceControl 1.7 or higher. When using the Particular Platform Installer the Performance counters are added as part of the `NServiceBus Pre-Requisites` option.
+The installation of the NServiceBus Performance counters is optional for ServiceControl version 1.7 or higher. 
 
 
 #### Using the ServiceControl Management Utility to upgrade ServiceControl instances.
@@ -62,6 +68,7 @@ Clicking the upgrade link will
  * Stop the Service.
  * Remove the old binaries for ServiceControl and the configured Transport.
  * Run the new binaries to create any required queues.
+ * Optionally backup up the RavenDB database prior to upgrde (introduced in version 2.0) 
  * Start the Service.
 
 

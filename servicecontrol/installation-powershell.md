@@ -15,62 +15,64 @@ ServiceControl 1.7 introduced a new graphical management utility to add, remove,
 
 ## Prerequisites
 
-The ServiceControlMgmt module requires:
-
- * Microsoft PowerShell 3.0
-
+The ServiceControlMgmt module requires a Microsoft PowerShell Version 3.0 or greater. Older operating systems such as Windows 7 and Windows 2008 R2 Server do not ship with a compatible version.  To update PowerShell on these operating systems install the [Windows Management Framework Version 3](https://www.microsoft.com/en-us/download/details.aspx?id=34595) or greater.   
 
 ## Loading and Running the PowerShell Module
 
-The majority of the ServiceControlMgmt PowerShell module cmdlets will only work if the PowerShell session is running under administrator privileges. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with the module automatically loaded. Alternatively the module can be loaded directly into an an existing PowerShell session by loading `ServiceControlMgmt.psd1` using the `Import-Module` cmdlet as show below:
+The ServiceControl installation creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with the module loaded. The installation does not add the path to the module to the `PSModulePath` environment variable so to load the module into an existing PowerShell session the fully qualified path must be passed to the `import-module` cmdlet as show below:
 
 ```ps
 Import-Module "C:\Program Files (x86)\Particular Software\ServiceControl Management\ServiceControlMgmt.psd1"
 ```
 
-
 ## Cmdlets and Aliases
 
-The following cmdlets and aliases are provided by the ServiceControl Management PowerShell module.
+The following cmdlets are provided by the ServiceControl Management PowerShell module.
 
-| Alias                  | Cmdlet                                        |
-| ---------------------- | --------------------------------------------- |
-| sc-add                 | New-ServiceControlInstance                    |
-| sc-addfromunattendfile | New-ServiceControlInstanceFromUnattendedFile  |
-| sc-addlicense          | Import-ServiceControlLicense                  |
-| sc-delete              | Remove-ServiceControlInstance                 |
-| sc-findlicense         | Get-ServiceControlLicense                     |
-| sc-help                | Get-ServiceControlMgmtCommands                |
-| sc-instances           | Get-ServiceControlInstances                   |
-| sc-makeunattendfile    | New-ServiceControlUnattendedFile              |
-| sc-transportsinfo      | Get-ServiceControlTransportTypes              |
-| sc-upgrade             | Invoke-ServiceControlInstanceUpgrade          |
-| urlacl-add             | Add-UrlAcl                                    |
-| urlacl-delete          | Remove-UrlAcl                                 |
-| urlacl-list            | Get-UrlAcls                                   |
-| port-check             | Test-IfPortIsAvailable                        |
-| user-sid               | Get-SecurityIdentifier                        |
+| Cmdlet                                       | Alias                  | 
+|--------------------------------------------- |----------------------- | 
+| Get-ServiceControlInstances                  | sc-instances           |  
+| New-ServiceControlInstance                   | sc-add                 |  
+| Remove-ServiceControlInstance                | sc-delete              |  
+| Invoke-ServiceControlInstanceUpgrade         | sc-upgrade             |  
+| Get-ServiceControlLicense                    | sc-findlicense         |  
+| Import-ServiceControlLicense                 | sc-addlicense          |  
+| Get-ServiceControlMgmtCommands               | sc-help                |  
+| Get-ServiceControlTransportTypes             | sc-transportsinfo      |  
+| Add-UrlAcl                                   | urlacl-add             |  
+| Remove-UrlAcl                                | urlacl-delete          |  
+| Get-UrlAcls                                  | urlacl-list            |  
+| Test-IfPortIsAvailable                       | port-check             |  
+| Get-SecurityIdentifier                       | user-sid               |  
+
+### Removed in Version 2.0
+
+From Version 1.7  the installation executable could be passed an unattended setup file which would install a Servicecontrol instance after the installation of the management tools had completed.  With subsequent releases this unattended file changed to incorporate new features and settings and needed to be check or revised against every release and customers need to write scripts to manage it.  In version 2.0 this feature was removed and it is recommended to script the installation of the instances instead. See [Silent Installation](installation-silent.md) for more information on scripting installation.   
+The cmdlets that allowed the creation and testing of the unattended file have been removed since that feature 
+
+| Cmdlet                                       | Alias                  | 
+|--------------------------------------------- |----------------------- | 
+| New-ServiceControlUnattendedFile             | sc-makeunattendfile    | 
+| New-ServiceControlInstanceFromUnattendedFile | sc-addfromunattendfile |  
 
 
 ### Examples
 
-To following commands show some uses of some of the cmdlets provided in the module. All of the cmdlets have local help which can be accessed via the standard PowerShell help command
-
+To following commands show some uses of some of the cmdlets provided in the module. 
 ```ps
 Get-Help Get-ServiceControlInstances
 ```
 
-
-### Adding an instance
+#### Adding an instance
 
 ```ps
 New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -Transport MSMQ -ErrorQueue error1 -AuditQueue audit1
 ```
 
-There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or hostname.
+There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or hostname.  Use `Get-Help New-ServiceControlInstance` for the full list of parameters.
 
 
-### Removing an instance
+#### Removing an instance
 
 The following commands show how to remove a ServiceControl instance(s). To List existing instances of the ServiceControl service use `Get-ServiceControlInstances`.
 
@@ -83,18 +85,18 @@ Remove-ServiceControlInstance -Name Test.ServiceControl -RemoveDB -RemoveLogs
 Remove all ServiceControl instance created in the Add sample and delete the database and logs for each one:
 
 ```ps
-Get-ServiceControlInstances | Remove-ServiceControlInstance -RemoveDB -RemoveLogs
+Get-ServiceControlInstances | % { Remove-ServiceControlInstance -RemoveDB -RemoveLogs } 
 ```
 
 There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or host name.
 
 
-### Upgrading an instance
+#### Upgrading an instance
 
 The following command will list the ServiceControl instances current installed and their version number.
 
 ```ps
-Get-ServiceControlInstances | Select Name, Version
+Get-ServiceControlInstances | % { Select Name, Version }
 ```
 
 To upgrade and instance to the latest version of the binaries run.
@@ -103,8 +105,51 @@ To upgrade and instance to the latest version of the binaries run.
 Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade>
 ```
 
-The upgrade will stop the service if it is running. Additional parameters for `Invoke-ServiceControlInstanceUpgrade` may be required. The configuration file of the existing version is examined prior to deter,in e if all the required settings are present. If a configuration setting is missing  then the cmdlet will throw an error indicating the required additional parameter.
+The upgrade will stop the service if it is running. Additional parameters for `Invoke-ServiceControlInstanceUpgrade` may be required. The configuration file of the existing version is examined prior to determine if all the required settings are present. If a configuration setting is missing then the cmdlet will throw an error indicating the required additional parameter. In Version 2.0 the `auto` parameter was added to make upgrades easier.  If the `auto` parameter is used then defaults are provide for any required values.
 
+More details about scripting the installation and upgrading of ServiceControl instances can be found in the [unattended installation](installation-silent.md) guide
+
+### Switching To HTTPS
+
+NOTE: To switch to HTTPS a valid SSL certificate must be installed into the Local Machine store.
+
+ServiceControl Version 2.0 requires Windows Credentials to be supplied when connecting to the  Raven Management Studio. To ensure these credentials are not passed in plain text it is possible to switch ServiceControl to use HTTPS.  
+
+To switch to HTTPS the thumbprint of the certificate is required. This can be found by viewing the certificate through the Certificate Store
+
+![](thumbprint.png)
+
+Or alternatively by listing the certificates using the `Get-Certificates` cmdlet. For example: 
+
+```ps
+Get-Certificates | FL 
+
+```
+
+This is a sample of the output of the `Get-Certificates` cmdlet
+
+```os
+Subject      : CN=localhost
+Issuer       : CN=localhost
+Thumbprint   : 22970B772A522E19EB695829647A1164DF719FD8
+FriendlyName : IIS Express Development Certificate
+NotBefore    : 25/08/2016 10:42:20 PM
+NotAfter     : 25/08/2021 10:00:00 AM
+Extensions   : {System.Security.Cryptography.Oid, System.Security.Cryptography.Oid}
+```
+
+To switch an instance to HTTPS use the the thumbprint in the `Switch-ServiceControlInstanceToHTTPS` command
+
+```ps
+Switch-ServiceControlInstanceToHTTPS -Name <Instance To upgrade> -Thumbprint <Certificate Thumbprint>
+```
+
+The cmdlet will:
+ - delete the existing HTTP URLACL associated with the instance 
+ - create a new HTTPS URLACL
+ - bind the certificate to the port used by the instance.
+
+To complete the transition any associated ServicePulse instance would need to be reconfigured to use the HTTPS URL.
 
 ### Licensing
 
@@ -115,53 +160,6 @@ Import-ServiceControlLicense <License-File>
 ```
 
 The license file is added to the `HKEY_LOCAL_MACHINE` registry hive so it available to all instances of ServiceControl installed on the machine.
-
-
-### Building an unattended install file
-
-Since ServiceControl 1.7 the installation executable has a MSI command line argument to enable the installation of a ServiceControl service instance during installation. This is intended to assist with [unattended installation](installation-silent.md)
-
-The MSI command line argument requires an XML file which detail the instance options. The file can be produced by running the following cmdlet or by manually creating the XML file.
-
-```ps
-New-ServiceControlUnattendedFile -OutputFile c:\temp\unattended.xml -Name Test -InstallPath c:\servicecontrol\test\bin -DBPath c:\servicecontrol\test\db -LogPath c:\servicecontrol\test\logs -Port 33335 -ErrorQueue error-test -AuditQueue audit-test -ErrorLogQueue errorlog-test -AuditLogQueue auditlog-test -Transport MSMQ -ForwardAuditMessages $false -ForwardErrorMessages $false
-```
-
-This sample produces the following Files
-
-```xml
-<?xml version="1.0"?>
-<ServiceControlInstanceMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <LogPath>C:\servicecontrol\test\db</LogPath>
-  <DBPath>C:\servicecontrol\test\logs</DBPath>
-  <HostName>localhost</HostName>
-  <InstallPath>C:\servicecontrol\test\bin</InstallPath>
-  <Port>33335</Port>
-  <ErrorQueue>error-test</ErrorQueue>
-  <ErrorLogQueue>errorlog-test</ErrorLogQueue>
-  <AuditQueue>audit-test</AuditQueue>
-  <AuditLogQueue>auditlog-test</AuditLogQueue>
-  <ForwardAuditMessages>false</ForwardAuditMessages>
-  <ForwardErrorMessages>false</ForwardEroroMessages>
-  <TransportPackage>MSMQ</TransportPackage>
-  <Name>Test</Name>
-  <DisplayName>Test</DisplayName>
-</ServiceControlInstanceMetadata>
-```
-
-NOTE: The settings contained in an unattended installation files are version specific. The file contents will be validated when used and if a required setting is missing an error will be logged. To correct this regenerate the XML file using the `New-ServiceControlUnattendedFile` cmdlet.
-
-
-### Testing an unattended install file
-
-There `New-ServiceControlInstanceFromUnattendedFile` cmdlet creates an instance from the unattended file. The service account details can optionally be provided. If no service account details are specified the `LocalSystem` account is used
-
-```ps
-New-ServiceControlInstanceFromUnattendedFile -UnattendFile c:\temp\unattended.xml -ServiceAccount MyServiceAccount -ServiceAccountPassword MyPassword
-```
-
-Note: Neither the unattended file method or the `New-ServiceControlInstance` cover all the configuration settings that are available to ServiceControl. To set additonal options refer to [Customizing ServiceControl configuration](creating-config-file.md). A scripted method of adding additional settings is detailed in [Installing ServiceControl Silently](installation-silent.md).
-
 
 ## Troubleshooting via PowerShell
 
@@ -181,7 +179,6 @@ This example shows the available ports out of a range of ports
 ```ps
 33330..33339 | Test-IfPortIsAvailable | ? Available
 ```
-
 
 ### Checking and manipulating UrlAcls
 
@@ -207,3 +204,4 @@ The following example shows how to add UrlAcl for a ServiceControl service that 
 ```ps
 Add-UrlAcl -Url http://servicecontrol.mycompany.com:33333/api/ -Users Users
 ```
+

@@ -44,19 +44,24 @@ NOTE: The following steps needs to be applied to all the ServiceControl installa
 
 ServiceControl exposes an HTTP API that is used by ServicePulse and ServiceInsight. URL ACL(s) need to be [defined on each cluster node](/servicecontrol/setting-custom-hostname.md#updating-urlacl-settings). The URL needs to be the `cluster name` and the ACL is set to give permissions to the `Service Account` running ServiceControl.
 
-NOTE: The default installation of ServiceControl locks down access to `localhost` only. Once the URL ACL is changed from `localhost` to the `cluster name` ServiceControl is accessible from the network.
+NOTE: The default installation of ServiceControl locks down access to `localhost` only. Once the URLACL is changed from `localhost` to the `cluster name` ServiceControl is accessible from the network.
 
 
 ### Configuration
 
 ServiceControl configuration needs to be customized changing the following settings:
 
-* `DbPath` to define the path to the shared location where the database will be stored;
-* `Hostname` and `port` need to be updated to reflect `cluster name` and `port`
-*  `audit` and `error` queues need to be updated to include the `cluster name`;
+* `DbPath`, `LogPath`, `IngestionCachePath` and `BodyStoragePath` all need to reside on shared storage.
+* `Hostname` and `port` need to be updated to reflect `cluster name` and `port`.
+*  `audit` and `error` queues need to be updated to include the `cluster name`.
 
 The following is a sample ServiceControl configuration file (ServiceControl.exe.config):
 
 snippet:SCClusterAppSettings
 
 See [Customizing ServiceControl Configuration](/servicecontrol/creating-config-file.md) for more information.
+
+
+
+
+

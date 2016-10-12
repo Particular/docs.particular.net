@@ -62,6 +62,24 @@ Type: string
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<Hostname>-<Port>`
 
 
+#### ServiceControl/BodyStoragePath
+
+This setting is only applicable to Version 2.0 and above.
+
+Type: string
+
+Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\BodyStorage-<Hostname>-<Port>`
+
+
+#### ServiceControl/IngestionCachePath
+
+This setting is only applicable to Version 2.0 and above.
+
+Type: string
+
+Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\IngestionCache-<Hostname>-<Port>`
+
+
 #### ServiceControl/LogPath
 
 The path for the ServiceControl logs.
