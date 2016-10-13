@@ -141,6 +141,11 @@ sc.exe delete SalesEndpoint
 ## Compared to NServiceBus Host
 
 
+### Code similarity
+
+When using a self hosted approach, inside a windows service, this code will share many similarities with other hosting code such as send only clients and web service hosting. This similarity will result in more consistent (and hence easier to understand code and increased opportunities for code re-use.
+
+
 ### Performance
 
 Self host is a specific solution to a problem that can be more specialized and has less dependencies. This results in
