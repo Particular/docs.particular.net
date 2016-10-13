@@ -16,7 +16,7 @@ In this mode some (or all) handlers might get invoked multiple times and partial
 
 When using this mode all handlers must be [idempotent](/nservicebus/concept-overview.md#idempotence), i.e. the result needs to be consistent from a business perspective even when the message is processed more than once.
 
-See the `Outbox` section below for details on how NServiceBus ca
+See the `Outbox` section below for details on how NServiceBus can handle idempotency at the infrastructure level.
 
 
 ### Transport transaction - Sends atomic with Receive
