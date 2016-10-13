@@ -77,7 +77,7 @@ In this mode there is a risk of partial updates since one handler might succeed 
 
 snippet:TransactionsWrapHandlersExecutionInATransactionScope
 
-NOTE: This requires that all the data stores used by the handler support enlisting in a distributed transaction (e.g. SQL Server), including the sage store when using sagas.
+NOTE: This requires that all the data stores used by the handler support enlisting in a distributed transaction (e.g. SQL Server), including the saga store when using sagas.
 
 WARNING: This might escalate to a distributed transaction if data in different databases are updated.
 
