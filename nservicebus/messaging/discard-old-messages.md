@@ -40,7 +40,7 @@ TimeToBeReceived relies on underlying functionality in the transport infrastruct
 
 ### MSMQ transport
 
-MSMQ continuously checks the TimeToBeReceived attribute of all queued messages. As soon as the message has expired, it is removed from the queue, and disk space reclaimed. MSMQ will however only allow a single TimeToBeReceived for all messages in a transaction. It will silently copy the TimeToBeReceived from the first message enlisted to all other messages in the transaction, leading to a potential message loss scenario. This issue, unfortunately, make it impossible to support setting TimeToBeReceived for messages sent from a transactional MSMQ endpoint.
+partial:msmq
 
 
 ### RabbitMQ transport
