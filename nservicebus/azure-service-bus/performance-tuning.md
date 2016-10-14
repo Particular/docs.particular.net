@@ -1,5 +1,6 @@
 ---
 title: Performance Tuning
+component: ASB
 tags:
  - Azure
  - Cloud
