@@ -47,14 +47,14 @@ class Program
 
         transportConfiguration.Queues().EnablePartitioning(true);
 
-        var perReceiverConcurrency = 4; //values 2 and 4 work best, as tx is serializable it makes no sense to allow many concurrent tasks
+        var perReceiverConcurrency = 8; //values 2 and 4 work best, as tx is serializable it makes no sense to allow many concurrent tasks
         var numberOfReceivers = 16; // increase number of receivers as much as bandwidth allows (probably less than receiver due to send volume)
         var globalConcurrency = numberOfReceivers * perReceiverConcurrency;
 
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(globalConcurrency);
-        transportConfiguration.MessageReceivers().PrefetchCount(0);
+        transportConfiguration.MessageReceivers().PrefetchCount(20);
 
-        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(numberOfReceivers);
+        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(numberOfReceivers * 2);
         transportConfiguration.NumberOfClientsPerEntity(numberOfReceivers);
 
         #endregion
