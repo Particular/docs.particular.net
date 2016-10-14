@@ -89,7 +89,7 @@ Now let's take the "Hello world" solution we started in the last lesson and modi
 
 When we're done, the ClientUI endpoint will be sending a PlaceOrder message to itself, and then processing that message, as depicted in the following diagram:
 
-![Exercise 2 Diagram](https://cloud.githubusercontent.com/assets/427110/16881730/2cc36e02-4a81-11e6-9580-b2b9bab61bc0.png)
+![Exercise 2 Diagram](diagram.png)
 
 
 ### Create a messages assembly

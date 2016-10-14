@@ -96,7 +96,7 @@ Now that we've learned about events and the Publish/Subscribe pattern, let's mak
 
 We'll also create a new OrderBilled event that will be published by the Billing endpoint once the credit card transaction is complete.
 
-![Lesson 4 Diagram](https://cloud.githubusercontent.com/assets/427110/16881766/54da5b4e-4a81-11e6-8f08-57fbc9241af8.png)
+![Lesson 4 Diagram](diagram.png)
 
 When the Shipping endpoint receives both the OrderPlaced and OrderBilled, it will know that it is time to ship the product to the customer. How to handle that situation, however, will be the topic for another lesson.
 

@@ -76,7 +76,7 @@ For now we will use the first overload, specifying individual message types. In 
 
 Let's split apart the endpoint we created in the previous lesson. We'll reconfigure our solution so that the **ClientUI** endpoint sends the `PlaceOrder` command to a new endpoint that we'll call **Sales**. Sales will become the true logical owner of the `PlaceOrder` command, and we'll get to see NServiceBus send a message from one endpoint to another.
 
-![Exercise 3 Diagram](https://cloud.githubusercontent.com/assets/427110/16881747/40b22d90-4a81-11e6-99b4-51e144f02544.png)
+![Exercise 3 Diagram](diagram.png)
 
 
 ### Creating a new endpoint
