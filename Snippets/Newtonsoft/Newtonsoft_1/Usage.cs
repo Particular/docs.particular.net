@@ -70,6 +70,16 @@ class Usage
         #endregion
     }
 
+    void ContentTypeKey(EndpointConfiguration endpointConfiguration)
+    {
+        #region NewtonsoftContentTypeKey
+
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        serialization.ContentTypeKey("custom-key");
+
+        #endregion
+    }
+
     void Bson(EndpointConfiguration endpointConfiguration)
     {
         #region NewtonsoftBson

@@ -75,6 +75,11 @@ Customize the creation of the [JsonWriter](http://www.newtonsoft.com/json/help/h
 snippet:NewtonsoftCustomWriter
 
 
+include: custom-contenttype-key
+
+snippet:NewtonsoftContentTypeKey
+
+
 ## BSON
 
 Customize to use the [Newtonsoft Bson serialization](http://www.newtonsoft.com/json/help/html/SerializeToBson.htm).
