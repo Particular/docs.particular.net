@@ -73,24 +73,21 @@ class Program
                 for (var i = 0; i < NumberOfMessages; i++)
                 {
                     var task = endpointInstance.Send(new SomeMessage());
-                        //.ContinueWith(t => Console.WriteLine("Batched a message..."));
                     tasks.Add(task);
                 }
 
                 Console.WriteLine("Waiting for completion...");
                 // by awaiting the sends as one unit, this code allows the ASB SDK's client side batching to kick in and bundle sends
                 // this results in less latency overhead per individual sends and thus higher performance
-                await Task.WhenAll(tasks).ContinueWith(t =>
-                {
-                    stopwatch.Stop();
-                    var elapsedSeconds = stopwatch.ElapsedTicks / (double)Stopwatch.Frequency;
-                    var msgsPerSecond = NumberOfMessages / elapsedSeconds;
-                    Console.WriteLine("sending " + NumberOfMessages + " messages took " + stopwatch.ElapsedMilliseconds + " milliseconds, or " + msgsPerSecond + " messages per second");
-
-                });
+                await Task.WhenAll(tasks);
+                
                 #endregion
 
-               
+                stopwatch.Stop();
+                var elapsedSeconds = stopwatch.ElapsedTicks / (double)Stopwatch.Frequency;
+                var msgsPerSecond = NumberOfMessages / elapsedSeconds;
+                Console.WriteLine("sending " + NumberOfMessages + " messages took " + stopwatch.ElapsedMilliseconds + " milliseconds, or " + msgsPerSecond + " messages per second");
+
             }
         }
         finally
