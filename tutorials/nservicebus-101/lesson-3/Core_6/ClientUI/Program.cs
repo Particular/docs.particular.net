@@ -56,7 +56,7 @@ namespace ClientUI
                             OrderId = Guid.NewGuid().ToString()
                         };
 
-                        // Send the command to the current
+                        // Send the command to the local endpoint
                         logger.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
                         await endpointInstance.Send(command)
                             .ConfigureAwait(false);
