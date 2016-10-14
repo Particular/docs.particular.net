@@ -38,6 +38,18 @@ snippet:DiscardingOldMessagesWithCode
 TimeToBeReceived relies on underlying functionality in the transport infrastructure to discard expired messages. This feature's usefulness is highly affected by the actual implementation in the different transports.
 
 
+## Clock synchronization issues
+
+When sending a message with a certain TimeToBeReceived value it could happen that the receiver drops the message if clocks are too much out of sync. For example, if TimeToBeReceived is 1 minute and the receivers clock is 1 minute ahead compared to the sender the message could potentially never be delivered thus processed.
+
+Because clocks usually are at most a few minutes out of sync this issue only applies to relatively small TimeToBeReceived values.
+
+For this reason it is wise to add the maximum amount of allowed clock offset, called clock drift, to the TTBR value,
+
+For example, you want to use a TimeToBeReceived value of 90 seconds, we allow for 300 seconds of maximum clock drift so the TTBR value becomes 90 + 300 = 390 seconds.
+
+
+
 ### MSMQ transport
 
 MSMQ continuously checks the TimeToBeReceived attribute of all queued messages. As soon as the message has expired, it is removed from the queue, and disk space reclaimed. MSMQ will however only allow a single TimeToBeReceived for all messages in a transaction. It will silently copy the TimeToBeReceived from the first message enlisted to all other messages in the same transaction, leading to a potential message loss scenario. This issue, unfortunately, make it impossible to support setting TimeToBeReceived for messages sent from a transactional MSMQ endpoint.
