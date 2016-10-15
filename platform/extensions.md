@@ -285,7 +285,7 @@ An implementation the [Routing Slip](http://www.enterpriseintegrationpatterns.co
 
 #### <img src="community-project.png" title="A Community run project"> [HandlerOrdering](https://github.com/SimonCropp/HandlerOrdering)
 
-https://www.nuget.org/packages/HandlerOrdering
+https://www.nuget.org/packages/NServiceBus.HandlerOrdering
 
 Allows a more expressive way to order handlers.
 
