@@ -9,15 +9,15 @@ public class CreateOrder :
     IMessage
 {
     [ProtoMember(1)]
-    public int OrderId { get; set; }
+    public int OrderId;
 
     [ProtoMember(2)]
-    public DateTime Date { get; set; }
+    public DateTime Date;
 
     [ProtoMember(3)]
-    public int CustomerId { get; set; }
+    public int CustomerId;
 
     [ProtoMember(4)]
-    public List<OrderItem> OrderItems { get; set; }
+    public List<OrderItem> OrderItems;
 }
 #endregion

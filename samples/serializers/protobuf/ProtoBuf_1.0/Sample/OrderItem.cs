@@ -5,8 +5,8 @@ using ProtoBuf;
 public class OrderItem
 {
     [ProtoMember(1)]
-    public int ItemId { get; set; }
+    public int ItemId;
 
     [ProtoMember(2)]
-    public int Quantity { get; set; }
+    public int Quantity;
 }
