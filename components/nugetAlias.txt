@@ -27,6 +27,7 @@ Newtonsoft: NServiceBus.Newtonsoft.Json
 NHibernate: NServiceBus.NHibernate
 Ninject: NServiceBus.Ninject
 NLog: NServiceBus.NLog
+ProtoBuf: NServiceBus.ProtoBuf
 Rabbit: NServiceBus.RabbitMQ
 Raven: NServiceBus.RavenDB
 Serilog: NServiceBus.Serilog
