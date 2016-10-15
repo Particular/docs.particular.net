@@ -8,9 +8,7 @@ component: HandlerOrdering
 
 ## NServiceBus.HandlerOrdering
 
-This sample uses the community run serializer [NServiceBus.HandlerOrdering](https://github.com/SimonCropp/HandlerOrdering). This extension allows a more expressive way to order [NServiceBus Handlers](/nservicebus/handlers-and-sagas.md).
-
-The current approach to ordering handlers can be seen at [Handler Ordering](/nservicebus/handlers/handler-ordering.md).
+This sample uses the community run serializer [NServiceBus.HandlerOrdering](https://github.com/SimonCropp/HandlerOrdering). This extension allows a more expressive way to [Order Handlers](/nservicebus/handlers/handler-ordering.md).
 
 HandlerOrdering allows the dependency between handlers to be expressed via interfaces and the resulting order is derived at runtime.
 
