@@ -200,6 +200,14 @@
     - NServiceBus.NLog
     - NServiceBus
 
+- Key: ProtoBuf
+  Name: ProtoBuf Serializer
+  DocoUrl: samples/serializers/protobuf
+  Category: Serializer
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.ProtoBuf/
+  NugetOrder:
+    - NServiceBus.ProtoBuf
+
 - Key: Rabbit
   Name: RabbitMQ Transport
   DocoUrl: nservicebus/rabbitmq
