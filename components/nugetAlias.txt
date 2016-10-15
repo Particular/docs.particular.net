@@ -18,6 +18,7 @@ CloudServicesHost: NServiceBus.Hosting.Azure
 Distributor: NServiceBus.Distributor.MSMQ
 Gateway: NServiceBus.Gateway
 Host: NServiceBus.Host
+HandlerOrdering: NServiceBus.HandlerOrdering
 Jil: NServiceBus.Jil
 Log4Net: NServiceBus.Log4Net
 MessagePack: NServiceBus.MessagePack
