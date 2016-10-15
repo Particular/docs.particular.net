@@ -5,8 +5,8 @@ using NServiceBus;
 public class CreateOrder :
     IMessage
 {
-    public int OrderId { get; set; }
-    public DateTime Date { get; set; }
-    public int CustomerId { get; set; }
-    public List<OrderItem> OrderItems { get; set; }
+    public int OrderId;
+    public DateTime Date;
+    public int CustomerId;
+    public List<OrderItem> OrderItems;
 }
