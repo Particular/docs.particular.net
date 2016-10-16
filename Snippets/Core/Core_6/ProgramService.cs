@@ -1,11 +1,10 @@
-#region windowsservicehosting
 namespace Core6
 {
     using System;
     using System.ServiceProcess;
     using System.Threading.Tasks;
     using NServiceBus;
-
+#region windowsservicehosting
     class ProgramService :
         ServiceBase
     {
@@ -55,5 +54,5 @@ namespace Core6
             return Task.CompletedTask;
         }
     }
-}
 #endregion
+}
