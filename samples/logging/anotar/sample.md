@@ -32,17 +32,4 @@ snippet:handler
 
 This will result in the following being compiled
 
-```cs
-namespace Sample
-{
-	public class MyHandler : IHandleMessages<MyMessage>
-	{
-		static ILog logger = NServiceBus.Logging.LogManager.GetLogger("Sample.MyHandler");
-	
-		public void Handle(MyMessage message)
-		{
-			logger.Info("Method: 'Void Handle(MyMessage)'. Line: ~9. Hello from MyHandler);
-		}
-	}
-}
-```
+snippet:resulthandler

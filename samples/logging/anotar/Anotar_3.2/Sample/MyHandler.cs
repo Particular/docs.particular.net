@@ -1,14 +1,16 @@
 ﻿using Anotar.NServiceBus;
 using NServiceBus;
+using System.Threading.Tasks;
 
 #region handler
 
 public class MyHandler :
     IHandleMessages<MyMessage>
 {
-    public void Handle(MyMessage message)
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         LogTo.Info("Hello from MyHandler");
+        return Task.CompletedTask;
     }
 }
 
