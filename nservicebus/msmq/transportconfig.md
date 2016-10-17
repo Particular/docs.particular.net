@@ -1,16 +1,19 @@
 ---
 title: MSMQ Transport Configuration
 summary: Explains the mechanics of MSMQ transport, its configuration options and various other configuration settings that were at some point coupled to this transport
-reviewed: 2016-04-20
+reviewed: 2016-10-17
+component: core
 tags:
-- Transport
-- MSMQ
-- Transactions
+ - Transport
+ - MSMQ
+ - Transactions
+related:
+ - nservicebus/msmq/connection-strings
 redirects:
  - nservicebus/msmqtransportconfig
 ---
 
-MSMQ transport is built into the core NServiceBus nuget.
+MSMQ transport is built into the core NServiceBus NuGet package.
 
 
 ## Receiving algorithm
@@ -21,8 +24,6 @@ The main loop starts by subscribing to `PeekCompleted` event and calling the `Be
 
 
 ## Configuration
-
-Because of historic reasons, the configuration for MSMQ transport has been coupled to general bus configuration in the previous versions of NServiceBus.
 
 
 ### Queue permissions
@@ -37,29 +38,7 @@ See also
  * [Message Queuing Security Overview in Windows Server 2008](https://technet.microsoft.com/en-us/library/cc771268.aspx).
 
 
-### MSMQ-specific
-
-Following settings are purely related to the MSMQ:
-
- * `UseDeadLetterQueue`
- * `UseJournalQueue`
- * `UseConnectionCache`
- * `UseTransactionalQueues`
-
-See also [MSMQ connection strings](connection-strings.md).
-
-From Version 4 onwards these settings are configured via a transport connection string (named `nservicebus/transport` for all transports). Before Version 4 some of these properties could be set via `MsmqMessageQueueConfig` configuration section while other (namely the `connectionCache` and the ability to use non-transactional queues) were not available prior to Version 4.
-
-snippet:MessageQueueConfiguration
-
-
-### MSMQ Label
-
-WARNING: This feature was added in Version 6 and can be used to communicate with Version 5 (and higher) endpoints. However it should **not** be used when communicating to earlier versions (2, 3 or 4) since in those versions the MSMQ Label was used to communicate certain NServiceBus implementation details.
-
-Often when debugging MSMQ using [native tools](viewing-message-content-in-msmq.md) it is helpful to have some custom text in the MSMQ Label. For example the message type or the message id. As of Version 6 the text used to apply to [Message.Label](https://msdn.microsoft.com/library/system.messaging.message.label.aspx) can be controlled at configuration time using the `ApplyLabelToMessages` extension method. This method takes a delegate which will be passed the header collection and should return a string to use for the label. It will be called for all standard messages as well as Audits, Errors and all control messages. The only exception to this rule is received messages with corrupted headers. In some cases it may be useful to use the `Headers.ControlMessageHeader` key to determine if a message is a control message. These messages will be forwarded to the error queue with no label applied. The returned string can be `String.Empty` for no label and must be at most 240 characters.
-
-snippet:ApplyLabelToMessages
+partial: label
 
 
 ## Transactions and delivery guarantees
@@ -71,46 +50,17 @@ MSMQ Transport supports the following [Transport Transaction Modes](/nservicebus
  * Transport transaction - Receive Only
  * Unreliable (Transactions Disabled)
 
+See also [Controlling Transaction Scope Options](/nservicebus/transports/transactions.md#controlling-transaction-scope-options).
+
 
 ### Transaction scope (Distributed transaction)
 
 In this mode the ambient transaction is started before receiving the message. The transaction encompasses all stages of processing including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no escalation to Distributed Transaction Coordinator (DTC).
 
 
-### Native transactions
-
-In MSMQ transport there is no distinction between the *ReceiveOnly* and *SendsAtomicWithReceive* levels, they are both handled in an identical way.
-
-The native transaction for receiving messages is shared with sending operations. That means the message receive operation and any send or publish operations are committed atomically.
+partial: native-transactions
 
 
 ### Unreliable (Transactions Disabled)
 
 In this mode, when a message is received, it is immediately removed from the input queue. If processing fails the message is lost because the operation cannot be rolled back. Any other operation that is performed, when processing the message, is executed without a transaction and cannot be rolled back. This can lead to undesired side effects when message processing fails part way through.
-
-
-## Controlling transaction scope options
-
-The following options can be configured when the MSMQ transport is working in the transaction scope mode.
-
-
-### Isolation level
-
-NServiceBus will by default use the `ReadCommitted` [isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel).
-
-NOTE: Versions 3 and below used the default isolation level of .Net which is `Serializable`.
-
-Change the isolation level using
-
-snippet:MsmqTransactionScopeIsolationLevel
-
-
-### Transaction timeout
-
-NServiceBus will use the [default transaction timeout](https://msdn.microsoft.com/en-us/library/system.transactions.transactionmanager.defaulttimeout) of the machine the endpoint is running on.
-
-Change the transaction timeout using
-
-snippet:MsmqTransactionScopeTimeout
-
-Or via .config file using a [example DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.aspx#Anchor_5).
