@@ -79,9 +79,9 @@ In this mode the ambient transaction is started before receiving the message. Th
 
 ### Native transactions
 
-In MSMQ transport there is no distinction between the *ReceiveOnly* and *SendsAtomicWithReceive* levels, they are both handled in an identical way.
+With NServiceBus Version 6.1 and above, MSMQ uses native transactions to support the *ReceiveOnly* and *SendsAtomicWithReceive* levels. With *SendsAtomicWithReceive* the native transaction for receiving messages is shared with sending operations. That means the message receive operation, and any send or publish operations, are committed atomically. When using *ReceiveOnly*, the transaction is not shared with sending operations and dispatched messages may not be rolled back in case the receiving transaction needs to abort.
 
-The native transaction for receiving messages is shared with sending operations. That means the message receive operation and any send or publish operations are committed atomically.
+Warning: NServiceBus Version 6.0 does not distinct between *ReceiveOnly* and *SendsAtomicWithReceive* and both levels behave like *SendsAtomicWithReceive*.
 
 
 ### Unreliable (Transactions Disabled)
