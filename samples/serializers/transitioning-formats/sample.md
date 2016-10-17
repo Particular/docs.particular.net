@@ -27,9 +27,6 @@ For example Phase3 sends to itself, Phase2, and Phase4.
 snippet: send-to-both
 
 
-[TimeToBeReceived (TTBR)](/nservicebus/messaging/discard-old-messages.md)
-
-
 ## Serialization format change
 
 For demonstration purposes this sample uses a hypothetical scenario where the JSON serialization format need to change the approach for serializing dictionaries. From using contents for the key and value to using an explicitly named key and value approach.
