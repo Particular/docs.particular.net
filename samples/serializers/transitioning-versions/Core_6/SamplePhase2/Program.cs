@@ -12,12 +12,12 @@ static class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.Serialization.TransitionV1";
+        Console.Title = "Samples.Serialization.TransitionPhase2";
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.TransitionV1");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.TransitionPhase2");
         endpointConfiguration.SharedConfig();
 
-        #region configv1
+        #region Phase2
 
         var settingsV1 = new JsonSerializerSettings
         {
@@ -26,6 +26,15 @@ static class Program
         var serializationV1 = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         serializationV1.Settings(settingsV1);
         serializationV1.ContentTypeKey("jsonv1");
+
+        var settingsV2 = new JsonSerializerSettings
+        {
+            Formatting = Formatting.Indented,
+            ContractResolver = new ExtendedResolver()
+        };
+        var serializationV2 = endpointConfiguration.AddDeserializer<NewtonsoftSerializer>();
+        serializationV2.Settings(settingsV2);
+        serializationV2.ContentTypeKey("jsonv2");
 
         #endregion
 
@@ -36,8 +45,9 @@ static class Program
             var message = MessageCreator.NewOrder();
             await endpointInstance.SendLocal(message)
                 .ConfigureAwait(false);
-            await endpointInstance.Send("Samples.Serialization.TransitionV2", message)
+            await endpointInstance.Send("Samples.Serialization.TransitionPhase3", message)
                 .ConfigureAwait(false);
+
             Console.WriteLine("Order Sent");
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
@@ -48,4 +58,5 @@ static class Program
                 .ConfigureAwait(false);
         }
     }
+
 }

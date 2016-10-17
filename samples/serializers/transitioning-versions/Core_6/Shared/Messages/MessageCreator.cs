@@ -2,10 +2,8 @@
 
 public static class MessageCreator
 {
-    public static CreateOrder NewOrder()
-    {
-
-        return new CreateOrder
+    public static CreateOrder NewOrder() =>
+        new CreateOrder
         {
             OrderId = 9,
             OrderItems = new Dictionary<int, OrderItem>
@@ -26,5 +24,4 @@ public static class MessageCreator
                 },
             }
         };
-    }
 }

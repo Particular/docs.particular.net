@@ -12,11 +12,11 @@ static class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.Serialization.TransitionV3";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.TransitionV3");
+        Console.Title = "Samples.Serialization.TransitionPhase3";
+        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.TransitionPhase3");
         endpointConfiguration.SharedConfig();
 
-        #region configv3
+        #region Phase3
 
         var settingsV2 = new JsonSerializerSettings
         {
@@ -44,7 +44,7 @@ static class Program
             var message = MessageCreator.NewOrder();
             await endpointInstance.SendLocal(message)
                 .ConfigureAwait(false);
-            await endpointInstance.Send("Samples.Serialization.TransitionV4", message)
+            await endpointInstance.Send("Samples.Serialization.TransitionPhase4", message)
                 .ConfigureAwait(false);
             Console.WriteLine("Order Sent");
             Console.WriteLine("Press any key to exit");
