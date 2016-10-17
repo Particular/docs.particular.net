@@ -46,7 +46,7 @@ This mode has a lot less constraints and will work better with high numbers for 
   * Concurrency: Values in the range of 128 per receive client seems to work well.
   * PrefetchCount: Set this to 1x or 2x the per receiver concurrency, so 128 or 256.
 
-But, sending messages out at the same time does influence this mode more. If the average handler sends out only a single message then the above values still hold true. However if the handler sends out more messages, let's say 10 or 100 messages per receive, the concurrency and prefetchcount should be dialed down to allow more bandwidth to the senders.
+But, sending messages out at the same time does influence this mode more. If the average handler sends out an equal amount of data then it receives, then the above values still hold true. However if the handler sends out more messages (or larger messages), let's say 10x or 100x total data size per receive, then concurrency and prefetchcount should be dialed down to reduce incoming bandwidth and allow more bandwidth to the senders.
 
   * Concurrency: Values in the range of 16 per receive client seem to work well in this scenario.
   * PrefetchCount: Set this to 1x or 2x the per receiver concurrency, so 16 or 32.
