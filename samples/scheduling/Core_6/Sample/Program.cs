@@ -30,22 +30,24 @@ class Program
 
             // Send a message every 5 seconds
             await endpointInstance.ScheduleEvery(
-                timeSpan: TimeSpan.FromSeconds(5),
-                task: pipelineContext =>
-                {
-                    var message = new MyMessage();
-                    return pipelineContext.SendLocal(message);
-                });
+                    timeSpan: TimeSpan.FromSeconds(5),
+                    task: pipelineContext =>
+                    {
+                        var message = new MyMessage();
+                        return pipelineContext.SendLocal(message);
+                    })
+                .ConfigureAwait(false);
 
             // Name a schedule task and invoke it every 5 seconds
             await endpointInstance.ScheduleEvery(
-                timeSpan: TimeSpan.FromSeconds(5),
-                name: "MyCustomTask",
-                task: pipelineContext =>
-                {
-                    log.Info("Custom Task executed");
-                    return Task.CompletedTask;
-                });
+                    timeSpan: TimeSpan.FromSeconds(5),
+                    name: "MyCustomTask",
+                    task: pipelineContext =>
+                    {
+                        log.Info("Custom Task executed");
+                        return Task.CompletedTask;
+                    })
+                .ConfigureAwait(false);
 
             #endregion
 
