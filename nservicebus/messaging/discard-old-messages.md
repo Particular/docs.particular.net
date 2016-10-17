@@ -44,10 +44,7 @@ When sending a message with a certain TimeToBeReceived value it could happen tha
 
 Because clocks usually are at most a few minutes out of sync this issue only applies to relatively small TimeToBeReceived values.
 
-For this reason it is wise to add the maximum amount of allowed clock offset, called clock drift, to the TTBR value,
-
-For example, you want to use a TimeToBeReceived value of 90 seconds, we allow for 300 seconds of maximum clock drift so the TTBR value becomes 90 + 300 = 390 seconds.
-
+For this reason it is wise to add the maximum amount of allowed clock offset, called clock drift, to the TTBR value. For example, when using TimeToBeReceived value of 90 seconds, one should allow for 300 seconds of maximum clock drift so the TTBR value becomes 90 + 300 = 390 seconds.
 
 
 ### MSMQ transport
