@@ -5,7 +5,7 @@ suppressRelated: true
 
 Sending and receiving messages is the heart and soul of any NServiceBus system. The fact that we are dealing with systems and not applications is the whole reason we send messages in the first place.
 
-An **application** has a single executable and runs on a single machine, like Microsoft Word. An application doesn't usually has a single source of information, and doesn't really have to think about connectivity. If you try to save a file to a network share and the volume isn't available, it just throws and error and makes you, the user, deal with it.
+An **application** has a single executable and runs on a single machine, like Microsoft Word. An application doesn't usually have a single source of information, and doesn't really have to think about connectivity. If you try to save a file to a network share and the volume isn't available, it just throws and error and makes you, the user, deal with it.
 
 A **system**, on the other hand, can be made up of multiple executables on multiple machines, and usually has multiple sources of information. A system must deal with connectivity constantly. A system is not an application, and furthermore, each executable within a system is not an application either. All must deal with connectivity on a constant basis.
 
