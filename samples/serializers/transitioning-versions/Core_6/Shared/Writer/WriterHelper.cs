@@ -1,9 +1,9 @@
 ﻿using NServiceBus;
 
-#region writer-registration
-
 public static class WriterHelper
 {
+    #region writer-registration
+
     public static void AddMessageBodyWriter(this EndpointConfiguration endpointConfiguration)
     {
         var pipeline = endpointConfiguration.Pipeline;
@@ -16,6 +16,6 @@ public static class WriterHelper
             behavior: typeof(IncomingWriter),
             description: "Logs the contents of each incoming message and the OriginatingEndpoint");
     }
-}
 
-#endregion
+    #endregion
+}
