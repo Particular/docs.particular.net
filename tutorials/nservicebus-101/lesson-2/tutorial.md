@@ -24,7 +24,7 @@ By the end of this lesson, you will have learned:
 
 ## What is a message?
 
-A **message** is a collection of data sent via one-way communication between two endpoints. In NServiceBus, we define a message via a POCO – a Plain Old C# Object.
+A **message** is a collection of data sent via one-way communication between two endpoints. In NServiceBus, we define a message via a POCO – a Plain Old CLR Object.
 
 In this lesson, we're going to be focusing on the simpler type of message: commands. In [Lesson 4: Publishing events](../lesson-4/) we'll expand to look at events as well.
 
