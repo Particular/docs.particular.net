@@ -3,11 +3,11 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 public class CreateOrderHandler :
-    IHandleMessages<CreateOrder>
+    IHandleMessages<Order>
 {
     static ILog log = LogManager.GetLogger<CreateOrderHandler>();
 
-    public Task Handle(CreateOrder message, IMessageHandlerContext context)
+    public Task Handle(Order message, IMessageHandlerContext context)
     {
         log.Info("Order received");
         return Task.CompletedTask;

@@ -2,7 +2,7 @@
 using NServiceBus;
 #region messages
 
-public class CreateOrder :
+public class Order :
     IMessage
 {
     public int OrderId { get; set; }

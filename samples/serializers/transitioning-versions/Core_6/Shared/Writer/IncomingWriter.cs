@@ -5,6 +5,7 @@ using NServiceBus.Logging;
 using NServiceBus.Pipeline;
 
 #region IncomingWriter
+
 public class IncomingWriter :
     Behavior<IIncomingPhysicalMessageContext>
 {
@@ -21,6 +22,6 @@ public class IncomingWriter :
         log.Info(builder.ToString());
         return next();
     }
-
 }
+
 #endregion
