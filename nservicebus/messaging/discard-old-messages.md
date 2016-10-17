@@ -11,7 +11,7 @@ redirects:
  - nservicebus/how-do-i-discard-old-messages
 ---
 
-A message sent through the Particular Service Platform may have TTBR (TimeToBeReceived) set, according to the users’ decision. TTBR indicates to the platform that a delayed message will be discarded, instead of processed, if not handled within a specified period of time. A discarded message might no longer have any business value, and discarding it frees up storage, CPU and memory resources.
+A message sent through the Particular Service Platform may have Time-To-Be-Received (TTBR) set, according to the users’ decision. TTBR indicates to the platform that a delayed message will be discarded, instead of processed, if not handled within a specified period of time. A discarded message might no longer have any business value, and discarding it frees up storage, CPU and memory resources.
 
 This is important mainly in environments with high volumes of messages where there is little business value in processing a delayed message since it will already be replaced by a newer, more relevant version.
 
