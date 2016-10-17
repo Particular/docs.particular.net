@@ -6,6 +6,8 @@ public class Order :
     IMessage
 {
     public int OrderId { get; set; }
+
+    // Where the dictionary key is the id of the order line item
     public Dictionary<int, OrderItem> OrderItems { get; set; }
 }
 
