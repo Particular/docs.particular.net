@@ -1,5 +1,5 @@
 ---
-title: Transition between Serializer versions
+title: Transition between serialization formats
 reviewed: 2016-10-18
 component: Core
 related:
