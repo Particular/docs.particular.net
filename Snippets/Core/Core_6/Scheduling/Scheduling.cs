@@ -3,26 +3,36 @@
     using System;
     using System.Threading.Tasks;
     using NServiceBus;
+    using NServiceBus.Logging;
 
     class Scheduling
     {
-        Scheduling(IEndpointInstance endpointInstance)
+        static ILog log = LogManager.GetLogger<Scheduling>();
+
+        async Task Simple(IEndpointInstance endpointInstance)
         {
             #region ScheduleTask
+
             // To send a message every 5 minutes
-            endpointInstance.ScheduleEvery(
-                timeSpan: TimeSpan.FromMinutes(5),
-                task: context =>
-                {
-                    var message = new CallLegacySystem();
-                    return context.Send(message);
-                });
+            await endpointInstance.ScheduleEvery(
+                    timeSpan: TimeSpan.FromMinutes(5),
+                    task: pipelineContext =>
+                    {
+                        var message = new CallLegacySystem();
+                        return pipelineContext.Send(message);
+                    })
+                .ConfigureAwait(false);
 
             // Name a schedule task and invoke it every 5 minutes
-            endpointInstance.ScheduleEvery(
-                timeSpan: TimeSpan.FromMinutes(5),
-                name: "MyCustomTask",
-                task: SomeCustomMethod);
+            await endpointInstance.ScheduleEvery(
+                    timeSpan: TimeSpan.FromMinutes(5),
+                    name: "MyCustomTask",
+                    task: pipelineContext =>
+                    {
+                        log.Info("Custom Task executed");
+                        return Task.CompletedTask;
+                    })
+                .ConfigureAwait(false);
 
             #endregion
         }

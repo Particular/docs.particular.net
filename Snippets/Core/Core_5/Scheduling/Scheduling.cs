@@ -2,9 +2,12 @@
 {
     using System;
     using NServiceBus;
+    using NServiceBus.Logging;
 
     class Scheduling
     {
+        static ILog log = LogManager.GetLogger(typeof(Scheduling));
+
         Scheduling(Schedule schedule, IBus bus)
         {
             #region ScheduleTask
@@ -23,7 +26,10 @@
             schedule.Every(
                 timeSpan: TimeSpan.FromMinutes(5),
                 name: "MyCustomTask",
-                task: SomeCustomMethod);
+                task: () =>
+                {
+                    log.Info("Custom Task executed");
+                });
 
             #endregion
         }

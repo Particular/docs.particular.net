@@ -1,0 +1,1 @@
+The scheduling API is accessed via in instance of IEndpointInstance. 

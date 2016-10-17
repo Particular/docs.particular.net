@@ -4,11 +4,13 @@ summary: Schedule a task or an action/lambda, to be executed repeatedly at a giv
 component: Core
 tags:
 - Scheduler
+related:
+ - samples/scheduling
 redirects:
 - nservicebus/scheduling-with-nservicebus
 ---
 
-The NServiceBus Scheduler is a lightweight/non-durable API that helps schedule a task that needs to be executed repeatedly based on a specified interval. The scheduling infrastructure leverages the approach of reliable messaging with the NServiceBus core functionality. This allows scheduling to include features such as built in retries and forwarding to the error queue.
+The Scheduler is a lightweight/non-durable API that helps schedule a task that needs to be executed repeatedly based on a specified interval. The scheduling infrastructure leverages the approach of reliable messaging with the NServiceBus core functionality. This allows scheduling to include features such as built in retries and forwarding to the error queue.
 
 
 ## How the scheduler works
