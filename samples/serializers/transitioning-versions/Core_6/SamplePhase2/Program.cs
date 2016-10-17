@@ -45,6 +45,8 @@ static class Program
             var message = MessageCreator.NewOrder();
             await endpointInstance.SendLocal(message)
                 .ConfigureAwait(false);
+            await endpointInstance.Send("Samples.Serialization.TransitionPhase1", message)
+                .ConfigureAwait(false);
             await endpointInstance.Send("Samples.Serialization.TransitionPhase3", message)
                 .ConfigureAwait(false);
 

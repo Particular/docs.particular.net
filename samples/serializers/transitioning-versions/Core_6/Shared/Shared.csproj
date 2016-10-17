@@ -43,13 +43,12 @@
   <ItemGroup>
     <Compile Include="Writer\OutgoingWriter.cs" />
     <Compile Include="ConfigHelper.cs" />
-    <Compile Include="Messages\CreateOrder.cs" />
+    <Compile Include="Messages\Messages.cs" />
     <Compile Include="CreateOrderHandler.cs" />
     <Compile Include="ExtendedResolver.cs" />
     <Compile Include="Writer\IncomingWriter.cs" />
     <Compile Include="Writer\WriterHelper.cs" />
     <Compile Include="Messages\MessageCreator.cs" />
-    <Compile Include="Messages\OrderItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

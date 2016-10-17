@@ -41,11 +41,15 @@ static class Program
             .ConfigureAwait(false);
         try
         {
+            #region send-to-both
             var message = MessageCreator.NewOrder();
             await endpointInstance.SendLocal(message)
                 .ConfigureAwait(false);
+            await endpointInstance.Send("Samples.Serialization.TransitionPhase2", message)
+                .ConfigureAwait(false);
             await endpointInstance.Send("Samples.Serialization.TransitionPhase4", message)
                 .ConfigureAwait(false);
+            #endregion
             Console.WriteLine("Order Sent");
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
