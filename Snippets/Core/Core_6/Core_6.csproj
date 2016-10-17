@@ -176,7 +176,6 @@
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\Behavior.cs" />
     <Compile Include="Pipeline\Abort\MyMessage.cs" />
-    <Compile Include="MsmqTransactionScope.cs" />
     <Compile Include="Pipeline\CustomErrorHandlingBehavior.cs" />
     <Compile Include="Pipeline\SkipSerializationForInts.cs" />
     <Compile Include="Pipeline\CustomForkConnector.cs" />
