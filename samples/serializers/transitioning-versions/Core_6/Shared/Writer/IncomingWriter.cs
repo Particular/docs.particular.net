@@ -8,7 +8,7 @@ using NServiceBus.Pipeline;
 public class IncomingWriter :
     Behavior<IIncomingPhysicalMessageContext>
 {
-    static ILog log = LogManager.GetLogger<OutgoingWriter>();
+    static ILog log = LogManager.GetLogger<IncomingWriter>();
 
     public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
     {
