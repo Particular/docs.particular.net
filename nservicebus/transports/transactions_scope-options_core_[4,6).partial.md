@@ -18,4 +18,4 @@ Change the transaction timeout using
 
 snippet:CustomTransactionTimeout
 
-Or via .config file using a [example DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.aspx#Anchor_5).
+Via a [config file](https://msdn.microsoft.com/en-us/library/1xtk877y.aspx) using a the [Timeout property of the DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.timeout.aspx).
