@@ -1,3 +1,14 @@
+
+All transaction modes are capable or processing at least 500 small (less then 1KB) messages per second. We recognize that for certain type of customers this is not enough. The following guidance 
+
+If you are not able to get atleast 500 msg/s then you are probably contrained by your network. It is likely that the available bandwidth isn't sufficient. Benchmark your bandwidth by using an online tool like [speedtest.net](http://www.speedtest.net/). Select a location that is near to the location of the Azure data center that hosts your Azure Service Bus namespace.
+
+Try to select another Azure data center if the latency is very high or the bandwidth is too low or upgrade your uplink is that is the bottleneck.
+
+If the above is sufficient then following guidance can help you optimize performance based on either latency and/or bandwidth based on the required type of performance.
+
+
+
 ## Tuning send performance outside the scope of a handler
 
 The following ASB SDK settings impact sending operations outside of the handler context
