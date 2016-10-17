@@ -15,7 +15,6 @@ public class OutgoingWriter :
     public override Task Invoke(IOutgoingPhysicalMessageContext context, Func<Task> next)
     {
         var builder = new StringBuilder(Environment.NewLine);
-        var originating = context.Headers["NServiceBus.OriginatingEndpoint"];
         var routingStrategy = (UnicastRoutingStrategy)context.RoutingStrategies.Single();
         builder.AppendLine($"TargetEndpoint: {routingStrategy.Apply(null)}");
         var bodyAsString = Encoding.UTF8

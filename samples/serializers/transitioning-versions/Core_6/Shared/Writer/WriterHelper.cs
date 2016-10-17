@@ -1,6 +1,7 @@
 ﻿using NServiceBus;
 
 #region writer-registration
+
 public static class WriterHelper
 {
     public static void AddMessageBodyWriter(this EndpointConfiguration endpointConfiguration)
@@ -9,11 +10,11 @@ public static class WriterHelper
         pipeline.Register(
             stepId: "OutgoingWriter",
             behavior: typeof(OutgoingWriter),
-            description: "OutgoingWriter");
+            description: "Logs the contents of each outgoing message and the TargetEndpoint");
         pipeline.Register(
             stepId: "IncomingWriter",
             behavior: typeof(IncomingWriter),
-            description: "IncomingWriter");
+            description: "Logs the contents of each incoming message and the OriginatingEndpoint");
     }
 }
 
