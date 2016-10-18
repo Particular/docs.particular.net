@@ -1,3 +1,5 @@
+The Azure ServiceBus transport is capable of processing hundreds no matter the transactional requirements. If that is insufficient then the following guidance can help to optimize performance based on either latency and/or bandwidth and should allow to processes thousands of messages per second.
+
 ## Tuning send performance outside the scope of a handler
 
 The following ASB SDK settings impact sending operations outside of the handler context
@@ -51,8 +53,14 @@ The optimal numbers for Concurrency and PrefetchCount for receivers are impacted
   * Concurrency: Optimal values in the range of 16 per client in this scenario.
   * PrefetchCount: Set this to 1x or 2x the per receiver concurrency, so 16 or 32.
 
+## Notes on bandwidth and other constraints
+
+If throughput is less then ~500 msg/s, even with the above settings optimized then this is probably due to network constraints. It is likely that the available local bandwidth isn't sufficient. Benchmark the available bandwidth by using an (online) tool like speedtest.net. Select a location that is near to the location of the Azure data center that hosts the Azure Service Bus namespace.
+
+Try to move to another Azure data center if the latency is very high and/or the bandwidth is too low and/or upgrade the internet uplink if that is the bottleneck.
+
+Furthermore, standard namespaces have no guaranteed throughput performance, any numbers measured are recordings at that specific moment and may vary over time depending on activity of others on the same infrastructure, the so called 'Noisy Neighbour' problem. If throughput guarantees are required it is highly advised to buy Premium tier namespaces.
+
 ## Performance Tuning Samples
 
 Check out the [performance tuning samples](/samples/azure/performance-tuning-asb/) to experiment with settings in the described scenarios.
-
-NOTE: Standard namespaces have no guaranteed throughput performance, any numbers measured are recordings at that specific moment and may vary over time depending on activity of others on the same infrstructure. If throughput guarantees are required it is highly advised to by Premium tier namespaces.
