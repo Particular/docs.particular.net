@@ -25,6 +25,15 @@ namespace SqlServer_All.Operations.QueueCreation
                 (
 	                [RowVersion] ASC
                 ) ON [PRIMARY]
+		CREATE NONCLUSTERED INDEX [Index_Expires] ON [{schema}].[{queueName}]
+	        (
+			[Expires] ASC
+	        )
+	    	INCLUDE
+	    	(
+			[Id],
+			[RowVersion]
+		)
                 END";
             using (var command = new SqlCommand(sql, connection))
             {
