@@ -18,7 +18,7 @@ Snippet: asb-fast-send
 
 The receive performance can be tweaked in all applications by adjusting the following settings:
 
-  * `MessagingFactories().NumberOfMessagingFactoriesPerNamespace()`: Each factory manages a TCP connection to the broker, this connection has throughput limits. The number of factories depends on how much bandwidth Azure Service Bus is allowed to consume and the size of your messages. Monitor the networks received and sent bytes per second. If the network isn't congested increase the number of factories and clients. The optimal value range is probably somewhere between 16 and a multiple of it, like 64 on partitioned queues (as they consist of 16 partitions).
+  * `MessagingFactories().NumberOfMessagingFactoriesPerNamespace()`: Each factory manages a TCP connection to the broker, this connection has throughput limits. The number of factories depends on how much bandwidth Azure Service Bus is allowed to consume and the size of the messages. Monitor the networks received and sent bytes per second. If the network isn't congested increase the number of factories and clients. The optimal value range is probably somewhere between 16 and a multiple of it, like 64 on partitioned queues (as they consist of 16 partitions).
   * `NumberOfClientsPerEntity()`: Keep this value equal to the number of factories, this ensures there is 1 internal receive client per factory.
 
 Changing the following settings will also improve application performance, but their values depend on the nature of the application:
