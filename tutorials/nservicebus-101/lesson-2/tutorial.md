@@ -66,9 +66,9 @@ To process a message, we create a **message handler**, a class that implements `
 
 snippet:EmptyHandler
 
-The implementation of the `IHandleMessages<T>` interface is the `Handle` method, which NServiceBus will invoke when a matching message (in this case `DoSomething`) arrives. The message handling method receives an instance of the message, as well as an `IMessageHandlerContext` instance that contains the messaging tools (sending messages, etc.) that can be used within a message handler.
+The implementation of the `IHandleMessages<T>` interface is the `Handle` method, which NServiceBus will invoke when a matching message (in this case `DoSomething`) arrives. The `Handle` method receives the message and an `IMessageHandlerContext` that contains tools for working with messages.
 
-True to the asynchronous nature of NServiceBus, the `Handle` method returns a `Task` that you must return – returning `null` instead will result in an exception. (In the example above, the lack of a return statement would be a compiler error.)
+True to the asynchronous nature of NServiceBus, the `Handle` method returns a [`System.Threading.Tasks.Task`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) that you must return – returning `null` instead will result in an exception. (In the example above, the lack of a return statement would be a compiler error.)
 
 If all of the operations within the message handler are synchronous, you can simply return `Task.CompletedTask` if using .NET 4.6 or greater, or `Task.FromResult(false)` if `CompletedTask` is not available.
 
@@ -99,7 +99,8 @@ Messages should be self-contained within a separate assembly so that they can be
 1. In the solution, create a new project and select the **Class Library** project type.
 2. Set the name of the project to **Messages**.
 3. Remove the automatically created **Class1.cs** file from the project. We would prefer to have our messages a little more organized than files in the root of the project. (More on this a little later.)
-4. In the **ClientUI** project, add a reference to the **Messages** project.
+4. Add the NServiceBus NuGet package to the Messages project.
+5. In the **ClientUI** project, add a reference to the **Messages** project.
 
 
 ### Create a message
@@ -151,15 +152,15 @@ snippet:RunLoop
  
 Let's take a closer look at the case when we want to place an order. Since the `PlaceOrder` command is just a class, we can instantiate it normally, supplying a unique value for the `OrderId`. Then, after logging the details, we can send it with the `SendLocal` method.
     
-`SendLocal(object message)` is a method that is available on the `IEndpointInstance` interface, as we are using here, and also on the `IMessageHandlerContext` interface, which we saw when we were defining our message handler. The *Local* part means that we are not sending to an external endpoint (in a different process) so we intend to handle the message in the same endpoint that sent it. Using `SendLocal()`, we don't have to specify any mappings to tell the message where to go.
+`SendLocal(object message)` is a method that is available on the `IEndpointInstance` interface, as we are using here, and also on the `IMessageHandlerContext` interface, which we saw when we were defining our message handler. The *Local* part means that we are not sending to an external endpoint (in a different process) so we intend to handle the message in the same endpoint that sent it. Using `SendLocal()`, we don't have to do anything special to tell the message where to go.
+
+NOTE: In the [next lesson](../lesson-3/) we'll learn how to send messages between separate endpoints, and how to control where the messages go.
 
 Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properly.
  
 In order to use our `RunLoop` method, we need to replace the previous Console operations with a call to the new method in the `AsyncMain` method:
 
 snippet:AddRunLoopToAsyncMain
-
-NOTE: Although we're calling `SendLocal()` from the endpoint instance, this method (and others such as `Send()`, `Publish()`, etc.) is also available from the `IMessageHandlerContext` that gets passed in to a message handler's `Handle()` method.
 
 
 ### Running the solution
