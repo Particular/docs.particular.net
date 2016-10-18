@@ -12,7 +12,7 @@ related:
 
 ## Prerequisites
 
-Ensure you have a running instance of RabbitMQ.
+Ensure an instance of RabbitMQ is running and accessible.
 
 
 ## Code walk-through
