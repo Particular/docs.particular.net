@@ -22,7 +22,7 @@ related:
  1. Receiver will handle the message.
 
 
-## Core Walk-through
+## Code Walk-through
 
 
 ### Configure the SQL Server Transport
