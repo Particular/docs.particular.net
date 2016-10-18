@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NServiceBus;
 
 public class SomeMessageHandler :
@@ -7,14 +8,15 @@ public class SomeMessageHandler :
     // maximum 100 for atomic sends
     public const int NumberOfMessagesToSend = 1;
 
-    public async Task Handle(SomeMessage message, IMessageHandlerContext context)
+    public Task Handle(SomeMessage message, IMessageHandlerContext context)
     {
         Program.ReceiveCounter.OnNext(message);
 
+        var tasks = new List<Task>();
         for (var i = 0; i < NumberOfMessagesToSend; i++)
         {
-            await context.Send(new SomeMessage());
+            tasks.Add(context.Send(new SomeMessage()));
         }
-
+        return Task.WhenAll(tasks);
     }
 }

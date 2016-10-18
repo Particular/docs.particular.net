@@ -31,8 +31,7 @@ class Program
         queues.EnablePartitioning(true);
 
         var receiverName = "Samples.ASB.Performance.Receiver";
-        await EnsureReceiverQueueExists(receiverName, connectionString)
-            .ConfigureAwait(false);
+        await EnsureReceiverQueueExists(receiverName, connectionString).ConfigureAwait(false);
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(SomeMessage), receiverName);
 
@@ -50,18 +49,17 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
         try
         {
-            Console.WriteLine("Press 'e' to send a large amount of messages");
-            Console.WriteLine("Press any other key to exit");
+            await Console.Out.WriteLineAsync("Press 'e' to send a large amount of messages").ConfigureAwait(false);
+            await Console.Out.WriteLineAsync("Press any other key to exit").ConfigureAwait(false);
 
             while (true)
             {
                 var key = Console.ReadKey();
-                Console.WriteLine();
+                await Console.Out.WriteLineAsync().ConfigureAwait(false);
 
                 var eventId = Guid.NewGuid();
 
@@ -75,26 +73,24 @@ class Program
                 #region slow-send
                 for (var i = 0; i < NumberOfMessages; i++)
                 {
-                    Console.WriteLine("Sending a message...");
+                    await Console.Out.WriteLineAsync("Sending a message...");
 
                     // by awaiting each individual send, no client side batching can take place
                     // latency is incurred for each send and thus lowest performance possible
-                    await endpointInstance.Send(new SomeMessage())
-                        .ConfigureAwait(false);
+                    await endpointInstance.Send(new SomeMessage()).ConfigureAwait(false);
                 }
                 #endregion
 
                 stopwatch.Stop();
                 var elapsedSeconds = stopwatch.ElapsedTicks / (double)Stopwatch.Frequency;
                 var msgsPerSecond = NumberOfMessages / elapsedSeconds;
-                Console.WriteLine($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {msgsPerSecond} messages per second");
+                await Console.Out.WriteLineAsync($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {msgsPerSecond} messages per second").ConfigureAwait(false);
 
             }
         }
         finally
         {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop().ConfigureAwait(false);
         }
     }
 
@@ -108,8 +104,7 @@ class Program
                 EnablePartitioning = true,
                 EnableBatchedOperations = true
             };
-            await namespaceManager.CreateQueueAsync(queueDescription)
-                .ConfigureAwait(false);
+            await namespaceManager.CreateQueueAsync(queueDescription).ConfigureAwait(false);
         }
     }
 

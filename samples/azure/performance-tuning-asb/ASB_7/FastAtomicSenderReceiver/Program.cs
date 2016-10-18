@@ -34,8 +34,7 @@ class Program
         var topology = transportConfiguration.UseTopology<ForwardingTopology>();
 
         var destinationName = "Samples.ASB.Performance.Destination";
-        await EnsureDestinationQueueExists(destinationName, connectionString)
-            .ConfigureAwait(false);
+        await EnsureDestinationQueueExists(destinationName, connectionString).ConfigureAwait(false);
         var routing = transportConfiguration.Routing();
         routing.RouteToEndpoint(typeof(SomeMessage), destinationName);
 
@@ -69,13 +68,11 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        Console.WriteLine("Receiver is ready to receive messages");
-        Console.WriteLine("Press any key to exit");
+        var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        await Console.Out.WriteLineAsync("Receiver is ready to receive messages").ConfigureAwait(false);
+        await Console.Out.WriteLineAsync("Press any key to exit").ConfigureAwait(false);
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop().ConfigureAwait(false);
     }
 
     static async Task EnsureDestinationQueueExists(string receiverPath, string connectionString)

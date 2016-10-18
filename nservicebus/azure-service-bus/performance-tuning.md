@@ -4,7 +4,7 @@ component: ASB
 tags:
  - Azure
  - Cloud
-reviewed: 2016-09-21
+reviewed: 2016-10-18
 ---
 
 partial:body

@@ -14,8 +14,8 @@ class Performance
         for (var i = 0; i < 100; i++)
         {
             // by awaiting each individual send, no client side batching can take place
-            // latency is incurred for each send and thus lowest performance possible
-            await endpointInstance.Send(new SomeMessage());
+            // latency is incurred for each send and thus negatively impacts performance
+            await endpointInstance.Send(new SomeMessage()).ConfigureAwait(false);
         }
 
         #endregion
@@ -29,7 +29,7 @@ class Performance
         }
 
         // by awaiting the sends as one unit, this code allows the ASB SDK's client side batching to kick in and bundle sends
-        // this results in less latency overhead per individual sends and thus higher performance
+        // this results in less latency overhead per individual sends and thus improved performance
         await Task.WhenAll(tasks).ConfigureAwait(false);
         #endregion
     }
