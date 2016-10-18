@@ -12,12 +12,12 @@ related:
 
 ## Prerequisites
 
- 1. Ensure an instance SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create a database `SqlServerSimple`.
+ 1. Ensure an instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`. Create a database `SqlServerSimple`.
 
 
 ## Running the project
 
- 1. Start the both the Sender and Receiver projects
+ 1. Start both the Sender and Receiver projects
  1. At startup Sender will send a message to Receiver.
  1. Receiver will handle the message.
 
