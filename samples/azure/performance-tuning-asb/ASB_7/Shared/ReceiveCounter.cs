@@ -4,11 +4,11 @@ using System.Reactive.Subjects;
 
 public class ReceiveCounter
 {
-    private Subject<SomeMessage> _messages = new Subject<SomeMessage>();
+    Subject<SomeMessage> messages = new Subject<SomeMessage>();
 
     public void Subscribe(Action<int> action)
     {
-        var observable = from e in _messages
+        var observable = from e in messages
             group e by "" into c
             from v in c.Buffer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1))
             select v.Count;
@@ -18,6 +18,6 @@ public class ReceiveCounter
 
     public void OnNext(SomeMessage message)
     {
-        _messages.OnNext(message);
+        messages.OnNext(message);
     }
 }

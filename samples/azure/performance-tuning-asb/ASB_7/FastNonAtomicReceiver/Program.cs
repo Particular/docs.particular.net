@@ -6,7 +6,7 @@ using NServiceBus.Logging;
 class Program
 {
     public static ReceiveCounter ReceiveCounter = new ReceiveCounter();
-    private static ILog _logger = LogManager.GetLogger<Program>();
+    static ILog logger = LogManager.GetLogger<Program>();
 
     static void Main()
     {
@@ -17,18 +17,18 @@ class Program
     {
         Console.Title = "Samples.ASB.Performance.FastNonAtomicReceiver";
 
-        ReceiveCounter.Subscribe(i => _logger.Warn("Process " + i + " messages per second"));
+        ReceiveCounter.Subscribe(i => logger.Warn($"Process {i} messages per second"));
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Performance.Receiver");
-        var transportConfiguration = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
 
         if (string.IsNullOrWhiteSpace(connectionString))
         {
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
         }
-        transportConfiguration.ConnectionString(connectionString);
-        var topology = transportConfiguration.UseTopology<ForwardingTopology>();
+        transport.ConnectionString(connectionString);
+        var topology = transport.UseTopology<ForwardingTopology>();
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -37,37 +37,39 @@ class Program
 
         #region fast-non-atomic-receiver-config
 
-        transportConfiguration.Transactions(TransportTransactionMode.ReceiveOnly);
+        transport.Transactions(TransportTransactionMode.ReceiveOnly);
 
-        transportConfiguration.Queues().EnablePartitioning(true);
+        var queues = transport.Queues();
+        queues.EnablePartitioning(true);
 
         var numberOfCores = Environment.ProcessorCount;
 
-        var perReceiverConcurrency = 128; // concurrency allowed
-        var numberOfReceivers = 32; // increase number of receivers as much as bandwidth allows
-        var globalConcurrency = numberOfReceivers * perReceiverConcurrency;
+        // concurrency allowed
+        var perReceiverConcurrency = 128;
+
+        // increase number of receivers as much as bandwidth allows
+        var numberOfReceivers = 32;
+
+        var globalConcurrency = numberOfReceivers*perReceiverConcurrency;
 
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(globalConcurrency);
-        transportConfiguration.MessageReceivers().PrefetchCount(perReceiverConcurrency); // as is prefetching
 
-        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(numberOfReceivers);
-        transportConfiguration.NumberOfClientsPerEntity(numberOfReceivers);
+        // as is prefetching
+        var receivers = transport.MessageReceivers();
+        receivers.PrefetchCount(perReceiverConcurrency);
+
+        var factories = transport.MessagingFactories();
+        factories.NumberOfMessagingFactoriesPerNamespace(numberOfReceivers);
+        transport.NumberOfClientsPerEntity(numberOfReceivers);
 
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Receiver is ready to receive messages");
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Receiver is ready to receive messages");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
-
 }

@@ -4,7 +4,8 @@ using NServiceBus;
 public class SomeMessageHandler :
     IHandleMessages<SomeMessage>
 {
-    public const int NumberOfMessagesToSend = 1; //maximum 100 for atomic sends
+    // maximum 100 for atomic sends
+    public const int NumberOfMessagesToSend = 1;
 
     public async Task Handle(SomeMessage message, IMessageHandlerContext context)
     {
@@ -14,6 +15,6 @@ public class SomeMessageHandler :
         {
             await context.Send(new SomeMessage());
         }
-        
+
     }
 }

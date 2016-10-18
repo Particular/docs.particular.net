@@ -28,11 +28,14 @@ class Program
         }
         transport.UseTopology<ForwardingTopology>();
         transport.ConnectionString(connectionString);
-        transport.Queues().EnablePartitioning(true);
-            
+        var queues = transport.Queues();
+        queues.EnablePartitioning(true);
+
         var receiverName = "Samples.ASB.Performance.Receiver";
-        await EnsureReceiverQueueExists(receiverName, connectionString).ConfigureAwait(false);
-        transport.Routing().RouteToEndpoint(typeof(SomeMessage), receiverName);
+        await EnsureReceiverQueueExists(receiverName, connectionString)
+            .ConfigureAwait(false);
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(typeof(SomeMessage), receiverName);
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -40,8 +43,10 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region fast-send-config
-        transport.MessagingFactories().BatchFlushInterval(TimeSpan.FromMilliseconds(100));
-        transport.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(5);
+
+        var factories = transport.MessagingFactories();
+        factories.BatchFlushInterval(TimeSpan.FromMilliseconds(100));
+        factories.NumberOfMessagingFactoriesPerNamespace(5);
         transport.NumberOfClientsPerEntity(5);
         #endregion
 
@@ -65,10 +70,10 @@ class Program
                     break;
                 }
 
-                var stopwatch = new Stopwatch();
-                stopwatch.Start();
+                var stopwatch = Stopwatch.StartNew();
 
                 #region fast-send
+
                 var tasks = new List<Task>();
                 for (var i = 0; i < NumberOfMessages; i++)
                 {
@@ -79,15 +84,15 @@ class Program
                 Console.WriteLine("Waiting for completion...");
                 // by awaiting the sends as one unit, this code allows the ASB SDK's client side batching to kick in and bundle sends
                 // this results in less latency overhead per individual sends and thus higher performance
-                await Task.WhenAll(tasks);
-                
+                await Task.WhenAll(tasks)
+                    .ConfigureAwait(false);
+
                 #endregion
 
                 stopwatch.Stop();
-                var elapsedSeconds = stopwatch.ElapsedTicks / (double)Stopwatch.Frequency;
-                var msgsPerSecond = NumberOfMessages / elapsedSeconds;
-                Console.WriteLine("sending " + NumberOfMessages + " messages took " + stopwatch.ElapsedMilliseconds + " milliseconds, or " + msgsPerSecond + " messages per second");
-
+                var elapsedSeconds = stopwatch.ElapsedTicks/(double) Stopwatch.Frequency;
+                var msgsPerSecond = NumberOfMessages/elapsedSeconds;
+                Console.WriteLine($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {msgsPerSecond} messages per second");
             }
         }
         finally
@@ -102,11 +107,13 @@ class Program
         var namespaceManager = NamespaceManager.CreateFromConnectionString(connectionString);
         if (!await namespaceManager.QueueExistsAsync(receiverPath).ConfigureAwait(false))
         {
-            await namespaceManager.CreateQueueAsync(new QueueDescription(receiverPath)
+            var queueDescription = new QueueDescription(receiverPath)
             {
                 EnablePartitioning = true,
                 EnableBatchedOperations = true
-            });
+            };
+            await namespaceManager.CreateQueueAsync(queueDescription)
+                .ConfigureAwait(false);
         }
     }
 }

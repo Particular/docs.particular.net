@@ -6,7 +6,7 @@ using NServiceBus.Logging;
 class Program
 {
     public static ReceiveCounter ReceiveCounter = new ReceiveCounter();
-    private static ILog _logger = LogManager.GetLogger<Program>();
+    static ILog logger = LogManager.GetLogger<Program>();
 
     static void Main()
     {
@@ -17,17 +17,17 @@ class Program
     {
         Console.Title = "Samples.ASB.Performance.SlowNonAtomicReceiver";
 
-        ReceiveCounter.Subscribe(i => _logger.Warn("Process " + i + " messages per second"));
+        ReceiveCounter.Subscribe(i => logger.Warn($"Process {i} messages per second"));
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Performance.Receiver");
-        var transportConfiguration = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
         }
-        transportConfiguration.ConnectionString(connectionString);
-        var topology = transportConfiguration.UseTopology<ForwardingTopology>();
+        transport.ConnectionString(connectionString);
+        var topology = transport.UseTopology<ForwardingTopology>();
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -36,29 +36,26 @@ class Program
 
         #region slow-non-atomic-receiver-config
 
-        transportConfiguration.Transactions(TransportTransactionMode.ReceiveOnly);
-        transportConfiguration.Queues().EnablePartitioning(true);
+        transport.Transactions(TransportTransactionMode.ReceiveOnly);
+        var queues = transport.Queues();
+        queues.EnablePartitioning(true);
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
-        transportConfiguration.MessageReceivers().PrefetchCount(0);
+        var receivers = transport.MessageReceivers();
+        receivers.PrefetchCount(0);
 
-        transportConfiguration.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(1);
-        transportConfiguration.NumberOfClientsPerEntity(1);
+        var factories = transport.MessagingFactories();
+        factories.NumberOfMessagingFactoriesPerNamespace(1);
+        transport.NumberOfClientsPerEntity(1);
 
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Receiver is ready to receive messages");
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Receiver is ready to receive messages");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
 }

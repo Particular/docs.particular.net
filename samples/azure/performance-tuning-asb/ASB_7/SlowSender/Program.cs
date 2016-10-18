@@ -27,11 +27,14 @@ class Program
         }
         transport.UseTopology<ForwardingTopology>();
         transport.ConnectionString(connectionString);
-        transport.Queues().EnablePartitioning(true);
+        var queues = transport.Queues();
+        queues.EnablePartitioning(true);
 
         var receiverName = "Samples.ASB.Performance.Receiver";
-        await EnsureReceiverQueueExists(receiverName, connectionString).ConfigureAwait(false);
-        transport.Routing().RouteToEndpoint(typeof(SomeMessage), receiverName);
+        await EnsureReceiverQueueExists(receiverName, connectionString)
+            .ConfigureAwait(false);
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(typeof(SomeMessage), receiverName);
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -39,9 +42,12 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region slow-send-config
-        transport.MessagingFactories().BatchFlushInterval(TimeSpan.Zero);
-        transport.MessagingFactories().NumberOfMessagingFactoriesPerNamespace(1);
+
+        var factories = transport.MessagingFactories();
+        factories.BatchFlushInterval(TimeSpan.Zero);
+        factories.NumberOfMessagingFactoriesPerNamespace(1);
         transport.NumberOfClientsPerEntity(1);
+
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
@@ -64,8 +70,7 @@ class Program
                     break;
                 }
 
-                var stopwatch = new Stopwatch();
-                stopwatch.Start();
+                var stopwatch = Stopwatch.StartNew();
 
                 #region slow-send
                 for (var i = 0; i < NumberOfMessages; i++)
@@ -74,14 +79,15 @@ class Program
 
                     // by awaiting each individual send, no client side batching can take place
                     // latency is incurred for each send and thus lowest performance possible
-                    await endpointInstance.Send(new SomeMessage());
+                    await endpointInstance.Send(new SomeMessage())
+                        .ConfigureAwait(false);
                 }
                 #endregion
 
                 stopwatch.Stop();
                 var elapsedSeconds = stopwatch.ElapsedTicks / (double)Stopwatch.Frequency;
                 var msgsPerSecond = NumberOfMessages / elapsedSeconds;
-                Console.WriteLine("sending " + NumberOfMessages + " messages took " + stopwatch.ElapsedMilliseconds + " milliseconds, or " + msgsPerSecond + " messages per second");
+                Console.WriteLine($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {msgsPerSecond} messages per second");
 
             }
         }
@@ -97,11 +103,13 @@ class Program
         var namespaceManager = NamespaceManager.CreateFromConnectionString(connectionString);
         if (!await namespaceManager.QueueExistsAsync(receiverPath).ConfigureAwait(false))
         {
-            await namespaceManager.CreateQueueAsync(new QueueDescription(receiverPath)
+            var queueDescription = new QueueDescription(receiverPath)
             {
                 EnablePartitioning = true,
                 EnableBatchedOperations = true
-            });
+            };
+            await namespaceManager.CreateQueueAsync(queueDescription)
+                .ConfigureAwait(false);
         }
     }
 
