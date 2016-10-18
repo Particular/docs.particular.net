@@ -5,7 +5,7 @@ suppressRelated: true
 
 Sending and receiving messages is the heart and soul of any NServiceBus system. The fact that we are dealing with systems and not applications is the whole reason we send messages in the first place.
 
-An **application** has a single executable and runs on a single machine, like Microsoft Word. An application doesn't usually have a single source of information, and doesn't really have to think about connectivity. If you try to save a file to a network share and the volume isn't available, it just throws and error and makes you, the user, deal with it.
+An **application** has a single executable and runs on a single machine, like Microsoft Word. An application doesn't usually have a single source of information, and doesn't really have to think about connectivity. If you try to save a file to a network share and the volume isn't available, it just throws an error and makes you, the user, deal with it.
 
 A **system**, on the other hand, can be made up of multiple executables on multiple machines, and usually has multiple sources of information. A system must deal with connectivity constantly. A system is not an application, and furthermore, each executable within a system is not an application either. All must deal with connectivity on a constant basis.
 
@@ -24,9 +24,9 @@ By the end of this lesson, you will have learned:
 
 ## What is a message?
 
-A **message** is a collection of data sent via one-way communication between two endpoints. In NServiceBus, we define a message via a POCO – a Plain Old C# Object.
+A **message** is a collection of data sent via one-way communication between two endpoints. In NServiceBus, we define a message via a POCO – a Plain Old CLR Object.
 
-In this lesson, we're going to be focusing on the simpler type of message: commands. In [Lesson 4: Publishing events](../lesson-4/) we'll expand to look at events as well.
+In this lesson, we'll focus on the simpler type of message: commands. In [Lesson 4: Publishing events](../lesson-4/) we'll expand to look at events as well.
 
 Defining a command is pretty easy. We just create a class and mark it with the `ICommand` marker interface.
 
@@ -63,7 +63,7 @@ Messages can support whatever data the serializer can successfully process. Thus
 
 While it can be pretty tempting to throw in the kitchen sink, consider that messages are a contract between two endpoints. Any change to the message will likely involve a change on both the sender and receiver side. The more properties you have on a message, the more reasons it has to change, so keep your messages as slim as possible.
 
-Also, you should not embed logic within your NServiceBus message classes. Each message should only contain only automatic properties and not computed properties or methods. However, it is a good practice to instantiate collection properties from a default parameterless constructor as shown above, so that you never have to deal with a potentially null collection.
+Also, you should not embed logic within your NServiceBus message classes. Each message should contain only automatic properties and not computed properties or methods. Also, it is a good practice to instantiate collection properties from a default parameterless constructor as shown above, so that you never have to deal with a potentially null collection.
 
 In essence, messages should be carriers for data only. This way, discovering a bug in logic will not require redeployment of every endpoint that uses a message.
 
@@ -76,7 +76,7 @@ A **message assembly** should contain only NServiceBus message contracts, and an
 
 Message assemblies should be entirely self-contained. They should have no dependencies other than libraries included with the .NET Framework, and the NServiceBus core assembly, which is required to reference the `ICommand` interface. Limiting dependencies makes your message contracts more resilient to future changes in the system.
 
-> In another course, we'll learn how (and why) to use [message conventions](/nservicebus/messaging/conventions.md) to identify message types, rather than the `ICommand` interface. Then we don't even need to reference the NServiceBus assembly in our message assemblies, but we'll leave that out of scope for now.
+> In another course, we'll learn how (and why) to use [message conventions](/nservicebus/messaging/conventions.md) to identify message types, rather than the `ICommand` interface. Then we don't even need to reference the NServiceBus assembly in our message assemblies. But we'll leave that out of scope for now.
 
 
 ## How do I process a message?
@@ -166,7 +166,8 @@ In order to better organize messages, we'll create our first command in a folder
 1. In the **Messages** project, create a new folder called **Commands**.
 2. In the **Commands** folder, add a new class named `PlaceOrder`.
 3. Mark `PlaceOrder` as `public` and implement `ICommand`.
-    > NOTE: The .NET Framework contains another interface named `ICommand` in the `System.Windows.Input` namespace. Be sure that if you use tooling to resolve the namespace, you select `NServiceBus.ICommand`. Most of the types you will need will reside in the `NServiceBus` namespace.
+
+    > NOTE: The .NET Framework contains another interface named `ICommand` in the `System.Windows.Input` namespace. Be sure to use the `NServiceBus.ICommand` interface if you are using tooling to resolve the namespace. Most of the types you will need will reside in the `NServiceBus` namespace.
 4. Add a public property of type `string` named `OrderId`.
 
 When complete, your `PlaceOrder` class should look like the following:
@@ -297,7 +298,7 @@ Now we can run the solution. Whenever we type `placeorder` on the console, a com
     INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
     INFO  ClientUI.PlaceOrderHandler Received PlaceOrder, OrderId = 9260d6ce-6f3e-4b00-9edb-0dfb905afee8
 
-Note how after sending a message, the prompt from `ClientUI.Program` is displayed before the `ClientUI.PlaceOrderHandler` acknowledges receipt of the message. This is because, rather than calling the `Handle` method as a direct method call, the message is sent asynchronously, and then control immediately returns to the `RunLoop`, which repeats the prompt. It isn't until a bit later, when the message is received and processed, that we see the `Received PlaceOrder` notification.
+Note how after sending a message, the prompt from `ClientUI.Program` is displayed _before_ the `ClientUI.PlaceOrderHandler` acknowledges receipt of the message. This is because, rather than calling the `Handle` method as a direct method call, the message is sent asynchronously, and then control immediately returns to the `RunLoop`, which repeats the prompt. It isn't until a bit later, when the message is received and processed, that we see the `Received PlaceOrder` notification.
 
 
 ## Summary
