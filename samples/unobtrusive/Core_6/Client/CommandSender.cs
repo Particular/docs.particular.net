@@ -14,7 +14,7 @@ public class CommandSender
         Console.WriteLine("Press 'E' to send a message that is marked as Express");
         Console.WriteLine("Press 'D' to send a large message that is marked to be sent using Data Bus");
         Console.WriteLine("Press 'X' to send a message that is marked with expiration time.");
-        Console.WriteLine("Press any key to exit");
+        Console.WriteLine("Press any other key to exit");
 
         while (true)
         {
