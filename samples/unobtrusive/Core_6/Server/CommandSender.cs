@@ -9,7 +9,7 @@ class CommandSender
     public static async Task Start(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Press 'E' to publish an event");
-        Console.WriteLine("Press any key to exit");
+        Console.WriteLine("Press any other key to exit");
 
         while (true)
         {
