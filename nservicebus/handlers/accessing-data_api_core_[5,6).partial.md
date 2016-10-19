@@ -1,0 +1,1 @@
+Users can take advantage of this NServiceBus-managed data access context using peristence-specific mechanisms. For the purpose of this documentation we assume that the context can be obtained via an extension method on the `IBus` object.

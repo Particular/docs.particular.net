@@ -99,6 +99,7 @@
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="Container\Custom\MyContainerDefinition.cs" />
+    <Compile Include="Handlers\DataAccess.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\CustomExceptionPolicy.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicyOverridingDelayedRetriesPart.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\FullyCustomizedPolicy.cs" />

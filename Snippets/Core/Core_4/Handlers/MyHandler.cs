@@ -1,6 +1,5 @@
 ﻿namespace Core4.Handlers
 {
-    using Common;
     using NServiceBus;
 
     #region CreatingMessageHandler
@@ -11,7 +10,6 @@
         public void Handle(MyMessage message)
         {
             // do something with the message data
-            SomeLibrary.SomeMethod(message.Data);
         }
     }
 

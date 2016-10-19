@@ -143,6 +143,7 @@
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="Container\Custom\MyContainerDefinition.cs" />
     <Compile Include="Features\AdvancedSatellite.cs" />
+    <Compile Include="Handlers\DataAccess.cs" />
     <Compile Include="Recoverability\CustomFaultManager.cs" />
     <Compile Include="Features\SimpleSatellite.cs" />
     <Compile Include="MessageIdentity\MessageIdFromMessageMutator.cs" />

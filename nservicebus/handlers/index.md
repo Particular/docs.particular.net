@@ -5,11 +5,14 @@ component: Core
 reviewed: 2016-07-27
 redirects:
 - nservicebus/how-do-i-handle-a-message
+
 ---
 
 To handle a message, write a class that implements `IHandleMessages<T>` where `T` is the message type:
 
 snippet:CreatingMessageHandler
+
+In most cases processing a message involves changing the application state via some kind of data access code. See [accessing data](/nservicebus/handlers/accessing-data.md) for more details.
 
 To handle messages of all types:
 
