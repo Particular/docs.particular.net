@@ -1,5 +1,5 @@
 ---
-title: ASB Performance Tuning
+title: Azure Service Bus Performance Tuning
 summary: Samples that show the impact of different settings and api usage patterns on the performance of the ASB transport.
 component: ASB
 reviewed: 2016-10-18
