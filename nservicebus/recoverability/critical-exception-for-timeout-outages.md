@@ -11,7 +11,7 @@ redirects:
  - nservicebus/errors/critical-exception-for-timeout-outages
 ---
 
-When using [Timeout Manager](/nservicebus/messaging/delayed-delivery.md#caveats) messages schedule for delayed delivery will be stored using configured persistence mechanism. If there are any problems with timeout storage by default a wait of 2 seconds is done to allow the storage to come back online.
+When using [Timeout Manager](/nservicebus/messaging/delayed-delivery.md#caveats) messages schedule for delayed delivery will be stored using configured persistence mechanism. If there are any problems with timeout storage by default a wait of 2 minutes is done to allow the storage to come back online.
 
 To change the default wait time:
 
