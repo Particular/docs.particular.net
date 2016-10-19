@@ -20,6 +20,7 @@ If the handling of an incoming message causes more messages to be sent or publis
 
 Additional headers are used to determine endpoint names, message intent and other factors. [Read more about headers](/nservicebus/messaging/headers.md).
 
+Note: Because order of the processed messages are critical to the correctness of the sequence diagram, it is crucial to make sure that the machines running the endpoints have the correct time. An NTP server could be used to ensure time is correctly synchronized.
 
 ## What is on the diagram
 
