@@ -2,8 +2,7 @@
 
 #region SomeMessage
 
-public class SomeMessage :
-    IMessage
+public class SomeMessage : IMessage
 {
 }
 
