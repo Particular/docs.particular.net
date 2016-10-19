@@ -37,7 +37,7 @@ class Program
     {
         Console.WriteLine("Press '1' to send PlaceOrder - defer message handling");
         Console.WriteLine("Press '2' to send PlaceDelayedOrder - defer message delivery");
-        Console.WriteLine("Press enter key to exit");
+        Console.WriteLine("Press any other key to exit");
 
         while (true)
         {
@@ -75,8 +75,6 @@ class Program
                     Console.WriteLine($"[Defer Message Delivery] Deferred a PlaceDelayedOrder message with id: {id.ToString("N")}");
                     #endregion
                     continue;
-                case ConsoleKey.Enter:
-                    return;
                 default:
                     return;
             }
