@@ -18,8 +18,7 @@ To handle the current message at a later time `bus.HandleCurrentMessageLater()` 
 
 There are two caveats with this method:
 
-- As mentioned above a new copy of the message will be put back at the end of the queue. To make this work, the message pipeline will not abort which means any business transaction will also get comitted. 
-
+- As mentioned above a new copy of the message will be put back at the end of the queue. To make this work, the message pipeline will not abort which means any business transaction will also get committed. 
 - If there are no other messages in the queue, or the condition to put the message back into the queue is not correct, the message goes back into the queue and it will be picked up immediately afterwards. This will have an effect of an endless loop which will be noted as high system resource utilization by the endpoint.
 
 As such, this method will be deprecated in NServiceBus version 7.0. It is recommended to use either [Delayed Retries](/nservicebus/recoverability/#delayed-retries) or one of the deferring mechanisms below, depending on the case at hand.  
