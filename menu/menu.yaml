@@ -221,7 +221,7 @@
     - Url: nservicebus/hosting/windows-service
       Title: Windows Service
     - Url: nservicebus/hosting/override-hostid
-      Title: Override host identifier
+      Title: Overriding the host identifier
     - Url: nservicebus/hosting/custom-configuration-providers
       Title: Overriding app.config settings
     - Url: nservicebus/hosting/assembly-scanning
