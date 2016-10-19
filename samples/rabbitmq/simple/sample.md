@@ -1,6 +1,6 @@
 ---
 title: Simple RabbitMQ Transport usage
-reviewed: 2016-03-21
+reviewed: 2016-10-18
 component: Rabbit
 tags:
 - RabbitMQ
@@ -10,21 +10,18 @@ related:
 ---
 
 
+## Prerequisites
+
+Ensure an instance of RabbitMQ is running and accessible.
+
+
 ## Code walk-through
 
-This sample shows a basic usage of RabbitMQ as a transport for NServiceBus.
+This sample shows basic usage of RabbitMQ as a transport for NServiceBus. The application sends an empty message to itself, via the RabbitMQ broker, and writes to the console when the message is received.
 
 
-### Enable RabbitMQ
+### Configuration
 
 snippet:ConfigureRabbit
 
-
-### Configuring RabbitMQ
-
-Since the above connection string does not define a username it will default to
-
-```no-highlight
-username: guest
-password: guest
-```
+The username and password can also be configured via the connection string. If these are not present, the connection string effectively defaults to `host=localhost;username=guest;password=guest`.
