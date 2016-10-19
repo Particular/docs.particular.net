@@ -528,8 +528,6 @@
         Title: Saga concurrency
       - Url: nservicebus/nhibernate/sql-azure
         Title: SQL Azure
-      - Url: nservicebus/nhibernate/outbox
-        Title: Outbox
       - Url: nservicebus/nhibernate/scripting
         Title: Scripting
     - Url: nservicebus/ravendb
