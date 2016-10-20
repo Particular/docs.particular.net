@@ -8,6 +8,6 @@ public class SomeMessageHandler :
     {
         Program.ReceiveCounter.OnNext(message);
 
-        return context.SendLocal(new SomeMessage());
+        return Task.FromResult(0);
     }
 }
