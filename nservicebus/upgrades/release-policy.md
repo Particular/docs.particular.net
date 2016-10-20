@@ -1,7 +1,7 @@
 ---
 title: Release Policy
 summary: What version numbers mean to Particular.
-reviewed: 2016-10-11
+reviewed: 2016-10-20
 redirects:
  - nservicebus/release-policy
 related:
@@ -42,9 +42,14 @@ Some examples:
  * Version 4.6 was released on 2014-05-01 this means that its latest patch release will be supported till 2015-05-01. This means that there will be no fixes minor versions after 2015-05-01. It is required to update to at least a newer minor version that is still supported as this version will receive a patch release.
  * A newer patch release will automatically mean that the previous patch release will be obsolete. Particular will apply a bugfix on the latest patch release but will not officially release a patch for a obsolete patch release. In other words, version X.Y.3 will not be patched (to version X.Y.3.1) when version X.Y.4 is the latest patch. That would then be released as version X.Y.5
 
-It is strongly recommended to upgrade frequently enough to stay on a supported version. For the best upgrade experience, upgrade from one major version to the next major version. For example, when using NServiceBus Version 4.7.2 and intending to upgrade to NServiceBus Version 6.0.0, first upgrade to the latest NServiceBus Version 5.x release (e.g. Version 5.2.19) and follow the suggested API upgrade guides and [ObsoleteAttribute messages](https://msdn.microsoft.com/en-us/library/system.obsoleteattribute.aspx). Then repeat the exercise to upgrade from Version 5.x to Version 6.0.0.
+It is strongly recommended to upgrade frequently enough to stay on a supported version. For the best upgrade experience, upgrade from one major version to the next major version. For example, when using NServiceBus Version 4.7.2 and intending to upgrade to NServiceBus Version 6.0.0, first upgrade to the latest NServiceBus Version 5.x release (e.g. Version 5.2.19) and follow the suggested API upgrade guides and deprecation messages. Then repeat the exercise to upgrade from Version 5.x to Version 6.0.0.
 
 [Contact support](https://particular.net/support) if there are any bugfixes that needs to be back-ported to a specific version.
+
+
+### Deprecation
+
+Public API methods and properties are deprecated using the [ObsoleteAttribute messages](https://msdn.microsoft.com/en-us/library/system.obsoleteattribute.aspx). Continued usage of a deprecated method or property will result either in a compiler warning or error. A warning message indicates the version in which the deprecation will start to generate a compiler error (usually the next major version). The message will also indicate the version in which the deprecated method or property will be removed. Deprecations in minor releases will always generate a compiler warning and not an error.
 
 
 ## Summary
