@@ -13,15 +13,16 @@ The message doesn't have to be dispatched immediately after sending, it can be d
 
 NOTE: Only send operations can be deferred. Publish and reply operations cannot be deferred.
 
-## Handling current message later
-To handle the current message at a later time `bus.HandleCurrentMessageLater()` method can be used.  This was the initial way of *deferring* a message. This would create a copy of the message that has the same identifier, header and body, and then put the new message at the end of the queue. The message eventually will be pick up again once other messages in the queue are processed. 
 
-There are two caveats with this method:
+## Delaying messages using HandleCurrentMessageLater
 
-- As mentioned above a new copy of the message will be put back at the end of the queue. To make this work, the message pipeline will not abort which means any business transaction will also get committed. 
-- If there are no other messages in the queue, or the condition to put the message back into the queue is not correct, the message goes back into the queue and it will be picked up immediately afterwards. This will have an effect of an endless loop which will be noted as high system resource utilization by the endpoint.
+The `HandleCurrentMessageLater()` method was primarily used to defer messages when using NServiceBus Versions 2.x and below, before the Defer functionality was introduced in Versions 3 and above. While this API is still supported in Versions 6 and below, there are significant caveats in using this API.
 
-As such, this method will be deprecated in NServiceBus version 7.0. It is recommended to use either [Delayed Retries](/nservicebus/recoverability/#delayed-retries) or one of the deferring mechanisms below, depending on the case at hand.  
+- Calling this method would create a copy of the message that has the same identifier, header, and body. This message would then be put at the end of the queue. The endpoint will eventually pick up this message once all the other messages in its queue have been processed. To make this work, the message pipeline will not abort which means any business transaction that's part of calling this method will also get committed. 
+- If the endpoint's queue is empty, or the condition to put the message back into the queue is incorrect, the message goes back into the queue immediately causing the endpoint to process the same message without any delay. This behavior can cause an endless loop which will manifest itself as a high system resource utilization by the endpoint.
+
+WARNING: This method will be deprecated in NServiceBus version 7.0. It is recommended to use either [Delayed Retries](/nservicebus/recoverability/#delayed-retries) or one of the deferring mechanisms below, depending on the scenario.  
+
 
 ## Delaying message dispatching
 
