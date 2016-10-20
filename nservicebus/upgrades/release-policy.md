@@ -47,6 +47,10 @@ It is strongly recommended to upgrade frequently enough to stay on a supported v
 [Contact support](https://particular.net/support) if there are any bugfixes that needs to be back-ported to a specific version.
 
 
+### Deprecation
+
+Public API members are deprecated using the `ObsoleteAttribute`. Continued usage of a member after deprecation will result in either a compiler warning or error. A warning message indicates the version in which the deprecation will start to generate an error (usually the next major version). Both warning and compiler messages indicate in which version a member will be removed. Deprecations in minor releases will always generate a warning and not an error.
+
 ## Summary
 
 The following table summarize the risk effort and urgency for the different types of releases
