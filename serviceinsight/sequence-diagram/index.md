@@ -16,7 +16,7 @@ The sequence diagram shows when messages in the same conversation as the selecte
 
 When NServiceBus sends or publishes a message it adds specific headers such as `NServiceBus.MessageId`, which is a unique ID for that message. The first message to be sent in a conversation will also get a unique `ConversationId` header.
 
-If the handling of an incoming message causes more messages to be sent or published, those outgoing messages are given an `NServiceBus.RelatedTo` header equal to the `MessageId` of the incoming message and are given the same `ConversationId` as the incoming message.
+If the handling of an incoming message results in outgoing messages, those messages are given an `NServiceBus.RelatedTo` header equal to the `MessageId` of the incoming message and are given the same `ConversationId` as the incoming message.
 
 Additional headers are used to determine endpoint names, message intent and other factors. [Read more about headers](/nservicebus/messaging/headers.md).
 
@@ -37,7 +37,7 @@ Each endpoint involved in the conversation is represented by a gray box along th
 
 Each conversation starts with a single command or event. This message is often triggered by some action external to the system such as a user clicking a Submit Order button on a website. The metadata used to generate the diagram does not include the trigger such cases but it does include the endpoint that sent or published the message, represented by a Start of Conversation marker on the endpoint lifeline.
 
-NOTE: Not every sequence diagram will have a Start of Conversation marker. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. The diagram will only show get the last 50 messages from the conversation and this may not include the initiating message.
+NOTE: The Start of Conversation marker may not always be visible. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. The diagram will only show get the last 50 messages from the conversation and this may not include the initiating message.
 
 
 ### Messages
