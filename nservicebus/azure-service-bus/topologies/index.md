@@ -69,6 +69,7 @@ The `ForwardingTopology` supports up to 2,000 endpoints with up to 2,000 events 
 | Decoupled Publishers / Subscribers | no                        | yes                |
 | Polymorphic events support         | no                        | yes                |
 | Events overflow protections        | no                        | yes                |
+| Subscriber auto-scaling based on queue size | no                        | yes                |
 
 
 ## Versions 6 and below
