@@ -73,20 +73,20 @@ Events are represented similarly to other messages but with dashed lines and a d
 NOTE: Each event published will appear once for each subscriber, as if individual messages were sent to each subscriber by the sender, regardless of whether Unicast or Multicast routing is used. [Learn more about Message Routing](/nservicebus/messaging/routing.md).
 
 
-### Loopbacks
+### Loopback Messages
 
-![Loopback](loopback.png)
+![Loopback message](loopback.png)
 
-A loopback is a message that an endpoint sends to itself and is represented by a short arrow with a special icon, that does not connect to another endpoint lifeline. As with any other message, hovering over or selecting the message will highlight the processing for that message in the lifeline.
+A loopback message is a message that an endpoint sends to itself and is represented by a short arrow with a special icon, that does not connect to another endpoint lifeline. As with any other message, hovering over or selecting the message will highlight the processing for that message in the lifeline.
 
 
-### Timeouts
+### Timeout messages
 
-![Timeout](timeout.png)
+![Timeout message](timeout.png)
 
-A timeout is a special type of loopback where handling is deferred until later. It is represented as a loopback with a clock icon.
+A timeout message is a special type of loopback message where handling is deferred until later. It is represented as a loopback message with a clock icon.
 
-NOTE: The time of processing may not correspond to the time at which a timeout was sent back for processing by the timeout scheduler. The sequence diagram does not currently support visualization of the time at which the timeout was sent back and will only indicate when it was processed.
+NOTE: The time of processing may not correspond to the time at which a timeout message was sent back for processing by the timeout message scheduler. The sequence diagram does not currently support visualization of the time at which the timeout message was sent back and will only indicate when it was processed.
 
 
 ### Differences with UML sequence diagrams
@@ -107,8 +107,8 @@ Item | ServiceInsight | UML
  | N/A | Used for response messages and asynchronous messages.
 **Asynchronous messages** |  | ![UML asynchronous messages](uml-asynchronous.png)
  | N/A - all NServiceBus messages are asynchronous so the ServiceInsight Sequence Diagram has no special representation for asynchronous messages and no representation for synchronous messages, even though messages may exhibit synchronous behavior by (system) design. | Represented by a sloping dashed or solid line with an open arrow.
-**Send to self messages / loopbacks** | ![Loopback](loopback-si.png) | ![UML loopback](uml-loopback.png)
- | Represented by a short uni-directional arrow that does not connect to another endpoint lifeline and a specific icon. | Represented by an arrow that connects back to the sending object's lifeline. It is immediately followed by its handler, which usually overlaps the handler that sent the loopback.
+**Send to self / loopback messages** | ![Loopback message](loopback-si.png) | ![UML loopback message](uml-loopback.png)
+ | Represented by a short uni-directional arrow that does not connect to another endpoint lifeline and a specific icon. | Represented by an arrow that connects back to the sending object's lifeline. It is immediately followed by its handler, which usually overlaps the handler that sent the loopback message.
 **Handlers** |  | ![UML handler](uml-handler.png)
  | N/A - currently it's not possible to collect telemetry data to visualize message handlers. | Represented by rectangles directly attached to arrow heads.
 **Message Processing** | ![Message processing](processing.png) |
