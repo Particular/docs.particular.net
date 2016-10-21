@@ -59,7 +59,7 @@ partial:code
 
 NServiceBus then picks up the connection setting from the `app.config` from `connectionStrings` and `appSettings` sections. The convention used for `appSettings` does not support defining settings specific for a single persistence concern. If this level of granularity is required use a code-based approach.
 
-NOTE: When using SQL 2012 change the dialect to `MsSql2012Dialect`. Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhibernate.info/doc/)
+NOTE: When using SQL 2012 or later, change the dialect to `MsSql2012Dialect`. Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhibernate.info/doc/)
 
 snippet:NHibernateAppConfig
 

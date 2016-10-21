@@ -14,7 +14,7 @@ tags:
  - Saga
 ---
 
-In most cases [handlers](/nservicebus/handlers/) are meant to modify the internal state of an application based on the received message. There are multiple ways to do this
+In most cases [handlers](/nservicebus/handlers/) are meant to modify the internal state of an application based on the received message. There are multiple ways to do this.
 
 
 ## Without using NServiceBus persistence
