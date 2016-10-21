@@ -1,7 +1,6 @@
 ﻿namespace Core5.Handlers
 {
     using System;
-    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Persistence;
 
@@ -66,14 +65,14 @@
                 {
                     var session = Bus.MyOrmSession();
                     var order = session.Get(message.OrderId);
-                    if (order.HasProcessed(Bus.CurrentMessageContext.Id))
+                    if (this.MessageHasAlreadyBeenProcessed(Bus.CurrentMessageContext.Id, order))
                     {
                         //Subsequent handlers are not invoked because the message has already been processed.
                         Bus.DoNotContinueDispatchingCurrentMessageToHandlers();
                     }
                     else
                     {
-                        order.MarkAsProcessed(Bus.CurrentMessageContext.Id);
+                        this.MarkAsProcessed(Bus.CurrentMessageContext.Id, order);
                     }
                 }
             }
@@ -153,6 +152,16 @@
     public static class MyOrmExtensions
     {
         public static DataAccess.IMyOrmSession MyOrmSession(this IBus b)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool MessageHasAlreadyBeenProcessed(this DataAccess.Managed.IdempotencyEnforcer o, string messageId, DataAccess.Order order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void MarkAsProcessed(this DataAccess.Managed.IdempotencyEnforcer o, string messageId, DataAccess.Order order)
         {
             throw new NotImplementedException();
         }

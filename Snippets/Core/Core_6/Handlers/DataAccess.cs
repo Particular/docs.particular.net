@@ -64,17 +64,19 @@
                 {
                     var session = context.SynchronizedStorageSession.MyOrmSession();
                     var order = session.Get(message.OrderId);
-                    if (order.HasProcessed(context.MessageId))
+                    if (this.MessageHasAlreadyBeenProcessed(context.MessageId, order))
                     {
                         //Subsequent handlers are not invoked because the message has already been processed.
                         context.DoNotContinueDispatchingCurrentMessageToHandlers();
                     }
                     else
                     {
-                        order.MarkAsProcessed(context.MessageId);
+                        this.MarkAsProcessed(context.MessageId, order);
                     }
                     return Task.FromResult(0);
                 }
+
+                
             }
 
             public class NonIdempotentHandler : IHandleMessages<AddOrderLine>
@@ -130,16 +132,6 @@
             {
                 throw new NotImplementedException();
             }
-
-            public bool HasProcessed(string messageId)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void MarkAsProcessed(string messageId)
-            {
-                throw new NotImplementedException();
-            }
         }
         public class MyPersistence : PersistenceDefinition
         {
@@ -149,6 +141,16 @@
     public static class MyOrmExtensions
     {
         public static DataAccess.IMyOrmSession MyOrmSession(this SynchronizedStorageSession s)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool MessageHasAlreadyBeenProcessed(this DataAccess.Managed.IdempotencyEnforcer o, string messageId, DataAccess.Order order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void MarkAsProcessed(this DataAccess.Managed.IdempotencyEnforcer o, string messageId, DataAccess.Order order)
         {
             throw new NotImplementedException();
         }
