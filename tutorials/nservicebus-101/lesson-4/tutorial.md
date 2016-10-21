@@ -56,7 +56,7 @@ The loose coupling provided by publishing events gives us quite a bit of flexibi
 
 Have you ever seen a codebase for a naive implementation of an e-commerce store? Commonly you'll find one gargantuan SubmitOrder method responsible for retrieving the shopping cart, creating an Order and OrderLines in the database, authorizing the credit card, capturing the credit card authorization, emailing a receipt, notifying a fulfillment agency, and then updating any sort of wish list, gift registry, or "frequently bought together" information the site might keep track of. If that method doesn't number in the hundreds of lines of code, then it likely calls into subroutine methods to handle each of these concerns. The sum total lines of code in such an example likely numbers in at least hundreds of lines of code, if not thousands.
 
-What happens when one of the steps in that long chain fails? You're left with a partially completed process that requires manual intervention to fix, usually by mucking around manually in the database.
+What happens when one of the steps in that long chain fails? You're left with a partially completed process that requires manual intervention to fix, either by mucking around manually in the database, manually reconciling with a credit card processor, or manually sending confirmation emails.
 
 By using events, we can better follow the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle) and divide up these concerns into separate message handlers. Simply publish `OrderPlaced`, and all the other components that subscribe to it will take care of their own concerns.
 
@@ -81,7 +81,7 @@ snippet:EventHandler
 
 ## Subscribing to events
 
-For the MSMQ transport (which we are using in this course) NServiceBus needs to know which endpoint is responsible for publishing an event. This is because the MSMQ transport does not have native publish/subscribe capability but uses **message-driven publish/subscribe**. This means that the subscribing endpoint will send a *subscription request message* to the publisher endpoint, requesting to be added to the subscriber list. The publisher endpoint will store the address of the subscriber (usually in a database, but for now we are still using in-memory persistence) so that when `.Publish()` is called, the list of subscribers can be retrieved and a copy of the event message can be delivered to each one.
+For the MSMQ transport (which we are using in this course) NServiceBus needs to know which endpoint is responsible for publishing an event, so that it can send the publishing endpoint a subscription request message.
 
 You can configure the publisher endpoint via the Routing API like this:
 

@@ -62,7 +62,7 @@ Add this code to your AsyncMain method:
 
 snippet:AsyncMain
 
-This really isn't many lines of code at all, but let's take it line-by-line.
+Let's go line-by-line and find out exactly what each step is doing.
 
 
 #### Console Title
@@ -110,7 +110,7 @@ NServiceBus needs to store some data in between handling messages. We will explo
 
 snippet:ErrorQueue
 
-When things go wrong, NServiceBus needs a place to send failed messages. Otherwise a bug in a message handler could cause a **poison message**, blocking the queue and keeping other work from getting done. This queue is referred to as the **error queue** and is commonly named `error`. We will discuss this more in [Lesson 5: Retrying errors](../lesson-5/).
+Sometimes processing a message fails due to an unanticipated input, a coding bug, or even something as simple as a database deadlock. Automatic retries will make dealing with deadlocks a non-issue, but for very serious errors, the message could get stuck at the top of the queue and be retried indefinitely. This type of message, known as a **poison message**, would block all other messages behind it. When these occur, NServiceBus needs to be able to set it aside in a different queue to allow other work to get done. This queue is referred to as the **error queue** and is commonly named `error`. We will discuss this more in [Lesson 5: Retrying errors](../lesson-5/).
 
 
 #### Installers

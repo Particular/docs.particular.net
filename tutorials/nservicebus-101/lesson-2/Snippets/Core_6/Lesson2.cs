@@ -54,26 +54,19 @@ namespace Core_6.EmptyHandler
     #endregion
 }
 
-namespace Core_6.AsyncHandler
+namespace Core_6.EmptyHandlerAsync
 {
-    #region AsyncHandler
+#pragma warning disable 1998
+    #region EmptyHandlerAsync
     public class DoSomethingHandler : IHandleMessages<DoSomething>
     {
         public async Task Handle(DoSomething message, IMessageHandlerContext context)
         {
-            await AsyncApi.SomeOperationAsync().ConfigureAwait(false);
-            await AsyncApi.SomeOperationAsync().ConfigureAwait(false);
+            // Do something with the message here!
         }
     }
     #endregion
-
-    public static class AsyncApi
-    {
-        public static Task SomeOperationAsync()
-        {
-            return Task.CompletedTask;
-        }
-    }
+#pragma warning restore 1998
 }
 
 namespace Core_6.MultiHandler

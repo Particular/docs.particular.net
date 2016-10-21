@@ -25,6 +25,8 @@ In systems programming, where connectivity is a major concern, there are general
 
 ### Transient exceptions
 
+Transient exceptions are those that, if immediately retried, would likely succeed.
+
 Let's consider a common scenario. You have some code that updates a record in the database. Two threads attempt to lock the row at the same time, resulting in a deadlock. The database chooses one transaction to succeed and the other fails. The exception message Microsoft SQL Server returns for a deadlock is this:
 
 WARNING: Transaction (Process ID 58) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction.
@@ -45,9 +47,7 @@ It can be difficult to deal with this type of failure, as it's frequently not po
 
 ### Systemic exceptions
 
-Outright flaws in your system cause **systemic exceptions**, which are straight-up bugs. They will fail every time given the same input data. These are our good friends NullReferenceException, ArgumentException, dividing by zero, and a host of other idiotic mistakes we've all made.
-
-Besides the usual mistakes in logic, you may have encountered versioning exceptions when deserializing objects. These exceptions occur when you serialize one version of an object, then attempt to deserialize it into another version of the object. Like the other exceptions mentioned above, you can rerun your code as often as you like and it'll just keep failing.
+Outright flaws in your system cause **systemic exceptions**, which are straight-up bugs. They will fail every time given the same input data. These are our good friends NullReferenceException, ArgumentException, dividing by zero, and a host of other common mistakes we've all made.
 
 In short, these are the exceptions that a developer needs to look at, triage, and fix—preferably without all the noise from the transient and semi-transient getting in the way of our investigation.
 
@@ -123,10 +123,6 @@ When we do these steps, we'll see a wall of exception messages in white text, wh
     ERROR NServiceBus.RecoverabilityExecutor Moving message '53ac6836-48ef-49dd-aabb-a67c0104a2a5' to the error queue 'error' because processing failed due to an exception:
     System.Exception: BOOM!
        at < stack trace>
-
-This may be a good time to take a look at your error queue. For MSMQ, open the **Computer Management** administrative tool (or type `compmgmt.msc` at the **Run** prompt) and open **Computer Management (Local)** > **Services and Applications** > **Message Queuing** > **Private Queues**. If you are running ServiceControl, it should have consumed any errors and moved the messages to the **error.log** queue. If not, any errors you've generated should be located in the **error** queue.
-
-NOTE: The MSMQ management tools built into Windows are somewhat lacking. [QueueExplorer](http://www.cogin.com/mq/), a tool created by [Cogin](http://www.cogin.com/), provides much more capability and a nicer user interface.
 
 
 ### Modify immediate retries

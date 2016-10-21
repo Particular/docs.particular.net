@@ -68,13 +68,13 @@ snippet:EmptyHandler
 
 The implementation of the `IHandleMessages<T>` interface is the `Handle` method, which NServiceBus will invoke when a matching message (in this case `DoSomething`) arrives. The `Handle` method receives the message and an `IMessageHandlerContext` that contains tools for working with messages.
 
-True to the asynchronous nature of NServiceBus, the `Handle` method returns a [`System.Threading.Tasks.Task`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) that you must return – returning `null` instead will result in an exception. (In the example above, the lack of a return statement would be a compiler error.)
+The `Handle` method must return a [`System.Threading.Tasks.Task`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx). Returning `null` will result in an exception. In the case above, no async calls need to be made, so we return `Task.CompletedTask` to fulfill the return requirement. 
 
-If all of the operations within the message handler are synchronous, you can simply return `Task.CompletedTask` if using .NET 4.6 or greater, or `Task.FromResult(false)` if `CompletedTask` is not available.
+NOTE: Before .NET 4.6, `Task.CompletedTask` is not available. In that case, you can use `Task.FromResult(false)` instead.
 
-If you plan to call asynchronous operations within the message handler, you can add the `async` keyword to the method, and then await any tasks needed. Then no explicit return is needed because the compiler generates it for you as part of the async state machine.
+Instead, we can add the `async` keyword to the method, and then the compiler takes care of the tasks more or less transparently. No explicit return is needed because the compiler generates it for you as part of the async state machine.
 
-snippet:AsyncHandler
+snippet:EmptyHandlerAsync
 
 You can even implement `IHandleMessages<T>` for multiple different message types within the same class, if it makes sense to logically group the handlers together. Just don't expect any state in class variables to be persisted. NServiceBus will create a new instance of the class for every message that it handles.
 
@@ -105,7 +105,7 @@ Messages should be self-contained within a separate assembly so that they can be
 
 ### Create a message
 
-In order to better organize messages, we'll create our first command in a folder called **Commands**. Because of Visual Studio's automatic namespace conventions, this will make the namespace of any class we create in this folder `Messages.Commands`, which will help later on when we want to apply [message conventions](/nservicebus/messaging/conventions.md) to identify messages instead of marker interfaces.
+In order to better organize messages, we'll create our first command in a folder called **Commands**.
 
 1. In the **Messages** project, create a new folder called **Commands**.
 2. In the **Commands** folder, add a new class named `PlaceOrder`.
