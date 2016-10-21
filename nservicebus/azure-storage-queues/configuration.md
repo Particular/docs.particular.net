@@ -8,6 +8,7 @@ tags:
 - Azure Storage Queues
 related:
 - nservicebus/azure-storage-persistence/performance-tuning
+reviewed: 2016-10-21
 ---
 
 
