@@ -31,7 +31,7 @@ To allow ServiceControl to monitor endpoints:
 The ServiceControl plugins are deployed with the endpoints they are monitoring. It is possible add a plugin to an endpoint during development, testing, or production:
 
 * During development, add the relevant plugin NuGet package to the endpoint's project in Visual Studio using the NuGet.
-* When in production, add the plugin dlls to the BIN directory of the endpoint, specify the SeerviceControl via `AppSettings` (see below)  and restart the endpoint process for the changes to take effect and the plugin to be loaded.
+* When in production, add the plugin dlls to the BIN directory of the endpoint, specify the ServiceControl via `AppSettings` (see below)  and restart the endpoint process for the changes to take effect and the plugin to be loaded.
 
 **Related articles**
 
@@ -49,7 +49,7 @@ Once deployed on an active endpoint, the endpoint sends plugin-specific informat
 
 1. **Endpoint's configuration file**
    Check for an `appSetting` named `ServiceControl/Queue` e.g. `<add key="ServiceControl/Queue" value="particular.servicecontrol"/>`.
-2. **Code base API (only available for plugin versions that target NServiceBus v6+)**
+2. **Code base API (only available for Version 2 or greater of the plugins that target NServiceBus V6)**
    See specific plugin pages.
 
 WARNING: Endpoint with plugins installed that cannot communicate to ServiceControl will shut down.
