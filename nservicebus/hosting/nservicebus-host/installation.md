@@ -21,19 +21,19 @@ To install the process as a Windows Service, include `/install` as a command lin
 
 ```dos
 NServiceBus.Host.exe /install
-[/serviceName]
-[/displayName]
-[/description]
-[/endpointConfigurationType]
-[/endpointName]
+[/serviceName:<string>]
+[/displayName:<string>]
+[/description:<string>]
+[/endpointConfigurationType:<string>]
+[/endpointName:<string>]
 [/installInfrastructure]
-[/scannedAssemblies]
-[/dependsOn]
+[/scannedAssemblies:<string>]
+[/dependsOn:<string>]
 [/sideBySide]
 [/startManually]
-[/username]
-[/password]
-[profile]
+[/username:<string>]
+[/password:<string>]
+[<profile>]
 ```
 
 Here is an example of the `/install` command line:
