@@ -86,7 +86,7 @@ Configures NServiceBus to scan only the specified assemblies.
 
 ### DependsOn
 
-Specifies the names of services or groups which must start before this service. Multiple services/groups are separated by a comma.
+Specifies the names of services or groups which must start before this service, e.g. `/dependsOn:"MSMQ"`. Multiple services/groups are separated by a comma.
 
 
 ### SideBySide
