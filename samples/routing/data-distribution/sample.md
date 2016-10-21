@@ -48,17 +48,11 @@ snippet:MainConfig
 
 The second endpoint is used for data distribution purposes. The logical name of the data distribution endpoint consists of the name of the main endpoint and a suffix which is specific to a given instance. Such suffix can be set in the configuration for each deployment or can be obtained from an environment (e.g. Azure role instance ID).
 
-snippet:DistributionConfig
+snippet:DistributionEndpointName
 
 NServiceBus uses assembly scanning to load various user-provided components such as message handlers. When co-hosting two endpoints in a single process it is important to make sure NServiceBus loads correct components to correct endpoints. In this sample `DataDistribution` namespace is used to mark data distribution components
 
-snippet:CacheInvalidationHandler
-
-On the endpoint configuration level this namespace is used for filtering
-
-snippet:FilterNamespace1
-
-snippet:FilterNamespace2
+snippet:DistributionEndpointTypes
 
 In real-world scenarios NServiceBus is scaled out by deploying multiple instances of same application binaries to multiple machines (e.g. Client in this sample). For simplicity in this sample the scale out is simulated by having two separate applications, Client and Client2.
 

@@ -43,9 +43,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Client\Program.cs">
+      <Link>Program.cs</Link>
+    </Compile>
     <Compile Include="CacheInvalidationHandler.cs" />
     <Compile Include="OrderAcceptedHandler.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
