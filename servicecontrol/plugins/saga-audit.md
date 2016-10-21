@@ -51,7 +51,7 @@ If using the older version of the plugin, namely **ServiceControl.Plugin.SagaAud
 
 ### ServiceControl Queue
 
-For plugin that targets NServiceBus v6+, it is now possible to configure the ServiceControl queue via code:
+For Version 2 or greater of the plugins that target NServiceBus V6, it is now possible to configure the ServiceControl queue via code:
 
 snippet: SagaAudit_Configure_ServiceControl
 
