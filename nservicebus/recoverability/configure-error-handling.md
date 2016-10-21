@@ -53,7 +53,7 @@ partial:errorheader
 
 Administrators should monitor the error queue, in order to detect when problems occur. The message in the error queue contains information regarding its source queue and machine. Having that information an administrator can investigate the specific node and solve the problem, e.g. bring up a database that went down.
 
-Monitoring and handling of failed messages with [ServicePulse](/servicepulse/) provides access to full exception details (including stack-trace). [ServiceInsight](/serviceinsight/) enables additional, advanced debugging with providing full message processing context. Both of them provide a `retry` functionality to send the message back to the endpoint for re-processing. For more details, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md).
+Monitoring and handling of failed messages with [ServicePulse](/servicepulse/) provides access to full exception details (including stack-trace). [ServiceInsight](/serviceinsight/) offers advanced debugging capability providing information about exception details as well as giving insight into the full message flow from where the message originally started to where the message was handled. Both of them provide a `retry` functionality to send the message back to the endpoint for re-processing. For more details, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md).
 
 If either ServicePulse or ServiceInsight is not available in the environment, the `retry` operation can be performed using the native management tools of the selected transport:
 
