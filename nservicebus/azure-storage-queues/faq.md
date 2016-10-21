@@ -7,6 +7,7 @@ tags:
 - Transport
 - ASQ
 - Azure Storage Queues
+reviewed: 2016-10-21
 ---
 
 
