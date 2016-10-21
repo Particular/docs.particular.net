@@ -60,7 +60,7 @@ Note: The Windows Service name is different from what is displayed in the Window
 
 To set the name of the Windows Service as it is displayed in the Windows Service Manager, specify `/displayName:ServiceDisplayName`.
 
-If `/displayName` is not specified, but `/serviceName` is, the display name does not become what was passed in the `/serviceName`, but the default *ServiceName* as described above is used.
+If the `/displayName` is not specified, then the default *ServiceName* will be used as the display name and not the provided service name as specified in the `/serviceName` parameter.
 
 
 ### Description
