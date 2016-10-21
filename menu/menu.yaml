@@ -425,6 +425,8 @@
       Title: Multiple storage accounts
     - Url: nservicebus/azure/data-distribution
       Title: Data distribution
+    - Url: nservicebus/azure-storage-queues/native-delayed-delivery
+      Title: Native delayed delivery
   - Url: nservicebus/sqlserver
     Title: SQL Server Transport
     Articles:
