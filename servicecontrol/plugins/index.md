@@ -8,7 +8,7 @@ related:
 - samples/custom-checks/monitoring3rdparty
 ---
 
-ServiceControl is the backend service for ServiceInsight, ServicePulse, and third-party integrations. It collects and stores information from monitored NServiceBus endpoints and exposes this information for consumption by various clients via a HTTP API.
+ServiceControl is the backend service for ServiceInsight, ServicePulse, and third-party integration. It collects and stores information from monitored NServiceBus endpoints and exposes this information for consumption by various clients via a HTTP API.
 
 NOTE: When ServiceControl is introduced into an existing environment the standard behavior of error and audit queues will change. When ServiceControl is not monitoring the environment failed messages will remain in the configured error queue and audit messages in the configured audit queue, as soon as ServiceControl is installed and configured messages, in both queues, will be imported by ServiceControl.
 
