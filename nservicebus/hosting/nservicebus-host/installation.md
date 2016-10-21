@@ -104,7 +104,7 @@ By default, Windows Services start automatically when the operating system start
 
 To specify under which account the service runs, pass in the username of that account.
 
-NOTE: When installing the Host using a custom user account, the user account is added to the `Performance Monitor Users` and is granted `run as a service` privileges. If, at a later time, the user needs to be changed it is suggested to uninstall the Host and re-install it in order to guarantee that the new user is correctly setup.
+NOTE: When installing the Host using a custom user account, the user account is added to the `Performance Monitor Users` and is granted `run as a service` privileges. If, at a later time, the user needs to be changed it is suggested to uninstall the Host and re-install it in order to guarantee that the new user is correctly setup. The created privileges and `Performance Monitor Users` are not removed by the host when uninstalling and need to be managed by the administrator.
 
 Version 7 and above supports [Group Managed Service Accounts (GMSA)](http://blog.windowsserversecurity.com/2015/01/27/step-by-step-guide-to-configure-group-managed-service-accounts/).  When specifying a GMSA,  the `/username` command line switch should include the trailing dollar sign e.g. `/username:"corp\gmsaaccount$"` and the `/password` command line switch should be omitted.
 
