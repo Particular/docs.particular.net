@@ -33,6 +33,7 @@ NServiceBus.Host.exe /install
 [/startManually]
 [/username]
 [/password]
+[profile]
 ```
 
 Here is an example of the `/install` command line:
@@ -111,6 +112,11 @@ Version 7 and above supports [Group Managed Service Accounts (GMSA)](http://blog
 ### Password
 
 If the specified account which runs the Windows Services requires a password, set it using the `/password:"<password>"` parameter.
+
+
+### Profile
+
+A [host profile](profiles.md) can be specified as the last parameter, e.g. `NServiceBus.Host.exe /install NServiceBus.Lite`. By default, the `NServiceBus.Production` profile is applied.
 
 
 ## Uninstalling a Windows Service
