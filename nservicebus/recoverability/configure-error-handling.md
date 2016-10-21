@@ -17,7 +17,7 @@ related:
 
 ## Configure the error queue address
 
-When message processing fails NServiceBus performs automatic [delivery retries](/nservicebus/recoverability). When that fails as well NServiceBus forwards failing message to a designated error queue.
+When message processing fails NServiceBus performs [automatic retries](/nservicebus/recoverability). When that fails as well NServiceBus forwards failing message to a designated error queue.
 
 WARNING: When running with [transport transactions disabled](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled) NServiceBus will perform a best-effort error message forwarding, i.e. if moving to the error queue fails, the message will be lost.
 
