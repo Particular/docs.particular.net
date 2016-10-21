@@ -7,6 +7,7 @@ tags:
  - Azure
  - Cloud
  - Logging
+reviewed: 2016-10-21
 ---
 
 ## Logging
