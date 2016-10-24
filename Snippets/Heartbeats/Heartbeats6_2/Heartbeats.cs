@@ -26,7 +26,6 @@ class MyClass
 
     public void Foo3()
     {
-
         #region Heartbeats_ttl
 
         var endpointConfiguration = new EndpointConfiguration("myendpoint");
@@ -37,7 +36,6 @@ class MyClass
 
     public void Foo4()
     {
-
         #region Heartbeats_disable
 
         var endpointConfiguration = new EndpointConfiguration("myendpoint");
