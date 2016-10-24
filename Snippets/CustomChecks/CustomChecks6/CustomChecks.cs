@@ -64,4 +64,12 @@ class CustomChecks
         endpointConfiguration.CustomCheckPlugin("ServiceControl_Queue");
         #endregion
     }
+
+    public void Foo2()
+    {
+        #region CustomCheck_disable
+        var endpointConfiguration = new EndpointConfiguration("myendpoint");
+        endpointConfiguration.DisableFeature<ServiceControl.Features.CustomChecks>();
+        #endregion
+    }
 }

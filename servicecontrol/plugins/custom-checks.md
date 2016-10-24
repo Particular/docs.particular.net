@@ -90,8 +90,13 @@ NOTE: It is essential to deploy this plugin to the endpoint in production in ord
 
 If using the older version of the plugin, namely **ServiceControl.Plugin.CustomChecks** remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.
 
+## Configuration
 ### ServiceControl Queue
 
-For plugin that targets NServiceBus v6+, it is now possible to configure the ServiceControl queue via code:
+For Version 2 or greater of the plugins that target NServiceBus V6, it is now possible to configure the ServiceControl queue via code:
 
 snippet: CustomCheck_Configure_ServiceControl
+
+### Disabling plugin
+
+snippet: CustomCheck_disable

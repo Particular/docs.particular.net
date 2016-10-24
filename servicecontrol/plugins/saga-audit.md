@@ -55,6 +55,9 @@ For Version 2 or greater of the plugins that target NServiceBus V6, it is now po
 
 snippet: SagaAudit_Configure_ServiceControl
 
+### Disabling plugin
+
+snippet: SagaAudit_disable
 
 ## Removing the plugin from Production
 

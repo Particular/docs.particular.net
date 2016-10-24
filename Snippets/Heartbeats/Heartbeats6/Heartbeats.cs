@@ -1,5 +1,6 @@
 ﻿using System;
 using NServiceBus;
+using ServiceControl.Features;
 
 class MyClass
 {
@@ -30,6 +31,17 @@ class MyClass
 
         var endpointConfiguration = new EndpointConfiguration("myendpoint");
         endpointConfiguration.HeartbeatPlugin("ServiceControl_Queue", TimeSpan.FromSeconds(30), TimeSpan.FromMinutes(3));
+
+        #endregion
+    }
+
+    public void Foo4()
+    {
+
+        #region Heartbeats_disable
+
+        var endpointConfiguration = new EndpointConfiguration("myendpoint");
+        endpointConfiguration.DisableFeature<Heartbeats>();
 
         #endregion
     }
