@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks4_1", "CustomCh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks5_1", "CustomChecks5_1\CustomChecks5_1.csproj", "{0317B648-900E-4100-B829-294DDBD421E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks6", "CustomChecks6\CustomChecks6.csproj", "{7286B248-4947-4297-9031-811271751643}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks6_1", "CustomChecks6_1\CustomChecks6_1.csproj", "{7286B248-4947-4297-9031-811271751643}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks6_2", "CustomChecks6_2\CustomChecks6_2.csproj", "{7286B248-4947-4297-9031-811271751644}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,8 @@ Global
 		{0317B648-900E-4100-B829-294DDBD421E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7286B248-4947-4297-9031-811271751643}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7286B248-4947-4297-9031-811271751643}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7286B248-4947-4297-9031-811271751644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7286B248-4947-4297-9031-811271751644}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

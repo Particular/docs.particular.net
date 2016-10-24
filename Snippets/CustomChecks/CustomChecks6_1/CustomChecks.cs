@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NServiceBus;
 using ServiceControl.Plugin.CustomChecks;
 
 class CustomChecks
 {
-    #region CustomCheck6 [1.0,2]
+    #region CustomCheck6
     public class MyCustomCheck :
         CustomCheck
     {
@@ -27,7 +26,7 @@ class CustomChecks
     }
     #endregion
 
-    #region PeriodicCheck6 [1.0,2]
+    #region PeriodicCheck6
     public class MyPeriodicCheck :
         CustomCheck
     {
@@ -54,22 +53,5 @@ class CustomChecks
         {
             return false;
         }
-    }
-
-
-    public void Foo()
-    {
-        #region CustomCheck_Configure_ServiceControl
-        var endpointConfiguration = new EndpointConfiguration("myendpoint");
-        endpointConfiguration.CustomCheckPlugin("ServiceControl_Queue");
-        #endregion
-    }
-
-    public void Foo2()
-    {
-        #region CustomCheck_disable
-        var endpointConfiguration = new EndpointConfiguration("myendpoint");
-        endpointConfiguration.DisableFeature<ServiceControl.Features.CustomChecks>();
-        #endregion
     }
 }

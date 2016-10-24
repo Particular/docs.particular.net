@@ -6,7 +6,7 @@ class MyClass
 {
     public void Foo()
     {
-        #region Heartbeats_Configure_ServiceControl [2,3)
+        #region Heartbeats_Configure_ServiceControl
 
         var endpointConfiguration = new EndpointConfiguration("myendpoint");
         endpointConfiguration.HeartbeatPlugin("ServiceControl_Queue");
@@ -16,7 +16,7 @@ class MyClass
 
     public void Foo2()
     {
-        #region Heartbeats_interval [2,3)
+        #region Heartbeats_interval
 
         var endpointConfiguration = new EndpointConfiguration("myendpoint");
         endpointConfiguration.HeartbeatPlugin("ServiceControl_Queue", frequency: TimeSpan.FromMinutes(2));
@@ -27,7 +27,7 @@ class MyClass
     public void Foo3()
     {
 
-        #region Heartbeats_ttl [2,3)
+        #region Heartbeats_ttl
 
         var endpointConfiguration = new EndpointConfiguration("myendpoint");
         endpointConfiguration.HeartbeatPlugin("ServiceControl_Queue", TimeSpan.FromSeconds(30), TimeSpan.FromMinutes(3));

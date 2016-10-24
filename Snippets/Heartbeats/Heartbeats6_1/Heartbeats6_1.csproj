@@ -7,8 +7,8 @@
     <ProjectGuid>{7286B248-4947-4297-9031-811271751643}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CustomChecks6_1</RootNamespace>
-    <AssemblyName>CustomChecks6_1</AssemblyName>
+    <RootNamespace>Heartbeats6_1</RootNamespace>
+    <AssemblyName>Heartbeats6_1</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -25,21 +25,26 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Core">
+    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NServiceBus.6.0.0\lib\net452\NServiceBus.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceControl.Plugin.Nsb6.CustomChecks, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\ServiceControl.Plugin.Nsb6.CustomChecks.2.0.0\lib\net452\ServiceControl.Plugin.Nsb6.CustomChecks.dll</HintPath>
+    <Reference Include="ServiceControl.Plugin.Nsb6.Heartbeat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ServiceControl.Plugin.Nsb6.Heartbeat.1.0.0\lib\net452\ServiceControl.Plugin.Nsb6.Heartbeat.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="Heartbeats.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomChecks.cs" />
+    <Content Include="heartbeatsIntervalConfig.xml" />
+    <Content Include="heartbeatsTtlConfig.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

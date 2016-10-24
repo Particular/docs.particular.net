@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heartbeats4_1", "Heartbeats
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heartbeats5_1", "Heartbeats5_1\Heartbeats5_1.csproj", "{0317B648-900E-4100-B829-294DDBD421E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heartbeats6", "Heartbeats6\Heartbeats6.csproj", "{7286B248-4947-4297-9031-811271751643}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heartbeats6_1", "Heartbeats6_1\Heartbeats6_1.csproj", "{7286B248-4947-4297-9031-811271751643}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heartbeats6_2", "Heartbeats6_2\Heartbeats6_2.csproj", "{7286B248-4947-4297-9031-811271751648}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,8 @@ Global
 		{0317B648-900E-4100-B829-294DDBD421E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7286B248-4947-4297-9031-811271751643}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7286B248-4947-4297-9031-811271751643}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7286B248-4947-4297-9031-811271751648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7286B248-4947-4297-9031-811271751648}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
