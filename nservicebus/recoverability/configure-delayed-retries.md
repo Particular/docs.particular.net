@@ -2,6 +2,7 @@
 title: Configure delayed retries
 summary: Shows how to configure delayed retries which happens as a second stage of recoverability.
 component: Core
+reviewed: 2016-10-21
 tags:
  - Error Handling
  - Exceptions
@@ -16,7 +17,7 @@ related:
 
 NOTE: Starting from NServiceBus Version 6 Delayed Retries Policy (formerly known as Second Level Retries Policy) has been deprecated in favor of the new custom Recoverability policy which allows much more control over the Recoverability behavior. This documentation shows how previous Delayed Retries Policies can be implemented with the new [Recoverability Policy](/nservicebus/recoverability/custom-recoverability-policy.md).
 
-WARNING: Delayed Retries cannot be used when transport transactions are disabled or Delayed Delivery is not available. For more information about transport transactions, refer to [transport transaction](/nservicebus/transports/transactions.md). For more information about delayed delivery, refer to [delayed-delivery](/nservicebus/messaging/delayed-delivery.md#caveats).
+WARNING: Delayed Retries cannot be used when transport transactions are disabled or Delayed Delivery is not available. For more information about transport transactions, refer to [transport transaction](/nservicebus/transports/transactions.md). For more details on the caveats, see: [Delayed Delivery](/nservicebus/messaging/delayed-delivery.md#caveats) article.
 
 partial: config
 
@@ -28,24 +29,21 @@ snippet:DisableDelayedRetries
 
 ## Custom Retry Policy
 
-Custom retry logic can be configured based on headers or timing in code.
-
-
-### Applying a custom policy
+Custom retry logic can be configured via code.
 
 snippet:DelayedRetriesCustomPolicy
 
 
 ### Simple Policy
 
-The following retry policy that will retry a message 3 times with a 5 second interval.
+The following retry policy overrides default 10 seconds delay interval and sets it to 5 seconds.
 
 snippet:DelayedRetriesCustomPolicyHandler
 
 
 ### Exception based Policy
 
-The following retry policy extends the previous policy with a custom handling logic for a specific exception.
+Sometimes the number of retries or the delay interval might depend on the error exception thrown. The following retry policy extends the previous one by skipping delayed retries whenever `MyBusinessException` has been thrown during incoming message processing.
 
 snippet:DelayedRetriesCustomExceptionPolicyHandler
 
