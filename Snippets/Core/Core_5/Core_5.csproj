@@ -131,8 +131,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
-    <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using NServiceBus;
 using ServiceControl.Plugin.CustomChecks;
 
 class CustomChecks
@@ -53,5 +54,22 @@ class CustomChecks
         {
             return false;
         }
+    }
+
+
+    public void Foo()
+    {
+        #region CustomCheck_Configure_ServiceControl
+        var endpointConfiguration = new EndpointConfiguration("myendpoint");
+        endpointConfiguration.CustomCheckPlugin("ServiceControl_Queue");
+        #endregion
+    }
+
+    public void Foo2()
+    {
+        #region CustomCheck_disable
+        var endpointConfiguration = new EndpointConfiguration("myendpoint");
+        endpointConfiguration.DisableFeature<ServiceControl.Features.CustomChecks>();
+        #endregion
     }
 }

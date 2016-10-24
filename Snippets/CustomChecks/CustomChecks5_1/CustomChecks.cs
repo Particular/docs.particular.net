@@ -49,5 +49,4 @@ class CustomChecks
             return false;
         }
     }
-
 }

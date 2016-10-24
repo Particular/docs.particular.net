@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
-  <!--startcode heartbeatsIntervalConfig -->
+  <!--startcode heartbeatsTtlConfig [1.0,2] -->
   <appSettings>
     <add key="Heartbeat/Interval" 
          value="00:00:30"/>
+    <add key="Heartbeat/TTL" 
+         value="00:03:00"/>
   </appSettings>
   <!--endcode-->
 </configuration>

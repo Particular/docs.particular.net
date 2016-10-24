@@ -100,6 +100,25 @@
     - ServiceControl.Plugin.Nsb4.CustomChecks
     - ServiceControl.Plugin.Nsb3.CustomChecks
 
+- Key: SagaAudit
+  Name: ServiceControl SagaAudit
+  DocoUrl: servicecontrol/plugins/saga-audit
+  Category: Other
+  ProjectUrl: https://github.com/Particular/?query=SagaAudit
+  NugetOrder:
+    - ServiceControl.Plugin.Nsb6.SagaAudit
+
+- Key: Heartbeats
+  Name: ServiceControl Heartbeats
+  DocoUrl: servicecontrol/plugins/heartbeat
+  Category: Other
+  ProjectUrl: https://github.com/Particular/?query=Heartbeat
+  NugetOrder:
+    - ServiceControl.Plugin.Nsb6.Heartbeat
+    - ServiceControl.Plugin.Nsb5.Heartbeat
+    - ServiceControl.Plugin.Nsb4.Heartbeat
+    - ServiceControl.Plugin.Nsb3.Heartbeat
+
 - Key: Distributor
   Name: Distributor
   DocoUrl: nservicebus/scalability-and-ha/distributor

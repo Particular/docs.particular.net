@@ -348,8 +348,6 @@
     <Content Include="Routing\MSMQ\EndpointMapping.config.xml" />
     <Content Include="Routing\MSMQ\InstanceMappingFileScaleOut.xml" />
     <Content Include="Routing\MSMQ\InstanceMappingFile.xml" />
-    <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
-    <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
     <Content Include="UpgradeGuides\5to6\null.xml" />
     <Content Include="XmlDocumentPayload.xml" />

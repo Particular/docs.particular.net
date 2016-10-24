@@ -26,10 +26,10 @@ NOTE: It is essential to deploy this plugin to the endpoint in production for Se
 
 ## NuGet packages
 
- * NServiceBus Version 6.x: [ServiceControl.Plugin.Nsb6.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.Heartbeat)
- * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat)
- * NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat)
- * NServiceBus Version 3.x: [ServiceControl.Plugin.Nsb3.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat)
+* NServiceBus Version 6.x: [ServiceControl.Plugin.Nsb6.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.Heartbeat)
+* NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat)
+* NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat)
+* NServiceBus Version 3.x: [ServiceControl.Plugin.Nsb3.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat)
 
 WARNING: The Heartbeat plugin Version 2 for NServiceBus 5 is currently not supporting Send-Only endpoints.
 
@@ -41,6 +41,13 @@ If are using the older version of the plugin, namely **ServiceControl.Plugin.Hea
 
 ## Configuration
 
+NOTE: For Version 2 or greater of the plugins that target NServiceBus V6, it is now possible to configure this plugin via code. To start add `Import-Package ServiceControl.Plugin.Nsb6.Heartbeat`.
+
+### ServiceControl Queue
+
+For Version 2 or greater of the plugins that target NServiceBus V6, it is now possible to configure the ServiceControl queue via code:
+
+snippet: Heartbeats_Configure_ServiceControl
 
 ### Heartbeat Interval
 
@@ -48,10 +55,13 @@ ServiceControl heartbeats are sent, by the plugin, at a predefined interval of 1
 
 snippet: heartbeatsIntervalConfig
 
+or for Version 2 or greater of the plugins that target NServiceBus V6:
+
+snippet: Heartbeats_interval
+
 Where the value is convertible to a `TimeSpan` value. The above sample is setting the endpoint heartbeat interval to 30 seconds.
 
 When configuring heartbeat interval, make sure Service Control setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#configuration-options-servicecontrol-heartbeatgraceperiod) is greater than the heartbeat interval.
-
 
 ### Time-To-Live (TTL)
 
@@ -63,8 +73,15 @@ Add the app setting in app.config as shown to configure the TTL to a custom valu
 
 snippet: heartbeatsTtlConfig
 
+or for Version 2 or greater of the plugins that target NServiceBus V6:
+
+snippet: Heartbeats_ttl
+
 Note: To enable the change the endpoint needs to be restarted.
 
+### Disabling plugin
+
+snippet: Heartbeats_disable
 
 ## Expired heartbeat messages forwarded to Dead letter queue
 
