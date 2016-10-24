@@ -3,9 +3,10 @@ title: Accessing and modifying data
 summary: How to access business data in sync with message consumption and modifications to NServiceBus-controlled data.
 component: Core
 versions: '[5,)'
+reviewed: 2016-10-25
 related:
-- nservicebus/nhibernate/accessing-data
-- nservicebus/ravendb
+ - nservicebus/nhibernate/accessing-data
+ - nservicebus/ravendb
 tags:
  - NHibernate
  - RavenDB
@@ -34,6 +35,7 @@ snippet:BusinessData-Native-Idempotent
 
 The downside of this approach is the fact that the code gets more complex. Sometimes it is hard to get enough information from the incoming message to create correct *idempotent* handling logic. This is especially true for commands which don't have natural identity in the same way events have.
 
+
 ### Transport in distributed transaction mode
 
 When the selected transport is configured to use distributed transactions via Distributed Transaction Coordinator (DTC) service, the handler is executed within an ambient transaction scope. If the data store supports enlisting in a distributed transaction (e.g. SQL Server, Oracle), the data modifications are guaranteed to be applied in a single atomic operation together with message receive operation. 
@@ -42,9 +44,10 @@ When the selected transport is configured to use distributed transactions via Di
 ## Using NServiceBus persistence
 
 Instead of managing of connections and transactions themselves, users can delegate the management of data store to NServiceBus persistence. This approach has a number of advantages:
- * NServiceBus guarantees best practices are followed when it comes to managing data store's connection
- * Data access context is automatically shared between all handlers executed for a given message, making it easier to guarantee *idempotency* (no partial successes where one handler managed to commit the changes while other didn't)
- * Data access context is also shared with the [Saga](/nservicebus/sagas) that might participate in handling a given message
+
+ * NServiceBus guarantees best practices are followed when it comes to managing data store's connection.
+ * Data access context is automatically shared between all handlers executed for a given message, making it easier to guarantee *idempotency* (no partial successes where one handler managed to commit the changes while other didn't).
+ * Data access context is also shared with the [Saga](/nservicebus/sagas) that might participate in handling a given message.
 
 The downside to this approach is that, in order to share the same data access context across business data transactions and NServiceBus internal database actions, the database technology used must be one of the NServiceBus supported persistence options. NServiceBus supports SQL Server and Oracle via NServiceBus.NHibernate persistence and RavenDB via NServiceBus.RavenDB persistence.
 
@@ -56,6 +59,7 @@ The documentation below provides more detail on how to share the same data acces
 
  * [NHibernate](/nservicebus/nhibernate/accessing-data.md)
  * [RavenDB](/nservicebus/ravendb/#shared-session)
+
 
 ### Transport in native transaction mode
 

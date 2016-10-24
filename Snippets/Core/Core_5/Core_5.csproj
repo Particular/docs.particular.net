@@ -143,7 +143,15 @@
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="Container\Custom\MyContainerDefinition.cs" />
     <Compile Include="Features\AdvancedSatellite.cs" />
-    <Compile Include="Handlers\DataAccess.cs" />
+    <Compile Include="Handlers\DataAccess\AddOrderLine.cs" />
+    <Compile Include="Handlers\DataAccess\Simple.cs" />
+    <Compile Include="Handlers\DataAccess\IMyOrm.cs" />
+    <Compile Include="Handlers\DataAccess\IMyOrmSession.cs" />
+    <Compile Include="Handlers\DataAccess\Managed.cs" />
+    <Compile Include="Handlers\DataAccess\MyOrmExtensions.cs" />
+    <Compile Include="Handlers\DataAccess\MyPersistence.cs" />
+    <Compile Include="Handlers\DataAccess\Order.cs" />
+    <Compile Include="Handlers\DataAccess\OrderMessage.cs" />
     <Compile Include="Recoverability\CustomFaultManager.cs" />
     <Compile Include="Features\SimpleSatellite.cs" />
     <Compile Include="MessageIdentity\MessageIdFromMessageMutator.cs" />
