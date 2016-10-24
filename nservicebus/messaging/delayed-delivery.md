@@ -2,11 +2,11 @@
 title: Delayed Delivery
 summary: Delay delivery of messages until a later time.
 component: core
-reviewed: 2016-08-22
+reviewed: 2016-10-25
 tags:
-- Defer
+ - Defer
 related:
-- samples/delayed-delivery
+ - samples/delayed-delivery
 ---
 
 The message doesn't have to be dispatched immediately after sending, it can be delivered at a later time if necessary.
@@ -16,12 +16,12 @@ NOTE: Only send operations can be deferred. Publish and reply operations cannot 
 
 ## Delaying messages using HandleCurrentMessageLater
 
-The `HandleCurrentMessageLater()` method was primarily used to defer messages when using NServiceBus Versions 2.x and below, before the Defer functionality was introduced in Versions 3 and above. While this API is still supported in Versions 6 and below, there are significant caveats in using this API.
+The `HandleCurrentMessageLater()` method was primarily used to defer messages when using Versions 2.x and below, before the Defer functionality was introduced in Versions 3 and above. While this API is still supported in Versions 6 and below, there are significant caveats in using this API.
 
-- Calling this method would create a copy of the message that has the same identifier, header, and body. This message would then be put at the end of the queue. The endpoint will eventually pick up this message once all the other messages in its queue have been processed. To make this work, the message pipeline will not abort which means any business transaction that's part of calling this method will also get committed. 
-- If the endpoint's queue is empty, or the condition to put the message back into the queue is incorrect, the message goes back into the queue immediately causing the endpoint to process the same message without any delay. This behavior can cause an endless loop which will manifest itself as a high system resource utilization by the endpoint.
+ * Calling this method would create a copy of the message that has the same identifier, header, and body. This message would then be put at the end of the queue. The endpoint will eventually pick up this message once all the other messages in its queue have been processed. To make this work, the message pipeline will not abort which means any business transaction that's part of calling this method will also get committed.
+ * If the endpoint's queue is empty, or the condition to put the message back into the queue is incorrect, the message goes back into the queue immediately causing the endpoint to process the same message without any delay. This behavior can cause an endless loop which will manifest itself as a high system resource utilization by the endpoint.
 
-WARNING: This method will be deprecated in NServiceBus version 7.0. It is recommended to use either [Delayed Retries](/nservicebus/recoverability/#delayed-retries) or one of the deferring mechanisms below, depending on the scenario.  
+WARNING: This method will be deprecated in Version 7.0. It is recommended to use either [Delayed Retries](/nservicebus/recoverability/#delayed-retries) or one of the deferring mechanisms below, depending on the scenario.
 
 
 ## Delaying message dispatching
@@ -49,10 +49,10 @@ snippet:delayed-delivery-datetime
 
 Delayed delivery of messages is only supported when the following requirements are met:
 
-* The Timeout Manager feature is enabled or
-* The transport supports delayed delivery natively
-* The transport supports transactions
-* The endpoint is not a send-only endpoint.
+ * The Timeout Manager feature is enabled or
+ * The transport supports delayed delivery natively
+ * The transport supports transactions
+ * The endpoint is not a send-only endpoint.
 
 When deferring a message, it is sent to the timeout manager requesting it to deliver the message at a later time or deferred by using the transports native capability to defer messages.
 
@@ -75,4 +75,4 @@ Delayed messages are persisted (stored in a durable storage) in a location speci
 
 snippet:configure-persistence-timeout
 
-NServiceBus periodically retrieves expiring timeouts from persistence. When a timeout expires, then a message with that timeout ID is sent to `[endpoint_queue_name].TimeoutsDipatcher` queue. That queue is monitored by NServiceBus internal receiver. When it picks up a message, it looks up the corresponding timeout in the storage. If it finds it, it dispatches the timeout message to the destination queue. 
+NServiceBus periodically retrieves expiring timeouts from persistence. When a timeout expires, then a message with that timeout ID is sent to `[endpoint_queue_name].TimeoutsDipatcher` queue. That queue is monitored by NServiceBus internal receiver. When it picks up a message, it looks up the corresponding timeout in the storage. If it finds it, it dispatches the timeout message to the destination queue.

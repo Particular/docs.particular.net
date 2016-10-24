@@ -3,9 +3,9 @@ title: CustomChecks Plugin
 summary: Define a custom set of conditions that are checked on the endpoint.
 reviewed: 2016-10-06
 tags:
-- ServiceControl
+ - ServiceControl
 related:
-- samples/custom-checks/monitoring3rdparty
+ - samples/custom-checks/monitoring3rdparty
 ---
 
 The CustomChecks Plugin enables custom endpoint monitoring. It allows the developer of an NServiceBus endpoint to define a set of conditions that are checked on endpoint startup or periodically.
@@ -80,22 +80,26 @@ NOTE: It is essential to deploy this plugin to the endpoint in production in ord
 
 ## NuGet packages
 
-* NServiceBus Version 6.x: [ServiceControl.Plugin.Nsb6.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.CustomChecks)
-* NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks)
-* NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks)
-* NServiceBus Version 3.x: [ServiceControl.Plugin.Nsb3.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks)
+ * NServiceBus Version 6.x: [ServiceControl.Plugin.Nsb6.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.CustomChecks)
+ * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks)
+ * NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks)
+ * NServiceBus Version 3.x: [ServiceControl.Plugin.Nsb3.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks)
 
 
 ### Deprecated NuGet
 
-If using the older version of the plugin, namely **ServiceControl.Plugin.CustomChecks** remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.
+If using the older version of the plugin, namely **ServiceControl.Plugin.CustomChecks**, remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.
+
 
 ## Configuration
+
+
 ### ServiceControl Queue
 
-For Version 2 or greater of the plugins that target NServiceBus V6, it is now possible to configure the ServiceControl queue via code:
+For Version 2 or greater of the plugins that target NServiceBus Version 6, it is now possible to configure the ServiceControl queue via code:
 
 snippet: CustomCheck_Configure_ServiceControl
+
 
 ### Disabling plugin
 
