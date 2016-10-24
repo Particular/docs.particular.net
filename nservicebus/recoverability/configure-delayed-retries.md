@@ -36,7 +36,7 @@ snippet:DelayedRetriesCustomPolicy
 
 ### Simple Policy
 
-The following retry policy overrides default delay interval and sets it to 5 seconds.
+The following retry policy overrides default 10 seconds delay interval and sets it to 5 seconds.
 
 snippet:DelayedRetriesCustomPolicyHandler
 
