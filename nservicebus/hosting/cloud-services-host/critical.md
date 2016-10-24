@@ -2,6 +2,7 @@
 title: Critical Error Behavior
 summary: Handling Critical errors in Azure Cloud Services
 component: CloudServicesHost
+reviewed: 2016-10-24
 tags:
  - Hosting
  - Worker Roles
