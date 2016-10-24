@@ -1,6 +1,6 @@
 ---
 title: Migrating the Distributor to use Sender Side Distribution
-reviewed: 2016-09-29
+reviewed: 2016-10-25
 tags:
  - upgrade
  - migration
@@ -69,7 +69,7 @@ DANGER: Following this process when endpoints subscribe to events may cause dupl
 
  * Upgrade all endpoints that interact with the distributor to Version 6 first. At this stage, do not upgrade the workers to Version 6.
   * upgrade all endpoints that send command messages to the Distributor endpoint to be distributed,
-  * upgrade all endpoints that send subscription messages to the Distributor, 
+  * upgrade all endpoints that send subscription messages to the Distributor,
   * upgrade all endpoints subscribing to events published by worker nodes.
  * Configure all mentioned endpoints above to use [sender-side distribution](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md) to route messages directly to the workers instead of the Distributor.
  * Ensure no more messages are routed to the Distributor.

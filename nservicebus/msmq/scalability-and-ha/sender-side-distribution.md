@@ -2,19 +2,20 @@
 title: Scaling out with sender-side distribution
 summary: How to scale out with sender-side distribution when using the MSMQ transport.
 component: Core
+reviewed: 2016-10-25
 versions: "[6,)"
 tags:
-- Scale Out
-- Routing
-- MSMQ
+ - Scale Out
+ - Routing
+ - MSMQ
 redirects:
-- nservicebus/messaging/file-based-routing
+ - nservicebus/messaging/file-based-routing
 related:
-- nservicebus/msmq/routing
-- nservicebus/messaging/routing
+ - nservicebus/msmq/routing
+ - nservicebus/messaging/routing
 ---
 
-NServiceBus endpoints using the MSMQ transport are unable to use the competing consumers pattern to scale out by adding additional worker instances. Sender-side distribution is a method of scaling out an NServiceBus endpoint using the MSMQ transport, without relying on a centralized [distributor](/nservicebus/scalability-and-ha/distributor/) assigning messages to available workers.
+Endpoints using the MSMQ transport are unable to use the competing consumers pattern to scale out by adding additional worker instances. Sender-side distribution is a method of scaling out an endpoint using the MSMQ transport, without relying on a centralized [distributor](/nservicebus/scalability-and-ha/distributor/) assigning messages to available workers.
 
 When using sender-side distribution:
 
@@ -46,9 +47,11 @@ snippet:InstanceMappingFile-ScaleOut
 
 To read more about the instance mapping, refer to the [MSMQ routing page](/nservicebus/msmq/routing.md).
 
+
 ## Limitations
 
-Sender-side distribution does not use message processing confirmations (like Distributor did). Therefore the sender has no feedback on the availability of workers and, by default, sends the messages in a round-robin behavior. Should one of the nodes stop processing, the messages will start piling up in its input queue. This requires that nodes running in sender-side distribution mode require more careful monitoring compared to distributor workers. 
+Sender-side distribution does not use message processing confirmations (the Distributor approach). Therefore the sender has no feedback on the availability of workers and, by default, sends the messages in a round-robin behavior. Should one of the nodes stop processing, the messages will start piling up in its input queue. As such nodes running in sender-side distribution mode require more careful monitoring compared to distributor workers.
+
 
 ## Decommissioning endpoint instances
 
