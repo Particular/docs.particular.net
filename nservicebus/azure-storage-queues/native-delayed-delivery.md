@@ -12,7 +12,7 @@ reviewed: 2016-10-21
 ---
 
 [Delayed delivery](/nservicebus/messaging/delayed-delivery) enables sending messages that are delivered at a later time. 
-This mechanism is supported by the NServiceBus core and is part of the [persistence](/nservicebus/persistence). Native delayed delivery provided for Azure Storage Queues overrides this behavior and instead of delegating the delayed delivery to the persistence, stores messages directly in the Azure Storage Tables of the account, that is configured for the transport. This eliminates a lot of overhead and results in lowered number of storage transactions, lowering both the costs and the time needed to register and dispatch delayed messages. Additionally, in Scale Out scenarios, native delayed delivery ensures that only one timeout poller will be running at the same time. This greatly lowers the possibility of duplicated messages.
+This mechanism is supported by the NServiceBus core and is part of the [persistence](/nservicebus/persistence). Native delayed delivery provided for Azure Storage Queues overrides this behavior and instead of delegating the delayed delivery to the persistence, stores messages directly in the Azure Storage Tables of the account, that is configured for the transport. This eliminates a lot of overhead and results in a smaller number of storage transactions, lowering both the costs and the time needed to register and dispatch delayed messages. Additionally, in Scale Out scenarios, native delayed delivery ensures that only one timeout poller will be running at the same time. This greatly lowers the possibility of duplicated messages.
 
 ## Configuration
 
