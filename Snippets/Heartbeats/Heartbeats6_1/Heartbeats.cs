@@ -4,7 +4,6 @@ class MyClass
 {
     public void Foo4()
     {
-
         #region Heartbeats_disable
 
         var endpointConfiguration = new EndpointConfiguration("myendpoint");
