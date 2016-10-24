@@ -45,7 +45,7 @@ NServiceBus.Host.exe /install
 /description:"Service for publishing event messages"
 /endpointConfigurationType:"QualifiedNameSpace.EndpointConfigType, AssemblyName"
 /username:"corp\serviceuser"
-/password:"p@ssw0rd!" NServiceBus.Production
+/password:"p@ssw0rd!"
 ```
 
 
