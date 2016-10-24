@@ -81,7 +81,16 @@ Configures the name of the endpoint. By default, the endpoint name is the namesp
 
 ### ScannedAssemblies
 
-Configures NServiceBus to scan only the specified assemblies.
+Configures NServiceBus to scan only the specified assemblies. The `scannedAssemblies` parameter needs to be provided for each assembly to include, e.g.: 
+
+```dos
+NServiceBus.Host.exe /install
+/scannedAssemblies:"NServiceBus.Core" 
+/scannedAssemblies:"NServiceBus.Host" 
+/scannedAssemblies:"My.Endpoint.Assembly"
+```
+
+Note: When using the `/scannedAssemblies` parameter, don't forget to include at least `NServiceBus.Core` and `NServiceBus.Host` as well as any other referenced NServiceBus plugin.
 
 
 ### DependsOn
