@@ -16,6 +16,7 @@ redirects:
 related:
  - samples/azure/shared-host
  - nservicebus/lifecycle
+reviewed: 2016-10-21
 ---
 
 The Azure Platform and NServiceBus make a perfect fit. On the one hand the Azure platform offers the scalable and flexible platform required, on the other hand NServiceBus makes development on this highly distributed environment a breeze.
@@ -27,7 +28,7 @@ If real scale is required (e.g. in tens, hundreds or even thousands of machines 
 
 Reference the assembly that contains the Azure role entry point integration. The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Hosting.Azure` package to the project.
 
-NOTE: When self-hosting everything can be configured using code API and extension methods available in the NServiceBus Azure related packages. In such a case it's not required to reference the hosting package in the project. Self-hosting is described later in this article.
+NOTE: When self-hosting everything can be configured using code API and extension methods available in the NServiceBus Azure related packages. In such a case it's not required to reference the hosting package in the project. Self-hosting is described in the Web Roles section.
 
 To integrate the NServiceBus generic host into the worker role entry point, create an instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override.
 
@@ -37,14 +38,7 @@ Next to starting the role entry point, define the endpoint behavior. The role ha
 
 snippet:AzureServiceBusTransportWithAzureHost
 
-This will integrate and configure the default infrastructure:
-
- * Configuration setting will be read from the `app.config` file, merged with the settings from the service configuration file.
- * Logs will be sent to the `Trace` infrastructure, which should have been configured with Azure diagnostic monitor trace listener by the Visual Studio tooling.
- * Subscriptions are persisted in the chosen persistence store (in case of the AzureStorageQueue transport, AzureServiceBus has it's own subscription facility).
- * Saga's are enabled by default and persisted in the chosen persistence store.
- * Timeouts are enabled by default and persisted in the chosen persistence store.
-
+Partial: Worker
 
 ## Cloud Services - Web Roles
 
@@ -56,16 +50,5 @@ The configuration API is used with the following extension methods to achieve th
 
 snippet:HostingInWebRole
 
-A short explanation of each:
+Partial: Web
 
- * `AzureConfigurationSource`: overrides any settings known to the NServiceBus Azure configuration section within the app.config file with settings from the service configuration file.
- *  Logs will be sent to the `Trace` infrastructure, which should have been configured with Azure diagnostic monitor trace listener by the Visual Studio tooling.
- * `UseTransport<AzureStorageQueueTransport>`: Sets [Azure storage queues](/nservicebus/azure-storage-queues/) as the [transport](/nservicebus/transports).
- * `UsePersistence<AzureStoragePersistence>`: Configures [Azure storage](/nservicebus/azure-storage-persistence/) for [persistence](/nservicebus/persistence).
-
-
-## Specify Endpoint Name
-
-Set the endpoint name using the `DefineEndpointName(name)` extension method on the endpoint configuration.
-
-snippet:EndpointNameInCodeForAzureHost

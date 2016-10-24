@@ -6,6 +6,7 @@ tags:
 - Cloud
 - Azure
 - Hosting
+reviewed: 2016-10-21
 ---
 
 This document captures some frequently asked questions when hosting NServiceBus in Azure Cloud Services.
@@ -27,3 +28,17 @@ This is almost always related to an exception happening at startup of the RoleEn
 ### Exceptions occurring at startup are not visible in the logs
 
 When using the diagnostics service in Cloud Services, this service starts in parallel with the startup code. If an exception occurs at this point in time, the code may not be able to call the diagnostics service yet and the exception information may get lost. Use [IntelliTrace](https://msdn.microsoft.com/en-us/library/dd264915.aspx) and [Historical Debugging](https://msdn.microsoft.com/en-us/library/mt228143.aspx) instead to learn more about the cause of the exception.
+
+
+## Specify Endpoint Name
+
+Set the endpoint name using the `DefineEndpointName(name)` extension method on the endpoint configuration.
+
+snippet:EndpointNameInCodeForAzureHost
+
+
+## Host Identifier
+
+The cloud services role entry point takes care of updating these values, used for identification of the endpoint instance in ServiceControl, automatically, i.e. the `$.diagnostics.hostdisplayname` defaults to the role name and the `$.diagnostics.hostid` contains the instance ID.
+
+In web roles these values must be set manually, refer to [Override Host Id](/nservicebus/hosting/override-hostid.md) for more information on this topic.
