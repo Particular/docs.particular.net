@@ -12,7 +12,7 @@ To handle a message, write a class that implements `IHandleMessages<T>` where `T
 
 snippet:CreatingMessageHandler
 
-In most cases processing a message involves changing the application state via some kind of data access code. See [accessing data](/nservicebus/handlers/accessing-data.md) for more details.
+For scenarios that involve changing the application state via data access code in the message handler, see [accessing data](/nservicebus/handlers/accessing-data.md) for more details.
 
 To handle messages of all types:
 

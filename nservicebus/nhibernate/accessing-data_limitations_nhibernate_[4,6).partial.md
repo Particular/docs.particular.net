@@ -1,3 +1,3 @@
 ## Known limitations
 
-Due of the way NServiceBus opens sessions, by passing an existing instance of a database connection, it is currently not possible to use NHibernate's second-level cache. Such behavior of NServiceBus is caused by [still-unresolved bug in NHibernate](https://nhibernate.jira.com/browse/NH-3023).
+NServiceBus opens a session by passing an existing instance of a database connection. Therefore, it is not possible to use NHibernate's second-level cache. The reason why sessions are opened this way in NServiceBus is because of an [unresolved bug in NHibernate](https://nhibernate.jira.com/browse/NH-3023).
