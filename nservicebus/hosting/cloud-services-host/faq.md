@@ -29,11 +29,13 @@ This is almost always related to an exception happening at startup of the RoleEn
 
 When using the diagnostics service in Cloud Services, this service starts in parallel with the startup code. If an exception occurs at this point in time, the code may not be able to call the diagnostics service yet and the exception information may get lost. Use [IntelliTrace](https://msdn.microsoft.com/en-us/library/dd264915.aspx) and [Historical Debugging](https://msdn.microsoft.com/en-us/library/mt228143.aspx) instead to learn more about the cause of the exception.
 
+
 ## Specify Endpoint Name
 
 Set the endpoint name using the `DefineEndpointName(name)` extension method on the endpoint configuration.
 
 snippet:EndpointNameInCodeForAzureHost
+
 
 ## Host Identifier
 
