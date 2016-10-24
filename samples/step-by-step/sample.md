@@ -32,10 +32,9 @@ Completing these steps will serve as an introduction to many important NServiceB
 ## Prerequisites
 
 
-### .NET Framework Version 4.5.2
+### .NET Framework Version 4.6.1
 
-[Download the .NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642) and install it.
-
+[Download the .NET Framework Version 4.6.1](https://www.microsoft.com/en-us/download/details.aspx?id=49982) and install it.
 
 ### MSMQ
 
@@ -57,7 +56,7 @@ For other Windows versions see [MSMQ Transport / Configuration](/nservicebus/msm
 
 The finished solution will contain four projects. Create a new Visual Studio solution containing the following:
 
-Note: Ensure .NET 4.5.2 is selected as the [target framework](https://msdn.microsoft.com/en-us/library/bb398202.aspx).
+Note: Ensure .NET 4.6.1 is selected as the [target framework](https://msdn.microsoft.com/en-us/library/bb398202.aspx).
 
  * A Console Application named `Client`
  * A Console Application named `Server`
