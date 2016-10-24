@@ -61,7 +61,7 @@ snippet: Heartbeats_interval
 
 Where the value is convertible to a `TimeSpan` value. The above sample is setting the endpoint heartbeat interval to 30 seconds.
 
-When configuring heartbeat interval, make sure Service Control setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#configuration-options-servicecontrol-heartbeatgraceperiod) is greater than the heartbeat interval.
+When configuring heartbeat interval, make sure Service Control setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrol-heartbeatgraceperiod) is greater than the heartbeat interval.
 
 ### Time-To-Live (TTL)
 
