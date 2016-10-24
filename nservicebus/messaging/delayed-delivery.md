@@ -47,20 +47,18 @@ snippet:delayed-delivery-datetime
 
 ## Caveats
 
-Delayed delivery of messages is only supported when the following requirements are met:
+Delayed delivery of messages is supported when the one following requirements are met:
 
- * The Timeout Manager feature is enabled or
- * The transport supports delayed delivery natively
- * The transport supports transactions
- * The endpoint is not a send-only endpoint.
+ * The transport supports delayed delivery natively.
+ * The Timeout Manager feature is enabled and the endpoint is not a send-only endpoint.
 
-When deferring a message, it is sent to the timeout manager requesting it to deliver the message at a later time or deferred by using the transports native capability to defer messages.
+When deferring a message, it is sent to the Timeout Manager requesting it to deliver the message at a later time or deferred by using the transports native capability to defer messages.
 
 partial:caveatsnote
 
-NOTE: The sending endpoint must be running when the timeout is reached in order for the message to be sent. If the endpoint is not running when the timeout is reached then the message will be sent when the endpoint is next started.
+NOTE: When relying on Timeout Manager, the sending endpoint must be running when the timeout is reached in order for the message to be sent. If the endpoint is not running when the timeout is reached then the message will be sent when the endpoint is next started.
 
-NOTE: If specifying a negative timeout or a time that is in the past then the message will still be slightly delayed. The message will not be sent until the timeout manager has processed the request.
+NOTE: If specifying a negative timeout or a time that is in the past then the message will still be slightly delayed. The message will not be sent until the Timeout Manager has processed the request.
 
 
 ## How it works
