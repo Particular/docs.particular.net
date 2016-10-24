@@ -46,11 +46,13 @@ snippet:InstanceMappingFile-ScaleOut
 
 To read more about the instance mapping, refer to the [MSMQ routing page](/nservicebus/msmq/routing.md).
 
+## Limitations
+
+Sender-side distribution does not use message processing confirmations (like Distributor did). Therefore the sender has no feedback on the availability of workers and, by default, sends the messages in a round-robin behavior. Should one of the nodes stop processing, the messages will start piling up in its input queue. This requires that nodes running in sender-side distribution mode require more careful monitoring compared to distributor workers. 
+
 ## Decommissioning endpoint instances
 
-When using sender-side distribution, message senders have no knowledge of the status of any of the worker instances. They simply send messages to one of the configured instances in a round-robin fashion, whether that instance is still running or not.
-
-Therefore, when scaling down (removing a "target" endpoint instance from service), it is important to properly decommission the instance:
+For the reasons outlined above, when scaling down (removing a "target" endpoint instance from service), it is important to properly decommission the instance:
 
  1. Change the instance mapping file to remove the target endpoint instance.
  1. Ensure that the updated instance mapping information is distributed to all endpoint instances that might send a message to the target endpoint.
