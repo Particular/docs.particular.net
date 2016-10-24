@@ -43,7 +43,7 @@ snippet:DelayedRetriesCustomPolicyHandler
 
 ### Exception based Policy
 
-The following retry policy extends the previous one by skipping delayed retries whenever `MyBusinessException` has been thrown during incoming message processing.
+Sometimes the number of retries or the delay interval might depend on the error exception thrown. The following retry policy extends the previous one by skipping delayed retries whenever `MyBusinessException` has been thrown during incoming message processing.
 
 snippet:DelayedRetriesCustomExceptionPolicyHandler
 
