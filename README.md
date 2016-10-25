@@ -359,7 +359,7 @@ And checking `Ignore YAML Front-matter`
 
 [Enterprise Integration Patters (EIP)](http://www.enterpriseintegrationpatterns.com/) is a bible of messaging. We sometimes use the same or similar patterns, but name them differently. When describing such a pattern, it's useful to reference the related EIP pattern, to make it easier to understand.
 
-Here's the list of patterns:
+
 ### Terms we use and are aligned with EIP
 
  * Message
@@ -373,6 +373,7 @@ Here's the list of patterns:
  * [Competing Consumers](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html)
  * [Message Store](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageStore.html) - we have it in ServiceControl
 
+
 ### EIP terms and ideas we don't use but can
 
  * [Message Bus](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageBus.html) - we dropped using the *bus* world when referring to an *endpoint* (which is correct) but I think we can take advantage of this definition of the bus because it is aligned with our concepts.
@@ -382,6 +383,7 @@ Here's the list of patterns:
  * [Messaging Gateway](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingGateway.html) and [Messaging Mapper](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingMapper.html) - we could prepare guidance based on them on how to use NSB in the application
  * [Control Bus](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ControlBus.html) - I believe we should get this implemented in (close) future
  * [Test Message](http://www.enterpriseintegrationpatterns.com/patterns/messaging/TestMessage.html)
+
 
 ### Terms we use but have a different meaning or name
 
@@ -525,6 +527,7 @@ File extensions scanned for snippets include:
  * `.txt`
  * `.xml`
 
+
 ### Snippets are highlighted using highlightjs
 
  * [Documentation](https://highlightjs.readthedocs.io/)
@@ -545,6 +548,9 @@ File extensions scanned for snippets include:
 | powershell   | `ps`           |
 | json         | `json`         |
 | sql          | `sql`          |
+
+
+**Always use fenced code blocks with a language.** If no language is defined then highlightjs will guess the language and it regularly gets it wrong.
 
 
 #### Using comments
