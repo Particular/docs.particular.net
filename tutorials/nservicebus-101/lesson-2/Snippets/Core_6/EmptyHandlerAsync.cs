@@ -5,11 +5,12 @@ namespace Core_6.EmptyHandlerAsync
 {
 #pragma warning disable 1998
     #region EmptyHandlerAsync
-    public class DoSomethingHandler : IHandleMessages<DoSomething>
+    public class DoSomethingHandler :
+        IHandleMessages<DoSomething>
     {
         public async Task Handle(DoSomething message, IMessageHandlerContext context)
         {
-            // Do something with the message here!
+            // Do something with the message here
         }
     }
     #endregion

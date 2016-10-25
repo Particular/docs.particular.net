@@ -33,7 +33,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lesson5.cs" />
+    <Compile Include="ConfigRetries.cs" />
+    <Compile Include="PlaceOrderHandler.cs" />
+    <Compile Include="OrderPlaced.cs" />
+    <Compile Include="PlaceOrder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -9,7 +9,8 @@ namespace Exercise
 
     namespace Messages.Commands
     {
-        public class PlaceOrder : ICommand
+        public class PlaceOrder :
+            ICommand
         {
             public string OrderId { get; set; }
         }
@@ -25,7 +26,8 @@ namespace Exercise
 
             #region AddRunLoopToAsyncMain
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
 
             // Remove these two lines
             Console.WriteLine("Press Enter to exit...");
@@ -34,7 +36,8 @@ namespace Exercise
             // Replace with:
             await RunLoop(endpointInstance);
 
-            await endpointInstance.Stop().ConfigureAwait(false);
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
 
             #endregion
         }

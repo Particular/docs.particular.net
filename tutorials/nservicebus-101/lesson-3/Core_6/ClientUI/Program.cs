@@ -8,6 +8,8 @@ namespace ClientUI
 {
     class Program
     {
+        static ILog logger = LogManager.GetLogger<Program>();
+
         static void Main()
         {
             AsyncMain().GetAwaiter().GetResult();
@@ -19,8 +21,8 @@ namespace ClientUI
 
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
 
-            var routing = endpointConfiguration.UseTransport<MsmqTransport>()
-                .Routing();
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            var routing = transport.Routing();
 
             routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
@@ -40,7 +42,6 @@ namespace ClientUI
 
         static async Task RunLoop(IEndpointInstance endpointInstance)
         {
-            var logger = LogManager.GetLogger<Program>();
 
             while (true)
             {

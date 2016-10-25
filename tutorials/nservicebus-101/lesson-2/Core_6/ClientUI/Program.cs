@@ -8,6 +8,8 @@ namespace ClientUI
 {
     class Program
     {
+        static ILog logger = LogManager.GetLogger<Program>();
+
         static void Main()
         {
             AsyncMain().GetAwaiter().GetResult();
@@ -37,8 +39,6 @@ namespace ClientUI
 
         static async Task RunLoop(IEndpointInstance endpointInstance)
         {
-            var logger = LogManager.GetLogger<Program>();
-
             while (true)
             {
                 logger.Info("Enter 'placeorder' to place an order, or 'quit' to quit.");

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 
 namespace Core_6
 {
@@ -14,26 +12,32 @@ namespace Core_6
 
             #region SendLocal
             // From endpoint startup code
-            await endpointInstance.SendLocal(command).ConfigureAwait(false);
+            await endpointInstance.SendLocal(command)
+                .ConfigureAwait(false);
 
             // From a message handler
-            await context.SendLocal(command).ConfigureAwait(false);
+            await context.SendLocal(command)
+                .ConfigureAwait(false);
             #endregion
 
             #region Send
             // From endpoint startup code
-            await endpointInstance.Send(command).ConfigureAwait(false);
+            await endpointInstance.Send(command)
+                .ConfigureAwait(false);
 
             // From a message handler
-            await context.Send(command).ConfigureAwait(false);
+            await context.Send(command)
+                .ConfigureAwait(false);
             #endregion
 
             #region SendDestination
             // Not recommended, most of the time!
-            await endpointInstance.Send("Destination", command);
+            await endpointInstance.Send("Destination", command)
+                .ConfigureAwait(false);
 
             // On the IMessageHandlerContext too, but still not recommended!
-            await context.Send("Destination", command);
+            await context.Send("Destination", command)
+                .ConfigureAwait(false);
 
             #endregion
 
@@ -42,9 +46,9 @@ namespace Core_6
         void ShowRouting(EndpointConfiguration endpointConfiguration)
         {
             #region RoutingSettings
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
             // Returns a RoutingSettings<MsmqTransport>
-            var routing = endpointConfiguration.UseTransport<MsmqTransport>()
-                .Routing();
+            var routing = transport.Routing();
             #endregion
 
             #region RouteToEndpoint

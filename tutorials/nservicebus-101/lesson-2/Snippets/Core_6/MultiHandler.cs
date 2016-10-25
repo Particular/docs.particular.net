@@ -4,8 +4,10 @@ using NServiceBus;
 
 namespace Core_6.MultiHandler
 {
+
     #region MultiHandler
-    public class DoSomethingHandler : 
+
+    public class DoSomethingHandler :
         IHandleMessages<DoSomething>,
         IHandleMessages<DoSomethingElse>
     {
@@ -21,7 +23,11 @@ namespace Core_6.MultiHandler
             return Task.CompletedTask;
         }
     }
+
     #endregion
 
-    public class DoSomethingElse : ICommand { }
+    public class DoSomethingElse :
+        ICommand
+    {
+    }
 }

@@ -18,8 +18,8 @@ namespace Shipping
 
             var endpointConfiguration = new EndpointConfiguration("Shipping");
 
-            var routing = endpointConfiguration.UseTransport<MsmqTransport>()
-                .Routing();
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            var routing = transport.Routing();
 
             routing.RegisterPublisher(typeof(OrderPlaced), "Sales");
             routing.RegisterPublisher(typeof(OrderBilled), "Billing");

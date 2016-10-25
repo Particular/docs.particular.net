@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 
 namespace Core_6
 {
     #region Event
-    public class SomethingHappened : IEvent
+    public class SomethingHappened :
+        IEvent
     {
         public string SomeProperty { get; set; }
     }
     #endregion
 
     #region EventHandler
-    public class SomethingHappenedHandler : IHandleMessages<SomethingHappened>
+    public class SomethingHappenedHandler :
+        IHandleMessages<SomethingHappened>
     {
         public Task Handle(SomethingHappened message, IMessageHandlerContext context)
         {
@@ -30,9 +29,10 @@ namespace Core_6
         void Setup(EndpointConfiguration endpointConfiguration)
         {
             #region RegisterPublisher
-            var routing = endpointConfiguration.UseTransport<MsmqTransport>()
-                .Routing();
-            
+
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            var routing = transport.Routing();
+
             routing.RegisterPublisher(typeof(SomethingHappened), "PublisherEndpoint");
             #endregion
         }

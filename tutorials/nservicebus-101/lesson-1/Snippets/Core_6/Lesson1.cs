@@ -9,7 +9,7 @@
     #region EmptyProgram
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             AsyncMain().GetAwaiter().GetResult();
         }
@@ -68,12 +68,14 @@
             #endregion
 
             #region Startup
-            var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
 
             Console.WriteLine("Press Enter to exit...");
             Console.ReadLine();
 
-            await endpointInstance.Stop().ConfigureAwait(false);
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
             #endregion
         }
     }
