@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Timers;
-using Timer = System.Timers.Timer;
 
 public class ReceiveCounter
 {
@@ -12,16 +10,10 @@ public class ReceiveCounter
     public void Subscribe(Action<int> action)
     {
         this.action = action;
-        timer = new Timer
-        {
-            Interval = 1000,
-            AutoReset = true
-        };
-        timer.Elapsed += TimerOnElapsed;
-        timer.Start();
+        timer = new Timer(Callback, null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(1));
     }
 
-    void TimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
+    void Callback(object state)
     {
         var value = Interlocked.Exchange(ref count, 0);
         action(value);
