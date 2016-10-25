@@ -14,7 +14,8 @@ static class Logger
     {
         AppDomain.CurrentDomain.ProcessExit += Exit;
         File.Delete(OutputFilePath);
-        File.AppendAllText(OutputFilePath, "startcode StartupShutdownSequence\r\n");
+        File.AppendAllText(OutputFilePath, "startcode");
+        File.AppendAllText(OutputFilePath, " StartupShutdownSequence\r\n");
     }
 
     static void Exit(object sender, EventArgs e)
