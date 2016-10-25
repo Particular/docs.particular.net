@@ -221,7 +221,7 @@
     - Url: nservicebus/hosting/windows-service
       Title: Windows Service
     - Url: nservicebus/hosting/override-hostid
-      Title: Override host identifier
+      Title: Overriding the host identifier
     - Url: nservicebus/hosting/custom-configuration-providers
       Title: Overriding app.config settings
     - Url: nservicebus/hosting/assembly-scanning
@@ -704,24 +704,28 @@
     Articles:
     - Url: servicecontrol/installation
       Title: Installation
-    - Url: servicecontrol/installation-silent
-      Title: Installing Silently
-    - Url: servicecontrol/installation-powershell
-      Title: Managing via PowerShell
+      Articles:
+      - Url: servicecontrol/installation-silent
+        Title: Installing Silently
+      - Url: servicecontrol/installation-powershell
+        Title: Managing via PowerShell
+    - Url: servicecontrol/deploying-servicecontrol-in-a-cluster
+      Title: Cluster Deployment
     - Url: servicecontrol/license
       Title: Licensing
     - Url: servicecontrol/creating-config-file
       Title: Settings
-    - Url: servicecontrol/configure-ravendb-location
-      Title: RavenDB Location
-    - Url: servicecontrol/setting-custom-hostname
-      Title: Configure the URI
-    - Url: servicecontrol/logging
-      Title: Logging
-    - Url: servicecontrol/errorlog-auditlog-behavior
-      Title: Forwarding Queues
-    - Url: servicecontrol/deploying-servicecontrol-in-a-cluster
-      Title: Cluster Deployment
+      Articles:
+      - Url: nservicebus/hosting/override-hostid
+        Title: Overriding the host identifier
+      - Url: servicecontrol/configure-ravendb-location
+        Title: RavenDB Location
+      - Url: servicecontrol/setting-custom-hostname
+        Title: Configure the URI
+      - Url: servicecontrol/logging
+        Title: Logging
+      - Url: servicecontrol/errorlog-auditlog-behavior
+        Title: Forwarding Queues
     - Url: servicecontrol/troubleshooting
       Title: Troubleshooting
     - Url: servicecontrol/plugins
