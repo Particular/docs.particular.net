@@ -33,7 +33,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lesson2.cs" />
+    <Compile Include="ComplexCommand.cs" />
+    <Compile Include="EmptyHandler.cs" />
+    <Compile Include="EmptyHandlerAsync.cs" />
+    <Compile Include="MultiHandler.cs" />
+    <Compile Include="Exercise.cs" />
+    <Compile Include="Command.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

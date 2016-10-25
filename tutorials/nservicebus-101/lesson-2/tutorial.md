@@ -3,30 +3,24 @@ title: "NServiceBus 101 Lesson 2: Sending a command"
 component: Core
 ---
 
-Sending and receiving messages is the heart and soul of any NServiceBus system. The fact that we are dealing with systems and not applications is the whole reason we send messages in the first place.
-
-An **application** has a single executable and runs on a single machine, like Microsoft Word. An application doesn't usually have a single source of information, and doesn't really have to think about connectivity. If you try to save a file to a network share and the volume isn't available, it just throws an error and makes you, the user, deal with it.
-
-A **system**, on the other hand, can be made up of multiple executables on multiple machines, and usually has multiple sources of information. A system must deal with connectivity constantly. A system is not an application, and furthermore, each executable within a system is not an application either. All must deal with connectivity on a constant basis.
-
-This is why an NServiceBus system will send messages, so that individual executables can communicate with each other in a reliable way. If there's a connectivity problem between executables, messages store the communication in a reliable way so that the executable on the receiving end can receive the message when it is able to do so.
+Sending and receiving messages is at the core of any NServiceBus system. Durable messages passed between processes allow reliable communication between those processes, even if one of them is temporarily unavailable. In this lesson we'll show how to send and process a message.
 
 
 ## Objectives
 
-By the end of this lesson, you will have learned:
+By the end of this lesson, you will have learned how to:
 
-* How to define messages
-* How to define message handlers
-* How to send and receive a message locally
-* How to use NServiceBus's logging capabilities
+* Define messages
+* Define message handlers
+* Send and receive a message locally
+* Use NServiceBus's logging capabilities
 
 
 ## What is a message?
 
-A **message** is a collection of data sent via one-way communication between two endpoints. In NServiceBus, we can define a message via a simple class.
+A [**message**](/nservicebus/messaging/messages-events-commands.md) is a collection of data sent via one-way communication between two endpoints. In NServiceBus, we can define a message via a simple class.
 
-In this lesson, we'll focus on the simpler type of message: commands. In [Lesson 4: Publishing events](../lesson-4/) we'll expand to look at events as well.
+In this lesson, we'll focus on the simpler type of message: [commands](/nservicebus/messaging/messages-events-commands.md#command). In [Lesson 4: Publishing events](../lesson-4/) we'll expand to look at events as well.
 
 Defining a command is pretty easy. We just create a class and mark it with the `ICommand` marker interface.
 
@@ -36,13 +30,13 @@ The marker interface has no implementation, but lets NServiceBus know that the c
 
 The name of the command class is also important. A command is an order to do something, so it should be named in the [imperative tense](https://en.wikipedia.org/wiki/Imperative_mood). `PlaceOrder`, `UpdateCustomerStatus`, and `ChargeCreditCard` are all great names for commands, because they are phrased as a command and are very specific. You can easily guess exactly what each of those messages will do. `UserMessage`, on the other hand, is not a good example. It is not in the imperative, and it's not very specific either. Another developer should know exactly what a command's purpose is just by reading the name.
 
-When sending a message, the endpoint's message serializer will serialize an instance of the `DoSomething` class (let's say to JSON) and add that to the contents of the outgoing message that goes to the queue. On the other end, the receiving endpoint will deserialize the message from JSON back to an instance of the message class so that it can be used in code.
+When sending a message, the endpoint's [message serializer](/nservicebus/serialization/) will serialize an instance of the `DoSomething` class and add that to the contents of the outgoing message that goes to the queue. On the other end, the receiving endpoint will deserialize the message from JSON back to an instance of the message class so that it can be used in code.
 
 Messages can support whatever data the serializer can successfully process. Thus messages can even contain child objects or collections.
 
 snippet:ComplexCommand
 
-While it can be pretty tempting to throw in the kitchen sink, consider that messages are a contract between two endpoints. Any change to the message will likely involve a change on both the sender and receiver side. The more properties you have on a message, the more reasons it has to change, so keep your messages as slim as possible.
+Messages are a contract between two endpoints. Any change to the message will likely involve a change on both the sender and receiver side. The more properties you have on a message, the more reasons it has to change, so keep your messages as slim as possible.
 
 Also, you should not embed logic within your NServiceBus message classes. Each message should contain only automatic properties and not computed properties or methods. Also, it is a good practice to instantiate collection properties from a default parameterless constructor as shown above, so that you never have to deal with a potentially null collection.
 
@@ -51,7 +45,7 @@ In essence, messages should be carriers for data only. This way, discovering a b
 
 ## How do I organize messages?
 
-Because messages must be shared between multiple endpoints, you can't put the classes in the same assembly with the endpoints. They need to live in a separate class library so that they can be referenced by multiple endpoints.
+Because messages must be shared between multiple endpoints, you generally should not put the classes in the same assembly with the endpoints. Instead, they should live in a separate class library so that they can be referenced by multiple endpoints without forcing those endpoints to take in additional dependencies.
 
 A **message assembly** should contain only NServiceBus message contracts, and any supporting types required by the messages themselves. For example, a message may use an enumeration type for one of its properties; that enumeration should also live within the same message assembly.
 
