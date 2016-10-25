@@ -20,7 +20,7 @@ In most cases [handlers](/nservicebus/handlers/) are meant to modify the interna
 
 ## Without using NServiceBus persistence
 
-The simplest way to modify the state of the application is to execute the data access code in the handler without using NServiceBus persistence features. Transport transaction mode has to be taken into account when designing such code.
+The simplest way to modify application data from code running inside NServiceBus (i.e. a message handler) is by using a user-managed connection and transaction. Transport transaction mode has to be taken into account when designing such code.
 
 
 ### Transport in native transaction mode
