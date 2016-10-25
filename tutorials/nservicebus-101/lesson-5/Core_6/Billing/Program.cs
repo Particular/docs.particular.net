@@ -16,19 +16,19 @@ namespace Billing
         {
             Console.Title = "Billing";
 
-            var endpointConfig = new EndpointConfiguration("Billing");
+            var endpointConfiguration = new EndpointConfiguration("Billing");
 
-            var routing = endpointConfig.UseTransport<MsmqTransport>()
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>()
                 .Routing();
 
             routing.RegisterPublisher(typeof(OrderPlaced), "Sales");
 
-            endpointConfig.UseSerialization<JsonSerializer>();
-            endpointConfig.UsePersistence<InMemoryPersistence>();
-            endpointConfig.SendFailedMessagesTo("error");
-            endpointConfig.EnableInstallers();
+            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.SendFailedMessagesTo("error");
+            endpointConfiguration.EnableInstallers();
 
-            var endpointInstance = await Endpoint.Start(endpointConfig)
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
             Console.WriteLine("Press Enter to exit.");

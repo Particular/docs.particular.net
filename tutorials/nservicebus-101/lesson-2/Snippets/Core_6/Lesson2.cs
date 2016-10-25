@@ -111,11 +111,11 @@ namespace Exercise
     {
         static async Task AsyncMain()
         {
-            EndpointConfiguration endpointConfig = null;
+            EndpointConfiguration endpointConfiguration = null;
 
             #region AddRunLoopToAsyncMain
 
-            var endpointInstance = await Endpoint.Start(endpointConfig).ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
             // Remove these two lines
             Console.WriteLine("Press Enter to exit...");

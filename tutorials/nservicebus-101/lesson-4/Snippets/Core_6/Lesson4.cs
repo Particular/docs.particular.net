@@ -27,24 +27,24 @@ namespace Core_6
 
     public class Config
     {
-        void Setup(EndpointConfiguration endpointConfig)
+        void Setup(EndpointConfiguration endpointConfiguration)
         {
             #region RegisterPublisher
-            var routing = endpointConfig.UseTransport<MsmqTransport>()
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>()
                 .Routing();
             
             routing.RegisterPublisher(typeof(SomethingHappened), "PublisherEndpoint");
             #endregion
         }
 
-        void ExerciseConfig(EndpointConfiguration endpointConfig)
+        void ExerciseConfig(EndpointConfiguration endpointConfiguration)
         {
             #region BillingRouting
             // Replace this:
-            endpointConfig.UseTransport<MsmqTransport>();
+            endpointConfiguration.UseTransport<MsmqTransport>();
 
             // With this:
-            var routing = endpointConfig.UseTransport<MsmqTransport>()
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>()
                 .Routing();
             #endregion
 

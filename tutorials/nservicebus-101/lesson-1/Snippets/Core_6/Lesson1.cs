@@ -28,12 +28,12 @@
         {
             Console.Title = "ClientUI";
 
-            var endpointConfig = new EndpointConfiguration("ClientUI");
-            endpointConfig.UseTransport<MsmqTransport>();
-            endpointConfig.UseSerialization<JsonSerializer>();
-            endpointConfig.UsePersistence<InMemoryPersistence>();
-            endpointConfig.SendFailedMessagesTo("error");
-            endpointConfig.EnableInstallers();
+            var endpointConfiguration = new EndpointConfiguration("ClientUI");
+            endpointConfiguration.UseTransport<MsmqTransport>();
+            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.SendFailedMessagesTo("error");
+            endpointConfiguration.EnableInstallers();
         }
         #endregion
 
@@ -44,31 +44,31 @@
             #endregion
 
             #region EndpointName
-            var endpointConfig = new EndpointConfiguration("ClientUI");
+            var endpointConfiguration = new EndpointConfiguration("ClientUI");
             #endregion
 
             #region Transport
-            endpointConfig.UseTransport<MsmqTransport>();
+            endpointConfiguration.UseTransport<MsmqTransport>();
             #endregion
 
             #region Serializer
-            endpointConfig.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UseSerialization<JsonSerializer>();
             #endregion
 
             #region Persistence
-            endpointConfig.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
             #endregion
 
             #region ErrorQueue
-            endpointConfig.SendFailedMessagesTo("error");
+            endpointConfiguration.SendFailedMessagesTo("error");
             #endregion
 
             #region EnableInstallers
-            endpointConfig.EnableInstallers();
+            endpointConfiguration.EnableInstallers();
             #endregion
 
             #region Startup
-            var endpointInstance = await Endpoint.Start(endpointConfig).ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
             Console.WriteLine("Press Enter to exit...");
             Console.ReadLine();

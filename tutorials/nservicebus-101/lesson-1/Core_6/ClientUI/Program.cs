@@ -15,14 +15,14 @@ namespace ClientUI
         {
             Console.Title = "ClientUI";
 
-            var endpointConfig = new EndpointConfiguration("ClientUI");
-            endpointConfig.UseTransport<MsmqTransport>();
-            endpointConfig.UseSerialization<JsonSerializer>();
-            endpointConfig.UsePersistence<InMemoryPersistence>();
-            endpointConfig.SendFailedMessagesTo("error");
-            endpointConfig.EnableInstallers();
+            var endpointConfiguration = new EndpointConfiguration("ClientUI");
+            endpointConfiguration.UseTransport<MsmqTransport>();
+            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.SendFailedMessagesTo("error");
+            endpointConfiguration.EnableInstallers();
 
-            var endpointInstance = await Endpoint.Start(endpointConfig)
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
             Console.WriteLine("Press Enter to exit...");

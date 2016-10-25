@@ -17,19 +17,19 @@ namespace ClientUI
         {
             Console.Title = "ClientUI";
 
-            var endpointConfig = new EndpointConfiguration("ClientUI");
+            var endpointConfiguration = new EndpointConfiguration("ClientUI");
 
-            var routing = endpointConfig.UseTransport<MsmqTransport>()
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>()
                 .Routing();
 
             routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
-            endpointConfig.UseSerialization<JsonSerializer>();
-            endpointConfig.UsePersistence<InMemoryPersistence>();
-            endpointConfig.SendFailedMessagesTo("error");
-            endpointConfig.EnableInstallers();
+            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.SendFailedMessagesTo("error");
+            endpointConfiguration.EnableInstallers();
 
-            var endpointInstance = await Endpoint.Start(endpointConfig)
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
             await RunLoop(endpointInstance);

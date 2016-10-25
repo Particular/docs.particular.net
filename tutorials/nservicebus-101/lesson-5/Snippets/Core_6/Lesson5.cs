@@ -40,28 +40,28 @@ namespace Core_6
 
     public class ConfigRetries
     {
-        public void Immediate(EndpointConfiguration endpointConfig)
+        public void Immediate(EndpointConfiguration endpointConfiguration)
         {
             #region ImmediateRetries
-            var recoverability = endpointConfig.Recoverability();
+            var recoverability = endpointConfiguration.Recoverability();
             recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
             #endregion
         }
 
-        public void Delayed(EndpointConfiguration endpointConfig)
+        public void Delayed(EndpointConfiguration endpointConfiguration)
         {
             #region DelayedRetries
-            var recoverability = endpointConfig.Recoverability();
+            var recoverability = endpointConfiguration.Recoverability();
             recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
 
             recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
             #endregion
         }
 
-        public void TimeIncrease(EndpointConfiguration endpointConfig)
+        public void TimeIncrease(EndpointConfiguration endpointConfiguration)
         {
             #region TimeIncrease
-            var recoverability = endpointConfig.Recoverability();
+            var recoverability = endpointConfiguration.Recoverability();
             recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
 
             recoverability.Delayed(delayed =>

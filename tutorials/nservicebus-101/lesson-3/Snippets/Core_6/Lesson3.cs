@@ -39,11 +39,11 @@ namespace Core_6
 
         }
 
-        void ShowRouting(EndpointConfiguration endpointConfig)
+        void ShowRouting(EndpointConfiguration endpointConfiguration)
         {
             #region RoutingSettings
             // Returns a RoutingSettings<MsmqTransport>
-            var routing = endpointConfig.UseTransport<MsmqTransport>()
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>()
                 .Routing();
             #endregion
 
@@ -68,15 +68,15 @@ namespace Core_6
             #region EndpointDifferences
             Console.Title = "Sales";
 
-            var endpointConfig = new EndpointConfiguration("Sales");
+            var endpointConfiguration = new EndpointConfiguration("Sales");
             #endregion
 
             #region AddingRouting
             // Change this:
-            endpointConfig.UseTransport<MsmqTransport>();
+            endpointConfiguration.UseTransport<MsmqTransport>();
 
             // To this:
-            var routing = endpointConfig.UseTransport<MsmqTransport>()
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>()
                 .Routing();
 
             routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");

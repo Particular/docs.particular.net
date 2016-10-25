@@ -16,20 +16,20 @@ namespace Shipping
         {
             Console.Title = "Shipping";
 
-            var endpointConfig = new EndpointConfiguration("Shipping");
+            var endpointConfiguration = new EndpointConfiguration("Shipping");
 
-            var routing = endpointConfig.UseTransport<MsmqTransport>()
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>()
                 .Routing();
 
             routing.RegisterPublisher(typeof(OrderPlaced), "Sales");
             routing.RegisterPublisher(typeof(OrderBilled), "Billing");
 
-            endpointConfig.UseSerialization<JsonSerializer>();
-            endpointConfig.UsePersistence<InMemoryPersistence>();
-            endpointConfig.SendFailedMessagesTo("error");
-            endpointConfig.EnableInstallers();
+            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.SendFailedMessagesTo("error");
+            endpointConfiguration.EnableInstallers();
 
-            var endpointInstance = await Endpoint.Start(endpointConfig)
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
             Console.WriteLine("Press Enter to exit.");
