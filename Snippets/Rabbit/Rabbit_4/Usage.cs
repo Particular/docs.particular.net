@@ -92,7 +92,7 @@ class Usage
         #region rabbitmq-config-useroutingtopology
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseRoutingTopology<MyRoutingTopology>();
+        transport.UseRoutingTopology(durableExchangesAndQueues => new MyRoutingTopology());
 
         #endregion
     }
