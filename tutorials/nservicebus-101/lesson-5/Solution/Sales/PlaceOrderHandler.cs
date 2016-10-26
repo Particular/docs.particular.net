@@ -17,6 +17,9 @@ namespace Sales
 
             // This is normally where some database logic would occur
 
+            // Uncomment to test throwing exceptions
+            //throw new Exception("BOOM!");
+
             var orderPlaced = new OrderPlaced
             {
                 OrderId = message.OrderId

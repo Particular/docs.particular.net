@@ -22,6 +22,20 @@ namespace Sales
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
 
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.Immediate(
+                customizations: immediate =>
+                {
+                    immediate.NumberOfRetries(0);
+                });
+
+            recoverability.Delayed(
+                customizations: delayed =>
+                {
+                    delayed.NumberOfRetries(3);
+                    delayed.TimeIncrease(TimeSpan.FromSeconds(3));
+                });
+
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
