@@ -2,7 +2,6 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-#region CacheInvalidationHandler
 namespace DataDistribution
 {
     class CacheInvalidationHandler :
@@ -16,4 +15,3 @@ namespace DataDistribution
         }
     }
 }
-#endregion
