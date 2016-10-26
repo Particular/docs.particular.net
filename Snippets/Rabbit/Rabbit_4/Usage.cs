@@ -87,12 +87,34 @@ class Usage
         throw new NotImplementedException();
     }
 
-    void UseRoutingTopology(EndpointConfiguration endpointConfiguration)
+#pragma warning disable CS0618
+    void UseRoutingTopology4_0(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-useroutingtopology
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseRoutingTopology(durableExchangesAndQueues => new MyRoutingTopology());
+        transport.UseRoutingTopology<MyRoutingTopology>();
+
+        #endregion
+    }
+#pragma warning restore CS0618
+
+    void UseRoutingTopology4_0To4_1(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-config-useroutingtopology
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseRoutingTopology(createDurableExchangesAndQueues => new MyRoutingTopology());
+
+        #endregion
+    }
+
+    void UseRoutingTopology4_1(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-config-useroutingtopology
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseRoutingTopology(createDurableExchangesAndQueues => new MyRoutingTopology(createDurableExchangesAndQueues));
 
         #endregion
     }
@@ -130,6 +152,14 @@ class Usage
     class MyRoutingTopology :
         IRoutingTopology
     {
+        public MyRoutingTopology(bool createDurableExchangesAndQueues)
+        {
+        }
+
+        public MyRoutingTopology()
+        {
+        }
+
         public void SetupSubscription(IModel channel, Type type, string subscriberName)
         {
         }
