@@ -1,6 +1,5 @@
 ---
 title: "NServiceBus 101 Lesson 1: Hello world"
-component: Core
 ---
 
 In this lesson we will set up a new development machine with NServiceBus and show how the framework is set up within an application.

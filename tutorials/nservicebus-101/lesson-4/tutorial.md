@@ -1,6 +1,5 @@
 ---
 title: "NServiceBus 101 Lesson 4: Publishing events"
-component: Core
 ---
 
 So far in this course, we have only sent **commands** – one-way messages from a sender to a specific receiver. There's another type of message we have yet to cover called an **event**. In many ways events are just like commands. They're simple classes and you deal with them in much the same way. But from an architectural standpoint commands and events are *polar opposites*. This creates a useful dichotomy. We can take advantage of the properties of events to open up new possibilities in how we design software.

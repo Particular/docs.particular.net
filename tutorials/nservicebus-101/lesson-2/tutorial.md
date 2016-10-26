@@ -1,6 +1,5 @@
 ---
 title: "NServiceBus 101 Lesson 2: Sending a command"
-component: Core
 ---
 
 Sending and receiving messages is at the core of any NServiceBus system. Durable messages passed between processes allow reliable communication between those processes, even if one of them is temporarily unavailable. In this lesson we'll show how to send and process a message.
