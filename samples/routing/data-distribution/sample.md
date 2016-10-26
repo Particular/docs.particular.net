@@ -13,7 +13,7 @@ The sample demonstrates how NServiceBus [routing](/nservicebus/messaging/routing
 
 ## Prerequisites
 
-Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/) section.
+Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) section.
 
 
 ## Running the project
@@ -50,7 +50,7 @@ NServiceBus uses assembly scanning to load user-provided components such as mess
 
 snippet:DistributionEndpointTypes
 
-In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple instances of same application binaries to multiple machines. For simplicity in this sample the scale out is simulated by having two separate projects, Client and Client2.
+NOTE: In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, in this sample the scale out is simulated by having two separate projects, Client and Client2.
 
 
 ### Server

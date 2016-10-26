@@ -13,7 +13,7 @@ The sample demonstrates how to use a file to describe the mapping between logica
 
 ## Prerequisites
 
-Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/) section.
+Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) section.
 
 
 ## Running the project
@@ -30,9 +30,11 @@ Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Confi
  1. The Shipping endpoint displays information that orders were shipped.
  1. The Billing endpoint displays information that orders were billed.
 
+
 ## Code walk-through
 
 This sample contains four projects.
+
 
 ### Instance Mapping File
 
@@ -43,7 +45,7 @@ snippet: instanceMapping
 
 ### Client
 
-The Client application submits the orders for processing by the back-end systems by sending a `PlaceOrder` command. The client, as well as all other endpoints, uses the file based instance mapping
+The Client application submits the orders for processing by the back-end systems by sending a `PlaceOrder` command. The client, as well as all other endpoints, uses the file based instance mapping:
 
 snippet:FileInstanceMapping
 
@@ -52,7 +54,7 @@ snippet:FileInstanceMapping
 
 The Sales application accepts clients' orders and publishes the `OrderAccepted` event.
 
-In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity in this sample the scale out is simulated by having two separate projects, Sales and Sales2.
+NOTE: In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, in this sample the scale out is simulated by having two separate projects, Sales and Sales2.
 
 
 ### Shipping and Billing
@@ -65,6 +67,6 @@ Shipping and Billing applications subscribe to `OrderAccepted` event in order to
 The shared project contains definitions for messages.
 
 
-### Real-world scenario
+## Real-world scenario
 
 For the sake of simplicity, in this sample all the endpoints run on a single machine. In real world is is usually best to run each instance on a separate virtual machine. In such case the instance mapping file would contain `machine` attributes mapping instances to their machines' host names instead of `queue` attributes used to run more than one instance on a single box.

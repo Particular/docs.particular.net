@@ -14,7 +14,7 @@ The sample demonstrates how NServiceBus routing model can be extended with a cus
 
 ## Prerequisites
 
-Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/) section.
+Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) section.
 
 
 ## Running the project
@@ -26,15 +26,16 @@ Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Confi
 
 ### Verifying that the sample works correctly
 
- 1. Notice more messages are being send to Server.1 compared to Server.2
- 1. Use a [MSMQ viewing tool](/nservicebus/msmq/viewing-message-content-in-msmq.md) to view the queue contents.
+ 1. Notice more messages are being sent to Server.1 than to Server.2
+ 1. Use a [MSMQ viewing tool](/nservicebus/msmq/viewing-message-content-in-msmq.md) to inspect queue contents.
  1. Keep hitting `<enter>` and observe number of messages in Server.1 and Server.2 queues.
- 1. Notice that although Server.2 processes messages 50% slower than Server.1, numbers of messages in both queues are almost equal.
+ 1. Notice that although Server.2 processes messages 50% slower than Server.1, the numbers of messages in both queues are almost equal.
 
 
 ## Code walk-through
 
 This sample contains four projects.
+
 
 ### Client
 
@@ -42,7 +43,7 @@ The Client application submits the orders for processing by the server. Client r
 
 snippet:Routing
 
-Following code enables fair load distribution (as opposed to default round-robin algorithm):
+The following code enables fair load distribution (as opposed to default round-robin algorithm):
 
 snippet:FairDistributionClient
 
@@ -53,7 +54,7 @@ The Server application processes the `PlaceOrder` commands. On the server side t
 
 snippet:FairDistributionServer
 
-In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity in this sample the scale out is simulated by having two separate projects, Server and Server2.
+NOTE: In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, in this sample the scale out is simulated by having two separate projects, Server and Server2.
 
 
 ### Shared project
@@ -70,27 +71,27 @@ snippet:MarkMessages
 
 ### Acknowledging message delivery
 
-Every `N` messages the downstream endpoint instance sends back an acknowledgement (ACK) message containing the highest sequence number it has processed so far. The ACK messages are sent separately to each upstream endpoint instance.
+After receiving every `N` messages, the downstream endpoint instance sends back an acknowledgement (ACK) message containing the highest sequence number it has processed so far. The ACK messages are sent separately to each upstream endpoint instance.
 
 snippet:ProcessMarkers
 
 
 ### Processing acknowledgments
 
-When the ACK message is received, the upstream endpoint can calculate the number of messages that are currently in-flight between itself and the downstream endpoint.
+When the ACK message is received, the upstream endpoint calculates the number of messages that are currently in-flight between itself and the downstream endpoint.
 
 snippet:ProcessACKs
 
 
 ### Smart routing
 
-The calculated number of in-flight messages can be used to distribute messages in such a way that all instances of downstream scaled-out endpoint have almost the same number of messages in their input queues. That way the load is appropriate for the capacity of the given instance, e.g. instances running on weaker machines process less messages. As a result no instance is getting overwhelmed and no instance is underutilized when work is available.
+The calculated number of in-flight messages is then used to distribute messages in such a way that all instances of the downstream endpoint have roughly the same number of messages in their input queues. That way the load is adjusted to the actual capacity of the given instance, e.g. instances running on weaker machines process less messages. As a result no instance is getting overwhelmed and no instance is underutilized when work is available.
 
-The bigger the `N` value (number of messages between every ACK), the bigger may be the difference between lengths of queues. On the other hand, lower `N` values cause more traffic as more ACKs are being sent upstream.    
+The bigger the `N` value (number of messages between every ACK), the bigger may be the difference between input queues lengths. On the other hand, lower `N` values cause more traffic as more ACKs are being sent upstream.    
 
 snippet:GetLeastBusy
 
 
-### Real-world scenario
+## Real-world deployment
 
-For the sake of simplicity, in this sample all the endpoints run on a single machine. In real world is is usually best to run each instance on a separate virtual machine. In such case the instance mapping file would contain `machine` attributes mapping instances to their machines' host names instead of `queue` attributes used to run more than one instance on a single box.
+For the sake of simplicity, in this sample all the endpoints run on a single machine. In real world it is usually best to run each instance on a separate virtual machine. In such case the instance mapping file would contain `machine` attributes mapping instances to their machines' host names instead of `queue` attributes used to run more than one instance on a single box.

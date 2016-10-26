@@ -101,17 +101,17 @@ http://www.planttext.com/planttext
 @startuml
 
 package "Client" {
-    component [Routng\nSubscriber] as C_S
+    Component [Routing\nSubscriber] as C_S
     Component [Routing\nPublisher] as C_P
 }
 
 package "Sales.1" {
-    component [Routng\nSubscriber] as S1_S
+    Component [Routing\nSubscriber] as S1_S
     Component [Routing\nPublisher] as S1_P
 }
 
 package "Sales.2" {
-    component [Routng\nSubscriber] as S2_S
+    Component [Routing\nSubscriber] as S2_S
     Component [Routing\nPublisher] as S2_P
 }
 
@@ -133,11 +133,13 @@ RI -up-> S2_S
 
 ![Automatic routing design](design.png)
 
-The routing information in the core of NServiceBus consists of three parts:
- * Logical command routing (mapping of message types to logical destinations)
- * Logical event routing (mapping of even types to their respective logical publishers)
- * Physical routing (mapping of logical endpoint to physical instances)
+The following information is required by this automatic routing implementation:
+ * Mapping command types to their logical destinations.
+ * Mapping event types to their respective logical publishers.
+ * Mapping logical endpoints to their physical instances.
 
-This information is updated every time the automatic routing feature detects a change in the topology via following API calls:
+`Logical` endpoints, publishers and destinations are `Endpoints`, while `physical` instances are `Endpoint Instances`. Refer to [Endpoints](/nservicebus/endpoints/) article for full definitions.
+
+This information is updated every time the automatic routing feature detects a change in the topology:
 
 snippet:AddOrReplace
