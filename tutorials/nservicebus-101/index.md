@@ -3,7 +3,7 @@ title: "NServiceBus 101: Messaging Basics"
 suppressRelated: true
 ---
 
-In this self-paced course, you will learn the most important fundamentals of how to get working quickly with NServiceBus.
+In this course, you will learn how to get working quickly with NServiceBus.
 
 
 ## Objectives
