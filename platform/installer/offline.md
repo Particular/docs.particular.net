@@ -1,6 +1,10 @@
 ---
 title: Installing Platform Components without Platform Installer
-tags: [Platform, Installation, Offline]
+reviewed: 2016-10-26
+tags:
+ - Platform
+ - Installation
+ - Offline
 ---
 
 The [Platform Installer](/platform/installer) handles installing prerequisites for NServiceBus and the Platform products. This guide details how to install to achieve the same results as the Platform Installer on a computer that does not have the required Internet connectivity.
@@ -15,10 +19,10 @@ The Particular platform products require [.NET 4.5.2](https://www.microsoft.com/
 
 The Platform Installer installs 4 component parts:
 
-- NServiceBus Prerequisites
-- ServiceControl
-- ServicePulse
-- ServiceInsight
+ * NServiceBus Prerequisites
+ * ServiceControl
+ * ServicePulse
+ * ServiceInsight
 
 Each of these will be detailed below:
 

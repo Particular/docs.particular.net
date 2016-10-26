@@ -1,7 +1,7 @@
 ---
 title: Platform Installer
 summary: Guidance on how to use the Platform Installer and its underlying components
-reviewed: 2016-03-16
+reviewed: 2016-10-26
 tags:
 - Platform
 - Installation
