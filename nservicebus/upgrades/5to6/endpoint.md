@@ -1,5 +1,6 @@
 ---
 title: Endpoint API changes in Version 6
+reviewed: 2016-10-26
 tags:
  - upgrade
  - migration

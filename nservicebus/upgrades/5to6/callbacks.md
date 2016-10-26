@@ -1,11 +1,12 @@
 ---
 title: Callback Changes in Version 6
+reviewed: 2016-10-26
 tags:
  - upgrade
  - migration
 ---
 
-The synchronous request-response feature, also known as callbacks, has been moved from the NServiceBus core to the separate Nuget package [NServiceBus.Callbacks](https://www.nuget.org/packages/NServiceBus.Callbacks/). That package must be used in order to use the callback functionality in Version 6.
+The synchronous request-response feature, also known as [Callbacks](/nservicebus/messaging/callbacks.md)., has been moved from the NServiceBus core to the separate Nuget package [NServiceBus.Callbacks](https://www.nuget.org/packages/NServiceBus.Callbacks/). That package must be used in order to use the callback functionality in Version 6.
 
 The API was also modified. Version 6 API is asynchronous by default and allows to easily access the response message. It is no longer possible to use callbacks inside handlers or sagas, because extension methods are only available on the message session. The differences in the API are fully covered in [Callbacks](/nservicebus/messaging/callbacks.md).
 

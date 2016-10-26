@@ -1,5 +1,6 @@
 ---
 title: Extension Seam changes in Version 6
+reviewed: 2016-10-26
 tags:
  - upgrade
  - migration
@@ -16,7 +17,6 @@ tags:
 ## [Outbox](/nservicebus/outbox/)
 
 `IOutboxStorage` introduced a new parameter `OutboxStorageOptions`. This parameter gives access to the pipeline context. This enables outbox storage methods to manipulate everything that exists in the context during message pipeline execution.
-
 
 
 ## Queue creation
@@ -51,7 +51,7 @@ Both the `ISatellite` and the `IAdvancedSatellite` interfaces are deprecated. Th
 
 Satellite pipelines (e.g. retries or timeouts) no longer create Performance Counters. Endpoints provide a single performance counter instance related to the main message processing pipeline.
 
-To learn more about using Perfomance Cunters in NServiceBus, refer to the [Performance Counter Usage](/samples/performance-counters/) sample and [Performance Counters](/nservicebus/operations/performance-counters.md) article.
+To learn more about using Performance Counters, refer to the [Performance Counter Usage](/samples/performance-counters/) sample and [Performance Counters](/nservicebus/operations/performance-counters.md) article.
 
 
 ## Transport Seam

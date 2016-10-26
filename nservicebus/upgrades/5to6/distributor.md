@@ -23,9 +23,9 @@ With sender-side distribution, senders are aware of scaled out receivers, allowi
 This process aims to allow upgrade without message loss and minimal downtime. If a scaled-out endpoint only receives commands and does not subscribe to messages consider following the [Simple upgrade scenario](#simple-upgrade-scenario) instead.
 
  * Upgrade all endpoints that interact with the distributor to Version 6 first. At this stage, do not upgrade the workers to Version 6.
-  * upgrade all endpoints that send command messages to the Distributor endpoint to be distributed,
-  * upgrade all endpoints that send subscription messages to the Distributor,
-  * upgrade all endpoints subscribing to events published by worker nodes.
+  * Upgrade all endpoints that send command messages to the Distributor endpoint to be distributed,
+  * Upgrade all endpoints that send subscription messages to the Distributor,
+  * Upgrade all endpoints subscribing to events published by worker nodes.
  * Apply the following steps for each worker, one after another:
   * Shut down the worker.
   * [Upgrade to NServiceBus Version 6](#upgrade-endpoint-to-version-6).
@@ -68,9 +68,9 @@ This process describes a faster way to migrate a scaled-out endpoint using the D
 DANGER: Following this process when endpoints subscribe to events may cause duplicate events or message loss.
 
  * Upgrade all endpoints that interact with the distributor to Version 6 first. At this stage, do not upgrade the workers to Version 6.
-  * upgrade all endpoints that send command messages to the Distributor endpoint to be distributed,
-  * upgrade all endpoints that send subscription messages to the Distributor,
-  * upgrade all endpoints subscribing to events published by worker nodes.
+  * Upgrade all endpoints that send command messages to the Distributor endpoint to be distributed,
+  * Upgrade all endpoints that send subscription messages to the Distributor,
+  * Upgrade all endpoints subscribing to events published by worker nodes.
  * Configure all mentioned endpoints above to use [sender-side distribution](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md) to route messages directly to the workers instead of the Distributor.
  * Ensure no more messages are routed to the Distributor.
  * Apply the following steps for each worker:
