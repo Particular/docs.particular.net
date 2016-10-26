@@ -2,9 +2,9 @@
 
 #### Using the NServiceBus PowerShell Cmdlet
 
-The [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md) includes a Cmdlet for importing the Platform License into the `HKEY_LOCAL_MACHINE` registry. 
+The [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md) includes a cmdlet for importing the Platform License into the `HKEY_LOCAL_MACHINE` registry. 
 
-For 64-bit operating systems the license is written to both the 32-bit and 64-bit registry. The license is stored is `HKEY_LOCAL_MACHINE\Software\ParticularSoftware\License` and `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ParticularSoftware`.
+For 64-bit operating systems the license is stored under "license" registry value in both the `HKEY_LOCAL_MACHINE\Software\ParticularSoftware` and `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ParticularSoftware` registry keys
 
 
 #### Other Manual Options
