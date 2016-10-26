@@ -47,6 +47,7 @@
     <Compile Include="AccessingData.cs" />
     <Compile Include="Concurrency\SagaDataWithLockMode.cs" />
     <Compile Include="Concurrency\SagaDataWithRowVersion.cs" />
+    <Compile Include="Outbix.cs" />
     <Compile Include="Usage.cs" />
     <Compile Include="UsageSqlAzure.cs" />
     <Compile Include="DisableSchemaUpdate.cs" />
