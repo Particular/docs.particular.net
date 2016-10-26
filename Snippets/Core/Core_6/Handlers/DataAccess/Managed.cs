@@ -7,7 +7,8 @@ namespace Core6.Handlers.DataAccess
     {
         #region BusinessData-Native-Managed
 
-        public class IdempotencyEnforcer : IHandleMessages<OrderMessage>
+        public class IdempotencyEnforcer :
+            IHandleMessages<OrderMessage>
         {
             public Task Handle(OrderMessage message, IMessageHandlerContext context)
             {
@@ -22,11 +23,12 @@ namespace Core6.Handlers.DataAccess
                 {
                     this.MarkAsProcessed(context.MessageId, order);
                 }
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         }
 
-        public class NonIdempotentHandler : IHandleMessages<AddOrderLine>
+        public class NonIdempotentHandler :
+            IHandleMessages<AddOrderLine>
         {
             public async Task Handle(AddOrderLine message, IMessageHandlerContext context)
             {

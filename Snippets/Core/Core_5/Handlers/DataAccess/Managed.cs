@@ -6,7 +6,8 @@ namespace Core5.Handlers
     {
         #region BusinessData-Native-Managed
 
-        public class IdempotencyEnforcer : IHandleMessages<OrderMessage>
+        public class IdempotencyEnforcer :
+            IHandleMessages<OrderMessage>
         {
             IBus bus;
 
@@ -31,7 +32,8 @@ namespace Core5.Handlers
             }
         }
 
-        public class NonIdempotentHandler : IHandleMessages<AddOrderLine>
+        public class NonIdempotentHandler :
+            IHandleMessages<AddOrderLine>
         {
             IBus bus;
 

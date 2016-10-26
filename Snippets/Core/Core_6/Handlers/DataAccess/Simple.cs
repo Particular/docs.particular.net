@@ -8,7 +8,8 @@ namespace Core6.Handlers.DataAccess
 
         #region BusinessData-Native-NotIdempotent
 
-        public class NonIdempotentHandler : IHandleMessages<AddOrderLine>
+        public class NonIdempotentHandler :
+            IHandleMessages<AddOrderLine>
         {
             IMyOrm orm;
 
@@ -32,7 +33,8 @@ namespace Core6.Handlers.DataAccess
 
         #region BusinessData-Native-Idempotent
 
-        public class IdempotentHandler : IHandleMessages<AddOrderLine>
+        public class IdempotentHandler :
+            IHandleMessages<AddOrderLine>
         {
             IMyOrm orm;
 
