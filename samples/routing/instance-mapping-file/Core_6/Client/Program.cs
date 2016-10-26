@@ -13,11 +13,11 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.CustomRouting.Client";
+        Console.Title = "Samples.InstanceMappingFile.Client";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Client");
+        var endpointConfiguration = new EndpointConfiguration("Samples.InstanceMappingFile.Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
@@ -30,7 +30,7 @@ class Program
         routingTable.FilePath(@"..\..\..\instance-mapping.xml");
         #endregion
 
-        routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.CustomRouting.Sales");
+        routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.InstanceMappingFile.Sales");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

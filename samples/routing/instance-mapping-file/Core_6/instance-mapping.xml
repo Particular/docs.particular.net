@@ -1,15 +1,15 @@
 <!--startcode instanceMapping-->
 <endpoints>
-  <endpoint name="Samples.CustomRouting.Sales">
+  <endpoint name="Samples.InstanceMappingFile.Sales">
     <!-- Scaled-out endpoint -->
-    <instance queue="Samples.CustomRouting.Sales-1"/>
-    <instance queue="Samples.CustomRouting.Sales-2"/>
+    <instance queue="Samples.InstanceMappingFile.Sales-1"/>
+    <instance queue="Samples.InstanceMappingFile.Sales-2"/>
   </endpoint>
   <!--Multiple endpoints hosted on same machine-->
-  <endpoint name="Samples.CustomRouting.Billing">
+  <endpoint name="Samples.InstanceMappingFile.Billing">
     <instance machine="localhost"/>
   </endpoint>
-  <endpoint name="Samples.CustomRouting.Shipping">
+  <endpoint name="Samples.InstanceMappingFile.Shipping">
     <instance machine="localhost"/>
   </endpoint>
 </endpoints>

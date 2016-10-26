@@ -2,6 +2,7 @@
 title: Custom routing
 summary: Customizing NServiceBus message routing
 component: Core
+reviewed: 2016-10-26
 tags:
 - Routing
 redirects:
@@ -12,7 +13,7 @@ The sample demonstrates how NServiceBus routing model can be extended to allow f
  * handled messages;
  * published events.
 
-The advantage of no configuration approach is low development friction and simpler maintanance. The disadvantage is that the implementation is more complex.
+The advantage of configuration-free approach is low development friction and simpler maintenance. 
 
 
 ## Prerequisites
@@ -40,7 +41,7 @@ The advantage of no configuration approach is low development friction and simpl
 
  1. Close the Sales.2 console window.
  1. Hit `<enter>` several times to send more messages.
- 1. Notice that only every second message gets processed by Sales.1. Client still does not know that Sales.2 is down.
+ 1. Notice that only every other message gets processed by Sales.1. Client still does not know that Sales.2 is down.
  1. Wait until consoles show that Sales.2 heartbeat timed out.
  1. Hit `<enter>` several times to send more messages.
  1. Notice that all orders are now routed to Sales.1 queue.
@@ -57,34 +58,27 @@ The advantage of no configuration approach is low development friction and simpl
 
 ## Code walk-through
 
-This sample contains four projects:
-
- * Shared - A class library containing common routing code including the message definitions.
- * Client - A console application responsible for sending the initial `PlaceOrder` message.
- * Sales - A console application responsible for processing the `PlaceOrder` command and generating `OrderAccepted` event.
- * Shipping - A console application responsible for processing the `OrderAccepted` message.
- * Billing - Another console application responsible for processing the `OrderAccepted` message.
-
-
-### Client
-
-The Client does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end.
-
-
-### Sales
-
-The Sales project mimics the back-end system where orders are accepted. Apart from the standard NServiceBus configuration it enables the custom automatic routing:
+This sample contains four applications that use configuration-free custom routing:
 
 snippet:EnableAutomaticRouting
 
 NOTE: In order to use this custom routing all published types need to be specified.
 
-In real-world scenarios NServiceBus is scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines (e.g. `Sales` in this sample). For simplicity in this sample the scale out is simulated by having two separate endpoints `Sales` and `Sales2`.
+### Client
+
+The Client application submits the orders for processing by the back-end systems by sending a `PlaceOrder` command.
+
+
+### Sales
+
+The Sales application accepts clients' orders and publishes the `OrderAccepted` event. 
+
+NOTE: In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, in this sample the scale out is simulated by having two separate projects, Sales and Sales2.
 
 
 ### Shipping and Billing
 
-Shipping and Billing mimic back-end systems subscribing to events published by Sales endpoints.
+Shipping and Billing applications subscribe to `OrderAccepted` event in order to execute their business logic.
 
 
 ### Shared project

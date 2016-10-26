@@ -11,9 +11,9 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.CustomRouting.Sales.1";
-        var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Sales");
-        endpointConfiguration.OverrideLocalAddress("Samples.CustomRouting.Sales-1");
+        Console.Title = "Samples.InstanceMappingFile.Sales.1";
+        var endpointConfiguration = new EndpointConfiguration("Samples.InstanceMappingFile.Sales");
+        endpointConfiguration.OverrideLocalAddress("Samples.InstanceMappingFile.Sales-1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
