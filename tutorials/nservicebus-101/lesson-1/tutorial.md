@@ -18,9 +18,8 @@ By the end of this lesson, you will have learned:
 There are a few things we need in order to build a solution with the latest version of NServiceBus.
 
 * This course uses Visual Studio 2015 and .NET Framework 4.6.1, although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operations/dotnet-framework-version-requirements.md).
-* NServiceBus requires queuing infrastructure (a message transport) to move messages around. This course uses Microsoft Message Queuing (MSMQ) as a default.
-  * The [Particular Platform Installer](/platform/installer/) will install MSMQ and its dependencies for you. [Download and run the Platform Installer](/platform/installer/) to get started, or [follow these instructions to configure MSMQ manually](/nservicebus/msmq/#nservicebus-configuration).
-  * If you don't have sufficient privileges to install MSMQ, you can [use the SQL Server transport as a substitute](../using-sql-transport.md). 
+* NServiceBus requires queuing infrastructure (a message transport) to move messages around. This course uses Microsoft Message Queuing (MSMQ) as a default. The [Particular Platform Installer](/platform/installer/) will install MSMQ and its dependencies for you. [Download and run the Platform Installer](/platform/installer/) to get started, or [follow these instructions to configure MSMQ manually](/nservicebus/msmq/#nservicebus-configuration).
+
 
 
 ## Exercise
