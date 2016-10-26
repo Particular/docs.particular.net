@@ -1,5 +1,6 @@
 ---
 title: Messaging changes in Version 6
+reviewed: 2016-10-26
 tags:
  - upgrade
  - migration
@@ -40,12 +41,12 @@ Using a suppressed transaction scope to request sends to be dispatched immediate
 
 ## Batched dispatch
 
-Version 6 introduced the concept of [Batched dispatch](/nservicebus/messaging/batched-dispatch.md) which means that outgoing operations won't dispatch to the transport until all the handlers of the current message have completed successfully. This helps users inconsistencies in the form of "ghost" messages being emitted due to exceptions during processing.
+Version 6 introduced the concept of [Batched dispatch](/nservicebus/messaging/batched-dispatch.md) which means that outgoing operations won't dispatch to the transport until all the handlers of the current message have completed successfully. This helps reduce inconsistencies, in the form of "ghost" messages, being emitted due to exceptions during processing.
 
 
 ## Deprecated Address
 
-Version 5 of NServiceBus represents addresses with an `Address` class. The `Address` class maintains addresses in the *queue@host* format. This format was originally developed for the MSMQ transport but does not meet the needs of other transports. In Version 6, addresses are represented as opaque strings.
+Version 5 represents addresses with an `Address` class. The `Address` class maintains addresses in the *queue@host* format. This format was originally developed for the MSMQ transport but does not meet the needs of other transports. In Version 6, addresses are represented as opaque strings.
 
 Any usages of `Address` should be replaced by `string`.
 
@@ -71,4 +72,4 @@ The forwarded messages no longer contain additional [auditing headers](/nservice
 
 The `InvokedSagas` header added to audited messages populated with the name of the saga classes invoked along with their unique identifiers.
 
-This functionality has been moved from the NServiceBus core to the [SagaAudit plugin](/servicecontrol/plugins/saga-audit.md) compatible with NServiceBus Version 6.
+This functionality has been moved from the NServiceBus core to the [SagaAudit plugin](/servicecontrol/plugins/saga-audit.md) compatible with Version 6.
