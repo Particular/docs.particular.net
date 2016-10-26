@@ -4,7 +4,7 @@ title: "NServiceBus 101 Lesson 3: Managing multiple endpoints"
 
 Up until this point, we have constrained our activities to a single endpoint, but this is not how real systems behave. The strength of a messaging application is the ability to run code in multiple processes, on multiple servers, which can all collaborate by exchanging messages.
 
-In this lesson, we'll make our solution more "real life" by moving our message handler to a brand new messaging endpoint, and discussing the concepts that go along with running more than one endpoint.
+In this lesson, we'll move our message handler to a different endpoint, and discussing the concepts that go along with running more than one endpoint.
 
 
 ## Objectives

@@ -50,26 +50,22 @@ A **message assembly** should contain only NServiceBus message contracts, and an
 
 Message assemblies should be entirely self-contained. They should have no dependencies other than libraries included with the .NET Framework, and the NServiceBus core assembly, which is required to reference the `ICommand` interface. Limiting dependencies makes your message contracts more resilient to future changes in the system.
 
-NOTE: In another course, we'll learn how (and why) to use [message conventions](/nservicebus/messaging/conventions.md) to identify message types, rather than the `ICommand` interface. Then we don't even need to reference the NServiceBus assembly in our message assemblies. But, we'll leave that out of scope for now.
+NOTE: It's also possible to use [message conventions](/nservicebus/messaging/conventions.md) to identify message types, rather than the `ICommand` interface. Then a message assembly doesn't even need to reference NServiceBus at all. This can be an advantage when you want to upgrade to a new major version of NServiceBus, because message assemblies (which are shared between multiple endpoints) don't require any updates, so you can more easily update only one endpoint at a time.
 
 
 ## How do I process a message?
 
-To process a message, we create a **message handler**, a class that implements `IHandleMessages<T>`, where `T` is a message type. A message handler looks like this:
+To process a message, we create a [**message handler**](/nservicebus/handlers/), a class that implements `IHandleMessages<T>`, where `T` is a message type. A message handler looks like this:
 
 snippet:EmptyHandler
 
 The implementation of the `IHandleMessages<T>` interface is the `Handle` method, which NServiceBus will invoke when a matching message (in this case `DoSomething`) arrives. The `Handle` method receives the message and an `IMessageHandlerContext` that contains tools for working with messages.
 
-The `Handle` method must return a [`System.Threading.Tasks.Task`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx). Returning `null` will result in an exception. In the case above, no async calls need to be made, so we return `Task.CompletedTask` to fulfill the return requirement. 
-
-NOTE: Before .NET 4.6, `Task.CompletedTask` is not available. In that case, you can use `Task.FromResult(false)` instead.
-
-Instead, we can add the `async` keyword to the method, and then the compiler takes care of the tasks more or less transparently. No explicit return is needed because the compiler generates it for you as part of the async state machine.
+Of course, you can add the `async` keyword to a handler method, and then you do not need to explicitly return a task, as shown below. (If you are not comfortable working with async methods, you may want to check out [Asynchronous Handlers](/nservicebus/handlers/async-handlers.md) for more information.)
 
 snippet:EmptyHandlerAsync
 
-You can even implement `IHandleMessages<T>` for multiple different message types within the same class, if it makes sense to logically group the handlers together. Just don't expect any state in class variables to be persisted. NServiceBus will create a new instance of the class for every message that it handles.
+You can implement `IHandleMessages<T>` for multiple different message types within the same class, if it makes sense to logically group the handlers together. Just don't expect any state in class variables to be persisted. NServiceBus will create a new instance of the class for every message that it handles.
 
 snippet:MultiHandler
 
@@ -87,7 +83,7 @@ When we're done, the ClientUI endpoint will be sending a PlaceOrder message to i
 
 ### Create a messages assembly
 
-Messages should be self-contained within a separate assembly so that they can be shared between endpoints, so let's create that assembly now.
+To share message between endpoints they need to be self-contained within a separate assembly, so let's create that assembly now.
 
  1. In the solution, create a new project and select the **Class Library** project type.
  1. Set the name of the project to **Messages**.
@@ -114,7 +110,7 @@ snippet:PlaceOrder
 
 ### Create a handler
 
-Now that we've defined a message, we can create a message handler to handle it. Rather than create a new endpoint, let's start by just handling the message locally within the **ClientUI** endpoint.
+Now that we've defined a message, we can create a corresponding message handler. Rather than create a new endpoint, let's start by just handling the message locally within the **ClientUI** endpoint.
 
  1. In the **ClientUI** project, create a new class named `PlaceOrderHandler`.
  1. Mark the handler class as public, and implement the `IHandleMessages<PlaceOrder>` interface.

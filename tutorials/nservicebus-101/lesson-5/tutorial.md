@@ -97,7 +97,7 @@ This is an exploratory exercise, where we'll be playing with different retry opt
 
 ### Throw an exception
 
-Presumably, you already know how to create bugs. But for the purposes of this exercise, we'll create a specific bug in the Sales endpoint and watch what happens when we run the endpoint.
+For the purposes of this exercise, we'll create a specific bug in the Sales endpoint and watch what happens when we run the endpoint.
 
 1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
 2. After logging receipt of the message, throw an exception:
@@ -160,10 +160,10 @@ Modify the same recoverability code, and re-run the solution:
 
 snippet:TimeIncrease
 
-Notice how much more quickly the message proceeds through delayed retries, because instead of delays of 10/20/30 seconds (60 seconds total) the delays are now 3/6/9 seconds, for a total of 18 seconds wait time.
+Notice how much faster the message proceeds through delayed retries, because instead of delays of 10/20/30 seconds (60 seconds total) the delays are now 3/6/9 seconds, for a total of 18 seconds wait time.
 
 
-### Extra Credit: Replay a message
+### Replay a message
 
 If you used the [Particular Platform Installer](/platform/installer/) to install MSMQ, you should already have the [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/) tools installed.
 
@@ -190,4 +190,4 @@ When the message is replayed in Sales, each endpoint picks up right where it lef
 
 In this lesson, we explored different causes for exceptions and how NServiceBus makes those much easier to deal with by introducing automatic retries and message replay to make many transient and semi-transient exceptions just go away, and provide tools to deal with poison messages, all without our users noticing anything but perhaps a slight processing delay. This is a capability that will enable you to create truly resilient, self-healing systems that can keep running in the face of partial failure.
 
-Congratulations! You've completed the last lesson in NServiceBus 101: Messaging Basics. You may have noticed in this course there was a lot of code duplication. We also ignored some messaging best practices in the name of keeping the examples simple. So if you were thinking that NServiceBus was powerful, but wouldn't be manageable in real life, fear not! In *NServiceBus 150: NServiceBus Architecture*, we'll explore how you would use NServiceBus in a real-life system. We'll remove the code duplication and make everything more [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), discuss best practices for creating and managing large NServiceBus systems, delve into web applications, and more.
+Congratulations! You've completed the last lesson in NServiceBus 101: Messaging Basics. You may have noticed in this course there was a lot of code duplication. We also ignored some messaging best practices in the name of keeping the examples simple. In the next course, we'll explore how you would use NServiceBus in a real-life system. We'll remove the code duplication and make everything more [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), discuss best practices for creating and managing large NServiceBus systems, delve into web applications, and more.
