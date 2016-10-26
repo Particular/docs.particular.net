@@ -3,6 +3,7 @@ title: SQL Azure
 summary: How to configure the NHibernate-based persistence for NServiceBus when running on SQL Azure
 component: NHibernate
 versions: '[6,]'
+reviewed: 2016-10-19
 tags:
  - NHibernate
  - Persistence
@@ -31,6 +32,6 @@ There are two choices of package for this library.
 
 ## Usage
 
-After installation of the package, enabling the driver is as simple as:
+After installation of the package, enable the driver by setting NHibernate `connection.driver_class` property:
 
 snippet:SqlAzureNHibernateDriverConfiguration

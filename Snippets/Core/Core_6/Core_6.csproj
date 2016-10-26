@@ -99,6 +99,15 @@
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="Container\Custom\MyContainerDefinition.cs" />
+    <Compile Include="Handlers\DataAccess\AddOrderLine.cs" />
+    <Compile Include="Handlers\DataAccess\IMyOrm.cs" />
+    <Compile Include="Handlers\DataAccess\IMyOrmSession.cs" />
+    <Compile Include="Handlers\DataAccess\Managed.cs" />
+    <Compile Include="Handlers\DataAccess\MyOrmExtensions.cs" />
+    <Compile Include="Handlers\DataAccess\MyPersistence.cs" />
+    <Compile Include="Handlers\DataAccess\Order.cs" />
+    <Compile Include="Handlers\DataAccess\OrderMessage.cs" />
+    <Compile Include="Handlers\DataAccess\Simple.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\CustomExceptionPolicy.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicyOverridingDelayedRetriesPart.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\FullyCustomizedPolicy.cs" />

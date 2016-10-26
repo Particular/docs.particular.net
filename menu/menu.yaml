@@ -275,10 +275,12 @@
     - Url: nservicebus/handlers
       Title: Handlers
       Articles:
-      - Url: nservicebus/handlers/handler-ordering
-        Title: Handler Order
+      - Url: nservicebus/handlers/accessing-data
+        Title: Accessing data	  
       - Url: nservicebus/handlers/async-handlers
         Title: Asynchronous Handlers
+      - Url: nservicebus/handlers/handler-ordering
+        Title: Handler Order
     - Url: nservicebus/sagas
       Title: Sagas
       Articles:
@@ -528,8 +530,6 @@
         Title: Saga concurrency
       - Url: nservicebus/nhibernate/sql-azure
         Title: SQL Azure
-      - Url: nservicebus/nhibernate/outbox
-        Title: Outbox
       - Url: nservicebus/nhibernate/scripting
         Title: Scripting
     - Url: nservicebus/ravendb
