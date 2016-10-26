@@ -12,8 +12,8 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.CustomRouting.Billing";
-        var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Billing");
+        Console.Title = "Samples.InstanceMappingFile.Billing";
+        var endpointConfiguration = new EndpointConfiguration("Samples.InstanceMappingFile.Billing");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
@@ -23,7 +23,7 @@ class Program
         var routing = transport.Routing();
         var routingTable = routing.InstanceMappingFile();
         routingTable.FilePath(@"..\..\..\instance-mapping.xml");
-        routing.RegisterPublisher(typeof(OrderAccepted), "Samples.CustomRouting.Sales");
+        routing.RegisterPublisher(typeof(OrderAccepted), "Samples.InstanceMappingFile.Sales");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

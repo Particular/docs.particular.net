@@ -2,6 +2,7 @@
 title: Data distribution
 summary: Implementing data distribution on top of NServiceBus
 component: Core
+reviewed: 2016-10-26
 tags:
 - Routing
 - Data distribution
@@ -12,7 +13,7 @@ The sample demonstrates how NServiceBus [routing](/nservicebus/messaging/routing
 
 ## Prerequisites
 
-Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/) section.
+Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) section.
 
 
 ## Running the project
@@ -30,42 +31,31 @@ Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Confi
 
 ## Code walk-through
 
-This sample contains four projects:
-
- * Shared - A class library containing common routing code including the message definitions.
- * Client - A console application responsible for sending the initial `PlaceOrder` message.
- * Client2 - A console application identical to Client.
- * Server - A console application responsible for processing the `PlaceOrder` command.
+This sample contains four projects.
 
 
 ### Client
 
-The Client mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. The Client also holds a local in-memory order cache that needs to be invalidated when an order is accepted by the back-end.
+The Client application submits the orders for processing by the back-end systems by sending a `PlaceOrder` command. Client also holds a local in-memory order cache that needs to be invalidated when an order is accepted by the back-end.
 
-The client application consists of two endpoints. The main endpoint is a standard NServiceBus endpoint. It is used to send the `PlaceOrder` commands and process `OrderAccepted` events.
+The client application consists of two endpoints. The main endpoint is used to send the `PlaceOrder` commands and process `OrderAccepted` events.
 
 snippet:MainConfig
 
-The second endpoint is used for data distribution purposes. The logical name of the data distribution endpoint consists of the name of the main endpoint and a suffix which is specific to a given instance. Such suffix can be set in the configuration for each deployment or can be obtained from an environment (e.g. Azure role instance ID).
+The auxiliary endpoint is used for data distribution purposes. It reacts on `OrderAccepted` events and invalidates the cache. In order to ensure each scaled out instance of Client receives its own copy of the event the logical name of the data distribution endpoint consists of the name of the main endpoint and a suffix which is specific to a given instance. Such suffix can be set in the configuration for each deployment or can be obtained from an environment (e.g. Azure role instance ID).
 
-snippet:DistributionConfig
+snippet:DistributionEndpointName
 
-NServiceBus uses assembly scanning to load various user-provided components such as message handlers. When co-hosting two endpoints in a single process it is important to make sure NServiceBus loads correct components to correct endpoints. In this sample `DataDistribution` namespace is used to mark data distribution components
+NServiceBus uses assembly scanning to load user-provided components such as message handlers. When co-hosting two endpoints in a single process it is important to make sure NServiceBus loads correct components to each endpoint. In this sample `DataDistribution` namespace is used to mark data distribution components
 
-snippet:CacheInvalidationHandler
+snippet:DistributionEndpointTypes
 
-On the endpoint configuration level this namespace is used for filtering
-
-snippet:FilterNamespace1
-
-snippet:FilterNamespace2
-
-In real-world scenarios NServiceBus is scaled out by deploying multiple instances of same application binaries to multiple machines (e.g. Client in this sample). For simplicity in this sample the scale out is simulated by having two separate applications, Client and Client2.
+NOTE: In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, in this sample the scale out is simulated by having two separate projects, Client and Client2.
 
 
 ### Server
 
-The Server project mimics the back-end system where orders are accepted.
+The Server application processes the `PlaceOrder` commands and publishes `OrderAccepted` events.
 
 
 ### Shared project

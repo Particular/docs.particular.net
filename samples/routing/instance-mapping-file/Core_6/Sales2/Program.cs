@@ -12,9 +12,9 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.CustomRouting.Sales.2";
-        var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Sales");
-        endpointConfiguration.OverrideLocalAddress("Samples.CustomRouting.Sales-2");
+        Console.Title = "Samples.InstanceMappingFile.Sales.2";
+        var endpointConfiguration = new EndpointConfiguration("Samples.InstanceMappingFile.Sales");
+        endpointConfiguration.OverrideLocalAddress("Samples.InstanceMappingFile.Sales-2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

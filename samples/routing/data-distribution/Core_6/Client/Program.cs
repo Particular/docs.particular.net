@@ -12,7 +12,7 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.DataDistribution.Client.1";
+        Console.Title = "Samples.DataDistribution.Client."+Utils.GetUniqueDataDistributionId();
 
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
@@ -63,21 +63,24 @@ class Program
 
     static EndpointConfiguration DistributionConfig(string endpointName)
     {
-        #region DistributionConfig
-
-        var distributionEndpointName = $"{endpointName}.{GetUniqueDataDistributionId()}";
+        #region DistributionEndpointName
+        var distributionEndpointName = $"{endpointName}.{Utils.GetUniqueDataDistributionId()}";
         var distributionConfig = new EndpointConfiguration(distributionEndpointName);
+
+        #endregion
+
+        #region DistributionEndpointTypes
         var typesToExclude = AllTypes
             .Where(t => t.Namespace != "DataDistribution")
             .ToArray();
         distributionConfig.ExcludeTypes(typesToExclude);
+        #endregion
+
         var transport = distributionConfig.UseTransport<MsmqTransport>();
         var routing = transport.Routing();
         routing.RegisterPublisher(
             publisherEndpoint: "Samples.DataDistribution.Server",
             eventType: typeof(OrderAccepted));
-
-        #endregion
 
         ApplyDefaults(distributionConfig);
         return distributionConfig;
@@ -118,8 +121,4 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
     }
 
-    static string GetUniqueDataDistributionId()
-    {
-        return "1";
-    }
 }

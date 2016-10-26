@@ -1,7 +1,7 @@
 ---
 title: Mapping endpoint instances with a shared file
 summary: Mapping logical endpoints to physical instances with a shared file
-reviewed: 2016-08-01
+reviewed: 2016-10-26
 component: Core
 tags:
  - Routing
@@ -13,8 +13,7 @@ The sample demonstrates how to use a file to describe the mapping between logica
 
 ## Prerequisites
 
- 1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
- 1. Create database called `AutomaticRouting`.
+Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) section.
 
 
 ## Running the project
@@ -30,18 +29,11 @@ The sample demonstrates how to use a file to describe the mapping between logica
  1. The Sales.1 and Sales.2 consoles display information about accepted orders in round-robin fashion.
  1. The Shipping endpoint displays information that orders were shipped.
  1. The Billing endpoint displays information that orders were billed.
- 1. Notice that queues created by running the sample all have `-at-<machine>` suffix. This is the result of simulating a multi-machine system on a single machine.
 
 
 ## Code walk-through
 
-This sample contains four projects:
-
- * Shared - A class library containing common routing code including the message definitions.
- * Client - A console application responsible for sending the initial `PlaceOrder` message.
- * Sales - A console application responsible for processing the `PlaceOrder` command and generating `OrderAccepted` event.
- * Shipping - A console application responsible for processing the `OrderAccepted` message.
- * Billing - Another console application responsible for processing the `OrderAccepted` message.
+This sample contains four projects.
 
 
 ### Instance Mapping File
@@ -53,28 +45,28 @@ snippet: instanceMapping
 
 ### Client
 
-The Client does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. The client, as well as all other endpoints, uses the file based instance mapping
+The Client application submits the orders for processing by the back-end systems by sending a `PlaceOrder` command. The client, as well as all other endpoints, uses the file based instance mapping:
 
 snippet:FileInstanceMapping
 
 
 ### Sales
 
-The Sales project mimics the back-end system where orders are accepted.
+The Sales application accepts clients' orders and publishes the `OrderAccepted` event.
 
-In real-world scenarios NServiceBus is scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines (e.g. `Sales` in this sample). For simplicity in this sample the scale out is simulated by having two separate endpoints `Sales` and `Sales2`.
+NOTE: In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, in this sample the scale out is simulated by having two separate projects, Sales and Sales2.
 
 
 ### Shipping and Billing
 
-Shipping and Billing mimic back-end systems subscribing to events published by Sales endpoints.
+Shipping and Billing applications subscribe to `OrderAccepted` event in order to execute their business logic.
 
 
 ### Shared project
 
-The shared project contains definitions for messages and the custom routing logic.
+The shared project contains definitions for messages.
 
 
-### Real-world scenario
+## Real-world scenario
 
-For the sake of simplicity, in this sample all the endpoints run on a single machine. In real world usually one would run each instance on a separate physical or virtual machine. In such case the instance mapping file would contain only the `machine` attributes mapping instances to their machines' host names.
+For the sake of simplicity, in this sample all the endpoints run on a single machine. In real world is is usually best to run each instance on a separate virtual machine. In such case the instance mapping file would contain `machine` attributes mapping instances to their machines' host names instead of `queue` attributes used to run more than one instance on a single box.
