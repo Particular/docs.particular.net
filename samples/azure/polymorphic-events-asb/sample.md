@@ -1,7 +1,7 @@
 ---
 title: Polymorphic events with Azure Service Bus Transport
 component: ASB
-reviewed: 2016-05-03
+reviewed: 2016-10-26
 related:
  - nservicebus/azure-service-bus
  - nservicebus/messaging/publish-subscribe
@@ -24,8 +24,8 @@ include: asb-transport
 
 This sample has two endpoints.
 
-* `Publisher` publishes `BaseEvent` and `DerivedEvent` events.
-* `Subscriber` subscribes and handles `BaseEvent` and `DerivedEvent` events.
+ * `Publisher` publishes `BaseEvent` and `DerivedEvent` events.
+ * `Subscriber` subscribes and handles `BaseEvent` and `DerivedEvent` events.
 
 `DerivedEvent` event is derived from `BaseEvent` event. The difference between the two events is an additional piece of information provided with the `DerivedEvent` in form of the `Data` property.
 
@@ -50,7 +50,7 @@ By default, all events handled in `Subscriber` will be auto subscribed. Default 
 
 Normally, this would be fine. Though not with ASB transport and polymorphic events. Each subscription is filtering messages based on `NServiceBus.EnclosedMessageTypes` header. When an event of `BaseType` is published, it's going only into `Samples.ASB.Polymorphic.Subscriber.BaseEvent` subscription as per image below.
 
-NOTE: From version 7 of Azure Service Bus, polymorphic events are supported with auto-subscription turned on when `ForwardingTopology` is used.
+NOTE: In Versions 7 and above polymorphic events are supported with auto-subscription turned on when `ForwardingTopology` is used.
 
 ![](images/baseevent.published.png)
 
@@ -72,7 +72,7 @@ snippet:PublisherOutput
 snippet:SubscriberOutput
 
 
-### How to address this?
+### How to address
 
 To address this in general and allow proper handling of polymorphic events, `Subscriber` has do the following:
 
