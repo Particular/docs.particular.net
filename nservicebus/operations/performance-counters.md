@@ -142,10 +142,8 @@ This can happen when the performance counter libraries get corrupted.
 
 The performance counters libraries need to be rebuild by doing the following steps:
 
-1. Open an elevated command prompt
-2. Execute the following command to rebuild the performance counter libraries:
-
-    `lodctr /r`
+ 1. Open an elevated command prompt
+ 1. Execute the following command to rebuild the performance counter libraries: `lodctr /r`
 
 
 ### More information
