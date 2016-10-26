@@ -1,11 +1,12 @@
 ---
 title: Persistence In NServiceBus
 summary: Features of NServiceBus requiring persistence include timeouts, sagas, and subscription storage.
+reviewed: 2016-10-26
 redirects:
-- nservicebus/persistence-in-nservicebus
+ - nservicebus/persistence-in-nservicebus
 ---
 
-Various features of NServiceBus require persistence.
+Various features require persistence.
 
 
 ## Storage Types
@@ -34,7 +35,7 @@ Uses the [RavenDB document database](https://ravendb.net/) for storage.
 
 ### [NHibernate](/nservicebus/nhibernate/)
 
-Uses custom [NHibernate](http://nhibernate.info/) to persist data to an ADO.net data store (eg SQL Server).
+Uses custom [NHibernate](http://nhibernate.info/) to persist data to an ADO.net data store (e.g. SQL Server).
 
 
 ### [MSMQ](/nservicebus/msmq/subscription-persistence.md)
