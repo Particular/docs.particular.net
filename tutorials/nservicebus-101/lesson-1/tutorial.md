@@ -9,8 +9,8 @@ In this lesson we will set up a new development machine with NServiceBus and sho
 
 By the end of this lesson, you will have learned:
 
-* How to set up a machine for NServiceBus development
-* What a messaging endpoint is and how to create one
+ * How to set up a machine for NServiceBus development
+ * What a messaging endpoint is and how to create one
 
 
 ## Prerequisites
@@ -32,13 +32,15 @@ Let's build something simple to give NServiceBus a try.
 
 First, let's create a basic solution and include the dependencies we need.
 
-1. In Visual Studio, create a new project and select the **Console Application** project type.
-2. Set the project name to **ClientUI**.
-3. Set the Solution Name to **RetailDemo**.
+ 1. In Visual Studio, create a new project and select the **Console Application** project type.
+ 1. Set the project name to **ClientUI**.
+ 1. Set the Solution Name to **RetailDemo**.
 
 Next, we need to add the NServiceBus NuGet package as a dependency. From the [NuGet Package Manager Console](https://docs.nuget.org/ndocs/tools/package-manager-console), type the following:
 
-    Install-Package NServiceBus -ProjectName ClientUI
+```no-highlight
+Install-Package NServiceBus -ProjectName ClientUI
+```
 
 This adds a reference to the NServiceBus.Core assembly to the project. With the proper dependencies in place, we're ready to start writing code.
 
@@ -127,10 +129,10 @@ When the endpoint starts, the `EndpointConfiguration` information is locked down
 
 When you run the endpoint for the first time, the endpoint will:
 
-* Display its logging information, which is written to a file as well as the console, so if you miss something on the console, you can go back and look at the file. NServiceBus also logs to multiple levels, so you can [change the log level](/nservicebus/logging/) from `INFO` to log level `DEBUG` in order to get more information about what's going on.
-* Display the [status of your license](/nservicebus/licensing/).
-* Attempt to add the current user to the "Performance Monitor Users" group so that it can write [performance counters](/nservicebus/operations/performance-counters.md) to track its health and progress. If it is not able to do so (usually because the process is not running with elevated privileges) then it will show you how to do it manually from an admin console.
-* Warn you that the [queues it created have too many permissions](/nservicebus/msmq/operations-scripting.md#create-queues-default-permissions). This makes it easier for development, but in a production scenario these queues should be created with the minimum required privileges, and these warnings will serve as reminders to do that.
+ * Display its logging information, which is written to a file as well as the console, so if you miss something on the console, you can go back and look at the file. NServiceBus also logs to multiple levels, so you can [change the log level](/nservicebus/logging/) from `INFO` to log level `DEBUG` in order to get more information about what's going on.
+ * Display the [status of your license](/nservicebus/licensing/).
+ * Attempt to add the current user to the "Performance Monitor Users" group so that it can write [performance counters](/nservicebus/operations/performance-counters.md) to track its health and progress. If it is not able to do so (usually because the process is not running with elevated privileges) then it will show you how to do it manually from an admin console.
+ * Warn you that the [queues it created have too many permissions](/nservicebus/msmq/operations-scripting.md#create-queues-default-permissions). This makes it easier for development, but in a production scenario these queues should be created with the minimum required privileges, and these warnings will serve as reminders to do that.
 
 
 ## Summary

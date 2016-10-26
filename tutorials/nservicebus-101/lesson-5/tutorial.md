@@ -11,10 +11,10 @@ It's how we respond to exceptions that is important. When a database is deadlock
 
 By the end of this lesson, you will have learned:
 
-* The different causes of exceptions, and how to deal with them
-* How to use immediate retries to resolve transient errors
-* How to use delayed retries to resolve semi-transient errors
-* How to use message replay to resolve systemic errors
+ * The different causes of exceptions, and how to deal with them
+ * How to use immediate retries to resolve transient errors
+ * How to use delayed retries to resolve semi-transient errors
+ * How to use message replay to resolve systemic errors
 
 
 ## Causes of errors
@@ -55,8 +55,8 @@ In short, these are the exceptions that a developer needs to look at, triage, an
 
 In order to deal with exceptions that arise within message handlers, NServiceBus wraps each message handler in a `try/catch` block, and if the message transport supports it, a transaction as well. This means that only one of two things can happen:
 
-1. The message is processed successfully. All database calls succeed, all outgoing messages are dispatched to the message transport, and the incoming message is removed from the queue.
-2. The message fails. All database transactions are rolled back, any calls to `.Send()` or `.Publish()` are cancelled, and the incoming message remains in the queue to attempt processing again.
+ 1. The message is processed successfully. All database calls succeed, all outgoing messages are dispatched to the message transport, and the incoming message is removed from the queue.
+ 1. The message fails. All database transactions are rolled back, any calls to `.Send()` or `.Publish()` are cancelled, and the incoming message remains in the queue to attempt processing again.
 
 With this kind of protection in place, we're free to try to process a message as many times as we need, or at least as many times as makes sense.
 
@@ -66,10 +66,10 @@ With this kind of protection in place, we're free to try to process a message as
 
 All told, with default settings, delayed retries will attempt 4 rounds of immediate retries with delays increasing by 10 seconds for each round, resulting in 20 processing attempts in total:
 
-1. 5 processing attempts, followed by 10 second delay
-2. 5 processing attempts, followed by 20 second delay
-3. 5 processing attempts, followed by 30 second delay
-4. 5 processing attempts, then the message is moved to the error queue
+ 1. 5 processing attempts, followed by 10 second delay
+ 1. 5 processing attempts, followed by 20 second delay
+ 1. 5 processing attempts, followed by 30 second delay
+ 1. 5 processing attempts, then the message is moved to the error queue
 
 The last step, moving the message to an error queue, is how NServiceBus deals with **systemic exceptions**. In a messaging system, systemic exceptions are the cause of **poison messages**, messages that cannot be processed successfully under any circumstances. Poison messages have to be moved aside, otherwise they will clog up the queue and prevent valid messages from being processed.
 
@@ -84,8 +84,8 @@ For this reason, NServiceBus embeds the exception details and stack trace into t
 
 NServiceBus comes with tools to make this kind of operational monitoring really easy. If you installed the rest of the [Particular Service Platform](http://particular.net/downloads), you already have these at your disposal:
 
-* [ServiceControl](/servicecontrol/) is like a brain monitoring your systems, sucking in information and making that available to other tools via a REST API. One of its functions is to monitor your error queue so that you can act on the poison messages that arrive there.
-* [ServicePulse](/servicepulse/) is a web application aimed to be an operational dashboard for your NServiceBus system. It allows you to see failed messages, including the exception details, and provides a UI to either replay or archive failed messages.
+ * [ServiceControl](/servicecontrol/) is like a brain monitoring your systems, sucking in information and making that available to other tools via a REST API. One of its functions is to monitor your error queue so that you can act on the poison messages that arrive there.
+ * [ServicePulse](/servicepulse/) is a web application aimed to be an operational dashboard for your NServiceBus system. It allows you to see failed messages, including the exception details, and provides a UI to either replay or archive failed messages.
 
 Sometimes, a new release will contain a bug in handler logic that isn't found until the code is deployed. When this happens, many errors can flood into the error queue at once. At these times, it's incredibly valuable to be able to rollback to the old version of the endpoint, and then replay the messages through proven code. Then you can take the time to properly troubleshoot and fix the issue before attempting a new deployment.
 
@@ -106,30 +106,34 @@ snippet:Throw
 
 Now, run the solution.
 
-1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running, but does not break into the debugger when we throw our exception.
-2. In the **ClientUI** window, place an order by typing `placeorder`, and then watch carefully!
+ 1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running, but does not break into the debugger when we throw our exception.
+ 1. In the **ClientUI** window, place an order by typing `placeorder`, and then watch carefully!
 
 When we do these steps, we'll see a wall of exception messages in white text, which is log level INFO, followed by one in yellow text, which is log level WARN. The exception traces in white are the failures during immediate retries, and the last trace in yellow is the failure that hands the message over to delayed retries.
 
-    INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e927667c-b949-47ee-8ea2-f29523909784
-    WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message '53ac6836-48ef-49dd-aabb-a67c0104a2a5' after a delay of 00:00:10 because of an exception:
-    System.Exception: BOOM!
-       at <stack trace>
+```no-highlight
+INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e927667c-b949-47ee-8ea2-f29523909784
+WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message '53ac6836-48ef-49dd-aabb-a67c0104a2a5' after a delay of 00:00:10 because of an exception:
+System.Exception: BOOM!
+   at <stack trace>
+```
 
 10 seconds later, the retries begin again, followed by another yellow trace, sending the message back to delayed retries. 20 seconds after that, another set of traces. Finally, 30 seconds after that, the final exception trace will be shown in red, which is log level ERROR. This is where NServiceBus gives up on the message and redirects it to the error queue.
 
-    INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e927667c-b949-47ee-8ea2-f29523909784
-    ERROR NServiceBus.RecoverabilityExecutor Moving message '53ac6836-48ef-49dd-aabb-a67c0104a2a5' to the error queue 'error' because processing failed due to an exception:
-    System.Exception: BOOM!
-       at < stack trace>
+```no-highlight
+INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e927667c-b949-47ee-8ea2-f29523909784
+ERROR NServiceBus.RecoverabilityExecutor Moving message '53ac6836-48ef-49dd-aabb-a67c0104a2a5' to the error queue 'error' because processing failed due to an exception:
+System.Exception: BOOM!
+   at < stack trace>
+```
 
 
 ### Modify immediate retries
 
 The only configurable option you need for immediate retries is how many of them to attempt. The default value is `5`, but you may want to set it to a higher or lower number. Many developers prefer to set it to `0` so that they can avoid the "wall of text" effect when an exception is thrown during development, and then set it to a higher number for production use.
 
-1. In the **Sales** endpoint, locate the **Program.cs** file.
-2. Before the endpoint is started, add the following code:
+ 1. In the **Sales** endpoint, locate the **Program.cs** file.
+ 1. Before the endpoint is started, add the following code:
 
 snippet:ImmediateRetries
 
@@ -165,19 +169,19 @@ If you used the [Particular Platform Installer](/platform/installer/) to install
 
 To check for these tools:
 
-* Load the ServiceControl API at [http://localhost:33333/api](http://localhost:33333/api). If a JSON response is returned, ServiceControl is running.
-* Load the ServicePulse application at [http://localhost:9090/](http://localhost:9090/). If a web application is displayed, ServicePulse is running.
-* If either tool is not installed, [reinstall the Particular Service Platform](/platform/installer/).
+ * Load the ServiceControl API at [http://localhost:33333/api](http://localhost:33333/api). If a JSON response is returned, ServiceControl is running.
+ * Load the ServicePulse application at [http://localhost:9090/](http://localhost:9090/). If a web application is displayed, ServicePulse is running.
+ * If either tool is not installed, [reinstall the Particular Service Platform](/platform/installer/).
 
 Once these tools are installed and running, you can attempt to replay a message:
 
-1. Fix the **Sales** endpoint by removing the `throw` statement.
-2. Run the solution.
-3. Open [ServicePulse](http://localhost:9090/) and navigate to the **Failed Messages** page. Note how similar messages are grouped together for easier handling.
+ 1. Fix the **Sales** endpoint by removing the `throw` statement.
+ 1. Run the solution.
+ 1. Open [ServicePulse](http://localhost:9090/) and navigate to the **Failed Messages** page. Note how similar messages are grouped together for easier handling.
     ![Failed Message Groups](failed-message-groups.png)
-4. Click the **View Messages** link to see details on each failed message.
+ 1. Click the **View Messages** link to see details on each failed message.
     ![Failed Message Details](failed-message-details.png)
-5. Try the various methods of replaying messages and watch what happens in the console windows. Note that ServiceControl executes message retry batches on a 30-second timer, so *be patient!* Eventually, the messages will be returned to their appropriate endpoints.
+ 1. Try the various methods of replaying messages and watch what happens in the console windows. Note that ServiceControl executes message retry batches on a 30-second timer, so *be patient!* Eventually, the messages will be returned to their appropriate endpoints.
 
 When the message is replayed in Sales, each endpoint picks up right where it left off. You should be able to see how useful this capability will be when failures happen in your real-life systems.
 

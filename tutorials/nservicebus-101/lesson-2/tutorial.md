@@ -9,10 +9,10 @@ Sending and receiving messages is at the core of any NServiceBus system. Durable
 
 By the end of this lesson, you will have learned how to:
 
-* Define messages
-* Define message handlers
-* Send and receive a message locally
-* Use NServiceBus's logging capabilities
+ * Define messages
+ * Define message handlers
+ * Send and receive a message locally
+ * Use NServiceBus's logging capabilities
 
 
 ## What is a message?
@@ -89,21 +89,21 @@ When we're done, the ClientUI endpoint will be sending a PlaceOrder message to i
 
 Messages should be self-contained within a separate assembly so that they can be shared between endpoints, so let's create that assembly now.
 
-1. In the solution, create a new project and select the **Class Library** project type.
-2. Set the name of the project to **Messages**.
-3. Remove the automatically created **Class1.cs** file from the project. We would prefer to have our messages a little more organized than files in the root of the project. (More on this a little later.)
-4. Add the NServiceBus NuGet package to the Messages project.
-5. In the **ClientUI** project, add a reference to the **Messages** project.
+ 1. In the solution, create a new project and select the **Class Library** project type.
+ 1. Set the name of the project to **Messages**.
+ 1. Remove the automatically created **Class1.cs** file from the project. We would prefer to have our messages a little more organized than files in the root of the project. (More on this a little later.)
+ 1. Add the NServiceBus NuGet package to the Messages project.
+ 1. In the **ClientUI** project, add a reference to the **Messages** project.
 
 
 ### Create a message
 
 In order to better organize messages, we'll create our first command in a folder called **Commands**.
 
-1. In the **Messages** project, create a new folder called **Commands**.
-2. In the **Commands** folder, add a new class named `PlaceOrder`.
-3. Mark `PlaceOrder` as `public` and implement `ICommand`.
-4. Add a public property of type `string` named `OrderId`.
+ 1. In the **Messages** project, create a new folder called **Commands**.
+ 1. In the **Commands** folder, add a new class named `PlaceOrder`.
+ 1. Mark `PlaceOrder` as `public` and implement `ICommand`.
+ 1. Add a public property of type `string` named `OrderId`.
 
 NOTE: The .NET Framework contains another interface named `ICommand` in the `System.Windows.Input` namespace. Be sure that if you use tooling to resolve the namespace, you select `NServiceBus.ICommand`. Most of the types you will need will reside in the `NServiceBus` namespace.
 
@@ -116,17 +116,17 @@ snippet:PlaceOrder
 
 Now that we've defined a message, we can create a message handler to handle it. Rather than create a new endpoint, let's start by just handling the message locally within the **ClientUI** endpoint.
 
-1. In the **ClientUI** project, create a new class named `PlaceOrderHandler`.
-2. Mark the handler class as public, and implement the `IHandleMessages<PlaceOrder>` interface.
-3. Add a logger instance, which will allow you to take advantage of the same logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the messages you write with the logger will be written to the log file in addition to the console. Use this code to add the logger instance to your handler class:
+ 1. In the **ClientUI** project, create a new class named `PlaceOrderHandler`.
+ 1. Mark the handler class as public, and implement the `IHandleMessages<PlaceOrder>` interface.
+ 1. Add a logger instance, which will allow you to take advantage of the same logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the messages you write with the logger will be written to the log file in addition to the console. Use this code to add the logger instance to your handler class:
+    ```cs
+    static ILog logger = LogManager.GetLogger<PlaceOrderHandler>();
     ```
-    private ILog logger = LogManager.GetLogger<PlaceOrderHandler>();
-    ```
-4. Within the `Handle` method, use the logger to record the receipt of the `PlaceOrder` message, including the value of the `OrderId` message property:
-    ```
+ 1. Within the `Handle` method, use the logger to record the receipt of the `PlaceOrder` message, including the value of the `OrderId` message property:
+    ```cs
     logger.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
     ```
-5. Since everything we have done in this handler method is synchronous, return `Task.CompletedTask`.
+ 1. Since everything we have done in this handler method is synchronous, return `Task.CompletedTask`.
 
 When complete, your `PlaceOrderHandler` class should look like this:
 
@@ -160,15 +160,17 @@ snippet:AddRunLoopToAsyncMain
 
 Now we can run the solution. Whenever we type `placeorder` on the console, a command message is sent and then processed by a handler class in the same project.
 
-    INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
-    placeorder
-    INFO  ClientUI.Program Sending PlaceOrder command, OrderId = 1ec12713-f86d-43e1-a41f-16aba19dd6f7
-    INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
-    INFO  ClientUI.PlaceOrderHandler Received PlaceOrder, OrderId = 1ec12713-f86d-43e1-a41f-16aba19dd6f7
-    placeorder
-    INFO  ClientUI.Program Sending PlaceOrder command, OrderId = 9260d6ce-6f3e-4b00-9edb-0dfb905afee8
-    INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
-    INFO  ClientUI.PlaceOrderHandler Received PlaceOrder, OrderId = 9260d6ce-6f3e-4b00-9edb-0dfb905afee8
+```no-highlight
+INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
+placeorder
+INFO  ClientUI.Program Sending PlaceOrder command, OrderId = 1ec12713-f86d-43e1-a41f-16aba19dd6f7
+INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
+INFO  ClientUI.PlaceOrderHandler Received PlaceOrder, OrderId = 1ec12713-f86d-43e1-a41f-16aba19dd6f7
+placeorder
+INFO  ClientUI.Program Sending PlaceOrder command, OrderId = 9260d6ce-6f3e-4b00-9edb-0dfb905afee8
+INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
+INFO  ClientUI.PlaceOrderHandler Received PlaceOrder, OrderId = 9260d6ce-6f3e-4b00-9edb-0dfb905afee8
+```
 
 Note how after sending a message, the prompt from `ClientUI.Program` is displayed _before_ the `ClientUI.PlaceOrderHandler` acknowledges receipt of the message. This is because, rather than calling the `Handle` method as a direct method call, the message is sent asynchronously, and then control immediately returns to the `RunLoop`, which repeats the prompt. It isn't until a bit later, when the message is received and processed, that we see the `Received PlaceOrder` notification.
 

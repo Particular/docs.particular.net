@@ -11,9 +11,9 @@ In this lesson, we'll make our solution more "real life" by moving our message h
 
 By the end of this lesson, you will have learned:
 
-* How to run multiple endpoints
-* How to send messages between endpoints
-* How to control the logical routing
+ * How to run multiple endpoints
+ * How to send messages between endpoints
+ * How to control the logical routing
 
 
 ## How do I send messages?
@@ -82,10 +82,12 @@ Let's split apart the endpoint we created in the previous lesson. We'll reconfig
 
 First, let's create the project for our new endpoint.
 
-1. Create a new **Console Application** project named **Sales**.
-2. In the **Sales** project, add the NServiceBus NuGet package:
-        Install-Package NServiceBus -ProjectName Sales
-3. In the **Sales** project, add a reference to the **Messages** project, so that we have access to the `PlaceOrder` message.
+ 1. Create a new **Console Application** project named **Sales**.
+ 1. In the **Sales** project, add the NServiceBus NuGet package:
+   ```no-highlight
+   Install-Package NServiceBus -ProjectName Sales
+   ```
+ 1. In the **Sales** project, add a reference to the **Messages** project, so that we have access to the `PlaceOrder` message.
 
 Now that we have a project for our Sales endpoint, we need to add similar code to configure and start an NServiceBus endpoint:
 
@@ -114,10 +116,10 @@ What you'll find, however, is that in NServiceBus solutions it's common to want 
 
 To configure Visual Studio to start multiple projects when you start debugging:
 
-1. Right-click the **RetailDemo** solution and select **Properties**.
-2. On the left side of the **Property Pages** dialog, select **Common Properties** > **Startup Project**.
-3. On the right, select the **Multiple startup projects** radio button.
-4. In the list box's **Action** column, set the value to **Start** for the **ClientUI** and **Sales** projects. (It doesn't make sense to do so for **Messages**, as it is just a class library and can't be started directly.)
+ 1. Right-click the **RetailDemo** solution and select **Properties**.
+ 1. On the left side of the **Property Pages** dialog, select **Common Properties** > **Startup Project**.
+ 1. On the right, select the **Multiple startup projects** radio button.
+ 1. In the list box's **Action** column, set the value to **Start** for the **ClientUI** and **Sales** projects. (It doesn't make sense to do so for **Messages**, as it is just a class library and can't be started directly.)
 
 If you run the project now, you'll find that both ClientUI and Sales will start up. ClientUI will work just as it did before, and Sales will start up and wait for messages that will never arrive.
 
@@ -126,9 +128,9 @@ If you run the project now, you'll find that both ClientUI and Sales will start 
 
 Now let's move the handler from ClientUI over to Sales where it belongs.
 
-1. In the Solution Explorer, find **PlaceOrderHandler.cs** in the **ClientUI** project, and drag it to the **Sales** project.
-2. Open the new **PlaceOrderHandler.cs** in **Sales** and change the namespace from `ClientUI` to `Sales` to match its new home.
-2. Visual Studio's default action when you drag files between projects is to copy them, so you must delete the old **PlaceOrderHandler.css** from the **ClientUI** endpoint.
+ 1. In the Solution Explorer, find **PlaceOrderHandler.cs** in the **ClientUI** project, and drag it to the **Sales** project.
+ 1. Open the new **PlaceOrderHandler.cs** in **Sales** and change the namespace from `ClientUI` to `Sales` to match its new home.
+ 1. Visual Studio's default action when you drag files between projects is to copy them, so you must delete the old **PlaceOrderHandler.css** from the **ClientUI** endpoint.
 
 So now that the handler is in the correct endpoint, what would happen if we started the solution? Sales now has a message handler, but recall that ClientUI is still calling `endpointInstance.SendLocal(command)` which effectively sends the message to itself, but it doesn't have a handler anymore.
 
@@ -145,9 +147,9 @@ The important part is, this is a good thing! If we accidentally send a message t
 
 Now we need to fix up the ClientUI so that it is sending `PlaceOrder` to the Sales endpoint.
 
-1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
-2. In the `AsyncMain` method of the same file, change the call to use the MSMQ transport to access the routing configuration and specify the logical routing for `PlaceOrder` by changing your code as follows.
-    
+ 1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
+ 1. In the `AsyncMain` method of the same file, change the call to use the MSMQ transport to access the routing configuration and specify the logical routing for `PlaceOrder` by changing your code as follows.
+
 snippet:AddingRouting
 
 This establishes that commands of type `PlaceOrder` should be sent to the **Sales** endpoint. While these two calls could be strung together in the same statement, there will commonly be multiple logical routes specified, so it's advantageous to assign the `routing` variable for future use.
@@ -161,21 +163,25 @@ INFO: You can also keep console windows from showing up in random screen locatio
 
 In the **ClientUI** window, we see this output:
 
-    INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
-    placeorder
-    INFO  ClientUI.Program Sending PlaceOrder command, OrderId = 0f086be1-033b-4747-af53-192530005a1d
-    INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
-    placeorder
-    INFO  ClientUI.Program Sending PlaceOrder command, OrderId = ca953e37-573a-4a67-9258-bbd612ef8dad
-    INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
+```no-highlight
+INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
+placeorder
+INFO  ClientUI.Program Sending PlaceOrder command, OrderId = 0f086be1-033b-4747-af53-192530005a1d
+INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
+placeorder
+INFO  ClientUI.Program Sending PlaceOrder command, OrderId = ca953e37-573a-4a67-9258-bbd612ef8dad
+INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
+```
 
 Everything is the same, except the command is not processed here.
 
 In the **Sales** window, we see this:
 
-    Press Enter to exit.
-    INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = 0f086be1-033b-4747-af53-192530005a1d
-    INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = ca953e37-573a-4a67-9258-bbd612ef8dad
+```no-highlight
+Press Enter to exit.
+INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = 0f086be1-033b-4747-af53-192530005a1d
+INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = ca953e37-573a-4a67-9258-bbd612ef8dad
+```
 
 Let's take a second and reflect upon what we've achieved. We've managed to create two processes and achieve inter-process communication between them. Compared to the amount of effort required to set up and configure a WCF service, NServiceBus is able to communicate between processes with amazing ease!
 

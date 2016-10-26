@@ -11,11 +11,11 @@ In this lesson, we'll learn all about publishing events, and more importantly, w
 
 By the end of this lesson, you will have learned:
 
-* The difference between commands and events
-* How the Publish/Subscribe pattern helps to create more maintainable code
-* How to define and name events
-* How to publish an event
-* How to subscribe to an event
+ * The difference between commands and events
+ * How the Publish/Subscribe pattern helps to create more maintainable code
+ * How to define and name events
+ * How to publish an event
+ * How to subscribe to an event
 
 
 ## What is an event?
@@ -104,10 +104,10 @@ When the Shipping endpoint receives both the OrderPlaced and OrderBilled, it wil
 
 Let's create our first event, `OrderPlaced`:
 
-1. In the **Messages** project, create a new folder called **Events**.
-2. In the **Events** folder, add a new class called `OrderPlaced`.
-3. Mark `OrderPlaced` as `public` and implement `IEvent`.
-4. Add a public property of type `string` named `OrderId`.
+ 1. In the **Messages** project, create a new folder called **Events**.
+ 1. In the **Events** folder, add a new class called `OrderPlaced`.
+ 1. Mark `OrderPlaced` as `public` and implement `IEvent`.
+ 1. Add a public property of type `string` named `OrderId`.
 
 When complete, your `OrderPlaced` class should look like the following:
 
@@ -120,9 +120,9 @@ NOTE: Notice that because of our use of folders for **Commands** and **Events**,
 
 Now that the `OrderPlaced` event is defined, we can publish it from the `PlaceOrderHandler`.
 
-1. Locate the `PlaceOrderHandler` within the **Sales** endpoint.
-2. Remove the `return Task.CompletedTask;` line.
-3. Instead, modify the `Handle` method to look like the following:
+ 1. Locate the `PlaceOrderHandler` within the **Sales** endpoint.
+ 1. Remove the `return Task.CompletedTask;` line.
+ 1. Instead, modify the `Handle` method to look like the following:
 
 snippet:UpdatedHandler
 
@@ -139,12 +139,12 @@ When an order is placed, we will want to charge the credit card for that order. 
 
 NOTE: Since this is the third endpoint we've created, the instructions will be a little more abbreviated. Feel free to refer back to [Lesson 2](../lesson-2/) where we created the Sales endpoint for more detailed instructions.
 
-1. Create a new **Console Application** named **Billing**.
-2. Add references for the **NServiceBus NuGet package** and the **Messages** assembly.
-3. Copy the configuration from the **Program.cs** file in **Sales**, and paste it into the same file in **Billing**.
-4. In the **Billing** endpoint's **Program.cs**, change the value of `Console.Title` and the endpoint name argument of the `EndpointConfiguration` constructor to `"Billing"`.
-5. In the **Billing** endpoint, add a class named `OrderPlacedHandler`, mark it as `public`, and implement `IHandleMessages<OrderPlaced>`.
-6. Modify the handler class to log the receipt of the event:
+ 1. Create a new **Console Application** named **Billing**.
+ 1. Add references for the **NServiceBus NuGet package** and the **Messages** assembly.
+ 1. Copy the configuration from the **Program.cs** file in **Sales**, and paste it into the same file in **Billing**.
+ 1. In the **Billing** endpoint's **Program.cs**, change the value of `Console.Title` and the endpoint name argument of the `EndpointConfiguration` constructor to `"Billing"`.
+ 1. In the **Billing** endpoint, add a class named `OrderPlacedHandler`, mark it as `public`, and implement `IHandleMessages<OrderPlaced>`.
+ 1. Modify the handler class to log the receipt of the event:
 
 snippet:SubscriberHandler
 
@@ -165,7 +165,9 @@ snippet:OrderPlacedPublisher
 
 Now when we run the solution, we'll see the following output in the **Billing** window:
 
-    INFO  Billing.OrderPlacedHandler Received OrderPlaced, OrderId = 01698293-9da9-4606-8468-2b7f1b86b380 - Charging credit card...
+```no-highlight
+INFO  Billing.OrderPlacedHandler Received OrderPlaced, OrderId = 01698293-9da9-4606-8468-2b7f1b86b380 - Charging credit card...
+```
 
 That's great, but why stop there? The whole point of Publish/Subscribe is that we can have *multiple* subscribers.
 
@@ -176,21 +178,23 @@ In a real system, after an order is placed and billed, we would need to ship the
 
 This is also a good opportunity to check your understanding. If you can complete these steps without looking back at previous steps or previous lessons, you can be sure you have a good understanding of everything we've covered so far! (Don't worry, you can always check your work against the solution.)
 
-1. In **Messages**, create a new event called `OrderBilled`, implementing `IEvent` and containing a property for the `OrderId`.
-2. In **Billing**, publish the `OrderBilled` event at the end of the `OrderPlacedHandler`.
-3. Create a new endpoint named **Shipping** with the necessary dependencies. Be sure to set the console title and endpoint name to `"Shipping"`, and configure it to start when debugging.
-4. In **Shipping**, create a message handler for `OrderPlaced`.
-5. In **Shipping**, create a message handler for `OrderBilled`.
-6. Configure **Shipping** to subscribe to `OrderPlaced` from **Sales**. (You may have this already if you copied the endpoint configuration from **Billing**.)
-7. Configure **Shipping** to subscribe to `OrderBilled` from **Billing**. (This will be new no matter what.)
+ 1. In **Messages**, create a new event called `OrderBilled`, implementing `IEvent` and containing a property for the `OrderId`.
+ 1. In **Billing**, publish the `OrderBilled` event at the end of the `OrderPlacedHandler`.
+ 1. Create a new endpoint named **Shipping** with the necessary dependencies. Be sure to set the console title and endpoint name to `"Shipping"`, and configure it to start when debugging.
+ 1. In **Shipping**, create a message handler for `OrderPlaced`.
+ 1. In **Shipping**, create a message handler for `OrderBilled`.
+ 1. Configure **Shipping** to subscribe to `OrderPlaced` from **Sales**. (You may have this already if you copied the endpoint configuration from **Billing**.)
+ 1. Configure **Shipping** to subscribe to `OrderBilled` from **Billing**. (This will be new no matter what.)
 
 
 ### Running the solution
 
 If everything worked, you should now see output like this in your **Shipping** window:
 
-    INFO  Shipping.OrderPlacedHandler Received OrderPlaced, OrderId = 96ee660a-5dd7-4772-9058-863d303ee0aa - Should we ship now?
-    INFO  Shipping.OrderBilledHandler Received OrderBilled, OrderId = 96ee660a-5dd7-4772-9058-863d303ee0aa - Should we ship now?
+```no-highlight
+INFO  Shipping.OrderPlacedHandler Received OrderPlaced, OrderId = 96ee660a-5dd7-4772-9058-863d303ee0aa - Should we ship now?
+INFO  Shipping.OrderBilledHandler Received OrderBilled, OrderId = 96ee660a-5dd7-4772-9058-863d303ee0aa - Should we ship now?
+```
 
 Of course, these messages could appear out of order. With asynchronous messaging, there are no message ordering guarantees. Even though `OrderBilled` comes logically after `OrderPlaced`, it's possible that `OrderBilled` could arrive first!
 
