@@ -1,5 +1,6 @@
 ---
 title: Container changes in Version 6
+reviewed: 2016-10-26
 tags:
  - upgrade
  - migration
@@ -10,7 +11,7 @@ related:
 
 ## Configure type removed
 
-In Version 5 the `Configure` type was used to provide runtime access to the local endpoint address, scanned types etc via dependency injection. In Version 6 these values can now be accessed as follows.
+In Version 5 the `Configure` type was used to provide runtime access to the local endpoint address, scanned types etc via dependency injection. In Version 6 these values can now be accessed as follows:
 
 
 ### Settings
@@ -55,6 +56,7 @@ snippet: 5to6-ExplicitProperties
 To access it at runtime create a new [`Feature`](/nservicebus/pipeline/features.md) and put the following code in the `.Setup` method
 
 snippet: 5to6-IConfigureComponentsNotInjected
+
 
 ## Containers passed to the configuration API are no longer disposed
 
