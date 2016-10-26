@@ -90,7 +90,7 @@ class Usage
 #pragma warning disable CS0618
     void UseRoutingTopology4_0(EndpointConfiguration endpointConfiguration)
     {
-        #region rabbitmq-config-useroutingtopology
+        #region rabbitmq-config-useroutingtopology 4.0
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.UseRoutingTopology<MyRoutingTopology>();
@@ -99,19 +99,9 @@ class Usage
     }
 #pragma warning restore CS0618
 
-    void UseRoutingTopology4_0To4_1(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-config-useroutingtopology
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseRoutingTopology(createDurableExchangesAndQueues => new MyRoutingTopology());
-
-        #endregion
-    }
-
     void UseRoutingTopology4_1(EndpointConfiguration endpointConfiguration)
     {
-        #region rabbitmq-config-useroutingtopology
+        #region rabbitmq-config-useroutingtopology 4.1
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.UseRoutingTopology(createDurableExchangesAndQueues => new MyRoutingTopology(createDurableExchangesAndQueues));

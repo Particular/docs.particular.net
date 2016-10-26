@@ -1,7 +1,7 @@
 ﻿using System;
 using NServiceBus;
 
-class Upgrade
+partial class Upgrade
 {
     void PrefetchMultiplier(EndpointConfiguration endpointConfiguration)
     {

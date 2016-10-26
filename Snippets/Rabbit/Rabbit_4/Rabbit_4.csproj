@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UpgradeGuides\3to4\Upgrade.cs" />
+    <Compile Include="UpgradeGuides\4.0to4.1\Upgrade.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
