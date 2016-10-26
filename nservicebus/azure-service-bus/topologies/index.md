@@ -1,9 +1,9 @@
 ---
 title: Topologies
-reviewed: 2016-04-19
+reviewed: 2016-10-26
 tags:
-- Azure
-- Cloud
+ - Azure
+ - Cloud
 related:
  - samples/azure/azure-service-bus
 ---
@@ -15,7 +15,7 @@ Azure Service Bus transport operates on a topology created on the broker. Topolo
 
 ## Versions 7 and above
 
-In Versions 7 and above, the following topologies are available:
+The following topologies are available:
 
  1. `EndpointOrientedTopology`
  1. `ForwardingTopology`
@@ -24,9 +24,9 @@ The `EndpointOrientedTopology` is backward compatible with the Azure Service Bus
 
 The `ForwardingTopology` was introduced to take advantage of the broker nature of the Azure Service Bus and to leverage its native capabilities. It is the recommended option for new projects.
 
-Both topologies create a single input queue per endpoint and implement [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) mechanism. However, there is a significant difference in the way the mechanism is implemented.
+Both topologies create a single input queue per endpoint and implement [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) mechanism. However, there is a significant difference in the way that mechanism is implemented.
 
-Starting from Version 7, no default topology is set by the Azure Service Bus transport. Topology has to be explicitly configured using [configuration API](/nservicebus/azure-service-bus/configuration/full.md).
+No default topology is set by the Azure Service Bus transport. Topology has to be explicitly configured using [configuration API](/nservicebus/azure-service-bus/configuration/full.md).
 
 
 ### Endpoint Oriented Topology
@@ -40,21 +40,21 @@ The example below demonstrates a publisher called `Publisher` and a subscriber c
 The `EndpointOrientedTopology` topology has several drawbacks:
 
  1. In order to subscribe to an event, the subscriber must know the publishing endpoint's name, causing coupling between publisher and subscriber. Refer to the [Publisher names configuration](/nservicebus/azure-service-bus/publisher-names-configuration.md) article for more details.
- 1. Multiple subscription entities per subscriber cause polymorphic events to be delivered multiple times to the subscribing endpoint. A [workaround](/samples/azure/polymorphic-events-asb/) has to be implemented in order to  handle polymorphic events correctly.
- 1. When a single subscriber is offline for an extended period of time and events are not consumed, it can cause events overflow. Since a single topic per publisher is used for all the subscribers, when events overflow is happening it will affect all subscribers and not just the one that is offline.
+ 1. Multiple subscription entities per subscriber cause polymorphic events to be delivered multiple times to the subscribing endpoint. A [workaround](/samples/azure/polymorphic-events-asb/) has to be implemented in order to handle polymorphic events correctly.
+ 1. When a single subscriber is offline for an extended period of time and events are not consumed, it can cause event overflow. Since a single topic per publisher is used for all the subscribers, when event overflow is happening it will affect all subscribers and not just the one that is offline.
 
-![EndpointOrientedTopology](endpoint-oriented-topology.png "width=50%")
+![EndpointOrientedTopology](endpoint-oriented-topology.png "width=500")
 
 
 ### Forwarding Topology
 
-The `ForwardingTopology` is a topology introduced in Version 7, that was designed to take advantage of several native broker features offered by the Azure Service Bus. Unlike `EndpointOrientedTopology`, it doesn't work with a single topic per publisher. All publishers use a single topic bundle.
+The `ForwardingTopology` is designed to take advantage of several native broker features offered by the Azure Service Bus. Unlike `EndpointOrientedTopology`, it doesn't work with a single topic per publisher. All publishers use a single topic bundle.
 
 Subscriptions are created under topic bundle with one subscription entity per subscribing endpoint. Each subscription contains multiple rules; there's one rule per event type that the subscribing endpoint is interested in. This enables a complete decoupling between publishers and subscribers. All messages received by subscription are forwarded to the input queue of the subscriber.
 
-This topology solves the polymorphic events and the events overflow problems that the `EndpointOrientedTopology` has.
+This topology solves the polymorphic events and the event overflow problems that the `EndpointOrientedTopology` has.
 
-![ForwardingTopology](forwarding-topology.png "width=50%")
+![ForwardingTopology](forwarding-topology.png "width=500")
 
 
 #### Quotas and limitations
@@ -64,14 +64,14 @@ The `ForwardingTopology` supports up to 2,000 endpoints with up to 2,000 events 
 
 #### Topologies comparison
 
-|                                    | EndpointOrientedTopology  | ForwardingTopology |
-|------------------------------------|---------------------------|--------------------|
-| Decoupled Publishers / Subscribers | no                        | yes                |
-| Polymorphic events support         | no                        | yes                |
-| Events overflow protections        | no                        | yes                |
+|                                             | EndpointOrientedTopology  | ForwardingTopology |
+|---------------------------------------------|---------------------------|--------------------|
+| Decoupled Publishers / Subscribers          | no                        | yes                |
+| Polymorphic events support                  | no                        | yes                |
+| Event overflow protections                  | no                        | yes                |
 | Subscriber auto-scaling based on queue size | no                        | yes                |
 
 
 ## Versions 6 and below
 
-The Azure Service Bus transport has always supported a single default topology out-of-the-box. It is equivalent to the `EndpointOrientedTopology` introduced in Version 7 and above.
+The Azure Service Bus transport has always supported a single default topology out-of-the-box. It is equivalent to the `EndpointOrientedTopology` introduced in Version 7.
