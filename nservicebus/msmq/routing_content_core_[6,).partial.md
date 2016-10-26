@@ -31,7 +31,7 @@ snippet: InstanceMappingFile-RefreshInterval
 
 ### FilePath
 
-Specifies the path and file name of the instance mapping file. This can be a realtive or an absolute file path. Relative file paths are resolved from `AppDomain.BaseDirectoy`.
+Specifies the path and file name of the instance mapping file. This can be a relative or an absolute file path. Relative file paths are resolved from `AppDomain.BaseDirectoy`.
 
 Default: `instance-mapping.xml`
 
@@ -45,7 +45,7 @@ The instance mapping aspect of routing, as well as all other aspects, can be cus
 
 ## Using message-endpoint mappings
 
-For compatibility reasons it can also be configured in the same way as in Version 5 and older by `UnicastBusConfig/MessageEndpointMappings` configuration section
+For compatibility reasons it can also be configured in the same way as in Version 5 and older by `UnicastBusConfig/MessageEndpointMappings` configuration section:
 
 snippet:endpoint-mapping-msmq
 

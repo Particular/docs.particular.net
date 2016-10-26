@@ -1,15 +1,16 @@
 ---
 title: Physical routing with MSMQ
-summary: How to configure physical routing with MSMQ transport
+summary: Configuring physical routing with MSMQ transport
 component: Core
+reviewed: 2016-10-26
 tags:
-- Routing
-- MSMQ
+ - Routing
+ - MSMQ
 related:
-- nservicebus/messaging/routing
+ - nservicebus/messaging/routing
 ---
 
-MSMQ is a [bus transport](/nservicebus/transports). This means that an MSMQ system consists of multiple nodes, one on each machine, forwarding messages between each other. Each NServiceBus endpoint connects to its local MSMQ node. In order to address a different NServiceBus endpoint, not only the queue name but also the host name has to be specified.
+MSMQ is a [bus transport](/nservicebus/transports). This means that an MSMQ system consists of multiple nodes, one on each machine, forwarding messages between each other. Each endpoint connects to its local MSMQ node. In order to address a different endpoint, not only the queue name but also the host name has to be specified.
 
 
 ## Scaling out
