@@ -109,9 +109,9 @@ sc.exe config SalesEndpoint depend= MSMQ/MSDTC/RavenDB
 
 ### Restart Recovery
 
-The endpoint instance may decide to quit due to its internal circuit breaker behavior. When you host an NServiceBus endpoints as a Windows Service is it important to configure the Windows Service Recovery options. These can be set by the service properties or via sc.exe which has advanced configuration options.
+The endpoint instance may decide to quit due to its internal circuit breaker behavior. When an NServiceBus endpoint is hosted as a Windows Service is it important to configure the Windows Service Recovery options. These can be set by the service properties or via `sc.exe` which has advanced configuration options.
 
-The default restart duration is 1 minute when enabling recovery via the Windows Service management console but by using sc.exe you can define different restart duration for the 1st, 2nd, 3rd and more restart attempts. The following example will restart the service after 5 seconds, then after 10 seconds and then every 60 seconds. If the service doesn't crash within an hour (3600 seconds) the restart count is reset.
+The default restart duration is 1 minute when enabling recovery via the Windows Service management console, but a different restart duration may be defined for the 1st, 2nd, 3rd and more using `sc.exe`. The following example will restart the service after 5 seconds, then after 10 seconds and then every 60 seconds. If the service doesn't crash within an hour (3600 seconds) the restart count is reset.
 
 ```dos
 sc.exe failure [ServiceName] reset= [seconds] actions= restart/[milliseconds]/restart/[milliseconds]/restart/[milliseconds]
