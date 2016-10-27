@@ -9,13 +9,15 @@ tags:
 - Persistence
 redirects:
  - nservicebus/profiles-for-nservicebus-host
+component: Host
+reviewed: 2016-10-27
 ---
 
 Moving a system reliably from development through test to production is a core capability for any development organization.
 
 Manual configuration and code changes make this process error-prone and make versioning the system a nightmare.
 
-The NServiceBus Host provides facilities of profiles designed specifically to ease this process and provide structure when versioning the configuration of a system. Read about the [host](/nservicebus/hosting/nservicebus-host/).
+The [NServiceBus Host](/nservicebus/hosting/nservicebus-host/) provides facilities of profiles designed specifically to ease this process and provide structure when versioning the configuration of a system.
 
 
 ## Configuration difficulties
@@ -28,6 +30,7 @@ NServiceBus comes with three profiles out of the box: Lite, Integration, and Pro
  * Integration uses technologies closer to production but without scale out and less logging.
  * Production uses scale out friendly technologies and minimal file-based logging.
 
+These profiles can be used to easily switch between different environments during development, testing and deployment.
 
 ## Specifying which profiles to run
 
@@ -37,7 +40,7 @@ To tell the host to run using a specific profile, pass the namespace-qualified t
 NServiceBus.Host.exe NServiceBus.Lite
 ```
 
-Be aware that when installing the NServiceBus host as a Windows Service, all provide profiles are baked into the installation. Second, having the ability to sit down at a tester workstation and turn on and off various behaviors without touching configuration files or code makes isolating bugs much easier. It may take some time to get used to, but the benefits are worth it.
+Be aware that when installing the NServiceBus host as a Windows Service, all provided profiles are baked into the installation.
 
 If the host is run without specifying a profile, NServiceBus defaults to the Production profile. Pass in as many other profiles as required and NServiceBus runs them all.
 
@@ -75,7 +78,7 @@ With these classes, switching profiles doesn't only change NServiceBus behaviors
 
 ## Dependent profile behaviors
 
-It is possible to have slight variations of behavior based on the properties of the class that implements `IConfigureThisEndpoint`. Also, it is not necessarily desired to have all profile handlers to be dependent on the type that implements `IConfigureThisEndpoint`, just for it to check whether it also implements some other interface. The host itself does this when it handles publishers. Endpoints that don't publish don't need to have a subscription storage. Those that are publishers do need different storage technologies configured, based on profile. Just as the host defines the `AsAPublisher` interface and customizes behavior around it, it is possible to do the same with the own interfaces.
+It is possible to have slight variations of behavior based on the properties of the class that implements `IConfigureThisEndpoint`. Also, it is not necessarily desired to have all profile handlers to be dependent on the type that implements `IConfigureThisEndpoint`, just for it to check whether it also implements some other interface. The host itself does this when it handles publishers. Endpoints that don't publish don't need to have a subscription storage. Those that are publishers do need different storage technologies configured, based on profile. Just as the host defines the `AsA_Server` interface and customizes behavior around it, it is possible to do the same with the own interfaces.
 
 For a profile handler to access the type that implements `IConfigureThisEndpoint`, it has to implement `IWantTheEndpointConfig`, like this:
 
@@ -135,6 +138,6 @@ NOTE: Before configuring persistence technology, to avoid overriding custom conf
 
 ## Default persisting technology
 
-The `AsAServer` role activates the timeout manager. This role does not explicitly determine which persisting technology to use. Hence, the default persisting technology for timeout manager (RavenDB) is used.
+The `AsA_Server` role activates the timeout manager. This role does not explicitly determine which persisting technology to use. Hence, the default persisting technology for timeout manager (RavenDB) is used.
 
-Similarly to the `AsAServer` role, the various profiles activate the different NServiceBus features, without explicitly configuring the persisting technology.
+Similarly to the `AsA_Server` role, the various profiles activate the different NServiceBus features, without explicitly configuring the persisting technology.
