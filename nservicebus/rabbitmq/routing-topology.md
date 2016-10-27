@@ -62,6 +62,6 @@ If the above routing topologies aren't flexible enough, it is possible to take f
  1. Define the topology by creating a class implementing `IRoutingTopology`.
  1. Register it with the transport calling `UseRoutingTopology` as shown below.
 
-snippet:rabbitmq-config-useroutingtopology
-
 partial: delegate-argument
+
+snippet:rabbitmq-config-useroutingtopology
