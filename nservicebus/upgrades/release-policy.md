@@ -49,7 +49,7 @@ It is strongly recommended to upgrade frequently enough to stay on a supported v
 
 ### Deprecation
 
-Public API members are deprecated using [ObsoleteAttribute](https://msdn.microsoft.com/en-us/library/system.obsoleteattribute.aspx) messages. Continued usage of a deprecated member will result in either a compiler warning or error. A warning message indicates the version in which the deprecation will start to generate a compiler error (usually the next major version). Both warning and compiler messages indicate in which the deprecated member will be removed. Deprecations in minor releases will always generate a compiler warning and not an error.
+Public API members are deprecated using [ObsoleteAttribute](https://msdn.microsoft.com/en-us/library/system.obsoleteattribute.aspx) messages. Continued usage of a deprecated member will result in either a compiler warning or error. A warning message indicates the version in which the deprecation will start to generate a compiler error (usually the next major version). Both warning and compiler messages indicate in which version the deprecated member will be removed. Deprecations in minor releases will always generate a compiler warning and not an error.
 
 
 ## Summary
