@@ -111,7 +111,7 @@
       Articles:
       - Url: nservicebus/upgrades/rabbitmq-3to4
         Title: Version 3 to 4
-        - Url: nservicebus/upgrades/rabbitmq-4.0to4.1
+      - Url: nservicebus/upgrades/rabbitmq-4.0to4.1
         Title: Version 4.0 to 4.1
     - Title: RavenDB Persistence
       Articles:
