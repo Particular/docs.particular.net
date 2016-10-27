@@ -63,3 +63,5 @@ If the above routing topologies aren't flexible enough, it is possible to take f
  1. Register it with the transport calling `UseRoutingTopology` as shown below.
 
 snippet:rabbitmq-config-useroutingtopology
+
+partial: delegate-argument
