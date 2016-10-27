@@ -1,8 +1,4 @@
-﻿using System;
-using NServiceBus;
-using NServiceBus.Transport;
-using NServiceBus.Transport.RabbitMQ;
-using RabbitMQ.Client;
+﻿using NServiceBus;
 
 partial class Upgrade
 {
@@ -23,37 +19,13 @@ partial class Upgrade
         #region 40to41rabbitmq-useroutingtopology 4.1
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseRoutingTopology(createDurableExchangesAndQueues => new MyRoutingTopology());
+        transport.UseRoutingTopology(
+            topologyFactory: createDurableExchangesAndQueues =>
+            {
+                return new MyRoutingTopology();
+            });
 
         #endregion
     }
 
-    class MyRoutingTopology :
-       IRoutingTopology
-    {
-        public void SetupSubscription(IModel channel, Type type, string subscriberName)
-        {
-        }
-
-        public void TeardownSubscription(IModel channel, Type type, string subscriberName)
-        {
-        }
-
-        public void Publish(IModel channel, Type type, OutgoingMessage message, IBasicProperties properties)
-        {
-        }
-
-        public void Send(IModel channel, string address, OutgoingMessage message, IBasicProperties properties)
-        {
-        }
-
-        public void RawSendInCaseOfFailure(IModel channel, string address, byte[] body, IBasicProperties properties)
-        {
-        }
-
-        public void Initialize(IModel channel, string main)
-        {
-        }
-    }
 }
-

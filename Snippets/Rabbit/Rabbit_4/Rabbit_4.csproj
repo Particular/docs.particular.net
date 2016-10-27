@@ -47,6 +47,7 @@
     <Content Include="rabbitmqconnection.config.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyRoutingTopology.cs" />
     <Compile Include="UpgradeGuides\3to4\Upgrade.cs" />
     <Compile Include="UpgradeGuides\4.0to4.1\Upgrade.cs" />
     <Compile Include="Usage.cs" />
