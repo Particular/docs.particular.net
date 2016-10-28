@@ -113,7 +113,7 @@ Windows Services can fail and Windows has a Windows Service Recovery mechanism t
 
 The endpoint can fail when using the [NServiceBus Host](nservicebus-host/) or [self hosting and implementing a critical error handler that exits the process](critical-errors.md#default-action-handling-in-nservicebus) when a critical error occurs. Not having Windows Service Recovery configured will result in message processing to halt.
 
-When an NServiceBus endpoint is hosted as a Windows Service is it important to configure the Windows Service Recovery options. These can be set by the service properties or via `sc.exe` which has advanced configuration options.
+When an NServiceBus endpoint is hosted as a Windows Service it is important to configure its Recovery options. These can be set by the service properties or via `sc.exe` which has advanced configuration options.
 
 
 #### Via sc.exe
