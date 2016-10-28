@@ -1,6 +1,4 @@
-To change core settings such as assembly scanning, container, and serialization format, implement
-`IWantCustomInitialization` on the endpoint configuration class (the same class that implements
-`IConfigureThisEndpoint`). Start the configuration expression with
+To change core settings such as assembly scanning, container, and serialization format, implement `IWantCustomInitialization` on the endpoint configuration class (the same class that implements `IConfigureThisEndpoint`). Start the configuration expression with
 
 ```cs
 Configure.With()
