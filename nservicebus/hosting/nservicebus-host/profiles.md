@@ -13,10 +13,6 @@ component: Host
 reviewed: 2016-10-27
 ---
 
-Moving a system reliably from development through test to production is a core capability for any development organization.
-
-Manual configuration and code changes make this process error-prone and make versioning the system a nightmare.
-
 The [NServiceBus Host](/nservicebus/hosting/nservicebus-host/) provides facilities of profiles designed specifically to ease this process and provide structure when versioning the configuration of a system.
 
 
