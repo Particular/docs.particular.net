@@ -34,43 +34,50 @@ namespace Core5.UpgradeGuides._4to5
             #region 4to5MessageConventions
 
             var conventions = busConfiguration.Conventions();
-            conventions.DefiningCommandsAs(type =>
-            {
-                return type.Namespace != null &&
-                       type.Namespace == "MyNamespace" &&
-                       type.Namespace.EndsWith("Commands");
-            });
-            conventions.DefiningEventsAs(type =>
-            {
-                return type.Namespace != null &&
-                       type.Namespace == "MyNamespace" &&
-                       type.Namespace.EndsWith("Events");
-            });
-            conventions.DefiningMessagesAs(type =>
-            {
-                return type.Namespace != null &&
-                       type.Namespace == "Messages";
-            });
-            conventions.DefiningEncryptedPropertiesAs(property =>
-            {
-                return property.Name.StartsWith("Encrypted");
-            });
-            conventions.DefiningDataBusPropertiesAs(property =>
-            {
-                return property.Name.EndsWith("DataBus");
-            });
-            conventions.DefiningExpressMessagesAs(type =>
-            {
-                return type.Name.EndsWith("Express");
-            });
-            conventions.DefiningTimeToBeReceivedAs(type =>
-            {
-                if (type.Name.EndsWith("Expires"))
+            conventions.DefiningCommandsAs(
+                type =>
                 {
-                    return TimeSpan.FromSeconds(30);
-                }
-                return TimeSpan.MaxValue;
-            });
+                    return type.Namespace != null &&
+                           type.Namespace == "MyNamespace" &&
+                           type.Namespace.EndsWith("Commands");
+                });
+            conventions.DefiningEventsAs(
+                type =>
+                {
+                    return type.Namespace != null &&
+                           type.Namespace == "MyNamespace" &&
+                           type.Namespace.EndsWith("Events");
+                });
+            conventions.DefiningMessagesAs(
+                type =>
+                {
+                    return type.Namespace != null &&
+                           type.Namespace == "Messages";
+                });
+            conventions.DefiningEncryptedPropertiesAs(
+                property =>
+                {
+                    return property.Name.StartsWith("Encrypted");
+                });
+            conventions.DefiningDataBusPropertiesAs(
+                property =>
+                {
+                    return property.Name.EndsWith("DataBus");
+                });
+            conventions.DefiningExpressMessagesAs(
+                type =>
+                {
+                    return type.Name.EndsWith("Express");
+                });
+            conventions.DefiningTimeToBeReceivedAs(
+                type =>
+                {
+                    if (type.Name.EndsWith("Expires"))
+                    {
+                        return TimeSpan.FromSeconds(30);
+                    }
+                    return TimeSpan.MaxValue;
+                });
 
             #endregion
         }
@@ -81,10 +88,11 @@ namespace Core5.UpgradeGuides._4to5
 
             busConfiguration.AssembliesToScan(AllAssemblies.Except("NotThis.dll"));
             var conventions = busConfiguration.Conventions();
-            conventions.DefiningEventsAs(type =>
-            {
-                return type.Name.EndsWith("Event");
-            });
+            conventions.DefiningEventsAs(
+                type =>
+                {
+                    return type.Name.EndsWith("Event");
+                });
             busConfiguration.EndpointName("MyEndpointName");
 
             #endregion
@@ -289,12 +297,13 @@ namespace Core5.UpgradeGuides._4to5
             #region 4to5DefineCriticalErrorAction
 
             // Configuring how NServiceBus handles critical errors
-            busConfiguration.DefineCriticalErrorAction((message, exception) =>
-            {
-                var output = $"Critical exception: '{message}'";
-                log.Error(output, exception);
-                // Perhaps end the process??
-            });
+            busConfiguration.DefineCriticalErrorAction(
+                (message, exception) =>
+                {
+                    var output = $"Critical exception: '{message}'";
+                    log.Error(output, exception);
+                    // Perhaps end the process??
+                });
 
             #endregion
         }
@@ -359,7 +368,8 @@ namespace Core5.UpgradeGuides._4to5
             Bus.CreateSendOnly(busConfiguration);
 
             // AsVolatile
-            busConfiguration.Transactions().Disable();
+            var transactions = busConfiguration.Transactions();
+            transactions.Disable();
             busConfiguration.DisableDurableMessages();
             busConfiguration.UsePersistence<InMemoryPersistence>();
 

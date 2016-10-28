@@ -8,10 +8,11 @@
         {
             #region ExpressMessageConvention
 
-            configure.DefiningExpressMessagesAs(type =>
-            {
-                return type.Name.EndsWith("Express");
-            });
+            configure.DefiningExpressMessagesAs(
+                type =>
+                {
+                    return type.Name.EndsWith("Express");
+                });
 
             #endregion
         }

@@ -9,10 +9,11 @@
             #region ExpressMessageConvention
 
             var conventions = busConfiguration.Conventions();
-            conventions.DefiningExpressMessagesAs(type =>
-            {
-                return type.Name.EndsWith("Express");
-            });
+            conventions.DefiningExpressMessagesAs(
+                type =>
+                {
+                    return type.Name.EndsWith("Express");
+                });
 
             #endregion
         }

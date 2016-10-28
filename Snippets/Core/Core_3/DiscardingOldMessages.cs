@@ -19,14 +19,15 @@
         {
             #region DiscardingOldMessagesWithCode
 
-            configure.DefiningTimeToBeReceivedAs(type =>
-            {
-                if (type == typeof(MyMessage))
+            configure.DefiningTimeToBeReceivedAs(
+                type =>
                 {
-                    return TimeSpan.FromHours(1);
-                }
-                return TimeSpan.MaxValue;
-            });
+                    if (type == typeof(MyMessage))
+                    {
+                        return TimeSpan.FromHours(1);
+                    }
+                    return TimeSpan.MaxValue;
+                });
 
             #endregion
         }

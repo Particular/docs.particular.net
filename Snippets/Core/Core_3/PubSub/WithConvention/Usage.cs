@@ -8,12 +8,13 @@
         {
             #region DefiningEventsAs
 
-            configure.DefiningEventsAs(type =>
-            {
-                return type.Namespace != null &&
-                       type.Namespace.StartsWith("Domain") &&
-                       type.Name.EndsWith("Event");
-            });
+            configure.DefiningEventsAs(
+                type =>
+                {
+                    return type.Namespace != null &&
+                           type.Namespace.StartsWith("Domain") &&
+                           type.Name.EndsWith("Event");
+                });
 
             #endregion
         }

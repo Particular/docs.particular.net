@@ -7,8 +7,12 @@
     {
 
         #region DiscardingOldMessagesWithAnAttribute
+
         [TimeToBeReceived("00:01:00")] // Discard after one minute
-        public class MyMessage { }
+        public class MyMessage
+        {
+        }
+
         #endregion
 
         DiscardingOldMessages(EndpointConfiguration endpointConfiguration)
@@ -16,9 +20,10 @@
             #region DiscardingOldMessagesWithCode
 
             var conventions = endpointConfiguration.Conventions();
-            conventions.DefiningTimeToBeReceivedAs(type =>
+            conventions.DefiningTimeToBeReceivedAs(
+                type =>
                 {
-                    if (type == typeof (MyMessage))
+                    if (type == typeof(MyMessage))
                     {
                         return TimeSpan.FromHours(1);
                     }

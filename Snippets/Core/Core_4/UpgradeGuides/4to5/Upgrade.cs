@@ -28,40 +28,47 @@
             // otherwise it will result in:
             // 'InvalidOperationException: "No destination specified for message(s): MessageTypeName"
             configure.DefaultBuilder();
-            configure.DefiningCommandsAs(type =>
-            {
-                return type.Namespace == "MyNamespace" &&
-                       type.Namespace.EndsWith("Commands");
-            });
-            configure.DefiningEventsAs(type =>
-            {
-                return type.Namespace == "MyNamespace" &&
-                       type.Namespace.EndsWith("Events");
-            });
-            configure.DefiningMessagesAs(type =>
-            {
-                return type.Namespace == "Messages";
-            });
-            configure.DefiningEncryptedPropertiesAs(property =>
-            {
-                return property.Name.StartsWith("Encrypted");
-            });
-            configure.DefiningDataBusPropertiesAs(property =>
-            {
-                return property.Name.EndsWith("DataBus");
-            });
-            configure.DefiningExpressMessagesAs(type =>
-            {
-                return type.Name.EndsWith("Express");
-            });
-            configure.DefiningTimeToBeReceivedAs(type =>
-            {
-                if (type.Name.EndsWith("Expires"))
+            configure.DefiningCommandsAs(
+                type =>
                 {
-                    return TimeSpan.FromSeconds(30);
-                }
-                return TimeSpan.MaxValue;
-            });
+                    return type.Namespace == "MyNamespace" &&
+                           type.Namespace.EndsWith("Commands");
+                });
+            configure.DefiningEventsAs(
+                type =>
+                {
+                    return type.Namespace == "MyNamespace" &&
+                           type.Namespace.EndsWith("Events");
+                });
+            configure.DefiningMessagesAs(
+                type =>
+                {
+                    return type.Namespace == "Messages";
+                });
+            configure.DefiningEncryptedPropertiesAs(
+                property =>
+                {
+                    return property.Name.StartsWith("Encrypted");
+                });
+            configure.DefiningDataBusPropertiesAs(
+                property =>
+                {
+                    return property.Name.EndsWith("DataBus");
+                });
+            configure.DefiningExpressMessagesAs(
+                type =>
+                {
+                    return type.Name.EndsWith("Express");
+                });
+            configure.DefiningTimeToBeReceivedAs(
+                type =>
+                {
+                    if (type.Name.EndsWith("Expires"))
+                    {
+                        return TimeSpan.FromSeconds(30);
+                    }
+                    return TimeSpan.MaxValue;
+                });
 
             #endregion
         }
@@ -73,10 +80,11 @@
             var configure = Configure.With(AllAssemblies.Except("NotThis.dll"));
             configure.DefaultBuilder();
             configure.DefineEndpointName("MyEndpointName");
-            configure.DefiningEventsAs(type =>
-            {
-                return type.Name.EndsWith("Event");
-            });
+            configure.DefiningEventsAs(
+                type =>
+                {
+                    return type.Name.EndsWith("Event");
+                });
 
             #endregion
         }
@@ -124,16 +132,18 @@
         {
             #region 4to5InterfaceMessageCreation
 
-            var message = Bus.CreateInstance<MyInterfaceMessage>(o =>
-            {
-                o.OrderNumber = 1234;
-            });
+            var message = Bus.CreateInstance<MyInterfaceMessage>(
+                o =>
+                {
+                    o.OrderNumber = 1234;
+                });
             Bus.Publish(message);
 
-            Bus.Publish<MyInterfaceMessage>(o =>
-            {
-                o.OrderNumber = 1234;
-            });
+            Bus.Publish<MyInterfaceMessage>(
+                o =>
+                {
+                    o.OrderNumber = 1234;
+                });
 
             #endregion
         }
@@ -261,12 +271,13 @@
 
             // Configuring how NServiceBus handles critical errors
             var configure = Configure.With();
-            configure.DefineCriticalErrorAction((message, exception) =>
-            {
-                var output = $"Critical exception: '{message}'";
-                log.Error(output, exception);
-                // Perhaps end the process?
-            });
+            configure.DefineCriticalErrorAction(
+                (message, exception) =>
+                {
+                    var output = $"Critical exception: '{message}'";
+                    log.Error(output, exception);
+                    // Perhaps end the process?
+                });
 
             #endregion
         }
@@ -307,7 +318,8 @@
 
             // where EncryptionService implements IEncryptionService
             var configure = Configure.With();
-            configure.Configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
+            var components = configure.Configurer;
+            components.RegisterSingleton<IEncryptionService>(new EncryptionService());
 
             #endregion
         }
@@ -342,10 +354,11 @@
         {
             #region 4to5StaticConfigureEndpoint
 
-            Configure.Endpoint.AsSendOnly();
-            Configure.Endpoint.AsVolatile();
-            Configure.Endpoint.Advanced(settings => settings.DisableDurableMessages());
-            Configure.Endpoint.Advanced(settings => settings.EnableDurableMessages());
+            var endpoint = Configure.Endpoint;
+            endpoint.AsSendOnly();
+            endpoint.AsVolatile();
+            endpoint.Advanced(settings => settings.DisableDurableMessages());
+            endpoint.Advanced(settings => settings.EnableDurableMessages());
 
             #endregion
         }

@@ -9,12 +9,13 @@ namespace Core5.PubSub.WithConvention
             #region DefiningEventsAs
 
             var conventions = busConfiguration.Conventions();
-            conventions.DefiningEventsAs(type =>
-            {
-                return type.Namespace != null &&
-                       type.Namespace.StartsWith("Domain") &&
-                       type.Name.EndsWith("Event");
-            });
+            conventions.DefiningEventsAs(
+                type =>
+                {
+                    return type.Namespace != null &&
+                           type.Namespace.StartsWith("Domain") &&
+                           type.Name.EndsWith("Event");
+                });
 
             #endregion
         }
