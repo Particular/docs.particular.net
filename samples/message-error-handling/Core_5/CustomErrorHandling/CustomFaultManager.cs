@@ -9,9 +9,9 @@ using NServiceBus.Unicast;
 
 public class CustomFaultManager : IManageMessageFailures
 {
-    readonly ISendMessages sender;
-    readonly MessageForwardingInCaseOfFaultConfig config;
-    static readonly ILog Log = LogManager.GetLogger(typeof(CustomFaultManager));
+    ISendMessages sender;
+    MessageForwardingInCaseOfFaultConfig config;
+    static ILog Log = LogManager.GetLogger(typeof(CustomFaultManager));
     Address localAddress;
 
     public CustomFaultManager(ISendMessages sender, IProvideConfiguration<MessageForwardingInCaseOfFaultConfig> config)

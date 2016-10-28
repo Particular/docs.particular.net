@@ -22,8 +22,8 @@ static class Program
         configure.EnableInstallers();
         configure.SendFailedMessagesTo("error");
 
-        var r = configure.Recoverability();
-        r.Delayed(d => d.NumberOfRetries(0));
+        var recoverability = configure.Recoverability();
+        recoverability.Delayed(d => d.NumberOfRetries(0));
 
         #region Registering-Behavior
         var pipeline = configure.Pipeline;

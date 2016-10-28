@@ -13,8 +13,10 @@ public class MyMessageHandler :
 
     public void Handle(MyMessage message)
     {
-        if(message.ThrowCustomException)
+        if (message.ThrowCustomException)
+        {
             throw new MyCustomException();
+        }
 
         throw new Exception("An exception occurred in the handler.");
     }
