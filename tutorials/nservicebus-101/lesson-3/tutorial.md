@@ -1,8 +1,8 @@
 ---
-title: "NServiceBus 101 Lesson 3: Managing multiple endpoints"
+title: "NServiceBus 101 Lesson 3: Multiple endpoints"
 ---
 
-Up until this point, we have constrained our activities to a single endpoint, but this is not how real systems behave. The strength of a messaging application is the ability to run code in multiple processes, on multiple servers, which can all collaborate by exchanging messages.
+Up until this point, we have constrained our activities to a single endpoint, but this is not how real systems behave. The strength of a messaging system is the ability to run code in multiple processes, on multiple servers, which can all collaborate by exchanging messages.
 
 In this lesson, we'll move our message handler to a different endpoint, and discussing the concepts that go along with running more than one endpoint.
 
@@ -37,7 +37,7 @@ snippet:SendDestination
 
 However, doing that in most cases isn't a good idea. This requires each developer to remember where each message is supposed to go and type it in every time that message is sent.
 
-Instead, NServiceBus should be made aware of the configuration, so that whenever a message is sent, the framework will already know exactly where it should be sent.
+Instead, NServiceBus should be made aware of the configuration, so that whenever a message is sent, the framework will already know exactly where it should be delivered.
 
 This is **logical routing**, the mapping of specific message types to logical endpoints that can process those messages. Each command message should have one logical endpoint that owns that message and can process it.
 
@@ -58,7 +58,7 @@ Therefore, it makes sense that logical routing is defined in code.
 
 ### Defining logical routes
 
-Routing is a function of the message transport, so all routing functionality is accessed from the method that defines the message transport, as shown in this example using the MSMQ transport:
+[**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the method that defines the message transport, as shown in this example using the MSMQ transport:
 
 snippet:RoutingSettings
 
@@ -130,7 +130,7 @@ Now let's move the handler from ClientUI over to Sales where it belongs.
 
  1. In the Solution Explorer, find **PlaceOrderHandler.cs** in the **ClientUI** project, and drag it to the **Sales** project.
  1. Open the new **PlaceOrderHandler.cs** in **Sales** and change the namespace from `ClientUI` to `Sales` to match its new home.
- 1. Visual Studio's default action when you drag files between projects is to copy them, so you must delete the old **PlaceOrderHandler.css** from the **ClientUI** endpoint.
+ 1. Visual Studio's default action when you drag files between projects is to copy them, so you must delete the old **PlaceOrderHandler.cs** from the **ClientUI** endpoint.
 
 So now that the handler is in the correct endpoint, what would happen if we started the solution? Sales now has a message handler, but recall that ClientUI is still calling `endpointInstance.SendLocal(command)` which effectively sends the message to itself, but it doesn't have a handler anymore.
 
