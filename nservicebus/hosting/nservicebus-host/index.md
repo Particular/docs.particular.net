@@ -11,6 +11,8 @@ related:
  - samples/hosting/nservicebus-host
  - nservicebus/operations/installers
  - nservicebus/lifecycle
+component: Host
+reviewed: 2016-10-25
 ---
 
 The NServiceBus Host takes a more opinionated approach to hosting. It allows the execution as both a windows service and a console application (for development).
@@ -28,6 +30,8 @@ snippet:ExplicitHostConfigType
 
 
 ### Controlling assembly scanning using code
+
+By default, the assembly scanning process of the host is equal to a regular endpoint. It can be configured by the the [assembly scanning](/nservicebus/hosting/assembly-scanning.md) API via `IConfigureThisEndpoint`:
 
 snippet:ScanningConfigurationInNSBHost
 
@@ -54,45 +58,12 @@ NOTE: When the endpoint configuration is not specified explicitly, the host scan
 
 ## Custom initialization
 
-For Versions 5 and above, customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on the endpoint configuration class. Call the appropriate methods on the parameter passed to the method.
-
-snippet:customize_nsb_host
-
-
-#### NServiceBus Version 4 and Version 3
-
-To change core settings such as assembly scanning, container, and serialization format, implement
-`IWantCustomInitialization` on the endpoint configuration class (the same class that implements
-`IConfigureThisEndpoint`). Start the configuration expression with
-
-```cs
-Configure.With()
-```
-
-NOTE: Do not perform any startup behaviors in the `Init` method.
-
-After the custom initialization is done the regular core `INeedInitalization` implementations found will be called in the same way as when self hosting.
-
-
-include:host-startup
+partial:initialization
 
 
 ## Roles - Built-in configurations
 
-As of Version 5 roles are obsoleted and should not be used. The functionality of `AsA_Server`, and `AsA_Publisher` has been made defaults in the core and can be safely removed. If the `AsA_Client` functionality is still required add the following configuration.
-
-snippet:AsAClientEquivalent
-
-
-#### NServiceBus Version 4 and Version 3
-
-The rest of the code specifying transport, subscription storage, and other technologies isn't here, because of the `AsA_Server` built-in configuration described next.
-
-While NServiceBus allows picking and choosing which technologies to use and how to configure each of them, the host packages these choices into three built-in options: `AsA_Client`, `AsA_Server`, and `AsA_Publisher`. All these options make use of `XmlSerializer`, `MsmqTransport`, and `UnicastBus`. The difference is in the configuration:
-
-* `AsA_Client` sets `MsmqTransport` as non-transactional and purges its queue of messages on startup. This means that it starts afresh every time, not remembering anything before a crash. Also, it processes messages using its own permissions, not those of the message sender.
-* `AsA_Server` sets `MsmqTransport` as transactional and does not purge messages from its queue on startup. This makes it fault-tolerant.
-* `AsA_Publisher` extends `AsA_Server` and indicates to the infrastructure to set up storage for subscription requests, described in the [profiles page](/nservicebus/hosting/nservicebus-host/profiles.md).
+partial:roles
 
 
 ## Specify Endpoint Name
@@ -100,16 +71,12 @@ While NServiceBus allows picking and choosing which technologies to use and how 
 
 ### Namespace convention
 
-When using NServiceBus.Host, the namespace of the class implementing `IConfigureThisEndpoint` will be used as the endpoint name as the default convention. In the following example the endpoint name when running NServiceBus host becomes `MyServer`. This is the recommended way to name a endpoint. Also this emphasizes convention over configuration approach.
+When using NServiceBus.Host, the namespace of the class implementing `IConfigureThisEndpoint` will be used as the endpoint name as the default convention. In the following example the endpoint name when running `NServiceBus.Host.exe` becomes `MyServer`. This is the recommended way to name a endpoint. Also this emphasizes convention over configuration approach.
 
 snippet:EndpointNameByNamespace
 
 
-### Defined in code
-
-Set the endpoint name using the `DefineEndpointName(name)` extension method on the endpoint configuration.
-
-snippet:EndpointNameInCodeForHost
+partial: endpointname-code
 
 
 ### EndpointName attribute

@@ -90,7 +90,9 @@ NServiceBus.Host.exe /install
 /scannedAssemblies:"My.Endpoint.Assembly"
 ```
 
-Note: When using the `/scannedAssemblies` parameter, don't forget to include at least `NServiceBus.Core` and `NServiceBus.Host` as well as any other referenced NServiceBus plugin.
+The host loads the assemblies by invoking [`Assembly.Load`](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) method. This approach ensures that the specified assembly and all its dependent assemblies will also be loaded.
+
+Note: When using the `/scannedAssemblies` parameter, don't forget to include at least `NServiceBus.Host` as well as any other referenced NServiceBus plugin. As `NServiceBus.Host` references `NServiceBus.Core`, the latter can be  omitted from the list.
 
 
 ### DependsOn
