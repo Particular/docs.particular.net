@@ -72,8 +72,9 @@ snippet:Enlisting
 
 The last parameter, `capacity` is the maximum number of messages in-flight between the distributor and the worker. The worker sends an acknowledgement (ACK) message (also called `ready` message) for each message processed. The distributor keeps track of these ACKs to ensure no worker is flooded with work that it can't process
 
-Prior to Version 6 the capacity was always equal to the maximum concurrency setting. That caused the worker queue to be empty most of the time because there could never be more messages in-flight than threads ready to process them on the worker side. In Version 6 these settings are decoupled. The snippet above shows how to achieve exactly same behavior as in previous versions.
+In Versions 6 and below the capacity was always set to the same value as the maximum concurrency setting, which means there were never more messages in-flight than threads ready to process them on the worker side. If the worker was up and running messages never waited in the queue. This approach limits the potential consequences of worker failure at the expense of throughput.
 
+A new setting was introduced in Version 6, which allows to explicitly control the capacity value. The snippet above shows how to set it to the same value as in previous versions.
 
 ### Upgrading the handlers
 
