@@ -76,11 +76,7 @@ When using NServiceBus.Host, the namespace of the class implementing `IConfigure
 snippet:EndpointNameByNamespace
 
 
-### Defined in code
-
-Set the endpoint name using the `DefineEndpointName(name)` extension method on the endpoint configuration.
-
-snippet:EndpointNameInCodeForHost
+partial: endpointname-code
 
 
 ### EndpointName attribute
