@@ -109,7 +109,14 @@ sc.exe config SalesEndpoint depend= MSMQ/MSDTC/RavenDB
 
 ### Restart Recovery
 
-The endpoint instance may decide to quit due to its internal circuit breaker behavior. When an NServiceBus endpoint is hosted as a Windows Service is it important to configure the Windows Service Recovery options. These can be set by the service properties or via `sc.exe` which has advanced configuration options.
+Windows Services can fail and Windows has a Windows Service Recovery mechanism that makes sure that a crashed service will be restarted.\
+
+The endpoint can fail when using the [NServiceBus Host](/nservicebus/hosting/nservicebus-host/) or [self hosting and implementing a critical error handler that exits the process](https://docs.particular.net/nservicebus/hosting/critical-errors#default-action-handling-in-nservicebus) when a critical error occurs. Not having Windows Service Recovery configured will result in message processing to halt.
+
+When an NServiceBus endpoint is hosted as a Windows Service is it important to configure the Windows Service Recovery options. These can be set by the service properties or via `sc.exe` which has advanced configuration options.
+
+
+#### Via sc.exe
 
 The default restart duration is 1 minute when enabling recovery via the Windows Service management console, but a different restart duration may be defined for the 1st, 2nd, 3rd and more using `sc.exe`. The following example will restart the service after 5 seconds, then after 10 seconds and then every 60 seconds. If the service doesn't crash within an hour (3600 seconds) the restart count is reset.
 
@@ -118,6 +125,14 @@ sc.exe failure [ServiceName] reset= [seconds] actions= restart/[milliseconds]/re
 sc.exe failure SalesEndpoint reset= 3600 actions= restart/5000/restart/10000/restart/60000
 ```
 
+
+#### Via Windows Service properties
+
+Open the services snapin, select your endpoint Windows service and open its properties. This dialog has a Recovery tab which should look like the following screenshot.
+
+![Windows Service properties Recovery tab](service-properties.png)
+
+NOTE: Restart durations are only configurable using `sc.exe`.
 
 ### Username and Password
 
