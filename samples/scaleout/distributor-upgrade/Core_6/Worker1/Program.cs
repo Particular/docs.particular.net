@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Routing.Legacy;
+using NServiceBus.Transport;
 
 class Program
 {
@@ -23,7 +24,7 @@ class Program
         endpointConfiguration.EnlistWithLegacyMSMQDistributor(
             masterNodeAddress: ConfigurationManager.AppSettings["DistributorAddress"],
             masterNodeControlAddress: ConfigurationManager.AppSettings["DistributorControlAddress"],
-            capacity: 10);
+            capacity: PushRuntimeSettings.Default.MaxConcurrency);
 
         #endregion
 
