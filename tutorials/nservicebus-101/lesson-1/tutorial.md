@@ -67,8 +67,6 @@ Now, let's go line-by-line and find out exactly what each step is doing.
 
 snippet:ConsoleTitle
 
-When developing NServiceBus systems, we tend to run multiple message endpoints at the same time in separate console windows. If we're not careful, it can become difficult to tell them apart. Giving each one a short, clear name can be helpful to make it easier to find the desired window later on.
-
 When running multiple console apps in the same solution, giving each a name makes them easier to identify. This console app's title uses `ClientUI`. In later lessons, we'll expand this solution to host several more.
 
 

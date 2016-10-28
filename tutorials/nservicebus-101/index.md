@@ -8,7 +8,7 @@ In this course, you will learn how to get working quickly with NServiceBus.
 
 ## Objectives
 
-In this course we'll build a messaging system using a retail e-commerce domain.
+In this course we'll build a messaging system for a retail e-commerce domain.
 
 By the end of the course, you will have learned:
 
