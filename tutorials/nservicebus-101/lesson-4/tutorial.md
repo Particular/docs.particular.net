@@ -176,7 +176,7 @@ That's great, but why stop there? The whole point of Publish/Subscribe is that w
 
 In a real system, after an order is placed and billed, we would need to ship the products. So let's add another event and two more subscribers. Once the credit card is charged, we'll publish an `OrderBilled` event. Then, we'll create a new endpoint **Shipping** that will subscribe to both events.
 
-This is also a good opportunity to check your understanding. If you can complete these steps without looking back at previous steps or previous lessons, you can be sure you have a good understanding of everything we've covered so far! (Don't worry, you can always check your work against the solution.)
+This is also a good opportunity to check your understanding. If you can complete these steps without looking back at previous steps or previous lessons, you can be sure you have a good understanding of everything we've covered so far. (Don't worry, you can always check your work against the solution.)
 
  1. In **Messages**, create a new event called `OrderBilled`, implementing `IEvent` and containing a property for the `OrderId`.
  1. In **Billing**, publish the `OrderBilled` event at the end of the `OrderPlacedHandler`.

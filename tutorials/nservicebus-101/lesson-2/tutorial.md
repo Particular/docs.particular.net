@@ -162,18 +162,18 @@ snippet:AddRunLoopToAsyncMain
 
 ### Running the solution
 
-Now we can run the solution. Whenever we type `placeorder` on the console, a command message is sent and then processed by a handler class in the same project.
+Now we can run the solution. Whenever we press `P` on the console, a command message is sent and then processed by a handler class in the same project.
 
 ```no-highlight
-INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
-placeorder
-INFO  ClientUI.Program Sending PlaceOrder command, OrderId = 1ec12713-f86d-43e1-a41f-16aba19dd6f7
-INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
-INFO  ClientUI.PlaceOrderHandler Received PlaceOrder, OrderId = 1ec12713-f86d-43e1-a41f-16aba19dd6f7
-placeorder
-INFO  ClientUI.Program Sending PlaceOrder command, OrderId = 9260d6ce-6f3e-4b00-9edb-0dfb905afee8
-INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
-INFO  ClientUI.PlaceOrderHandler Received PlaceOrder, OrderId = 9260d6ce-6f3e-4b00-9edb-0dfb905afee8
+INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
+p
+INFO  ClientUI.Program Sending PlaceOrder command, OrderId = 1fb61e01-34a3-4562-82b1-85278565b59d
+INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
+INFO  ClientUI.PlaceOrderHandler Received PlaceOrder, OrderId = 1fb61e01-34a3-4562-82b1-85278565b59d
+p
+INFO  ClientUI.Program Sending PlaceOrder command, OrderId = d9e59362-ccf4-4323-8298-4bbc052fb877
+INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
+INFO  ClientUI.PlaceOrderHandler Received PlaceOrder, OrderId = d9e59362-ccf4-4323-8298-4bbc052fb877
 ```
 
 Note how after sending a message, the prompt from `ClientUI.Program` is displayed _before_ the `ClientUI.PlaceOrderHandler` acknowledges receipt of the message. This is because, rather than calling the `Handle` method as a direct method call, the message is sent asynchronously, and then control immediately returns to the `RunLoop`, which repeats the prompt. It isn't until a bit later, when the message is received and processed, that we see the `Received PlaceOrder` notification.

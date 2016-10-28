@@ -157,20 +157,20 @@ This establishes that commands of type `PlaceOrder` should be sent to the **Sale
 
 ### Running the solution
 
-Now when we run the solution, we get two console windows, one for ClientUI and one for Sales. After moving them around so that we can see both, we can try to place an order by typing `placeorder` in the **ClientUI** window.
+Now when we run the solution, we get two console windows, one for ClientUI and one for Sales. After moving them around so that we can see both, we can try to place an order by pressing `P` in the **ClientUI** window.
 
 INFO: You can also keep console windows from showing up in random screen locations each time by right-clicking the console window's title bar, and in the **Layout** tab, unchecking the **Let system position window** checkbox.
 
 In the **ClientUI** window, we see this output:
 
 ```no-highlight
-INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
-placeorder
-INFO  ClientUI.Program Sending PlaceOrder command, OrderId = 0f086be1-033b-4747-af53-192530005a1d
-INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
-placeorder
-INFO  ClientUI.Program Sending PlaceOrder command, OrderId = ca953e37-573a-4a67-9258-bbd612ef8dad
-INFO  ClientUI.Program Enter 'placeorder' to place an order, or 'quit' to quit.
+INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
+p
+INFO  ClientUI.Program Sending PlaceOrder command, OrderId = af0d1aa7-1611-4aa0-b83d-05e2d931d532
+INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
+p
+INFO  ClientUI.Program Sending PlaceOrder command, OrderId = e19d6160-595a-4c30-98b5-ea07bc44a6f8
+INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
 ```
 
 Everything is the same, except the command is not processed here.
@@ -179,13 +179,13 @@ In the **Sales** window, we see this:
 
 ```no-highlight
 Press Enter to exit.
-INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = 0f086be1-033b-4747-af53-192530005a1d
-INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = ca953e37-573a-4a67-9258-bbd612ef8dad
+INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = af0d1aa7-1611-4aa0-b83d-05e2d931d532
+INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e19d6160-595a-4c30-98b5-ea07bc44a6f8
 ```
 
 Let's take a second and reflect upon what we've achieved. We've managed to create two processes and achieve inter-process communication between them. Compared to the amount of effort required to set up and configure a WCF service, NServiceBus is able to communicate between processes with amazing ease!
 
-Now, let's try something different. Close the Sales endpoint window so that only ClientUI is running, and then enter `placeorder` several times to send several messages to the Sales endpoint. Note that it works just fine; messages are sent, and nothing fails because the Sales endpoint happens to be offline.
+Now, let's try something different. Close the Sales endpoint window so that only ClientUI is running, and then press `P` several times to send several messages to the Sales endpoint. Note that it works just fine; messages are sent, and nothing fails because the Sales endpoint happens to be offline.
 
 Now, restart the Sales endpoint and watch what happens. After it starts up, it receives and processes all the messages that were waiting for it in the queue.
 

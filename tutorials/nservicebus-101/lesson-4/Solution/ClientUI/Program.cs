@@ -44,26 +44,27 @@ namespace ClientUI
         {
             while (true)
             {
-                logger.Info("Enter 'placeorder' to place an order, or 'quit' to quit.");
-                var input = Console.ReadLine();
+                logger.Info("Press 'P' to place an order, or 'Q' to quit.");
+                var key = Console.ReadKey();
+                Console.WriteLine();
 
-                switch (input?.ToLower())
+                switch (key.Key)
                 {
-                    case "placeorder":
+                    case ConsoleKey.P:
                         // Instantiate the command
                         var command = new PlaceOrder
                         {
                             OrderId = Guid.NewGuid().ToString()
                         };
 
-                        // Send the command to the local endpoint
+                        // Send the command
                         logger.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
                         await endpointInstance.Send(command)
                             .ConfigureAwait(false);
 
                         break;
 
-                    case "quit":
+                    case ConsoleKey.Q:
                         return;
 
                     default:

@@ -107,7 +107,7 @@ snippet:Throw
 Now, run the solution.
 
  1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running, but does not break into the debugger when we throw our exception.
- 1. In the **ClientUI** window, place an order by typing `placeorder`, and then watch carefully!
+ 1. In the **ClientUI** window, place an order by pressing `P`, and then watch carefully!
 
 When we do these steps, we'll see a wall of exception messages in white text, which is log level INFO, followed by one in yellow text, which is log level WARN. The exception traces in white are the failures during immediate retries, and the last trace in yellow is the failure that hands the message over to delayed retries.
 
