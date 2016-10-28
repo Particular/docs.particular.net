@@ -9,7 +9,7 @@ public class SomeMessageHandler :
 
     public Task Handle(SomeMessage message, IMessageHandlerContext context)
     {
-        Program.ReceiveCounter.OnNext(message);
+        Program.ReceiveCounter.IncreaseNumberOfReceivedMessages();
 
         var list = new List<Task>();
         for (var i = 0; i < NumberOfMessagesToSend; i++)

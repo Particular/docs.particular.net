@@ -1,23 +1,26 @@
 ﻿using System;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
+using System.Threading;
 
 public class ReceiveCounter
 {
-    Subject<SomeMessage> messages = new Subject<SomeMessage>();
+    static int count;
+    Timer timer;
+    Action<int> action;
 
     public void Subscribe(Action<int> action)
     {
-        var observable = from e in messages
-            group e by "" into c
-            from v in c.Buffer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1))
-            select v.Count;
-
-        observable.Subscribe(action);
+        this.action = action;
+        timer = new Timer(Callback, null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(1));
     }
 
-    public void OnNext(SomeMessage message)
+    void Callback(object state)
     {
-        messages.OnNext(message);
+        var value = Interlocked.Exchange(ref count, 0);
+        action(value);
+    }
+
+    public void IncreaseNumberOfReceivedMessages()
+    {
+        Interlocked.Increment(ref count);
     }
 }

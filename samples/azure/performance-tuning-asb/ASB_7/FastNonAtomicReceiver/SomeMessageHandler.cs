@@ -6,7 +6,7 @@ public class SomeMessageHandler :
 {
     public Task Handle(SomeMessage message, IMessageHandlerContext context)
     {
-        Program.ReceiveCounter.OnNext(message);
+        Program.ReceiveCounter.IncreaseNumberOfReceivedMessages();
 
         return Task.FromResult(0);
     }
