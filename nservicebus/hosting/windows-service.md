@@ -128,7 +128,7 @@ sc.exe failure SalesEndpoint reset= 3600 actions= restart/5000/restart/10000/res
 
 #### Via Windows Service properties
 
-Open the services snapin, select your endpoint Windows service and open its properties. This dialog has a Recovery tab which should look like the following screenshot.
+Open the services snapin, select the endpoint Windows service and open its properties. This dialog has a Recovery tab which should look like the following screenshot.
 
 ![Windows Service properties Recovery tab](service-properties.png)
 
