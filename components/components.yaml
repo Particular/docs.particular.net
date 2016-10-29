@@ -10,7 +10,9 @@
   Name: Anotar Logger
   DocoUrl: samples/logging/anotar
   Category: Logger
+  IsCommunityProject: true
   ProjectUrl: https://github.com/Fody/Anotar
+  LicenseUrl: https://github.com/Fody/Anotar/blob/master/license.txt
   NugetOrder:
     - Anotar.NServiceBus.Fody
 
