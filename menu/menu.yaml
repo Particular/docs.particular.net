@@ -602,6 +602,8 @@
       Title: NLog
     - Url: nservicebus/logging/common-logging
       Title: CommonLogging
+    - Url: nservicebus/logging/serilog
+      Title: Serilog
     - Url: nservicebus/hosting/nservicebus-host/logging-profiles
       Title: Profiles
     - Url: nservicebus/operations/auditing
