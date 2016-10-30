@@ -267,7 +267,7 @@
 
 - Key: Serilog
   Name: Serilog Logger
-  DocoUrl: logging/serilog
+  DocoUrl: nservicebus/logging/serilog
   Category: Logger
   IsCommunityProject: true
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Serilog/blob/master/license.txt
