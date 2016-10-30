@@ -130,6 +130,16 @@
     - NServiceBus.Distributor.MSMQ
     - NServiceBus
 
+- Key: EntityFramework
+  Name: Entity Framework Persistence
+  DocoUrl: https://github.com/benjaminramey/GoodlyFere.NServiceBus.EntityFramework
+  Category: Persistence
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/benjaminramey/GoodlyFere.NServiceBus.EntityFramework/blob/master/LICENSE
+  ProjectUrl: https://github.com/benjaminramey/GoodlyFere.NServiceBus.EntityFramework
+  NugetOrder:
+    - GoodlyFere.NServiceBus.EntityFramework
+
 - Key: Gateway
   Name: Gateway
   DocoUrl: nservicebus/gateway
@@ -188,7 +198,7 @@
 
 - Key: Mongo
   Name: MongoDB Persistence
-  DocoUrl: samples/mongodb
+  DocoUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb
   Category: Persistence
   IsCommunityProject: true
   LicenseUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb
@@ -366,3 +376,13 @@
   NugetOrder:
     - NServiceBus.Wcf  
     - NServiceBus.Host
+
+- Key: SystemXml
+  Name: System.Xml Serializer
+  DocoUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
+  Category: Serializer
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
+  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
+  NugetOrder:
+    - NServiceBus.Serializers.SystemXml
