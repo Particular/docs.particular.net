@@ -25,6 +25,16 @@ tags:
  * Ensure the relevant ServiceControl assemblies are included in the whitelist or are not excluded in the blacklist. For more details refer to [Assembly scanning](/nservicebus/hosting/assembly-scanning.md).
 
 
+### ServicePulse reports empty failed message groups
+
+Possible index is corrupted in RavenDB, to fix this:
+
+1. Put ServiceControl in [Maintenance Mode](/servicecontrol/use-ravendb-studio.md);
+1. Run the following in curl:
+    `curl -X RESET http://localhost:33333/storage/indexes/FailureGroupsViewIndex`  
+    This assumes ServiceControl is using the default port and host name, if this is not the case please adjust the url accordingly.
+1. Exit Maintenance Mode and start ServiceControl again;
+
 ### ASP.NET applications heartbeat failure
 
 
