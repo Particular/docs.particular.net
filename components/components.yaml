@@ -11,8 +11,8 @@
   DocoUrl: samples/logging/anotar
   Category: Logger
   IsCommunityProject: true
-  ProjectUrl: https://github.com/Fody/Anotar
   LicenseUrl: https://github.com/Fody/Anotar/blob/master/license.txt
+  ProjectUrl: https://github.com/Fody/Anotar
   NugetOrder:
     - Anotar.NServiceBus.Fody
 
@@ -143,6 +143,8 @@
   Name: Handler ordering by interface
   DocoUrl: samples/handler-ordering-by-interface
   Category: Other
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/SimonCropp/HandlerOrdering/License.txt
   ProjectUrl: https://github.com/SimonCropp/HandlerOrdering/
   NugetOrder:
     - NServiceBus.HandlerOrdering
@@ -159,6 +161,8 @@
   Name: Jil Serializer
   DocoUrl: samples/serializers/jil
   Category: Serializer
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Jil/blob/master/LICENSE
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.Jil
   NugetOrder:
     - NServiceBus.Jil
@@ -176,6 +180,8 @@
   Name: MessagePack Serializer
   DocoUrl: samples/serializers/message-pack
   Category: Serializer
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.MessagePack/blob/master/LICENSE
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.MessagePack
   NugetOrder:
     - NServiceBus.MessagePack
@@ -184,6 +190,8 @@
   Name: MongoDB Persistence
   DocoUrl: samples/mongodb
   Category: Persistence
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb
   ProjectUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb
   NugetOrder:
     - NServiceBus.Persistence.MongoDb
@@ -225,6 +233,8 @@
   Name: ProtoBuf Serializer
   DocoUrl: samples/serializers/protobuf
   Category: Serializer
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.ProtoBuf/blob/master/LICENSE
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.ProtoBuf/
   NugetOrder:
     - NServiceBus.ProtoBuf
@@ -249,6 +259,8 @@
   Name: Serilog Logger
   DocoUrl: samples/logging/serilog-custom
   Category: Logger
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Serilog/blob/master/license.txt
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.Serilog
   NugetOrder:
     - NServiceBus.Serilog
@@ -340,7 +352,9 @@
   Name: Wire Serializer
   DocoUrl: samples/serializers/wire
   Category: Serializer
-  ProjectUrl: https://github.com/hmemcpy/NServiceBus.Wire
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Wire/blob/master/LICENSE.txt
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Wire
   NugetOrder:
     - NServiceBus.Wire
 
