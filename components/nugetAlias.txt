@@ -40,7 +40,7 @@ ServiceBootstrap: NServiceBus.Bootstrap.WindowsService
 ServiceControl: ServiceControl
 ServicePulse: ServicePulse
 ServiceInsight: ServiceInsight
-SimpleInjector: SimpleInjector
+SimpleInjector: NServiceBus.SimpleInjector
 Spring: NServiceBus.Spring
 SqlServer: NServiceBus.SqlServer
 StructureMap: NServiceBus.StructureMap
