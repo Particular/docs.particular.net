@@ -18,6 +18,13 @@ Particular will apply critical bug fixes to all supported versions. If the bug a
 For more information refer to [the release policy](/nservicebus/upgrades/release-policy.md).
 
 
+### NServiceBus 6.x
+
+| Version | Major Released | Minor Released | Support Expires |
+|:-------:|----------------|----------------|:---------------:|
+|   6.x   | 2016-10-11     | 2016-10-11     |    2019-10-11   |
+
+
 ### NServiceBus 5.x
 
 | Version | Major Released | Minor Released | Support Expires |
