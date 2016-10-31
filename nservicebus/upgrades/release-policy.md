@@ -51,11 +51,11 @@ It is strongly recommended to upgrade frequently enough to stay on a supported v
 
 Public APIs are deprecated using [ObsoleteAttribute](https://msdn.microsoft.com/en-us/library/system.obsoleteattribute.aspx) messages. Continued usage of a deprecated API will result in either a compiler warning or error. A warning message indicates the version in which the deprecation will start to generate a compiler error and in which version the API will be removed. For example:
 
-> warning	CS0618:	'CorrelationContextExtensions.SetCorrelationId(SendOptions, string)' is obsolete: 'Setting a custom correlation ID is discouraged and will be removed in the next major version. Will be treated as an error from version 7.0.0. Will be removed in version 8.0.0.'
+> warning CS0618: 'CorrelationContextExtensions.SetCorrelationId(SendOptions, string)' is obsolete: 'Setting a custom correlation ID is discouraged and will be removed in the next major version. Will be treated as an error from version 7.0.0. Will be removed in version 8.0.0.'
 
 An error message indicates in which version the API will be removed. For example:
 
-> error	CS0619:	'Configure' is obsolete: 'This is no longer a public API. Will be removed in version 7.0.0.'
+> error CS0619: 'Configure' is obsolete: 'This is no longer a public API. Will be removed in version 7.0.0.'
 
 Deprecations in minor releases will always generate a compiler warning and not an error.
 
