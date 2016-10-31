@@ -1,5 +1,5 @@
 ---
-title: Jil Serializer
+title: Jil Serializer Usage
 summary: Using the Jil serializer in an endpoint.
 component: Jil
 reviewed: 2016-10-31

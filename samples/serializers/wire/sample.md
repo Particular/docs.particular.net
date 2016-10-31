@@ -1,5 +1,5 @@
 ---
-title: Wire Serializer
+title: Wire Serializer Usage
 summary: Using the Wire serializer in an endpoint.
 component: Wire
 reviewed: 2016-10-31

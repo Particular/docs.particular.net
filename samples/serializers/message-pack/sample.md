@@ -1,5 +1,5 @@
 ---
-title: MessagePack Serializer
+title: MessagePack Serializer Usage
 summary: Using the MessagePack serializer in an endpoint.
 reviewed: 2016-10-31
 component: MessagePack

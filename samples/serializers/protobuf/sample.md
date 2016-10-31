@@ -1,5 +1,5 @@
 ---
-title: ProtoBuf Serializer
+title: ProtoBuf Serializer Usage
 summary: Using the ProtoBuf serializer in an endpoint.
 reviewed: 2016-10-31
 component: ProtoBuf
