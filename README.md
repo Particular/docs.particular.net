@@ -13,7 +13,7 @@ There are two approaches to contributing.
 For simple changes, the GitHub web UI should suffice.
 
  1. Find the page you want to edit on https://docs.particular.net/.
- 1. Click the `Improve this doc` button. This will automatically fork the project so you can edit the file.
+ 1. Click the `Edit|Edit Online` button. This will automatically fork the project so you can edit the file.
  1. Make the changes you require. Ensure you verify the changes in the `Preview` tab.
  1. Add a description of the changes.
  1. Click `Propose File Changes`.
