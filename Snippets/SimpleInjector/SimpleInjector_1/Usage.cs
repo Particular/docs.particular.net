@@ -17,12 +17,21 @@ class Usage
         var container = new Container();
         container.Options.DefaultScopedLifestyle = new ExecutionContextScopeLifestyle();
 
-        container.Register(() => new MyService { Property = "Created outside" }, Lifestyle.Scoped);
+        container.Register(
+            instanceCreator: () =>
+            {
+                return new MyService
+                {
+                    Property = "Created outside"
+                };
+            },
+            lifestyle: Lifestyle.Scoped);
 
-        endpointConfiguration.UseContainer<SimpleInjectorBuilder>(customizations =>
-        {
-            customizations.UseExistingContainer(container);
-        });
+        endpointConfiguration.UseContainer<SimpleInjectorBuilder>(
+            customizations =>
+            {
+                customizations.UseExistingContainer(container);
+            });
 
         #endregion
     }
