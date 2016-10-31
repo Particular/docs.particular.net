@@ -9,7 +9,7 @@ related:
 ---
 
 
-This sample the AddDeserializer API to illustrate a receiving endpoint deserializing multiple different serialization formats.
+This sample uses the AddDeserializer API to illustrate a receiving endpoint deserializing multiple different serialization formats.
 
 
 
