@@ -41,7 +41,7 @@ Queue Explorer is a commercial 3rd party product for managing MSMQ.
 
 http://www.cogin.com/mq/
 
-> QueueExplorer can do much more than with built-in management console - copy, move or delete messages, save and load, stress test, view and edit full message bodies (with special support for .Net serialized objects), and much more. And it works with remote queues too!
+> QueueExplorer can do much more than with built-in management console - copy, move or delete messages, save and load, stress test, view and edit full message bodies (with special support for .Net serialized objects), and much more.
 
 ![](queue-explorer.png 'width=500')
 
@@ -52,7 +52,7 @@ Fast and free tool to manage MSMQ messages and queues.
 
 http://www.mqueue.net/
 
-> Mqueue Viewer - is a fast and simple tool to manage MSMQ queues, view, edit, add, delete messages. Works with multiple machines/servers. Most importantly - it's completely free!
+> Mqueue Viewer - is a fast and simple tool to manage MSMQ queues, view, edit, add, delete messages. Works with multiple machines/servers.
 
 ![](mqueue.png 'width=500')
 

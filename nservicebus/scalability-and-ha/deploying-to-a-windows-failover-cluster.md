@@ -121,9 +121,9 @@ Now, add each distributor to the cluster:
 
  1. Right-click the MSMQ cluster group, and select Add a Resource - \#4 Generic Service.
  1. Select the distributor service from the list. The services are listed in random order. Typing "Distributor" will help locate the desired service.
- 1. Finish the wizard. The service should be added to the cluster group, but not activated. Don't activate it yet!
+ 1. Finish the wizard. The service should be added to the cluster group, but not activated. Don't activate it yet.
  1. Right click the distributor resource and select Properties.
- 1. Now this is where it gets weird. Eventually check "Use Network Name for computer name" and add a dependency, but do not do both at the same time! If done at the same time it will complain that it can't figure out what the network name is supposed to be because it can't find it in the dependency chain but it hasn't been saved yet. To get around it, switch to the Dependencies tab and add a dependency for the MSMQ instance. From there, it finds everything else by looking up the tree. Click Apply to save the dependency.
+ 1. Now this is where it gets weird. Eventually check "Use Network Name for computer name" and add a dependency, but do not do both at the same time. If done at the same time it will complain that it can't figure out what the network name is supposed to be because it can't find it in the dependency chain but it hasn't been saved yet. To get around it, switch to the Dependencies tab and add a dependency for the MSMQ instance. From there, it finds everything else by looking up the tree. Click Apply to save the dependency.
  1. Switch back to the General tab and check the "Use Network Name for computer name" checkbox. This tells the application that `Environment.MachineName` should return the cluster name, not the cluster node's computer name. Click Apply.
  1. Repeat for the other distributors.
 
@@ -136,7 +136,7 @@ include: distributor-inV6
 
 Ensure that the worker servers have [unique QMIds](distributor/#worker-qmid-needs-to-be-unique).
 
-Set up the worker processes on all worker servers (not the cluster nodes!) as windows services, but instead of using `NServiceBus.MSMQDistributor`, use `NServiceBus.MSMQWorker` profile instead.
+Set up the worker processes on all worker servers (not the cluster nodes) as windows services, but instead of using `NServiceBus.MSMQDistributor`, use `NServiceBus.MSMQWorker` profile instead.
 
 Configure the workers' `MasterNodeConfig` section to point to the machine running the distributor as described on the Distributor Page under [Routing with the Distributor](distributor).
 

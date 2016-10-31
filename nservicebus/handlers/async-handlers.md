@@ -9,7 +9,7 @@ versions: '[6.0,)'
 
 ## Introduction
 
-WARNING: It is difficult to give generic advice how asynchronous code should be structured. It is important to understand compute-bound vs. IO-bound operations. Avoid copy-pasting snippets without further analysis if they provide benefit for the involved business scenarios. Don't assume. Measure it!
+WARNING: It is difficult to give generic advice how asynchronous code should be structured. It is important to understand compute-bound vs. IO-bound operations. Avoid copy-pasting snippets without further analysis if they provide benefit for the involved business scenarios. Don't assume. Measure it.
 
 [Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/) will be invoked from an IO thread pool thread. Typically message handlers and sagas issue IO bound work like sending or publishing messages, storing information into databases, calling web services and more. In other cases, message handlers are used to schedule compute-bound work. To be able to write efficient message handlers and sagas it is crucial to understand the difference between compute-bound and IO bound work and the thread pools involved.
 
@@ -55,7 +55,7 @@ Asynchronous code tends to use much less memory because the amount of memory sav
 
 If each request is examined in isolation, an asynchronous code would be slightly slower than the synchronous version. There might be extra kernel transitions, task scheduling, etc. involved. But the scalability more than makes up for it.
 
-From a server perspective if asynchronous is compared to synchronous by looking at one method or one request at a time, then synchronous might make more sense. But if asynchronous is compared to parallelism - watching the server as a whole - asynchronous wins. Every worker thread that can be freed up on a server is worth freeing up! It reduces the amount of memory needed, frees up the CPU for compute-bound work while saturating the IO system completely.
+From a server perspective if asynchronous is compared to synchronous by looking at one method or one request at a time, then synchronous might make more sense. But if asynchronous is compared to parallelism - watching the server as a whole - asynchronous wins. Every worker thread that can be freed up on a server is worth freeing up. It reduces the amount of memory needed, frees up the CPU for compute-bound work while saturating the IO system completely.
 
 
 ## Calling short running compute-bound code
