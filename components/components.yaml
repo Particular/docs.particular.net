@@ -320,7 +320,7 @@
 
 - Key: SimpleInjector
   Name: SimpleInjector Container
-  DocoUrl: samples/containers/simpleinjector
+  DocoUrl: nservicebus/containers/simpleinjector
   Category: Container
   IsCommunityProject: true
   LicenseUrl: https://github.com/WilliamBZA/NServicebus.SimpleInjector/blob/master/LICENSE
