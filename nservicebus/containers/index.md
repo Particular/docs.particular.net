@@ -25,6 +25,7 @@ Support for other containers is provided via custom integrations.
  * [Autofac](autofac.md)
  * [CastleWindsor](castlewindsor.md)
  * [Ninject](ninject.md)
+ * [SimpleInjector](simpleinjector.md)
  * [Spring](spring.md)
  * [StructureMap](structuremap.md)
  * [Unity](unity.md)

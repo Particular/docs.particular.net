@@ -204,14 +204,19 @@ https://www.nuget.org/packages/NServiceBus.CastleWindsor
 https://www.nuget.org/packages/NServiceBus.Ninject
 
 
-#### <img src="particular-project.png" title="A Particular run project"> [StructureMap](/nservicebus/containers/)
+#### <img src="community-project.png" title="A Community run project"> [SimpleInjector](/nservicebus/containers/)
 
-https://www.nuget.org/packages/NServiceBus.StructureMap
+https://www.nuget.org/packages/NServiceBus.SimpleInjector
 
 
 #### <img src="particular-project.png" title="A Particular run project"> [Spring](/nservicebus/containers/)
 
 https://www.nuget.org/packages/NServiceBus.Spring
+
+
+#### <img src="particular-project.png" title="A Particular run project"> [StructureMap](/nservicebus/containers/)
+
+https://www.nuget.org/packages/NServiceBus.StructureMap
 
 
 #### <img src="particular-project.png" title="A Particular run project"> [Unity](/nservicebus/containers/)
