@@ -318,6 +318,16 @@
   NugetOrder:
     - ServiceInsight
 
+- Key: SimpleInjector
+  Name: SimpleInjector Container
+  DocoUrl: samples/containers/simpleinjector
+  Category: Container
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/WilliamBZA/NServicebus.SimpleInjector/blob/master/LICENSE
+  ProjectUrl: https://github.com/WilliamBZA/NServicebus.SimpleInjector
+  NugetOrder:
+    - NServiceBus.SimpleInjector
+
 - Key: Spring
   Name: Spring Container
   DocoUrl: nservicebus/containers/spring

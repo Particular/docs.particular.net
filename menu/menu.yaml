@@ -585,6 +585,8 @@
       Title: Ninject
     - Url: nservicebus/containers/spring
       Title: Spring
+    - Url: nservicebus/containers/simpleinjector
+      Title: SimpleInjector
     - Url: nservicebus/containers/structuremap
       Title: StructureMap
     - Url: nservicebus/containers/unity
