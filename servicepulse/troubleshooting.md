@@ -31,7 +31,7 @@ Possible RavenDB index is corruption, to fix this:
 
  1. Put ServiceControl in [Maintenance Mode](/servicecontrol/use-ravendb-studio.md).
  1. Run the following in curl:
-   ```
+   ```dos
    curl -X RESET http://localhost:33333/storage/indexes/FailureGroupsViewIndex
    ```
    This assumes ServiceControl is using the default port and host name, if this is not the case, adjust the url accordingly.
