@@ -40,3 +40,7 @@ include: custom-contenttype-key
 
 snippet:JilContentTypeKey
 
+
+## Currently not supported
+
+Usages of `DataBusProperty<T>` since it doesn't have a default constructor. However usage of the [databus convention](/nservicebus/messaging/databus) is supported.

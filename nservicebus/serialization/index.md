@@ -19,7 +19,7 @@ NServiceBus takes instances of .NET objects (messages, events and commands) and 
  * [ProtoBuf](protobuf.md)
  * [Message Pack](message-pack.md)
  * [Wire](wire.md)
- * [Jil](xml.md)
+ * [Jil](jil.md)
  * [Binary](binary.md) (deprecated in Versions 6 and above)
 
 
