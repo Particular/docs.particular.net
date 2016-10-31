@@ -169,7 +169,7 @@
 
 - Key: Jil
   Name: Jil Serializer
-  DocoUrl: samples/serializers/jil
+  DocoUrl: nservicebus/serialization/jil
   Category: Serializer
   IsCommunityProject: true
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Jil/blob/master/LICENSE
@@ -188,7 +188,7 @@
 
 - Key: MessagePack
   Name: MessagePack Serializer
-  DocoUrl: samples/serializers/message-pack
+  DocoUrl: nservicebus/serialization/message-pack
   Category: Serializer
   IsCommunityProject: true
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.MessagePack/blob/master/LICENSE
@@ -241,7 +241,7 @@
 
 - Key: ProtoBuf
   Name: ProtoBuf Serializer
-  DocoUrl: samples/serializers/protobuf
+  DocoUrl: nservicebus/serialization/protobuf
   Category: Serializer
   IsCommunityProject: true
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.ProtoBuf/blob/master/LICENSE
@@ -370,7 +370,7 @@
 
 - Key: Wire
   Name: Wire Serializer
-  DocoUrl: samples/serializers/wire
+  DocoUrl: nservicebus/serialization/wire
   Category: Serializer
   IsCommunityProject: true
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Wire/blob/master/LICENSE.txt

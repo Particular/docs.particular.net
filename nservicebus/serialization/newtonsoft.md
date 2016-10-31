@@ -5,7 +5,6 @@ component: Newtonsoft
 reviewed: 2016-03-17
 related:
  - samples/serializers/newtonsoft
-related:
  - samples/serializers/newtonsoft-bson
 ---
 

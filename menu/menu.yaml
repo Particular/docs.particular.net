@@ -500,12 +500,20 @@
   - Url: nservicebus/serialization
     Title: Serialization
     Articles:
-    - Url: nservicebus/serialization/xml
-      Title: Xml
-    - Url: nservicebus/serialization/json
-      Title: JSON
     - Url: nservicebus/serialization/newtonsoft
       Title: Json.NET
+    - Url: nservicebus/serialization/json
+      Title: JSON
+    - Url: nservicebus/serialization/xml
+      Title: Xml
+    - Url: nservicebus/serialization/jil
+      Title: Jil
+    - Url: nservicebus/serialization/wire
+      Title: Wire
+    - Url: nservicebus/serialization/message-pack
+      Title: Message Pack
+    - Url: nservicebus/serialization/protobuf
+      Title: ProtoBuf
     - Url: nservicebus/serialization/binary
       Title: Binary
     - Url: nservicebus/serialization/custom-serializer
