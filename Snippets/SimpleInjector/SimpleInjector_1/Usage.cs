@@ -4,7 +4,7 @@ class Usage
 {
     Usage(EndpointConfiguration endpointConfiguration)
     {
-        #region Spring
+        #region simpleinjector
 
         endpointConfiguration.UseContainer<SimpleInjectorBuilder>();
 
