@@ -39,14 +39,11 @@ class Program
                     ThrowCustomException = input.Key == ConsoleKey.E
                 };
 
-                if (input.Key != ConsoleKey.Escape)
-                {
-                    bus.SendLocal(myMessage);
-                }
-                else
+                if (input.Key == ConsoleKey.Escape)
                 {
                     break;
                 }
+                bus.SendLocal(myMessage);
             }
         }
     }

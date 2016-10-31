@@ -19,7 +19,7 @@ public class CustomErrorHandlingBehavior : Behavior<ITransportReceiveContext>
         }
         catch (MyCustomException)
         {
-            //Ignore the exception, beware here be dragons!
+            // Ignore the exception, avoid doing this in a production code base
             Log.WarnFormat("MyCustomException was thrown. Ignoring the error for message Id {0}.", context.Message.MessageId);
         }
         catch (MessageDeserializationException deserializationException)

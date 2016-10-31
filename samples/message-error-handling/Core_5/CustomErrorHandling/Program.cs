@@ -17,7 +17,13 @@ static class Program
         busConfiguration.EnableInstallers();
 
         #region Registering-Behavior
-        busConfiguration.RegisterComponents(registration: r => r.ConfigureComponent<CustomFaultManager>(DependencyLifecycle.InstancePerCall));
+
+        busConfiguration.RegisterComponents(
+            registration: configureComponents =>
+            {
+                configureComponents.ConfigureComponent<CustomFaultManager>(DependencyLifecycle.InstancePerCall);
+            });
+
         #endregion
 
         using (var bus = Bus.Create(busConfiguration).Start())
@@ -36,14 +42,11 @@ static class Program
                     ThrowCustomException = input.Key == ConsoleKey.E
                 };
 
-                if (input.Key != ConsoleKey.Escape)
-                {
-                    bus.SendLocal(myMessage);
-                }
-                else
+                if (input.Key == ConsoleKey.Escape)
                 {
                     break;
                 }
+                bus.SendLocal(myMessage);
             }
         }
     }

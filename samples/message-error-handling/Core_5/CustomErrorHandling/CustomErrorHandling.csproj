@@ -40,18 +40,15 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="CustomFaultManager.cs" />
+    <Compile Include="MyCustomException.cs" />
+    <Compile Include="MyMessage.cs" />
     <Compile Include="MyMessageHandler.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{87ADE927-38CB-453E-9C9D-2B69CF248A60}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

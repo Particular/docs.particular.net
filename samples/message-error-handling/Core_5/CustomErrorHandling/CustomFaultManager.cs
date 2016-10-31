@@ -7,7 +7,8 @@ using NServiceBus.Logging;
 using NServiceBus.Transports;
 using NServiceBus.Unicast;
 
-public class CustomFaultManager : IManageMessageFailures
+public class CustomFaultManager :
+    IManageMessageFailures
 {
     ISendMessages sender;
     MessageForwardingInCaseOfFaultConfig config;
@@ -30,12 +31,12 @@ public class CustomFaultManager : IManageMessageFailures
     {
         if (e is MyCustomException)
         {
-            //Ignore the exception, beware here be dragons!
+            // Ignore the exception, avoid doing this in a production code base
             Log.WarnFormat("MyCustomException was thrown. Ignoring the error for message Id {0}.", message.Id);
         }
         else
         {
-            //Check if you have performed enough retries, ultimately send to error queue
+            // Check if enough performed retries, ultimately send to error queue
             SendToErrorQueue(message);
         }
     }

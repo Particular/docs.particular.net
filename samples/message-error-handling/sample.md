@@ -1,15 +1,15 @@
 ---
 title: Custom Exception Handling
-summary: With custom exception handling, you can fine tune how the exceptions should be handled after they have automatically retried by First-Level retries. 
+summary: With custom exception handling it is possible to fine tune how the exceptions should be handled after they have automatically been retried
 reviewed: 2016-10-26
 component: Core
 tags:
-- Error Handling
-- Exceptions
-- Retry
+ - Error Handling
+ - Exceptions
+ - Retry
 related:
-- nservicebus/recoverability
-- nservicebus/pipeline/customizing-error-handling
+ - nservicebus/recoverability
+ - nservicebus/pipeline/customizing-error-handling
 ---
 
 partial:usage
@@ -21,5 +21,3 @@ snippet: MoveToErrorQueue
 To register the new exception handler it needs to plugged in:
 
 snippet: registering-behavior
-
-

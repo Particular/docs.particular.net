@@ -23,12 +23,19 @@ static class Program
         configure.SendFailedMessagesTo("error");
 
         var recoverability = configure.Recoverability();
-        recoverability.Delayed(d => d.NumberOfRetries(0));
+        recoverability.Delayed(
+            customizations: delayedRetriesSettings =>
+            {
+                delayedRetriesSettings.NumberOfRetries(0);
+            });
 
         #region Registering-Behavior
+
         var pipeline = configure.Pipeline;
-        pipeline.Register(behavior: new CustomErrorHandlingBehavior(), 
-                          description: "Manages thrown exceptions instead of delayed retries.");
+        pipeline.Register(
+            behavior: new CustomErrorHandlingBehavior(),
+            description: "Manages thrown exceptions instead of delayed retries.");
+
         #endregion
 
         var endpointInstance = await Endpoint.Start(configure)
@@ -49,15 +56,12 @@ static class Program
                     ThrowCustomException = input.Key == ConsoleKey.E
                 };
 
-                if (input.Key != ConsoleKey.Escape)
-                {
-                    await endpointInstance.SendLocal(myMessage)
-                        .ConfigureAwait(false);
-                }
-                else
+                if (input.Key == ConsoleKey.Escape)
                 {
                     break;
                 }
+                await endpointInstance.SendLocal(myMessage)
+                    .ConfigureAwait(false);
             }
         }
         finally

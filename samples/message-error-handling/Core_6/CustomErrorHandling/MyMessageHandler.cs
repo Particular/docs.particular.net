@@ -8,7 +8,9 @@ public class MyMessageHandler :
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         if (message.ThrowCustomException)
+        {
             throw new MyCustomException();
+        }
 
         throw new Exception("An exception occurred in the handler.");
     }
