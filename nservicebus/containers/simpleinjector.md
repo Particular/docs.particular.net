@@ -16,3 +16,8 @@ NServiceBus can be configured to use [Simple Injector](https://simpleinjector.or
 ### Default Usage
 
 snippet:simpleinjector
+
+
+### Existing Container Instance
+
+snippet:simpleinjector_Existing
