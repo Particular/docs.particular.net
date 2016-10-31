@@ -201,7 +201,7 @@
   DocoUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb
   Category: Persistence
   IsCommunityProject: true
-  LicenseUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb
+  LicenseUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb/blob/master/LICENSE.txt
   ProjectUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb
   NugetOrder:
     - NServiceBus.Persistence.MongoDb
