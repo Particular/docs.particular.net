@@ -8,7 +8,7 @@
 
 - Key: Anotar
   Name: Anotar Logger
-  DocoUrl: samples/logging/anotar
+  DocoUrl: https://github.com/Fody/Anotar
   Category: Logger
   IsCommunityProject: true
   LicenseUrl: https://github.com/Fody/Anotar/blob/master/license.txt
