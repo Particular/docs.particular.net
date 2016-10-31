@@ -13,17 +13,21 @@ static class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Spring";
+
         #region ContainerConfiguration
+
         var endpointConfiguration = new EndpointConfiguration("Samples.Spring");
         var applicationContext = new GenericApplicationContext();
         applicationContext.ObjectFactory
             .RegisterSingleton("MyService", new MyService());
         endpointConfiguration.UseContainer<SpringBuilder>(
             customizations: customizations =>
-        {
-            customizations.ExistingApplicationContext(applicationContext);
-        });
+            {
+                customizations.ExistingApplicationContext(applicationContext);
+            });
+
         #endregion
+
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
