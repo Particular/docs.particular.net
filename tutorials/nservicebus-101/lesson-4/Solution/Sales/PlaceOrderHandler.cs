@@ -17,7 +17,7 @@ namespace Sales
         {
             logger.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
 
-            // This is normally where some database logic would occur
+            // This is normally where some business logic would occur
 
             var orderPlaced = new OrderPlaced
             {

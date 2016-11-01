@@ -31,11 +31,11 @@ namespace Core_6
             #endregion
 
             #region SendDestination
-            // Not recommended, most of the time!
+            // Not recommended, most of the time
             await endpointInstance.Send("Destination", command)
                 .ConfigureAwait(false);
 
-            // On the IMessageHandlerContext too, but still not recommended!
+            // On the IMessageHandlerContext too, but still not recommended
             await context.Send("Destination", command)
                 .ConfigureAwait(false);
 

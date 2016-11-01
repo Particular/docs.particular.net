@@ -10,7 +10,7 @@ In this lesson we will set up a new development machine with NServiceBus and sho
 By the end of this lesson, you will have learned:
 
  * How to set up a machine for NServiceBus development
- * What a messaging endpoint is and how to create one
+ * What an endpoint is and how to create one
 
 
 ## Prerequisites
@@ -18,7 +18,7 @@ By the end of this lesson, you will have learned:
 There are a few things we need in order to build a solution with the latest version of NServiceBus.
 
 * This course uses Visual Studio 2015 and .NET Framework 4.6.1, although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operations/dotnet-framework-version-requirements.md).
-* NServiceBus requires queuing infrastructure (a message transport) to move messages around. This course uses Microsoft Message Queuing (MSMQ) as a default. The [Particular Platform Installer](/platform/installer/) will install MSMQ and its dependencies for you. [Download and run the Platform Installer](/platform/installer/) to get started, or [follow these instructions to configure MSMQ manually](/nservicebus/msmq/#nservicebus-configuration).
+* NServiceBus requires queuing infrastructure (a [transport](/nservicebus/transports/)) to move messages around. This course uses Microsoft Message Queuing (MSMQ). The [Particular Platform Installer](/platform/installer/) will install MSMQ and its dependencies for you. [Download and run the Platform Installer](/platform/installer/) to get started, or [follow these instructions to configure MSMQ manually](/nservicebus/msmq/#nservicebus-configuration).
 
 
 
@@ -77,20 +77,20 @@ snippet:EndpointName
 The `EndpointConfiguration` class is where we define all the settings that determine how our endpoint will operate. The single string parameter `ClientUI` is the [**endpoint name**](/nservicebus/endpoints/specify-endpoint-name.md), which serves as the logical identity for our endpoint, and forms a naming convention by which other things will derive their names, such as the **input queue** where the endpoint will listen for messages to process.
 
 
-#### Message transport
+#### Transport
 
 snippet:Transport
 
-This setting defines the [**message transport**](/nservicebus/transports/) that NServiceBus will use to send and receive messages. `MsmqTransport` is the only transport available within the core library. All other transports require additional NuGet packages.
+This setting defines the [**transport**](/nservicebus/transports/) that NServiceBus will use to send and receive messages. `MsmqTransport` is the only transport available within the core library. All other transports require additional NuGet packages.
 
-The [**MSMQ transport**](/nservicebus/msmq/) is the default setting, so we technically don't need this line at all. However, if you add a period right before the semicolon (in order to see the IntelliSense) you will see that more settings related to the message transport are available as extension methods. We will explore these in later lessons. For now, it's good to make the choice of transport explicit within our code.
+The [**MSMQ transport**](/nservicebus/msmq/) is the default setting, so we technically don't need this line at all. However, if you add a period right before the semicolon (in order to see the IntelliSense) you will see that more settings related to the transport are available as extension methods. We will explore these in later lessons. For now, it's good to make the choice of transport explicit within our code.
 
 
-#### Message serializer
+#### Serializer
 
 snippet:Serializer
 
-When sending messages, an endpoint needs to serialize message objects to a stream, and then deserialize the stream back to a message object on the receiving end. The choice of [**message serializer**](/nservicebus/serialization/) governs what format that will take. Each endpoint in a system needs to use the same serializer in order to be able to understand each other.
+When sending messages, an endpoint needs to serialize message objects to a stream, and then deserialize the stream back to a message object on the receiving end. The choice of [**serializer**](/nservicebus/serialization/) governs what format that will take. Each endpoint in a system needs to use the same serializer in order to be able to understand each other.
 
 Here, we are choosing the `JsonSerializer` because JSON is reasonably compact and efficient, while still being human-readable. When using JSON, it's also easier to integrate with other systems on other platforms due to its ubiquity.
 
@@ -99,7 +99,7 @@ Here, we are choosing the `JsonSerializer` because JSON is reasonably compact an
 
 snippet:Persistence
 
-NServiceBus needs [**persistence**](/nservicebus/persistence/) to store some data in between handling messages. We will explore the reasons for this in future lessons but for now, we'll use an implementation that stores everything in memory. This has the advantage during development of allowing us to iterate quickly by providing us with a clean slate every time we start up. Of course, as everything persisted is lost when the endpoint shuts down, it is not safe for production use, so we will want to replace it with a different persistence option before deployment.
+A [**persistence**](/nservicebus/persistence/) is required to store some data in between handling messages. We will explore the reasons for this in future lessons but for now, we'll use an [implementation that stores everything in memory](/nservicebus/persistence/in-memory.md). This has the advantage during development of allowing us to iterate quickly by providing us with a clean slate every time we start up. Of course, as everything persisted is lost when the endpoint shuts down, it is not safe for production use, so we will want to replace it with a different persistence option before deployment.
 
 
 #### Error queue
@@ -113,7 +113,7 @@ Processing a message can fail for several reasons. It could be due to a coding b
 
 snippet:EnableInstallers
 
-This setting instructs the NServiceBus endpoint to run its [installers](/nservicebus/operations/installers.md) on startup. Installers are used to set up anything the endpoint requires to run. The most common example is creating necessary queues, such as the endpoint's input queue where it will receive messages.
+This setting instructs the endpoint to run [installers](/nservicebus/operations/installers.md) on startup. Installers are used to set up anything the endpoint requires to run. The most common example is creating necessary queues, such as the endpoint's input queue where it will receive messages.
 
 
 ### Starting up
@@ -135,7 +135,5 @@ When you run the endpoint for the first time, the endpoint will:
 ## Summary
 
 In this lesson we set up the prerequisites for NServiceBus and created a simple messaging endpoint to make sure it works. In the next lesson, we'll define a message, a message handler, and then send the message and watch it get processed.
-
-Before moving on, you might want to check your code against the completed solution (below) to see if there's anything you may have missed.
 
 When you're ready, move on to [**Lesson 2: Sending a command**](../lesson-2/).

@@ -18,7 +18,7 @@ namespace Core_6
         {
             logger.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
 
-            // This is normally where some database logic would occur
+            // This is normally where some business logic would occur
             throw new Exception("BOOM!");
 
             var orderPlaced = new OrderPlaced

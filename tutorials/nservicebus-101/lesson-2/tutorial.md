@@ -21,27 +21,27 @@ A [**message**](/nservicebus/messaging/messages-events-commands.md) is a collect
 
 In this lesson, we'll focus on [commands](/nservicebus/messaging/messages-events-commands.md#command). In [Lesson 4: Publishing events](../lesson-4/) we'll expand to look at events as well.
 
-Defining a command is pretty easy. We just create a class and mark it with the `ICommand` marker interface.
+To define a command, create a class and mark it with the `ICommand` marker interface.
 
 snippet:Command
 
 The marker interface has no implementation, but lets NServiceBus know that the class is a command so that it can build up some metadata about the message type when the endpoint starts up. Any properties you create within the message constitute the message data.
 
-The name of the command class is also important. A command is an order to do something, so it should be named in the [imperative tense](https://en.wikipedia.org/wiki/Imperative_mood). `PlaceOrder`, `UpdateCustomerStatus`, and `ChargeCreditCard` are all great names for commands, because they are phrased as a command and are very specific. You can easily guess exactly what each of those messages will do. `UserMessage`, on the other hand, is not a good example. It is not in the imperative, and it's not very specific either. Another developer should know exactly what a command's purpose is just by reading the name.
+The name of the command class is also important. A command is an order to do something, so it should be named in the [imperative tense](https://en.wikipedia.org/wiki/Imperative_mood). `PlaceOrder`, `UpdateCustomerPreferredStatus`, and `ChargeCreditCard` are all great names for commands, because they are phrased as a command and are very specific. `PlaceOrder` will place an order, `UpdateCustomerPreferredStatus` will update the customer's preferred status, and `ChargeCreditCard` will charge money on a credit card. `CustomerMessage`, on the other hand, is not a good example. It is not in the imperative, and it's not very specific either. Another developer should know exactly what a command's purpose is just by reading the name.
 
-Command names should also convey business intent. `UpdateCustomerPropertyXYZ` isn't a good name for an command either, because it's focused only on the data manipulation, rather than the business meaning behind it. `MarkCustomerAsGold`, or something else that is more business-oriented, is probably a better choice.
+Command names should also convey business intent. `UpdateCustomerPropertyXYZ`, while more specific than `CustomerMessage` isn't a good name for an command either, because it's focused only on the data manipulation, rather than the business meaning behind it. `MarkCustomerAsGold`, or something else that is more business-oriented, is probably a better choice.
 
-When sending a message, the endpoint's [message serializer](/nservicebus/serialization/) will serialize an instance of the `DoSomething` class and add that to the contents of the outgoing message that goes to the queue. On the other end, the receiving endpoint will deserialize the message from its serialized form back to an instance of the message class so that it can be used in code.
+When sending a message, the endpoint's [serializer](/nservicebus/serialization/) will serialize an instance of the `DoSomething` class and add that to the contents of the outgoing message that goes to the queue. On the other end, the receiving endpoint will deserialize the message back to an instance of the message class so that it can be used in code.
 
-Messages can support whatever data the serializer can successfully process. Thus messages can even contain child objects or collections.
+Messages can even contain child objects or collections. (The supported range of structures is dictated by the [choice of serializer](/nservicebus/serialization/#supported-serializers).)
 
 snippet:ComplexCommand
 
 Messages are a contract between two endpoints. Any change to the message will likely involve a change on both the sender and receiver side. The more properties you have on a message, the more reasons it has to change, so keep your messages as slim as possible.
 
-Also, you should not embed logic within your NServiceBus message classes. Each message should contain only automatic properties and not computed properties or methods. Also, it is a good practice to instantiate collection properties from a default parameterless constructor as shown above, so that you never have to deal with a potentially null collection.
+Also, you should not embed logic within your message classes. Each message should contain only automatic properties and not computed properties or methods. Also, it is a good practice to instantiate collection properties from a default parameterless constructor as shown above, so that you never have to deal with a potentially null collection.
 
-In essence, messages should be carriers for data only, and kept as simple as possible. By keeping your messages small and giving them clear purpose, you'll make your code easy to understand and evolve.
+In essence, messages should be carriers for data only. By keeping your messages small and giving them clear purpose, you'll make your code easy to understand and evolve.
 
 
 ## How do I organize messages?
@@ -52,7 +52,7 @@ Messages are data contracts and as such, they are shared between multiple endpoi
 
 Additionally, message assemblies should have no dependencies other than libraries included with the .NET Framework, and the NServiceBus core assembly, which is required to reference the `ICommand` interface. 
 
-Following those two simple rules will make your message contracts easy to evolve in the future.
+Following these guidelines will make your message contracts easy to evolve in the future.
 
 NOTE: It's also possible to use [message conventions](/nservicebus/messaging/conventions.md) to identify message types, rather than the `ICommand` interface. Then a message assembly doesn't even need to reference NServiceBus at all. This can be an advantage when you want to upgrade to a new major version of NServiceBus, because message assemblies (which are shared between multiple endpoints) don't require any updates, so you can more easily update only one endpoint at a time.
 
@@ -63,7 +63,7 @@ To process a message, we create a [**message handler**](/nservicebus/handlers/),
 
 snippet:EmptyHandler
 
-The implementation of the `IHandleMessages<T>` interface is the `Handle` method, which NServiceBus will invoke when a message of type `T` (in this case `DoSomething`) arrives. The `Handle` method receives the message and an `IMessageHandlerContext` that contains tools for working with messages.
+The implementation of the `IHandleMessages<T>` interface is the `Handle` method, which NServiceBus will invoke when a message of type `T` (in this case `DoSomething`) arrives. The `Handle` method receives the message and an `IMessageHandlerContext` that contains contextual API for working with messages.
 
 Instead of explicitly returning a `Task`, you can add the `async` keyword to a handler method:
 
@@ -71,13 +71,13 @@ snippet:EmptyHandlerAsync
 
 If you want to learn more about working with async methods, check out the [Asynchronous Handlers](/nservicebus/handlers/async-handlers.md) article in our documentation.
 
-A single class can implement multiple `IHandleMessages<T>` for various message types. This allows grouping handlers that are logically related and, for instance, need to be able to call the same private method.
+A single class can implement multiple `IHandleMessages<T>` for multiple message types. This allows grouping handlers that are logically related, although a new instance of the class will be created for every message processed.
 
 snippet:MultiHandler
 
 When NServiceBus starts up, it will find all of these message handler classes and automatically wire them up, so that they will be invoked when messages arrive. There's no special setup or configuration needed.
 
-From the NServiceBus perspective, it makes no difference whether handlers are implemented inside one or multiple classes. When NServiceBus starts up, it will find all of these message handlers and automatically wire them up without any special configuration. Use it to group related handlers in order to make your code easier to understand.
+It makes no difference whether handlers are implemented inside one or multiple classes. When NServiceBus starts up, it will find all of these message handlers and automatically wire them up without any special configuration. Use it to group related handlers in order to make your code easier to understand.
 
 
 ## Exercise
@@ -122,7 +122,7 @@ Now that we've defined a message, we can create a corresponding message handler.
 
  1. In the **ClientUI** project, create a new class named `PlaceOrderHandler`.
  1. Mark the handler class as public, and implement the `IHandleMessages<PlaceOrder>` interface.
- 1. Add a logger instance, which will allow you to take advantage of the same logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the messages you write with the logger will be written to the log file in addition to the console. Use this code to add the logger instance to your handler class:
+ 1. Add a logger instance, which will allow you to take advantage of the same logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the entries written with the logger will appear in the log file in addition to the console. Use this code to add the logger instance to your handler class:
     ```cs
     static ILog logger = LogManager.GetLogger<PlaceOrderHandler>();
     ```
@@ -139,7 +139,7 @@ snippet:PlaceOrderHandler
 
 ### Send a message
 
-Now we have a message and a handler to process it. Let's send that message!
+Now we have a message and a handler to process it. Let's send that message.
 
 In the **ClientUI** project, we are currently stopping the endpoint when we press the Enter key. Instead, let's create a run loop that will allow us to be a little more interactive, so that we can use the keyboard to decide whether to send a message or quit.
 
@@ -184,7 +184,5 @@ Note how after sending a message, the prompt from `ClientUI.Program` is displaye
 In this lesson we learned about messages, message assemblies, and message handlers. We created a message and a handler and we used `SendLocal()` to send the message to the same endpoint.
 
 In the next lesson, we'll create a second messaging endpoint, move our message handler over to it, and then configure the ClientUI to send the message to the new endpoint. We'll also be able to observe what happens when we send messages while the receiver endpoint is offline.
-
-Before moving on, you might want to check your code against the completed solution (below) to see if there's anything you may have missed.
 
 When you're ready, move on to [**Lesson 3: Multiple endpoints**](../lesson-3/).

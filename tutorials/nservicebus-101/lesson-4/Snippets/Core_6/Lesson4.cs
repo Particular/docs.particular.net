@@ -17,7 +17,7 @@ namespace Core_6
     {
         public Task Handle(SomethingHappened message, IMessageHandlerContext context)
         {
-            // Do something with the event here!
+            // Do something with the event here
 
             return Task.CompletedTask;
         }

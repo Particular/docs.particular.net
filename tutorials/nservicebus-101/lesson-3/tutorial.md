@@ -44,9 +44,9 @@ This is **logical routing**, the mapping of specific message types to logical en
 We say *logical routing* because this is at a logical layer only, which isn't necessarily the same as *physical routing*. Within one *logical* endpoint, there may be many *physical* endpoint instances deployed to multiple servers.
 
 {{NOTE:
-An **endpoint** is a logical concept, defined by an endpoint name and associated code, that defines an owner responsible for processing messages.
+An [**endpoint**](/nservicebus/concept-overview.md#endpoint) is a logical concept, defined by an endpoint name and associated code, that defines an owner responsible for processing messages.
 
-An **endpoint instance** is a physical instance of the endpoint deployed to a single server. Many endpoint instances may be deployed to many servers in order to scale out the processing of a high-volume message to multiple servers.
+An [**endpoint instance**](/nservicebus/concept-overview.md#endpoint-instance) is a physical instance of the endpoint deployed to a single server. Many endpoint instances may be deployed to many servers in order to scale out the processing of a high-volume message to multiple servers.
 }}
 
 For now we'll only concern ourselves with logical routing, and leave the rest of it (physical routing, scale-out, etc.) for a later time.
@@ -68,7 +68,7 @@ In order to define routes, start with the `routing` variable and call the `Route
 
 snippet:RouteToEndpoint
 
-For now we will use the first overload, specifying individual message types. In another course, we will explore how to best organize message types into assemblies in order to take advantage of the other overloads.
+For now we will use the first overload, specifying individual message types.
 
 
 ## Exercise
@@ -103,23 +103,16 @@ snippet:EndpointDifferences
 
 The difference, of course, is the name "Sales" in the console title and `EndpointConfiguration` constructor, which defines the endpoint name for the Sales endpoint and gives it its own identity.
 
-This means that the Sales endpoint will create its own queue named `Sales` where it will listen for messages. We now have two processes that each have their own mailbox, so now we can send messages between them.
+This means that the Sales endpoint will create its own queue named `Sales` where it will listen for messages. We now have two processes that each have their own queues, so now we can send messages between them.
 
-NOTE: This is quite repetitive, but remember that this is still an introductory exercise. In the next course, we will explore methods that allow you to centralize most of this repetitive endpoint configuration code.
+NOTE: This is quite repetitive, but remember that this is still an introductory exercise. There are various methods, such as the [INeedInitialization interface](/nservicebus/lifecycle/ineedinitialization.md) which allow for centralizing the repetitive endpoint configuration code.
 
 
 ### Debugging multiple projects
 
 At this point, we could run the Sales endpoint, although we wouldn't expect Sales to do anything except start up, create its queues, and then wait for messages that would never arrive. If you'd like, it's a good exercise to do, although you can skip it if you're in a hurry.
 
-What you'll find, however, is that in NServiceBus solutions it's common to want to run multiple projects (endpoints) at once. While you can right-click each project separately, and select **Debug** > **Start new instance** for each one, many developers who have never run into this requirement before are not aware that Visual Studio allows you to run multiple projects when you debug.
-
-To configure Visual Studio to start multiple projects when you start debugging:
-
- 1. Right-click the **RetailDemo** solution and select **Properties**.
- 1. On the left side of the **Property Pages** dialog, select **Common Properties** > **Startup Project**.
- 1. On the right, select the **Multiple startup projects** radio button.
- 1. In the list box's **Action** column, set the value to **Start** for the **ClientUI** and **Sales** projects. (It doesn't make sense to do so for **Messages**, as it is just a class library and can't be started directly.)
+What you'll find, however, is that in NServiceBus solutions it's common to want to run multiple projects (endpoints) at once. While you can right-click each project separately, and select **Debug** > **Start new instance** for each one, you can [configure Visual Studio to run multiple projects when you debug](https://msdn.microsoft.com/en-us/library/ms165413.aspx). You will want to configure the **ClientUI** and **Sales** projects to run when debugging. **Messages** is just a class library and can't be started directly.
 
 If you run the project now, you'll find that both ClientUI and Sales will start up. ClientUI will work just as it did before, and Sales will start up and wait for messages that will never arrive.
 
@@ -140,19 +133,19 @@ WARNING: System.InvalidOperationException: No handlers could be found for messag
 
 In fact, you will probably get a giant wall of exception text, because the message is tried and retried, and then retried some more after successively longer delays, until finally failing for good some time later. We'll cover this behavior in more detail in [Lesson 5: Retrying errors](../lesson-5/).
 
-The important part is, this is a good thing! If we accidentally send a message to an endpoint we didn't intend, it won't just fail silently, lost forever to the nothingness of the great beyond.
+The important part is, if a message is accidentally sent to an endpoint we didn't intend, it won't just fail silently, and the message will not be lost.
 
 
 ### Sending to another endpoint
 
-Now we need to fix up the ClientUI so that it is sending `PlaceOrder` to the Sales endpoint.
+Now we need to change the ClientUI so that it is sending `PlaceOrder` to the Sales endpoint.
 
  1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
  1. In the `AsyncMain` method of the same file, change the call to use the MSMQ transport to access the routing configuration and specify the logical routing for `PlaceOrder` by changing your code as follows.
 
 snippet:AddingRouting
 
-This establishes that commands of type `PlaceOrder` should be sent to the **Sales** endpoint. While these two calls could be strung together in the same statement, there will commonly be multiple logical routes specified, so it's advantageous to assign the `routing` variable for future use.
+This establishes that commands of type `PlaceOrder` should be sent to the **Sales** endpoint.
 
 
 ### Running the solution
@@ -183,21 +176,17 @@ INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = af0d1aa7-1611-4aa0-
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e19d6160-595a-4c30-98b5-ea07bc44a6f8
 ```
 
-Let's take a second and reflect upon what we've achieved. We've managed to create two processes and achieve inter-process communication between them. Compared to the amount of effort required to set up and configure a WCF service, NServiceBus is able to communicate between processes with amazing ease!
+At this point, we've managed to create two processes and achieve inter-process communication between them. Now, let's try something different. Close the Sales endpoint window so that only ClientUI is running, and then press `P` several times to send several messages to the Sales endpoint. Note that it works just fine; messages are sent, and nothing fails because the Sales endpoint happens to be offline.
 
-Now, let's try something different. Close the Sales endpoint window so that only ClientUI is running, and then press `P` several times to send several messages to the Sales endpoint. Note that it works just fine; messages are sent, and nothing fails because the Sales endpoint happens to be offline.
+Now, restart the Sales endpoint. After it starts up, it receives and processes all the messages that were waiting for it in the queue.
 
-Now, restart the Sales endpoint and watch what happens. After it starts up, it receives and processes all the messages that were waiting for it in the queue.
-
-It's really powerful to be able to take a part of your system offline and have the rest of it proceed normally as though nothing is wrong, and then have everything return to normal when the offline piece comes back online. Try that with WCF!
+The value in this approach is the ability to take a part of your system offline and have the rest of it proceed normally as though nothing is wrong, and then have everything return to normal when the offline piece comes back online.
 
 
 ## Summary
 
-In this lesson, we got our first true taste of sending messages between endpoints. We already knew the basics of how to send and handle messages, but we learned how to control the logical message routing so that when we send a message, the system will know where that message should go.
+In this lesson, we learned about sending messages between endpoints. We already knew the basics of how to send and handle messages, but we learned how to control the logical message routing so that when we send a message, the system will know where that message should go.
 
 In the next lesson, we'll learn about events, a different kind of message that can be published to multiple subscribers using the Publish/Subscribe pattern. We'll also learn how the decoupling provided by this pattern allows us to structure our distributed systems in a more logical and maintainable way.
-
-Before moving on, you might want to check your code against the completed solution (below) to see if there's anything you may have missed.
 
 When you're ready, move on to [**Lesson 4: Publishing events**](../lesson-4/).

@@ -13,7 +13,7 @@ In this course we'll build a messaging system for a retail e-commerce domain.
 By the end of the course, you will have learned:
 
  * How to set up your development environment
- * What a messaging endpoint is and how to create one
+ * What an endpoint is and how to create one
  * How to define messages and message handlers
  * How to send messages between endpoints
  * How (and why) to publish events to multiple subscribers
