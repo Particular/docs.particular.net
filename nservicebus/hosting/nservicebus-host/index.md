@@ -12,12 +12,12 @@ related:
  - nservicebus/operations/installers
  - nservicebus/lifecycle
 component: Host
-reviewed: 2016-10-25
+reviewed: 2016-11-01
 ---
 
 The NServiceBus Host takes a more opinionated approach to hosting. It allows the execution as both a windows service and a console application (for development).
 
-To use the host just create a new C# class library and reference the [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host/). The package also creates an example endpoint configuration and sets the NServiceBus.Host.exe as the startup project for the endpoint.
+To use the host create a new C# class library and reference the [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host/). The package also creates an example endpoint configuration and sets the NServiceBus.Host.exe as the startup project for the endpoint.
 
 
 ## Configuring the endpoint
@@ -95,3 +95,13 @@ The default [Critical Error Action](/nservicebus/hosting/critical-errors.md) for
 snippet:DefaultHostCriticalErrorAction
 
 WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if co-hosting NServiceBus with a web-service or website.
+
+
+## Performance Counters
+
+
+### SLA violation countdown
+
+In the NServiceBus Host this counter is enabled by default. But the value can be configured either by the above API or using a `EndpointSLAAttribute` on the instance of `IConfigureThisEndpoint`.
+
+snippet:enable-sla-host-attribute

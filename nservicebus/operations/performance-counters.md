@@ -62,9 +62,7 @@ This counter can be enabled using the the following code:
 
 snippet: enable-sla
 
-In the NServiceBus Host this counter is enabled by default. But the value can be configured either by the above API or using a `EndpointSLAAttribute` on the instance of `IConfigureThisEndpoint`.
-
-snippet:enable-sla-host-attribute
+See also [Performance Counters in the NServiceBus Host](/nservicebus/hosting/nservicebus-host/#performance-counters).
 
 
 ## Successful Message Processing Rate
