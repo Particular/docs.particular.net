@@ -64,12 +64,7 @@ With this kind of protection in place, we're free to try to process a message as
 
 **Delayed retries** deal with semi-transient exceptions, like a flaky web service, or database failover. It uses a series of successively longer delays between retries in order to give the failing resource some breathing room. After immediate retries are exhausted, the message is moved aside for a short time – 10 seconds by default – and then another set of retries is attempted. If this fails, the time limit is increased and then the message handler will try again.
 
-All told, with default settings, delayed retries will attempt 4 rounds of immediate retries with delays increasing by 10 seconds for each round, resulting in 20 processing attempts in total:
-
- 1. 5 processing attempts, followed by 10 second delay
- 1. 5 processing attempts, followed by 20 second delay
- 1. 5 processing attempts, followed by 30 second delay
- 1. 5 processing attempts, then the message is moved to the error queue
+Between immediate and delayed retries, there can be [many attempts to process a message](/nservicebus/recoverability/#total-number-of-possible-retries) before NServiceBus gives up and moves the message to an error queue.
 
 The last step, moving the message to an error queue, is how NServiceBus deals with **systemic exceptions**. In a messaging system, systemic exceptions are the cause of **poison messages**, messages that cannot be processed successfully under any circumstances. Poison messages have to be moved aside, otherwise they will clog up the queue and prevent valid messages from being processed.
 
