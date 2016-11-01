@@ -32,7 +32,7 @@ You can see that in many ways, commands and events are exact opposites, and the 
 
 A command can be sent from anywhere, but is processed by one receiver. This is very similar to a web service, or any other [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call)-style service. The big difference is that a one-way message does not have any return value like a web service would have. This means that the handler for the command is doing work for whomever is calling it, and that the sender has a very good idea about what it expects to happen as a result of sending the command. It is the sender saying "Will you please do something for me?" and so commands should be named in the [imperative tense](https://en.wikipedia.org/wiki/Imperative_mood), like `PlaceOrder`, `UpdateCustomerStatus`, and `ChargeCreditCard`. This creates tight coupling between the sender and receiver, because while it is possible to reject a command, you can't have true autonomy if someone else can tell you what to do.
 
-An event, on the other hand, is sent by one sender, and received by many receivers, or maybe one receiver, or even zero receivers.  This makes it an announcement that something has already happened. A subscriber can't reject or cancel an event any more than you could stop the New York Times from delivering newspapers to all of their subscribers. The publisher has no idea (and doesn't care) what receivers choose to do with the event; it's just making an announcement. So, events should be named in the [past tense](https://en.wikipedia.org/wiki/Past_tense), commonly ending with the **-ed** suffix, like `OrderPlaced`, `CustomerStatusUpdated`, and `CreditCardCharged`. This creates loose coupling, because while the contract (the content of the message) must be agreed upon, there is no requirement that subscribers of an event do anything.
+An event, on the other hand, is sent by one sender, and received by many receivers, or maybe one receiver, or even zero receivers.  This makes it an announcement that something has already happened. A subscriber can't reject or cancel an event any more than you could stop the New York Times from delivering newspapers to all of their subscribers. The publisher has no idea (and doesn't care) what receivers choose to do with the event; it's just making an announcement. So, events should be named in the [past tense](https://en.wikipedia.org/wiki/Past_tense), commonly ending with the **-ed** suffix, like `OrderPlaced` and `CreditCardCharged`. This creates loose coupling, because while the contract (the content of the message) must be agreed upon, there is no requirement that subscribers of an event do anything.
 
 Let's take a look at all of these differences side-by-side:
 
@@ -43,7 +43,7 @@ Let's take a look at all of these differences side-by-side:
 | Logical Receivers | 1 | Many (or none) |
 | Purpose | "Please do something" | "Something has happened" |
 | Naming (Tense) | Imperative | Past |
-| Examples | `PlaceOrder`<br/> `UpdateCustomerStatus`<br/>`ChargeCreditCard` | `OrderPlaced`<br/>`CustomerStatusUpdated`<br/>`CreditCardCharged` |
+| Examples | `PlaceOrder`<br/>`ChargeCreditCard` | `OrderPlaced`<br/>`CreditCardCharged` |
 | Coupling Style | Tight | Loose |
 
 From this comparison, it's clear that commands and events will sometimes come in pairs. A command will arrive, perhaps from a website UI, telling the system to `DoSomething`. The system does that work, and as a result, publishes a `SomethingHappened` event, which other components in the system can react to.
