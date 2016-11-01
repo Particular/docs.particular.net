@@ -27,7 +27,8 @@ Host: NServiceBus.Host
 Jil: NServiceBus.Jil
 Log4Net: NServiceBus.Log4Net
 MessagePack: NServiceBus.MessagePack
-Mongo: NServiceBus.Persistence.MongoDb
+MongoSbmako: NServiceBus.MongoDB
+MongoTekmaven: NServiceBus.Persistence.MongoDb
 Newtonsoft: NServiceBus.Newtonsoft.Json
 NHibernate: NServiceBus.NHibernate
 Ninject: NServiceBus.Ninject

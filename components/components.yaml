@@ -196,8 +196,18 @@
   NugetOrder:
     - NServiceBus.MessagePack
 
-- Key: Mongo
-  Name: MongoDB Persistence
+- Key: MongoSbmako
+  Name: MongoDB Persistence (Carlos Sandoval)
+  DocoUrl: https://github.com/sbmako/NServiceBus.MongoDB
+  Category: Persistence
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/sbmako/NServiceBus.MongoDB/blob/master/LICENSE
+  ProjectUrl: https://github.com/sbmako/NServiceBus.MongoDB
+  NugetOrder:
+    - NServiceBus.MongoDB
+
+- Key: MongoTekmaven
+  Name: MongoDB Persistence (Ryan Hoffman)
   DocoUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb
   Category: Persistence
   IsCommunityProject: true
