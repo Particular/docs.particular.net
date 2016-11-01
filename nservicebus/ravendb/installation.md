@@ -17,6 +17,7 @@ NServiceBus Version 4.x and 3.x used RavenDB for persistence by default. The NSe
 
 To use the default storage, ensure a RavenDB server is running to which the endpoint can connect. To set up and install RavenDB [Download](https://ravendb.net/download).
 
+
 ## NServiceBus auto-installation of RavenDB
 
 **NServiceBus Versions 5.x:** RavenDB is no longer auto-installed.
@@ -43,7 +44,7 @@ To upgrade an existing RavenDB installation refer to the [RavenDB upgrade proces
 It is highly recommended to backup all databases before upgrading.
 
 
-## Which versions of RavenDB are compatible?
+## RavenDB versions compatible
 
 For a more detailed overview over the compatibility see [RavenDB version compatibility](/nservicebus/ravendb/version-compatibility.md).
 

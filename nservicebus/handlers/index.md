@@ -40,7 +40,7 @@ string fallback = message.GetType().FullName;
 ```
 
 
-## What happens when there are no handlers for a message?
+## Behavior when there is no handler for a message
 
 Receiving a message for which there are no message handlers is considered an error and the received message will be forwarded to the configured error queue.
 

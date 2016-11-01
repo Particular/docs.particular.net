@@ -48,7 +48,7 @@ It is recommended that to periodically check that the endpoint (and its host) ca
 
 #### External Services
 
-* When an endpoint needs to communicate with external services (credit card validation, identity and authentication service, CRM, etc.), is that service available, accessible, and responsive?
+ * When an endpoint needs to communicate with external services (credit card validation, identity and authentication service, CRM, etc.), is that service available, accessible, and responsive?
 
 
 ### Custom Checks in ServicePulse

@@ -88,7 +88,7 @@ public class ClientBecamePreferred
 Read how to tell NServiceBus to [use the POCOs as events](/nservicebus/messaging/unobtrusive-mode.md).
 
 
-### How to raise an in-memory event?
+### Raising an in-memory event
 
 In-memory events are raised using a property of an `IBus` object call: `Bus.InMemory.Raise<T>`:
 
@@ -109,7 +109,7 @@ class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
 ```
 
 
-### How to subscribe to in-memory events?
+### Subscribe to in-memory events
 
 To subscribe to these events, implement a class that implements `IHandleMessages<T>`. The handlers are invoked when the event is raised:
 
@@ -124,7 +124,7 @@ private class CustomerBecamePreferredHandler: IHandleMessages<ClientBecamePrefer
 ```
 
 
-### How is an in-memory event different from Bus.Publish<T>?
+### Differences between an in-memory event and from Bus.Publish<T>
 
 
 When an event is published via Bus.Publish, a message is delivered asynchronously to all of the subscribers via the queue/underlying transport, taking into account all the messaging constraints such as the receiving party could be down. Subscribers of this event can be in different machines or different endpoints on the same machine.
@@ -132,7 +132,7 @@ When an event is published via Bus.Publish, a message is delivered asynchronousl
 On the other hand, in-memory events are raised in-process and are not distributed through the bus. All registered handlers for this event are called synchronously.
 
 
-### When not to use in-memory events?
+### When to avoid in-memory events
 
 Examples:
 

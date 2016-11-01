@@ -38,7 +38,7 @@ A Subscriber will not unsubscribe when it stops, it will remain registered at th
 partial:disableautosubscribe
 
 
-## How to manually subscribe to a message?
+## Manually subscribing to a message
 
 To manually subscribe and unsubscribe from a message:
 

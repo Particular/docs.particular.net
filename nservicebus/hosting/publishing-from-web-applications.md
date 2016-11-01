@@ -14,9 +14,6 @@ related:
 
 Publishing events from a web application is something that is possible with NServiceBus, but should be carefully considered before implemented. This article will describe the guidelines for publishing messages within web applications under different circumstances.
 
-
-## Why/Why Not?
-
 There are some good reasons to avoid publishing events from within web applications:
 
  1. **Transactions and Consistency** - [Events should announce that something has *already* happened](/nservicebus/messaging/messages-events-commands.md). Many times this involves making some changes to a database and then publishing the result. But HTTP is inherently unreliable and does not have built-in retries. If an exception occurs before the event is published, the only opportunity to publish that event may lost. In these circumstances, it's generally better to send a command with the payload of the HTTP request, and have another endpoint process that command with the advantages of [recoverability](/nservicebus/recoverability/).

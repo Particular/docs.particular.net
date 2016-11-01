@@ -13,7 +13,7 @@ The NServiceBus Distributor is similar in behavior to standard [load balancers](
 As a standard NServiceBus process, the Distributor maintains all the fault-tolerant and performance characteristics of NServiceBus but is designed never to overwhelm any of the worker nodes configured to receive work from it.
 
 
-## When to use it?
+## When to use it
 
 Scaling out (with or without a Distributor) is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](/nservicebus/operations/performance-counters.md) on the endpoint and when required, add in the Distributor. Scaling out using the Distributor when needed is made easy by not having to change code, just starting the same endpoint in Distributor and Worker profiles and this article explains how.
 
@@ -22,14 +22,14 @@ The Distributor is applicable only when using MSMQ as the transport for exchangi
 WARNING: Keep in mind that the Distributor is designed for load balancing within a single site, so do not use it between sites. In the image above, all publishers and subscribers are within a single physical site. For information on using NServiceBus across multiple physical sites, see [the gateway](/nservicebus/gateway/multi-site-deployments.md).
 
 
-## Why use it?
+## Why use it
 
 When starting to use NServiceBus, it is possible to run multiple instances of the same process with the same input queue. This may look like scaling-out at first, but is really no different from running multiple threads within the same process. Note that it is not possible to share a single input queue across multiple machines.
 
 The Distributor gets around this limitation.
 
 
-## What about MSMQ Version 4?
+## MSMQ Version 4
 
 Version 4 of MSMQ, made available with Vista and Server 2008, can perform [remote transactional receive](https://msdn.microsoft.com/en-us/library/ms700128.aspx). This means that processes on other machines can transactionally pull work from a queue on a different machine. If the machine processing the message crashes, the message roll back to the queue and other machines could then process it.
 
@@ -46,6 +46,7 @@ To get a sense of the expected performance take the regular endpoint performance
 
 If scale out small units of work is required consider splitting the handlers into smaller vertical slices of functionality and deploying them on their own endpoints.
 
+
 ## Increasing the Distributor throughput
 
 In NServiceBus 5 and below the default concurrency level is set to 1. That means the messages are processed sequentially. The setting applies also to the Distributor and limits distribution throughput when forwarding messages to the workers.
@@ -55,7 +56,7 @@ Before scaling out via the distributor make sure that the [**MaximumConcurrencyL
 Increasing the concurrency on the workers might not lead to increased performance if the executed code is multi-threaded, e.g. if the worker does CPU-intensive work using all the available cores such as video encoding.
 
 
-## How does it work?
+## How the Distributor works
 
 Worker nodes send messages to the Distributor, telling it when they're ready for work. These messages arrive at the distributor via a separate 'control' queue:
 
@@ -83,6 +84,7 @@ For more information about Pub/Sub in a distributor scenario see [What the distr
 
 include: distributor-inV6
 
+
 ### When hosting endpoints in NServiceBus.Host.exe
 
 If running with [NServiceBus.Host.exe](/nservicebus/hosting/), the following profiles start the endpoint with the Distributor functionality:
@@ -91,7 +93,6 @@ To start the endpoint as a Distributor install the [NServiceBus.Distributor.MSMQ
 
 ```dos
 NServiceBus.Host.exe NServiceBus.MSMQDistributor
-
 ```
 or if using a version of NServiceBus that is earlier than Version 4.3:
 

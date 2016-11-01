@@ -15,7 +15,7 @@ When messages are received using `PeekLock` mode, the receive operation becomes 
 Occasionally, processing can take longer than the maximum allowed time for `LockDuration`. As a result of that, messages will re-appear on the queue and will be available to other consumers. Azure Service Bus transport version 7 and above supports automatic message lock renewal.
 
 
-## How does message lock renewal work?
+## How message lock renewal works
 
 Message lock renewal should be greater than `LockDuration`. When `LockDuration` period is due to expire, Azure Service Bus transport will issue lock renewal request to the broker, keeping message locked and invisible to other consumers. Lock renewal will automatically take place while the total time of the message processing stays less than auto renewal time set by Azure Service Bus transport. The default lock renewal time is 5 minutes. Auto lock renewal will **not** increase `DeliveryCount` of the processed message.
 
