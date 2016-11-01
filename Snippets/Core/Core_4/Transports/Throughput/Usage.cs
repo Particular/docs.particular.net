@@ -5,18 +5,27 @@
     class Usage
     {
 
-        Usage(UnicastBus unicastBus)
+        void ReadTuning(UnicastBus unicastBus)
+        {
+            #region ReadTuning
+
+            var transport = unicastBus.Transport;
+            var messageThroughputPerSecond = transport.MaximumMessageThroughputPerSecond;
+            var maximumConcurrencyLevel = transport.MaximumConcurrencyLevel;
+
+            #endregion
+        }
+
+        void ChangeTuning(UnicastBus unicastBus)
         {
             #region ChangeTuning
-            unicastBus.Transport.ChangeMaximumMessageThroughputPerSecond(10);
-            unicastBus.Transport.ChangeMaximumConcurrencyLevel(5);
-            #endregion
 
-            #region ReadTuning
-            var messageThroughputPerSecond = unicastBus.Transport.MaximumMessageThroughputPerSecond;
-            var maximumConcurrencyLevel = unicastBus.Transport.MaximumConcurrencyLevel;
+            var transport = unicastBus.Transport;
+            transport.ChangeMaximumMessageThroughputPerSecond(10);
+            transport.ChangeMaximumConcurrencyLevel(5);
 
             #endregion
+
         }
 
     }
