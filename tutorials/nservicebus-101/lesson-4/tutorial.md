@@ -53,9 +53,9 @@ The loose coupling provided by publishing events gives us quite a bit of flexibi
 
 ## Better code through decoupling
 
-Have you ever seen a codebase for a naive implementation of an e-commerce store? Commonly you'll find one gargantuan SubmitOrder method responsible for retrieving the shopping cart, creating an Order and OrderLines in the database, authorizing the credit card, capturing the credit card authorization, emailing a receipt, notifying a fulfillment agency, and then updating any sort of wish list, gift registry, or "frequently bought together" information the site might keep track of. If that method doesn't number in the hundreds of lines of code, then it likely calls into subroutine methods to handle each of these concerns. The sum total lines of code in such an example likely numbers in at least hundreds of lines of code, if not thousands.
+Have you ever seen a codebase for a naive implementation of an e-commerce store? Commonly you'll find one large SubmitOrder method responsible for retrieving the shopping cart, creating an Order and OrderLines in the database, authorizing the credit card, capturing the credit card authorization, emailing a receipt, notifying a fulfillment agency, and then updating any sort of wish list, gift registry, or "frequently bought together" information the site might keep track of. If that method doesn't number in the hundreds of lines of code, then it likely calls into subroutine methods to handle each of these concerns. The sum total lines of code in such an example likely numbers in at least hundreds of lines of code, if not thousands.
 
-What happens when one of the steps in that long chain fails? You're left with a partially completed process that requires manual intervention to fix, either by mucking around manually in the database, manually reconciling with a credit card processor, or manually sending confirmation emails.
+When one of the steps in that long chain fails, you're left with a partially completed process that requires manual intervention to fix, either by mucking around manually in the database, manually reconciling with a credit card processor, or manually sending confirmation emails.
 
 By using events, we can better follow the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle) and divide up these concerns into separate message handlers. Simply publish `OrderPlaced`, and all the other components that subscribe to it will take care of their own concerns.
 
@@ -64,23 +64,25 @@ This means that when the code for the credit card processing changes, we don't e
 
 ## Defining events
 
-Creating an event message is just as easy as creating an event. We just create a class and mark it with the `IEvent` (rather than `ICommand`) marker interface.
+Creating an event message is just similar to creating an event. We just create a class and mark it with the `IEvent` (rather than `ICommand`) marker interface.
 
 snippet:Event
 
-All the other considerations for command messages apply to events as well. Properties can be simple types, complex types, or collections - whatever the message serializer supports. However, with events, you should be even more careful to refrain from getting carried away and putting too much information in an event message. Since a publisher does not know (or care) how many subscribers it has, it may not be possible to modify all of them if a change is required.
+All the other considerations for command messages apply to events as well. Properties can be simple types, complex types, or collections - whatever the message serializer supports.
+
+With events, you should be even more careful to refrain from getting carried away and putting too much information in an event message. Sometimes this complexity can't be avoided for commands, as the command receiver needs the information to do its job. That's manageable for commands because the sender and receiver are highly coupled anyway. For events, it's a different story. Since a publisher of an event does not know (or care) how many subscribers it has, it may not be possible to modify all of them if a change is required to the event.
 
 
 ## Handling events
 
-Handling an event is the exact same as handling a command. Just create a handler class by implementing `IHandleMessages<T>` where `T` is the type of the event message.
+Create a handler class by implementing `IHandleMessages<T>` where `T` is the type of the event message.
 
 snippet:EventHandler
 
 
 ## Subscribing to events
 
-For the MSMQ transport (which we are using in this course) NServiceBus needs to know which endpoint is responsible for publishing an event, so that it can send the publishing endpoint a subscription request message.
+For the MSMQ transport, NServiceBus needs to know which endpoint is responsible for publishing an event, so that it can send the publishing endpoint a subscription request message.
 
 You can configure the publisher endpoint via the Routing API like this:
 
@@ -97,7 +99,7 @@ We'll also create a new OrderBilled event that will be published by the Billing 
 
 ![Lesson 4 Diagram](diagram.png)
 
-When the Shipping endpoint receives both the OrderPlaced and OrderBilled, it will know that it is time to ship the product to the customer. How to handle that situation, however, will be the topic for another lesson.
+When the Shipping endpoint receives both the OrderPlaced and OrderBilled, it will know that it is time to ship the product to the customer. (Because this requires stored state, we can't accomplish that with message handlers alone. To implement that functionality, we would need a [Saga](/nservicebus/sagas/), but that will not be covered in this lesson.)
 
 
 ### Create an event
@@ -113,7 +115,7 @@ When complete, your `OrderPlaced` class should look like the following:
 
 snippet:OrderPlaced
 
-NOTE: Notice that because of our use of folders for **Commands** and **Events**, we now have our commands and events in namespaces called `Messages.Commands` and `Messages.Events`, respectively. In a future course, we will be able to [take advantage of this organization](/nservicebus/messaging/conventions.md) to identify commands and events without needing to use the `ICommand` and `IEvent` interfaces at all!
+NOTE: Notice that because of our use of folders for **Commands** and **Events**, we now have our commands and events in namespaces called `Messages.Commands` and `Messages.Events`, respectively. We could [take advantage of this organization](/nservicebus/messaging/conventions.md) to identify commands and events without needing to use the `ICommand` and `IEvent` interfaces at all.
 
 
 ### Publish an event
@@ -126,14 +128,12 @@ Now that the `OrderPlaced` event is defined, we can publish it from the `PlaceOr
 
 snippet:UpdatedHandler
 
-Like `.Send()`, `.Publish()` also returns a `Task`. We could mark this method as `async` and then `await` the return task, but since this is the only `Task`-returning operation we're using, we can just return this `Task` from our handler method.
-
 If we ran the solution now (and you're welcome to do so) nothing new or exciting will happen, at least visibly. We're publishing a message, but there are no subscribers, so no physical messages actually get sent anywhere. We're like a newspaper with no circulation. To fix that, we need a subscriber.
 
 
 ### Create a subscriber
 
-Unlike the command `PlaceOrder`, which is a request to do something, `OrderPlaced` is an announcement that something has actually happened. So who would be interested in hearing about placed orders?
+Unlike the command `PlaceOrder`, which is a request to do something, `OrderPlaced` is an announcement that something has actually happened. So another endpoint needs to register interest in hearing about placed orders.
 
 When an order is placed, we will want to charge the credit card for that order. So we will create a **Billing** service, which will subscribe to `OrderPlaced` so that it can handle the payment transaction.
 
@@ -196,7 +196,7 @@ INFO  Shipping.OrderPlacedHandler Received OrderPlaced, OrderId = 96ee660a-5dd7-
 INFO  Shipping.OrderBilledHandler Received OrderBilled, OrderId = 96ee660a-5dd7-4772-9058-863d303ee0aa - Should we ship now?
 ```
 
-Of course, these messages could appear out of order. With asynchronous messaging, there are no message ordering guarantees. Even though `OrderBilled` comes logically after `OrderPlaced`, it's possible that `OrderBilled` could arrive first!
+Of course, these messages could appear out of order. With asynchronous messaging, there are no message ordering guarantees. Even though `OrderBilled` comes logically after `OrderPlaced`, it's possible that `OrderBilled` could arrive first.
 
 You'll note that in the sample solution, the message for each handler says "Should we ship now?" This is because both message handlers are stateless. Like HTTP requests, message handlers have no intrinsic memory of what came before. In an upcoming course, we'll explore [Sagas](/nservicebus/sagas/), an NServiceBus feature that provides that memory in-between message handlers, similar to how ASP.NET Session State stores data between HTTP requests in ASP.NET web applications. Once we have that capability, we'll be able to publish an `OrderShipped` event once both the `OrderPlaced` and `OrderBilled` events arrive, but this is good enough for now.
 

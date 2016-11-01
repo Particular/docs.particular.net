@@ -2,7 +2,7 @@
 title: "NServiceBus 101 Lesson 5: Retrying errors"
 ---
 
-In software systems, exceptions are a fact of life. Even with perfect, bug-free code, problems will arise when we have to deal with the issue of connectivity. If a database is overloaded, or a web service is down, we have no recourse except to try again.
+In software systems, exceptions will occur. Even with perfect, bug-free code, problems will arise when we have to deal with the issue of connectivity. If a database is overloaded, or a web service is down, we have no recourse except to try again.
 
 It's how we respond to exceptions that is important. When a database is deadlocked, or a web service is down, do we lose data, or do we have the ability to recover? Do our users get an error message and have to figure out how to recover on their own, or can we make it appear as though nothing ever went wrong?
 
@@ -53,7 +53,7 @@ In short, these are the exceptions that a developer needs to look at, triage, an
 
 ## Automatic retries
 
-In order to deal with exceptions that arise within message handlers, NServiceBus wraps each message handler in a `try/catch` block, and if the message transport supports it, a transaction as well. This means that only one of two things can happen:
+In order to deal with exceptions that arise, the code for each handler is wrapped in a `try/catch` block, and [if the message transport supports it, a transaction as well](/nservicebus/transports/transactions.md). This means that only one of two things can happen:
 
  1. The message is processed successfully. All database calls succeed, all outgoing messages are dispatched to the message transport, and the incoming message is removed from the queue.
  1. The message fails. All database transactions are rolled back, any calls to `.Send()` or `.Publish()` are cancelled, and the incoming message remains in the queue to attempt processing again.
@@ -80,7 +80,7 @@ We'll take a look at a few options for configuring retries in the exercise, but 
 
 Once a message is sent to the error queue, this indicates that a systemic failure has occurred. When this happens, a developer needs to look at the message and figure out *why*.
 
-For this reason, NServiceBus embeds the exception details and stack trace into the message that it forwards to the error queue, so you don't even need to search through a log file to find the details – everything you need is right there! Once the underlying issue is fixed, the message can be replayed. **Replaying a message** sends it back to its original queue in order to retry message processing after an issue has been fixed.
+For this reason, NServiceBus embeds the exception details and stack trace into the message that it forwards to the error queue, so you don't even need to search through a log file to find the details – everything you need is right there. Once the underlying issue is fixed, the message can be replayed. **Replaying a message** sends it back to its original queue in order to retry message processing after an issue has been fixed.
 
 NServiceBus comes with tools to make this kind of operational monitoring really easy. If you installed the rest of the [Particular Service Platform](http://particular.net/downloads), you already have these at your disposal:
 
@@ -92,7 +92,7 @@ Sometimes, a new release will contain a bug in handler logic that isn't found un
 
 ## Exercise
 
-This is an exploratory exercise, where we'll be playing with different retry options. We'll use the [completed solution from the previous lesson](https://github.com/Particular/docs.particular.net/tree/academy-nsb101/tutorials/nservicebus-101/lesson-4/solution/).
+This is an exploratory exercise, where we'll be playing with different retry options. We'll use the completed solution from the previous lesson.
 
 
 ### Throw an exception
@@ -107,14 +107,14 @@ snippet:Throw
 Now, run the solution.
 
  1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running, but does not break into the debugger when we throw our exception.
- 1. In the **ClientUI** window, place an order by pressing `P`, and then watch carefully!
+ 1. In the **ClientUI** window, place an order by pressing `P`.
 
 When we do these steps, we'll see a wall of exception messages in white text, which is log level INFO, followed by one in yellow text, which is log level WARN. The exception traces in white are the failures during immediate retries, and the last trace in yellow is the failure that hands the message over to delayed retries.
 
 ```no-highlight
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e927667c-b949-47ee-8ea2-f29523909784
 WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message '53ac6836-48ef-49dd-aabb-a67c0104a2a5' after a delay of 00:00:10 because of an exception:
-System.Exception: BOOM!
+System.Exception: BOOM
    at <stack trace>
 ```
 
@@ -123,14 +123,14 @@ System.Exception: BOOM!
 ```no-highlight
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e927667c-b949-47ee-8ea2-f29523909784
 ERROR NServiceBus.RecoverabilityExecutor Moving message '53ac6836-48ef-49dd-aabb-a67c0104a2a5' to the error queue 'error' because processing failed due to an exception:
-System.Exception: BOOM!
+System.Exception: BOOM
    at < stack trace>
 ```
 
 
 ### Modify immediate retries
 
-The only configurable option you need for immediate retries is how many of them to attempt. The default value is `5`, but you may want to set it to a higher or lower number. Many developers prefer to set it to `0` so that they can avoid the "wall of text" effect when an exception is thrown during development, and then set it to a higher number for production use.
+The only configurable option you need for immediate retries is how many of them to attempt. The default value is `5`, but you may want to set it to a higher or lower number. Many developers prefer to set it to `0` so that they can [avoid the "wall of text" effect when an exception is thrown](/samples/logging/stack-trace-cleaning/) during development, and then set it to a higher number for production use.
 
  1. In the **Sales** endpoint, locate the **Program.cs** file.
  1. Before the endpoint is started, add the following code:
@@ -165,13 +165,7 @@ Notice how much faster the message proceeds through delayed retries, because ins
 
 ### Replay a message
 
-If you used the [Particular Platform Installer](/platform/installer/) to install MSMQ, you should already have the [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/) tools installed.
-
-To check for these tools:
-
- * Load the ServiceControl API at [http://localhost:33333/api](http://localhost:33333/api). If a JSON response is returned, ServiceControl is running.
- * Load the ServicePulse application at [http://localhost:9090/](http://localhost:9090/). If a web application is displayed, ServicePulse is running.
- * If either tool is not installed, [reinstall the Particular Service Platform](/platform/installer/).
+If you used the [Particular Platform Installer](/platform/installer/) to install MSMQ, you should already have the [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/) tools installed. You may want to re-run the Platform Installer and ensure that the checkboxes for ServiceControl and ServicePulse are already checked, and install them if necessary.
 
 Once these tools are installed and running, you can attempt to replay a message:
 
@@ -181,7 +175,7 @@ Once these tools are installed and running, you can attempt to replay a message:
     ![Failed Message Groups](failed-message-groups.png)
  1. Click the **View Messages** link to see details on each failed message.
     ![Failed Message Details](failed-message-details.png)
- 1. Try the various methods of replaying messages and watch what happens in the console windows. Note that ServiceControl executes message retry batches on a 30-second timer, so *be patient!* Eventually, the messages will be returned to their appropriate endpoints.
+ 1. Try the various methods of replaying messages and watch what happens in the console windows. Note that ServiceControl executes message retry batches on a 30-second timer, so *be patient*. Eventually, the messages will be returned to their appropriate endpoints.
 
 When the message is replayed in Sales, each endpoint picks up right where it left off. You should be able to see how useful this capability will be when failures happen in your real-life systems.
 
@@ -190,6 +184,4 @@ When the message is replayed in Sales, each endpoint picks up right where it lef
 
 In this lesson, we explored different causes for exceptions and how NServiceBus makes those much easier to deal with by introducing automatic retries and message replay to make many transient and semi-transient exceptions just go away, and provide tools to deal with poison messages, all without our users noticing anything but perhaps a slight processing delay. This is a capability that will enable you to create truly resilient, self-healing systems that can keep running in the face of partial failure.
 
-Congratulations! You've completed the last lesson in NServiceBus 101: Messaging Basics. You may have noticed in this course there was a lot of code duplication. We also ignored some messaging best practices in the name of keeping the examples simple. In the next course, we'll explore how you would use NServiceBus in a real-life system. We'll remove the code duplication and make everything more [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), discuss best practices for creating and managing large NServiceBus systems, delve into web applications, and more.
-
-The next course isn't ready yet, but you can [sign up to receive updates](https://particular.net/s/new-course-signup) when we release additional courses.
+You've completed the last lesson in NServiceBus 101: Messaging Basics. The next course isn't ready yet, but you can [sign up to receive updates](https://particular.net/s/new-course-signup) when we release additional courses.
