@@ -13,7 +13,7 @@ related:
  - samples/outbox/sqltransport-nhpersistence-ef
 ---
 
-The SQL Server transport implements a message queuing mechanism on top of [Microsoft SQL Server](https://www.microsoft.com/en-us/cloud-platform/sql-server). It provides support for sending messages over SQL Server tables. It does **not** make any use of [Service Broker](https://technet.microsoft.com/en-us/library/ms166104.aspx).
+The SQL Server transport implements a message queuing mechanism on top of [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/). It provides support for sending messages over SQL Server tables. It does **not** make any use of [Service Broker](https://technet.microsoft.com/en-us/library/ms166104.aspx).
 
 
 ## How it works

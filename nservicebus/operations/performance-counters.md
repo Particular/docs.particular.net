@@ -148,6 +148,6 @@ The performance counters libraries need to be rebuild by doing the following ste
 
 ### More information
 
- * [KB2554336: How to manually rebuild Performance Counters for Windows Server 2008 64bit or Windows Server 2008 R2 systems](https://support.microsoft.com/kb/2554336)
+ * [KB2554336: How to manually rebuild Performance Counters for Windows Server 2008 64bit or Windows Server 2008 R2 systems](https://support.microsoft.com/en-us/kb/2554336)
  * [KB300956: How to manually rebuild Performance Counter Library values](https://support.microsoft.com/kb/300956)
  * [LODCTR at TechNet](https://technet.microsoft.com/en-us/library/bb490926.aspx)

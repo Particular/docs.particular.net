@@ -60,7 +60,7 @@ Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) 
 
 https://www.nuget.org/packages/NServiceBus.SqlServer
 
-Provides support for sending messages over [Microsoft Sql Server](https://www.microsoft.com/en-us/cloud-platform/sql-server) using SQL tables as the storage mechanism for messages.
+Provides support for sending messages over [Microsoft Sql Server](https://www.microsoft.com/en-us/sql-server/) using SQL tables as the storage mechanism for messages.
 
 
 ## Serializers

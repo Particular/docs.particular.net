@@ -126,7 +126,7 @@ snippet: 5to6CriticalError
 
 The `BusNotifications` class has been renamed to `Notifications`.
 
-`BusNotifications` previously exposed the available notification hooks as observables implementing `IObservable`. This required implementing the `IObserver` interface or including [Reactive-Extensions](https://msdn.microsoft.com/en-au/data/gg577609.aspx) to use this API. In Version 6 the notifications API has been changed for easier usage. It exposes regular events instead of observables. To continue using Reactive-Extensions the events API can be transformed into `IObservable`s like this:
+`BusNotifications` previously exposed the available notification hooks as observables implementing `IObservable`. This required implementing the `IObserver` interface or including [Reactive-Extensions](https://msdn.microsoft.com/library/hh242985.aspx) to use this API. In Version 6 the notifications API has been changed for easier usage. It exposes regular events instead of observables. To continue using Reactive-Extensions the events API can be transformed into `IObservable`s like this:
 
 snippet: ConvertEventToObservable
 
