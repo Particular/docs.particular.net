@@ -1,45 +1,44 @@
 ---
 title: Performance Counters
-summary: Monitoring NServiceBus through the use of performance counters.
-reviewed: 2016-03-17
+summary: Monitoring through the use of performance counters.
+reviewed: 2016-11-01
+component: Core
 tags:
-- Performance Counters
+ - Performance Counters
 redirects:
-- nservicebus/monitoring-nservicebus-endpoints
-- nservicebus/operations/monitoring-endpoints
-- nservicebus/operations/fail-or-hang-during-performance-counter-setup
+ - nservicebus/monitoring-nservicebus-endpoints
+ - nservicebus/operations/monitoring-endpoints
+ - nservicebus/operations/fail-or-hang-during-performance-counter-setup
 related:
-- servicecontrol
-- servicepulse
-- nservicebus/recoverability
-- nservicebus/operations/auditing
-- nservicebus/operations/management-using-powershell
-- samples/performance-counters
+ - servicecontrol
+ - servicepulse
+ - nservicebus/recoverability
+ - nservicebus/operations/auditing
+ - nservicebus/operations/management-using-powershell
+ - samples/performance-counters
 ---
 
 When a system is broken down into multiple processes, each with its own queue, it allows identifying which process is the bottleneck by examining how many messages (on average) are in each queue. The only issue is that without knowing the rate of messages coming into each queue, and the rate at which messages are being processed from each queue, it is not possible to know how long messages are waiting in each queue, which is the primary indicator of a bottleneck.
 
 Despite the many performance counters Microsoft provides for MSMQ (including messages in queues, machine-wide incoming and outgoing messages per second, and the total messages in all queues), there is no built-in performance counter for the time it takes a message to get through each queue.
 
-
-## NServiceBus performance counters
-
 NServiceBus includes several performance counters. They are installed in the `NServiceBus` category.
 
 Since all performance counters in Windows are exposed via Windows Management Instrumentation (WMI), it is very straightforward to pull this information into the existing monitoring infrastructure.
 
 
-### Critical Time
+## Critical Time
 
 **Counter Name:** `Critical Time`
 
 **Added in:** Version 3
 
-Monitors the age of the oldest message in the queue. This takes into account the whole chain, from the message being sent from the client machine until successfully processed by the server. Define an SLA for each endpoint and use the `CriticalTime` counter to ensure it is adhered to.
+Monitors the age of the oldest message in the queue. This takes into account the whole chain, from the message being sent from the client machine until successfully processed by the server. Define an Service-level agreement (SLA) for each endpoint and use the `CriticalTime` counter to ensure it is adhered to.
 
 **Versions 6 and above:** The value recorded in the TimeSent header is the time when the call to send the message is executed, not the actual time when the message was dispatched to the transport infrastructure. Since the outgoing messages in handlers are sent as a [batched](/nservicebus/messaging/batched-dispatch.md) operation, depending on how long the message handler takes to complete, the actual dispatch may happen later than the time recorded in the TimeSent header. For operations outside of handlers the recorded sent time is accurate.
 
-#### Configuration
+
+### Configuration
 
 This counter can be enabled using the the following code:
 
@@ -48,16 +47,16 @@ snippet:enable-criticaltime
 In the NServiceBus Host this counter is enabled by default.
 
 
-### SLA violation countdown
+## SLA violation countdown
 
 **Counter Name:** `SLA violation countdown`
 
 **Added in:** Version 3
 
-Acts as a early warning system to inform on the number of seconds left until the SLA for the particular endpoint is breached. This gives a system-wide counter that can be monitored without putting the SLA into the monitoring software. Just set that alarm to trigger when the counter goes below X, which is the time that the operations team needs to be able to take actions to prevent the SLA from being breached.
+Acts as a early warning system to inform on the number of seconds left until the SLA for the endpoint is breached. This gives a system-wide counter that can be monitored without putting the SLA into the monitoring software. Just set that alarm to trigger when the counter goes below X, which is the time that the operations team needs to be able to take actions to prevent the SLA from being breached.
 
 
-#### Configuration
+### Configuration
 
 This counter can be enabled using the the following code:
 
@@ -68,7 +67,7 @@ In the NServiceBus Host this counter is enabled by default. But the value can be
 snippet:enable-sla-host-attribute
 
 
-### Successful Message Processing Rate
+## Successful Message Processing Rate
 
 **Counter Name:** `# of msgs successfully processed / sec`
 
@@ -76,12 +75,13 @@ snippet:enable-sla-host-attribute
 
 The current number of messages processed successfully by the transport per second.
 
-#### Configuration
+
+### Configuration
 
 Enabled by default and will only write to the counter if it exists.
 
 
-### Queue Message Receive Rate
+## Queue Message Receive Rate
 
 **Counter Name:** `# of msgs pulled from the input queue /sec`
 
@@ -90,12 +90,12 @@ Enabled by default and will only write to the counter if it exists.
 The current number of messages pulled from the input queue by the transport per second.
 
 
-#### Configuration
+### Configuration
 
 Enabled by default and will only write to the counter if it exists.
 
 
-### Failed Message Processing Rate
+## Failed Message Processing Rate
 
 **Counter Name:** `# of msgs failures / sec`
 
@@ -104,7 +104,7 @@ Enabled by default and will only write to the counter if it exists.
 The current number of failed processed messages by the transport per second.
 
 
-#### Configuration
+### Configuration
 
 Enabled by default and will only write to the counter if it exists.
 
@@ -126,9 +126,11 @@ Get-Counter -ListSet NServiceBus | Select-Object -ExpandProperty Counter
 
 NOTE: After installing the performance counters, all endpoints must be restarted in order to start collecting the new data.
 
+
 ## Performance Monitor Users local security group
 
 When [running installers](installers.md) the service account will be automatically added to the local Performance Monitor Users group if executed with elevated privileges.
+
 
 ## Corrupted Counters
 
