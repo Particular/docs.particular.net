@@ -7,8 +7,8 @@
     <ProjectGuid>{100E3F2F-409C-4E7F-AEAD-599179DC0C69}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NewtonsoftJson1</RootNamespace>
-    <AssemblyName>NewtonsoftJson1</AssemblyName>
+    <RootNamespace>Wire1</RootNamespace>
+    <AssemblyName>Wire1</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
