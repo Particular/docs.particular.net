@@ -59,10 +59,8 @@ NAME
 SYNOPSIS
     Sets the default Error and Audit queues.
 
-
 SYNTAX
     Set-NServiceBusLocalMachineSettings [-ErrorQueue <String>] [-AuditQueue <String>] [<CommonParameters>]
-
 
 DESCRIPTION
     Sets the registry settings for the default audit and error queues.
@@ -77,8 +75,10 @@ DESCRIPTION
 
 NServiceBus now supports multiple versions of the [RavenDB](/nservicebus/ravendb/version-compatibility.md) client. Previous versions of the PowerShell module included cmdlets to install and test RavenDB V2.0.2375. To avoid confusion these cmdlets were removed in Version 5.0:
 
-	Install-NServiceBusRavenDB
-	Test-NServiceBusRavenDBInstallation
+```no-highlight
+Install-NServiceBusRavenDB
+Test-NServiceBusRavenDBInstallation
+```
 
 For RavenDB installation instructions review [Installing RavenDB](/nservicebus/ravendb/installation.md)
 
