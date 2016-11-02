@@ -6,6 +6,7 @@ component: Serilog
 tags:
  - Logging
 related:
+ - nservicebus/logging
  - samples/logging/serilog-custom
 ---
 
@@ -15,6 +16,13 @@ Support for writing all NServiceBus log entries to [Serilog](https://serilog.net
 ## Usage
 
 snippet:SerilogInCode
+
+
+## Seq
+
+To log to [Seq](https://getseq.net/):
+
+snippet: SerilogSeq
 
 
 ## Filtering

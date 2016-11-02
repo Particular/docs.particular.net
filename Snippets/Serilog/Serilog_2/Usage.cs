@@ -16,4 +16,18 @@ class Usage
 
         #endregion
     }
+
+    void Seq()
+    {
+        #region SerilogSeq
+
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Seq("http://localhost:5341")
+            .MinimumLevel.Information()
+            .CreateLogger();
+
+        LogManager.Use<SerilogFactory>();
+
+        #endregion
+    }
 }

@@ -37,6 +37,7 @@ ProtoBuf: NServiceBus.ProtoBuf
 Rabbit: NServiceBus.RabbitMQ
 Raven: NServiceBus.RavenDB
 Serilog: NServiceBus.Serilog
+SerilogTracing: NServiceBus.Serilog.Tracing
 ServiceBootstrap: NServiceBus.Bootstrap.WindowsService
 ServiceControl: ServiceControl
 ServicePulse: ServicePulse
