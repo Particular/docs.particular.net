@@ -46,7 +46,7 @@ Note: For reply messages in a request and response pattern, use `IMessage` since
 
 ### Command/Event Comparison
 
-Here is a quick side-by-side comparison of some of the differences between commands and events:
+Here is a comparison of some of the differences between commands and events:
 
 include: command-event-comparison-table
 
