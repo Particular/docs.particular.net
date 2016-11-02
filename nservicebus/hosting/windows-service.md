@@ -108,6 +108,38 @@ sc.exe config SalesEndpoint depend= MSMQ/MSDTC/RavenDB
 ```
 
 
+### Restart Recovery
+
+Windows has a Windows Service Recovery mechanism that makes sure that a crashed service will be restarted.
+
+The endpoint can fail when using the [NServiceBus Host](nservicebus-host/) or when [self hosting and implementing a critical error handler that exits the process](critical-errors.md#default-action-handling-in-nservicebus) in case a critical error occurs. 
+
+If Windows Service Recovery is not configured, then the message processing will halt. Therefore it's important to configure Recovery options, when hosting an NServiceBus endpoint as a Windows Service. 
+
+The Recovery options can be adjusted via Services dialog or via `sc.exe`. Note that the command line tool has advanced configuration options.
+
+
+#### Configuring Service Recovery via sc.exe
+
+The default restart duration is 1 minute when enabling recovery via the Windows Service management console, but a different restart duration may be defined for the subsequent restarts using `sc.exe`. 
+
+The following example will restart the service after 5 seconds the first time, after 10 seconds the second time and then every 60 seconds. The restart service count is reset after 1 hour (3600 seconds) of uninterrupted work since the last restart.
+
+```dos
+sc.exe failure [ServiceName] reset= [seconds] actions= restart/[milliseconds]/restart/[milliseconds]/restart/[milliseconds]
+sc.exe failure SalesEndpoint reset= 3600 actions= restart/5000/restart/10000/restart/60000
+```
+
+
+#### Configuring Service Recovery via Windows Service properties
+
+Open the services window, select the endpoint Windows service and open its properties. Then open the Recovery tab to adjust the settings:
+
+![Windows Service properties Recovery tab](service-properties.png)
+
+NOTE: Restart durations are only configurable using `sc.exe`.
+
+
 ### Username and Password
 
 Username and password can be configured, at creation time, using the `obj` and `password` parameters.
