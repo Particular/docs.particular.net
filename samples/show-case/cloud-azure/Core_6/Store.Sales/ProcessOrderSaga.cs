@@ -22,7 +22,7 @@ public class ProcessOrderSaga :
         }
 
         Data.OrderNumber = message.OrderNumber;
-        Data.ProductIds = message.ProductIds;
+        Data.ProductIds = string.Join(";", message.ProductIds);
         Data.ClientId = message.ClientId;
 
         log.Info($"Starting cool down period for order #{Data.OrderNumber}.");
@@ -39,7 +39,7 @@ public class ProcessOrderSaga :
         await context.Publish<OrderAccepted>(e =>
             {
                 e.OrderNumber = Data.OrderNumber;
-                e.ProductIds = Data.ProductIds;
+                e.ProductIds = Data.ProductIds.Split(';');
                 e.ClientId = Data.ClientId;
             })
             .ConfigureAwait(false);
@@ -80,7 +80,7 @@ public class ProcessOrderSaga :
         ContainSagaData
     {
         public int OrderNumber { get; set; }
-        public string[] ProductIds { get; set; }
+        public string ProductIds { get; set; }
         public string ClientId { get; set; }
     }
 
