@@ -33,7 +33,7 @@ The current approach moving forward for the RavenDB integration is to ship outsi
 
 ## NServiceBus 4: Resource Merged into the core
 
-In Version 4 of NServiceBus the approach to embedding RavenDB in NServiceBus.Core.dll changed from ILMerge to resource merging.
+In Version 4 of NServiceBus the approach to embedding RavenDB in NServiceBus.Core.dll changed from [ILMerge](https://github.com/Microsoft/ILMerge) to resource merging.
 
 This enables, at runtime, to chose the newest version of the RavenDB assemblies found on disk. So if a consumer of NServiceBus has updated to newer RavenDB assemblies NServiceBus would use those instead of the merged versions.
 
@@ -71,7 +71,7 @@ snippet:Version2_5RavenDBPersistenceInitialization
 
 ## NServiceBus 3: ILMerged into the Core
 
-In NServiceBus Version 3 the default persistence was changed from NHibernate to RavenDB. The required RavenDB assemblies were [ILMerged](http://research.microsoft.com/en-us/people/mbarnett/ilmerge.aspx) into NServiceBus.Core.dll to give users a seamless OOTB experience.
+In NServiceBus Version 3 the default persistence was changed from NHibernate to RavenDB. The required RavenDB assemblies were [ILMerged](https://github.com/Microsoft/ILMerge) into NServiceBus.Core.dll to give users a seamless OOTB experience.
 
 
 ### ILMerged RavenDB client versions

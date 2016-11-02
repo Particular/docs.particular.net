@@ -7,7 +7,7 @@ related:
  - samples/serializers/json
 ---
 
-Using [Json](https://en.wikipedia.org/wiki/Json) via an ILMerged copy of [Json.NET](http://www.newtonsoft.com/json).
+Using [Json](https://en.wikipedia.org/wiki/Json) via an [ILMerged](https://github.com/Microsoft/ILMerge) copy of [Json.NET](http://www.newtonsoft.com/json).
 
 
 ## Usage
