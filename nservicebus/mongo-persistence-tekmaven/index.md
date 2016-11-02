@@ -54,7 +54,7 @@ snippet: MongoConnectionStringName
 For Sagas to work correctly the following needs to be enforced:
 
  * Saga Data should implement `IContainSagaData`.
- * Requires a property `Version` decorated with attribute `[DocumentVersion]`
+ * Requires a property `Version` decorated with attribute `[DocumentVersion]`.
 
 For example:
 
