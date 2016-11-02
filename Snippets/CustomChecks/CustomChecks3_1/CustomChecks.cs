@@ -3,7 +3,7 @@ using ServiceControl.Plugin.CustomChecks;
 
 class CustomChecks
 {
-    #region CustomCheck3
+    #region CustomCheck
     public class MyCustomCheck :
         CustomCheck
     {
@@ -22,7 +22,7 @@ class CustomChecks
     }
     #endregion
 
-    #region PeriodicCheck3
+    #region PeriodicCheck
     public class MyPeriodicCheck :
         PeriodicCheck
     {

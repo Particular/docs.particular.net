@@ -4,7 +4,7 @@ using ServiceControl.Plugin.CustomChecks;
 
 class CustomChecks
 {
-    #region CustomCheck6
+    #region CustomCheck
     public class MyCustomCheck :
         CustomCheck
     {
@@ -26,7 +26,7 @@ class CustomChecks
     }
     #endregion
 
-    #region PeriodicCheck6
+    #region PeriodicCheck
     public class MyPeriodicCheck :
         CustomCheck
     {

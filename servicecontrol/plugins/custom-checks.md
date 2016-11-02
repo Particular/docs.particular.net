@@ -2,6 +2,7 @@
 title: CustomChecks Plugin
 summary: Define a custom set of conditions that are checked on the endpoint.
 reviewed: 2016-10-06
+component: CustomChecks
 tags:
  - ServiceControl
 related:
@@ -24,24 +25,7 @@ A custom check is executed once when the endpoint host starts. NServiceBus assem
 NOTE: Only the instance of a custom check which has been created by the NServiceBus framework is able to report status. The check instances created in user code will not function.
 
 
-#### NServiceBus 3
-
-snippet:CustomCheck3
-
-
-#### NServiceBus 4
-
-snippet:CustomCheck4
-
-
-#### NServiceBus 5
-
-snippet:CustomCheck5
-
-
-#### NServiceBus 6
-
-snippet:CustomCheck6
+snippet:CustomCheck
 
 
 ### Periodic check
@@ -49,24 +33,7 @@ snippet:CustomCheck6
 A periodic check is executed at defined intervals. The check happens not in the constructor but in a dedicated `PerformCheck` method which returns the check result.
 
 
-#### NServiceBus 3
-
-snippet:PeriodicCheck3
-
-
-#### NServiceBus 4
-
-snippet:PeriodicCheck4
-
-
-#### NServiceBus 5
-
-snippet:PeriodicCheck5
-
-
-#### NServiceBus 6
-
-snippet:PeriodicCheck6
+snippet:PeriodicCheck
 
 NOTE: For NServiceBus Version 6 the `PeriodicCheck` class has been deprecated. Inherit from `CustomCheck` and provided a `TimeSpan` to `repeatAfter` in the constructor of the `CustomCheck`.
 
@@ -78,29 +45,8 @@ The result of a custom check is either success or a failure (with a detailed des
 NOTE: It is essential to deploy this plugin to the endpoint in production in order to receive error notifications about the custom check failures in the ServicePulse dashboard.
 
 
-## NuGet packages
-
- * NServiceBus Version 6.x: [ServiceControl.Plugin.Nsb6.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.CustomChecks)
- * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks)
- * NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks)
- * NServiceBus Version 3.x: [ServiceControl.Plugin.Nsb3.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks)
-
-
 ### Deprecated NuGet
 
 If using the older version of the plugin, namely **ServiceControl.Plugin.CustomChecks**, remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.
 
-
-## Configuration
-
-
-### ServiceControl Queue
-
-For Version 2 or greater of the plugins that target NServiceBus Version 6, it is now possible to configure the ServiceControl queue via code:
-
-snippet: CustomCheck_Configure_ServiceControl
-
-
-### Disabling plugin
-
-snippet: CustomCheck_disable
+partial: config
