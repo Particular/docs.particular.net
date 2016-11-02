@@ -196,7 +196,7 @@
   NugetOrder:
     - NServiceBus.MessagePack
 
-- Key: MongoSbmako
+- Key: MongoPersistenceSbmako
   Name: MongoDB Persistence (Carlos Sandoval)
   DocoUrl: https://github.com/sbmako/NServiceBus.MongoDB
   Category: Persistence
@@ -206,10 +206,30 @@
   NugetOrder:
     - NServiceBus.MongoDB
 
-- Key: MongoTekmaven
+- Key: MongoDatabusSbmako
+  Name: MongoDB Databus (Carlos Sandoval)
+  DocoUrl: https://github.com/sbmako/NServiceBus.MongoDB
+  Category: Databus
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/sbmako/NServiceBus.MongoDB/blob/master/LICENSE
+  ProjectUrl: https://github.com/sbmako/NServiceBus.MongoDB
+  NugetOrder:
+    - NServiceBus.MongoDB
+
+- Key: MongoPersistenceTekmaven
   Name: MongoDB Persistence (Ryan Hoffman)
-  DocoUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb
+  DocoUrl: nservicebus/mongo-persistence-tekmaven
   Category: Persistence
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb/blob/master/LICENSE.txt
+  ProjectUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb
+  NugetOrder:
+    - NServiceBus.Persistence.MongoDb
+
+- Key: MongoDatabusTekmaven
+  Name: MongoDB Databus (Ryan Hoffman)
+  DocoUrl: nservicebus/messaging/databus/mongo-tekmaven
+  Category: Databus
   IsCommunityProject: true
   LicenseUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb/blob/master/LICENSE.txt
   ProjectUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb

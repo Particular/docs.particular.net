@@ -1,26 +1,19 @@
 ---
 title: MongoDB Persistence
 summary: Using MongoDB to store Sagas and Timeouts.
-reviewed: 2016-03-21
-component: MongoTekmaven
+reviewed: 2016-11-02
+component: MongoPersistenceTekmaven
 tags:
-- Saga
-- Timeout
+ - Saga
+ - Timeout
 related:
-- nservicebus/sagas
+ - nservicebus/sagas
 ---
 
 
 ## Prerequisites
 
 Ensure an instance of [MongoDB](https://www.mongodb.com/) is running on `localhost:27017`. See [Install MongoDB on Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/).
-
-
-### MongoDB Persistence for NServiceBus
-
-This sample utilizes the community run [NServiceBus.Persistence.MongoDB project](https://github.com/tekmaven/NServiceBus.Persistence.MongoDB).
-
-NOTE: There are [two community run MongoDB persistences](/platform/extensions.md#persisters). Evaluate both for the best fit to the specific solution.
 
 
 ### MongoDB Management UI

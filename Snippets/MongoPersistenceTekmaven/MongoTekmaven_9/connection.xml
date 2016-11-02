@@ -1,0 +1,6 @@
+﻿ <!-- startcode MongoConnectionStringAppConfig -->
+<connectionStrings>
+  <add name="NServiceBus/Persistence/MongoDB"
+      connectionString="mongodb://localhost/databaseName"/>
+</connectionStrings>
+<!-- endcode -->

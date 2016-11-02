@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 12.0.31101.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoTekmaven_8", "MongoTekmaven_8\MongoTekmaven_8.csproj", "{AEFEFFEA-9F71-403D-B29D-983526DA0731}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoTekmaven_9", "MongoTekmaven_9\MongoTekmaven_9.csproj", "{BC2424F1-3EEE-46FD-B770-4CC78FDDD36A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEFEFFEA-9F71-403D-B29D-983526DA0731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEFEFFEA-9F71-403D-B29D-983526DA0731}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2424F1-3EEE-46FD-B770-4CC78FDDD36A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2424F1-3EEE-46FD-B770-4CC78FDDD36A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

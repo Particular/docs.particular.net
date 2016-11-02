@@ -1,13 +1,12 @@
 ---
-title: Attachments / DataBus
-reviewed: 2016-11-02
-component: Core
+title: MongoDB DataBus
+reviewed: 2016-03-21
+component: MongoDatabusTekmaven
 tags:
  - DataBus
  - Large messages
-redirects:
- - nservicebus/attachments-databus-sample
 related:
+ - nservicebus/mongo-persistence-tekmaven
  - nservicebus/messaging/databus
 ---
 
@@ -35,31 +34,14 @@ The other message utilizes the DataBus mechanism:
 
 snippet: MessageWithLargePayload
 
-`DataBusProperty<byte[]>` is an instructs NServiceBus to treat the `LargeBlob` property as an attachment. It is not transported in the normal serialization flow.
-
-When sending a message using the FileShare DataBus, the message's payload resides in the directory. In addition, a 'signaling' message is sent to the Receiving endpoint.
-
-The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is allowed to clean the MSMQ message after one minute if it was not received by the receiver. The message payload remains in the Storage directory after the MSMQ message is cleaned by the NServiceBus framework.
-
-Following is an example of the signaling message that is sent to the receiving endpoint:
-
-```json
-{
-	"SomeProperty":"This message contains a large blob that will be sent on the data bus",
-	"LargeBlob":
-	{
-		"Key":"2014-09-29_09\\67de3a8e-0563-40d5-b81b-6f7b27d6431e",
-		"HasValue":true
-	}
-}
-```
-
 
 ### Configuring the Databus location
 
-Both the `Sender` and `Receive` project need to share a common location to store large binary objects. This is done by calling `FileShareDataBus`. This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment.
+Both the `Sender` and `Receive` project need to share a common location to store large binary objects.
 
 snippet:ConfigureDataBus
+
+Note that the connection string used for the databus is shared by the [MongoDB Persistence](/nservicebus/mongo-persistence-tekmaven).
 
 
 ### Sender project
