@@ -71,7 +71,7 @@ Although this speaks specifically web applications, it's worth noting that the s
 
 ## Storage-driven Transport Topology
 
-For storage-driven transports, it is inadvisable to have one of the web applications receive subscription requests. Instead, each web application instance can be implemented as an `ISendOnlyBus`, and a back-end service endpoint can be responsible for receiving the subscription request messages and updating the subscription storage.
+For storage-driven transports, it is inadvisable to have one of the web applications receive subscription requests. Instead, each web application instance can be implemented as a [send only endpoint](nservicebus/hosting/#self-hosting-send-only-hosting), and a back-end service endpoint can be responsible for receiving the subscription request messages and updating the subscription storage.
 
 ![Storage-driven transport publishing topology](storage-based-publish-topology.png "width=400")
 
