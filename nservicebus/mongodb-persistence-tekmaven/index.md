@@ -8,7 +8,7 @@ tags:
  - Persistence
 related:
  - samples/mongodb
- - nservicebus/messaging/databus/mongo-tekmaven
+ - nservicebus/messaging/databus/mongodb-tekmaven
 reviewed: 2016-11-01
 ---
 

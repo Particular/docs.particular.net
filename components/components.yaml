@@ -218,7 +218,7 @@
 
 - Key: MongoPersistenceTekmaven
   Name: MongoDB Persistence (Ryan Hoffman)
-  DocoUrl: nservicebus/mongo-persistence-tekmaven
+  DocoUrl: nservicebus/mongodb-persistence-tekmaven
   Category: Persistence
   IsCommunityProject: true
   LicenseUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb/blob/master/LICENSE.txt
@@ -228,7 +228,7 @@
 
 - Key: MongoDatabusTekmaven
   Name: MongoDB Databus (Ryan Hoffman)
-  DocoUrl: nservicebus/messaging/databus/mongo-tekmaven
+  DocoUrl: nservicebus/messaging/databus/mongodb-tekmaven
   Category: Databus
   IsCommunityProject: true
   LicenseUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb/blob/master/LICENSE.txt
