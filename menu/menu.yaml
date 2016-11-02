@@ -208,6 +208,8 @@
         Title: File Share
       - Url: nservicebus/messaging/databus/azure-blob-storage
         Title: Azure Blob Storage
+      - Url: nservicebus/messaging/databus/mongo-tekmaven
+        Title: MongoDB DataBus
       - Url: nservicebus/messaging/databus/custom
         Title: Custom
   - Url: nservicebus/hosting
@@ -576,6 +578,8 @@
         Title: Performance Tuning
       - Url: nservicebus/azure-storage-persistence/scripting
         Title: Scripting
+    - Url: nservicebus/mongo-persistence-tekmaven
+      Title: MongoDB Persistence
   - Url: nservicebus/containers
     Title: Containers
     Articles:
