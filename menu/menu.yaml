@@ -17,6 +17,8 @@
       Title: Endpoint configuration choices
     - Url: nservicebus/licensing
       Title: License
+    - Url: community-projects
+      Title: Community Run Projects
   - Url: nservicebus/upgrades
     Title: Upgrade Guides
     Articles:
