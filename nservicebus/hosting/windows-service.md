@@ -107,18 +107,21 @@ sc.exe config [ServiceName] depend= <Dependencies(separated by / (forward slash)
 sc.exe config SalesEndpoint depend= MSMQ/MSDTC/RavenDB
 ```
 
+
 ### Restart Recovery
 
-Windows Services can fail and Windows has a Windows Service Recovery mechanism that makes sure that a crashed service will be restarted.\
+Windows has a Windows Service Recovery mechanism that makes sure that a crashed service will be restarted.
 
-The endpoint can fail when using the [NServiceBus Host](nservicebus-host/) or [self hosting and implementing a critical error handler that exits the process](critical-errors.md#default-action-handling-in-nservicebus) when a critical error occurs. Not having Windows Service Recovery configured will result in message processing to halt.
+The endpoint can fail when using the [NServiceBus Host](nservicebus-host/) or when [self hosting and implementing a critical error handler that exits the process](critical-errors.md#default-action-handling-in-nservicebus) in case a critical error occurs. Not having Windows Service Recovery configured will result in message processing to halt.
 
 When an NServiceBus endpoint is hosted as a Windows Service it is important to configure its Recovery options. These can be set by the service properties or via `sc.exe` which has advanced configuration options.
 
 
-#### Via sc.exe
+#### Configuring Service Recovery via sc.exe
 
-The default restart duration is 1 minute when enabling recovery via the Windows Service management console, but a different restart duration may be defined for the 1st, 2nd, 3rd and more using `sc.exe`. The following example will restart the service after 5 seconds, then after 10 seconds and then every 60 seconds. If the service doesn't crash within an hour (3600 seconds) the restart count is reset.
+The default restart duration is 1 minute when enabling recovery via the Windows Service management console, but a different restart duration may be defined for the subsequent restarts using `sc.exe`. 
+
+The following example will restart the service after 5 seconds the first time, after 10 seconds the second time and then every 60 seconds. The restart service count is reset after 1 hour (3600 seconds) of uninterrupted work since the last restart.
 
 ```dos
 sc.exe failure [ServiceName] reset= [seconds] actions= restart/[milliseconds]/restart/[milliseconds]/restart/[milliseconds]
@@ -126,13 +129,14 @@ sc.exe failure SalesEndpoint reset= 3600 actions= restart/5000/restart/10000/res
 ```
 
 
-#### Via Windows Service properties
+#### Configuring Service Recovery via Windows Service properties
 
-Open the services snapin, select the endpoint Windows service and open its properties. This dialog has a Recovery tab which should look like the following screenshot.
+Open the services window, select the endpoint Windows service and open its properties. Then open the Recovery tab to adjust the settings:
 
 ![Windows Service properties Recovery tab](service-properties.png)
 
 NOTE: Restart durations are only configurable using `sc.exe`.
+
 
 ### Username and Password
 
