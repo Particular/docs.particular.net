@@ -18,9 +18,9 @@ class MultiSchema
         #region sqlserver-multischema-config-for-queue
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.UseSchemaForQueue("sales", "salesSchema");
-        transport.UseSchemaForQueue("billing", "[billingSchema]");
-        transport.UseSchemaForQueue("error", "error");
+        transport.UseSchemaForQueue(queueName: "sales", schema: "salesSchema");
+        transport.UseSchemaForQueue(queueName: "billing", schema: "[billingSchema]");
+        transport.UseSchemaForQueue(queueName: "error", schema: "error");
 
         #endregion
     }
@@ -30,8 +30,8 @@ class MultiSchema
         #region sqlserver-multischema-config-for-endpoint
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.UseSchemaForEndpoint("sales", "sender");
-        transport.UseSchemaForEndpoint("billing", "receiver");
+        transport.UseSchemaForEndpoint(endpointName: "sales", schema: "sender");
+        transport.UseSchemaForEndpoint(endpointName: "billing", schema: "receiver");
 
         #endregion
     }
@@ -41,8 +41,8 @@ class MultiSchema
         #region sqlserver-multischema-config-for-endpoint-and-queue
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.UseSchemaForEndpoint("sales", "sender");
-        transport.UseSchemaForQueue("error", "control");
+        transport.UseSchemaForEndpoint(endpointName: "sales", schema: "sender");
+        transport.UseSchemaForQueue(queueName: "error", schema: "control");
 
         #endregion
     }
