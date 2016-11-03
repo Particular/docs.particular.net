@@ -1,0 +1,1 @@
+Logging is output to the console by default.
