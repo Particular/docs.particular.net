@@ -10,6 +10,8 @@ tags:
 - Performance Counters
 redirects:
  - nservicebus/more-on-profiles
+component: Host
+reviewed: 2016-11-03
 ---
 
 The NServiceBus Host profiles enable altering the behavior of an endpoint without recompiling the code. The profiles enable tailoring endpoints for different environments.
