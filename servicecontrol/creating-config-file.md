@@ -168,6 +168,19 @@ Default: There is no default. This setting needs to be specified.
 Valid range for this setting is minimum 10 days and maximum 45 days.
 
 
+#### ServiceControl/EventRetentionPeriod
+
+This setting is only applicable from Versions 1.25.0 and higher.
+
+The period to keep event logs for before they are deleted.
+
+Type: timespan
+
+Default: `14` (14 days).
+
+Valid range for this setting is minimum 1 hour and maximum 200 days.
+
+
 ## Performance Tuning
 
 
