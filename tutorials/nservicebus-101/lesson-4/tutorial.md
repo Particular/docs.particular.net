@@ -48,6 +48,8 @@ Let's take a look at all of these differences side-by-side:
 
 From this comparison, it's clear that commands and events will sometimes come in pairs. A command will arrive, perhaps from a website UI, telling the system to `DoSomething`. The system does that work, and as a result, publishes a `SomethingHappened` event, which other components in the system can react to.
 
+INFO: For more details, see [Messages, Events and Commands](/nservicebus/messaging/messages-events-commands.md)
+
 The loose coupling provided by publishing events gives us quite a bit of flexibility to design our software systems in a much more maintainable way.
 
 
