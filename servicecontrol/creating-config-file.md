@@ -142,7 +142,7 @@ In Versions 1.8.3 and above the upper limit has been removed to allow for longer
 
 #### ServiceControl/AuditRetentionPeriod
 
-This setting is only applicable from Versions 1.12.0 and higher.
+This setting is only applicable from Versions 1.12 and above.
 
 The period to keep an audit message for before it is deleted.
 
@@ -155,7 +155,7 @@ Valid range for this setting is minimum 1 hour and maximum 364 days.
 
 #### ServiceControl/ErrorRetentionPeriod
 
-This setting is only applicable from Version 1.12.0 and higher.
+This setting is only applicable from Version 1.12 and above.
 
 The grace period that faulted messages are kept before they are deleted.
 
@@ -170,7 +170,7 @@ Valid range for this setting is minimum 10 days and maximum 45 days.
 
 #### ServiceControl/EventRetentionPeriod
 
-This setting is only applicable from Versions 1.25.0 and higher.
+This setting is only applicable from Versions 1.25 and above.
 
 The period to keep event logs for before they are deleted.
 
