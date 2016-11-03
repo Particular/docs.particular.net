@@ -16,7 +16,7 @@ By the end of this lesson, you will have learned:
  * How to control the logical routing
 
 
-## How do I send messages?
+## Sending messages
 
 We've already shown how an endpoint can "send a message to itself" using the `SendLocal()` method, which is available on the `IEndpointInstance` that we use in the endpoint startup code to create a UI, and also on the `IMessageHandlerContext` that we can access while handling a message.
 

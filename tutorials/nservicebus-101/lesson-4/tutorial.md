@@ -18,7 +18,7 @@ By the end of this lesson, you will have learned:
  * How to subscribe to an event
 
 
-## What is an event?
+## Events
 
 An **event** is another type of message that is published to multiple receivers, unlike a command which is sent to one receiver. Let's take a look at the formal definitions for commands and events:
 

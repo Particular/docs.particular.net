@@ -15,7 +15,7 @@ By the end of this lesson, you will have learned how to:
  * Use NServiceBus's logging capabilities
 
 
-## What is a message?
+## What is a message
 
 A [**message**](/nservicebus/messaging/messages-events-commands.md) is a collection of data sent via one-way communication between two endpoints. In NServiceBus, we define message via simple classes.
 
@@ -44,7 +44,7 @@ Also, you should not embed logic within your message classes. Each message shoul
 In essence, messages should be carriers for data only. By keeping your messages small and giving them clear purpose, you'll make your code easy to understand and evolve.
 
 
-## How do I organize messages?
+## Organizing messages
 
 Messages are data contracts and as such, they are shared between multiple endpoints. Therefore you generally should not put the classes in the same assembly with the endpoints. Instead, they should live in a separate class library.
 
@@ -57,7 +57,7 @@ Following these guidelines will make your message contracts easy to evolve in th
 NOTE: It's also possible to use [message conventions](/nservicebus/messaging/conventions.md) to identify message types, rather than the `ICommand` interface. Then a message assembly doesn't even need to reference NServiceBus at all. This can be an advantage when you want to upgrade to a new major version of NServiceBus, because message assemblies (which are shared between multiple endpoints) don't require any updates, so you can more easily update only one endpoint at a time.
 
 
-## How do I process a message?
+## Processing messages
 
 To process a message, we create a [**message handler**](/nservicebus/handlers/), a class that implements `IHandleMessages<T>`, where `T` is a message type. A message handler looks like this:
 

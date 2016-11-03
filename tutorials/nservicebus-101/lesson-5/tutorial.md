@@ -179,4 +179,6 @@ When the message is replayed in Sales, each endpoint picks up right where it lef
 
 In this lesson, we explored different causes for exceptions and how NServiceBus makes those much easier to deal with by introducing automatic retries and message replay to make many transient and semi-transient exceptions just go away, and provide tools to deal with poison messages, all without our users noticing anything but perhaps a slight processing delay. This is a capability that will enable you to create truly resilient, self-healing systems that can keep running in the face of partial failure.
 
-You've completed the last lesson in NServiceBus 101: Messaging Basics. The next course isn't ready yet, but you can [sign up to receive updates](https://particular.net/s/new-course-signup) when we release additional courses.
+You've completed the last lesson in NServiceBus 101: Messaging Basics. Over the span of this course, you've learned how to create endpoints, send and receive commands, publish events, and deal with message failures.
+
+If you're looking for more, consider trying one of our many [sample projects](/samples/), such as the [on-premise showcase] showing many different NServiceBus features working together, or see how to [use NServiceBus in an ASP.NET Core WebAPI application](/samples/web/send-from-aspnetcore-webapi/).
