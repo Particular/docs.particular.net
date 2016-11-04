@@ -15,7 +15,7 @@ related:
 When using a relational database 'as a service' for persisting NServiceBus data, it is important to keep in mind that this type of data store has different runtime semantics than a traditional relational database.
 
  * The data store is potentially located in a remote location and is thus subject to a broad range of potential networking issues.
- * 'As a service' environments are typically shared environments, which means that the performance of the database is impacted by the behavior of neighboring databases.
+ * 'As a service' environments such as SQL Azure are typically shared environments, which means that the performance of the database is impacted by the behavior of neighboring databases.
 
 The combination of these characteristics makes that any transaction executed against the database may show intermittent exceptions. Usually these exceptions are transient in nature and can be resolved by retrying the transaction. As these exceptions can occur anywhere, they are best dealt with at the generic infrastructure level, using an NHibernate driver.
 
