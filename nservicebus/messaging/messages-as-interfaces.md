@@ -1,6 +1,7 @@
 ---
 title: Messages as Interfaces
 summary: 'NServiceBus allows supports the use interfaces as well as standard XSD and class serialization.'
+component: core
 redirects:
 - nservicebus/messages-as-interfaces
 ---
