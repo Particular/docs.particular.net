@@ -101,7 +101,7 @@ We'll also create a new OrderBilled event that will be published by the Billing 
 
 ![Lesson 4 Diagram](diagram.png)
 
-When the Shipping endpoint receives both the OrderPlaced and OrderBilled, it will know that it is time to ship the product to the customer. (Because this requires stored state, we can't accomplish that with message handlers alone. To implement that functionality, we would need a [Saga](/nservicebus/sagas/), but that will not be covered in this lesson.)
+When the Shipping endpoint receives both the OrderPlaced and OrderBilled, it will know that it is time to ship the product to the customer. Because this requires stored state, we can't accomplish that with message handlers alone. To implement that functionality, we would need a [Saga](/nservicebus/sagas/), but that will not be covered in this lesson.
 
 
 ### Create an event
@@ -130,7 +130,7 @@ Now that the `OrderPlaced` event is defined, we can publish it from the `PlaceOr
 
 snippet:UpdatedHandler
 
-If we ran the solution now (and you're welcome to do so) nothing new or exciting will happen, at least visibly. We're publishing a message, but there are no subscribers, so no physical messages actually get sent anywhere. We're like a newspaper with no circulation. To fix that, we need a subscriber.
+If we ran the solution now, nothing new or exciting will happen, at least visibly. We're publishing a message, but there are no subscribers, so no physical messages actually get sent anywhere. We're like a newspaper with no circulation. To fix that, we need a subscriber.
 
 
 ### Create a subscriber

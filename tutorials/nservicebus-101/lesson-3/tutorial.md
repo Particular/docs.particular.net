@@ -112,9 +112,9 @@ NOTE: This is quite repetitive, but remember that this is still an introductory 
 
 At this point, we could run the Sales endpoint, although we wouldn't expect Sales to do anything except start up, create its queues, and then wait for messages that would never arrive. If you'd like, it's a good exercise to do, although you can skip it if you're in a hurry.
 
-What you'll find, however, is that in NServiceBus solutions it's common to want to run multiple projects (endpoints) at once. While you can right-click each project separately, and select **Debug** > **Start new instance** for each one, you can [configure Visual Studio to run multiple projects when you debug](https://msdn.microsoft.com/en-us/library/ms165413.aspx). You will want to configure the **ClientUI** and **Sales** projects to run when debugging. **Messages** is just a class library and can't be started directly.
+What you'll find, however, is that in NServiceBus solutions it's common to want to run multiple projects (endpoints) at once. To make this easier, configure both endpoints (**ClientUI** and **Sales**) to run at startup using Visual Studio's [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx) feature.
 
-If you run the project now, you'll find that both ClientUI and Sales will start up. ClientUI will work just as it did before, and Sales will start up and wait for messages that will never arrive.
+If you run the project now, ClientUI will work just as it did before, and Sales will start up and wait for messages that will never arrive.
 
 
 ### Moving the handler 

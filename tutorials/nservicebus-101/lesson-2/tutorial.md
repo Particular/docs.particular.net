@@ -69,7 +69,7 @@ Instead of explicitly returning a `Task`, you can add the `async` keyword to a h
 
 snippet:EmptyHandlerAsync
 
-If you want to learn more about working with async methods, check out the [Asynchronous Handlers](/nservicebus/handlers/async-handlers.md) article in our documentation.
+If you want to learn more about working with async methods, check out [Asynchronous Handlers](/nservicebus/handlers/async-handlers.md).
 
 A single class can implement multiple `IHandleMessages<T>` for multiple message types. This allows grouping handlers that are logically related, although a new instance of the class will be created for every message processed.
 

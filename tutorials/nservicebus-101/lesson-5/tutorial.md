@@ -75,7 +75,7 @@ We'll take a look at a few options for configuring retries in the exercise, but 
 
 Once a message is sent to the error queue, this indicates that a systemic failure has occurred. When this happens, a developer needs to look at the message and figure out *why*.
 
-For this reason, NServiceBus embeds the exception details and stack trace into the message that it forwards to the error queue, so you don't even need to search through a log file to find the details – everything you need is right there. Once the underlying issue is fixed, the message can be replayed. **Replaying a message** sends it back to its original queue in order to retry message processing after an issue has been fixed.
+For this reason, NServiceBus embeds the exception details and stack trace into the message that it forwards to the error queue, so you don't need to search through a log file to find the details. Once the underlying issue is fixed, the message can be replayed. **Replaying a message** sends it back to its original queue in order to retry message processing after an issue has been fixed.
 
 NServiceBus comes with tools to make this kind of operational monitoring really easy. If you installed the rest of the [Particular Service Platform](http://particular.net/downloads), you already have these at your disposal:
 
@@ -125,7 +125,11 @@ System.Exception: BOOM
 
 ### Modify immediate retries
 
-The only configurable option you need for immediate retries is how many of them to attempt. The default value is `5`, but you may want to set it to a higher or lower number. Many developers prefer to set it to `0` so that they can [avoid the "wall of text" effect when an exception is thrown](/samples/logging/stack-trace-cleaning/) during development, and then set it to a higher number for production use.
+The only configurable option you need for immediate retries is how many of them to attempt. The default value is `5`, but you may want to set it to a higher or lower number. Many developers prefer to set it to `0` so that they can limit the "wall of text" effect when an exception is thrown, and then set it to a higher number for production use.
+
+INFO: For further strategies to limit the "wall of text" effect in stack traces, especially with async code, check out the [Stack Trace Cleaning](/samples/logging/stack-trace-cleaning/) sample.
+
+To configure the endpoint to disable immediate retries:
 
  1. In the **Sales** endpoint, locate the **Program.cs** file.
  1. Before the endpoint is started, add the following code:
@@ -136,7 +140,7 @@ Now, re-run the solution.
 
 Notice how delayed retries still occur (with exception traces in yellow) but no immediate retries (in white) occur between each delayed retry.
 
-Of course, the number of retries supplied to the immediate retries API can be pulled from an appSetting to allow changing configuration between development/test/staging/production environments.
+The number of retries supplied to the immediate retries API can be pulled from an appSetting to allow changing configuration between development/test/staging/production environments.
 
 
 ### Modify delayed retries
@@ -181,4 +185,4 @@ In this lesson, we explored different causes for exceptions and how NServiceBus 
 
 You've completed the last lesson in NServiceBus 101: Messaging Basics. Over the span of this course, you've learned how to create endpoints, send and receive commands, publish events, and deal with message failures.
 
-If you're looking for more, consider trying one of our many [sample projects](/samples/), such as the [on-premise showcase] showing many different NServiceBus features working together, or see how to [use NServiceBus in an ASP.NET Core WebAPI application](/samples/web/send-from-aspnetcore-webapi/).
+If you're looking for more, consider trying one of our many [sample projects](/samples/), such as the [on-premise showcase](/samples/show-case/on-premise/) showing many different NServiceBus features working together.
