@@ -481,3 +481,23 @@
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
   NugetOrder:
     - NServiceBus.Serializers.SystemXml
+
+- Key: EventStorePersistence
+  Name: EventStore Persistence
+  DocoUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
+  Category: Persistence
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
+  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
+  NugetOrder:
+    - NServiceBus.EventStore
+
+- Key: EventStoreTransport
+  Name: EventStore Transport
+  DocoUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
+  Category: Transport
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
+  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
+  NugetOrder:
+    - NServiceBus.EventStore
