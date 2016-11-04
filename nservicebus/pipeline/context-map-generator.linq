@@ -196,20 +196,25 @@ class DiagramGenerator
 
 			var words = box.Text.Split(' ');
 
-			var textOffset = (words.Length - 1) * 0.4;
+			var textOffset = (words.Length - 1) * -0.45m;
 
-			var tspans = words.Select((w, i) => new XElement(ns + "tspan",
+			var tspans = words.Select((w, i) => (object)new XElement(ns + "tspan",
 				new XAttribute("x", Left(box) + (boxWidth / 2)),
-				new XAttribute("dy", i == 0 ? $"-{textOffset}em" : "1.2em"),
+				new XAttribute("dy", i == 0 ? $"{textOffset}em" : "1.2em"),
 				w));
 
+			if (words.Length == 1)
+			{
+				tspans = words;
+			}
 
 			yield return new XElement(ns + "text",
 				new object[] {
 					new XAttribute("x", Left(box) + (boxWidth / 2)),
 					new XAttribute("y", Top(box)  + (boxHeight / 2)),
-					new XAttribute("style", "text-anchor: middle"),
-					new XAttribute("font-size", "14pt"),
+					new XAttribute("text-anchor", "middle"),
+					new XAttribute("alignment-baseline", "middle"),
+					new XAttribute("font-size", "20pt"),
 					new XAttribute("font-family", "Arial")
 				}.Concat(tspans)
 
