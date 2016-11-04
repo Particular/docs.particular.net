@@ -1,13 +1,10 @@
 ---
 title: Publishing from Web Applications
+component: core
 tags:
-- azure
-- cloud
 - event
-- transport
 - scale out
 - publish subscribe
-- persistence
 related:
 - samples/web
 ---
