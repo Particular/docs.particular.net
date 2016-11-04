@@ -2,6 +2,7 @@
   Name: NServiceBus
   DocoUrl: nservicebus
   Category: Core
+  GitHubOwner: Particular/nservicebus-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
     - NServiceBus
@@ -10,6 +11,7 @@
   Name: Anotar Logger
   DocoUrl: https://github.com/Fody/Anotar
   Category: Logger
+  GitHubOwner: SimonCropp
   IsCommunityProject: true
   LicenseUrl: https://github.com/Fody/Anotar/blob/master/license.txt
   ProjectUrl: https://github.com/Fody/Anotar
@@ -19,6 +21,7 @@
 - Key: ABSDataBus
   Name: Azure Blob Storage Databus
   DocoUrl: nservicebus/azure
+  GitHubOwner: Particular/azure-storage-persistence-maintainers
   Category: Databus
   ProjectUrl: https://github.com/Particular/NServiceBus.DataBus.AzureBlobStorage
   NugetOrder:
@@ -28,6 +31,7 @@
 - Key: ASB
   Name: Azure Service Bus Transport
   DocoUrl: nservicebus/azure-service-bus
+  GitHubOwner: Particular/azure-service-bus-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureServiceBus
   NugetOrder:
@@ -36,6 +40,7 @@
 - Key: ASP
   Name: Azure Storage Persistence 
   DocoUrl: nservicebus/azure-storage-persistence
+  GitHubOwner: Particular/azure-storage-persistence-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.AzureStorage
   NugetOrder:
@@ -45,6 +50,7 @@
 - Key: ASQ
   Name: Azure Storage Queues Transport
   DocoUrl: nservicebus/azure-storage-queues
+  GitHubOwner: Particular/azure-storage-queues-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureStorageQueues
   NugetOrder:
@@ -53,6 +59,7 @@
 - Key: Autofac
   Name: Autofac Container
   DocoUrl: nservicebus/containers/autofac
+  GitHubOwner: Particular/container-maintainers
   Category: Container
   ProjectUrl: https://github.com/Particular/NServiceBus.Autofac
   NugetOrder:
@@ -61,6 +68,7 @@
 - Key: Callbacks
   Name: Callbacks
   DocoUrl: nservicebus/messaging/callbacks
+  GitHubOwner: Particular/nservicebus-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Callbacks
   NugetOrder:
@@ -70,6 +78,7 @@
 - Key: Castle
   Name: Castle Container
   DocoUrl: nservicebus/containers/castlewindsor
+  GitHubOwner: Particular/container-maintainers
   Category: Container
   ProjectUrl: https://github.com/Particular/NServiceBus.CastleWindsor
   NugetOrder:
@@ -78,6 +87,7 @@
 - Key: CloudServicesHost
   Name: Azure Cloud Service Host
   DocoUrl: nservicebus/hosting/cloud-services-host
+  GitHubOwner: Particular/azure-host-maintainers
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Host.AzureCloudService
   NugetOrder:
@@ -86,6 +96,7 @@
 - Key: CommonLogging
   Name: CommonLogging
   DocoUrl: nservicebus/logging/common-logging
+  GitHubOwner: Particular/logging-maintainers
   Category: Logger
   ProjectUrl: https://github.com/Particular/NServiceBus.CommonLogging
   NugetOrder:
@@ -94,6 +105,7 @@
 - Key: CustomChecks
   Name: ServiceControl CustomChecks
   DocoUrl: servicecontrol/plugins/custom-checks
+  GitHubOwner: Particular/servicecontrol-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/?query=CustomChecks
   NugetOrder:
@@ -105,6 +117,7 @@
 - Key: SagaAudit
   Name: ServiceControl SagaAudit
   DocoUrl: servicecontrol/plugins/saga-audit
+  GitHubOwner: Particular/servicecontrol-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/?query=SagaAudit
   NugetOrder:
@@ -113,6 +126,7 @@
 - Key: Heartbeats
   Name: ServiceControl Heartbeats
   DocoUrl: servicecontrol/plugins/heartbeat
+  GitHubOwner: Particular/servicecontrol-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/?query=Heartbeat
   NugetOrder:
@@ -124,6 +138,7 @@
 - Key: Distributor
   Name: Distributor
   DocoUrl: nservicebus/scalability-and-ha/distributor
+  GitHubOwner: Particular/nservicebus-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Distributor.Msmq
   NugetOrder:
@@ -143,6 +158,7 @@
 - Key: Gateway
   Name: Gateway
   DocoUrl: nservicebus/gateway
+  GitHubOwner: Particular/nservicebus-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Gateway
   NugetOrder:
@@ -152,6 +168,7 @@
 - Key: HandlerOrdering
   Name: Handler ordering by interface
   DocoUrl: samples/handler-ordering-by-interface
+  GitHubOwner: SimonCropp
   Category: Other
   IsCommunityProject: true
   LicenseUrl: https://github.com/SimonCropp/HandlerOrdering/License.txt
@@ -162,6 +179,7 @@
 - Key: Host
   Name: NServiceBus Host
   DocoUrl: nservicebus/hosting/nservicebus-host
+  GitHubOwner: Particular/nservicebus-maintainers
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Host
   NugetOrder:
@@ -170,6 +188,7 @@
 - Key: Jil
   Name: Jil Serializer
   DocoUrl: nservicebus/serialization/jil
+  GitHubOwner: SimonCropp
   Category: Serializer
   IsCommunityProject: true
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Jil/blob/master/LICENSE
@@ -180,6 +199,7 @@
 - Key: Log4Net
   Name: Log4Net Logger
   DocoUrl: nservicebus/logging/log4net
+  GitHubOwner: Particular/logging-maintainers
   Category: Logger
   ProjectUrl: https://github.com/Particular/NServiceBus.Log4Net
   NugetOrder:
@@ -189,6 +209,7 @@
 - Key: MessagePack
   Name: MessagePack Serializer
   DocoUrl: nservicebus/serialization/message-pack
+  GitHubOwner: SimonCropp
   Category: Serializer
   IsCommunityProject: true
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.MessagePack/blob/master/LICENSE
@@ -219,6 +240,7 @@
 - Key: MongoPersistenceTekmaven
   Name: MongoDB Persistence (Ryan Hoffman)
   DocoUrl: nservicebus/mongodb-persistence-tekmaven
+  GitHubOwner: tekmaven
   Category: Persistence
   IsCommunityProject: true
   LicenseUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb/blob/master/LICENSE.txt
@@ -229,6 +251,7 @@
 - Key: MongoDatabusTekmaven
   Name: MongoDB Databus (Ryan Hoffman)
   DocoUrl: nservicebus/messaging/databus/mongodb-tekmaven
+  GitHubOwner: tekmaven
   Category: Databus
   IsCommunityProject: true
   LicenseUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb/blob/master/LICENSE.txt
@@ -239,6 +262,7 @@
 - Key: Newtonsoft
   Name: Newtonsoft Serializer
   DocoUrl: nservicebus/serialization/newtonsoft
+  GitHubOwner: Particular/nservicebus-maintainers
   Category: Serializer
   ProjectUrl: https://github.com/Particular/NServiceBus.Newtonsoft.Json
   NugetOrder:
@@ -247,6 +271,7 @@
 - Key: NHibernate
   Name: NHibernate Persistence
   DocoUrl: nservicebus/nhibernate
+  GitHubOwner: Particular/nhibernate-persistence-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.NHibernate
   NugetOrder:
@@ -255,6 +280,7 @@
 - Key: Ninject
   Name: Ninject Container
   DocoUrl: nservicebus/containers/ninject
+  GitHubOwner: Particular/container-maintainers
   Category: Container
   ProjectUrl: https://github.com/Particular/NServiceBus.Ninject
   NugetOrder:
@@ -263,6 +289,7 @@
 - Key: NLog
   Name: NLog Logger
   DocoUrl: nservicebus/logging/nlog
+  GitHubOwner: Particular/logging-maintainers
   Category: Logger
   ProjectUrl: https://github.com/Particular/NServiceBus.NLog
   NugetOrder:
@@ -272,6 +299,7 @@
 - Key: ProtoBuf
   Name: ProtoBuf Serializer
   DocoUrl: nservicebus/serialization/protobuf
+  GitHubOwner: SimonCropp
   Category: Serializer
   IsCommunityProject: true
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.ProtoBuf/blob/master/LICENSE
@@ -282,6 +310,7 @@
 - Key: Rabbit
   Name: RabbitMQ Transport
   DocoUrl: nservicebus/rabbitmq
+  GitHubOwner: Particular/rabbitmq-transport-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.RabbitMQ
   NugetOrder:
@@ -290,6 +319,7 @@
 - Key: Raven
   Name: RavenDB Persistence
   DocoUrl: nservicebus/ravendb
+  GitHubOwner: Particular/ravendb-persistence-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.RavenDB
   NugetOrder:
@@ -298,6 +328,7 @@
 - Key: Serilog
   Name: Serilog Logger
   DocoUrl: nservicebus/logging/serilog
+  GitHubOwner: SimonCropp
   Category: Logger
   IsCommunityProject: true
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Serilog/blob/master/license.txt
@@ -308,6 +339,7 @@
 - Key: SerilogTracing
   Name: Serilog Tracing
   DocoUrl: nservicebus/logging/serilog-tracing
+  GitHubOwner: SimonCropp
   Category: Logger
   IsCommunityProject: true
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Serilog/blob/master/license.txt
@@ -318,6 +350,7 @@
 - Key: ServiceBootstrap
   Name: Windows Service Bootstrap
   DocoUrl: nservicebus/hosting/windows-service
+  GitHubOwner: Particular/nservicebus-maintainers
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Bootstrap.WindowsService
   NugetOrder:
@@ -326,6 +359,7 @@
 - Key: ServiceControl
   Name: ServiceControl
   DocoUrl: servicecontrol
+  GitHubOwner: Particular/servicecontrol-maintainers
   Category: Other
   UsesNuget: false
   ProjectUrl: https://github.com/Particular/ServiceControl
@@ -335,6 +369,7 @@
 - Key: ServiceControlContracts
   Name: ServiceControl Contracts
   DocoUrl: servicecontrol/contracts
+  GitHubOwner: Particular/servicecontrol-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/ServiceControl.Contracts
   NugetOrder:
@@ -343,6 +378,7 @@
 - Key: ServicePulse
   Name: ServicePulse
   DocoUrl: servicepulse
+  GitHubOwner: Particular/servicepulse-maintainers
   Category: Other
   UsesNuget: false
   ProjectUrl: https://github.com/Particular/ServicePulse
@@ -352,6 +388,7 @@
 - Key: ServiceInsight
   Name: ServiceInsight
   DocoUrl: serviceinsight
+  GitHubOwner: Particular/serviceinsight-maintainers
   Category: Other
   UsesNuget: false
   ProjectUrl: https://github.com/Particular/ServiceInsight
@@ -361,6 +398,7 @@
 - Key: SimpleInjector
   Name: SimpleInjector Container
   DocoUrl: nservicebus/containers/simpleinjector
+  GitHubOwner: WilliamBZA
   Category: Container
   IsCommunityProject: true
   LicenseUrl: https://github.com/WilliamBZA/NServicebus.SimpleInjector/blob/master/LICENSE
@@ -371,6 +409,7 @@
 - Key: Spring
   Name: Spring Container
   DocoUrl: nservicebus/containers/spring
+  GitHubOwner: Particular/container-maintainers
   Category: Container
   ProjectUrl: https://github.com/Particular/NServiceBus.Spring
   NugetOrder:
@@ -379,6 +418,7 @@
 - Key: SqlServer
   Name: SQL Server Transport
   DocoUrl: nservicebus/sqlserver
+  GitHubOwner: Particular/sqlserver-transport-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.SqlServer
   NugetOrder:
@@ -387,6 +427,7 @@
 - Key: StructureMap
   Name: StructureMap Container
   DocoUrl: nservicebus/containers/structuremap
+  GitHubOwner: Particular/container-maintainers
   Category: Container
   ProjectUrl: https://github.com/Particular/NServiceBus.StructureMap
   NugetOrder:
@@ -395,6 +436,7 @@
 - Key: Testing
   Name: Testing
   DocoUrl: nservicebus/testing
+  GitHubOwner: Particular/nservicebus-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Testing
   NugetOrder:
@@ -403,6 +445,7 @@
 - Key: Unity
   Name: Unity Container
   DocoUrl: nservicebus/containers/unity
+  GitHubOwner: Particular/container-maintainers
   Category: Container
   ProjectUrl: https://github.com/Particular/NServiceBus.Unity
   NugetOrder:
@@ -411,6 +454,7 @@
 - Key: Wire
   Name: Wire Serializer
   DocoUrl: nservicebus/serialization/wire
+  GitHubOwner: SimonCropp
   Category: Serializer
   IsCommunityProject: true
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Wire/blob/master/LICENSE.txt
@@ -421,6 +465,7 @@
 - Key: Wcf
   Name: WCF Support
   DocoUrl: nservicebus/wcf
+  GitHubOwner: Particular/nservicebus-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Wcf
   NugetOrder:
