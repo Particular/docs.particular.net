@@ -3,7 +3,7 @@ title: Tutorials
 suppressRelated: true
 ---
 
-These tutorials will give you step-by-step instruction to help you learn NServiceBus.
+These resources will give you step-by-step instruction to help you learn NServiceBus.
 
 ### [NServiceBus 101: Messaging Basics](nservicebus-101/)
 

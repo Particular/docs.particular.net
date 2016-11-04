@@ -30,9 +30,9 @@ An **event** is a message that is published from a single sender, and is process
 
 You can see that in many ways, commands and events are exact opposites, and the differences in their definition leads us to different uses for each.
 
-A command can be sent from anywhere, but is processed by one receiver. This is very similar to a web service, or any other [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call)-style service. The big difference is that a one-way message does not have any return value like a web service would have. This means that the handler for the command is doing work for whomever is calling it, and that the sender has a very good idea about what it expects to happen as a result of sending the command. It is the sender saying "Will you please do something for me?" and so commands should be named in the [imperative tense](https://en.wikipedia.org/wiki/Imperative_mood), like `PlaceOrder`, `UpdateCustomerStatus`, and `ChargeCreditCard`. This creates tight coupling between the sender and receiver, because while it is possible to reject a command, you can't have true autonomy if someone else can tell you what to do.
+A command can be sent from anywhere, but is processed by one receiver. This is very similar to a web service, or any other [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call)-style service. The big difference is that a one-way message does not have any return value like a web service would have. This means that the handler for the command is doing work for whomever is calling it, and that the sender has a very good idea about what it expects to happen as a result of sending the command. It is the sender saying "Will you please do something for me?" and so commands should be named in the [imperative tense](https://en.wikipedia.org/wiki/Imperative_mood), like `PlaceOrder` and `ChargeCreditCard`. This creates tight coupling between the sender and receiver, because while it is possible to reject a command, you can't have true autonomy if someone else can tell you what to do.
 
-An event, on the other hand, is sent by one sender, and received by many receivers, or maybe one receiver, or even zero receivers.  This makes it an announcement that something has already happened. A subscriber can't reject or cancel an event any more than you could stop the New York Times from delivering newspapers to all of their subscribers. The publisher has no idea (and doesn't care) what receivers choose to do with the event; it's just making an announcement. So, events should be named in the [past tense](https://en.wikipedia.org/wiki/Past_tense), commonly ending with the **-ed** suffix, like `OrderPlaced` and `CreditCardCharged`. This creates loose coupling, because while the contract (the content of the message) must be agreed upon, there is no requirement that subscribers of an event do anything.
+An event, on the other hand, is sent by one logical sender, and received by many receivers, or maybe one receiver, or even zero receivers.  This makes it an announcement that something has already happened. A subscriber can't reject or cancel an event any more than you could stop the New York Times from delivering newspapers to all of their subscribers. The publisher has no idea (and doesn't care) what receivers choose to do with the event; it's just making an announcement. So, events should be named in the [past tense](https://en.wikipedia.org/wiki/Past_tense), commonly ending with the **-ed** suffix, like `OrderPlaced` and `CreditCardCharged`. This creates loose coupling, because while the contract (the content of the message) must be agreed upon, there is no requirement that subscribers of an event do anything.
 
 Let's take a look at all of these differences side-by-side:
 
@@ -55,7 +55,9 @@ The loose coupling provided by publishing events gives us quite a bit of flexibi
 
 ## Better code through decoupling
 
-Have you ever seen a codebase for a naive implementation of an e-commerce store? Commonly you'll find one large SubmitOrder method responsible for retrieving the shopping cart, creating an Order and OrderLines in the database, authorizing the credit card, capturing the credit card authorization, emailing a receipt, notifying a fulfillment agency, and then updating any sort of wish list, gift registry, or "frequently bought together" information the site might keep track of. If that method doesn't number in the hundreds of lines of code, then it likely calls into subroutine methods to handle each of these concerns. The sum total lines of code in such an example likely numbers in at least hundreds of lines of code, if not thousands.
+Imagine you were implementing the SubmitOrder method for an e-commerce website. To complete the sale, you would need to retrieve the shopping cart, insert an Order and OrderLines into the database, authorize a credit card transaction and then capture the authorization, and email the user a receipt. You also may need to notify a fulfillment agency via a web service, update a wish list or gift registry, or store "frequently bought together" information, all depending upon your specific business requirements.
+
+You could do all this work in one monolithic method with perhaps hundreds of lines of code. You could further organize it by making each task a separate method, and have the SubmitOrder method call into each one of them in turn, but while this makes each method more manageable, it doesn't reduce the risk of running all those processes in a chain.
 
 When one of the steps in that long chain fails, you're left with a partially completed process that requires manual intervention to fix, either by mucking around manually in the database, manually reconciling with a credit card processor, or manually sending confirmation emails.
 
@@ -116,8 +118,6 @@ Let's create our first event, `OrderPlaced`:
 When complete, your `OrderPlaced` class should look like the following:
 
 snippet:OrderPlaced
-
-NOTE: Notice that because of our use of folders for **Commands** and **Events**, we now have our commands and events in namespaces called `Messages.Commands` and `Messages.Events`, respectively. We could [take advantage of this organization](/nservicebus/messaging/conventions.md) to identify commands and events without needing to use the `ICommand` and `IEvent` interfaces at all.
 
 
 ### Publish an event
@@ -200,7 +200,7 @@ INFO  Shipping.OrderBilledHandler Received OrderBilled, OrderId = 96ee660a-5dd7-
 
 Of course, these messages could appear out of order. With asynchronous messaging, there are no message ordering guarantees. Even though `OrderBilled` comes logically after `OrderPlaced`, it's possible that `OrderBilled` could arrive first.
 
-You'll note that in the sample solution, the message for each handler says "Should we ship now?" This is because both message handlers are stateless. Like HTTP requests, message handlers have no intrinsic memory of what came before. In an upcoming course, we'll explore [Sagas](/nservicebus/sagas/), an NServiceBus feature that provides that memory in-between message handlers, similar to how ASP.NET Session State stores data between HTTP requests in ASP.NET web applications. Once we have that capability, we'll be able to publish an `OrderShipped` event once both the `OrderPlaced` and `OrderBilled` events arrive, but this is good enough for now.
+You'll note that in the sample solution, the message for each handler says "Should we ship now?" This is because both message handlers are stateless. Like HTTP requests, message handlers have no intrinsic memory of what came before. NServiceBus contains a feature called [Sagas](/nservicebus/sagas/) provides the ability to retain state between messages, but that won't be covered in this lesson.
 
 
 ## Summary

@@ -2,7 +2,7 @@
 title: "NServiceBus 101 Lesson 2: Sending a command"
 ---
 
-Sending and receiving messages is at the core of any NServiceBus system. Durable messages passed between processes allow reliable communication between those processes, even if one of them is temporarily unavailable. In this lesson we'll show how to send and process a message.
+Sending and receiving messages is a central characteristic of any NServiceBus system. Durable messages passed between processes allow reliable communication between those processes, even if one of them is temporarily unavailable. In this lesson we'll show how to send and process a message.
 
 
 ## Objectives
@@ -48,13 +48,13 @@ In essence, messages should be carriers for data only. By keeping your messages 
 
 Messages are data contracts and as such, they are shared between multiple endpoints. Therefore you generally should not put the classes in the same assembly with the endpoints. Instead, they should live in a separate class library.
 
-**Message assemblies** should be entirely self-contained, meaning they should contain only NServiceBus message types, and any supporting types required by the messages themselves. For example, if a message uses an enumeration type for one of its properties, then that enumeration should also live within the same message assembly. 
+**Message assemblies** should be entirely self-contained, meaning they should contain only NServiceBus message types, and any supporting types required by the messages themselves. For example, if a message uses an enumeration type for one of its properties, then that enumeration should also live within the same message assembly.
+
+INFO: It is technically possible to embed messages within the endpoint assembly, but then those messages can't be exchanged with other endpoints. Samples will also sometimes embed the messages in order to make the sample easier to understand. In this course, we'll stick to keeping them in dedicated message assemblies.
 
 Additionally, message assemblies should have no dependencies other than libraries included with the .NET Framework, and the NServiceBus core assembly, which is required to reference the `ICommand` interface. 
 
 Following these guidelines will make your message contracts easy to evolve in the future.
-
-NOTE: It's also possible to use [message conventions](/nservicebus/messaging/conventions.md) to identify message types, rather than the `ICommand` interface. Then a message assembly doesn't even need to reference NServiceBus at all. This can be an advantage when you want to upgrade to a new major version of NServiceBus, because message assemblies (which are shared between multiple endpoints) don't require any updates, so you can more easily update only one endpoint at a time.
 
 
 ## Processing messages
@@ -102,14 +102,14 @@ To share message between endpoints they need to be self-contained within a separ
 
 ### Create a message
 
-In order to better organize messages, we'll create our first command in a folder called **Commands**.
+We'll create our first command in a folder called **Commands**.
 
  1. In the **Messages** project, create a new folder called **Commands**.
  1. In the **Commands** folder, add a new class named `PlaceOrder`.
  1. Mark `PlaceOrder` as `public` and implement `ICommand`.
  1. Add a public property of type `string` named `OrderId`.
 
-NOTE: The .NET Framework contains another interface named `ICommand` in the `System.Windows.Input` namespace. Be sure that if you use tooling to resolve the namespace, you select `NServiceBus.ICommand`. Most of the types you will need will reside in the `NServiceBus` namespace.
+WARNING: The .NET Framework contains its own interface named `ICommand` in the `System.Windows.Input` namespace. Be sure that if you use tooling to resolve the namespace, you select `NServiceBus.ICommand`. Most of the types you will need will reside in the `NServiceBus` namespace.
 
 When complete, your `PlaceOrder` class should look like the following:
 

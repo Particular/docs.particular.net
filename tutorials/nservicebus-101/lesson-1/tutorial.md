@@ -83,7 +83,7 @@ snippet:Transport
 
 This setting defines the [**transport**](/nservicebus/transports/) that NServiceBus will use to send and receive messages. `MsmqTransport` is the only transport available within the core library. All other transports require additional NuGet packages.
 
-The [**MSMQ transport**](/nservicebus/msmq/) is the default setting, so we technically don't need this line at all. However, if you add a period right before the semicolon (in order to see the IntelliSense) you will see that more settings related to the transport are available as extension methods. We will explore these in later lessons. For now, it's good to make the choice of transport explicit within our code.
+The [**MSMQ transport**](/nservicebus/msmq/) is the default setting, so we technically don't need this line at all. For now, it's good to make the choice of transport explicit within our code.
 
 
 #### Serializer
@@ -122,7 +122,7 @@ At the end of the `AsyncMain` method, after the configuration code, add the foll
 
 snippet:Startup
 
-When the endpoint starts, the `EndpointConfiguration` information is locked down from further changes, and the settings it contains are used to initialize the endpoint.
+The endpoint is initialized according to the settings defined by the `EndpointConfiguration` class. Once the endpoint starts, changes to the configuration information are no longer applied.
 
 When you run the endpoint for the first time, the endpoint will:
 
