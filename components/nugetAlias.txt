@@ -52,5 +52,4 @@ Testing: NServiceBus.Testing
 Unity: NServiceBus.Unity
 Wire: NServiceBus.Wire
 Wcf: NServiceBus.Wcf
-EventStoreTransport: NServiceBus.EventStore
-EventStorePersistence: NServiceBus.EventStore
+EventStore: NServiceBus.EventStore
