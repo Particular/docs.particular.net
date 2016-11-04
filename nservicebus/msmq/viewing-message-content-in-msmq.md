@@ -1,6 +1,7 @@
 ---
 title: Viewing MSMQ content
 summary: See queues and message contents.
+reviewed: 2016-11-04
 redirects:
 - nservicebus/how-can-i-see-the-queues-and-messages-on-a-machine
 - nservicebus/viewing-message-content-in-msmq
@@ -28,11 +29,15 @@ The MSMQ MMC snap-in can be used to manage queues.
 
 Use one of the following based on the OS
 
-    Start > Run > compmgmt.msc (Computer Management) > Features > Message Queuing
+```no-highlight
+Start > Run > compmgmt.msc (Computer Management) > Features > Message Queuing
+```
 
 or
 
-    Start > Run > compmgmt.msc (Computer Management) > Services and Applications > Message Queuing.
+```no-highlight
+Start > Run > compmgmt.msc (Computer Management) > Services and Applications > Message Queuing
+```
 
 
 ### Queue Explorer
