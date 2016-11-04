@@ -1,6 +1,7 @@
 ---
 title: Exception Caveats
 summary: Certain types of exceptions cannot be handled nativity by NServiceBus.
+component: core
 tags:
 - Exceptions
 - Error Handling
