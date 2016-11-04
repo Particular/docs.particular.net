@@ -1,6 +1,7 @@
 ---
 title: Startup Behavior
 summary: Running code at startup when hosting in Azure Cloud Services.
+component: CloudServicesHost
 tags:
  - Hosting
  - Worker Roles
@@ -8,6 +9,7 @@ tags:
  - Azure
  - Cloud
  - Startup
+reviewed: 2016-11-04
 ---
 
 include:host-startup
