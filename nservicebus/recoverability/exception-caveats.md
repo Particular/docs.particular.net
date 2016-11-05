@@ -2,9 +2,10 @@
 title: Exception Caveats
 summary: Certain types of exceptions cannot be handled nativity by NServiceBus.
 component: core
+reviewed: 2016-11-05
 tags:
-- Exceptions
-- Error Handling
+ - Exceptions
+ - Error Handling
 redirects:
  - nservicebus/errors/exception-caveats
 ---
@@ -25,11 +26,11 @@ For more information see [Handling Corrupted State Exceptions](https://msdn.micr
 
 ## StackOverflowException
 
-NServiceBus can't handle [StackOverflowExceptions](https://msdn.microsoft.com/en-us/library/system.stackoverflowexception.aspx) since .NET does not allow it.
+[StackOverflowExceptions](https://msdn.microsoft.com/en-us/library/system.stackoverflowexception.aspx) cannot be handled since .NET does not allow it.
 
 > A StackOverflowException object cannot be caught by a try-catch block and the corresponding process is terminated by default. Consequently, users are advised to write their code to detect and prevent a stack overflow. For example, if the application depends on recursion, use a counter or a state condition to terminate the recursive loop. Note that an application that hosts the common language runtime (CLR) can specify that the CLR unload the application domain where the stack overflow exception occurs and let the corresponding process continue.
 
 
 ## OutOfMemoryException
 
-[OutOfMemoryException](https://msdn.microsoft.com/en-us/library/system.outofmemoryexception.aspx) will be handled in a similar manner as other exceptions. NServiceBus will retry the message according to the endpoint configuration. However, if there isn't sufficient memory, then the process might crash.
+[OutOfMemoryException](https://msdn.microsoft.com/en-us/library/system.outofmemoryexception.aspx) will be handled in a similar manner as other exceptions. A message will be retried according to the endpoint configuration. However, if there isn't sufficient memory, then the process might crash.
