@@ -33,11 +33,6 @@ snippet:DiscardingOldMessagesWithAnAttribute
 snippet:DiscardingOldMessagesWithCode
 
 
-## Caveats
-
-TimeToBeReceived relies on underlying functionality in the transport infrastructure to discard expired messages. This feature's usefulness is highly affected by the actual implementation in the different transports.
-
-
 ## Clock synchronization issues
 
 When sending a message with a certain TimeToBeReceived value it could happen that the receiver drops the message if clocks are too much out of sync. For example, if TimeToBeReceived is 1 minute and the receivers clock is 1 minute ahead compared to the sender the message could potentially never be delivered thus processed.
@@ -45,6 +40,11 @@ When sending a message with a certain TimeToBeReceived value it could happen tha
 Because clocks usually are at most a few minutes out of sync this issue only applies to relatively small TimeToBeReceived values.
 
 For this reason it is wise to add the maximum amount of allowed clock offset, called clock drift, to the TTBR value. For example, when using TimeToBeReceived value of 90 seconds, one should allow for 300 seconds of maximum clock drift so the TTBR value becomes 90 + 300 = 390 seconds.
+
+
+## Caveats
+
+TimeToBeReceived relies on underlying functionality in the transport infrastructure to discard expired messages. This feature's usefulness is highly affected by the actual implementation in the different transports.
 
 
 ### MSMQ transport
