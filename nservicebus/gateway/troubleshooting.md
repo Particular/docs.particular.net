@@ -1,14 +1,16 @@
 ---
 title: Troubleshooting
+reviewed: 2016-11-05
 redirects:
  - nservicebus/gateway-trouble-shooting
  - nservicebus/gateway-service-point-manager
  - nservicebus/gateway/service-point-manager
 ---
 
+
 ## Corrupted urlacls
 
-At startup NServiceBus will attempt to recreate the urlacls so that the process can listen on a specific port. If it already exists warning is logged. In this case the following will appear in the configured log.
+At startup the Gateway will attempt to recreate the urlacls so that the process can listen on a specific port. If it already exists warning is logged. In this case the following will appear in the configured log.
 
 ```no-highlight
 WARN NServiceBus.Installation.GatewayHttpListenerInstaller
