@@ -1,30 +1,30 @@
 ---
 title: Disconnect Workers
 summary: How a worker can be disconnected from its distributor using PowerShell cmdlets
+reviewed: 2016-11-05
 tags:
-- Scalability
-- Distributor
+ - Scalability
+ - Distributor
 redirects:
  - nservicebus/disconnect-workers-from-running-distributor
 ---
 
-NServiceBus Distributor starts sending messages to a Worker once it is aware of it. A Worker registers itself with a Distributor by sending a message containing a `SessionID` that identifies the current running Worker and the number of messages it can handle concurrently.
+The Distributor starts sending messages to a Worker once it is aware of it. A Worker registers itself with a Distributor by sending a message containing a `SessionID` that identifies the current running Worker and the number of messages it can handle concurrently.
 
 ## Disconnecting a Worker
 
 If the Worker is configured using the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ), there is a PowerShell cmdlet that can be used to disconnect a Worker from a Distributor. The steps are the following:
 
-1. Load the [NServiceBus PowerShell CmdLet](/nservicebus/operations/management-using-powershell.md) and execute
-```ps
-Remove-NServiceBusMSMQWorker WorkerAddress DistributorAddress TransactionalDistributorQueue
-```
-{{NOTE:
+ 1. Load the [NServiceBus PowerShell CmdLet](/nservicebus/operations/management-using-powershell.md) and execute
+ ```ps
+ Remove-NServiceBusMSMQWorker WorkerAddress DistributorAddress TransactionalDistributorQueue
+ ```
+ Where:
    * `WorkerAddress` is the Worker queue name, eg Worker@localhost
    * `DistributorAddress` is the Distributor queue name eg MyDistributor@localhost, **Note:** Pass the Distributor queue name, the PowerShell cmdlet will automatically appends ".distributor.control" to the end of the Distributor queue.
    * `TransactionalDistributorQueue` is the Distributor queue transactional or not ?
-}}
-1. Wait for Worker to drain all queued messages from its input queue.
-1. Shutdown the endpoint.
+ 1. Wait for Worker to drain all queued messages from its input queue.
+ 1. Shutdown the endpoint.
 
 
 ## Distributor behavior after the PowerShell is executed
