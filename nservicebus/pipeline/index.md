@@ -1,6 +1,7 @@
 ---
 title: Message Handling Pipeline
 summary: Overview of the message handling pipeline
+reviewed: 2016-11-05
 tags:
 - Pipeline
 redirects:
@@ -9,7 +10,7 @@ related:
 - samples/header-manipulation
 ---
 
-NServiceBus has the concept of a "pipeline" which refers to the series of actions taken when an incoming message is process and an outgoing message is sent.
+NServiceBus has the concept of a "pipeline" which refers to the series of actions taken when an incoming message is processed and an outgoing message is sent.
 
 ### Customizing the pipeline
 
