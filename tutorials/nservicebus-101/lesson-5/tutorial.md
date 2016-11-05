@@ -77,9 +77,9 @@ Once a message is sent to the error queue, this indicates that a systemic failur
 
 For this reason, NServiceBus embeds the exception details and stack trace into the message that it forwards to the error queue, so you don't need to search through a log file to find the details. Once the underlying issue is fixed, the message can be replayed. **Replaying a message** sends it back to its original queue in order to retry message processing after an issue has been fixed.
 
-NServiceBus comes with tools to make this kind of operational monitoring really easy. If you installed the rest of the [Particular Service Platform](http://particular.net/downloads), you already have these at your disposal:
+The [Particular Service Platform](/platform/), of which NServiceBus is a part, includes tools to make this kind of operational monitoring really easy. If you used the [Particular Platform Installer](/platform/installer/) to install MSMQ, you should already have these at your disposal:
 
- * [ServiceControl](/servicecontrol/) is like a brain monitoring your systems, sucking in information and making that available to other tools via a REST API. One of its functions is to monitor your error queue so that you can act on the poison messages that arrive there.
+ * [ServiceControl](/servicecontrol/) is like a watchdog monitoring your system, sucking in information and making that available to other tools via a REST API. One of its functions is to monitor your error queue so that you can act on the poison messages that arrive there.
  * [ServicePulse](/servicepulse/) is a web application aimed to be an operational dashboard for your NServiceBus system. It allows you to see failed messages, including the exception details, and provides a UI to either replay or archive failed messages.
 
 Sometimes, a new release will contain a bug in handler logic that isn't found until the code is deployed. When this happens, many errors can flood into the error queue at once. At these times, it's incredibly valuable to be able to rollback to the old version of the endpoint, and then replay the messages through proven code. Then you can take the time to properly troubleshoot and fix the issue before attempting a new deployment.
