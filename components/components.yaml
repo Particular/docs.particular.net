@@ -179,7 +179,7 @@
 - Key: Host
   Name: NServiceBus Host
   DocoUrl: nservicebus/hosting/nservicebus-host
-  GitHubOwner: Particular/nservicebus-maintainers
+  GitHubOwner: Particular/host-maintainers
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Host
   NugetOrder:
