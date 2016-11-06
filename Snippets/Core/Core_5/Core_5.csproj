@@ -302,7 +302,6 @@
     <Compile Include="Sagas\Timeouts\TiredOfWaitingForMessage2.cs" />
     <Compile Include="ScaleOut\IndividualizeQueues.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
-    <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
     <Compile Include="Encryption\MessageBody\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />
