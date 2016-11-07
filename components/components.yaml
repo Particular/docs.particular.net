@@ -125,27 +125,6 @@
     - ServiceControl.Plugin.Nsb4.CustomChecks
     - ServiceControl.Plugin.Nsb3.CustomChecks
 
-- Key: SagaAudit
-  Name: ServiceControl SagaAudit
-  DocoUrl: servicecontrol/plugins/saga-audit
-  GitHubOwner: Particular/servicecontrol-maintainers
-  Category: Other
-  ProjectUrl: https://github.com/Particular/?query=SagaAudit
-  NugetOrder:
-    - ServiceControl.Plugin.Nsb6.SagaAudit
-
-- Key: Heartbeats
-  Name: ServiceControl Heartbeats
-  DocoUrl: servicecontrol/plugins/heartbeat
-  GitHubOwner: Particular/servicecontrol-maintainers
-  Category: Other
-  ProjectUrl: https://github.com/Particular/?query=Heartbeat
-  NugetOrder:
-    - ServiceControl.Plugin.Nsb6.Heartbeat
-    - ServiceControl.Plugin.Nsb5.Heartbeat
-    - ServiceControl.Plugin.Nsb4.Heartbeat
-    - ServiceControl.Plugin.Nsb3.Heartbeat
-
 - Key: Distributor
   Name: Distributor
   DocoUrl: nservicebus/msmq/distributor
@@ -165,6 +144,28 @@
   ProjectUrl: https://github.com/benjaminramey/GoodlyFere.NServiceBus.EntityFramework
   NugetOrder:
     - GoodlyFere.NServiceBus.EntityFramework
+
+- Key: EventStorePersistence
+  Name: EventStore Persistence
+  DocoUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
+  GitHubOwner: SzymonPobiega
+  Category: Persistence
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
+  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
+  NugetOrder:
+    - NServiceBus.EventStore
+
+- Key: EventStoreTransport
+  Name: EventStore Transport
+  DocoUrl: nservicebus/eventstoretransport/
+  GitHubOwner: SzymonPobiega
+  Category: Transport
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
+  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
+  NugetOrder:
+    - NServiceBus.EventStore
 
 - Key: Gateway
   Name: Gateway
@@ -186,6 +187,18 @@
   ProjectUrl: https://github.com/SimonCropp/HandlerOrdering/
   NugetOrder:
     - NServiceBus.HandlerOrdering
+
+- Key: Heartbeats
+  Name: ServiceControl Heartbeats
+  DocoUrl: servicecontrol/plugins/heartbeat
+  GitHubOwner: Particular/servicecontrol-maintainers
+  Category: Other
+  ProjectUrl: https://github.com/Particular/?query=Heartbeat
+  NugetOrder:
+    - ServiceControl.Plugin.Nsb6.Heartbeat
+    - ServiceControl.Plugin.Nsb5.Heartbeat
+    - ServiceControl.Plugin.Nsb4.Heartbeat
+    - ServiceControl.Plugin.Nsb3.Heartbeat
 
 - Key: Host
   Name: NServiceBus Host
@@ -336,6 +349,15 @@
   NugetOrder:
     - NServiceBus.RavenDB
 
+- Key: SagaAudit
+  Name: ServiceControl SagaAudit
+  DocoUrl: servicecontrol/plugins/saga-audit
+  GitHubOwner: Particular/servicecontrol-maintainers
+  Category: Other
+  ProjectUrl: https://github.com/Particular/?query=SagaAudit
+  NugetOrder:
+    - ServiceControl.Plugin.Nsb6.SagaAudit
+
 - Key: Serilog
   Name: Serilog Logger
   DocoUrl: nservicebus/logging/serilog
@@ -444,6 +466,16 @@
   NugetOrder:
     - NServiceBus.StructureMap
 
+- Key: SystemXml
+  Name: System.Xml Serializer
+  DocoUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
+  Category: Serializer
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
+  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
+  NugetOrder:
+    - NServiceBus.Serializers.SystemXml
+
 - Key: Testing
   Name: Testing
   DocoUrl: nservicebus/testing
@@ -482,33 +514,3 @@
   NugetOrder:
     - NServiceBus.Wcf  
     - NServiceBus.Host
-
-- Key: SystemXml
-  Name: System.Xml Serializer
-  DocoUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
-  Category: Serializer
-  IsCommunityProject: true
-  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
-  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
-  NugetOrder:
-    - NServiceBus.Serializers.SystemXml
-
-- Key: EventStorePersistence
-  Name: EventStore Persistence
-  DocoUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
-  Category: Persistence
-  IsCommunityProject: true
-  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
-  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
-  NugetOrder:
-    - NServiceBus.EventStore
-
-- Key: EventStoreTransport
-  Name: EventStore Transport
-  DocoUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
-  Category: Transport
-  IsCommunityProject: true
-  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
-  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
-  NugetOrder:
-    - NServiceBus.EventStore
