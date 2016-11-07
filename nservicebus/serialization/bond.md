@@ -8,6 +8,7 @@ related:
 
 Serializes messages with [Microsoft Bond](https://microsoft.github.io/bond/manual/bond_cs.html).
 
+> Bond is a cross-platform framework for working with schematized data. It supports cross-language de/serialization and powerful generic mechanisms for efficiently manipulating data. Bond is broadly used at Microsoft in high scale services.
 
 ## Usage
 
