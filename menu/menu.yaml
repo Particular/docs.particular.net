@@ -515,6 +515,8 @@
       Title: In a cluster
     - Url: nservicebus/rabbitmq/operations-scripting
       Title: Scripting
+  - Url: nservicebus/eventstoretransport
+    Title: Event Store Transport
   - Url: nservicebus/serialization
     Title: Serialization
     Articles:
