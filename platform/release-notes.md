@@ -3,6 +3,7 @@ title: Platform Releases
 summary: Links to the current and previous releases, release notes for the Particular Service Platform applications
 tags:
 - Platform
+reviewed: 2016-11-07
 ---
 
 
@@ -33,7 +34,6 @@ The Particular Service Platform source code, current and previous releases and t
 |**RabbitMQ**|[Releases](https://github.com/Particular/NServiceBus.RabbitMQ/tags)| [Release Notes](https://github.com/Particular/NServiceBus.RabbitMQ/releases)
 |**Azure Service Bus** | [Releases](https://github.com/Particular/NServiceBus.AzureServiceBus/tags)| [Release Notes](https://github.com/Particular/NServiceBus.AzureServiceBus/releases)
 |**Azure Storage Queues** | [Releases](https://github.com/Particular/NServiceBus.AzureStorageQueues/tags)| [Release Notes](https://github.com/Particular/NServiceBus.AzureStorageQueues/releases)
-|**[Old] Azure Queues and ServiceBus**|[Releases](https://github.com/Particular/NServiceBus.Azure/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Azure/releases)
 
 
 ### NServiceBus Persistence
