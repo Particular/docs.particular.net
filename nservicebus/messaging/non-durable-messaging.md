@@ -49,13 +49,9 @@ Individual transports interpret "non-durable" messaging with a custom approach d
 The default behavior of MSMQ is to use the concept of Store and Forward. In this approach messages are stored durably on disk at the sender and then delivered by MSMQ to the receiver. When non-durable messaging is used the MSMQ Transport sends messages in [Express Mode](https://msdn.microsoft.com/en-us/library/ms704130).
 The underlying setting that is used to achieve this is to set [Message.Recoverable](https://msdn.microsoft.com/en-us/library/system.messaging.message.recoverable) to `false`.
 
+Non durable messages requires the queues to be [non transactional](https://msdn.microsoft.com/en-us/library/ms704006). Configure NServiceBus to use non transactional queues by setting `useTransactionalQueues` to `false` in the transport [connection string](/nservicebus/msmq/connection-strings.md).
 
-#### Extra configuration for MSMQ
-
-There are some extra configurations required for MSMQ
-
- * The target `useTransactionalQueues` needs to be `false` in the [MSMQ connection strings](/nservicebus/msmq/connection-strings.md)
- * The endpoint needs to be non-transactional.
+Note: When using non transactional queues your endpoint has to be [configured to not use any transactions](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled).
 
 
 ### RabbitMQ
