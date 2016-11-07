@@ -327,6 +327,8 @@ snippet: HeaderWriterAuditAudit
 
 Headers used to facilitate [Retries](/nservicebus/recoverability/).
 
+Note: These headers will only exist after the initial retry has occurred.
+
 
 ### NServiceBus.FailedQ
 
