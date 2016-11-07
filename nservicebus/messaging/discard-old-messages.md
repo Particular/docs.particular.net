@@ -56,7 +56,7 @@ partial:msmq
 
 ### RabbitMQ transport
 
-RabbitMQ also continuously checks the TimeToBeReceived attribute, but only for the first message in each queue. Expired messages are not removed from the queue, and their disk space is not reclaimed until they reach the front of the queue. Using TimeToBeReceived as a disk saving measure on RabbitMQ is not ideal for queues with long-lived messages, like audit and forward, unless it is ensured that all messages have the same TimeToBeReceived set. The TimeToBeReceived of other messages in front of a message in a queue will affect when the message is actually removed.
+RabbitMQ continuously checks the TimeToBeReceived attribute, but only for the first message in each queue. Expired messages are not removed from the queue, and their disk space is not reclaimed, until they reach the front of the queue. Using TimeToBeReceived as a disk-saving measure on RabbitMQ is not ideal for queues with long-lived messages, like audit and forward, unless it is ensured that all messages use the same TimeToBeReceived value. The TimeToBeReceived of other messages in front of a message in a queue will affect when the message is actually removed.
 
 
 ### Azure transports
