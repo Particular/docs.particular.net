@@ -1,6 +1,6 @@
 ---
 title: Evolving messages contracts
-reviewed: 
+reviewed: 2016-11-08
 component: Core
 ---
 
@@ -18,9 +18,9 @@ This article presents basic guidelines for choosing contracts evolution strategy
 
 Messages should ideally be:
 
-- [**Plain Old CLR Objects** (POCO)](https://en.wikipedia.org/wiki/Plain_Old_CLR_Object).
-- **Small and focused**. Messages should carry the minimum amount of information and should be split if they get too big.
-- **Serve a single purpose**. Messages shouldn't be used for anything else than carrying data. For example, messages shouldn't be used as data access objects or as UI binding models.
+ * [**Plain Old CLR Objects** (POCO)](https://en.wikipedia.org/wiki/Plain_Old_CLR_Object).
+ * **Small and focused**. Messages should carry the minimum amount of information and should be split if they get too big.
+ * **Serve a single purpose**. Messages shouldn't be used for anything else than carrying data. For example, messages shouldn't be used as data access objects or as UI binding models.
 
 
 ### Assemblies
@@ -47,7 +47,8 @@ In some advanced scenarios it might be necessary to introduce breaking changes i
 
 #### Upgrading endpoints
 
-Whenever there are significant changes in a message type, such as removing property, changing the property type, etc. the upgrade process should consist of the following steps:
-- Add the upgraded endpoint that will handle new incoming messages.
-- Drain the incoming queue, i.e. keep the old endpoint running until all messages in the old format are processed.
-- Delete the old endpoint.
+When there are significant changes in a message type, such as removing property, changing the property type, etc. the upgrade process should consist of the following steps:
+
+ * Add the upgraded endpoint that will handle new incoming messages.
+ * Drain the incoming queue, i.e. keep the old endpoint running until all messages in the old format are processed.
+ * Delete the old endpoint.
