@@ -1,6 +1,7 @@
 ---
 title: More On Profiles
 summary: 'Two types of profiles in NServiceBus: environment and feature.'
+component: Host
 tags:
 - Profiles
 - NServiceBus.Host
@@ -10,7 +11,6 @@ tags:
 - Performance Counters
 redirects:
  - nservicebus/more-on-profiles
-component: Host
 reviewed: 2016-11-03
 ---
 
