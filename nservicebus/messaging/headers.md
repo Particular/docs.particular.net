@@ -1,7 +1,7 @@
 ---
 title: Message Headers
 summary: List of built-in NServiceBus message headers.
-reviewed: 2016-03-11
+reviewed: 2016-11-08
 component: Core
 versions: '[5.0,)'
 tags:
@@ -15,12 +15,12 @@ related:
  - nservicebus/messaging/header-manipulation
 ---
 
-The headers in a message contain information that is used by the messaging infrastructure to help with the message delivery. Message headers are very similar, in both implementation and usage, to HTTP headers. This article documents the headers used by NServiceBus. To learn more about how to use custom headers, see the [header manipulation](/nservicebus/messaging/header-manipulation.md) article.
+The headers in a message contain information that is used by the messaging infrastructure to help with the message delivery. Message headers are very similar, in both implementation and usage, to HTTP headers. To learn more about how to use custom headers, see the [header manipulation](/nservicebus/messaging/header-manipulation.md) article.
 
 
 ## Timestamp format
 
-For all timestamp message headers, the format is `yyyy-MM-dd HH:mm:ss:ffffff Z` where the time is UTC. The helper class `DateTimeExtensions` in NServiceBus supports converting from UTC to wire format and vice versa by using the `ToWireFormattedString()` and `ToUtcDateTime()` methods.
+For all timestamp message headers, the format is `yyyy-MM-dd HH:mm:ss:ffffff Z` where the time is UTC. The helper class `DateTimeExtensions` supports converting from UTC to wire format and vice versa by using the `ToWireFormattedString()` and `ToUtcDateTime()` methods.
 
 ```cs
 const string Format = "yyyy-MM-dd HH:mm:ss:ffffff Z";
@@ -56,7 +56,7 @@ The fully qualified .NET type name of the enclosed message(s). The receiving end
  * Full type name: `Namespace.ClassName`.
  * Assembly qualified name: `Namespace.ClassName, AssemblyName, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null`.
 
-NOTE: In integration scenarios, this header can be safely omitted if the endpoint uses XmlSerialization and the root node happens to be the message type.
+NOTE: In integration scenarios, this header can be safely omitted if the endpoint uses [XmlSerialization](/nservicebus/serialization/xml.md) and the root node happens to be the message type.
 
 
 ## Messaging interaction headers
@@ -398,7 +398,7 @@ snippet: HeaderWriterErrorError
 
 ## Encryption Headers
 
-Headers when using [Rijndael property encryption](/nservicebus/security/encryption.md).
+Headers when using [property encryption](/nservicebus/security/encryption.md).
 
 
 ### NServiceBus.RijndaelKeyIdentifier
@@ -438,7 +438,7 @@ snippet: HeaderWriterDataBusPropertyBody
 
 ### When using Convention
 
-When using a [Conventions](/nservicebus/messaging/conventions.md) there is no way to store a correlation value inside the serialized property. Instead, each property has a matching header with the property name used as the header suffix. That header then provides the path suffix of where that binary data is stored on disk on the file system.
+When using [Conventions](/nservicebus/messaging/conventions.md) there is no way to store a correlation value inside the serialized property. Instead, each property has a matching header with the property name used as the header suffix. That header then provides the path suffix of where that binary data is stored on disk on the file system.
 
 
 #### Example Headers
