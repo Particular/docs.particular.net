@@ -11,11 +11,12 @@ redirects:
 related:
  - samples/web/wcf-callbacks
  - nservicebus/messaging/callbacks
+reviewed: 2016-11-07
 ---
 
 It is possible to "expose" the message send+receive action as a WCF service. This, in effect, allows a WCF service call to be "proxied" through to a message being sent, and then waiting for the response to return the WCF result.
 
-NOTE: When doing a blocking send+receive inside a WCF service acting a client in the same way as the [Callback Functionality](/nservicebus/messaging/callbacks.md). 
+NOTE: When doing a blocking send+receive inside a WCF service, the service implementation is a client of the [Callback Functionality](/nservicebus/messaging/callbacks.md). 
 
 
 ## Prerequisites for WCF functionality
@@ -77,7 +78,7 @@ partial:routing
 
 ## Queries and other return values
 
-To allow clients to perform queries, it is best not to use NServiceBus. Messaging is designed for non-blocking operations, and queries are (for the most part) operations for which the user wishes to wait.
+To allow clients to perform queries, it is best not to use NServiceBus. Messaging is designed for non-blocking operations, and queries are operations for which the user wishes to wait.
 
 When performing operations that aren't straightforward as a simple query to return a value, for example a long calculation, consider invoking the operation locally where possible by referencing the DLL on the client.
 
