@@ -14,14 +14,14 @@ redirects:
 reviewed: 2016-11-03
 ---
 
-The NServiceBus Host profiles enable altering the behavior of an endpoint without recompiling the code. The profiles enable tailoring endpoints for different environments.
+The NServiceBus Host profiles enable altering the behavior of an endpoint without recompiling the code. The profiles enable tailoring endpoints configuration for different environments.
 
 Profiles are only available if using the [NServiceBus host](/nservicebus/hosting/nservicebus-host/) (NServiceBus.Host.exe or the 32-bit only version of it) so this is not applicable if self hosting NServiceBus in a website, WCF service, smart client, etc.
 
 Profiles are divided into two main categories, depending on what they control:
 
  * Environment profiles help to avoid common configuration errors that occur when manually moving a system from development to production via integration. Environment profiles enable easy transition of the system without any code changes.
- * Feature profiles turn NServiceBus features on and off, easily and with no code changes. For example, turning on and off the performance counters
+ * Feature profiles turn NServiceBus features on and off, easily and with no code changes. For example, turning on and off the performance counters.
 
 Technically there is no difference between the environment- and feature-related profiles.
 
@@ -71,13 +71,13 @@ partial: feature
 
 ## Telling the host which profiles to run
 
-To activate a specific profile, when starting the host, pass in the full name of the profile on the command line. Type names are case insensitive. Profiles can be combined by separating them with white space.
+To activate a specific profile, when starting the host, pass the full name of the profile in the command line. Type names are case insensitive. Profiles can be combined by separating them with white space.
 
-So to run the endpoint with the `Integration` and `PerformanceCounters` profiles, use this:
+For example, to run the endpoint with the `Integration` and `PerformanceCounters` profiles:
 
     .\NServiceBus.Host.exe nservicebus.integration nservicebus.performancecounters
 
-When installing the host as a Windows Service, the profiles used when installing persist and are used every time the host starts. So to install the host with the Production and the PerformanceCounters profiles, use this:
+When installing the host as a Windows Service, the profiles used during installation are saved and they are used every time the host starts. In order to install the host with the `Production` and `PerformanceCounters` profiles:
 
     .\NServiceBus.Host.exe /install nservicebus.production nservicebus.performancecounters
 
