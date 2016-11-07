@@ -18,10 +18,6 @@ partial:topology
 
 When a message is addressed to a given exchange `e` it is copied to all exchanges (similar as AMQP `fanout` exchange) and to all queues bound to that exchange. In the example above a message sent to `ExchangeB` would go to `Queue1` and a message sent to `ExchangeA` would go to both `Queue1` and `Queue2`.
 
-## Persistence
-
-TODO
-
 ## Transactions
 
 Event Store transport supports Receive only transaction mode. Refer to [Transport Transactions](/nservicebus/transports/transactions.md) for detailed explanation of the supported transaction handling modes and available configuration options.
