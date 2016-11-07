@@ -20,11 +20,12 @@ class OrderAcceptedHandler :
         log.Info($"Customer: {message.ClientId} is now a preferred customer publishing for other service concerns");
 
         // publish this event as an asynchronous event
-        return context.Publish<ClientBecamePreferred>(m =>
+        var clientBecamePreferred = new ClientBecamePreferred
         {
-            m.ClientId = message.ClientId;
-            m.PreferredStatusExpiresOn = DateTime.Now.AddMonths(2);
-        });
+            ClientId = message.ClientId,
+            PreferredStatusExpiresOn = DateTime.Now.AddMonths(2)
+        };
+        return context.Publish(clientBecamePreferred);
     }
 
 }

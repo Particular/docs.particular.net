@@ -36,12 +36,13 @@ public class ProcessOrderSaga :
             Debugger.Break();
         }
 
-        Bus.Publish<OrderAccepted>(e =>
+        var orderAccepted = new OrderAccepted
         {
-            e.OrderNumber = Data.OrderNumber;
-            e.ProductIds = Data.ProductIds;
-            e.ClientId = Data.ClientId;
-        });
+            OrderNumber = Data.OrderNumber,
+            ProductIds = Data.ProductIds,
+            ClientId = Data.ClientId
+        };
+        Bus.Publish(orderAccepted);
 
         MarkAsComplete();
 
@@ -57,11 +58,12 @@ public class ProcessOrderSaga :
 
         MarkAsComplete();
 
-        Bus.Publish<OrderCancelled>(o =>
+        var orderCancelled = new OrderCancelled
         {
-            o.OrderNumber = message.OrderNumber;
-            o.ClientId = message.ClientId;
-        });
+            OrderNumber = message.OrderNumber,
+            ClientId = message.ClientId
+        };
+        Bus.Publish(orderCancelled);
 
         log.Info($"Order #{message.OrderNumber} was cancelled.");
     }

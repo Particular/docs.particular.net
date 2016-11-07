@@ -24,12 +24,13 @@ public class SubmitOrderHandler :
         log.Info($"CreditCard Expiration Date is {message.ExpirationDate}");
 
         // tell the client the order was received
-        return context.Publish<OrderPlaced>(o =>
-            {
-                o.ClientId = message.ClientId;
-                o.OrderNumber = message.OrderNumber;
-                o.ProductIds = message.ProductIds;
-            });
+        var orderPlaced = new OrderPlaced
+        {
+            ClientId = message.ClientId,
+            OrderNumber = message.OrderNumber,
+            ProductIds = message.ProductIds
+        };
+        return context.Publish(orderPlaced);
     }
 
 }

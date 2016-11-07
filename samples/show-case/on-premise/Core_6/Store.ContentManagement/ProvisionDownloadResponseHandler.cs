@@ -30,17 +30,18 @@ public class ProvisionDownloadResponseHandler :
         log.Info($"Download for Order # {message.OrderNumber} has been provisioned, Publishing Download ready event");
 
         log.Info($"Downloads for Order #{message.OrderNumber} is ready, publishing it.");
-        return context.Publish<DownloadIsReady>(e =>
+        var downloadIsReady = new DownloadIsReady
         {
-            e.OrderNumber = message.OrderNumber;
-            e.ClientId = message.ClientId;
-            e.ProductUrls = new Dictionary<string, string>();
+            OrderNumber = message.OrderNumber,
+            ClientId = message.ClientId,
+            ProductUrls = new Dictionary<string, string>()
+        };
 
-            foreach (var productId in message.ProductIds)
-            {
-                e.ProductUrls.Add(productId, productIdToUrlMap[productId]);
-            }
-        });
+        foreach (var productId in message.ProductIds)
+        {
+            downloadIsReady.ProductUrls.Add(productId, productIdToUrlMap[productId]);
+        }
+        return context.Publish(downloadIsReady);
 
     }
 

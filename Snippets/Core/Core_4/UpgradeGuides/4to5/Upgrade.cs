@@ -133,16 +133,16 @@
             #region 4to5InterfaceMessageCreation
 
             var message = Bus.CreateInstance<MyInterfaceMessage>(
-                o =>
+                action: interfaceMessage =>
                 {
-                    o.OrderNumber = 1234;
+                    interfaceMessage.OrderNumber = 1234;
                 });
             Bus.Publish(message);
 
             Bus.Publish<MyInterfaceMessage>(
-                o =>
+                messageConstructor: interfaceMessage =>
                 {
-                    o.OrderNumber = 1234;
+                    interfaceMessage.OrderNumber = 1234;
                 });
 
             #endregion

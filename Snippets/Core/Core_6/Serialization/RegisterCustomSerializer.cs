@@ -16,7 +16,8 @@
             #region RegisterCustomSerializer
 
             // register serializer additionally configuring settings
-            endpointConfiguration.UseSerialization<MyCustomSerializerDefinition>().Settings("settingsValue");
+            var serialization = endpointConfiguration.UseSerialization<MyCustomSerializerDefinition>();
+            serialization.Settings("settingsValue");
 
             #endregion
         }
@@ -31,7 +32,11 @@
 
         public override Func<IMessageMapper, IMessageSerializer> Configure(ReadOnlySettings settings)
         {
-            return mapper => new MyCustomSerializer(settings.GetOrDefault<string>(Key));
+            return mapper =>
+            {
+                var value = settings.GetOrDefault<string>(Key);
+                return new MyCustomSerializer(value);
+            };
         }
     }
 
@@ -65,7 +70,8 @@
     {
         public static void Settings(this SerializationExtensions<MyCustomSerializerDefinition> config, string value)
         {
-            config.GetSettings().Set(MyCustomSerializerDefinition.Key, value);
+            var settingsHolder = config.GetSettings();
+            settingsHolder.Set(MyCustomSerializerDefinition.Key, value);
         }
     }
 

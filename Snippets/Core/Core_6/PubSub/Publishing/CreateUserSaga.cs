@@ -1,6 +1,5 @@
 namespace Core6.PubSub.Publishing
 {
-    using System;
     using System.Threading.Tasks;
     using NServiceBus;
 
@@ -12,20 +11,18 @@ namespace Core6.PubSub.Publishing
     {
         public Task Handle(CreateUserCommand message, IMessageHandlerContext context)
         {
-            return context.Publish<UserCreatedEvent>(e =>
+            var userCreatedEvent = new UserCreatedEvent
             {
-                e.Name = message.Name;
-            });
+                Name = message.Name
+            };
+            return context.Publish(userCreatedEvent);
         }
 
         #endregion
 
         public class SagaData :
-            IContainSagaData
+            ContainSagaData
         {
-            public Guid Id { get; set; }
-            public string Originator { get; set; }
-            public string OriginalMessageId { get; set; }
         }
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)

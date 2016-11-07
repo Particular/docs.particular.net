@@ -12,9 +12,10 @@ class IssuePaymentRequestHandler :
 
     public void Handle(IssuePaymentRequest message)
     {
-        bus.Publish<PaymentTransactionCompleted>(evt =>
+        var transactionCompleted = new PaymentTransactionCompleted
         {
-            evt.PaymentTransactionId = message.PaymentTransactionId;
-        });
+            PaymentTransactionId = message.PaymentTransactionId
+        };
+        bus.Publish(transactionCompleted);
     }
 }

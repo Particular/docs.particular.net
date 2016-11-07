@@ -15,10 +15,11 @@
 
         public void Handle(CreateUserCommand message)
         {
-            bus.Publish<UserCreatedEvent>(e =>
+            var userCreatedEvent = new UserCreatedEvent
             {
-                e.Name = message.Name;
-            });
+                Name = message.Name
+            };
+            bus.Publish(userCreatedEvent);
         }
     }
     #endregion

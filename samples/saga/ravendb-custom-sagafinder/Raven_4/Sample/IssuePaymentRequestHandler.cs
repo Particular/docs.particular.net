@@ -6,9 +6,10 @@ class IssuePaymentRequestHandler :
 {
     public Task Handle(IssuePaymentRequest message, IMessageHandlerContext context)
     {
-        return context.Publish<PaymentTransactionCompleted>(evt =>
+        var transactionCompleted = new PaymentTransactionCompleted
         {
-            evt.PaymentTransactionId = message.PaymentTransactionId;
-        });
+            PaymentTransactionId = message.PaymentTransactionId
+        };
+        return context.Publish(transactionCompleted);
     }
 }

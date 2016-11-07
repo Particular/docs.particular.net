@@ -10,7 +10,7 @@ class ScanningPublicApi
     {
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
-            // use 'busConfiguration' object to configure scanning
+            // use 'endpointConfiguration' object to configure scanning
         }
     }
 
