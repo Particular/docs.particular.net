@@ -65,6 +65,17 @@
   NugetOrder:
     - NServiceBus.Autofac
 
+- Key: Bond
+  Name: Bond Serializer
+  DocoUrl: nservicebus/serialization/bond
+  GitHubOwner: SimonCropp
+  Category: Serializer
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Bond/blob/master/LICENSE.txt
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Bond
+  NugetOrder:
+    - NServiceBus.Bond
+
 - Key: Callbacks
   Name: Callbacks
   DocoUrl: nservicebus/messaging/callbacks

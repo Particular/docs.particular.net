@@ -2,7 +2,7 @@
 title: Serialization
 summary: .NET classes are serialized onto the transport.
 component: Core
-reviewed: 2016-10-31
+reviewed: 2016-11-07
 related:
  - samples/pipeline/multi-serializer
  - samples/serializers
@@ -20,6 +20,7 @@ NServiceBus takes instances of .NET objects (messages, events and commands) and 
  * [Message Pack](message-pack.md)
  * [Wire](wire.md)
  * [Jil](jil.md)
+ * [Bond](bond.md)
  * [Binary](binary.md) (deprecated in Versions 6 and above)
 
 
@@ -27,7 +28,7 @@ NServiceBus takes instances of .NET objects (messages, events and commands) and 
 
 The default serializer used in NServiceBus projects is the custom [XmlSerializer](xml.md).
 
-The pages dedicated to particular Serializers show how to configure the endpoint to use each of them. Unless explicitly configured otherwise, NServiceBus will use XmlSerializer for serializing and deserializing all messages.
+The pages dedicated to particular Serializers show how to configure the endpoint to use each of them. Unless explicitly configured otherwise, NServiceBus will use [XmlSerializer](xml.md) for serializing and deserializing all messages.
 
 NOTE: The same Serializer must be used by the sending endpoint to serialize messages and by receiving endpoint to deserialize them, unless additional deserializers are specified.
 

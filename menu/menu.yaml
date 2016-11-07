@@ -517,6 +517,8 @@
     - Url: nservicebus/serialization/message-pack
       Title: Message Pack
     - Url: nservicebus/serialization/protobuf
+      Title: Bond
+    - Url: nservicebus/serialization/bond
       Title: ProtoBuf
     - Url: nservicebus/serialization/binary
       Title: Binary

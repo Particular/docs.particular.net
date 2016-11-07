@@ -5,6 +5,7 @@ ASQ: NServiceBus.Azure.Transports.WindowsAzureStorageQueues
 ASP: NServiceBus.Persistence.AzureStorage
 Autofac: NServiceBus.Autofac
 Azure: NServiceBus.Azure
+Bond: NServiceBus.Bond
 Callbacks: NServiceBus.Callbacks
 Castle: NServiceBus.CastleWindsor
 CommonLogging: NServiceBus.CommonLogging
