@@ -28,8 +28,6 @@ In `WebApplication`, open `Global.asax.cs` and look at the code in the `Applicat
 
 snippet: ApplicationStart
 
-The rest of the code is typical for hosting NServiceBus in the process. The code holds a reference to the bus, which is used later for sending messages. This isn't the only option available; if the classes for sending messages are managed by Dependency Injection, then they can get a reference to the bus by declaring a appropriate dependency. [See an example](/nservicebus/containers/injecting-ibus.md).
-
 
 ## Sending a message
 
