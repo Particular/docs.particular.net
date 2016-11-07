@@ -16,7 +16,8 @@ The Event Store transport **does not** rely on the projections functionality for
 
 partial:topology
 
-When a message is addressed to a given exchange `e` it is copied to all exchanges (similar as AMQP `fanout` exchange) and to all queues bound to that exchange. In the example above a message sent to `ExchangeB` would go to `Queue1` and a message sent to `ExchangeA` would go to both `Queue1` and `Queue2`.
+When a message is addressed to a given exchange `e` it is copied to all exchanges (similar to AMQP `fanout` exchange) and to all queues bound to that exchange. In the example above a message sent to the `ExchangeB` would go to the `Queue1`, and a message sent to the `ExchangeA` would go to both the `Queue1` and `Queue2`.
+
 
 ## Transactions
 
