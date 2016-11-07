@@ -151,18 +151,18 @@
   GitHubOwner: SzymonPobiega
   Category: Persistence
   IsCommunityProject: true
-  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
+  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore/blob/master/LICENSE.md
   ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
   NugetOrder:
     - NServiceBus.EventStore
 
 - Key: EventStoreTransport
   Name: EventStore Transport
-  DocoUrl: nservicebus/eventstoretransport/
+  DocoUrl: nservicebus/eventstoretransport
   GitHubOwner: SzymonPobiega
   Category: Transport
   IsCommunityProject: true
-  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
+  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore/blob/master/LICENSE.md
   ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
   NugetOrder:
     - NServiceBus.EventStore
