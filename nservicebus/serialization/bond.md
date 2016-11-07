@@ -18,7 +18,7 @@ snippet:BondSerialization
 
 ### SerializationDelegates
 
-Customizes the cached delegate that serialize and deserialize message types. This is an optional setting.
+Customizes the cached delegates that serialize and deserialize message types. This is an optional setting.
 
 The default serialization delegates are as follows.
 
