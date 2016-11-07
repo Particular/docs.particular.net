@@ -256,7 +256,7 @@ https://www.nuget.org/packages/Appccelerate.DistributedEventBroker.NServiceBus
 Allows sending events over the [Appccelerate.EventBroker](http://www.appccelerate.com/distributedeventbroker.html) infrastructure.
 
 
-#### <img style="margin-bottom: 0.25em" src="particular-project.png" title="A Particular run project"> [Distributor](/nservicebus/scalability-and-ha/distributor/)
+#### <img style="margin-bottom: 0.25em" src="particular-project.png" title="A Particular run project"> [Distributor](/nservicebus/msmq/distributor/)
 
 https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ
 

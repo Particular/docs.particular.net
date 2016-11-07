@@ -1,11 +1,16 @@
 ---
 title: Load Balancing with the Distributor
 summary: The distributor maintains all the characteristics of NServiceBus but is designed never to overwhelm any of the worker nodes.
+component: distributor
 tags:
 - Scalability
 - Distributor
 redirects:
  - nservicebus/load-balancing-with-the-distributor
+ - nservicebus/licensing-and-distribution
+ - nservicebus/licensing/licensing-and-distribution
+ - nservicebus/scalability-and-ha
+ - nservicebus/scalability-and-ha/licensing
 ---
 
 The NServiceBus Distributor is similar in behavior to standard [load balancers](https://en.wikipedia.org/wiki/Load_balancing_%28computing%29). It is the key to transparently scaling out message processing over many machines.
@@ -226,3 +231,8 @@ Check out [John Breakwell's blog](https://blogs.msdn.microsoft.com/johnbreakwell
 If the Distributor goes down, even if its worker nodes remain running, they do not receive any messages. It is important to run the Distributor on a cluster that has its its queues configured as clustered resources.
 
 Since the Distributor performs no CPU or memory intensive work, several Distributor processes can be placed on the same clustered server. Be aware that the network IO may end up being the bottleneck for the Distributor, so take into account message sizes and throughput when sizing the infrastructure.
+
+
+## Licensing
+
+partial:licensing

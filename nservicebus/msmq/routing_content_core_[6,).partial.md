@@ -49,4 +49,4 @@ For compatibility reasons it can also be configured in the same way as in Versio
 
 snippet:endpoint-mapping-msmq
 
-NOTE: The downside of this approach is that it mixes logical and physical concerns. It also does not allow to configure more than one endpoint instance as a destination which prevents scaling out via [sender-side distribution](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md).
+NOTE: The downside of this approach is that it mixes logical and physical concerns. It also does not allow to configure more than one endpoint instance as a destination which prevents scaling out via [sender-side distribution](/nservicebus/msmq/sender-side-distribution.md).

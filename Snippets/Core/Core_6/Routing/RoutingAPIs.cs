@@ -47,18 +47,6 @@ namespace Core6.Routing
             #endregion
         }
 
-        void StaticRoutesEndpointBroker(TransportExtensions transportExtensions)
-        {
-            #region Routing-StaticRoutes-Endpoint-Broker
-
-            var routing = transportExtensions.Routing();
-            routing.RouteToEndpoint(
-                messageType: typeof(AcceptOrder),
-                destination: "Sales");
-
-            #endregion
-        }
-
         void MapMessagesToLogicalEndpoints(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-MapMessagesToLogicalEndpoints

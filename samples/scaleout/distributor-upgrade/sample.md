@@ -8,7 +8,7 @@ tags:
 - Scalability
 - Upgrade
 related:
-- nservicebus/scalability-and-ha
+- nservicebus/msmq/distributor
 - samples/scaleout/distributor
 ---
 

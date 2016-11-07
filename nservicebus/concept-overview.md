@@ -133,7 +133,7 @@ NServiceBus has some sensible defaults for logging built in and, for more advanc
 An alternative to Distributed Transactions to provide exactly-once message processing semantics when accessing user data store as part of message processing.
 
 
-### [Distributor](/nservicebus/scalability-and-ha/distributor/)
+### [Distributor](/nservicebus/msmq/distributor/)
 
 A load balancing tool for message distribution.
 

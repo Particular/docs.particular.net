@@ -7,8 +7,8 @@ tags:
 - Distributor
 - Scalability
 related:
-- nservicebus/scalability-and-ha
-- nservicebus/msmq/scalability-and-ha/sender-side-distribution
+- nservicebus/msmq/scaling-out
+- nservicebus/msmq/sender-side-distribution
 - samples/scaleout/distributor
 ---
 
@@ -78,4 +78,4 @@ WARN: The competing consumers scale out approach only works with all scaled out 
 
 ### Round robin
 
-In the `AwareClient` console, press enter a few times to generate message load. This results in both the `Server1` and `Server2` consoles processing the generated message load in an alternating fashion. This is because, the messages are sent in a round-robin fashion to `Server1` and `Server2` by the client using the [sender-side distribution feature](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md).
+In the `AwareClient` console, press enter a few times to generate message load. This results in both the `Server1` and `Server2` consoles processing the generated message load in an alternating fashion. This is because, the messages are sent in a round-robin fashion to `Server1` and `Server2` by the client using the [sender-side distribution feature](/nservicebus/msmq/sender-side-distribution.md).

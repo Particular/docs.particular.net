@@ -20,7 +20,7 @@ related:
 - samples/pubsub
 - nservicebus/messaging/publish-subscribe
 - nservicebus/messaging/routing-extensibility
-- nservicebus/msmq/scalability-and-ha/sender-side-distribution
+- nservicebus/msmq/sender-side-distribution
 ---
 
 

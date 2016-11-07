@@ -7,6 +7,7 @@ tags:
 - Distributor
 redirects:
  - nservicebus/deploying-nservicebus-in-a-windows-failover-cluster
+ - nservicebus/scalability-and-ha/deploying-to-a-windows-failover-cluster
 ---
 
 NServiceBus is designed for scalability and reliability, but to take advantage of these features, it is necessary to deploy it in a Windows Failover Cluster. Unfortunately, information on how to do this effectively is, as yet, incomplete and scattered. This article describes the process for deploying NServiceBus in a failover cluster. This article does not cover the generic setup of a failover cluster. There are other, better resources for that, such as [Creating a Cluster in Windows Server 2008](https://blogs.msdn.microsoft.com/clustering/2008/01/18/creating-a-cluster-in-windows-server-2008/) or [Server 2012](https://technet.microsoft.com/en-us/library/dn505754.aspx). The focus here is the setup related to NServiceBus.
@@ -79,7 +80,7 @@ In this picture:
  * The MSMQ cluster group's name is MSMQ-1
  * The MSMQ network name is named MSMQ-1 (this is the first resource in the group - under "Name: MSMQ-1"). The MSMQ Network Name (DNS Name) is not shown in this picture - to see it right click "Name: MSMQ-1" and select "Properties". Notice something like (Note - this was taken from another resource):
 
-![](cluster-properties.png "Cluster Properties")
+![](failover-cluster-properties.png "Cluster Properties")
 
 NOTE: Under "DNS Name" find the MSMQ DNS Name, which may or may not be "MSMQ-1".
 

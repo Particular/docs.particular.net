@@ -17,7 +17,7 @@ related:
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/headers
  - nservicebus/persistence
- - nservicebus/scalability-and-ha/distributor/publish-subscribe
+ - nservicebus/msmq/distributor/publish-subscribe
  - nservicebus/msmq/subscription-authorisation
 ---
 

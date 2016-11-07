@@ -2,7 +2,7 @@
 title: Scaling out with sender-side distribution
 summary: How to scale out with sender-side distribution when using the MSMQ transport.
 component: Core
-reviewed: 2016-10-25
+reviewed: 2016-11-07
 versions: "[6,)"
 tags:
  - Scale Out
@@ -15,7 +15,7 @@ related:
  - nservicebus/messaging/routing
 ---
 
-Endpoints using the MSMQ transport are unable to use the competing consumers pattern to scale out by adding additional worker instances. Sender-side distribution is a method of scaling out an endpoint using the MSMQ transport, without relying on a centralized [distributor](/nservicebus/scalability-and-ha/distributor/) assigning messages to available workers.
+Endpoints using the MSMQ transport are unable to use the competing consumers pattern to scale out by adding additional worker instances. Sender-side distribution is a method of scaling out an endpoint using the MSMQ transport, without relying on a centralized [distributor](/nservicebus/msmq/distributor/) assigning messages to available workers.
 
 When using sender-side distribution:
 
