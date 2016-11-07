@@ -33,12 +33,12 @@
         static int NumberOfRetries(TransportMessage transportMessage)
         {
             string value;
-            var headers = transportMessage.Headers;
-            if (headers.TryGetValue(Headers.Retries, out value))
-            {
-                return int.Parse(value);
-            }
-            return 0;
+            message.Headers.TryGetValue(Headers.Retries, out value);
+
+            int retries;
+            int.TryParse(value, out retries);
+            
+            return retries;
         }
 
         #endregion
