@@ -9,7 +9,7 @@ tags:
 
 ## Bus transports
 
-In bus transports like MSMQ there is no central place from which multiple instances of an endpoint can receive messages concurrently. Each instance has its own queue so scaling out requires distributing of messages between the queues. The process of distributing the messages can be performed either on sender side or by a specialized proxy. Refer to the [MSMQ documentation](/nservicebus/msmq/scaling-out/) for more details regarding this particular transport.
+In bus transports like MSMQ there is no central place from which multiple instances of an endpoint can receive messages concurrently. Each instance has its own queue so scaling out requires distributing of messages between the queues. The process of distributing the messages can be performed either on sender side or by a specialized proxy. Refer to the [MSMQ documentation](/nservicebus/msmq/scaling-out.md) for more details regarding this particular transport.
 
 
 ## Broker transports
