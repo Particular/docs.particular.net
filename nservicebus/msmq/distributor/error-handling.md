@@ -10,9 +10,10 @@ tags:
  - Retry
 redirects:
  - nservicebus/errors/distributor-errorhandling
+ - nservicebus/scalability-and-ha/error-handling
 related:
  - samples/scaleout
- - nservicebus/scalability-and-ha/distributor
+ - nservicebus/msmq/distributor
 ---
 
 NServiceBus provides error handling and has [Immediate Retries](/nservicebus/recoverability/#immediate-retries) and [Delayed Retries](/nservicebus/recoverability/#delayed-retries).

@@ -148,7 +148,7 @@
 
 - Key: Distributor
   Name: Distributor
-  DocoUrl: nservicebus/scalability-and-ha/distributor
+  DocoUrl: nservicebus/msmq/distributor
   GitHubOwner: Particular/nservicebus-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Distributor.Msmq

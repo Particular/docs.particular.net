@@ -6,9 +6,10 @@ tags:
  - Distributor
 redirects:
  - nservicebus/in-a-distributor-scenario-what-happens-to-the-message-if-a-worker-goes-down
+ - nservicebus/scalability-and-ha/when-worker-goes-down
 ---
 
-As shown in [How the Distributor works](/nservicebus/scalability-and-ha/distributor/#how-the-distributor-works), a worker checks in for work with the distributor by sending a register message to it. From that moment the worker will start receiving messages from the distributor.
+As shown in [How the Distributor works](/nservicebus/msmq/distributor/#how-the-distributor-works), a worker checks in for work with the distributor by sending a register message to it. From that moment the worker will start receiving messages from the distributor.
 
 If a worker goes down, messages can get stuck in the distributor or the worker.
 

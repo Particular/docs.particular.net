@@ -350,6 +350,8 @@
     Articles:
     - Url: nservicebus/transports/transactions
       Title: Transactions
+    - Url: nservicebus/transports/scale-out
+      Title: Scaling out
     - Url: nservicebus/transports/queuecreation
       Title: Creating queues
   - Url: nservicebus/azure-service-bus
@@ -477,11 +479,23 @@
       Title: Subscription Persistence
     - Url: nservicebus/msmq/full-qualified-domain-name
       Title: Fully Qualified Domain Names
-    - Url: nservicebus/msmq/scalability-and-ha
+    - Url: nservicebus/msmq/failover-cluster
+      Title: Deploying to Failover Cluster
+    - Url: nservicebus/msmq/scaling-out
       Title: Scaling out
+    - Url: nservicebus/msmq/sender-side-distribution
+      Title: Scaling out with Sender-Side Distribution
+    - Url: nservicebus/msmq/distributor
+      Title: Scaling with the Distributor
       Articles:
-      - Url: nservicebus/msmq/scalability-and-ha/sender-side-distribution
-        Title: With sender-side distribution
+      - Url: nservicebus/msmq/distributor/when-worker-goes-down
+        Title: When a worker goes down
+      - Url: nservicebus/msmq/distributor/disconnect-workers
+        Title: Disconnect Workers
+      - Url: nservicebus/msmq/distributor/publish-subscribe
+        Title: Publish-Subscribe
+      - Url: nservicebus/msmq/distributor/error-handling
+        Title: Error handling
   - Url: nservicebus/rabbitmq
     Title: RabbitMQ Transport
     Articles:
@@ -653,24 +667,6 @@
       Title: Running on Windows
     - Url: nservicebus/endpoints/decommissioning-endpoints
       Title: Decommissioning Endpoints
-  - Url: nservicebus/scalability-and-ha
-    Title: Scalability and HA
-    Articles:
-    - Url: nservicebus/scalability-and-ha/scale-out
-      Title: Scaling endpoints
-    - Url: nservicebus/scalability-and-ha/deploying-to-a-windows-failover-cluster
-      Title: Deploying to Failover Cluster
-    - Url: nservicebus/scalability-and-ha/distributor
-      Title: Scaling with the Distributor
-      Articles:
-      - Url: nservicebus/scalability-and-ha/distributor/when-worker-goes-down
-        Title: When a worker goes down
-      - Url: nservicebus/scalability-and-ha/distributor/disconnect-workers
-        Title: Disconnect Workers
-      - Url: nservicebus/scalability-and-ha/distributor/publish-subscribe
-        Title: Publish-Subscribe
-      - Url: nservicebus/scalability-and-ha/distributor/error-handling
-        Title: Error handling
 - Name: ServiceInsight
   Topics:
   - Title: Getting Started

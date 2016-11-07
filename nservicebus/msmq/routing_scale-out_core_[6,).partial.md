@@ -1,1 +1,1 @@
-[Sender-side distribution](/nservicebus/msmq/scalability-and-ha/sender-side-distribution.md) can be used to overcome this limitation.
+[Sender-side distribution](/nservicebus/msmq/sender-side-distribution.md) can be used to overcome this limitation.
