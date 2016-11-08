@@ -40,6 +40,6 @@ snippet:SuccessHandler
 
 ### ThrowHandler
 
-The `SuccessHandler` logs the fact that a message has been received, and then throws an exception
+The `ThrowHandler` logs the fact that a message has been received, and then throws an exception
 
 snippet:ThrowHandler
