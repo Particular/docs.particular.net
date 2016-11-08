@@ -2,6 +2,7 @@
 title: Non-Durable Messaging
 summary: Information on how non-durable messaging effects the behaviors of endpoints and message delivery.
 component: Core
+reviewed: 2016-11-08
 redirects:
  - nservicebus/messaging/express-messages
 related:
@@ -11,7 +12,7 @@ related:
 
 Relaxes message delivery guarantees in order to achieve better performance.
 
-WARNING: This makes the endpoint susceptible to message loss during server crashes and restarts.
+WARNING: This can make an endpoint more susceptible to message loss during server crashes and restarts. See [effect on transports](#effect-on-transports) for more details.
 
 
 ## Enabling non-durable messaging
@@ -46,8 +47,7 @@ Individual transports interpret "non-durable" messaging with a custom approach d
 
 ### MSMQ
 
-The default behavior of MSMQ is to use the concept of Store and Forward. In this approach messages are stored durably on disk at the sender and then delivered by MSMQ to the receiver. When non-durable messaging is used the MSMQ Transport sends messages in [Express Mode](https://msdn.microsoft.com/en-us/library/ms704130).
-The underlying setting that is used to achieve this is to set [Message.Recoverable](https://msdn.microsoft.com/en-us/library/system.messaging.message.recoverable) to `false`.
+The default behavior of MSMQ is to use the concept of Store and Forward. In this approach messages are stored durably on disk at the sender and then delivered by MSMQ to the receiver. When non-durable messaging is used the MSMQ Transport sends messages in [Express Mode](https://msdn.microsoft.com/en-us/library/ms704130). The underlying setting that is used to achieve this is to set [Message.Recoverable](https://msdn.microsoft.com/en-us/library/system.messaging.message.recoverable) to `false`.
 
 Non durable messages requires the queues to be [non transactional](https://msdn.microsoft.com/en-us/library/ms704006). Use non-transactional queues by setting `useTransactionalQueues` to `false` in the transport [connection string](/nservicebus/msmq/connection-strings.md).
 
