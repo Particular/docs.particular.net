@@ -4,6 +4,7 @@ reviewed: 2016-08-26
 component: Core
 redirects:
  - nservicebus/how-do-i-send-a-message
+ - nservicebus/containers/injecting-ibus
 related:
  - nservicebus/messaging/routing
  - nservicebus/messaging/messages-as-interfaces
@@ -24,6 +25,7 @@ To send a message when the bus is started:
 snippet:BasicSend
 
 partial:batch-sends-performance
+
 
 ## Inside the incoming message processing pipeline
 

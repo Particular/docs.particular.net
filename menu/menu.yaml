@@ -605,8 +605,6 @@
     Articles:
     - Url: nservicebus/containers/child-containers
       Title: Child Containers
-    - Url: nservicebus/containers/injecting-ibus
-      Title: IBus in a Handler
     - Url: nservicebus/containers/property-injection
       Title: Property injection
     - Url: nservicebus/containers/autofac
