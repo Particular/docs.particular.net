@@ -34,7 +34,8 @@ class Program
 
             var identity = new GenericIdentity("FakeUser");
             Thread.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
-            bus.Send("Samples.UsernameHeader.Endpoint2", new MyMessage());
+            var message = new MyMessage();
+            bus.Send("Samples.UsernameHeader.Endpoint2", message);
 
             #endregion
 

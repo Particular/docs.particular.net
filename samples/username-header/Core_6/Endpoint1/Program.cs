@@ -21,10 +21,11 @@ class Program
 
         #region ComponentRegistration
 
-        endpointConfiguration.RegisterComponents(components =>
-        {
-            components.ConfigureComponent<UsernameMutator>(DependencyLifecycle.InstancePerCall);
-        });
+        endpointConfiguration.RegisterComponents(
+            registration: components =>
+            {
+                components.ConfigureComponent<UsernameMutator>(DependencyLifecycle.InstancePerCall);
+            });
 
         #endregion
 
@@ -36,7 +37,8 @@ class Program
 
             var identity = new GenericIdentity("FakeUser");
             Thread.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
-            await endpointInstance.Send("Samples.UsernameHeader.Endpoint2", new MyMessage())
+            var message = new MyMessage();
+            await endpointInstance.Send("Samples.UsernameHeader.Endpoint2", message)
                 .ConfigureAwait(false);
 
             #endregion

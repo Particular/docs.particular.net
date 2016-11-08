@@ -5,6 +5,7 @@ using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 
 #region TransportMessageCompressionMutator
+
 public class TransportMessageCompressionMutator :
     IMutateIncomingTransportMessages,
     IMutateOutgoingTransportMessages
@@ -25,7 +26,7 @@ public class TransportMessageCompressionMutator :
         // copy the compressed buffer only after the GZipStream is disposed,
         // otherwise, not all the compressed message will be copied.
         context.OutgoingBody = outStream.ToArray();
-        context.OutgoingHeaders["IWasCompressed"]= "true";
+        context.OutgoingHeaders["IWasCompressed"] = "true";
         log.Info($"transportMessage.Body size after compression: {context.OutgoingBody.Length}");
         return Task.CompletedTask;
     }
@@ -46,4 +47,5 @@ public class TransportMessageCompressionMutator :
         }
     }
 }
+
 #endregion

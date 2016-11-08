@@ -12,12 +12,16 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
 
         #region ComponentRegistration
-        busConfiguration.RegisterComponents(components =>
-        {
-            components.ConfigureComponent<ValidationMessageMutator>(DependencyLifecycle.InstancePerCall);
-            components.ConfigureComponent<TransportMessageCompressionMutator>(DependencyLifecycle.InstancePerCall);
-        });
+
+        busConfiguration.RegisterComponents(
+            registration: components =>
+            {
+                components.ConfigureComponent<ValidationMessageMutator>(DependencyLifecycle.InstancePerCall);
+                components.ConfigureComponent<TransportMessageCompressionMutator>(DependencyLifecycle.InstancePerCall);
+            });
+
         #endregion
+
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Runner.Run(bus);

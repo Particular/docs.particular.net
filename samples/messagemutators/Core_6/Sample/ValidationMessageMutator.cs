@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 #region ValidationMessageMutator
+
 public class ValidationMessageMutator :
     IMutateIncomingMessages,
     IMutateOutgoingMessages
@@ -50,4 +51,5 @@ public class ValidationMessageMutator :
         throw new Exception(errorMessage.ToString());
     }
 }
+
 #endregion

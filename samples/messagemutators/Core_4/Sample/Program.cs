@@ -16,9 +16,13 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
+
         #region ComponentRegistration
-        configure.Configurer.ConfigureComponent<ValidationMessageMutator>(DependencyLifecycle.InstancePerCall);
-        configure.Configurer.ConfigureComponent<TransportMessageCompressionMutator>(DependencyLifecycle.InstancePerCall);
+
+        var configurer = configure.Configurer;
+        configurer.ConfigureComponent<ValidationMessageMutator>(DependencyLifecycle.InstancePerCall);
+        configurer.ConfigureComponent<TransportMessageCompressionMutator>(DependencyLifecycle.InstancePerCall);
+
         #endregion
 
         using (var startableBus = configure.UnicastBus().CreateBus())

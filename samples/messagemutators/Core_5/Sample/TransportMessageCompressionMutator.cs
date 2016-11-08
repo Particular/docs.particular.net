@@ -6,6 +6,7 @@ using NServiceBus.MessageMutator;
 using NServiceBus.Unicast.Messages;
 
 #region TransportMessageCompressionMutator
+
 public class TransportMessageCompressionMutator :
     IMutateTransportMessages
 {
@@ -44,4 +45,5 @@ public class TransportMessageCompressionMutator :
         }
     }
 }
+
 #endregion

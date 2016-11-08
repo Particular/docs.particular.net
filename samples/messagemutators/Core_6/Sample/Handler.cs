@@ -3,6 +3,7 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 #region Handler
+
 public class Handler :
     IHandleMessages<CreateProductCommand>
 {
@@ -14,4 +15,5 @@ public class Handler :
         return Task.CompletedTask;
     }
 }
+
 #endregion

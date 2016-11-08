@@ -18,11 +18,14 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region ComponentRegistration
-        endpointConfiguration.RegisterComponents(components =>
-        {
-            components.ConfigureComponent<ValidationMessageMutator>(DependencyLifecycle.InstancePerCall);
-            components.ConfigureComponent<TransportMessageCompressionMutator>(DependencyLifecycle.InstancePerCall);
-        });
+
+        endpointConfiguration.RegisterComponents(
+            registration: components =>
+            {
+                components.ConfigureComponent<ValidationMessageMutator>(DependencyLifecycle.InstancePerCall);
+                components.ConfigureComponent<TransportMessageCompressionMutator>(DependencyLifecycle.InstancePerCall);
+            });
+
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

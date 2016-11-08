@@ -5,6 +5,7 @@ using System.Text;
 using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 #region ValidationMessageMutator
+
 public class ValidationMessageMutator :
     IMessageMutator
 {
@@ -48,4 +49,5 @@ public class ValidationMessageMutator :
         throw new Exception(errorMessage.ToString());
     }
 }
+
 #endregion

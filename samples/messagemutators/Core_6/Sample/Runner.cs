@@ -18,9 +18,10 @@ public class Runner
             switch (key.Key)
             {
                 case ConsoleKey.S:
+
                     #region SendingSmall
 
-                    var createProductCommand = new CreateProductCommand
+                    var smallMessage = new CreateProductCommand
                     {
                         ProductId = "XJ128",
                         ProductName = "Milk",
@@ -29,16 +30,18 @@ public class Runner
                         // before it reaches MSMQ.
                         Image = new byte[1024 * 1024 * 7]
                     };
-                    await endpointInstance.SendLocal(createProductCommand)
+                    await endpointInstance.SendLocal(smallMessage)
                         .ConfigureAwait(false);
+
                     #endregion
+
                     break;
                 case ConsoleKey.E:
                     try
                     {
                         #region SendingLarge
 
-                        var productCommand = new CreateProductCommand
+                        var largeMessage = new CreateProductCommand
                         {
                             ProductId = "XJ128",
                             ProductName = "Really long product name",
@@ -47,8 +50,9 @@ public class Runner
                             // before it reaches MSMQ.
                             Image = new byte[1024 * 1024 * 7]
                         };
-                        await endpointInstance.SendLocal(productCommand)
+                        await endpointInstance.SendLocal(largeMessage)
                             .ConfigureAwait(false);
+
                         #endregion
                     }
                     catch
@@ -57,9 +61,9 @@ public class Runner
                     }
                     break;
                 default:
-                    {
-                        return;
-                    }
+                {
+                    return;
+                }
             }
         }
     }

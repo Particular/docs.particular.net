@@ -17,44 +17,51 @@ public class Runner
             switch (key.Key)
             {
                 case ConsoleKey.S:
+
                     #region SendingSmall
-                    bus.SendLocal(new CreateProductCommand
+
+                    var smallMessage = new CreateProductCommand
                     {
                         ProductId = "XJ128",
                         ProductName = "Milk",
                         ListPrice = 4,
-                        // 7MB. MSMQ should throw an exception, but it will not since the buffer will be compressed 
+                        // 7MB. MSMQ should throw an exception, but it will not since the buffer will be compressed
                         // before it reaches MSMQ.
                         Image = new byte[1024 * 1024 * 7]
-                    });
+                    };
+                    bus.SendLocal(smallMessage);
+
                     #endregion
+
                     break;
                 case ConsoleKey.E:
                     try
                     {
                         #region SendingLarge
-                        bus.SendLocal(new CreateProductCommand
+
+                        var largeMessage = new CreateProductCommand
                         {
                             ProductId = "XJ128",
                             ProductName = "Really long product name",
                             ListPrice = 15,
-                            // 7MB. MSMQ should throw an exception, but it will not since the buffer will be compressed 
+                            // 7MB. MSMQ should throw an exception, but it will not since the buffer will be compressed
                             // before it reaches MSMQ.
                             Image = new byte[1024 * 1024 * 7]
-                        });
+                        };
+                        bus.SendLocal(largeMessage);
+
                         #endregion
                     }
                     catch
                     {
-                        // so the console keeps on running   
+                        // so the console keeps on running
                     }
                     break;
                 default:
-                    {
-                        return;
-                    }
+                {
+                    return;
+                }
             }
         }
     }
-
 }

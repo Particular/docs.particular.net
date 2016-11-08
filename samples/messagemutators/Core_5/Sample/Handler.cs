@@ -2,6 +2,7 @@
 using NServiceBus.Logging;
 
 #region Handler
+
 public class Handler :
     IHandleMessages<CreateProductCommand>
 {
@@ -12,4 +13,5 @@ public class Handler :
         log.Info($"Received a CreateProductCommand message: {createProductCommand}");
     }
 }
+
 #endregion

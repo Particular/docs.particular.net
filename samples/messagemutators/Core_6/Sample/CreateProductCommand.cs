@@ -20,4 +20,3 @@ public class CreateProductCommand :
         return $"CreateProductCommand: ProductId={ProductId}, ProductName={ProductName}, ListPrice={ListPrice} Image (length)={Image?.Length ?? 0}";
     }
 }
-
