@@ -20,9 +20,17 @@ ServicePulse (via ServiceControl) monitors the central error queue and displays 
 
 ### Failed Messages Page
 
-To see a detailed display of the failed messages, click the Failed Messages indicator (or the "Failed Messages" link in the navigation bar). This page is split into two tabs.
+To see a detailed display of the failed messages, click the Failed Messages indicator (or the "Failed Messages" link in the navigation bar). This page is split into four tabs.
 
 ![Failed Message Groups Page](intro-failed-messages-failed-groups-page.png 'width=500')
+
+#### Last 10 successful group retries
+
+The list shows information about last 10 group retries that were performed containing following information:
+ * **Title** made up of the **Exception Type** and **Call Site** where the failure occurred.
+ * **Retry completed** time indicating when the group was retried.
+
+#### Failed message groups
 
 The first tab shows error groups. A group is a set of failed messages where the same **Exception Type** has been thrown from the same method. Each group has:
 
@@ -30,6 +38,7 @@ The first tab shows error groups. A group is a set of failed messages where the 
  * **Count** of how many unresolved messages there are in the group.
  * **First Failure** time indicating when the first unresolved error occurred.
  * **Latest Failure** time indicating when the most recent unresolved errors occurred.
+ * **Last Retried** time indicating when the group was retried.
  * **Actions** which can be used to Archive or Retry an entire group of messages (see below).
 
 Click the title of a group or the View Messages link to open a list of all of the errors within the group.
