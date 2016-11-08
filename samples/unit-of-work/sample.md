@@ -11,7 +11,7 @@ This sample shows how to create a custom [Unit Of Work](/nservicebus/pipeline/un
 
 
  1. Run the solution.
- 1. Press 's' to send a message that will succeed. Press `t` to send a message that will throw.
+ 1. Press `s` to send a message that will succeed. Press `t` to send a message that will throw.
 
 
 ## Code walk-through
