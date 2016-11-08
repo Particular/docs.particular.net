@@ -115,7 +115,7 @@ span.blue {
 </style>
 <div class="row">
 <div class="col-md-12 block top clearfix">
-  <a href="/nservicebus/"><img src="/menu/nservicebus-icon.svg" width="47" height="47"><span class="productlink">NServiceBus</span></a>
+  <a href="/nservicebus/"><img src="/content/images/menu/nservicebus-icon.svg" width="47" height="47"><span class="productlink">NServiceBus</span></a>
   <span class="pull-right">
     <a class="btn btn-info btn-lg hidden-sm hidden-xs" href="https://github.com/Particular/docs.particular.net/issues/new" target="_blank"><em class="glyphicon glyphicon-comment"></em> Feedback</a>
     <a type="button" class="btn btn-primary btn-lg" href="/nservicebus/">Documentation topics</a>
@@ -192,19 +192,19 @@ span.blue {
 <div class="row">
 <div class="productcolumn header">
   <div class="block top">
-    <a href="/serviceinsight/"><img src="/menu/serviceinsight-icon.svg" width="47" height="47"><span class="productlink">ServiceInsight</span></a>
+    <a href="/serviceinsight/"><img src="/content/images/menu/serviceinsight-icon.svg" width="47" height="47"><span class="productlink">ServiceInsight</span></a>
     <div style="clear: both"></div>
   </div>
 </div>
 <div class="productcolumn header">
   <div class="block top">
-    <a href="/servicecontrol/"><img src="/menu/servicecontrol-icon.svg" width="47" height="47"><span class="productlink">ServiceControl</span></a>
+    <a href="/servicecontrol/"><img src="/content/images/menu/servicecontrol-icon.svg" width="47" height="47"><span class="productlink">ServiceControl</span></a>
     <div style="clear: both"></div>
   </div>
 </div>
 <div class="productcolumn header last">
   <div class="block top">
-    <a href="/servicepulse/"><img src="/menu/servicepulse-icon.svg" width="47" height="47"><span class="productlink">ServicePulse</span></a>
+    <a href="/servicepulse/"><img src="/content/images/menu/servicepulse-icon.svg" width="47" height="47"><span class="productlink">ServicePulse</span></a>
     <div style="clear: both"></div>
   </div>
 </div>
