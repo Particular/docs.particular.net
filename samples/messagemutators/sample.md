@@ -12,6 +12,10 @@ related:
 - samples/header-manipulation
 ---
 
+
+This sample shows how to create a custom [message mutator](/nservicebus/pipeline/message-mutators.md).
+
+
  1. Run the solution.
  1. Press 's' and 'Enter' in the window. Then press 'e' followed by 'Enter'.
     The Console  output will look something like this (the exception message is expected):
@@ -32,12 +36,8 @@ The Product Name value cannot exceed 20 characters.
 The field ListPrice must be between 1 and 5.
 ```
 
-Now look at the code.
-
 
 ## Code walk-through
-
-This sample shows how to create a custom message mutator.
 
 The `IMutateTransportMessages` and `IMessageMutator` interfaces give access to the message so that the the inbound and/or outbound message can be modified.
 
