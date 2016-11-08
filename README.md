@@ -474,7 +474,7 @@ There are only rendered in the target page when the version filter matches the c
 
 Partial Convention: `filePrefix_key_nugetAlias_version.partial.md`
 
-Usually the NuGet alias will be the same as the component name. When a component has multiple NuGet aliases, a proper alias should be used, not the component name. 
+Make sure to use component alias (as defined in components.yaml file) in the partial name. For most components component alias will be identical to NuGet alias, however it's not always the case, e.g. the Callbacks feature has been moved out of core package to the dedicated NServiceBus.Callbacks package, so the there are two NuGet aliases that are related to this feature, but it's still the same component and has a single component alias. 
 
 The NuGet alias in samples should match the prefix as defined by the samples solution directories.
 
