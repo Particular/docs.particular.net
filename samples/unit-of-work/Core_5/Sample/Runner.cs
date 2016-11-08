@@ -18,22 +18,14 @@ public class Runner
             {
                 case ConsoleKey.S:
 
-                    #region SendingSuccessMessage
-
                     var messageThatWillSucceed = new MessageThatWillSucceed();
                     bus.SendLocal(messageThatWillSucceed);
-
-                    #endregion
 
                     break;
                 case ConsoleKey.T:
 
-                    #region SendingThrowMessage
-
                     var messageThatWillThrow = new MessageThatWillThrow();
                     bus.SendLocal(messageThatWillThrow);
-
-                    #endregion
 
                     break;
                 default:

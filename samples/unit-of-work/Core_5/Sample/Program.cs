@@ -12,7 +12,7 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.DisableFeature<SecondLevelRetries>();
-        #region ComponentRegistartion
+        #region ComponentRegistration
 
         busConfiguration.RegisterComponents(
             registration: components =>

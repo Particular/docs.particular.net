@@ -1,6 +1,7 @@
 ﻿using NServiceBus;
 using NServiceBus.Logging;
 #region handler-using-custom-header
+
 public class HandlerUsingCustomHeader :
     IHandleMessages<MyMessage>
 {
@@ -19,4 +20,5 @@ public class HandlerUsingCustomHeader :
         log.Info($"Username extracted from header: {usernameFromHeader}");
     }
 }
+
 #endregion

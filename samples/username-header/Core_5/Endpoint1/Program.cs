@@ -12,7 +12,7 @@ class Program
         busConfiguration.EndpointName("Samples.UsernameHeader.Endpoint1");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseSerialization<JsonSerializer>();
-        #region ComponentRegistartion
+        #region ComponentRegistration
         busConfiguration.RegisterComponents(components =>
         {
             components.ConfigureComponent<UsernameMutator>(DependencyLifecycle.InstancePerCall);

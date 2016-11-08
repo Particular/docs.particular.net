@@ -17,7 +17,7 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        #region ComponentRegistartion
+        #region ComponentRegistration
         endpointConfiguration.RegisterComponents(components =>
         {
             components.ConfigureComponent<ValidationMessageMutator>(DependencyLifecycle.InstancePerCall);

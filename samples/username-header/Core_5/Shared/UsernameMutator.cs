@@ -5,6 +5,7 @@ using NServiceBus.MessageMutator;
 using NServiceBus.Unicast.Messages;
 
 #region Mutator
+
 public class UsernameMutator :
     IMutateOutgoingTransportMessages
 {
@@ -16,4 +17,5 @@ public class UsernameMutator :
         transportMessage.Headers["UserName"] = Thread.CurrentPrincipal.Identity.Name;
     }
 }
+
 #endregion

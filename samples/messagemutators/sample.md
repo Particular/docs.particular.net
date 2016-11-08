@@ -94,7 +94,7 @@ Otherwise, the incoming method is replacing the transport message Body compresse
 
 To hook the sample message mutators into NServiceBus messaging flow:
 
-snippet:ComponentRegistartion
+snippet:ComponentRegistration
 
 
 ## The Sending code

@@ -4,6 +4,7 @@ using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 
 #region Mutator
+
 public class UsernameMutator :
     IMutateOutgoingTransportMessages
 {
@@ -16,4 +17,5 @@ public class UsernameMutator :
         return Task.CompletedTask;
     }
 }
+
 #endregion

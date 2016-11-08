@@ -19,7 +19,7 @@ class Program
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
 
-        #region ComponentRegistartion
+        #region ComponentRegistration
 
         configure.Configurer.ConfigureComponent<CustomManageUnitOfWork>(DependencyLifecycle.InstancePerCall);
 

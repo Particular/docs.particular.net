@@ -11,7 +11,7 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseSerialization<JsonSerializer>();
 
-        #region ComponentRegistartion
+        #region ComponentRegistration
         busConfiguration.RegisterComponents(components =>
         {
             components.ConfigureComponent<ValidationMessageMutator>(DependencyLifecycle.InstancePerCall);

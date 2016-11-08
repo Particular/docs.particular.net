@@ -33,7 +33,7 @@ snippet:Mutator
 
 #### Register the Mutator
 
-snippet: componentregistartion
+snippet: componentRegistration
 
 
 ### The Handler

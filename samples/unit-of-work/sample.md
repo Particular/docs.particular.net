@@ -26,6 +26,10 @@ The Unit Of Work logs both the begin and end.
 
 snippet:CustomManageUnitOfWork
 
+### Component Registration
+
+snippet: componentRegistration
+
 
 ### SuccessHandler
 

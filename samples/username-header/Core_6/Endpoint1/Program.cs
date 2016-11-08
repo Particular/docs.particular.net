@@ -19,11 +19,13 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        #region ComponentRegistartion
+        #region ComponentRegistration
+
         endpointConfiguration.RegisterComponents(components =>
         {
             components.ConfigureComponent<UsernameMutator>(DependencyLifecycle.InstancePerCall);
         });
+
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
@@ -36,7 +38,9 @@ class Program
             Thread.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
             await endpointInstance.Send("Samples.UsernameHeader.Endpoint2", new MyMessage())
                 .ConfigureAwait(false);
+
             #endregion
+
             Console.WriteLine("Message sent. Press any key to exit");
             Console.ReadKey();
         }

@@ -4,6 +4,7 @@ using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 
 #region Mutator
+
 public class UsernameMutator :
     IMutateOutgoingTransportMessages
 {
@@ -15,4 +16,5 @@ public class UsernameMutator :
         transportMessage.Headers["UserName"] = Thread.CurrentPrincipal.Identity.Name;
     }
 }
+
 #endregion

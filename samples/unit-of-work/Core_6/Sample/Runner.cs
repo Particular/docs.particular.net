@@ -19,24 +19,16 @@ public class Runner
             {
                 case ConsoleKey.S:
 
-                    #region SendingSuccessMessage
-
                     var successMessage = new MessageThatWillSucceed();
                     await endpointInstance.SendLocal(successMessage)
                         .ConfigureAwait(false);
 
-                    #endregion
-
                     break;
                 case ConsoleKey.T:
-
-                    #region SendingThrowMessage
 
                     var throwMessage = new MessageThatWillThrow();
                     await endpointInstance.SendLocal(throwMessage)
                         .ConfigureAwait(false);
-
-                    #endregion
 
                     break;
                 default:

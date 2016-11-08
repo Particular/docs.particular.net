@@ -28,7 +28,7 @@ class Program
                 delayed.NumberOfRetries(0);
             });
 
-        #region ComponentRegistartion
+        #region ComponentRegistration
 
         endpointConfiguration.RegisterComponents(
             registration: components =>
