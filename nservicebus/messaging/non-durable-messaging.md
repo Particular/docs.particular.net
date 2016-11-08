@@ -60,9 +60,9 @@ There are some extra configurations required for MSMQ
 
 ### RabbitMQ
 
-The default behavior of sending messaged via RabbitMQ is to wait for the publisher confirmation before proceeding. When non-durable messaging is used the RabbitMQ transport skips the publisher confirmation step.
+Non-durable messages are sent using the RabbitMQ non-persistent delivery mode, which means the messages are not persisted to disk by the broker. If durable messaging has been disabled globally, the exchanges and queues created by the broker will be declared as non-durable as well. If the broker is restarted, all non-durable exchanges and queues will be removed along with any messages in those queues.
 
-This effectively means the blocking call to [WaitForConfirmsOrDie](http://www.rabbitmq.com/javadoc/com/rabbitmq/client/Channel.html#waitForConfirmsOrDie%28long%29) is skipped.
+partial: rabbitmq-confirms
 
 
 ### SQL Server
