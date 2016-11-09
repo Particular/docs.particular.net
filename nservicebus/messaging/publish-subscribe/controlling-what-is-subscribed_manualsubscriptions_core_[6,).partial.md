@@ -1,0 +1,1 @@
+In Versions 6 and above, `Subscribe` and `Unsubscribe` are accessible via the `IMessageSession` available on the `IEndpointInstance` or within a [Feature startup task](/nservicebus/pipeline/features.md#feature-startup-tasks).
