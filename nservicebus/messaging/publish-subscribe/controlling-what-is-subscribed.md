@@ -45,3 +45,5 @@ Events can manually be subscribed and unsubscribed:
 
 snippet:ExplicitSubscribe
 
+partial:manualsubscriptions
+
