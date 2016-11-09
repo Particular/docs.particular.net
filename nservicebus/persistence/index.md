@@ -13,7 +13,7 @@ Various features require persistence.
 
  * [Gateway Deduplication](/nservicebus/gateway/)
  * [Sagas](/nservicebus/sagas/)
- * [Subscriptions](/nservicebus/sagas/)
+ * [Subscriptions](/nservicebus/messaging/publish-subscribe/)
  * [Timeouts](/nservicebus/sagas/timeouts.md)
  * [Deferral](/nservicebus/messaging/delayed-delivery.md)
  * [Delayed Retries](/nservicebus/recoverability/#delayed-retries)
