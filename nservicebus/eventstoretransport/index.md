@@ -1,6 +1,6 @@
 ---
 title: Event Store Transport
-summary: High-level description of NServiceBus EventStore Transport.
+summary: High-level description of the EventStore Transport.
 component: EventStoreTransport
 tags:
  - EventStore
