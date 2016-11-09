@@ -11,7 +11,7 @@ reviewed: 2016-11-07
 
 In NServiceBus.Azure the behavior of the `AzureStoragePersister` can be controlled by working with the appropriate configuration section(s) in the `app.config` or by using the code via the [`IProvideConfiguration` adapter](/nservicebus/hosting/custom-configuration-providers.md). Both approaches to configuring the persister can access the same configuration options.
 
-In NServiceBus.Persistence.AzureStorage Version 1 XML-based configuration is no longer available. Configuring the behavior of the persister is done using the code configuration API.
+NOTE: In NServiceBus.Persistence.AzureStorage Version 1 XML-based configuration is no longer available. Configuring the behavior of the persister is done using the code configuration API.
 
 partial:sections
 
@@ -29,7 +29,7 @@ NOTE: Subscriptions and Timeouts persistence configurations have no effect when 
 When using XML-based configuration, the following properties can be set through the `AzureSagaPersisterConfig` section:
 
  * `ConnectionString`: Sets the connectionstring for the storage account to be used for storing saga information.
-  * NServiceBus.Azure Versions 6 and below defaults to `UseDevelopmentStorage=true`.
+  * NServiceBus.Azure defaults to `UseDevelopmentStorage=true`.
   * NServiceBus.Persistence.AzureStorage Version 1 defaults to `null`.
  * `CreateSchema`: Instructs the persister to create the table automatically.
   * defaults to `true`.
@@ -40,7 +40,7 @@ When using XML-based configuration, the following properties can be set through 
 The following settings are available for changing the behavior of subscription persistence:
 
  * `ConnectionString`: Sets the connection string for the storage account to be used for storing subscription information.
-  * NServiceBus.Azure Versions 6 and below defaults to `UseDevelopmentStorage=true`.
+  * NServiceBus.Azure defaults to `UseDevelopmentStorage=true`.
   * NServiceBus.Persistence.AzureStorage Version 1 defaults to `null`.
  * `CreateSchema`: Instructs the persister to create the table automatically.
   * defaults to `true`.
