@@ -1,6 +1,6 @@
 ---
 title: Installing Silently
-reviewed: 2016-10-06
+reviewed: 2016-11-09
 tags:
 - ServiceControl
 - Installation
@@ -10,27 +10,27 @@ tags:
 
 Note: This documentation covers silent installation instructions for ServiceControl Version 1.7 or greater.
 
-The command line examples referred to the ServiceControl installation exe as `<install.exe>`.   Replace this with the specific exe name for the version being deployed.  (e.g. Particular.ServiceControl-1.22.0.exe) 
+The command line examples referred to the ServiceControl installation exe as `<install.exe>`.   Replace this with the specific exe name for the version being deployed.  (e.g. Particular.ServiceControl-1.22.0.exe)
 
 
-The following command line will silently install the ServiceControl Management utility only.
+The following command line will silently install ServiceControl Management.
 
 ```dos
  <install.exe> /quiet
 ```
 
-Instances of the ServiceControl service can be deleted, added or upgraded via the Utility.
+Instances of the ServiceControl service can be deleted, added or upgraded via the ServiceControl Management application or ServiceControl Management Powershell console .
 
 
 #### Silently Add ServiceControl during installation
 
-The following command line will silently install the ServiceControl Management and a ServiceControl instance.
+The following command line will silently install the ServiceControl Management application and an instance of the ServiceControl service.
 
 ```bat
  <install.exe> /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml
 ```
 
-For details on how to make the `unattendedfile.xml` file refer to ServiceControl Management [PowerShell](installation-powershell.md) documentation. The installed instance will use `localsystem` as the service account. To specify an alternative service account use the `SERVICEACCOUNT` and `PASSWORD` command line switches.
+For details on how to make the `unattendedfile.xml` file refer to the ServiceControl Management [PowerShell](installation-powershell.md) documentation. The installed instance will use `localsystem` as the service account. To specify an alternative service account use the `SERVICEACCOUNT` and `PASSWORD` command line switches.
 
 ```dos
 <install.exe> /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml SERVICEACCOUNT=MyServiceAccount PASSWORD=MyPassword
@@ -43,13 +43,13 @@ NOTE: The settings contained in an unattended installation files are version spe
 
 If an existing service matching the name specified in the unattended XML file already exists the unattended install option is ignored. To update one or more instances of ServiceControl as part of the silent installation the command line switch `UPGRADEINSTANCES` command line argument can be used.
 
-In this example the ServiceControl Management Utility is silently installed and attempt to upgrade all the installed instances of the ServiceControl service. Either `*` or `ALL` can be used to specify all instances should be upgraded.
+In this example ServiceControl Management is silently installed and an upgrade is attempted for all the installed instances of the ServiceControl service. Either `*` or `ALL` can be used to specify all instances should be upgraded.
 
 ```dos
 <install.exe> /quiet /LV* install.log UPGRADEINSTANCES=ALL
 ```
 
-In this example the ServiceControl Management Utility is silently installed and attempt to upgrade just one instance called `TestServiceControl`.
+In this example ServiceControl Management is silently installed and attempt to upgrade just one instance called `TestServiceControl`.
 
 ```dos
 <install.exe> /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl
@@ -64,7 +64,7 @@ To specify multiple instances use a comma separated list:
 
 #### Add the license file as part of the Silent installation
 
-In this example the ServiceControl Management Utility is silently installed and import the license file.
+In this example ServiceControl Management is silently installed and a license license file is imported
 
 ```dos
 <install.exe> /quiet /LV* install.log LICENSEFILE=license.xml
@@ -124,7 +124,7 @@ The command line `UPGRADEINSTANCES` can be combined with `FORWARDERRORMESSAGES`,
 
 #### Command line Uninstall
 
-The following command can be used to uninstall ServiceControl Management Utility silently:
+The following command can be used to uninstall ServiceControl Management silently:
 
 ```dos
 wmic product where (name like '%servicecontrol%') call uninstall
@@ -135,7 +135,7 @@ NOTE: This command will not remove any ServiceControl service instances that are
 
 #### Logging and Failures
 
-In each of the samples above a log file was specified on the command line. The silent install actions will log to the MSI log file specified. For Version 1.6.3 and below if an installation action failed the installation was rolled back, this resulted in failed upgrades acting like a complete uninstall of the product. For Version 1.7 and above a failure to do an unattended install action will be logged but the overall installation will not rollback, in this scenario only the ServiceControl Management Utility will have been updated. Instances can subsequently be upgrade through the ServiceControl Management Utility.
+In each of the samples above a log file was specified on the command line. The silent install actions will log to the MSI log file specified. For Version 1.6.3 and below if an installation action failed the installation was rolled back, this resulted in failed upgrades acting like a complete uninstall of the product. For Version 1.7 and above a failure to do an unattended install action will be logged but the overall installation will not rollback, in this scenario only the ServiceControl Management will have been updated. Instances can subsequently be upgrade through the ServiceControl Management.
 
 
 #### PowerShell

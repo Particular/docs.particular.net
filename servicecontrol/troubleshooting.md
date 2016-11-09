@@ -4,18 +4,17 @@ summary: Troubleshooting ServiceControl installation and common issues
 tags:
 - ServiceControl
 - Troubleshooting
-reviewed: 2016-10-06
+reviewed: 2016-11-09
 ---
 
 
-### Check the configuration via the Management utility
+### Check the configuration via ServiceControl Management
 
-Open the ServiceControl Management utility and review the configuration. The Management utility is a quick way to get the information needed to troubleshoot a ServiceControl issue.
-
+Open ServiceControl Management and review the instance configuration. The user interface presents basic installation information for each instance of the ServiceControl service installed. To review the application configuration file for a specific instance click the installation path and then locate `servicecontrol.exe.config` from the Explorer window.
 
 ### Service fails to start
 
-There are various reasons that can cause the ServiceControl windows service fail to start. If a critical exception is thrown at service start up this is reported via an error message in the `Application` Windows Event Log. Additional information may also be present in the [ServiceControl logs](logging.md). 
+There are various reasons that can cause the ServiceControl windows service fail to start. If a critical exception is thrown at service start up this is reported via an error message in the `Application` Windows Event Log. Additional information may also be present in the [ServiceControl logs](logging.md).
 
 ### The port is already in use
 
@@ -26,7 +25,7 @@ In the event that the service fails to start check if the configured port (typic
 ```dos
 netstat -a -b
 ```
-or use the provided ServiceControl Management PowerShell cmdlet to check a specific port: 
+or use the provided ServiceControl Management PowerShell cmdlet to check a specific port:
 
 ```ps
 Test-IfPortIsAvailable -Port 33333
@@ -36,7 +35,7 @@ Test-IfPortIsAvailable -Port 33333
 
 ### Missing queue
 
-The service expects to be able to connect to the error, audit and forwarding queues specified in the configuration. If the configuration has been manually changes ensure the specified queues exist. 
+The service expects to be able to connect to the error, audit and forwarding queues specified in the configuration. If the configuration has been manually changes ensure the specified queues exist.
 
 
 ### Cannot connect to the queues
@@ -93,7 +92,7 @@ The value is the size of the version store in MB.
 ### Unable to connect to ServiceControl from either ServiceInsight or ServicePulse
 
  1. Log on to the PC hosting ServiceControl.
- 1. Open the ServiceControl Management Utility.
+ 1. Open ServiceControl Management.
  1. Click the ServiceControl instance is Running.
  1. Click the URL under 'Host'. A valid response with JSON data will be received.
  1. If having issues remotely connecting to ServiceControl. Verify that firewall settings do not block access to the ServiceControl port specified in the URL.
@@ -107,7 +106,7 @@ The `ExposeRavenDB` setting enables the embedded RavenDB Management Studio to be
 When this setting is used in combination with a low privilege service account it can cause the service fail on startup.
 This is because a URLACL is required and the service account does not have rights to create it.
 
-To workaround this create the required URLACL. This can be done using the ServiceControl Management PowerShell module. 
+To workaround this create the required URLACL. This can be done using the ServiceControl Management PowerShell module.
 
 NOTE: Replace the `<hostname>` and `<port>` values in the sample commands below with the appropriate values from the ServiceControl configuration.
 
@@ -119,4 +118,4 @@ If the `ExposeRavenDB` setting is removed or disabled in the configuration then 
 
 ```ps
 urlacl-list | ? VirtualDirectory -eq storage | ? Port -eq <port> | urlacl-delete
-``` 
+```

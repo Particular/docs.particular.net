@@ -1,6 +1,6 @@
 ---
 title: Logging
-reviewed: 2016-10-06
+reviewed: 2016-11-09
 tags:
 - ServiceControl
 - Logging
@@ -10,7 +10,7 @@ redirects:
 
 ### Logging Location
 
-The location of the ServiceControl logs are specified at install time or can also be modified later on by launching the ServiceControl Management Utility and editing the configuration settings for the instance.
+The location of the ServiceControl logs are specified at install time or can also be modified later on by launching ServiceControl Management and editing the configuration settings for the instance.
 
 The default logging location is `%LOCALAPPDATA%\Particular\ServiceControl\logs`.
 
@@ -36,18 +36,18 @@ Note: Browsing to this location can be problematic as the default NTFS permissio
 NOTE: If multiple Service Control instances are configured on the same machine ensure that the log locations for each instance are unique
 
 
-#### Changing logging location via the ServiceControl Management Utility
+#### Changing logging location via ServiceControl Management
 
 To change the location ServiceControl stores its logs:
 
- * Open the ServiceControl Management Utility
+ * Open ServiceControl Management
  * Click the Configuration icon for the instance to modify.
 
 ![](managementutil-configuration.png)
 
  * Change the Log Path and click Save
 
-When Save is clicked the the service with be restarted to apply the change.
+When Save is clicked the service with be restarted to apply the change.
 
 
 ### Log File Names and Retention
@@ -72,7 +72,7 @@ NOTE: The change in log naming will result in logs produced prior to Version 1.1
 
 ### Logging Levels
 
-Instances of the ServiceControl service write logging information and failed message import stack traces to the file system. 
+Instances of the ServiceControl service write logging information and failed message import stack traces to the file system.
 
 
 #### Versions 1.8.3 and below

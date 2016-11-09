@@ -4,7 +4,7 @@ summary: How to compact (release disk space to OS) the RavenDB database backing 
 tags:
 - ServiceControl
 - RavenDB
-reviewed: 2016-10-04
+reviewed: 2016-11-09
 ---
 
 
@@ -16,7 +16,7 @@ ServiceControl's embedded RavenDB database can be compacted in one of two ways. 
 
 ### Step 1: Stop ServiceControl
 
-* Open the ServiceControl Management utility.
+* Open ServiceControl Management.
 * Stop the Service from the actions icons.
 * Note down the "DATA PATH" for the service.   ![](managementutil-instance-datapath.png 'width=500')
 
@@ -38,7 +38,7 @@ WARNING: For the `esentutl` command line utility to work properly, ServiceContro
 Extensible Storage Engine Utilities for Microsoft(R) Windows(R)
 Version 10.0
 Copyright (C) Microsoft Corporation. All Rights Reserved.
-	
+
 Initiating RECOVERY mode...
    Logfile base name: RVN
    Log files: logs
@@ -82,7 +82,7 @@ Once ServiceControl is running in this mode the following procedure can be used 
 
 ### Step 1: Start ServiceControl in the maintenance mode
 
-* Open the ServiceControl Management utility.
+* Open ServiceControl Management.
 * Click on the "ADVANCED OPTIONS" icon of the instance that needs to be run in maintenance mode.  
   ![](managementutil-advancedoptions.png)
 * Click on the "Start Maintenance Mode" button.  
@@ -101,7 +101,7 @@ Once ServiceControl is running in this mode the following procedure can be used 
   ![](export-database-step3.png 'width=500')
 * Wait for the export operation to complete.  
   ![](export-database-step4.png)
-* Once the export operation is complete, stop ServiceControl (from the ServiceControl Management utility).
+* Once the export operation is complete, stop ServiceControl (from ServiceControl Management).
 
 ### Step 3: Delete the existing database
 
@@ -123,7 +123,7 @@ NOTE: At this point it is advisable to take a backup copy of the existing databa
 * Wait for the operation to complete.
 * After the operation has completed wait for the stale index count in the footer to indicate there are no stale indexes.  
   ![](import-database-step4.png 'width=500')
-* Stop ServiceControl (from the ServiceControl Management utility).
+* Stop ServiceControl (from ServiceControl Management).
 
 NOTE: If an `System.OutOfMemoryException` occurs during import work around this error by reducing the batch size in advanced settings.
 
