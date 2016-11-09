@@ -1,1 +1,1 @@
-The SQL Server transport evaluates the TimeToBeReceived attribute for a message when the message is received from the queue and immediately discards expired messages. Disk space occupied by expired messages is not reclaimed until they reach the front of the queue.
+The SQL Server transport evaluates the TimeToBeReceived for a message when the message is received from the queue and immediately discards expired messages. Disk space occupied by expired messages is not reclaimed until they reach the front of the queue.
