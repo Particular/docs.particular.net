@@ -7,7 +7,7 @@ tags:
 reviewed: 2016-11-09
 ---
 
-ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If direct access to the RavenDB instance is required, run the instance in Maintenance Mode by launching ServiceControl Management and follow these steps:
+ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If direct access to the RavenDB instance is required, run the instance in Maintenance Mode by launching ServiceControl Management and following these steps:
 
 1. Open Advanced Options
 ![](managementutil-advancedoptions.png)
