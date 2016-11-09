@@ -3,7 +3,7 @@ title: ServiceControl Forwarding Queues
 summary: Details the ServiceControl Audit and Error forwarding behavior and configuration
 tags:
 - ServiceControl
-reviewed: 2016-10-06
+reviewed: 2016-11-09
 ---
 
 ### Audit and Error queues
@@ -15,7 +15,7 @@ ServiceControl can also forward these messages to two forwarding queues.
  * Error messages are optionally forwarded to the Error forwarding queue.
  * Audit messages are optionally forwarded to the Audit forwarding queue.
 
-This behavior can be set through the ServiceControl Management utility.
+This behavior can be set through ServiceControl Management.
 
 
 ### Error and Audit Forwarding Queues

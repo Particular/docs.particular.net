@@ -1,6 +1,6 @@
 ---
 title: Licensing
-reviewed: 2016-10-06
+reviewed: 2016-11-09
 tags:
  - servicecontrol
  - license
@@ -13,9 +13,9 @@ tags:
 The following options outline how to add a license to ServiceControl.
 
 
-### ServiceControl Management Utility
+### ServiceControl Management
 
-The ServiceControl Management utility has a license user interface which will import the designated license file into the registry. The license file is added to the `HKEY_LOCAL_MACHINE` registry hive so it is available to all instances of ServiceControl regardless of the service account used.
+ServiceControl Management  has a license user interface which will import the designated license file into the registry. The license file is added to the `HKEY_LOCAL_MACHINE` registry hive so it is available to all instances of ServiceControl regardless of the service account used.
 
 ![](managementutil-addlicense.png 'width=500')
 
@@ -36,7 +36,7 @@ Import-ServiceControlLicense <LicenseFile>
 
 In Version 1.17 and below, a license can be applied to an individual instance rather than using a license installed in the registry. To do this, copy the `license.xml` file to a `license` directory under the installation path of the instance.
 
-NOTE: Instance Licensing is deprecated in Version 1.18 and above. Use the ServiceControl Management Utility or PowerShell module to install the license file to the registry.
+NOTE: Instance Licensing is deprecated in Version 1.18 and above. Use ServiceControl Management or the ServiceControl PowerShell module to install the license file to the registry.
 
 
 ### Troubleshooting
