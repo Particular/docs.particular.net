@@ -33,10 +33,11 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         var conventions = endpointConfiguration.Conventions();
-        conventions.DefiningMessagesAs(type =>
-        {
-            return type.GetInterfaces().Contains(typeof(IMessage));
-        });
+        conventions.DefiningMessagesAs(
+            type =>
+            {
+                return type.GetInterfaces().Contains(typeof(IMessage));
+            });
 
         Run(endpointConfiguration).GetAwaiter().GetResult();
     }

@@ -14,11 +14,12 @@ public static class ConventionExtensions
                 return type.Namespace != null &&
                        type.Namespace.EndsWith("Commands");
             });
-        conventions.DefiningEventsAs(type =>
-        {
-            return type.Namespace != null &&
-                   type.Namespace.EndsWith("Events");
-        });
+        conventions.DefiningEventsAs(
+            type =>
+            {
+                return type.Namespace != null &&
+                       type.Namespace.EndsWith("Events");
+            });
         conventions.DefiningMessagesAs(
             type =>
             {

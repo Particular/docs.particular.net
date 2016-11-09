@@ -19,13 +19,14 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         var conventions = endpointConfiguration.Conventions();
-        conventions.DefiningEventsAs(type =>
-        {
-            return typeof(IEvent).IsAssignableFrom(type) ||
-                   // include ServiceControl events
-                   type.Namespace != null &&
-                   type.Namespace.StartsWith("ServiceControl.Contracts");
-        });
+        conventions.DefiningEventsAs(
+            type =>
+            {
+                return typeof(IEvent).IsAssignableFrom(type) ||
+                       // include ServiceControl events
+                       type.Namespace != null &&
+                       type.Namespace.StartsWith("ServiceControl.Contracts");
+            });
 
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
