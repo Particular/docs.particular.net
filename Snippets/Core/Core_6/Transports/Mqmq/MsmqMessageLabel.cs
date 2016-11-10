@@ -10,7 +10,11 @@
 
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
             // Set the msmq message label to the current Message Id
-            transport.ApplyLabelToMessages(headers => headers[NServiceBus.Headers.MessageId]);
+            transport.ApplyLabelToMessages(
+                labelGenerator: headers =>
+                {
+                    return headers[NServiceBus.Headers.MessageId];
+                });
 
             #endregion
         }

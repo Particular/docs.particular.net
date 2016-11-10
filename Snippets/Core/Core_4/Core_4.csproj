@@ -199,9 +199,9 @@
     <Compile Include="Sagas\Reply\MySaga.cs" />
     <Compile Include="Sagas\Reply\MySagaData.cs" />
     <Compile Include="Sagas\Reply\StartMessage.cs" />
-    <Compile Include="Serialization\BsonSerializerUsage.cs" />
-    <Compile Include="Serialization\BinarySerializerUsage.cs" />
-    <Compile Include="Serialization\JsonSerializerUsage.cs" />
+    <Compile Include="Serialization\Json\BsonSerializerUsage.cs" />
+    <Compile Include="Serialization\Binary\BinarySerializerUsage.cs" />
+    <Compile Include="Serialization\Json\JsonSerializerUsage.cs" />
     <Compile Include="Transports\Msmq\AuthorizeSubscriptions.cs" />
     <Compile Include="Transports\Msmq\FQDM.cs" />
     <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
@@ -233,9 +233,9 @@
     <Compile Include="Transports\Throughput\Usage.cs" />
     <Compile Include="UpgradeGuides\4to5\Scheduler.cs" />
     <Compile Include="UpgradeGuides\4to5\Upgrade.cs" />
-    <Content Include="XmlElementPayload.xml" />
-    <Content Include="XmlDocumentPayload.xml" />
-    <Compile Include="XmlSerializationIntegration.cs" />
+    <Content Include="Serialization\Xml\XmlElementPayload.xml" />
+    <Content Include="Serialization\Xml\XmlDocumentPayload.xml" />
+    <Compile Include="Serialization\Xml\XmlSerializationIntegration.cs" />
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -247,7 +247,7 @@
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="Hosting.cs" />
-    <Compile Include="Serialization\XmlSerializerUsage.cs" />
+    <Compile Include="Serialization\Xml\XmlSerializerUsage.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DataBus\FileShare\DataBus.cs" />
     <Compile Include="Encryption\Usage.cs" />

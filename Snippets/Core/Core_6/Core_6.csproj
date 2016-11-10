@@ -202,9 +202,9 @@
     <Compile Include="Sagas\FindSagas\MySagaFinder.cs" />
     <Compile Include="Sagas\FindSagas\SynchronizedStorageSessionEx.cs" />
     <Compile Include="Serialization\AdditionalDeserializers.cs" />
-    <Compile Include="Serialization\JsonSerializerUsage.cs" />
+    <Compile Include="Serialization\Json\JsonSerializerUsage.cs" />
     <Compile Include="Serialization\RegisterCustomSerializer.cs" />
-    <Compile Include="Serialization\XmlSerializerUsage.cs" />
+    <Compile Include="Serialization\Xml\XmlSerializerUsage.cs" />
     <Compile Include="TransactionScopeUnitOfWork.cs" />
     <Compile Include="Transports\Mqmq\FQDM.cs" />
     <Compile Include="Transports\Mqmq\SubscriptionAuthorization.cs" />
@@ -295,7 +295,7 @@
     <Compile Include="Sagas\Timeouts\MySagaData.cs" />
     <Compile Include="Sagas\Timeouts\TiredOfWaitingForMessage2.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
-    <Compile Include="MsmqMessageLabel.cs" />
+    <Compile Include="Transports\Mqmq\MsmqMessageLabel.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Hosting.cs" />
@@ -314,7 +314,7 @@
     <Compile Include="UpgradeGuides\5to6\TimeToBeReceived.cs" />
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="Routing\AutomaticSubscriptions\AutoSubscribeSettings.cs" />
-    <Compile Include="XmlSerializationIntegration.cs" />
+    <Compile Include="Serialization\Xml\XmlSerializationIntegration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Audit\Audit.config.xml">
@@ -361,8 +361,8 @@
     <Content Include="Routing\MSMQ\InstanceMappingFile.xml" />
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
     <Content Include="UpgradeGuides\5to6\null.xml" />
-    <Content Include="XmlDocumentPayload.xml" />
-    <Content Include="XmlElementPayload.xml" />
+    <Content Include="Serialization\Xml\XmlDocumentPayload.xml" />
+    <Content Include="Serialization\Xml\XmlElementPayload.xml" />
     <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
