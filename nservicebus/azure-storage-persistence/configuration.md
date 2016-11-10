@@ -9,8 +9,6 @@ tags:
 reviewed: 2016-11-07
 ---
 
-In NServiceBus.Azure the behavior of the `AzureStoragePersister` can be controlled by working with the appropriate configuration section(s) in the `app.config` or by using the code via the [`IProvideConfiguration` adapter](/nservicebus/hosting/custom-configuration-providers.md). Both approaches to configuring the persister can access the same configuration options.
-
 partial:sections
 
 partial:code
@@ -19,12 +17,9 @@ partial:code
 
 Each area of the persister (Sagas, Subscriptions and Timeouts) have values that can be set or changed.
 
-NOTE: Subscriptions and Timeouts persistence configurations have no effect when used with NServiceBus.Azure Version 5 and lower.
-
-
 #### Saga Configuration
  
-When using XML-based configuration, the following properties can be set through the `AzureSagaPersisterConfig` section:
+The following settings are available for changing the behavior of saga persistence section:
 
  * `ConnectionString`: Sets the connectionstring for the storage account to be used for storing saga information.
   * NServiceBus.Azure defaults to `UseDevelopmentStorage=true`.
