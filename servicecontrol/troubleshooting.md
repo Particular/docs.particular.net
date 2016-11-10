@@ -29,7 +29,6 @@ or use the provided ServiceControl Management PowerShell cmdlet to check a speci
 
 ```ps
 Test-IfPortIsAvailable -Port 33333
-
 ```
 
 
@@ -72,23 +71,6 @@ If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.In
  1. Restart ServiceControl
 
 
-### Service crashes when hard disk is busy
-
-ServiceControl can run out of memory and crash when the hard drive is busy. When this happens note the following error in the logs
-
-```no-highlight
-The version store for this instance (0) has reached its maximum size of 511Mb. It is likely that a long-running transaction is preventing cleanup of the version store and causing it to build up in size. Updates will be rejected until the long-running transaction has been completely committed or rolled back.
-```
-
-Increase the size of the version store by adding a new app setting to the ServiceControl configuration file:
-
-```xml
-<add key="Raven/Esent/MaxVerPages" value="1024" />
-```
-
-The value is the size of the version store in MB.
-
-
 ### Unable to connect to ServiceControl from either ServiceInsight or ServicePulse
 
  1. Log on to the PC hosting ServiceControl.
@@ -99,23 +81,3 @@ The value is the size of the version store in MB.
 
 NOTE: Prior to changing firewall setting to expose ServiceControl read [Securing ServiceControl](securing-servicecontrol.md).
 
-
-### Unable to start Service after exposing RavenDB
-
-The `ExposeRavenDB` setting enables the embedded RavenDB Management Studio to be accessible via a web browser.
-When this setting is used in combination with a low privilege service account it can cause the service fail on startup.
-This is because a URLACL is required and the service account does not have rights to create it.
-
-To workaround this create the required URLACL. This can be done using the ServiceControl Management PowerShell module.
-
-NOTE: Replace the `<hostname>` and `<port>` values in the sample commands below with the appropriate values from the ServiceControl configuration.
-
-```ps
-urlacl-add -Url http://<hostname>:<port>/storage/ -Users Users
-```
-
-If the `ExposeRavenDB` setting is removed or disabled in the configuration then the URLACL can be cleaned up using this command:
-
-```ps
-urlacl-list | ? VirtualDirectory -eq storage | ? Port -eq <port> | urlacl-delete
-```
