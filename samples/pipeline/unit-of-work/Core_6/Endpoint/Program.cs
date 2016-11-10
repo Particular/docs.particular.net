@@ -48,19 +48,15 @@ class Program
 
 class MyUowBehavior : Behavior<IIncomingPhysicalMessageContext>
 {
-    readonly IMySession session;
-
-    public MyUowBehavior(IMySession session)
-    {
-        this.session = session;
-    }
 
     public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
     {
+
+        var tennant = context.MessageHeaders["tennant"];
+        var session = context.Builder.Build<IMySession>();
+
         try
         {
-            var tennant = context.MessageHeaders["tennant"];
-
             await session.Open(tennant);
 
             Console.Out.WriteLine($"{context.MessageId}: UOW {session.GetHashCode()} was opened for tennant {tennant}");
@@ -101,14 +97,6 @@ class IMySession
     public Task Open(string tennant)
     {
         return Task.FromResult(0);
-    }
-}
-
-class SessionFactory
-{
-    public Task<IMySession> OpenSession()
-    {
-        return Task.FromResult(new IMySession());
     }
 }
 
