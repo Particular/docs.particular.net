@@ -13,12 +13,12 @@ Note: This sample uses the same approach as the [NServiceBus as a Windows Servic
 
 ## Code walk-through
 
-This samples walks through the most common choices required when creating a first endpoint. It will also show the configuration APIs needed to implement those choices.
+This sample walks through the most common choices required when creating a first endpoint. It will also show the configuration APIs needed to implement those choices.
 
 
 ## Hosting
 
-This sample uses a dual runnable console and Windows Service for hosting. More details on this approach can be seen in [Windows Service Hosting](/nservicebus/hosting/windows-service.md), there is also [a more detailed sample](/samples/hosting/windows-service/) of this approach. See also [Hosting choice](/nservicebus/hosting).
+This sample uses a dual runnable console and Windows Service for hosting. More details on this approach can be seen in [Windows Service Hosting](/nservicebus/hosting/windows-service.md), there is also [a more detailed sample](/samples/hosting/windows-service/) of this approach. See also [Hosting options](/nservicebus/hosting).
 
 
 ## Configure an [Recoverability](/nservicebus/recoverability/)
