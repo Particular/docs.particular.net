@@ -37,12 +37,14 @@ class Program
         }
 
         await endpointInstance.Stop()
-          .ConfigureAwait(false);
+            .ConfigureAwait(false);
     }
 }
 
 class MyUowBehavior : Behavior<IIncomingPhysicalMessageContext>
 {
+    readonly IMySession session;
+
     public MyUowBehavior(IMySession session)
     {
         this.session = session;
@@ -54,29 +56,34 @@ class MyUowBehavior : Behavior<IIncomingPhysicalMessageContext>
         {
             await next();
 
-            session.Commit();
+            await session.Commit();
 
             await Console.Out.WriteLineAsync($"{context.MessageId}: UOW {session.GetHashCode()} was committed");
         }
         catch (Exception)
         {
-            session.Rollback();
+            await session.Rollback();
             await Console.Out.WriteLineAsync($"{context.MessageId}: UOW {session.GetHashCode()} was rolled back");
             throw;
         }
     }
-
-    readonly IMySession session;
 }
 
 class IMySession
 {
-    public void Commit()
+    public Task Commit()
     {
+        return Task.FromResult(0);
     }
 
-    public void Rollback()
+    public Task Rollback()
     {
+        return Task.FromResult(0);
+    }
+
+    public Task Store(MyEntity myEntity)
+    {
+        return Task.FromResult(0);
     }
 }
 
@@ -90,6 +97,8 @@ class SessionFactory
 
 class MyMessageHandler1 : IHandleMessages<MyMessage>
 {
+    readonly IMySession session;
+
     public MyMessageHandler1(IMySession session)
     {
         this.session = session;
@@ -100,26 +109,27 @@ class MyMessageHandler1 : IHandleMessages<MyMessage>
         Console.Out.WriteLine($"{nameof(MyMessageHandler1)}({context.MessageId}) got UOW instance {session.GetHashCode()}");
         return Task.FromResult(0);
     }
-
-    readonly IMySession session;
-
 }
 
 class MyMessageHandler2 : IHandleMessages<MyMessage>
 {
+    readonly IMySession session;
+
     public MyMessageHandler2(IMySession session)
     {
         this.session = session;
     }
 
-    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        Console.Out.WriteLine($"{nameof(MyMessageHandler2)}({context.MessageId}) got UOW instance {session.GetHashCode()}");
-        return Task.FromResult(0);
+        await session.Store(new MyEntity());
+
+        await Console.Out.WriteLineAsync($"{nameof(MyMessageHandler2)}({context.MessageId}) got UOW instance {session.GetHashCode()}");
     }
+}
 
-    readonly IMySession session;
-
+class MyEntity
+{
 }
 
 class MyMessage : IMessage
