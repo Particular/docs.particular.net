@@ -79,7 +79,7 @@ The subscription manager endpoint can be any endpoint identified to process the 
 
 In this way, the web servers together with the subscription manager endpoint work in concert as one logical endpoint for publishing messages.
 
-If the web applications need to also process messages from an input queue (for example, to receive notifications to drop cache entries) then a full `IEndpointInstance` (in Version 6) or `IBus` (in Version 3-5) can be used, but none of the web servers will ever be used as the subscription endpoint for the events published by the web tier.
+If the web applications need to also process messages from an input queue (for example, to receive notifications to drop cache entries) then a full endpoint (with input queue) can be used, but none of the web servers will ever be used as the subscription endpoint for the events published by the web tier.
 
 In an elastic scale scenario, it's important for endpoints to unsubscribe themselves from events they receive when they shut down. Otherwise, once decommissioned, they may leave behind queues that would overflow, since there would no longer be an endpoint to process the messages.
 
