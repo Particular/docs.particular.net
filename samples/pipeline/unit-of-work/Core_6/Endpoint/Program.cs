@@ -18,6 +18,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
+        endpointConfiguration.Pipeline.Register(typeof(MyUowBehavior), "Manages the session");
         endpointConfiguration.RegisterComponents(r => r.ConfigureComponent(b => new IMySession(), DependencyLifecycle.InstancePerUnitOfWork));
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
@@ -32,7 +33,11 @@ class Program
 
             for (var i = 0; i < 4; i++)
             {
-                await endpointInstance.SendLocal(new MyMessage());
+                var options = new SendOptions();
+
+                options.SetHeader("tennant", "tennant" + i);
+                options.RouteToThisEndpoint();
+                await endpointInstance.Send(new MyMessage(), options);
             }
         }
 
@@ -54,16 +59,23 @@ class MyUowBehavior : Behavior<IIncomingPhysicalMessageContext>
     {
         try
         {
+            var tennant = context.MessageHeaders["tennant"];
+
+            await session.Open(tennant);
+
+            Console.Out.WriteLine($"{context.MessageId}: UOW {session.GetHashCode()} was opened for tennant {tennant}");
+
             await next();
 
             await session.Commit();
 
-            await Console.Out.WriteLineAsync($"{context.MessageId}: UOW {session.GetHashCode()} was committed");
+            Console.Out.WriteLine($"{context.MessageId}: UOW {session.GetHashCode()} was committed");
         }
         catch (Exception)
         {
             await session.Rollback();
-            await Console.Out.WriteLineAsync($"{context.MessageId}: UOW {session.GetHashCode()} was rolled back");
+
+            Console.Out.WriteLine($"{context.MessageId}: UOW {session.GetHashCode()} was rolled back");
             throw;
         }
     }
@@ -82,6 +94,11 @@ class IMySession
     }
 
     public Task Store(MyEntity myEntity)
+    {
+        return Task.FromResult(0);
+    }
+
+    public Task Open(string tennant)
     {
         return Task.FromResult(0);
     }
@@ -124,7 +141,7 @@ class MyMessageHandler2 : IHandleMessages<MyMessage>
     {
         await session.Store(new MyEntity());
 
-        await Console.Out.WriteLineAsync($"{nameof(MyMessageHandler2)}({context.MessageId}) got UOW instance {session.GetHashCode()}");
+        Console.Out.WriteLine($"{nameof(MyMessageHandler2)}({context.MessageId}) got UOW instance {session.GetHashCode()}");
     }
 }
 
