@@ -7,6 +7,7 @@ tags:
 - publish subscribe
 related:
 - samples/web
+reviewed: 2016-11-10
 ---
 
 Publishing events from a web application is something that is possible with NServiceBus, but should be carefully considered before implemented. This article will describe the guidelines for publishing messages within web applications under different circumstances.
@@ -55,15 +56,13 @@ In the case of storage-driven transports, however, the "publish from" location a
 
 ## Load Balancing
 
-Typically, web applications will be scaled out with a network load balancer either to handle large amounts of traffic, or for high availability, or both. This is further complicated by elastic cloud scenarios, where additional instances of a web role can be provisioned and later removed, either manually or automatically, to keep up with a changing amount of load.
+Typically, web applications will be scaled out with a network load balancer either to handle large amounts of traffic, or for high availability, or both. In elastic cloud scenarios, additional instances of a web role can be provisioned and later removed, either manually or automatically, to keep up with a changing amount of load. In either case, this constitutes multiple *physical* processes that could potentially publish an event.
 
-An important distinction of an event is that it is published from a single logical sender, and processed by one or more logical receivers. It's important not to confuse this with the physical deployment of code to multiple processes. In the case of a scaled-out web application, the individual web application instances are physical deployments; all of these together can act as a single logical publisher of events.
+An important distinction of an event is that it is published from a single *logical* sender, and processed by one or more logical receivers. It's important not to confuse this with the physical deployment of code to multiple processes. In the case of a scaled-out web application, the individual web application instances are physical deployments; all of these together can act as a single logical publisher of events.
 
-In order to make this work for storage-driven transports (MSMQ, SQL, Azure Storage Queues), the nature of publishing means that all physical endpoints must share the same subscription storage. This is probably not all that difficult commonly one centralized subscription storage database for the entire system.
+In order to make this work for storage-driven transports (MSMQ, SQL, Azure Storage Queues), the nature of publishing means that all physical endpoints must share the same subscription storage. Normally one centralized subscription storage database is used for an entire system, so this isn't a difficult requirement to meet.
 
-> **Note about Azure Service Bus**: Prior to Version 6.0, the Azure Service Bus transport did not offer native publish/subscribe capability, and used storage-driven publishing instead.
-
-Although this speaks specifically web applications, it's worth noting that the same applies to scaled-out service endpoints.
+Although this speaks specifically to web applications, it's worth noting that the same applies to scaled-out service endpoints.
 
 
 ## Storage-driven Transport Topology
@@ -76,11 +75,13 @@ In the diagram above, two web servers are load balanced behind a network load ba
 
 An additional **Subscription Manager Endpoint** exists off to the side, also talking to the same subscription storage. When a subscriber is interested in an event, the **subscription request** message is routed here, not to either of the web servers. When a web server needs to publish an event, it looks up the event type in the subscription storage database, and publishes the event to the subscriber.
 
+The subscription manager endpoint can be any endpoint identified to process the subscription requests, as long as it uses the same subscription storage as the web servers. The subscription manager endpoint can process other message types as well.
+
 In this way, the web servers together with the subscription manager endpoint work in concert as one logical endpoint for publishing messages.
 
 If the web applications need to also process messages from an input queue (for example, to receive notifications to drop cache entries) then a full `IEndpointInstance` (in Version 6) or `IBus` (in Version 3-5) can be used, but none of the web servers will ever be used as the subscription endpoint for the events published by the web tier.
 
-In an elastic scale scenario, it's important for endpoints to unsubscribe themselves from events they receive when they shut down, since they may be decommissioned never to return.
+In an elastic scale scenario, it's important for endpoints to unsubscribe themselves from events they receive when they shut down. Otherwise, once decommissioned, they may leave behind queues that would overflow, since there would no longer be an endpoint to process the messages.
 
 
 ## Summary
