@@ -1,45 +1,19 @@
 ---
 title: Configuration
+component: ASP
 summary: Configuring Azure Storage as persistence
 tags:
  - Azure
  - Cloud
  - Persistence
+reviewed: 2016-11-07
 ---
 
 In NServiceBus.Azure the behavior of the `AzureStoragePersister` can be controlled by working with the appropriate configuration section(s) in the `app.config` or by using the code via the [`IProvideConfiguration` adapter](/nservicebus/hosting/custom-configuration-providers.md). Both approaches to configuring the persister can access the same configuration options.
 
+partial:sections
 
-In NServiceBus.Persistence.AzureStorage Version 1 XML-based configuration is no longer available. Configuring the behavior of the persister is done using the code configuration API.
-
-
-### Configuration with Configuration Section
-
-In NServiceBus.Azure Version 6 and lower configuration can be performed using configuration sections and properties in the `app.config` file.
-
-snippet:AzurePersistenceFromAppConfig
-
-
-### Configuration with Code
-
-Configuration of the persister via the code API is available to NServiceBus.Azure Version 6 and below as well as NServiceBus.Persistence.AzureStorage Version 1.
-
-For Sagas, Subscriptions and for Timeouts:
-
-snippet:AzurePersistenceSubscriptionsAllConnectionsCustomization
-
-For Sagas:
-
-snippet:AzurePersistenceSagasCustomization
-
-For Subscriptions:
-
-snippet:AzurePersistenceSubscriptionsCustomization
-
-For Timeouts:
-
-snippet:AzurePersistenceTimeoutsCustomization
-
+partial:code
 
 ### Configuration Properties
 
@@ -53,7 +27,7 @@ NOTE: Subscriptions and Timeouts persistence configurations have no effect when 
 When using XML-based configuration, the following properties can be set through the `AzureSagaPersisterConfig` section:
 
  * `ConnectionString`: Sets the connectionstring for the storage account to be used for storing saga information.
-  * NServiceBus.Azure Versions 6 and below defaults to `UseDevelopmentStorage=true`.
+  * NServiceBus.Azure defaults to `UseDevelopmentStorage=true`.
   * NServiceBus.Persistence.AzureStorage Version 1 defaults to `null`.
  * `CreateSchema`: Instructs the persister to create the table automatically.
   * defaults to `true`.
@@ -61,10 +35,10 @@ When using XML-based configuration, the following properties can be set through 
 
 #### Subscription Configuration
 
-The following settings are available for changing the behavior of subscription persistence through the `AzureSubscriptionStorageConfig` section:
+The following settings are available for changing the behavior of subscription persistence:
 
  * `ConnectionString`: Sets the connection string for the storage account to be used for storing subscription information.
-  * NServiceBus.Azure Versions 6 and below defaults to `UseDevelopmentStorage=true`.
+  * NServiceBus.Azure defaults to `UseDevelopmentStorage=true`.
   * NServiceBus.Persistence.AzureStorage Version 1 defaults to `null`.
  * `CreateSchema`: Instructs the persister to create the table automatically.
   * defaults to `true`.
@@ -74,7 +48,7 @@ The following settings are available for changing the behavior of subscription p
 
 #### Timeout Configuration
 
-The following settings are available for changing the behavior of timeout persistence through the `AzureTimeoutPersisterConfig` section:
+The following settings are available for changing the behavior of timeout persistence:
 
  * `ConnectionString`: Sets the connectionstring for the storage account to be used for storing timeout information.
   * NServiceBus.Azure Versions 6 and below Defaults to `UseDevelopmentStorage=true`.
