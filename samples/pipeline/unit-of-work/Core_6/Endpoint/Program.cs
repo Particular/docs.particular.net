@@ -17,8 +17,8 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        endpointConfiguration.Pipeline.Register(typeof(MyUowBehavior), "Manages the session");
         endpointConfiguration.RegisterComponents(r => r.ConfigureComponent(b => new MySessionProvider(), DependencyLifecycle.SingleInstance));
+        endpointConfiguration.Pipeline.Register(typeof(MyUowBehavior), "Manages the session");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
