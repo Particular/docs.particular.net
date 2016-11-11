@@ -1,1 +1,2 @@
-Using native transaction is equivalent to `SendsAtomicWithReceive` mode in [Version 3 and higher](/nservicebus/sqlserver/transactions.md?version=sqlserver_3#native-transactions).
+
+An input message is received using native transaction. The transaction is shared with sending operations. That means the message receive operation and any send or publish operations are committed atomically.
