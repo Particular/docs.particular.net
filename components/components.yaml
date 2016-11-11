@@ -71,7 +71,7 @@
   GitHubOwner: SimonCropp
   Category: Serializer
   IsCommunityProject: true
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Bond/blob/master/LICENSE.txt
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Bond/blob/master/LICENSE
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.Bond
   NugetOrder:
     - NServiceBus.Bond

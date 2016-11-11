@@ -127,7 +127,7 @@ The release cycle consists of the following quality stages:
 
  * Closed beta versions are released to a restricted group customers by invitation.
  * Open beta versions are public and target the entire user base.
- * [Contact us](http://particular.net/contactus) to join the closed beta customer group and to be included for evaluating future beta versions.
+ * [Contact us](https://particular.net/contactus) to join the closed beta customer group and to be included for evaluating future beta versions.
 
 
 ### Release Candidate (RC)

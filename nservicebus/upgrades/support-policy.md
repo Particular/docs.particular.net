@@ -11,7 +11,7 @@ related:
 
 Supported versions include any major version released within the last 3 years. Within a supported major version, the latest minor version is supported, or any minor version released within the last year.
 
-WARNING: If a version is not listed or has expired, but support is required contact [Particular support](http://particular.net/support).
+WARNING: If a version is not listed or has expired, but support is required contact [Particular support](https://particular.net/support).
 
 Particular will apply critical bug fixes to all supported versions. If the bug also impacts a non supported version, the recommended approach is to upgrade to a supported version which contains the fix.
 

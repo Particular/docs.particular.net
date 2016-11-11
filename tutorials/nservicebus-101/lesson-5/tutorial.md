@@ -170,7 +170,7 @@ Once these tools are installed and running, you can attempt to replay a message:
 
  1. Fix the **Sales** endpoint by removing the `throw` statement.
  1. Run the solution.
- 1. Open [ServicePulse](http://localhost:9090/) and navigate to the **Failed Messages** page. Note how similar messages are grouped together for easier handling.
+ 1. Open ServicePulse and navigate to the **Failed Messages** page. Note how similar messages are grouped together for easier handling.
     ![Failed Message Groups](failed-message-groups.png)
  1. Click the **View Messages** link to see details on each failed message.
     ![Failed Message Details](failed-message-details.png)
