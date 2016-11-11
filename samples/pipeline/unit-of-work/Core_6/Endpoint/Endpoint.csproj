@@ -39,6 +39,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMySession.cs" />
+    <Compile Include="MyEntity.cs" />
+    <Compile Include="MyMessage.cs" />
+    <Compile Include="MyMessageHandler1.cs" />
+    <Compile Include="MyMessageHandler2.cs" />
+    <Compile Include="MyOtherEntity.cs" />
+    <Compile Include="MySession.cs" />
+    <Compile Include="MySessionContextExtensions.cs" />
+    <Compile Include="MySessionProvider.cs" />
+    <Compile Include="MyUowBehavior.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
