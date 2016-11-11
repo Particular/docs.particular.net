@@ -71,7 +71,6 @@ The following table summarize the risk effort and urgency for the different type
 | Risk | Extremely low | Medium | High |
 | Urgency | High to medium | Low | Low |
 | Effort | Minimal | Low | High |
-| Frequency | As needed | Every 1-2 Months | Yearly |
 
 
 ### Patch
