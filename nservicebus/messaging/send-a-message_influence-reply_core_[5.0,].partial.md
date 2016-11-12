@@ -12,7 +12,7 @@ To send the reply message to any instance of the endpoint:
 
 snippet:BasicSendReplyToAnyInstance
 
-The sender can also request the reply to be routed to a specific destination address
+The sender can also request the reply to be routed to a specific transport address
 
 snippet:BasicSendReplyToDestination
 

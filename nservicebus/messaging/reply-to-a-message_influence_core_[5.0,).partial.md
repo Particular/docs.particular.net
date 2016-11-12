@@ -8,6 +8,6 @@ or explicitly to any instance of the endpoint (which overrides the *public reply
 
 snippet:BasicReplyReplyToAnyInstance
 
-It can also request the reply to be routed to a specified raw address instead
+It can also request the reply to be routed to a specified transport address instead
 
 snippet:BasicReplyReplyToDestination
