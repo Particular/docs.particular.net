@@ -39,9 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\PlaceOrder.cs" />
-    <Compile Include="Events\OrderBilled.cs" />
-    <Compile Include="Events\OrderPlaced.cs" />
+    <Compile Include="PlaceOrder.cs" />
+    <Compile Include="OrderBilled.cs" />
+    <Compile Include="OrderPlaced.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

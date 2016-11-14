@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Messages.Events;
+using Messages;
 using NServiceBus;
 
 namespace Billing

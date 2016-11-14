@@ -1,9 +1,9 @@
 ﻿using NServiceBus;
 
-namespace Messages.Commands
+namespace Messages
 {
-    public class PlaceOrder :
-        ICommand
+    public class OrderBilled :
+        IEvent
     {
         public string OrderId { get; set; }
     }
