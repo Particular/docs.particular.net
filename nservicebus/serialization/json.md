@@ -2,7 +2,7 @@
 title: JSON Serializer
 summary: A json serializer that uses Json.NET.
 reviewed: 2016-08-23
-component: Core
+component: Json
 related:
  - samples/serializers/json
 ---

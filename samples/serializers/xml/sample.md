@@ -2,7 +2,7 @@
 title: XML Serializer
 summary: Using the default XML serializer.
 reviewed: 2016-03-21
-component: Core
+component: Xml
 related:
 - nservicebus/serialization
 - nservicebus/serialization/xml

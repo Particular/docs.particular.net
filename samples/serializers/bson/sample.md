@@ -2,7 +2,7 @@
 title: BSON Serializer
 summary: Using the core BSON serializer.
 reviewed: 2016-03-21
-component: Core
+component: Json
 related:
 - nservicebus/serialization
 - nservicebus/serialization/newtonsoft

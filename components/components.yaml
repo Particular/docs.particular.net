@@ -512,5 +512,32 @@
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Wcf
   NugetOrder:
-    - NServiceBus.Wcf  
+    - NServiceBus.Wcf
     - NServiceBus.Host
+
+- Key: Xml
+  Name: Xml Serializer
+  DocoUrl: nservicebus/serialization/xml
+  Category: Core
+  GitHubOwner: Particular/nservicebus-maintainers
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
+
+- Key: Binary
+  Name: Binary Serializer
+  DocoUrl: nservicebus/serialization/binary
+  Category: Core
+  GitHubOwner: Particular/nservicebus-maintainers
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
+
+- Key: Json
+  Name: Json Serializer
+  DocoUrl: nservicebus/serialization/json
+  Category: Core
+  GitHubOwner: Particular/nservicebus-maintainers
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus

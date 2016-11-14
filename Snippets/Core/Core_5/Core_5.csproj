@@ -114,8 +114,6 @@
     <Content Include="UpgradeGuides\5to6\null.xml" />
     <Content Include="UpgradeGuides\5to6\Recoverability\delayedconfig.xml" />
     <Content Include="UpgradeGuides\5to6\Recoverability\immediateconfig.xml" />
-    <Content Include="Serialization\Xml\XmlDocumentPayload.xml" />
-    <Content Include="Serialization\Xml\XmlElementPayload.xml" />
     <None Include="app.config" />
     <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Recoverability\Immediate\config.xml" />
@@ -293,9 +291,6 @@
     <Compile Include="Sagas\Reply\MySaga.cs" />
     <Compile Include="Sagas\Reply\StartMessage.cs" />
     <Compile Include="Sagas\FindByExpression\MySaga.cs" />
-    <Compile Include="Serialization\Binary\BinarySerializerUsage.cs" />
-    <Compile Include="Serialization\Json\BsonSerializerUsage.cs" />
-    <Compile Include="Serialization\Json\JsonSerializerUsage.cs" />
     <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
     <Compile Include="UpgradeGuides\4to5\BusInstance.cs" />
     <Compile Include="UpgradeGuides\4to5\SagaMappingForUpgrade.cs" />
@@ -329,7 +324,6 @@
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Hosting.cs" />
-    <Compile Include="Serialization\Xml\XmlSerializerUsage.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicy.cs" />
     <Compile Include="TransportTransactions.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
@@ -345,7 +339,6 @@
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
-    <Compile Include="Serialization\Xml\XmlSerializationIntegration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">

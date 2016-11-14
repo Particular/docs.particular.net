@@ -197,10 +197,6 @@
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\SimplePolicy.cs" />
     <Compile Include="Hosting.cs" />
-    <Compile Include="Serialization\Binary\BinarySerializerUsage.cs" />
-    <Compile Include="Serialization\Json\BsonSerializerUsage.cs" />
-    <Compile Include="Serialization\Json\JsonSerializerUsage.cs" />
-    <Compile Include="Serialization\Xml\XmlSerializerUsage.cs" />
     <Compile Include="Transports\Msmq\AuthorizeSubscriptions.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\CompleteOrder.cs" />
