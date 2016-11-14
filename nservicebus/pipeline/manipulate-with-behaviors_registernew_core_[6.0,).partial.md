@@ -7,4 +7,4 @@ Behaviors can also be registered from a `Feature` as shown below:
 
 snippet:RegisterBehaviorFromFeature
 
-WARNING: Behaviors are only created once and the same instance is reused on every invocation of the pipeline, even when registering the behavior to be created by a Dependency Injection Container. Never use dependency injection for dependencies configured with an *InstancePerUnitOfWork* scope.
+WARNING: Behaviors are instantiated once and that instance is then reused on every invocation of the pipeline, even when registering the behavior to be created by a Dependency Injection Container. Never use dependency injection for dependencies configured with an *InstancePerUnitOfWork* scope.
