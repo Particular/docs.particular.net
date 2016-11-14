@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Messages.Events;
+using Messages;
 using NServiceBus;
 using NServiceBus.Logging;
 

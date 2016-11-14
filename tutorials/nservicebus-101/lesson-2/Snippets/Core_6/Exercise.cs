@@ -7,7 +7,7 @@ namespace Exercise
 
     #region PlaceOrder
 
-    namespace Messages.Commands
+    namespace Messages
     {
         public class PlaceOrder :
             ICommand

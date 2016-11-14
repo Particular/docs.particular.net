@@ -110,8 +110,7 @@ When the Shipping endpoint receives both the OrderPlaced and OrderBilled, it wil
 
 Let's create our first event, `OrderPlaced`:
 
- 1. In the **Messages** project, create a new folder called **Events**.
- 1. In the **Events** folder, add a new class called `OrderPlaced`.
+ 1. In the **Messages** project, create a new class called `OrderPlaced`.
  1. Mark `OrderPlaced` as `public` and implement `IEvent`.
  1. Add a public property of type `string` named `OrderId`.
 

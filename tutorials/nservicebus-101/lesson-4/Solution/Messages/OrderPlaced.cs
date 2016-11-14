@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 
-namespace Messages.Events
+namespace Messages
 {
     #region OrderPlaced
 

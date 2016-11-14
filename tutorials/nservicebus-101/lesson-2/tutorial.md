@@ -95,7 +95,7 @@ To share message between endpoints they need to be self-contained within a separ
 
  1. In the solution, create a new project and select the **Class Library** project type.
  1. Set the name of the project to **Messages**.
- 1. Remove the automatically created **Class1.cs** file from the project. We would prefer to have our messages a little more organized than files in the root of the project. (More on this a little later.)
+ 1. Remove the automatically created **Class1.cs** file from the project.
  1. Add the NServiceBus NuGet package to the Messages project.
  1. In the **ClientUI** project, add a reference to the **Messages** project.
 
@@ -104,8 +104,7 @@ To share message between endpoints they need to be self-contained within a separ
 
 We'll create our first command in a folder called **Commands**.
 
- 1. In the **Messages** project, create a new folder called **Commands**.
- 1. In the **Commands** folder, add a new class named `PlaceOrder`.
+ 1. In the **Messages** project, create a new class named `PlaceOrder`.
  1. Mark `PlaceOrder` as `public` and implement `ICommand`.
  1. Add a public property of type `string` named `OrderId`.
 
