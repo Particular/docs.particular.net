@@ -272,7 +272,7 @@ https://www.nuget.org/packages/NServiceBus.Gateway
 
 https://www.nuget.org/packages/NServiceBus.Mandrill
 
-[Mandrill](http://mandrill.com/) is a email infrastructure service built by [MailChimp](http://mailchimp.com/). This extension allow for sending Mandrill emails as messages.
+[Mandrill](https://mandrill.com//) is a email infrastructure service built by [MailChimp](https://mailchimp.com/). This extension allow for sending Mandrill emails as messages.
 
 
 #### <img style="margin-bottom: 0.25em" src="/content/images/community_v1.svg" /> [Mailer](https://github.com/SimonCropp/NServiceBus.Mailer)
