@@ -66,10 +66,6 @@
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Routing\MSMQ\EndpointMapping.config.xml" />
-    <Content Include="UpgradeGuides\3to4\TransportConfig.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="app.config" />
     <Content Include="Audit\audit.config.xml">
       <SubType>Designer</SubType>
@@ -84,9 +80,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Transports\Msmq\MessageQueue.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -199,8 +192,6 @@
     <Compile Include="Sagas\Reply\MySaga.cs" />
     <Compile Include="Sagas\Reply\MySagaData.cs" />
     <Compile Include="Sagas\Reply\StartMessage.cs" />
-    <Compile Include="Transports\Msmq\AuthorizeSubscriptions.cs" />
-    <Compile Include="Transports\Msmq\FQDM.cs" />
     <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\CompleteOrder.cs" />

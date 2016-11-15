@@ -2,7 +2,7 @@
 title: Scaling out MSMQ endpoints
 summary: How to scale out when using the MSMQ transport.
 reviewed: 2016-11-07
-component: Core
+component: MsmqTransport
 tags:
 - Scale Out
 - Routing

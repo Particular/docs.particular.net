@@ -1,7 +1,7 @@
 ---
 title: MSMQ Transport Troubleshooting
 summary: Resolutions for common problems with the MSMQ transport.
-component: core
+component: MsmqTransport
 tags:
 - Transport
 - MSMQ

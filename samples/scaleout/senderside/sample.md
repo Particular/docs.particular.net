@@ -14,7 +14,7 @@ related:
 
 NOTE: This sample applies only to version 6 and above.
 
-Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how to use NServiceBus to scale out existing message processing either by using competing consumers approach or by distributing messages by the sender.
+Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how to scale out existing message processing either by using competing consumers approach or by distributing messages by the sender.
 
 
 ## Code walk-through

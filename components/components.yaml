@@ -541,3 +541,12 @@
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
     - NServiceBus
+
+- Key: MsmqTransport
+  Name: MSMQ Transport
+  DocoUrl: nservicebus/msmq
+  Category: Core
+  GitHubOwner: Particular/nservicebus-maintainers
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus

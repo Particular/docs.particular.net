@@ -59,15 +59,10 @@
     <Content Include="Routing\EndpointMapping.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Routing\MSMQ\EndpointMapping.config.xml" />
-    <Content Include="UpgradeGuides\3to4\MsmqTransportConfig.config.xml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Transports\Msmq\MessageQueueConfiguration.config.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
@@ -197,7 +192,6 @@
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\SimplePolicy.cs" />
     <Compile Include="Hosting.cs" />
-    <Compile Include="Transports\Msmq\AuthorizeSubscriptions.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\CompleteOrder.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\OrderSaga.cs" />

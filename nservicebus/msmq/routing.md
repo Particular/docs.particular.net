@@ -1,7 +1,7 @@
 ---
 title: Physical routing with MSMQ
 summary: Configuring physical routing with MSMQ transport
-component: Core
+component: MsmqTransport
 reviewed: 2016-10-26
 tags:
  - Routing

@@ -1,7 +1,7 @@
 ---
 title: MSMQ Transport Fully Qualified Domain Names
 summary: How to use NServiceBus in environments requiring Fully Qualified Domain Names (FQDM) for routing.
-component: core
+component: MsmqTransport
 versions: '[4,)'
 tags:
 - MSMQ

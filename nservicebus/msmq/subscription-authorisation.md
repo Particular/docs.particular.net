@@ -1,7 +1,7 @@
 ---
 title: MSMQ Subscription Authorization
 summary: Managing authorization of subscribers in the MSMQ Transport.
-component: Core
+component: MsmqTransport
 reviewed: 2016-11-05
 tags:
 - Security

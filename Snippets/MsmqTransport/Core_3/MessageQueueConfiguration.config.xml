@@ -2,10 +2,10 @@
 <!--startcode MessageQueueConfiguration 3 -->
 <configuration>
   <configSections>
-    <section name="MsmqMessageQueueConfig" 
+    <section name="MsmqMessageQueueConfig"
              type="NServiceBus.Config.MsmqMessageQueueConfig, NServiceBus.Core" />
   </configSections>
-  <MsmqMessageQueueConfig UseDeadLetterQueue="true" 
+  <MsmqMessageQueueConfig UseDeadLetterQueue="true"
                           UseJournalQueue="false" />
 </configuration>
 <!--endcode -->

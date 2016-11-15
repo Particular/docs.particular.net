@@ -7,8 +7,8 @@
     <ProjectGuid>{D52A6FEB-CC19-49C3-AF92-475669D2FF25}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CoreAll</RootNamespace>
-    <AssemblyName>CoreAll</AssemblyName>
+    <RootNamespace>MsmqTransport_All</RootNamespace>
+    <AssemblyName>MsmqTransport_All</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -72,13 +72,31 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="ApprovalTestConfig.cs" />
-    <Compile Include="AsyncSuffix\MissingAwaitTests.cs" />
-    <None Include="AsyncSuffix\MissingAwait.cs" />
-    <Compile Include="AsyncSuffix\MissingTaskUsageDetector.cs" />
-    <Compile Include="AsyncSuffix\MissingTaskUsageDetectorTests.cs" />
-    <Compile Include="AsyncSuffix\TaskExtensions.cs" />
+    <Compile Include="NativeSend\Tests.cs" />
+    <Compile Include="NativeSend\NativeSend.cs" />
+    <Compile Include="ErrorQueue\Tests.cs" />
+    <Compile Include="QueueCreation\QueueCreationUtils.cs" />
+    <Compile Include="QueueCreation\Tests.cs" />
+    <Compile Include="QueueCreation\CreateEndpointQueues.cs" />
+    <Compile Include="QueueDeletion\DeleteEndpointQueues.cs" />
+    <Compile Include="QueueDeletion\QueueDeletionUtils.cs" />
+    <Compile Include="QueueDeletion\QueueDeletionUtilsUsage.cs" />
+    <Compile Include="QueueDeletion\Tests.cs" />
+    <Compile Include="ErrorQueue\ErrorQueue.cs" />
+    <Compile Include="QueueCreation\QueueCreationUtilsUsage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="NativeSend\NativeSend.ps1" />
+    <None Include="NativeSend\NativeSendUsage.ps1" />
+    <None Include="QueueDeletion\QueueDeletion.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="QueueCreation\QueueCreation.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ErrorQueue\ErrorQueue.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

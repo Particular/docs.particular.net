@@ -193,7 +193,6 @@
     <Compile Include="Pipeline\CustomStageConnector.cs" />
     <Compile Include="Pipeline\CustomStageForkConnector.cs" />
     <Compile Include="Routing\Extensibility.cs" />
-    <Compile Include="Routing\InstanceMapping.cs" />
     <Compile Include="Routing\RoutingAPIs.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Sagas\FindByProperty\MyMessage.cs" />
@@ -204,8 +203,6 @@
     <Compile Include="Serialization\AdditionalDeserializers.cs" />
     <Compile Include="Serialization\RegisterCustomSerializer.cs" />
     <Compile Include="TransactionScopeUnitOfWork.cs" />
-    <Compile Include="Transports\Mqmq\FQDM.cs" />
-    <Compile Include="Transports\Mqmq\SubscriptionAuthorization.cs" />
     <Compile Include="Features\FeatureConfiguration.cs" />
     <Compile Include="Features\MyFeatureWithStartupTasks.cs" />
     <Compile Include="HandlerOrdering.cs" />
@@ -293,7 +290,6 @@
     <Compile Include="Sagas\Timeouts\MySagaData.cs" />
     <Compile Include="Sagas\Timeouts\TiredOfWaitingForMessage2.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
-    <Compile Include="Transports\Mqmq\MsmqMessageLabel.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Hosting.cs" />
@@ -353,10 +349,6 @@
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Routing\MSMQ\EndpointMapping.config.xml" />
-    <Content Include="Routing\MSMQ\InstanceMappingFileScaleOut.xml" />
-    <Content Include="Routing\MSMQ\InstanceMappingFile.xml" />
-    <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
     <Content Include="UpgradeGuides\5to6\null.xml" />
     <None Include="app.config" />
     <None Include="packages.config">
@@ -367,6 +359,10 @@
     <ProjectReference Include="..\..\Common\Common.csproj">
       <Project>{5f02c8a5-55e9-4b79-9c0f-8fb525ebe326}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MsmqTransport\MsmqTransport_All\MsmqTransport_All.csproj">
+      <Project>{9C3223BA-E6AB-4A5B-BACB-28D3E1724A75}</Project>
+      <Name>MsmqTransport_All</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core_All\Core_All.csproj">
       <Project>{d52a6feb-cc19-49c3-af92-475669d2ff25}</Project>

@@ -2,7 +2,7 @@
 <!-- startcode MsmqSubscriptionAppConfig-->
 <configuration>
   <configSections>
-    <section name="MsmqSubscriptionStorageConfig" 
+    <section name="MsmqSubscriptionStorageConfig"
              type="NServiceBus.Config.MsmqSubscriptionStorageConfig, NServiceBus.Core" />
   </configSections>
   <MsmqSubscriptionStorageConfig Queue="YourQueue" />

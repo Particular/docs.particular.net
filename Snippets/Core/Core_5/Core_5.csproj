@@ -110,7 +110,6 @@
     <Content Include="Routing\EndpointMapping.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Routing\MSMQ\EndpointMapping.config.xml" />
     <Content Include="UpgradeGuides\5to6\null.xml" />
     <Content Include="UpgradeGuides\5to6\Recoverability\delayedconfig.xml" />
     <Content Include="UpgradeGuides\5to6\Recoverability\immediateconfig.xml" />
@@ -129,7 +128,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -168,8 +166,6 @@
     <Compile Include="Sagas\FindByProperty\MySagaData.cs" />
     <Compile Include="Sagas\FindSagas\DbSessionProvider.cs" />
     <Compile Include="Sagas\FindSagas\MySagaFinder.cs" />
-    <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
-    <Compile Include="Transports\Mqmq\FQDM.cs" />
     <Compile Include="UpgradeGuides\5to6\AuthorizeSubscriptions.cs" />
     <Compile Include="UpgradeGuides\5to6\Recoverability\DelayedDelivery.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
@@ -344,6 +340,10 @@
     <ProjectReference Include="..\..\Common\Common.csproj">
       <Project>{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MsmqTransport\MsmqTransport_All\MsmqTransport_All.csproj">
+      <Project>{9C3223BA-E6AB-4A5B-BACB-28D3E1724A75}</Project>
+      <Name>MsmqTransport_All</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core_All\Core_All.csproj">
       <Project>{D52A6FEB-CC19-49C3-AF92-475669D2FF25}</Project>
