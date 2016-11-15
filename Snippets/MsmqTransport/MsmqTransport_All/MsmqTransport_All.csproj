@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D52A6FEB-CC19-49C3-AF92-475669D2FF25}</ProjectGuid>
+    <ProjectGuid>{9C3223BA-E6AB-4A5B-BACB-28D3E1724A75}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MsmqTransport_All</RootNamespace>

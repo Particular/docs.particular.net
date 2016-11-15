@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_5", "Core_5\Core_5.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_6", "Core_6\Core_6.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsmqTransport_All", "MsmqTransport_All\MsmqTransport_All.csproj", "{D52A6FEB-CC19-49C3-AF92-475669D2FF25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsmqTransport_All", "MsmqTransport_All\MsmqTransport_All.csproj", "{9C3223BA-E6AB-4A5B-BACB-28D3E1724A75}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common.csproj", "{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}"
 EndProject
