@@ -9,6 +9,10 @@
             #region TuningFromCode
             endpointConfiguration.LimitMessageProcessingConcurrencyTo(5);
             #endregion
+
+            #region TuningTimeoutManagerConcurrency
+            endpointConfiguration.TimeoutManager().LimitMessageProcessingConcurrencyTo(4);
+            #endregion
         }
 
     }
