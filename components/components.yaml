@@ -357,6 +357,8 @@
   ProjectUrl: https://github.com/Particular/?query=SagaAudit
   NugetOrder:
     - ServiceControl.Plugin.Nsb6.SagaAudit
+    - ServiceControl.Plugin.Nsb5.SagaAudit
+    - ServiceControl.Plugin.Nsb4.SagaAudit
 
 - Key: Serilog
   Name: Serilog Logger

@@ -1,7 +1,8 @@
 ---
 title: SagaAudit Plugin
 summary: Helps visualize and debug Sagas with ServiceInsight
-reviewed: 2016-10-26
+component: SagaAudit
+reviewed: 2016-11-15
 tags:
  - ServiceControl
 ---
@@ -11,6 +12,7 @@ DANGER: **For Development only**. This plugin will result in a significant incre
 The SagaAudit plugin enables the [Saga View feature in ServiceInsight](/serviceinsight/#the-saga-view). It is built specifically to help developers verify Saga logic during development. It does this by capturing Saga message behavior and changes in Saga data/state as the Saga is being processed. It then sends this information to a ServiceControl endpoint setup in the development environment.
 
 NOTE: Saga audit messages will not be sent to ServiceControl if an Exception is thrown during Saga processing.
+
 
 ## Implementation
 
@@ -35,32 +37,12 @@ This plugin results in an increase in load in several areas
 The increase in load is proportional to size of the saga data multiplied by the number of messages the the saga receives. Since both these variables are dependent on the specific saga implementation it is not possible to give accurate predictions on the impact of this load in a production system.
 
 
-## NuGet packages
-
- * NServiceBus Version 6.x: [ServiceControl.Plugin.NSb6.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.SagaAudit)
- * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.SagaAudit)
- * NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit)
- * NServiceBus Version 3.x: Not Available
-
-
 ### Deprecated NuGet
 
 If using the older version of the plugin, namely **ServiceControl.Plugin.SagaAudit** remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.
 
 
-## Configuration
-
-
-### ServiceControl Queue
-
-For Version 2 or greater of the plugins that target NServiceBus Version 6, it is now possible to configure the ServiceControl queue via code:
-
-snippet: SagaAudit_Configure_ServiceControl
-
-
-### Disabling plugin
-
-snippet: SagaAudit_disable
+partial: config
 
 
 ## Removing the plugin from Production

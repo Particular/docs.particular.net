@@ -38,6 +38,8 @@ ProtoBuf: NServiceBus.ProtoBuf
 Rabbit: NServiceBus.RabbitMQ
 Raven: NServiceBus.RavenDB
 SagaAudit6: ServiceControl.Plugin.Nsb6.SagaAudit
+SagaAudit5: ServiceControl.Plugin.Nsb5.SagaAudit
+SagaAudit4: ServiceControl.Plugin.Nsb4.SagaAudit
 Serilog: NServiceBus.Serilog
 SerilogTracing: NServiceBus.Serilog.Tracing
 ServiceBootstrap: NServiceBus.Bootstrap.WindowsService
