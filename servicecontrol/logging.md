@@ -33,7 +33,7 @@ Note: Browsing to this location can be problematic as the default NTFS permissio
 ```
 
 
-NOTE: If multiple Service Control instances are configured on the same machine ensure that the log locations for each instance are unique
+NOTE: If multiple ServiceControl instances are configured on the same machine ensure that the log locations for each instance are unique
 
 
 #### Changing logging location via ServiceControl Management

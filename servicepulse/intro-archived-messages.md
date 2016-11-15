@@ -23,7 +23,7 @@ The Archived Messages page will open showing messages archived in the last 2 hou
 
 ![Archive Filters](images/archive-filters.png 'width=500')
 
-Each message on screen contains information about when it's scheduled for deletion. "Immediate deletion" means that the message has expired, and will be deleted the next time the deletion task runs. See also [Service Control Error Retention Period](/servicecontrol/creating-config-file.md).
+Each message on screen contains information about when it's scheduled for deletion. "Immediate deletion" means that the message has expired, and will be deleted the next time the deletion task runs. See also [ServiceControl Error Retention Period](/servicecontrol/creating-config-file.md).
 
 ![Retention Countdown](images/archive-schedule.png 'width=500')
 

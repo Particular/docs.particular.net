@@ -64,9 +64,9 @@ Each endpoint should use a dedicated SQL Server principal with `SELECT` and `DEL
 [Multi-schema](/nservicebus/sqlserver/connection-settings.md#multiple-custom-schemas) configuration can be used to manage fine-grained access control to various database objects used by the endpoint, including its queue tables.
 
 
-### Service Control
+### ServiceControl
 
-All deployment options for SQL Server Transport described in this section are supported by Service Control.
+All deployment options for SQL Server Transport described in this section are supported by ServiceControl.
 
 
 ## Sample deployment scenarios
