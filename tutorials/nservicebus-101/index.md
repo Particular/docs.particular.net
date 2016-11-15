@@ -22,11 +22,11 @@ By the end of the course, you will have learned:
 
 ## Table of Contents
 
- 1. [Lesson 1: Getting started](lesson-1/)
- 1. [Lesson 2: Sending a command](lesson-2/)
- 1. [Lesson 3: Multiple endpoints](lesson-3/)
- 1. [Lesson 4: Publishing events](lesson-4/)
- 1. [Lesson 5: Retrying errors](lesson-5/)
+ * [Lesson 1: Getting started](lesson-1/)
+ * [Lesson 2: Sending a command](lesson-2/)
+ * [Lesson 3: Multiple endpoints](lesson-3/)
+ * [Lesson 4: Publishing events](lesson-4/)
+ * [Lesson 5: Retrying errors](lesson-5/)
 
 
 ## Get Started
