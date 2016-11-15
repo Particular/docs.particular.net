@@ -22,7 +22,7 @@
     class CustomErrorHandlingBehaviorForDeserializationFailures :
         Behavior<ITransportReceiveContext>
     {
-        ILog log = LogManager.GetLogger<CustomErrorHandlingBehaviorForDeserializationFailures>();
+        static ILog log = LogManager.GetLogger<CustomErrorHandlingBehaviorForDeserializationFailures>();
 
         public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
         {
@@ -47,7 +47,7 @@
     class CustomErrorHandlingBehaviorForAllFailures :
         Behavior<ITransportReceiveContext>
     {
-        ILog log = LogManager.GetLogger<CustomErrorHandlingBehaviorForAllFailures>();
+        static ILog log = LogManager.GetLogger<CustomErrorHandlingBehaviorForAllFailures>();
 
         public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
         {

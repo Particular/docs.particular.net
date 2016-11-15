@@ -6,7 +6,7 @@ using NServiceBus.Logging;
 public class NativeMessageHandler :
     IHandleMessages<NativeMessage>
 {
-    ILog log = LogManager.GetLogger<NativeMessageHandler>();
+    static ILog log = LogManager.GetLogger<NativeMessageHandler>();
 
     public void Handle(NativeMessage message)
     {
