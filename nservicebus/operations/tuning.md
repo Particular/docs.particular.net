@@ -18,7 +18,9 @@ NServiceBus uses defaults that ensure good performance in most common cases. Whi
 
 ## Tuning concurrency
 
-NOTE: The default concurrency limit for NServiceBus Versions 5 and below is `1`, for Versions 6 and above `max(Number of logical processors,2)`.
+
+partial:defaults
+
 
 Define a maximum concurrency setting that will make sure that no more messages than the specified value is ever being processed at the same time. Set this value to `1` to process messages sequentially. If not specified the transport will choose an optimal value.
 
@@ -36,3 +38,7 @@ partial:throttling
 ## Configuration
 
 partial:configuration
+
+
+
+partial:runtime
