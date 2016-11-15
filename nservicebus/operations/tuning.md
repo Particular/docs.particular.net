@@ -1,10 +1,16 @@
 ---
 title: Tuning endpoint message processing
-summary: Optimize message processing by configuring concurrency and/or throughput
+summary: Optimize message processing by configuring concurrency
+component: Core
 redirects:
  - nservicebus/how-to-reduce-throughput-of-an-endpoint
  - nservicebus/operations/reducing-throughput
  - nservicebus/operations/throughput
+tags:
+ - performance
+ - throttling
+ - concurrency
+reviewed: 2016-11-15
 ---
 
 NServiceBus uses defaults that ensure good performance in most common cases. While this is usually the preferred mode of operation there are situations where tuning needs to be applied.
@@ -12,7 +18,9 @@ NServiceBus uses defaults that ensure good performance in most common cases. Whi
 
 ## Tuning concurrency
 
-NOTE: The default concurrency limit for NServiceBus Versions 5 and below is `1`, for Versions 6 and above `max(Number of logical processors,2)`.
+
+partial:defaults
+
 
 Define a maximum concurrency setting that will make sure that no more messages than the specified value is ever being processed at the same time. Set this value to `1` to process messages sequentially. If not specified the transport will choose an optimal value.
 
@@ -22,47 +30,15 @@ Examples where concurrency tuning is relevant are
  * Databases that might deadlock when getting to many concurrent requests
 
 
-## Tuning throughput
+## Throttling
 
-WARNING: Throughput throttling options have been deprecated in NServiceBus Version 6. To enable throttling on Version 6 and higher, a custom behavior should be used. The [throttling sample](/samples/throttling/) demonstrates how such a behavior can be implemented.
-
-Define a maximum value for the number of messages per second that the endpoint will process at any given time. This will help avoid the endpoint overloading sensitive resources that it's using like web-services, databases, other endpoints etc. A concrete example here could be an integration endpoint calling a web API, like api.github.com, that have restrictions on the number or requests per unit of time allowed.
-
-NServiceBus will not enforce any throughput restrictions by default.
+partial:throttling
 
 
 ## Configuration
 
-The default limits of an endpoint can be changed in both code and via app.config.
+partial:configuration
 
 
-### Via Code
 
-snippet: TuningFromCode
-
-
-### Via a IConfigurationProvider
-
-snippet: TuningFromConfigurationProvider
-
-
-### Via app.config
-
-By using raw xml.
-
-snippet: TuningFromAppConfig
-
-
-## Run time settings
-
-Version 5 and below allowed both concurrency and throughput throttling to be changed and read at run time using the code below.
-
-
-## Optimizing at run time
-
-snippet: ChangeTuning
-
-
-## Reading current values at run time
-
-snippet: ReadTuning
+partial:runtime

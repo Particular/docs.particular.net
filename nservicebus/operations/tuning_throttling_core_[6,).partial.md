@@ -1,0 +1,1 @@
+Throughput throttling options have been deprecated in NServiceBus Version 6. To enable throttling on Version 6 and higher, a custom behavior should be used. The [throttling sample](/samples/throttling/) demonstrates how such a behavior can be implemented.
