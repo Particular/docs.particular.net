@@ -26,6 +26,7 @@ See the individual DataBus implementations for details on enabling and configuri
 
  * [FileShare DataBus](file-share.md)
  * [Azure Blob Storage DataBus](azure-blob-storage.md)
+ * [MongoDB DataBus](/nservicebus/messaging/databus/mongodb-tekmaven.md)
 
 
 ## Specifying DataBus properties
@@ -38,7 +39,7 @@ There are two ways to specify the message properties to be sent using DataBus
 
 ### Using DataBusProperty<T>
 
-Properties defined using the `DataBusProperty<T>` type provided by NServiceBus are not treated as part of a message, but persist externally based on the type of `DataBus` used, and are linked to the original message using a unique key.
+Properties defined using the `DataBusProperty<T>` type are not treated as part of a message, but persist externally based on the type of `DataBus` used, and are linked to the original message using a unique key.
 
 snippet:MessageWithLargePayload
 
@@ -54,7 +55,7 @@ snippet:MessageWithLargePayloadUsingConvention
 
 ## DataBus attachments cleanup
 
-NServiceBus DataBus implementations currently behaves differently with regard to cleanup of physical attachments used to transfer data properties depending on the implementation used.
+DataBus implementations currently behaves differently with regard to cleanup of physical attachments used to transfer data properties depending on the implementation used.
 
 
 ### Reasons why attachments are not removed by default
@@ -67,3 +68,16 @@ Automatically removing these attachments can cause problems in many situations. 
  * If the outbox feature in NServiceBus is enabled, the message will be removed from the incoming queue, but it might not have been processed yet.
  * If the DataBus feature is used in combination with multiple subscribers, the subscribers cannot determine who should remove the file.
  * If a messages fails it will be handled by [recoverability](/nservicebus/recoverability/). This message can then be retried some period after that failure. The databus files need to exist for that message to be re-processed correctly.
+
+
+## Other Considerations
+
+
+### Monitoring and reliability
+
+The storage location for DataBus blobs is critical to the operation of Endpoints. As such is should be as reliable as other dependencies such as the Transport or Persistence. It should also be monitored for error/problems and be actively maintained. Since messages cannot be sent or received when storage location is unavailable, it may be necessary to stop Endpoints when maintenance tasks occur.
+
+
+### Auditing
+
+The data stored in DataBus blobs may be considered part of an Audit record. In these cases DataBus blobs should be archived alongside messages in for as long as the Audit record is required. 
