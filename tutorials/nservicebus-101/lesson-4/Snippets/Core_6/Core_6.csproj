@@ -34,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lesson4.cs" />
+    <Compile Include="OrderPlacedHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
