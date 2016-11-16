@@ -27,6 +27,6 @@ The [DependencyLifecycle](/nservicebus/containers/#dependency-lifecycle) map to 
 
 | DependencyLifecycle                                                                                             | Autofac Equivalent                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](https://docstest.particular.net/nservicebus/containers/#dependency-lifecycle-instancepercall) | [Instance Per Dependency](http://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-per-dependency)         |
+| [InstancePerCall](/nservicebus/containers/#dependency-lifecycle-instancepercall) | [Instance Per Dependency](http://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-per-dependency)         |
 | [InstancePerUnitOfWork](/nservicebus/containers/#dependency-lifecycle-instanceperunitofwork)                    | [Instance Per Lifetime Scope](http://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-per-lifetime-scope) |
 | [SingleInstance](/nservicebus/containers/#dependency-lifecycle-singleinstance)                                  | [SingleInstance](http://docs.autofac.org/en/latest/lifetime/instance-scope.html#single-instance)                          |

@@ -28,6 +28,6 @@ The [DependencyLifecycle](/nservicebus/containers/#dependency-lifecycle) map to 
 
 | DependencyLifecycle                                                                                             | StructureMap Lifecycle                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| [InstancePerCall](https://docstest.particular.net/nservicebus/containers/#dependency-lifecycle-instancepercall) | [AlwaysUnique](http://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec1)     |
+| [InstancePerCall](/nservicebus/containers/#dependency-lifecycle-instancepercall) | [AlwaysUnique](http://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec1)     |
 | [InstancePerUnitOfWork](/nservicebus/containers/#dependency-lifecycle-instanceperunitofwork)                    | [ContainerScoped](http://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec3) |
 | [SingleInstance](/nservicebus/containers/#dependency-lifecycle-singleinstance)                                  | [Singleton](http://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec2)        |
