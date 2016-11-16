@@ -135,6 +135,8 @@ When complete, your `PlaceOrderHandler` class should look like this:
 
 snippet:PlaceOrderHandler
 
+INFO: Because `LogManager.GetLogger(..);` is an expensive call, it's important to [always implement loggers as static members](/nservicebus/logging/usage.md).
+
 
 ### Send a message
 

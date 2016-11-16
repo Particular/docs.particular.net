@@ -38,10 +38,10 @@ namespace ClientUI
                 .ConfigureAwait(false);
         }
 
+        static ILog logger = LogManager.GetLogger<Program>();
+
         static async Task RunLoop(IEndpointInstance endpointInstance)
         {
-            var logger = LogManager.GetLogger<Program>();
-
             while (true)
             {
                 logger.Info("Press 'P' to place an order, or 'Q' to quit.");
