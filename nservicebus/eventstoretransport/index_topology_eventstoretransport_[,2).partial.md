@@ -1,5 +1,5 @@
 ```mermaid
-graph LR
+graph TB
     A[ExchangeA] --> B[ExchangeB]
     A --> D[ExchangeD]
 	B --> C[ExchangeC]
