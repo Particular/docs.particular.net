@@ -40,7 +40,7 @@ For more advanced logging, it is recommended to utilize one of the many mature l
 Note: Moving to custom logging means none of the approaches used in the above [Default Logging](#default-logging) apply.
 
 
-### When to configure logging
+## When to configure logging
 
 It is important to configure logging before any endpoint configuration is done since logging is configured in the static context of each NServiceBus class. So it should be configured at the startup of the app. For example
 
