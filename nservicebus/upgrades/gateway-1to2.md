@@ -1,12 +1,13 @@
 ---
 title: Gateway Upgrade Version 1 to 2
 summary: Instructions on how to upgrade the Gateway from Version 1 to 2.
+reviewed: 2016-11-16
 tags:
  - upgrade
  - migration
 related:
-- nservicebus/gateway
-- nservicebus/upgrades/5to6
+ - nservicebus/gateway
+ - nservicebus/upgrades/5to6
 ---
 
 
@@ -24,11 +25,11 @@ snippet: 1to2GatewayConfig
 
 ## Automatic retries
 
-In Versions 2 and above the gateway has its own retry mechanism. It will retry failed messages 4 times by default, increasing the delay by 60 seconds each time. The default retry policy can be [replaced](/nservicebus/gateway/#retries).
+In Versions 2 and above the gateway has its own retry mechanism. It will retry failed messages 4 times by default, increasing the delay by 60 seconds each time. The default retry policy can be [replaced](/nservicebus/gateway/#using-the-gateway-recoverability).
 
 
 ## Notifications
 
-In Versions 2 and above the gateway does not provide any error notifications. When an error occurs during sending of a message to other sites, the message will be retried and possibly moved to the error queue. The user will not be notified about these events.
+In Versions 2 and above the gateway does not provide any error notifications. When an error occurs during sending of a message to other sites, the message will be retried and possibly moved to the error queue.
 
-Note that in Version 1, when the user [subscribes to error notifications](/nservicebus/recoverability/subscribing-to-error-notifications.md) they receive notification in the situation described above.
+Note that in Version 1, when [subscribing to error notifications](/nservicebus/recoverability/subscribing-to-error-notifications.md) the notification is received in the situation described above.
