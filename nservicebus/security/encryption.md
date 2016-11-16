@@ -18,7 +18,7 @@ Property encryption operates on specific properties of a message. The data in th
 
 The encryption algorithm used is [Rijndael](https://msdn.microsoft.com/en-us/library/system.security.cryptography.rijndael.aspx).
 
-Keep in mind that the security is only as strong as the keys; if the key is exposed, then an attacker can decrypt the information. As such avoid encryption keys stored on the client (if deployed remotely) or even on a web server in the DMZ.
+Keep in mind that the security is only as strong as the keys; if the key is exposed, then an attacker can decrypt the information. Encryption keys should not be stored on the client (if deployed remotely) or even on a web server in the DMZ.
 
 partial: default
 
@@ -166,7 +166,7 @@ snippet:EncryptionFromIEncryptionService
 
 ## Message Encryption
 
-Message encryption leverages the pipeline to encryption the entire serialized message body.
+Message encryption leverages the pipeline to encrypt the entire serialized message body.
 
 One way of achieving this is by using a [transport message mutator](/nservicebus/pipeline/message-mutators.md#two-flavors-of-mutators-transport-messages-mutators).
 
