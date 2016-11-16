@@ -71,6 +71,7 @@
     <Compile Include="Container\Custom\MyContainer.cs" />
     <Compile Include="Container\Custom\Usage.cs" />
     <Compile Include="Container\MyService.cs" />
+    <Compile Include="Container\Usage.cs" />
     <Compile Include="DataBus\CleanupStrategy\Define.cs" />
     <Compile Include="DataBus\CleanupStrategy\Usage.cs" />
     <Compile Include="DelayedDelivery\DeferForDateTime.cs" />

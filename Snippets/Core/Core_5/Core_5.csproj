@@ -136,6 +136,7 @@
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="Container\Custom\MyContainerDefinition.cs" />
+    <Compile Include="Container\Usage.cs" />
     <Compile Include="Features\AdvancedSatellite.cs" />
     <Compile Include="Handlers\DataAccess\AddOrderLine.cs" />
     <Compile Include="Handlers\DataAccess\Simple.cs" />

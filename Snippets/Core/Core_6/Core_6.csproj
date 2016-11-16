@@ -101,6 +101,7 @@
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="Container\Custom\MyContainerDefinition.cs" />
+    <Compile Include="Container\Usage.cs" />
     <Compile Include="Handlers\DataAccess\AddOrderLine.cs" />
     <Compile Include="Handlers\DataAccess\IMyOrm.cs" />
     <Compile Include="Handlers\DataAccess\IMyOrmSession.cs" />
