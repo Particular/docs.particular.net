@@ -43,7 +43,7 @@ snippet: Hex-CSharp
 
 ### OpenSSL
 
-OpenSSL is well known for its ability to generate certificates but it can also be used to generate random data.
+[OpenSSL](https://www.openssl.org/) is well known for its ability to generate certificates but it can also be used to generate random data.
 
 
 #### Base64
