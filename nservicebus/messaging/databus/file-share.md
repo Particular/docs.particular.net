@@ -7,7 +7,6 @@ tags:
  - Attachments
 related:
  - samples/file-share-databus
- - samples/azure/blob-storage-databus
 ---
 
 The FileShare DataBus allows large properties to be transferred via a windows file share
