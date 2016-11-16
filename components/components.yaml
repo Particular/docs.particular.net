@@ -125,6 +125,15 @@
     - ServiceControl.Plugin.Nsb4.CustomChecks
     - ServiceControl.Plugin.Nsb3.CustomChecks
 
+- Key: FileShareDataBus
+  Name: File Share Databus
+  DocoUrl: nservicebus/messaging/databus/file-share
+  GitHubOwner: Particular/nservicebus-maintainers
+  Category: Databus
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
+
 - Key: Distributor
   Name: Distributor
   DocoUrl: nservicebus/msmq/distributor

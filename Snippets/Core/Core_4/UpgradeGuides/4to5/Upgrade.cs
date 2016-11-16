@@ -282,16 +282,6 @@
             #endregion
         }
 
-        public void FileShareDataBus(string databusPath)
-        {
-            #region 4to5FileShareDataBus
-
-            var configure = Configure.With();
-            configure.FileShareDataBus(databusPath);
-
-            #endregion
-        }
-
         public void PurgeOnStartup()
         {
             #region 4to5PurgeOnStartup

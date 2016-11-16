@@ -1,8 +1,7 @@
-namespace Core5.DataBus.CleanupStrategy
+namespace Core4.DataBus.CleanupStrategy
 {
     using System;
     using System.IO;
-    using DataBusProperty;
     using NServiceBus;
 
     #region HandlerThatCleansUpDatabus
@@ -42,5 +41,11 @@ namespace Core5.DataBus.CleanupStrategy
         ICommand
     {
         public string FilePath { get; set; }
+    }
+
+    public class MessageWithLargePayload
+    {
+        public string SomeProperty { get; set; }
+        public DataBusProperty<byte[]> LargeBlob { get; set; }
     }
 }

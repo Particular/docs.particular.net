@@ -89,8 +89,6 @@
     <Compile Include="Container\Custom\MyContainer.cs" />
     <Compile Include="Container\MyService.cs" />
     <Compile Include="Container\Usage.cs" />
-    <Compile Include="DataBus\CleanupStrategy\Define.cs" />
-    <Compile Include="DataBus\CleanupStrategy\Usage.cs" />
     <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
@@ -234,7 +232,6 @@
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="Hosting.cs" />
     <Compile Include="License.cs" />
-    <Compile Include="DataBus\FileShare\DataBus.cs" />
     <Compile Include="Encryption\Usage.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Installers.cs" />

@@ -308,16 +308,6 @@ namespace Core5.UpgradeGuides._4to5
             #endregion
         }
 
-        void FileShareDataBus(BusConfiguration busConfiguration, string databusPath)
-        {
-            #region 4to5FileShareDataBus
-
-            var dataBus = busConfiguration.UseDataBus<FileShareDataBus>();
-            dataBus.BasePath(databusPath);
-
-            #endregion
-        }
-
         void PurgeOnStartup(BusConfiguration busConfiguration)
         {
             #region 4to5PurgeOnStartup

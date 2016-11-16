@@ -1,9 +1,7 @@
-namespace Core6.DataBus.CleanupStrategy
+namespace Core3.DataBus.CleanupStrategy
 {
     using System;
     using System.IO;
-    using System.Threading.Tasks;
-    using DataBusProperty;
     using NServiceBus;
 
     #region HandlerThatCleansUpDatabus
@@ -12,26 +10,29 @@ namespace Core6.DataBus.CleanupStrategy
         IHandleMessages<MessageWithLargePayload>,
         IHandleMessages<RemoveDatabusAttachment>
     {
+        IBus bus;
 
-        public Task Handle(MessageWithLargePayload message, IMessageHandlerContext context)
+        public Handler(IBus bus)
+        {
+            this.bus = bus;
+        }
+
+        public void Handle(MessageWithLargePayload message)
         {
             var filePath = Path.Combine(@"\\share\databus_attachments\", message.LargeBlob.Key);
             var removeAttachment = new RemoveDatabusAttachment
             {
                 FilePath = filePath
             };
-            var options = new SendOptions();
-            options.RouteToThisEndpoint();
-            options.DelayDeliveryWith(TimeSpan.FromDays(30));
-            return context.Send(removeAttachment, options);
+            bus.Defer(TimeSpan.FromDays(30), removeAttachment);
         }
 
-        public Task Handle(RemoveDatabusAttachment message, IMessageHandlerContext context)
+        public void Handle(RemoveDatabusAttachment message)
         {
             var filePath = message.FilePath;
             // Code to clean up
-            return Task.CompletedTask;
         }
+
     }
 
     #endregion
@@ -41,4 +42,11 @@ namespace Core6.DataBus.CleanupStrategy
     {
         public string FilePath { get; set; }
     }
+
+    public class MessageWithLargePayload
+    {
+        public string SomeProperty { get; set; }
+        public DataBusProperty<byte[]> LargeBlob { get; set; }
+    }
+
 }

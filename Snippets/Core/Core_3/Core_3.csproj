@@ -72,8 +72,6 @@
     <Compile Include="Container\Custom\Usage.cs" />
     <Compile Include="Container\MyService.cs" />
     <Compile Include="Container\Usage.cs" />
-    <Compile Include="DataBus\CleanupStrategy\Define.cs" />
-    <Compile Include="DataBus\CleanupStrategy\Usage.cs" />
     <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
@@ -126,7 +124,6 @@
     <Compile Include="DataBus\Conventions\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\Conventions\Usage.cs" />
-    <Compile Include="DataBus\FileShare\Usage.cs" />
     <Compile Include="Encryption\Configuration\ProvideConfiguration.cs" />
     <Compile Include="Encryption\Conventions\MyMessage.cs" />
     <Compile Include="Encryption\Conventions\Usage.cs" />

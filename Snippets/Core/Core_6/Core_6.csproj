@@ -138,14 +138,11 @@
     <Compile Include="Container\MyService.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="CustomConfigSource.cs" />
-    <Compile Include="DataBus\CleanupStrategy\Define.cs" />
-    <Compile Include="DataBus\CleanupStrategy\Usage.cs" />
     <Compile Include="DataBus\Conventions\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\Conventions\Usage.cs" />
     <Compile Include="DataBus\Custom\CustomDataBus.cs" />
     <Compile Include="DataBus\Custom\Usage.cs" />
     <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />
-    <Compile Include="DataBus\FileShare\Usage.cs" />
     <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="DiscardingOldMessages.cs" />

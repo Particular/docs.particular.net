@@ -1,7 +1,7 @@
 ---
 title: File Share DataBus
 reviewed: 2016-08-29
-component: Core
+component: FileShareDataBus
 tags:
  - DataBus
  - Attachments
