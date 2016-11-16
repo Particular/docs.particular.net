@@ -54,6 +54,7 @@ Adjust the conventions for exchange name and routing key by using the overload:
 
 snippet:rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
+WARNING: The direct routing topology is nondeterministic for message types with "non-system" interfaces in their inheritance hierarchy. For deterministic routing of these message types, the conventional routing topology must be used. A "non-system" interface is any which is not contained in a .NET Framework assembly (any assembly signed with the same public key as mscorlib), and is not one of the [marker interfaces](/nservicebus/messaging/messages-events-commands.md#marker-interfaces).
 
 ## Custom Routing Topology
 
