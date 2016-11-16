@@ -16,13 +16,14 @@ Services and state are managed by Containers and Dependency Injection. NServiceB
 
 ## Dependency Lifecycle
 
-There are three modes of 
+There are three modes of Dependency Lifecycle.
 
 
 ### InstancePerCall
 
 A new instance will be returned for each call.
 
+Represented by the enum value `DependencyLifecycle.InstancePerCall`.
 
 #### Registration
 
@@ -38,6 +39,8 @@ snippet: DelegateInstancePerCall
 
 The instance will be singleton for the duration of the [unit of work](/nservicebus/pipeline/unit-of-work.md). In practice this means the processing of a single transport message.
 
+Represented by the enum value `DependencyLifecycle.InstancePerUnitOfWork`.
+
 
 #### Registration
 
@@ -52,6 +55,8 @@ snippet: DelegateInstancePerUnitOfWork
 ### SingleInstance
 
 The same instance will be returned each time.
+
+Represented by the enum value `DependencyLifecycle.SingleInstance`.
 
 
 #### Registration
