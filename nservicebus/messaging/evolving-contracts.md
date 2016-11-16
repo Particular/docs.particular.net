@@ -16,18 +16,16 @@ This article presents basic guidelines for choosing contracts evolution strategy
 
 ### Messages
 
-Messages should ideally be:
-
- * [**Plain Old CLR Objects** (POCO)](https://en.wikipedia.org/wiki/Plain_Old_CLR_Object).
- * **Small and focused**. Messages should carry the minimum amount of information and should be split if they get too big.
- * **Serve a single purpose**. Messages shouldn't be used for anything else than carrying data. For example, messages shouldn't be used as data access objects or as UI binding models.
+Ensure that messages are easy to evolve by following the general messages [design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
 
 
-### Assemblies
+### Solution structure
 
-The assembly containing messages becomes part of the contract between two endpoints, as both need to refer it. It's recommended to use a dedicated assembly for messages definitions. By keeping messages in a separate assembly, the amount of information and dependencies shared between services is minimized. 
+Messages define the data contract between two endpoints. 
 
-Messages definitions can be divided between multiple assemblies, which might be useful in more complex systems, e.g. to narrow down the number of contracts exposed to different services.
+It's recommended to use a dedicated assembly for messages definitions. By keeping messages in a separate assembly, the amount of information and dependencies shared between services is minimized. Messages definitions can be divided between multiple assemblies, which might be useful in more complex systems, e.g. to narrow down the number of contracts exposed to different services.
+
+It's also possible to share messages as C# source files, without packaging them into an assembly. The main advantage of this approach is that messages don't need to be compiled against specific NServiceBus versions, so it's never necessary to use assembly redirects. 
 
 
 ## Common challenges
@@ -46,8 +44,8 @@ When there are significant changes in a message type, such as adding or removing
 
  * Update contract to the new version.
  * Update senders to use the new contract version. Ensure changes are visible for receivers, such as:
-	 * Decorate the existing property with `Obsolete` attribute with a `WARN`, when removing or renaming properties.
+	 * Decorate the existing property with `Obsolete` attribute with a warning when removing or renaming properties.
  * Update receivers to handle the new contract version. Make sure the new properties are handled correctly, e.g. instead of relying on .NET to set the default value for `int Age = 1`, it's better to use nullable types and represent missing values as `null`.
- * When all senders and receivers are updated and in-flight messages in the old format have been handled, obsolete the properties with `ERR` or simply remove it.
+ * When all senders and receivers are updated and in-flight messages in the old format have been handled, obsolete the properties and throw an error, or simply remove them.
 
 Another approach for handling breaking changes is to modify serialization formats. The step-by-step guidance is provided in the [Transition serialization formats](/samples/serializers/transitioning-formats/) formats.
