@@ -1,11 +1,12 @@
 ---
 title: Azure Cloud Services Host Upgrade Version 6 to 7
 summary: Instructions on how to upgrade Azure Cloud Service Host from Version 6 to 7.
+reviewed: 2016-11-16
 tags:
  - upgrade
  - migration
 related:
-- nservicebus/upgrades/5to6
+ - nservicebus/upgrades/5to6
 ---
 
 
@@ -37,12 +38,14 @@ The `DynamicHostControllerConfig`configuration section has been removed, instead
 
 ## Removal of dependencies
 
-The host role entry point and host process no longer depend on the following components, feel free to remove them.
+The host role entry point and host process no longer depend on the following components.
 
  * Log4Net
  * Ionic.zip
  * Topshelf
  * CommonServiceLocator
+
+If these components are not used for other purposes they may be removed.
 
 
 ## Deprecation of profiles
@@ -54,7 +57,7 @@ Any code in custom profile handlers should be moved into the `IConfigureThisEndp
 
 ## IWantToRunWhenEndpointStartsAndStops
 
-An interface called `IWantToRunWhenEndpointStartsAndStops` has been added. This interface replaces the [`IWantToRunWhenBusStartsAndStops`](/nservicebus/lifecycle/endpointstartandstop.md) in the NServiceBus core.
+An interface `IWantToRunWhenEndpointStartsAndStops` has been added. This interface replaces the [`IWantToRunWhenBusStartsAndStops`](/nservicebus/lifecycle/endpointstartandstop.md) in the NServiceBus core.
 
 
 ### Interface in Version 5 of NServiceBus
