@@ -1,6 +1,7 @@
 ---
 title: Tutorials
 suppressRelated: true
+reviewed: 2016-11-16
 ---
 
 These resources will give you step-by-step instruction to help you learn NServiceBus.

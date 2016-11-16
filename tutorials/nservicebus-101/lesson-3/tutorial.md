@@ -1,5 +1,6 @@
 ---
 title: "NServiceBus 101 Lesson 3: Multiple endpoints"
+reviewed: 2016-11-16
 ---
 
 Up until this point, we have constrained our activities to a single endpoint, but this is not how real systems behave. The strength of a messaging system is the ability to run code in multiple processes, on multiple servers, which can all collaborate by exchanging messages.

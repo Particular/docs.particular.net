@@ -1,5 +1,6 @@
 ---
 title: "NServiceBus 101 Lesson 1: Getting started"
+reviewed: 2016-11-16
 ---
 
 In this lesson we will set up a new development machine with NServiceBus and show how the framework is set up within an application.

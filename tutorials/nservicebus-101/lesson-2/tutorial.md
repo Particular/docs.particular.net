@@ -1,5 +1,6 @@
 ---
 title: "NServiceBus 101 Lesson 2: Sending a command"
+reviewed: 2016-11-16
 ---
 
 Sending and receiving messages is a central characteristic of any NServiceBus system. Durable messages passed between processes allow reliable communication between those processes, even if one of them is temporarily unavailable. In this lesson we'll show how to send and process a message.

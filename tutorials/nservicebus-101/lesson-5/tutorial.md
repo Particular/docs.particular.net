@@ -1,5 +1,6 @@
 ---
 title: "NServiceBus 101 Lesson 5: Retrying errors"
+reviewed: 2016-11-16
 ---
 
 In software systems, exceptions will occur. Even with perfect, bug-free code, problems will arise when we have to deal with the issue of connectivity. If a database is overloaded, or a web service is down, we have no recourse except to try again.
