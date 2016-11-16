@@ -1,9 +1,10 @@
 ```mermaid
 graph LR
-    A[Square Rect] -- Link text --> B((Circle))
-    A --> C(Round Rect)
-    B --> D{Rhombus}
-    C --> D
+    A[ExchangeA] --> B[ExchangeB]
+    A --> D[ExchangeD]
+	B --> C[ExchangeC]
+	B --> Q1[Queue1]
+	D --> Q2[Queue2]
 ```
 
 ```
