@@ -58,6 +58,7 @@
     <Reference Include="System.Management.Automation" />
     <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -73,6 +74,9 @@
     </Compile>
     <Compile Include="ApprovalTestConfig.cs" />
     <Compile Include="AsyncSuffix\MissingAwaitTests.cs" />
+    <None Include="Security\Hex.ps1" />
+    <None Include="Security\Base64.ps1" />
+    <None Include="Security\SecurityHelpers.cs" />
     <None Include="AsyncSuffix\MissingAwait.cs" />
     <Compile Include="AsyncSuffix\MissingTaskUsageDetector.cs" />
     <Compile Include="AsyncSuffix\MissingTaskUsageDetectorTests.cs" />

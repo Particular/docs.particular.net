@@ -2,12 +2,12 @@
 title: Generating secure random strong encryption keys
 summary: Describes options in generating secure random strong encryption keys
 tags:
-- Encryption
-- Security
-redirects:
+ - Encryption
+ - Security
+reviewed: 2016-11-16
 related:
-- nservicebus/security
-- nservicebus/security/encryption
+ - nservicebus/security
+ - nservicebus/security/encryption
 ---
 
 There are multiple ways of generating a key. Most implementations rely on a *random* object. All examples mentioned here use a secure cryptographic randomizer.
@@ -18,49 +18,27 @@ There are multiple ways of generating a key. Most implementations rely on a *ran
 
 #### Base64
 
-```ps
-[Reflection.Assembly]::LoadWithPartialName("System.Security")
-$rijndael = new-Object System.Security.Cryptography.RijndaelManaged
-$rijndael.GenerateKey()
-Write-Host([Convert]::ToBase64String($rijndael.Key))
-$rijndael.Dispose()
-```
+snippet: Base64-Powershell
+
 
 #### Hex
 
-```ps
-[Reflection.Assembly]::LoadWithPartialName("System.Security")
-$rijndael = new-Object System.Security.Cryptography.RijndaelManaged
-$rijndael.GenerateKey()
-Write-Host([System.BitConverter]::ToString($rijndael.Key).Replace("-", "").ToLowerInvariant())
-$rijndael.Dispose()
-```
+snippet: Hex-Powershell
 
-### c# ###
 
-The code snippets below can be run from Linqpad or by copy and pasting the code in a new project and referencing `System.Security`.
+### C&#35;
+
+The code snippets below can be run from [LINKPad](https://www.linqpad.net/) or by copy and pasting the code in a new project and referencing `System.Security`.
 
 
 #### Base64
 
-```cs
-using (var e = System.Security.Cryptography.RijndaelManaged.Create())
-{
-	e.GenerateKey();
-    Console.WriteLine(Convert.ToBase64String(e.Key));
-}
-```
+snippet: Base64-CSharp
 
 
 #### Hex
 
-```cs
-using (var e = System.Security.Cryptography.RijndaelManaged.Create())
-{
-	e.GenerateKey();
-    Console.WriteLine(BitConverter.ToString(e.Key).Replace("-", string.Empty).ToLowerInvariant());
-}
-```
+snippet: Hex-CSharp
 
 
 ### OpenSSL
