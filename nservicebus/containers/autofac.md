@@ -19,3 +19,14 @@ snippet:Autofac
 ### Existing Container Instance
 
 snippet:Autofac_Existing
+
+
+### DependencyLifecycle Mapping
+
+The [DependencyLifecycle](/nservicebus/containers/#dependency-lifecycle) map to Autofac in the following way.
+
+| DependencyLifecycle                                                                                             | Autofac Equivalent                                                                                                        |
+|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| [InstancePerCall](https://docstest.particular.net/nservicebus/containers/#dependency-lifecycle-instancepercall) | [Instance Per Dependency](http://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-per-dependency)         |
+| [InstancePerUnitOfWork](/nservicebus/containers/#dependency-lifecycle-instanceperunitofwork)                    | [Instance Per Lifetime Scope](http://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-per-lifetime-scope) |
+| [SingleInstance](/nservicebus/containers/#dependency-lifecycle-singleinstance)                                  | [SingleInstance](http://docs.autofac.org/en/latest/lifetime/instance-scope.html#single-instance)                          |

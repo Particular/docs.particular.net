@@ -19,3 +19,15 @@ snippet:CastleWindsor
 ### Existing Container Instance
 
 snippet:CastleWindsor_Existing
+
+
+### DependencyLifecycle Mapping
+
+The [DependencyLifecycle](/nservicebus/containers/#dependency-lifecycle) map to [Castle LifestyleType](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md) in the following way.
+
+
+| DependencyLifecycle                                                                                             | Castle LifestyleType                                                                           |
+|-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| [InstancePerCall](https://docstest.particular.net/nservicebus/containers/#dependency-lifecycle-instancepercall) | [Transient](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#transient) |
+| [InstancePerUnitOfWork](/nservicebus/containers/#dependency-lifecycle-instanceperunitofwork)                    | [Scoped](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#scoped)       |
+| [SingleInstance](/nservicebus/containers/#dependency-lifecycle-singleinstance)                                  | [Singleton](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#singleton) |

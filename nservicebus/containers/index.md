@@ -25,6 +25,7 @@ A new instance will be returned for each call.
 
 Represented by the enum value `DependencyLifecycle.InstancePerCall`.
 
+
 #### Registration
 
 snippet: InstancePerCall
@@ -58,6 +59,8 @@ The same instance will be returned each time.
 
 Represented by the enum value `DependencyLifecycle.SingleInstance`.
 
+WARNING: `SingleInstance` components that have dependencies that are scoped `InstancePerCall` or `InstancePerUnitOfWork` will still resolve. In effect these dependencies, while not scoped `SingleInstance`, will behave as if they are `SingleInstance` as the instances will exist inside the parent component.
+
 
 #### Registration
 
@@ -72,7 +75,6 @@ snippet: DelegateSingleInstance
 #### Register Single Instance
 
 snippet: RegisterSingleton
-
 
 
 ## Supported Containers
