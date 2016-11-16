@@ -147,7 +147,7 @@ NOTE: Since this is the third endpoint we've created, the instructions will be a
  1. In the **Billing** endpoint, add a class named `OrderPlacedHandler`, mark it as `public`, and implement `IHandleMessages<OrderPlaced>`.
  1. Modify the handler class to log the receipt of the event:
 
-snippet:SubscriberHandler
+snippet:SubscriberHandlerDontPublishOrderBilled
 
 And finally, modify the solution properties so that **Billing** will start when debugging.
 

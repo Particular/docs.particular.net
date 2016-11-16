@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
-using Messages;
 using NServiceBus;
 using NServiceBus.Logging;
 
 namespace Billing
 {
+    #region SubscriberHandlerDontPublishOrderBilled
+
     public class OrderPlacedHandler :
         IHandleMessages<OrderPlaced>
     {
@@ -14,11 +15,14 @@ namespace Billing
         {
             logger.Info($"Received OrderPlaced, OrderId = {message.OrderId} - Charging credit card...");
 
-            var orderBilled = new OrderBilled
-            {
-                OrderId = message.OrderId
-            };
-            return context.Publish(orderBilled);
+            return Task.CompletedTask;
         }
+    }
+
+    #endregion
+
+    public class OrderPlaced : IEvent
+    {
+        public string OrderId { get; set; }
     }
 }
