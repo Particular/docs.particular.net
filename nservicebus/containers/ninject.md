@@ -23,3 +23,14 @@ snippet:Ninject_Existing
 
 
 partial: uow
+
+
+### DependencyLifecycle Mapping
+
+The [DependencyLifecycle](/nservicebus/containers/#dependency-lifecycle) map to Ninject in the following way.
+
+| DependencyLifecycle                                                                                             | Ninject Equivalent                                                                                                        |
+|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| [InstancePerCall](/nservicebus/containers/#dependency-lifecycle-instancepercall) | [Transient](https://github.com/ninject/ninject/wiki/Object-Scopes)         |
+| [InstancePerUnitOfWork](/nservicebus/containers/#dependency-lifecycle-instanceperunitofwork)                    | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes) within a [Named Scope](https://github.com/ninject/ninject.extensions.namedscope/wiki) per Unit of Work |
+| [SingleInstance](/nservicebus/containers/#dependency-lifecycle-singleinstance)                                  | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes)                          |
