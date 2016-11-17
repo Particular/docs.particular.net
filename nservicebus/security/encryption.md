@@ -59,7 +59,7 @@ Each key needs an unique key ID (`KeyIdentifier`). The key ID is communicated in
 
 > Error: It is required to set the Rijndael key ID.
 
-NOTE: If a key ID is not set then no messages with encrypted properties can be sent. When NServiceBus receives a message without a key ID header, it will attempt decryption using all keys in the configuration.
+NOTE: If a key ID is not set then no messages with encrypted properties can be sent. When NServiceBus receives a message without a key ID header, it will attempt decryption using all keys in the configuration. If all decryption attempts fail, the message will be moved to the error queue.
 
 > Error: Encrypted message has no 'NServiceBus.RijndaelKeyIdentifier' header. Possibility of data corruption. Upgrade endpoints that send messages with encrypted properties.
 
