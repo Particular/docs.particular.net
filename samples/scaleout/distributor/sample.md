@@ -98,8 +98,6 @@ Worker ->> Sender: OrderPlaced
 Worker ->> Server: Ready for work
 ```
 
-![](flow.svg)
-
 
 ### Sender Output
 
