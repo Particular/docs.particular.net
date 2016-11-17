@@ -33,7 +33,7 @@ Participant Server
 Participant Storage Table
 Note over Processor: Polling Storage Table for requests
 Participant Processor
-Note left of Client: bus.Publish() Message1 occurs
+Note left of Client: Publish Message1 occurs
 Client ->> Server: LongProcessingRequest (ID, Processing Time)
 Server ->> Storage Table: Store RequestRecord
 Server ->> Server: Set timeout

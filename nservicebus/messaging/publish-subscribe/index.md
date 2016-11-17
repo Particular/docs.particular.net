@@ -87,7 +87,7 @@ sequenceDiagram
 
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
-Note over Publisher: bus.Publish() Message1 occurs
+Note over Publisher: Publish Message1 occurs
 Publisher ->> Persistence: Requests "who wants Message1"
 Persistence ->> Publisher: Subscriber1 and Subscriber2
 Publisher ->> Subscriber1: Send Message1
@@ -135,7 +135,7 @@ sequenceDiagram
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
 Participant Transport As Transport
-Note over Publisher: bus.Publish() Message1 occurs
+Note over Publisher: Publish Message1 occurs
 Publisher ->> Transport: Sends Message1
 Transport ->> Subscriber1: Send Message1
 Transport ->> Subscriber2: Send Message1
