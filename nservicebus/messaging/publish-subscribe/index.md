@@ -59,8 +59,6 @@ The subscribe workflow for unicast transports is as follows
  1. Subscribers request to a publisher the intent to subscribe to certain message types.
  1. Publisher stores both the subscriber names and the message types in the persistence.
 
-![](mechanics-persistence-subscribe.svg)
-
 ```mermaid
 sequenceDiagram
 
@@ -96,8 +94,6 @@ Publisher ->> Subscriber1: Send Message1
 Publisher ->> Subscriber2: Send Message1
 ```
 
-![](mechanics-persistence-publish.svg)
-
 
 ### Native
 
@@ -124,8 +120,6 @@ Subscriber1 ->> Broker: Subscribe to Message1
 Subscriber2 ->> Broker: Subscribe to Message1
 ```
 
-![](mechanics-native-subscribe.svg)
-
 
 #### Publish
 
@@ -146,6 +140,3 @@ Publisher ->> Transport: Sends Message1
 Transport ->> Subscriber1: Send Message1
 Transport ->> Subscriber2: Send Message1
 ```
-
-![](mechanics-native-publish.svg)
-
