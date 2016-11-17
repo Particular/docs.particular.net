@@ -61,14 +61,15 @@ The subscribe workflow for unicast transports is as follows
 
 ![](mechanics-persistence-subscribe.svg)
 
-<!-- https://bramp.github.io/js-sequence-diagrams/
+```mermaid
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
-Subscriber1->Publisher: Subscribe to Message1
-Publisher->Persistence: Store "Subscriber1\nwants Message1"
-Subscriber2->Publisher: Subscribe to Message1
-Publisher->Persistence: Store "Subscriber2\nwants Message1"
--->
+Subscriber1 ->> Publisher: Subscribe to Message1
+Publisher ->> Persistence: Store Subscriber1 wants Message1
+Subscriber2 ->> Publisher: Subscribe to Message1
+Publisher ->> Persistence: Store Subscriber2 wants Message1
+```
+
 
 The publisher's address is provided via [routing configuration](/nservicebus/messaging/routing.md).
 
@@ -81,15 +82,15 @@ The publish workflow for unicast transports is as follows
  1. Publisher queries the storage for a list of subscribers.
  1. Publisher loops through the list and sends a copy of that message to each subscriber.
 
-<!-- https://bramp.github.io/js-sequence-diagrams/
+```mermaid
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
-Note over Publisher: bus.Publish()\nMessage1 occurs
-Publisher->Persistence: Requests "who\nwants Message1"
-Persistence->Publisher: "Subscriber1 and\nSubscriber2"
-Publisher->Subscriber1: Send Message1
-Publisher->Subscriber2: Send Message1
--->
+Note over Publisher: bus.Publish() Message1 occurs
+Publisher ->> Persistence: Requests who wants Message1
+Persistence ->> Publisher: Subscriber1 and Subscriber2
+Publisher ->> Subscriber1: Send Message1
+Publisher ->> Subscriber2: Send Message1
+```
 
 ![](mechanics-persistence-publish.svg)
 
@@ -108,14 +109,14 @@ The subscribe workflow for multicast transports is as follows
 
 Note that in this case the publisher does not interact in the subscribe workflow.
 
-<!-- https://bramp.github.io/js-sequence-diagrams/
+```mermaid
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
 Participant Broker As Broker
 Participant Publisher As Publisher
-Subscriber1->Broker: Subscribe to Message1
-Subscriber2->Broker: Subscribe to Message1
--->
+Subscriber1 ->> Broker: Subscribe to Message1
+Subscriber2 ->> Broker: Subscribe to Message1
+```
 
 ![](mechanics-native-subscribe.svg)
 
@@ -128,15 +129,15 @@ The publish workflow for multicast transports is as follows
  1. Publisher sends the message to the Broker.
  1. Broker sends a copy of that message to each subscriber.
 
-<!-- https://bramp.github.io/js-sequence-diagrams/
+```mermaid
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
 Participant Transport As Transport
-Note over Publisher: bus.Publish()\nMessage1 occurs
-Publisher->Transport: Sends Message1
-Transport->Subscriber1: Send Message1
-Transport->Subscriber2: Send Message1
--->
+Note over Publisher: bus.Publish() Message1 occurs
+Publisher ->> Transport: Sends Message1
+Transport ->> Subscriber1: Send Message1
+Transport ->> Subscriber2: Send Message1
+```
 
 ![](mechanics-native-publish.svg)
 
