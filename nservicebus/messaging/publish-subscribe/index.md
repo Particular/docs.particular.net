@@ -62,6 +62,8 @@ The subscribe workflow for unicast transports is as follows
 ![](mechanics-persistence-subscribe.svg)
 
 ```mermaid
+sequenceDiagram
+
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
 Subscriber1 ->> Publisher: Subscribe to Message1
@@ -83,6 +85,8 @@ The publish workflow for unicast transports is as follows
  1. Publisher loops through the list and sends a copy of that message to each subscriber.
 
 ```mermaid
+sequenceDiagram
+
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
 Note over Publisher: bus.Publish() Message1 occurs
@@ -110,6 +114,8 @@ The subscribe workflow for multicast transports is as follows
 Note that in this case the publisher does not interact in the subscribe workflow.
 
 ```mermaid
+sequenceDiagram
+
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
 Participant Broker As Broker
@@ -130,6 +136,8 @@ The publish workflow for multicast transports is as follows
  1. Broker sends a copy of that message to each subscriber.
 
 ```mermaid
+sequenceDiagram
+
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
 Participant Transport As Transport
