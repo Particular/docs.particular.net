@@ -26,27 +26,26 @@ This sample shows a simplified long running process
  * `Processor` raises events about successful or failed results.
  * `Server` issues warnings for `Client` if estimated processing time is going to be violated. 
 
-![](long-running-task.svg)
-
-<!-- https://bramp.github.io/js-sequence-diagrams/
+```mermaid
+sequenceDiagram
 Participant Client
 Participant Server
 Participant Storage Table
-Note over Processor: Polling\nStorage Table\nfor requests
+Note over Processor: Polling Storage Table for requests
 Participant Processor
-Note left of Client: bus.Publish()\nMessage1 occurs
-Client->Server: LongProcessingRequest\n(ID, Processing Time)
-Server->Storage Table: Store RequestRecord
-Server->Server: Set timeout
-Processor->Processor: process reques
-Processor->Storage Table: Update RequestRecord
-Note over Server: If processing takes\nlonger than anticipated
-Server->Server: Timeout raised
-Server->>Client: LongProcessingWarning
+Note left of Client: bus.Publish() Message1 occurs
+Client ->> Server: LongProcessingRequest (ID, Processing Time)
+Server ->> Storage Table: Store RequestRecord
+Server ->> Server: Set timeout
+Processor ->> Processor: process request
+Processor ->> Storage Table: Update RequestRecord
+Note over Server: If processing takes longer than anticipated
+Server ->> Server: Timeout raised
+Server ->> Client: LongProcessingWarning
 Note over Server: Otherwise
-Processor->>Server: LongProcessingFinished / LongProcessingFailed
-Processor->>Client: LongProcessingFinished / LongProcessingFailed
--->
+Processor ->> Server: LongProcessingFinished / LongProcessingFailed
+Processor ->> Client: LongProcessingFinished / LongProcessingFailed
+```
 
 
 ## Performing processing outside of a message handler
