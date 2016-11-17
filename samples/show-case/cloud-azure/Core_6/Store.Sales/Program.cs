@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using NServiceBus;
@@ -32,7 +33,7 @@ public class Program
     }
 
     [NoAutomaticTrigger]
-    public static async Task AsyncMain()
+    public static async Task AsyncMain(CancellationToken cancellationToken)
     {
         Console.Title = "Samples.Store.Sales";
         var endpointConfiguration = new EndpointConfiguration("Store.Sales");
@@ -40,15 +41,14 @@ public class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+
+        while (!cancellationToken.IsCancellationRequested)
         {
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
+            await Task.Delay(3000, cancellationToken)
                 .ConfigureAwait(false);
         }
+
+        await endpointInstance.Stop()
+                .ConfigureAwait(false);
     }
 }
