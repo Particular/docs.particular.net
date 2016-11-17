@@ -90,6 +90,7 @@ Go to the `Sender` console an press enter a few times. When this occurs the foll
  * `Worker` again tells `Server` it is ready for work
 
 ```mermaid
+sequenceDiagram
 Worker ->> Server: Ready for work
 Sender ->> Server: PlaceOrder
 Note left of Server: Server forwards to either Worker
