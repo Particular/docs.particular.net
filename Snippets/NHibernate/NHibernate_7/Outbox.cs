@@ -14,14 +14,16 @@
         {
             #region OutboxNHibernateCustomMapping
 
-            endpointConfiguration.UsePersistence<NHibernatePersistence>()
-                .UseOutboxRecord<MyOutboxRecord, MyOutboxRecordMapping>();
+            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.UseOutboxRecord<MyOutboxRecord, MyOutboxRecordMapping>();
 
             #endregion
         }
 
         #region OutboxNHibernateCustomMapping
-        public class MyOutboxRecord : IOutboxRecord
+
+        public class MyOutboxRecord :
+            IOutboxRecord
         {
             public virtual string MessageId { get; set; }
             public virtual bool Dispatched { get; set; }
@@ -29,7 +31,8 @@
             public virtual string TransportOperations { get; set; }
         }
 
-        public class MyOutboxRecordMapping : ClassMapping<MyOutboxRecord>
+        public class MyOutboxRecordMapping :
+            ClassMapping<MyOutboxRecord>
         {
             public MyOutboxRecordMapping()
             {
@@ -44,6 +47,7 @@
                 Property(p => p.TransportOperations, pm => pm.Type(NHibernateUtil.StringClob));
             }
         }
+
         #endregion
 
     }
