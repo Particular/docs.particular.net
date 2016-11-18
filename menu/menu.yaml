@@ -536,6 +536,8 @@
       Title: ProtoBuf
     - Url: nservicebus/serialization/bond
       Title: Bond
+    - Url: nservicebus/serialization/zeroformatter
+      Title: ZeroFormatter
     - Url: nservicebus/serialization/binary
       Title: Binary
     - Url: nservicebus/serialization/custom-serializer

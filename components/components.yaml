@@ -561,3 +561,14 @@
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
     - NServiceBus
+
+- Key: ZeroFormatter
+  Name: ZeroFormatter Serializer
+  DocoUrl: nservicebus/serialization/zeroformatter
+  GitHubOwner: SimonCropp
+  Category: Serializer
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.ZeroFormatter/blob/master/license.txt
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.ZeroFormatter
+  NugetOrder:
+    - NServiceBus.ZeroFormatter

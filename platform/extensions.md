@@ -122,6 +122,13 @@ https://www.nuget.org/packages/NServiceBus
 A custom XML serializer built into the NServiceBus core.
 
 
+#### <img style="margin-bottom: 0.25em" src="/content/images/community_v1.svg" /> [ZeroFormatter](https://github.com/SimonCropp/NServiceBus.ZeroFormatter)
+
+https://www.nuget.org/packages/NServiceBus.ZeroFormatter
+
+Using [ZeroFormatter](https://github.com/neuecc/ZeroFormatter/) to serialize messages.
+
+
 ## Persisters
 
 
