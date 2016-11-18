@@ -5,31 +5,6 @@ NServiceBus Version 6 further splits the existing pipelines into smaller composa
 
 This map shows all of the stages in the pipeline and how messages flow through them.    
 
-```mermaid
-graph LR
-    UC[User Code] --> OP[Outgoing Publish]
-	UC --> OS[Outgoing Send]
-	UC --> OR[Outgoing Reply]
-	OP --> OLM[Outgoing Local Message]
-	OS --> OLM
-	OR --> OLM
-	OLM --> OPM[Outoing Physical Message]
-	OPM --> Routing[Routing]
-	Routing --> Dispatch[Dispatch]
-	Dispatch --> Transport[Transport]
-	Transport --> TR[Transport Receive]
-	TR --> BD[Batch Dispatch]
-	BD --> Dispatch
-	TR --> IPM[Incoming Physical Message]
-	IPM --> Forwarding[Forwarding]
-	IPM --> Audit[Audit]
-	Forwarding --> Routing
-	Audit --> Routing
-	IPM --> ILM[Incoming Logical Message]
-	ILM --> IH[Invoke Hanlder]
-	IH --> UC
-```
-
 ![Context Stages](context-map.svg)
 
 The green stages are considered part of the outgoing pipeline and the blue stages are considered part of the incoming pipeline. The connection between the Incoming Physical Message stage and the Forwarding/Audit stages is an example of a fork. In both cases, the message will flow down the main path and then down the fork path. The fork paths are only followed if the corresponding feature (auditing, message forwarding) has been enabled.
