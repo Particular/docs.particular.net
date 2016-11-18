@@ -839,33 +839,34 @@ It will also wrap the image in a clickable lightbox so the full image can be acc
 
 ### Maintaining images
 
-When creating images, strive to keep sources in order to update and re-create images later.
-For diagrams, [LucidChart](https://www.lucidchart.com) can be used. LucidChart allows export and import of Visio (VDX) formatted documents. Visio formatted documents can be used to generate images and should be committed along with the images. To generate images from LucidChart (or a Visio document), export the image as PNG, using the "Crop to content" option.
+When creating images, strive to keep sources in order to update and re-create images later. Whenever possible use mermeid. When using LucidChart make sure to keep the sources.
 
 
-### Sequence diagrams
+### mermeid
 
-Sequence diagram images are generated using the https://bramp.github.io/js-sequence-diagrams/ online service. Keep the source text used to generate sequence image in the document as an HTML comment to allow future modifications in case images need to be re-generated.
+The support for [mermeid](https://knsv.github.io/mermaid/#mermaid) is provided as an extension to [Markdig](https://github.com/lunet-io/markdig). Markdig converts the diagram definition from .md to HTML, and then mermeid JavaScript library converts the definition to SVG format on the fly.
 
-### Flowchart diagrams
-
-Flowchar diagrams can be generated with [Code2Flow](https://code2flow.com/#) using a nice pseudocode syntax like this:
-
-```
-switch (Operation?) {
-  case Send:
-    Determine routing for `Send`;
-    break;
-  case Publish:
-    Determine routing for `Publish`;
-    break;
-  case Reply:
-    Determine routing for `Reply`;
-    break;
-}
+Diagram images are generated using the  using a pseudocode syntax like this:
+```mermaid
+_mermeid_diagram_definition_
 ```
 
-For a more complex example, go to the [routing](https://docs.particular.net/nservicebus/messaging/routing) page.
+For example:
+
+```mermaid
+graph TB
+A[ExchangeA] --> B[ExchangeB]
+A --> D[ExchangeD]
+B --> C[ExchangeC]
+B --> Q1[Queue1]
+D --> Q2[Queue2]
+```
+
+
+### LucidChart
+
+Another option is using [LucidChart](https://www.lucidchart.com). LucidChart allows to export and import Visio (VDX) formatted documents. Visio formatted documents can be used to generate images and should be committed along with the images. To generate images from LucidChart (or a Visio document), export the image as PNG, using the "Crop to content" option.
+
 
 ## Some Useful Characters
 
