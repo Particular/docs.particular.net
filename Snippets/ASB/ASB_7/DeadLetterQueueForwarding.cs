@@ -15,8 +15,7 @@ class DeadLetterQueueForwarding
                            queuename != "audit" &&
                            queuename != "centralizeddlq";
                 },
-                forwardDeadLetteredMessagesTo: "centralizeddlq")
-            ;
+                forwardDeadLetteredMessagesTo: "centralizeddlq");
         var subscriptions = transport.Subscriptions();
         subscriptions.ForwardDeadLetteredMessagesTo("centralizeddlq");
 
