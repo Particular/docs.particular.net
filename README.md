@@ -847,11 +847,14 @@ When creating images, strive to keep sources in order to update and re-create im
 The support for [mermeid](https://knsv.github.io/mermaid/#mermaid) is provided as an extension to [Markdig](https://github.com/lunet-io/markdig). Markdig converts the diagram definition from .md to HTML, and then mermeid JavaScript library converts the definition to SVG format on the fly.
 
 Diagram images are generated using the  using a pseudocode syntax like this:
+<pre><code>
 ```mermaid
 _mermeid_diagram_definition_
 ```
+</code></pre>
 
 For example:
+<pre><code>
 ```mermaid
 graph TB
 A[ExchangeA] --> B[ExchangeB]
@@ -860,6 +863,7 @@ B --> C[ExchangeC]
 B --> Q1[Queue1]
 D --> Q2[Queue2]
 ```
+</code></pre>
 
 The diagrams can be created and verified using the [online editor](http://knsv.github.io/mermaid/live_editor/).
 
