@@ -6,7 +6,7 @@ related:
  - samples/serializers/zeroformatter
 ---
 
-Serializes messages with [Microsoft Bond](https://github.com/neuecc/ZeroFormatter/).
+Serializes messages with [ZeroFormatter](https://github.com/neuecc/ZeroFormatter/).
 
 > Fastest C# Serializer and Infinitely Fast Deserializer for .NET, .NET Core and Unity.
 
