@@ -839,20 +839,22 @@ It will also wrap the image in a clickable lightbox so the full image can be acc
 
 ### Maintaining images
 
-When creating images, strive to keep sources in order to update and re-create images later. Whenever possible use mermeid. When using LucidChart make sure to keep the sources.
+When creating images, strive to keep sources in order to update and re-create images later. Whenever possible use mermaid. When using LucidChart make sure to keep the sources.
 
 
 ### mermeid
 
-The support for [mermeid](https://knsv.github.io/mermaid/#mermaid) is provided as an extension to [Markdig](https://github.com/lunet-io/markdig). Markdig converts the diagram definition from .md to HTML, and then mermeid JavaScript library converts the definition to SVG format on the fly.
+The support for [mermaid](https://knsv.github.io/mermaid/#mermaid) is provided as an extension to [Markdig](https://github.com/lunet-io/markdig). Markdig converts the diagram definition from .md to HTML, and then mermeid JavaScript library converts the definition to SVG format on the fly.
 
 Diagram images are generated using the  using a pseudocode syntax like this:
+<pre><code>
 ```mermaid
 _mermeid_diagram_definition_
 ```
+</code></pre>
 
 For example:
-
+<pre><code>
 ```mermaid
 graph TB
 A[ExchangeA] --> B[ExchangeB]
@@ -861,6 +863,9 @@ B --> C[ExchangeC]
 B --> Q1[Queue1]
 D --> Q2[Queue2]
 ```
+</code></pre>
+
+The diagrams can be created and verified using the [online editor](http://knsv.github.io/mermaid/live_editor/).
 
 
 ### LucidChart
