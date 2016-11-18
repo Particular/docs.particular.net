@@ -1,1 +1,1 @@
-Note: Besides `TransportTransactionMode.None`, NServiceBus Version 6.1 and above also support the TimeToBeReceived setting for `TransportTransactionMode.ReceiveOnly`.
+WARN: Due to a bug in Version 6 `TransportTransactionMode.ReceiveOnly` wrongly enlisted all outgoing messages in the same transaction causing the issues described above.

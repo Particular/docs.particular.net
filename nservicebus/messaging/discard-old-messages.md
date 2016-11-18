@@ -49,7 +49,9 @@ TimeToBeReceived relies on underlying functionality in the transport infrastruct
 
 ### MSMQ transport
 
-MSMQ continuously checks the TimeToBeReceived of all queued messages. As soon as the message has expired, it is removed from the queue, and disk space reclaimed. MSMQ will however only allow a single TimeToBeReceived for all messages in a transaction. It will silently copy the TimeToBeReceived from the first message enlisted to all other messages in the same transaction, leading to a potential message loss scenario. This issue, unfortunately, make it impossible to support setting TimeToBeReceived for messages sent from a transactional MSMQ endpoint.
+MSMQ continuously checks the TimeToBeReceived of all queued messages. As soon as the message has expired, it is removed from the queue, and disk space reclaimed. 
+
+MSMQ however only allows a single TimeToBeReceived for all messages in a transaction. If multiple messages enlist in a single transaction, then TimeToBeReceived from the first message will be used for all messages, leading to a potential message loss scenario. To prevent message loss, `TimeToBeReceived` is not supported for endpoints with [transaction mode](/nservicebus/transports/transactions.md) `TransportTransactionMode.AtomicSendsWithReceive` or `Transaction Scope (Distributed Transaction)`.
 
 partial:msmq
 
