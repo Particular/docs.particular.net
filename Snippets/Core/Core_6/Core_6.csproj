@@ -50,8 +50,9 @@
       <HintPath>..\..\..\packages\NServiceBus.NHibernate.7.0.1\lib\net452\NServiceBus.NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Autofac">
-      <HintPath>..\..\..\packages\NServiceBus.Autofac.6.0.0\lib\net452\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
+    <Reference Include="NServiceBus.ObjectBuilder.Autofac, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
+      <HintPath>..\..\..\packages\NServiceBus.Autofac.6.0.1\lib\net452\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.RavenDB, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
       <HintPath>..\..\..\packages\NServiceBus.RavenDB.4.0.0\lib\net452\NServiceBus.RavenDB.dll</HintPath>

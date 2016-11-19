@@ -27,8 +27,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NServiceBus">
+    <Reference Include="NServiceBus, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
       <HintPath>..\..\..\packages\NServiceBus.Interfaces.4.7.12\lib\net40\NServiceBus.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\..\packages\NServiceBus.4.7.12\lib\net40\NServiceBus.Core.dll</HintPath>
