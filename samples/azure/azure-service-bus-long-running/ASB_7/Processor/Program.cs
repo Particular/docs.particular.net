@@ -31,12 +31,14 @@ class Program
 
         var processor = new Processor();
 
-        await processor.Start(endpointInstance).ConfigureAwait(false);
+        await processor.Start(endpointInstance)
+            .ConfigureAwait(false);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
 
-        await processor.Stop().ConfigureAwait(false);
+        await processor.Stop()
+            .ConfigureAwait(false);
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }

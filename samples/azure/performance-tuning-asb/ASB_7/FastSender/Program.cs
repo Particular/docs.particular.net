@@ -32,7 +32,8 @@ class Program
         queues.EnablePartitioning(true);
 
         var receiverName = "Samples.ASB.Performance.Receiver";
-        await EnsureReceiverQueueExists(receiverName, connectionString).ConfigureAwait(false);
+        await EnsureReceiverQueueExists(receiverName, connectionString)
+            .ConfigureAwait(false);
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(SomeMessage), receiverName);
 
@@ -49,17 +50,21 @@ class Program
         transport.NumberOfClientsPerEntity(5);
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         try
         {
-            await Console.Out.WriteLineAsync("Press 'e' to send a large amount of messages").ConfigureAwait(false);
-            await Console.Out.WriteLineAsync("Press any other key to exit").ConfigureAwait(false);
+            await Console.Out.WriteLineAsync("Press 'e' to send a large amount of messages")
+                .ConfigureAwait(false);
+            await Console.Out.WriteLineAsync("Press any other key to exit")
+                .ConfigureAwait(false);
 
             while (true)
             {
                 var key = Console.ReadKey();
-                await Console.Out.WriteLineAsync().ConfigureAwait(false);
+                await Console.Out.WriteLineAsync()
+                    .ConfigureAwait(false);
 
                 var eventId = Guid.NewGuid();
 
@@ -79,36 +84,42 @@ class Program
                     tasks.Add(task);
                 }
 
-                await Console.Out.WriteLineAsync("Waiting for completion...").ConfigureAwait(false);
+                await Console.Out.WriteLineAsync("Waiting for completion...")
+                    .ConfigureAwait(false);
                 // by awaiting the sends as one unit, this code allows the ASB SDK's client side batching to kick in and bundle sends
                 // this results in less latency overhead per individual sends and thus higher performance
-                await Task.WhenAll(tasks).ConfigureAwait(false);
+                await Task.WhenAll(tasks)
+                    .ConfigureAwait(false);
 
                 #endregion
 
                 stopwatch.Stop();
                 var elapsedSeconds = stopwatch.ElapsedTicks/(double) Stopwatch.Frequency;
                 var msgsPerSecond = NumberOfMessages/elapsedSeconds;
-                await Console.Out.WriteLineAsync($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {msgsPerSecond} messages per second").ConfigureAwait(false);
+                await Console.Out.WriteLineAsync($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {msgsPerSecond} messages per second")
+                    .ConfigureAwait(false);
             }
         }
         finally
         {
-            await endpointInstance.Stop().ConfigureAwait(false);
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 
     static async Task EnsureReceiverQueueExists(string receiverPath, string connectionString)
     {
         var namespaceManager = NamespaceManager.CreateFromConnectionString(connectionString);
-        if (!await namespaceManager.QueueExistsAsync(receiverPath).ConfigureAwait(false))
+        if (!await namespaceManager.QueueExistsAsync(receiverPath)
+            .ConfigureAwait(false))
         {
             var queueDescription = new QueueDescription(receiverPath)
             {
                 EnablePartitioning = true,
                 EnableBatchedOperations = true
             };
-            await namespaceManager.CreateQueueAsync(queueDescription).ConfigureAwait(false);
+            await namespaceManager.CreateQueueAsync(queueDescription)
+                .ConfigureAwait(false);
         }
     }
 }

@@ -11,9 +11,10 @@ public class PlaceOrderHandler :
     {
         log.Info($"Received order {message.OrderId} for ${message.Value}.");
 
-        return context.Publish(new OrderAccepted
+        var orderAccepted = new OrderAccepted
         {
             OrderId = message.OrderId
-        });
+        };
+        return context.Publish(orderAccepted);
     }
 }

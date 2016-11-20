@@ -48,7 +48,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="UpgradeGuide\1to2\Channel.config" />
+    <Content Include="UpgradeGuide\1to2\Channel.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Channels\ConfigurationSource\ConfigurationSource.cs" />

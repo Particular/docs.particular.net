@@ -28,7 +28,8 @@ public class Processor
 
         var cloudTableClient = StorageHelper.GetTableClient();
         table = cloudTableClient.GetTableReference(Constants.TableName);
-        await table.CreateIfNotExistsAsync(cancellationToken).ConfigureAwait(false);
+        await table.CreateIfNotExistsAsync(cancellationToken)
+            .ConfigureAwait(false);
 
         #region tasks
         pollingTask = Task.Run(() => StartPolling(cancellationToken));
@@ -39,7 +40,8 @@ public class Processor
     public async Task Stop()
     {
         cancellationTokenSource.Cancel();
-        await Task.WhenAll(pollingTask, processingTask).ConfigureAwait(false);
+        await Task.WhenAll(pollingTask, processingTask)
+            .ConfigureAwait(false);
         cancellationTokenSource.Dispose();
     }
 

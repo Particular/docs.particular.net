@@ -14,11 +14,12 @@ public class OrderSubmittedHandler :
         #region StoreUserData
 
         var nhibernateSession = context.SynchronizedStorageSession.Session();
-        nhibernateSession.Save(new Order
+        var order = new Order
         {
             OrderId = message.OrderId,
             Value = message.Value
-        });
+        };
+        nhibernateSession.Save(order);
 
         #endregion
 

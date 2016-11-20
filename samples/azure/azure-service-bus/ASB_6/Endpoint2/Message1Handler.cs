@@ -15,9 +15,10 @@ public class Message1Handler :
     public void Handle(Message1 message)
     {
         log.Info($"Received Message1: {message.Property}");
-        bus.Reply(new Message2
+        var reply = new Message2
         {
             Property = "Hello from Endpoint2"
-        });
+        };
+        bus.Reply(reply);
     }
 }

@@ -11,7 +11,7 @@
         public Task MutateOutgoing(MutateOutgoingMessageContext context)
         {
             // the outgoing headers
-            IDictionary<string, string> outgoingHeaders = context.OutgoingHeaders;
+            var outgoingHeaders = context.OutgoingHeaders;
 
             object incomingMessage;
             if (context.TryGetIncomingMessage(out incomingMessage))

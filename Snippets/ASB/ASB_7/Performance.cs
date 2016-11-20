@@ -7,7 +7,8 @@ class Performance
     async Task SendPerformance()
     {
         var endpointConfiguration = new EndpointConfiguration("whatever");
-        var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         #region asb-slow-send
 
@@ -15,7 +16,8 @@ class Performance
         {
             // by awaiting each individual send, no client side batching can take place
             // latency is incurred for each send and thus negatively impacts performance
-            await endpointInstance.Send(new SomeMessage()).ConfigureAwait(false);
+            await endpointInstance.Send(new SomeMessage())
+                .ConfigureAwait(false);
         }
 
         #endregion
@@ -30,7 +32,8 @@ class Performance
 
         // by awaiting the sends as one unit, this code allows the ASB SDK's client side batching to kick in and bundle sends
         // this results in less latency overhead per individual sends and thus improved performance
-        await Task.WhenAll(tasks).ConfigureAwait(false);
+        await Task.WhenAll(tasks)
+            .ConfigureAwait(false);
         #endregion
     }
 }

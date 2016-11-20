@@ -169,7 +169,11 @@
 
             configure.UnicastBus();
             var startableBus = configure.CreateBus();
-            startableBus.Start(MyCustomAction);
+            startableBus.Start(
+                startupAction: () =>
+                {
+                    MyCustomAction();
+                });
 
             #endregion
         }

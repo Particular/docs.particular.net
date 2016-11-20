@@ -29,9 +29,10 @@ public class Handler :
     public void Handle(ObjectMessage message)
     {
         log.Info($"Received ObjectMessage. Property:'{message.Property}'");
-        bus.Reply(new ReplyMessage
+        var replyMessage = new ReplyMessage
         {
             Property = $"Handler Received '{message.Property}'"
-        });
+        };
+        bus.Reply(replyMessage);
     }
 }

@@ -35,11 +35,12 @@ class Program
                     return;
                 }
                 var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                bus.Publish(new OrderSubmitted
+                var orderSubmitted = new OrderSubmitted
                 {
                     OrderId = orderId,
                     Value = random.Next(100)
-                });
+                };
+                bus.Publish(orderSubmitted);
                 Console.WriteLine($"Order {orderId} placed");
             }
         }

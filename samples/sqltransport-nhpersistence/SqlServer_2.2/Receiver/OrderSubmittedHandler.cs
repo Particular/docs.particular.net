@@ -21,20 +21,22 @@ public class OrderSubmittedHandler :
 
         #region StoreUserData
 
-        session.Save(new Order
+        var order = new Order
         {
             OrderId = message.OrderId,
             Value = message.Value
-        });
+        };
+        session.Save(order);
 
         #endregion
 
         #region Reply
 
-        bus.Reply(new OrderAccepted
+        var orderAccepted = new OrderAccepted
         {
             OrderId = message.OrderId,
-        });
+        };
+        bus.Reply(orderAccepted);
 
         #endregion
     }

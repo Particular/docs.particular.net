@@ -47,10 +47,11 @@ public class OrderSaga :
     public void Timeout(CompleteOrder state)
     {
         log.Info($"Saga with OrderId {Data.OrderId} completed");
-        bus.Publish(new OrderCompleted
+        var orderCompleted = new OrderCompleted
         {
             OrderId = Data.OrderId
-        });
+        };
+        bus.Publish(orderCompleted);
         MarkAsComplete();
     }
 

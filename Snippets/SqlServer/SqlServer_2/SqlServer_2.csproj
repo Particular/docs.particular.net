@@ -39,9 +39,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="ConnectionStrings.config" />
-    <None Include="ConnectionStringsNamed.config" />
-    <None Include="MultiSchema.config" />
+    <Content Include="ConnectionStrings.xml" />
+    <Content Include="ConnectionStringsNamed.xml" />
+    <Content Include="MultiSchema.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigurationSettings.cs" />
