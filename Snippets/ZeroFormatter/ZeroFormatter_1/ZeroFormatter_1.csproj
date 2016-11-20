@@ -26,7 +26,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\packages\NServiceBus.6.0.0\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.6.1.0-alpha0079\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ZeroFormatter, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\packages\NServiceBus.ZeroFormatter.1.0.1\Lib\NET452\NServiceBus.ZeroFormatter.dll</HintPath>

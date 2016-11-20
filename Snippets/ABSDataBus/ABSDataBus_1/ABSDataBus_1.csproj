@@ -49,7 +49,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\packages\NServiceBus.6.0.0\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.6.1.0-alpha0079\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.DataBus.AzureBlobStorage, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
       <HintPath>..\..\..\packages\NServiceBus.DataBus.AzureBlobStorage.1.0.0\lib\net452\NServiceBus.DataBus.AzureBlobStorage.dll</HintPath>

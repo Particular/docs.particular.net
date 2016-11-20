@@ -30,7 +30,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\packages\NServiceBus.6.0.0\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.6.1.0-alpha0079\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Autofac, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
       <HintPath>..\..\..\packages\NServiceBus.Autofac.6.0.1\lib\net452\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>

@@ -30,7 +30,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\packages\NServiceBus.6.0.0\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.6.1.0-alpha0079\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.CastleWindsor">
       <HintPath>..\..\..\packages\NServiceBus.CastleWindsor.6.0.0\lib\net452\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
