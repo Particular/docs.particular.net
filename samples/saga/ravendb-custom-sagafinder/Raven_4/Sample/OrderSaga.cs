@@ -24,19 +24,21 @@ public class OrderSaga :
         Data.PaymentTransactionId = Guid.NewGuid().ToString();
 
         log.Info($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
-        return context.SendLocal(new IssuePaymentRequest
-                      {
-                          PaymentTransactionId = Data.PaymentTransactionId
-                      });
+        var issuePaymentRequest = new IssuePaymentRequest
+        {
+            PaymentTransactionId = Data.PaymentTransactionId
+        };
+        return context.SendLocal(issuePaymentRequest);
     }
 
     public Task Handle(PaymentTransactionCompleted message, IMessageHandlerContext context)
     {
         log.Info($"Transaction with Id {Data.PaymentTransactionId} completed for order id {Data.OrderId}");
-        return context.SendLocal(new CompleteOrder
-                      {
-                          OrderId = Data.OrderId
-                      });
+        var completeOrder = new CompleteOrder
+        {
+            OrderId = Data.OrderId
+        };
+        return context.SendLocal(completeOrder);
     }
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)

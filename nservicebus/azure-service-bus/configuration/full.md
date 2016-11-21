@@ -62,10 +62,10 @@ The following settings are available to define how queues should be created:
  * `ForwardDeadLetteredMessagesTo(Func<string, bool>, string)`: Forward all dead lettered messages to the specified entity if the given condition equals to `true` (e.g. it allows to exclude forwarding dead lettered messages on the error queue). This setting is off by default.
  * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message, defaults to `TimeSpan.MaxValue`.
  * `EnableDeadLetteringOnMessageExpiration(bool)`: Messages that expire will be dead lettered, defaults to `false`.
- * `EnableExpress(bool)`: Enables express mode, defaults to `false`. For more information refer to [MSDN](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.enableexpress.aspx)
+ * `EnableExpress(bool)`: Enables express mode, defaults to `false`. For more information refer to [MSDN](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress)
  * `EnableExpress(Func<string, bool>, string)`: Enables express mode when the given condition is `true`.
  * `AutoDeleteOnIdle(TimeSpan)`: Automatically deletes the queue if it hasn't been used for the specified time period. By default the queue will not be automatically deleted.
- * `EnablePartitioning(bool)`: Enables partitioning, defaults to `false`. For more information on partitioning refer to the [Partitioned messaging entities](https://azure.microsoft.com/en-us/documentation/articles/service-bus-partitioning/) article on MSDN.
+ * `EnablePartitioning(bool)`: Enables partitioning, defaults to `false`. For more information on partitioning refer to the [Partitioned messaging entities](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning) article on MSDN.
  * `EnableBatchedOperations(bool)`: Enables server side batched operations, defaults to `true`.
  * `RequiresDuplicateDetection(bool)`: Specifies whether the queue should perform native broker duplicate detection, defaults to `false`.
  * `DuplicateDetectionHistoryTimeWindow(TimeSpan)`: The time period in which native broker duplicate detection should occur.
@@ -81,10 +81,10 @@ The following settings are available to define how topics should be created:
  * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message, defaults to `TimeSpan.MaxValue`.
  * `AutoDeleteOnIdle(TimeSpan)`: Automatically deletes the topic if it hasn't been used for the specified time period. By default the topic will not be automatically deleted.
  * `EnableBatchedOperations(bool)`: Enables server side batched operations, defaults to `true`.
- * `EnableExpress(bool)`: Enables express mode, defaults to `false`. For more information refer to  the [TopicDescription.EnableExpress Property](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.topicdescription.enableexpress.aspx) documentation on MSDN.
+ * `EnableExpress(bool)`: Enables express mode, defaults to `false`. For more information refer to  the [TopicDescription.EnableExpress Property](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.topicdescription#Microsoft_ServiceBus_Messaging_TopicDescription_EnableExpress) documentation on MSDN.
  * `EnableExpress(Func<string, bool>, bool)`: Enables express mode when the given condition is `true`.
  * `EnableFilteringMessagesBeforePublishing(bool)`: Enables filtering messages before they are published, which validates that subscribers exist before a message is published. Defaults to `false`.
- * `EnablePartitioning(bool)`: Enables partitioning, defaults to `false`. For more information on partitioning refer to the [Partitioned messaging entities](https://azure.microsoft.com/en-us/documentation/articles/service-bus-partitioning/) article on MSDN.
+ * `EnablePartitioning(bool)`: Enables partitioning, defaults to `false`. For more information on partitioning refer to the [Partitioned messaging entities](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning) article on MSDN.
  * `RequiresDuplicateDetection(bool)`: Specifies whether the topic should perform native broker duplicate detection, defaults to `false`.
  * `DuplicateDetectionHistoryTimeWindow(TimeSpan)`: The time period in which native broker duplicate detection should occur.
  * `SupportOrdering(bool)`: Best effort message ordering on the topic, defaults to `false`.
@@ -112,7 +112,7 @@ The following settings are available to define how subscriptions should be creat
 The following settings determine how NServiceBus will connect to Azure Service Bus:
 
  * `NumberOfClientsPerEntity(int)`: NServiceBus maintains a pool of receive and send clients for each entity. This setting determines how big that pool is. Defaults to 5.
- * `ConnectivityMode(ConnectivityMode)`: Determines how NServiceBus connects to Azure Service Bus, using [TCP, HTTPS or HTTP](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.connectivitymode.aspx). Defaults to TCP.
+ * `ConnectivityMode(ConnectivityMode)`: Determines how NServiceBus connects to Azure Service Bus, using [TCP, HTTPS or HTTP](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.connectivitymode). Defaults to TCP.
  * `TransportType(TransportType)`: Determines what transport protocol NServiceBus is using for Azure Service Bus, `TransportType.NetMessaging` or `TransportType.Amqp`. Defaults to `TransportType.NetMessaging`.
  * `BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes)`: Controls how the body of a brokered message will be serialized, either as a byte array or as a stream. Defaults to byte array.
  * `MessagingFactories()`: Provides access to settings of the used native instances of the class `MessagingFactory`. These settings will automatically apply to all `MessageReceiver` and `MessageSender` instances created by the `MessagingFactory`.
@@ -150,7 +150,7 @@ The following settings determine how NServiceBus will send messages to Azure Ser
  * `BackOffTimeOnThrottle(TimeSpan)`: Similarly to all hosted services, Azure Service Bus indicates to clients to back off under heavy load. This setting specifies for how long NServiceBus will wait before trying to send a message again. Defaults to 10 seconds.
  * `RetryAttemptsOnThrottle(int)`: Defines for how many times the transport should attempt to retry a send operation before throwing an exception.
  * `MaximumMessageSizeInKilobytes(int)`: Specifies how large messages can be. This can differ between various types of namespaces. The default value of 256 aligns with Standard namespaces. Note that when message batching is enabled, this setting will also be applied as the maximum size of the batch.
- * `MessageSizePaddingPercentage(int)`: The Size property on a `BrokeredMessage` will provide accurate values only after the message was sent (for more details refer to the [BrokeredMessage.Size Property](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.messaging.brokeredmessage.size.aspx) documentation on MSDN). Therefore it can't be used to compute an accurate maximum batch size. NServiceBus has it's own batch size computation implementation, which requires providing an estimate for how much overhead (in %) will be caused by the serialization of the brokered message properties. The estimate is specified using `MessageSizePaddingPercentage`. Defaults to 5%.
+ * `MessageSizePaddingPercentage(int)`: The Size property on a `BrokeredMessage` will provide accurate values only after the message was sent (for more details refer to the [BrokeredMessage.Size Property](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Size) documentation on MSDN). Therefore it can't be used to compute an accurate maximum batch size. NServiceBus has it's own batch size computation implementation, which requires providing an estimate for how much overhead (in %) will be caused by the serialization of the brokered message properties. The estimate is specified using `MessageSizePaddingPercentage`. Defaults to 5%.
  * `OversizedBrokeredMessageHandler<T>(T)`: This setting allows to override the transports behavior when a single message exceeds the maximum message size. The default behavior is represented by `ThrowOnOversizedBrokeredMessages` and will throw a `MessageTooLargeException`, suggesting to use the [Databus](/nservicebus/messaging/databus/).
 
 
@@ -182,7 +182,7 @@ One of the responsibilities of the transport is determining the names and physic
 
 ### Sanitization
 
-Sanitization refers to the cleanup logic that converts invalid entity names into valid ones. "Validation rules" are the individual logic blocks used to determine if entity names are valid. The rules implementations vary depending on the namespace type, and are changing over time (in some cases without notice and update of the [relevant MSDN documentation](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/)). The default settings align with the recently created Standard namespaces.
+Sanitization refers to the cleanup logic that converts invalid entity names into valid ones. "Validation rules" are the individual logic blocks used to determine if entity names are valid. The rules implementations vary depending on the namespace type, and are changing over time (in some cases without notice and update of the [relevant MSDN documentation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas)). The default settings align with the recently created Standard namespaces.
 
  * `UseQueuePathMaximumLength(int)`: The maximum length of a queue path (path = name + namespace hierarchy), defaults to 260.
  * `UseTopicPathMaximumLength(int)`: The maximum length of a topic path (path = name + namespace hierarchy), defaults to 260.

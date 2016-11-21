@@ -20,7 +20,7 @@ This document describes how to modify brokered message creation logic in order t
 
 ### Brokered Message body format
 
-The Azure Service Bus API allows the construction of a [`BrokeredMessage`](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.aspx) body from a stream or an object that will then be serialized into a byte array.
+The Azure Service Bus API allows the construction of a [`BrokeredMessage`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.brokeredmessage) body from a stream or an object that will then be serialized into a byte array.
 
 NOTE: Both the sender (native or NServiceBus) and the receiver must have a consistent convention for the communication the message body.
 

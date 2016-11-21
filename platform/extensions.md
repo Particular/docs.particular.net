@@ -32,7 +32,7 @@ Provides support for sending messages over [Azure Service Bus](https://azure.mic
 
 https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues
 
-Provides support for sending messages over [Azure Storage Queue](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-how-to-use-queues/).
+Provides support for sending messages over [Azure Storage Queue](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-queues).
 
 
 #### <img style="margin-bottom: 0.25em" src="particular-project.png" title="A Particular run project"> [MSMQ](/nservicebus/msmq/)
@@ -279,7 +279,7 @@ https://www.nuget.org/packages/NServiceBus.Gateway
 
 https://www.nuget.org/packages/NServiceBus.Mandrill
 
-[Mandrill](https://mandrill.com//) is a email infrastructure service built by [MailChimp](https://mailchimp.com/). This extension allow for sending Mandrill emails as messages.
+[Mandrill](https://mandrill.com) is a email infrastructure service built by [MailChimp](https://mailchimp.com). This extension allow for sending Mandrill emails as messages.
 
 
 #### <img style="margin-bottom: 0.25em" src="/content/images/community_v1.svg" /> [Mailer](https://github.com/SimonCropp/NServiceBus.Mailer)

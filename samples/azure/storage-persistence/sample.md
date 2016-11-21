@@ -16,7 +16,7 @@ related:
 
 ## Prerequisites
 
-Ensure that an instance of the [Azure Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/) is running.
+Ensure that an instance of the [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator) is running.
 
 
 ## Azure Storage Persistence

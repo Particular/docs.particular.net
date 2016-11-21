@@ -24,10 +24,11 @@ public class OrderSaga :
     {
         Data.OrderId = message.OrderId;
         log.Info($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
-        Bus.SendLocal(new CompleteOrder
-                           {
-                               OrderId = Data.OrderId
-                           });
+        var completeOrder = new CompleteOrder
+        {
+            OrderId = Data.OrderId
+        };
+        Bus.SendLocal(completeOrder);
         RequestTimeout<CancelOrder>(TimeSpan.FromMinutes(30));
     }
 

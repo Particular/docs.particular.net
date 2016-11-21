@@ -12,9 +12,9 @@ Next to [Recoverability](/nservicebus/recoverability/), the Azure Service Bus al
 
 ## Azure Service Bus SDK
 
-In a cloud environment, exceptions are common. Given the size and complexity of a cloud environment, connectivity and service side capacity problems are to be expected. For a large part, these problems are covered by leveraging the retry behavior on transient exceptions of the Azure Service Bus SDK, known as [`RetryPolicy`](https://azure.microsoft.com/en-us/documentation/articles/best-practices-retry-service-specific/#service-bus-retry-guidelines).
+In a cloud environment, exceptions are common. Given the size and complexity of a cloud environment, connectivity and service side capacity problems are to be expected. For a large part, these problems are covered by leveraging the retry behavior on transient exceptions of the Azure Service Bus SDK, known as [`RetryPolicy`](https://docs.microsoft.com/en-us/azure/best-practices-retry-service-specific).
 
-The following document describes a list of [common exceptions](https://azure.microsoft.com/en-us/documentation/articles/service-bus-messaging-exceptions/), coming from the broker or connectivity to the broker, that may be logged by NServiceBus. Usually, these exceptions are transient in their nature and will be automatically resolved by the retry policy of the Azure Service Bus SDK, or they are resolved at the transport level by reestablishing the connection to the service.
+The following document describes a list of [common exceptions](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-exceptions), coming from the broker or connectivity to the broker, that may be logged by NServiceBus. Usually, these exceptions are transient in their nature and will be automatically resolved by the retry policy of the Azure Service Bus SDK, or they are resolved at the transport level by reestablishing the connection to the service.
 
 If the exceptions persist, they will eventually trigger the transport's circuit breaker which results in crashing the process with a fatal exception.
 

@@ -32,10 +32,11 @@ class Program
 
             using (var bus = Bus.Create(busConfiguration).Start())
             {
-                bus.SendLocal(new StartOrder
+                var startOrder = new StartOrder
                 {
                     OrderId = "123"
-                });
+                };
+                bus.SendLocal(startOrder);
 
                 Console.WriteLine("Press any key to exit");
                 Console.ReadKey();

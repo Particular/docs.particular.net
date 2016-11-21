@@ -15,14 +15,18 @@ class Program
 
         using (var bus = Bus.Create(busConfiguration).Start())
         {
-            bus.SendLocal(new StartOrder
-                          {
-                              OrderId = "123"
-                          });
-            bus.SendLocal(new StartOrder
-                          {
-                              OrderId = "456"
-                          });
+            var startOrder1 = new StartOrder
+            {
+                OrderId = "1"
+            };
+            bus.SendLocal(startOrder1);
+
+            var startOrder2 = new StartOrder
+            {
+                OrderId = "2"
+            };
+            bus.SendLocal(startOrder2);
+
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

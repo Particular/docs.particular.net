@@ -31,10 +31,11 @@ public class OrderSaga :
         Data.OrderDescription = orderDescription;
         log.Info($"Received StartOrder message {Data.OrderId}. Starting Saga");
 
-        Bus.SendLocal(new ShipOrder
+        var shipOrder = new ShipOrder
         {
             OrderId = message.OrderId
-        });
+        };
+        Bus.SendLocal(shipOrder);
 
         log.Info("Order will complete in 5 seconds");
         var timeoutData = new CompleteOrder

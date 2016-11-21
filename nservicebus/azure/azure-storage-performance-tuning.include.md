@@ -33,4 +33,4 @@ Setting the [Expect100Continue property](https://msdn.microsoft.com/en-us/librar
 
 ## Azure Storage Performance Checklist
 
-Refer to Microsoft's [Azure Storage Performance Checklist](https://azure.microsoft.com/en-us/documentation/articles/storage-performance-checklist/) for more performance tips and design guidelines to optimize Azure Storage performance.
+Refer to Microsoft's [Azure Storage Performance Checklist](https://docs.microsoft.com/en-us/azure/storage/storage-performance-checklist) for more performance tips and design guidelines to optimize Azure Storage performance.

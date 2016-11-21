@@ -29,7 +29,7 @@ It is really important to understand, especially in the context of cloud service
 This is the primary reason why many Azure hosted services do not support transactions at all or are very aggressive when it comes to the lock duration, for example:
 
  * Azure Storage Services officially do not participate in transactions. If a transactional behavior is required, it needs to be implemented in the client system as atomic operations within the limits imposed by Azure Storage Services on atomicity.
- * The Azure SQL Server supports local transactions (with .NET 4.6.1 and higher), but only grants locks on resources for 20 seconds (when requested by a system task) or 24 hours (otherwise). See [Azure SQL Database resource limits](https://azure.microsoft.com/en-us/documentation/articles/sql-database-resource-limits/) for more details.
+ * The Azure SQL Server supports local transactions (with .NET 4.6.1 and higher), but only grants locks on resources for 20 seconds (when requested by a system task) or 24 hours (otherwise). See [Azure SQL Database resource limits](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-resource-limits) for more details.
 
 ## Understanding distributed transactions and the two-phase commit protocol
 

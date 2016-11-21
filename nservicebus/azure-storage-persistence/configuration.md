@@ -59,4 +59,4 @@ The following settings are available for changing the behavior of timeout persis
  * `TimeoutStateContainerName`: Sets the name of the container where the timeout state is stored - **Added in NServiceBus.Persistence.AzureStorage Version 1.0**.
   * defaults to `timeoutstate`.
 
-For more information on connection string configuration see [Configuring Azure Connection Strings](https://azure.microsoft.com/en-us/documentation/articles/storage-configure-connection-string/).
+For more information on connection string configuration see [Configuring Azure Connection Strings](https://docs.microsoft.com/en-us/azure/storage/storage-configure-connection-string).

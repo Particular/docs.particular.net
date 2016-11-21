@@ -24,12 +24,13 @@ class Program
 
             var startOrder1 = new StartOrder
             {
-                OrderId = "123"
+                OrderId = "1"
             };
             bus.SendLocal(startOrder1);
+
             var startOrder2 = new StartOrder
             {
-                OrderId = "456"
+                OrderId = "2"
             };
             bus.SendLocal(startOrder2);
 

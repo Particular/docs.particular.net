@@ -9,7 +9,7 @@ related:
  - samples/azure/blob-storage-databus
 ---
 
-Azure Blob Storage DataBus will **remove** the [Azure storage blobs](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-how-to-use-blobs/) used for physical attachments after the message is processed if the `TimeToBeReceived` value is specified. When this value isn't provided, the physical attachments will not be removed.
+Azure Blob Storage DataBus will **remove** the [Azure storage blobs](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-blobs) used for physical attachments after the message is processed if the `TimeToBeReceived` value is specified. When this value isn't provided, the physical attachments will not be removed.
 
 
 ## Usage

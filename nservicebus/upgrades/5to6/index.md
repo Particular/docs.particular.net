@@ -40,7 +40,7 @@ The minimum .NET version for NServiceBus Version 6 is [.NET 4.5.2](https://suppo
 
 It is recommended to update to .NET 4.5.2 and perform a full migration to production **before** updating to NServiceBus Version 6. This will help isolate any issues that may occur.
 
-For solutions with many projects the Visual Studio extension [Target Framework Migrator](https://visualstudiogallery.msdn.microsoft.com/47bded90-80d8-42af-bc35-4736fdd8cd13) can reduce the manual effort required in performing an upgrade.
+For solutions with many projects the Visual Studio extension [Target Framework Migrator](https://marketplace.visualstudio.com/items?itemName=PavelSamokha.TargetFrameworkMigrator) can reduce the manual effort required in performing an upgrade.
 
 See also:
 

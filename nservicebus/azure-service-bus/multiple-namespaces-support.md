@@ -11,7 +11,7 @@ tags:
 
 Azure Service Bus transport supports configuring multiple Azure Service Bus namespaces, in order to:
 
- * Enable various _namespace partitioning strategies_ to cover scenarios such as High Availability and multiple Data Center support, or to overcome [Azure services limits](https://azure.microsoft.com/en-us/documentation/articles/service-bus-quotas/).
+ * Enable various _namespace partitioning strategies_ to cover scenarios such as High Availability and multiple Data Center support, or to overcome [Azure services limits](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas).
  * Enable _cross namespace routing_ to endpoints outside of the partition set.
 
 The namespace partitioning strategy can be configured using the `NamespacePartitioning()` configuration API section, where the cross namespace routing can be configured using the `NamespaceRouting()` API section.
