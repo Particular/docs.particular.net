@@ -4,11 +4,11 @@
 
     public class ErrorHeadersCustomization
     {
-        public void ConfigureErrorHeadersCustomizations(EndpointConfiguration configuration)
+        public void ConfigureErrorHeadersCustomizations(EndpointConfiguration endpointConfiguration)
         {
             #region ErrorHeadersCustomizations
 
-            var recoverability = configuration.Recoverability();
+            var recoverability = endpointConfiguration.Recoverability();
             recoverability.Failed(
                 failed =>
                 {

@@ -9,11 +9,11 @@
         {
         }
 
-        void Simple(EndpointConfiguration configuration)
+        void Simple(EndpointConfiguration endpointConfiguration)
         {
             #region WcfRouting
 
-            var wcfSettings = configuration.Wcf();
+            var wcfSettings = endpointConfiguration.Wcf();
             wcfSettings.RouteWith(
                 provider: serviceType =>
                 {

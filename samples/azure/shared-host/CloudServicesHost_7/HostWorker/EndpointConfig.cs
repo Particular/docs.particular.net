@@ -7,7 +7,7 @@ public class EndpointConfig :
     IConfigureThisEndpoint,
     IConfigureThisHost
 {
-    public void Customize(EndpointConfiguration configuration)
+    public void Customize(EndpointConfiguration endpointConfiguration)
     {
     }
 

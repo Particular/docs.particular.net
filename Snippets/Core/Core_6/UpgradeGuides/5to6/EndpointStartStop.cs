@@ -41,10 +41,10 @@
     {
         #region v6-endpoint-start-stop-full-async
 
-        async Task Run(EndpointConfiguration config)
+        async Task Run(EndpointConfiguration endpointConfiguration)
         {
             // pre startup
-            var endpointInstance = await Endpoint.Start(config)
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
             // post startup
 
@@ -63,15 +63,15 @@
     {
         #region v6-endpoint-start-stop-sync-wrapper
 
-        void Run(EndpointConfiguration config)
+        void Run(EndpointConfiguration endpointConfiguration)
         {
-            RunAsync(config).GetAwaiter().GetResult();
+            RunAsync(endpointConfiguration).GetAwaiter().GetResult();
         }
 
-        async Task RunAsync(EndpointConfiguration config)
+        async Task RunAsync(EndpointConfiguration endpointConfiguration)
         {
             // pre startup
-            var endpointInstance = await Endpoint.Start(config)
+            var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
             // post startup
 

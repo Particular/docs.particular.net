@@ -9,11 +9,11 @@ namespace Wcf1.Cancellation
         {
         }
 
-        void Simple(EndpointConfiguration configuration)
+        void Simple(EndpointConfiguration endpointConfiguration)
         {
             #region WcfCancelRequest
 
-            var wcfSettings = configuration.Wcf();
+            var wcfSettings = endpointConfiguration.Wcf();
             wcfSettings.CancelAfter(
                 provider: serviceType =>
                 {

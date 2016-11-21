@@ -10,11 +10,11 @@ namespace Wcf1.Binding
         {
         }
 
-        void Simple(EndpointConfiguration configuration)
+        void Simple(EndpointConfiguration endpointConfiguration)
         {
             #region WcfOverrideBinding
 
-            var wcfSettings = configuration.Wcf();
+            var wcfSettings = endpointConfiguration.Wcf();
             wcfSettings.Binding(
                 provider: serviceType =>
                 {

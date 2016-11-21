@@ -12,11 +12,11 @@
 
     public class Extensibility
     {
-        void RouteTableViaConfig(EndpointConfiguration config)
+        void RouteTableViaConfig(EndpointConfiguration endpointConfiguration)
         {
             #region RoutingExtensibility-RouteTableConfig
 
-            var routingTable = config.GetSettings().Get<UnicastRoutingTable>();
+            var routingTable = endpointConfiguration.GetSettings().Get<UnicastRoutingTable>();
             routingTable.AddOrReplaceRoutes("MySource",
                     new List<RouteTableEntry>
                     {

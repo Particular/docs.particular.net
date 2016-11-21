@@ -5,9 +5,9 @@
     public class EndpointNameInCode : IConfigureThisEndpoint
     {
         #region EndpointNameInCodeForHost
-        public void Customize(EndpointConfiguration configuration)
+        public void Customize(EndpointConfiguration endpointConfiguration)
         {
-            configuration.DefineEndpointName("CustomEndpointName");
+            endpointConfiguration.DefineEndpointName("CustomEndpointName");
         }
         #endregion
     }

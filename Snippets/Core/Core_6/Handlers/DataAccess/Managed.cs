@@ -38,10 +38,10 @@ namespace Core6.Handlers.DataAccess
             }
         }
 
-        public void ConfigureEndpoint(EndpointConfiguration config)
+        public void ConfigureEndpoint(EndpointConfiguration endpointConfiguration)
         {
-            config.ExecuteTheseHandlersFirst(typeof(IdempotencyEnforcer));
-            config.UsePersistence<MyPersistence>();
+            endpointConfiguration.ExecuteTheseHandlersFirst(typeof(IdempotencyEnforcer));
+            endpointConfiguration.UsePersistence<MyPersistence>();
         }
 
         #endregion

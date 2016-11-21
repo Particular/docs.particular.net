@@ -15,9 +15,9 @@ using Raven.Client.Document.DTC;
 class RavenDtcConventions :
     INeedInitialization
 {
-    public void Customize(EndpointConfiguration configuration)
+    public void Customize(EndpointConfiguration endpointConfiguration)
     {
-        var persistence = configuration.UsePersistence<RavenDBPersistence>();
+        var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.SetDefaultDocumentStore(CreateDocumentStore);
     }
 
