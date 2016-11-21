@@ -20,22 +20,23 @@ Compared to regular [subscribe workflow](/nservicebus/messaging/publish-subscrib
 2. Distributor forwards the subscribe message to one of the workers
 3. Worker stores the subscriber address and the message type in the persistence.
 
-<!--
+```mermaid
+sequenceDiagram
 
-Participant Subscriber As Subscriber
-Participant Publisher@Distributor As Disributor
-Participant Publisher@Worker1 As Worker1
-Participant Publisher@Worker1 As Worker2
+Participant Subscriber
+Participant Publisher@Distributor
+Participant Publisher@Worker1
+Participant Publisher@Worker1
+Participant Persistence
 
-Subscriber->Disributor: Subscribe to Message1
-Disributor->Worker1: Subscribe to Message1
-Worker1->Persistence: Store "Message1->Subscriber"
+Subscriber->>Publisher@Distributor: Subscribe to Message1
+Publisher@Distributor->>Publisher@Worker1: Subscribe to Message1
+Publisher@Worker1->>Persistence: Store "Message1->Subscriber"
 
-Subscriber->Disributor: Subscribe to Message2
-Disributor->Worker2: Subscribe to Message2
-Worker2->Persistence: Store "Message2->Subscriber"
-
--->
+Subscriber->>Publisher@Distributor: Subscribe to Message2
+Publisher@Distributor->>Publisher@Worker2: Subscribe to Message2
+Publisher@Worker2->>Persistence: Store "Message2->Subscriber"
+```
 
 NOTE: It is very important that all workers share the same subscription persistence because subscribe messages are routed on a round-robin basis. This is different from [scaling out with Sender-Side Distribution](/nservicebus/msmq/sender-side-distribution.md) where each instance of subscriber gets a copy of subscribe message.
 
@@ -49,24 +50,27 @@ Compared to regular [publish workflow](/nservicebus/messaging/publish-subscribe.
 3. Publisher loops through the list and sends a copy of that message to each subscriber. In this case the only subscriber is `Subscriber@Distributor` which is the address of the distributor node for the `Subscriber` endpoint.
 4. Distributor takes the next worker from its ready queue and forwards the message to it. 
 
-<!-- https://bramp.github.io/js-sequence-diagrams/
+```mermaid
+sequenceDiagram
 
-Participant Persistence As Persistence
-Participant Publisher As Publisher
-Participant Subscriber@Distributor As Distributor
-Participant Subscriber@Worker1 As Worker1
-Participant Subscriber@Worker2 As Worker2
+Participant Persistence
+Participant Publisher
+Participant Subscriber@Distributor
+Participant Subscriber@Worker1
+Participant Subscriber@Worker2
 
-Publisher->Publisher: endpoint.Publish(msg)
-Publisher->+Persistence: Requests "who\nwants Message1"
-Persistence-->-Publisher: "Subscriber@Distributor"
-Publisher->Distributor: Send Message1
-Distributor->Worker1: Send Message1
+Note over Publisher: Publish Message1 occurs
+Publisher->>Persistence: Requests "who\nwants Message1"
+Persistence->>Publisher: "Subscriber@Distributor"
+Publisher->>Subscriber@Distributor: Send Message1
+Subscriber@Distributor->>Subscriber@Worker1: Send Message1
 
-Publisher->Publisher: endpoint.Publish(msg)
-Publisher->Distributor: Send Message1
-Distributor->Worker2: Send Message1
--->
+Note over Publisher: Publish Message1 occurs
+Publisher->>Persistence: Requests "who\nwants Message1"
+Persistence->>Publisher: "Subscriber@Distributor"
+Publisher->>Subscriber@Distributor: Send Message1
+Subscriber@Distributor->>Subscriber@Worker2: Send Message1
+```
 
 ## Scaling out publishers
 
