@@ -10,12 +10,12 @@
     public class MySagaFinder :
         IFindSagas<MySagaData>.Using<MyMessage>
     {
-        public async Task<MySagaData> FindBy(MyMessage message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
+        public Task<MySagaData> FindBy(MyMessage message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
         {
             // SynchronizedStorageSession will have a persistence specific extension method
             // For example purposes GetDbSession is a stub extension method
             var dbSession = storageSession.GetDbSession();
-            return await dbSession.GetSagaFromDB(message.SomeId, message.SomeData);
+            return dbSession.GetSagaFromDB(message.SomeId, message.SomeData);
             // If a saga can't be found Task.FromResult(null) should be returned
         }
     }
