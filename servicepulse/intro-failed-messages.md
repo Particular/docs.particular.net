@@ -20,7 +20,7 @@ ServicePulse (via ServiceControl) monitors the central error queue and displays 
 
 ### Failed Messages Page
 
-To see a detailed display of the failed messages, click the Failed Messages indicator (or the "Failed Messages" link in the navigation bar). This page is split into four tabs.
+To see a detailed display of the failed messages, click the Failed Messages indicator (or the "Failed Messages" link in the navigation bar). This page is split into several tabs.
 
 ![Failed Message Groups Page](intro-failed-messages-failed-groups-page.png 'width=500')
 
