@@ -58,11 +58,13 @@ WARNING: The direct routing topology is nondeterministic for message types with 
 
 ## Custom Routing Topology
 
-If the above routing topologies aren't flexible enough, it is possible to take full control over routing by implementing a custom routing topology. To do this:
+If the built-in routing topologies do not satisfy the requirements of the system, a custom routing topology may be used. To do this:
 
- 1. Define the topology by creating a class implementing `IRoutingTopology`.
+ 1. Define the routing topology by creating a class implementing `IRoutingTopology`.
  1. Register it with the transport calling `UseRoutingTopology` as shown below.
 
 partial: delegate-argument
 
 snippet:rabbitmq-config-useroutingtopology
+
+For each queue required by the endpoint, the transport will first declare that queue and will then call the `Initialize` method of the routing topology. The routing topology should then create the exchanges, bindings and extra queues which are required for that queue to operate.
