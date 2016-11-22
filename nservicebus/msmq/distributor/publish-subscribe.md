@@ -1,6 +1,6 @@
 ---
 title: Distributor and Publish-Subscribe
-summary: How the Distributor behaves in a publish-subscribe scenario
+summary: Distributor behavior in a publish-subscribe scenario
 reviewed: 2016-11-07
 related:
  - nservicebus/messaging/publish-subscribe
@@ -12,13 +12,14 @@ Events can be received by multiple logical endpoints, however even in case of sc
 
 The subscribe messages are sent by the workers but contain the distributor address in the `NServiceBus.ReplyTo` header. This causes all published events to be routed to the distributor instead of directly to the workers.
 
+
 ## Subscribe workflow
 
-Compared to regular [subscribe workflow](/nservicebus/messaging/publish-subscribe.md#mechanics-persistence-based-message-driven-subscribe) the distributor variant contains an extra step -- forwarding the subscribe message from the distributor to the worker.
+Compared to regular [subscribe workflow](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven-subscribe) the distributor variant contains an extra step -- forwarding the subscribe message from the distributor to the worker.
 
-1. Subscribers request to a publisher the intent to subscribe to certain message types.
-2. Distributor forwards the subscribe message to one of the workers
-3. Worker stores the subscriber address and the message type in the persistence.
+ 1. Subscribers request to a publisher the intent to subscribe to certain message types.
+ 1. Distributor forwards the subscribe message to one of the workers
+ 1. Worker stores the subscriber address and the message type in the persistence.
 
 ```mermaid
 sequenceDiagram
@@ -43,12 +44,12 @@ NOTE: It is very important that all workers share the same subscription persiste
 
 ## Publish workflow
 
-Compared to regular [publish workflow](/nservicebus/messaging/publish-subscribe.md#mechanics-persistence-based-message-driven-publish) the distributor variant contains an extra step -- forwarding the message from the distributor to the worker.
+Compared to regular [publish workflow](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven-publish) the distributor variant contains an extra step -- forwarding the message from the distributor to the worker.
 
-1. Some code (e.g. a saga or a handler) request that a message be published.
-2. Publisher queries the storage for a list of subscribers.
-3. Publisher loops through the list and sends a copy of that message to each subscriber. In this case the only subscriber is `Subscriber@Distributor` which is the address of the distributor node for the `Subscriber` endpoint.
-4. Distributor takes the next worker from its ready queue and forwards the message to it. 
+ 1. Some code (e.g. a saga or a handler) request that a message be published.
+ 1. Publisher queries the storage for a list of subscribers.
+ 1. Publisher loops through the list and sends a copy of that message to each subscriber. In this case the only subscriber is `Subscriber@Distributor` which is the address of the distributor node for the `Subscriber` endpoint.
+ 1. Distributor takes the next worker from its ready queue and forwards the message to it. 
 
 ```mermaid
 sequenceDiagram
