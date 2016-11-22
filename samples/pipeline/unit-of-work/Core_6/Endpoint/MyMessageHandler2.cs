@@ -1,6 +1,6 @@
-using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 
 class MyMessageHandler2 : IHandleMessages<MyMessage>
 {
@@ -8,6 +8,8 @@ class MyMessageHandler2 : IHandleMessages<MyMessage>
     {
         await context.Store(new MyOtherEntity());
 
-        Console.Out.WriteLine($"{nameof(MyMessageHandler2)}({context.MessageId}) got UOW instance {context.GetSession().GetHashCode()}");
+        Logger.Info($"{nameof(MyMessageHandler2)}({context.MessageId}) got UOW instance {context.GetSession().GetHashCode()}");
     }
+
+    ILog Logger = LogManager.GetLogger<MyMessageHandler1>();
 }

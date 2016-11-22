@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 
 class Program
 {
@@ -13,9 +12,6 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.UnitOfWork.Endpoint";
-
-        LogManager.Use<DefaultFactory>()
-            .Level(LogLevel.Warn);
 
         var endpointConfiguration = new EndpointConfiguration("Samples.UnitOfWork.Endpoint");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

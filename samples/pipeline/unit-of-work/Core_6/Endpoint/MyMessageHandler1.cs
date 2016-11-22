@@ -1,6 +1,6 @@
-using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 
 #region message-handlers
 class MyMessageHandler1 : IHandleMessages<MyMessage>
@@ -9,7 +9,9 @@ class MyMessageHandler1 : IHandleMessages<MyMessage>
     {
         await context.Store(new MyEntity());
 
-        Console.Out.WriteLine($"{nameof(MyMessageHandler1)}({context.MessageId}) got UOW instance {context.GetSession()}");
+        Logger.Info($"{nameof(MyMessageHandler1)}({context.MessageId}) got UOW instance {context.GetSession()}");
     }
+
+    ILog Logger = LogManager.GetLogger<MyMessageHandler1>();
 }
 #endregion

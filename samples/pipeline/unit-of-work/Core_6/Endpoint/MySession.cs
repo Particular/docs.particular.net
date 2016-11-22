@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using NServiceBus.Logging;
 
-class MySession : IMySession,
-    IDisposable
+class MySession : IMySession, IDisposable
 {
     readonly string tennant;
 
@@ -25,7 +25,7 @@ class MySession : IMySession,
     public Task Commit()
     {
         var entitiesStored = string.Join(",", entities);
-        Console.Out.WriteLine($"{entitiesStored} stored in tennant database: {tennant}DB by session {GetHashCode()}");
+        Logger.Info($"{entitiesStored} stored in tennant database: {tennant}DB by session {GetHashCode()}");
         return Task.FromResult(0);
     }
 
@@ -37,4 +37,7 @@ class MySession : IMySession,
     public override string ToString() => $"Session for {tennant}(instance: {GetHashCode()})";
 
     List<object> entities = new List<object>();
+
+
+    ILog Logger = LogManager.GetLogger<MySession>();
 }
