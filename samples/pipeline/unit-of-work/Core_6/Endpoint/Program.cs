@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 
 class Program
 {
@@ -12,13 +13,19 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.UnitOfWork.Endpoint";
+
+        LogManager.Use<DefaultFactory>()
+            .Level(LogLevel.Warn);
+
         var endpointConfiguration = new EndpointConfiguration("Samples.UnitOfWork.Endpoint");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
+        #region configuration
         endpointConfiguration.RegisterComponents(r => r.ConfigureComponent(b => new MySessionProvider(), DependencyLifecycle.SingleInstance));
         endpointConfiguration.Pipeline.Register(typeof(MyUowBehavior), "Manages the session");
+        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
+#region unit-of-work-behavior
 class MyUowBehavior : Behavior<IIncomingPhysicalMessageContext>
 {
     readonly MySessionProvider sessionProvider;
@@ -24,16 +25,14 @@ class MyUowBehavior : Behavior<IIncomingPhysicalMessageContext>
                 await next();
 
                 await session.Commit();
-
-                Console.Out.WriteLine($"{context.MessageId}: UOW {session.GetHashCode()} was committed");
             }
             catch (Exception)
             {
                 await session.Rollback();
 
-                Console.Out.WriteLine($"{context.MessageId}: UOW {session.GetHashCode()} was rolled back");
                 throw;
             }
         }
     }
 }
+#endregion

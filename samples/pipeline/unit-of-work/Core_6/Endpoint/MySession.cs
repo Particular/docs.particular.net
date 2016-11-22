@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 class MySession : IMySession,
@@ -15,14 +16,16 @@ class MySession : IMySession,
     {
     }
 
-    public Task Store<T>(T myEntity)
+    public Task Store<T>(T entity)
     {
-        Console.Out.WriteLine($"{typeof(T)} stored in tennant database: {tennant}DB");
+        entities.Add(entity);
         return Task.FromResult(0);
     }
 
     public Task Commit()
     {
+        var entitiesStored = string.Join(",", entities);
+        Console.Out.WriteLine($"{entitiesStored} stored in tennant database: {tennant}DB by session {GetHashCode()}");
         return Task.FromResult(0);
     }
 
@@ -30,4 +33,8 @@ class MySession : IMySession,
     {
         return Task.FromResult(0);
     }
+
+    public override string ToString() => $"Session for {tennant}(instance: {GetHashCode()})";
+
+    List<object> entities = new List<object>();
 }

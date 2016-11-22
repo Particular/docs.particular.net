@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
 using NServiceBus;
 
+
+#region session-context-extensions
 static class MySessionContextExtensions
 {
     public static IMySession GetSession(this IMessageHandlerContext context)
@@ -13,3 +15,4 @@ static class MySessionContextExtensions
         return context.Extensions.Get<IMySession>().Store(entity);
     }
 }
+#endregion
