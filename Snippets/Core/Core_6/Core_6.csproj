@@ -182,7 +182,6 @@
     <Compile Include="InstallSomething.cs" />
     <Compile Include="Outbox\Usage.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
-    <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\Behavior.cs" />
@@ -343,9 +342,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Outbox\EnablingInConfig.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="UpgradeGuides\5to6\null.xml" />

@@ -116,9 +116,6 @@
     <None Include="app.config" />
     <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Recoverability\Immediate\config.xml" />
-    <Content Include="Persistence\Msmq\msmq.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Audit\Audit.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -253,7 +250,6 @@
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\UsingLogging.cs" />
     <Compile Include="NonDurable\DisableDurable.cs" />
-    <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="Pipeline\Abort\Behavior.cs" />

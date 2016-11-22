@@ -63,9 +63,6 @@
   <ItemGroup>
     <Content Include="Recoverability\retriesLogging.txt" />
     <Content Include="Forwarding\ForwardingConfig.xml" />
-    <Content Include="Persistence\Msmq\msmq.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="app.config" />
     <Content Include="Audit\audit.config.xml">
       <SubType>Designer</SubType>
@@ -117,7 +114,6 @@
     <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
     <Compile Include="InstallSomething.cs" />
-    <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
     <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
     <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />

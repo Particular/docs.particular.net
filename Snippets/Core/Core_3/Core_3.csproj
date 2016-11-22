@@ -53,9 +53,6 @@
     <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Recoverability\Immediate\config.xml" />
     <Content Include="Recoverability\retriesLogging.txt" />
-    <Content Include="Persistence\Msmq\msmq.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Routing\EndpointMapping.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -101,7 +98,6 @@
     <Compile Include="Mutators\Instance\MutateOutgoingMessages.cs" />
     <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
-    <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
     <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
     <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />

@@ -1,6 +1,6 @@
 ---
 title: MSMQ Subscription Persistence
-component: Core
+component: MsmqPersistence
 reviewed: 2016-08-25
 ---
 

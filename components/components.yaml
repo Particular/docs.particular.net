@@ -562,6 +562,15 @@
   NugetOrder:
     - NServiceBus
 
+- Key: MsmqPersistence
+  Name: MSMQ Persistence
+  DocoUrl: nservicebus/msmq/subscription-persistence
+  Category: Persistence
+  GitHubOwner: Particular/nservicebus-maintainers
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
+
 - Key: ZeroFormatter
   Name: ZeroFormatter Serializer
   DocoUrl: nservicebus/serialization/zeroformatter
