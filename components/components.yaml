@@ -529,7 +529,7 @@
 - Key: Xml
   Name: Xml Serializer
   DocoUrl: nservicebus/serialization/xml
-  Category: Core
+  Category: Serializer
   GitHubOwner: Particular/nservicebus-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
@@ -538,7 +538,7 @@
 - Key: Binary
   Name: Binary Serializer
   DocoUrl: nservicebus/serialization/binary
-  Category: Core
+  Category: Serializer
   GitHubOwner: Particular/nservicebus-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
@@ -547,7 +547,7 @@
 - Key: Json
   Name: Json Serializer
   DocoUrl: nservicebus/serialization/json
-  Category: Core
+  Category: Serializer
   GitHubOwner: Particular/nservicebus-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
@@ -556,7 +556,6 @@
 - Key: MsmqTransport
   Name: MSMQ Transport
   DocoUrl: nservicebus/msmq
-  Category: Core
   GitHubOwner: Particular/nservicebus-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
