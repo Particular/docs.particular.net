@@ -17,7 +17,7 @@ A custom serializer needs to implement `IMessageSerializer` interface:
 
 snippet: CustomSerializer
 
-In order to see sample implementations, refer to the [community run serializers](/platform/extensions.md#serializers).
+In order to see sample implementations, refer to the [community run serializers](/components#serializers).
 
 
 ### Register the serializer

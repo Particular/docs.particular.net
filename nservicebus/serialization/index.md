@@ -41,4 +41,4 @@ partial:additionaldeserializers
 
 ### Community run serializers
 
-There are several community run Serializers that can be seen on the list of [NServiceBus Extensions](/platform/extensions.md#serializers).
+There are several community run Serializers that can be seen on the list of [NServiceBus Extensions](/components#serializers).

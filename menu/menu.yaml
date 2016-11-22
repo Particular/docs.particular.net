@@ -17,6 +17,8 @@
       Title: Endpoint configuration choices
     - Url: nservicebus/licensing
       Title: License
+    - Url: components
+      Title: Extensions
   - Url: nservicebus/upgrades
     Title: Upgrade Guides
     Articles:

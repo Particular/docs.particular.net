@@ -50,4 +50,4 @@ Uses Azure Tables Storage for storage
 
 ### Community run Persistences
 
-There are several community run Persistences that can be seen on the full list of [Extensions](/platform/extensions.md#persisters).
+There are several community run Persistences that can be seen on the full list of [Extensions](/components#persisters).
