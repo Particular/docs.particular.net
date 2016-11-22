@@ -1,40 +1,78 @@
 ---
 title: Distributor and Publish-Subscribe
-summary: How the Distributor behaves in a publish-subscribe scenario
+summary: Distributor behavior in a publish-subscribe scenario
+reviewed: 2016-11-07
 related:
  - nservicebus/messaging/publish-subscribe
 redirects:
  - nservicebus/scalability-and-ha/publish-subscribe
 ---
 
-When using the Distributor in a full publish-subscribe deployment, a Distributor within each subscriber balancing the load of events being published.
+Events can be received by multiple logical endpoints, however even in case of scale out each event will be received only by one physical instance of any logical subscriber.
+
+The subscribe messages are sent by the workers but contain the distributor address in the `NServiceBus.ReplyTo` header. This causes all published events to be routed to the distributor instead of directly to the workers.
 
 
-## Example Topology
+## Subscribe workflow
 
-Given one logical publisher P1, and two logical subscribers SA and SB. Each has a number of physical nodes (colored in blue) and some NServiceBus infrastructure (colored in orange). For now assume that both SA and SB are already subscribed, each specifying the left port of its distributor as its public endpoint.
+Compared to regular [subscribe workflow](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven-subscribe) the distributor variant contains an extra step -- forwarding the subscribe message from the distributor to the worker.
 
-![logical pub/sub and physical distribution 1](nservicebus-pubsub-1.png)
+ 1. Subscribers request to a publisher the intent to subscribe to certain message types.
+ 1. Distributor forwards the subscribe message to one of the workers
+ 1. Worker stores the subscriber address and the message type in the persistence.
+
+```mermaid
+sequenceDiagram
+
+Participant Subscriber
+Participant Publisher@Distributor
+Participant Publisher@Worker1
+Participant Publisher@Worker1
+Participant Persistence
+
+Subscriber->>Publisher@Distributor: Subscribe to Message1
+Publisher@Distributor->>Publisher@Worker1: Subscribe to Message1
+Publisher@Worker1->>Persistence: Store "Message1->Subscriber"
+
+Subscriber->>Publisher@Distributor: Subscribe to Message2
+Publisher@Distributor->>Publisher@Worker2: Subscribe to Message2
+Publisher@Worker2->>Persistence: Store "Message2->Subscriber"
+```
+
+NOTE: It is very important that all workers share the same subscription persistence because subscribe messages are routed on a round-robin basis. This is different from [scaling out with Sender-Side Distribution](/nservicebus/msmq/sender-side-distribution.md) where each instance of subscriber gets a copy of subscribe message.
 
 
-## When a publish occurs
+## Publish workflow
 
-When a node in the logical publisher P1 goes to publish a message, here's what happens:
+Compared to regular [publish workflow](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven-publish) the distributor variant contains an extra step -- forwarding the message from the distributor to the worker.
 
-![logical pub/sub and physical distribution 2](nservicebus-pubsub-2.png)
+ 1. Some code (e.g. a saga or a handler) request that a message be published.
+ 1. Publisher queries the storage for a list of subscribers.
+ 1. Publisher loops through the list and sends a copy of that message to each subscriber. In this case the only subscriber is `Subscriber@Distributor` which is the address of the distributor node for the `Subscriber` endpoint.
+ 1. Distributor takes the next worker from its ready queue and forwards the message to it. 
 
+```mermaid
+sequenceDiagram
 
-## What the distributor does
+Participant Persistence
+Participant Publisher
+Participant Subscriber@Distributor
+Participant Subscriber@Worker1
+Participant Subscriber@Worker2
 
-All the Distributor does at this point is forward the message it receives to another node.
+Note over Publisher: Publish Message1 occurs
+Publisher->>Persistence: Requests "who\nwants Message1"
+Persistence->>Publisher: "Subscriber@Distributor"
+Publisher->>Subscriber@Distributor: Send Message1
+Subscriber@Distributor->>Subscriber@Worker1: Send Message1
 
-![logical pub/sub and physical distribution 3](nservicebus-pubsub-3.png)
+Note over Publisher: Publish Message1 occurs
+Publisher->>Persistence: Requests "who\nwants Message1"
+Persistence->>Publisher: "Subscriber@Distributor"
+Publisher->>Subscriber@Distributor: Send Message1
+Subscriber@Distributor->>Subscriber@Worker2: Send Message1
+```
 
-Think of the Distributor as something like a load balancer. It distributes the received messages to a number of other machines. This kind of physical one-to-many communication is needed for scaling out the number of machines running for a given subscriber, but doesn't actually entail any pub/sub. Each subscriber gets its own Distributor and each of them decides independently to which machine it passes its messages.
+## Scaling out publishers
 
-
-## Multiple publishers
-
-It doesn't matter which node in the publisher is publishing a message, the same process happens.
-
-![logical pub/sub and physical distribution 4](nservicebus-pubsub-4.png)
+Publishers can also be scaled out using the distributor and it does not affect the workflow. Each worker node independently fetches the list of subscribers for each publish operation requested. 
