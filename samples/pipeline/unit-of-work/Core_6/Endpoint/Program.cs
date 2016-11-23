@@ -18,16 +18,11 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
+        var sessionProvider = new MySessionProvider();
+
         #region configuration
-        endpointConfiguration.RegisterComponents(
-            registration: components =>
-            {
-                components.ConfigureComponent(
-                    componentFactory: builder => new MySessionProvider(),
-                    dependencyLifecycle: DependencyLifecycle.SingleInstance);
-            });
         var pipeline = endpointConfiguration.Pipeline;
-        pipeline.Register(typeof(MyUowBehavior), "Manages the session");
+        pipeline.Register(_ => new MyUowBehavior(sessionProvider), "Manages the session");
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
