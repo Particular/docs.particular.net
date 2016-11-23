@@ -3,6 +3,7 @@ title: MSMQ Transport Fully Qualified Domain Names
 summary: How to use NServiceBus in environments requiring Fully Qualified Domain Names (FQDM) for routing.
 component: MsmqTransport
 versions: '[4,)'
+reviewed: 2016-11-23
 tags:
 - MSMQ
 - FQDM
@@ -18,4 +19,4 @@ Check [how to find FQDM of local machine](http://stackoverflow.com/questions/804
 
 snippet:MsmqMachineNameFQDN
 
-When first adopting FQDM the same will need to be done in the [routing](/nservicebus/messaging/routing.md) configuration and any direct queue destinations.
+The [routing](/nservicebus/messaging/routing.md) configuration and any explicit queue destinations will also need to use FQDM.
