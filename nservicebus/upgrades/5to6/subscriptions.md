@@ -16,12 +16,12 @@ tags:
 
 ## Auto subscribing plain messages
 
-The option to automatically subscribe to plain messages was removed, as message subscription should be based on events. Although not recommended, this can be overridden by [manually subscribing](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#how-to-manually-subscribe-to-a-message) to other message types.
+The option to automatically subscribe to plain messages was removed, as message subscription should be based on events. Although not recommended, this can be overridden by [manually subscribing](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message) to other message types.
 
 
 ## SubscriptionEventArgs has been deprecated
 
-Version 5 introduced an undocumented way to get the list of subscribers when publishing a message on the transports using [persistence based pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based). This is no longer available; [contact support](https://particular.net/support) should this information be required in Version 6.
+Version 5 introduced an undocumented way to get the list of subscribers when publishing a message on the transports using [persistence based pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven). This is no longer available; [contact support](https://particular.net/support) should this information be required in Version 6.
 
 
 ## AutoSubscribe

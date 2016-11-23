@@ -30,7 +30,7 @@ From ServiceControl 1.7 the transport DLLs are managed by the installation and d
  * SQL Server
  * RabbitMQ
 
-Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#msmq). When using the Particular Platform Installer the MSMQ service is added automatically as part of the `NServiceBus Pre-Requisites` option.
+Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline#platform-installer-components-nservicebus-prerequisites). When using the Particular Platform Installer the MSMQ service is added automatically as part of the `NServiceBus Pre-Requisites` option.
 
 
 #### Performance Counter

@@ -15,7 +15,7 @@ related:
 ## Prerequisistes
 
  1. [Install ServiceControl](/servicecontrol/installation.md).
- 1. Using [ServiceControl Management Utility](/servicecontrol/license.md#licensing-servicecontrol-servicecontrol-management-utility) tool, set up ServiceControl to monitor endpoints using MSMQ transport.
+ 1. Using [ServiceControl Management](/servicecontrol/license#licensing-servicecontrol-servicecontrol-management) tool, set up ServiceControl to monitor endpoints using MSMQ transport.
  1. Ensure the `ServiceControl` process is running before running the sample. 
 
 
@@ -65,7 +65,7 @@ The `MessageFailed` event is published for any standard NServiceBus endpoint tha
 
 In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpoint needs to use the [heartbeats plugin](/servicecontrol/plugins/heartbeat.md).
 
-NOTE: Heartbeat control messages are sent [every 30 seconds by default](/servicecontrol/plugins/heartbeat.md#configuration-ttl). That means there might be up to 30 seconds delay before ServiceControl realizes that it lost or restored connection with the endpoint.
+NOTE: Heartbeat control messages are sent [every 30 seconds by default](/servicecontrol/plugins/heartbeat#configuration-time-to-live-ttl). That means there might be up to 30 seconds delay before ServiceControl realizes that it lost or restored connection with the endpoint.
 
 
 ### EndpointsMonitor
