@@ -22,7 +22,7 @@ class Program
 
         #region configuration
         var pipeline = endpointConfiguration.Pipeline;
-        pipeline.Register(_ => new MyUowBehavior(sessionProvider), "Manages the session");
+        pipeline.Register(new MyUowBehavior(sessionProvider), "Manages the session");
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
