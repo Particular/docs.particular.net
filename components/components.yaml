@@ -28,6 +28,39 @@
     - NServiceBus.DataBus.AzureBlobStorage
     - NServiceBus.Azure
 
+- Key: AmazonSQS
+  Name: Amazon SQS Transport
+  DocoUrl: https://github.com/ahofman/NServiceBus.AmazonSQS
+  GitHubOwner: ahofman
+  Category: Transport
+  LicenseUrl: https://opensource.org/licenses/Apache-2.0
+  IsCommunityProject: true
+  ProjectUrl: https://github.com/ahofman/NServiceBus.AmazonSQS
+  NugetOrder:
+    - NServiceBus.AmazonSQS
+
+# has no license
+# - Key: OracleAQ
+#  Name: Oracle AQ Transport
+#  DocoUrl: https://github.com/rosieks/NServiceBus.OracleAQ
+#  GitHubOwner: rosieks
+#  Category: Transport
+#  IsCommunityProject: true
+#  ProjectUrl: https://github.com/rosieks/NServiceBus.OracleAQ
+#  NugetOrder:
+#    - NServiceBus.OracleAQ
+
+- Key: PostgreSQL
+  Name: PostgreSQL Persistence
+  DocoUrl: https://github.com/fhalim/NServiceBus.PostgreSQL
+  GitHubOwner: fhalim
+  Category: Persistence
+  LicenseUrl: https://github.com/fhalim/NServiceBus.PostgreSQL/blob/master/LICENSE.txt
+  IsCommunityProject: true
+  ProjectUrl: https://github.com/fhalim/NServiceBus.PostgreSQL
+  NugetOrder:
+    - NServiceBus.PostgreSQL
+
 - Key: ASB
   Name: Azure Service Bus Transport
   DocoUrl: nservicebus/azure-service-bus
@@ -410,6 +443,62 @@
   NugetOrder:
     - ServiceControl
 
+- Key: RabbitOperations
+  Name: Rabbit Operations
+  DocoUrl: http://rabbitoperations.southsidesoft.com
+  GitHubOwner: SouthsideSoftware
+  IsCommunityProject: true
+  Category: Other
+  UsesNuget: false
+  ProjectUrl: https://github.com/SouthsideSoftware/RabbitOperations
+  LicenseUrl: https://github.com/SouthsideSoftware/RabbitOperations/blob/master/LICENSE
+  NugetOrder:
+    - RabbitOperations
+
+- Key: NES
+  Name: .NET Event Sourcing
+  DocoUrl: https://github.com/elliotritchie/NES
+  GitHubOwner: elliotritchie
+  LicenseUrl: https://github.com/elliotritchie/NES/blob/master/license.txt
+  IsCommunityProject: true
+  Category: Other
+  ProjectUrl: https://github.com/elliotritchie/NES
+  NugetOrder:
+    - NES.NServiceBus
+
+- Key: Aggregates
+  Name: Aggregates.NET
+  DocoUrl: https://github.com/volak/Aggregates.NET
+  LicenseUrl: https://github.com/volak/Aggregates.NET/blob/master/LICENSE
+  GitHubOwner: volak
+  IsCommunityProject: true
+  Category: Other
+  ProjectUrl: https://github.com/volak/Aggregates.NET
+  NugetOrder:
+    - Aggregates.NET
+
+# has no license
+#- Key: MessageRouting
+#  Name: MessageRouting
+#  DocoUrl: https://github.com/jbogard/NServiceBus.MessageRouting
+#  GitHubOwner: jbogard
+#  IsCommunityProject: true
+#  Category: Other
+#  ProjectUrl: https://github.com/jbogard/NServiceBus.MessageRouting
+#  NugetOrder:
+#    - NServiceBus.MessageRouting
+
+- Key: DistributedEventBroker
+  Name: Appccelerate DistributedEventBroker
+  DocoUrl: http://www.appccelerate.com/distributedeventbrokertransports.html
+  LicenseUrl: https://github.com/appccelerate/distributedeventbroker.nservicebus/blob/master/LICENSE
+  GitHubOwner: appccelerate
+  IsCommunityProject: true
+  Category: Other
+  ProjectUrl: https://github.com/appccelerate/distributedeventbroker.nservicebus
+  NugetOrder:
+    - Appccelerate.DistributedEventBroker.NServiceBus
+
 - Key: ServiceControlContracts
   Name: ServiceControl Contracts
   DocoUrl: servicecontrol/contracts
@@ -428,6 +517,18 @@
   ProjectUrl: https://github.com/Particular/ServicePulse
   NugetOrder:
     - ServicePulse
+
+# has no license
+#- Key: SignalRBackplane
+#  Name: SignalR Backplane
+#  DocoUrl: https://github.com/roycornelissen/SignalR.NServiceBus
+#  GitHubOwner: roycornelissen
+#  IsCommunityProject: true
+#  Category: Other
+#  UsesNuget: false
+#  ProjectUrl: https://github.com/roycornelissen/SignalR.NServiceBus
+#  NugetOrder:
+#    - SignalR.NServiceBus
 
 - Key: ServiceInsight
   Name: ServiceInsight
@@ -525,6 +626,28 @@
   NugetOrder:
     - NServiceBus.Wcf
     - NServiceBus.Host
+
+- Key: Mandrill
+  Name: Mandrill
+  DocoUrl: https://github.com/feinoujc/NServiceBus.Mandrill
+  LicenseUrl: https://github.com/feinoujc/NServiceBus.Mandrill/blob/master/LICENSE
+  GitHubOwner: feinoujc
+  Category: Other
+  IsCommunityProject: true
+  ProjectUrl: https://github.com/feinoujc/NServiceBus.Mandrill
+  NugetOrder:
+    - NServiceBus.Mandrill
+
+- Key: Mailer
+  Name: NServiceBus Mailer
+  DocoUrl: https://github.com/SimonCropp/NServiceBus.Mailer
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Mailer/blob/master/license.txt
+  GitHubOwner: SimonCropp
+  Category: Other
+  IsCommunityProject: true
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Mailer
+  NugetOrder:
+    - NServiceBus.Mailer
 
 - Key: Xml
   Name: Xml Serializer
