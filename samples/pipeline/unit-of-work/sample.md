@@ -14,9 +14,9 @@ related:
 
 ## Introduction
 
-This sample leverages the pipeline provide unit of work management for message handlers. Using the pipeline instead of the [`IManageUnitsOfWork`](/nservicebus/pipeline/unit-of-work.md#implementing-custom-units-of-work-imanageunitsofwork) abstraction is needed when access to the incoming message and/or header is needed.
+This sample leverages the pipeline provide unit of work management for message handlers. Using the pipeline instead of the [`IManageUnitsOfWork`](/nservicebus/pipeline/unit-of-work.md#implementing-custom-units-of-work-imanageunitsofwork) abstraction is necessary when access to the incoming message and/or headers is required.
 
-This sample simulates a multi-tenant solution where the session provide to handlers is connects to individual tenant databases based on the value of a `tennant` header on the incoming message.
+This sample simulates a multi-tenant solution where the session provide to handlers is connects to individual tenant databases based on the value of a `tenant` header on the incoming message.
 
 
 ## Code Walk Through
@@ -26,10 +26,10 @@ This sample simulates a multi-tenant solution where the session provide to handl
 
 The behavior will wrap handler invocations and:
 
- 1. Open a session to the relevant tenant database
- 1. Make the session available to the message handlers
- 1. Commit/Rollback the session depending on the outcome of the handler
- 1. Dispose the session
+ 1. Open a session to the relevant tenant database.
+ 1. Make the session available to the message handlers.
+ 1. Commit/Rollback the session depending on the outcome of the handler.
+ 1. Dispose the session.
 
 snippet: unit-of-work-behavior
 
@@ -59,4 +59,4 @@ snippet: message-handlers
 
 ## Running the sample
 
-Run the sample. Once running press any key to send a few messages. Note that for each given message the two message handlers will get the same session instance and that the instance is connected to the given tenant specified on the incoming message.
+Run the sample. Once running press any key to send messages. Note that for each given message the two message handlers will get the same session instance and that the instance is connected to the given tenant specified on the incoming message.
