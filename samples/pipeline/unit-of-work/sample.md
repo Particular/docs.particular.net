@@ -36,9 +36,9 @@ snippet: unit-of-work-behavior
 Note the injected session factory is responsible for creating the session and that the session is registered the pipeline context using `context.Extensions.Set<IMySession>(session);`. This will be used later to provide the session to the handlers.
 
 
-### Registering the behavior and session factory
+### Registering the behavior
 
-The following registration code is needed to register the session factory and the behavior.
+The following code is needed to register the behavior in the receive pipeline.
 
 snippet: configuration
 
