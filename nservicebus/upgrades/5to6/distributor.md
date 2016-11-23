@@ -29,7 +29,7 @@ This process aims to allow upgrade without message loss and minimal downtime. If
  * Apply the following steps for each worker, one after another:
   * Shut down the worker.
   * [Upgrade to NServiceBus Version 6](#upgrade-endpoint-to-version-6).
-  * [Configure it to enlist it with the distributor](#enlist-version-6-endpoints-with-a-distributor).
+  * [Configure it to enlist it with the distributor](/nservicebus/msmq/distributor#worker-configuration-when-self-hosting-1).
   * Start the worker again.
  * Configure [sender-side distribution](/nservicebus/msmq/sender-side-distribution.md) for all endpoints sending commands or publishing events to the scaled out endpoint.
  * Detach the workers from the Distributor by applying the following steps to the instances enlisted to the Distributor. But **skip this step for at least one instance** to ensure some workers remain attached to the distributor.
