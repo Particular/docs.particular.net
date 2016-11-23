@@ -18,9 +18,9 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
+        #region configuration
         var sessionProvider = new MySessionProvider();
 
-        #region configuration
         var pipeline = endpointConfiguration.Pipeline;
         pipeline.Register(new MyUowBehavior(sessionProvider), "Manages the session");
         #endregion
