@@ -12,7 +12,7 @@ static class MySessionContextExtensions
 
     public static Task Store<T>(this IMessageHandlerContext context, T entity)
     {
-        return context.Extensions.Get<IMySession>().Store(entity);
+        return context.GetSession().Store(entity);
     }
 }
 #endregion

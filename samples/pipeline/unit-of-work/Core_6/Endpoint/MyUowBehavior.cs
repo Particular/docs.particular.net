@@ -3,9 +3,10 @@ using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
 #region unit-of-work-behavior
-class MyUowBehavior : Behavior<IIncomingPhysicalMessageContext>
+class MyUowBehavior :
+    Behavior<IIncomingPhysicalMessageContext>
 {
-    readonly MySessionProvider sessionProvider;
+    MySessionProvider sessionProvider;
 
     public MyUowBehavior(MySessionProvider sessionProvider)
     {

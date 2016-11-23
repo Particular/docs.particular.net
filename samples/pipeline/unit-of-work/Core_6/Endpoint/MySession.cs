@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus.Logging;
 
-class MySession : IMySession, IDisposable
+class MySession :
+    IMySession,
+    IDisposable
 {
-    readonly string tennant;
+    string tennant;
+    ILog log = LogManager.GetLogger<MySession>();
+    List<object> entities = new List<object>();
 
     public MySession(string tennant)
     {
@@ -25,7 +29,7 @@ class MySession : IMySession, IDisposable
     public Task Commit()
     {
         var entitiesStored = string.Join(",", entities);
-        Logger.Info($"{entitiesStored} stored in tennant database: {tennant}DB by session {GetHashCode()}");
+        log.Info($"{entitiesStored} stored in tennant database: {tennant}DB by session {GetHashCode()}");
         return Task.FromResult(0);
     }
 
@@ -36,8 +40,4 @@ class MySession : IMySession, IDisposable
 
     public override string ToString() => $"Session for {tennant}(instance: {GetHashCode()})";
 
-    List<object> entities = new List<object>();
-
-
-    ILog Logger = LogManager.GetLogger<MySession>();
 }
