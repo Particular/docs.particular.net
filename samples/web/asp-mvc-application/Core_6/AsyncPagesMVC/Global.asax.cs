@@ -61,9 +61,10 @@ public class MvcApplication :
 
         var updater = new ContainerBuilder();
         updater.RegisterInstance(endpoint);
-        updater.Update(container);
+        updater.RegisterControllers(typeof(MvcApplication).Assembly);
+        var updated = updater.Build();
 
-        DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+        DependencyResolver.SetResolver(new AutofacDependencyResolver(updated));
 
         AreaRegistration.RegisterAllAreas();
         RegisterRoutes(RouteTable.Routes);
