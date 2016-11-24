@@ -95,7 +95,7 @@ The `.Retries` Satellite queue is no longer necessary when running Version 6 of 
 
 In NServiceBus Versions 5 and below, the [Delayed Retries](/nservicebus/recoverability/#delayed-retries) of NServiceBus used the `[endpoint_name].Retries` queue to durably store messages before persisting them for retries.  When upgrading a Version 5 endpoint to Version 6, during the process of stopping the endpoint, there is a possibility that the .retries queue may contain some of these messages that were meant to be delayed and retried. Therefore to prevent message loss, when starting up a Version 6 endpoint, the .retries satellite receiver runs to serve a one-time purpose of forwarding those messages from the `.retries` queue to the endpoint's main queue to be retried appropriately. 
 
-Once the upgrade is done the receiver can be safely [disabled](nservicebus/recoverability/configure-delayed-retries.md#custom-retry-policy-legacy-retries-message-receiver) and the `.Retries` queue can be safely deleted.
+Once the upgrade is done the receiver can be safely [disabled](/nservicebus/recoverability/configure-delayed-retries.md#custom-retry-policy-legacy-retries-message-receiver) and the `.Retries` queue can be safely deleted.
 
 
 ### When Creating New Endpoints using Version 6
