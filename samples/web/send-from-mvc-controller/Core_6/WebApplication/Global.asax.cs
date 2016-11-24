@@ -17,8 +17,6 @@ public class MvcApplication :
 
         var builder = new ContainerBuilder();
 
-        // Register MVC controllers.
-        builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
         // Set the dependency resolver to be Autofac.
         var container = builder.Build();
@@ -39,9 +37,13 @@ public class MvcApplication :
 
         var updater = new ContainerBuilder();
         updater.RegisterInstance(endpoint);
-        updater.Update(container);
 
-        DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+        // Register MVC controllers.
+        updater.RegisterControllers(typeof(MvcApplication).Assembly);
+
+        var updated = updater.Build();
+
+        DependencyResolver.SetResolver(new AutofacDependencyResolver(updated));
 
         AreaRegistration.RegisterAllAreas();
         RegisterRoutes(RouteTable.Routes);
