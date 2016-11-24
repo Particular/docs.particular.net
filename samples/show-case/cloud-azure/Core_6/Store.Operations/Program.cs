@@ -6,27 +6,14 @@ using NServiceBus;
 
 public class Program
 {
-
     static void Main()
     {
-        JobHost host;
-        string connectionString;
-        // To run webjobs locally, can't use storage emulator with v1.
-        // For local execution, use connection string stored in environment variable
-        if ((connectionString = Environment.GetEnvironmentVariable("AzureStorageQueue.ConnectionString")) != null)
+        var config = new JobHostConfiguration();
+        if (config.IsDevelopment)
         {
-            var configuration = new JobHostConfiguration
-            {
-                DashboardConnectionString = connectionString,
-                StorageConnectionString = connectionString
-            };
-            host = new JobHost(configuration);
+            config.UseDevelopmentSettings();
         }
-        // for production, use DashboardConnectionString and StorageConnectionString defined at Azure website
-        else
-        {
-            host = new JobHost();
-        }
+        var host = new JobHost(config);
 
         Console.WriteLine("Starting VideoStore.Sales host");
         host.Call(typeof(Program).GetMethod(nameof(Program.AsyncMain)));
