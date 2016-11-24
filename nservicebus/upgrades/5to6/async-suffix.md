@@ -8,11 +8,11 @@ redirects:
 
 Starting with NServiceBus Version 6, all APIs that contain potentially IO bound code are [Async](https://msdn.microsoft.com/en-us/library/mt674882.aspx). Some examples include:
 
- * Endpoint messaging methods such as [Send and Publish](/nservicebus/upgrades/5to6/handlers-and-sagas#api-changes-bus-send-and-receive)
- * [Sagas and Message Handlers](/nservicebus/upgrades/5to6/handlers-and-sagas)
+ * Endpoint messaging methods such as [Send and Publish](/nservicebus/upgrades/5to6/handlers-and-sagas.md#api-changes-bus-send-and-receive)
+ * [Sagas and Message Handlers](/nservicebus/upgrades/5to6/handlers-and-sagas.md)
  * [Message pipeline extension points](/nservicebus/pipeline/)
- * [Endpoint Start and Stop](/nservicebus/upgrades/5to6/endpoint#interface-changes-self-hosting).
- * [Message mutators](/nservicebus/pipeline/message-mutators).
+ * [Endpoint Start and Stop](/nservicebus/upgrades/5to6/endpoint.md#interface-changes-self-hosting).
+ * [Message mutators](/nservicebus/pipeline/message-mutators.md).
 
 None of the above mentioned APIs have the *Async* suffix as recommended by the Microsoft convention, which states: 
 

@@ -38,7 +38,7 @@ snippet:EndpointStart
 
 Finally, the endpoint is registered as a singleton instance of type `IMessageSession` in ASP.NET Cores `ServiceCollection`, ready to be injected into the controller.
 
-An alternative would be to register the instance as type `IEndpointInstance`. `IMessageSession` is a leaner interface, containing only the methods necessary to send/publish messages. It is a good choice for [sending messages outside message handlers](/nservicebus/upgrades/5to6/moving-away-from-ibus#migrating-away-from-ibus-sending-messages-outside-message-handlers) if no endpoint management functionality is required.
+An alternative would be to register the instance as type `IEndpointInstance`. `IMessageSession` is a leaner interface, containing only the methods necessary to send/publish messages. It is a good choice for [sending messages outside message handlers](/nservicebus/upgrades/5to6/moving-away-from-ibus.md#migrating-away-from-ibus-sending-messages-outside-message-handlers) if no endpoint management functionality is required.
 
 snippet:ServiceRegistration
 

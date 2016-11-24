@@ -102,7 +102,7 @@ This is no longer supported. Instead of using `IBuilder` directly, it is advised
 
 ### Setting the host information
 
-Control over `HostInformation` was previously done using `UnicastBus.HostInformation`. This is now done using a [more explicit API to set the host identifier](/nservicebus/hosting/override-hostid#overriding-the-host-identifier) using the endpoint configuration.
+Control over `HostInformation` was previously done using `UnicastBus.HostInformation`. This is now done using a [more explicit API to set the host identifier](/nservicebus/hosting/override-hostid.md#overriding-the-host-identifier) using the endpoint configuration.
 
 snippet: 5to6-Specifying-HostId-Using-Api
 
