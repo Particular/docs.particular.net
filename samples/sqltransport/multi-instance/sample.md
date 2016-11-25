@@ -42,7 +42,7 @@ partial: passconnection
 
 ### Sender project
 
-The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport and run in the [*multi-instance*](/nservicebus/sqlserver/deployment-options.md#multi-instance) mode. `ConnectionProvider.GetConnection` method is used for providing connections.
+The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport and run in the [*multi-instance*](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) mode. `ConnectionProvider.GetConnection` method is used for providing connections.
 
 snippet:SenderConfiguration
 
@@ -53,7 +53,7 @@ snippet:SendMessage
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is configured to use SQLServer transport in the [*multi-instance*](/nservicebus/sqlserver/deployment-options.md#multi-instance) mode.
+The Receiver mimics a back-end system. It is configured to use SQLServer transport in the [*multi-instance*](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) mode.
 
 snippet:ReceiverConfiguration
 

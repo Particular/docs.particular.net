@@ -44,7 +44,7 @@ redirects:
 
 When SQL Server transport is used in the [*multi-instance* mode](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance), the messages are inserted directly into the remote destination database's table. If the receiving endpoint's database is down or inaccessible, e.g. because of network failures, the sending endpoint can't send messages to it. In such situations the exception is thrown from the `Send()` or the `Publish()` methods, resulting in a potential message loss.
 
-The message loss problem can be prevented by adding [store-and-forward functionality](/nservicebus/architecture/principles.md#drilling-down-into-details-store-and-forward-messaging) to the SQL Server transport, as explained in this sample.
+The message loss problem can be prevented by adding [store-and-forward functionality](/nservicebus/architecture/principles.md#messaging-versus-rpc-store-and-forward-messaging) to the SQL Server transport, as explained in this sample.
 
 NOTE: The [Outbox](/nservicebus/outbox/) would not help solve the issue presented in this example, because it is bypassed when sending messages from outside of a message handler, e.g. from ASP.NET MVC controller.
 
@@ -101,4 +101,4 @@ The Receiver mimics a back-end system. The following code configures it to use t
 
 snippet:ReceiverConfiguration
 
-NOTE: Multi-instance mode is deprecated in Version 3 of SQL Server transport and will be removed in the next major version. By that time an alternative store-and-forward solution will be provided. For more information refer to the [SQL Server transport Version 2 to Version 3 upgrade guide](/nservicebus/upgrades/sqlserver-2to3.md#sql-server-transport-multi-instance-support).
+NOTE: Multi-instance mode is deprecated in Version 3 of SQL Server transport and will be removed in the next major version. By that time an alternative store-and-forward solution will be provided. For more information refer to the [SQL Server transport Version 2 to Version 3 upgrade guide](/nservicebus/upgrades/sqlserver-2to3.md#namespace-changes-multi-instance-support).

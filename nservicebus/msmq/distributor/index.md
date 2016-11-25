@@ -57,7 +57,7 @@ If scale out small units of work is required consider splitting the handlers int
 
 In NServiceBus 5 and below the default concurrency level is set to 1. That means the messages are processed sequentially. The setting applies also to the Distributor and limits distribution throughput when forwarding messages to the workers.
 
-Before scaling out via the distributor make sure that the [**MaximumConcurrencyLevel** has been increased in the configuration](/nservicebus/operations/tuning.md#tuning-throughput) on the distributor endpoint. 
+Before scaling out via the distributor make sure that the [**MaximumConcurrencyLevel** has been increased in the configuration](/nservicebus/operations/tuning.md#tuning-concurrency) on the distributor endpoint. 
 
 Increasing the concurrency on the workers might not lead to increased performance if the executed code is multi-threaded, e.g. if the worker does CPU-intensive work using all the available cores such as video encoding.
 
@@ -83,7 +83,7 @@ All pending work stays in the Distributor's queue (rather than building up in ea
 
 For more information on monitoring, see [Performance Counters](/nservicebus/operations/performance-counters.md).
 
-For more information about Pub/Sub in a distributor scenario see [What the distributor does](/nservicebus/messaging/publish-subscribe/#what-the-distributor-does) and [The same for any publisher node](/nservicebus/messaging/publish-subscribe/#the-same-for-any-publisher-node)
+For more information about Pub/Sub in a distributor scenario see the [Distributor and Publish-Subscribe](/nservicebus/msmq/distributor/publish-subscribe.md) article.
 
 
 ## Distributor configuration

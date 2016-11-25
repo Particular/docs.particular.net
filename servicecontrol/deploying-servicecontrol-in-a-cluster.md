@@ -42,7 +42,7 @@ NOTE: The following steps needs to be applied to all the ServiceControl installa
 
 ### URL ACL(s)
 
-ServiceControl exposes an HTTP API that is used by ServicePulse and ServiceInsight. URL ACL(s) need to be [defined on each cluster node](/servicecontrol/setting-custom-hostname.md#updating-urlacl-settings). The URL needs to be the `cluster name` and the ACL is set to give permissions to the `Service Account` running ServiceControl.
+ServiceControl exposes an HTTP API that is used by ServicePulse and ServiceInsight. URL ACL(s) need to be [defined on each cluster node](/servicecontrol/setting-custom-hostname.md). The URL needs to be the `cluster name` and the ACL is set to give permissions to the `Service Account` running ServiceControl.
 
 NOTE: The default installation of ServiceControl locks down access to `localhost` only. Once the URL ACL is changed from `localhost` to the `cluster name` ServiceControl is accessible from the network.
 

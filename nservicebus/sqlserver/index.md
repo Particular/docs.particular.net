@@ -18,7 +18,7 @@ The SQL Server transport implements a message queuing mechanism on top of [Micro
 
 ## How it works
 
-SQL Server transport uses SQL Server to store queues and messages. It doesn't use any queuing services provided by SQL Server, the queuing logic is implemented within the transport. The SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than [store-and-forward](/nservicebus/architecture/principles.md#drilling-down-into-details-store-and-forward-messaging) transport such as MSMQ.
+SQL Server transport uses SQL Server to store queues and messages. It doesn't use any queuing services provided by SQL Server, the queuing logic is implemented within the transport. The SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than [store-and-forward](/nservicebus/architecture/principles.md#messaging-versus-rpc-store-and-forward-messaging) transport such as MSMQ.
 
 
 ## Advantages and Disadvantages
@@ -61,7 +61,7 @@ Security considerations for SQL Server Transport should follow [the principle of
 
 Each endpoint should use a dedicated SQL Server principal with `SELECT` and `DELETE` permissions on its input queue tables and `INSERT` permission on input queue tables of endpoints it sends messages to. Each endpoint should also have permissions to insert rows to audit and error queue tables.
 
-[Multi-schema](/nservicebus/sqlserver/connection-settings.md#multiple-custom-schemas) configuration can be used to manage fine-grained access control to various database objects used by the endpoint, including its queue tables.
+[Multi-schema](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-schema) configuration can be used to manage fine-grained access control to various database objects used by the endpoint, including its queue tables.
 
 
 ### ServiceControl
