@@ -125,7 +125,7 @@ span.blue {
 <div class="row">
 <div class="col-md-12 block middle">
   <div class="ic">
-    <a href="/samples/step-by-step/">
+    <a id="get-started" href="/samples/step-by-step/">
       <i class="glyphicon glyphicon-play mainicon"></i><br>Getting Started
     </a>
   </div>
