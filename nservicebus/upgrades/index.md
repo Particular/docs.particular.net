@@ -13,7 +13,7 @@ The process of upgrading the endpoints is repeating a common sequence of steps. 
 Here are a few things to consider when planning an upgrade project.
 
 ## Choosing an endpoint for upgrade
-Due to our wire-compatibility guarantees with prior versions, it is **not** necessary for every endpoint in the solution to use the same version of NServiceBus. This means a single endpoint with less complexity can be chosen for the upgrade and once deployed and stabalized, the process can be applied for the next endpoint.
+Due to the wire-compatibility guarantees, it is **not** necessary for every endpoint in the solution to use the same version of NServiceBus. This means a single endpoint with less complexity can be chosen for the upgrade and once deployed and stabalized, the process can be applied for the next endpoint.
 
 This also means if the system is under development, a new endpoint can be developed and deployed with the new version of NServiceBus while endpoints in production are still running on the older version. This keeps the scope of changes to a minimum, which helps to reduce risk and to isolate potential problems if they arise.
 
