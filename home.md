@@ -125,7 +125,7 @@ span.blue {
 <div class="row">
 <div class="col-md-12 block middle">
   <div class="ic">
-    <a id="get-started" href="/samples/step-by-step/" onclick="trackOutboundLink(this, 'Clicked Get-Started CTA (Docs, Direct to sample)'); return false;">
+    <a id="get-started" href="/samples/step-by-step/" onclick="ga('send', 'event', 'Action Performed', 'Clicked Get-Started CTA (Docs, Direct to sample)'); return true">
       <i class="glyphicon glyphicon-play mainicon"></i><br>Getting Started
     </a>
   </div>
