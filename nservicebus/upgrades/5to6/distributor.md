@@ -10,8 +10,7 @@ redirects:
  - nservicebus/scalability-and-ha/distributor/upgrading-the-distributor
 ---
 
-The [distributor](/nservicebus/msmq/distributor) has been deprecated and replaced by [sender-side distribution](/nservicebus/msmq/sender-side-distribution.md) with NServiceBus Version 6. Before upgrading, consider the current limitations of sender-side distribution mode.
-
+The [distributor](/nservicebus/msmq/distributor) has scaling limitations. For better scalability the distributor should be replaced by [sender-side distribution](/nservicebus/msmq/sender-side-distribution.md) with NServiceBus Version 6. Before upgrading, consider the current limitations of sender-side distribution mode.
 
 ## Client-side distribution
 
