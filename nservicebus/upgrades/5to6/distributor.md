@@ -30,12 +30,11 @@ This process aims to allow upgrade without message loss and minimal downtime. If
   * [Upgrade to NServiceBus Version 6](#upgrade-endpoint-to-version-6).
   * [Configure it to enlist it with the distributor](/nservicebus/msmq/distributor#worker-configuration-when-self-hosting).
   * Start the worker again.
- * Configure [sender-side distribution](/nservicebus/msmq/sender-side-distribution.md) for all endpoints sending commands or publishing events to the scaled out endpoint.
- * Detach the workers from the Distributor by applying the following steps to the instances enlisted to the Distributor. But **skip this step for at least one instance** to ensure some workers remain attached to the distributor.
+ * Configure [sender-side distribution](/nservicebus/msmq/sender-side-distribution.md) for all endpoints sending commands or publishing events to the scaled out endpoint. Leave one instance of the scaled-out endpoint excluded from the sender-side distribution for now.
+ * Detach the workers from the Distributor by applying the following steps to the instances enlisted to the Distributor. But **skip this step for the instance that was not included in the sender-side distribution** to ensure the distributor queue can be drained.
   * Shut down the worker.
   * Remove the `EnlistWithLegacyMSMQDistributor` configuration.
   * Start the worker again.
- * Before the last worker can be removed from the distributor it is important to remove that worker from the sender side distribution mapping. Since all Delayed Deliveries and Delayed Retries will be routed to the distributor it would be possible to end-up in a scenario where the distributor can never be decommisioned otherwise since clients would still distribute messages to that worker which might end up being sent back to the distributor node.
 
 Most instances should now be detached from the Distributor. The Distributor can now either be upgraded to a regular worker node or be decommissioned:
 
@@ -56,11 +55,12 @@ This approach enables the continued utilization of the resources used for the Di
 
  * [Manually remove the Distributor's subscriptions from publishing endpoints](#remove-distributor-subscriptions).
  * Ensure no more messages are routed to the Distributor by updating routing and sender-side distribution configuration on sending endpoints.
- * Ensure there are no more delayed messages (e.g. [delayed retries](/nservicebus/recoverability/#delayed-retries)) pending on the Distributor queue. This needs to be checked manually on the selected persitence option.
+ * Ensure there are no delayed messages (e.g. [delayed retries](/nservicebus/recoverability/#delayed-retries)) pending on the Distributor queue. This needs to be checked manually on the selected persitence option.
  * When the Distributor input queue is empty, shut down the Distributor.
  * When the attached instances input queues are empty, shut down the attached instances.
  * Remove the Distributor and the attached instances. Alternatively, detach the attached instances from the Distributor and start them again (make sure to include them in the sender-side distribution configuration too).
 
+Finally, include the previously excluded instance in the sender-side distribution configuration.
 
 ## Simple upgrade scenario
 
