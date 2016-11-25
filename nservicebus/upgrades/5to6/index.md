@@ -1,35 +1,14 @@
 ---
 title: Upgrade Version 5 to 6
 summary: Instructions on how to upgrade NServiceBus Version 5 to 6.
-reviewed: 2016-09-21
+reviewed: 2016-11-16
 tags:
  - upgrade
  - migration
 ---
 
 
-Every solution is different and will encounter unique challenges when upgrading a major dependency like NServiceBus. It's important to plan out an upgrade project and proceed in well defined steps, taking sufficient time to perform adequate regression testing after each step. Here are a few things to consider when planning an upgrade project.
-
-
-## Endpoint selection
-
-It is not necessary for every endpoint in the solution to be running the same version of NServiceBus. Endpoints running Version 6 are able to exchange messages with endpoints running Version 5 transparently.
-
-Not every endpoint in the solution needs to be upgraded to Version 6 at all. Each endpoint only needs to be upgraded if it will take advantage of a new feature introduced in Version 6. New endpoints added to the system can be started, developed and deployed entirely in Version 6 and will be able to exchange messages with the other endpoints in the solution that are on Version 5.
-
-**Only upgrade an endpoint if there is a compelling reason to do so.**
-
-Note that some new features added in Version 6 require that all endpoints are running on Version 6 prior to enabling this feature. For example the [multiple deserializers API](/samples/serializers/multiple-deserializers/). Ensure that any new features are adequately researched in regards to its impact on the upgrade process.
-
-Another factor to consider is the investment required to maintain codebases using different versions of NServiceBus. It may be cheaper in the long run to maintain a single codebase containing just Version 6 code than to invest in training and knowledge around Versions 5 and below.
-
-Once the list of endpoints, that need to be upgraded, has been identified, upgrade them one at a time. As a Version 6 endpoint is able to exchange messages with Version 5 endpoints, upgrade one endpoint, test it, and deploy it to production before upgrading the next endpoint. This keeps the scope of changes to a minimum, which helps to reduce risk and to isolate potential problems if they arise.
-
-**Upgrade one endpoint at a time.**
-
-There is one common issue with upgrading a single endpoint at a time. If the endpoints in a solution share a common library then upgrading one endpoint might lead to changes in the common library and that necessitates changes in all of the other endpoints that rely on the common library at the same time. The recommended approach to dealing with this is to create a copy of the common library for the new endpoint and to upgrade it along with the endpoint. When the time comes to upgrade the second endpoint, change it's dependency to point to the new, upgraded, version of the common library. When using this approach, other changes to the common library should be minimized as they will need to be reflected in both codebases.
-
-The process of upgrading each endpoint is going to follow a common sequence of steps. Being able to repeatably apply those steps is key to the success of the upgrade project. The recommended approach is to upgrade a simple and low risk endpoint first to ensure that the process is well understood before tackling the endpoints that make up the core of the solution. For example endpoints that send emails or generate documents are often good candidates for this. When selecting the first endpoint to upgrade look for a small number of reasonably straightforward handlers and a small amount of NServiceBus configuration. It is worth considering selecting a simple endpoint to upgrade even if it will not take advantage of Version 6 features to practice the upgrade process.
+Upgrading a major dependency like NServiceBus requires careful planning, see the [general recommendations](/nservicebus/upgrades/) article to learn more about the optimal upgrade process.
 
 
 ## Move to .NET 4.5.2
