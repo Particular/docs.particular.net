@@ -18,4 +18,4 @@ Following table compares both approaches:
 
 WARNING: When using sender-side distribution scaling out technique in a mixed version environment make sure to deploy a distributor in front of the scaled out version 6 endpoint if that endpoint needs to communicate with endpoints using versions lower than 6 (refer to [the distributor sample](/samples/scaleout/distributor/) for details). Otherwise event messages will get duplicated and commands won't be properly distributed.
 
-INFO: When using-sender side distribution in combination with the distributor delayed retries and delayed deliveries will be routed to the distributor even when the messages initially came from a client which is not enlisted in the distributor.
+partial: ssdwithdistributor

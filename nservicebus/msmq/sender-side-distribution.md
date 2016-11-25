@@ -52,6 +52,7 @@ To read more about the instance mapping, refer to the [MSMQ routing page](/nserv
 
 Sender-side distribution does not use message processing confirmations (the Distributor approach). Therefore the sender has no feedback on the availability of workers and, by default, sends the messages in a round-robin behavior. Should one of the nodes stop processing, the messages will start piling up in its input queue. As such nodes running in sender-side distribution mode require more careful monitoring compared to distributor workers.
 
+partial: ssdwithdistributor
 
 ## Decommissioning endpoint instances
 
