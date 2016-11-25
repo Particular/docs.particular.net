@@ -1,1 +1,1 @@
-NOTE: In NServiceBus Versions 6 `IManageUnitsOfWorks` doesn't have access to the incoming message context. If access to headers and/or message body is needed implemement a [unit of work using behaviors instead](samples/pipeline/unit-of-work).
+NOTE: In Versions 6 and above `IManageUnitsOfWorks` doesn't have access to the incoming message context. If access to headers and/or message body is needed implemement a [unit of work using behaviors instead](/samples/pipeline/unit-of-work/sample.md).
