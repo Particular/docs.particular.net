@@ -35,6 +35,7 @@ This process aims to allow upgrade without message loss and minimal downtime. If
   * Shut down the worker.
   * Remove the `EnlistWithLegacyMSMQDistributor` configuration.
   * Start the worker again.
+ * Before the last worker can be removed from the distributor it is important to remove that worker from the sender side distribution mapping. Since all Delayed Deliveries and Delayed Retries will be routed to the distributor it would be possible to end-up in a scenario where the distributor can never be decommisioned otherwise since clients would still distribute messages to that worker which might end up being sent back to the distributor node.
 
 Most instances should now be detached from the Distributor. The Distributor can now either be upgraded to a regular worker node or be decommissioned:
 
