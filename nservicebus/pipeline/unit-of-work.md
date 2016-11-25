@@ -7,6 +7,7 @@ redirects:
  - nservicebus/unit-of-work-in-nservicebus
 related:
  - samples/unit-of-work
+ - samples/pipeline/unit-of-work
 ---
 
 partial: transaction-scope
@@ -28,6 +29,8 @@ The semantics are that `Begin()` is called when the transport messages enters th
 The `End()` method is called when the processing is complete. If there is an exception, it is passed into the method.
 
 This gives a way to perform different actions depending on the outcome of the message(s).
+
+partial: access-to-context
 
 partial: imanageunitsofwork-outbox
 
