@@ -100,7 +100,7 @@ Once the upgrade is done the receiver can be safely [disabled](/nservicebus/reco
 
 ### When Creating New Endpoints using Version 6
 
-In Version 6, the only reason that the `.retries` queue exists is so that Version 5 endpoints can be migrated to Version 6 without any message loss. Any endpoints that are written purely using Version 6, can safely use the following configuration API to [disable](/nservicebus/recoverability/configure-delayed-retries.md#custom-retry-policy-legacy-retries-message-receiver) the satellite from even starting.
+In Version 6, the only reason that the `.retries` queue exists is so that Version 5 endpoints can be migrated to Version 6 without any message loss. Any endpoint that is written using Version 6, can safely use the following configuration API to [disable](/nservicebus/recoverability/configure-delayed-retries.md#custom-retry-policy-legacy-retries-message-receiver) the satellite from even starting.
 
 
 ## IManageMessageFailures is now obsolete.
