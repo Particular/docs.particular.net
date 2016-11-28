@@ -3,7 +3,65 @@ NServiceBus Version 6 further splits the existing pipelines into smaller composa
 
 ## Stages
 
-This map shows all of the stages in the pipeline and how messages flow through them.    
+The pipeline consists of two main parts: incoming and outgoing. Both parts are comprised from a number of stages. 
+
+The following lists describe some of the common stages that behaviors can be built for. Each stage has a context associated with it (which is used when implementing a custom behavior).
+
+In the diagram User Code can refer to a handler or a saga. If the handler or saga sends a message, publishes an event, or replies to a message, then the details from the incoming message will be added to the outgoing context.
+
+
+### Incoming Pipeline Stages
+
+ * Incoming Physical Message: Behaviors on this stage have access the raw message body before it is deserialized. This stage provides `IIncomingPhysicalMessageContext` to it's behaviors.
+ * Incoming Logical Message: This stage provides information about the received message type and it's deserialized instance. It provides `IIncomingLogicalMessageContext` to it's behaviors.
+ * Invoke Handlers: Each received message can be handled by multiple handlers. This stage will be executed once for every associated handler and provides `IInvokeHandlerContext` to the behaviors.
+ * 
+The connection between the Incoming Physical Message stage and the Forwarding/Audit stages is an example of a fork. In both cases, the message will flow down the main path and then down the fork path. The fork paths are only followed if the corresponding feature (auditing, message forwarding) has been enabled.
+
+```mermaid
+graph LR
+
+Transport[Transport]
+
+subgraph Incoming Pipeline
+TR[Transport<br>Receive]
+IH[Invoke<br>Handler]
+ILM[Incoming<br>Logical<br>Message]
+IPM[Incoming<br>Physical<br>Message]
+
+subgraph Ancillary Actions
+Forwarding[Forwarding]
+Audit[Audit]
+Dispatch
+end
+end
+
+AncillaryTransport[Transport]
+
+
+RUC[Receiving<br>User Code]
+
+
+Transport --> TR
+IPM -.-> Forwarding
+IPM -.-> Audit
+ILM --> IH
+IPM --> ILM
+TR --> IPM
+IH --> RUC
+
+Dispatch --> AncillaryTransport
+Audit--> Dispatch
+Forwarding --> Dispatch
+```
+
+### Outgoing Pipeline Stages
+
+ * Operation specific processing: There is a dedicated stage for each bus operation (e.g. Send, Publish, Subscribe, ...). Behaviors can use one of the following contexts: `IOutgoingSendContext`, `IOutgoingPublishContext`, `IOutgoingReplyContext`, `ISubscribeContext`, `IUnsubscribeContext`. Subscribe and Unsubsscribe are not shown on the diagram above.
+ * Outgoing Logical Message: Behaviors on this stage have access to the message which should be sent. Use `IOutgoingLogicalMessageContext` in a behavior to enlist in this stage.
+ * Outgoing Physical Message: Enables to access the serialized message. This stage provides `IOutgoingPhysicalMessageContext` to it's behaviors.
+ * Routing: Provides access to the routing strategies that have been selected for the outgoing message. This stage provides `IRoutingContext` to it's behaviors.
+
 
 ```mermaid
 graph LR
@@ -43,65 +101,6 @@ Dispatch --> BD
 Dispatch --> ID
 BD --> Transport
 ```
-
-```mermaid
-graph LR
-
-Transport[Transport]
-
-subgraph Incoming Pipeline
-TR[Transport<br>Receive]
-IH[Invoke<br>Handler]
-ILM[Incoming<br>Logical<br>Message]
-IPM[Incoming<br>Physical<br>Message]
-
-subgraph Ancillary Actions
-Forwarding[Forwarding]
-Audit[Audit]
-Dispatch
-end
-end
-
-AncillaryTransport[Transport]
-
-
-RUC[Receiving<br>User Code]
-
-
-Transport --> TR
-IPM -.-> Forwarding
-IPM -.-> Audit
-ILM --> IH
-IPM --> ILM
-TR --> IPM
-IH --> RUC
-
-Dispatch --> AncillaryTransport
-Audit--> Dispatch
-Forwarding --> Dispatch
-```
-
-The green stages are considered part of the outgoing pipeline and the blue stages are considered part of the incoming pipeline. The connection between the Incoming Physical Message stage and the Forwarding/Audit stages is an example of a fork. In both cases, the message will flow down the main path and then down the fork path. The fork paths are only followed if the corresponding feature (auditing, message forwarding) has been enabled.
-
-In the diagram User Code can refer to a handler or a saga. If the handler or saga sends a message, publishes an event, or replies to a message, then the details from the incoming message will be added to the outgoing context.
-
-The following lists describe some of the common stages that behaviors can be built for. Each stage has a context associated with it (which is used when implementing a custom behavior).
-
-
-### Incoming Pipeline Stages
-
- * Incoming Physical Message: Behaviors on this stage have access the raw message body before it is deserialized. This stage provides `IIncomingPhysicalMessageContext` to it's behaviors.
- * Incoming Logical Message: This stage provides information about the received message type and it's deserialized instance. It provides `IIncomingLogicalMessageContext` to it's behaviors.
- * Invoke Handlers: Each received message can be handled by multiple handlers. This stage will be executed once for every associated handler and provides `IInvokeHandlerContext` to the behaviors.
-
-
-### Outgoing Pipeline Stages
-
- * Operation specific processing: There is a dedicated stage for each bus operation (e.g. Send, Publish, Subscribe, ...). Behaviors can use one of the following contexts: `IOutgoingSendContext`, `IOutgoingPublishContext`, `IOutgoingReplyContext`, `ISubscribeContext`, `IUnsubscribeContext`. Subscribe and Unsubsscribe are not shown on the diagram above.
- * Outgoing Logical Message: Behaviors on this stage have access to the message which should be sent. Use `IOutgoingLogicalMessageContext` in a behavior to enlist in this stage.
- * Outgoing Physical Message: Enables to access the serialized message. This stage provides `IOutgoingPhysicalMessageContext` to it's behaviors.
- * Routing: Provides access to the routing strategies that have been selected for the outgoing message. This stage provides `IRoutingContext` to it's behaviors.
-
 
 ### Optional Pipeline Stages
 
