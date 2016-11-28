@@ -5,7 +5,81 @@ NServiceBus Version 6 further splits the existing pipelines into smaller composa
 
 This map shows all of the stages in the pipeline and how messages flow through them.    
 
-![Context Stages](context-map.svg)
+```mermaid
+graph LR
+UC[Initiating<br>User Code]
+
+subgraph Outgoing Pipeline
+Outgoing{Outgoing}
+OP[Outgoing<br>Publish]
+OS[Outgoing<br>Send]
+OR[Outgoing<br>Reply]
+OLM[Outgoing<br>Local<br>Message]
+OPM[Outgoing<br>Physical<br>Message]
+Routing[Routing]
+end
+
+
+subgraph Dispatch
+Dispatch{Dispatch}
+Transport[Transport]
+BD[Batch<br>Dispatch]
+ID[Immediate<br>Dispatch]
+end
+
+UC --> Outgoing
+Outgoing --> OP
+Outgoing --> OS
+Outgoing --> OR
+OP --> OLM
+OS --> OLM
+OR --> OLM
+OLM --> OPM
+OPM --> Routing
+Routing --> Dispatch
+
+ID--> Transport
+Dispatch --> BD
+Dispatch --> ID
+BD --> Transport
+```
+
+```mermaid
+graph LR
+
+Transport[Transport]
+
+subgraph Incoming Pipeline
+TR[Transport<br>Receive]
+IH[Invoke<br>Handler]
+ILM[Incoming<br>Logical<br>Message]
+IPM[Incoming<br>Physical<br>Message]
+
+subgraph Ancillary Actions
+Forwarding[Forwarding]
+Audit[Audit]
+Dispatch
+end
+end
+
+AncillaryTransport[Transport]
+
+
+RUC[Receiving<br>User Code]
+
+
+Transport --> TR
+IPM -.-> Forwarding
+IPM -.-> Audit
+ILM --> IH
+IPM --> ILM
+TR --> IPM
+IH --> RUC
+
+Dispatch --> AncillaryTransport
+Audit--> Dispatch
+Forwarding --> Dispatch
+```
 
 The green stages are considered part of the outgoing pipeline and the blue stages are considered part of the incoming pipeline. The connection between the Incoming Physical Message stage and the Forwarding/Audit stages is an example of a fork. In both cases, the message will flow down the main path and then down the fork path. The fork paths are only followed if the corresponding feature (auditing, message forwarding) has been enabled.
 
