@@ -1,14 +1,14 @@
 ---
 title: Castle Windsor
-summary: Configure NServiceBus to use Castle Windsor as a container.
+summary: Details on how to Configure NServiceBus to use Castle Windsor as a container. Includes usage examples as well as lifecycle mappings.
 component: Castle
-reviewed: 2016-03-17
+reviewed: 2016-11-28
 tags:
 - Dependency Injection
 ---
 
 
-NServiceBus can be configured to use [CastleWindsor](https://github.com/castleproject/Windsor) as a dependency injection container.
+NServiceBus can be configured to use [Castle Windsor](https://github.com/castleproject/Windsor) as a dependency injection container. 
 
 
 ### Default Usage

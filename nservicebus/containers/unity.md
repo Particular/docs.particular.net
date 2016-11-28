@@ -1,8 +1,8 @@
 ---
 title: Unity
-summary: Configuring NServiceBus to use Unity as a container.
+summary: Details on how to Configure NServiceBus to use Unity as a container. Includes usage examples as well as lifecycle mappings.
 component: Unity
-reviewed: 2016-03-17
+reviewed: 2016-11-28
 tags:
 - Dependency Injection
 - Unity
