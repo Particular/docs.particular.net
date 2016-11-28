@@ -16,11 +16,13 @@ This article explains how this is done, and defines the meaning of each of the t
 
 ### Monitored vs. Unmonitored Endpoints
 
-An NServiceBus endpoint can be set for monitoring by ServicePulse or can remain unmonitored. See [How to configure endpoints for monitoring by ServicePulse](/servicepulse/how-to-configure-endpoints-for-monitoring.md) for detailed instructions on preparing an endpoint for monitoring by ServicePulse.
+An NServiceBus endpoint can be set for monitoring by ServicePulse or can remain unmonitored. See [How to configure endpoints for monitoring by ServicePulse](/servicepulse/how-to-configure-endpoints-for-monitoring.md) for detailed instructions on preparing an endpoint for monitoring by ServicePulse. The endpoint is detected either when it first sends a heartbeat message (when configured), when it sends a failed message to a monitored error queue or when it sends an audit message to a monitored queue.
 
-It is recommended that all endpoints are configured for monitoring by ServicePulse. Once configured, the endpoint appears in the ServicePulse Configuration page.
+It is recommended that all endpoints are configured for monitoring by ServicePulse.
 
 ![ServicePulse Configuration page](images/sp-configuration-page.png 'width=500')
+
+Only the configured endpoints appear automatically as "ON" meaning their state is actively monitored by ServicePulse. The endpoints which are not configured appear as "OFF" by default. 
 
 In the ServicePulse Configuration page it is possible to specify which endpoints are monitored with ServicePulse by checking (or unchecking) the checkbox next to the endpoint's entry.
 
