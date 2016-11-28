@@ -1,1 +1,1 @@
-INFO: When using-sender side distribution in combination with the distributor delayed retries and delayed deliveries will be routed to the distributor even when the messages where initially sent from client using sender side distribution.
+INFO: When using-sender side distribution in combination with the distributor, delayed retries and delayed deliveries will be routed to the distributor even when the messages were initially sent directly to the endpoint instace, bypassing the distributor (e.g. using sender-side distribution).
