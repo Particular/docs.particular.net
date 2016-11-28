@@ -64,3 +64,8 @@ The `ConfigureTransport` class was deprecated. Custom transports are now configu
 ## Corrupted messages
 
 The core will now pass the error queue address to the transport to make it easier to handle corrupted messages. If a corrupted message is detected the transport is expected to move the message to the specified error queue.
+
+
+## Unit of Work
+
+include: uow-access-to-context
