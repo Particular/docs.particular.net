@@ -141,8 +141,7 @@ subgraph
     B --- C[TFromContext]
 end
 subgraph 
-   D[TForkContext]
-   B --- D
+   B --- D[TForkContext]
 end
 ```
 
@@ -162,8 +161,7 @@ subgraph
     B --- C[TToContext]
 end
 subgraph 
-   D[TForkContext]
-   B --- D
+   B --- D[TForkContext]
 end
 ```
 
