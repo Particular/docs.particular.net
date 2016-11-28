@@ -6,6 +6,8 @@ tags:
 - Cloud
 - Azure
 - Transport
+related:
+- samples/azure/custom-partitioning-asb/
 ---
 
 
