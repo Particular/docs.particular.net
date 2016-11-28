@@ -1,6 +1,5 @@
 ---
 title: Understanding Transactionality in Azure
-summary: Understanding transactions in Azure and NServiceBus.
 tags:
 - Azure
 - Cloud
