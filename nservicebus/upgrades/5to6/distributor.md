@@ -56,6 +56,7 @@ This approach enables the continued utilization of the resources used for the Di
 
  * [Manually remove the Distributor's subscriptions from publishing endpoints](#remove-distributor-subscriptions).
  * Ensure no more messages are routed to the Distributor by updating routing and sender-side distribution configuration on sending endpoints.
+ * Ensure there are no more delayed messages (e.g. [delayed retries](/nservicebus/recoverability/#delayed-retries)) pending on the Distributor queue. This needs to be checked manually on the selected persitence option.
  * When the Distributor input queue is empty, shut down the Distributor.
  * When the attached instances input queues are empty, shut down the attached instances.
  * Remove the Distributor and the attached instances. Alternatively, detach the attached instances from the Distributor and start them again (make sure to include them in the sender-side distribution configuration too).
