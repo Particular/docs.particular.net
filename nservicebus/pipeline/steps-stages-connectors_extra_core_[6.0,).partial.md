@@ -119,7 +119,13 @@ NOTE: These stages are documented for the sake of completeness. Replacing behavi
 
 ## Stage Connectors
 
-![Stage Connector](stage-connectors.svg)
+```mermaid
+graph LR
+subgraph 
+    A[TFromContext] --- B{Connector}
+    B --- C[TToContext]
+end
+```
 
 Stage connectors connect from the current stage (i.e. `IOutgoingLogicalMessageContext`) to another stage (i.e. `IOutgoingPhysicalMessageContext`). In order to override an existing stage to inherit from `StageConnector<TFromContext, TToContext>` and then replace an existing stage connector. Most pipeline extensions can be done by inheriting from `Behavior<TContext>`. It is rarely ever necessary to implement stage connectors or replace existing ones. When implementing a stage connector ensure that all required data is passed along for the next stage.
 
@@ -128,7 +134,17 @@ snippet:CustomStageConnector
 
 ## Fork Connectors
 
-![Fork Connector](fork-connectors.svg)
+```mermaid
+graph LR
+subgraph 
+    A[TFromContext] --- B{Fork Connector}
+    B --- C[TFromContext]
+end
+subgraph 
+   D[TForkContext]
+   B --- D
+end
+```
 
 Fork connectors fork from a current stage (i.e. `IIncomingPhysicalMessageContext`) to another independent pipeline (i.e. `IAuditContext`). A fork connector has the required knowledge to create additional pipelines and cache them appropriately for performance reasons. In order to override an existing fork connector inherit from `ForkConnector<TFromContext, TForkContext>` and then replace an existing fork connector.
 
@@ -139,7 +155,17 @@ Note: There is currently no mechanism available to create custom pipelines and s
 
 ## Stage Fork Connector
 
-![Stage Fork Connector](stage-fork-connectors.svg)
+```mermaid
+graph LR
+subgraph 
+    A[TFromContext] --- B{StageFork<br/>Connector}
+    B --- C[TToContext]
+end
+subgraph 
+   D[TForkContext]
+   B --- D
+end
+```
 
 Stage fork connectors are essentially a marriage of a stage connector and a fork connector. They have the ability to connect from the current stage (i.e. `ITransportReceiveContext`) to another stage (i.e. `IIncomingPhysicalMessageContext`) and fork to another independent pipeline (i.e. `IBatchedDispatchContext`). Like a fork connector it has the required knowledge to create additional pipelines and cache them appropriately for performance reasons. In order to override an existing stage fork connector inherit from `StageForkConnector<TFromContext, TToContext, TForkContext` and then replace an existing stage fork connector.
 
