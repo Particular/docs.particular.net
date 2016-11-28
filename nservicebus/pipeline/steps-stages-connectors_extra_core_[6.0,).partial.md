@@ -102,6 +102,7 @@ Dispatch --> ID
 BD --> Transport
 ```
 
+
 ### Optional Pipeline Stages
 
  * Audit: Behaviors in the Audit stage have access to the message to be audited/sent to the audit queue and audit address. Behaviors should use `IAuditContext` to enlist in this stage. This stage is only entered if [Message Auditing](/nservicebus/operations/auditing.md) is enabled. 
@@ -110,7 +111,7 @@ BD --> Transport
 
 ### Other Pipeline Stages
 
-NOTE: These stages are documented for the sake of completeness. Replacing behaviors in these stages is not recommended without a throrough understanding of the entire pipeline. 
+NOTE: These stages are documented for the sake of completeness. Replacing behaviors in these stages is not recommended without a fully understanding of the entire pipeline. 
 
  * Transport Receive: provides access to the raw incoming message before any other stages have been invoked. This stage provides `ITransportReceiveContext` to it's behaviors.
  * Dispatch: provides access to outgoing dispatch operations before they are handed off to the transport. This stage provides `IBatchDispatch` to it's behaviors.
@@ -141,7 +142,7 @@ subgraph
     B --- C[TFromContext]
 end
 subgraph 
-   B --- D[TForkContext]
+   B --> D[TForkContext]
 end
 ```
 
@@ -161,7 +162,7 @@ subgraph
     B --- C[TToContext]
 end
 subgraph 
-   B --- D[TForkContext]
+   B --> D[TForkContext]
 end
 ```
 
