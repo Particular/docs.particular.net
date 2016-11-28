@@ -7,7 +7,7 @@ tags:
 - Azure
 - Transport
 related:
-- samples/azure/custom-partitioning-asb/
+- samples/azure/custom-partitioning-asb
 ---
 
 
