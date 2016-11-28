@@ -10,7 +10,7 @@ reviewed: 2016-09-21
 
 ## Configuring for Cloud Services hosting
 
-Cloud Services is a hosting model provided by the Azure cloud, which is specifically designed for hosting large applications. For a detailed description of the cloud service configuration in Azure, see [What is the Cloud Service model and how do I package it?](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-model-and-package/).
+Cloud Services is a hosting model provided by the Azure cloud, which is specifically designed for hosting large applications. For a detailed description of the cloud service configuration in Azure, see [What is the Cloud Service model packaging](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-model-and-package).
 
 When NServiceBus is hosted in Cloud Services, it needs to connect to a specific Azure storage account (for Azure Storage Queues) or an Azure Service Bus namespace. For more information on required connection string formats refer to [the windows azure connection string formats](https://www.connectionstrings.com/windows-azure/) article.
 
