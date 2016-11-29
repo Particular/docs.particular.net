@@ -60,3 +60,5 @@ snippet: SqlPersistenceSaga
 `SqlSaga<T>` is an extension of `Saga<T>` that has a less verbose mapping API. The `ToSaga` part is inferred from the `[SqlSagaAttribute]`.
 
 snippet: SqlPersistenceSqlSaga
+
+
