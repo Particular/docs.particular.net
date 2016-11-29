@@ -11,6 +11,11 @@ related:
 reviewed: 2016-10-05
 ---
 
+## Prerequisites
+
+ 1. Ensure an instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`. Create a database `SqlPersistenceSample`.
+
+
 
 ## Code walk-through
 
