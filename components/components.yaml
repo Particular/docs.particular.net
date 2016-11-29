@@ -325,6 +325,17 @@
   NugetOrder:
     - NServiceBus.Persistence.MongoDb
 
+- Key: SqlPersistence
+  Name: Sql Persistence
+  DocoUrl: nservicebus/sql-persistence
+  GitHubOwner: SimonCropp
+  Category: Persistence
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/NServiceBusSqlPersistence/NServiceBus.SqlPersistence/blob/master/LICENSE
+  ProjectUrl: https://github.com/NServiceBusSqlPersistence/NServiceBus.SqlPersistence/
+  NugetOrder:
+    - NServiceBus.Persistence.Sql
+
 - Key: Newtonsoft
   Name: Newtonsoft Serializer
   DocoUrl: nservicebus/serialization/newtonsoft

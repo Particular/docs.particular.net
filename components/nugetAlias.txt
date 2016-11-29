@@ -56,6 +56,7 @@ ServiceControl: ServiceControl
 ServiceControlContracts: ServiceControl.Contracts
 ServicePulse: ServicePulse
 ServiceInsight: ServiceInsight
+SqlPersistence: NServiceBus.Persistence.Sql
 SignalR: SignalR.NServiceBus
 RabbitOperations: RabbitOperations
 SimpleInjector: NServiceBus.SimpleInjector
