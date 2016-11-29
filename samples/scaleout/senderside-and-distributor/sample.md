@@ -58,13 +58,13 @@ When in context of processing a message sent directly or when called from outsid
 
 ### Defer
 
-[Deferring a message](/nservicebus/messaging/delayed-delivery) to the local endpoint, when in context of processing a message sent via a Distributor, creates a pending timeout with destination set to the Distributor's queue. When that timeout is due, the message is sent back to the Distributor which routes it to the fist available worker.
+[Deferring a message](/nservicebus/messaging/delayed-delivery.md) to the local endpoint, when in context of processing a message sent via a Distributor, creates a pending timeout with destination set to the Distributor's queue. When that timeout is due, the message is sent back to the Distributor which routes it to the fist available worker.
 
 snippet:Defer
 
 ### ReplyTo
 
-Sending a message, when in context of processing a message sent via a Distributor, sets the [reply to](/nservicebus/messaging/routing#reply-routing) header to the Distributor's queue. 
+Sending a message, when in context of processing a message sent via a Distributor, sets the [reply to](/nservicebus/messaging/routing.md#reply-routing) header to the Distributor's queue. 
 
 snippet:Reply
 
