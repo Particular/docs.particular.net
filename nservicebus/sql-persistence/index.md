@@ -69,3 +69,8 @@ snippet: SqlPersistenceSaga
 snippet: SqlPersistenceSqlSaga
 
 
+## SqlStorageSession
+
+The current [SqlConnection](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlconnection.aspx) and [SqlTransaction](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqltransaction.aspx) can be accessed via the current context.
+
+snippet: sqlPersistenceSession
