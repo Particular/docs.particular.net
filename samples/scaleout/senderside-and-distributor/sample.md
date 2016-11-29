@@ -22,13 +22,13 @@ Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Confi
 
  1. Start the solution
  2. Press `A` in Sender.V5 console.
- 3. Wait until you see `Confirming order {orderId}` message in one of the worker console.
+ 3. Wait until `Confirming order {orderId}` message shows up in one of the worker console.
  4. Notice that the messages that took part in the order flow conversation were processed by both workers in the round-robin way, each time going through the Distributor.
  5. Press `A` in Sender.V6 console.
- 6. Wait until you see `Confirming order {orderId}` message in one of the worker console.
+ 6. Wait until `Confirming order {orderId}` message shows up in one of the worker console.
  7. Notice that all the messages that took part in the order flow conversation were processed by a single worker.
  8. Press `A` in Sender.V6 console.
- 9. Wait until you see `Confirming order {orderId}` message in one of the worker console.
+ 9. Wait until `Confirming order {orderId}` message shows up in one of the worker console.
  10. Notice that all the messages that took part in the order flow conversation were processed by a single worker (different than previously).
  11. Press `B` in the Sender.V5 console.
  12. Notice the message fails twice until it ultimately succeeds. Each retry is routed to different worker.
