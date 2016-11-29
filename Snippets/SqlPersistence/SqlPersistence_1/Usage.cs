@@ -51,19 +51,20 @@ class Usage
         };
         var settingForVersion1 = new JsonSerializerSettings
         {
-            DateFormatHandling = DateFormatHandling.IsoDateFormat
+            DateFormatHandling = DateFormatHandling.MicrosoftDateFormat
         };
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence, StorageType.Sagas>();
         persistence.JsonSettings(currentSettings);
-        persistence.JsonSettingsForVersion((type, version) =>
-        {
-            if (version < new Version(2, 0))
+        persistence.JsonSettingsForVersion(
+            builder: (type, version) =>
             {
-                return settingForVersion1;
-            }
-            // default to what is defined by persistence.JsonSettings()
-            return null;
-        });
+                if (version < new Version(2, 0))
+                {
+                    return settingForVersion1;
+                }
+                // default to what is defined by persistence.JsonSettings()
+                return null;
+            });
 
         #endregion
     }
