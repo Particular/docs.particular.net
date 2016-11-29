@@ -34,6 +34,13 @@ Customizes the instance of [JsonSerializerSettings](http://www.newtonsoft.com/js
 snippet: SqlPersistenceCustomSettings
 
 
+#### Version / Type specific deserialization settings
+
+The Type and Saga Assembly version are persisted. It is possible to explicitly control the deserialization of sagas based on Version and/or Type. This allows the serialization approach to be evolved forward while avoiding migrations.
+
+snippet: SqlPersistenceJsonSettingsForVersion
+
+
 ### Custom Reader
 
 Customize the creation of the [JsonReader](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm).
