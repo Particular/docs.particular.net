@@ -42,6 +42,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UsingSaga\OrderSaga.cs" />
+    <Compile Include="UsingSqlSaga\OrderSaga.cs" />
+    <Compile Include="StartOrder.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <ItemGroup>

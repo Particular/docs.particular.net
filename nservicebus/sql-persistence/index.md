@@ -47,3 +47,16 @@ Customize the creation of the [JsonWriter](http://www.newtonsoft.com/json/help/h
 
 snippet:SqlPersistenceCustomWriter
 
+
+## Saga Definition
+
+Sagas need to be decorated with a `[SqlSagaAttribute]`
+
+snippet: SqlPersistenceSaga
+
+
+### SqlSaga
+
+`SqlSaga<T>` is an extension of `Saga<T>` that has a less verbose mapping API. The `ToSaga` part is inferred from the `[SqlSagaAttribute]`.
+
+snippet: SqlPersistenceSqlSaga

@@ -20,7 +20,6 @@ public class OrderSaga :
 
     public async Task Handle(StartOrder message, IMessageHandlerContext context)
     {
-        Data.OrderId = message.OrderId;
         var orderDescription = $"The saga for order {message.OrderId}";
         Data.OrderDescription = orderDescription;
         log.Info($"Received StartOrder message {Data.OrderId}. Starting Saga");
