@@ -64,9 +64,15 @@ snippet:Defer
 
 ### ReplyTo
 
-Sending a message, when in context of processing a message sent via a Distributor, sets the [reply to](/nservicebus/messaging/routing#reply-routing) header to the Distributor's queue. When other endpoint replies to such message, the reply is routed to the Distributor which routes it to the first available worker.
+Sending a message, when in context of processing a message sent via a Distributor, sets the [reply to](/nservicebus/messaging/routing#reply-routing) header to the Distributor's queue. 
+
+snippet:Reply
+
+When other endpoint replies to such message, the reply is routed to the Distributor which routes it to the first available worker.
 
 ### Delayed retries
+
+snippet:DelayedRetry
 
 Moving a message to delayed retries in MSMQ uses the same mechanism as message deferrals mentioned above. In this case, however, the runtime context (if the messages has been sent via Distributor) is ignored. The message is always deferred to the Distributor queue if the endpoint is configured to enlist with the Distributor.
 
