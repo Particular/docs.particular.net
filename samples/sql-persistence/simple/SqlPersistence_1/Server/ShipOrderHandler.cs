@@ -2,8 +2,6 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-#region handler
-
 public class ShipOrderHandler :
     IHandleMessages<ShipOrder>
 {
@@ -15,5 +13,3 @@ public class ShipOrderHandler :
         return Task.CompletedTask;
     }
 }
-
-#endregion
