@@ -26,7 +26,7 @@ This sample shows a simple Client + Server scenario.
 
 ### Sql Persistence Config
 
-Configure the endpoint to use Sql Persistence persistence.
+Configure the endpoint to use Sql Persistence.
 
 snippet:config
 
