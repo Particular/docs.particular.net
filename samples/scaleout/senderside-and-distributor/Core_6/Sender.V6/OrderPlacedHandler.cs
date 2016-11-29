@@ -7,6 +7,8 @@ public class OrderPlacedHandler :
 {
     static ILog log = LogManager.GetLogger<OrderPlacedHandler>();
 
+    #region Reply
+
     public Task Handle(OrderPlaced orderPlaced, IMessageHandlerContext context)
     {
         log.Info($"Received OrderPlaced. OrderId: {orderPlaced.OrderId}. Worker: {orderPlaced.WorkerName}");
@@ -16,10 +18,8 @@ public class OrderPlacedHandler :
             OrderId = orderPlaced.OrderId
         };
 
-        #region Reply
-
         return context.Reply(confirmOrder);
-
-        #endregion
     }
+
+    #endregion
 }

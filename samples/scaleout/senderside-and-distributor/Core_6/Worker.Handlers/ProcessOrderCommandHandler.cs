@@ -7,6 +7,8 @@ public class ProcessOrderCommandHandler :
 {
     static ILog log = LogManager.GetLogger<ProcessOrderCommandHandler>();
 
+    #region SendLocal
+
     public async Task Handle(PlaceOrder placeOrder, IMessageHandlerContext context)
     {
         log.Info($"Sending order {placeOrder.OrderId} to validation.");
@@ -19,11 +21,10 @@ public class ProcessOrderCommandHandler :
             Sender = context.ReplyToAddress
         };
 
-        #region SendLocal
 
         await context.SendLocal(validateOrder)
             .ConfigureAwait(false);
-
-        #endregion
     }
+
+    #endregion
 }
