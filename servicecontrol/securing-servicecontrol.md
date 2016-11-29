@@ -59,7 +59,7 @@ To deny access to the message body's ServiceControl HTTP API, use URLACL. This c
 
 To prevent access to the ServiceControl HTTP API `http://{customhostname}:{portname}/api/messages`, add an additional URLACL setting. Any calls to get a message body will fail with an HTTP 503 error ("Service Unavailable").
 
-For more information, see [ServiceControl: Updating URLACL Settings](setting-custom-hostname.md#updating-urlacl-settings).
+For more information, see [ServiceControl: Updating URLACL Settings](/setting-custom-hostname.md#updating-urlacl-settings).
 
 
 #### Encrypting Sensitive Properties in Message Body
