@@ -1,25 +1,22 @@
 ﻿using System;
 using NServiceBus;
 
-namespace Distributor
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main()
-        {
-            Console.Title = "Distributor";
+        Console.Title = "Distributor";
 
-            var busConfiguration = new BusConfiguration();
-            busConfiguration.EndpointName("Samples.Scaleout.Distributor");
-            busConfiguration.RunMSMQDistributor(withWorker: false);
-            busConfiguration.UseSerialization<JsonSerializer>();
-            busConfiguration.UsePersistence<InMemoryPersistence>();
-            busConfiguration.EnableInstallers();
-            using (var bus = Bus.Create(busConfiguration).Start())
-            {
-                Console.WriteLine("Press any key to exit");
-                Console.ReadKey();
-            }
+        var busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.Scaleout.Distributor");
+        busConfiguration.RunMSMQDistributor(withWorker: false);
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.EnableInstallers();
+        using (var bus = Bus.Create(busConfiguration).Start())
+        {
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
         }
     }
 }

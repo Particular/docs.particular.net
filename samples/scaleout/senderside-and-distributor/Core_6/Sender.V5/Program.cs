@@ -33,19 +33,21 @@ class Program
                 var orderId = Guid.NewGuid();
                 if (key.Key == ConsoleKey.A)
                 {
-                    bus.Send(distributor, new PlaceOrder
+                    var placeOrder = new PlaceOrder
                     {
                         OrderId = orderId
-                    });
+                    };
+                    bus.Send(distributor, placeOrder);
 
                     Console.WriteLine($"Sent PlacedOrder command with order id {orderId}");
                 }
                 else if (key.Key == ConsoleKey.B)
                 {
-                    bus.Send(distributor, new PlaceInvalidOrder
+                    var placeInvalidOrder = new PlaceInvalidOrder
                     {
                         OrderId = orderId
-                    });
+                    };
+                    bus.Send(distributor, placeInvalidOrder);
 
                     Console.WriteLine($"Sent PlacedOrder command with order id {orderId}");
                 }

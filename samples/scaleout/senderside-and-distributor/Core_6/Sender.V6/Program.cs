@@ -5,7 +5,7 @@ using NServiceBus;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
         Console.Title = "Sender.V6";
 
@@ -45,25 +45,28 @@ class Program
             var orderId = Guid.NewGuid();
             if (key.Key  == ConsoleKey.A)
             {
-                await endpointInstance.Send(new PlaceOrder
+                var placeOrder = new PlaceOrder
                 {
                     OrderId = orderId
-                });
+                };
+                await endpointInstance.Send(placeOrder);
 
                 Console.WriteLine($"Sent PlacedOrder command with order id {orderId}");
             }
             else if (key.Key == ConsoleKey.B)
             {
-                await endpointInstance.Send(new PlaceInvalidOrder
+                var placeInvalidOrder = new PlaceInvalidOrder
                 {
                     OrderId = orderId
-                });
+                };
+                await endpointInstance.Send(placeInvalidOrder);
 
                 Console.WriteLine($"Sent PlacedOrder command with order id {orderId}");
             }
             else
             {
-                await endpointInstance.Stop().ConfigureAwait(false);
+                await endpointInstance.Stop()
+                    .ConfigureAwait(false);
                 return;
             }
         }

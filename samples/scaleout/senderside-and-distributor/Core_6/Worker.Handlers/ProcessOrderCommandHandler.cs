@@ -21,7 +21,8 @@ public class ProcessOrderCommandHandler :
 
         #region SendLocal
 
-        await context.SendLocal(validateOrder).ConfigureAwait(false);
+        await context.SendLocal(validateOrder)
+            .ConfigureAwait(false);
 
         #endregion
     }

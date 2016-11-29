@@ -22,6 +22,7 @@ public class OrderValidatedCommandHandler :
 
         var options = new SendOptions();
         options.SetDestination(message.Sender);
-        await context.Send(placed, options).ConfigureAwait(false);
+        await context.Send(placed, options)
+            .ConfigureAwait(false);
     }
 }

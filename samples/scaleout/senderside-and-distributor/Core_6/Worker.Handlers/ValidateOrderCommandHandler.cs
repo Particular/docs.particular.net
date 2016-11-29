@@ -10,7 +10,6 @@ public class ValidateOrderCommandHandler :
 
     public async Task Handle(ValidateOrder message, IMessageHandlerContext context)
     {
-        
         var validated = new OrderValidated
         {
             OrderId = message.OrderId,
@@ -24,7 +23,8 @@ public class ValidateOrderCommandHandler :
         var options = new SendOptions();
         options.RouteToThisEndpoint();
         options.DelayDeliveryWith(TimeSpan.FromSeconds(3));
-        await context.Send(validated, options).ConfigureAwait(false);
+        await context.Send(validated, options)
+            .ConfigureAwait(false);
 
         #endregion
 
