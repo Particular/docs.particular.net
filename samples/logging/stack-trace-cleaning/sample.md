@@ -114,7 +114,7 @@ snippet: customization-config
 
 ## Manipulate Logging Output
 
-The [default logging](/nservicebus/logging/) included in NServiceBus does not support overwriting how exceptions are written to the log. So this sample uses NLog with a custom `LayoutRenderer` for exceptions. Similar approaches are supported in the [other supported logging libraries](/components#logging).
+The [default logging](/nservicebus/logging/) included in NServiceBus does not support overwriting how exceptions are written to the log. So this sample uses NLog with a custom `LayoutRenderer` for exceptions. Similar approaches are supported in the [other supported logging libraries](/components#loggers).
 
 
 ### Layout Renderer
