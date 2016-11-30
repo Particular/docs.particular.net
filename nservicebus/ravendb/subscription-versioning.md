@@ -8,11 +8,12 @@ tags:
 reviewed: 2016-11-28
 ---
 
-The behavior of the RavenDB subscription persistence differs from other NServiceBus persisters in the way it handles versioning of message assemblies. It's important to understand this difference, especially when using a deployment solution that automatically increments assembly version numbers with each build.
+The behavior of the RavenDB subscription persistence differs from other persisters in the way it handles versioning of message assemblies. It's important to understand this difference, especially when using a deployment solution that automatically increments assembly version numbers with each build.
+
 
 ## Technical details
 
-Most NServiceBus persisters will store subscriptions by message type alone, but the RavenDB persister additionally takes the message assembly's major version into account as well.
+Most other persisters store subscriptions by message type alone, but the RavenDB persister additionally takes the message assembly's major version into account as well.
 
 At a high level, the RavenDB document id for a stored subscription uses this format:
 
@@ -27,7 +28,8 @@ This becomes an issue with version bumps as a result of an automated deployment 
 
 Because the version has been baked in to the RavenDB document id since the very first version, any attempt to modify the RavenDB persister to work like other persisters would be very high risk. This issue does not affect the vast majority of customers, and fairly simple workarounds to the problem exist. On the flip side, attempting to convert the storage format for existing subscriptions would run the risk of causing a message loss scenario for all customers.
 
+
 ## Guidelines
 
-1. If possible, do not version message assemblies at all. Design message contracts to be backward and forward compatible so that explicit versioning is not required.
-1. Instead of versioning with the `AssemblyVersion` attribute, use the `AssemblyFileVersion` or `AssemblyInformationalVersion` attribute instead, while leaving the `AssemblyVersion` attribute fixed. The RavenDB persister only uses the Major version of the `AssemblyVersion` attribute as part of the subscription document id.
+ 1. If possible, do not version message assemblies at all. Design message contracts to be backward and forward compatible so that explicit versioning is not required.
+ 1. Instead of versioning with the [AssemblyVersionAttribute](https://msdn.microsoft.com/en-us/library/system.reflection.assemblyversionattribute.aspx), use the [AssemblyFileVersionAttribute](https://msdn.microsoft.com/en-us/library/system.reflection.assemblyfileversionattribute.aspx) or [AssemblyInformationalVersionAttribute](https://msdn.microsoft.com/en-us/library/system.reflection.assemblyinformationalversionattribute.aspx) instead, while leaving the `AssemblyVersionAttribute` fixed. The RavenDB persister only uses the Major version of the `AssemblyVersionAttribute` as part of the subscription document id.
