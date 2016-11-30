@@ -24,7 +24,7 @@ subscriptionDocumentId = $"Subscriptions/{HashOf(messageType.Name + messageType.
 
 As a result, if the subscription storage contains 3 subscribers for `MyMessage, MyAssembly, Version 1.0.0.0` but a publisher attempts to publish `MyMessage, MyAssembly, Version 2.0.0.0`, no subscription document will be found, and the event will not be published to any subscribers.
 
-This becomes an issue with version bumps as a result of an automated deployment pipeline, such as when a build server uses a `YYYY.MM.DD.BuildNumber` version format for all builds. At the beginning of a new year, message publishers will begin looking for a new major version and, as a result, fail to publish events to the correct subscribers.
+This becomes an issue when the version increments as a result of an automated deployment pipeline, such as when a build server uses a `YYYY.MM.DD.BuildNumber` version format for all builds. At the beginning of a new year, message publishers will begin looking for a new major version and, as a result, fail to publish events to the correct subscribers.
 
 Because the version has been baked in to the RavenDB document id since the very first version, any attempt to modify the RavenDB persister to work like other persisters would be very high risk. This issue does not affect the vast majority of customers, and fairly simple workarounds to the problem exist. On the flip side, attempting to convert the storage format for existing subscriptions would run the risk of causing a message loss scenario for all customers.
 
