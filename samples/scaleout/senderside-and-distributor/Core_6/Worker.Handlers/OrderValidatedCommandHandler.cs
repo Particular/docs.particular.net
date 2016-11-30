@@ -14,7 +14,7 @@ public class OrderValidatedCommandHandler :
 
         await Task.Delay(1000).ConfigureAwait(false);
 
-        var placed = new OrderPlaced
+        var placed = new PlaceOrderResponse
         {
             OrderId = message.OrderId,
             WorkerName = Assembly.GetEntryAssembly().GetName().Name

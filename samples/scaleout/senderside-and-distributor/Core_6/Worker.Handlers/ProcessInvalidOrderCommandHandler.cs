@@ -27,7 +27,7 @@ public class ProcessInvalidOrderCommandHandler :
 
         log.Info($"Successfully processed order {placeOrder.OrderId}.");
 
-        var placed = new OrderPlaced
+        var placed = new PlaceOrderResponse
         {
             OrderId = placeOrder.OrderId,
             WorkerName = Assembly.GetEntryAssembly().GetName().Name

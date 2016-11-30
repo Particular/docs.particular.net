@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class OrderPlaced :
+public class PlaceOrderResponse :
     IMessage
 {
     public Guid OrderId { get; set; }

@@ -2,7 +2,7 @@
 using NServiceBus.Logging;
 
 public class OrderPlacedHandler :
-    IHandleMessages<OrderPlaced>
+    IHandleMessages<PlaceOrderResponse>
 {
     IBus bus;
     static ILog log = LogManager.GetLogger<OrderPlacedHandler>();
@@ -12,12 +12,12 @@ public class OrderPlacedHandler :
         this.bus = bus;
     }
 
-    public void Handle(OrderPlaced orderPlaced)
+    public void Handle(PlaceOrderResponse placeOrderResponse)
     {
-        log.Info($"Received OrderPlaced. OrderId: {orderPlaced.OrderId}. Worker: {orderPlaced.WorkerName}");
+        log.Info($"Received OrderPlaced. OrderId: {placeOrderResponse.OrderId}. Worker: {placeOrderResponse.WorkerName}");
         var confirmOrder = new ConfirmOrder
         {
-            OrderId = orderPlaced.OrderId
+            OrderId = placeOrderResponse.OrderId
         };
         bus.Reply(confirmOrder);
     }

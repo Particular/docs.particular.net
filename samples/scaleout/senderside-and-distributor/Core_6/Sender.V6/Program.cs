@@ -48,7 +48,8 @@ class Program
                 var placeOrder = new PlaceOrder
                 {
                     OrderId = orderId
-                }).ConfigureAwait(false);
+                };
+                await endpointInstance.Send(placeOrder).ConfigureAwait(false);
 
                 Console.WriteLine($"Sent PlacedOrder command with order id {orderId}");
             }
@@ -57,7 +58,8 @@ class Program
                 var placeInvalidOrder = new PlaceInvalidOrder
                 {
                     OrderId = orderId
-                }).ConfigureAwait(false);
+                };
+                await endpointInstance.Send(placeInvalidOrder).ConfigureAwait(false);
 
                 Console.WriteLine($"Sent PlacedOrder command with order id {orderId}");
             }

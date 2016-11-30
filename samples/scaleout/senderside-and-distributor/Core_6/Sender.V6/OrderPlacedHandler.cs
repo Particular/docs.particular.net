@@ -3,19 +3,19 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 public class OrderPlacedHandler :
-    IHandleMessages<OrderPlaced>
+    IHandleMessages<PlaceOrderResponse>
 {
     static ILog log = LogManager.GetLogger<OrderPlacedHandler>();
 
     #region Reply
 
-    public Task Handle(OrderPlaced orderPlaced, IMessageHandlerContext context)
+    public Task Handle(PlaceOrderResponse placeOrderResponse, IMessageHandlerContext context)
     {
-        log.Info($"Received OrderPlaced. OrderId: {orderPlaced.OrderId}. Worker: {orderPlaced.WorkerName}");
+        log.Info($"Received OrderPlaced. OrderId: {placeOrderResponse.OrderId}. Worker: {placeOrderResponse.WorkerName}");
 
         var confirmOrder = new ConfirmOrder
         {
-            OrderId = orderPlaced.OrderId
+            OrderId = placeOrderResponse.OrderId
         };
 
         return context.Reply(confirmOrder);
