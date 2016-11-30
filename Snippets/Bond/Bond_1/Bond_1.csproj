@@ -26,15 +26,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bond, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Bond.Core.CSharp.5.0.0\lib\net45\Bond.dll</HintPath>
+      <HintPath>..\..\..\packages\Bond.Core.CSharp.5.1.0\lib\net45\Bond.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Bond.Attributes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Bond.Core.CSharp.5.0.0\lib\net45\Bond.Attributes.dll</HintPath>
+      <HintPath>..\..\..\packages\Bond.Core.CSharp.5.1.0\lib\net45\Bond.Attributes.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Bond.IO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Bond.Core.CSharp.5.0.0\lib\net45\Bond.IO.dll</HintPath>
+      <HintPath>..\..\..\packages\Bond.Core.CSharp.5.1.0\lib\net45\Bond.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Bond.Reflection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Bond.Core.CSharp.5.1.0\lib\net45\Bond.Reflection.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Bond, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
