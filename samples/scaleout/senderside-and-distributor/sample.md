@@ -42,49 +42,49 @@ Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Confi
 
 ## Code walk-through
  
-This sample contains five NServiceBus processes
+This sample contains five NServiceBus console applications
 
- * Sender.V5 sends commands to the scaled out endpoint via [Distributor](/nservicebus/msmq/distributor/).
- * Sender.V6 sends commands to the scaled out endpoint directly using [Sender-Side Distribution](/nservicebus/msmq/sender-side-distribution.md)
- * Distributor
- * Worker.1 and Worker.2 process commands simulating order flow
+ * `Sender.V5` sends commands to the scaled out endpoint via [Distributor](/nservicebus/msmq/distributor/).
+ * `Sender.V6` sends commands to the scaled out endpoint directly using [Sender-Side Distribution](/nservicebus/msmq/sender-side-distribution.md)
+ * `Distributor`
+ * `Worker.1` and `Worker.2` process commands simulating order flow, they represent the scaled out endpoint
 
 
 ## APIs that depend on scaling out approach
 
-The behavior of following APIs depend on the scaling out method. Whenever possible the behavior is based on the runtime context (if the message being processed has been sent via a Distributor). In case of [delayed retries](/nservicebus/recoverability/#delayed-retries) the behavior is static and based on configuration only.
+The behavior of following APIs depend on the selected scaling out approach. The behaviour is slightly different if message is sent by Distributor from when it is sent by other endpoints. In case of [delayed retries](/nservicebus/recoverability/#delayed-retries) the behavior doesn't depend on which endpoint sent it, it's based on configuration only.
 
 
 ### SendLocal
 
-[Sending to the local endpoint](/nservicebus/messaging/send-a-message.md#sending-to-self), when in context of processing a message sent via a Distributor, routes the message back to the Distributor which routes it to the first available worker.
+[Sending to the local endpoint](/nservicebus/messaging/send-a-message.md#sending-to-self) when processing a message sent via a Distributor, routes the message back to the Distributor. The Distributor then routes it to the first available worker.
 
 snippet:SendLocal
 
-When in context of processing a message sent directly or when called from outside of a message handler, it routes the message to the local queue of processing instance.
+When a message was sent directly or when it was called from outside of a message handler, the message is routed to the local queue of processing instance.
 
 
 ### Defer
 
-[Deferring a message](/nservicebus/messaging/delayed-delivery.md) to the local endpoint, when in context of processing a message sent via a Distributor, creates a pending timeout with destination set to the Distributor's queue. When that timeout is due, the message is sent back to the Distributor which routes it to the fist available worker.
+[Deferring a message](/nservicebus/messaging/delayed-delivery.md) to the local endpoint when processing a message sent via a Distributor, creates a pending timeout with destination set to the Distributor's queue. When that timeout is due, the message is sent back to the Distributor. The Distributor then routes it to the first available worker.
 
 snippet:Defer
 
 
 ### ReplyTo
 
-Sending a message, when in context of processing a message sent via a Distributor, sets the [reply to](/nservicebus/messaging/routing.md#reply-routing) header to the Distributor's queue. 
+Sending a message when processing a message sent via a Distributor, sets the [reply to](/nservicebus/messaging/routing.md#reply-routing) header to the Distributor's queue. 
 
 snippet:Reply
 
-When other endpoint replies to such message, the reply is routed to the Distributor which routes it to the first available worker.
+When another endpoint replies to such message, the reply is routed to the Distributor. The Distributor then routes it to the first available worker.
 
 
 ### Delayed retries
 
 snippet:DelayedRetry
 
-Moving a message to delayed retries in MSMQ uses the same mechanism as message deferrals mentioned above. In this case, however, the runtime context (if the messages has been sent via Distributor) is ignored. The message is always deferred to the Distributor queue if the endpoint is configured to enlist with the Distributor.
+Moving a message to delayed retries in MSMQ uses the same mechanism as message deferrals mentioned above. However, the behaviour is identical for messages sent via Distributor and others. The message is always deferred to the Distributor queue if the endpoint is configured to enlist with the Distributor.
 
 snippet:Enlisting
 
