@@ -30,9 +30,9 @@ class Program
         Run(endpointConfiguration).GetAwaiter().GetResult();
     }
 
-    static async Task Run(EndpointConfiguration busConfiguration)
+    static async Task Run(EndpointConfiguration endpointConfiguration)
     {
-        var endpointInstance = await Endpoint.Start(busConfiguration)
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
         Console.WriteLine("Press 'A' to send a valid message or 'B' to send an invalid one.");
@@ -43,7 +43,7 @@ class Program
             Console.WriteLine();
 
             var orderId = Guid.NewGuid();
-            if (key.Key  == ConsoleKey.A)
+            if (key.Key == ConsoleKey.A)
             {
                 var placeOrder = new PlaceOrder
                 {
