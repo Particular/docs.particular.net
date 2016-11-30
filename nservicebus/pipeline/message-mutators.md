@@ -2,14 +2,14 @@
 title: Message Mutators
 summary: Message Mutators allow mutation of messages in the pipeline
 component: Core
-reviewed: 2016-08-23
+reviewed: 2016-12-01
 tags:
-- Mutator
+ - Mutator
 redirects:
-- nservicebus/pipeline-management-using-message-mutators
+ - nservicebus/pipeline-management-using-message-mutators
 related:
-- samples/messagemutators
-- nservicebus/messaging/headers
+ - samples/messagemutators
+ - nservicebus/messaging/headers
 ---
 
 Message Mutators allow mutation of messages in the pipeline.
