@@ -16,7 +16,7 @@ In order to increase message throughput, the Azure Service Bus batches operation
 
 Batching store operations should be disabled for low throughput scenarios requiring low latency.
 
-Batching store operations is enabled by default. In order to disable it, set `EnableBatching(false)` on [queues](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-queues), [topics](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-topics), and [subscriptions](/nservicebus/azure-service-bus/configuration/full.md#Subscriptions).
+Batching store operations is enabled by default. In order to disable it, set `EnableBatching(false)` on [queues](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-queues), [topics](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-topics), and [subscriptions](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-subscriptions).
 
 
 ## Client-side batching

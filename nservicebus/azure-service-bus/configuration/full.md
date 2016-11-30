@@ -29,7 +29,7 @@ A topology defines what the underlying layout of Azure Service Bus messaging ent
 ### Forwarding Topology
 
 
-The [Forwarding Topology](/nservicebus/azure-service-bus/topologies/#version-7-and-above-forwarding-topology) defines a queue per endpoint and a shared set of topics to do the publishing. It can be configured using the following settings:
+The [Forwarding Topology](/nservicebus/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology) defines a queue per endpoint and a shared set of topics to do the publishing. It can be configured using the following settings:
 
  * `NumberOfEntitiesInBundle(int)`: The number of topics in the bundle, defaults to 2.
  * `BundlePrefix(string)`: The prefix used in the entity name to differentiate entities from the bundle from other entities.
@@ -49,7 +49,7 @@ The topology will create entities it needs, based on the following settings:
 
  * `Queues()`: Settings for queues.
  * `Topics()`: Settings for topics.
- * `Subscriptions()`: Settings for subscriptions.
+ * `()`: Settings for subscriptions.
 
 
 ### Queues
