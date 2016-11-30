@@ -2,14 +2,14 @@
 title: Message Mutators
 summary: Message Mutators allow mutation of messages in the pipeline
 component: Core
-reviewed: 2016-08-23
+reviewed: 2016-12-01
 tags:
-- Mutator
+ - Mutator
 redirects:
-- nservicebus/pipeline-management-using-message-mutators
+ - nservicebus/pipeline-management-using-message-mutators
 related:
-- samples/messagemutators
-- nservicebus/messaging/headers
+ - samples/messagemutators
+ - nservicebus/messaging/headers
 ---
 
 Message Mutators allow mutation of messages in the pipeline.
@@ -71,7 +71,7 @@ NOTE: Mutators are non-deterministic in terms of order of execution. If more fin
 
 ## When a mutator throws an exception
 
-If a incoming throws an exception, the message aborts, rolls back to the queue, and [recoverability](/nservicebus/recoverability/) is applied.
+If a incoming mutator throws an exception, the message aborts, rolls back to the queue, and [recoverability](/nservicebus/recoverability/) is applied.
 
 If a outgoing mutator throws an exception, the exception bubbles up to the method performing the Send or Publish.
 

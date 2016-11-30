@@ -3,7 +3,7 @@ title: Manipulate Pipeline with Behaviors
 summary: Manipulating the message handling pipeline with Behaviors
 component: Core
 versions: '[4.0,)'
-reviewed: 2016-08-24
+reviewed: 2016-12-01
 tags:
 - Pipeline
 related:
@@ -14,7 +14,7 @@ redirects:
 - nservicebus/pipeline/customizing-v6
 ---
 
-NServiceBus pipelines are made up of a group of steps acting on the same level of abstraction. This allows scenarios such as
+Pipelines are made up of a group of steps acting on the same level of abstraction. This allows scenarios such as
 
  * Defining a step that works with the "incoming physical" message before it has been deserialized.
  * Defining a step that is executed before and after each handler invocation (remember: there can be multiple message handlers per message).
@@ -44,7 +44,7 @@ Note: Steps can also be registered from a [Feature](features.md).
 
 ## Exception Handling
 
-Exceptions thrown from a behaviors `Invoke` method bubble up the chain. If the exception is not handled by a behavior, the message is considered as faulted which results in putting the message back in the queue (and rolling back the transaction) or moving it to the error queue (depending on the endpoint configuration).
+Exceptions thrown from a behavior's `Invoke` method bubble up the chain. If the exception is not handled by a behavior, the message is considered as faulted which results in putting the message back in the queue (and rolling back the transaction) or moving it to the error queue (depending on the endpoint configuration).
 
 
 partial: messagedeserializationexception
