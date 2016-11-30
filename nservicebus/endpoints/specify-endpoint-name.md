@@ -21,7 +21,7 @@ snippet:EndpointNameCode
 See also:
  
  * [Specify Endpoint Name in NServiceBus Host](/nservicebus/hosting/nservicebus-host/#specify-endpoint-name)
- * [Specify Endpoint Name in Azure Cloud Services](/nservicebus/hosting/cloud-services-host/#specify-endpoint-name)
+ * [Configure an Endpoint in Azure Cloud Services](/nservicebus/hosting/cloud-services-host/configuration#configuring-an-endpoint)
 
 
 ## Input queue

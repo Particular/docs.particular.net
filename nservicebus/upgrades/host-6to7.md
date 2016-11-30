@@ -22,7 +22,7 @@ snippet: 6to7customize_nsb_host
 
 An interface called [`IWantToRunWhenEndpointStartsAndStops`](/nservicebus/hosting/nservicebus-host/) has been added. This interface replaces the [`IWantToRunWhenBusStartsAndStops`](/nservicebus/lifecycle/endpointstartandstop.md) in the NServiceBus core.
 
-DANGER: The `Start` and `Stop` methods will block start up and shut down of the endpoint. For more details, read: [Host Start Up Behavior](/nservicebus/hosting/nservicebus-host/#startup-behavior).
+DANGER: The `Start` and `Stop` methods will block start up and shut down of the endpoint.
 
 
 ### Interface in Version 5 of NServiceBus

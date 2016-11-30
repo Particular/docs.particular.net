@@ -114,7 +114,7 @@ A "Custom Host" refers to a process or library that wraps the NServiceBus librar
 
 ### NServiceBus Host
 
-The [NServiceBus Host](/nservicebus/hosting/nservicebus-host/) takes a more opinionated approach to hosting. It allows the execution as both a windows service and a console application (for development). It also adds the concepts of [Profiles](/nservicebus/hosting/nservicebus-host/profiles.md) and [Custom installation](/nservicebus/hosting/nservicebus-host/#installation).
+The [NServiceBus Host](/nservicebus/hosting/nservicebus-host/) takes a more opinionated approach to hosting. It allows the execution as both a windows service and a console application (for development). It also adds the concepts of [Profiles](/nservicebus/hosting/nservicebus-host/profiles.md) and [Custom installation](/nservicebus/hosting/nservicebus-host/installation.md).
 
 Related:
 
