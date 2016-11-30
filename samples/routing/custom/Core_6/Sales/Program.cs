@@ -23,8 +23,7 @@ class Program
 
         #region EnableAutomaticRouting
 
-        var automaticRouting = endpointConfiguration.EnableAutomaticRouting(AutomaticRoutingConst.ConnectionString);
-        automaticRouting.AdvertisePublishing(typeof(OrderAccepted));
+        endpointConfiguration.EnableAutomaticRouting(AutomaticRoutingConst.ConnectionString);
 
         #endregion
 

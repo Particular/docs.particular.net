@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutomaticRoutingConst.cs" />
-    <Compile Include="AutomaticRouting\AdvertisePublishingSettings.cs" />
     <Compile Include="AutomaticRouting\AutomaticRoutingFeature.cs" />
     <Compile Include="AutomaticRouting\Installer.cs" />
     <Compile Include="AutomaticRouting\RoutingInfoCommunicator.cs" />
@@ -54,7 +53,6 @@
     <Compile Include="AutomaticRouting\RoutingInfoPublisher.cs" />
     <Compile Include="AutomaticRouting\RoutingInfoSubscriber.cs" />
     <Compile Include="AutomaticRouting\InstanceState.cs" />
-    <Compile Include="AutomaticRouting\VerifyAdvertisedBehavior.cs" />
     <Compile Include="Messages\OrderAccepted.cs" />
     <Compile Include="Messages\PlaceOrder.cs" />
     <Compile Include="AutomaticRouting\SqlDataAccess.cs" />
