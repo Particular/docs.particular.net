@@ -585,6 +585,8 @@
         Title: RavenDB Client Versions
       - Url: nservicebus/ravendb/reroute-existing-timeouts
         Title: Reroute Existing Timeouts
+      - Url: nservicebus/ravendb/subscription-versioning
+        Title: Subscription versioning
       - Url: nservicebus/ravendb/licensing
         Title: Licensing
     - Url: nservicebus/azure-storage-persistence
