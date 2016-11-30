@@ -50,7 +50,7 @@ Where the value is convertible to a `TimeSpan` value. The above sample is settin
 partial: intervalCode
 
 
-When configuring heartbeat interval, ensure ServiceControl setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrol-heartbeatgraceperiod) is greater than the heartbeat interval.
+When configuring heartbeat interval, ensure ServiceControl setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) is greater than the heartbeat interval.
 
 
 ### Time-To-Live (TTL)

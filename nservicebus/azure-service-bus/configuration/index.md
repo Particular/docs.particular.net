@@ -41,7 +41,7 @@ There have historically been regular changes to the physical addressing logic, f
  * [`NamespacePartitioning()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-namespace-partitioning)
  * [`Composition()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-composition)
  * [`Sanitization()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-sanitization)
- * [`Individualization()`](/nservicebus/azure-service-bus/configuration/full.md#physical-addressing-logic-individiualization)
+ * [`Individualization()`](/nservicebus/azure-service-bus/addressing-logic.md#individualization)
 
 
 ## AzureServiceBusQueueConfig

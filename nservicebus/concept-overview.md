@@ -73,7 +73,7 @@ A Message Handler (sometimes referred as a "Handler") is a piece of code that pr
 A Saga can be thought of as a long running Handler that handles multiple Messages and shared state. It is the NServiceBus equivalent of a [Process Manager](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) pattern.
 
 
-### [Timeout](/nservicebus/sagas/#timeouts)
+### [Timeout](/nservicebus/sagas/timeouts.md)
 
 A Timeout is a message a Saga sends to its future self to indicate the fact that some action needs to be performed. A timeout can contain state which provides the context for that action.
 

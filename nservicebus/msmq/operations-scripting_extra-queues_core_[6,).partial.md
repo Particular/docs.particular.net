@@ -1,1 +1,1 @@
-NOTE: It may be necessary to script the creation of extra instance specific queues. For example when using [Callbacks](/nservicebus/messaging/callbacks.md#message-routing) or scale out based on [Client Side Dynamic Routing](/samples/scaleout/senderside/#code-walk-through-server1-and-server2-instance-id).
+NOTE: It may be necessary to script the creation of extra instance specific queues. For example when using [Callbacks](/nservicebus/messaging/callbacks.md#message-routing) or scale out based on [Sender Side Distribution](/samples/scaleout/senderside/).

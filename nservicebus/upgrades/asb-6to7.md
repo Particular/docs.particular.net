@@ -17,7 +17,7 @@ In Versions 7 and above the topology selection is mandatory:
 
 snippet:topology-selection-upgrade-guide
 
-The [`EndpointOrientedTopology`](/nservicebus/azure-service-bus/topologies/#version-7-and-above-endpoint-oriented-topology)  is backward compatible with versions 6 and below of the transport. The [`ForwardingTopology`](/nservicebus/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology) is the recommended option for new projects.
+The [`EndpointOrientedTopology`](/nservicebus/azure-service-bus/topologies/#versions-7-and-above-endpoint-oriented-topology)  is backward compatible with versions 6 and below of the transport. The [`ForwardingTopology`](/nservicebus/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology) is the recommended option for new projects.
 
 When selecting `EndpointOrientedTopology`, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers are subscribed to the correct publisher:
 

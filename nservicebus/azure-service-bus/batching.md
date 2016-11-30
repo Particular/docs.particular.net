@@ -16,12 +16,12 @@ In order to increase message throughput, the Azure Service Bus batches operation
 
 Batching store operations should be disabled for low throughput scenarios requiring low latency.
 
-Batching store operations is enabled by default. In order to disable it, set `EnableBatching(false)` on [queues](/nservicebus/azure-service-bus/configuration/full.md#Queues), [topics](/nservicebus/azure-service-bus/configuration/full.md#Topics), and [subscriptions](/nservicebus/azure-service-bus/configuration/full.md#Subscriptions).
+Batching store operations is enabled by default. In order to disable it, set `EnableBatching(false)` on [queues](/nservicebus/azure-service-bus/configuration/full.md#Queues), [topics](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-topics), and [subscriptions](/nservicebus/azure-service-bus/configuration/full.md#controlling-entities-subscriptions).
 
 
 ## Client-side batching
 
-Client-side batching allows messages, being sent to a queue or topic, to be delayed for a short period of time. Additional messages sent to the same queue or topic within the specified time period will be grouped and transmitted together in a single batch. This setting affects the Azure Service Bus Message Senders and can be configured using [`BatchFlushInterval`](/nservicebus/azure-service-bus/configuration/full.md#messaging-factories). Client-side batching is enabled by default.
+Client-side batching allows messages, being sent to a queue or topic, to be delayed for a short period of time. Additional messages sent to the same queue or topic within the specified time period will be grouped and transmitted together in a single batch. This setting affects the Azure Service Bus Message Senders and can be configured using [`BatchFlushInterval`](/nservicebus/azure-service-bus/configuration/full.md#controlling-connectivity-messaging-factories). Client-side batching is enabled by default.
 
 Batching store operations should be disabled for low throughput scenarios requiring low latency. To do so, set the `BatchFlushInterval` to `TimeSpan.Zero`. For high-throughput scenarios, increase the `BatchFlushInterval`.
 
@@ -30,7 +30,7 @@ Batched store access is only available for asynchronous Send and Complete operat
 
 ## Batching messages sent from a handler
 
-Azure Service Bus optimizes multiple message sends from a handler by batching send operations into a single operation. For example, when a handler is sending multiple messages, Azure Service Bus will batch those and send in as few operations as possible. Size of a batch cannot exceed the maximum size on a `BrokeredMessage`. The maximum message size is configured using [`MaximumMessageSizeInKilobytes`](/nservicebus/azure-service-bus/configuration/full.md#message-senders) setting of the Message Senders.
+Azure Service Bus optimizes multiple message sends from a handler by batching send operations into a single operation. For example, when a handler is sending multiple messages, Azure Service Bus will batch those and send in as few operations as possible. Size of a batch cannot exceed the maximum size on a `BrokeredMessage`. The maximum message size is configured using [`MaximumMessageSizeInKilobytes`](/nservicebus/azure-service-bus/configuration/full.md#controlling-connectivity-message-senders) setting of the Message Senders.
 
 NOTE: `BrokeredMessage` size is different between [tiers](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging) of Azure Service Bus.
 

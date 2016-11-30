@@ -36,7 +36,7 @@ The `MaximumMessageThroughputPerSecond` on the `TransportConfig` class has been 
 
 ## Immediate dispatch
 
-Using a suppressed transaction scope to request sends to be dispatched immediately is still supported. However it is recommend to switch to the new explicit API for [immediate dispatch](/nservicebus/messaging/send-a-message.md#immediate-dispatch).
+Using a suppressed transaction scope to request sends to be dispatched immediately is still supported. However it is recommend to switch to the new explicit API for [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately).
 
 
 ## Batched dispatch
