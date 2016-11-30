@@ -4,12 +4,12 @@ summary: Scale out existing message processing either by using underlying transp
 reviewed: 2016-03-17
 component: Core
 tags:
-- Distributor
-- Scalability
+ - Distributor
+ - Scalability
 related:
-- nservicebus/msmq/scaling-out
-- nservicebus/msmq/sender-side-distribution
-- samples/scaleout/distributor
+ - nservicebus/msmq/scaling-out
+ - nservicebus/msmq/sender-side-distribution
+ - samples/scaleout/distributor
 ---
 
 NOTE: This sample applies only to version 6 and above.
@@ -73,7 +73,7 @@ Start the solution with all the console applications (`Server1`, `Server2`, `Una
 
 Go to the `UnawareClient` console an press enter a few times. `Message received.` will printed out on `Server1` and `Server2` consoles. These messages seem to be routed randomly to either of the servers and there are cases when a number of consecutive messages end up in a single server (consequence of randomness). This is because the unaware client uses the queue shared by both servers and the message is processed by the first one that retrieves it from the underlying queue.
 
-WARN: The competing consumers scale out approach only works with all scaled out receivers running on the same machine.
+WARNING: The competing consumers scale out approach only works with all scaled out receivers running on the same machine.
 
 
 ### Round robin
