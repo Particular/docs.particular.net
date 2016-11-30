@@ -37,8 +37,9 @@ class Program
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
 
-        transport.Routing().RouteToEndpoint(typeof(OrderAccepted).Assembly, "Samples.SQLNHibernateOutboxEF.Sender");
-        transport.Routing().RegisterPublisher(typeof(OrderAccepted).Assembly, "Samples.SQLNHibernateOutboxEF.Sender");
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(typeof(OrderAccepted).Assembly, "Samples.SQLNHibernateOutboxEF.Sender");
+        routing.RegisterPublisher(typeof(OrderAccepted).Assembly, "Samples.SQLNHibernateOutboxEF.Sender");
 
         transport.DefaultSchema("receiver");
 
