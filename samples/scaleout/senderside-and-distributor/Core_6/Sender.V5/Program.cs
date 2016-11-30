@@ -23,7 +23,7 @@ class Program
 
         using (var bus = Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("Press 'A' to send a valid message or 'B' to send invalid one.");
+            Console.WriteLine("Press 'A' to send a valid message or 'B' to send an invalid one.");
             Console.WriteLine("Press any other key to exit.");
             while (true)
             {

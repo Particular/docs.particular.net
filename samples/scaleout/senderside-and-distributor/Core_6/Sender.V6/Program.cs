@@ -35,7 +35,7 @@ class Program
         var endpointInstance = await Endpoint.Start(busConfiguration)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Press 'A' to send a valid message or 'B' to send invalid one.");
+        Console.WriteLine("Press 'A' to send a valid message or 'B' to send an invalid one.");
         Console.WriteLine("Press any other key to exit.");
         while (true)
         {
@@ -48,8 +48,7 @@ class Program
                 var placeOrder = new PlaceOrder
                 {
                     OrderId = orderId
-                };
-                await endpointInstance.Send(placeOrder);
+                }).ConfigureAwait(false);
 
                 Console.WriteLine($"Sent PlacedOrder command with order id {orderId}");
             }
@@ -58,8 +57,7 @@ class Program
                 var placeInvalidOrder = new PlaceInvalidOrder
                 {
                     OrderId = orderId
-                };
-                await endpointInstance.Send(placeInvalidOrder);
+                }).ConfigureAwait(false);
 
                 Console.WriteLine($"Sent PlacedOrder command with order id {orderId}");
             }
