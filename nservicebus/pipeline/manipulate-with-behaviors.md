@@ -3,7 +3,7 @@ title: Manipulate Pipeline with Behaviors
 summary: Manipulating the message handling pipeline with Behaviors
 component: Core
 versions: '[4.0,)'
-reviewed: 2016-08-24
+reviewed: 2016-12-01
 tags:
 - Pipeline
 related:
@@ -14,7 +14,7 @@ redirects:
 - nservicebus/pipeline/customizing-v6
 ---
 
-NServiceBus pipelines are made up of a group of steps acting on the same level of abstraction. This allows scenarios such as
+Pipelines are made up of a group of steps acting on the same level of abstraction. This allows scenarios such as
 
  * Defining a step that works with the "incoming physical" message before it has been deserialized.
  * Defining a step that is executed before and after each handler invocation (remember: there can be multiple message handlers per message).
