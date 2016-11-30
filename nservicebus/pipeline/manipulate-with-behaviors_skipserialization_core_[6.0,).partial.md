@@ -8,4 +8,3 @@ To skip serialization implement a behavior that targets `IOutgoingLogicalMessage
 snippet: SkipSerialization
 
 On the receiving side this header can then be extracted from the headers and decisions on the incoming message processing pipeline can be made based on it.
-
