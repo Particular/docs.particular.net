@@ -898,9 +898,8 @@ Avoid personal voice. I.e. no "we", "you", "your", "our" etc.
 
 Avoid ambiguity.
 
-**Versions X and above** and **Versions Y and below** and **Version X to Version Y**.
-
-**Versions X** and NOT **VX** or **version X**.
+ * Range: **Versions X and above** and **Versions Y and below** and **Version X to Version Y**.
+ * Singular: **Version X** and NOT **VX** or **version X**.
 
 
 ## Embedding videos
