@@ -75,6 +75,7 @@
     </Compile>
     <Compile Include="ApprovalTestConfig.cs" />
     <Compile Include="AsyncSuffix\MissingAwaitTests.cs" />
+    <Compile Include="Recoverability.cs" />
     <None Include="Security\Hex.ps1" />
     <None Include="Security\Base64.ps1" />
     <None Include="Security\SecurityHelpers.cs" />

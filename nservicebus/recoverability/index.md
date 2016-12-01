@@ -24,43 +24,9 @@ Recoverability is the built-in error handling capability. Recoverability enables
  * Immediate Retries (previously known as First-Level-Retries)
  * Delayed Retries (previously known as Second-Level-Retries)
 
-An oversimplified mental model for Recoverability could be thought of a try / catch block surrounding the message handling infrastructure wrapped in a for loop like the following pseudo-code
+An oversimplified mental model for Recoverability could be thought of a try / catch block surrounding the message handling infrastructure wrapped in a for loop:
 
-```cs
-static void DelayedRetries() {
-  Exception exception = null;
-  for(var i = 0; i <= MaxNumberOfRetries; i++) {
-    try
-    {
-      ImmediateRetries();
-      exception = null;
-      break;
-    } catch (Exception ex) {
-      exception = ex;
-    }
-  }
-
-  if(exception != null)
-    MoveToError();
-}
-
-static void ImmediateRetries() {
-  Exception exception = null;
-  for(var i = 0; i <= MaxNumberOfRetries; i++) {
-    try
-    {
-      messageHandling.Invoke();
-      exception = null;
-      break;
-    } catch (Exception ex) {
-      exception = ex;
-    }
-  }
-
-  if(exception != null)
-    throw exception;
-}
-```
+snippet: Recoverability-pseudo-code
 
 The reality is more complex. Depending on the transports capabilities, the transactionality mode of the endpoint and user customizations Recoverability tries to recover from message failures. For example on a transactional endpoint it will roll back receive transaction when an exception bubbles through to the NServiceBus infrastructure. The message is then returned to the input queue, and any messages that the user code tried to send or publish won't be sent out. The very least that Recoverability will ensure is that messages which failed multiple times get moved to the configured error queue. The part of Recoverability which is responsible to move failed messages to the error queue is called fault handling.
 
