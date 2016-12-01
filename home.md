@@ -141,7 +141,7 @@ span.blue {
   </div>
   <div class="ic">
     <a href="/samples/" class="rarr">
-      <img src="/home/samples_v1.svg" height="72" width="72"/><br>Samples
+      <img src="/content/images/menu/samples-icon.svg" height="72" width="72"/><br>Samples
     </a>
   </div>
 </div>
