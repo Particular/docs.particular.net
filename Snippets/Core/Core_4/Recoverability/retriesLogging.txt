@@ -1,33 +1,45 @@
 startcode RetryLogging
 
 Handler - Attempt 1
-Info. TransportReceiver. Exception included. Text: Failed to process message.
+Info. TransportReceiver. Exception included.
+	Text: Failed to process message.
 
 Handler - Attempt 2
-Info. TransportReceiver. Exception included. Text: Failed to process message.
+Info. TransportReceiver. Exception included.
+	Text: Failed to process message.
 
 Handler - Attempt 3
-Info. TransportReceiver. Exception included. Text: Failed to process message.
-Warn. FaultManager. Exception omitted. Text: Message with 'messageId' id has failed FLR and will be handed over to SLR for retry attempt 1.
+Info. TransportReceiver. Exception included.
+	Text: Failed to process message.
+Warn. FaultManager. Exception omitted.
+	Text: Message with 'messageId' id has failed FLR and will be handed over to SLR for retry attempt 1.
 
 Handler - Attempt 4
-Info. TransportReceiver. Exception included. Text: Failed to process message.
+Info. TransportReceiver. Exception included.
+	Text: Failed to process message.
 
 Handler - Attempt 5
-Info. TransportReceiver. Exception included. Text: Failed to process message.
+Info. TransportReceiver. Exception included.
+	Text: Failed to process message.
 
 Handler - Attempt 6
-Info. TransportReceiver. Exception included. Text: Failed to process message.
-Warn. FaultManager. Exception omitted. Text: Message with 'messageId' id has failed FLR and will be handed over to SLR for retry attempt 2.
+Info. TransportReceiver. Exception included.
+	Text: Failed to process message.
+Warn. FaultManager. Exception omitted.
+	Text: Message with 'messageId' id has failed FLR and will be handed over to SLR for retry attempt 2.
 
 Handler - Attempt 7
-Type. TransportReceiver. Exception included. Text: Failed to process message.
+Type. TransportReceiver. Exception included.
+	Text: Failed to process message.
 
 Handler - Attempt 8
-Info. TransportReceiver. Exception included. Text: Failed to process message.
+Info. TransportReceiver. Exception included.
+	Text: Failed to process message.
 
 Handler - Attempt 9
-Info. TransportReceiver. Exception included. Text: Failed to process message.
-Warn. FaultManager. Exception omitted. Text: Message with 'messageId' id has failed FLR and will be handed over to SLR for retry attempt 3.
+Info. TransportReceiver. Exception included.
+	Text: Failed to process message.
+Warn. FaultManager. Exception omitted.
+	Text: Message with 'messageId' id has failed FLR and will be handed over to SLR for retry attempt 3.
 
 endcode
