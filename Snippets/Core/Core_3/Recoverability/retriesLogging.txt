@@ -2,64 +2,64 @@ startcode RetryLogging
 
 Handler - Attempt 1
 Warn. UnicastBus. Exception included.
-	Text: MyMessageHandler failed handling message.
+  Text: MyMessageHandler failed handling message.
 Warn. TransactionalTransport. Exception included.
-	Text: Failed raising 'transport message received' event for message with ID=messageId
+  Text: Failed raising 'transport message received' event for message with ID=messageId
 
 Handler - Attempt 2
 Warn. UnicastBus. Exception included.
-	Text: MyMessageHandler failed handling message.
+  Text: MyMessageHandler failed handling message.
 Warn. TransactionalTransport. Exception included.
-	Text: Failed raising 'transport message received' event for message with ID=messageId.
+  Text: Failed raising 'transport message received' event for message with ID=messageId.
 
 Handler - Attempt 3
 Warn. UnicastBus. Exception included.
-	Text: MyMessageHandler failed handling message.
+  Text: MyMessageHandler failed handling message.
 Warn. TransactionalTransport. Exception included.
-	Text: Failed raising 'transport message received' event for message with ID=messageId.
+  Text: Failed raising 'transport message received' event for message with ID=messageId.
 Error. TransactionalTransport. Exception omitted.
-	Text: Message has failed the maximum number of times allowed, ID=messageId.
+  Text: Message has failed the maximum number of times allowed, ID=messageId.
 
 Handler - Attempt 4
 Warn. UnicastBus. Exception included.
-	Text: MyMessageHandler failed handling message.
+  Text: MyMessageHandler failed handling message.
 Warn. TransactionalTransport. Exception included.
-	Text: Failed raising 'transport message received' event for message with ID=messageId.
+  Text: Failed raising 'transport message received' event for message with ID=messageId.
 
 Handler - Attempt 5
 Warn. UnicastBus. Exception included.
-	Text: MyMessageHandler failed handling message.
+  Text: MyMessageHandler failed handling message.
 Warn. TransactionalTransport. Exception included.
-	Text: Failed raising 'transport message received' event for message with ID=messageId.
+  Text: Failed raising 'transport message received' event for message with ID=messageId.
 
 Handler - Attempt 6
 Warn. UnicastBus. Exception included.
-	Text: MyMessageHandler failed handling message.
+  Text: MyMessageHandler failed handling message.
 Warn. TransactionalTransport. Exception included.
-	Text: Failed raising 'transport message received' event for message with ID=messageId.
+  Text: Failed raising 'transport message received' event for message with ID=messageId.
 Error. TransactionalTransport. Exception omitted.
-	Text: Message has failed the maximum number of times allowed, ID=messageId.
+  Text: Message has failed the maximum number of times allowed, ID=messageId.
 
 Handler - Attempt 7
 Warn. UnicastBus. Exception included.
-	Text: MyMessageHandler failed handling message.
+  Text: MyMessageHandler failed handling message.
 Warn. TransactionalTransport. Exception included.
-	Text: Failed raising 'transport message received' event for message with ID=messageId.
+  Text: Failed raising 'transport message received' event for message with ID=messageId.
 
 Handler - Attempt 8
 Warn. UnicastBus. Exception included.
-	Text: MyMessageHandler failed handling message. 
+  Text: MyMessageHandler failed handling message. 
 Warn. TransactionalTransport. Exception included.
-	Text: Failed raising 'transport message received' event for message with ID=messageId.
+  Text: Failed raising 'transport message received' event for message with ID=messageId.
 
 Handler - Attempt 9
 Warn. UnicastBus. Exception included.
-	Text: MyMessageHandler failed handling message.
+  Text: MyMessageHandler failed handling message.
 Warn. TransactionalTransport. Exception included.
-	Text: Failed raising 'transport message received' event for message with ID=messageId.
+  Text: Failed raising 'transport message received' event for message with ID=messageId.
 Error. TransactionalTransport. Exception omitted.
-	Text: Message has failed the maximum number of times allowed, ID=messageId.
+  Text: Message has failed the maximum number of times allowed, ID=messageId.
 Info.  SecondLevelRetries. Exception omitted.
-	Text: Send message to error queue, error@machine
+  Text: Send message to error queue, error@machine
  
 endcode
