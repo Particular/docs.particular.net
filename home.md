@@ -159,7 +159,7 @@ span.blue {
   <div class="row">
     <div class="col-md-6">
       <a href="/platform/">
-        <img src="/home/platform_v1.svg" width="36" height="36"/>
+        <img src="/content/images/particular_v1.svg" width="36" height="36"/>
         <h3>Service Platform Overview</h3>
       </a>
       <p>A short and high level overview of the Platform</p>
