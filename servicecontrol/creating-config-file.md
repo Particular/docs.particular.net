@@ -257,6 +257,9 @@ Type: string
 
 Default: `<ErrorQueue>.log`
 
+Version 1.28 and below created the queue specified by this setting when the service instance is installed regardless of the value of `ServiceControl/ForwardErrorMessages`.  From V1.29 the queue is only created if `ServiceControl/ForwardErrorMessages` is enabled. 
+
+NOTE: Changing the configuration file directly will not result in the queue being created. Please use the ServiceControl Management tools. 
 
 #### ServiceBus/AuditLogQueue
 
@@ -266,6 +269,9 @@ Type: string
 
 Default: `<AuditQueue>.log`
 
+Version 1.28 and below created the queue specified by this setting when the service instance is installed regardless of the value of  `ServiceControl/ForwardAuditMessages`. From V1.29 the queue is only created if `ServiceControl/ForwardAuditMessages` is enabled.
+
+NOTE: Changing the configuration file directly will not result in the queue being created. Please use the ServiceControl Management tools. 
 
 #### ServiceControl/ForwardAuditMessages
 
