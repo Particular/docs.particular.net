@@ -12,10 +12,11 @@
         Title: Messaging Basics
     - Url: samples
       Title: Samples
+      Articles:
       - Url: samples/step-by-step
-        Title: Step by Step Sample
+        Title: Step by Step
       - Url: samples/endpoint-configuration
-        Title: Endpoint configuration choices
+        Title: Configuration choices
     - Url: nservicebus/concept-overview
       Title: Concepts
     - Url: nservicebus/licensing
