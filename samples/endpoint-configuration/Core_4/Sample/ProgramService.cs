@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Installation.Environments;
@@ -10,6 +11,7 @@ using log4net.Core;
 using log4net.Layout;
 using NServiceBus.Logging;
 
+[DesignerCategory("Code")]
 class ProgramService :
     ServiceBase
 {

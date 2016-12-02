@@ -1,12 +1,14 @@
 ﻿namespace Core3
 {
     using System;
+    using System.ComponentModel;
     using System.ServiceProcess;
     using NServiceBus;
     using NServiceBus.Installation.Environments;
 
     #region windowsservicehosting
 
+    [DesignerCategory("Code")]
     class ProgramService :
         ServiceBase
     {

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Installation.Environments;
 using System.ServiceProcess;
 
+[DesignerCategory("Code")]
 class ProgramService :
     ServiceBase
 {

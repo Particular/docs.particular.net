@@ -1,8 +1,10 @@
 using System;
+using System.ComponentModel;
 using System.ServiceProcess;
 using System.Threading.Tasks;
 using NServiceBus;
 
+[DesignerCategory("Code")]
 class ProgramService :
     ServiceBase
 {

@@ -1,12 +1,14 @@
 ﻿namespace Core4
 {
     using System;
+    using System.ComponentModel;
     using NServiceBus;
     using NServiceBus.Installation.Environments;
     using System.ServiceProcess;
 
     #region windowsservicehosting
 
+    [DesignerCategory("Code")]
     class ProgramService :
         ServiceBase
     {

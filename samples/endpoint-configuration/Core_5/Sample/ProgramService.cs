@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.ServiceProcess;
 using Autofac;
 using log4net.Appender;
@@ -10,6 +11,7 @@ using NServiceBus.Log4Net;
 using NServiceBus.Logging;
 using NServiceBus.Persistence;
 
+[DesignerCategory("Code")]
 class ProgramService :
     ServiceBase
 {

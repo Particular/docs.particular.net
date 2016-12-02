@@ -1,11 +1,13 @@
 namespace Core5
 {
     using System;
+    using System.ComponentModel;
     using System.ServiceProcess;
     using NServiceBus;
 
     #region windowsservicehosting
 
+    [DesignerCategory("Code")]
     class ProgramService :
         ServiceBase
     {
