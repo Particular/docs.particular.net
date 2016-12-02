@@ -1,5 +1,5 @@
 ---
-title: Moving to NServiceBus.DataBus.AzureBlobStorage package
+title: Moving to the DataBus AzureBlobStorage package
 summary: Instructions on how to move from the NServiceBus.Azure package to the NServiceBus.DataBus.AzureBlobStorage package.
 reviewed: 2016-11-05
 tags:
