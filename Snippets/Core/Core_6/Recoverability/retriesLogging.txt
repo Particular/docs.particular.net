@@ -42,7 +42,7 @@ Info  NServiceBus.RecoverabilityExecutor.
 
 Handler - Attempt 11
 Info  NServiceBus.RecoverabilityExecutor.
-  Text: Immediate Retries is going to retry message 'messageId' because of an exception:
+  Text: Immediate Retry is going to retry message 'messageId' because of an exception:
 
 Handler - Attempt 12
 Error NServiceBus.RecoverabilityExecutor.
