@@ -179,9 +179,7 @@
     <Compile Include="Headers\Writers\HeaderWriterEncryption.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDataBusProperty.cs" />
     <Compile Include="Headers\WriteSaga.cs" />
-    <Compile Include="ProgramService.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ProgramService.cs" />
     <Compile Include="ImmediateDispatch\Usage.cs" />
     <Compile Include="InstallSomething.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />

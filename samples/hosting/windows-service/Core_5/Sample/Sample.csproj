@@ -39,9 +39,7 @@
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />
-    <Compile Include="ProgramService.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ProgramService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

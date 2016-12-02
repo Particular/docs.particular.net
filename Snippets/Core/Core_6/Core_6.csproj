@@ -232,9 +232,7 @@
     <Compile Include="Headers\StaticHeaders.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="CriticalErrors.cs" />
-    <Compile Include="ProgramService.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ProgramService.cs" />
     <Compile Include="ImmediateDispatch\Usage.cs" />
     <Compile Include="Installers.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />

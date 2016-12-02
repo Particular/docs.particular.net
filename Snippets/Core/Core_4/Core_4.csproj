@@ -103,9 +103,7 @@
     <Compile Include="Headers\ReadSaga.cs" />
     <Compile Include="Headers\WriteSaga.cs" />
     <Compile Include="MessageIdentity\MessageIdFromMessageMutator.cs" />
-    <Compile Include="ProgramService.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ProgramService.cs" />
     <Compile Include="ImmediateDispatch\Usage.cs" />
     <Compile Include="Mutators\Instance\MutateIncomingMessages.cs" />
     <Compile Include="Mutators\Instance\MutateOutgoingMessages.cs" />
