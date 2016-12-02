@@ -209,6 +209,17 @@
   NugetOrder:
     - NServiceBus.EventStore
 
+- Key: RawMessaging
+  Name: NServiceBus raw messaging
+  DocoUrl: nservicebus/rawmessaging
+  GitHubOwner: SzymonPobiega
+  Category: Other
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.Raw/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.Raw
+  NugetOrder:
+    - NServiceBus.Raw
+
 - Key: Gateway
   Name: Gateway
   DocoUrl: nservicebus/gateway
