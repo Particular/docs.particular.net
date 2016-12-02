@@ -5,25 +5,27 @@
     Articles:
     - Url: platform
       Title: Service Platform
-    - Url: nservicebus/architecture/principles
-      Title: Architectural Principles
-    - Url: nservicebus/architecture
-      Title: Bus vs. Broker
-    - Url: samples/step-by-step
-      Title: Step by Step Sample
-    - Url: nservicebus/concept-overview
-      Title: Concepts
-    - Url: samples/endpoint-configuration
-      Title: Endpoint configuration choices
-    - Url: nservicebus/licensing
-      Title: License
-    - Url: components
-      Title: Extensions
     - Url: tutorials
       Title: Tutorials
       Articles:
       - Url: tutorials/nservicebus-101
         Title: Messaging Basics
+    - Url: samples
+      Title: Samples
+      - Url: samples/step-by-step
+        Title: Step by Step Sample
+      - Url: samples/endpoint-configuration
+        Title: Endpoint configuration choices
+    - Url: nservicebus/concept-overview
+      Title: Concepts
+    - Url: nservicebus/licensing
+      Title: License
+    - Url: components
+      Title: Extensions
+    - Url: nservicebus/architecture/principles
+      Title: Architectural Principles
+    - Url: nservicebus/architecture
+      Title: Bus vs. Broker
   - Url: nservicebus/upgrades
     Title: Upgrade Guides
     Articles:
