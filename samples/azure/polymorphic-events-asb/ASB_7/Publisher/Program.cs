@@ -15,7 +15,7 @@ class Program
         Console.Title = "Samples.ASB.Polymorphic.Publisher";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Polymorphic.Publisher");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.UseTopology<EndpointOrientedTopology>();
+        transport.UseEndpointOrientedTopology();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
