@@ -24,7 +24,7 @@ class Program
         {
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString2' environment variable. Check the sample prerequisites.");
         }
-        transport.UseTopology<ForwardingTopology>();
+        transport.UseForwardingTopology();
 
         #region CustomPartitioning
 
