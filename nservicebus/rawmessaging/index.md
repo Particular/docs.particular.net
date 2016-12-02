@@ -7,7 +7,7 @@ tags:
  - Messaging
 ---
 
-NServiceBus.Raw allows sending and receiving raw messages using NServiceBus transport infrastructure. NServiceBus to messaging is like Nissan Patrol to off-roading -- a full-featured and mature tool that has all the things one might ever need. NServiceBus.Raw, on the other hand, is like an off-road buggy. It has the same Nissan Patrol super-durable axles and engine but offers no ammenities other than a chair and a steering wheel.
+NServiceBus.Raw allows sending and receiving raw messages using NServiceBus transport infrastructure. It does not offer the rich APIs and powerful features of full NServiceBus but in exchange offers complete freedom in terms of message manipulation.
 
 ## Configuration
 
