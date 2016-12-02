@@ -63,7 +63,7 @@ class Usage
         #region publisher_names_mapping_by_message_type
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var topology = transport.UseTopology<EndpointOrientedTopology>();
+        var topology = transport.UseEndpointOrientedTopology();
         topology.RegisterPublisher(typeof(MyMessage), "publisherName");
 
         #endregion
@@ -74,7 +74,7 @@ class Usage
         #region publisher_names_mapping_by_assembly
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var topology = transport.UseTopology<EndpointOrientedTopology>();
+        var topology = transport.UseEndpointOrientedTopology();
         var messagesAssembly = Assembly.LoadFrom("path/to/assembly/containing/messages");
         topology.RegisterPublisher(messagesAssembly, "publisherName");
 
@@ -86,7 +86,7 @@ class Usage
         #region publisher_names_mapping_upgrade_guide
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var topology = transport.UseTopology<EndpointOrientedTopology>();
+        var topology = transport.UseEndpointOrientedTopology();
 
         topology.RegisterPublisher(typeof(MyMessage), "publisherName");
         // OR
@@ -106,9 +106,9 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
-        transport.UseTopology<ForwardingTopology>();
+        transport.UseForwardingTopology();
         // OR
-        transport.UseTopology<EndpointOrientedTopology>();
+        transport.UseEndpointOrientedTopology();
 
         #endregion
     }
@@ -198,6 +198,8 @@ class Usage
 
     void IncomingBrokeredMessageBody(EndpointConfiguration endpointConfiguration)
     {
+#pragma warning disable 618
+
         #region asb-incoming-message-convention
 
         var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
@@ -205,12 +207,15 @@ class Usage
         transportConfig.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
         // OR
         transportConfig.UseBrokeredMessageToIncomingMessageConverter<CustomIncomingMessageConversion>();
-
         #endregion
+#pragma warning restore 618
+
     }
 
     void OutgoingBrokeredMessageBody(EndpointConfiguration endpointConfiguration)
     {
+#pragma warning disable 618
+
         #region asb-outgoing-message-convention
 
         var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
@@ -220,9 +225,11 @@ class Usage
         transportConfig.UseOutgoingMessageToBrokeredMessageConverter<CustomOutgoingMessageConversion>();
 
         #endregion
+#pragma warning restore 618
     }
 
 
+#pragma warning disable 618
     public class CustomIncomingMessageConversion : IConvertBrokeredMessagesToIncomingMessages
     {
         public IncomingMessageDetails Convert(BrokeredMessage brokeredMessage)
@@ -238,4 +245,5 @@ class Usage
             throw new NotImplementedException();
         }
     }
+#pragma warning restore 618
 }

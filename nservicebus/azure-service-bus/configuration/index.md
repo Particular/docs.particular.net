@@ -12,7 +12,7 @@ In order to setup a basic endpoint using the Azure Service Bus transport the fol
 snippet:AzureServiceBusTransportGettingStarted
 
  * `UseTransport<AzureServiceBusTransport>()`: Enables the Azure Service Bus transport.
- * `UseTopology<ForwardingTopology>()`: Defines what the underlying layout of Azure Service Bus messaging entities looks like.
+ * `UseForwardingTopology()`: Defines what the underlying layout of Azure Service Bus messaging entities looks like.
  * `ConnectionString()`: Specifies the connection string of the Azure Service Bus namespace to be used by the transport.
  * `UsePersistence<InMemoryPersistence>()`: The Azure Service Bus transport has no dependency on persistence, so the in memory one will be sufficient. If there is a need to use sagas, one of the other persister implementations needs to be provided.
 
@@ -22,7 +22,7 @@ In Versions 7 and above, the Azure Service Bus transport has an extensive, code-
 
 The configuration API provides fine grained access to the behavior of different layers in the transport.
 
- * `UseTopology<T>()` controls how NServiceBus will lay out entities in the Azure Service Bus namespace.
+ * Choosing topology controls how NServiceBus will lay out entities in the Azure Service Bus namespace.
 
 In order to control the creation of these entities, the API provides direct access to the underlying configuration description objects through the following extension methods.
 
