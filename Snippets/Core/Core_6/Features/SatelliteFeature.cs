@@ -19,7 +19,6 @@
             context.AddSatelliteReceiver(
                 name: "MyCustomSatellite",
                 transportAddress: "targetQueue",
-                requiredTransportTransactionMode: TransportTransactionMode.TransactionScope,
                 runtimeSettings: PushRuntimeSettings.Default,
                 recoverabilityPolicy: (config, errorContext) =>
                 {
