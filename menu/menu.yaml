@@ -19,8 +19,8 @@
       Title: License
     - Url: components
       Title: Extensions
-    - Url: Tutorials
-      Title: tutorials
+    - Url: tutorials
+      Title: Tutorials
       Articles:
       - Url: tutorials/nservicebus-101
         Title: Messaging Basics
