@@ -2,22 +2,24 @@
 using NServiceBus;
 
 #region 5to6-EndpointStartAndStopCloudHost
-// Use this in NServiceBus.Host or NServiceBus.Host.AzureCloudService
-public class Bootstrapper :
-    IWantToRunWhenEndpointStartsAndStops
+namespace CloudServicesHost_7.Core5to6
 {
-    public Task Start(IMessageSession session)
+    public class Bootstrapper :
+        IWantToRunWhenEndpointStartsAndStops
     {
-        // Do startup actions here.
-        // Either mark Start method as async or do the following
-        return Task.CompletedTask;
-    }
+        public Task Start(IMessageSession session)
+        {
+            // Do startup actions here.
+            // Either mark Start method as async or do the following
+            return Task.CompletedTask;
+        }
 
-    public Task Stop(IMessageSession session)
-    {
-        // Do cleanup actions here.
-        // Either mark Stop method as async or do the following
-        return Task.CompletedTask;
+        public Task Stop(IMessageSession session)
+        {
+            // Do cleanup actions here.
+            // Either mark Stop method as async or do the following
+            return Task.CompletedTask;
+        }
     }
 }
 #endregion

@@ -48,6 +48,7 @@
     <Compile Include="Profiles\DefiningProfile.cs" />
     <Compile Include="Profiles\DependentProfile.cs" />
     <Compile Include="ScanningPublicApi.cs" />
+    <Compile Include="StartupInterface.cs" />
     <Compile Include="UpgradeGuides\6to7\CustomizingHost.cs" />
     <Compile Include="UpgradeGuides\Core5to6\StartupInterface.cs" />
   </ItemGroup>

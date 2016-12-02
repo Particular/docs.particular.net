@@ -80,6 +80,7 @@
     <Compile Include="Definitions.cs" />
     <Compile Include="EndpointNameInCode.cs" />
     <Compile Include="HostingAndConfiguration.cs" />
+    <Compile Include="StartupInterface.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <ItemGroup>

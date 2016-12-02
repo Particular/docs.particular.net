@@ -40,6 +40,7 @@ snippet:AzureServiceBusTransportWithAzureHost
 
 Partial: Worker
 
+
 ## Cloud Services - Web Roles
 
 Next to worker roles, cloud services also has a role type called 'Web Roles'. These are worker roles which have IIS configured properly, this means that they run a worker role process (the entry point is in `webrole.cs`) and an IIS process on the same codebase.
@@ -52,3 +53,8 @@ snippet:HostingInWebRole
 
 Partial: Web
 
+
+## When Endpoint Instance Starts and Stops
+
+
+snippet: CloudServicesStartAndStop
