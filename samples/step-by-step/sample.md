@@ -1,9 +1,7 @@
 ---
-title: Step by Step Guide
+title: Step by Step Sample
 reviewed: 2016-07-13
 component: Core
-redirects:
-- nservicebus/nservicebus-step-by-step-guide
 ---
 
 WARNING: The completed sample code can be downloaded above but following this guide is strongly encouraged.
