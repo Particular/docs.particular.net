@@ -31,7 +31,7 @@ class Program
         }
         transportConfiguration.ConnectionString(connectionString);
 
-        var topology = transportConfiguration.UseTopology<ForwardingTopology>();
+        var topology = transportConfiguration.UseForwardingTopology();
 
         var destinationName = "Samples.ASB.Performance.Destination";
         await EnsureDestinationQueueExists(destinationName, connectionString)

@@ -26,7 +26,7 @@ class Program
         {
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
         }
-        transport.UseTopology<ForwardingTopology>();
+        transport.UseForwardingTopology();
         transport.ConnectionString(connectionString);
         var queues = transport.Queues();
         queues.EnablePartitioning(true);
