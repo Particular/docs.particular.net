@@ -4,7 +4,7 @@ suppressRelated: true
 reviewed: 2016-11-16
 ---
 
-These resources will give you step-by-step instruction to help you learn NServiceBus.
+Step-by-step turorials to help learn NServiceBus.
 
 ### [NServiceBus 101: Messaging Basics](nservicebus-101/)
 
