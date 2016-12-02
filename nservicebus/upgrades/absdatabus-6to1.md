@@ -1,6 +1,5 @@
 ---
 title: Moving to the DataBus AzureBlobStorage package
-summary: Instructions on how to move from the NServiceBus.Azure package to the NServiceBus.DataBus.AzureBlobStorage package.
 reviewed: 2016-11-05
 tags:
  - upgrade
@@ -9,7 +8,7 @@ related:
  - nservicebus/upgrades/azure-deprecation
 ---
 
-Instructions on how to move from the NServiceBus.Azure package to the NServiceBus.DataBus.AzureBlobStorage package.
+Instructions on how to move from the [NServiceBus.Azure NuGet package](https://www.nuget.org/packages/NServiceBus.Azure/) to the [NServiceBus.DataBus.AzureBlobStorage NuGet package](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/).
 
 
 ### AzureDataBusPersistence feature no longer used
