@@ -31,11 +31,12 @@
       <HintPath>..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\packages\NServiceBus.6.1.0-alpha0079\lib\net452\NServiceBus.Core.dll</HintPath>
+    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
+      <HintPath>..\..\..\packages\NServiceBus.6.1.0-alpha0115\lib\net452\NServiceBus.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Persistence.Sql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=affc41380e1a1478, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0004\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
+    <Reference Include="NServiceBus.Persistence.Sql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=affc41380e1a1478">
+      <HintPath>..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0005\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -53,11 +54,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0004\build\net452\NServiceBus.Persistence.Sql.targets" Condition="Exists('..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0004\build\net452\NServiceBus.Persistence.Sql.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0004\build\net452\NServiceBus.Persistence.Sql.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0004\build\net452\NServiceBus.Persistence.Sql.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0005\build\net452\NServiceBus.Persistence.Sql.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0005\build\net452\NServiceBus.Persistence.Sql.targets'))" />
   </Target>
+  <Import Project="..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0005\build\net452\NServiceBus.Persistence.Sql.targets" Condition="Exists('..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0005\build\net452\NServiceBus.Persistence.Sql.targets')" />
 </Project>

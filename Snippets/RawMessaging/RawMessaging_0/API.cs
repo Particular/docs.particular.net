@@ -19,25 +19,31 @@
             senderConfig.UseTransport<MsmqTransport>();
             senderConfig.SendFailedMessagesTo("error");
 
-            var sender = await RawEndpoint.Start(senderConfig).ConfigureAwait(false);
+            var sender = await RawEndpoint.Start(senderConfig)
+                .ConfigureAwait(false);
 
             #endregion
 
             #region Sending
 
-            var headers = new Dictionary<string, string>();
             var body = Serialize();
-            headers["SomeHeader"] = "SomeValue";
-            var request = new OutgoingMessage(Guid.NewGuid().ToString(), headers, body);
+            var headers = new Dictionary<string, string>
+            {
+                ["SomeHeader"] = "SomeValue"
+            };
+            var request = new OutgoingMessage(
+                messageId: Guid.NewGuid().ToString(),
+                headers: headers, 
+                body: body);
 
             var operation = new TransportOperation(
                 request,
                 new UnicastAddressTag("Receiver"));
 
             await sender.SendRaw(
-                new TransportOperations(operation),
-                new TransportTransaction(),
-                new ContextBag())
+                    new TransportOperations(operation),
+                    new TransportTransaction(),
+                    new ContextBag())
                 .ConfigureAwait(false);
 
             #endregion
@@ -50,9 +56,9 @@
             var message = Deserialize(context.Body);
 
             Console.WriteLine(message);
-            //Can use dispatcher to send messages from here
+            // Can use dispatcher to send messages from here
 
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
         #endregion
