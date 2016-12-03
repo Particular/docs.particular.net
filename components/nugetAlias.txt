@@ -21,6 +21,7 @@ CloudServicesHost: NServiceBus.Hosting.Azure
 Distributor: NServiceBus.Distributor.MSMQ
 EntityFramework: GoodlyFere.NServiceBus.EntityFramework
 EventStoreTransport: NServiceBus.EventStore
+RawMessaging: NServiceBus.Raw
 Gateway: NServiceBus.Gateway
 HandlerOrdering: NServiceBus.HandlerOrdering
 Heartbeats3: ServiceControl.Plugin.Nsb3.Heartbeat
