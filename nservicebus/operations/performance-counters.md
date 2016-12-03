@@ -130,6 +130,14 @@ NOTE: After installing the performance counters, all endpoints must be restarted
 When [running installers](installers.md) the service account will be automatically added to the local Performance Monitor Users group if executed with elevated privileges.
 
 
+## System.InvalidOperationException
+
+If the endpoint instance throws one of the  following exceptions at startup, then [the performance counters need to be reinstalled](#installing-counters)
+
+ * `InvalidOperationException: The requested Performance Counter is not a custom counter, it has to be initialized as ReadOnly.`
+ * `InvalidOperationException: NServiceBus performance counter for 'Critical Time' is not set up correctly.`
+
+
 ## Corrupted Counters
 
 Sometimes an NServiceBus endpoint hangs or fails during startup while initializing the performance counters at the following location:
