@@ -132,10 +132,10 @@ When [running installers](installers.md) the service account will be automatical
 
 ## System.InvalidOperationException
 
-If the endpoint instance does not start and the following exceptions are thrown, then [the performance counters need to be reinstalled](#installing-counters)
+If the endpoint instance throws one of the  following exceptions at startup, then [the performance counters need to be reinstalled](#installing-counters)
 
-* `System.InvalidOperationException: The requested Performance Counter is not a custom counter, it has to be initialized as ReadOnly.`
-* `System.InvalidOperationException: NServiceBus performance counter for 'Critical Time' is not set up correctly.`
+ * `InvalidOperationException: The requested Performance Counter is not a custom counter, it has to be initialized as ReadOnly.`
+ * `InvalidOperationException: NServiceBus performance counter for 'Critical Time' is not set up correctly.`
 
 
 ## Corrupted Counters
