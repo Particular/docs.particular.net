@@ -1,6 +1,6 @@
 ---
 title: Hosting
-summary: Outlines the various approaches to hosting NServiceBus
+summary: Outlines the various approaches to endpoint hosting
 component: Core
 reviewed: 2016-08-24
 tags:
