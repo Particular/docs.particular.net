@@ -1,0 +1,1 @@
+INFO: Using Sender-Side distribution feature in combination with the Distributor will affect the routing of [delayed retries](/nservicebus/recoverability/configure-delayed-retries.md). These messages will be routed directly to the Distributor instead of the endpoint instance even though these messages were originally sent to the endpoint instance.
