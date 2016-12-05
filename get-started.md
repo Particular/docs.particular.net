@@ -4,7 +4,7 @@ summary: Quick list of instructions and hints to get started with NServiceBus an
 reviewed: 2016-12-05
 ---
 
-There is a variety of starting points for NServiceBus and the platform. The path taken will depend on an individual's specific experience and preferences for learning.
+There is a variety of starting points for NServiceBus and the Platform. The path taken will depend on an individual's specific experience and preferences for learning.
 
 
 ## High Level Content
@@ -55,6 +55,7 @@ The other parts of the Platform ([ServiceControl](/servicecontrol/), [ServiceIns
  * [Particular Software Support](https://particular.net/support)
  * [Licensing/Sales information](https://particular.net/licensing)
  * [Contact Particular Software](https://particular.net/contactus)
+ * [Get help with a Proof-Of-Concept](https://particular.net/proof-of-concept)
  * [Community Google Discussion Group](https://groups.google.com/d/forum/particularsoftware)
  * [GitHub/docs.particular.net](https://github.com/Particular/docs.particular.net) for any problems with the documentation content.
  * Any issues, bugs or feature requests with the Platform or any extension can be raise in the specific projects. See the "Project Hosting" links on the [Extensions](/components/) page.
