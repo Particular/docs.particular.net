@@ -46,7 +46,7 @@ The other parts of the Platform ([ServiceControl](/servicecontrol/), [ServiceIns
 There are also many of extensions and utilities that build on the platform in a variety of ways. These are listed under [Extensions](/components/).
 
 
-## Getting Help
+## Getting Help / More Information
 
  * [Particular Software Support](https://particular.net/support)
  * [Licensing/Sales information](https://particular.net/licensing)
