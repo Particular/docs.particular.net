@@ -35,9 +35,11 @@ The following samples are recommended for getting started:
  * [On Premise Show Case](/samples/show-case/on-premise/): An implementation of a fictional store that shows many features of NServiceBus working together.
 
 
-## Downloading	
+## Downloading
 
-The library parts of NServiceBus (.NET assemblies) are deployed through [NuGet Packages](https://www.nuget.org). The majority of the NuGet packages are listed under the [NServiceBus NuGet User](https://www.nuget.org/profiles/nservicebus) with the main library is deployed via the [NServiceBus NuGet package](https://www.nuget.org/packages/NServiceBus/).
+NServiceBus consists of a several different components (some optional) which are deployed through [NuGet Packages](https://www.nuget.org). The most important elements, required in most scenarios, are the [transport](/nservicebus/transports/) and [persistence](/nservicebus/persistence/). The transport is an abstraction over low-level messaging infrastructure (e.g. MSQM or SQL Server), the persistence provides support for some NServiceBus features like [delayed-delivery](/nservicebus/messaging/delayed-delivery.md), [publish-subscribe](/nservicebus/messaging/publish-subscribe/) and [sagas](/nservicebus/sagas/).
+
+The majority of the NuGet packages are listed under the [NServiceBus NuGet User](https://www.nuget.org/profiles/nservicebus) with the main library is deployed via the [NServiceBus NuGet package](https://www.nuget.org/packages/NServiceBus/).
 
 ```no-highlight
 PM> Install-Package NServiceBus
