@@ -1,6 +1,6 @@
 - Name: NServiceBus
   Topics:
-  - Url: nservicebus
+  - Url: get-started
     Title: Getting Started
     Articles:
     - Url: platform
