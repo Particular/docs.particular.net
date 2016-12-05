@@ -24,7 +24,7 @@ The [Messaging Basics Tutorial](/tutorials/nservicebus-101/) gives a guided walk
 
 ## Go straight to runnable code
 
-Samples are fully functional solutions that can be run from with Visual Studio. The samples allow to learn by exploring code. Each includes an explanation of the scenario, technology or concept that it illustrates.
+Samples are fully functional solutions that can be run from Visual Studio. The samples allow to learn by exploring code. Each includes an explanation of the scenario, technology or concept that it illustrates.
 
 Go to [Introduction to Sample](/samples/) or [Skip to the list of samples](/samples/#related-samples).
 
