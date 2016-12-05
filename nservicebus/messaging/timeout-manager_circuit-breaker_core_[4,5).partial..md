@@ -1,1 +1,1 @@
-If there are any problems with timeout storage a wait of 2 minutes is done to allow the storage to come back online. If the problem is not resolved within that time frame, a [Critical Error](/nservicebus/hosting/critical-errors.md) is raised.
+If there are any connection problems with the timeout storage then NServiceBus waits for 2 minutes to allow the storage to come back online. If the problem is not resolved within that time frame, then a [Critical Error](/nservicebus/hosting/critical-errors.md) is raised.
