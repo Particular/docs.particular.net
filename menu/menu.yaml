@@ -7,13 +7,10 @@
       Title: Service Platform
     - Url: tutorials/nservicebus-101
       Title: Messaging Basics Tutorial
-    - Url: samples
-      Title: Samples
-      Articles:
-      - Url: samples/step-by-step
-        Title: Step by Step
-      - Url: samples/endpoint-configuration
-        Title: Configuration choices
+    - Url: samples/step-by-step
+      Title: Step by Step Sample
+    - Url: samples/endpoint-configuration
+      Title: Configuration choices Sample
     - Url: nservicebus/concept-overview
       Title: Concepts
     - Url: nservicebus/licensing
