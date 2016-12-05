@@ -19,7 +19,7 @@ These articles are recommended to gain an understanding of the key concepts and 
 
 ## Tutorials
 
-There is a [Messaging Basics Tutorial](/tutorials/nservicebus-101/) gives a guided walk though of building an NServiceBus system and introduces the basic concepts of messaging. The tutorial also has a downloadable and runnable solution to illustrate the finished product.
+The [Messaging Basics Tutorial](/tutorials/nservicebus-101/) gives a guided walk though of building an NServiceBus system and introduces the basic concepts of messaging. The tutorial also has a downloadable and runnable solution to illustrate the finished product.
 
 
 ## Go straight to runnable code
