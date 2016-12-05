@@ -22,9 +22,9 @@ There is a [Messaging Basics Tutorial](/tutorials/nservicebus-101/) that gives a
 
 ## Go straight to runnable code
 
-Samples take a "download first" approach and then provided an expatiation of how a given scenario, technology or concept.
+Samples take a "download first" approach and then provided an expatiation of how the given scenario, technology or concept.
 
-Go to [Full List of Sample](/samples/)
+Go to [Introduction to Sample](/samples/) or [Skip to the list of samples](/samples/#related-samples).
 
 There are some specific samples that will help get started with NServiceBus:
 
