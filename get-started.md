@@ -12,6 +12,7 @@ There are a variety of starting points for NServiceBus and the platform. The pat
 There are many articles that explain concepts and technologies used in the platform. Some good articles when getting started are:
 
  * [Particular Service Platform Overview](/platform/): Provides an overview of the various parts of Platform; [NServiceBus](/nservicebus/), [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/).
+ * [Architectural Principles](/nservicebus/architecture/principles.md)
  * [Concepts Overview](/nservicebus/concept-overview.md): A high level overview of the concepts, features and vernacular of NServiceBus.
 
 
