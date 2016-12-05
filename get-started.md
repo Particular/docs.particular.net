@@ -12,29 +12,30 @@ There is a variety of starting points for NServiceBus and the platform. The path
 These articles are recommended to gain an understanding of the key concepts and technologies used within the Platform.
 
  * [Service Platform Overview](/platform/): Provides an overview of the various parts of Platform; [NServiceBus](/nservicebus/), [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/).
- * [Architectural Principles](/nservicebus/architecture/principles.md)
- * [Concepts Overview](/nservicebus/concept-overview.md): A high level overview of the concepts, features and vernacular of NServiceBus.
+ *  [Architectural Principles](/nservicebus/architecture/principles.md) and [Bus vs Broker architecture](/nservicebus/architecture/): A high-level overview of the messaging and the two popular architectural styles.
+ * [Concepts Overview](/nservicebus/concept-overview.md): Descriptions of the concepts, features and vernacular of NServiceBus.
  * [Hosting](/nservicebus/hosting/): Provides information on the various approaches to hosting an instance of NServiceBus.
 
 
 ## Tutorials
 
-The [Messaging Basics Tutorial](/tutorials/nservicebus-101/) gives a guided walk though of building an NServiceBus system and introduces the basic concepts of messaging. The tutorial also has a downloadable and runnable solution to illustrate the finished product.
+The [Messaging Basics Tutorial](/tutorials/nservicebus-101/) gives a guided walk through of building an NServiceBus system and introduces the basic concepts of messaging. Each lesson includes a downloadable solution with the completed exercise.
 
 
 ## Go straight to runnable code
 
-Samples take a "download first" approach and then provided an explanation of how the given scenario, technology or concept.
+Samples are fully functional solutions that can be run from with Visual Studio. The samples allow to learn by exploring code. Each includes an explanation of the scenario, technology or concept that it illustrates.
 
 Go to [Introduction to Sample](/samples/) or [Skip to the list of samples](/samples/#related-samples).
 
-There are some specific samples that will help get started:
+The following samples are recommended for getting started:
 
  * [Step by Step Sample](/samples/step-by-step/): Illustrates essential NServiceBus concepts by showing how to build a simple system.
  * [Endpoint configuration choices](/samples/endpoint-configuration/): Walks through the most common choices required when creating a first endpoint. It will also show the configuration APIs needed to implement those choices.
+ * [On Premise Show Case](/samples/show-case/on-premise/): Shows an implementation of a fictional store that shows many features of NServiceBus working together.
 
 
-## Getting the bits
+## Downloading	
 
 The library parts of NServiceBus (.NET assemblies) are deployed through [NuGet Packages](https://www.nuget.org). The majority of the NuGet packages are listed under the [NServiceBus NuGet User](https://www.nuget.org/profiles/nservicebus) with the main library is deployed via the [NServiceBus NuGet package](https://www.nuget.org/packages/NServiceBus/).
 
@@ -42,9 +43,9 @@ The library parts of NServiceBus (.NET assemblies) are deployed through [NuGet P
 PM> Install-Package NServiceBus
 ```
 
-The other parts of the Platform ([ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/)) are deployed through either the [Platform Installer](/platform/installer/) (mainly for development environment) or via a [Direct Download](https://particular.net/downloads) of an installer (mainly for productions and integration environments).
-
 There are also many of extensions and utilities that build on the Platform in a variety of ways. These are listed under [Extensions](/components/).
+
+The other parts of the Platform ([ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/)) are deployed through either the [Platform Installer](/platform/installer/) (mainly for development environment) or via a [Direct Download](https://particular.net/downloads) of an installer (mainly for productions and integration environments).
 
 
 ## Getting Help / More Information
