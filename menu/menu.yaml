@@ -171,6 +171,7 @@
         Title: Forwarding
     - Url: nservicebus/messaging/delayed-delivery
       Title: Delayed Delivery
+      Articles:
       - Url: nservicebus/messaging/timeout-manager
         Title: Timeout Manager
     - Url: nservicebus/messaging/publish-subscribe
