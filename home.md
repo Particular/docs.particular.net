@@ -125,7 +125,7 @@ span.blue {
 <div class="row">
 <div class="col-md-12 block middle">
   <div class="ic">
-    <a href="/tutorials/nservicebus-101/" onclick="ga('send', 'event', 'Action Performed', 'Clicked Get-Started CTA (Docs Home, Direct to tutorial)'); return true">
+    <a href="/get-started.md" onclick="ga('send', 'event', 'Action Performed', 'Clicked Get-Started CTA (Docs Home, Direct to get-started)'); return true">
       <i class="glyphicon glyphicon-play mainicon"></i><br>Getting Started
     </a>
   </div>
