@@ -171,6 +171,9 @@
         Title: Forwarding
     - Url: nservicebus/messaging/delayed-delivery
       Title: Delayed Delivery
+      Articles:
+      - Url: nservicebus/messaging/timeout-manager
+        Title: Timeout Manager
     - Url: nservicebus/messaging/publish-subscribe
       Title: Publish Subscribe
       Articles:
@@ -325,8 +328,6 @@
       Title: Configure immediate retries
     - Url: nservicebus/recoverability/configure-delayed-retries
       Title: Configure delayed retries
-    - Url: nservicebus/recoverability/critical-exception-for-timeout-outages
-      Title: Critical exception wait time
     - Url: nservicebus/recoverability/exception-caveats
       Title: Exception Caveats
     - Url: nservicebus/recoverability/custom-recoverability-policy

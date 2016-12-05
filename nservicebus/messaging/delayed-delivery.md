@@ -2,7 +2,7 @@
 title: Delayed Delivery
 summary: Delay delivery of messages until a later time.
 component: core
-reviewed: 2016-10-25
+reviewed: 2016-12-05
 tags:
  - Defer
 related:
@@ -63,14 +63,4 @@ NOTE: If specifying a negative timeout or a time that is in the past then the me
 
 ## How it works
 
-Some transports support delayed message delivery natively and don't require using persistence. NServiceBus provides this feature for those that don't offer native support for delayed message delivery, i.e. for MSMQ and SQL Server transports. Using NServiceBus implementation requires using persistence.
-
-The timeout data is stored in three different locations at various stages of processing: `[endpoint_queue_name].Timeouts` queue, timeouts storage location specific for the chosen persistence (e.g. dedicated table or document type) and `[endpoint_queue_name].TimeoutsDipatcher` queue.
-
-After the `RequestTimeout<T>` method is called, NServiceBus endpoint sends the timeout message to the `[endpoint_queue_name].Timeouts` queue. That queue is monitored by NServiceBus internal receiver. It picks up timeout messages and stores them using the selected NServiceBus persistence. NHibernate persistence stores timeout messages in a table called `TimeoutEntity`, RavenDB persistence stores them as documents of a type `TimeoutData`.
-
-Delayed messages are persisted (stored in a durable storage) in a location specified for `Timeouts`. The messages will be stored for the specified delay time. Sample persistence configuration for Timeouts can be seen below.
-
-snippet:configure-persistence-timeout
-
-NServiceBus periodically retrieves expiring timeouts from persistence. When a timeout expires, then a message with that timeout ID is sent to `[endpoint_queue_name].TimeoutsDipatcher` queue. That queue is monitored by NServiceBus internal receiver. When it picks up a message, it looks up the corresponding timeout in the storage. If it finds it, it dispatches the timeout message to the destination queue.
+NServiceBus provides delayed deliver feature for transports that don't have native support for delayed message delivery, i.e. for MSMQ and SQL Server transports. Transports that support delayed message delivery natively don't require persistence. To learn more about NServiceBus delayed message store refer to the [Timeout Manager](/nservicebus/messaging/timeout-manager.md) article.
