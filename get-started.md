@@ -47,7 +47,7 @@ PM> Install-Package NServiceBus
 
 There are also many of extensions and utilities that build on the Platform in a variety of ways. These are listed under [Extensions](/components/).
 
-The other parts of the Platform ([ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/)) are deployed through either the [Platform Installer](/platform/installer/) (mainly for development environment) or via a [Direct Download](https://particular.net/downloads) of an installer (mainly for productions and integration environments).
+The other parts of the Platform ([ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/)) are deployed through either the [Platform Installer](/platform/installer/) (mainly for development environment) or via a [Direct Download](https://particular.net/downloads) of an installer (mainly for production and integration environments).
 
 
 ## Getting Help / More Information
