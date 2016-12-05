@@ -136,16 +136,19 @@ As mentioned above, in some circumstances Click-Once can be problematic. The fol
 Error shown:
 
 ```no-highlight
-An error occurred trying to download 'https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application'.
+An error occurred trying to download
+'https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application'.
 
-See the setup log file located at 'C:\Users\ADMINI~1\AppData\Local\Temp\VSD9C86.tmp\install.log' for more information.
+See the setup log file located at
+'C:\Users\ADMINI~1\AppData\Local\Temp\VSD9C86.tmp\install.log' for more information.
 ```
 
 Log file content:
 
 ```no-highlight
 URLDownloadToCacheFile failed with HRESULT '-2146697208'
-Error: An error occurred trying to download 'https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application'.
+Error: An error occurred trying to download
+'https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application'.
 ```
 
 Resolve this by (temporarily) disabling IE Enhanced Security.
