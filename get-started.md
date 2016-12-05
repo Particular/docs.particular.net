@@ -35,7 +35,7 @@ There are some specific samples that will help get started with NServiceBus:
 
 ## Getting the bits
 
-The core parts of NServiceBus are deployed through [NuGet Packages](https://www.nuget.org). The majority of the NuGet packages are listed under the [NServiceBus NuGet User](https://www.nuget.org/profiles/nservicebus) with the main library is deployed via the [NServiceBus NuGet package](https://www.nuget.org/packages/NServiceBus/).
+The library parts (.Net assemblies) of NServiceBus are deployed through [NuGet Packages](https://www.nuget.org). The majority of the NuGet packages are listed under the [NServiceBus NuGet User](https://www.nuget.org/profiles/nservicebus) with the main library is deployed via the [NServiceBus NuGet package](https://www.nuget.org/packages/NServiceBus/).
 
 ```no-highlight
 PM> Install-Package NServiceBus
