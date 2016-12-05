@@ -32,7 +32,7 @@ The following samples are recommended for getting started:
 
  * [Step by Step Sample](/samples/step-by-step/): Illustrates essential NServiceBus concepts by showing how to build a simple system.
  * [Endpoint configuration choices](/samples/endpoint-configuration/): Walks through the most common choices required when creating a first endpoint. It will also show the configuration APIs needed to implement those choices.
- * [On Premise Show Case](/samples/show-case/on-premise/): Shows an implementation of a fictional store that shows many features of NServiceBus working together.
+ * [On Premise Show Case](/samples/show-case/on-premise/): An implementation of a fictional store that shows many features of NServiceBus working together.
 
 
 ## Downloading	
