@@ -38,6 +38,7 @@ NOTE: Instance Licensing is deprecated in Version 1.18 and above. Use ServiceCon
 
 ## Troubleshooting
 
+
 ### ServiceControl license was updated but ServicePulse reports the license has expired
 
-ServiceControl reads license information at service start up and caches it. Once a new license is applied the ServiceControl instance must be restarted to detect the license change, until then the license status shown in ServicePulse is based on the cached state.
+License information is read at service start up and cached. Once a new license is applied the ServiceControl instance must be restarted to detect the license change, until then the license status shown in ServicePulse is based on the cached state.
