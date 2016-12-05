@@ -12,7 +12,7 @@ There is a variety of starting points for NServiceBus and the Platform. The path
 These articles are recommended to gain an understanding of the key concepts and technologies used within the Platform.
 
  * [Service Platform Overview](/platform/): Provides an overview of the various parts of Platform; [NServiceBus](/nservicebus/), [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/).
- *  [Architectural Principles](/nservicebus/architecture/principles.md) and [Bus vs Broker architecture](/nservicebus/architecture/): A high-level overview of the messaging and the two popular architectural styles.
+ *  [Architectural Principles](/nservicebus/architecture/principles.md) and [Bus vs Broker architecture](/nservicebus/architecture/): A high-level overview of messaging architectures and the two popular approaches to building them.
  * [Concepts Overview](/nservicebus/concept-overview.md): Descriptions of the concepts, features and vernacular of NServiceBus.
  * [Hosting](/nservicebus/hosting/): Provides information on the various approaches to hosting an instance of NServiceBus.
 
