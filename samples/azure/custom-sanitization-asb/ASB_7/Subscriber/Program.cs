@@ -20,7 +20,7 @@ class Program
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
         }
         transport.ConnectionString(connectionString);
-        var topology = transport.UseTopology<ForwardingTopology>();
+        var topology = transport.UseForwardingTopology();
 
         #region CustomSanitization
 

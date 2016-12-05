@@ -11,7 +11,7 @@ class GettingStarted
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.UseTopology<ForwardingTopology>();
+        transport.UseForwardingTopology();
         transport.ConnectionString("Paste connectionstring here");
 
         var startableEndpoint = await Endpoint.Create(endpointConfiguration)
