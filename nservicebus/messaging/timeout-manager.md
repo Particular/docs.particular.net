@@ -20,7 +20,7 @@ The delayed-delivery feature uses a built-in persistent store and requires using
 
 When NServiceBus detects that an outgoing message should be delayed, it routes it to to the `[endpoint_queue_name].Timeouts` queue instead of directly to the destination queue. The ultimate destination address is preserved in a header. 
 
-The `[endpoint_queue_name].Timeouts` queue is monitored by NServiceBus [internal receiver](/nservicebus/satellites.md). The receiver picks up timeout messages and stores them using the selected NServiceBus persistence. NHibernate persistence stores timeout messages in a table called `TimeoutEntity`, RavenDB persistence stores them as documents of a type `TimeoutData`. 
+The `[endpoint_queue_name].Timeouts` queue is monitored by NServiceBus [internal receiver](/nservicebus/satellites). The receiver picks up timeout messages and stores them using the selected NServiceBus persistence. NHibernate persistence stores timeout messages in a table called `TimeoutEntity`, RavenDB persistence stores them as documents of a type `TimeoutData`. 
 
 If the transport is configured to use [TransactionScope mode](/nservicebus/transports/transactions.md#transactions-transaction-scope-distributed-transaction) and the selected persistence supports `TransactionScope` transactions then NServiceBus guarantees *exactly-once* semantics of the store operation, meaning that timeouts in the store will not get duplicated. Both NHibernate and RavenDB support it.
 
