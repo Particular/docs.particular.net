@@ -1,5 +1,5 @@
 ---
-title: Licensing
+title: Licensing ServiceControl
 reviewed: 2016-11-09
 tags:
  - servicecontrol
@@ -7,20 +7,17 @@ tags:
  - platform
 ---
 
-
-## Licensing ServiceControl
-
 The following options outline how to add a license to ServiceControl.
 
 
-### ServiceControl Management
+## ServiceControl Management
 
 ServiceControl Management  has a license user interface which will import the designated license file into the registry. The license file is added to the `HKEY_LOCAL_MACHINE` registry hive so it is available to all instances of ServiceControl regardless of the service account used.
 
 ![](managementutil-addlicense.png 'width=500')
 
 
-### ServiceControl PowerShell
+## ServiceControl PowerShell
 
 To import a license using PowerShell:
 
@@ -32,15 +29,15 @@ Import-ServiceControlLicense <LicenseFile>
 ```
 
 
-### Instance Licensing
+## Instance Licensing
 
 In Version 1.17 and below, a license can be applied to an individual instance rather than using a license installed in the registry. To do this, copy the `license.xml` file to a `license` directory under the installation path of the instance.
 
 NOTE: Instance Licensing is deprecated in Version 1.18 and above. Use ServiceControl Management or the ServiceControl PowerShell module to install the license file to the registry.
 
 
-### Troubleshooting
+## Troubleshooting
 
-#### ServiceControl license was updated but ServicePulse reports the license has expired
+### ServiceControl license was updated but ServicePulse reports the license has expired
 
 ServiceControl reads license information at service start up and caches it. Once a new license is applied the ServiceControl instance must be restarted to detect the license change, until then the license status shown in ServicePulse is based on the cached state.
