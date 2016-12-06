@@ -13,11 +13,11 @@ public class ProvisionDownloadResponseHandler :
 
     Dictionary<string, string> productIdToUrlMap = new Dictionary<string, string>
         {
-            {"videos", "http://particular.net/videos-and-presentations"},
-            {"training", "http://particular.net/onsite-training"},
-            {"documentation", "http://docs.particular.net/"},
-            {"customers", "http://particular.net/customers"},
-            {"platform", "http://particular.net/service-platform"},
+            {"videos", "https://particular.net/videos-and-presentations"},
+            {"training", "https://particular.net/onsite-training"},
+            {"documentation", "https://docs.particular.net/"},
+            {"customers", "https://particular.net/customers"},
+            {"platform", "https://particular.net/service-platform"},
         };
 
     public Task Handle(ProvisionDownloadResponse message, IMessageHandlerContext context)
