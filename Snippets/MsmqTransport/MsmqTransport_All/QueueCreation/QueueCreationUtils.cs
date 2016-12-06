@@ -25,8 +25,6 @@
         {
             var allow = AccessControlEntryType.Allow;
             queue.SetPermissions(AdminGroup, MessageQueueAccessRights.FullControl, allow);
-            queue.SetPermissions(EveryoneGroup, MessageQueueAccessRights.WriteMessage, allow);
-            queue.SetPermissions(AnonymousLogon, MessageQueueAccessRights.WriteMessage, allow);
 
             queue.SetPermissions(account, MessageQueueAccessRights.WriteMessage, allow);
             queue.SetPermissions(account, MessageQueueAccessRights.ReceiveMessage, allow);
@@ -34,8 +32,6 @@
         }
 
         static string AdminGroup = GetGroupName(WellKnownSidType.BuiltinAdministratorsSid);
-        static string EveryoneGroup = GetGroupName(WellKnownSidType.WorldSid);
-        static string AnonymousLogon = GetGroupName(WellKnownSidType.AnonymousSid);
 
         static string GetGroupName(WellKnownSidType wellKnownSidType)
         {

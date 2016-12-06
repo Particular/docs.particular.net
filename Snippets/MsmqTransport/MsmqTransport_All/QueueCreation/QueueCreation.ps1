@@ -67,8 +67,6 @@ Function SetDefaultPermissionsForQueue
         [string] $account
     )
     $queue.SetPermissions($AdminGroup, "FullControl", "Allow")
-    $queue.SetPermissions($EveryoneGroup, "WriteMessage", "Allow")
-    $queue.SetPermissions($AnonymousLogon, "WriteMessage", "Allow")
 
     $queue.SetPermissions($account, "WriteMessage", "Allow")
     $queue.SetPermissions($account, "ReceiveMessage", "Allow")
@@ -76,8 +74,6 @@ Function SetDefaultPermissionsForQueue
 }
 
 $AdminGroup=GetGroupName("BuiltinAdministratorsSid")
-$EveryoneGroup=GetGroupName("WorldSid")
-$AnonymousLogon=GetGroupName("AnonymousSid")
 
 Function GetGroupName
 {
