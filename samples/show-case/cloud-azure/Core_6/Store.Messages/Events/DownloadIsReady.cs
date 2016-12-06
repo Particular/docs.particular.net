@@ -3,11 +3,11 @@
     using System.Collections.Generic;
     using NServiceBus;
 
-    public interface DownloadIsReady :
+    public class DownloadIsReady :
         IEvent
     {
-        int OrderNumber { get; set; }
-        Dictionary<string, string> ProductUrls { get; set; }
-        string ClientId { get; set; }
+        public int OrderNumber { get; set; }
+        public Dictionary<string, string> ProductUrls { get; set; }
+        public string ClientId { get; set; }
     }
 }

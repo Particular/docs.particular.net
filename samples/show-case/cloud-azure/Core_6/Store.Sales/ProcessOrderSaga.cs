@@ -36,12 +36,13 @@ public class ProcessOrderSaga :
             Debugger.Break();
         }
 
-        await context.Publish<OrderAccepted>(e =>
-            {
-                e.OrderNumber = Data.OrderNumber;
-                e.ProductIds = Data.ProductIds.Split(';');
-                e.ClientId = Data.ClientId;
-            })
+        var orderAccepted = new OrderAccepted
+        {
+            OrderNumber = Data.OrderNumber,
+            ProductIds = Data.ProductIds.Split(';'),
+            ClientId = Data.ClientId
+        };
+        await context.Publish(orderAccepted)
             .ConfigureAwait(false);
 
         MarkAsComplete();
@@ -58,11 +59,12 @@ public class ProcessOrderSaga :
 
         MarkAsComplete();
 
-        await context.Publish<OrderCancelled>(o =>
-            {
-                o.OrderNumber = message.OrderNumber;
-                o.ClientId = message.ClientId;
-            })
+        var orderCancelled = new OrderCancelled
+        {
+            OrderNumber = message.OrderNumber,
+            ClientId = message.ClientId
+        };
+        await context.Publish(orderCancelled)
             .ConfigureAwait(false);
 
         log.Info($"Order #{message.OrderNumber} was cancelled.");
