@@ -10,7 +10,7 @@ tags:
  - Event
 ---
 
-By default [messaging best practices](messages-events-commands.md) are enforced for messages define as either Commands or Events.
+By default [messaging best practices](messages-events-commands.md) are enforced for messages defined as either Commands or Events.
 
 NOTE: In Versions 6 and above the default behavior can be overridden.
 
