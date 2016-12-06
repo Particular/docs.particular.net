@@ -51,17 +51,14 @@ Function CreateQueue
     )
 
     $queuePath = '{0}\private$\{1}'-f [System.Environment]::MachineName, $queueName
-    if ([System.Messaging.MessageQueue]::Exists($queuePath))
+    if (-Not [System.Messaging.MessageQueue]::Exists($queuePath))
     {
-        $messageQueue = New-Object System.Messaging.MessageQueue($queuePath)
-        SetPermissionsForQueue $messageQueue $account
-        return
+		$messageQueue = [System.Messaging.MessageQueue]::Create($queuePath,$true)
+		SetDefaultPermissionsForQueue $messageQueue $account
     }
-    $messageQueue = [System.Messaging.MessageQueue]::Create($queuePath,$true)
-    SetPermissionsForQueue $messageQueue $account
 }
 
-Function SetPermissionsForQueue
+Function SetDefaultPermissionsForQueue
 {
     param(
         [Parameter(Mandatory=$true)]
