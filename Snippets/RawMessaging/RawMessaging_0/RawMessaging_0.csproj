@@ -30,8 +30,8 @@
       <HintPath>..\..\..\packages\NServiceBus.6.1.0-rc0001\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Raw, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.Raw.0.1.0\lib\net452\NServiceBus.Raw.dll</HintPath>
+    <Reference Include="NServiceBus.Raw, Version=0.1.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\packages\NServiceBus.Raw.0.1.1\lib\net452\NServiceBus.Raw.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
