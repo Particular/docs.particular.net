@@ -37,10 +37,6 @@ Parallel.ForEach(File.ReadAllLines(nugetAliasFile), line =>
         foreach (var package in packages.OrderByDescending(x => x.Version))
         {
             var packageVersion = package.Version.Version;
-            if (packageVersion.Major == 0)
-            {
-                continue;
-			}
 			var nsbDependency = package.DependencySets
 				.SelectMany(x => x.Dependencies)
 				.SingleOrDefault(d => d.Id == corePackageName);
