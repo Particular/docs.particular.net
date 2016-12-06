@@ -19,18 +19,9 @@ class Program3rdParty
             listener.Start();
             listener.BeginGetContext(ListenerCallback, listener);
 
-            ReportStatus();
-
             while (true)
             {
-                if (isReturningOk)
-                {
-                    Console.WriteLine("\r\nCurrently returning success");
-                }
-                else
-                {
-                    Console.WriteLine("\r\nCurrently returning error");
-                }
+                ReportStatus();
 
                 var key = Console.ReadKey();
                 Console.WriteLine();
@@ -42,8 +33,6 @@ class Program3rdParty
                 }
 
                 isReturningOk = !isReturningOk;
-
-                ReportStatus();
             }
         }
     }
