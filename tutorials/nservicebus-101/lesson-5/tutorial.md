@@ -181,6 +181,12 @@ Once these tools are installed and running, you can attempt to replay a message:
 
 When the message is replayed in Sales, each endpoint picks up right where it left off. You should be able to see how useful this capability will be when failures happen in your real-life systems.
 
+{{NOTE:
+Our solution currently uses [in-memory persistence](/nservicebus/persistence/in-memory.md) to store subscription information. Because of this, if you restart only the Sales endpoint while the others continue to run, it will not know where to publish messages and the system will not work as intended. When using a durable persistence, this will not be an issue. When testing with in-memory persistence, restart the entire system so that subscription messages are resent as each endpoint starts up.
+
+For more details see [Persistence in NServiceBus](/nservicebus/persistence/).
+}}
+
 
 ## Summary
 
