@@ -10,6 +10,9 @@ void Main()
 		var xdocument = XDocument.Load(projectFile);
 		var propertyGroups = xdocument.Descendants(xmlns + "PropertyGroup").ToList();
 
+		xdocument.Descendants(xmlns + "NuGetPackageImportStamp")
+			.Remove();
+
 		foreach (var element in propertyGroups)
 		{
 			var condition = element.Attribute("Condition");
