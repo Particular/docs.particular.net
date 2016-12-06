@@ -53,6 +53,12 @@ IH --> RUC
 Dispatch --> AncillaryTransport
 Audit--> Dispatch
 Forwarding --> Dispatch
+
+
+click IH "/nservicebus/handlers-and-sagas"
+click Transport "/nservicebus/transports/"
+click Audit "/nservicebus/operations/auditing"
+click Forwarding "/nservicebus/messaging/forwarding"
 ```
 
 ### Outgoing Pipeline Stages
