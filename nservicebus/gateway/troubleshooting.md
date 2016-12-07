@@ -61,7 +61,7 @@ For more information see the relevant [Netsh commands for HTTP
 
 During message handling an endpoint is expected to be able to connect to external resources, such as remote services via HTTP.
 
-If the endpoint is hosted in a process outside IIS, such as a Windows Service, by default the .Net Framework allows 2 concurrent outgoing HTTP requests per process. This can be a limitation on the overall throughput of the endpoint itself that ends up having outgoing HTTP requests queued and thus, as a consequence, a limitation in its ability to process incoming messages.
+If the endpoint is hosted in a process outside IIS, such as a Windows Service, by default the .NET Framework allows 2 concurrent outgoing HTTP requests per process. This can be a limitation on the overall throughput of the endpoint itself that ends up having outgoing HTTP requests queued and thus, as a consequence, a limitation in its ability to process incoming messages.
 
 It is possible to change the default connection limit of a process via the static `DefaultConnectionLimit` property of the `ServicePointManager` class, as in the following sample:
 

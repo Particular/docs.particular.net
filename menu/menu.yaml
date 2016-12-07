@@ -13,6 +13,8 @@
       Title: Configuration choices Sample
     - Url: nservicebus/concept-overview
       Title: Concepts
+    - Url: platform/installer
+      Title: Platform Installer
     - Url: nservicebus/licensing
       Title: License
     - Url: components

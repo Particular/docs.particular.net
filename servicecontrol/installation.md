@@ -1,50 +1,54 @@
 ---
 title: Installing ServiceControl
-reviewed: 2016-11-09
+reviewed: 2016-12-07
 tags:
-- ServiceControl
-- Installation
+ - ServiceControl
+ - Installation
 redirects:
-- servicecontrol/multi-transport-support
+ - servicecontrol/multi-transport-support
 ---
 
-The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI. This installation can be executed standalone or via the Particular Software Platform Installer. The installation package include a utility to manage the installation, upgrade and remove of ServiceControl services. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
+The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI. This installation can be executed standalone or via the [Platform Installer](/platform/installer/). The installation package include a utility to manage the installation, upgrade and remove of ServiceControl services. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
 
 
 ### Prerequisites
 
 The ServiceControl Installation has the following prerequisites:
 
- * [Microsoft .Net 4.5 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=30653)
+ * [Microsoft .NET 4.5.2 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=42643)
 
-If ServiceControl is installed via the Particular Software Platform Installer then the installation and configuration of these prerequisites are managed bu the installer.
+If ServiceControl is installed via the Platform Installer then the installation and configuration of these prerequisites are managed bu the installer.
 
 
 ### Transport Support
 
-From ServiceControl 1.7 the transport DLLs are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the NServiceBus supported transports listed below using the ServiceControl Management application:
+In Versions 1.7 and above the transport DLLs are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the supported [transports](/nservicebus/transports/) listed below using the ServiceControl Management application:
 
- * Microsoft Message Queuing (MSMQ)
- * Azure Storage Queues
- * Azure Service Bus
- * SQL Server
- * RabbitMQ
+ * [Microsoft Message Queuing (MSMQ)](/nservicebus/msmq/)
+ * [Azure Storage Queues](/nservicebus/azure-storage-queues/)
+ * [Azure Service Bus](/nservicebus/azure-service-bus/)
+ * [SQL Server](/nservicebus/sqlserver/)
+ * [RabbitMQ](/nservicebus/rabbitmq/)
 
-Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites). When using the Particular Platform Installer the MSMQ service is added automatically as part of the `NServiceBus Pre-Requisites` option.
+Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites). 
+
+Installing MSMQ is optional in the Platform Installer. See [Platform Installer - MSMQ](/platform/installer/#select-items-to-install-configure-microsoft-message-queuing).
 
 
 #### Performance Counter
 
-ServiceControl reports metrics via the NServiceBus Performance Counters if the counters are installed.
+Metrics are reported via the [Performance Counters](/nservicebus/operations/performance-counters.md) if the counters are installed.
 
 For instructions on how to install the Performance Counters without the Platform Installer refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
 
-The installation of the NServiceBus Performance counters is optional for ServiceControl 1.7 or higher. When using the Particular Platform Installer the Performance counters are added as part of the `NServiceBus Pre-Requisites` option.
+The installation of the NServiceBus Performance Counters is optional for Versions 1.7 and above. 
+
+Performance Counters are an optional component in the Platform Installer. See [Platform Installer - Performance Counters](/platform/installer/#select-items-to-install-nservicebus-performance-counters).
 
 
-#### Using ServiceControl Management to upgrade ServiceControl instances.
+#### Using ServiceControl Management to upgrade ServiceControl instances
 
-ServiceControl Managementprovides a simple means of setting up one or more instances of the ServiceControl service. For production systems it is recommended to limit the number of instances per machine to one.
+ServiceControl Management provides a simple means of setting up one or more instances of the ServiceControl service. For production systems it is recommended to limit the number of instances per machine to one.
 
 WARNING: The ability to add multiple instances is primarily intended to assist development and test environments.
 
@@ -65,7 +69,7 @@ Clicking the upgrade link will
  * Start the Service.
 
 
-#### Using ServiceControl Management to add ServiceControl instances.
+#### Using ServiceControl Management to add ServiceControl instances
 
 If this is a new installation of ServiceControl click on the `Add New Instance` button in the center of the screen or the "New Instance" link at the top of the screen,  both options launch the same "New instance form". Complete the form to register a new ServiceControl service.
 
@@ -74,4 +78,4 @@ If this is a new installation of ServiceControl click on the `Add New Instance` 
 
 When adding the first instance of the ServiceControl service the default service name is "Particular.ServiceControl". It is possible choose to change this name to a custom service name. In doing so this is also changing the queue name associated with this instance of ServiceControl.
 
-The endpoint plugins such as the heartbeat and custom check plugins assume that the ServiceControl queue name is the default. If a custom service name was used then see [ServiceControl plugins](/servicecontrol/plugins) for more details on how to configure the endpoint plugins to use the custom queue name.
+The endpoint plugins such as the heartbeat and custom check plugins assume that the ServiceControl queue name is the default. If a custom service name was used then see [ServiceControl Endpoint Plugins](/servicecontrol/plugins/) for more details on how to configure the endpoint plugins to use the custom queue name.

@@ -10,7 +10,7 @@ tags:
 The [Platform Installer](/platform/installer) handles installing prerequisites for NServiceBus and the Platform products. This guide details how to install to achieve the same results as the Platform Installer on a computer that does not have the required Internet connectivity.
 
 
-## .Net Prerequisite Version
+## .NET Prerequisite Version
 
 The Particular platform products require [.NET 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42643). Before proceeding ensure that this version of .NET is available on the system. More detailed information about .NET can be found on the [Wikipedia .NET Overview](https://en.wikipedia.org/wiki/.NET_Framework_version_history#Overview).
 

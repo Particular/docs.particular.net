@@ -31,7 +31,7 @@ The PI is a [Microsoft Click-Once](https://msdn.microsoft.com/en-us/library/t71a
 
 ### Dependencies
 
-The Click-Once `setup.exe` will install [.Net 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42643) if required and with then bootstrap the PI Application.
+The Click-Once `setup.exe` will install [.NET 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42643) if required and with then bootstrap the PI Application.
 
 
 ### License Acceptance
