@@ -6,15 +6,17 @@ tags:
  - upgrade
  - migration
 related:
-- servicecontrol/plugins
-- servicecontrol/plugins/heartbeat
-- servicecontrol/plugins/custom-checks
-- servicecontrol/plugins/saga-audit
+ - servicecontrol/plugins
+ - servicecontrol/plugins/heartbeat
+ - servicecontrol/plugins/custom-checks
+ - servicecontrol/plugins/saga-audit
 ---
+
 
 ## Connecting to ServiceControl
 
 Version 2 of the ServiceControl plugins changes the way that the plugins connect to ServiceControl. The plugins no longer derive a ServiceControl queue name from the Error/Audit queues. Additional configuration is required to specify the location of the ServiceControl queue. 
+
 
 ### Configuration File
 
@@ -22,12 +24,22 @@ The location of the ServiceControl queue can be specified once for all plugins i
 
 snippet:sc-plugin-queue-config
 
+
 ### Code
 
 The location of the ServiceControl queue can be specified via plugin-specific extensions to the endpoint configuration.
 
+
+#### Heartbeats
+
 snippet:Heartbeats_Configure_ServiceControl
 
+
+#### CustomChecks
+
 snippet:CustomCheck_Configure_ServiceControl
+
+
+#### SagaAudit
 
 snippet:SagaAudit_Configure_ServiceControl
