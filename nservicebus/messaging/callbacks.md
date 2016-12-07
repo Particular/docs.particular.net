@@ -10,9 +10,7 @@ related:
 - samples/callbacks
 ---
 
-To handle responses from the processing endpoint, the sending endpoint must have it's own queue. Therefore, the sending endpoint cannot be configured as a [SendOnly endpoint](/nservicebus/hosting/#self-hosting-send-only-hosting). Messages arriving in this queue are handled using a message handler, similar to that of the processing endpoint, as shown:
-
-snippet:EmptyHandler
+Callbacks allow to use messaging behind a synchronous API that can't be changed. A common use case is introducing messaging to existing synchronous Web or WCF applications. The advantage of using callbacks is that they allow to gradually transition applications towards messaging.
 
 
 ## Handling responses in the context of a message being sent
@@ -20,6 +18,10 @@ snippet:EmptyHandler
 When sending a message, a callback can be registered that will be invoked when a response arrives.
 
 DANGER: If the server process returns multiple responses, NServiceBus cannot know which response message will be the last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a process restart (common scenarios are a crash or an [IIS recycle](https://msdn.microsoft.com/en-us/library/ms525803.aspx)) as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](/nservicebus/sagas/).
+
+To handle responses from the processing endpoint, the sending endpoint must have it's own queue. Therefore, the sending endpoint cannot be configured as a [SendOnly endpoint](/nservicebus/hosting/#self-hosting-send-only-hosting). Messages arriving in this queue are handled using a message handler, similar to that of the processing endpoint, as shown:
+
+snippet:EmptyHandler
 
 
 ## Prerequisites for callback functionality
