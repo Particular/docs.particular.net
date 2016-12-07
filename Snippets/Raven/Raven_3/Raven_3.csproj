@@ -29,8 +29,9 @@
       <HintPath>..\..\..\packages\NServiceBus.5.2.21\lib\net45\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.RavenDB">
-      <HintPath>..\..\..\packages\NServiceBus.RavenDB.3.0.11\lib\net45\NServiceBus.RavenDB.dll</HintPath>
+    <Reference Include="NServiceBus.RavenDB, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
+      <HintPath>..\..\..\packages\NServiceBus.RavenDB.3.0.12\lib\net45\NServiceBus.RavenDB.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Raven.Abstractions">
       <HintPath>..\..\..\packages\RavenDB.Client.3.0.30155\lib\net45\Raven.Abstractions.dll</HintPath>
