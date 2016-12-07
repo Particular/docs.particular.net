@@ -167,17 +167,25 @@ Notice how much faster the message proceeds through delayed retries, because ins
 
 If you used the [Particular Platform Installer](/platform/installer/) to install MSMQ, you should already have the [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/) tools installed. You may want to re-run the Platform Installer and ensure that the checkboxes for ServiceControl and ServicePulse are already checked, and install them if necessary.
 
+NOTE: ServiceControl is installed as a Windows service named **Particular ServiceControl** and has no user interface. ServicePulse is installed as a Windows service named **Particular ServicePulse** and has a web-based UI, which can be accessed at `http://localhost:9090` [when default settings are used](/servicepulse/host-config.md). You can check to see if both are running from the Windows Services control panel.
+
 Once these tools are installed and running, you can attempt to replay a message:
 
  1. Fix the **Sales** endpoint by removing the `throw` statement.
  1. Run the solution.
- 1. Open ServicePulse and navigate to the **Failed Messages** page. Note how similar messages are grouped together for easier handling.
+ 1. Open ServicePulse at `http://localhost:9090` and navigate to the **Failed Messages** page. Note how similar messages are grouped together for easier handling.
     ![Failed Message Groups](failed-message-groups.png)
  1. Click the **View Messages** link to see details on each failed message.
     ![Failed Message Details](failed-message-details.png)
  1. Try the various methods of replaying messages and watch what happens in the console windows. Note that ServiceControl executes message retry batches on a 30-second timer, so *be patient*. Eventually, the messages will be returned to their appropriate endpoints.
 
 When the message is replayed in Sales, each endpoint picks up right where it left off. You should be able to see how useful this capability will be when failures happen in your real-life systems.
+
+{{NOTE:
+Our solution currently uses [in-memory persistence](/nservicebus/persistence/in-memory.md) to store subscription information. Because of this, if you restart only the Sales endpoint while the others continue to run, it will not know where to publish messages and the system will not work as intended. When using a durable persistence, this will not be an issue. When testing with in-memory persistence, restart the entire system so that subscription messages are resent as each endpoint starts up.
+
+For more details see [Persistence in NServiceBus](/nservicebus/persistence/).
+}}
 
 
 ## Summary
