@@ -12,26 +12,19 @@
         public static void CreateQueue(string queueName, string account)
         {
             var path = $@"{Environment.MachineName}\private$\{queueName}";
-            if (MessageQueue.Exists(path))
+            if (!MessageQueue.Exists(path))
             {
-                using (var messageQueue = new MessageQueue(path))
+                using (var messageQueue = MessageQueue.Create(path, true))
                 {
-                    SetPermissionsForQueue(messageQueue, account);
-                    return;
+                    SetDefaultPermissionsForQueue(messageQueue, account);
                 }
-            }
-            using (var messageQueue = MessageQueue.Create(path, true))
-            {
-                SetPermissionsForQueue(messageQueue, account);
             }
         }
 
-        static void SetPermissionsForQueue(MessageQueue queue, string account)
+        static void SetDefaultPermissionsForQueue(MessageQueue queue, string account)
         {
             var allow = AccessControlEntryType.Allow;
             queue.SetPermissions(AdminGroup, MessageQueueAccessRights.FullControl, allow);
-            queue.SetPermissions(EveryoneGroup, MessageQueueAccessRights.WriteMessage, allow);
-            queue.SetPermissions(AnonymousLogon, MessageQueueAccessRights.WriteMessage, allow);
 
             queue.SetPermissions(account, MessageQueueAccessRights.WriteMessage, allow);
             queue.SetPermissions(account, MessageQueueAccessRights.ReceiveMessage, allow);
@@ -39,8 +32,6 @@
         }
 
         static string AdminGroup = GetGroupName(WellKnownSidType.BuiltinAdministratorsSid);
-        static string EveryoneGroup = GetGroupName(WellKnownSidType.WorldSid);
-        static string AnonymousLogon = GetGroupName(WellKnownSidType.AnonymousSid);
 
         static string GetGroupName(WellKnownSidType wellKnownSidType)
         {
