@@ -13,6 +13,8 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
+        endpointConfiguration.CustomCheckPlugin("Particular.ServiceControl");
+
         Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 
         Console.WriteLine("Press any key to exit");

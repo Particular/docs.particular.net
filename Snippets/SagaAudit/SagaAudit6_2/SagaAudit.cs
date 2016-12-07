@@ -8,7 +8,8 @@ class MyClass
         #region SagaAudit_Configure_ServiceControl
 
         var endpointConfiguration = new EndpointConfiguration("myendpoint");
-        endpointConfiguration.SagaPlugin("ServiceControl_Queue");
+        endpointConfiguration.SagaPlugin(
+            serviceControlQueue: "ServiceControl_Queue");
 
         #endregion
     }

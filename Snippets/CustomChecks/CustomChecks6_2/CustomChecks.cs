@@ -61,7 +61,8 @@ class CustomChecks
     {
         #region CustomCheck_Configure_ServiceControl
         var endpointConfiguration = new EndpointConfiguration("myendpoint");
-        endpointConfiguration.CustomCheckPlugin("ServiceControl_Queue");
+        endpointConfiguration.CustomCheckPlugin(
+            serviceControlQueue: "ServiceControl_Queue");
         #endregion
     }
 

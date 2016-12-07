@@ -3,6 +3,10 @@
 
 ### ServiceControl Queue
 
+include: Plugin_ServiceControl_Queue
+
+snippet: sagaaudit-queue-config
+
 snippet: SagaAudit_Configure_ServiceControl
 
 

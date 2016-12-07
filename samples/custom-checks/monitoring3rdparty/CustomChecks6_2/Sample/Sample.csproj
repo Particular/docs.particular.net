@@ -31,8 +31,9 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.1.0-rc0001\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceControl.Plugin.Nsb6.CustomChecks">
-      <HintPath>..\..\..\..\..\packages\ServiceControl.Plugin.Nsb6.CustomChecks.1.0.0\lib\net452\ServiceControl.Plugin.Nsb6.CustomChecks.dll</HintPath>
+    <Reference Include="ServiceControl.Plugin.Nsb6.CustomChecks, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\ServiceControl.Plugin.Nsb6.CustomChecks.2.0.1\lib\net452\ServiceControl.Plugin.Nsb6.CustomChecks.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

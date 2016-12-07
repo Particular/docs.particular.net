@@ -9,7 +9,6 @@ public class CustomEventsHandler :
     IHandleMessages<MessageFailed>,
     IHandleMessages<HeartbeatStopped>,
     IHandleMessages<HeartbeatRestored>
-
 {
     static ILog log = LogManager.GetLogger<CustomEventsHandler>();
 

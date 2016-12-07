@@ -22,8 +22,16 @@ class Program
 
         var recoverability = endpointConfiguration.Recoverability();
 
-        recoverability.Delayed(c => c.NumberOfRetries(0));
-        recoverability.Immediate(c => c.NumberOfRetries(0));
+        recoverability.Delayed(
+            customizations: retriesSettings =>
+            {
+                retriesSettings.NumberOfRetries(0);
+            });
+        recoverability.Immediate(
+            customizations: retriesSettings =>
+            {
+                retriesSettings.NumberOfRetries(0);
+            });
 
         #endregion
 
@@ -43,7 +51,11 @@ class Program
 
                 var guid = Guid.NewGuid();
 
-                await endpointInstance.Send("NServiceBusEndpoint", new SimpleMessage { Id = guid });
+                var simpleMessage = new SimpleMessage
+                {
+                    Id = guid
+                };
+                await endpointInstance.Send("NServiceBusEndpoint", simpleMessage);
                 Console.WriteLine($"Sent a new message with Id = {guid}.");
 
                 Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
