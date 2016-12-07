@@ -17,7 +17,7 @@ The ServiceControl Installation has the following prerequisites:
 
  * [Microsoft .NET 4.5.2 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=42643)
 
-If ServiceControl is installed via the Platform Installer then the installation and configuration of these prerequisites are managed bu the installer.
+If ServiceControl is installed via the Platform Installer then the installation and configuration of these prerequisites are managed by the installer.
 
 
 ### Transport Support
