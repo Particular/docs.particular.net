@@ -9,48 +9,48 @@ tags:
 
 ## Overview
 
-The Platform Installer (PI) is recommended for use on development machines only.
+The Platform Installer is recommended for use on development machines only.
 
 This is primarily because:
 
- * The PI requires Internet access which may not be available in a production environment.
- * The PI `setup.exe` will fail on Windows servers were `IE Enhanced Security Configuration` is enabled.
+ * The Platform Installer requires Internet access which may not be available in a production environment.
+ * The Platform Installer `setup.exe` will fail on Windows servers were `IE Enhanced Security Configuration` is enabled.
 
-[Download the PI](https://particular.net/start-platform-download).
+[Download the Platform Installer](https://particular.net/start-platform-download).
 
 For testing and production environments it is recommended to:
 
  * Use the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md) to install any required prerequisites.
- * Download and run the individual installers from [downloads](https://particular.net/downloads) rather than installing via the PI.
+ * Download and run the individual installers from [downloads](https://particular.net/downloads) rather than installing via the Platform Installer.
 
 
 ## What to expect
 
-The PI is a [Microsoft Click-Once](https://msdn.microsoft.com/en-us/library/t71a733d.aspx) application which means it has a built in self-updating mechanism. Click once applications are sometimes blocked by corporate firewalls or software restriction policies. If the PI fails review the [Offline Install](offline.md) page for installation instructions.
+The Platform Installer is a [Microsoft Click-Once](https://msdn.microsoft.com/en-us/library/t71a733d.aspx) application which means it has a built in self-updating mechanism. Click once applications are sometimes blocked by corporate firewalls or software restriction policies. If the Platform Installer fails review the [Offline Install](offline.md) page for installation instructions.
 
 
 ### Dependencies
 
-The Click-Once `setup.exe` will install [.NET 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42643) if required and with then bootstrap the PI Application.
+The Click-Once `setup.exe` will install [.NET 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42643) if required and with then bootstrap the Platform Installer Application.
 
 
 ### License Acceptance
 
-Before proceeding with product selection the PI will prompt to accept the NServiceBus License Agreement.
+Before proceeding with product selection the Platform Installer will prompt to accept the NServiceBus License Agreement.
 
 
 ### Proxy Credentials
 
-The PI requires Internet access to download individual packages. If non-windows integrated proxy authentication is required then a credentials dialog will be show.
+The Platform Installer requires Internet access to download individual packages. If non-windows integrated proxy authentication is required then a credentials dialog will be show.
 
 ![](save-credentials.png)
 
-This dialog offers to save credentials for future use. If the Save Credentials option is chosen the credentials will be encrypted and stored in the registry at `HKEY_CURRENT_USER\Software\Particular\PlatformInstaller\Credentials` for use in subsequent launches of the PI.
+This dialog offers to save credentials for future use. If the Save Credentials option is chosen the credentials will be encrypted and stored in the registry at `HKEY_CURRENT_USER\Software\Particular\PlatformInstaller\Credentials` for use in subsequent launches of the Platform Installer.
 
 
 ## Select items to install
 
-The PI will prompt for which items to install. Individual components can be selected how for installation or upgrade. If the latest version of a product is installed that item no checkbox will be displayed as there is no installation or upgrade action required. Similarly if the PI cannot communicate with the version information feed it will also disable product selection.
+The Platform Installer will prompt for which items to install. Individual components can be selected how for installation or upgrade. If the latest version of a product is installed that item no checkbox will be displayed as there is no installation or upgrade action required. Similarly if the Platform Installer cannot communicate with the version information feed it will also disable product selection.
 
 ![](select-items.png)
 
@@ -106,17 +106,17 @@ Installs the ServiceControl Package. This MSI can be downloaded directly from [S
 
 ### Downloads
 
-The PI caches the downloaded MSI files in `%temp%\Particular\PlatformInstaller`. These files are download directly from GitHub. Some corporate firewalls prevent the downloading of executable files via content filters or by white/black listing specific web sites. If the PI cannot download the individual applications consult with the network administration staff.
+The Platform Installer caches the downloaded MSI files in `%temp%\Particular\PlatformInstaller`. These files are download directly from GitHub. Some corporate firewalls prevent the downloading of executable files via content filters or by white/black listing specific web sites. If the Platform Installer cannot download the individual applications consult with the network administration staff.
 
 
 ### Logs
 
-The PI logs activity in `%appdata%\PlatformInstaller`. The current log file will be named according to the current date. For example a log created on the 25 January 2016 would result in the filename `log-20160125.txt`.
+The Platform Installer logs activity in `%appdata%\PlatformInstaller`. The current log file will be named according to the current date. For example a log created on the 25 January 2016 would result in the filename `log-20160125.txt`.
 
 
 ### MSI Logs
 
-The command line options used for the MSI installations ensure that a detailed log file is produced for each installation. These files are co-located with the PI logs in `%appdata%\PlatformInstaller`.
+The command line options used for the MSI installations ensure that a detailed log file is produced for each installation. These files are co-located with the Platform Installer logs in `%appdata%\PlatformInstaller`.
 
 An installation or upgrade of a product will overwrite any existing MSI log for that product.
 
