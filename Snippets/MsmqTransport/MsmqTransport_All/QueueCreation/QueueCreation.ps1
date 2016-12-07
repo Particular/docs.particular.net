@@ -86,8 +86,7 @@ Function SetDefaultPermissionsForQueue
 {
     param(
         [Parameter(Mandatory=$true)]
-        [System.Messaging.MessageQueue] 
-        $Queue,
+        [System.Messaging.MessageQueue] $Queue,
 
         [Parameter(Mandatory=$true)]
         [ValidateNotNullOrEmpty()]
