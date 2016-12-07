@@ -24,14 +24,12 @@ A custom check is executed once when the endpoint host starts. NServiceBus assem
 
 NOTE: Only the instance of a custom check which has been created by the NServiceBus framework is able to report status. The check instances created in user code will not function.
 
-
 snippet:CustomCheck
 
 
 ### Periodic check
 
 A periodic check is executed at defined intervals. The check happens not in the constructor but in a dedicated `PerformCheck` method which returns the check result.
-
 
 snippet:PeriodicCheck
 
