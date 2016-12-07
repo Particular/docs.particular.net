@@ -1,16 +1,20 @@
-﻿
-Set-StrictMode -Version 2.0
+﻿Set-StrictMode -Version 2.0
 
 Add-Type -AssemblyName System.Messaging
 
 Function Usage
 {
 # startcode msmq-create-queues-endpoint-usage-powershell
-    CreateQueue("myendpoint", [System.Environment]::UserName);
+    # For NServiceBus 6 Enpoints 
+    CreateQueuesForEndpoint -EndpointName "myendpoint" -Account $env:USERNAME
+
+    # For NServiceBus 5 and below Endpoints 
+    CreateQueuesForEndpoint -EndpointName "myendpoint" -Account $env:USERNAME -IncludeRetries
 # endcode
+
 # startcode msmq-create-queues-shared-usage-powershell
-    CreateQueue("error", [System.Environment]::UserName);
-    CreateQueue("audit", [System.Environment]::UserName);
+    CreateQueue -QueueName "error" -Account $env:USERNAME
+    CreateQueue -QueueName "audit" -Account $env:USERNAME
 # endcode
 }
 
@@ -19,24 +23,30 @@ Function CreateQueuesForEndpoint
 {
     param(
         [Parameter(Mandatory=$true)]
-        [string] $endpointName,
+        [ValidateNotNullOrEmpty()]
+        [string] $EndpointName,
+
         [Parameter(Mandatory=$true)]
-        [string] $account
+        [ValidateNotNullOrEmpty()]
+        [string] $Account,
+
+        [Parameter(HelpMessage="Only required for NSB Versions 5 and below")]
+        [Switch] $IncludeRetries
     )
 
-
     # main queue
-    CreateQueue $endpointName $account
+    CreateQueue -QueueName $EndpointName -Account $Account
 
     # timeout queue
-    CreateQueue ($endpointName + ".timeouts") $account
+    CreateQueue -QueueName "$EndpointName.timeouts" -Account $Account
 
     # timeout dispatcher queue
-    CreateQueue ($endpointName + ".timeoutsdispatcher") $account
+    CreateQueue -QueueName "$EndpointName.timeoutsdispatcher" -Account $Account
 
     # retries queue
-    # TODO: Only required in Versions 5 and below
-    CreateQueue ($endpointName + ".retries") $account
+    if ($IncludeRetries) {
+        CreateQueue -QueueName "$EndpointName.retries" -Account $Account
+    }
 }
 # endcode
 
@@ -45,45 +55,49 @@ Function CreateQueue
 {
     param(
         [Parameter(Mandatory=$true)]
-        [string] $queueName,
+        [ValidateNotNullOrEmpty()]
+        [string] $QueueName,
+
         [Parameter(Mandatory=$true)]
-        [string] $account
+        [ValidateNotNullOrEmpty()]
+        [string] $Account
     )
 
-    $queuePath = '{0}\private$\{1}'-f [System.Environment]::MachineName, $queueName
-    if (-Not [System.Messaging.MessageQueue]::Exists($queuePath))
-    {
-		$messageQueue = [System.Messaging.MessageQueue]::Create($queuePath,$true)
-		SetDefaultPermissionsForQueue $messageQueue $account
+    $queuePath = '{0}\private$\{1}' -f $env:COMPUTERNAME, $QueueName
+
+    if (-Not [System.Messaging.MessageQueue]::Exists($queuePath)) {
+	    $messageQueue = [System.Messaging.MessageQueue]::Create($queuePath, $true)
+		SetDefaultPermissionsForQueue -Queue $messageQueue -Account $Account
     }
+}
+
+Function GetAccountFromWellKnownSid
+{
+    param(
+        [Parameter(Mandatory=$true)]
+        [System.Security.Principal.WellKnownSidType] $WellKnownSidType
+    )
+    
+    $account = New-Object System.Security.Principal.SecurityIdentifier $WellKnownSidType,$null
+    return $account.Translate([System.Security.Principal.NTAccount]).ToString()
 }
 
 Function SetDefaultPermissionsForQueue
 {
     param(
         [Parameter(Mandatory=$true)]
-        [System.Messaging.MessageQueue] $queue,
+        [System.Messaging.MessageQueue] $Queue,
+
         [Parameter(Mandatory=$true)]
-        [string] $account
-    )
-    $queue.SetPermissions($AdminGroup, "FullControl", "Allow")
-
-    $queue.SetPermissions($account, "WriteMessage", "Allow")
-    $queue.SetPermissions($account, "ReceiveMessage", "Allow")
-    $queue.SetPermissions($account, "PeekMessage", "Allow")
-}
-
-$AdminGroup=GetGroupName("BuiltinAdministratorsSid")
-
-Function GetGroupName
-{
-    param(
-        [Parameter(Mandatory=$true)]
-        [System.Security.Principal.WellKnownSidType] $wellKnownSidType
+        [ValidateNotNullOrEmpty()]
+        [string] $Account
     )
 
-    $account = New-Object System.Security.Principal.SecurityIdentifier($wellKnownSidType, $null)
-    return $account.Translate([System.Security.Principal.NTAccount]).ToString()
+    $adminGroup = GetAccountFromWellKnownSid -wellKnownSidType ([System.Security.Principal.WellKnownSidType]::BuiltinAdministratorsSid)
+    $Queue.SetPermissions($AdminGroup, "FullControl", "Allow")
+    $Queue.SetPermissions($Account, "WriteMessage", "Allow")
+    $Queue.SetPermissions($Account, "ReceiveMessage", "Allow")
+    $Queue.SetPermissions($Account, "PeekMessage", "Allow")
 }
 
 # endcode
