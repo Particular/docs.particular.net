@@ -14,7 +14,7 @@ The Platform Installer is recommended for use on development machines only.
 This is primarily because:
 
  * The Platform Installer requires Internet access which may not be available in a production environment.
- * The Platform Installer `setup.exe` will fail on Windows servers were `IE Enhanced Security Configuration` is enabled.
+ * The Platform Installer `setup.exe` will fail on Windows servers were [IE Enhanced Security Configuration](https://support.microsoft.com/en-au/kb/815141) is enabled.
 
 [Download the Platform Installer](https://particular.net/start-platform-download).
 
