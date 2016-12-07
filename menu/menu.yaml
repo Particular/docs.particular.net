@@ -135,6 +135,10 @@
       Articles:
       - Url: nservicebus/upgrades/testing-5to6
         Title: Version 5 to 6
+    - Title: Nsb6 ServiceControl Plugins
+      Articles:
+      - Url: nservicebus/upgrades/nsb6-sc-plugins-1to2
+        Title: Version 1 to 2
   - Url: nservicebus/messaging
     Title: Messaging
     Articles:
