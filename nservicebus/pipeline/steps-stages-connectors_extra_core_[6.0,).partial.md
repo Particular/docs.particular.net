@@ -1,5 +1,6 @@
 NServiceBus Version 6 further splits the existing pipelines into smaller composable units called *Stages* and *Connectors*. A stage is a group of steps acting on the same level of abstraction.
 
+Note: There currently is no way to provide custom Pipelines, Stages, Fork Connectors, or Stage Connectors for NServiceBus. The examples below are included here for completeness.
 
 ## Stages
 
@@ -156,9 +157,6 @@ Fork connectors fork from a current stage (i.e. `IIncomingPhysicalMessageContext
 
 snippet:CustomForkConnector
 
-Note: There is currently no mechanism available to create custom pipelines and stages.
-
-
 ## Stage Fork Connector
 
 ```mermaid
@@ -175,5 +173,3 @@ end
 Stage fork connectors are essentially a marriage of a stage connector and a fork connector. They have the ability to connect from the current stage (i.e. `ITransportReceiveContext`) to another stage (i.e. `IIncomingPhysicalMessageContext`) and fork to another independent pipeline (i.e. `IBatchedDispatchContext`). Like a fork connector it has the required knowledge to create additional pipelines and cache them appropriately for performance reasons. In order to override an existing stage fork connector inherit from `StageForkConnector<TFromContext, TToContext, TForkContext` and then replace an existing stage fork connector.
 
 snippet:CustomStageForkConnector
-
-Note: There is currently no mechanism available to create custom pipelines and stages.
