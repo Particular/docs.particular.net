@@ -19,12 +19,17 @@ class RavenHost :
             Configuration =
             {
                 Port = 32076,
-                PluginsDirectory = Environment.CurrentDirectory,
-                HostName = "localhost"
-            }
+                PluginsDirectory = "Plugins",
+                HostName = "localhost",
+                Settings =
+                {
+                    { "Raven/ActiveBundles", "Unique Constraints" }
+                }
+            },
         };
         documentStore.RegisterListener(new UniqueConstraintsStoreListener());
         documentStore.Initialize();
+
         // since hosting a fake raven server in process need to remove it from the logging pipeline
         Trace.Listeners.Clear();
         Trace.Listeners.Add(new DefaultTraceListener());
