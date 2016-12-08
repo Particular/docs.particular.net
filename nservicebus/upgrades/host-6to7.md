@@ -8,6 +8,10 @@ tags:
 related:
 - nservicebus/hosting/nservicebus-host
 - nservicebus/upgrades/5to6
+isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 5
+ - 6
 ---
 
 

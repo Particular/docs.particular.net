@@ -6,8 +6,12 @@ tags:
  - upgrade
  - migration
 related:
-- nservicebus/azure-service-bus
-- nservicebus/upgrades/5to6
+ - nservicebus/azure-service-bus
+ - nservicebus/upgrades/5to6
+isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 5
+ - 6
 ---
 
 

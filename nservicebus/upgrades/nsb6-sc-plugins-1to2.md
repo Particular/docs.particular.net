@@ -10,6 +10,9 @@ related:
  - servicecontrol/plugins/heartbeat
  - servicecontrol/plugins/custom-checks
  - servicecontrol/plugins/saga-audit
+isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 6
 ---
 
 

@@ -9,6 +9,10 @@ related:
  - nservicebus/rabbitmq
  - nservicebus/upgrades/5to6
  - nservicebus/rabbitmq/connection-settings
+isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 5
+ - 6
 ---
 
 
