@@ -1,6 +1,8 @@
 ---
 title: Logging
 summary: Setting up logging in Azure Cloud Services.
+component: CloudServicesHost
+versions: '[6,)'
 tags:
  - Worker Roles
  - Web Roles
@@ -8,9 +10,9 @@ tags:
  - Cloud
  - Logging
 reviewed: 2016-10-21
+related:
+ - nservicebus/logging
 ---
-
-## Logging
 
 The NServiceBus [logging](/nservicebus/logging/) integrates with the Azure Diagnostics service through a simple trace logger.
 
