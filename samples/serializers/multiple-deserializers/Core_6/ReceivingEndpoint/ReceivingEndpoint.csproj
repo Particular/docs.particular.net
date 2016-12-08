@@ -51,8 +51,8 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.MessagePack.1.0.0\Lib\NET452\NServiceBus.MessagePack.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Newtonsoft.Json, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Newtonsoft.Json.1.0.0\lib\net452\NServiceBus.Newtonsoft.Json.dll</HintPath>
+    <Reference Include="NServiceBus.Newtonsoft.Json, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Newtonsoft.Json.1.0.1\lib\net452\NServiceBus.Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Wire, Version=2.0.1.0, Culture=neutral, PublicKeyToken=null">
