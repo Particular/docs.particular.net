@@ -6,6 +6,11 @@ tags:
 related:
  - nservicebus/security/encryption
  - nservicebus/security/generating-encryption-keys
+isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 3
+ - 4
+ - 5
 ---
 
 ## Summary
