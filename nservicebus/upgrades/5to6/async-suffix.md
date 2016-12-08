@@ -4,10 +4,6 @@ summary: Reasoning for no Async suffix to Task based APIs
 reviewed: 2016-07-21
 redirects:
  - nservicebus/upgrades/5to6-async-suffix
-isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 5
- - 6
 ---
 
 Starting with NServiceBus Version 6, all APIs that contain potentially IO bound code are [Async](https://msdn.microsoft.com/en-us/library/mt674882.aspx). Some examples include:

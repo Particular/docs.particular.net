@@ -6,10 +6,6 @@ tags:
  - migration
 related:
  - nservicebus/containers
-isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 5
- - 6
 ---
 
 

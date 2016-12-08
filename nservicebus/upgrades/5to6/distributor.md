@@ -8,10 +8,6 @@ related:
  - samples/scaleout/distributor-upgrade
 redirects:
  - nservicebus/scalability-and-ha/distributor/upgrading-the-distributor
-isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 5
- - 6
 ---
 
 The [distributor](/nservicebus/msmq/distributor) has scaling limitations. For better scalability the distributor should be replaced by [sender-side distribution](/nservicebus/msmq/sender-side-distribution.md) with NServiceBus Version 6. Before upgrading, consider the current limitations of sender-side distribution mode.

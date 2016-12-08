@@ -4,10 +4,6 @@ reviewed: 2016-10-26
 tags:
  - upgrade
  - migration
-isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 5
- - 6
 ---
 
 

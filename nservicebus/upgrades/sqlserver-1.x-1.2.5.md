@@ -8,9 +8,6 @@ tags:
  - SQL Server
 related:
  - security-advisories/sqlserver-sqlinjection
-isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 4
 ---
 
 

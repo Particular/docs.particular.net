@@ -6,10 +6,6 @@ tags:
  - migration
 related:
  - nservicebus/upgrades/azure-deprecation
-isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 5
- - 6
 ---
 
 Instructions on how to move from the [NServiceBus.Azure NuGet package](https://www.nuget.org/packages/NServiceBus.Azure/) to the [NServiceBus.DataBus.AzureBlobStorage NuGet package](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/).

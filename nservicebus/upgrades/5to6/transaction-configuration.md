@@ -4,10 +4,6 @@ reviewed: 2016-10-26
 tags:
  - upgrade
  - migration
-isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 5
- - 6
 ---
 
 Version 6 provide a configuration API that is more aligned with the transaction capabilities of the transport.

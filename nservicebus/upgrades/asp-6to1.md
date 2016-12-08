@@ -8,10 +8,6 @@ tags:
 related:
  - nservicebus/azure-storage-persistence
  - nservicebus/upgrades/asp-saga-deduplication
-isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 5
- - 6
 ---
 
 WARNING: Upgrades from NServiceBus.Azure Versions 6.2.3 and below will need to apply the [saga de-duplication patch](/nservicebus/upgrades/asp-saga-deduplication.md) followed by applying the [saga index patch](/nservicebus/upgrades/asp-saga-pruning.md) before completing the remainder of these upgrade steps.

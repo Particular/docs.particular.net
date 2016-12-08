@@ -7,10 +7,6 @@ tags:
 related:
 - nservicebus/upgrades/5to6
 - nservicebus/upgrades/absdatabus-6to1
-isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 5
- - 6
 ---
 
 ## NServiceBus.Azure package deprecated

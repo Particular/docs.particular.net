@@ -7,10 +7,6 @@ tags:
 related:
  - nservicebus/hosting/assembly-scanning
  - nservicebus/upgrades/sqlserver-2to3
-isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 5
- - 6
 ---
 
 ## Nested Directories

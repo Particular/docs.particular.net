@@ -4,10 +4,6 @@ reviewed: 2016-08-29
 summary: Describes how to send messages without the IBus
 redirects:
  - nservicebus/upgrades/5to6-moving-away-from-ibus
-isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 5
- - 6
 ---
 
 Starting with Version 6, the `IBus` interface has been deprecated.

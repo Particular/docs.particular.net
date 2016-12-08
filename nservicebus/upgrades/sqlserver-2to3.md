@@ -8,10 +8,6 @@ tags:
 related:
  - nservicebus/sqlserver
  - nservicebus/upgrades/5to6
-isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 5
- - 6
 ---
 
 

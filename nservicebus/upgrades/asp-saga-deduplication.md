@@ -7,9 +7,6 @@ tags:
 related:
  - nservicebus/sagas
  - nservicebus/azure-storage-persistence
-isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 5
 ---
 
 
