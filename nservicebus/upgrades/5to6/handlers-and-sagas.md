@@ -6,6 +6,10 @@ related:
  - nservicebus/sagas
 redirects:
  - nservicebus/upgrades/5to6-migrate-existing-handlers
+isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 5
+ - 6
 ---
 
 The handler method on `IHandleMessages<T>` now returns a Task. In order to leverage async code, add the `async` keyword to the handler method and use `await` for async methods. In order to convert the synchronous code add `return Task.FromResult(0);` or `return Task.CompletedTask` (.NET 4.6 and higher) to the handler methods.

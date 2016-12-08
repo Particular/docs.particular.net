@@ -7,6 +7,10 @@ tags:
  - migration
 related:
  - nservicebus/upgrades/5to6
+isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 5
+ - 6
 ---
 
 

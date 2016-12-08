@@ -9,6 +9,10 @@ related:
  - nservicebus/recoverability
 redirects:
  - nservicebus/upgrades/5to6-recoverability
+isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 5
+ - 6
 ---
 
 
