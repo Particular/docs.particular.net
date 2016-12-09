@@ -499,17 +499,6 @@
   NugetOrder:
     - Aggregates.NET
 
-# has no license
-#- Key: MessageRouting
-#  Name: MessageRouting
-#  DocoUrl: https://github.com/jbogard/NServiceBus.MessageRouting
-#  GitHubOwner: jbogard
-#  IsCommunityProject: true
-#  Category: Other
-#  ProjectUrl: https://github.com/jbogard/NServiceBus.MessageRouting
-#  NugetOrder:
-#    - NServiceBus.MessageRouting
-
 - Key: DistributedEventBroker
   Name: Appccelerate DistributedEventBroker
   DocoUrl: http://www.appccelerate.com/distributedeventbrokertransports.html
@@ -726,3 +715,14 @@
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.ZeroFormatter
   NugetOrder:
     - NServiceBus.ZeroFormatter
+
+- Key: MessageRouting
+  Name: MessageRouting
+  DocoUrl: https://github.com/jbogard/nservicebus.messagerouting
+  GitHubOwner: jbogard
+  Category: Other
+  IsCommunityProject: true
+  LicenseUrl: https://github.com/jbogard/nservicebus.messagerouting
+  ProjectUrl: https://github.com/jbogard/nservicebus.messagerouting
+  NugetOrder:
+    - NServiceBus.MessageRouting
