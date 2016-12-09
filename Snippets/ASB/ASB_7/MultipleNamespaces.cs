@@ -81,18 +81,19 @@ class MultipleNamespaces
 
     void NamespaceRoutingSendOptions(IEndpointInstance endpointInstance)
     {
-        string destination;
         #region namespace_routing_send_options_full_connectionstring
 
-        destination = "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]";
-        endpointInstance.Send(destination, new MyMessage());
+        endpointInstance.Send(
+            destination: "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]", 
+            message: new MyMessage());
 
         #endregion
 
         #region namespace_routing_send_options_named
 
-        destination = "sales@destination1";
-        endpointInstance.Send(destination, new MyMessage());
+        endpointInstance.Send(
+            destination: "sales@destination1", 
+            message: new MyMessage());
 
         #endregion
     }

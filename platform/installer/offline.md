@@ -1,10 +1,6 @@
 ---
 title: Installing Platform Components without Platform Installer
 reviewed: 2016-10-26
-tags:
- - Platform
- - Installation
- - Offline
 ---
 
 The [Platform Installer](/platform/installer) handles installing prerequisites for NServiceBus and the Platform products. This guide details how to install to achieve the same results as the Platform Installer on a computer that does not have the required Internet connectivity.

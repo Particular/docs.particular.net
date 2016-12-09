@@ -15,12 +15,11 @@ class Usage
 
     void NamespaceRoutingSendOptions(IBus bus)
     {
-        string destination;
-
         #region namespace_routing_send_options_full_connectionstring
 
-        destination = "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]";
-        bus.Send(destination, new MyMessage());
+        bus.Send(
+            destination: "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]", 
+            message: new MyMessage());
 
         #endregion
     }

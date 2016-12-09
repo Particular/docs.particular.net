@@ -17,7 +17,8 @@ class SecureCredentials
         #region map_default_logical_alias_to_connection_string
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.ConnectionString("Endpoint=sb://[NAMESPACE].servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
+        transport.ConnectionString(
+            connectionString: "Endpoint=sb://[NAMESPACE].servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
 
         #endregion
     }

@@ -1,16 +1,14 @@
 ---
 title: Platform Releases
 summary: Links to the current and previous releases, release notes for the Particular Service Platform applications
-tags:
-- Platform
 reviewed: 2016-11-07
 ---
 
 
 ### Platform Installer
 
-- [Download and Launch the Platform Installer](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
-- [Release notes](installer)
+ * [Download and Launch the Platform Installer](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
+ * [Release notes](installer)
 
 
 ### Applications and Tools
