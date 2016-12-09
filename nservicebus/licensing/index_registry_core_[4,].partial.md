@@ -20,6 +20,7 @@ These following instructions cover installing the license file without using NSe
 
 ```ps
 $content = Get-Content license.xml | Out-String
+New-Item -Path HKLM:\Software\ParticularSoftware -Force 
 Set-ItemProperty -Path HKLM:\Software\ParticularSoftware -Name License -Force -Value $content
 ```
 
