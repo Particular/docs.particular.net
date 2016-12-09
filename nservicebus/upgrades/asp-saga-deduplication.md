@@ -11,15 +11,12 @@ upgradeGuideCoreVersions:
  - 5
 ---
 
-
-## Summary
-
 This document explains how to upgrade and patch a system for [Azure Storage Persistence bug #26](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/issues/26) using the NServiceBus.Azure hotfix release 6.2.4.
 
 WARNING: When upgrading to NServiceBus.Persistence.AzureStorage Version 1 and above, the following upgrade will need to be performed prior to beginning any other upgrade steps.
 
 
-### How to know if a system may be affected
+## How to know if a system may be affected
 
 This bug will affect a system only if the following conditions are met on the same endpoint:
 
