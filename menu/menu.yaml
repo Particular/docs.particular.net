@@ -19,6 +19,8 @@
       Title: License
     - Url: components
       Title: Extensions
+    - Url: platform/contributing
+      Title: Contributing
     - Url: nservicebus/architecture/principles
       Title: Architectural Principles
     - Url: nservicebus/architecture
