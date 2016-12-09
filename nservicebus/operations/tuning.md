@@ -27,7 +27,7 @@ Define a maximum concurrency setting that will make sure that no more messages t
 Examples where concurrency tuning is relevant are
 
  * Non thread safe code that needs to run sequentially
- * Databases that might deadlock when getting to many concurrent requests
+ * Databases that might deadlock when getting too many concurrent requests
 
 
 ## Throttling
