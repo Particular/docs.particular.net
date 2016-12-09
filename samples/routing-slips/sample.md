@@ -54,8 +54,6 @@ snippet: alternate
 
 #### Route to A, C and ResultHost
 
-Route the message to endpoint 
-
 snippet: SendAC
 
 
