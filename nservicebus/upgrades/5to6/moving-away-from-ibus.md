@@ -13,14 +13,14 @@ upgradeGuideCoreVersions:
 
 Starting with Version 6, the `IBus` interface has been deprecated.
 
-The `IBus` interface was one of the key interfaces when using previous versions of NServiceBus. It provided access to many of the operations like sending messages, subscribing to events, and manipulating headers. The `IBus` interface was available through dependency injection in message handlers, any custom components that were registered in the container and through other mechanisms like the saga base class.
+The `IBus` interface was one of the key interfaces when using previous versions. It provided access to many of the operations like sending messages, subscribing to events, and manipulating headers. The `IBus` interface was available through dependency injection in message handlers, any custom components that were registered in the container and through other mechanisms like the saga base class.
 
 
 ## Reasons for deprecating IBus
 
 The `IBus` interface contained numerous methods and properties. However, not all of them are valid in all scenarios where an instance of `IBus` was exposed and this can lead to confusion. For example, the methods `Reply` and `ForwardCurrentMessageTo` are always available on the `IBus` interface, but they are only relevant in the context of handling an incoming message. Using them in other scenarios will throw an exception.
 
-For users new to the NServiceBus API, the fact that `IBus` was available in message handlers using Dependency Injection wasn't obvious, especially when trying to send or publish messages from inside message handlers. Rather than using dependency injection, an `IMessageHandlerContext` parameter is now available in all the message handlers. This parameter exposes all of the appropriate actions to the message handler. Methods that aren't applicable will not be available making the API simpler.
+For users new to the API, the fact that `IBus` was available in message handlers using Dependency Injection wasn't obvious, especially when trying to send or publish messages from inside message handlers. Rather than using dependency injection, an `IMessageHandlerContext` parameter is now available in all the message handlers. This parameter exposes all of the appropriate actions to the message handler. Methods that aren't applicable will not be available making the API simpler.
 
 All of the previous `Bus` methods now available via the `IMessageHandlerContext` parameter in the message handlers and the methods in the `IMessageSession` interface available when the endpoint is started are fully async. However, the original method names are retained rather than adding the [async suffix](async-suffix.md) to make the upgrade easier.
 
@@ -32,7 +32,7 @@ Some scenarios involving `IBus` include: endpoint creation, sending messages dur
 
 ### During Endpoint Creation
 
-In previous versions of NServiceBus to start a new instance of an endpoint, either the `Bus` static class or the `IStartableBus` interface was used. In Version 6 these two concepts have been replaced. More information can be found in the [hosting](/nservicebus/hosting/) section of the documentation. Instead of the `Bus` class, a new class called `Endpoint` helps to start the endpoint.
+In previous versions to start a new instance of an endpoint, either the `Bus` static class or the `IStartableBus` interface was used. In Version 6 these two concepts have been replaced. More information can be found in the [hosting](/nservicebus/hosting/) section of the documentation. Instead of the `Bus` class, a new class called `Endpoint` helps to start the endpoint.
 
 `BusConfiguration` has been deprecated. Use `EndpointConfiguration` instead to configure and start the endpoint. Because `IBus` has been deprecated, the `BusConfiguration` class has been renamed to `EndpointConfiguration` to keep terminology consistent.
 
@@ -40,7 +40,8 @@ snippet: 5to6-endpoint-start-stop
 
 Starting the endpoint provides access to `IEndpointInstance` which can be used to send messages during endpoint start up instead of using the `IBus` interface.
 
-["Send-only" endpoints](/nservicebus/hosting/#self-hosting-send-only-hosting) were created by calling the `CreateSendOnly` method on the `Bus` class in previous versions of NServiceBus. In version 6 there is no longer a separate method to create or start "Send-Only" endpoints. Configure the endpoint to be "Send-Only" with the `SendOnly` method on `EndpointConfiguration` and create/start it with the `Endpoint` class.
+["Send-only" endpoints](/nservicebus/hosting/#self-hosting-send-only-hosting) were created by calling the `CreateSendOnly` method on the `Bus` class in previous versions. In version 6 there is no longer a separate method to create or start "Send-Only" endpoints. Configure the endpoint to be "Send-Only" with the `SendOnly` method on `EndpointConfiguration` and create/start it with the `Endpoint` class.
+
 
 ### Accessing the CurrentMessageContext
 
@@ -60,7 +61,7 @@ snippet:5to6-bus-send-publish
 
 ### Sending messages outside message handlers
 
-A common use of `IBus` is to invoke bus operations outside of the NServiceBus pipeline (e.g. in handlers, sagas and pipeline extensions), such as sending a message from an ASP.NET request or from a client application. Instead of an `IBus` the `IMessageSession` offers all available messaging operations outside the message processing pipeline. For example:
+A common use of `IBus` is to invoke bus operations outside of the pipeline (e.g. in handlers, sagas and pipeline extensions), such as sending a message from an ASP.NET request or from a client application. Instead of an `IBus` the `IMessageSession` offers all available messaging operations outside the message processing pipeline. For example:
 
 snippet:5to6-endpoint-send-messages-outside-handlers
 
@@ -76,9 +77,9 @@ If the endpoint is hosted using NServiceBus.Host, use the [`IWantToRunWhenEndpoi
 
 ## Dependency Injection
 
-In previous versions of NServiceBus the `IBus` interface was automatically registered in the IOC container. In Version 6, the new context-aware interfaces, for example, `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., will not be automatically registered in the [Container](/nservicebus/containers/).
+In previous versions the `IBus` interface was automatically registered in the IOC container. In Version 6, the new context-aware interfaces, for example, `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., will not be automatically registered in the [Container](/nservicebus/containers/).
 
-In NServiceBus Versions 5 and below, when a custom component was registered in the container, the custom component had access to the `IBus` instance via dependency injection.
+In Versions 5 and below, when a custom component was registered in the container, the custom component had access to the `IBus` instance via dependency injection.
 
 WARNING: When upgrading such custom components to Version 6, it is **not safe** to simply replace all instances of `IBus` with `IMessageSession`. It depends on the usage of the `IBus` inside the custom component.
 
