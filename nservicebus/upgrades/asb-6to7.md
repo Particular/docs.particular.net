@@ -43,8 +43,6 @@ In Versions 6 and below the transport was configured using an XML configuration 
 
 The new configuration API is accessible through extension methods on the `UseTransport<AzureServiceBusTransport>()` extension point in the endpoint configuration. Refer to the [Full Configuration Page](/nservicebus/azure-service-bus/configuration/full.md) for more details.
 
-snippet:AzureServiceBusTransportWithAzure
-
 
 ### Setting The Connection String
 
