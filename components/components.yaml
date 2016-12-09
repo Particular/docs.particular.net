@@ -718,11 +718,11 @@
 
 - Key: MessageRouting
   Name: MessageRouting
-  DocoUrl: https://github.com/jbogard/nservicebus.messagerouting
+  DocoUrl: https://github.com/jbogard/NServiceBus.MessageRouting
   GitHubOwner: jbogard
   Category: Other
   IsCommunityProject: true
-  LicenseUrl: https://github.com/jbogard/nservicebus.messagerouting
-  ProjectUrl: https://github.com/jbogard/nservicebus.messagerouting
+  LicenseUrl: https://github.com/jbogard/NServiceBus.MessageRouting/license.txt
+  ProjectUrl: https://github.com/jbogard/NServiceBus.MessageRouting
   NugetOrder:
     - NServiceBus.MessageRouting
