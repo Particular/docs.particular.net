@@ -46,8 +46,9 @@ class Program
 
         var factories = transport.MessagingFactories();
         factories.BatchFlushInterval(TimeSpan.FromMilliseconds(100));
-        factories.NumberOfMessagingFactoriesPerNamespace(5);
-        transport.NumberOfClientsPerEntity(5);
+        var totalConcurrency = Environment.ProcessorCount;
+        factories.NumberOfMessagingFactoriesPerNamespace(totalConcurrency);
+        transport.NumberOfClientsPerEntity(totalConcurrency);
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
