@@ -1,6 +1,6 @@
 ---
 title: More On Profiles
-summary: 'Two types of profiles in NServiceBus: environment and feature.'
+summary: 'Two types of profiles: environment and feature.'
 component: Host
 tags:
 - Profiles
@@ -11,7 +11,9 @@ tags:
 - Performance Counters
 redirects:
  - nservicebus/more-on-profiles
-reviewed: 2016-11-03
+reviewed: 2016-12-09
+related:
+ - nservicebus/pipeline/features
 ---
 
 The NServiceBus Host profiles enable altering the behavior of an endpoint without recompiling the code. The profiles enable tailoring endpoints configuration for different environments.
@@ -24,6 +26,7 @@ Profiles are divided into two main categories, depending on what they control:
  * Feature profiles turn NServiceBus features on and off, easily and with no code changes. For example, turning on and off the performance counters.
 
 Technically there is no difference between the environment- and feature-related profiles.
+
 
 ## Environment-related profiles
 
@@ -39,6 +42,7 @@ The environmental-related profiles:
 Suitable for running on the development machine, possibly inside Visual Studio.
 
 partial: lite
+
 
 ### Integration profile
 
@@ -64,12 +68,12 @@ partial: production
 
 ## Feature-related profiles
 
-Feature-related profiles that come out of the box :
+Feature-related profiles that come out of the box:
 
 partial: feature
 
 
-## Telling the host which profiles to run
+## Controlling what profiles to run
 
 To activate a specific profile, when starting the host, pass the full name of the profile in the command line. Type names are case insensitive. Profiles can be combined by separating them with white space.
 
