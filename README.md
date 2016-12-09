@@ -197,6 +197,20 @@ When renaming an existing article to a new name, add the `redirects:` section in
 Should be the URL relative to the root with no beginning or trailing slash padding and no .md.
 
 
+### UpgradeGuides
+
+To Mark something as an upgrade guide use `isUpgradeGuide: true`
+
+The `upgradeGuideCoreVersions` setting can optionally be used to filter which NSB core version tab the page show up in the search results
+
+```
+isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 5
+ - 6
+```
+
+
 ## An example header for an article
 
 - In the following example, whenever the URLs `/servicecontrol/sc-si` or `/servicecontrol/debugging-servicecontrol` are being requested, the given article will be rendered.
