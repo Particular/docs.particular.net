@@ -9,7 +9,9 @@
         async Task Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint)
         {
             #region 5to6-Callbacks-InstanceId
-            endpointConfiguration.MakeInstanceUniquelyAddressable(ConfigurationManager.AppSettings["InstanceId"]);
+
+            var instanceDiscriminator = ConfigurationManager.AppSettings["InstanceId"];
+            endpointConfiguration.MakeInstanceUniquelyAddressable(instanceDiscriminator);
             #endregion
 
             #region 5to6-Callbacks
