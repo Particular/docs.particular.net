@@ -167,7 +167,11 @@ Notice how much faster the message proceeds through delayed retries, because ins
 
 If you used the [Particular Platform Installer](/platform/installer/) to install MSMQ, you should already have the [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/) tools installed. You may want to re-run the Platform Installer and ensure that the checkboxes for ServiceControl and ServicePulse are already checked, and install them if necessary.
 
-NOTE: ServiceControl is installed as a Windows service named **Particular ServiceControl** and has no user interface. ServicePulse is installed as a Windows service named **Particular ServicePulse** and has a web-based UI, which can be accessed at `http://localhost:9090` [when default settings are used](/servicepulse/host-config.md). You can check to see if both are running from the Windows Services control panel.
+{{NOTE:
+ServiceControl is installed as a Windows service named **Particular ServiceControl** and has no user interface. It exposes a web API at `http://localhost:33333/api` when [default settings are used](/servicecontrol/creating-config-file.md#host-settings). The API is used to serve information to the [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/) tools.
+
+ServicePulse is installed as a Windows service named **Particular ServicePulse** and has a web-based UI, which can be accessed at `http://localhost:9090` [when default settings are used](/servicepulse/host-config.md). You can check to see if both are running from the Windows Services control panel. ServicePulse must to be able to connect to the ServiceControl API, which [can be configured](/servicepulse/host-config.md#changing-the-servicecontrol-url) if a non-default ServiceControl URL is used.
+}}
 
 Once these tools are installed and running, you can attempt to replay a message:
 
@@ -177,7 +181,7 @@ Once these tools are installed and running, you can attempt to replay a message:
     ![Failed Message Groups](failed-message-groups.png)
  1. Click the **View Messages** link to see details on each failed message.
     ![Failed Message Details](failed-message-details.png)
- 1. Try the various methods of replaying messages and watch what happens in the console windows. Note that ServiceControl executes message retry batches on a 30-second timer, so *be patient*. Eventually, the messages will be returned to their appropriate endpoints.
+ 1. Try the various methods of replaying messages (**Retry selected** vs. **Retry all**) and watch what happens in the console windows. Note that ServiceControl executes message retry batches on a 30-second timer, so *be patient*. Eventually, the messages will be returned to their appropriate endpoints.
 
 When the message is replayed in Sales, each endpoint picks up right where it left off. You should be able to see how useful this capability will be when failures happen in your real-life systems.
 

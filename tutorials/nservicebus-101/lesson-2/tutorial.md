@@ -153,7 +153,7 @@ Let's take a closer look at the case when we want to place an order. In order to
     
 `SendLocal(object message)` is a method that is available on the `IEndpointInstance` interface, as we are using here, and also on the `IMessageHandlerContext` interface, which we saw when we were defining our message handler. The *Local* part means that we are not sending to an external endpoint (in a different process) so we intend to handle the message in the same endpoint that sent it. Using `SendLocal()`, we don't have to do anything special to tell the message where to go.
 
-NOTE: In the [next lesson](../lesson-3/) we'll learn how to send messages between separate endpoints, and how to control where the messages go.
+NOTE: In this lesson, we're using `SendLocal` (rather than the more commonly used `Send` method) as a bit of a crutch. This way, we can explore how to define, send, and process messages without needing a second endpoint to process them. With `SendLocal`, we also don't need to define routing rules to control where the sent messages go. We'll learn about these concepts [in the next lesson](../lesson-3/).
 
 Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properly.
 
