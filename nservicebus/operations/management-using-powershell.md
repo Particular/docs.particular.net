@@ -10,7 +10,7 @@ redirects:
 - nservicebus/managing-nservicebus-using-powershell
 ---
 
-Particular provides a PowerShell module to make it easy to setup a computer to run NServiceBus.
+A PowerShell module that sets up a computer to run NServiceBus.
 
 The PowerShell module provides cmdlets to assist with:
 
