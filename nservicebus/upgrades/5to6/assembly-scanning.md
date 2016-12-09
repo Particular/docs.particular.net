@@ -1,9 +1,7 @@
 ---
 title: Assembly scanning changes in Version 6
 reviewed: 2016-10-26
-tags:
- - upgrade
- - migration
+component: Core
 related:
  - nservicebus/hosting/assembly-scanning
  - nservicebus/upgrades/sqlserver-2to3

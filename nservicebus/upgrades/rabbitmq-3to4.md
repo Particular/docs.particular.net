@@ -2,11 +2,8 @@
 title: RabbitMQ Transport Upgrade Version 3 to 4
 summary: Instructions on how to upgrade RabbitMQ Transport Version 3 to 4.
 reviewed: 2016-09-09
-tags:
- - upgrade
- - migration
+component: Rabbit
 related:
- - nservicebus/rabbitmq
  - nservicebus/upgrades/5to6
  - nservicebus/rabbitmq/connection-settings
 isUpgradeGuide: true
@@ -28,8 +25,7 @@ The `DequeueTimeout` setting has been removed because the message pump no longer
 
 ### PrefetchCount
 
-The [consumer prefetch count](http://www.rabbitmq.com/amqp-0-9-1-reference.html#basic.qos.prefetch-count) is no longer controlled by the `PrefetchCount` setting. Instead, the prefetch count is calculated by setting it to a multiple
-of the [maximum concurrency](/nservicebus/operations/tuning.md#tuning-concurrency) value. The multiplier used in the calculation can be changed.
+The [consumer prefetch count](http://www.rabbitmq.com/amqp-0-9-1-reference.html#basic.qos.prefetch-count) is no longer controlled by the `PrefetchCount` setting. Instead, the prefetch count is calculated by setting it to a multiple of the [maximum concurrency](/nservicebus/operations/tuning.md#tuning-concurrency) value. The multiplier used in the calculation can be changed.
 
 snippet:3to4rabbitmq-config-prefetch-multiplier
 

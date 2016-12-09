@@ -1,6 +1,7 @@
 ---
 title: Moving away from IBus in Version 6
 reviewed: 2016-08-29
+component: Core
 summary: Describes how to send messages without the IBus
 redirects:
  - nservicebus/upgrades/5to6-moving-away-from-ibus

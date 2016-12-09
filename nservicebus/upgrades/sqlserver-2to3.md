@@ -1,12 +1,8 @@
 ---
 title: SQL Server Transport Upgrade Version 2 to 3
 reviewed: 2016-09-13
-tags:
- - upgrade
- - migration
- - SQL Server
+component: SqlServer
 related:
- - nservicebus/sqlserver
  - nservicebus/upgrades/5to6
 isUpgradeGuide: true
 upgradeGuideCoreVersions:

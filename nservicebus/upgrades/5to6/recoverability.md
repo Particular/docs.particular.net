@@ -1,9 +1,7 @@
 ---
 title: Recoverability changes in Version 6
 reviewed: 2016-08-29
-tags:
- - upgrade
- - migration
+component: Core
 related:
  - nservicebus/upgrades/5to6
  - nservicebus/recoverability

@@ -2,9 +2,7 @@
 title: Azure Service Bus Transport Upgrade Version 6 to 7
 summary: Instructions on how to upgrade Azure Service Bus Transport Version 6 to 7.
 reviewed: 2016-09-22
-tags:
- - upgrade
- - migration
+component: ASB
 related:
  - nservicebus/azure-service-bus
  - nservicebus/upgrades/5to6
@@ -28,6 +26,7 @@ When selecting `EndpointOrientedTopology`, it is also necessary to configure [pu
 snippet:publisher_names_mapping_upgrade_guide
 
 For more details on topologies refer to the [Azure Service Bus Transport Topologies](/nservicebus/azure-service-bus/topologies/) article.
+
 
 ## Sanitization
 

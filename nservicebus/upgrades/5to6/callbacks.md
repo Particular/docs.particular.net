@@ -1,9 +1,7 @@
 ---
 title: Callback Changes in Version 6
 reviewed: 2016-10-26
-tags:
- - upgrade
- - migration
+component: Callbacks
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

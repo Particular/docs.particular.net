@@ -1,9 +1,7 @@
 ---
 title: Messaging changes in Version 6
 reviewed: 2016-10-26
-tags:
- - upgrade
- - migration
+component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

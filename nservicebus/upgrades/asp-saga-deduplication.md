@@ -2,8 +2,7 @@
 title: Azure Storage Persistence upgrade Version 6.2.3 to 6.2.4
 summary: Instructions on how to patch Azure Storage Persistence when saga duplication occurs.
 reviewed: 2016-05-12
-tags:
- - upgrade
+component: ASP
 related:
  - nservicebus/sagas
  - nservicebus/azure-storage-persistence

@@ -2,12 +2,9 @@
 title: NServiceBus Host Upgrade Version 6 to 7
 summary: Instructions on how to upgrade NServiceBus Host Version 6 to 7.
 reviewed: 2016-04-06
-tags:
- - upgrade
- - migration
+component: Host
 related:
-- nservicebus/hosting/nservicebus-host
-- nservicebus/upgrades/5to6
+ - nservicebus/upgrades/5to6
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

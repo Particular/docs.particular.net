@@ -3,8 +3,6 @@ title: Azure Storage Persistence upgrade Version 6.2.4 to 6.2.5
 summary: Instructions on how to patch Azure Storage Persistence when orphan saga index records appear.
 reviewed: 2016-06-30
 component: ASP
-tags:
- - upgrade
 related:
  - nservicebus/sagas
  - nservicebus/azure-storage-persistence

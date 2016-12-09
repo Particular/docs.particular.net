@@ -2,11 +2,8 @@
 title: Gateway Upgrade Version 1 to 2
 summary: Instructions on how to upgrade the Gateway from Version 1 to 2.
 reviewed: 2016-11-16
-tags:
- - upgrade
- - migration
+component: Gateway
 related:
- - nservicebus/gateway
  - nservicebus/upgrades/5to6
 isUpgradeGuide: true
 upgradeGuideCoreVersions:

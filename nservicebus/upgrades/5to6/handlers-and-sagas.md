@@ -1,6 +1,7 @@
 ---
 title: Migrate handlers and sagas to Version 6
 reviewed: 2016-08-29
+component: Core
 related:
  - nservicebus/handlers
  - nservicebus/sagas

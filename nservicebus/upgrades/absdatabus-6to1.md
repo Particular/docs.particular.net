@@ -1,9 +1,7 @@
 ---
 title: Moving to the DataBus AzureBlobStorage package
 reviewed: 2016-11-05
-tags:
- - upgrade
- - migration
+component: ABSDataBus
 related:
  - nservicebus/upgrades/azure-deprecation
 isUpgradeGuide: true

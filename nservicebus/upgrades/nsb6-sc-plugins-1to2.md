@@ -2,9 +2,7 @@
 title: NServiceBus Version 6 ServiceControl Plugins Upgrade Version 1 to 2
 summary: Instructions on how to upgrade NServiceBus version 6 ServiceControl Plugins Version 1 to 2.
 reviewed: 2016-12-07
-tags:
- - upgrade
- - migration
+component: ServiceControl
 related:
  - servicecontrol/plugins
  - servicecontrol/plugins/heartbeat

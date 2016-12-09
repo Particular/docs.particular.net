@@ -1,9 +1,6 @@
 ---
 title: Migrating the Distributor to use Sender Side Distribution
 reviewed: 2016-10-25
-tags:
- - upgrade
- - migration
 related:
  - samples/scaleout/distributor-upgrade
 redirects:
@@ -15,6 +12,7 @@ upgradeGuideCoreVersions:
 ---
 
 The [distributor](/nservicebus/msmq/distributor) has scaling limitations. For better scalability the distributor should be replaced by [sender-side distribution](/nservicebus/msmq/sender-side-distribution.md) with NServiceBus Version 6. Before upgrading, consider the current limitations of sender-side distribution mode.
+
 
 ## Client-side distribution
 
@@ -66,6 +64,7 @@ This approach enables the continued utilization of the resources used for the Di
  * Remove the Distributor and the attached instances. Alternatively, detach the attached instances from the Distributor and start them again (make sure to include them in the sender-side distribution configuration too).
 
 Finally, include the previously excluded instance in the sender-side distribution configuration.
+
 
 ## Simple upgrade scenario
 
