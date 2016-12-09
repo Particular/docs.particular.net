@@ -16,7 +16,7 @@ This article presents basic guidelines for choosing contracts evolution strategy
 
 ### Messages
 
-Ensure that messages are easy to evolve by following the general messages [design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
+Ensure that messages can be evolved by following the general messages [design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
 
 
 ### Solution structure

@@ -18,9 +18,9 @@ The [NServiceBus Host](/nservicebus/hosting/nservicebus-host/) provides faciliti
 
 ## Configuration difficulties
 
-Starting out with NServiceBus development isn't always easy. There are many configuration options for levels of logging, technologies for storing subscribers, and types of saga storage (to name a few). Often, an appropriate combination of all these options is required, as long as they can be changed later. Profiles give that flexibility.
+There are many configuration options for levels of logging, technologies for storing subscribers, and types of saga storage (to name a few). Often, an appropriate combination of all these options is required, as long as they can be changed later. Profiles give that flexibility.
 
-NServiceBus comes with three profiles out of the box: Lite, Integration, and Production. Each profile configures a cohesive combination of technologies:
+There are three profiles out of the box: Lite, Integration, and Production. Each profile configures a cohesive combination of technologies:
 
  * Lite keeps everything in memory with the most detailed logging.
  * Integration uses technologies closer to production but without scale out and less logging.
@@ -30,20 +30,20 @@ These profiles can be used to easily switch between different environments durin
 
 ## Specifying which profiles to run
 
-To tell the host to run using a specific profile, pass the namespace-qualified type of the profile class to the NServiceBus host as a command-line parameter. Specify the Lite profile, as follows:
+To tell the host to run using a specific profile, pass the namespace-qualified type of the profile class as a command-line parameter. Specify the Lite profile, as follows:
 
 ```dos
 NServiceBus.Host.exe NServiceBus.Lite
 ```
 
-Be aware that when installing the NServiceBus host as a Windows Service, all provided profiles are baked into the installation.
+When installing the NServiceBus Host as a Windows Service, all provided profiles are baked into the installation.
 
 If the host is run without specifying a profile, NServiceBus defaults to the Production profile. Pass in as many other profiles as required and NServiceBus runs them all.
 
 
 ## Writing a custom profile
 
-Writing a profile is as simple as defining a class that implements the `NServiceBus.IProfile` marker interface. Here's an example:
+To write a Profile define a class that implements the `NServiceBus.IProfile` marker interface:
 
 snippet:defining_profile
 
