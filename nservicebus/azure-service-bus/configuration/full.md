@@ -8,7 +8,7 @@ tags:
 - Cloud
 redirects:
 - nservicebus/azure-service-bus/configuration/configuration
-reviewed: 2016-09-22
+reviewed: 2016-12-08
 ---
 
 
@@ -21,9 +21,8 @@ The full configuration API can be accessed from the `UseTransport<AzureServiceBu
 
 A topology defines what the underlying layout of Azure Service Bus messaging entities looks like, specifically what entities are used and how they relate to each other. There are 2 built-in topologies: `EndpointOrientedTopology` and `ForwardingTopology`. For more information refer to the [Topologies](/nservicebus/azure-service-bus/topologies) article.
 
- * `UseTopology<T>()`: Specifies which topology should be used by the transport, instantiating it using the default constructor.
- * `UseTopology<T>(Func<T>)`: Specifies which topology should be used by the transport, instantiating it using a factory method.
- * `UseTopology<T>(T)`: Specifies which topology should be used by the transport, instance created by the provided code.
+ * `UseForwardingTopology()`: Selects `ForwardingTopology` as the topology to be used by the transport.
+ * `UseEndpointOrientedTopology()`: Selects `UseEndpointOrientedTopology` as the topology to be used by the transport.
 
 
 ### Forwarding Topology
