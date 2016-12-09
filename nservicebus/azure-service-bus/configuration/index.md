@@ -3,6 +3,7 @@ title: Configuration
 tags:
 - Azure
 - Cloud
+reviewed: 2016-12-08
 ---
 
 ## Getting Started
