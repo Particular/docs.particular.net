@@ -40,7 +40,7 @@ On Send all share properties are set.
 
 snippet: multi-message-send
 
-But in each step rpoject they are only away of the specific their specific message interpretations:
+But in each step project they are only away of the specific their specific message interpretations:
 
 snippet: step-handler
 
@@ -54,7 +54,7 @@ snippet: alternate
 
 #### Route to A, C and ResultHost
 
-Route the message to endpoign 
+Route the message to endpoint 
 
 snippet: SendAC
 
