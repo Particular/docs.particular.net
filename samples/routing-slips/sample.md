@@ -71,13 +71,44 @@ snippet: SendABC
  1.  StepC receives message
  1.  ResultHost receives message
 
+```mermaid
+sequenceDiagram
 
-### When Route to A, B, C and ResultHost
+Participant Sender
+Participant StepA
+Participant StepB
+Participant StepC
+Participant ResultHost
+Sender ->> StepA: Route
+Note over StepA: Sets Attachment "Foo = Bar"
+StepA->> StepC: Route
+Note over StepC: Read Attachment "Foo"
+StepC->> ResultHost: Route
+```
+
+
+### When routing to A, B, C and ResultHost
 
  1.  StepA receives message
  1.  StepB receives message
  1.  StepC receives message
  1.  ResultHost receives message
+
+```mermaid
+sequenceDiagram
+
+Participant Sender
+Participant StepA
+Participant StepB
+Participant StepC
+Participant ResultHost
+Sender ->> StepA: Route
+Note over StepA: Sets Attachment "Foo = Bar"
+StepA->> StepB: Route
+StepB->> StepC: Route
+Note over StepC: Read Attachment "Foo"
+StepC->> ResultHost: Route
+```
 
 
 ## Attachments
@@ -86,6 +117,6 @@ Note that StepA sets a routing slip attachment:
 
 snippet: set-attachments
 
-Which is then retrieved by  StepC
+Which is then retrieved by StepC
 
 snippet: read-attachment
