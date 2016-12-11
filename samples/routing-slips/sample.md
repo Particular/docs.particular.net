@@ -40,7 +40,7 @@ On Send all share properties are set.
 
 snippet: multi-message-send
 
-But in each step project they are only away of the specific their specific message interpretations:
+But in each step project they are only aware of the specific their specific message interpretations:
 
 snippet: step-handler
 
