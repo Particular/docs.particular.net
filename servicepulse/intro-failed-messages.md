@@ -4,7 +4,7 @@ summary: Describes how ServicePulse detects and monitors failed messages, and al
 component: ServicePulse
 tags:
 - ServicePulse
-reviewed: 2016-03-02
+reviewed: 2016-12-12
 related:
 - serviceinsight/managing-errors-and-retries
 ---
@@ -27,21 +27,37 @@ To see a detailed display of the failed messages, click the Failed Messages indi
 #### Last 10 successful group retries
 
 The list shows information about last 10 group retries that were performed containing following information:
- * **Title** made up of the **Exception Type** and **Call Site** where the failure occurred.
- * **Retry completed** time indicating when the group was retried.
+ 
+ * **Title** expressing if it was group or set of messages.
+ * **Retry request started** time indicating when the retry was initiated.
+ * **Retry request completed** time indicating when the retry was completed.
+ * **Messages retried** amount of messages that were retried.
+
+NOTE: By writing completed retry the result of the retry is not being displayed. A completed retry means that messages were send to given queue.
+
 
 #### Failed message groups
 
-The first tab shows error groups. A group is a set of failed messages where the same **Exception Type** has been thrown from the same method. Each group has:
+The first tab shows error groups. A group is a set of failed messages grouped by the same classification type.
+There are following classifications that user can chose from:
+ * **Exception Type and Stack Trace** groups messages by the same exception type and stack trace. It is the default way of categorizing failed messages.   
+ * **Message Type** groups messages by its type. 
+ 
+Regardless of classification each group has:
 
- * **Title** made up of the **Exception Type** and **Call Site** where the failure occurred.
+ * **Title** matching selected classification type.
  * **Count** of how many unresolved messages there are in the group.
  * **First Failure** time indicating when the first unresolved error occurred.
  * **Latest Failure** time indicating when the most recent unresolved errors occurred.
  * **Last Retried** time indicating when the group was retried.
  * **Actions** which can be used to Archive or Retry an entire group of messages (see below).
 
-Click the title of a group or the View Messages link to open a list of all of the errors within the group.
+Click the  View Messages link to open a list of all of the errors within the group.
+When the groups is being retried above information are replaced with the following ones:
+ * **Title** name of the group that can have different names depending on classification type.
+ * **Messages to send** amount of messages that will be retried after the operation is done
+ * **Retry requested** time indicating when the retry was initiated.
+ * **Progress indication** explaining where in the process of retrying the group currently is.
 
 The second tab will display all failed messages. The functionality is the same as viewing the messages in a group.
 

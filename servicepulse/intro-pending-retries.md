@@ -13,6 +13,14 @@ Pending retries messages can be found by going to the pending retries screen.
 
 ![Pending Retries Tab](images/pending-retries.png 'width=500')
 
+### How to enable the screen
+As of Version 1.7.0 and above the Pending Retries screen is hidden by default. To enable it in the UI modify the following value in `app\js\app.constants.js` to true:
+```
+.constant('showPendingRetry', true)
+```
+
+After that Pending retries link will be visible in the navigation.
+
 
 ### Pending Retries Messages
 
