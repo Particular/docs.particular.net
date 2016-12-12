@@ -36,9 +36,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnotherEventMessage.cs" />
-    <Compile Include="EventMessage.cs" />
-    <Compile Include="IMyEvent.cs" />
+    <Compile Include="OrderReceived.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
