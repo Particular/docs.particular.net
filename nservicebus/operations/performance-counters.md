@@ -140,18 +140,14 @@ If the endpoint instance throws one of the  following exceptions at startup, the
 
 ## Corrupted Counters
 
-Sometimes an NServiceBus endpoint hangs or fails during startup while initializing the performance counters at the following location:
+Corrupted performance counters can cause the endpoint to either hang completely during startup or fail with the following error:
 
-```no-highlight
-NServiceBus.Unicast.Transport.Monitoring.ReceivedPerformanceDiagnostics.SetupCounter
-```
+`NServiceBus performance counter for '{counterName}' is not set up correctly`
 
-This can happen when the performance counter libraries get corrupted.
-
-The performance counters libraries need to be rebuild by doing the following steps:
+Should this happen try rebuilding the performance counter library using the following steps:
 
  1. Open an elevated command prompt
- 1. Execute the following command to rebuild the performance counter libraries: `lodctr /r`
+ 1. Execute the following command to rebuild the performance counter library: `lodctr /r`
 
 
 ### More information
