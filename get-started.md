@@ -22,9 +22,9 @@ These articles are recommended to gain an understanding of the key concepts and 
 The [Messaging Basics Tutorial](/tutorials/nservicebus-101/) gives a guided walk through of building an NServiceBus system and introduces the basic concepts of messaging. Each lesson includes a downloadable solution with the completed exercise.
 
 
-## Go straight to runnable code
+## Samples
 
-Samples are fully functional solutions that can be run from Visual Studio. The samples allow to learn by exploring code. Each includes an explanation of the scenario, technology or concept that it illustrates.
+Samples are a great way to learn and explore NServiceBus by looking at runnable code. They are fully functional solutions that can be run from Visual Studio. Learn by exploring code. Each sample includes an explanation of the scenario and the technology or concept that it illustrates.
 
 Go to [Introduction to Sample](/samples/) or [Skip to the list of samples](/samples/#related-samples).
 
