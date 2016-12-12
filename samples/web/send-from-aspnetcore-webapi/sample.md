@@ -8,14 +8,93 @@ related:
 ---
 
 
-This sample shows how to send messages to a NServiceBus endpoint from a ASP.NET Core WebAPI application. **It only works for ASP.NET Core solutions targeting the full .NET Framework. The .NET Core runtime is currently not supported.**
+This sample shows how to send messages to a NServiceBus endpoint from a ASP.NET Core WebAPI application. 
+
+WARNING: This sample is running on the full .NET framework 4.6.1 and utilizing both .NET Core and full .NET dependencies, i.e. ASP.NET Core and NServiceBus. So while .NET Core dependencies can be consumed in the .NET runtime, the .NET Core runtime is not currently supported.
+
+
+## Converting to the full .NET runtime
+
+If the default *ASP.NET Core Web Application .NET Core* Visual Studio Project template is used there are two actions that will be required prior to adding the NServiceBus dependency. 
+
+
+### Convert to full .NET runtime
+
+To reference both .NET Core and Full .NET dependencies a project needs to have the framework configured to `net461`.
+
+If this is not done the following build error will occur
+
+```no-highlight
+NU1002 The dependency NServiceBus does not support framework .NETCoreApp,Version=v1.0.	project.json
+``` 
+
+To convert to .NET 4.6.1 open the project.json file and locate the following  
+
+```json
+"frameworks": {
+ "netcoreapp1.0": {
+   "imports": [
+      "dotnet5.6",
+      "portable-net45+win8"
+    ]
+  }
+},
+```
+
+Replace those lines with
+
+```json
+"frameworks": {
+  "net461": {}
+},
+```
+
+
+
+### NuGet dependencies Changes
+
+
+#### Update Existing NugetPackages
+
+The project template will default to the following dependencies
+
+ * Microsoft.NETCore.App 1.0
+ * Microsoft.AspNetCore.* 1.0
+ * Microsoft.Extensions.* 1.0
+
+These are not compatible with .NET 4.6.1 and will need to be updated. Use one of the following to update those packages to at least 1.1
+
+ * [NuGet Package Manager UI - Updating a package](https://docs.nuget.org/ndocs/tools/package-manager-ui#updating-a-package)
+ * [NuGet Package Manager Console - Updating a package](https://docs.nuget.org/ndocs/tools/package-manager-console#updating-a-package)
+
+
+#### Add IISIntegration
+
+Add the [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/) NuGet pacakge. It is required for the full .NET runtime to host a .NET Core website in IIS.
+
+
+#### Remove Microsoft.NETCore.App 
+
+The [Microsoft.NETCore.App](https://www.nuget.org/packages/Microsoft.NETCore.App/) NuGet pacakge is not compatible with the full .NET runtime. Howeve it is not required for this sample anc can be remove.  
+
+Remove the following from the project.json file.
+
+```json
+"Microsoft.NETCore.App": {
+  "version": "1.1.0",
+  "type": "platform"
+}
+```
+
+
+## Running the Solution
 
 Run the solution, a new browser window/tab opens, as well as a console application.
 
 The browser will open up the URL `http://localhost:51863/api/sendmessage`. An async [WebAPI](https://www.asp.net/web-api) controller handles the request. It creates an NServiceBus message and sends it to the endpoint running in the console application. The message has been processed successfully when the console application prints "Message received at endpoint". 
 
 
-### Prerequisites
+## Prerequisites
 
 - Install [.NET Core](https://www.microsoft.com/net/core#windows)
 
