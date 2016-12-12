@@ -6,7 +6,7 @@
     "Microsoft.Extensions.Configuration.FileExtensions": "1.1.0",
     "Microsoft.Extensions.Logging": "1.1.0",
     "Microsoft.Extensions.Logging.Debug": "1.1.0",
-    "NServiceBus": "6.1.0-rc0002"
+    "NServiceBus": "6.1.0"
   },
 
   "tools": {
