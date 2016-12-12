@@ -14,17 +14,17 @@ related:
 - nservicebus/messaging/publish-subscribe
 ---
 
-Before running the sample, look over the solution structure, the projects, and the classes. The projects `MyPublisher`, `Subscriber1`, and `Subscriber2` are Console Applications that each host an instance of NServiceBus.
+Before running the sample, look over the solution structure, the projects, and the classes. The projects `Publisher`,and `Subscriber` are Console Applications that each host an instance of NServiceBus.
 
 
 ## Defining messages
 
-The "Shared" project contains the definition of the messages that are sent between the processes. Note that there are no project references to NServiceBus. Open "Messages.cs" to see that it contains a standard `IMyEvent` interface and two different class definitions.
+The "Shared" project contains the definition of the messages that are sent between the processes. Open "OrderReceived.cs" to see the message that will be published by this sample. Note that this event implements a marker interface called `IEvent` to denote that this message is an event. To define messages without adding a dependency to NServiceBus, use [Unobtrusive Mode Messages](/nservicebus/messaging/unobtrusive-mode.md). 
 
 
 ## Creating and publishing messages
 
-As the name implies, the `MyPublisher` project is a publisher of event messages. It uses the bus framework to send alternatively three different types of messages every time Enter is clicked. The created message is populated and [published](/nservicebus/messaging/publish-subscribe/) using `Publish`.
+As the name implies, the `Publisher` project is a publisher of event messages. It uses the NServiceBus API to publish the `OrderReceived` event every time the `1` key is pressed. The created message is populated and [published](/nservicebus/messaging/publish-subscribe/) using the `Publish` API.
 
 snippet:PublishLoop
 
@@ -33,35 +33,33 @@ snippet:PublishLoop
 
 To receive messages from the publisher, the subscribers [must subscribe to the message types](/nservicebus/messaging/publish-subscribe/) they are designed to handle. A subscriber must have a handler for the type of message and a [configuration](/nservicebus/messaging/publish-subscribe/) that tells the bus where to send subscriptions for messages:
 
- * The `Subscriber1` process handles and subscribes to both the `EventMessage` and `AnotherEventMessage` types.
- * The `Subscriber2` handles and subscribes to any message implementing the interface `IMyEvent`.
+ * The `Subscriber` process handles and subscribes to the `OrderReceived` type.
 
-The handlers in each project are in files that end in with the word `Handler` for example `EventMessageHandler.cs`. Since both the `EventMessage` and `AnotherEventMessage` classes in the `Shared` project implement the `IMyEvent` interface, when they are published both subscribers receive it. When the specific message types of `EventMessage` and `AnotherEventMessage` are published, only the handlers of that specific type in `Subscriber1` are invoked.
+ * The handlers in each project are in files that end in with the word `Handler` for example `OrderReceivedHandler.cs`. 
 
- * `Subscriber1` uses the default auto-subscription feature of the bus where the the bus automatically sends subscription messages to the configured publisher.
- * `Subscriber2` explicitly disables the auto-subscribe feature in the `Program.cs` file. The subscriptions are therefore done explicitly at startup.
-
+ * `Subscriber` process uses the default auto-subscription feature of the bus where the the bus automatically sends subscription messages to the configured publisher. [The auto-subscribe feature can be explicitly disabled](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) as part of the endpoint configuration.
+  
 
 ## Run the sample
 
 When running the sample, notice the three open console applications and many log messages on each. Almost none of these logs represent messages sent between the processes.
 
-Bring the `MyPublisher` process to the foreground.
+Bring the `Publisher` process to the foreground.
 
-Click Enter repeatedly in the `MyPublisher` processes console window, and see how the messages appear in the other console windows. `Subscriber2` handles every published message and `Subscriber2` only handles `EventMessage` and `AnotherEventMessage`.
+Click the `1` key repeatedly in the `Publisher` process console window, and see how the messages appear in the `Subscriber` console window. 
 
 
 ## Fault-tolerant messaging
 
-Shut down `Subscriber1` by closing its console window. Return to the `MyPublisher` process and publish a few more messages by clicking Enter several more times. Notice how the publishing process does not change and there are no errors even though one of the subscribers is no longer running.
+Shut down `Subscriber` by closing its console window. Return to the `Publisher` process and publish a few more messages by pressing the `1` key several more times. Notice how the publishing process does not change and there are no errors even though the subscriber process is no longer running.
 
-In Visual Studio, right click the project of the closed subscriber, and restart it by right clicking the `Subscriber1` project and selecting `Debug` and then `Start new instance`.
+In Visual Studio, right click the project of the closed subscriber, and restart it by right clicking the `Subscriber` project and selecting `Debug` and then `Start new instance`.
 
-Note how `Subscriber1` immediately receives the messages that were published while it was not running. The publisher safely places the message into the transport in this case MSMQ without knowledge of the running status of any subscriber. MSMQ safely places the message in the inbound queue of the subscriber where it awaits handling, even when processes or machines restart, NServiceBus protects messages so against lost.
+Note how `Subscriber` immediately receives the messages that were published while it was not running. The publisher safely places the message into the transport in this case MSMQ without knowledge of the running status of any subscriber. MSMQ safely places the message in the inbound queue of the subscriber where it awaits handling. Even when processes or machines restart, NServiceBus protects messages from being lost.
 
 
 ## MSMQ Subscriber Authorization
 
-WARNING: [Subscriber Authorization](/nservicebus/msmq/subscription-authorisation.md) is only supported when using the [MSMQ Transport](/nservicebus/msmq/).
+WARNING: The Subscriber Authorization feature is only supported when using the [MSMQ Transport](/nservicebus/msmq/).
 
-snippet: SubscriptionAuthorizer
+Endpoints can be configured to prevent from either being able to subscribe to events from other endpoints or the ability to unsubscribe from events. This feature is only available when using the MSMQ transport. For more details, see: [Subscriber Authorization](/nservicebus/msmq/subscription-authorisation.md).
