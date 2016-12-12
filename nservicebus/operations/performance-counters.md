@@ -144,7 +144,7 @@ Corrupted performance counters can cause the endpoint to either hang completely 
 
 `NServiceBus performance counter for '{counterName}' is not set up correctly`
 
-Should this happen try rebuilding the performance counter library using following steps:
+Should this happen try rebuilding the performance counter library using the following steps:
 
  1. Open an elevated command prompt
  1. Execute the following command to rebuild the performance counter library: `lodctr /r`
