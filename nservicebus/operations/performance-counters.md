@@ -140,7 +140,7 @@ If the endpoint instance throws one of the  following exceptions at startup, the
 
 ## Corrupted Counters
 
-Corrupted performance counters can cause the endpoint to hang during startup or fail with the following error:
+Corrupted performance counters can cause the endpoint to either hang completely during startup or fail with the following error:
 
 `NServiceBus performance counter for '{counterName}' is not set up correctly`
 
