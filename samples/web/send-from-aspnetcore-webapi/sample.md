@@ -25,7 +25,7 @@ To reference both .NET Core and Full .NET dependencies a project needs to have t
 If this is not done the following build error will occur
 
 ```no-highlight
-NU1002 The dependency NServiceBus does not support framework .NETCoreApp,Version=v1.0.	project.json
+NU1002 The dependency NServiceBus does not support framework .NETCoreApp,Version=v1.0.project.json
 ``` 
 
 To convert to .NET 4.6.1 open the project.json file and locate the following  
@@ -50,7 +50,6 @@ Replace those lines with
 ```
 
 
-
 ### NuGet dependencies Changes
 
 
@@ -62,7 +61,7 @@ The project template will default to the following dependencies
  * Microsoft.AspNetCore.* 1.0
  * Microsoft.Extensions.* 1.0
 
-These are not compatible with .NET 4.6.1 and will need to be updated. Use one of the following to update those packages to at least 1.1
+These are not compatible with .NET 4.6.1 and will need to be updated. Use one of the following to update those packages to at least 1.1.
 
  * [NuGet Package Manager UI - Updating a package](https://docs.nuget.org/ndocs/tools/package-manager-ui#updating-a-package)
  * [NuGet Package Manager Console - Updating a package](https://docs.nuget.org/ndocs/tools/package-manager-console#updating-a-package)
