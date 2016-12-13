@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CFFB3713-A83D-45A2-8B27-560F03AD65E6}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{5DEDF935-A198-4969-838A-E83400667B77}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Shared</RootNamespace>
-    <AssemblyName>Shared</AssemblyName>
+    <RootNamespace>Subscriber</RootNamespace>
+    <AssemblyName>Subscriber</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -20,8 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -35,14 +36,19 @@
       <HintPath>..\..\..\..\packages\NServiceBus.4.7.12\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Compile Include="OrderReceivedHandler.cs" />
+    <Compile Include="Program.cs" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigErrorQueue.cs" />
-    <Compile Include="ConfigLogging.cs" />
-    <Compile Include="OrderReceived.cs" />
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{CFFB3713-A83D-45A2-8B27-560F03AD65E6}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

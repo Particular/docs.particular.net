@@ -76,7 +76,7 @@ The publisher's address is provided via [routing configuration](/nservicebus/mes
 
 #### Publish
 
-The publish workflow for unicast transports is as follows
+The publish workflow for [unicast transports](/nservicebus/transports/#types-of-transports-unicast-only-transports) is as follows
 
  1. Some code (e.g. a saga or a handler) request that a message be published.
  1. Publisher queries the storage for a list of subscribers.
