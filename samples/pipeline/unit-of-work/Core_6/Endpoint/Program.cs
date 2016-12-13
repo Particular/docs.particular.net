@@ -38,7 +38,7 @@ class Program
             for (var i = 1; i < 4; i++)
             {
                 var options = new SendOptions();
-                options.SetHeader("tennant", "tennant" + i);
+                options.SetHeader("tenant", "tenant" + i);
                 options.RouteToThisEndpoint();
                 await endpointInstance.Send(new MyMessage(), options);
             }

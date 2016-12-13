@@ -2,8 +2,8 @@ using System.Threading.Tasks;
 
 class MySessionProvider
 {
-    public Task<MySession> Open(string tennant)
+    public Task<MySession> Open(string tenant)
     {
-        return Task.FromResult(new MySession(tennant));
+        return Task.FromResult(new MySession(tenant));
     }
 }
