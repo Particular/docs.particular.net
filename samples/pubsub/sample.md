@@ -1,7 +1,7 @@
 ---
 title: Publish/Subscribe
 summary: Publish/Subscribe, fault-tolerant messaging, and durable subscriptions.
-reviewed: 2016-03-21
+reviewed: 2016-12-12
 component: Core
 tags:
 - Publish Subscribe
@@ -32,11 +32,8 @@ snippet:PublishLoop
 ## Implementing subscribers
 
 To receive messages from the publisher, the subscribers [must subscribe to the message types](/nservicebus/messaging/publish-subscribe/) they are designed to handle. A subscriber must have a handler for the type of message and a [configuration](/nservicebus/messaging/publish-subscribe/) that tells the bus where to send subscriptions for messages:
-
  * The `Subscriber` process handles and subscribes to the `OrderReceived` type.
-
  * The handlers in each project are in files that end in with the word `Handler` for example `OrderReceivedHandler.cs`. 
-
  * `Subscriber` process uses the default auto-subscription feature of the bus where the the bus automatically sends subscription messages to the configured publisher. [The auto-subscribe feature can be explicitly disabled](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) as part of the endpoint configuration.
   
 
