@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 
 static class Program
 {
@@ -15,7 +14,6 @@ static class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.CustomExtensionEndpoint";
-        LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomExtensionEndpoint");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

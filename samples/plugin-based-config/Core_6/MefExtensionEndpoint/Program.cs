@@ -2,7 +2,6 @@ using System;
 using System.ComponentModel.Composition.Hosting;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 
 static class Program
 {
@@ -22,7 +21,6 @@ static class Program
         var compositionContainer = new CompositionContainer(catalog);
 
         Console.Title = "Samples.MefExtensionEndpoint";
-        LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
         var endpointConfiguration = new EndpointConfiguration("Samples.MefExtensionEndpoint");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

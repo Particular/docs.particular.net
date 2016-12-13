@@ -1,6 +1,5 @@
 using System;
 using NServiceBus;
-using NServiceBus.Logging;
 
 static class Program
 {
@@ -9,7 +8,6 @@ static class Program
     static void Main()
     {
         Console.Title = "Samples.CustomExtensionEndpoint";
-        LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.CustomExtensionEndpoint");
         busConfiguration.UsePersistence<InMemoryPersistence>();
