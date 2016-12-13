@@ -12,8 +12,8 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.MultipleInheritance.Publisher";
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultipleInheritance.Publisher");
+        Console.Title = "Samples.MultipleInheritance.Producer";
+        var endpointConfiguration = new EndpointConfiguration("Samples.MultipleInheritance.Producer");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<MsmqTransport>();
 
@@ -49,8 +49,8 @@ class Program
 
             var myEvent = new MyEvent
             {
-                Subscriber1Property = "Subscriber1Info",
-                Subscriber2Property = "Subscriber2Info"
+                Consumer1Property = "Consumer1Info",
+                Consumer2Property = "Consumer2Info"
             };
             await endpointInstance.Publish(myEvent)
                 .ConfigureAwait(false);

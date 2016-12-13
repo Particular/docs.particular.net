@@ -7,8 +7,8 @@
     <ProjectGuid>{A7BDDCF2-D335-44E9-9809-EFDFDCE6CAE8}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Subscriber2</RootNamespace>
-    <AssemblyName>Subscriber2</AssemblyName>
+    <RootNamespace>Consumer2</RootNamespace>
+    <AssemblyName>Consumer2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\Subscriber2Event.cs" />
+    <Compile Include="Contracts\Consumer2Contract.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Subscriber1EventHandler.cs" />
+    <Compile Include="Consumer2EventHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

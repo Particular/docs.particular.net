@@ -7,8 +7,8 @@
     <ProjectGuid>{B9D5FCC6-26EA-4863-B060-87A68031812C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Publisher</RootNamespace>
-    <AssemblyName>Publisher</AssemblyName>
+    <RootNamespace>Producer</RootNamespace>
+    <AssemblyName>Producer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,11 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Subscriber1\Contracts\Subscriber1Event.cs">
-      <Link>Contracts\Subscriber1Event.cs</Link>
+    <Compile Include="..\Consumer1\Contracts\Consumer1Contract.cs">
+      <Link>Contracts\Consumer1Contract.cs</Link>
     </Compile>
-    <Compile Include="..\Subscriber2\Contracts\Subscriber2Event.cs">
-      <Link>Contracts\Subscriber2Event.cs</Link>
+    <Compile Include="..\Consumer2\Contracts\Consumer2Contract.cs">
+      <Link>Contracts\Consumer2Contract.cs</Link>
     </Compile>
     <Compile Include="Contracts\MyEvent.cs" />
     <Compile Include="Program.cs" />
