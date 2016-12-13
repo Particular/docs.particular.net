@@ -32,7 +32,11 @@ static class Program
 
             if (key.Key == ConsoleKey.D1)
             {
-                bus.Publish<OrderReceived>(m => { m.OrderId = orderId; });
+                var orderReceived = new OrderReceived
+                {
+                    OrderId = orderId
+                };
+                bus.Publish(orderReceived);
                 Console.WriteLine($"Published the OrderReceived event with OrderId {orderId}.");
             }
             else

@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 
 static class Program
 {
@@ -14,12 +13,11 @@ static class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.PubSub.Publisher";
-        LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
         var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Publisher");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-     
+        endpointConfiguration.UseTransport<MsmqTransport>();
+
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
@@ -52,18 +50,20 @@ static class Program
             var orderReceivedId = Guid.NewGuid();
             if (key.Key == ConsoleKey.D1)
             {
-                    await endpointInstance.Publish<OrderReceived>(m =>
-                        {
-                            m.OrderId = orderReceivedId;
-                        })
-                        .ConfigureAwait(false);
-                    Console.WriteLine($"Published OrderReceived Event with Id {orderReceivedId}.");
-             }
+                var orderReceived = new OrderReceived
+                {
+                    OrderId = orderReceivedId
+                };
+                await endpointInstance.Publish(orderReceived)
+                    .ConfigureAwait(false);
+                Console.WriteLine($"Published OrderReceived Event with Id {orderReceivedId}.");
+            }
             else
             {
                 return;
             }
         }
+
         #endregion
     }
 }

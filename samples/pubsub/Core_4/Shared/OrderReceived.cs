@@ -1,7 +1,8 @@
 using System;
 using NServiceBus;
 
-public interface OrderReceived : IEvent
+public class OrderReceived : 
+    IEvent
 {
-    Guid OrderId { get; set; }
+    public Guid OrderId { get; set; }
 }

@@ -1,7 +1,8 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class OrderReceivedHandler : IHandleMessages<OrderReceived>
+public class OrderReceivedHandler :
+    IHandleMessages<OrderReceived>
 {
     static ILog log = LogManager.GetLogger<OrderReceivedHandler>();
 
