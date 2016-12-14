@@ -21,6 +21,8 @@ To use RabbitMQ as the underlying transport:
 
 snippet:rabbitmq-config-basic
 
+The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker. See [Connection settings](/nservicebus/rabbitmq/) for options on how to provide the connection string.
+
 
 ## Advantages and Disadvantages
 
