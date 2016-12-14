@@ -31,8 +31,8 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.1.0\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.ProtoBuf, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.ProtoBuf.1.0.2\lib\NET452\NServiceBus.ProtoBuf.dll</HintPath>
+    <Reference Include="NServiceBus.ProtoBuf, Version=1.0.3.0, Culture=neutral, PublicKeyToken=13558604351ce6cb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.ProtoBuf.1.0.3\Lib\NET452\NServiceBus.ProtoBuf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="protobuf-net, Version=2.1.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
