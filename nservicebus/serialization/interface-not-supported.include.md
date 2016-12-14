@@ -4,7 +4,7 @@ This serializer does not support [Messages defined as Interfaces](/nservicebus/m
 
 If an explicit interface is send an exception will be thrown with the following message:
  
-```
+```no-highlight
 Interface based message are not supported. 
 Create a class that implements the desired interface
 ```
