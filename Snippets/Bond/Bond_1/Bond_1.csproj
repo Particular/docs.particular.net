@@ -41,8 +41,8 @@
       <HintPath>..\..\..\packages\Bond.Core.CSharp.5.1.0\lib\net45\Bond.Reflection.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Bond, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.Bond.1.0.0-beta0001\lib\net452\NServiceBus.Bond.dll</HintPath>
+    <Reference Include="NServiceBus.Bond, Version=1.0.0.0, Culture=neutral, PublicKeyToken=702945dabe58572d">
+      <HintPath>..\..\..\packages\NServiceBus.Bond.1.0.0\lib\net452\NServiceBus.Bond.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">

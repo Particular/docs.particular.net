@@ -31,8 +31,8 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.1.0\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.ZeroFormatter, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.ZeroFormatter.1.0.1\lib\NET452\NServiceBus.ZeroFormatter.dll</HintPath>
+    <Reference Include="NServiceBus.ZeroFormatter, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.ZeroFormatter.1.0.2\lib\NET452\NServiceBus.ZeroFormatter.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
