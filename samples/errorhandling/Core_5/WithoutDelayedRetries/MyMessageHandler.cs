@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using NServiceBus;
 
 #region Handler
@@ -7,7 +6,6 @@ public class MyMessageHandler :
     IHandleMessages<MyMessage>
 {
     IBus bus;
-    static ConcurrentDictionary<Guid, string> Last = new ConcurrentDictionary<Guid, string>();
 
     public MyMessageHandler(IBus bus)
     {

@@ -1,7 +1,7 @@
 ---
 title: Automatic Retries
 summary: With Delayed Retries, the message causing the exception is instantly retried via a retries queue instead of an error queue.
-reviewed: 2016-03-21
+reviewed: 2016-12-15
 component: Core
 tags:
 - Delayed Retries
@@ -43,11 +43,8 @@ Handling MyMessage with MessageId:b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8
 Handling MyMessage with MessageId:b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8
 Handling MyMessage with MessageId:b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8
 Handling MyMessage with MessageId:b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8
-2016-12-14 13:27:41.232 ERROR NServiceBus.RecoverabilityExecutor Moving message
-'b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8' to the error queue 'error' because processing failed due to an exception:
+2016-12-14 13:27:41.232 ERROR NServiceBus.RecoverabilityExecutor Moving message 'b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8' to the error queue 'error' because processing failed due to an exception:
 System.Exception: An exception occurred in the handler.
-...
-
 ```
 
 
@@ -62,12 +59,9 @@ Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
-2016-12-14 13:33:18.790 WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will 
-reschedule message '05b97154-04b9-405a-92d7-a6dc0163273f' after a delay of 00:00:20 because of an exception:
+2016-12-14 13:33:18.790 WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message '05b97154-04b9-405a-92d7-a6dc0163273f' after a delay of 00:00:20 because of an exception: 
 System.Exception: An exception occurred in the handler.
-
 . . .
-
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 This is retry number 2
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
@@ -75,12 +69,9 @@ Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
-2016-12-14 13:33:40.886 WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will
- reschedule message '05b97154-04b9-405a-92d7-a6dc0163273f' after a delay of 00:00:30 because of an exception:
+2016-12-14 13:33:40.886 WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message '05b97154-04b9-405a-92d7-a6dc0163273f' after a delay of 00:00:30 because of an exception:
 System.Exception: An exception occurred in the handler.
-
 . . .
-
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 This is retry number 3
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
@@ -88,10 +79,7 @@ Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
-2016-12-14 13:34:15.750 ERROR NServiceBus.RecoverabilityExecutor Moving message
-'05b97154-04b9-405a-92d7-a6dc0163273f' to the error queue 'error' because proces
-sing failed due to an exception:
+2016-12-14 13:34:15.750 ERROR NServiceBus.RecoverabilityExecutor Moving message '05b97154-04b9-405a-92d7-a6dc0163273f' to the error queue 'error' because processing failed due to an exception:
 System.Exception: An exception occurred in the handler.
-
 . . .
 ```

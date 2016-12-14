@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -7,7 +6,6 @@ using NServiceBus;
 public class MyMessageHandler :
     IHandleMessages<MyMessage>
 {
-    static ConcurrentDictionary<Guid, string> Last = new ConcurrentDictionary<Guid, string>();
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
