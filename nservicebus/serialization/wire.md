@@ -14,7 +14,6 @@ Serializes messages with the [Wire](https://github.com/akkadotnet/Wire) binary f
 snippet:WireSerialization
 
 
-
 ### Custom Settings
 
 Customizes the instance of `SerializerOptions` used for serialization.
@@ -22,8 +21,9 @@ Customizes the instance of `SerializerOptions` used for serialization.
 snippet: WireCustomSettings
 
 
-
-
 include: custom-contenttype-key
 
 snippet:WireContentTypeKey
+
+
+include: interface-not-supported

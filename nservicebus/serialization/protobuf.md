@@ -24,5 +24,5 @@ include: custom-contenttype-key
 
 snippet:ProtoBufContentTypeKey
 
-
+include: interface-not-supported
 

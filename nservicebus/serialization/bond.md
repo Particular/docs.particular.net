@@ -10,10 +10,10 @@ Serializes messages with [Microsoft Bond](https://microsoft.github.io/bond/manua
 
 > Bond is a cross-platform framework for working with schematized data. It supports cross-language de/serialization and powerful generic mechanisms for efficiently manipulating data. Bond is broadly used at Microsoft in high scale services.
 
+
 ## Usage
 
 snippet:BondSerialization
-
 
 
 ### SerializationDelegates
@@ -25,8 +25,9 @@ The default serialization delegates are as follows.
 snippet: BondSerializationDelegates
 
 
-
-
 include: custom-contenttype-key
 
 snippet:BondContentTypeKey
+
+
+include: interface-not-supported

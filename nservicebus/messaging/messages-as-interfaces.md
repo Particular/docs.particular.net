@@ -35,3 +35,20 @@ The other reason to use interfaces is that they enable multiple inheritance, whi
 Assume that in version 1 of a publisher, it exposed an event of type X. In Version 2, a new event of type Y is added. Then in Version 3, a new requirement comes along for a type of event, Z, which means that both X and Y occurred. If X, Y, and Z were implemented as interfaces, Z could inherit from both X and Y. The main advantage of this is that when Z is published, subscribers of X and Y receive the event with no changes required of them, as well as subscribers of Z, of course.
 
 This would not be possible using classes.
+
+
+{{WARNING:
+
+The following serializers **do not support** messages defined as interfaces. 
+
+ * [Bond](/nservicebus/serialization/bond.md)
+ * [MessagePack](/nservicebus/serialization/message-pack.md)
+ * [Protobuf](/nservicebus/serialization/protobuf.md)
+ * [Wire](/nservicebus/serialization/wire.md)
+ * [ZeroFormatter](/nservicebus/serialization/zeroformatter.md)
+
+Instead use a public class with the same contract as the interface. The class can optionally implement any required interfaces. 
+
+}}
+
+

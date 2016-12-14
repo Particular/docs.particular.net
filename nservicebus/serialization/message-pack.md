@@ -24,3 +24,6 @@ snippet: MessagePackCustomSettings
 include: custom-contenttype-key
 
 snippet:MessagePackContentTypeKey
+
+
+include: interface-not-supported
