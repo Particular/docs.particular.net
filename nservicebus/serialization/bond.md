@@ -15,6 +15,8 @@ Serializes messages with [Microsoft Bond](https://microsoft.github.io/bond/manua
 
 snippet:BondSerialization
 
+include: interface-not-supported
+
 
 ### SerializationDelegates
 
@@ -28,6 +30,3 @@ snippet: BondSerializationDelegates
 include: custom-contenttype-key
 
 snippet:BondContentTypeKey
-
-
-include: interface-not-supported

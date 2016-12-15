@@ -12,6 +12,8 @@ Serializes messages using [protobuf-net](https://github.com/mgravell/protobuf-ne
 
 snippet:ProtobufSerialization
 
+include: interface-not-supported
+
 
 ### Custom Settings
 
@@ -24,5 +26,4 @@ include: custom-contenttype-key
 
 snippet:ProtoBufContentTypeKey
 
-include: interface-not-supported
 

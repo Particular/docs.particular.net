@@ -15,10 +15,9 @@ Serializes messages with [ZeroFormatter](https://github.com/neuecc/ZeroFormatter
 
 snippet:ZeroFormatterSerialization
 
+include: interface-not-supported
 
 include: custom-contenttype-key
 
 snippet:ZeroFormatterContentTypeKey
 
-
-include: interface-not-supported

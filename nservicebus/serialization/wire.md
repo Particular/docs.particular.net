@@ -13,6 +13,8 @@ Serializes messages with the [Wire](https://github.com/akkadotnet/Wire) binary f
 
 snippet:WireSerialization
 
+include: interface-not-supported
+
 
 ### Custom Settings
 
@@ -24,6 +26,3 @@ snippet: WireCustomSettings
 include: custom-contenttype-key
 
 snippet:WireContentTypeKey
-
-
-include: interface-not-supported
