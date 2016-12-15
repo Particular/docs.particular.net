@@ -29,7 +29,7 @@ WARNING: The Heartbeat plugin does not support [Send-Only endpoints](/nservicebu
 
 ### Deprecated NuGet
 
-If are using the older version of the plugin, namely **ServiceControl.Plugin.Heartbeat** remove the package and replace it with the appropriate plugin based on the NServiceBus version. The new NServiceBus version specific packages are:  
+The first release of the Heartbeat plugin the NuGet packages was named **ServiceControl.Plugin.Heartbeat**. **This packages is now obsolete and should be remove**. Replace it with the appropriate plugin based on the NServiceBus version. The new NServiceBus version specific packages are:
 
 | NServiceBus Version | Nuget Package                        | 
 |---------------------|--------------------------------------|
@@ -37,6 +37,7 @@ If are using the older version of the plugin, namely **ServiceControl.Plugin.Hea
 | 4.x                 | [ServiceControl.Plugin.Nsb4.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat/) |  
 | 5.x                 | [ServiceControl.Plugin.Nsb5.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat/) |  
 | 6.x                 | [ServiceControl.Plugin.Nsb6.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.Heartbeat/) |  
+
 
 ## Configuration
 
