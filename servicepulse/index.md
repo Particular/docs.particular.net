@@ -12,7 +12,7 @@ include: servicepulse
 
 ServicePulse uses information provided by ServiceControl. In order to use ServicePulse, first set up [ServiceControl](/servicecontrol/).
 
-NOTE: By default ServicePulse can be accessed on the hosting machine at the following url: [http://localhost:9090]([http://localhost:9090)
+NOTE: By default ServicePulse can be accessed on the hosting machine at the following URL: `http://localhost:9090`
 
 ## System status overview
 
