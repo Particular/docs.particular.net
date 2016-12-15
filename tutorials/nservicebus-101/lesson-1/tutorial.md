@@ -3,15 +3,7 @@ title: "NServiceBus 101 Lesson 1: Getting started"
 reviewed: 2016-11-16
 ---
 
-In this lesson we will set up a new development machine with NServiceBus and show how the framework is set up within an application.
-
-
-## Objectives
-
-By the end of this lesson, you will have learned:
-
- * How to set up a machine for NServiceBus development
- * What an endpoint is and how to create one
+In the next 10 minutes, you will have learned how to set up a new development machine for NServiceBus and created your very first messaging endpoint.
 
 
 ## Prerequisites
@@ -20,7 +12,6 @@ There are a few things we need in order to build a solution with the latest vers
 
 * This course uses Visual Studio 2015 and .NET Framework 4.6.1, although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operations/dotnet-framework-version-requirements.md).
 * NServiceBus requires queuing infrastructure (a [transport](/nservicebus/transports/)) to move messages around. This course uses Microsoft Message Queuing (MSMQ). The [Particular Platform Installer](/platform/installer/) will install MSMQ and its dependencies for you. [Download and run the Platform Installer](/platform/installer/) to get started, or [follow these instructions to configure MSMQ manually](/nservicebus/msmq/#nservicebus-configuration).
-
 
 
 ## Exercise
