@@ -34,10 +34,10 @@ namespace SqlServer_All.Operations.NativeSend
         public static async Task SendMessage(string connectionString, string queue, string messageBody, Dictionary<string, string> headers)
         {
             var insertSql = $@"INSERT INTO [{queue}] (
-                [Id],
-                [Recoverable],
-                [Headers],
-                [Body])
+                Id,
+                Recoverable,
+                Headers,
+                Body)
             VALUES (
                 @Id,
                 @Recoverable,

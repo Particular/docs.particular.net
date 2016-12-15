@@ -54,10 +54,10 @@ namespace SqlServer_All.Operations.ErrorQueue
         static async Task RetryMessage(string connectionString, string queueName, MessageToRetry messageToRetry)
         {
             var sql = $@"INSERT INTO [{queueName}] (
-                    [Id],
-                    [Recoverable],
-                    [Headers],
-                    [Body])
+                    Id,
+                    Recoverable,
+                    Headers,
+                    Body)
                 VALUES (
                     @Id,
                     @Recoverable,

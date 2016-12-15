@@ -111,12 +111,11 @@ class Program
     static void SendMessageToSql(string connectionString, string queue, byte[] messageBody, Dictionary<string, string> headers)
     {
         string insertSql =
-            $@"INSERT INTO [{queue
-                }] (
-        [Id],
-        [Recoverable],
-        [Headers],
-        [Body])
+            $@"INSERT INTO [{queue}] (
+        Id,
+        Recoverable,
+        Headers,
+        Body)
     VALUES (
         @Id,
         @Recoverable,

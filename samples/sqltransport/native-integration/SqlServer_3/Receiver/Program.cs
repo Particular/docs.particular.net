@@ -67,12 +67,12 @@ class Program
         #region SendingUsingAdoNet
 
         var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
+        var insertSql = "INSERT INTO [Samples.SqlServer.NativeIntegration] (Id, Recoverable, Headers, Body) VALUES (@Id, @Recoverable, @Headers, @Body)";
         using (var connection = new SqlConnection(connectionString))
         {
             await connection.OpenAsync()
                 .ConfigureAwait(false);
 
-            var insertSql = "INSERT INTO [Samples.SqlServer.NativeIntegration] ([Id],[Recoverable],[Headers],[Body]) VALUES (@Id,@Recoverable,@Headers,@Body)";
             using (var command = new SqlCommand(insertSql, connection))
             {
                 command.CommandType = CommandType.Text;

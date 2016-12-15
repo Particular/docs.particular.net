@@ -31,7 +31,7 @@ Function SendMessage
 
     $sqlCommand = $sqlConnection.CreateCommand()
 	$sqlCommand.CommandText =
-	    "INSERT INTO [$Queue] ([Id], [Recoverable], [Headers], [Body]) VALUES (@Id, @Recoverable, @Headers, @Body)"
+	    "INSERT INTO [$Queue] (Id, Recoverable, Headers, Body) VALUES (@Id, @Recoverable, @Headers, @Body)"
     $parameters = $sqlCommand.Parameters
 	$parameters.Add("Id", [System.Data.SqlDbType]::UniqueIdentifier).Value = [System.Guid]::NewGuid()
 	$serializedHeaders = ConvertTo-Json $Headers

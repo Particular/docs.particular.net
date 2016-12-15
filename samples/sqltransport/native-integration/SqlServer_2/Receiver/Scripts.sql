@@ -1,7 +1,7 @@
 
 -- startcode SendFromTSQL
 -- TSql that can be pasted into Sql Server Query analyzer to send straight from the DB
-INSERT INTO [Samples.SqlServer.NativeIntegration] ([Id],[Recoverable],[Headers],[Body])
+INSERT INTO [Samples.SqlServer.NativeIntegration] (Id, Recoverable, Headers, Body)
 VALUES	(CONVERT(UNIQUEIDENTIFIER, HASHBYTES('MD5','MyUniqueId')),
 		'true',
 		'',
@@ -10,9 +10,9 @@ VALUES	(CONVERT(UNIQUEIDENTIFIER, HASHBYTES('MD5','MyUniqueId')),
 
 -- startcode CreateLegacyTable
 -- Create a "legacy" Orders table
-CREATE TABLE [dbo].[Orders](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[OrderValue] [money] NOT NULL
+CREATE TABLE Orders(
+	Id int IDENTITY(1,1) NOT NULL,
+	OrderValue money NOT NULL
 )
 GO
 -- endcode
@@ -20,14 +20,14 @@ GO
 
 -- startcode CreateTrigger
 -- Create a trigger to push a message out for each new order
-CREATE TRIGGER [dbo].[OrderAcceptedTrigger]
-	ON  [dbo].[Orders]
+CREATE TRIGGER OrderAcceptedTrigger
+	ON  Orders
 	AFTER INSERT
 AS
 BEGIN
 	SET NOCOUNT ON;
 
-	INSERT INTO [Samples.SqlServer.NativeIntegration] ([Id],[Recoverable],[Headers],[Body])
+	INSERT INTO [Samples.SqlServer.NativeIntegration] (Id, Recoverable, Headers, Body)
 	SELECT CONVERT(UNIQUEIDENTIFIER, HASHBYTES('MD5',CONVERT(VARCHAR(255),i.Id))) as Id,
 	'true' as Recoverable,
 	'' as Headers,
