@@ -1,97 +1,93 @@
 ---
 title: Failed Message Monitoring
-summary: Describes how ServicePulse detects and monitors failed messages, and allows retrying, or archiving failing messages
+summary: Describes how ServicePulse detects and monitors failed messages, and allows retrying, or archiving failed messages
 component: ServicePulse
 tags:
 - ServicePulse
-reviewed: 2016-12-12
+reviewed: 2016-12-15
 related:
 - serviceinsight/managing-errors-and-retries
 ---
 
-When an NServiceBus endpoint fails to process a message, it performs a set of configurable attempts to recover from this failure. These attempts are referred to as "immediate retries" and "delayed retries" and in many cases allow the endpoint to overcome intermittent communication failures. For more details see [recoverability](/nservicebus/recoverability/).
+When an NServiceBus endpoint fails to process a message, it performs a set of configurable attempts to recover from this message failure. These attempts are referred to as "immediate retries" and "delayed retries" and in many cases allow the endpoint to overcome intermittent communication failures. See [recoverability](/nservicebus/recoverability/) for more details.
 
-If the [recoverability](/nservicebus/recoverability/) attempts also fail, the endpoint forwards the failed message to the central error queue defined for all endpoints in the system. (See [Auditing with NServiceBus](/nservicebus/operations/auditing.md).)
+If the [recoverability](/nservicebus/recoverability/) attempts also fail, the endpoint forwards the failed message to the central error queue defined for all endpoints in the system. See [Auditing with NServiceBus](/nservicebus/operations/auditing.md) for more details.
 
 ServicePulse (via ServiceControl) monitors the central error queue and displays the current status and details of failed messages as an indicator in the ServicePulse dashboard.
 
 ![Failed Messages indicator](images/indicators-failed-message.png 'width=500')
 
+In addition, ServicePulse also provides a Failed Messages page to assist in examining failed messages and taking certain actions on them.
 
-### Failed Messages Page
+### Failed Messages page
 
-To see a detailed display of the failed messages, click the Failed Messages indicator (or the "Failed Messages" link in the navigation bar). This page is split into several tabs.
+Both the "Failed Messages" indicator in the Dashboard and the "Failed Messages" link in the navigation bar link to the Failed Messages screen. This page is split into various tabs.
 
-![Failed Message Groups Page](intro-failed-messages-failed-groups-page.png 'width=500')
+#### Failed message groups tab
 
-#### Last 10 successful group retries
+The first tab in the Failed Messages page shows error groups. A group is a set of failed messages grouped by a same classification type.
 
-The list shows information about last 10 group retries that were performed containing following information:
+This tab shows two lists, described below.
+
+##### Last 10 completed retry requests list
+
+This list is collapsed by default and shows information about the last 10 completed group retry requests.
+
+![Last 10 completed retry requests list](images/last-completed-group-retries.png 'width=500')
+
+A completed retry request represents a completed operation where messages from a given group were sent to the corresponding queue for processing. This means those messages may not actually have been processed yet. [Learn more about retrying failed messages](/servicepulse/intro-failed-message-retries).
+
+##### Failed groups list
+
+This list shows all groups of currently failed messages.
+
+![Failed Message Groups list](images/failed-message-groups.png 'width=500')
+
+The display of failed message groups can be changed via the "Group by" drop down menu, according to the following classifications types:
+
+ * **Exception Type and Stack Trace** - groups messages both by exception type and stack trace. It is the default way of categorizing failed messages.   
+ * **Message Type** - groups messages by message type. 
  
- * **Title** expressing if it was group or set of messages.
- * **Retry request started** time indicating when the retry was initiated.
- * **Retry request completed** time indicating when the retry was completed.
- * **Messages retried** amount of messages that were retried.
+Note: the number of listed groups may differ depending on the selected classifications type view.
 
-NOTE: By writing completed retry the result of the retry is not being displayed. A completed retry means that messages were send to given queue.
+###### Managing failed message groups
+
+Regardless of classification type, you can take the following actions on failed message groups:
+
+ * **View messages** - Shows all individual messages contained in the group.
+ * **Request retry** - Sends all failed messages to the corresponding queue to attempt processing again. When a failed group retry request is initiated, ServicePulse will present the progress of the operation.
+
+![Failed message groups retry in progress](images/failed-group-retry-in-progress.png 'width=500')
+
+ * **Archive group** - Archives all messages contained in the group. [Learn more about archiving messages](/servicepulse/intro-archived-messages).
 
 
-#### Failed message groups
+#### All Messages tab and Failed Message group detail view
 
-The first tab shows error groups. A group is a set of failed messages grouped by the same classification type.
-There are following classifications that user can chose from:
- * **Exception Type and Stack Trace** groups messages by the same exception type and stack trace. It is the default way of categorizing failed messages.   
- * **Message Type** groups messages by its type. 
- 
-Regardless of classification each group has:
+The "View messages" link in a failed message group entry and the "All messages" tab display the individual failed messages inside that failed group or all individual failed messages, respectively.
 
- * **Title** matching selected classification type.
- * **Count** of how many unresolved messages there are in the group.
- * **First Failure** time indicating when the first unresolved error occurred.
- * **Latest Failure** time indicating when the most recent unresolved errors occurred.
- * **Last Retried** time indicating when the group was retried.
- * **Actions** which can be used to Archive or Retry an entire group of messages (see below).
+Note: Working with individual messages can be useful for testing system fixes before deciding to do any potentially time consuming bulk operations.
 
-Click the  View Messages link to open a list of all of the errors within the group.
-When the groups is being retried above information are replaced with the following ones:
- * **Title** name of the group that can have different names depending on classification type.
- * **Messages to send** amount of messages that will be retried after the operation is done
- * **Retry requested** time indicating when the retry was initiated.
- * **Progress indication** explaining where in the process of retrying the group currently is.
+![Failed Messages Page](images/intro-failed-messages-failed-messages-page.png 'width=500')
 
-The second tab will display all failed messages. The functionality is the same as viewing the messages in a group.
+Both of these individual message list views allow for taking the actions on an individual message, on custom message selections or on all messages contained in the view. 
 
-![Failed Messages Page](intro-failed-messages-failed-messages-page.png 'width=500')
+##### Managing individual failed messages
 
- * **Message Details:** For each failed message, displays the message type, exception description, endpoint name and location, and failure timestamp.
+The following actions can be taken on each individual message:
+
+ * **Message Details:** For a given failed message, displays the message type, exception description, endpoint name and location, and failure timestamp.
  * **StackTrace:** Displays the full .NET exception stacktrace.
  * **Headers:** Displays a complete set of message headers.
  * **Body:** Displays the serialized message body.
  * **Copy Message Id:** Copies the failed message unique ID to the clipboard.
  * **Open in ServiceInsight:** Launches [ServiceInsight](/serviceinsight/), focusing on the failed message for in-depth analysis of the failure causes. This only works if ServiceInsight is installed on the local machine.
 
-
-### Failed Message Retry
-
-After addressing the root cause of the message's processing failure, resend the failed message for reprocessing by the endpoint(s). This is referred to as a "retry" (or a manual retry, in contrast to the automated and configurable [Recoverability](/nservicebus/recoverability/)).
-
-To retry a failed message, select the failed message(s) in the failed messages list and click the "Retry Selected" button (or click "Retry Group").
-
-A message that is sent for retry is marked as such, and is not displayed in the failed message list or included in failed message groups, unless the reprocessing fails again. Messages sent for retry appear in the [Pending Retries screen](intro-pending-retries.md) until either an audit message is received indicating success, the message is returned as an error, or the message is manually marked as resolved.
-
-If a message fails repeated retry attempts, an indication is added, including the number of times it has failed.
-
-![Repeated failure indication](images/failed-messages-repeated-failure.png 'width=500')
-
-NOTE: The number of retry attempts for a message can be significant if the handler for that message is not [idempotent](/nservicebus/concept-overview.md#idempotence). Any processing attempt that invokes logic that does not participate in the NServiceBus transactional processing will not be rolled back on processing failure.
-
-
-### Archiving Failed Messages
+### Archived Messages tab
 
 Failed messages that cannot be processed successfully (or should not be retried due to various application-specific reasons) can be archived.
 
 ![Failed Message Archive](images/failed-messages-archive.png 'width=500')
 
-Archiving in ServicePulse means that the failed messages are marked as "Archived". Its data is still available, but it is no longer displayed in the Failed Messages list in ServicePulse and is not counted by the Failed Messages indicator in the ServicePulse dashboard. It also will not appear in any failed message groups.
+[Learn more about archiving messages in ServicePulse](/servicepulse/intro-archived-messages).
 
-NOTE: Archived failed messages are included in [ServiceInsight](/serviceinsight/) diagrams and search results.

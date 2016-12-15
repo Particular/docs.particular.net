@@ -3,7 +3,7 @@ title: Pending Retries Message Management
 summary: Describes how ServicePulse detects and monitors failed messages in the pending state, and allows retrying, or archiving them.
 tags:
  - ServicePulse
-reviewed: 2016-09-12
+reviewed: 2016-12-15
 ---
 
 
@@ -14,12 +14,12 @@ Pending retries messages can be found by going to the pending retries screen.
 ![Pending Retries Tab](images/pending-retries.png 'width=500')
 
 ### How to enable the screen
-As of Version 1.7.0 and above the Pending Retries screen is hidden by default. To enable it in the UI modify the following value in `app\js\app.constants.js` to true:
+
+Since ServicePulse v1.7.0, the Pending Retries screen is hidden by default. To make it available in the ServicePulse UI, change the following value in `app\js\app.constants.js` to true:
+
 ```
 .constant('showPendingRetry', true)
 ```
-
-After that Pending retries link will be visible in the navigation.
 
 
 ### Pending Retries Messages
