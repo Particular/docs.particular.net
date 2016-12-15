@@ -60,10 +60,6 @@
       <HintPath>..\..\..\packages\NServiceBus.6.1.0\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Hosting.Azure">
-      <HintPath>..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0-beta0001\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />

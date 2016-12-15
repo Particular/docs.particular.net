@@ -45,9 +45,6 @@
       <HintPath>..\..\..\packages\NServiceBus.4.7.12\lib\net40\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Hosting.Azure">
-      <HintPath>..\..\..\packages\NServiceBus.Hosting.Azure.4.2.1\lib\net40\NServiceBus.Hosting.Azure.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
