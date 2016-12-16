@@ -38,7 +38,7 @@ This list is collapsed by default and shows information about the last 10 comple
 
 ![Last 10 completed retry requests list](images/last-completed-group-retries.png 'width=500')
 
-A completed retry request represents a completed operation where messages from a given group were sent to the corresponding queue for processing. This means those messages may not actually have been processed yet. [Learn more about retrying failed messages](/servicepulse/intro-failed-message-retries).
+A completed retry request represents a completed operation where messages from a given group were sent to the corresponding queue for processing. This means those messages may not actually have been processed yet. [Learn more about retrying failed messages](/servicepulse/intro-failed-message-retries.md).
 
 
 ##### Failed groups list
@@ -64,7 +64,7 @@ The following actions can be performed on a failed message group:
 
 ![Failed message groups retry in progress](images/failed-group-retry-in-progress.png 'width=500')
 
- * **Archive group** - Archives all messages contained in the group. [Learn more about archiving messages](/servicepulse/intro-archived-messages).
+ * **Archive group** - Archives all messages contained in the group. [Learn more about archiving messages](/servicepulse/intro-archived-messages.md).
 
 
 #### Viewing individual messages
@@ -101,5 +101,5 @@ Failed messages that cannot be processed successfully (or should not be retried 
 
 ![Failed Message Archive](images/failed-messages-archive.png 'width=500')
 
-Learn more about [archiving messages in ServicePulse](/servicepulse/intro-archived-messages).
+Learn more about [archiving messages in ServicePulse](/servicepulse/intro-archived-messages.md).
 
