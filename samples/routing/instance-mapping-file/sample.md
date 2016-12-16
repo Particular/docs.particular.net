@@ -20,7 +20,6 @@ Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Confi
 
  1. Start the solution
  1. The text `Press <enter> to send a message` should be displayed in the Client's console window.
- 1. Wait until all the endpoints exchange their routing information. Notice each endpoint logs the routing info as it discovers other endpoints.
  1. Hit `<enter>` several times to send some messages.
 
 
