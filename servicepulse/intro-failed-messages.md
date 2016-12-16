@@ -11,7 +11,7 @@ related:
 
 When an NServiceBus endpoint fails to process a message, it performs a set of configurable attempts to recover from this message failure. These attempts are referred to as "immediate retries" and "delayed retries" and in many cases allow the endpoint to overcome intermittent communication failures. See [recoverability](/nservicebus/recoverability/) for more details.
 
-If the [recoverability](/nservicebus/recoverability/) attempts also fail, the endpoint forwards the failed message to the central error queue defined for all endpoints in the system. See [Auditing with NServiceBus](/nservicebus/operations/auditing.md) for more details.
+If the automatic retry attempts also fail, the endpoint forwards the failed message to the central error queue defined for all endpoints in the system. See [Auditing with NServiceBus](/nservicebus/operations/auditing.md) for more details.
 
 ServicePulse (via ServiceControl) monitors the central error queue and displays the current status and details of failed messages as an indicator in the ServicePulse dashboard.
 
@@ -19,15 +19,18 @@ ServicePulse (via ServiceControl) monitors the central error queue and displays 
 
 In addition, ServicePulse also provides a Failed Messages page to assist in examining failed messages and taking certain actions on them.
 
+
 ### Failed Messages page
 
 Both the "Failed Messages" indicator in the Dashboard and the "Failed Messages" link in the navigation bar link to the Failed Messages screen. This page is split into various tabs.
 
+
 #### Failed message groups tab
 
-The first tab in the Failed Messages page shows error groups. A group is a set of failed messages grouped by a same classification type.
+The first tab in the Failed Messages page shows error groups. A group is a set of failed messages grouped according to criteria like, for example, the same exception type.
 
 This tab shows two lists, described below.
+
 
 ##### Last 10 completed retry requests list
 
@@ -36,6 +39,7 @@ This list is collapsed by default and shows information about the last 10 comple
 ![Last 10 completed retry requests list](images/last-completed-group-retries.png 'width=500')
 
 A completed retry request represents a completed operation where messages from a given group were sent to the corresponding queue for processing. This means those messages may not actually have been processed yet. [Learn more about retrying failed messages](/servicepulse/intro-failed-message-retries).
+
 
 ##### Failed groups list
 
@@ -50,9 +54,10 @@ The display of failed message groups can be changed via the "Group by" drop down
  
 Note: the number of listed groups may differ depending on the selected classifications type view.
 
+
 ###### Managing failed message groups
 
-Regardless of classification type, you can take the following actions on failed message groups:
+The following actions can be performed on a failed message group:
 
  * **View messages** - Shows all individual messages contained in the group.
  * **Request retry** - Sends all failed messages to the corresponding queue to attempt processing again. When a failed group retry request is initiated, ServicePulse will present the progress of the operation.
@@ -62,15 +67,21 @@ Regardless of classification type, you can take the following actions on failed 
  * **Archive group** - Archives all messages contained in the group. [Learn more about archiving messages](/servicepulse/intro-archived-messages).
 
 
-#### All Messages tab and Failed Message group detail view
+#### Viewing individual messages
 
-The "View messages" link in a failed message group entry and the "All messages" tab display the individual failed messages inside that failed group or all individual failed messages, respectively.
+Individual messages views allow for accessing in-depth details about a given failed message, or retrying individual messages.
 
-Note: Working with individual messages can be useful for testing system fixes before deciding to do any potentially time consuming bulk operations.
+Individual failed messages can viewed using one of the following two ways:
+
+- **Inside a failed message groups** - in the "Failed Messages Group" tab, click the "View messages" link from a failed message group entry
+- **All messages without any grouping** - in the "All messages" tab
 
 ![Failed Messages Page](images/intro-failed-messages-failed-messages-page.png 'width=500')
 
-Both of these individual message list views allow for taking the actions on an individual message, on custom message selections or on all messages contained in the view. 
+Both of these individual message list views allow for taking actions on an individual message, on custom message selections or on all messages contained in the view.
+
+NOTE: Retrying one or a few individual messages can be useful for testing system fixes before deciding to retry several messages in a group. This is because retrying several messages take a long time and queue other ServiceControl operations for longer than desired.
+
 
 ##### Managing individual failed messages
 
@@ -83,11 +94,12 @@ The following actions can be taken on each individual message:
  * **Copy Message Id:** Copies the failed message unique ID to the clipboard.
  * **Open in ServiceInsight:** Launches [ServiceInsight](/serviceinsight/), focusing on the failed message for in-depth analysis of the failure causes. This only works if ServiceInsight is installed on the local machine.
 
+
 ### Archived Messages tab
 
 Failed messages that cannot be processed successfully (or should not be retried due to various application-specific reasons) can be archived.
 
 ![Failed Message Archive](images/failed-messages-archive.png 'width=500')
 
-[Learn more about archiving messages in ServicePulse](/servicepulse/intro-archived-messages).
+Learn more about [archiving messages in ServicePulse](/servicepulse/intro-archived-messages).
 
