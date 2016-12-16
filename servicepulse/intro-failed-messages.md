@@ -99,7 +99,7 @@ The following actions can be taken on each individual message:
 
 Failed messages that cannot be processed successfully (or should not be retried due to various application-specific reasons) can be archived.
 
-![Failed Message Archive](images/failed-messages-archive.png 'width=500')
+![Archived Messages Tab](images/archive.png 'width=500')
 
 Learn more about [archiving messages in ServicePulse](/servicepulse/intro-archived-messages.md).
 
