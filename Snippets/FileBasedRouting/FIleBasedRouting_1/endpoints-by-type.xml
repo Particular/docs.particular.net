@@ -1,0 +1,15 @@
+﻿<!-- startcode EndpointsByType -->
+<endpoints>
+  <endpoint name="endpointA">
+    <handles>
+      <!-- Define that endpointA can handle the DemoCommand command -->
+      <command type="Contracts.Commands.DemoCommand, Contracts" />
+      <!-- Define that endpointA can handle the DemoEvent event -->
+      <event type="Contracts.Events.DemoEvent, Contracts" />
+    </handles>
+  </endpoint>
+  <endpoint name="endpointb">
+    <!-- ... -->
+  </endpoint>
+</endpoints>
+<!--endcode-->

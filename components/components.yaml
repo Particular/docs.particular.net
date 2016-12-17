@@ -726,3 +726,11 @@
   ProjectUrl: https://github.com/jbogard/NServiceBus.MessageRouting
   NugetOrder:
     - NServiceBus.MessageRouting
+
+- Key: FileBasedRouting
+  Name: FileBasedRouting
+  DocoUrl: nservicebus/messaging/file-based-routing  
+  Category: Other
+  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.FileBasedRouting
+  NugetOrder:
+    - NServiceBus.FileBasedRouting

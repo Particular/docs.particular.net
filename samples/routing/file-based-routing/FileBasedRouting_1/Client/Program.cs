@@ -1,0 +1,67 @@
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.FileBasedRouting;
+
+class Program
+{
+
+    static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
+        Console.Title = "Samples.FileBasedRouting.Client";
+        const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+        var random = new Random();
+
+        var endpointConfiguration = new EndpointConfiguration("Samples.FileBasedRouting.Client");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
+
+        #region FileBasedRouting
+
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.Routing().UseFileBasedRouting(@"..\..\..\endpoints.xml");
+        
+        #endregion
+        
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
+        try
+        {
+            Console.WriteLine("Press enter to send a message");
+            Console.WriteLine("Press any key to exit");
+
+            while (true)
+            {
+                var key = Console.ReadKey();
+                Console.WriteLine();
+
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
+                var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+                Console.WriteLine($"Placing order {orderId}");
+                var message = new PlaceOrder
+                {
+                    OrderId = orderId,
+                    Value = random.Next(100)
+                };
+                await endpointInstance.Send(message)
+                    .ConfigureAwait(false);
+            }
+        }
+        finally
+        {
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
+        }
+    }
+}
