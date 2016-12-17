@@ -11,7 +11,7 @@ reviewed: 2016-12-15
 
 In Versions 1.5.0 and above a screen to manage archived messages has been introduced in response to changes in ServiceControl relating to Archived Message retention and disposal.
 
-Archiving in ServicePulse means that the failed messages are marked as "Archived". Data from an archived message is still available, but it is no longer displayed in the Failed Messages list in ServicePulse and is not counted by the Failed Messages indicator in the ServicePulse dashboard. It also will not appear in any failed message groups.
+Archiving in ServicePulse means that the failed messages are marked as `Archived`. Data from an archived message is still available, but it is no longer displayed in the Failed Messages list in ServicePulse and is not counted by the Failed Messages indicator in the ServicePulse dashboard. It also will not appear in any failed message groups.
 
 NOTE: Archived failed messages are still included in [ServiceInsight](/serviceinsight/) diagrams and search results.
 
