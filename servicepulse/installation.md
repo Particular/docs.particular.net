@@ -28,7 +28,7 @@ Install ServicePulse using the [Particular Service Platform Installer](/platform
  1. Download and install ServicePulse
  1. The following installation parameters are used by the ServicePulse installer:
    * ServicePulse Instance URI:
-      * Default is `http://localhost:9090`
+      * Default is `http://localhost:9090/`
       * This is the localhost address and port that will be used for accessing the ServicePulse web application
    * ServiceControl instance URI:
       * Default is `http://localhost:33333/api/`
