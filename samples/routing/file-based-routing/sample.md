@@ -9,9 +9,10 @@ tags:
 ---
 
 
-NOTE: Centralized file-based routing is an experimental project hosted on ParticularLabs. Particular Software does not provide any support guarantee for such projects.
+NOTE: Centralized file-based routing is an experimental project hosted on [ParticularLabs](https://github.com/ParticularLabs). Particular Software does not provide any support guarantee for such projects.
 
 The sample demonstrates how to use a file to describe the logical routing topology.
+
 
 ## Prerequisites
 
@@ -20,7 +21,7 @@ Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Confi
 
 ## Running the project
 
- 1. Start the solution
+ 1. Start the solution.
  1. The text `Press <enter> to send a message` should be displayed in the Client's console window.
  1. Hit `<enter>` several times to send some messages.
 

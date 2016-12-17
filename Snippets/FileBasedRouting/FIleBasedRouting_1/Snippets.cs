@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.FileBasedRouting;
-using NServiceBus.Settings;
-using NServiceBus.Transport;
 
 namespace FIleBasedRouting_1
 {
@@ -31,15 +24,5 @@ namespace FIleBasedRouting_1
 
             #endregion
         }
-    }
-
-    class MyTransport : TransportDefinition
-    {
-        public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string ExampleConnectionStringForErrorMessage { get; }
     }
 }
