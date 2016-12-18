@@ -9,7 +9,7 @@
         #region DiscardingOldMessagesWithAnAttribute
 
         // Discard after one minute
-        [TimeToBeReceived("00:01:00")] // Discard after one minute
+        [TimeToBeReceived("00:01:00")]
         public class MyMessage
         {
         }
