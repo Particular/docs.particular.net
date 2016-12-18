@@ -2,8 +2,10 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-#region handler-sqlPersistenceSession
-public class HandlerThatUsesSession :
+#region saga-sqlPersistenceSession
+
+public class SagaThatUsesSession :
+    Saga<SagaThatUsesSession.SagaData>,
     IHandleMessages<MyMessage>
 {
     static ILog log = LogManager.GetLogger<HandlerThatUsesSession>();
@@ -15,5 +17,14 @@ public class HandlerThatUsesSession :
         // use Connection and/or Transaction of ISqlStorageSession to persist or query the database
         return Task.CompletedTask;
     }
+
+    #endregion
+
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
+    {
+    }
+
+    public class SagaData : ContainSagaData
+    {
+    }
 }
-#endregion

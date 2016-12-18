@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NServiceBus;
@@ -10,11 +12,36 @@ using NServiceBus.Persistence.Sql;
 
 class Usage
 {
-    Usage(EndpointConfiguration endpointConfiguration)
+    void SqlServerUsage(EndpointConfiguration endpointConfiguration)
     {
-        #region SqlPersistenceUsage
+        #region SqlPersistenceUsageSqlServer
 
-        endpointConfiguration.UsePersistence<SqlPersistence>();
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+
+        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=sqlpersistencesample;Integrated Security=True";
+        persistence.SqlVarient(SqlVarient.MsSqlServer);
+        persistence.TablePrefix("AcceptanceTests");
+        persistence.ConnectionBuilder(
+            connectionBuilder: () =>
+            {
+                return new SqlConnection(connectionString);
+            });
+
+        #endregion
+    }
+
+    void MySqlUsage(EndpointConfiguration endpointConfiguration)
+    {
+        #region SqlPersistenceUsageMySql
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var connectionString = "server=localhost;user=root;database=sqlpersistencesample;port=3306;password=Password1;Allow User Variables=True";
+        persistence.SqlVarient(SqlVarient.MySql);
+        persistence.ConnectionBuilder(
+            connectionBuilder: () =>
+            {
+                return new MySqlConnection(connectionString);
+            });
 
         #endregion
     }
@@ -36,7 +63,8 @@ class Usage
             }
         };
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.JsonSettings(settings);
+        var sagaSettings = persistence.SagaSettings();
+        sagaSettings.JsonSettings(settings);
 
         #endregion
     }
@@ -54,8 +82,9 @@ class Usage
             DateFormatHandling = DateFormatHandling.MicrosoftDateFormat
         };
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence, StorageType.Sagas>();
-        persistence.JsonSettings(currentSettings);
-        persistence.JsonSettingsForVersion(
+        var sagaSettings = persistence.SagaSettings();
+        sagaSettings.JsonSettings(currentSettings);
+        sagaSettings.JsonSettingsForVersion(
             builder: (type, version) =>
             {
                 if (version < new Version(2, 0))
@@ -74,7 +103,8 @@ class Usage
         #region SqlPersistenceCustomReader
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.ReaderCreator(
+        var sagaSettings = persistence.SagaSettings();
+        sagaSettings.ReaderCreator(
             readerCreator: textReader =>
             {
                 return new JsonTextReader(textReader);
@@ -88,7 +118,8 @@ class Usage
         #region SqlPersistenceCustomWriter
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.WriterCreator(
+        var sagaSettings = persistence.SagaSettings();
+        sagaSettings.WriterCreator(
             writerCreator: builder =>
             {
                 var writer = new StringWriter(builder);
@@ -100,6 +131,5 @@ class Usage
 
         #endregion
     }
-    
 
 }
