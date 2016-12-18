@@ -621,6 +621,15 @@
         Title: Scripting
     - Url: nservicebus/mongodb-persistence-tekmaven
       Title: MongoDB Persistence
+    - Url: nservicebus/sql-persistence
+      Title: Sql Persistence
+      Articles:
+      - Url: nservicebus/sql-persistence/saga
+        Title: Saga Persistence
+      - Url: nservicebus/sql-persistence/sqlserver-scripts
+        Title: MS SQL Server Scripts
+      - Url: nservicebus/sql-persistence/mysql-scripts
+        Title: MySQL Scripts
   - Url: nservicebus/containers
     Title: Containers
     Articles:
