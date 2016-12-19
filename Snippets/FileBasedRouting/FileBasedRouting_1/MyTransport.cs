@@ -2,7 +2,7 @@
 using NServiceBus.Settings;
 using NServiceBus.Transport;
 
-namespace FIleBasedRouting_1
+namespace FileBasedRouting_1
 {
     class MyTransport : TransportDefinition
     {

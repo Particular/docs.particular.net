@@ -1,7 +1,7 @@
 using NServiceBus;
 using NServiceBus.FileBasedRouting;
 
-namespace FIleBasedRouting_1
+namespace FileBasedRouting_1
 {
     class Snippets
     {
