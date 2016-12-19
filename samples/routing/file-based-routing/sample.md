@@ -6,6 +6,8 @@ component: FileBasedRouting
 tags:
  - Routing
  - MSMQ
+related:
+- nservicebus/messaging/file-based-routing
 ---
 
 
