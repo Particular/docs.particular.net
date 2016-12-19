@@ -626,6 +626,8 @@
       Articles:
       - Url: nservicebus/sql-persistence/saga
         Title: Saga Persistence
+      - Url: nservicebus/sql-persistence/installer-workflow
+        Title: Installer Workflow
       - Url: nservicebus/sql-persistence/sqlserver-scripts
         Title: MS SQL Server Scripts
       - Url: nservicebus/sql-persistence/mysql-scripts

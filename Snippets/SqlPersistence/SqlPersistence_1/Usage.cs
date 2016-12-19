@@ -28,6 +28,32 @@ class Usage
 
         #endregion
     }
+    void DisableInstallers(EndpointConfiguration endpointConfiguration)
+    {
+        #region DisableInstaller
+
+        endpointConfiguration.EnableInstallers();
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.DisableInstaller();
+
+        #endregion
+    }
+
+
+    void InstallerWorkflow(EndpointConfiguration endpointConfiguration)
+    {
+        #region InstallerWorkflow
+
+        endpointConfiguration.EnableInstallers();
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var isDevelopement = Environment.GetEnvironmentVariable("IsDevelopement") == "true";
+        if (!isDevelopement)
+        {
+            persistence.DisableInstaller();
+        }
+
+        #endregion
+    }
 
     void MySqlUsage(EndpointConfiguration endpointConfiguration)
     {
