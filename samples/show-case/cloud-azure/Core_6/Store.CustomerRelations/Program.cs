@@ -16,7 +16,7 @@ public class Program
         }
         var host = new JobHost(config);
 
-        Console.WriteLine("Starting VideoStore.Sales host");
+        Console.WriteLine("Starting Store.CustomerRelations host");
         host.Call(typeof(Program).GetMethod(nameof(Program.AsyncMain)));
         host.RunAndBlock();
     }
