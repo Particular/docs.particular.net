@@ -28,7 +28,6 @@ class Program
         #region RegisterPublisherNames
 
         topology.RegisterPublisher(typeof(BaseEvent), "Samples.ASB.Polymorphic.Publisher");
-        topology.RegisterPublisher(typeof(DerivedEvent), "Samples.ASB.Polymorphic.Publisher");
 
         #endregion
 
