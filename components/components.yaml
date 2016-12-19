@@ -12,7 +12,7 @@
   DocoUrl: https://github.com/Fody/Anotar
   Category: Logger
   GitHubOwner: SimonCropp
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/Fody/Anotar/blob/master/license.txt
   ProjectUrl: https://github.com/Fody/Anotar
   NugetOrder:
@@ -34,7 +34,7 @@
   GitHubOwner: ahofman
   Category: Transport
   LicenseUrl: https://opensource.org/licenses/Apache-2.0
-  IsCommunityProject: true
+  SupportLevel: Community
   ProjectUrl: https://github.com/ahofman/NServiceBus.AmazonSQS
   NugetOrder:
     - NServiceBus.AmazonSQS
@@ -45,7 +45,7 @@
 #  DocoUrl: https://github.com/rosieks/NServiceBus.OracleAQ
 #  GitHubOwner: rosieks
 #  Category: Transport
-#  IsCommunityProject: true
+#  SupportLevel: Community
 #  ProjectUrl: https://github.com/rosieks/NServiceBus.OracleAQ
 #  NugetOrder:
 #    - NServiceBus.OracleAQ
@@ -56,7 +56,7 @@
   GitHubOwner: fhalim
   Category: Persistence
   LicenseUrl: https://github.com/fhalim/NServiceBus.PostgreSQL/blob/master/LICENSE.txt
-  IsCommunityProject: true
+  SupportLevel: Community
   ProjectUrl: https://github.com/fhalim/NServiceBus.PostgreSQL
   NugetOrder:
     - NServiceBus.PostgreSQL
@@ -103,7 +103,7 @@
   DocoUrl: nservicebus/serialization/bond
   GitHubOwner: SimonCropp
   Category: Serializer
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Bond/blob/master/LICENSE
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.Bond
   NugetOrder:
@@ -181,7 +181,7 @@
   Name: Entity Framework Persistence
   DocoUrl: https://github.com/benjaminramey/GoodlyFere.NServiceBus.EntityFramework
   Category: Persistence
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/benjaminramey/GoodlyFere.NServiceBus.EntityFramework/blob/master/LICENSE
   ProjectUrl: https://github.com/benjaminramey/GoodlyFere.NServiceBus.EntityFramework
   NugetOrder:
@@ -192,7 +192,7 @@
   DocoUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
   GitHubOwner: SzymonPobiega
   Category: Persistence
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore/blob/master/LICENSE.md
   ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
   NugetOrder:
@@ -203,7 +203,7 @@
   DocoUrl: nservicebus/eventstoretransport
   GitHubOwner: SzymonPobiega
   Category: Transport
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore/blob/master/LICENSE.md
   ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
   NugetOrder:
@@ -214,7 +214,7 @@
   DocoUrl: nservicebus/rawmessaging
   GitHubOwner: SzymonPobiega
   Category: Other
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.Raw/blob/master/LICENSE.md
   ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.Raw
   NugetOrder:
@@ -235,7 +235,7 @@
   DocoUrl: samples/handler-ordering-by-interface
   GitHubOwner: SimonCropp
   Category: Other
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/SimonCropp/HandlerOrdering/License.txt
   ProjectUrl: https://github.com/SimonCropp/HandlerOrdering/
   NugetOrder:
@@ -267,7 +267,7 @@
   DocoUrl: nservicebus/serialization/jil
   GitHubOwner: SimonCropp
   Category: Serializer
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Jil/blob/master/LICENSE
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.Jil
   NugetOrder:
@@ -288,7 +288,7 @@
   DocoUrl: nservicebus/serialization/message-pack
   GitHubOwner: SimonCropp
   Category: Serializer
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.MessagePack/blob/master/LICENSE
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.MessagePack
   NugetOrder:
@@ -298,7 +298,7 @@
   Name: MongoDB Persistence (Carlos Sandoval)
   DocoUrl: https://github.com/sbmako/NServiceBus.MongoDB
   Category: Persistence
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/sbmako/NServiceBus.MongoDB/blob/master/LICENSE
   ProjectUrl: https://github.com/sbmako/NServiceBus.MongoDB
   NugetOrder:
@@ -308,7 +308,7 @@
   Name: MongoDB Databus (Carlos Sandoval)
   DocoUrl: https://github.com/sbmako/NServiceBus.MongoDB
   Category: Databus
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/sbmako/NServiceBus.MongoDB/blob/master/LICENSE
   ProjectUrl: https://github.com/sbmako/NServiceBus.MongoDB
   NugetOrder:
@@ -319,7 +319,7 @@
   DocoUrl: nservicebus/mongodb-persistence-tekmaven
   GitHubOwner: tekmaven
   Category: Persistence
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb/blob/master/LICENSE.txt
   ProjectUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb
   NugetOrder:
@@ -330,7 +330,7 @@
   DocoUrl: nservicebus/messaging/databus/mongodb-tekmaven
   GitHubOwner: tekmaven
   Category: Databus
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb/blob/master/LICENSE.txt
   ProjectUrl: https://github.com/tekmaven/NServiceBus.Persistence.MongoDb
   NugetOrder:
@@ -341,7 +341,7 @@
   DocoUrl: nservicebus/sql-persistence
   GitHubOwner: SimonCropp
   Category: Persistence
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/NServiceBusSqlPersistence/NServiceBus.SqlPersistence/blob/master/LICENSE
   ProjectUrl: https://github.com/NServiceBusSqlPersistence/NServiceBus.SqlPersistence/
   NugetOrder:
@@ -389,7 +389,7 @@
   DocoUrl: nservicebus/serialization/protobuf
   GitHubOwner: SimonCropp
   Category: Serializer
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.ProtoBuf/blob/master/LICENSE
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.ProtoBuf/
   NugetOrder:
@@ -429,7 +429,7 @@
   DocoUrl: nservicebus/logging/serilog
   GitHubOwner: SimonCropp
   Category: Logger
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Serilog/blob/master/license.txt
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.Serilog
   NugetOrder:
@@ -440,7 +440,7 @@
   DocoUrl: nservicebus/logging/serilog-tracing
   GitHubOwner: SimonCropp
   Category: Logger
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Serilog/blob/master/license.txt
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.Serilog
   NugetOrder:
@@ -469,7 +469,7 @@
   Name: Rabbit Operations
   DocoUrl: http://rabbitoperations.southsidesoft.com
   GitHubOwner: SouthsideSoftware
-  IsCommunityProject: true
+  SupportLevel: Community
   Category: Other
   UsesNuget: false
   ProjectUrl: https://github.com/SouthsideSoftware/RabbitOperations
@@ -482,7 +482,7 @@
   DocoUrl: https://github.com/elliotritchie/NES
   GitHubOwner: elliotritchie
   LicenseUrl: https://github.com/elliotritchie/NES/blob/master/license.txt
-  IsCommunityProject: true
+  SupportLevel: Community
   Category: Other
   ProjectUrl: https://github.com/elliotritchie/NES
   NugetOrder:
@@ -493,7 +493,7 @@
   DocoUrl: https://github.com/volak/Aggregates.NET
   LicenseUrl: https://github.com/volak/Aggregates.NET/blob/master/LICENSE
   GitHubOwner: volak
-  IsCommunityProject: true
+  SupportLevel: Community
   Category: Other
   ProjectUrl: https://github.com/volak/Aggregates.NET
   NugetOrder:
@@ -504,7 +504,7 @@
   DocoUrl: http://www.appccelerate.com/distributedeventbrokertransports.html
   LicenseUrl: https://github.com/appccelerate/distributedeventbroker.nservicebus/blob/master/LICENSE
   GitHubOwner: appccelerate
-  IsCommunityProject: true
+  SupportLevel: Community
   Category: Other
   ProjectUrl: https://github.com/appccelerate/distributedeventbroker.nservicebus
   NugetOrder:
@@ -534,7 +534,7 @@
 #  Name: SignalR Backplane
 #  DocoUrl: https://github.com/roycornelissen/SignalR.NServiceBus
 #  GitHubOwner: roycornelissen
-#  IsCommunityProject: true
+#  SupportLevel: Community
 #  Category: Other
 #  UsesNuget: false
 #  ProjectUrl: https://github.com/roycornelissen/SignalR.NServiceBus
@@ -556,7 +556,7 @@
   DocoUrl: nservicebus/containers/simpleinjector
   GitHubOwner: WilliamBZA
   Category: Container
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/WilliamBZA/NServicebus.SimpleInjector/blob/master/LICENSE
   ProjectUrl: https://github.com/WilliamBZA/NServicebus.SimpleInjector
   NugetOrder:
@@ -593,7 +593,7 @@
   Name: System.Xml Serializer
   DocoUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
   Category: Serializer
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
   NugetOrder:
@@ -622,7 +622,7 @@
   DocoUrl: nservicebus/serialization/wire
   GitHubOwner: SimonCropp
   Category: Serializer
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Wire/blob/master/LICENSE.txt
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.Wire
   NugetOrder:
@@ -644,7 +644,7 @@
   LicenseUrl: https://github.com/feinoujc/NServiceBus.Mandrill/blob/master/LICENSE
   GitHubOwner: feinoujc
   Category: Other
-  IsCommunityProject: true
+  SupportLevel: Community
   ProjectUrl: https://github.com/feinoujc/NServiceBus.Mandrill
   NugetOrder:
     - NServiceBus.Mandrill
@@ -655,7 +655,7 @@
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Mailer/blob/master/license.txt
   GitHubOwner: SimonCropp
   Category: Other
-  IsCommunityProject: true
+  SupportLevel: Community
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.Mailer
   NugetOrder:
     - NServiceBus.Mailer
@@ -710,7 +710,7 @@
   DocoUrl: nservicebus/serialization/zeroformatter
   GitHubOwner: SimonCropp
   Category: Serializer
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.ZeroFormatter/blob/master/license.txt
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.ZeroFormatter
   NugetOrder:
@@ -721,7 +721,7 @@
   DocoUrl: https://github.com/jbogard/NServiceBus.MessageRouting
   GitHubOwner: jbogard
   Category: Other
-  IsCommunityProject: true
+  SupportLevel: Community
   LicenseUrl: https://github.com/jbogard/NServiceBus.MessageRouting/license.txt
   ProjectUrl: https://github.com/jbogard/NServiceBus.MessageRouting
   NugetOrder:
@@ -731,6 +731,7 @@
   Name: FileBasedRouting
   DocoUrl: nservicebus/messaging/file-based-routing  
   Category: Other
+  SupportLevel: Labs
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.FileBasedRouting
   NugetOrder:
     - NServiceBus.FileBasedRouting
