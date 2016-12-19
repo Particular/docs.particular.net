@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
@@ -12,16 +13,20 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.SqlPersistence.Server";
+        Console.Title = "Samples.SqlPersistence.EndpointSqlServer";
 
-        #region Config
+        #region sqlServerConfig
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.Server");
-
+        var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.EndpointSqlServer");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=SqlPersistenceSample;Integrated Security=True";
-        persistence.ConnectionString(connectionString);
+        var connection = @"Data Source=.\SQLEXPRESS;Initial Catalog=SqlPersistenceSample;Integrated Security=True";
+        persistence.SqlVarient(SqlVarient.MsSqlServer);
+        persistence.ConnectionBuilder(
+            connectionBuilder: () =>
+            {
+                return new SqlConnection(connection);
+            });
 
         #endregion
 

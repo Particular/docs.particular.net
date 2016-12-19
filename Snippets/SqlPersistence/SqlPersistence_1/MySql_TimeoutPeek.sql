@@ -1,4 +1,4 @@
-startcode MySql_TimeouSelectByIdSql
+startcode MySql_TimeoutPeekSql
 
 select
     Destination,

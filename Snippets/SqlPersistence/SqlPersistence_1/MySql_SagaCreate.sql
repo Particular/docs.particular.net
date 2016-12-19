@@ -33,8 +33,7 @@ where table_schema = database() and
 
 set @query = IF(
     @exist <= 0,
-    concat('alter table ', @tableName, ' add column Correlation_OrderNumber bigint'),
-    'select \'Column Exists\' status');
+    concat('alter table ', @tableName, ' add column Correlation_OrderNumber bigint'), 'select \'Column Exists\' status');
 
 prepare statment from @query;
 execute statment;
@@ -72,8 +71,7 @@ where
 
 set @query = IF(
     @exist <= 0,
-    concat('create unique index Index_Correlation_OrderNumber on ', @tableName, '(Correlation_OrderNumber)'),
-    'select \'Index Exists\' status');
+    concat('create unique index Index_Correlation_OrderNumber on ', @tableName, '(Correlation_OrderNumber)'), 'select \'Index Exists\' status');
 
 prepare statment from @query;
 execute statment;
@@ -90,8 +88,7 @@ where table_schema = database() and
 
 set @query = IF(
     @exist <= 0,
-    concat('alter table ', @tableName, ' add column Correlation_OrderId varchar(38)'),
-    'select \'Column Exists\' status');
+    concat('alter table ', @tableName, ' add column Correlation_OrderId varchar(38)'), 'select \'Column Exists\' status');
 
 prepare statment from @query;
 execute statment;
@@ -129,8 +126,7 @@ where
 
 set @query = IF(
     @exist <= 0,
-    concat('create unique index Index_Correlation_OrderId on ', @tableName, '(Correlation_OrderId)'),
-    'select \'Index Exists\' status');
+    concat('create unique index Index_Correlation_OrderId on ', @tableName, '(Correlation_OrderId)'), 'select \'Index Exists\' status');
 
 prepare statment from @query;
 execute statment;
@@ -166,8 +162,8 @@ where
     table_schema = database() and
     table_name = @tableName and
     column_name like 'Correlation_%' and
-        column_name <> 'Correlation_OrderNumber' and
-        column_name <> 'Correlation_OrderId'
+    column_name <> 'Correlation_OrderNumber' and
+    column_name <> 'Correlation_OrderId'
 into @dropPropertiesQuery;
 
 select if (

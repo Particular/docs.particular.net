@@ -46,7 +46,7 @@ public class ScriptWriter
             Write(directory, varient, "TimeoutRange", timeoutCommands.Range);
             Write(directory, varient, "TimeoutRemoveById", timeoutCommands.RemoveById);
             Write(directory, varient, "TimeoutRemoveBySagaId", timeoutCommands.RemoveBySagaId);
-            Write(directory, varient, "TimeouSelectById", timeoutCommands.SelectById);
+            Write(directory, varient, "TimeoutPeek", timeoutCommands.Peek);
 
             var outboxCommands = OutboxCommandBuilder.Build(varient, "EndpointName");
             Write(directory, varient, "OutboxCleanup", outboxCommands.Cleanup);

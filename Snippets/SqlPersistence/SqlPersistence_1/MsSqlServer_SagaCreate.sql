@@ -42,8 +42,7 @@ begin
   declare @createColumn_OrderNumber nvarchar(max);
   set @createColumn_OrderNumber = '
   alter table ' + @tableName + '
-    add Correlation_OrderNumber bigint;
-  ';
+    add Correlation_OrderNumber bigint;';
   exec(@createColumn_OrderNumber);
 end
 
@@ -75,8 +74,7 @@ begin
   set @createIndex_OrderNumber = '
   create unique index Index_Correlation_OrderNumber
   on ' + @tableName + '(Correlation_OrderNumber)
-  where Correlation_OrderNumber is not null;
-';
+  where Correlation_OrderNumber is not null;';
   exec(@createIndex_OrderNumber);
 end
 
@@ -93,8 +91,7 @@ begin
   declare @createColumn_OrderId nvarchar(max);
   set @createColumn_OrderId = '
   alter table ' + @tableName + '
-    add Correlation_OrderId uniqueidentifier;
-  ';
+    add Correlation_OrderId uniqueidentifier;';
   exec(@createColumn_OrderId);
 end
 
@@ -126,8 +123,7 @@ begin
   set @createIndex_OrderId = '
   create unique index Index_Correlation_OrderId
   on ' + @tableName + '(Correlation_OrderId)
-  where Correlation_OrderId is not null;
-';
+  where Correlation_OrderId is not null;';
   exec(@createIndex_OrderId);
 end
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
@@ -33,8 +34,12 @@ class Program
         transport.UseSchemaForQueue("audit", "dbo");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.ConnectionString(connectionString);
-        persistence.Schema("sender");
+        persistence.ConnectionBuilder(
+            connectionBuilder: () =>
+            {
+                return new SqlConnection(connectionString);
+            });
+        persistence.TablePrefix("sender.");
 
         endpointConfiguration.EnableOutbox();
 

@@ -173,7 +173,7 @@ snippet: MsSqlServer_SubscriptionUnsubscribeSql
 
 Used by `IPersistTimeouts.Peek`.
 
-snippet: MsSqlServer_TimeouSelectByIdSql
+snippet: MsSqlServer_TimeoutPeekSql
 
 
 #### Add

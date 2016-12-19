@@ -173,7 +173,7 @@ snippet: MySql_SubscriptionUnsubscribeSql
 
 Used by `IPersistTimeouts.Peek`.
 
-snippet: MySql_TimeouSelectByIdSql
+snippet: MySql_TimeoutPeekSql
 
 
 #### Add

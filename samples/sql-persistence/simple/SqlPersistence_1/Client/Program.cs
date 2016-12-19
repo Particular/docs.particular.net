@@ -21,7 +21,8 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Press 'enter' to send a StartOrder messages");
+        Console.WriteLine("Press 'S' to send a StartOrder message to the SqlServer endpoint");
+        Console.WriteLine("Press 'M' to send a StartOrder message to the MySql endpoint");
         Console.WriteLine("Press any other key to exit");
 
         while (true)
@@ -29,19 +30,26 @@ class Program
             var key = Console.ReadKey();
             Console.WriteLine();
 
-            if (key.Key != ConsoleKey.Enter)
-            {
-                break;
-            }
-
             var orderId = Guid.NewGuid();
             var startOrder = new StartOrder
             {
                 OrderId = orderId
             };
-            await endpointInstance.Send("Samples.SqlPersistence.Server", startOrder)
-                .ConfigureAwait(false);
-            Console.WriteLine($"StartOrder Message sent with OrderId {orderId}");
+            if (key.Key == ConsoleKey.M)
+            {
+                await endpointInstance.Send("Samples.SqlPersistence.EndpointMySql", startOrder)
+                    .ConfigureAwait(false);
+                Console.WriteLine($"StartOrder Message sent to EndpointMySql with OrderId {orderId}");
+                continue;
+            }
+            if (key.Key == ConsoleKey.S)
+            {
+                await endpointInstance.Send("Samples.SqlPersistence.EndpointSqlServer", startOrder)
+                    .ConfigureAwait(false);
+                Console.WriteLine($"StartOrder Message sent to EndpointSqlServer with OrderId {orderId}");
+                continue;
+            }
+            break;
         }
 
         await endpointInstance.Stop()

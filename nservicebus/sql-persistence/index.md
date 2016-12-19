@@ -33,6 +33,14 @@ Using the [MySql.Data NuGet Package](https://www.nuget.org/packages/MySql.Data/)
 snippet:SqlPersistenceUsageMySql
 
 
+#### Connection Strings
+
+The following settings are required for [MySql connections string](https://dev.mysql.com/doc/connector-net/en/connector-net-connection-options.html). 
+
+ * `AllowUserVariables=True`: since the Persistence uses [user variables](http://dev.mysql.com/doc/refman/5.7/en/user-variables.html).  
+ * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which the MySql .net connector does not currently support.
+
+
 ## SqlStorageSession
 
 The current [DbConnection](https://msdn.microsoft.com/en-us/library/system.data.common.dbconnection.aspx) and [DbTransaction](https://msdn.microsoft.com/en-us/library/system.data.common.dbtransaction.aspx) can be accessed via the current context.

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
@@ -39,8 +40,12 @@ class Program
         routing.RegisterPublisher(typeof(OrderAccepted).Assembly, "Samples.SQLOutboxEF.Sender");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.ConnectionString(connectionString);
-        persistence.Schema("receiver");
+        persistence.ConnectionBuilder(
+            connectionBuilder: () =>
+            {
+                return new SqlConnection(connectionString);
+            });
+        persistence.TablePrefix("receiver.");
 
         endpointConfiguration.EnableOutbox();
 

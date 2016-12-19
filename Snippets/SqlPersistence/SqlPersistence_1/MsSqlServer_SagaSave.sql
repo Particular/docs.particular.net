@@ -8,8 +8,8 @@ insert into EndpointNameSagaName
     PersistenceVersion,
     SagaTypeVersion,
     SagaVersion,
-Correlation_CorrelationPproperty,
-Correlation_TransitionalCorrelationPproperty
+    Correlation_CorrelationPproperty,
+    Correlation_TransitionalCorrelationPproperty
 )
 values
 (
@@ -19,7 +19,7 @@ values
     @PersistenceVersion,
     @SagaTypeVersion,
     1,
-@CorrelationId,
-@TransitionalCorrelationId
+    @CorrelationId,
+    @TransitionalCorrelationId
 )
 endcode

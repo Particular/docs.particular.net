@@ -1,4 +1,4 @@
-startcode MsSqlServer_TimeouSelectByIdSql
+startcode MsSqlServer_TimeoutPeekSql
 
 select
     Destination,
