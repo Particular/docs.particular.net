@@ -7,8 +7,8 @@
     <ProjectGuid>{DD438DB2-9C03-4BC0-BA52-BB7A35098458}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Shared</RootNamespace>
-    <AssemblyName>Shared</AssemblyName>
+    <RootNamespace>SharedMessages</RootNamespace>
+    <AssemblyName>SharedMessages</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
