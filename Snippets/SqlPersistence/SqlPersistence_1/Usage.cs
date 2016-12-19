@@ -33,7 +33,7 @@ class Usage
     {
         #region SqlPersistenceUsageMySql
 
-        var connection = "server=localhost;user=root;database=sqlpersistencesample;port=3306;password=Password1;Allow User Variables=True";
+        var connection = "server=localhost;user=root;database=sqlpersistencesample;port=3306;password=Password1;AllowUserVariables=True;AutoEnlist=false";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlVarient(SqlVarient.MySql);
         persistence.ConnectionBuilder(
