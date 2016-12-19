@@ -13,11 +13,11 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.SqlPersistence.ServerMySql";
+        Console.Title = "Samples.SqlPersistence.EndpointMySql";
 
         #region MySqlConfig
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.ServerMySql");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.EndpointMySql");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var password = Environment.GetEnvironmentVariable("MySqlPassword");
