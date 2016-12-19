@@ -1,5 +1,5 @@
 ---
-title: SqlServer Scripts
+title: MS SQL Server Scripts
 component: SqlPersistence
 tags:
  - Persistence
@@ -7,7 +7,7 @@ reviewed: 2016-11-29
 ---
 
 
-Scripts and SQL used when interacting with a [SQL Server](https://www.microsoft.com/en-au/sql-server/).
+Scripts and SQL used when interacting with a [SQL Server](https://www.microsoft.com/en-au/sql-server/) database.
 
 
 ## Build Time
