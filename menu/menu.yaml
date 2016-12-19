@@ -200,6 +200,8 @@
       Articles:
       - Url: nservicebus/messaging/routing-extensibility
         Title: Routing extensibility points
+      - Url: nservicebus/messaging/file-based-routing
+        Title: Centralized file-based routing
     - Url: nservicebus/scheduling
       Title: Scheduling
     - Url: nservicebus/gateway

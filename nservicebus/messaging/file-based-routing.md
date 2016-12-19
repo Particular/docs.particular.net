@@ -11,6 +11,7 @@ tags:
 related:
 - nservicebus/messaging/routing-extensibility
 - nservicebus/messaging/routing
+- samples/routing/file-based-routing
 ---
 
 NOTE: Centralized file-based routing is an experimental project hosted on [ParticularLabs](https://github.com/ParticularLabs). Particular Software does not provide any support guarantee for such projects.
