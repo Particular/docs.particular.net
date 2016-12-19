@@ -1,11 +1,11 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
 
 public static class CommonConfiguration
 {
     public static void ApplyCommonConfiguration(this EndpointConfiguration endpointConfiguration)
     {
-        var connectionString = Environment.GetEnvironmentVariable("AzureStorageQueue.ConnectionString");
+        var connectionString = "UseDevelopmentStorage=true";
+
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString(connectionString);
         var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
