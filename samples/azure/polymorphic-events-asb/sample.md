@@ -11,6 +11,8 @@ redirects:
  - samples/azure/polyorphic-events-asb
 ---
 
+Note: for proper polymorphic events support, use `ForwardingTopology`. This sample should only be used in case `EndpointOrientedTopology` is required.
+
 
 ## Prerequisites
 
