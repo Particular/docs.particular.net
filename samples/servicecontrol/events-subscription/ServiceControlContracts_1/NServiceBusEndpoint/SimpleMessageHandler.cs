@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class SimpleMessageHandler : IHandleMessages<SimpleMessage>
+public class SimpleMessageHandler :
+    IHandleMessages<SimpleMessage>
 {
     static ILog log = LogManager.GetLogger<SimpleMessageHandler>();
 

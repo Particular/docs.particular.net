@@ -12,7 +12,8 @@ public class OrderValidatedCommandHandler :
     {
         log.Info($"Order {message.OrderId} validated. Sending notification to the customer.");
 
-        await Task.Delay(1000).ConfigureAwait(false);
+        await Task.Delay(1000)
+            .ConfigureAwait(false);
 
         var placed = new PlaceOrderResponse
         {

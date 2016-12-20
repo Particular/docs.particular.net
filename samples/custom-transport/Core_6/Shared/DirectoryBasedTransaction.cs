@@ -3,7 +3,8 @@ using System.IO;
 
 #region DirectoryBasedTransaction
 
-class DirectoryBasedTransaction : IDisposable
+class DirectoryBasedTransaction :
+    IDisposable
 {
     string basePath;
     bool committed;

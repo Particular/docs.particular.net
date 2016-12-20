@@ -68,14 +68,14 @@ class Program
         #region FairDistributionClient
 
         endpointConfiguration.EnableFeature<FairDistribution>();
-        var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        var routing = transport.Routing();
         var settings = endpointConfiguration.GetSettings();
         var strategy = new FairDistributionStrategy(
             settings: settings,
             endpoint: "Samples.FairDistribution.Server",
             scope: DistributionStrategyScope.Send);
-        routing.SetMessageDistributionStrategy(
-            strategy);
+        routing.SetMessageDistributionStrategy(strategy);
 
         #endregion
     }

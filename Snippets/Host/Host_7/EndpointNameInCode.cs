@@ -2,7 +2,8 @@
 {
     using NServiceBus;
 
-    public class EndpointNameInCode : IConfigureThisEndpoint
+    public class EndpointNameInCode :
+        IConfigureThisEndpoint
     {
         #region EndpointNameInCodeForHost
         public void Customize(EndpointConfiguration endpointConfiguration)

@@ -11,7 +11,8 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Sender.V6");
 
-        var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        var routing = transport.Routing();
         var workerEndpoint = "Samples.Scaleout.Worker";
         routing.RouteToEndpoint(typeof(PlaceOrder), workerEndpoint);
         routing.RouteToEndpoint(typeof(PlaceInvalidOrder), workerEndpoint);
@@ -22,7 +23,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         var conventions = endpointConfiguration.Conventions();
         conventions.DefiningMessagesAs(
-            type =>
+            definesMessageType: type =>
             {
                 return type.GetInterfaces().Contains(typeof(IMessage));
             });
@@ -49,7 +50,8 @@ class Program
                 {
                     OrderId = orderId
                 };
-                await endpointInstance.Send(placeOrder).ConfigureAwait(false);
+                await endpointInstance.Send(placeOrder)
+                    .ConfigureAwait(false);
 
                 Console.WriteLine($"Sent PlacedOrder command with order id {orderId}");
             }
@@ -59,7 +61,8 @@ class Program
                 {
                     OrderId = orderId
                 };
-                await endpointInstance.Send(placeInvalidOrder).ConfigureAwait(false);
+                await endpointInstance.Send(placeInvalidOrder)
+                    .ConfigureAwait(false);
 
                 Console.WriteLine($"Sent PlacedOrder command with order id {orderId}");
             }

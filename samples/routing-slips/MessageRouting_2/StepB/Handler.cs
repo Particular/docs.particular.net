@@ -2,7 +2,8 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class Handler : IHandleMessages<SequentialProcess>
+public class Handler :
+    IHandleMessages<SequentialProcess>
 {
     static ILog log = LogManager.GetLogger(typeof(Handler));
 

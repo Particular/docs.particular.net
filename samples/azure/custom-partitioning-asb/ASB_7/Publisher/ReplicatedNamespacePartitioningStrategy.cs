@@ -7,7 +7,8 @@ using NServiceBus.Transport.AzureServiceBus;
 
 #region replicated-namespace-partitioning-strategy
 
-public class ReplicatedNamespacePartitioningStrategy : INamespacePartitioningStrategy
+public class ReplicatedNamespacePartitioningStrategy :
+    INamespacePartitioningStrategy
 {
     static ILog log = LogManager.GetLogger<ReplicatedNamespacePartitioningStrategy>();
     NamespaceConfigurations namespaces;

@@ -13,7 +13,8 @@ public class ProcessOrderCommandHandler :
     {
         log.Info($"Sending order {placeOrder.OrderId} to validation.");
 
-        await Task.Delay(1000).ConfigureAwait(false);
+        await Task.Delay(1000)
+            .ConfigureAwait(false);
 
         var validateOrder = new ValidateOrder
         {

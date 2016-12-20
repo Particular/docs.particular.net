@@ -21,7 +21,8 @@ namespace Billing
 
     #endregion
 
-    public class OrderPlaced : IEvent
+    public class OrderPlaced :
+        IEvent
     {
         public string OrderId { get; set; }
     }

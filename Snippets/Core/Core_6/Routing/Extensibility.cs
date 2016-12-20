@@ -27,7 +27,8 @@
             #endregion
         }
 
-        class RefreshingRouteTable : Feature
+        class RefreshingRouteTable :
+            Feature
         {
             #region RoutingExtensibility-StartupTaskRegistration
             protected override void Setup(FeatureConfigurationContext context)
@@ -38,7 +39,8 @@
             }
             #endregion
 
-            class Refresher : FeatureStartupTask
+            class Refresher :
+                FeatureStartupTask
             {
                 readonly UnicastRoutingTable routeTable;
                 Timer timer;
@@ -66,7 +68,8 @@
                 protected override Task OnStop(IMessageSession session) => Task.CompletedTask;
             }
 
-            class RobustRefresher : FeatureStartupTask
+            class RobustRefresher :
+                FeatureStartupTask
             {
                 readonly UnicastRoutingTable routeTable;
                 readonly CriticalError criticalError;
@@ -104,7 +107,8 @@
             }
         }
 
-        class PublishersTable : Feature
+        class PublishersTable :
+            Feature
         {
             #region RoutingExtensibility-Publishers
             protected override void Setup(FeatureConfigurationContext context)
@@ -120,7 +124,8 @@
             #endregion
         }
 
-        class Instances : Feature
+        class Instances :
+            Feature
         {
             #region RoutingExtensibility-Instances
             protected override void Setup(FeatureConfigurationContext context)
@@ -149,7 +154,8 @@
 
         #region RoutingExtensibility-DistributionStrategy
 
-        class RandomStrategy : DistributionStrategy
+        class RandomStrategy :
+            DistributionStrategy
         {
             static readonly Random r = new Random();
 
@@ -165,11 +171,13 @@
 
         #endregion
 
-        class MyCommand : ICommand
+        class MyCommand :
+            ICommand
         {
         }
 
-        class MyEvent : IEvent
+        class MyEvent :
+            IEvent
         {
         }
     }

@@ -230,7 +230,8 @@ class Usage
 
 
 #pragma warning disable 618
-    public class CustomIncomingMessageConversion : IConvertBrokeredMessagesToIncomingMessages
+    public class CustomIncomingMessageConversion :
+        IConvertBrokeredMessagesToIncomingMessages
     {
         public IncomingMessageDetails Convert(BrokeredMessage brokeredMessage)
         {
@@ -238,7 +239,8 @@ class Usage
         }
     }
 
-    public class CustomOutgoingMessageConversion : IConvertOutgoingMessagesToBrokeredMessages
+    public class CustomOutgoingMessageConversion :
+        IConvertOutgoingMessagesToBrokeredMessages
     {
         public IEnumerable<BrokeredMessage> Convert(IEnumerable<BatchedOperation> outgoingOperations, RoutingOptions routingOptions)
         {

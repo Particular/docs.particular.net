@@ -5,21 +5,23 @@ namespace FileBasedRouting_1
 {
     class Snippets
     {
-        public void Enable(EndpointConfiguration config)
+        public void Enable(EndpointConfiguration endpointConfiguration)
         {
             #region Enable
 
-            var routing = config.UseTransport<MyTransport>().Routing();
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            var routing = transport.Routing();
             routing.UseFileBasedRouting();
 
             #endregion
         }
 
-        public void EnableCustomPath(EndpointConfiguration config)
+        public void EnableCustomPath(EndpointConfiguration endpointConfiguration)
         {
             #region EnableCustomPath
 
-            var routing = config.UseTransport<MyTransport>().Routing();
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            var routing = transport.Routing();
             routing.UseFileBasedRouting(@"C:\routingFile.xml");
 
             #endregion
