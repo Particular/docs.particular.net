@@ -882,6 +882,54 @@ D --> Q2[Queue2]
 The diagrams can be created and verified using the [online editor](http://knsv.github.io/mermaid/live_editor/).
 
 
+#### Messaging Graph Style
+
+Diagrams that represent messages and events being passed between endpoint should follow some basic style rules.
+
+Endpoints should be represented as nodes with rounded corners. Messages should be represented as nodes. To show an endpoint sending a message to another endpoint use two edges. The first edge goes from the sender to the message being sent. The second edge goes from the message to the receiver. Like this:
+<pre><code>
+```mermaid
+graph LR
+a(EndpointA)
+b(EndpointB)
+a-->SomeCommand
+SomeCommand-->b
+```
+</code></pre>
+
+Showing an endpoint publishing an event is similar but should use a dotted edge. Events can be delivered to multiple recipients. Use a separate edge for each one. Like this:
+<pre><code>
+```mermaid
+graph LR
+a(EndpointA)
+b(EndpointB)
+c(EndpointC)
+a-.->AnEvent
+AnEvent-->b
+AnEvent-->c
+```
+</code></pre>
+
+There are two css classes (`event` and `message`) that should be applied to message nodes in these diagrams. To apply these, use the `class` keyword in mermaid:
+
+<pre><code>
+```mermaid
+graph LR
+
+Endpoint1-->SomeCommand
+Command-->Endpoint2
+Endpoint2-.->AnEvent
+AnEvent-.->Endpoint3
+Endpoint3 -.->AnotherEvent
+AnotherEvent -.->Endpoint1
+AnotherEvent -.->Endpoint4
+
+class SomeCommand message;
+class AnEvent,AnotherEvent event;
+```
+</code></pre>
+
+
 ### LucidChart
 
 Another option is using [LucidChart](https://www.lucidchart.com). LucidChart allows to export and import Visio (VDX) formatted documents. Visio formatted documents can be used to generate images and should be committed along with the images. To generate images from LucidChart (or a Visio document), export the image as PNG, using the "Crop to content" option.
