@@ -27,8 +27,8 @@
                     {
                         return saga.Handle(new StartsSaga(), context);
                     })
-                .WhenSagaTimesOut()
                 .ExpectPublish<MyOtherEvent>()
+                .WhenSagaTimesOut()
                 .AssertSagaCompletionIs(true);
         }
 
