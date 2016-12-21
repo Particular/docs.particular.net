@@ -1,0 +1,1 @@
+The license is valid if the `LicenseVersion` attribute in the license data is greater than or equal to the `{major}.{minor}` part of the fileversion for the NServiceBus assembly used by the endpoint.

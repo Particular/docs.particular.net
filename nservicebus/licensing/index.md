@@ -21,6 +21,9 @@ related:
 
 See [Particular Licensing](https://particular.net/licensing) for license specifics.
 
+## Is my license valid?
+
+partial: validity
 
 ## Throughput limitations
 
