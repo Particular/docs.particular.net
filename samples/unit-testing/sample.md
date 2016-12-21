@@ -33,3 +33,14 @@ snippet:SampleSaga
 The following unit tests checks that the total amount has the discount applied:
 
 snippet:SagaTest
+
+
+### Testing a behavior
+
+The following custom behavior adds a header to an outgoing message in case the message is of the type `MyResponse`:
+
+snippet:SampleBehavior
+
+The behavior can be tested similar to a message handler or a Saga by using a testable represantion of the context:
+
+snippet:BehaviorTest

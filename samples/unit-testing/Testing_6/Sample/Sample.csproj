@@ -41,6 +41,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BehaviorTests.cs" />
+    <Compile Include="Data\CustomBehavior.cs" />
     <Compile Include="Data\DiscountPolicy.cs" />
     <Compile Include="Data\DiscountPolicyData.cs" />
     <Compile Include="Data\MyRequest.cs" />
