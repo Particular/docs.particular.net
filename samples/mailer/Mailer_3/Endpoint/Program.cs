@@ -78,8 +78,6 @@ class Program
         Console.WriteLine("Press Enter to send a message");
         Console.WriteLine("Press any other key to exit");
 
-        #region alternate
-
         while (true)
         {
             var key = Console.ReadKey();
@@ -94,8 +92,6 @@ class Program
             await endpoint.SendLocal(message)
             .ConfigureAwait(false);
         }
-        
-        #endregion
 
         await endpoint.Stop()
             .ConfigureAwait(false);

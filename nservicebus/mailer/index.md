@@ -15,7 +15,15 @@ snippet: MailerEnabling
 
 ## Usage
 
+
+### In a Handler
+
 snippet: MailerHandlerUsage
+
+
+### In a Saga
+
+snippet: MailerSagaUsage
 
 
 ## SmtpClient construction

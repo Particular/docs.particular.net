@@ -42,6 +42,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SagaUsage.cs" />
     <Compile Include="MyMessage.cs" />
     <Compile Include="PassAttachemtnContext.cs" />
     <Compile Include="HandlerUsage.cs" />
