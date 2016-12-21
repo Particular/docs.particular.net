@@ -651,7 +651,7 @@
 
 - Key: Mailer
   Name: NServiceBus Mailer
-  DocoUrl: https://github.com/SimonCropp/NServiceBus.Mailer
+  DocoUrl: nservicebus/mailer
   LicenseUrl: https://github.com/SimonCropp/NServiceBus.Mailer/blob/master/license.txt
   GitHubOwner: SimonCropp
   Category: Other
