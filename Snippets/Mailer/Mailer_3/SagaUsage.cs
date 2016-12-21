@@ -4,7 +4,8 @@ using NServiceBus.Mailer;
 
 #region MailerSagaUsage
 
-public class MySaga : Saga<MySaga.SagaData>,
+public class MySaga : 
+    Saga<MySaga.SagaData>,
     IAmStartedByMessages<MyMessage>
 {
     public Task Handle(MyMessage message, IMessageHandlerContext context)

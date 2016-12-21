@@ -9,14 +9,14 @@ using NServiceBus.Mailer;
 
 class Program
 {
-    public static readonly string DirectoryLocation = Path.Combine(Environment.CurrentDirectory, "Emails");
+    public static string DirectoryLocation = Path.Combine(Environment.CurrentDirectory, "Emails");
 
     static void Main()
     {
-        RunBus().GetAwaiter().GetResult();
+        AsyncMain().GetAwaiter().GetResult();
     }
 
-    static async Task RunBus()
+    static async Task AsyncMain()
     {
         Console.Title = "Samples.Mailer";
         var endpointConfiguration = new EndpointConfiguration("Samples.Mailer");
@@ -69,11 +69,8 @@ class Program
 
         #endregion
 
-
-
         var endpoint = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-
 
         Console.WriteLine("Press Enter to send a message");
         Console.WriteLine("Press any other key to exit");
@@ -90,7 +87,7 @@ class Program
                 Number = Guid.NewGuid()
             };
             await endpoint.SendLocal(message)
-            .ConfigureAwait(false);
+                .ConfigureAwait(false);
         }
 
         await endpoint.Stop()
