@@ -11,7 +11,7 @@ The Platform Installer is recommended for use on development machines only.
 This is primarily because:
 
  * The Platform Installer requires Internet access which may not be available in a production environment.
- * The Platform Installer `setup.exe` will fail on Windows servers were [IE Enhanced Security Configuration](https://support.microsoft.com/en-au/kb/815141) is enabled.
+ * The Platform Installer `setup.exe` will fail on Windows servers where [IE Enhanced Security Configuration](https://support.microsoft.com/en-au/kb/815141) is enabled.
 
 [Download the Platform Installer](https://particular.net/start-platform-download).
 
@@ -23,31 +23,31 @@ For testing and production environments it is recommended to:
 
 ## What to expect
 
-The Platform Installer is a [Microsoft Click-Once](https://msdn.microsoft.com/en-us/library/t71a733d.aspx) application which means it has a built in self-updating mechanism. Click once applications are sometimes blocked by corporate firewalls or software restriction policies. If the Platform Installer fails review the [Offline Install](offline.md) page for installation instructions.
+The Platform Installer is a [Microsoft Click-Once](https://msdn.microsoft.com/en-us/library/t71a733d.aspx) application, which means it has a built in self-updating mechanism. Click-Once applications are sometimes blocked by corporate firewalls or software restriction policies. If the Platform Installer fails, review the [Offline Install](offline.md) page for installation instructions.
 
 
 ### Dependencies
 
-The Click-Once `setup.exe` will install [.NET 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42643) if required and with then bootstrap the Platform Installer Application.
+The Click-Once `setup.exe` will install [.NET 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42643) if required and will then bootstrap the Platform Installer Application.
 
 
 ### License Acceptance
 
-Before proceeding with product selection the Platform Installer will prompt to accept the NServiceBus License Agreement.
+Before proceeding with product selection, the Platform Installer will prompt to accept the NServiceBus License Agreement.
 
 
 ### Proxy Credentials
 
-The Platform Installer requires Internet access to download individual packages. If non-windows integrated proxy authentication is required then a credentials dialog will be show.
+The Platform Installer requires Internet access to download individual packages. If non-Windows integrated proxy authentication is required, then a credentials dialog will be shown.
 
 ![](save-credentials.png)
 
-This dialog offers to save credentials for future use. If the Save Credentials option is chosen the credentials will be encrypted and stored in the registry at `HKEY_CURRENT_USER\Software\Particular\PlatformInstaller\Credentials` for use in subsequent launches of the Platform Installer.
+This dialog offers to save credentials for future use. If the Save Credentials option is chosen, the credentials will be encrypted and stored in the registry at `HKEY_CURRENT_USER\Software\Particular\PlatformInstaller\Credentials` for use in subsequent launches of the Platform Installer.
 
 
 ## Select items to install
 
-The Platform Installer will prompt for which items to install. Individual components can be selected how for installation or upgrade. If the latest version of a product is installed that item no checkbox will be displayed as there is no installation or upgrade action required. Similarly if the Platform Installer cannot communicate with the version information feed it will also disable product selection.
+The Platform Installer will prompt for which items to install. Individual components can be selected  for installation or upgrade. If the latest version of a product is installed, no checkbox will be displayed for that item as there is no installation or upgrade action required. Similarly if the Platform Installer cannot communicate with the version information feed, it will also disable product selection.
 
 ![](select-items.png)
 
@@ -103,7 +103,7 @@ Installs the ServiceControl Package. This MSI can be downloaded directly from [S
 
 ### Downloads
 
-The Platform Installer caches the downloaded MSI files in `%temp%\Particular\PlatformInstaller`. These files are download directly from GitHub. Some corporate firewalls prevent the downloading of executable files via content filters or by white/black listing specific web sites. If the Platform Installer cannot download the individual applications consult with the network administration staff.
+The Platform Installer caches the downloaded MSI files in `%temp%\Particular\PlatformInstaller`. These files are downloaded directly from GitHub. Some corporate firewalls prevent the downloading of executable files via content filters or by white/black listing specific web sites. If the Platform Installer cannot download the individual applications, consult with the network administration staff.
 
 
 ### Logs
@@ -117,7 +117,7 @@ The command line options used for the MSI installations ensure that a detailed l
 
 An installation or upgrade of a product will overwrite any existing MSI log for that product.
 
-MSI provide detailed error information via error codes. [MSI error messages](https://msdn.microsoft.com/en-us/library/aa376931.aspx) can assist in fault finding installation issues.
+MSI installers provide detailed error information via error codes. [MSI error messages](https://msdn.microsoft.com/en-us/library/aa376931.aspx) can assist in fault finding installation issues.
 
 
 ### Click-Once
@@ -128,7 +128,7 @@ As mentioned above, in some circumstances Click-Once can be problematic. The fol
 * [Troubleshooting Click-Once Deployments](https://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
 
 
-### Click-once and Enhanced Security on Windows Server 2012 R2
+### Click-Once and Enhanced Security on Windows Server 2012 R2
 
 Error shown:
 
