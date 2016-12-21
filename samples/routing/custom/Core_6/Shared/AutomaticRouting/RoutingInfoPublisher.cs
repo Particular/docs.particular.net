@@ -12,18 +12,18 @@ class RoutingInfoPublisher :
     FeatureStartupTask
 {
     RoutingInfoCommunicator dataBackplane;
-    IReadOnlyCollection<Type> hanledMessageTypes;
-    IReadOnlyCollection<Type> publishedMessageTypes;
+    IReadOnlyCollection<Type> hanledCommandTypes;
+    IReadOnlyCollection<Type> handledEventTypes;
     ReadOnlySettings settings;
     TimeSpan heartbeatPeriod;
     RoutingInfo publication;
     Timer timer;
 
-    public RoutingInfoPublisher(RoutingInfoCommunicator dataBackplane, IReadOnlyCollection<Type> hanledMessageTypes, IReadOnlyCollection<Type> publishedMessageTypes, ReadOnlySettings settings, TimeSpan heartbeatPeriod)
+    public RoutingInfoPublisher(RoutingInfoCommunicator dataBackplane, IReadOnlyCollection<Type> hanledCommandTypes, IReadOnlyCollection<Type> handledEventTypes, ReadOnlySettings settings, TimeSpan heartbeatPeriod)
     {
         this.dataBackplane = dataBackplane;
-        this.hanledMessageTypes = hanledMessageTypes;
-        this.publishedMessageTypes = publishedMessageTypes;
+        this.hanledCommandTypes = hanledCommandTypes;
+        this.handledEventTypes = handledEventTypes;
         this.settings = settings;
         this.heartbeatPeriod = heartbeatPeriod;
     }
@@ -31,15 +31,12 @@ class RoutingInfoPublisher :
     protected override Task OnStart(IMessageSession context)
     {
         var mainLogicalAddress = settings.LogicalAddress();
-        var instanceProperties = mainLogicalAddress.EndpointInstance.Properties.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-        instanceProperties["queue"] = mainLogicalAddress.EndpointInstance.Endpoint;
         publication = new RoutingInfo
         {
             EndpointName = settings.EndpointName(),
-            Discriminator = mainLogicalAddress.EndpointInstance.Discriminator,
-            InstanceProperties = instanceProperties,
-            HandledMessageTypes = hanledMessageTypes.Select(m => m.AssemblyQualifiedName).ToArray(),
-            PublishedMessageTypes = publishedMessageTypes.Select(m => m.AssemblyQualifiedName).ToArray(),
+            TransportAddress = settings.LocalAddress(),
+            HandledCommandTypes = hanledCommandTypes.Select(m => m.AssemblyQualifiedName).ToArray(),
+            HandledEventTypes = handledEventTypes.Select(m => m.AssemblyQualifiedName).ToArray(),
             Active = true,
         };
 

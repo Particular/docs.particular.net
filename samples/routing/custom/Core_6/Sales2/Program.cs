@@ -22,8 +22,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        var automaticRouting = endpointConfiguration.EnableAutomaticRouting(AutomaticRoutingConst.ConnectionString);
-        automaticRouting.AdvertisePublishing(typeof(OrderAccepted));
+        endpointConfiguration.EnableAutomaticRouting(AutomaticRoutingConst.ConnectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
