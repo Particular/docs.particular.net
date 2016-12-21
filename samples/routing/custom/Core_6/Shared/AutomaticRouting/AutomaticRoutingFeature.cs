@@ -37,7 +37,7 @@ class AutomaticRoutingFeature :
         context.RegisterStartupTask(builder =>
         {
             var handlerRegistry = builder.Build<MessageHandlerRegistry>();
-            var messageTypesHandled = GetHandledMessages(handlerRegistry, conventions);
+            var messageTypesHandled = GetHandledCommands(handlerRegistry, conventions);
             return new RoutingInfoPublisher(
                 dataBackplane: communicator,
                 hanledMessageTypes: messageTypesHandled,
@@ -50,7 +50,7 @@ class AutomaticRoutingFeature :
         context.RegisterStartupTask(builder =>
         {
             var handlerRegistry = builder.Build<MessageHandlerRegistry>();
-            var messageTypesHandled = GetHandledMessages(handlerRegistry, conventions);
+            var messageTypesHandled = GetHandledEvents(handlerRegistry, conventions);
             var subscriber = new RoutingInfoSubscriber(
                 routingTable: unicastRoutingTable,
                 endpointInstances: endpointInstances,
@@ -71,12 +71,21 @@ class AutomaticRoutingFeature :
         #endregion
     }
 
-    static List<Type> GetHandledMessages(MessageHandlerRegistry handlerRegistry, Conventions conventions)
+    static List<Type> GetHandledCommands(MessageHandlerRegistry handlerRegistry, Conventions conventions)
     {
         // get all potential messages
         return handlerRegistry.GetMessageTypes()
             // never auto-route system messages and events
             .Where(t => !conventions.IsInSystemConventionList(t) && !conventions.IsEventType(t))
+            .ToList();
+    }
+
+    static List<Type> GetHandledEvents(MessageHandlerRegistry handlerRegistry, Conventions conventions)
+    {
+        // get all potential messages
+        return handlerRegistry.GetMessageTypes()
+            // never auto-route system messages and events
+            .Where(t => !conventions.IsInSystemConventionList(t) && conventions.IsEventType(t))
             .ToList();
     }
 }
