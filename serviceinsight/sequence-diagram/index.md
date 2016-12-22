@@ -93,23 +93,23 @@ NOTE: The time of processing may not correspond to the time at which a timeout m
 
 The language used in the sequence diagram is largely modeled after the standard defined by UML sequence diagrams. However, due to technical limitations and specifics related to messaging systems, the sequence diagram in ServiceInsight has some notable differences:
 
-Item | ServiceInsight | UML
-:--- | :---: | :---:
-**Start of sequence** | ![Sequence beginning](sequence-beginning.png) | ![Sequence beginning](uml-sequence-beginning.png)
- | Represented by a black rectangle with a white "play" icon. This representation is used because metadata about what precedes the sequence is unavailable. | Represented by an incoming message (gate) from outside the diagram.
-**Uni-directional solid lines** | ![Solid line](solid-line.png) | ![UML solid line](uml-solid-line.png)
- | Used to represent any type of message other than events, including response messages. | Used solely for send and request types of messages.
-**Uni-directional dashed lines** | ![Dashed line](dashed-line.png) | ![UML dashed line](uml-dashed-line.png)
- | Used solely to represent event messages. | Used solely to represent create messages and response messages.
-**Filled arrow style** | ![Filled arrow](filled-arrow.png) | ![UML filled arrow](uml-filled-arrow.png)
- | Used for all message types. | Used solely for synchronous send messages.
-**Open arrow style** |  | ![UML open arrow](uml-open-arrow.png)
- | N/A | Used for response messages and asynchronous messages.
-**Asynchronous messages** |  | ![UML asynchronous messages](uml-asynchronous.png)
- | N/A - all NServiceBus messages are asynchronous so the ServiceInsight Sequence Diagram has no special representation for asynchronous messages and no representation for synchronous messages, even though messages may exhibit synchronous behavior by (system) design. | Represented by a sloping dashed or solid line with an open arrow.
-**Send to self / loopback messages** | ![Loopback message](loopback-si.png) | ![UML loopback message](uml-loopback.png)
- | Represented by a short uni-directional arrow that does not connect to another endpoint lifeline and a specific icon. | Represented by an arrow that connects back to the sending object's lifeline. It is immediately followed by its handler, which usually overlaps the handler that sent the loopback message.
-**Handlers** |  | ![UML handler](uml-handler.png)
- | N/A - currently it's not possible to collect telemetry data to visualize message handlers. | Represented by rectangles directly attached to arrow heads.
-**Message Processing** | ![Message processing](processing.png) |
- | Represented by a labeled rectangle not connected with the arrows of its parent messages. This representation was chosen to reflect that the execution/processing of incoming messages may only occur after several other messages were sent and also to reflect the default asynchronous nature of any associated response messages. | N/A
+| Item | ServiceInsight | UML |
+| :--- | :---: | :---: |
+| **Start of sequence** | ![Sequence beginning](sequence-beginning.png) | ![Sequence beginning](uml-sequence-beginning.png) |
+| | Represented by a black rectangle with a white "play" icon. This representation is used because metadata about what precedes the sequence is unavailable. | Represented by an incoming message (gate) from outside the diagram. |
+| **Uni-directional solid lines** | ![Solid line](solid-line.png) | ![UML solid line](uml-solid-line.png) |
+| | Used to represent any type of message other than events, including response messages. | Used solely for send and request types of messages. |
+| **Uni-directional dashed lines** | ![Dashed line](dashed-line.png) | ![UML dashed line](uml-dashed-line.png) |
+| | Used solely to represent event messages. | Used solely to represent create messages and response messages. |
+| **Filled arrow style** | ![Filled arrow](filled-arrow.png) | ![UML filled arrow](uml-filled-arrow.png) |
+| | Used for all message types. | Used solely for synchronous send messages. |
+| **Open arrow style** | - | ![UML open arrow](uml-open-arrow.png) |
+| | N/A | Used for response messages and asynchronous messages. |
+| **Asynchronous messages** | - | ![UML asynchronous messages](uml-asynchronous.png) |
+| | N/A - all NServiceBus messages are asynchronous so the ServiceInsight Sequence Diagram has no special representation for asynchronous messages and no representation for synchronous messages, even though messages may exhibit synchronous behavior by (system) design. | Represented by a sloping dashed or solid line with an open arrow. |
+| **Send to self / loopback messages** | ![Loopback message](loopback-si.png) | ![UML loopback message](uml-loopback.png)
+| | Represented by a short uni-directional arrow that does not connect to another endpoint lifeline and a specific icon. | Represented by an arrow that connects back to the sending object's lifeline. It is immediately followed by its handler, which usually overlaps the handler that sent the loopback message. |
+| **Handlers** | - | ![UML handler](uml-handler.png) |
+| | N/A - currently it's not possible to collect telemetry data to visualize message handlers. | Represented by rectangles directly attached to arrow heads. |
+| **Message Processing** | ![Message processing](processing.png) | - |
+| | Represented by a labeled rectangle not connected with the arrows of its parent messages. This representation was chosen to reflect that the execution/processing of incoming messages may only occur after several other messages were sent and also to reflect the default asynchronous nature of any associated response messages. | N/A |
