@@ -11,6 +11,8 @@ reviewed: 2016-12-15
 
 In Versions 1.5.0 and above a screen to manage archived messages has been introduced in response to changes in ServiceControl relating to Archived Message retention and disposal.
 
+Archiving can be useful for failed messages that no longer have business value.
+
 Archiving in ServicePulse means that the failed messages are marked as `Archived`. Data from an archived message is still available, but it is no longer displayed in the Failed Messages list in ServicePulse and is not counted by the Failed Messages indicator in the ServicePulse dashboard. It also will not appear in any failed message groups.
 
 NOTE: Archived failed messages are still included in [ServiceInsight](/serviceinsight/) diagrams and search results.
@@ -44,6 +46,6 @@ See [Service Control Error Retention Period](/servicecontrol/creating-config-fil
 
 ## Unarchiving failed messages
 
-Archived messages may be unarchived in the Archived Messages tab. It will be then displayed in the [Failed Message Groups and Failed Messages screen](intro-failed-messages.md), where it can be retried or archived again.
+If there are failed messages that were archiced by mistake, these can be unarchived via the Archived Messages tab. Once unarchived, they will be then displayed in the [Failed Message Groups and Failed Messages screen](intro-failed-messages.md), where they can be retried or archived again.
 
 ![Unarchive Select](images/archive-unarchive-select.png)
