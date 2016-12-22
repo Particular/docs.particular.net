@@ -728,6 +728,8 @@
       Title: Endpoints and Heartbeats
     - Url: servicepulse/intro-failed-messages
       Title: Failed Messages
+    - Url: servicepulse/intro-failed-message-retries
+      Title: Retrying Failed Messages
     - Url: servicepulse/intro-archived-messages
       Title: Archived Messages
     - Url: servicepulse/intro-pending-retries

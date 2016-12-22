@@ -16,5 +16,3 @@ A message that is sent for retry is marked as such, and is not displayed in the 
 ServiceControl keeps track of all retry attempts in the background. If a retry operation fails, then ServicePulse will show the number of failed retry attempts.
 
 ![Repeated failure indication](images/failed-messages-repeated-failure.png 'width=500')
-
-NOTE: The number of retry attempts for a message can be significant if the handler for that message is not [idempotent](/nservicebus/concept-overview.md#idempotence). Any processing attempt that invokes logic that does not participate in the NServiceBus transactional processing will not be rolled back on processing failure.
