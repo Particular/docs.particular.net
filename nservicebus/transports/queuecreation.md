@@ -12,4 +12,6 @@ tags:
 
 partial: warning
 
+partial: scripts
+
 partial: content
