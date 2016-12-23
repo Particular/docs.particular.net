@@ -28,11 +28,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Callbacks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.Callbacks.1.0.1-callbacks-testin0001\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.Callbacks.1.1.0-rc0001\lib\net452\NServiceBus.Callbacks.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Callbacks.Testing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.Callbacks.Testing.1.0.1-callbacks-testin0001\lib\net452\NServiceBus.Callbacks.Testing.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.Callbacks.Testing.1.1.0-rc0001\lib\net452\NServiceBus.Callbacks.Testing.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
