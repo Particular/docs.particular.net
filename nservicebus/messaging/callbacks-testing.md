@@ -21,6 +21,8 @@ The integer response scenario allows any integer value to be returned in a stron
 
 #### Testing
 
+The response type returned by the `When` definition needs to be of type `int`.
+
 snippet:IntCallbackTesting
 
 ### Enum
@@ -28,6 +30,8 @@ snippet:IntCallbackTesting
 The enum response scenario allows any enum value to be returned in a strong typed manner.
 
 #### Testing
+
+The response type returned by the `When` definition needs to be of the enum type expected.
 
 snippet:EnumCallbackTesting
 
@@ -37,9 +41,13 @@ The Object response scenario allows an object instance to be returned.
 
 #### Testing
 
+The response type returned by the `When` definition needs to be of the object response type expeted.
+
 snippet:ObjectCallbackTesting
 
 #### Testing with SendOptions
+
+The `When` definition provides a matcher overload which allows to match agains the response and the send options passed into the callback function.
 
 snippet:ObjectCallbackTestingWithOptions
 
