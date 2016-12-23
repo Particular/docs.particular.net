@@ -119,6 +119,17 @@
     - NServiceBus.Callbacks
     - NServiceBus
 
+- Key: CallbacksTesting
+  Name: Callbacks.Testing
+  DocoUrl: nservicebus/messaging/callbacks-testing
+  GitHubOwner: Particular/nservicebus-maintainers
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Callbacks
+  NugetOrder:
+    - NServiceBus.Callbacks.Testing
+    - NServiceBus.Callbacks
+    - NServiceBus    
+
 - Key: Castle
   Name: Castle Container
   DocoUrl: nservicebus/containers/castlewindsor

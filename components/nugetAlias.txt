@@ -10,6 +10,7 @@ Autofac: NServiceBus.Autofac
 Azure: NServiceBus.Azure
 Bond: NServiceBus.Bond
 Callbacks: NServiceBus.Callbacks
+CallbacksTesting: NServiceBus.Callbacks.Testing
 Castle: NServiceBus.CastleWindsor
 CommonLogging: NServiceBus.CommonLogging
 Core: NServiceBus
