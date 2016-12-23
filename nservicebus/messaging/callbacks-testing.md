@@ -35,12 +35,13 @@ snippet:EnumCallbackTesting
 
 The Object response scenario allows an object instance to be returned.
 
-
 #### Testing
 
-This feature leverages the message Reply mechanism of the bus and hence the response need to be a message.
-
 snippet:ObjectCallbackTesting
+
+#### Testing with SendOptions
+
+snippet:ObjectCallbackTestingWithOptions
 
 ## Cancellation
 
