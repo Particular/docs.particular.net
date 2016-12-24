@@ -1,64 +1,129 @@
-<Query Kind="Statements">
+<Query Kind="Program">
   <NuGetReference>NuGet.Core</NuGetReference>
   <Namespace>NuGet</Namespace>
+  <Namespace>System.Collections.Concurrent</Namespace>
   <Namespace>System.Threading.Tasks</Namespace>
 </Query>
 
-var location = Util.CurrentQuery.Location;
-//var location = @"C:\Code\docs.particular.net\tools";
-var nuGet = PackageRepositoryFactory.Default.CreateRepository("https://www.nuget.org/api/v2/");
-var myget = PackageRepositoryFactory.Default.CreateRepository("https://www.myget.org/F/particular/");
-var corePackageName = "NServiceBus";
-var minCoreVersion = new SemanticVersion(3, 3, 0, 0);
-var coreDependencies = Path.Combine(location, @"..\components\core-dependencies");
-Directory.CreateDirectory(coreDependencies);
-var filePaths = Directory.GetFiles(coreDependencies, "*.txt");
-foreach (var filePath in filePaths)
+string corePackageName = "NServiceBus";
+string location = Util.CurrentQuery.Location;
+//string location = @"C:\Code\docs.particular.net\tools";
+
+IPackageRepository nuGet = PackageRepositoryFactory.Default.CreateRepository("https://www.nuget.org/api/v2/");
+IPackageRepository myget = PackageRepositoryFactory.Default.CreateRepository("https://www.myget.org/F/particular/");
+SemanticVersion minCoreVersion = new SemanticVersion(3, 3, 0, 0);
+
+void Main()
 {
-    File.Delete(filePath);
+    var coreDependencies = Path.Combine(location, @"..\components\core-dependencies");
+    Directory.CreateDirectory(coreDependencies);
+    var filePaths = Directory.GetFiles(coreDependencies, "*.txt");
+    foreach (var filePath in filePaths)
+    {
+        File.Delete(filePath);
+    }
+
+    var nugetAliasFile = Path.Combine(location, @"..\components\nugetAlias.txt");
+
+    var packageNames = GetPackageNames(nugetAliasFile, corePackageName);
+
+    var allPackages = GetAllPackages(packageNames);
+
+    foreach (var packageName in packageNames)
+    {
+        Process(allPackages, packageName, coreDependencies);
+    }
 }
 
-var nugetAliasFile = Path.Combine(location, @"..\components\nugetAlias.txt");
-
-Parallel.ForEach(File.ReadAllLines(nugetAliasFile), line =>
+void Process(List<IPackage> allPackages, string packageName, string coreDependencies)
 {
-    var packageName = line.Split(':').Last().Trim();
-    if (packageName == corePackageName)
-    {
-		return;
-	}
-	var packages = new List<IPackage>();
-	packages.AddRange(nuGet.FindPackagesById(packageName).Where(package => package.IsListed()));
-	packages.AddRange(myget.FindPackagesById(packageName).Where(package => package.IsListed()));
-	var targetPath = Path.Combine(coreDependencies, $"{packageName}.txt");
+    var packagesForName = allPackages.Where(x => x.Id == packageName).ToList();
+    var targetPath = Path.Combine(coreDependencies, $"{packageName}.txt");
     using (var writer = File.CreateText(targetPath))
     {
         var processed = new List<Version>();
-        foreach (var package in packages.OrderByDescending(x => x.Version))
+        foreach (var package in packagesForName.OrderByDescending(x => x.Version))
         {
             var packageVersion = package.Version.Version;
-			var nsbDependency = package.DependencySets
-				.SelectMany(x => x.Dependencies)
-				.SingleOrDefault(d => d.Id == corePackageName);
-			if (nsbDependency == null)
-			{
-				continue;
-			}
-			if (nsbDependency.VersionSpec.MinVersion < minCoreVersion)
-			{
-				continue;
-			}
+            var nsbDependency = GetDependencies(package, allPackages)
+                .FirstOrDefault(d => d.Id == corePackageName);
+            if (nsbDependency == null)
+            {
+                continue;
+            }
+            if (nsbDependency.VersionSpec.MinVersion < minCoreVersion)
+            {
+                continue;
+            }
 
-			var majorVersion = new Version(packageVersion.Major, packageVersion.Minor);
+            var majorVersion = new Version(packageVersion.Major, packageVersion.Minor);
 
-			if (processed.Any(_ => _ == majorVersion))
+            if (processed.Any(_ => _ == majorVersion))
+            {
+                continue;
+            }
+            processed.Add(majorVersion);
+            var minVersion = nsbDependency.VersionSpec.MinVersion.Version;
+            writer.WriteLine($"{majorVersion} : {minVersion.Major}");
+        }
+        writer.Flush();
+    }
+}
+
+static List<string> GetPackageNames(string nugetAliasFile, string corePackageName)
+{
+    var packageNames = new List<string>();
+    foreach (var line in File.ReadAllLines(nugetAliasFile))
+    {
+        var packageName = line.Split(':').Last().Trim();
+        if (packageName == corePackageName)
+        {
+            continue;
+        }
+        packageNames.Add(packageName);
+    }
+    return packageNames;
+}
+
+List<IPackage> GetAllPackages(List<string> packageNames)
+{
+    var allPackages = new ConcurrentBag<IPackage>();
+    Parallel.ForEach(packageNames, packageName =>
+    {
+        foreach (var package in ListedPackages(nuGet, packageName))
+        {
+            allPackages.Add(package);
+        }
+        foreach (var package in ListedPackages(myget, packageName))
+        {
+            allPackages.Add(package);
+        }
+    });
+    return allPackages.ToList();
+}
+
+static IEnumerable<IPackage> ListedPackages(IPackageRepository nuGet, string packageName)
+{
+    return nuGet.FindPackagesById(packageName)
+        .Where(package => package.IsListed());
+}
+
+static IEnumerable<PackageDependency> GetDependencies(IPackage package, List<IPackage> packages)
+{
+	foreach (var dependency in package.DependencySets.SelectMany(x => x.Dependencies))
+	{
+		yield return dependency;
+		foreach (var subPackage in packages.OrderBy(x => x.Version))
+		{
+			if (subPackage.Id != dependency.Id || !dependency.VersionSpec.Satisfies(subPackage.Version))
 			{
 				continue;
 			}
-			processed.Add(majorVersion);
-			var minVersion = nsbDependency.VersionSpec.MinVersion.Version;
-			writer.WriteLine($"{majorVersion} : {minVersion.Major}");
+			foreach (var subDependency in subPackage.DependencySets.SelectMany(x => x.Dependencies))
+			{
+				yield return subDependency;
+			}
 		}
-		writer.Flush();
 	}
-});
+
+}
