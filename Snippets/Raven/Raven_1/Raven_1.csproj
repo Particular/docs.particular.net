@@ -36,12 +36,12 @@
     <Reference Include="NServiceBus.RavenDB">
       <HintPath>..\..\..\packages\NServiceBus.RavenDB.1.0.7\lib\net40\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Abstractions, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\RavenDB.Client.2.5.25001\lib\net45\Raven.Abstractions.dll</HintPath>
+    <Reference Include="Raven.Abstractions, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593">
+      <HintPath>..\..\..\packages\RavenDB.Client.2.5.25020\lib\net45\Raven.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Raven.Client.Lightweight, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\RavenDB.Client.2.5.25001\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+    <Reference Include="Raven.Client.Lightweight, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593">
+      <HintPath>..\..\..\packages\RavenDB.Client.2.5.25020\lib\net45\Raven.Client.Lightweight.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
