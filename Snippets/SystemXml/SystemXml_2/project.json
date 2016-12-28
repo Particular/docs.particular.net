@@ -1,7 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.*",
-    "NServiceBus.Serializers.SystemXml": "2.*"
+    "NServiceBus.Serializers.SystemXml": "2.0.0-CI00002"
   },
   "frameworks": {
     "net461": {}

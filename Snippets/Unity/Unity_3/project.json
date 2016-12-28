@@ -1,12 +1,6 @@
 ﻿{
   "dependencies": {
-    "CommonServiceLocator": "1.*",
-    "log4net": "2.*",
-    "NServiceBus": "3.*",
-    "NServiceBus.Interfaces": "3.*",
-    "NServiceBus.Unity": "3.*",
-    "Unity": "2.*",
-    "Unity.Interception": "2.*"
+    "NServiceBus.Unity": "3.*"
   },
   "frameworks": {
     "net461": {}
