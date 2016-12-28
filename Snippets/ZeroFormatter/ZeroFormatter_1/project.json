@@ -1,9 +1,9 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.1.1",
-    "NServiceBus.ZeroFormatter": "1.0.2",
-    "ZeroFormatter": "1.5.7",
-    "ZeroFormatter.Interfaces": "1.5.7"
+    "NServiceBus": "6.*",
+    "NServiceBus.ZeroFormatter": "1.*",
+    "ZeroFormatter": "1.*",
+    "ZeroFormatter.Interfaces": "1.*"
   },
   "frameworks": {
     "net461": {}

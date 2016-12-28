@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.1.1",
-    "NServiceBus.Raw": "0.1.2"
+    "NServiceBus": "6.*",
+    "NServiceBus.Raw": "0.*"
   },
   "frameworks": {
     "net462": {}

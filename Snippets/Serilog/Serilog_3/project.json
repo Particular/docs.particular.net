@@ -1,14 +1,14 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.1.1",
-    "NServiceBus.Serilog": "3.0.1",
-    "Serilog": "2.3.0",
-    "Serilog.Formatting.Compact": "1.0.0",
-    "Serilog.Sinks.ColoredConsole": "2.0.0",
-    "Serilog.Sinks.File": "3.1.1",
-    "Serilog.Sinks.PeriodicBatching": "2.1.0",
-    "Serilog.Sinks.RollingFile": "3.2.0",
-    "Serilog.Sinks.Seq": "3.0.1"
+    "NServiceBus": "6.*",
+    "NServiceBus.Serilog": "3.*",
+    "Serilog": "2.*",
+    "Serilog.Formatting.Compact": "1.*",
+    "Serilog.Sinks.ColoredConsole": "2.*",
+    "Serilog.Sinks.File": "3.*",
+    "Serilog.Sinks.PeriodicBatching": "2.*",
+    "Serilog.Sinks.RollingFile": "3.*",
+    "Serilog.Sinks.Seq": "3.*"
   },
   "frameworks": {
     "net461": {}

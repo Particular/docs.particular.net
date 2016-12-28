@@ -1,15 +1,15 @@
 ﻿{
   "dependencies": {
-    "Microsoft.Data.Edm": "5.7.0",
-    "Microsoft.Data.OData": "5.7.0",
-    "Microsoft.Data.Services.Client": "5.7.0",
-    "Microsoft.WindowsAzure.ConfigurationManager": "2.0.3",
-    "Newtonsoft.Json": "9.0.1",
-    "NServiceBus": "5.2.21",
-    "NServiceBus.Azure.Transports.WindowsAzureServiceBus": "6.4.0",
-    "System.Spatial": "5.7.0",
-    "WindowsAzure.ServiceBus": "2.8.2",
-    "WindowsAzure.Storage": "3.2.1"
+    "Microsoft.Data.Edm": "5.*",
+    "Microsoft.Data.OData": "5.*",
+    "Microsoft.Data.Services.Client": "5.*",
+    "Microsoft.WindowsAzure.ConfigurationManager": "2.*",
+    "Newtonsoft.Json": "9.*",
+    "NServiceBus": "5.*",
+    "NServiceBus.Azure.Transports.WindowsAzureServiceBus": "6.*",
+    "System.Spatial": "5.*",
+    "WindowsAzure.ServiceBus": "2.*",
+    "WindowsAzure.Storage": "3.*"
   },
   "frameworks": {
     "net461": {}

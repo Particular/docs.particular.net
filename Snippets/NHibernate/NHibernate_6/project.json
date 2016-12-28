@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
-    "NHibernate": "4.0.4.4000",
-    "NServiceBus": "5.2.21",
-    "NServiceBus.NHibernate": "6.2.7"
+    "NHibernate": "4.*",
+    "NServiceBus": "5.*",
+    "NServiceBus.NHibernate": "6.*"
   },
   "frameworks": {
     "net461": {}

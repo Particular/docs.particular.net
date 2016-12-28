@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
-    "NLog": "4.4.1",
-    "NServiceBus": "4.7.12",
-    "NServiceBus.Interfaces": "4.7.12"
+    "NLog": "4.*",
+    "NServiceBus": "4.*",
+    "NServiceBus.Interfaces": "4.*"
   },
   "frameworks": {
     "net461": {}

@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
-    "Bond.Core.CSharp": "5.1.0",
-    "NServiceBus": "6.1.1",
-    "NServiceBus.Bond": "1.0.0"
+    "Bond.Core.CSharp": "5.*",
+    "NServiceBus": "6.*",
+    "NServiceBus.Bond": "1.*"
   },
   "frameworks": {
     "net461": {}

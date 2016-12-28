@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "5.2.21",
-    "NServiceBus.Testing": "5.1.1",
-    "NUnit": "3.5.0"
+    "NServiceBus": "5.*",
+    "NServiceBus.Testing": "5.*",
+    "NUnit": "3.*"
   },
   "frameworks": {
     "net461": {}

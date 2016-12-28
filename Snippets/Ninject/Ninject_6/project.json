@@ -1,10 +1,10 @@
 ﻿{
   "dependencies": {
-    "Ninject": "3.2.2",
-    "Ninject.Extensions.ContextPreservation": "3.2.0",
-    "Ninject.Extensions.NamedScope": "3.2.0",
-    "NServiceBus": "6.1.1",
-    "NServiceBus.Ninject": "6.0.0"
+    "Ninject": "3.*",
+    "Ninject.Extensions.ContextPreservation": "3.*",
+    "Ninject.Extensions.NamedScope": "3.*",
+    "NServiceBus": "6.*",
+    "NServiceBus.Ninject": "6.*"
   },
   "frameworks": {
     "net461": {}

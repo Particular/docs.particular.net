@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
-    "Common.Logging": "3.3.1",
-    "NServiceBus.Spring": "3.3.18",
-    "Spring.Core": "2.0.1"
+    "Common.Logging": "3.*",
+    "NServiceBus.Spring": "3.*",
+    "Spring.Core": "2.*"
   },
   "frameworks": {
     "net461": {}

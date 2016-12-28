@@ -1,9 +1,9 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.1.1",
-    "NServiceBus.Gateway": "2.0.0",
-    "NServiceBus.Testing": "6.0.1",
-    "NUnit": "3.5.0"
+    "NServiceBus": "6.*",
+    "NServiceBus.Gateway": "2.*",
+    "NServiceBus.Testing": "6.*",
+    "NUnit": "3.*"
   },
   "frameworks": {
     "net461": {}

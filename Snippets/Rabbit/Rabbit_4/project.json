@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.1.1",
-    "NServiceBus.RabbitMQ": "4.2.0",
-    "RabbitMQ.Client": "4.1.1"
+    "NServiceBus": "6.*",
+    "NServiceBus.RabbitMQ": "4.*",
+    "RabbitMQ.Client": "4.*"
   },
   "frameworks": {
     "net461": {}

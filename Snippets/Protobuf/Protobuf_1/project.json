@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.1.1",
-    "NServiceBus.ProtoBuf": "1.0.3",
-    "protobuf-net": "2.1.0"
+    "NServiceBus": "6.*",
+    "NServiceBus.ProtoBuf": "1.*",
+    "protobuf-net": "2.*"
   },
   "frameworks": {
     "net461": {}

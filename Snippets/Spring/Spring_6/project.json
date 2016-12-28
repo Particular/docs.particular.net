@@ -1,10 +1,10 @@
 ﻿{
   "dependencies": {
-    "Common.Logging": "3.3.1",
-    "Common.Logging.Core": "3.3.1",
-    "NServiceBus": "5.2.21",
-    "NServiceBus.Spring": "6.0.1",
-    "Spring.Core": "2.0.1"
+    "Common.Logging": "3.*",
+    "Common.Logging.Core": "3.*",
+    "NServiceBus": "5.*",
+    "NServiceBus.Spring": "6.*",
+    "Spring.Core": "2.*"
   },
   "frameworks": {
     "net461": {}

@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
-    "Autofac": "4.2.1",
-    "NServiceBus": "5.2.21",
-    "NServiceBus.Autofac": "5.1.1"
+    "Autofac": "4.*",
+    "NServiceBus": "5.*",
+    "NServiceBus.Autofac": "5.*"
   },
   "frameworks": {
     "net461": {}

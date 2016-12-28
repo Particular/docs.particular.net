@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "5.2.21",
-    "ServiceControl.Plugin.Nsb5.CustomChecks": "1.0.1"
+    "NServiceBus": "5.*",
+    "ServiceControl.Plugin.Nsb5.CustomChecks": "1.*"
   },
   "frameworks": {
     "net461": {}

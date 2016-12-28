@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.1.1",
-    "NServiceBus.Callbacks": "1.0.0",
-    "NServiceBus.Wcf": "1.0.0"
+    "NServiceBus": "6.*",
+    "NServiceBus.Callbacks": "1.*",
+    "NServiceBus.Wcf": "1.*"
   },
   "frameworks": {
     "net461": {}

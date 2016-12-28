@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "5.2.21",
-    "ServiceControl.Contracts": "1.1.1"
+    "NServiceBus": "5.*",
+    "ServiceControl.Contracts": "1.*"
   },
   "frameworks": {
     "net461": {}

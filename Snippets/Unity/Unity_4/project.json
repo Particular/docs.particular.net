@@ -1,11 +1,11 @@
 ﻿{
   "dependencies": {
-    "CommonServiceLocator": "1.3.0",
-    "NServiceBus": "4.7.12",
-    "NServiceBus.Interfaces": "4.7.12",
-    "NServiceBus.Unity": "4.7.13",
-    "Unity": "2.1.505.2",
-    "Unity.Interception": "2.1.505.2"
+    "CommonServiceLocator": "1.*",
+    "NServiceBus": "4.*",
+    "NServiceBus.Interfaces": "4.*",
+    "NServiceBus.Unity": "4.*",
+    "Unity": "2.*",
+    "Unity.Interception": "2.*"
   },
   "frameworks": {
     "net461": {}

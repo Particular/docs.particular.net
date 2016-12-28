@@ -1,9 +1,9 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.1.1",
-    "NServiceBus.Callbacks": "1.1.0-rc0001",
-    "NServiceBus.Callbacks.Testing": "1.1.0-rc0001",
-    "NServiceBus.Testing": "6.0.1"
+    "NServiceBus": "6.*",
+    "NServiceBus.Callbacks": "1.*",
+    "NServiceBus.Callbacks.Testing": "1.*",
+    "NServiceBus.Testing": "6.*"
   },
   "frameworks": {
     "net461": {}

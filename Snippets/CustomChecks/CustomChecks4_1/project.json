@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "4.7.12",
-    "NServiceBus.Interfaces": "4.7.12",
-    "ServiceControl.Plugin.Nsb4.CustomChecks": "1.0.0"
+    "NServiceBus": "4.*",
+    "NServiceBus.Interfaces": "4.*",
+    "ServiceControl.Plugin.Nsb4.CustomChecks": "1.*"
   },
   "frameworks": {
     "net461": {}

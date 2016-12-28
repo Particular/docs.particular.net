@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.1.1",
-    "ServiceControl.Plugin.Nsb6.SagaAudit": "2.0.0"
+    "NServiceBus": "6.*",
+    "ServiceControl.Plugin.Nsb6.SagaAudit": "2.*"
   },
   "frameworks": {
     "net461": {}
