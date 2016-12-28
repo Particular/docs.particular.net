@@ -1,15 +1,7 @@
 ﻿{
   "dependencies": {
-    "Microsoft.Azure.KeyVault.Core": "1.*",
-    "Microsoft.Data.Edm": "5.*",
-    "Microsoft.Data.OData": "5.*",
-    "Microsoft.Data.Services.Client": "5.*",
-    "Newtonsoft.Json": "9.*",
-    "NServiceBus": "6.*",
     "NServiceBus.Hosting.Azure": "7.*",
-    "System.Spatial": "5.*",
-    "Unofficial.Microsoft.WindowsAzure.ServiceRuntime": "2.*",
-    "WindowsAzure.Storage": "7.*"
+    "Unofficial.Microsoft.WindowsAzure.ServiceRuntime": "2.*"
   },
   "frameworks": {
     "net461": {}
