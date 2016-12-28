@@ -1,0 +1,25 @@
+﻿{
+  "dependencies": {
+    "Autofac": "4.2.1",
+    "Iesi.Collections": "4.0.1.4000",
+    "NHibernate": "4.0.4.4000",
+    "NServiceBus": "6.1.1",
+    "NServiceBus.Autofac": "6.0.1",
+    "NServiceBus.Callbacks": "1.0.0",
+    "NServiceBus.NHibernate": "7.0.2",
+    "NServiceBus.RavenDB": "4.1.0",
+    "NUnit": "3.5.0",
+    "RavenDB.Client": "3.5.1",
+    "Rx-Core": "2.2.5",
+    "Rx-Interfaces": "2.2.5",
+    "Rx-Linq": "2.2.5",
+    "Rx-Main": "2.2.5",
+    "Rx-PlatformServices": "2.2.5"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

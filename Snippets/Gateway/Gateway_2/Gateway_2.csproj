@@ -27,13 +27,6 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\packages\NServiceBus.6.1.1\lib\net452\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NServiceBus.Gateway">
-      <HintPath>..\..\..\packages\NServiceBus.Gateway.2.0.0\lib\net452\NServiceBus.Gateway.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -55,9 +48,10 @@
     <Content Include="Sites\Sites.xml">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="packages.config" />
     <Content Include="UpgradeGuide\1to2\Channel.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="project.json" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

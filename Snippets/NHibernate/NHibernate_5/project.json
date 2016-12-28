@@ -1,0 +1,14 @@
+﻿{
+  "dependencies": {
+    "NHibernate": "4.0.4.4000",
+    "NServiceBus": "4.7.12",
+    "NServiceBus.Interfaces": "4.7.12",
+    "NServiceBus.NHibernate": "5.0.3"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "6.1.1",
+    "NServiceBus.Serializers.SystemXml": "2.0.0-CI00002"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

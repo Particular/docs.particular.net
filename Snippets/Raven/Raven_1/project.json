@@ -1,0 +1,14 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "4.7.12",
+    "NServiceBus.Interfaces": "4.7.12",
+    "NServiceBus.RavenDB": "1.0.7",
+    "RavenDB.Client": "2.5.25020"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

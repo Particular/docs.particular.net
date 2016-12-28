@@ -1,0 +1,13 @@
+﻿{
+  "dependencies": {
+    "NLog": "4.4.1",
+    "NServiceBus": "5.2.21",
+    "NServiceBus.NLog": "1.1.0"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

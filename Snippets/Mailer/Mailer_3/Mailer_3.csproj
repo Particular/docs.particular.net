@@ -25,21 +25,8 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\packages\NServiceBus.6.1.1\lib\net452\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NServiceBus.Mailer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=702945dabe58572d, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.Mailer.3.0.1\lib\net452\NServiceBus.Mailer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SagaUsage.cs" />
@@ -47,6 +34,9 @@
     <Compile Include="PassAttachemtnContext.cs" />
     <Compile Include="HandlerUsage.cs" />
     <Compile Include="Usage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="project.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

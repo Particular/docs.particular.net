@@ -1,0 +1,19 @@
+﻿{
+  "dependencies": {
+    "Microsoft.Data.Edm": "5.7.0",
+    "Microsoft.Data.OData": "5.7.0",
+    "Microsoft.Data.Services.Client": "5.7.0",
+    "Microsoft.WindowsAzure.ConfigurationManager": "1.8.0",
+    "Newtonsoft.Json": "9.0.1",
+    "NServiceBus": "5.2.21",
+    "NServiceBus.Azure.Transports.WindowsAzureStorageQueues": "6.2.1",
+    "System.Spatial": "5.7.0",
+    "WindowsAzure.Storage": "3.2.1"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

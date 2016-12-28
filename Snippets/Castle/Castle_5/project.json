@@ -1,0 +1,14 @@
+﻿{
+  "dependencies": {
+    "Castle.Core": "3.3.3",
+    "Castle.Windsor": "3.3.0",
+    "NServiceBus": "5.2.21",
+    "NServiceBus.CastleWindsor": "5.0.1"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

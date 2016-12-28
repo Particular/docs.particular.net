@@ -1,0 +1,22 @@
+﻿{
+  "dependencies": {
+    "Microsoft.Data.Edm": "5.7.0",
+    "Microsoft.Data.OData": "5.7.0",
+    "Microsoft.Data.Services.Client": "5.7.0",
+    "Microsoft.WindowsAzure.ConfigurationManager": "2.0.3",
+    "NServiceBus": "4.7.12",
+    "NServiceBus.Azure": "5.3.12",
+    "NServiceBus.Azure.Transports.WindowsAzureStorageQueues": "5.3.12",
+    "NServiceBus.Hosting.Azure": "5.3.12",
+    "NServiceBus.Interfaces": "4.7.12",
+    "System.Spatial": "5.7.0",
+    "WindowsAzure.ServiceBus": "2.8.2",
+    "WindowsAzure.Storage": "2.1.0.4"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

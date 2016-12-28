@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NUnit": "3.5.0",
+    "RavenDB.Client": "3.0.30155"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

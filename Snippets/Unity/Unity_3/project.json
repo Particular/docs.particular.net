@@ -1,0 +1,17 @@
+﻿{
+  "dependencies": {
+    "CommonServiceLocator": "1.3.0",
+    "log4net": "2.0.5",
+    "NServiceBus": "3.3.18",
+    "NServiceBus.Interfaces": "3.3.18",
+    "NServiceBus.Unity": "3.3.18",
+    "Unity": "2.1.505.2",
+    "Unity.Interception": "2.1.505.2"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

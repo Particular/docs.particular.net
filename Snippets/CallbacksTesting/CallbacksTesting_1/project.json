@@ -1,0 +1,14 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "6.1.1",
+    "NServiceBus.Callbacks": "1.1.0-rc0001",
+    "NServiceBus.Callbacks.Testing": "1.1.0-rc0001",
+    "NServiceBus.Testing": "6.0.1"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

@@ -1,0 +1,15 @@
+﻿{
+  "dependencies": {
+    "Autofac": "2.6.3.862",
+    "log4net": "2.0.5",
+    "NServiceBus": "3.3.18",
+    "NServiceBus.Autofac": "3.3.18",
+    "NServiceBus.Interfaces": "3.3.18"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

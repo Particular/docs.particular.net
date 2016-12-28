@@ -1,0 +1,22 @@
+﻿{
+  "dependencies": {
+    "Iesi.Collections": "4.0.1.4000",
+    "NHibernate": "4.0.4.4000",
+    "NServiceBus": "5.2.21",
+    "NServiceBus.NHibernate": "6.2.7",
+    "NServiceBus.RavenDB": "3.0.12",
+    "NUnit": "3.5.0",
+    "RavenDB.Client": "3.0.30155",
+    "Rx-Core": "2.2.5",
+    "Rx-Interfaces": "2.2.5",
+    "Rx-Linq": "2.2.5",
+    "Rx-Main": "2.2.5",
+    "Rx-PlatformServices": "2.2.5"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

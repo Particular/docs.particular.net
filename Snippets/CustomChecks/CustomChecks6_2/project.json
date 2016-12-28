@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "6.1.1",
+    "ServiceControl.Plugin.Nsb6.CustomChecks": "2.0.1"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

@@ -1,0 +1,16 @@
+﻿{
+  "dependencies": {
+    "MySql.Data": "6.9.9",
+    "Newtonsoft.Json": "9.0.1",
+    "NServiceBus": "6.1.1",
+    "NServiceBus.Persistence.Sql": "1.0.0-beta0010",
+    "NServiceBus.Persistence.Sql.ScriptBuilder": "1.0.0-beta0010",
+    "NUnit": "3.5.0"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
