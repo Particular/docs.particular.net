@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "5.*",
     "NServiceBus.Testing": "5.*",
     "NUnit": "3.*"
   },

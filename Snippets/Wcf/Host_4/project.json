@@ -1,8 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "4.*",
-    "NServiceBus.Host": "4.*",
-    "NServiceBus.Interfaces": "4.*"
+    "NServiceBus.Host": "4.*"
   },
   "frameworks": {
     "net461": {}

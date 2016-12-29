@@ -1,12 +1,8 @@
 ﻿{
   "dependencies": {
-    "Iesi.Collections": "4.*",
-    "NHibernate": "4.*",
     "NServiceBus": "4.*",
-    "NServiceBus.Interfaces": "4.*",
     "NServiceBus.NHibernate": "5.*",
-    "NServiceBus.RavenDB": "1.*",
-    "RavenDB.Client": "2.*"
+    "NServiceBus.RavenDB": "1.*"
   },
   "frameworks": {
     "net461": {}

@@ -2,7 +2,6 @@
   "dependencies": {
     "EntityFramework": "6.*",
     "Newtonsoft.Json": "9.*",
-    "NServiceBus": "5.*",
     "NServiceBus.SqlServer": "2.*",
     "NUnit": "3.*"
   },

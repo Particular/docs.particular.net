@@ -1,8 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.*",
-    "NServiceBus.Wire": "2.*",
-    "Wire": "0.*"
+    "NServiceBus.Wire": "2.*"
   },
   "frameworks": {
     "net461": {}

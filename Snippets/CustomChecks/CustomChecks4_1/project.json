@@ -1,7 +1,5 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "4.*",
-    "NServiceBus.Interfaces": "4.*",
     "ServiceControl.Plugin.Nsb4.CustomChecks": "1.*"
   },
   "frameworks": {

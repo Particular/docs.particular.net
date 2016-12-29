@@ -1,8 +1,5 @@
 ﻿{
   "dependencies": {
-    "NHibernate": "3.*",
-    "NServiceBus": "4.*",
-    "NServiceBus.Interfaces": "4.*",
     "NServiceBus.NHibernate": "4.*"
   },
   "frameworks": {

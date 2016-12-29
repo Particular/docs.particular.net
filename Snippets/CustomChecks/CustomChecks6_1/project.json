@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.*",
     "ServiceControl.Plugin.Nsb6.CustomChecks": "1.*"
   },
   "frameworks": {

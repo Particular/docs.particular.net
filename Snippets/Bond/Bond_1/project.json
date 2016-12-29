@@ -1,7 +1,5 @@
 ﻿{
   "dependencies": {
-    "Bond.Core.CSharp": "5.*",
-    "NServiceBus": "6.*",
     "NServiceBus.Bond": "1.*"
   },
   "frameworks": {

@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "5.*",
     "NServiceBus.Gateway": "1.*"
   },
   "frameworks": {

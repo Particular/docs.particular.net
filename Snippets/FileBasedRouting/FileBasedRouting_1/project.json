@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.*",
     "NServiceBus.FileBasedRouting": "1.*"
   },
   "frameworks": {

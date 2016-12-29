@@ -1,9 +1,6 @@
 ﻿{
   "dependencies": {
-    "Jil": "2.*",
-    "NServiceBus": "6.*",
-    "NServiceBus.Jil": "2.*",
-    "Sigil": "4.*"
+    "NServiceBus.Jil": "2.*"
   },
   "frameworks": {
     "net461": {}

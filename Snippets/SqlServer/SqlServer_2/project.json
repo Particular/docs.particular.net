@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "5.*",
     "NServiceBus.SqlServer": "2.*"
   },
   "frameworks": {

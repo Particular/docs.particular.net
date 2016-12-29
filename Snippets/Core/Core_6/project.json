@@ -1,15 +1,11 @@
 ﻿{
   "dependencies": {
-    "Autofac": "4.*",
-    "Iesi.Collections": "4.*",
-    "NHibernate": "4.*",
     "NServiceBus": "6.*",
     "NServiceBus.Autofac": "6.*",
     "NServiceBus.Callbacks": "1.*",
     "NServiceBus.NHibernate": "7.*",
     "NServiceBus.RavenDB": "4.*",
     "NUnit": "3.*",
-    "RavenDB.Client": "3.*",
     "Rx-Core": "2.*",
     "Rx-Interfaces": "2.*",
     "Rx-Linq": "2.*",

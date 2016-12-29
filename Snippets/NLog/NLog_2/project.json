@@ -1,7 +1,5 @@
 ﻿{
   "dependencies": {
-    "NLog": "4.*",
-    "NServiceBus": "6.*",
     "NServiceBus.NLog": "2.*"
   },
   "frameworks": {

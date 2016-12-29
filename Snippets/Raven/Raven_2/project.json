@@ -1,8 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "5.*",
-    "NServiceBus.RavenDB": "2.*",
-    "RavenDB.Client": "2.*"
+    "NServiceBus.RavenDB": "2.*"
   },
   "frameworks": {
     "net461": {}

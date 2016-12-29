@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "Common.Logging": "3.*",
     "NServiceBus.Spring": "4.*",
     "Spring.Core": "2.*"
   },

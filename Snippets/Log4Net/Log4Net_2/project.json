@@ -1,7 +1,5 @@
 ﻿{
   "dependencies": {
-    "log4net": "2.*",
-    "NServiceBus": "6.*",
     "NServiceBus.Log4Net": "2.*"
   },
   "frameworks": {

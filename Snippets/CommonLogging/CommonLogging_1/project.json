@@ -1,9 +1,6 @@
 ﻿{
   "dependencies": {
-    "Common.Logging": "2.*",
-    "NServiceBus": "4.*",
-    "NServiceBus.CommonLogging": "1.*",
-    "NServiceBus.Interfaces": "4.*"
+    "NServiceBus.CommonLogging": "1.*"
   },
   "frameworks": {
     "net461": {}

@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "5.*",
     "NServiceBus.Distributor.MSMQ": "5.*"
   },
   "frameworks": {

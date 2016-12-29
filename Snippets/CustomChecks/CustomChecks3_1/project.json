@@ -1,8 +1,5 @@
 ﻿{
   "dependencies": {
-    "log4net": "2.*",
-    "NServiceBus": "3.*",
-    "NServiceBus.Interfaces": "3.*",
     "ServiceControl.Plugin.Nsb3.CustomChecks": "1.*"
   },
   "frameworks": {

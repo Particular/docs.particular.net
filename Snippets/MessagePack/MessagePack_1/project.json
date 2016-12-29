@@ -1,7 +1,5 @@
 ﻿{
   "dependencies": {
-    "MsgPack.Cli": "0.*",
-    "NServiceBus": "6.*",
     "NServiceBus.MessagePack": "1.*"
   },
   "frameworks": {

@@ -1,8 +1,6 @@
 ﻿{
   "dependencies": {
-    "log4net": "2.*",
-    "NServiceBus": "3.*",
-    "NServiceBus.Interfaces": "3.*"
+    "NServiceBus": "3.*"
   },
   "frameworks": {
     "net461": {}

@@ -1,11 +1,6 @@
 ﻿{
   "dependencies": {
-    "Castle.Core": "3.*",
-    "Castle.Windsor": "3.*",
-    "log4net": "2.*",
-    "NServiceBus": "3.*",
-    "NServiceBus.CastleWindsor": "3.*",
-    "NServiceBus.Interfaces": "3.*"
+    "NServiceBus.CastleWindsor": "3.*"
   },
   "frameworks": {
     "net461": {}

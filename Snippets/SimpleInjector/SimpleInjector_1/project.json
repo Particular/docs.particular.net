@@ -1,9 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.*",
-    "NServiceBus.SimpleInjector": "1.*",
-    "SimpleInjector": "3.*",
-    "SimpleInjector.Extensions.ExecutionContextScoping": "3.*"
+    "NServiceBus.SimpleInjector": "1.*"
   },
   "frameworks": {
     "net461": {}

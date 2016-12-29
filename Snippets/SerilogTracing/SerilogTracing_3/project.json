@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.*",
     "NServiceBus.Serilog.Tracing": "3.*",
     "Serilog": "2.*",
     "Serilog.Formatting.Compact": "1.*",

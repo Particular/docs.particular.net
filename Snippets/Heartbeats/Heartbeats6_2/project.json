@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.*",
     "ServiceControl.Plugin.Nsb6.Heartbeat": "2.*"
   },
   "frameworks": {

@@ -1,8 +1,5 @@
 ﻿{
   "dependencies": {
-    "Castle.Core": "3.*",
-    "Castle.Windsor": "3.*",
-    "NServiceBus": "5.*",
     "NServiceBus.CastleWindsor": "5.*"
   },
   "frameworks": {

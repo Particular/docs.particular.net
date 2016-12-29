@@ -1,8 +1,5 @@
 ﻿{
   "dependencies": {
-    "Common.Logging": "3.*",
-    "Common.Logging.Core": "3.*",
-    "NServiceBus": "6.*",
     "NServiceBus.CommonLogging": "4.*"
   },
   "frameworks": {

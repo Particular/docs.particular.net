@@ -1,10 +1,5 @@
 ﻿{
   "dependencies": {
-    "MongoDB.Bson": "2.*",
-    "MongoDB.Driver": "2.*",
-    "MongoDB.Driver.Core": "2.*",
-    "MongoDB.Driver.GridFS": "2.*",
-    "NServiceBus": "6.*",
     "NServiceBus.Persistence.MongoDb": "9.*"
   },
   "frameworks": {

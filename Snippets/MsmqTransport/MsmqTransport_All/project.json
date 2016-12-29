@@ -1,7 +1,6 @@
 ﻿{
   "dependencies": {
     "ApprovalTests": "3.*",
-    "ApprovalUtilities": "3.*",
     "Mono.Cecil": "0.*",
     "NServiceBus": "5.*",
     "NUnit": "3.*"

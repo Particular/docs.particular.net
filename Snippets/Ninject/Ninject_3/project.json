@@ -1,11 +1,5 @@
 ﻿{
   "dependencies": {
-    "log4net": "2.*",
-    "Ninject": "3.*",
-    "Ninject.Extensions.ContextPreservation": "3.*",
-    "Ninject.Extensions.NamedScope": "3.*",
-    "NServiceBus": "3.*",
-    "NServiceBus.Interfaces": "3.*",
     "NServiceBus.Ninject": "3.*"
   },
   "frameworks": {
