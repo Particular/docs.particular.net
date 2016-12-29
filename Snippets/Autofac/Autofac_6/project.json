@@ -1,0 +1,13 @@
+﻿{
+  "dependencies": {
+    "Autofac": "4.*",
+    "NServiceBus": "6.*",
+    "NServiceBus.Autofac": "6.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

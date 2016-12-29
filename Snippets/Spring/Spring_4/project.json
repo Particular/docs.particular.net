@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.Spring": "4.*",
+    "Spring.Core": "2.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

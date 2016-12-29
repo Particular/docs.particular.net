@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.Azure.Transports.WindowsAzureStorageQueues": "5.*",
+    "NServiceBus.Hosting.Azure": "5.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

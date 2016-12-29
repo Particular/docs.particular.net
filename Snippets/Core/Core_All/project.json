@@ -1,0 +1,14 @@
+﻿{
+  "dependencies": {
+    "ApprovalTests": "3.*",
+    "Mono.Cecil": "0.*",
+    "NServiceBus": "5.*",
+    "NUnit": "3.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

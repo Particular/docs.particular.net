@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "ServiceControl.Plugin.Nsb6.SagaAudit": "2.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

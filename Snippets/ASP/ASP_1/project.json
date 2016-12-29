@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.Hosting.Azure": "7.*",
+    "NServiceBus.Persistence.AzureStorage": "1.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

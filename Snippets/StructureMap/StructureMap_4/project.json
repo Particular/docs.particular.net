@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.StructureMap": "4.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

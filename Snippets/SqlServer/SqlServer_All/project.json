@@ -1,0 +1,14 @@
+﻿{
+  "dependencies": {
+    "EntityFramework": "6.*",
+    "Newtonsoft.Json": "9.*",
+    "NServiceBus.SqlServer": "2.*",
+    "NUnit": "3.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

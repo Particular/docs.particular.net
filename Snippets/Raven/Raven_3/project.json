@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.RavenDB": "3.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
