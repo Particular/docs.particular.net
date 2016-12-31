@@ -32,8 +32,5 @@
     <Content Include="heartbeatsIntervalConfig.xml" />
     <Content Include="heartbeatsTtlConfig.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="project.json" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
