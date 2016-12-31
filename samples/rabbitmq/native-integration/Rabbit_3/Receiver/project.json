@@ -1,0 +1,13 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "5.2.21",
+    "NServiceBus.RabbitMQ": "3.5.1",
+    "RabbitMQ.Client": "4.1.1"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

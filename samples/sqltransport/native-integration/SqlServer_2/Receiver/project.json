@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "5.2.21",
+    "NServiceBus.SqlServer": "2.2.4"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

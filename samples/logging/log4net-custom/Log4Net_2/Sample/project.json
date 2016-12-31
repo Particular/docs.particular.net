@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "log4net": "2.0.6",
+    "log4net": "2.0.5",
     "NServiceBus": "6.1.1",
     "NServiceBus.Log4Net": "2.0.0"
   },

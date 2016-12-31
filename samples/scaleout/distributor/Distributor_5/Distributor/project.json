@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "5.2.21",
+    "NServiceBus.Distributor.MSMQ": "5.0.5"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

@@ -1,0 +1,13 @@
+﻿{
+  "dependencies": {
+    "Newtonsoft.Json": "9.0.1",
+    "NServiceBus": "6.1.1",
+    "NServiceBus.Persistence.Sql": "1.0.0-beta0011"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

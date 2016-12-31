@@ -1,0 +1,16 @@
+﻿{
+  "dependencies": {
+    "MongoDB.Bson": "2.3.0",
+    "MongoDB.Driver": "2.3.0",
+    "MongoDB.Driver.Core": "2.3.0",
+    "MongoDB.Driver.GridFS": "2.3.0",
+    "NServiceBus": "5.2.21",
+    "NServiceBus.Persistence.MongoDb": "8.0.24"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

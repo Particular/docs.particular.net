@@ -1,0 +1,13 @@
+﻿{
+  "dependencies": {
+    "Anotar.NServiceBus.Fody": "3.1.0",
+    "Fody": "1.29.4",
+    "NServiceBus": "5.2.21"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

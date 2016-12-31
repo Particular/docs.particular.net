@@ -1,0 +1,14 @@
+﻿{
+  "dependencies": {
+    "Jil": "2.14.5",
+    "NServiceBus": "5.2.21",
+    "NServiceBus.Jil": "1.0.0",
+    "Sigil": "4.7.0"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

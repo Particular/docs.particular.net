@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "5.2.21",
+    "Octokit": "0.20.0"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

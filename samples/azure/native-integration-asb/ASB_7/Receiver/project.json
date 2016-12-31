@@ -1,0 +1,13 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "6.1.1",
+    "NServiceBus.Azure.Transports.WindowsAzureServiceBus": "7.1.0",
+    "WindowsAzure.ServiceBus": "3.4.3"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

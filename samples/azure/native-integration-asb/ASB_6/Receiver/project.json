@@ -1,0 +1,14 @@
+﻿{
+  "dependencies": {
+    "Microsoft.WindowsAzure.ConfigurationManager": "2.0.3",
+    "NServiceBus": "5.2.21",
+    "NServiceBus.Azure.Transports.WindowsAzureServiceBus": "6.4.0",
+    "WindowsAzure.ServiceBus": "2.8.2"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

@@ -1,0 +1,15 @@
+﻿{
+  "dependencies": {
+    "log4net": "2.0.5",
+    "NServiceBus": "4.7.12",
+    "NServiceBus.Interfaces": "4.7.12",
+    "NServiceBus.RabbitMQ": "1.1.5",
+    "RabbitMQ.Client": "3.2.4"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

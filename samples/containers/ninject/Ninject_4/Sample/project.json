@@ -1,0 +1,17 @@
+﻿{
+  "dependencies": {
+    "log4net": "2.0.5",
+    "Ninject": "3.2.2",
+    "Ninject.Extensions.ContextPreservation": "3.2.0",
+    "Ninject.Extensions.NamedScope": "3.2.0",
+    "NServiceBus": "4.7.12",
+    "NServiceBus.Interfaces": "4.7.12",
+    "NServiceBus.Ninject": "4.7.12"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

@@ -1,0 +1,23 @@
+﻿{
+  "dependencies": {
+    "CommonServiceLocator": "1.0.0",
+    "Microsoft.Data.Edm": "5.7.0",
+    "Microsoft.Data.OData": "5.7.0",
+    "Microsoft.Data.Services.Client": "5.7.0",
+    "Microsoft.WindowsAzure.ConfigurationManager": "2.0.3",
+    "Newtonsoft.Json": "5.0.8",
+    "NServiceBus": "5.2.21",
+    "NServiceBus.Azure": "6.2.6",
+    "NServiceBus.Azure.Transports.WindowsAzureStorageQueues": "6.2.1",
+    "NServiceBus.Hosting.Azure": "6.2.5",
+    "NServiceBus.Hosting.Azure.HostProcess": "6.2.5",
+    "System.Spatial": "5.7.0",
+    "WindowsAzure.Storage": "4.3.0"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

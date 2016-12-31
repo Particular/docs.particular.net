@@ -1,0 +1,15 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "6.1.1",
+    "NServiceBus.Serilog": "3.0.1",
+    "Serilog": "2.3.0",
+    "Serilog.Sinks.Console": "2.1.0",
+    "Serilog.Sinks.File": "3.1.1"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

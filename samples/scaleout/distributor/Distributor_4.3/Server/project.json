@@ -1,0 +1,14 @@
+﻿{
+  "dependencies": {
+    "log4net": "2.0.5",
+    "NServiceBus": "4.7.12",
+    "NServiceBus.Distributor.MSMQ": "4.4.9",
+    "NServiceBus.Interfaces": "4.7.12"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

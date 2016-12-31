@@ -1,0 +1,17 @@
+﻿{
+  "dependencies": {
+    "Microsoft.Owin.Host.HttpListener": "3.0.1",
+    "NServiceBus": "6.1.1",
+    "NServiceBus.RavenDB": "4.1.0",
+    "RavenDB.Bundles.UniqueConstraints": "3.5.1",
+    "RavenDB.Client": "3.5.1",
+    "RavenDB.Client.UniqueConstraints": "3.5.1",
+    "RavenDB.Database": "3.5.1"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

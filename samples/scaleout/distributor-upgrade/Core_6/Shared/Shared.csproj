@@ -36,5 +36,8 @@
     <Compile Include="PlaceOrder.cs" />
     <Compile Include="OrderPlaced.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="project.json" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

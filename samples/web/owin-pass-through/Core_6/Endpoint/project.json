@@ -1,0 +1,20 @@
+﻿{
+  "dependencies": {
+    "Microsoft.AspNet.Cors": "5.2.3",
+    "Microsoft.Owin": "3.0.1",
+    "Microsoft.Owin.Cors": "3.0.1",
+    "Microsoft.Owin.Diagnostics": "3.0.1",
+    "Microsoft.Owin.Host.HttpListener": "3.0.1",
+    "Microsoft.Owin.Host.SystemWeb": "3.0.1",
+    "Microsoft.Owin.Hosting": "3.0.1",
+    "Microsoft.Owin.SelfHost": "3.0.1",
+    "NServiceBus": "6.1.1",
+    "Owin": "1.0.0"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

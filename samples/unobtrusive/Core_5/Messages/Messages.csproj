@@ -37,5 +37,8 @@
     <Compile Include="RequestExpress.cs" />
     <Compile Include="Response.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="project.json" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

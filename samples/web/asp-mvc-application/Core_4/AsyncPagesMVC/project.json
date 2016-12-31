@@ -1,0 +1,20 @@
+﻿{
+  "dependencies": {
+    "Autofac": "3.5.2",
+    "Autofac.Mvc5": "3.3.4",
+    "log4net": "2.0.5",
+    "Microsoft.AspNet.Mvc": "5.2.3",
+    "Microsoft.AspNet.Razor": "3.2.3",
+    "Microsoft.AspNet.WebPages": "3.2.3",
+    "Microsoft.Web.Infrastructure": "1.0.0",
+    "NServiceBus": "4.7.12",
+    "NServiceBus.Autofac": "4.7.12",
+    "NServiceBus.Interfaces": "4.7.12"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

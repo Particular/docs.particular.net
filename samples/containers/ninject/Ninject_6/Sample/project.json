@@ -1,0 +1,16 @@
+﻿{
+  "dependencies": {
+    "Ninject": "3.2.2",
+    "Ninject.Extensions.ChildKernel": "3.2.0",
+    "Ninject.Extensions.ContextPreservation": "3.2.0",
+    "Ninject.Extensions.NamedScope": "3.2.0",
+    "NServiceBus": "6.1.1",
+    "NServiceBus.Ninject": "6.0.0"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

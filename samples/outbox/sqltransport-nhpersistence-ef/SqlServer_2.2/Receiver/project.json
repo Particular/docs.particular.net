@@ -1,0 +1,16 @@
+﻿{
+  "dependencies": {
+    "EntityFramework": "6.1.3",
+    "Iesi.Collections": "4.0.1.4000",
+    "NHibernate": "4.0.4.4000",
+    "NServiceBus": "5.2.21",
+    "NServiceBus.NHibernate": "6.2.7",
+    "NServiceBus.SqlServer": "2.2.4"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

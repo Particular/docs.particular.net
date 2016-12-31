@@ -1,0 +1,20 @@
+﻿{
+  "dependencies": {
+    "Jil": "2.14.5",
+    "MsgPack.Cli": "0.8.0",
+    "Newtonsoft.Json": "9.0.1",
+    "NServiceBus": "6.1.1",
+    "NServiceBus.Jil": "2.0.0",
+    "NServiceBus.MessagePack": "1.0.0",
+    "NServiceBus.Newtonsoft.Json": "1.0.1",
+    "NServiceBus.Wire": "2.0.1",
+    "Sigil": "4.7.0",
+    "Wire": "0.8.2"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

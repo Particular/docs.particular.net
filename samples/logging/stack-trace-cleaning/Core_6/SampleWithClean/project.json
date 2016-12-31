@@ -1,0 +1,14 @@
+﻿{
+  "dependencies": {
+    "AsyncFriendlyStackTrace": "1.4.1",
+    "NLog": "4.4.1",
+    "NServiceBus": "6.1.1",
+    "NServiceBus.NLog": "2.0.0"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

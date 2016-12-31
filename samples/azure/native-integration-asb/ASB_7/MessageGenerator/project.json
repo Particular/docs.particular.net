@@ -1,0 +1,15 @@
+﻿{
+  "dependencies": {
+    "Newtonsoft.Json": "9.0.1",
+    "NServiceBus": "6.1.1",
+    "NServiceBus.Azure.Transports.WindowsAzureServiceBus": "7.1.0",
+    "NUnit": "3.5.0",
+    "WindowsAzure.ServiceBus": "3.4.3"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
