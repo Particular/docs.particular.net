@@ -1,0 +1,18 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.NHibernate": "6.*",
+    "NServiceBus.RavenDB": "3.*",
+    "NUnit": "3.*",
+    "Rx-Core": "2.*",
+    "Rx-Interfaces": "2.*",
+    "Rx-Linq": "2.*",
+    "Rx-Main": "2.*",
+    "Rx-PlatformServices": "2.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

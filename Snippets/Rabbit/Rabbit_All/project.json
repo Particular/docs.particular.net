@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.RabbitMQ": "4.*",
+    "NUnit": "3.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

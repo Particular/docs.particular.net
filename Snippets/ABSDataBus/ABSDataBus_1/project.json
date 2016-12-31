@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.DataBus.AzureBlobStorage": "1.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

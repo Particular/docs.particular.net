@@ -1,0 +1,13 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "4.*",
+    "NServiceBus.NHibernate": "5.*",
+    "NServiceBus.RavenDB": "1.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

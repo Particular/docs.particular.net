@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.Hosting.Azure": "6.*",
+    "Unofficial.Microsoft.WindowsAzure.ServiceRuntime": "2.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

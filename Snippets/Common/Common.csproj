@@ -35,5 +35,8 @@
     <Compile Include="SomeLibrary.cs" />
     <Compile Include="TypeScanner.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="project.json" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.Azure": "6.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

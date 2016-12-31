@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.Host": "5.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

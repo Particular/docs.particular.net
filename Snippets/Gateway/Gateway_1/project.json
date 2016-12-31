@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.Gateway": "1.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

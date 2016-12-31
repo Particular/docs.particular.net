@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.Persistence.MongoDb": "8.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.Callbacks": "1.*",
+    "NServiceBus.Wcf": "1.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

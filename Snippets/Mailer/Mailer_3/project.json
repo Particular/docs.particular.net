@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.Mailer": "3.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
