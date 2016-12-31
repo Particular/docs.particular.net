@@ -8,9 +8,10 @@ void Main()
 	var docsDirectory = Directory.GetParent(toolsDiretory).FullName;
 	var nuget = Path.Combine(toolsDiretory, "nuget.exe");
 	var packagesDirectory = Path.Combine(docsDirectory, "packages");
+	var samplesDirectory = Path.Combine(docsDirectory, "samples");
 	var nugetConfigFile = Path.Combine(docsDirectory, "nuget.config");
 
-	var solutionFiles = Directory.EnumerateFiles(docsDirectory, "*.sln", SearchOption.AllDirectories);
+	var solutionFiles = Directory.EnumerateFiles(samplesDirectory, "*.sln", SearchOption.AllDirectories);
 
 	Directory.SetCurrentDirectory(docsDirectory);
 
