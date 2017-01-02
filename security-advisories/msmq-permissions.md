@@ -11,7 +11,7 @@ tags:
 This advisory discloses a security vulnerability that has been found in NServiceBus and fixed in a recently released hotfix.
 * All endpoints should be upgraded to the latest version of the NServiceBus package to fix this vulnerability if:
   * using the NServiceBus MSMQ transport,
-  * running the NServiceBus [installers](https://docs.particular.net/nservicebus/operations/installers) to provision endpoints,
+  * running the NServiceBus [installers](/nservicebus/operations/installers.md) to provision endpoints,
   * customized the queue permissions by revoking access for Anonymous and/or Everyone account(s) .  
 
 This advisory affects all versions of the NServiceBus up to and including 5.2.19 and 6.0.2.
