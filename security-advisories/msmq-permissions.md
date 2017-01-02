@@ -9,17 +9,17 @@ tags:
 ---
 
 This advisory discloses a security vulnerability that has been found in NServiceBus and fixed in a recently released hotfix.
-* You should upgrade to the latest version of the NServiceBus package to fix this vulnerability if you are:
+* All endpoints should be upgraded to the latest version of the NServiceBus package to fix this vulnerability if:
   * using the NServiceBus MSMQ transport,
-  * running the NServiceBus [installers](https://docs.particular.net/nservicebus/operations/installers) to provision your endpoints,
+  * running the NServiceBus [installers](https://docs.particular.net/nservicebus/operations/installers) to provision endpoints,
   * customized the queue permissions by revoking access for Anonymous and/or Everyone account(s) .  
 
 This advisory affects all versions of the NServiceBus up to and including 5.2.19 and 6.0.2.
 
-If you have any questions or concerns regarding this advisory, please send an email to security@particular.net
+If there are any questions or concerns regarding this advisory, send an email to security@particular.net
 
 ## NServiceBus vulnerability: installers change permissions on existing MSMQ queues
-We have fixed a vulnerability in NServiceBus that allows attackers to grant Anonymous and Everyone accounts access to existing MSMQ queues by enforcing an endpoint restart.
+A vulnerability has been fixed in NServiceBus that allows attackers to grant Anonymous and Everyone accounts access to existing MSMQ queues by enforcing an endpoint restart.
 
 ### Impact
 Attackers can use this vulnerability to:
@@ -35,7 +35,7 @@ The exploitation of this vulnerability requires that all of the conditions below
 All versions of NServiceBus, up to and including 5.2.19 and 6.0.2, are affected by this vulnerability. The issue is tracked in https://github.com/Particular/NServiceBus/issues/4266.
 
 ### Risk Mitigation
-If you are unable to upgrade your endpoints that are using the affected version of NServiceBus, the following can be used as a **temporary workaround**:
+If it is not possible to upgrade all endpoints that are using the affected version of NServiceBus, the following can be used as a **temporary workaround**:
 
 * Schedule a task that revokes Anonymous and Everyone accounts access to MSMQ queues managed by NServiceBus after each endpoint restart.
 
@@ -57,4 +57,4 @@ Update the NuGet package using `Update-Package NServiceBus -Version 6.0.3`, re-c
 Download the NuGet package using `Update-Package NServiceBus -Version 6.0.3`, stop affected endpoints, copy the new `NServiceBus.Core.dll` assembly, overwriting the one(s) currently deployed for the endpoints, and restart the affected endpoints.
 
 ### Contact Info
-If you have any questions or concerns regarding this advisory, please send an email to security@particular.net
+If there are any questions or concerns regarding this advisory, send an email to security@particular.net
