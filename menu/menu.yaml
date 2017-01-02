@@ -34,6 +34,8 @@
       Title: Release Policy
     - Title: Security Advisories
       Articles:
+      - Url: security-advisories/msmq-permissions
+        Title: 2017-01-04
       - Url: security-advisories/sqlserver-sqlinjection
         Title: 2016-07-05
     - Url: nservicebus/upgrades/5to6
