@@ -11,13 +11,11 @@ tags:
 This advisory discloses a security vulnerability that has been found in NServiceBus and fixed in a recently released hotfix.
 
  * All endpoints should be upgraded to the latest version of the NServiceBus package to fix this vulnerability if:
-   * using the NServiceBus MSMQ transport,
+   * using the NServiceBus [MSMQ transport](/nservicebus/msmq),
    * running the NServiceBus [installers](/nservicebus/operations/installers.md) to provision endpoints,
-   * queue permissions for Anonymous and Everyone accounts have been revoked.
+   * message queue access rights for Anonymous and Everyone accounts have been manually removed.
 
 This advisory affects all versions of the NServiceBus up to and including 5.2.19 and 6.0.2.
-
-If there are any questions or concerns regarding this advisory, send an email to security@particular.net
 
 
 ## Vulnerability: installers change permissions on existing MSMQ queues
@@ -37,7 +35,7 @@ Attackers can use this vulnerability to:
 
 The exploitation of this vulnerability requires that all of the conditions below are met at the same time the attacker must be able to:
 
- 1. Enforce an endpoint restart,
+ 1. Enforce an endpoint restart or detect that an endpoint has been restarted,
  1. Access MSMQ queues managed by the restarted endpoint using an Anonymous or Everyone account.
 
 
@@ -50,36 +48,36 @@ All versions of NServiceBus, up to and including 5.2.19 and 6.0.2, are affected 
 
 If it is not possible to upgrade all endpoints that are using the affected version of NServiceBus, the following can be used as a **temporary workaround**:
 
- * Schedule a task that revokes Anonymous and Everyone accounts access to MSMQ queues managed by NServiceBus after each endpoint restart.
+ * Schedule a task that removes access rights to queues managed by NServiceBus for Anonymous and Everyone accounts after each endpoint restart.
 
 
 ### Fix
 
-This vulnerability can be fixed by upgrading the NServiceBus package that is being used. Upgrades should be performed as follows:
+This vulnerability can be fixed by upgrading the NServiceBus package. Upgrades should be performed as follows:
 
 
-#### Version .x users should upgrade to Version 5.2.20 or higher.
+#### Version 5.x users should upgrade to Version 5.2.20 or higher.
 
 **Option 1: Full update**
 
-Update the NuGet package using `Update-Package NServiceBus -Version 5.2.20`, re-compile the endpoint/application, and redeploy the endpoint/application.
+Update the NuGet package using `Update-Package NServiceBus`, re-compile the endpoint/application, and redeploy the endpoint/application.
 
 **Option 2: In-place update**
 
-Download the NuGet package using `Update-Package NServiceBus -Version 5.2.20`, stop affected endpoints, copy the new `NServiceBus.Core.dll` assembly, overwriting the one(s) currently deployed for the endpoints, and restart the affected endpoints.
+Update the NuGet package using `Update-Package NServiceBus`, stop affected endpoints, copy the new `NServiceBus.Core.dll` assembly, overwriting the one(s) currently deployed for the endpoints, and restart the affected endpoints.
 
 
 #### Version 6.x users should upgrade to Version 6.0.3 or higher
 
 **Option 1 Full update**
 
-Update the NuGet package using `Update-Package NServiceBus -Version 6.0.3`, re-compile the endpoint/application, and redeploy the endpoint/application.
+Update the NuGet package using `Update-Package NServiceBus`, re-compile the endpoint/application, and redeploy the endpoint/application.
 
 **Option 2  In-place update**
 
-Download the NuGet package using `Update-Package NServiceBus -Version 6.0.3`, stop affected endpoints, copy the new `NServiceBus.Core.dll` assembly, overwriting the one(s) currently deployed for the endpoints, and restart the affected endpoints.
+Update the NuGet package using `Update-Package NServiceBus`, stop affected endpoints, copy the new `NServiceBus.Core.dll` assembly, overwriting the one(s) currently deployed for the endpoints, and restart the affected endpoints.
 
 
 ### Contact Info
 
-If there are any questions or concerns regarding this advisory, send an email to security@particular.net
+If there are any questions or concerns regarding this advisory, send an email to [security@particular.net](mailto://security@particular.net)
