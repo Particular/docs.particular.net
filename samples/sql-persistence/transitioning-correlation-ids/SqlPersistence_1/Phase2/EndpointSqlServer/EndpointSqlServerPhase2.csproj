@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{48F718EE-6C45-41BA-80EC-81BF34D4A623}</ProjectGuid>
+    <ProjectGuid>{C16C32D7-6251-4FCF-9F41-5896E26BD866}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EndpointSqlServer</RootNamespace>
@@ -31,15 +31,15 @@
   <PropertyGroup />
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.1.1\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\packages\NServiceBus.6.1.1\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Persistence.Sql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=affc41380e1a1478, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0013\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0013\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -47,7 +47,10 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="..\..\Phase1\EndpointSqlServer\Program.cs">
+      <Link>Program.cs</Link>
+    </Compile>
+    <Compile Include="SendMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -55,13 +58,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServerShared\ServerShared.csproj">
-      <Project>{a891be78-c888-40bb-8037-feac5048bc92}</Project>
-      <Name>ServerShared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj">
-      <Project>{DD438DB2-9C03-4BC0-BA52-BB7A35098458}</Project>
-      <Name>SharedMessages</Name>
+    <ProjectReference Include="..\Shared\SharedPhase2.csproj">
+      <Project>{79986b98-6559-41cc-81c7-61cc26bc83f8}</Project>
+      <Name>SharedPhase2</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

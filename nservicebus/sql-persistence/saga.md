@@ -53,3 +53,71 @@ snippet: SqlPersistenceSaga
 `SqlSaga<T>` is an extension of `Saga<T>` that has a less verbose mapping API. The `ToSaga` part is inferred from the `[SqlSagaAttribute]`.
 
 snippet: SqlPersistenceSqlSaga
+
+
+## Table Structure
+
+
+### Columns
+
+
+#### Id 
+
+The value of `IContainSagaData.Id`. Primary Key.
+
+
+#### Metadata
+
+Json serialized dictionary containing all NServiceBus managed information about the Saga.
+
+
+#### Data
+
+Json serialized saga data
+
+
+#### PersistenceVersion
+
+The Assembly version of the Sql Persister
+
+
+#### SagaTypeVersion
+
+The Assembly version of the Assembly where the Saga exists.
+
+
+#### Concurrency
+
+Incrementing counter used to provide [optimistic concurrency](https://en.wikipedia.org/wiki/Optimistic_concurrency_control).
+
+
+#### Correlation Ids
+
+There is between 0 and 2 correlation id columns named `Correlation_[PROPERTYNAME]`. The type will correspond to the .net type of .net type of the mapped property on the saga data. See [Correlation Ids](#correlation-ids).
+
+For each Correlation Id there will be a corresponding index named `Index_Correlation_[PROPERTYNAME]`.
+
+
+## Correlation Ids
+
+[Saga Message Correlation](/nservicebus/sagas/message-correlation.md) is implemented by promoting the correlation property to the level of a column on the saga table. So when a saga data is persisted the correlation property is copied from the instance and duplicated in a column named by convention (`Correlation_[PROPERTYNAME]`) on the table.
+
+
+### No Correlation Id
+
+When implementing a [Custom Saga Finder](/nservicebus/sagas/saga-finding.md) it is possible to have no correlation id and instead interrogate the Json serialized data stored in the database.
+
+snippet: SqlPersistenceSagaWithNoCorrelation
+
+
+### Single Correlation Id
+
+In most cases there will be a single correlation Id per Saga Type.
+
+snippet: SqlPersistenceSagaWithCorrelation
+
+
+### Correlation and Transitional Ids
+
+snippet: SqlPersistenceSagaWithCorrelationAndTransitional
+
