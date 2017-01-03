@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using NServiceBus;
 
 class Usage
@@ -136,6 +137,16 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.PrefetchCount(100);
+
+        #endregion
+    }
+
+    void SetClientCertificates(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-config-client-certificates
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.SetClientCertificates(new X509CertificateCollection());
 
         #endregion
     }
