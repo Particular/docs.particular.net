@@ -56,15 +56,16 @@ class Usage
         #endregion
     }
 
-    void SendToSites(IEndpointInstance endpoint)
+    async Task SendToSites(IEndpointInstance endpoint)
     {
         #region SendToSites
 
-        endpoint.SendToSites(new[]
+        await endpoint.SendToSites(new[]
         {
             "SiteA",
             "SiteB"
-        }, new MyMessage());
+        }, new MyMessage())
+        .ConfigureAwait(false);
 
         #endregion
     }

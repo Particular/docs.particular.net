@@ -1,0 +1,1 @@
+Depending on the network technology, it is possible to set up a virtual private network (VPN) between sites. This provides Windows networking visibility of queues in the target site from the sending site. Use standard NServiceBus APIs to direct messages to their relevant targets, in the form of `Bus.Send(toDestination, msg)`.

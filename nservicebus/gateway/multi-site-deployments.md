@@ -1,6 +1,9 @@
 ---
 title: Multi-Site Deployments
+reviewed: 2017-01-04
 summary: How multi-site communication is handled.
+tags:
+ - Gateway
 component: Gateway
 redirects:
  - nservicebus/the-gateway-and-multi-site-distribution
@@ -50,31 +53,29 @@ For example, the act of publishing prices from the headquarters has logical sign
 
 ## Cross-site data transfer
 
-Depending on the network technology, it is possible to set up a virtual private network (VPN) between sites. This provides Windows networking visibility of queues in the target site from the sending site. Use standard NServiceBus APIs to direct messages to their relevant targets, in the form of `Bus.Send(toDestination, msg);`.
+partial: direct
 
-This model is recommended as it provides all the benefits of durable messaging between unreliably connecting machines; at several sites, the same as within a single site. It is possible to read a great deal of information on [setting up and managing a Windows VPN](https://technet.microsoft.com/en-US/network/dd420463).
+This model is recommended as it provides all the benefits of durable messaging between unreliably connected machines; at several sites, the same as within a single site. It is possible to read a great deal of information on [setting up and managing a Windows VPN](https://technet.microsoft.com/en-US/network/dd420463).
 
-In cases where only have access to HTTP for connection between sites, it is possible to enable the NServiceBus Gateway on each site so it transmits messages from a queue in one site to a queue in another site, including the hash of the messages to ensure that the message is transmitted correctly. The following diagram shows how it works:
+In cases with only access to HTTP(S) for connections between sites, it is possible to enable the NServiceBus Gateway on each site so it transmits messages from a queue in one site to a queue in another site, including the hash of the messages to ensure that the message is transmitted correctly. The following diagram shows how it works:
 
 ![Gateway Headquarter to Site A](gateway-headquarter-to-site-a.png)
 
-The sending process in site A sends a message to the gateway's input queue. The gateway then initiates an HTTP connection to its configured target site. The gateway in site B accepts HTTP connections, takes the message transmitted, hashes it, and returns the hash to site A. If the hashes match, the gateway in site B transmits the message it receives to a configured queue. If the hashes don't match, the gateway in site A re-transmits.
+The sending process in site A sends a message to the gateway's input queue. The gateway then initiates an HTTP(S) connection to its configured target site. The gateway in site B accepts HTTP(S) connections, takes the message transmitted, hashes it, and returns the hash to site A. If the hashes match, the gateway in site B transmits the message it receives to a configured queue. If the hashes don't match, the gateway in site A re-transmits.
 
 
 ## Configuration and code
-
-When configuring the client endpoint, ensure the [routing](/nservicebus/messaging/routing.md) has been configured so that the relevant message types go to the gateway's input queue.
 
 To send a message to a remote site, use the `SendToSites` API call, as shown:
 
 snippet:SendToSites
 
-This values (`SiteA` and `SiteB`) is the list of remote sites where the message(s) are sent.
+`SiteA` and `SiteB` is the list of remote sites where the message(s) are sent.
 
 
 ### Configuring Destination
 
-While these URLs can be placed directly in the call, it recommend to put these settings in `app.config` so  administrators can change them should the need arise. To do this, add this config section:
+While these URLs can be placed directly in the call, it is recommended to put these settings in `app.config` so administrators can change them should the need arise. To do this, add this config section:
 
 
 #### Using App.Config
@@ -85,7 +86,7 @@ snippet:GatewaySitesAppConfig
 Or specify this physical routing in code:
 
 
-#### Using a IConfigurationProvider
+#### Using an IConfigurationProvider
 
 snippet:GatewaySitesConfigurationProvider
 
@@ -113,7 +114,7 @@ Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/
 
 ## Automatic de-duplication
 
-Going across alternate channels like HTTP means that the MSMQ safety guarantees of exactly one message are lost. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid being burdened with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured [Persistence](/nservicebus/persistence/) so potential duplicates can be detected.
+Going through alternate channels like HTTP(S) means that the MSMQ safety guarantees of exactly-once message delivery are lost. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid being burdened with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured [Persistence](/nservicebus/persistence/) so duplicates can be detected and discarded.
 
 
 partial: dedup
@@ -131,7 +132,7 @@ snippet:GatewayChannelsAppConfig
 Or specify the physical routing in code:
 
 
-#### Using a IConfigurationProvider
+#### Using an IConfigurationProvider
 
 snippet:GatewayChannelsConfigurationProvider
 
@@ -145,6 +146,4 @@ Then at configuration time:
 snippet:UseCustomConfigurationSourceForGatewayChannelsConfig
 
 
-The `Default` on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. Any number of channels can be added.
-
-Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/ms733768.aspx) and make sure to configure the gateway to listen on the appropriate port, as well as to contact the remote gateway on the same port.
+The `Default = true` on the first channel config entry tells the gateway which address to attach to outgoing messages if the sender does not specify it explicitly. Any number of channels can be added.
