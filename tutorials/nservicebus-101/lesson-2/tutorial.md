@@ -5,7 +5,7 @@ reviewed: 2016-11-16
 
 Sending and receiving messages is a central characteristic of any NServiceBus system. Durable messages passed between processes allow reliable communication between those processes, even if one of them is temporarily unavailable. In this lesson we'll show how to send and process a message.
 
-By the end of this lesson (approximately 15-20 minutes) you will have learned how to define messages and message handlers, send and receive a message locally, and use NServiceBus's built-in logging capabilities.
+In the next 15-20 minutes, you will learn how to define messages and message handlers, send and receive a message locally, and use NServiceBus's built-in logging capabilities.
 
 
 ## What is a message

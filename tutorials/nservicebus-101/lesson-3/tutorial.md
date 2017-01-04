@@ -7,7 +7,7 @@ Up until this point, we have constrained our activities to a single endpoint, bu
 
 In this lesson, we'll move our message handler to a different endpoint, and discuss the concepts that go along with running more than one endpoint.
 
-By the end of the lesson (approximately 15-20 minutes) you will have learned how to run multiple endpoints, how to send messages between endpoints, and how to control the logical routing of messages between endpoints.
+In the next 15-20 minutes, you will learn how to send messages between multiple endpoints and how to control the logical routing of messages between endpoints.
 
 
 ## Sending messages
