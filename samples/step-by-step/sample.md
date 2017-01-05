@@ -2,7 +2,6 @@
 title: Step by Step Sample
 reviewed: 2016-07-13
 component: Core
-versions: '[5,)'
 ---
 
 WARNING: The completed sample code can be downloaded above but following this guide is strongly encouraged.
