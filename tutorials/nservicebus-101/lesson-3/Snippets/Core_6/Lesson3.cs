@@ -75,14 +75,10 @@ namespace Core_6
             var endpointConfiguration = new EndpointConfiguration("Sales");
             #endregion
 
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+
             #region AddingRouting
-            // Change this:
-            endpointConfiguration.UseTransport<MsmqTransport>();
-
-            // To this:
-            var routing = endpointConfiguration.UseTransport<MsmqTransport>()
-                .Routing();
-
+            var routing = transport.Routing();
             routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
             #endregion
 

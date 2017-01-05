@@ -18,7 +18,9 @@ namespace ClientUI
             Console.Title = "ClientUI";
 
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
-            endpointConfiguration.UseTransport<MsmqTransport>();
+
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.SendFailedMessagesTo("error");

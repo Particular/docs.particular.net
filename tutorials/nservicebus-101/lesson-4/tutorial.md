@@ -76,7 +76,7 @@ snippet:EventHandler
 
 ## Subscribing to events
 
-For the MSMQ transport, NServiceBus needs to know which endpoint is responsible for publishing an event, so that it can send the publishing endpoint a subscription request message.
+For the SQL Server transport, NServiceBus needs to know which endpoint is responsible for publishing an event, so that it can send the publishing endpoint a subscription request message.
 
 You can configure the publisher endpoint via the Routing API like this:
 
@@ -146,13 +146,9 @@ And finally, modify the solution properties so that **Billing** will start when 
 
 We now have a handler in place for `OrderPlaced`, but just like in real life, having a mailbox isn't enough to get a newspaper delivered to your house. We need to let the publisher know we want to subscribe to get the message.
 
-In the **Billing** endpoint, locate the **AsyncMain** method in the **Program.cs** file. Modify it to gain access to the Routing API:
+In the **Billing** endpoint, locate the **AsyncMain** method in the **Program.cs** file. Use the `transport` variable to access the routing configuration and configure the publisher for `OrderPlaced`:
 
 snippet:BillingRouting
-
-With the `routing` variable, configure the publisher for `OrderPlaced`:
-
-snippet:OrderPlacedPublisher
 
 Now when we run the solution, we'll see the following output in the **Billing** window:
 
