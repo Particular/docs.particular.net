@@ -1,5 +1,5 @@
 ---
-title: Security Advisory 2017-01-03
+title: Security Advisory 2017-01-06
 summary: MSMQ permissions vulnerability
 reviewed: 2017-01-03
 tags:
