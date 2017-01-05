@@ -18,7 +18,7 @@ The [External Json.NET Serializer](/nservicebus/serialization/newtonsoft.md) is 
 snippet: messages
 
 
-## Message Comparability
+## Message Compatibility
 
 To highlight compatibility between iterations of the endpoint, each Phase sends a message to itself, the upper phase, and the lower phase.
 
@@ -29,10 +29,10 @@ snippet: send-to-both
 
 ## Serialization format change
 
-For demonstration purposes this sample uses a hypothetical scenario where the JSON serialization format need to change the approach for serializing dictionaries. From using contents for the key and value to using an explicitly named key and value approach.
+For demonstration purposes this sample uses a hypothetical scenario where the Json serialization format need to change the approach for serializing dictionaries. From using contents for the key and value to using an explicitly named key and value approach.
 
 
-### JSON using standard approach
+### Json using standard approach
 
 ```json
 {

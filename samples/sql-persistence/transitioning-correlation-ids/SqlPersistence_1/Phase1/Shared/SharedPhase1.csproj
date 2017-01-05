@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E13E8EC1-53BC-4401-93DF-C8B88DBE8112}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{01FBA766-B587-4373-83FE-3BD5F5182D52}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EndpointMySql</RootNamespace>
-    <AssemblyName>EndpointMySql</AssemblyName>
+    <RootNamespace>Shared</RootNamespace>
+    <AssemblyName>Shared</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,26 +22,18 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.1.1\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\packages\NServiceBus.6.1.1\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Persistence.Sql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=affc41380e1a1478, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0013\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0013\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -50,22 +41,22 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ServerShared\ServerShared.csproj">
-      <Project>{a891be78-c888-40bb-8037-feac5048bc92}</Project>
-      <Name>ServerShared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj">
-      <Project>{dd438db2-9c03-4bc0-ba52-bb7a35098458}</Project>
-      <Name>SharedMessages</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="OrderSaga.cs" />
+    <Compile Include="OrderSagaData.cs" />
+    <Compile Include="StartOrder.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.1.0.0-beta0013\build\NServiceBus.Persistence.Sql.MsBuild.targets" Condition="Exists('..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.1.0.0-beta0013\build\NServiceBus.Persistence.Sql.MsBuild.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.1.0.0-beta0013\build\NServiceBus.Persistence.Sql.MsBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.1.0.0-beta0013\build\NServiceBus.Persistence.Sql.MsBuild.targets'))" />
+  </Target>
 </Project>

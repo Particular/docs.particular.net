@@ -31,15 +31,15 @@
   <PropertyGroup />
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.1.1\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\packages\NServiceBus.6.1.1\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Persistence.Sql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=affc41380e1a1478, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0013\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-beta0013\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -47,6 +47,7 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SendMessage.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,13 +56,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServerShared\ServerShared.csproj">
-      <Project>{a891be78-c888-40bb-8037-feac5048bc92}</Project>
-      <Name>ServerShared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj">
-      <Project>{DD438DB2-9C03-4BC0-BA52-BB7A35098458}</Project>
-      <Name>SharedMessages</Name>
+    <ProjectReference Include="..\Shared\SharedPhase1.csproj">
+      <Project>{01fba766-b587-4373-83fe-3bd5f5182d52}</Project>
+      <Name>SharedPhase1</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
