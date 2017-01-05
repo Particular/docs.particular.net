@@ -1,98 +1,89 @@
 ---
-title: Simple Sql Persistence Usage
-summary: Using Sql Persistence to store Sagas and Timeouts.
-reviewed: 2016-03-21
+title: Transitioning Saga Correlation Ids
+reviewed: 2017-01-03
 component: SqlPersistence
-tags:
- - Saga
- - Timeout
 related:
  - nservicebus/sagas
-reviewed: 2016-10-05
 ---
+
+
+This sample illustrates an approach for transitioning between different [Correlation Ids](/nservicebus/sql-persistence/saga.md#correlation-ids) in way that requires no endpoint downtime and no migration of saga data stored in sql.
+
+NOTE: This sample uses 3 "Phase" Endpoint Projects to illustrate the iterations of a single endpoint in one solution.
 
 
 ## Prerequisites
 
-
-### MS SQL Server
-
- 1. Ensure an instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`. Create a database `SqlPersistenceSample`. Or, alternatively, change the connection string in the EndpointSqlServer project to point to different Sql Server instance
+include: sql-persistence-prereqs
 
 
-### MySql
+## Scenario
 
- 1. Ensure an instance of MySql is installed and accessible as on `localhost` and port `3306`.
- 1. Add the username to access the instance to an environment variable named `MySqlUserName`
- 1. Add the password to access the instance to an environment variable named `MySqlPassword`
-
-Or, alternatively, change the connection string in the EndpointMySql project to point to different MySql instance
+This samples uses a hypothetical "Order" scenario where the requirement is to transition from an an int correlation id `OrderNumer` to a guid correlation id `OrderId`. 
 
 
-## Code walk-through
-
-This sample shows a Client + Server scenario.
+## Phases
 
 
-### Projects
+### Phase 1
+
+In the initial phase an int `OrderNumer` is used. The saga maps to `StartOrder.OrderNumber` in the `ConfigureMapping` and correlates to `OrderSagaData.OrderNumber` via a `SqlSagaAttribute` with `correlationProperty` of `OrderNumber`.
 
 
-#### SharedMessages
+#### Message
 
-The shared message contracts used by all endpoints.
-
-
-#### ServerShared
-
-Contains the `OrderSaga` functionality and is referenced by the Server endpoints
+snippet: messagePhase1
 
 
-####  Client
+#### Saga
 
- * Sends the `StartOrder` message to either `EndpointMySql` or `EndpointSqlServer`.
- * Receives and handles the `OrderCompleted` event.
-
-
-#### Servers
- 
- * `EndpointMySql` and `EndpointSqlServer` projects act as "servers" to run the saga instance.
- * Receive the `StartOrder` message and initiate a `OrderSaga`.
- * `OrderSaga` requests a timeout with a `CompleteOrder` data.
- * When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
+snippet:sagaPhase1
 
 
-### Sql Scripts
+#### SagaData
 
-Note that only `ServerShared` has the [NServiceBus.Persistence.Sql.MsBuild NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild) installed. This will cause the following script directories to be populated at build time 
-
- * `ServerShared\bin\Debug\NServiceBus.Persistence.Sql\MsSqlServer`
- * `ServerShared\bin\Debug\NServiceBus.Persistence.Sql\MySql`
-
-These scripts will then be copied to the output of both `EndpointMySql` and `EndpointSqlServer` and executed at startup. 
-
-The endpoints know which scripts to execute via the use of the `persistence.SqlVarient();` API usage at configuration time.
+snippet: sagadataPhase1
 
 
-### Persistence Config
+### Phase 2
 
-Configure the endpoint to use Sql Persistence.
-
-
-#### MS Sql Server
-
-snippet:sqlServerConfig
+In the second phase a guid `OrderId` is added. The saga still maps to `StartOrder.OrderNumber` in the `ConfigureMapping` and correlates on to `OrderSagaData.OrderNumber`. However it also correlates to `OrderSagaData.OrderId` via a `transitionalCorrelationProperty`.
 
 
-### MySql
+#### Message
 
-snippet:MySqlConfig
-
-
-### Order Saga Data
-
-snippet:sagadata
+snippet: messagePhase2
 
 
-### Order Saga
+#### Saga
 
-snippet:thesaga
+
+snippet:sagaPhase2
+
+
+#### SagaData
+
+snippet: sagadataPhase2
+
+
+WARNING: Prior to moving to Phase 3 it is necessary to verify that all existing sagas have the `Correlation_OrderId` column populated. This can either be inferred by the business knowledge (i.e. certain saga may have a know and constrained lifetime) or by querying the database.
+
+
+### Phase 3
+
+In the third phase the int `OrderNumer` is removed leaving only the `OrderId`. The saga now maps to `StartOrder.OrderId` in the `ConfigureMapping` and correlates to `OrderSagaData.OrderId` via a `SqlSagaAttribute` with `correlationProperty` of `OrderNumber`.
+
+
+#### Message
+
+snippet: messagePhase3
+
+
+#### Saga
+
+snippet:sagaPhase3
+
+
+#### SagaData
+
+snippet: sagadataPhase3

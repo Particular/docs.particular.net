@@ -9,7 +9,6 @@ reviewed: 2016-11-29
 ---
 
 
-
 ## Json.net Settings
 
 
@@ -119,5 +118,6 @@ snippet: SqlPersistenceSagaWithCorrelation
 
 ### Correlation and Transitional Ids
 
-snippet: SqlPersistenceSagaWithCorrelationAndTransitional
+During the migration from one correlation id to another correlation id there may be two correlation is that coexist. See also [Transitioning Correlation ids Sample](/samples/sql-persistence/transitioning-correlation-ids).
 
+snippet: SqlPersistenceSagaWithCorrelationAndTransitional
