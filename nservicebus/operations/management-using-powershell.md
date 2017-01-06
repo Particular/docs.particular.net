@@ -40,7 +40,7 @@ After installation the module can be loaded into a PowerShell session by issuing
 
 	Import-Module NServiceBus.PowerShell
 
-The installation adds the NServiceBus.PowerShell module location to the `PSModulePath` environment variable. If the module isn't available a restart the Windows session may be required for this change to to take effect.
+The installation adds the NServiceBus.PowerShell module location to the `PSModulePath` environment variable. If the module isn't available restarting the Windows session may be required for this change to to take effect.
 
 As most of the cmdlets require elevated privileges the module should be used in a PowerShell session that has been `Run As Administrator`.
 
