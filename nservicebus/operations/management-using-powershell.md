@@ -1,7 +1,7 @@
 ---
 title: Management using PowerShell
 summary: Install the infrastructure for NServiceBus on servers using PowerShell.
-reviewed: 2016-03-17
+reviewed: 2017-01-06
 tags:
 - PowerShell
 - Cmdlets
@@ -40,17 +40,17 @@ After installation the module can be loaded into a PowerShell session by issuing
 
 	Import-Module NServiceBus.PowerShell
 
-The installation adds the NServiceBus.PowerShell module location to the `PSModulePath` environment variable. If the module isn't available restarting the Windows session may be required for this change to to take effect.
+The installation adds the NServiceBus.PowerShell module location to the `PSModulePath` environment variable. If the module isn't available restarting the Windows session may be required for this change to take effect.
 
-As most of the cmdlets require elevated privileges the module should be used in a PowerShell session that has been `Run As Administrator`.
+As most of the cmdlets require elevated privileges the module should be used in a PowerShell session that is launched as `Run As Administrator`.
 
 ## Help
 
-A list of available cmdlet can be found by issuing the following PowerShell command
+A list of available cmdlet's can be found by issuing the following PowerShell command
 
 	Get-Command -Module NServiceBus.PowerShell
 
-Help for each cmdlet incorporated within the module and can be accessed via the standard [PowerShell Get-Help Command](https://technet.microsoft.com/en-us/library/ee176848.aspx). For example `Get-Help Set-NServiceBusLocalMachineSettings` returns the following information
+Help for each cmdlet is incorporated within the module. Help can be accessed via the standard [PowerShell Get-Help Command](https://technet.microsoft.com/en-us/library/ee176848.aspx). For example `Get-Help Set-NServiceBusLocalMachineSettings` returns the following information
 
 ```no-highlight
 NAME
@@ -73,7 +73,7 @@ DESCRIPTION
 
 ### RavenDB cmdlets
 
-NServiceBus now supports multiple versions of the [RavenDB](/nservicebus/ravendb/version-compatibility.md) client. Previous versions of the PowerShell module included cmdlets to install and test RavenDB V2.0.2375. To avoid confusion these cmdlets were removed in Version 5.0:
+Multiple versions of the [RavenDB](/nservicebus/ravendb/version-compatibility.md) client are supported. Previous versions of the PowerShell module included cmdlets to install and test RavenDB V2.0.2375. To avoid confusion these cmdlets were removed in Version 5.0:
 
 ```no-highlight
 Install-NServiceBusRavenDB
@@ -85,7 +85,7 @@ For RavenDB installation instructions review [Installing RavenDB](/nservicebus/r
 
 ### Licensing
 
-Version 5 of the PowerShell module includes a commandlet for importing a Particular Platform License. This will work for NServiceBus versions 4. To install a license for versions prior to NServiceBus Version 4.5 then an alternative method should be used. See [License](/nservicebus/licensing/).
+Version 5 of the PowerShell module includes a cmdlet for importing a Particular Platform License file. This will also work for NServiceBus version 4.5 and newer. If you want to install an license file for versions prior to 4.5 then an alternative method must be used. See [License](/nservicebus/licensing/).
 
 
 ## Older versions of NServiceBus PowerShell
