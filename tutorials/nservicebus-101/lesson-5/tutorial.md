@@ -7,15 +7,7 @@ In software systems, exceptions will occur. Even with perfect, bug-free code, pr
 
 It's how we respond to exceptions that is important. When a database is deadlocked, or a web service is down, do we lose data, or do we have the ability to recover? Do our users get an error message and have to figure out how to recover on their own, or can we make it appear as though nothing ever went wrong?
 
-
-## Objectives
-
-By the end of this lesson, you will have learned:
-
- * The different causes of exceptions, and how to deal with them
- * How to use immediate retries to resolve transient errors
- * How to use delayed retries to resolve semi-transient errors
- * How to use message replay to resolve systemic errors
+In the next 20-25 minutes, you will learn the different causes of errors and techniques we can use to address them.
 
 
 ## Causes of errors

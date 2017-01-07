@@ -5,18 +5,7 @@ reviewed: 2016-11-16
 
 So far in this course, we have only sent **commands** – one-way messages from a sender to a specific receiver. There's another type of message we have yet to cover called an **event**. In many ways events are just like commands. They're simple classes and you deal with them in much the same way. But from an architectural standpoint commands and events are *polar opposites*. This creates a useful dichotomy. We can take advantage of the properties of events to open up new possibilities in how we design software.
 
-In this lesson, we'll learn all about publishing events, and more importantly, what that allows us to do.
-
-
-## Objectives
-
-By the end of this lesson, you will have learned:
-
- * The difference between commands and events
- * How the Publish/Subscribe pattern helps to create more maintainable code
- * How to define and name events
- * How to publish an event
- * How to subscribe to an event
+In the next 25-30 minutes, you will learn how the publish/subscribe pattern can help you create more maintainable code. Together, we'll learn to define, publish, and subscribe to an event.
 
 
 ## Events

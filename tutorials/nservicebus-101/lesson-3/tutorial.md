@@ -5,16 +5,9 @@ reviewed: 2016-11-16
 
 Up until this point, we have constrained our activities to a single endpoint, but this is not how real systems behave. The strength of a messaging system is the ability to run code in multiple processes, on multiple servers, which can all collaborate by exchanging messages.
 
-In this lesson, we'll move our message handler to a different endpoint, and discussing the concepts that go along with running more than one endpoint.
+In this lesson, we'll move our message handler to a different endpoint, and discuss the concepts that go along with running more than one endpoint.
 
-
-## Objectives
-
-By the end of this lesson, you will have learned:
-
- * How to run multiple endpoints
- * How to send messages between endpoints
- * How to control the logical routing
+In the next 15-20 minutes, you will learn how to send messages between multiple endpoints and how to control the logical routing of messages between endpoints.
 
 
 ## Sending messages
