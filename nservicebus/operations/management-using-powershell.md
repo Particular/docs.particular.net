@@ -38,17 +38,22 @@ The installation file for the module can be **[downloaded here](https://github.c
 
 After installation the module can be loaded into a PowerShell session by issuing the following command:
 
-	Import-Module NServiceBus.PowerShell
+```ps
+Import-Module NServiceBus.PowerShell
+```
 
 The installation adds the NServiceBus.PowerShell module location to the `PSModulePath` environment variable. If the module isn't available restarting the Windows session may be required for this change to take effect.
 
 As most of the cmdlets require elevated privileges the module should be used in a PowerShell session that is launched as `Run As Administrator`.
 
+
 ## Help
 
-A list of available cmdlet's can be found by issuing the following PowerShell command
+A list of available cmdlets can be found by issuing the following PowerShell command
 
-	Get-Command -Module NServiceBus.PowerShell
+```ps
+Get-Command -Module NServiceBus.PowerShell
+```
 
 Help for each cmdlet is incorporated within the module. Help can be accessed via the standard [PowerShell Get-Help Command](https://technet.microsoft.com/en-us/library/ee176848.aspx). For example `Get-Help Set-NServiceBusLocalMachineSettings` returns the following information
 
@@ -68,6 +73,7 @@ DESCRIPTION
     On 64 bit operating system the settings are applied to both the 32-bit and 64-bit registry.
 ```
 
+
 ## Upgrade information
 
 
@@ -85,7 +91,7 @@ For RavenDB installation instructions review [Installing RavenDB](/nservicebus/r
 
 ### Licensing
 
-Version 5 of the PowerShell module includes a cmdlet for importing a Particular Platform License file. This will also work for NServiceBus version 4.5 and newer. If you want to install an license file for versions prior to 4.5 then an alternative method must be used. See [License](/nservicebus/licensing/).
+Version 5 of the PowerShell module includes a cmdlet for importing a Particular Platform License file. This will also work for NServiceBus version 4.5 and newer. To install an license file for versions prior to 4.5 then an alternative method must be used. See [License](/nservicebus/licensing/).
 
 
 ## Older versions of NServiceBus PowerShell
