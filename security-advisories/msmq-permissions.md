@@ -1,7 +1,7 @@
 ---
-title: Security Advisory 2017-01-06
+title: Security Advisory 2017-01-10
 summary: MSMQ permissions vulnerability
-reviewed: 2017-01-03
+reviewed: 2017-01-09
 tags:
  - MSMQ
  - Transport
@@ -60,7 +60,6 @@ This vulnerability can be fixed by upgrading the NServiceBus package. Upgrades s
 **Option 1: Full update**
 
 Update the NuGet package using `Update-Package NServiceBus`, re-compile the endpoint/application, and redeploy the endpoint/application.
-
 
 **Option 2: In-place update**
 
