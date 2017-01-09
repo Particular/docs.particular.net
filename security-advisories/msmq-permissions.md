@@ -46,10 +46,9 @@ All versions of NServiceBus, up to and including 5.2.19 and 6.0.2, are affected 
 
 ### Risk Mitigation
 
-If it is not possible to upgrade all endpoints that are using the affected version of NServiceBus, the following can be used as a **temporary workaround**:
+If it is not possible to upgrade all endpoints that are using the affected version of NServiceBus, the following can be used as a **risk mitigation**:
 
- * Schedule a task that removes access rights to queues managed by NServiceBus for Anonymous and Everyone accounts after each endpoint restart.
-
+ * Configure MSMQ [auditing](https://msdn.microsoft.com/en-us/library/ms705046.aspx) for queues managed by NServiceBus and monitor the [security log](https://technet.microsoft.com/en-us/library/cc731826.aspx) for unauthorized access.
 
 ### Fix
 
@@ -61,6 +60,7 @@ This vulnerability can be fixed by upgrading the NServiceBus package. Upgrades s
 **Option 1: Full update**
 
 Update the NuGet package using `Update-Package NServiceBus`, re-compile the endpoint/application, and redeploy the endpoint/application.
+
 
 **Option 2: In-place update**
 
