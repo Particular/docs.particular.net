@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus.ZeroFormatter": "1.*"
+    "NServiceBus.ZeroFormatter": "1.0.2"
   },
   "frameworks": {
     "net461": {}
