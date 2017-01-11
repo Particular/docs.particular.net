@@ -220,6 +220,17 @@
   NugetOrder:
     - NServiceBus.EventStore
 
+- Key: Kafka
+  Name: Kafka Transport
+  DocoUrl: nservicebus/kafka
+  GitHubOwner: PabloCastilla
+  Category: Transport
+  SupportLevel: Community
+  LicenseUrl: https://github.com/pablocastilla/NServiceBus.Kafka/blob/master/LICENSE
+  ProjectUrl: https://github.com/pablocastilla/NServiceBus.Kafka
+  NugetOrder:
+    - NServiceBus.Transports.Kafka
+
 - Key: RawMessaging
   Name: NServiceBus raw messaging
   DocoUrl: nservicebus/rawmessaging

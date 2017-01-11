@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "NServiceBus.Transports.Kafka": "0.2.0"
+  },
+  "frameworks": {
+    "net452": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
