@@ -21,7 +21,7 @@ related:
 
 See [Particular Licensing](https://particular.net/licensing) for license specifics.
 
-## Is my license valid?
+## License validity
 
 partial: validity
 
