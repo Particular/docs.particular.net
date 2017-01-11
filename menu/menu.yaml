@@ -540,6 +540,8 @@
       Title: Scripting
   - Url: nservicebus/eventstoretransport
     Title: Event Store Transport
+  - Url: nservicebus/kafka
+    Title: Kafka Transport
   - Url: nservicebus/serialization
     Title: Serialization
     Articles:
