@@ -21,9 +21,11 @@ related:
 
 See [Particular Licensing](https://particular.net/licensing) for license specifics.
 
+
 ## License validity
 
 partial: validity
+
 
 ## Throughput limitations
 
