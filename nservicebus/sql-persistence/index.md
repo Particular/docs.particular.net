@@ -34,9 +34,9 @@ Using the [MySql.Data NuGet Package](https://www.nuget.org/packages/MySql.Data/)
 
 snippet:SqlPersistenceUsageMySql
 
-The following settings are required for [MySql connections string](https://dev.mysql.com/doc/connector-net/en/connector-net-connection-options.html). 
+The following settings are required for [MySql connections string](https://dev.mysql.com/doc/connector-net/en/connector-net-connection-options.html).
 
- * `AllowUserVariables=True`: since the Persistence uses [user variables](http://dev.mysql.com/doc/refman/5.7/en/user-variables.html).  
+ * `AllowUserVariables=True`: since the Persistence uses [user variables](http://dev.mysql.com/doc/refman/5.7/en/user-variables.html).
  * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which the MySql .net connector does not currently support.
 
 
@@ -46,7 +46,7 @@ SQL installation scripts are created at compile time by the `NServiceBus.Persist
 
 Scripts will be created in the directory format of `[CurrentProjectDebugDir]\NServiceBus.Persistence.Sql\[SqlVarient]`.
 
-So for example for a project named `ClassLibrary` build in Debug mode the following directories will be created.
+For example for a project named `ClassLibrary` build in Debug mode the following directories will be created.
 
  * `ClassLibrary\bin\Debug\NServiceBus.Persistence.Sql\MsSqlServer`
  * `ClassLibrary\bin\Debug\NServiceBus.Persistence.Sql\MySql`
@@ -73,11 +73,59 @@ snippet: MySqlScripts
 
 ## Installation
 
-The Sql persistence enables creation of scripts that can be run as a part of a deployment process instead of as part of endpoint startup as with [standard installers](/nservicebus/operations/installers.md). See [installer-workflow](installer-workflow.md) for more information.
+The SQL persistence enables creation of scripts that can be run as a part of a deployment process instead of as part of endpoint startup as with [standard installers](/nservicebus/operations/installers.md). See [installer-workflow](installer-workflow.md) for more information.
 
-To streamline development Sql persistence installation are executed at endpoint startup in the same manner as all other installers. However in higher level environment scenarios, where standard installers are being run but the Sql persistence installation scripts have been executed as part of a deployment, it may be necessary to explicitly disable the Sql persistence installation script executing while leaving standard installers enabled.
+To streamline development SQL persistence installation are executed at endpoint startup in the same manner as all other installers. However in higher level environment scenarios, where standard installers are being run but the SQL persistence installation scripts have been executed as part of a deployment, it may be necessary to explicitly disable the SQL persistence installation script executing while leaving standard installers enabled.
 
 snippet: DisableInstaller
+
+
+### Table Prefix
+
+Table prefix is the string that is prefixed to every table name, i.e. Saga, Outbox, Subscription and Timeout tables.
+
+The default TablePrefix is [Endpoint Name](/nservicebus/endpoints/specify-endpoint-name.md) with all periods ('.') replaced with underscores ('_').
+
+A Table Prefix is required at runtime and install time.
+
+
+### Configure in code
+
+When using the default (execute at startup) approach to installation the value configured in code will be used.
+
+
+##### For all StorageTypes
+
+snippet: TablePrefix
+
+
+##### For Sagas
+
+snippet: SagaTablePrefix
+
+
+##### For Outbox
+
+snippet: OutboxTablePrefix
+
+
+##### For Subscription
+
+snippet: SubscriptionTablePrefix
+
+
+##### For Timeouts
+
+snippet: TimeoutTablePrefix
+
+
+#### Manual installation
+
+When performing a custom script execution the TablePrefix is required. See also [Installer Workflow](installer-workflow.md).
+
+snippet: ExecuteScripts
+
+Note that `scriptDirectory` can be either the root directory for all scripts for, alternatively, the specific locations for a given storage type i.e. Saga, Outbox, Subscription and Timeout scripts.
 
 
 ## SqlStorageSession

@@ -10,7 +10,7 @@ reviewed: 2016-11-29
 
 ## Packages
 
-The Sql Persistence consists of several Nuget Packages
+The Sql Persistence consists of several [Nuget Packages](https://www.nuget.org/packages?q=NServiceBus.Persistence.Sql).
 
 
 ### Runtime and static configuration
@@ -61,7 +61,9 @@ The workflow in higher environment may differ based on the specifics of an organ
 
  1. Build Project.
  1. `NServiceBus.Persistence.Sql.MsBuild` creates scripts in `bin\Debug\NServiceBus.Persistence.Sql`.
- 1. Sql installer scripts are copied to a deployment package along with the output assemblies.
- 1. Sql installer scripts are reviewed by a DBA or QA team and approved.
- 1. Sql installer scripts are executed in higher environment.
+ 1. SQL installer scripts are copied to a deployment package along with the output assemblies.
+ 1. SQL installer scripts are reviewed by a DBA or QA team and approved.
+ 1. SQL installer scripts are executed in higher environment.
  1. Endpoint is deployed and started.
+
+

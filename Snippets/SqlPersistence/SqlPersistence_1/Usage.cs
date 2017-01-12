@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
+using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -28,6 +29,7 @@ class Usage
 
         #endregion
     }
+
     void DisableInstallers(EndpointConfiguration endpointConfiguration)
     {
         #region DisableInstaller
@@ -153,6 +155,85 @@ class Usage
                     Formatting = Formatting.None
                 };
             });
+
+        #endregion
+    }
+
+    void SagaTablePrefix(EndpointConfiguration endpointConfiguration)
+    {
+        #region SagaTablePrefix
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence, StorageType.Sagas>();
+        persistence.TablePrefix("TheSagaPrefix");
+
+        #endregion
+    }
+
+    void TimeoutTablePrefix(EndpointConfiguration endpointConfiguration)
+    {
+        #region TimeoutTablePrefix
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence, StorageType.Timeouts>();
+        persistence.TablePrefix("TheTimeoutPrefix");
+
+        #endregion
+    }
+
+    void SubscriptionTablePrefix(EndpointConfiguration endpointConfiguration)
+    {
+        #region SubscriptionTablePrefix
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence, StorageType.Subscriptions>();
+        persistence.TablePrefix("TheSubscriptionPrefix");
+
+        #endregion
+    }
+
+    void OutboxTablePrefix(EndpointConfiguration endpointConfiguration)
+    {
+        #region OutboxTablePrefix
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence, StorageType.Outbox>();
+        persistence.TablePrefix("TheOutboxPrefix");
+
+        #endregion
+    }
+
+    void TablePrefix(EndpointConfiguration endpointConfiguration)
+    {
+        #region TablePrefix
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.TablePrefix("ThePrefixForAllStorages");
+
+        #endregion
+    }
+
+    async Task ExecuteScripts(string scriptDirectory, string tablePrefix)
+    {
+        #region ExecuteScripts
+
+        using (var connection = new SqlConnection("ConnectionString"))
+        {
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
+            foreach (var createScript in Directory.EnumerateFiles(
+                path: scriptDirectory,
+                searchPattern: "*_Create.sql",
+                searchOption: SearchOption.AllDirectories))
+            {
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = File.ReadAllText(createScript);
+                    var parameter = command.CreateParameter();
+                    parameter.ParameterName = "tablePrefix";
+                    parameter.Value = tablePrefix;
+                    command.Parameters.Add(parameter);
+                    await command.ExecuteNonQueryAsync()
+                        .ConfigureAwait(false);
+                }
+            }
+        }
 
         #endregion
     }
