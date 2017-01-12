@@ -60,9 +60,10 @@ class Program
 
         #endregion
 
+        var startableBus = Bus.Create(busConfiguration);
+
         #region CreateSchema
 
-        var startableBus = Bus.Create(busConfiguration);
 
         CreateSchema(hibernateConfig, "A");
         CreateSchema(hibernateConfig, "B");

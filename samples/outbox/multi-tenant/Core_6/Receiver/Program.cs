@@ -65,16 +65,17 @@ class Program
 
         #endregion
 
-        #region CreateSchema
-
-        #endregion
 
         var startableEndpoint = await Endpoint.Create(endpointConfiguration)
             .ConfigureAwait(false);
         IEndpointInstance endpointInstance = null;
 
+        #region CreateSchema
+
         CreateSchema(tenantDatabasesConfiguration, "A");
         CreateSchema(tenantDatabasesConfiguration, "B");
+
+        #endregion
 
         try
         {
