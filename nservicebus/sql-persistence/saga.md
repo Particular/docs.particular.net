@@ -77,7 +77,7 @@ Json serialized saga data
 
 #### PersistenceVersion
 
-The Assembly version of the Sql Persister
+The Assembly version of the SQL Persister
 
 
 #### SagaTypeVersion

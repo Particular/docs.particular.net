@@ -1,6 +1,6 @@
 ---
-title: Simple Sql Persistence Usage
-summary: Using Sql Persistence to store Sagas and Timeouts.
+title: Simple SQL Persistence Usage
+summary: Using SQL Persistence to store Sagas and Timeouts.
 reviewed: 2016-03-21
 component: SqlPersistence
 tags:
@@ -49,7 +49,7 @@ Contains the `OrderSaga` functionality and is referenced by the Server endpoints
  * When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
 
 
-### Sql Scripts
+### SQL Scripts
 
 Note that only `ServerShared` has the [NServiceBus.Persistence.Sql.MsBuild NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild) installed. This will cause the following script directories to be populated at build time 
 
@@ -63,10 +63,10 @@ The endpoints know which scripts to execute via the use of the `persistence.SqlV
 
 ### Persistence Config
 
-Configure the endpoint to use Sql Persistence.
+Configure the endpoint to use SQL Persistence.
 
 
-#### MS Sql Server
+#### MS SQL Server
 
 snippet:sqlServerConfig
 

@@ -1,5 +1,5 @@
 ---
-title: Sql Persistence
+title: SQL Persistence
 component: SqlPersistence
 tags:
  - Persistence
@@ -9,10 +9,10 @@ reviewed: 2016-11-29
 ---
 
 
-The Sql Persistence uses [Json.NET](http://www.newtonsoft.com/json) to serialize data and store in a Sql database.
+The SQL Persistence uses [Json.NET](http://www.newtonsoft.com/json) to serialize data and store in a SQL database.
 
 
-## Supported Sql Implementations
+## Supported SQL Implementations
 
  * [SQL Server](https://www.microsoft.com/en-au/sql-server/)
  * [MySql](https://www.mysql.com/)

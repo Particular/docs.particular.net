@@ -2,7 +2,7 @@
 
 ### MS SQL Server
 
- 1. Ensure an instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`. Create a database `SqlPersistenceSample`. Or, alternatively, change the connection string to point to different Sql Server instance
+ 1. Ensure an instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`. Create a database `SqlPersistenceSample`. Or, alternatively, change the connection string to point to different SQL Server instance
 
 
 ### MySql

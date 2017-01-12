@@ -1,6 +1,6 @@
 ---
-title: Outbox - Sql Transport, Sql Persistence and EF
-summary: Integrating Sql Transport with Sql Persistence and Entity Framework user data store using outbox.
+title: Outbox - SQL Transport, SQL Persistence and EF
+summary: Integrating SQL Transport with SQL Persistence and Entity Framework user data store using outbox.
 reviewed: 2016-03-21
 component: SqlServer
 tags:
@@ -56,7 +56,7 @@ snippet:SenderConfiguration
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use SQLServer transport with Sql persistence  and Outbox. It uses [EntityFramework](https://msdn.microsoft.com/en-us/library/gg696172.aspx) to store business data (orders).
+The Receiver mimics a back-end system. It is also configured to use SQLServer transport with SQL persistence  and Outbox. It uses [EntityFramework](https://msdn.microsoft.com/en-us/library/gg696172.aspx) to store business data (orders).
 
 snippet:ReceiverConfiguration
 

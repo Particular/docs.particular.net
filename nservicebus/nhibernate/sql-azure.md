@@ -7,7 +7,7 @@ reviewed: 2016-11-04
 tags:
  - NHibernate
  - Persistence
- - Sql Azure
+ - SQL Azure
 related:
  - nservicebus/nhibernate/accessing-data
 ---

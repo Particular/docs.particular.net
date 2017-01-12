@@ -1,1 +1,1 @@
-Callbacks are not directly managed by the Sql Server transport and are not enabled by default. To enable them, follow the steps outlined in [Callbacks](/nservicebus/messaging/callbacks.md).
+Callbacks are not directly managed by the SQL Server transport and are not enabled by default. To enable them, follow the steps outlined in [Callbacks](/nservicebus/messaging/callbacks.md).

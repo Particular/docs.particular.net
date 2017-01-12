@@ -10,7 +10,7 @@ reviewed: 2016-11-29
 
 ## Packages
 
-The Sql Persistence consists of several [Nuget Packages](https://www.nuget.org/packages?q=NServiceBus.Persistence.Sql).
+The SQL Persistence consists of several [Nuget Packages](https://www.nuget.org/packages?q=NServiceBus.Persistence.Sql).
 
 
 ### Runtime and static configuration
@@ -52,7 +52,7 @@ A standard development work operates as follows:
  1. Solution is started in Visual Studio.
  1. Endpoint starts.
  1. Toggle is checked and identified as a development machine.
- 1. Sql installer script are executed and the required persistence tables are created.
+ 1. SQL installer script are executed and the required persistence tables are created.
 
 
 ### Higher Environment Workflow

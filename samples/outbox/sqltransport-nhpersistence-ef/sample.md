@@ -1,6 +1,6 @@
 ---
-title: Outbox - Sql Transport, NHibernate and EF
-summary: Integrating Sql Transport with NHibernate persistence and Entity Framework user data store using outbox.
+title: Outbox - SQL Transport, NHibernate and EF
+summary: Integrating SQL Transport with NHibernate persistence and Entity Framework user data store using outbox.
 reviewed: 2016-03-21
 component: SqlServer
 tags:

@@ -9,7 +9,7 @@ related:
 - nservicebus/sqlserver
 ---
 
-## Sql Bridge (Transport Integration)
+## SQL Bridge (Transport Integration)
 
 WARNING: This sample has been deprecated. Refer to the [MsmqToSqlRelay Sample](/samples/msmqtosqlrelay/)
 
@@ -101,7 +101,7 @@ Note: Since `SqlBridge` is not using the native MSMQ transport manually creating
  * The input queue is defined as `SqlMsmqTransportBridge` in the `InputAddress` property of the satellite.
  * The MSMQ dequeue strategy is set here for reading messages from the queue (MSMQ).
  * The satellite will automatically process any message that is received in that queue (MSMQ).
- * The satellite will publish the received event. Since this endpoint uses SqlTransport, it will publish to its Sql queues.
+ * The satellite will publish the received event. Since this endpoint uses SqlTransport, it will publish to its SQL queues.
 
 
 ## SqlSubscriber
@@ -109,7 +109,7 @@ Note: Since `SqlBridge` is not using the native MSMQ transport manually creating
 Receives events from the SqlBridge. The endpoint address is the sql bridge address and not the original publisher's address.
 
 
-### The Sql Subscriber configuration
+### The SQL Subscriber configuration
 
 snippet:sqlsubscriber-config
 
@@ -123,7 +123,7 @@ snippet:sqlsubscriber-handler
 
  1. Creating a new transactional queue that the MSMQ publisher will be sending its events to.
  1. In the original MSMQ Publisher's Subscriptions storage, in addition to its list of all its current subscribers, has an additional entry for the queue that the SqlBridge will be listening to.
- 1. The Sql bridge endpoint (setup to read from that input queue) processes that message and publishes the event.
- 1. The Sql Subscriber, subscribes to the SqlBridge.
+ 1. The SQL bridge endpoint (setup to read from that input queue) processes that message and publishes the event.
+ 1. The SQL Subscriber, subscribes to the SqlBridge.
 
 Note: The steps of creating the queue and adding the additional subscription message in the subscriptions queue of the publisher can be automated for deployment.
