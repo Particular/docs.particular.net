@@ -1,7 +1,7 @@
 ---
 title: Connection settings
 summary: The various ways to customize the RabbitMQ transport.
-reviewed: 2016-08-30
+reviewed: 2017-01-13
 component: Rabbit
 redirects:
  - nservicebus/rabbitmq/connection-strings

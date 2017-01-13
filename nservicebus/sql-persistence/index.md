@@ -84,7 +84,7 @@ snippet: DisableInstaller
 
 Table prefix is the string that is prefixed to every table name, i.e. Saga, Outbox, Subscription and Timeout tables.
 
-The default TablePrefix is [Endpoint Name](/nservicebus/endpoints/specify-endpoint-name.md) with all periods ('.') replaced with underscores ('_').
+The default TablePrefix is [Endpoint Name](/nservicebus/endpoints/specify-endpoint-name.md) with all periods (`.`) replaced with underscores (`_`).
 
 A Table Prefix is required at runtime and install time.
 

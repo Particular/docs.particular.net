@@ -29,9 +29,9 @@ The RabbitMQ transport requires a connection string to connect to the broker. Se
 
 ### Advantages
 
- * RabbitMQ provides native reliability and high-availability features.
- * Offers native Publish-Subcribe mechanism, therefore it doesn't require NServiceBus persistence for storing event subscriptions.
- * Wide range of supported clients allows for integrating the system with applications written in other languages using native RabbitMQ features.
+ * RabbitMQ provides [native reliability](https://www.rabbitmq.com/reliability.html) and [high-availability](https://www.rabbitmq.com/ha.html) features.
+ * Offers native Publish-Subscribe mechanism, therefore it doesn't require NServiceBus persistence for storing event subscriptions.
+ * Wide range of [supported clients](https://www.rabbitmq.com/devtools.html) allows for integrating the system with applications written in other languages using native RabbitMQ features.
  * Supports [Competing consumers](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html) pattern out of the box. Messages are received by instances in a round-robin fashion without additional configuration.
 
 
@@ -39,5 +39,5 @@ The RabbitMQ transport requires a connection string to connect to the broker. Se
 
  * Doesn't handle [network partitions](https://www.rabbitmq.com/partitions.html) well, partitioning across a WAN requires using dedicated features.
  * Requires careful consideration with regards to duplicate messages, e.g. using the [Outbox](/nservicebus/outbox/) feature or making all endpoints idempotent.
- * Many organizations don't have the same level of expertise with RabbitMQ as for example with SQL Server, so it might require additional training.
- * Might require covering additional costs of commercial RabbitMQ license and support.
+ * Many organizations don't have the same level of expertise with RabbitMQ, as for example with SQL Server, so it may require additional training.
+ * Might require covering additional costs of [commercial RabbitMQ license and support](https://www.rabbitmq.com/services.html).

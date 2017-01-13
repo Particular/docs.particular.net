@@ -1,7 +1,7 @@
 ---
 title: Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against RabbitMQ.
-reviewed: 2016-08-31
+reviewed: 2017-01-13
 component: Rabbit
 ---
 
@@ -9,7 +9,7 @@ Example code and scripts to facilitate deployment and operational actions agains
 
 These samples use the [RabbitMQ.Client NuGet Package](https://www.nuget.org/packages/RabbitMQ.Client/).
 
-Since RabbitMQ.Client is not [CLS Compliant](https://msdn.microsoft.com/en-us/library/system.clscompliantattribute.aspx) it is not possible to run this code within PowerShell.
+Since the RabbitMQ.Client is not [CLS Compliant](https://msdn.microsoft.com/en-us/library/system.clscompliantattribute.aspx) it is not possible to run this code within PowerShell.
 
 
 ## Native Send

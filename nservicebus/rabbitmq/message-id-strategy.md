@@ -1,7 +1,7 @@
 ---
 title: Message Id strategy
 summary: Controlling the message Id strategy.
-reviewed: 2016-08-30
+reviewed: 2017-01-13
 component: rabbit
 versions: '[2,]'
 related:
@@ -9,7 +9,7 @@ related:
 ---
 
 
-By default, the `message-id` property of the AMQP standard is used to relay the [message identity](/nservicebus/messaging/message-identity.md). If this header isn't set, the transport will throw an exception because NServiceBus needs a message identity to perform retries, de-duplication, etc., in a safe way. For integration scenarios where the sender is not controlled, consider using a custom scheme that extracts a message identity from a custom header or some data contained in the actual message body. This custom strategy can be configured by calling:
+By default, the `message-id` property of the AMQP standard is used to relay the [message identity](/nservicebus/messaging/message-identity.md). If this header isn't set, the transport will throw an exception because NServiceBus requires a message identity to perform retries, de-duplication, etc., in a safe way. For integration scenarios where the sender is not controlled, consider using a custom scheme that extracts a message identity from a custom header or some data contained in the actual message body. This custom strategy can be configured by calling:
 
 snippet:rabbitmq-config-custom-id-strategy
 
