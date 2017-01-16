@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus.Gateway": "2.0.*",
+    "NServiceBus.Gateway": "2.*",
     "NServiceBus.Testing": "6.*",
     "NUnit": "3.*"
   },

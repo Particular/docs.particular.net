@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus.Transports.Kafka": "0.2.0"
+    "NServiceBus.Transports.Kafka": "0.*"
   },
   "frameworks": {
     "net452": {}

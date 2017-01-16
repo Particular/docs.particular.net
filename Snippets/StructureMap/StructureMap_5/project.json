@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus.StructureMap": "5.1.0"
+    "NServiceBus.StructureMap": "5.*"
   },
   "frameworks": {
     "net461": {}

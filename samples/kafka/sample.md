@@ -10,7 +10,7 @@ related:
 
 ## Prerequisites
 
-Ensure an instance of Kafka is installed and accessible in '127.0.0.1:9092'. 
+Ensure an instance of Kafka is installed and accessible in '127.0.0.1:9092'.
 
 Useful links:
 

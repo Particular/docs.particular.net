@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "4.7.*",
+    "NServiceBus": "4.*",
     "NServiceBus.Unity": "4.*"
   },
   "frameworks": {
