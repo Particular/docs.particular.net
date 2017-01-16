@@ -10,7 +10,8 @@ using NServiceBus;
 
 #region Header
 
-#if NEW
+//SERVER_NEW is defined in Server.New project settings
+#if SERVER_NEW
 [NServiceBus.Persistence.Sql.SqlSaga(correlationProperty: "SomeId")]
 #endif
 
@@ -19,7 +20,7 @@ public class TestSaga :
         IHandleMessages<ReplyFollowUpMessage>,
         IHandleMessages<CorrelatedMessage>,
         IHandleTimeouts<TestTimeout>,
-#if MIGRATION && !NEW
+#if MIGRATION && !SERVER_NEW
     IHandleMessages<StartingMessage>,
     IAmStartedByMessages<DummyMessage>
 #else
@@ -29,7 +30,8 @@ public class TestSaga :
     #endregion
 
 {
-#if MIGRATION && !NEW
+#if MIGRATION && !SERVER_NEW
+    //Required to satisfy NServiceBus validation
     public Task Handle(DummyMessage message, IMessageHandlerContext context)
     {
         throw new Exception("Dummy");
@@ -44,7 +46,7 @@ public class TestSaga :
             .ToSaga(s => s.SomeId);
         mapper.ConfigureMapping<CorrelatedMessage>(m => m.SomeId)
             .ToSaga(s => s.SomeId);
-#if MIGRATION && !NEW
+#if MIGRATION && !SERVER_NEW
         mapper.ConfigureMapping<DummyMessage>(m => m.SomeId).ToSaga(s => s.SomeId);
 #endif
 

@@ -21,11 +21,11 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("Type 'start <SagaId>' or 'ping <SagaId>'.");
+            Console.WriteLine("Type 'start <SagaId>', 'complete <SagaId>' or hit enter to exit.");
             var line = Console.ReadLine();
-            if (line == null)
+            if (string.IsNullOrEmpty(line))
             {
-                continue;
+                break;
             }
             var parts = line.Split(' ');
             if (parts.Length != 2)
@@ -43,7 +43,7 @@ class Program
                     .ConfigureAwait(false);
                 Console.WriteLine($"Sent a starting message to {sagaId}");
             }
-            else if (string.Equals(parts[0], "ping", StringComparison.OrdinalIgnoreCase))
+            else if (string.Equals(parts[0], "complete", StringComparison.OrdinalIgnoreCase))
             {
                 var correlatedMessage = new CorrelatedMessage
                 {

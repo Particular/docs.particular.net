@@ -24,27 +24,26 @@ related:
 ## Running the project
 
  1. Start the solution
- 1. Wait until `Type 'start <SagaId>' or 'ping <SagaId>'` is shown in the "Client" console window.
+ 1. Wait until `Type 'start <SagaId>' or 'complete <SagaId>'` is shown in the "Client" console window.
  1. Start a couple of sagas with easy to remember IDs (e.g. `start 1`, `start 2` and `start 3`)
  1. Verify sagas are started by running `SELECT * FROM [nservicebus].[dbo].[TestSaga]`
  1. Verify that the messages were handled by "Server" endpoint.
- 1. Ping one of the sagas (e.g. `ping 1`). Observe the message flow. It can take up to 10 seconds to complete as the flow involves a saga timeout. The result should be completion of a saga (verify by checking that a corresponding row is removed from the saga table by running again the previous query)
+ 1. Complete one of the sagas (e.g. `complete 1`). Observe the message flow. It can take up to 10 seconds to complete as the flow involves a saga timeout. The result should be completion of a saga (verify by checking that a corresponding row is removed from the saga table by running again the previous query)
  1. Stop the solution
  1. Uncomment the `#define MIGRATION` line in `TestSaga.cs`
  1. Start the solution
- 1. Start and ping some new sagas (e.g. `start A`, `start B` and `start C`)
+ 1. Start and complete some new sagas (e.g. `start A`, `start B` and `start C`)
  1. Verify sagas are started by running `SELECT * FROM [nservicebus].[dbo].[NewTestSaga]`
  1. Verify that the messages were handled by "Server.New" endpoint.
  1. Notice that "Server" console shows information indicating that the not-found handler has been used
- 1. Ping the previously created sagas (`ping 2` or `ping 3`) to drain the saga store
+ 1. Complete the previously created sagas (`complete 2` or `complete 3`) to drain the saga store
  1. Verify the messages are handled by the old "Server" endpoint, not the "Server.New"
- 1. Ping one of the new sagas (e.g. `ping A`) to verify it is handled properly "Server.New"
- 1. Notice that the timeout message that completes the saga does not go through "Server". The destination as stored in the timeout store is set to "Server.New"
- 1. Ping another saga (e.g. `ping B`) and stop the solution as soon as `Got a follow-up message.` is shown in the console
+ 1. Complete one of the new sagas (e.g. `complete A`) to verify it is handled properly by "Server.New"
+ 1. Complete another saga (e.g. `complete B`) and stop the solution as soon as `Got a follow-up message.` is shown in the console
  1. Run `SELECT [Destination], [SagaId] FROM [nservicebus].[dbo].[NewTimeoutData]` to verify the timeout is stored in the database and the destination is the "Server.New" queue
  1. Uncomment the `#define POST_MIGRATION` in `Program.cs` of "Server.New". This changes the input queue of "Server.New" back to the well-known `Samples.SagaMigration.Server` and enables an additional receiver that drains the temporary queue. 
  1. Start only the "Server.New" project by right-clicking the project in Solution Explorer and selecting "Debug -> Start new instance"
- 1. Notice "Server.New" prints `Moving message from Samples.SagaMigration.Server.New@<machine> to Samples.SagaMigration.Server@<machine>` and then `Got timeout. Completing.` which means the timeout has been successfully redirected from the temporary queue.
+ 1. Notice "Server.New" prints `Moving message from Samples.SagaMigration.Server.New@<machine> to Samples.SagaMigration.Server@<machine>` and then `Got timeout. Completing.` which means the timeout has been successfully redirected from the temporary queue. This happens only if there were outstanding timeout messages present when new version of the endpoint replaced the old one.
 
 
 ## Code walk-through
@@ -63,13 +62,13 @@ The sample shows how to gradually migrate from one saga persister to another wit
 
 The message flow is designed to demonstrate the correctness of migration logic:
  * The `StartingMessage` (sent via `start` command) starts the saga and assigns the correlation property.
- * The `CorrelatedMessage` (sent via `ping` command) contains the correlation property value of an already started saga. Handling of this message results in sending back a `ReplyMessage`
+ * The `CorrelatedMessage` (sent via `complete` command) contains the correlation property value of an already started saga. Handling of this message results in sending back a `ReplyMessage`
  * The `ReplyMessage` sent by the saga contains the saga ID header containing the storage ID (not the correlation property) of the saga instance that sent it
  * The `ReplyFollowUpMessage` send as a response to `ReplyMessage` contains the mentioned saga ID header by which the target saga is being looked up
 
 snippet:Handlers
 
-To summarise, sagas can be either looked up by their correlation property value or the storage ID.
+To summarize, sagas can be either looked up by their correlation property value or the storage ID.
 
 
 ### How it works
