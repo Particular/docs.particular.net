@@ -148,5 +148,5 @@ Sagas of type {sagaType.Name} with the following identifiers '<comma separated l
 
 When this happens the involved messages will be sent to the error queue. There are two ways to re-queue these messages.
 
- * If ServiceControl and ServicePulse are running then follow the instructions for [Failed Message Retry using ServicePulse](/servicepulse/intro-failed-messages.md#failed-message-retry) to requeue the messages.
+ * If ServiceControl and ServicePulse are running then follow the instructions for [Failed Message Retry using ServicePulse](/servicepulse/intro-failed-message-retries.md) to requeue the messages.
  * To re-queue messages without ServicePulse and/or ServiceControl in place the messages will need to be manually moved from the error queue to the appropriate processing queue. The way this is done will vary depending on which transport is being used.
