@@ -29,6 +29,38 @@ Import-Module "C:\Program Files (x86)\Particular Software\ServiceControl Managem
 ```
 
 
+### Help
+
+List all ServiceControl Management commands:
+
+```ps
+SC-help
+```
+
+Provide information about syntax, available parameteres and aliases:
+```ps
+get-help [ServiceControl Management command]
+```
+for example:
+
+```ps
+get-help sc-add
+```
+
+Provide detailed information about parameters, including their type, description and whether they are required:
+
+```ps
+get-help [ServiceControl Management command] -parameter *
+```
+for example:
+
+```ps
+get-help sc-add -parameter *
+```
+
+For more information refer to the [Using Cmdlet Parameters](https://technet.microsoft.com/en-us/library/dd745032(v=vs.85).aspx) article on MSDN.
+
+
 ## Cmdlets and Aliases
 
 The following cmdlets and aliases are provided by the ServiceControl Management PowerShell module.
