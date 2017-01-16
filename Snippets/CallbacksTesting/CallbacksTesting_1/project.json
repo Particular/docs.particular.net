@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus.Callbacks.Testing": "1.1.0-rc0001",
+    "NServiceBus.Callbacks.Testing": "1.1.0",
     "NServiceBus.Testing": "6.*"
   },
   "frameworks": {
