@@ -58,7 +58,7 @@ for example:
 get-help sc-add -parameter *
 ```
 
-For more information refer to the [Using Cmdlet Parameters](https://technet.microsoft.com/en-us/library/dd745032(v=vs.85).aspx) article on MSDN.
+For more information refer to the [Using Cmdlet Parameters](https://technet.microsoft.com/en-us/library/dd745032.aspx) article on MSDN.
 
 
 ## Cmdlets and Aliases
