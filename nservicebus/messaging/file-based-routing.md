@@ -19,7 +19,7 @@ NOTE: Centralized file-based routing is an experimental project hosted on [Parti
 
 ## Concept 
 
-An alternative approach to configure message routing information and event subscribers via XML file. The routing file can be configured once and then shared across all endpoints for easier routing and publish/subscribe management.
+Centralized file-based routing is an alternative approach to configure message routing information and event subscribers via an XML file. The routing file can be configured once and then shared across all endpoints for easier routing and publish/subscribe management.
 
 
 ## Configuration
