@@ -23,7 +23,7 @@ This behavior can be set through ServiceControl Management.
 The forwarding queues retain a copy of the original messages ingested by ServiceControl.
 The queues are not directly managed by ServiceControl and are meant as points of external integration.
 
-Note: If external integration is not required, it is highly recommend turning forwarding queues off.
+Note: If external integration is not required, it is highly recommend to turn forwarding queues off. Otherwise, messages will accumulate unprocessed in the forwarding queue until eventually all available disk space is consumed.
 
 
 ### Test Error and Audit Forwarding Queues on startup
