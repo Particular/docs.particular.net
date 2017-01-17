@@ -77,7 +77,7 @@ Json serialized saga data
 
 #### PersistenceVersion
 
-The Assembly version of the SQL Persister
+The Assembly version of the SQL Persister.
 
 
 #### SagaTypeVersion
@@ -121,3 +121,10 @@ snippet: SqlPersistenceSagaWithCorrelation
 During the migration from one correlation id to another correlation id there may be two correlation is that coexist. See also [Transitioning Correlation ids Sample](/samples/sql-persistence/transitioning-correlation-ids).
 
 snippet: SqlPersistenceSagaWithCorrelationAndTransitional
+
+
+### Correlation Types
+
+Each correlation property type has an equivalent sql data type.
+
+include: correlationpropertytypes
