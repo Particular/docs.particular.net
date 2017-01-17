@@ -66,6 +66,7 @@ class Program
         }
         finally
         {
+            await endpointInstance.Unsubscribe<BaseEvent>().ConfigureAwait(false);
             await endpointInstance.Stop()
                 .ConfigureAwait(false);
         }
