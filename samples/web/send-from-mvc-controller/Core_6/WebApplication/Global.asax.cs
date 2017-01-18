@@ -17,7 +17,6 @@ public class MvcApplication :
 
         var builder = new ContainerBuilder();
 
-
         // Set the dependency resolver to be Autofac.
         var container = builder.Build();
 
