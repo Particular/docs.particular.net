@@ -5,6 +5,7 @@ tags:
  - Persistence
 related:
  - samples/sql-persistence
+ - samples/saga/migration
 reviewed: 2016-11-29
 ---
 
