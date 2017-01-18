@@ -13,11 +13,12 @@ class Program
     {
         Console.Title = "Samples.SagaMigration.Client";
 
-        var config = new EndpointConfiguration("Samples.SagaMigration.Client");
-        config.UsePersistence<InMemoryPersistence>();
-        config.SendFailedMessagesTo("error");
+        var endpointConfiguration = new EndpointConfiguration("Samples.SagaMigration.Client");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
+        var endpoint = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         while (true)
         {

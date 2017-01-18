@@ -42,7 +42,8 @@ class Program
         Console.WriteLine("Press <enter> to exit.");
         Console.ReadLine();
 
-        await endpoint.Stop().ConfigureAwait(false);
+        await endpoint.Stop()
+            .ConfigureAwait(false);
     }
 }
 
@@ -60,7 +61,8 @@ public class DrainTempQueueSatelliteFeature :
         #region DrainTempQueueSatellite
 
         var settings = context.Settings;
-        var qualifiedAddress = settings.LogicalAddress().CreateQualifiedAddress("New");
+        var qualifiedAddress = settings.LogicalAddress()
+            .CreateQualifiedAddress("New");
         var tempQueue = settings.GetTransportAddress(qualifiedAddress);
         var mainQueue = settings.LocalAddress();
 
