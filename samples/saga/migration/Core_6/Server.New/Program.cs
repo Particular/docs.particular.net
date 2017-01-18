@@ -30,9 +30,9 @@ class Program
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
-        {
-            return new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;");
-        });
+            {
+                return new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;");
+            });
         persistence.TablePrefix("New");
         endpointConfiguration.SendFailedMessagesTo("error");
 

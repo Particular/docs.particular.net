@@ -27,13 +27,13 @@ class Program
             {
                 break;
             }
-            var parts = line.Split(' ');
+            var parts = line.ToLowerInvariant().Split(' ');
             if (parts.Length != 2)
             {
                 continue;
             }
             var sagaId = parts[1];
-            if (string.Equals(parts[0], "start", StringComparison.OrdinalIgnoreCase))
+            if (parts[0] == "start")
             {
                 var startingMessage = new StartingMessage
                 {
@@ -43,7 +43,7 @@ class Program
                     .ConfigureAwait(false);
                 Console.WriteLine($"Sent a starting message to {sagaId}");
             }
-            else if (string.Equals(parts[0], "complete", StringComparison.OrdinalIgnoreCase))
+            else if (parts[0] == "complete")
             {
                 var correlatedMessage = new CorrelatedMessage
                 {

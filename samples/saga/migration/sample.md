@@ -103,7 +103,7 @@ snippet:Mappings
 
 When there are no sagas left in the old persistence, the old version of the endpoint can be decommissioned. In order to not lose any messages, the new version has to include, for a certain period of time, a redirection satellite that receives any remaining messages from the temporary queue and moves it to the regular queue.
 
-snippet:DrainTempQueueSatellite 
+snippet:DrainTempQueueSatellite
 
 
 #### Decommissioning the old endpoint
@@ -111,8 +111,7 @@ snippet:DrainTempQueueSatellite
 Once all the sagas stored in the old persister are complete, the old endpoint can be decommissioned.
 
  1. Ensure the saga table is empty by running a command similar to `SELECT * FROM [nservicebus].[dbo].[TestSaga]`
- 2. Stop the old endpoint ("Server")
- 3. Update the binaries and/or config of the old endpoint with the binaries and config of the new endpoint. Enable the redirection of the temporary queue.
- 4. Start the endpoint
- 5. The redirection of temporary queue can be removed when there are no timeout messages for the temporary queue (e.g. by running a query like `SELECT [Destination], [SagaId] FROM [nservicebus].[dbo].[NewTimeoutData] WHERE [Destination] = <address of temp queue>`
-  
+ 1. Stop the old endpoint ("Server")
+ 1. Update the binaries and/or config of the old endpoint with the binaries and config of the new endpoint. Enable the redirection of the temporary queue.
+ 1. Start the endpoint
+ 1. The redirection of temporary queue can be removed when there are no timeout messages for the temporary queue (e.g. by running a query like `SELECT [Destination], [SagaId] FROM [nservicebus].[dbo].[NewTimeoutData] WHERE [Destination] = <address of temp queue>`

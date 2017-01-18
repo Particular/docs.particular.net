@@ -47,7 +47,8 @@ public class TestSaga :
         mapper.ConfigureMapping<CorrelatedMessage>(m => m.SomeId)
             .ToSaga(s => s.SomeId);
 #if MIGRATION && !SERVER_NEW
-        mapper.ConfigureMapping<DummyMessage>(m => m.SomeId).ToSaga(s => s.SomeId);
+        mapper.ConfigureMapping<DummyMessage>(m => m.SomeId)
+            .ToSaga(s => s.SomeId);
 #endif
 
         #endregion
