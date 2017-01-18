@@ -9,9 +9,11 @@ void Main()
 	var nuget = Path.Combine(toolsDiretory, "nuget.exe");
 	var packagesDirectory = Path.Combine(docsDirectory, "packages");
 	var samplesDirectory = Path.Combine(docsDirectory, "samples");
+	var tutorialsDirectory = Path.Combine(docsDirectory, "tutorials");
 	var nugetConfigFile = Path.Combine(docsDirectory, "nuget.config");
 
-	var solutionFiles = Directory.EnumerateFiles(samplesDirectory, "*.sln", SearchOption.AllDirectories);
+	var solutionFiles = Directory.EnumerateFiles(samplesDirectory, "*.sln", SearchOption.AllDirectories).ToList();
+	solutionFiles.AddRange(Directory.EnumerateFiles(tutorialsDirectory, "*.sln", SearchOption.AllDirectories))
 
 	Directory.SetCurrentDirectory(docsDirectory);
 

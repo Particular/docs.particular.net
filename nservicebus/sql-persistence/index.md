@@ -44,7 +44,7 @@ The following settings are required for [MySql connections string](https://dev.m
 
 SQL installation scripts are created at compile time by the `NServiceBus.Persistence.Sql.MsBuild` NuGet package.
 
-Scripts will be created in the directory format of `[CurrentProjectDebugDir]\NServiceBus.Persistence.Sql\[SqlVarient]`.
+Scripts will be created in the directory format of `[CurrentProjectDebugDir]\NServiceBus.Persistence.Sql\[SqlVariant]`.
 
 For example for a project named `ClassLibrary` build in Debug mode the following directories will be created.
 
