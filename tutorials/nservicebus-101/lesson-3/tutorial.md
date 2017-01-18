@@ -78,9 +78,9 @@ First, let's create the project for our new endpoint.
 
  1. Create a new **Console Application** project named **Sales**.
  1. In the **Sales** project, add the NServiceBus NuGet package:
-   ```no-highlight
-   Install-Package NServiceBus -ProjectName Sales
-   ```
+      ```no-highlight
+      Install-Package NServiceBus -ProjectName Sales
+      ```
  1. In the **Sales** project, add a reference to the **Messages** project, so that we have access to the `PlaceOrder` message.
 
 Now that we have a project for our Sales endpoint, we need to add similar code to configure and start an NServiceBus endpoint:
