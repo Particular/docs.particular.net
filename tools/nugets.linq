@@ -13,7 +13,7 @@ void Main()
 	var nugetConfigFile = Path.Combine(docsDirectory, "nuget.config");
 
 	var solutionFiles = Directory.EnumerateFiles(samplesDirectory, "*.sln", SearchOption.AllDirectories).ToList();
-	solutionFiles.AddRange(Directory.EnumerateFiles(tutorialsDirectory, "*.sln", SearchOption.AllDirectories))
+	solutionFiles.AddRange(Directory.EnumerateFiles(tutorialsDirectory, "*.sln", SearchOption.AllDirectories));
 
 	Directory.SetCurrentDirectory(docsDirectory);
 
