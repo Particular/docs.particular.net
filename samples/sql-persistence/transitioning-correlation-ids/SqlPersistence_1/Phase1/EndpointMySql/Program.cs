@@ -32,7 +32,7 @@ partial class Program
             throw new Exception("Could not extra 'MySqlUserName' from Environment variables.");
         }
         var connection = $"server=localhost;user={username};database=sqlpersistencesample;port=3306;password={password};AllowUserVariables=True;AutoEnlist=false";
-        persistence.SqlVarient(SqlVarient.MySql);
+        persistence.SqlVariant(SqlVariant.MySql);
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {

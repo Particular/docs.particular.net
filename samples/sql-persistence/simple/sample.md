@@ -58,7 +58,7 @@ Note that only `ServerShared` has the [NServiceBus.Persistence.Sql.MsBuild NuGet
 
 These scripts will then be copied to the output of both `EndpointMySql` and `EndpointSqlServer` and executed at startup. 
 
-The endpoints know which scripts to execute via the use of the `persistence.SqlVarient();` API usage at configuration time.
+The endpoints know which scripts to execute via the use of the `persistence.SqlVariant();` API usage at configuration time.
 
 
 ### Persistence Config

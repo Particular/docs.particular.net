@@ -20,7 +20,7 @@ class Usage
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 
         var connection = @"Data Source=.\SQLEXPRESS;Initial Catalog=sqlpersistencesample;Integrated Security=True";
-        persistence.SqlVarient(SqlVarient.MsSqlServer);
+        persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
@@ -63,7 +63,7 @@ class Usage
 
         var connection = "server=localhost;user=root;database=sqlpersistencesample;port=3306;password=Password1;AllowUserVariables=True;AutoEnlist=false";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.SqlVarient(SqlVarient.MySql);
+        persistence.SqlVariant(SqlVariant.MySql);
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {

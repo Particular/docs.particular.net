@@ -15,16 +15,16 @@ public class ScriptWriter
     public void Write()
     {
         var directory = Path.Combine(TestContext.CurrentContext.TestDirectory, "../../");
-        foreach (var varient in Enum.GetValues(typeof(BuildSqlVarient)).Cast<BuildSqlVarient>())
+        foreach (var variant in Enum.GetValues(typeof(BuildSqlVariant)).Cast<BuildSqlVariant>())
         {
-            Write(directory, varient, "TimeoutCreate", TimeoutScriptBuilder.BuildCreateScript(varient));
-            Write(directory, varient, "TimeoutDrop", TimeoutScriptBuilder.BuildDropScript(varient));
+            Write(directory, variant, "TimeoutCreate", TimeoutScriptBuilder.BuildCreateScript(variant));
+            Write(directory, variant, "TimeoutDrop", TimeoutScriptBuilder.BuildDropScript(variant));
 
-            Write(directory, varient, "OutboxCreate", OutboxScriptBuilder.BuildCreateScript(varient));
-            Write(directory, varient, "OutboxDrop", OutboxScriptBuilder.BuildDropScript(varient));
+            Write(directory, variant, "OutboxCreate", OutboxScriptBuilder.BuildCreateScript(variant));
+            Write(directory, variant, "OutboxDrop", OutboxScriptBuilder.BuildDropScript(variant));
 
-            Write(directory, varient, "SubscriptionCreate", SubscriptionScriptBuilder.BuildCreateScript(varient));
-            Write(directory, varient, "SubscriptionDrop", SubscriptionScriptBuilder.BuildDropScript(varient));
+            Write(directory, variant, "SubscriptionCreate", SubscriptionScriptBuilder.BuildCreateScript(variant));
+            Write(directory, variant, "SubscriptionDrop", SubscriptionScriptBuilder.BuildDropScript(variant));
 
             var sagaDefinition = new SagaDefinition(
                 tableSuffix: "OrderSaga",
@@ -35,39 +35,39 @@ public class ScriptWriter
                 transitionalCorrelationProperty: new CorrelationProperty(
                     name: "OrderId",
                     type: CorrelationPropertyType.Guid));
-            Write(directory, varient, "SagaCreate", SagaScriptBuilder.BuildCreateScript(sagaDefinition, varient));
-            Write(directory, varient, "SagaDrop", SagaScriptBuilder.BuildDropScript(sagaDefinition, varient));
+            Write(directory, variant, "SagaCreate", SagaScriptBuilder.BuildCreateScript(sagaDefinition, variant));
+            Write(directory, variant, "SagaDrop", SagaScriptBuilder.BuildDropScript(sagaDefinition, variant));
         }
-        foreach (var varient in Enum.GetValues(typeof(SqlVarient)).Cast<SqlVarient>())
+        foreach (var variant in Enum.GetValues(typeof(SqlVariant)).Cast<SqlVariant>())
         {
-            var timeoutCommands = TimeoutCommandBuilder.Build(sqlVarient: varient, tablePrefix: "EndpointName");
-            Write(directory, varient, "TimeoutAdd", timeoutCommands.Add);
-            Write(directory, varient, "TimeoutNext", timeoutCommands.Next);
-            Write(directory, varient, "TimeoutRange", timeoutCommands.Range);
-            Write(directory, varient, "TimeoutRemoveById", timeoutCommands.RemoveById);
-            Write(directory, varient, "TimeoutRemoveBySagaId", timeoutCommands.RemoveBySagaId);
-            Write(directory, varient, "TimeoutPeek", timeoutCommands.Peek);
+            var timeoutCommands = TimeoutCommandBuilder.Build(sqlVariant: variant, tablePrefix: "EndpointName");
+            Write(directory, variant, "TimeoutAdd", timeoutCommands.Add);
+            Write(directory, variant, "TimeoutNext", timeoutCommands.Next);
+            Write(directory, variant, "TimeoutRange", timeoutCommands.Range);
+            Write(directory, variant, "TimeoutRemoveById", timeoutCommands.RemoveById);
+            Write(directory, variant, "TimeoutRemoveBySagaId", timeoutCommands.RemoveBySagaId);
+            Write(directory, variant, "TimeoutPeek", timeoutCommands.Peek);
 
-            var outboxCommands = OutboxCommandBuilder.Build(varient, "EndpointName");
-            Write(directory, varient, "OutboxCleanup", outboxCommands.Cleanup);
-            Write(directory, varient, "OutboxGet", outboxCommands.Get);
-            Write(directory, varient, "OutboxSetAsDispatched", outboxCommands.SetAsDispatched);
-            Write(directory, varient, "OutboxStore", outboxCommands.Store);
+            var outboxCommands = OutboxCommandBuilder.Build(variant, "EndpointName");
+            Write(directory, variant, "OutboxCleanup", outboxCommands.Cleanup);
+            Write(directory, variant, "OutboxGet", outboxCommands.Get);
+            Write(directory, variant, "OutboxSetAsDispatched", outboxCommands.SetAsDispatched);
+            Write(directory, variant, "OutboxStore", outboxCommands.Store);
 
-            var subscriptionCommands = SubscriptionCommandBuilder.Build(varient, "EndpointName");
-            Write(directory, varient, "SubscriptionSubscribe", subscriptionCommands.Subscribe);
-            Write(directory, varient, "SubscriptionUnsubscribe", subscriptionCommands.Unsubscribe);
-            Write(directory, varient, "SubscriptionGetSubscribers", subscriptionCommands.GetSubscribers(new List<MessageType>
+            var subscriptionCommands = SubscriptionCommandBuilder.Build(variant, "EndpointName");
+            Write(directory, variant, "SubscriptionSubscribe", subscriptionCommands.Subscribe);
+            Write(directory, variant, "SubscriptionUnsubscribe", subscriptionCommands.Unsubscribe);
+            Write(directory, variant, "SubscriptionGetSubscribers", subscriptionCommands.GetSubscribers(new List<MessageType>
             {
                 new MessageType("MessageTypeName", new Version())
             }));
 
-            var sagaCommandBuilder = new SagaCommandBuilder(varient, "EndpointName");
-            Write(directory, varient, "SagaComplete", sagaCommandBuilder.BuildCompleteCommand("SagaName"));
-            Write(directory, varient, "SagadGetByProperty", sagaCommandBuilder.BuildGetByPropertyCommand("SagaName", "PropertyName"));
-            Write(directory, varient, "SagaGetBySagaId", sagaCommandBuilder.BuildGetBySagaIdCommand("SagaName"));
-            Write(directory, varient, "SagaSave", sagaCommandBuilder.BuildSaveCommand("SagaName", "CorrelationPproperty", "TransitionalCorrelationPproperty"));
-            Write(directory, varient, "SagaUpdate", sagaCommandBuilder.BuildUpdateCommand("SagaName", "TransitionalCorrelationPproperty"));
+            var sagaCommandBuilder = new SagaCommandBuilder(variant, "EndpointName");
+            Write(directory, variant, "SagaComplete", sagaCommandBuilder.BuildCompleteCommand("SagaName"));
+            Write(directory, variant, "SagadGetByProperty", sagaCommandBuilder.BuildGetByPropertyCommand("SagaName", "PropertyName"));
+            Write(directory, variant, "SagaGetBySagaId", sagaCommandBuilder.BuildGetBySagaIdCommand("SagaName"));
+            Write(directory, variant, "SagaSave", sagaCommandBuilder.BuildSaveCommand("SagaName", "CorrelationPproperty", "TransitionalCorrelationPproperty"));
+            Write(directory, variant, "SagaUpdate", sagaCommandBuilder.BuildUpdateCommand("SagaName", "TransitionalCorrelationPproperty"));
         }
     }
 
@@ -93,24 +93,24 @@ public class ScriptWriter
         }
     }
 
-    static void Write(string testDirectory, BuildSqlVarient varient, string suffix, string script)
+    static void Write(string testDirectory, BuildSqlVariant variant, string suffix, string script)
     {
-        Write(testDirectory, suffix, script, varient.ToString());
+        Write(testDirectory, suffix, script, variant.ToString());
     }
 
-    static void Write(string testDirectory, SqlVarient varient, string suffix, string script)
+    static void Write(string testDirectory, SqlVariant variant, string suffix, string script)
     {
-        Write(testDirectory, suffix, script, varient.ToString());
+        Write(testDirectory, suffix, script, variant.ToString());
     }
 
-    static void Write(string testDirectory, string suffix, string script, string varientAsString)
+    static void Write(string testDirectory, string suffix, string script, string variantAsString)
     {
-        var path = Path.Combine(testDirectory, $"{varientAsString}_{suffix}.sql");
+        var path = Path.Combine(testDirectory, $"{variantAsString}_{suffix}.sql");
         File.Delete(path);
         using (var writer = File.CreateText(path))
         {
-            Trace.WriteLine($"{varientAsString}_{suffix}Sql");
-            writer.WriteLine($@"startcode	{varientAsString}_{suffix}Sql".Replace("\t", " "));
+            Trace.WriteLine($"{variantAsString}_{suffix}Sql");
+            writer.WriteLine($@"startcode	{variantAsString}_{suffix}Sql".Replace("\t", " "));
             writer.WriteLine(script);
             writer.WriteLine("endcode");
         }
