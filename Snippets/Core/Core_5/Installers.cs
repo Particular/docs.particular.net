@@ -1,6 +1,7 @@
 ﻿namespace Core5
 {
     using System;
+    using System.Linq;
     using NServiceBus;
 
     class ForInstallationOnReplacement
@@ -26,7 +27,7 @@
 
         public static void Main(string[] args)
         {
-            var runInstallers = args.Length == 1 && args[0] == "/runInstallers";
+            var runInstallers = args.Any(x => x.ToLower() == "/runInstallers");
 
             if (runInstallers)
             {

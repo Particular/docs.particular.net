@@ -1,7 +1,7 @@
 ---
 title: Installers
 summary: Installers ensure endpoint specific artifacts are installed and configured during endpoint startup.
-reviewed: 2016-12-09
+reviewed: 2017-01-19
 component: core
 tags:
  - Installation
@@ -21,7 +21,7 @@ Installers can be enabled to run at startup:
 
 snippet:Installers
 
-Installers might need to be run depending on the arguments that are provided to the host or aspects the environment the endpoint is hosted in.
+Installers may need to be run depending on the arguments that are provided to the host or aspects the environment the endpoint is hosted in.
 
 For example Installers can be enabled based on the command line arguments provided:
 

@@ -1,6 +1,7 @@
 ﻿namespace Core4
 {
     using System;
+    using System.Linq;
     using NServiceBus;
     using NServiceBus.Installation.Environments;
 
@@ -30,7 +31,7 @@
 
         public static void Main(string[] args)
         {
-            var runInstallers = args.Length == 1 && args[0] == "/runInstallers";
+            var runInstallers = args.Any(x => x.ToLower() == "/runInstallers");
 
             var configUnicastBus = configure.UnicastBus();
             var startableBus = configUnicastBus.CreateBus();
