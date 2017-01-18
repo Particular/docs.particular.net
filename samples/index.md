@@ -59,9 +59,9 @@ Add-Type -AssemblyName System.Messaging
 foreach ($queue in [System.Messaging.MessageQueue]::GetPrivateQueuesByMachine("."))
 {
   if($queue.QueueName.StartsWith("private$\samples."))
-    {
-      [System.Messaging.MessageQueue]::Delete($queue.Path)
-    }
+  {
+    [System.Messaging.MessageQueue]::Delete($queue.Path)
+  }
 }
 ```
 
