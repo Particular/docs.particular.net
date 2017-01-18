@@ -674,11 +674,11 @@
 - Key: Mailer
   Name: NServiceBus Mailer
   DocoUrl: nservicebus/mailer
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Mailer/blob/master/license.txt
-  GitHubOwner: SimonCropp
+  LicenseUrl: https://github.com/HEskandari/NServiceBus.Mailer/blob/master/license.txt
+  GitHubOwner: HEskandari
   Category: Other
   SupportLevel: Community
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Mailer
+  ProjectUrl: https://github.com/HEskandari/NServiceBus.Mailer
   NugetOrder:
     - NServiceBus.Mailer
 
