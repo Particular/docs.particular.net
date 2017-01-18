@@ -10,34 +10,27 @@ related:
 - nservicebus/messaging/headers
 ---
 
-When an NServiceBus endpoint receives messages from external systems (such as BizTalk, TIBCO, etc) the message itself might not contain regular all information that NServiceBus provides. That information is necessary for proper serialization of the message, as well as better monitoring and troubleshooting experience.
-
-To get the best use of the tooling ensure that the following information is included in the message sent by the third party endpoints.
+NServiceBus endpints can receive messages from external systems (such as BizTalk, TIBCO, etc). To ensure those messages can be handled correctly by NServiceBus, additional information might be required which are otherwise provided by NServiceBus automatically.
 
 
 ## Required information
 
-In order for NServiceBus to deserialize a message coming from a third party system, the message needs to contain information to allow NServiceBus to map the message to a message type. Depending on the serializer used by the receiving endpoint that information might be either provided in the message body or in a NServiceBus specific header.
-
-Embedding type info in the message body is currently supported by the default XmlSerializer and also the Json.NET serializer. The [RabbitMQ](/samples/rabbitmq/native-integration/) and [SQL](/samples/sqltransport/native-integration/) native integration samples demonstrates this.
-
-If using a different serializer or if to avoid embedding type info in message bodies include the following header in message:
+In order for NServiceBus to deserialize a message coming from a third party system, the message needs to contain information to allow NServiceBus to map the message to a message type.
 
 Header key  | Value
 ------------- | -------------
 NServiceBus.EnclosedMessageTypes  | [FullName](https://msdn.microsoft.com/en-us/library/system.type.fullname) of the message type, e.g. `IntegrationSample.ProcessOrder`
 
-If set NServiceBus will instruct the serializer to deserialize the payload into the type specified.
+
+Depending on the serializer used by the receiving endpoint, that information might also be provided in other ways. Embedding type info in the message body is currently supported by the default XmlSerializer and also the Json.NET serializer. The [RabbitMQ](/samples/rabbitmq/native-integration/) and [SQL](/samples/sqltransport/native-integration/) native integration samples demonstrates this.
 
 
 ## Additional information
 
-For NServiceBus Version 4 and above adds better debugging experience in ServiceInsight by providing the following additional headers. This information is necessary for including the external message in the diagrams.
+To visualize messages from third party systems correctly within ServiceInsight, additional headers are necessary:
 
 Header key  | Value
 ------------- | -------------
-NServiceBus.ConversationId  | String value, used to tie in the whole message flow to get an accurate view in ServiceInsight, for example in a message flow or sequence diagrams. If not provided, then the external message won't be included in the conversation it started. ConversationId will be generated though for all the following messages sent using NServiceBus.
-NServiceBus.OriginatingEndpoint  | Name of the third party endpoint sending the message, for e.g. BizTalk.ProcessOrder
-NServiceBus.OriginatingMachine  | Server where the third party endpoint is located, for e.g. BizTalkServer
-
-The concept of conversation was introduced in NServiceBus Version 4, so it's not possible to include ConversationId header if using an earlier version. As a consequence, ServiceInsight won't be able to produce flow and sequence diagrams. However, it will display all the other information (messages list, message headers, body, etc.).
+NServiceBus.ConversationId  | Arbitrary string value (e.g. a `Guid` string), used to tie in the whole message flow to get an accurate view in message flow or sequence diagrams. If not provided, then the external message won't be included in the conversation it started. ConversationId will be generated though for all the following messages sent using NServiceBus.
+NServiceBus.OriginatingEndpoint  | Name of the third party endpoint sending the message, for e.g. *BizTalk.ProcessOrder*
+NServiceBus.OriginatingMachine  | Server where the third party endpoint is located, for e.g. *BizTalkServer*
