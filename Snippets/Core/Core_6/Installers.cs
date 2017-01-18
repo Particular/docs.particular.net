@@ -1,8 +1,8 @@
 ﻿namespace Core6
 {
+    using System;
     using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Support;
 
     class ForInstallationOnReplacement
     {
@@ -45,7 +45,7 @@
         {
             #region InstallersRunWhenNecessaryMachineNameConvention
 
-            if (!RuntimeEnvironment.MachineName.EndsWith("-PROD"))
+            if (!Environment.MachineName.EndsWith("-PROD"))
             {
                 endpointConfiguration.EnableInstallers();
             }
