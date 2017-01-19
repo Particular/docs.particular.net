@@ -6,6 +6,8 @@ tags:
 - Transport
 - Security
 reviewed: 2016-08-24
+component: ASB
+versions: '[7,)'
 related:
 - nservicebus/upgrades/asb-6to7
 redirects:
@@ -23,7 +25,7 @@ Versions 6 and below allows routing of messages across different namespaces by a
 
 In certain scenarios this could lead to insecure behavior and result in a leak of such connection strings, for example when messages are exchanged with untrusted parties (native outgoing integration, messages export, etc) or when body content is added to [log files](/nservicebus/logging/) which are then shared.
 
-To prevent this kind of accidental leaking, Versions 7 and above can map an alias to a namespace connection string. By default the connection strings are still passed around. To override the default behavior use the `UseNamespaceNamesInsteadOfConnectionStrings()` configuraion API setting.
+To prevent this kind of accidental leaking, Versions 7 and above can map an alias to a namespace connection string. By default the connection strings are still passed around. To override the default behavior use the `UseNamespaceNamesInsteadOfConnectionStrings()` configuration API setting.
 
 snippet: enable_use_namespace_alias_instead_of_connection_string
 
