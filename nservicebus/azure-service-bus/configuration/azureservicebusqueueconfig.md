@@ -1,6 +1,8 @@
 ---
 title: Queue Configuration Section
 summary: Configuring Azure Service Bus as transport
+component: ASB
+versions: '[5,6)'
 tags:
 - Azure
 - Cloud

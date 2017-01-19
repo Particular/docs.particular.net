@@ -30,6 +30,7 @@ To specify how the `BrokeredMessage` body is stored and retrieved, override the 
 
 partial: converter
 
+
 #### Outgoing message:
 
 snippet: ASB-outgoing-message-convention

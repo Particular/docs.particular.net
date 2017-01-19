@@ -1,6 +1,8 @@
 ---
 title: Transaction Support
 reviewed: 2016-04-20
+component: ASB
+versions: '[7,)'
 tags:
  - Azure
  - Cloud

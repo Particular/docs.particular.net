@@ -1,6 +1,7 @@
 ---
 title: Error Handling
 reviewed: 2016-09-14
+component: ASB
 tags:
 - Azure
 - Cloud

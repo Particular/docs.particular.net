@@ -1,6 +1,8 @@
 ---
 title: Message lock renewal
 summary: Extending message lock for long handler operation
+component: ASB
+versions: '[7,)'
 tags:
 - Cloud
 - Azure

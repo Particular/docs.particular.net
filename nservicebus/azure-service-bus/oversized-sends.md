@@ -1,6 +1,7 @@
 ---
 title: Oversized Sends
 reviewed: 2016-08-29
+component: ASB
 versions: '[7,)'
 tags:
 - Azure

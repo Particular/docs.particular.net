@@ -1,6 +1,7 @@
 ---
 title: Frequently Asked Questions
 reviewed: 2016-09-14
+component: ASB
 tags:
  - Cloud
  - Azure

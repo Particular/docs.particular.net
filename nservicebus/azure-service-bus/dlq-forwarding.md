@@ -1,5 +1,6 @@
 ---
 title: Dead Letter Queue Forwarding
+component: ASB
 versions: '[7,)'
 reviewed: 2016-08-29
 tags:

@@ -1,6 +1,8 @@
 ---
 title: Custom Token Provider
 summary: Configuring Azure Service Bus transport to use a custom token provider for authentication
+component: ASB
+versions: '[7,)'
 tags:
  - Cloud
  - Azure

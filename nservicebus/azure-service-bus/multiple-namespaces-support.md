@@ -2,6 +2,8 @@
 title: Multiple namespace support
 summary: Configuring Azure Service Bus transport to support different partitioning strategies and destination namespaces
 reviewed: 2016-07-05
+component: ASB
+versions: '[7,)'
 tags:
 - Cloud
 - Azure

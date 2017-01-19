@@ -1,6 +1,8 @@
 ---
 title: Topologies
 reviewed: 2016-10-26
+component: ASB
+versions: '[7,)'
 tags:
  - Azure
  - Cloud
