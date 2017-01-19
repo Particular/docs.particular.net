@@ -29,8 +29,3 @@ snippet:ConfigureSerilog
 ### Pass that configuration to NServiceBus
 
 snippet:UseConfig
-
-
-## More Information
-
- * [NServiceBus.Serilog Repository](https://github.com/SimonCropp/NServiceBus.Serilog)
