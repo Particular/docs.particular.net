@@ -24,8 +24,3 @@ The forwarding queues retain a copy of the original messages ingested by Service
 The queues are not directly managed by ServiceControl and are meant as points of external integration.
 
 Note: If external integration is not required, it is highly recommend to turn forwarding queues off. Otherwise, messages will accumulate unprocessed in the forwarding queue until eventually all available disk space is consumed.
-
-
-### Test Error and Audit Forwarding Queues on startup
-
-To confirm the availability of the forwarding queues an empty message is sent to these queues at when the service starts.
