@@ -37,14 +37,22 @@
             public MyOutboxRecordMapping()
             {
                 Table("MyOutboxTable");
-                Id(x => x.MessageId, m => m.Generator(Generators.Assigned));
-                Property(p => p.Dispatched, pm =>
-                {
-                    pm.Column(c => c.NotNullable(true));
-                    pm.Index("OutboxRecord_Dispatched_Idx");
-                });
-                Property(p => p.DispatchedAt, pm => pm.Index("OutboxRecord_DispatchedAt_Idx"));
-                Property(p => p.TransportOperations, pm => pm.Type(NHibernateUtil.StringClob));
+                Id(
+                    idProperty: record => record.MessageId,
+                    idMapper: mapper => mapper.Generator(Generators.Assigned));
+                Property(
+                    property: record => record.Dispatched,
+                    mapping: mapper =>
+                    {
+                        mapper.Column(c => c.NotNullable(true));
+                        mapper.Index("OutboxRecord_Dispatched_Idx");
+                    });
+                Property(
+                    property: record => record.DispatchedAt,
+                    mapping: pm => pm.Index("OutboxRecord_DispatchedAt_Idx"));
+                Property(
+                    property: record => record.TransportOperations,
+                    mapping: mapper => mapper.Type(NHibernateUtil.StringClob));
             }
         }
 
