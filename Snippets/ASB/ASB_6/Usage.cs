@@ -13,17 +13,6 @@ class Usage
         #endregion
     }
 
-    void NamespaceRoutingSendOptions(IBus bus)
-    {
-        #region namespace_routing_send_options_full_connectionstring
-
-        bus.Send(
-            destination: "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]", 
-            message: new MyMessage());
-
-        #endregion
-    }
-
     #region AzureServiceBusQueueConfigSection
 
     public class AzureServiceBusQueueConfig :
