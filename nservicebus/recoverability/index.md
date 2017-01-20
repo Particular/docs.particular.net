@@ -35,7 +35,7 @@ NOTE: When a message cannot be deserialized all retry mechanisms will be bypasse
 
 ## Immediate Retries
 
-By default up to five immediate retries are performs if the message processing results in exception being thrown. This value [can be configured](/nservicebus/recoverability/configure-immediate-retries.md).
+By default up to five immediate retries are performed if the message processing results in exception being thrown. This value [can be configured](/nservicebus/recoverability/configure-immediate-retries.md).
 
 Note: The configured value describes the minimum number of times a message will be retried if its processing consistently fails. Especially in environments with competing consumers on the same queue, there is an increased chance of retrying a failing message more times across the endpoints.
 
