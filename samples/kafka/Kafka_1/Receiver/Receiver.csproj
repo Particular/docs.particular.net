@@ -32,8 +32,8 @@
       <HintPath>..\..\..\..\packages\NServiceBus.6.1.2\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Transports.Kafka, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\NServiceBus.Transports.Kafka.0.5.0\lib\net452\NServiceBus.Transports.Kafka.dll</HintPath>
+    <Reference Include="NServiceBus.Transports.Kafka, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\NServiceBus.Transports.Kafka.0.6.0\lib\net452\NServiceBus.Transports.Kafka.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RdKafka, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
