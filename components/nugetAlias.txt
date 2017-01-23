@@ -24,6 +24,7 @@ EntityFramework: GoodlyFere.NServiceBus.EntityFramework
 EventStoreTransport: NServiceBus.EventStore
 FileBasedRouting: NServiceBus.FileBasedRouting
 RawMessaging: NServiceBus.Raw
+RawDelayedRetries: NServiceBus.Raw.DelayedRetries
 Gateway: NServiceBus.Gateway
 HandlerOrdering: NServiceBus.HandlerOrdering
 Heartbeats3: ServiceControl.Plugin.Nsb3.Heartbeat

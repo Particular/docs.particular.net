@@ -241,6 +241,7 @@
   ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.Raw
   NugetOrder:
     - NServiceBus.Raw
+    - NServiceBus.Raw.DelayedRetries
 
 - Key: Gateway
   Name: Gateway
