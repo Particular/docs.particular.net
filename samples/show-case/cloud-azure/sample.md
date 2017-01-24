@@ -14,6 +14,23 @@ This sample implements a fictional store that can be deployed to Azure. It is di
 ## Feature usage
 
 
+### Azure Storage Queues Transport
+
+All endpoints in the solution communicate using the [Azure Storage Queues transport](/nservicebus/azure-storage-queues/index.md). The sample has been configured to use the Azure Storage Emulator. 
+
+
+### Azure Storage Persistence
+
+The endpoints in the solution persist data using the [Azure Storage persistence](/nservicebus/azure-storage-persistence/index.md). This persistence is used to store subscription, timeout, and saga data.
+
+NOTE: The Azure Storage persistence does not support collection types. The `ProcessOrderSaga` avoids this issue by combining a collection of `ProductIds` into a single string for persistence.
+
+
+### Azure Web Sites and Web Jobs
+
+The `Ecommerce` project is configured to deploy as an [Azure Web Site](https://azure.microsoft.com/en-us/services/app-service/web/). The `ContentManagement`, `CustomerRelations`, `Operations`, and `Sales` endpoints are all configured to run as [Azure Web Jobs](https://docs.microsoft.com/en-us/azure/app-service-web/websites-webjobs-resources). The sample has been configured to run on the Azure Storage Emulator. 
+
+
 ### Sagas
 
 Illustrates the use of the Saga pattern to handle the buyer's remorse scenario.
