@@ -54,3 +54,12 @@ The use of message headers and message mutator is also illustrated when the user
 ### Encryption
 
 The use of encryption is illustrated by passing in the Credit Card number and the Expiration date from the ECommerce web site. The UnobtrusiveConventions defined in the ECommerce endpoint show how to treat certain properties as encrypted. Both the ECommerce and the Sales endpoint is setup for RijndaelEncryption and the encryption key is provided in the config file. If the messages are inspected in the queue, both the Credit Card number and the Expiration Date will show the encrypted values. 
+
+
+## Deployment Notes
+
+This sample has been designed to run in a development environment under the Azure Storage Emulator. In order to deploy the sample to the cloud the following should be considered:
+
+1. An [Azure Storage account must be created](https://docs.microsoft.com/en-us/azure/storage/storage-create-storage-account#create-a-storage-account).  
+2. Each endpoint is hardcoded to use the development storage. The connection string passed into the Azure Storage Queues transport and the Azure Storage persistence in `CommonConfiguration.ApplyCommonConfiguration()` must be updated to point to the Storage Account configured in step 1.
+3. In order to support the elastic scale capabilities of the Azure platform, a [SignalR backplane](https://www.asp.net/signalr/overview/performance/scaleout-in-signalr) must be added to the `ECommerce` endpoint. 
