@@ -16,12 +16,12 @@ This sample implements a fictional store that can be deployed to Azure. It is di
 
 ### Azure Storage Queues Transport
 
-All endpoints in the solution communicate using the [Azure Storage Queues transport](/nservicebus/azure-storage-queues/index.md). The sample has been configured to use the Azure Storage Emulator. 
+All endpoints in the solution communicate using the [Azure Storage Queues transport](/nservicebus/azure-storage-queues/). The sample has been configured to use the Azure Storage Emulator. 
 
 
 ### Azure Storage Persistence
 
-The endpoints in the solution persist data using the [Azure Storage persistence](/nservicebus/azure-storage-persistence/index.md). This persistence is used to store subscription, timeout, and saga data.
+The endpoints in the solution persist data using the [Azure Storage persistence](/nservicebus/azure-storage-persistence/). This persistence is used to store subscription, timeout, and saga data.
 
 NOTE: The Azure Storage persistence does not support collection types. The `ProcessOrderSaga` avoids this issue by combining a collection of `ProductIds` into a single string for persistence.
 
