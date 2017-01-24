@@ -40,7 +40,7 @@ public class Usage
             request,
             new UnicastAddressTag("Receiver"));
 
-        await sender.SendRaw(
+        await sender.Dispatch(
                 outgoingMessages: new TransportOperations(operation),
                 transaction: new TransportTransaction(),
                 context: new ContextBag())
