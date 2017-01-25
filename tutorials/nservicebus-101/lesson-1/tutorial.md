@@ -6,7 +6,7 @@ reviewed: 2017-01-24
 In the next 10 minutes, you will learn how to set up a new development machine for NServiceBus and create your very first messaging endpoint.
 
 
-## What do I need to get started?
+## Before we get started
 
 NServiceBus has very few prerequisites. It's very easy to get started.
 
@@ -24,6 +24,8 @@ To install MSMQ on your machine, you have two options:
 
 * [Download and run the Particular Platform Installer](https://particular.net/start-platform-download). This will install the MSMQ Windows Feature, configure the Distributed Transaction Coordinator (DTC) so that queues and databases can all work together within a single atomic transaction, and install tools from Particular ([ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/), and [ServicePulse](/servicepulse/)) that we'll use later in this course.
 * [Install and configure MSMQ manually](/nservicebus/msmq/#nservicebus-configuration).
+
+NOTE: It's enough at this point to simply install the Platform Installer tools. At the end of the install process, a button will offer the option to start ServiceControl Management to install or update a ServiceControl instance. This isn't required right now, but we'll return to this topic in [Lesson 5](../lesson-5/) when we explore how to replay failed messages.
 
 ## Exercise
 

@@ -76,7 +76,7 @@ snippet:EventHandler
 
 ## Subscribing to events
 
-For the SQL Server transport, NServiceBus needs to know which endpoint is responsible for publishing an event, so that it can send the publishing endpoint a subscription request message.
+For the MSMQ transport, NServiceBus needs to know which endpoint is responsible for publishing an event, so that it can send the publishing endpoint a subscription request message.
 
 You can configure the publisher endpoint via the Routing API like this:
 

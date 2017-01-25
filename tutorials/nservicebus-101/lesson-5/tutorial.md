@@ -80,65 +80,14 @@ Sometimes, a new release will contain a bug in handler logic that isn't found un
 
 ## Exercise
 
-In this exercise we'll install the [Particular Service Platform](/platform/) in order to get the [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/) monitoring tools. Then we'll experiment with different retry options and replay a failed message.
+In this exercise we'll experiment with the different retry options we can use within an endpoint. Then, we'll use the [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/) monitoring tools to replay a failed message.
 
 This is an exploratory exercise without a lot of coding. We'll use the completed solution from the previous lesson.
 
 
-### Install the Service Platform
-
-First, we need to install the Service Platform:
-
-1. Download the [Platform Installer](https://particular.net/start-platform-download).
-1. Launch the **ParticularPlatform.exe** you downloaded, and use it to install the Particular Service Platform [according to the instructions](https://docs.particular.net/platform/installer/).
-  * Because we are using the SQL Server transport, you can uncheck the **Configure Microsoft Message Queuing** option, if you are not allowed to install it in your environment. It is only required for the MSMQ transport. All other checkboxes should remain selected.
-
-It's possible to install multiple instances of ServiceControl for different transports, so next we need to configure a ServiceControl instance for the SQL Server transport.
-
-You can launch the **ServiceControl Management** application in one of two ways:
-
-* From the **Start ServiceControl Management** button on the last screen of the Platform Installer
-* By locating **ServiceControl Management** in the Windows Start menu
-
-Next, in the **ServiceControl Management** window, click the **Add new instance** button. There are a few customizations we will need to make here to configure ServiceControl.
-
-First, we need to modify the Windows service configuration under the **General** heading:
-
-1. Because we are using the SQL Server transport and connecting to the database using Windows security, the service needs to run under your user account:
-  1. Under **User Account**, select the **User** radio button.
-  2. Enter your user credentials (either `username` or `domain\username`) under **Service Account* and **Password**.
-1. Take note of the host name and port (`localhost:33333` by default) as you will need these later.
-
-Next, scroll down to the **Transport Configuration** heading:
-1. Change the **Transport** dropdown value to **SQLServer**, which will cause a **Transport Connection String** text box to appear.
-1. Add the same connection string to the **Transport Connection String** text box you're using for your NServiceBus project. (The default used in the exercise was `Server=.\sqlexpress;Initial Catalog=NServiceBusAcademy;Trusted_Connection=true;`)
-
-Last, scroll down to the **Queues Configuration** heading:
-
-1. Change the **Audit Forwarding** dropdown value to **Off**.
-
-{{NOTE:
-This setting may seem esoteric, but serves an important purpose. [Forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md) settings control what happens to messages after being processed by ServiceControl. If audit forwarding is on, then copies of all messages processed will accumulate in a queue, but not get processed, eventually consuming all available disk space. On the other hand, if you wanted to do something with those messages but turned audit forwarding off, ServiceControl would consume those messages but then effectively delete them.
-
-Because we're just getting started with NServiceBus development, we don't need to keep copies of these messages around, so we can safely set Audit Forwarding to Off.
-}}
-
-Now, we're ready to create and start the service:
-
-1. Click the **Add** button to install the ServiceControl instance as a Windows service.
-1. When complete, the **ServiceControl Management** tool will display the high-level details of the ServiceControl instance, but the instance will be in the **Stopped** state.
-1. In the upper-right corner of the ServiceControl instance details, click the **Start** button (the button with the *Play* icon) to start the service. You can also start the service from the Windows Services manager.
-
-To check that everything is working properly, you can click on the link shown under **URL**, which will return a JSON response if ServiceControl is working properly. This is the API that is used to serve information to the [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/) tools.
-
-Later in the exercise, we will be using ServicePulse to replay a failed message, so we should also check to make sure it is working. ServicePulse is installed as a Windows service named **Particular ServicePulse** and has a web-based UI, which can be accessed at `http://localhost:9090` [when default settings are used](/servicepulse/host-config.md). You can check to see if it is running from the Windows Services control panel. ServicePulse must to be able to connect to the ServiceControl API, which [can be configured](/servicepulse/host-config.md#changing-the-servicecontrol-url) if a non-default ServiceControl URL is used.
-
-
 ### Throw an exception
 
-Now that we've installed our tools, we can throw an exception and see how retry settings and the ability to replay messages can change the way we deal with errors.
-
-For the purposes of this exercise, we'll create a specific bug in the Sales endpoint and watch what happens when we run the endpoint.
+First, let's throw an exception. For the purposes of this exercise, we'll create a specific bug in the Sales endpoint and watch what happens when we run the endpoint.
 
 1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
 1. After logging receipt of the message, throw an exception:
@@ -207,6 +156,63 @@ snippet:TimeIncrease
 
 Notice how much faster the message proceeds through delayed retries, because instead of delays of 10/20/30 seconds (60 seconds total) the delays are now 3/6/9 seconds, for a total of 18 seconds wait time.
 
+
+### Tools for message replay
+
+Watching a message try to process dozens of times can be fun, but in a real-life system you will want to be able to fix the problem and then replay that message through the system. In order to do that, we need to make sure we have the [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/) tools installed.
+
+To get these tools, we'll use the [Particular Platform Installer](/platform/installer/). You may have already used the installer in Lesson 1 to install MSMQ. If so, you're probably already good to go, but it doesn't hurt to run the installer again to find out if you have the most recent version of each tool installed.
+
+If you need to install the Service Platform, or if you just aren't sure:
+
+1. Download the [Platform Installer](https://particular.net/start-platform-download).
+1. Launch the **ParticularPlatform.exe** you downloaded, and use it to install the Particular Service Platform [according to the instructions](https://docs.particular.net/platform/installer/).
+
+NOTE: If you are using the SQL Server transport, you can uncheck the **Configure Microsoft Message Queuing** option, if you are not allowed to install it in your environment. It is only required for the MSMQ transport. All other checkboxes should remain selected.
+
+Now we need to install an instance of Service Control. It's possible to install multiple instances of ServiceControl for different transports, so next we need to configure a ServiceControl instance for the transport you've selected.
+
+You can launch the **ServiceControl Management** application in one of two ways:
+
+* From the **Start ServiceControl Management** button on the last screen of the Platform Installer
+* By locating **ServiceControl Management** in the Windows Start menu
+
+Next, in the **ServiceControl Management** window, click the **Add new instance** button. There are a few customizations we will need to make here to configure ServiceControl.
+
+First and foremost, under the **General** heading, take note of the host name and port (`localhost:33333` by default) as you will need these later.
+
+{[NOTE:
+If you are using the SQL Server transport and , you will need to make a few extra modifications.
+
+If you are connecting to your database using Windows security, you'll need to modify the Windows service configuration under the **General** heading so that the service runs under your user account:
+
+ 1. Under **User Account**, select the **User** radio button.
+ 1. Enter your user credentials (either `username` or `domain\username`) under **Service Account* and **Password**.
+
+Next, scroll down to the **Transport Configuration** heading:
+ 1. Change the **Transport** dropdown value to **SQLServer**, which will cause a **Transport Connection String** text box to appear.
+ 1. Add the same connection string to the **Transport Connection String** text box you're using for your NServiceBus project. (The default used in the exercise was `Server=.\sqlexpress;Initial Catalog=NServiceBusAcademy;Trusted_Connection=true;`)
+]}
+
+Last, scroll down to the **Queues Configuration** heading:
+
+1. Change the **Audit Forwarding** dropdown value to **Off**.
+
+{{NOTE:
+This setting may seem esoteric, but serves an important purpose. [Forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md) settings control what happens to messages after being processed by ServiceControl. If audit forwarding is on, then copies of all messages processed will accumulate in a queue, but not get processed, eventually consuming all available disk space. On the other hand, if you wanted to do something with those messages but turned audit forwarding off, ServiceControl would consume those messages but then effectively delete them.
+
+Because we're just getting started with NServiceBus development, we don't need to keep copies of these messages around, so we can safely set Audit Forwarding to Off.
+}}
+
+Now, we're ready to create and start the service:
+
+1. Click the **Add** button to install the ServiceControl instance as a Windows service.
+1. When complete, the **ServiceControl Management** tool will display the high-level details of the ServiceControl instance, but the instance will be in the **Stopped** state.
+1. In the upper-right corner of the ServiceControl instance details, click the **Start** button (the button with the *Play* icon) to start the service. You can also start the service from the Windows Services manager.
+
+To check that everything is working properly, you can click on the link shown under **URL**, which will return a JSON response if ServiceControl is working properly. This is the API that is used to serve information to the [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/) tools.
+
+Later in the exercise, we will be using ServicePulse to replay a failed message, so we should also check to make sure it is working. ServicePulse is installed as a Windows service named **Particular ServicePulse** and has a web-based UI, which can be accessed at `http://localhost:9090` [when default settings are used](/servicepulse/host-config.md). You can check to see if it is running from the Windows Services control panel. ServicePulse must to be able to connect to the ServiceControl API, which [can be configured](/servicepulse/host-config.md#changing-the-servicecontrol-url) if a non-default ServiceControl URL is used.
 
 ### Replay a message
 
